@@ -75773,5 +75773,1718 @@
     "label": "Title X & Family Planning",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-04-27-climate-smart-agriculture-kenya-smallholder": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FUNDING GAP",
+        "body": "Smallholder farms produce roughly a third of the world's food on less than a quarter of its cropland, but receive under 2% of global climate finance. The gap is structural: most adaptation money flows through sovereign channels to capital projects, not to farms with no formal balance sheet.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mismatch has a name in the development literature: the *missing middle* — farmers too small for commercial agribusiness lending, too commercial for humanitarian aid."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT CSA ACTUALLY MEANS",
+        "body": "Climate-smart agriculture bundles three goals into one framework: raise productivity, build resilience to weather shocks, and reduce emissions per unit of food. The label was coined by the FAO in 2010 and now anchors most World Bank and African Development Bank agriculture portfolios."
+      },
+      {
+        "heading": "THE PRACTICES BEING TESTED",
+        "body": "Conservation tillage (don't plough), intercropping legumes with maize (free nitrogen), drought-tolerant seed varieties, and agroforestry (trees in fields). Each is cheap in isolation; the question trials answer is which combinations actually move yields under local soils, rainfall, and labor constraints.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why intercrop legumes like beans with maize?",
+            "options": [
+              "Legumes fix atmospheric nitrogen into the soil",
+              "Beans repel maize-stalk borers chemically",
+              "Legumes shade out weeds during maize germination",
+              "Beans deepen the maize root system"
+            ],
+            "correct": 0,
+            "explanation": "Legume root nodules host rhizobia bacteria that convert N2 into ammonia, replacing fertilizer no smallholder can afford."
+          }
+        ]
+      },
+      {
+        "heading": "WHY KENYA",
+        "body": "Kenya's Rift Valley spans semi-arid lowlands and high-rainfall highlands within 200 km — a natural gradient that lets one trial network test the same intervention across climates that elsewhere would require five separate countries.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KE",
+              "UG",
+              "TZ",
+              "ET",
+              "SS"
+            ],
+            "label": "trial network across the rainfall gradient",
+            "markers": [
+              {
+                "lat": -0.0917,
+                "lng": 34.768,
+                "label": "Kisumu (highland trials)"
+              },
+              {
+                "lat": 0.5143,
+                "lng": 35.2698,
+                "label": "Eldoret (Rift Valley)"
+              },
+              {
+                "lat": -3.3833,
+                "lng": 38.55,
+                "label": "Voi (semi-arid)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE FERTILIZER EXPOSURE",
+        "body": "Sub-Saharan Africa imports roughly 80% of its fertilizer, priced in dollars. When the shilling falls or urea spikes, smallholder margins collapse before any climate effect arrives. Practices that cut fertilizer dependency — legumes, manure cycling, agroforestry — are simultaneously climate adaptation and FX-shock insurance.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "393 kg/ha",
+                "cc": "CN",
+                "weight": 393
+              },
+              {
+                "label": "India",
+                "value": "175 kg/ha",
+                "cc": "IN",
+                "weight": 175
+              },
+              {
+                "label": "Brazil",
+                "value": "164 kg/ha",
+                "cc": "BR",
+                "weight": 164
+              },
+              {
+                "label": "Kenya",
+                "value": "47 kg/ha",
+                "cc": "KE",
+                "weight": 47,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Ethiopia",
+                "value": "38 kg/ha",
+                "cc": "ET",
+                "weight": 38,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "fertilizer use, kg per hectare cropland"
+          }
+        ]
+      },
+      {
+        "heading": "WHY TRIALS BEAT PILOTS",
+        "body": "A pilot demonstrates a practice works once, in one place. A randomized trial network compares yields plot-by-plot across hundreds of farms with controls — the only design that can tell a funder whether a 12% yield gain is the practice or the rain that year. Without that, scaling decisions are guesswork dressed as evidence."
+      }
+    ],
+    "generatedAt": "2026-04-28T12:27:04.093Z",
+    "label": "Climate-Smart Agriculture",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-28-aadhaar-google-wallet-integration-uidai": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SCALE",
+        "body": "Aadhaar is the world's largest biometric ID system. Over 1.3 billion Indians are enrolled — fingerprints, iris scans, and a 12-digit number linked to bank accounts, SIM cards, tax filings, ration shops, and welfare disbursements. No other country has consolidated this much identity into one stack.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India (Aadhaar)",
+                "value": "~1.3bn",
+                "cc": "IN",
+                "weight": 1300,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "China (Resident ID)",
+                "value": "~1.1bn",
+                "cc": "CN",
+                "weight": 1100,
+                "tone": "neutral"
+              },
+              {
+                "label": "Indonesia (KTP-el)",
+                "value": "~200mn",
+                "cc": "ID",
+                "weight": 200,
+                "tone": "neutral"
+              },
+              {
+                "label": "Pakistan (NADRA)",
+                "value": "~120mn",
+                "cc": "PK",
+                "weight": 120,
+                "tone": "neutral"
+              },
+              {
+                "label": "Nigeria (NIN)",
+                "value": "~110mn",
+                "cc": "NG",
+                "weight": 110,
+                "tone": "neutral"
+              }
+            ],
+            "label": "largest national biometric ID systems"
+          }
+        ]
+      },
+      {
+        "heading": "HOW VERIFICATION ACTUALLY WORKS",
+        "body": "Aadhaar authentication is a yes/no API call. A service provider sends a fingerprint or OTP plus the Aadhaar number to UIDAI's servers; UIDAI returns a match/no-match. The biometric template never leaves the central database — but every authentication generates a log of who verified to which service, when.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The architecture is sometimes called a *trust broker* model — the citizen's biometrics stay locked at UIDAI, but UIDAI sees **every authentication event** across the entire economy. That metadata trail is the actual asset."
+          }
+        ]
+      },
+      {
+        "heading": "THE PUTTASWAMY JUDGMENT",
+        "body": "In 2017 India's Supreme Court ruled in Puttaswamy v. Union of India that privacy is a fundamental right under Article 21. The 2018 Aadhaar judgment that followed restricted private companies from mandating Aadhaar verification — striking down Section 57 of the Aadhaar Act, which had let banks and telcos demand it.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The right to privacy is protected as an intrinsic part of the right to life and personal liberty under Article 21.",
+            "speaker": "Puttaswamy v. Union of India, 2017",
+            "year": "2017"
+          }
+        ]
+      },
+      {
+        "heading": "THE METADATA PROBLEM",
+        "body": "On-device biometric matching protects the template itself, but routing authentications through a third party exposes the metadata — which services a citizen uses, at what frequency, from which location. In surveillance literature this is the well-established finding: metadata is often more revealing than content."
+      },
+      {
+        "heading": "WHY GOOGLE",
+        "body": "Google Pay already processes the majority of UPI transactions in India — UPI itself is built on top of the same identity stack Aadhaar anchors. Adding wallet-based Aadhaar verification deepens an existing dependency: the Indian state's identity rails increasingly run on infrastructure operated by a single US-headquartered firm.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of India's UPI transactions does Google Pay process?",
+            "options": [
+              "Around 10%",
+              "Around 35%",
+              "Around 60%",
+              "Around 85%"
+            ],
+            "correct": 2,
+            "explanation": "Google Pay and PhonePe together handle roughly 85% of UPI volume; Google Pay alone has hovered near 35-40% for years, making it systemically central to Indian retail payments."
+          }
+        ]
+      },
+      {
+        "heading": "THE SOVEREIGNTY QUESTION",
+        "body": "Estonia built X-Road, a state-operated identity backbone where no single foreign vendor sits in the verification path. India's choice runs the other way — the world's largest digital identity system increasingly mediated by foreign cloud and wallet providers. The architectural decision is reversible only at enormous switching cost."
+      }
+    ],
+    "generatedAt": "2026-04-28T12:27:35.290Z",
+    "label": "Aadhaar & Identity Infrastructure",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-28-barclays-66bn-shadow-bank-exposure": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 'SHADOW BANKING' MEANS",
+        "body": "Credit intermediation that happens outside regulated deposit-taking banks — private credit funds, business development companies, hedge funds, insurance-linked vehicles, family offices. They lend, but they do not take deposits, so they sit outside the capital and liquidity rules that govern banks.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Financial Stability Board prefers the term **non-bank financial intermediation (NBFI)**. The sector now holds roughly *half* of global financial assets — bigger than the regulated banking system it grew up alongside."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BANKS ARE EXPOSED ANYWAY",
+        "body": "Banks do not escape shadow risk by not lending directly. They provide the leverage: warehouse lines to private credit funds, repo financing to hedge funds, subscription-line facilities to PE managers, prime brokerage to family offices. When the shadow borrower fails, the bank's loan against that exposure is what blows up."
+      },
+      {
+        "heading": "THE ARCHEGOS PRECEDENT",
+        "body": "In 2021, a single family office (Archegos) collapsed and cost Credit Suisse $5.5bn, Nomura $2.9bn, Morgan Stanley $1bn. The bank counterparties did not know how levered Archegos was because each saw only its own slice. Regulators have been pushing for aggregate non-bank exposure disclosure ever since.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Credit Suisse",
+                "value": "$5.5bn",
+                "tone": "unfavorable",
+                "cc": "CH",
+                "weight": 5.5
+              },
+              {
+                "label": "Nomura",
+                "value": "$2.9bn",
+                "tone": "unfavorable",
+                "cc": "JP",
+                "weight": 2.9
+              },
+              {
+                "label": "Morgan Stanley",
+                "value": "$1.0bn",
+                "tone": "unfavorable",
+                "cc": "US",
+                "weight": 1
+              },
+              {
+                "label": "UBS",
+                "value": "$0.8bn",
+                "tone": "unfavorable",
+                "cc": "CH",
+                "weight": 0.8
+              }
+            ],
+            "label": "Archegos counterparty losses, 2021"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRIVATE CREDIT BOOM",
+        "body": "Private credit AUM rose from roughly $400bn in 2010 to over $1.7tn by 2024, filling space banks vacated after Basel III made middle-market lending capital-expensive. The funds borrow from banks to amplify returns — turning what looks like disintermediation into a chain that loops back to bank balance sheets."
+      },
+      {
+        "heading": "WHY RECESSION IS THE TRIGGER",
+        "body": "Private credit lends mostly to leveraged mid-market companies at floating rates. Those borrowers were underwritten when rates were near zero. A recession that hits revenue while rates stay elevated produces simultaneous defaults across portfolios — and the banks financing those portfolios discover their exposures are correlated, not diversified.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4.26,
+              4.24,
+              4.26,
+              4.29,
+              4.28,
+              4.29,
+              4.21,
+              4.22,
+              4.22,
+              4.16,
+              4.18,
+              4.09,
+              4.04,
+              4.05,
+              4.09,
+              4.08,
+              4.08,
+              4.03,
+              4.04,
+              4.05,
+              4.02,
+              3.97,
+              4.05,
+              4.06,
+              4.09,
+              4.13,
+              4.15,
+              4.12,
+              4.15,
+              4.21,
+              4.27,
+              4.28,
+              4.23,
+              4.2,
+              4.26,
+              4.25,
+              4.39,
+              4.34,
+              4.39,
+              4.33,
+              4.42,
+              4.44,
+              4.35,
+              4.3,
+              4.33,
+              4.31,
+              4.35,
+              4.34,
+              4.33,
+              4.29,
+              4.29,
+              4.31,
+              4.3,
+              4.26,
+              4.29,
+              4.32,
+              4.26,
+              4.26,
+              4.3,
+              4.3,
+              4.34,
+              4.31
+            ],
+            "periods": [
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24"
+            ],
+            "label": "US 10y Treasury",
+            "unit": "%",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE DISCLOSURE GAP",
+        "body": "Banks report loans on balance sheet under standardized rules. Off-balance-sheet commitments, derivative counterparty exposure to non-banks, and warehouse lines are reported in fragments across different filings. Aggregating a single bank's total non-bank exposure is what Barclays has just done — and what European regulators want every G-SIB to do.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of global financial assets sits in non-bank financial intermediation today?",
+            "options": [
+              "About 15%",
+              "About 30%",
+              "About 50%",
+              "About 75%"
+            ],
+            "correct": 2,
+            "explanation": "FSB data puts NBFI at roughly half of global financial assets — the shadow system is now larger than the regulated banking system."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · Board of Governors · as of 2026-04-24"
+    ],
+    "generatedAt": "2026-04-28T12:28:02.465Z",
+    "label": "Shadow Banking & Non-Bank Lending",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-28-eu-extends-myanmar-sanctions-asean": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONSENSUS TRAP",
+        "body": "ASEAN operates by unanimous consensus among its 10 members. Myanmar is one of them. This means the bloc cannot formally condemn or sanction its own member without that member's agreement — a structural veto built into the founding charter.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine is called the ***ASEAN Way***: non-interference in internal affairs, consensus decision-making, informal diplomacy. It was designed in 1967 to keep newly-independent states from meddling in each other's affairs — and it now shields the junta."
+          }
+        ]
+      },
+      {
+        "heading": "THE FIVE-POINT CONSENSUS",
+        "body": "In April 2021, weeks after the coup, ASEAN extracted a five-point plan from junta chief Min Aung Hlaing: cease violence, dialogue with all parties, humanitarian access, an ASEAN envoy, and a special meeting. The junta agreed and then ignored every point. ASEAN responded by barring the regime's political representatives from summits — its sharpest sanction in 55 years.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1962",
+                "label": "Ne Win military coup"
+              },
+              {
+                "year": "1988",
+                "label": "8888 uprising crushed"
+              },
+              {
+                "year": "2011",
+                "label": "Quasi-civilian transition begins"
+              },
+              {
+                "year": "2015",
+                "label": "NLD wins election"
+              },
+              {
+                "year": "2021",
+                "label": "Tatmadaw coup ousts NLD",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021-04",
+                "label": "ASEAN Five-Point Consensus"
+              },
+              {
+                "year": "2024",
+                "label": "Junta loses ground to resistance"
+              }
+            ],
+            "label": "Myanmar's modern arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY EU SANCTIONS BITE LESS",
+        "body": "The EU sanctions list targets generals, the Myanma Oil and Gas Enterprise, and military conglomerates MEHL and MEC. But Myanmar's largest trade partners are China, Thailand, India, and Singapore — none of whom enforce EU measures. Junta-linked entities reroute revenue through regional banks and jade exports to Yunnan.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~33%",
+                "cc": "CN",
+                "weight": 33
+              },
+              {
+                "label": "Thailand",
+                "value": "~25%",
+                "cc": "TH",
+                "weight": 25
+              },
+              {
+                "label": "India",
+                "value": "~7%",
+                "cc": "IN",
+                "weight": 7
+              },
+              {
+                "label": "Japan",
+                "value": "~5%",
+                "cc": "JP",
+                "weight": 5
+              },
+              {
+                "label": "Germany",
+                "value": "~4%",
+                "cc": "DE",
+                "weight": 4
+              }
+            ],
+            "label": "Myanmar's top export destinations, 2023"
+          }
+        ]
+      },
+      {
+        "heading": "THE TATMADAW'S ECONOMIC EMPIRE",
+        "body": "The Myanmar military runs two holding conglomerates — Myanmar Economic Holdings Limited (MEHL) and Myanmar Economic Corporation (MEC) — that span banking, beer, telecoms, jade, gems, and construction. Officer pensions and unit budgets flow through them, which is why financial sanctions on these entities target the junta's payroll, not just its trade."
+      },
+      {
+        "heading": "THE GEOGRAPHY OF DIVISION",
+        "body": "Myanmar shares its longest borders with China and Thailand. Both host fugitive opposition figures and ethnic armed organizations on their territory while trading with the junta in Naypyidaw. Sanctions designed in Brussels cannot reach across these borders.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MM",
+              "CN",
+              "TH",
+              "IN",
+              "BD",
+              "LA"
+            ],
+            "label": "Myanmar's neighborhood",
+            "markers": [
+              {
+                "lat": 19.7633,
+                "lng": 96.0785,
+                "label": "Naypyidaw (junta capital)"
+              },
+              {
+                "lat": 16.8409,
+                "lng": 96.1735,
+                "label": "Yangon"
+              },
+              {
+                "lat": 24.2667,
+                "lng": 97.0167,
+                "label": "Muse (China border trade)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE RECOGNITION QUESTION",
+        "body": "Recognition in international law is not binary. ASEAN can refuse to seat junta delegates at summits while still allowing trade and diplomatic contact. The EU can sanction officials while maintaining an embassy. The junta seeks the symbolic legitimacy of being treated as the government — and ASEAN has so far withheld it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which decision did ASEAN take against Myanmar's junta after the 2021 coup?",
+            "options": [
+              "Suspended Myanmar's membership",
+              "Barred political representatives from summits",
+              "Imposed economic sanctions",
+              "Recognized the opposition NUG as the legitimate government"
+            ],
+            "correct": 1,
+            "explanation": "ASEAN cannot suspend members under its charter, but it has barred junta political representatives from summits since late 2021 — leaving Myanmar's seat empty or filled only by non-political delegates."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-28T12:28:37.284Z",
+    "label": "Myanmar Sanctions & ASEAN",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-28-ghana-bawku-military-convoy-attack": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ROOT DISPUTE",
+        "body": "Bawku's violence is a chieftaincy succession war between the Kusasi and Mamprusi ethnic groups, dating to colonial-era boundary politics. The British installed a Mamprusi chief over a Kusasi-majority area in 1931; every cycle of violence since has rehearsed that grievance.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The dispute is not over land or resources — it is over the **skin**, the traditional stool of chieftaincy. In northern Ghana, the chief mediates land allocation, customary law, and ritual authority; whoever sits the skin controls the social fabric."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "Bawku sits in Ghana's Upper East Region at the tri-border with Burkina Faso and Togo. The porous frontier means weapons and fighters move freely from the Sahel — where jihadist insurgencies have hollowed out Burkina Faso's north — into a Ghanaian flashpoint that was already armed.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GH",
+              "BF",
+              "TG",
+              "CI",
+              "ML"
+            ],
+            "label": "the Sahel spillover corridor",
+            "markers": [
+              {
+                "lat": 11.0608,
+                "lng": -0.2417,
+                "label": "Bawku"
+              },
+              {
+                "lat": 10.9569,
+                "lng": -0.3022,
+                "label": "Binduri"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SAHEL SPILLOVER",
+        "body": "Burkina Faso lost roughly 40% of its territory to JNIM and ISGS-affiliated groups after the 2022 coups. Ghana's northern border, once a buffer, is now the southern edge of an active jihadist theatre. Coastal West Africa — Ghana, Togo, Benin, Côte d'Ivoire — is the next domino the analysts watch."
+      },
+      {
+        "heading": "THE CYCLE",
+        "body": "Ghana has imposed curfews, deployed troops, and brokered peace agreements over Bawku repeatedly since 2000. The 2023 emergency security measures are the latest layer. Each intervention quiets the violence for months; none has resolved the chieftaincy question, because doing so would require the state to pick a winner.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1931",
+                "label": "British install Mamprusi chief",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1957",
+                "label": "Ghana independence; dispute inherited"
+              },
+              {
+                "year": "2000",
+                "label": "First major modern outbreak"
+              },
+              {
+                "year": "2008",
+                "label": "Renewed clashes, curfew imposed"
+              },
+              {
+                "year": "2022",
+                "label": "Violence resumes after chief's death"
+              },
+              {
+                "year": "2023",
+                "label": "Emergency security measures"
+              }
+            ],
+            "label": "Bawku flashpoints"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ESCORTING CIVILIANS IS DANGEROUS",
+        "body": "A military convoy moving 140 civilians is a fixed, slow, predictable target on a known route. Insurgent and militia tactics across the Sahel — from Mali to Burkina Faso — converged years ago on ambushing exactly these escort columns, because the political cost of civilian casualties exceeds the military cost of the engagement.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why has Ghana's state been unable to resolve the Bawku conflict despite repeated interventions?",
+            "options": [
+              "Lack of military capacity to hold the area",
+              "Resolving the chieftaincy dispute requires picking a winner between two ethnic groups",
+              "International sanctions block security cooperation",
+              "The conflict is driven entirely by external jihadist groups"
+            ],
+            "correct": 1,
+            "explanation": "The state can suppress violence with troops and curfews, but the underlying chieftaincy succession is a zero-sum question — any ruling alienates one community permanently."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-28T12:29:06.274Z",
+    "label": "Bawku & the Chieftaincy Conflict",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-28-indian-airlines-atf-shutdown-warning": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY FUEL DOMINATES THE COST STACK",
+        "body": "Jet fuel is the single largest controllable cost for an airline — typically 30-40% globally. Indian carriers run higher because domestic ATF is taxed more aggressively than almost anywhere else, pushing fuel toward 60% of operating costs and leaving thin margins on every seat sold.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "At 60% fuel share, an Indian carrier is essentially a *fuel reseller with wings* — the rest of the business (crew, leases, maintenance, distribution) competes for the remaining 40 cents of every rupee."
+          }
+        ]
+      },
+      {
+        "heading": "THE TAX STACK",
+        "body": "India deliberately keeps ATF outside the GST system. This lets the centre levy excise while every state stacks its own VAT on top — rates range from under 5% in fuel-friendly states to 29% in others. No other major aviation market taxes jet fuel this aggressively relative to base cost.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Maharashtra",
+                "value": "~25%",
+                "tone": "unfavorable",
+                "cc": "IN",
+                "weight": 25
+              },
+              {
+                "label": "Delhi",
+                "value": "~25%",
+                "tone": "unfavorable",
+                "cc": "IN",
+                "weight": 25
+              },
+              {
+                "label": "Tamil Nadu",
+                "value": "~29%",
+                "tone": "unfavorable",
+                "cc": "IN",
+                "weight": 29
+              },
+              {
+                "label": "Andhra Pradesh",
+                "value": "1%",
+                "tone": "favorable",
+                "cc": "IN",
+                "weight": 1
+              },
+              {
+                "label": "Haryana",
+                "value": "1%",
+                "tone": "favorable",
+                "cc": "IN",
+                "weight": 1
+              }
+            ],
+            "label": "ATF state VAT (selected, %)"
+          }
+        ]
+      },
+      {
+        "heading": "THE CRUDE PASS-THROUGH",
+        "body": "ATF is refined from crude; its price tracks Brent with a refining margin on top. When Brent moves on a Persian Gulf scare, Indian carriers feel it within a single monthly price revision cycle — they cannot hedge effectively because rupee-denominated jet fuel hedging markets are thin.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              70.9,
+              71,
+              72.25,
+              67.72,
+              70.01,
+              71.15,
+              69.87,
+              70.45,
+              71.19,
+              71.01,
+              71.52,
+              69.8,
+              69.96,
+              70.81,
+              69.77,
+              71.78,
+              73.17,
+              72.75,
+              71.9,
+              71.21,
+              70.69,
+              71.66,
+              71.32,
+              77.24,
+              83.28,
+              81.56,
+              88.59,
+              95.74,
+              94.35,
+              89.84,
+              90.98,
+              102.38,
+              103.23,
+              101.04,
+              108.39,
+              118.09,
+              111.05,
+              118.42,
+              103.79,
+              108.42,
+              109.14,
+              113.39,
+              121.47,
+              121.88,
+              126.69,
+              119.56,
+              127.61,
+              138.21,
+              122.11,
+              119.03,
+              119.07,
+              123.28,
+              118.69,
+              114.93,
+              116.63,
+              98.63,
+              103.4
+            ],
+            "periods": [
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20"
+            ],
+            "label": "Brent crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE INELASTIC DEMAND TRAP",
+        "body": "Domestic Indian air travel grew faster than capacity through the 2020s. Carriers cannot simply pass through fuel spikes — competition from IndiGo's dominant 60%+ market share caps fares, and price-sensitive Indian flyers shift to rail at the margin. The squeeze lands on airline balance sheets, not consumers."
+      },
+      {
+        "heading": "THE KINGFISHER PRECEDENT",
+        "body": "Kingfisher Airlines collapsed in 2012 carrying ₹70bn in debt; Jet Airways followed in 2019. In both cases, fuel cost shocks combined with rupee depreciation were the proximate triggers. ATF is dollar-priced upstream even when sold in rupees — a falling rupee compounds every Brent move.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              94.352351,
+              93.48465,
+              92.64285,
+              92.97385,
+              92.763649,
+              92.978498,
+              92.978498,
+              92.9636,
+              92.86045,
+              92.283354,
+              92.47006,
+              93.10605,
+              93.10525,
+              94.508943,
+              94.94696,
+              93.165649,
+              93.387156,
+              93.048145,
+              92.602452,
+              92.60245,
+              92.60245,
+              92.782407,
+              93.348804,
+              93.775164,
+              94.11314,
+              94.143557,
+              94.0666,
+              94.0666,
+              94.257338,
+              94.420855
+            ],
+            "periods": [
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 1
+          }
+        ]
+      },
+      {
+        "heading": "WHY EXCISE RELIEF IS HARD",
+        "body": "Central excise on petroleum products generated roughly ₹3.2 trillion in FY2024 — about 12% of central tax revenue. Cutting ATF excise is politically cheaper than cutting petrol or diesel excise (fewer voters fly), but it sets a precedent the petroleum lobby and state governments will exploit.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is Indian ATF taxed more aggressively than in most major aviation markets?",
+            "options": [
+              "India produces no domestic crude",
+              "ATF is kept outside the GST, so centre and states stack taxes independently",
+              "ICAO rules require it",
+              "Airlines lobbied for it to deter foreign carriers"
+            ],
+            "correct": 1,
+            "explanation": "Petrol, diesel and ATF were deliberately excluded from GST, allowing both central excise and state VAT to apply — uniquely high cumulative rates."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · EIA · as of 2026-04-20",
+      "Open Exchange Rates · as of 2026-04-28"
+    ],
+    "generatedAt": "2026-04-28T12:29:37.242Z",
+    "label": "Aviation Turbine Fuel & Indian Airlines",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-28-pakistan-fy26-growth-aurangzeb-4pc": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE REMITTANCE LIFELINE",
+        "body": "Pakistan receives roughly $30bn a year from workers abroad — more than its goods exports earn. Saudi Arabia and the UAE alone send about half. Remittances are the single largest source of dollars keeping the rupee from collapse.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Remittances",
+                "value": "$30bn",
+                "weight": 30,
+                "tone": "favorable"
+              },
+              {
+                "label": "Goods exports",
+                "value": "$31bn",
+                "weight": 31,
+                "tone": "neutral"
+              },
+              {
+                "label": "FDI",
+                "value": "$1.9bn",
+                "weight": 1.9,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "IMF tranches",
+                "value": "$3bn",
+                "weight": 3,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Pakistan FY24 dollar inflows ($bn)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY OIL IS THE SWING RISK",
+        "body": "Pakistan imports nearly all its crude and most of its LNG. A $10/bbl move on Brent shifts the import bill by roughly $1.5bn a year — about a tenth of the foreign-exchange reserve target Aurangzeb is defending.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              70.9,
+              71,
+              72.25,
+              67.72,
+              70.01,
+              71.15,
+              69.87,
+              70.45,
+              71.19,
+              71.01,
+              71.52,
+              69.8,
+              69.96,
+              70.81,
+              69.77,
+              71.78,
+              73.17,
+              72.75,
+              71.9,
+              71.21,
+              70.69,
+              71.66,
+              71.32,
+              77.24,
+              83.28,
+              81.56,
+              88.59,
+              95.74,
+              94.35,
+              89.84,
+              90.98,
+              102.38,
+              103.23,
+              101.04,
+              108.39,
+              118.09,
+              111.05,
+              118.42,
+              103.79,
+              108.42,
+              109.14,
+              113.39,
+              121.47,
+              121.88,
+              126.69,
+              119.56,
+              127.61,
+              138.21,
+              122.11,
+              119.03,
+              119.07,
+              123.28,
+              118.69,
+              114.93,
+              116.63,
+              98.63,
+              103.4
+            ],
+            "periods": [
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20"
+            ],
+            "label": "Brent crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "PRIMARY SURPLUS, STILL SINKING",
+        "body": "A primary surplus means tax revenue exceeds non-interest spending. Pakistan achieved this under the IMF program. But interest on existing debt consumes more than the surplus generates, so total debt keeps rising — fiscal effort that is real but insufficient."
+      },
+      {
+        "heading": "THE 24TH IMF PROGRAM",
+        "body": "Pakistan has entered IMF programs more times than almost any other country since 1958 — typically a 3-year Extended Fund Facility, missed targets, renegotiation, repeat. The current $7bn EFF (2024) is conditioned on energy tariff hikes, SOE privatisation, and a widened tax base.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pattern is structural: Pakistan runs a *twin deficit* — fiscal and current account — that closes only when growth slows enough to crush imports. **4% growth** is precisely the speed at which the import bill starts overwhelming reserves again."
+          }
+        ]
+      },
+      {
+        "heading": "THE RUPEE CONSTRAINT",
+        "body": "Reserves of $18bn cover roughly three months of imports — the IMF's minimum threshold. Below it, ratings agencies downgrade and external borrowing costs spike. Aurangzeb's growth forecast is bounded by whatever keeps reserves above that line.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              279.667468,
+              279.058232,
+              279.052775,
+              279.079115,
+              278.399884,
+              278.399884,
+              278.399884,
+              279.05,
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062
+            ],
+            "periods": [
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 1
+          }
+        ]
+      },
+      {
+        "heading": "THE TECH SECTOR CLAIM",
+        "body": "Pakistan's IT exports reached about $3.2bn in FY24 — a fraction of India's $200bn but growing 25% annually. The sector earns dollars without consuming imported inputs, which is why every finance minister cites it. Whether it can scale before the next balance-of-payments crisis is the actual question.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Pakistan's IT exports in FY24 were roughly what share of India's?",
+            "options": [
+              "About half",
+              "About a fifth",
+              "About 1.6%",
+              "Roughly equal"
+            ],
+            "correct": 2,
+            "explanation": "Pakistan ~$3.2bn vs India ~$200bn — the sector matters for Pakistan's dollar inflows but is not yet a structural export base."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · EIA · as of 2026-04-20",
+      "Open Exchange Rates · as of 2026-04-28"
+    ],
+    "generatedAt": "2026-04-28T12:30:04.269Z",
+    "label": "Pakistan's Growth Math",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-28-sudan-nuba-mountains-hospitals-attacked": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO THE NUBA ARE",
+        "body": "The Nuba are a constellation of dozens of indigenous groups — Muslim, Christian, and traditional — in South Kordofan's mountains. They are ethnically and culturally distinct from both the Arab north and the South Sudanese, which has left them politically orphaned since Sudan's 2011 partition.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Nuba fought *with* the SPLA during Sudan's second civil war but were left inside Sudan when **South Sudan** seceded — a border drawn through their homeland."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2011 BETRAYAL",
+        "body": "When South Sudan voted for independence, the Nuba were promised a 'popular consultation' on their own status. Khartoum reneged, and in June 2011 launched aerial bombing of the mountains. The war that started then never fully ended — it folded into the current SAF–RSF conflict.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "SS",
+              "TD",
+              "CF",
+              "ET",
+              "ER",
+              "EG"
+            ],
+            "label": "Sudan and its neighbours",
+            "markers": [
+              {
+                "lat": 11.0167,
+                "lng": 29.7167,
+                "label": "Nuba Mountains"
+              },
+              {
+                "lat": 15.5007,
+                "lng": 32.5599,
+                "label": "Khartoum"
+              },
+              {
+                "lat": 13.6311,
+                "lng": 25.3536,
+                "label": "El Fasher (Darfur)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO ARMIES",
+        "body": "Sudan's war is between two generals who once partnered to overthrow a civilian government. The SAF under Burhan and the RSF under Hemedti jointly crushed the 2019 democracy movement, then turned on each other in April 2023. Civilians and hospitals are the terrain.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Abdel Fattah al-Burhan",
+                "role": "SAF commander, de-facto head of state",
+                "years": "2019–",
+                "cc": "SD"
+              },
+              {
+                "name": "Mohamed Hamdan Dagalo",
+                "role": "RSF commander ('Hemedti')",
+                "years": "2013–",
+                "cc": "SD"
+              },
+              {
+                "name": "Abdel Aziz al-Hilu",
+                "role": "SPLM-N (Nuba) commander",
+                "years": "2017–",
+                "cc": "SD"
+              }
+            ],
+            "label": "the war's principals"
+          }
+        ]
+      },
+      {
+        "heading": "WHY HOSPITALS GET HIT",
+        "body": "Targeting medical facilities is a deliberate strategy in siege warfare — it accelerates displacement and breaks civilian morale faster than direct attacks. The Geneva Conventions specifically prohibit it, which is why both sides in Sudan deny what satellite imagery and MSF reports document repeatedly."
+      },
+      {
+        "heading": "THE ONE-SURGEON PROBLEM",
+        "body": "Sub-Saharan Africa averages roughly 0.5 surgeons per 100,000 people; high-income countries average 50+. Nuba's pre-war ratio was already among the world's worst. With one surgeon for a population of over a million, every complex case — obstructed labour, a ruptured appendix, a shrapnel wound to the abdomen — becomes a coin flip.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many surgeons per 100,000 people does sub-Saharan Africa have, on average?",
+            "options": [
+              "About 0.5",
+              "About 5",
+              "About 20",
+              "About 50"
+            ],
+            "correct": 0,
+            "explanation": "The Lancet Commission on Global Surgery puts sub-Saharan Africa near 0.5 per 100,000 — roughly 1% of the rate in high-income countries."
+          }
+        ]
+      },
+      {
+        "heading": "THE FAMINE LAYER",
+        "body": "The IPC declared famine in parts of Sudan in 2024 — the first formal famine declaration anywhere since Somalia 2011. Malnutrition multiplies surgical mortality: wounds don't close, infections don't clear, and routine procedures kill patients who would survive in peacetime."
+      }
+    ],
+    "generatedAt": "2026-04-28T12:30:34.487Z",
+    "label": "Nuba Mountains & Sudan's War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-28-tls-b-t-cells-checkpoint-inhibitor-survival": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHECKPOINT",
+        "body": "Tumors hijack a natural brake on the immune system. T cells carry receptors like PD-1 that, when engaged, tell the cell to stand down. Cancers express the matching ligand (PD-L1) and effectively wave a white flag at the immune system. Checkpoint inhibitors block that handshake, releasing the brake.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2018 Nobel Prize in Medicine went to **James Allison** and **Tasuku Honjo** for discovering this brake — a finding that turned a long-stalled field into the dominant pillar of modern oncology."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MOST PATIENTS DON'T RESPOND",
+        "body": "Checkpoint inhibitors only work in roughly 20-40% of patients across most solid tumors. The drug releases the brake, but if no T cells have infiltrated the tumor, there is nothing to release. Predicting who will respond has been the central problem of the field for a decade."
+      },
+      {
+        "heading": "THE SINGLE-BIOMARKER TRAP",
+        "body": "Clinicians have tried PD-L1 staining, tumor mutational burden, and microsatellite instability as standalone predictors. Each works for some patients and fails for others. The biology is a network; one-dimensional biomarkers cannot capture network behavior."
+      },
+      {
+        "heading": "TERTIARY LYMPHOID STRUCTURES",
+        "body": "TLS are lymph-node-like clusters that form inside chronically inflamed tissue — including tumors. They host the B-cell and T-cell crosstalk that normally happens in actual lymph nodes. When a tumor grows its own mini lymph node, the immune system has a forward operating base.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Where do tertiary lymphoid structures form?",
+            "options": [
+              "Only in lymph nodes",
+              "In chronically inflamed tissue, including some tumors",
+              "Only in bone marrow",
+              "In the spleen during infection"
+            ],
+            "correct": 1,
+            "explanation": "TLS are ectopic — they form outside normal lymphoid organs, wherever sustained inflammation organizes immune cells into a functional cluster."
+          }
+        ]
+      },
+      {
+        "heading": "THE CXCL13 SIGNAL",
+        "body": "CXCL13 is the chemokine B cells follow into a TLS. It is secreted by specialized helper T cells and stromal cells, and its presence in tumor tissue is one of the strongest signs that a real immune circuit — not just scattered cells — has assembled."
+      },
+      {
+        "heading": "THE REPLICATION CAVEAT",
+        "body": "Immuno-oncology biomarkers have a rough history of single-cohort findings that fail to generalize. Tumor type, sample preparation, and scoring algorithms all shift results. The authors flagging the need for replication is the discipline talking, not modesty — every prior 'breakthrough' predictor has needed it."
+      }
+    ],
+    "generatedAt": "2026-04-28T12:31:00.118Z",
+    "label": "Tumor Immune Circuits",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-28-ukraine-tuapse-refinery-third-strike": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY REFINERIES, NOT WELLS",
+        "body": "Wellheads are dispersed across Siberia and hard to reach. Refineries are concentrated, fragile, and irreplaceable on short timelines. A single distillation column takes 18-24 months to fabricate and is built almost exclusively in Western Europe and South Korea — sanctioned suppliers Russia cannot easily access.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Striking a refinery doesn't cut Russia's *crude* output — it cuts the **product** Russia can sell domestically and export. Crude piles up; diesel runs short."
+          }
+        ]
+      },
+      {
+        "heading": "THE TUAPSE NODE",
+        "body": "Tuapse sits on Russia's Black Sea coast, one of the few warm-water export terminals Moscow controls. The Rosneft refinery there processes ~240,000 barrels per day and feeds tankers bound for Turkey, India, and (via ship-to-ship transfers) onward to global markets.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "UA",
+              "TR",
+              "GE"
+            ],
+            "label": "Black Sea oil corridor",
+            "markers": [
+              {
+                "lat": 44.0974,
+                "lng": 39.0769,
+                "label": "Tuapse refinery"
+              },
+              {
+                "lat": 44.7239,
+                "lng": 37.7708,
+                "label": "Novorossiysk port"
+              },
+              {
+                "lat": 46.4825,
+                "lng": 30.7233,
+                "label": "Odesa"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE RANGE EVOLUTION",
+        "body": "In 2022 Ukrainian drones reached ~300km. By 2024 the Liutyi and similar long-range platforms cleared 1,000km. The 1,750km figure puts virtually every European Russian refinery — including Tatarstan's giant Taneco complex — inside the strike envelope.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2022",
+                "label": "~300km — border-region strikes only",
+                "emphasis": "start"
+              },
+              {
+                "year": "2023",
+                "label": "~700km — Moscow oblast in range"
+              },
+              {
+                "year": "2024",
+                "label": "~1,000km — Tatarstan refineries hit",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2025",
+                "label": "~1,500km — Bashkortostan reached"
+              },
+              {
+                "year": "2026",
+                "label": "~1,750km — Urals refineries exposed"
+              }
+            ],
+            "label": "Ukrainian deep-strike range"
+          }
+        ]
+      },
+      {
+        "heading": "WHY REPAIRS ARE SLOW",
+        "body": "Modern refineries depend on catalytic crackers and hydrotreaters built by Honeywell UOP, Axens, and Shell — all sanctioned. Russia can patch storage tanks domestically within weeks; replacing a damaged FCC unit takes years and gray-market sourcing through third countries.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              70.9,
+              71,
+              72.25,
+              67.72,
+              70.01,
+              71.15,
+              69.87,
+              70.45,
+              71.19,
+              71.01,
+              71.52,
+              69.8,
+              69.96,
+              70.81,
+              69.77,
+              71.78,
+              73.17,
+              72.75,
+              71.9,
+              71.21,
+              70.69,
+              71.66,
+              71.32,
+              77.24,
+              83.28,
+              81.56,
+              88.59,
+              95.74,
+              94.35,
+              89.84,
+              90.98,
+              102.38,
+              103.23,
+              101.04,
+              108.39,
+              118.09,
+              111.05,
+              118.42,
+              103.79,
+              108.42,
+              109.14,
+              113.39,
+              121.47,
+              121.88,
+              126.69,
+              119.56,
+              127.61,
+              138.21,
+              122.11,
+              119.03,
+              119.07,
+              123.28,
+              118.69,
+              114.93,
+              116.63,
+              98.63,
+              103.4
+            ],
+            "periods": [
+              "Jan 28",
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20"
+            ],
+            "label": "Brent crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE DOMESTIC POLITICS",
+        "body": "Russia is the world's third-largest oil producer but a chronic gasoline importer when refineries go offline. Moscow banned gasoline exports multiple times in 2024-25 to shield domestic prices — a tacit admission that Ukrainian strikes are working at the pump, where Russian voters feel them.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Ukraine target refineries instead of Russian oil wells?",
+            "options": [
+              "Wells are protected by S-400 air defense",
+              "Refinery equipment is sanctioned and takes years to replace",
+              "Wells produce less revenue than refineries",
+              "International law forbids targeting wells"
+            ],
+            "correct": 1,
+            "explanation": "Russia can't easily import replacement crackers or hydrotreaters from Western suppliers, so refinery damage compounds over time while wells keep pumping."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · EIA · as of 2026-04-20"
+    ],
+    "generatedAt": "2026-04-28T12:31:29.051Z",
+    "label": "Russian Refining & Deep Strike",
+    "category": "politics",
+    "articleCount": 1
   }
 }
