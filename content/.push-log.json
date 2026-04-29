@@ -6611,5 +6611,77 @@
       "skipped": 0,
       "tokens": 16
     }
+  },
+  {
+    "timestamp": "2026-04-29T08:29:41.053Z",
+    "candidateCount": 7,
+    "candidates": [
+      {
+        "slug": "2026-04-29-eu-meta-dsa-children-under-13-finding",
+        "title": "EU Finds Meta Failed Children",
+        "category": "politics",
+        "eventCoverage": 63,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-29-eu-hungary-orban-retail-tax-ecj-referral",
+        "title": "EU Sues Hungary Over Tax",
+        "category": "economy",
+        "eventCoverage": 30,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-29-india-nicobar-megaport-tribal-rainforest-opposition",
+        "title": "India Clears Nicobar Tribal Land",
+        "category": "politics",
+        "eventCoverage": 24,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-29-south-korea-yoon-obstruction-extended-sentence",
+        "title": "Seoul Court Extends Yoon Sentence",
+        "category": "politics",
+        "eventCoverage": 23,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-28-mexico-cartels-post-kingpin-fragmentation",
+        "title": "Mexico Cartels Outrun Kingpin Strategy",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-29-india-warehousing-q1-demand-dip-iran-war",
+        "title": "India Warehouse Demand Falls 14%",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-29-ammonia-marine-fuel-nitrogen-pollution-tradeoff",
+        "title": "Ammonia Fuel Worsens Nitrogen Pollution",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-04-29-eu-meta-dsa-children-under-13-finding",
+      "title": "EU Finds Meta Failed Children",
+      "category": "politics",
+      "body": "Meta ran no effective age checks, the Commission found. The Digital Services",
+      "eventCoverage": 63,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "EU finds Meta failed to prevent children under 13 from accessing Instagram and Facebook, Commission says",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 16
+    }
   }
 ]
