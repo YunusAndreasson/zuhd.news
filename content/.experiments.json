@@ -1,31 +1,35 @@
 {
   "version": 1,
-  "activeExperiment": {
-    "id": "2026-04-26-standalone-cap-22",
-    "startDate": "2026-04-26",
-    "evaluateAfter": "2026-04-29",
-    "prNumber": null,
-    "hypothesis": "Freshness median has risen to 1.2 days (target ≤1.0). Standalone articles (NewsAPI non-event picks) are typically older than event-based articles. Trimming the cap from 25 to 22 will reduce the oldest-tail standalones, pulling freshness median below 1.0 without materially affecting multi-source or sci-tech coverage.",
-    "parameter": "Standalone total cap",
-    "file": "scripts/fetch-news-api.js",
-    "oldValue": 25,
-    "newValue": 22,
-    "targetMetric": "freshness.today.median",
-    "targetDirection": "decrease",
-    "baseline": {
-      "freshnessMedian": 1.2,
-      "sciTechRatio": 38,
-      "multiSource": 8,
-      "uniqueRegions": 6,
-      "articlesPerDay": 29
-    },
-    "guardrails": {
-      "publishCount": "mean publish count per cycle should not drop below 8/cycle",
-      "multiSource": "daily multi-source count should not drop below 4",
-      "sciTechRatio": "sci+tech ratio should not drop below 25%"
-    }
-  },
+  "activeExperiment": null,
   "history": [
+    {
+      "id": "2026-04-26-standalone-cap-22",
+      "startDate": "2026-04-26",
+      "evaluateAfter": "2026-04-29",
+      "prNumber": null,
+      "hypothesis": "Freshness median has risen to 1.2 days (target ≤1.0). Standalone articles (NewsAPI non-event picks) are typically older than event-based articles. Trimming the cap from 25 to 22 will reduce the oldest-tail standalones, pulling freshness median below 1.0 without materially affecting multi-source or sci-tech coverage.",
+      "parameter": "Standalone total cap",
+      "file": "scripts/fetch-news-api.js",
+      "oldValue": 25,
+      "newValue": 22,
+      "targetMetric": "freshness.today.median",
+      "targetDirection": "decrease",
+      "baseline": {
+        "freshnessMedian": 1.2,
+        "sciTechRatio": 38,
+        "multiSource": 8,
+        "uniqueRegions": 6,
+        "articlesPerDay": 29
+      },
+      "guardrails": {
+        "publishCount": "mean publish count per cycle should not drop below 8/cycle",
+        "multiSource": "daily multi-source count should not drop below 4",
+        "sciTechRatio": "sci+tech ratio should not drop below 25%"
+      },
+      "result": "kept",
+      "evaluatedOn": "2026-04-29",
+      "notes": "Freshness median dropped from 1.2-day baseline to 0 on evaluation day (well below ≤1.0 target). All guardrails met: multi-source 9 (≥4), sci-tech 34% (≥25%), publish count 8/cycle (exactly at minimum). Article throughput compressed slightly to 41/day vs 49–57 prior days, suggesting the tighter cap trims the feed on lighter news days — worth watching but within acceptable range. Keeping cap at 22."
+    },
     {
       "id": "2026-04-21-multi-source-floors",
       "startDate": "2026-04-21",
