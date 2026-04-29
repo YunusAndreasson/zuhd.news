@@ -81983,5 +81983,1540 @@
     "label": "South Korea & Martial Law",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-28-brazil-a-warning-on-how-ai-and-deepfakes-can-become-an-exces": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ASYMMETRY",
+        "body": "Generating a convincing deepfake takes minutes on a consumer GPU and costs near zero. Removing one — across mirrors, telegram channels, and reupload bots — is a manual game of whack-a-mole that victims fund themselves.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The economics resemble *spam*: attackers pay cents, defenders pay dollars. The only equilibrium is upstream — at the model, the platform, or the **payment rail**."
+          }
+        ]
+      },
+      {
+        "heading": "WHY WOMEN AND GIRLS",
+        "body": "Roughly 96% of deepfakes online are non-consensual sexual imagery, and nearly all targets are women. The technology is gendered not because the models are biased but because the demand is."
+      },
+      {
+        "heading": "BRAZIL'S LEGAL VOID",
+        "body": "Brazil's 2023 AI bill (PL 2338) borrows the EU AI Act's risk-tier structure but has stalled in Congress. Existing laws criminalize 'revenge porn' (Lei Carolina Dieckmann, 2012) only when the underlying image is real — synthetic imagery falls outside the statute."
+      },
+      {
+        "heading": "THE EU PRECEDENT",
+        "body": "The EU AI Act, in force since 2024, classifies AI uses into four tiers: minimal, limited, high, and unacceptable risk. 'Excessive risk' is the Brazilian variant of the top tier — uses banned outright, not just regulated. Internetlab wants sexual deepfakes placed there.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "South Korea",
+                "value": "criminal, up to 5y",
+                "cc": "KR",
+                "tone": "favorable"
+              },
+              {
+                "label": "UK",
+                "value": "criminal (2024)",
+                "cc": "GB",
+                "tone": "favorable"
+              },
+              {
+                "label": "EU",
+                "value": "DSA + AI Act",
+                "cc": "EU",
+                "tone": "favorable"
+              },
+              {
+                "label": "USA",
+                "value": "patchwork, state-level",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "Brazil",
+                "value": "no specific law",
+                "cc": "BR",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": "IT Rules only",
+                "cc": "IN",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "how jurisdictions handle non-consensual deepfakes"
+          }
+        ]
+      },
+      {
+        "heading": "THE SCHOOL VECTOR",
+        "body": "The pattern repeats globally: a male student feeds classmates' Instagram photos into a 'nudify' app, shares the output in a group chat, victims discover it weeks later. Spain (Almendralejo, 2023), the US (New Jersey, 2023), and now Brazilian schools have all hit the same script.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country was the first to criminalize the creation of non-consensual sexual deepfakes specifically?",
+            "options": [
+              "United States",
+              "South Korea",
+              "United Kingdom",
+              "Germany"
+            ],
+            "correct": 1,
+            "explanation": "South Korea criminalized deepfake pornography in 2020, years before the UK (2024) or most US states — partly in response to the Nth Room scandal."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'EXCESSIVE RISK' MATTERS",
+        "body": "Risk-tier frameworks shift the burden. A 'high-risk' use must be audited and documented; an 'excessive-risk' use is illegal to deploy at all. Classifying nudify apps in the top tier would make the app stores and payment processors — not the victim — the parties on the hook."
+      }
+    ],
+    "generatedAt": "2026-04-29T12:30:35.811Z",
+    "label": "Deepfakes & the Law",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-29-armed-forces-destroy-afghan-taliban-posts-vehicles-in-chaman": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DURAND LINE",
+        "body": "The 2,640 km border was drawn in 1893 by British colonial official Mortimer Durand, splitting Pashtun tribal lands between British India and the Emirate of Afghanistan. No Afghan government — monarchy, communist, mujahideen, or Taliban — has ever formally recognized it as an international border.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF",
+              "IR",
+              "TJ",
+              "UZ",
+              "TM"
+            ],
+            "label": "the Durand Line",
+            "markers": [
+              {
+                "lat": 30.9247,
+                "lng": 66.4597,
+                "label": "Chaman crossing"
+              },
+              {
+                "lat": 34.0151,
+                "lng": 71.5249,
+                "label": "Peshawar"
+              },
+              {
+                "lat": 34.5553,
+                "lng": 69.2075,
+                "label": "Kabul"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "PAKISTAN'S STRATEGIC DEPTH DOCTRINE",
+        "body": "For decades the ISI cultivated the Afghan Taliban as a friendly regime that would deny India influence in Kabul and provide rear-area depth in any India-Pakistan war. The 2021 Taliban return to Kabul was treated in Rawalpindi as a strategic win — until the TTP began launching cross-border attacks from Afghan soil.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine was named **strategic depth** by General Aslam Beg in the 1980s. Naming the Afghan Taliban as a target now is the formal abandonment of that forty-year posture."
+          }
+        ]
+      },
+      {
+        "heading": "TTP vs AFGHAN TALIBAN",
+        "body": "Tehrik-e-Taliban Pakistan (founded 2007) is a separate organization from the Afghan Taliban, but ideologically aligned and personally interlinked. Many TTP commanders fought alongside the Afghan Taliban against NATO; after 2021 Kabul released thousands of TTP fighters from prison rather than hand them to Islamabad.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Hibatullah Akhundzada",
+                "role": "Afghan Taliban supreme leader",
+                "years": "2016–",
+                "cc": "AF"
+              },
+              {
+                "name": "Noor Wali Mehsud",
+                "role": "TTP emir",
+                "years": "2018–",
+                "cc": "PK"
+              },
+              {
+                "name": "Asim Munir",
+                "role": "Pakistan Army Chief",
+                "years": "2022–",
+                "cc": "PK"
+              },
+              {
+                "name": "Sirajuddin Haqqani",
+                "role": "Afghan interior minister",
+                "years": "2021–",
+                "cc": "AF"
+              }
+            ],
+            "label": "who's who"
+          }
+        ]
+      },
+      {
+        "heading": "THE PASHTUN BELT",
+        "body": "Roughly 50 million Pashtuns live across the Durand Line — about 35 million in Pakistan, 15 million in Afghanistan. Pashtuns are the largest ethnic group in Afghanistan and the second-largest in Pakistan. The border on paper is a line; on the ground it runs through villages where families straddle both sides."
+      },
+      {
+        "heading": "THE 1979 ECHO",
+        "body": "The last time a foreign army crossed into Afghanistan to strike militants based there, the campaign lasted ten years and ended in withdrawal. The Soviets had 100,000 troops, full air superiority, and a client government in Kabul. Pakistan today has none of these advantages on the Afghan side of the line.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1893",
+                "label": "Durand Line drawn"
+              },
+              {
+                "year": "1979",
+                "label": "Soviet invasion",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1989",
+                "label": "Soviet withdrawal"
+              },
+              {
+                "year": "2001",
+                "label": "US invasion"
+              },
+              {
+                "year": "2007",
+                "label": "TTP founded"
+              },
+              {
+                "year": "2021",
+                "label": "Taliban returns to Kabul"
+              },
+              {
+                "year": "2026",
+                "label": "Pakistan names Afghan Taliban as target"
+              }
+            ],
+            "label": "the long arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT TRIGGERED THE SHIFT",
+        "body": "TTP attacks inside Pakistan rose sharply after the 2021 Taliban takeover. Kabul refused to extradite TTP leaders or restrict their operations from Afghan territory, citing them as fellow mujahideen. Islamabad concluded the distinction between the two Talibans — long maintained for diplomatic convenience — no longer reflects operational reality.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country hosts the largest Afghan Pashtun diaspora outside Afghanistan?",
+            "options": [
+              "Iran",
+              "Pakistan",
+              "United Arab Emirates",
+              "Turkey"
+            ],
+            "correct": 1,
+            "explanation": "Pakistan hosts roughly 35 million ethnic Pashtuns — more than live in Afghanistan itself — concentrated in Khyber Pakhtunkhwa and northern Balochistan."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-29T12:31:07.792Z",
+    "label": "The Durand Line & TTP",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-29-bandits-demand-n500m-ransom-to-free-ondo-farm-manager": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INDUSTRY",
+        "body": "Kidnap-for-ransom in Nigeria has industrialized over the past decade — moving from political abductions (Chibok 2014) to a routine commercial enterprise that one risk firm estimates generates over $18 million in annual ransom flows, though true totals are uncounted because most families pay quietly.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Nigerians distinguish between *kidnappers* (commercial, ransom-driven) and **bandits** — armed groups originally rooted in farmer-herder conflict in the northwest who have since diversified into mass abduction, cattle rustling, and village taxation."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHIC SPREAD",
+        "body": "What began in the Niger Delta as oil-worker kidnappings in the 2000s migrated north into Zamfara, Kaduna, and Katsina by the late 2010s. The southward push into Ondo, Ekiti, and Oyo — historically Yoruba farming country considered safer — marks the latest expansion along the cattle-routing corridors.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG"
+            ],
+            "label": "the southward drift",
+            "markers": [
+              {
+                "lat": 7.2526,
+                "lng": 5.1931,
+                "label": "Akure (Ondo)"
+              },
+              {
+                "lat": 12.1704,
+                "lng": 6.6618,
+                "label": "Zamfara (banditry origin)"
+              },
+              {
+                "lat": 10.5222,
+                "lng": 7.4383,
+                "label": "Kaduna corridor"
+              },
+              {
+                "lat": 11.1271,
+                "lng": 7.727,
+                "label": "Chibok area"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE NORTHERN SAHEL CORRIDOR",
+        "body": "Nigeria's borders with Niger, Chad, and Cameroon are roughly 1,500 km of unpoliced bush and dry savannah. Small arms from Libya's 2011 collapse flowed south through this corridor; armed groups that once raided in Sokoto now operate forest camps as far south as Kwara and Ondo, using motorbikes for mobility."
+      },
+      {
+        "heading": "THE NEGOTIATION ECONOMY",
+        "body": "The opening demand is almost never paid. Nigerian abduction cases typically settle at 5–15% of the initial ask after weeks of negotiation, often through informal intermediaries — local imams, traditional rulers, retired police. The family's first move is to find the right go-between, not the right amount.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of an opening kidnap ransom demand is typically paid in Nigerian negotiations?",
+            "options": [
+              "The full amount, paid in installments",
+              "Roughly 50%",
+              "5–15%, after weeks of bargaining",
+              "Nothing — police usually intervene first"
+            ],
+            "correct": 2,
+            "explanation": "Negotiations almost always settle far below the opening figure; the demand is a starting position, and intermediaries (often religious or traditional leaders) broker the gap."
+          }
+        ]
+      },
+      {
+        "heading": "THE STATE'S DILEMMA",
+        "body": "Paying ransoms is technically criminalized under Nigeria's 2022 Terrorism Prevention Amendment Act — up to 15 years' imprisonment. In practice, prosecution of paying families is virtually nil; the law exists to deter, not to enforce. Security forces rarely effect rescues, partly because rescue attempts have historically gotten hostages killed."
+      },
+      {
+        "heading": "THE NAIRA CONTEXT",
+        "body": "₦500 million sounds astronomical but reflects the currency's collapse — at current rates it is roughly $360,000, down from over $1.2 million at the same nominal figure five years ago. Ransom inflation in naira terms tracks the exchange rate, not rising criminal ambition.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              1385.089099,
+              1380.03,
+              1381.109739,
+              1378.13,
+              1378.13,
+              1377.8,
+              1379.1,
+              1382.755193,
+              1378.98,
+              1361.72,
+              1359.5,
+              1358.675299,
+              1358.34,
+              1358.85,
+              1351.86,
+              1344.68,
+              1340.88,
+              1342.48,
+              1345.790676,
+              1345.790676,
+              1346.63,
+              1345.47,
+              1348.77,
+              1351.32,
+              1354.96,
+              1351.847873,
+              1351.847873,
+              1352.81,
+              1360.19,
+              1374.96
+            ],
+            "periods": [
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29"
+            ],
+            "label": "Nigerian naira",
+            "unit": "NGN / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-29"
+    ],
+    "generatedAt": "2026-04-29T12:31:38.184Z",
+    "label": "Nigeria's Kidnap Economy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-29-food-safety-experts-warn-of-usda-brain-drain": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MECHANISM",
+        "body": "Forced relocation is a backdoor reduction-in-force. Civil service rules make outright firing of career scientists slow and litigable; relocating an office hundreds of miles converts the same cut into voluntary resignations that bypass those protections.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **constructive discharge** — when working conditions change so substantially that a reasonable employee would resign, courts treat the resignation as effectively a firing. But proving it requires litigation most scientists never pursue."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2019 PRECEDENT",
+        "body": "The first Trump administration moved the Economic Research Service and the National Institute of Food and Agriculture from DC to Kansas City in 2019. Roughly two-thirds of ERS staff resigned rather than relocate. Research output on farm economics and nutrition collapsed for years; the agency is still rebuilding its PhD bench.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2018-08",
+                "label": "Relocation announced"
+              },
+              {
+                "year": "2019-06",
+                "label": "Move ordered with ~30 days notice",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019-09",
+                "label": "~75% of ERS researchers gone"
+              },
+              {
+                "year": "2021",
+                "label": "Biden admin tries to rebuild"
+              },
+              {
+                "year": "2026",
+                "label": "USDA repeats the pattern"
+              }
+            ],
+            "label": "the ERS playbook"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT FSIS ACTUALLY DOES",
+        "body": "The Food Safety and Inspection Service places inspectors in every federally regulated meat, poultry, and egg plant in the country — about 6,500 facilities. Inspectors must be physically present for slaughter operations to proceed. The headquarters scientists being relocated set the testing standards those inspectors enforce."
+      },
+      {
+        "heading": "WHY SALMONELLA REFORM IS STUCK",
+        "body": "USDA proposed in 2024 to declare certain Salmonella strains adulterants in raw poultry — a legal threshold that would force recalls. Industry has pushed back hard; finalizing the rule requires the very microbiologists and policy staff now being relocated. Brain drain is a delay tactic that doesn't require a regulatory rollback.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Salmonella",
+                "value": "1.35M cases",
+                "tone": "unfavorable",
+                "weight": 1350
+              },
+              {
+                "label": "Norovirus",
+                "value": "2.6M cases",
+                "tone": "unfavorable",
+                "weight": 2600
+              },
+              {
+                "label": "Campylobacter",
+                "value": "1.5M cases",
+                "tone": "unfavorable",
+                "weight": 1500
+              },
+              {
+                "label": "E. coli (STEC)",
+                "value": "265K cases",
+                "tone": "neutral",
+                "weight": 265
+              },
+              {
+                "label": "Listeria",
+                "value": "1.6K cases",
+                "tone": "neutral",
+                "weight": 2
+              }
+            ],
+            "label": "US foodborne illness, est. annual"
+          }
+        ]
+      },
+      {
+        "heading": "THE DEEPER PATTERN",
+        "body": "Regulatory agencies derive their power from technical expertise the regulated industry cannot easily replicate. Once that expertise walks out the door, the agency's ability to write defensible rules — rules that survive industry legal challenge — degrades for a decade.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of ERS researchers resigned rather than relocate to Kansas City in 2019?",
+            "options": [
+              "About one-quarter",
+              "About half",
+              "About three-quarters",
+              "Nearly all"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 75% of ERS staff left, and the agency lost most of its senior PhD economists — the institutional memory that takes years to rebuild."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-29T12:32:05.495Z",
+    "label": "Forced Relocation as Staff Reduction",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-29-germany-arrests-kazakhstan-citizen-accused-of-spying-for-rus": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EXPULSION SHOCK",
+        "body": "After Russia's 2022 invasion of Ukraine, European states expelled over 600 Russian diplomats — the largest mass expulsion in intelligence history. Roughly half were assessed to be undeclared GRU or SVR officers operating under diplomatic cover.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "DE",
+              "FR",
+              "PL",
+              "CZ",
+              "NL",
+              "IT",
+              "BE",
+              "RU"
+            ],
+            "label": "the 2022 expulsion wave"
+          }
+        ]
+      },
+      {
+        "heading": "THE RECRUITMENT PIVOT",
+        "body": "With the legal-residency networks gutted, Moscow shifted to what intelligence services call illegals and proxies — non-Russian nationals from former Soviet states whose passports do not trigger watchlists. Kazakhs, Belarusians, and Moldovans became the new recruitment pool.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The trade name for an officer with no diplomatic cover is an *illegal*. The Soviet-era illegals program was the KGB's crown jewel — operatives like **Rudolf Abel** lived in the West for decades under fabricated identities. The post-2022 version is faster and cheaper: recruit a real foreign national rather than build a fake one."
+          }
+        ]
+      },
+      {
+        "heading": "THE GRU",
+        "body": "The Main Directorate of the General Staff — Russian military intelligence, distinct from the civilian SVR and the domestic FSB. Unit 29155 within the GRU runs sabotage and assassination operations across Europe, including the 2018 Skripal poisoning in Salisbury and the 2014 ammunition depot blast in Vrbětice, Czech Republic."
+      },
+      {
+        "heading": "WHY KAZAKHSTAN",
+        "body": "Kazakhstan retains visa-free travel to much of the Schengen zone for short stays, hosts a large ethnic-Russian minority (about 15%), and shares a 7,600 km border with Russia. President Tokayev has refused to recognize the annexed Ukrainian territories — but Kazakh citizens still circulate freely in both spheres.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Belarus",
+                "value": "union state",
+                "cc": "BY",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Kazakhstan",
+                "value": "CSTO member",
+                "cc": "KZ",
+                "tone": "neutral"
+              },
+              {
+                "label": "Armenia",
+                "value": "CSTO, drifting",
+                "cc": "AM",
+                "tone": "neutral"
+              },
+              {
+                "label": "Moldova",
+                "value": "EU candidate",
+                "cc": "MD",
+                "tone": "favorable"
+              },
+              {
+                "label": "Georgia",
+                "value": "contested",
+                "cc": "GE",
+                "tone": "neutral"
+              }
+            ],
+            "label": "post-Soviet states by Russian influence vector"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT NATO CONVOYS REVEAL",
+        "body": "Photographs of military movements inside Germany matter because Germany is the logistics spine of NATO's eastern flank. Ramstein Air Base, the Grafenwöhr training area, and the rail corridors east toward Poland carry nearly all American materiel bound for Ukraine and the Baltic states.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "DE",
+              "PL",
+              "LT",
+              "LV",
+              "EE"
+            ],
+            "label": "NATO's eastern logistics spine",
+            "markers": [
+              {
+                "lat": 49.4369,
+                "lng": 7.6003,
+                "label": "Ramstein Air Base"
+              },
+              {
+                "lat": 49.7,
+                "lng": 11.9333,
+                "label": "Grafenwöhr training area"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE COUNTERINTEL TEST",
+        "body": "Western services now must screen for hostile intent inside passport categories that historically carried no flag. The shift mirrors the Cold War's late-stage problem: by the 1980s the KGB ran agents under Finnish, Indian, and Latin American cover precisely because Soviet citizens were watched too closely.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Russian intelligence service is responsible for sabotage operations abroad like the Skripal poisoning?",
+            "options": [
+              "FSB (domestic security)",
+              "SVR (foreign intelligence)",
+              "GRU (military intelligence)",
+              "FSO (presidential protection)"
+            ],
+            "correct": 2,
+            "explanation": "GRU Unit 29155 specializes in sabotage and targeted killings abroad; SVR handles classical espionage, FSB is primarily domestic."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-29T12:32:40.663Z",
+    "label": "Russian Espionage in Europe",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-29-how-cells-decide-when-to-react-could-shape-future-treatments": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PARADOX",
+        "body": "Cancer is uncontrolled cell proliferation; fibrosis is uncontrolled scar tissue deposition. They look like opposites — too much growth versus too much hardening — yet share underlying signaling machinery that decides when a cell reacts to stress.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The two conditions together account for roughly **45%** of deaths in the developed world. Treating them as one mechanism rather than two diseases is what makes a shared switch consequential."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT MECHANOBIOLOGY IS",
+        "body": "Cells sense the physical stiffness of their surroundings, not just chemical signals. A cell on a soft substrate behaves differently than the same cell on a stiff one. This mechanical sensing is mediated by proteins like YAP and TAZ that translate tension into gene expression."
+      },
+      {
+        "heading": "THE STIFFNESS LOOP",
+        "body": "Fibrotic tissue is stiffer than healthy tissue. Tumor microenvironments are also stiffer. Stiffness activates the same mechanosensitive pathways that recruit more cells to deposit collagen or proliferate — a self-reinforcing loop where the disease creates the conditions for its own progression."
+      },
+      {
+        "heading": "THE PIPELINE PROBLEM",
+        "body": "Pharma organizes around organ systems and disease categories. Oncology and pulmonology have separate budgets, separate trials, separate regulators. A drug that targets a switch shared between cancer and fibrosis cuts across that organizational map, which is why such candidates often languish despite strong biology.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which fibrotic disease has the worst median survival after diagnosis?",
+            "options": [
+              "Liver cirrhosis",
+              "Idiopathic pulmonary fibrosis",
+              "Kidney fibrosis",
+              "Cardiac fibrosis"
+            ],
+            "correct": 1,
+            "explanation": "IPF has a median survival of 3-5 years after diagnosis — worse than many cancers — yet only two approved drugs slow its progression, neither curative."
+          }
+        ]
+      },
+      {
+        "heading": "WHY YEARS AWAY",
+        "body": "A shared molecular switch sounds elegant but raises a hard question: if you turn it off everywhere, which normal stress responses break? Wound healing, bone remodeling, and immune activation all depend on cells reacting to mechanical cues. The therapeutic window between blocking disease and breaking repair is what clinical trials must find."
+      }
+    ],
+    "generatedAt": "2026-04-29T12:33:02.723Z",
+    "label": "Mechanobiology & the Stress Switch",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-29-i-got-stood-up-by-an-ai-agent-and-tracked-down-its-human-own": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT AN AGENT ACTUALLY IS",
+        "body": "An AI agent is a model wrapped in a loop: it reads inputs, calls tools (email, calendar, browser, payment APIs), observes results, and decides the next action. Unlike a chatbot that answers one prompt, an agent runs autonomously until a goal is met or a budget runs out.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *agentic loop* — model plus **tool use** plus memory. The capability jump from chatbot to agent is not the model getting smarter; it is the model being given hands."
+          }
+        ]
+      },
+      {
+        "heading": "THE ONE-PERSON COMPANY",
+        "body": "China's solo founders increasingly run businesses where a single human supervises a fleet of agents handling sales, scheduling, support, and bookkeeping. Sam Altman has predicted the first one-person billion-dollar company; in Shenzhen the experiment is already running at smaller scale."
+      },
+      {
+        "heading": "THE DISCLOSURE GAP",
+        "body": "No major jurisdiction requires an AI agent to identify itself in business correspondence. The EU AI Act mandates disclosure for chatbots interacting with consumers, but B2B email between agents falls outside its scope. China's generative-AI rules require labeling of synthetic media, not autonomous agents acting as employees.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "EU AI Act",
+                "value": "consumer chatbots only",
+                "cc": "EU",
+                "tone": "neutral"
+              },
+              {
+                "label": "China gen-AI rules",
+                "value": "synthetic media labels",
+                "cc": "CN",
+                "tone": "neutral"
+              },
+              {
+                "label": "US federal",
+                "value": "none",
+                "cc": "US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "California SB 1001",
+                "value": "bots in commerce/elections",
+                "cc": "US",
+                "tone": "favorable"
+              }
+            ],
+            "label": "AI disclosure rules, by regime"
+          }
+        ]
+      },
+      {
+        "heading": "THE TURING INVERSION",
+        "body": "Turing's 1950 test asked whether a machine could fool a human in conversation. The 2026 problem is the reverse: counterparties assume they are talking to a human and have no protocol to verify it. The burden of proof has flipped from the machine to the recipient."
+      },
+      {
+        "heading": "WHY SHENZHEN",
+        "body": "Shenzhen's manufacturing ecosystem rewards founders who can quote, source, and ship within hours. An agent that handles inbound inquiries 24/7 in fluent English, Mandarin, and Arabic is a structural advantage over a human-only competitor in Mumbai or Istanbul — the agent never sleeps and costs less per month than a junior employee for a week.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what fraction of the global workforce is currently estimated to be exposed to task automation by language-model agents?",
+            "options": [
+              "Under 10%",
+              "About 25%",
+              "Around 40%",
+              "Over 80%"
+            ],
+            "correct": 2,
+            "explanation": "OECD and IMF studies converge on ~40% of jobs having at least some tasks exposed to LLM automation, with white-collar roles disproportionately affected."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRUST PROBLEM",
+        "body": "Contracts presume two humans capable of intent and liability. If an agent commits its principal to a deal — or hallucinates a price — courts have not settled whose signature counts. The closest precedent is electronic-agent law from the e-commerce era, written for deterministic scripts, not models that improvise."
+      }
+    ],
+    "generatedAt": "2026-04-29T12:33:32.577Z",
+    "label": "AI Agents & Disclosure",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-29-oil-price-jumps-to-115-after-reports-of-extended-iran-blocka": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels pass daily, about a fifth of global consumption.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the Persian Gulf chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.1,
+                "lng": 56.35,
+                "label": "Fujairah terminal"
+              },
+              {
+                "lat": 26.6333,
+                "lng": 49.6667,
+                "label": "Ras Tanura"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY TOLLS MOVE OIL PRICES",
+        "body": "Oil futures price chokepoint risk as a premium. When markets price a nonzero probability that a strait closes, every barrel globally gets more expensive — even oil that never goes near it. This is why Hormuz threats move Brent in London.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              71,
+              72.25,
+              67.72,
+              70.01,
+              71.15,
+              69.87,
+              70.45,
+              71.19,
+              71.01,
+              71.52,
+              69.8,
+              69.96,
+              70.81,
+              69.77,
+              71.78,
+              73.17,
+              72.75,
+              71.9,
+              71.21,
+              70.69,
+              71.66,
+              71.32,
+              77.24,
+              83.28,
+              81.56,
+              88.59,
+              95.74,
+              94.35,
+              89.84,
+              90.98,
+              102.38,
+              103.23,
+              101.04,
+              108.39,
+              118.09,
+              111.05,
+              118.42,
+              103.79,
+              108.42,
+              109.14,
+              113.39,
+              121.47,
+              121.88,
+              126.69,
+              119.56,
+              127.61,
+              138.21,
+              122.11,
+              119.03,
+              119.07,
+              123.28,
+              118.69,
+              114.93,
+              116.63,
+              98.63,
+              103.4
+            ],
+            "periods": [
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20"
+            ],
+            "label": "Brent crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT CAN'T BE BYPASSED",
+        "body": "Saudi Arabia's East-West Pipeline (5 mbd capacity) and the UAE's Habshan-Fujairah line were built partly as Hormuz hedges. Together they could reroute maybe a third of Gulf exports. The rest has no alternative route.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Daily Hormuz flow",
+                "value": "~21 mbd",
+                "tone": "unfavorable",
+                "weight": 21
+              },
+              {
+                "label": "Saudi East-West",
+                "value": "5 mbd",
+                "tone": "neutral",
+                "weight": 5
+              },
+              {
+                "label": "UAE Habshan-Fujairah",
+                "value": "1.5 mbd",
+                "tone": "neutral",
+                "weight": 1.5
+              }
+            ],
+            "label": "Hormuz bypass capacity vs flow"
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson: disruption is easier to threaten than to sustain.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Tanker War begins",
+                "emphasis": "start"
+              },
+              {
+                "year": "1987",
+                "label": "US reflagging operation"
+              },
+              {
+                "year": "1988",
+                "label": "USS Vincennes downs Iran Air 655",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Tanker attacks at Fujairah"
+              },
+              {
+                "year": "2026",
+                "label": "Iran blockade extended"
+              }
+            ],
+            "label": "Hormuz crises"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY PAYS",
+        "body": "The US imports almost no Persian Gulf oil — shale made it a net exporter. But oil is priced on a single global market. A Hormuz closure raises Brent everywhere. Treaty allies like Japan, South Korea, and the Philippines face genuine energy crises.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Japan draws roughly **90%** of its crude from the Gulf; South Korea **~70%**; the Philippines nearly **all** of it. Washington's pain is at the pump; Tokyo's is at the grid."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL REGIME",
+        "body": "Under UNCLOS Article 38, ships have a right of transit passage through international straits — coastal states cannot suspend it. Iran ratified UNCLOS in 1982 but has long argued Hormuz is governed by its own domestic law, not the convention.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of global oil consumption transits the Strait of Hormuz daily?",
+            "options": [
+              "About 5%",
+              "About 20%",
+              "About 40%",
+              "About 60%"
+            ],
+            "correct": 1,
+            "explanation": "Roughly 21 million barrels per day pass through Hormuz — about one-fifth of global oil consumption, with no full-capacity alternative route."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · EIA · as of 2026-04-20"
+    ],
+    "generatedAt": "2026-04-29T12:34:05.015Z",
+    "label": "Hormuz & the Oil Premium",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-29-pakistani-nationals-allege-arbitrary-detention-and-deportati": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT KAFALA IS",
+        "body": "Kafala is the sponsorship system that ties a migrant worker's legal status to a single employer. The sponsor — the kafeel — controls the visa, can cancel it unilaterally, and in most Gulf states historically held the worker's passport. Without the sponsor's signature, the worker cannot change jobs or leave the country.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Arabic word *kafala* means *guarantee* or *sponsorship* — a pre-oil tribal concept of taking responsibility for a stranger that was repurposed in the 1950s as a labor-import framework."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DEPORTATION NEEDS NO HEARING",
+        "body": "In the UAE, residency is a privilege granted by the Ministry of Interior, not a right. Visa cancellation is an administrative act, not a judicial one — there is no court to appeal to before removal. Criminal charges trigger trials; deportation does not.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AE",
+              "SA",
+              "QA",
+              "KW",
+              "BH",
+              "OM"
+            ],
+            "label": "GCC states operating Kafala variants"
+          }
+        ]
+      },
+      {
+        "heading": "THE PAKISTANI PIPELINE",
+        "body": "Roughly 1.7 million Pakistanis work in the UAE, mostly in construction, transport, and services. Their remittances — over $5 billion a year from the UAE alone — are the single largest source of dollars Pakistan's central bank can count on outside the IMF.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "~2.6m",
+                "cc": "SA",
+                "weight": 2.6
+              },
+              {
+                "label": "UAE",
+                "value": "~1.7m",
+                "cc": "AE",
+                "weight": 1.7
+              },
+              {
+                "label": "Oman",
+                "value": "~230k",
+                "cc": "OM",
+                "weight": 0.23
+              },
+              {
+                "label": "Qatar",
+                "value": "~130k",
+                "cc": "QA",
+                "weight": 0.13
+              },
+              {
+                "label": "Kuwait",
+                "value": "~110k",
+                "cc": "KW",
+                "weight": 0.11
+              }
+            ],
+            "label": "Pakistani diaspora in the Gulf (est.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE REMITTANCE LEVERAGE",
+        "body": "Islamabad's silence is structural. Pakistan runs a chronic current account deficit; Gulf remittances and Gulf bilateral deposits keep the rupee from collapsing. A diplomatic protest that risks visa quotas costs more than the deportees themselves.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              279.058232,
+              279.052775,
+              279.079115,
+              278.399884,
+              278.399884,
+              278.399884,
+              279.05,
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961
+            ],
+            "periods": [
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE SOCIAL-MEDIA VETTING TURN",
+        "body": "Gulf states have moved from vetting work history to vetting expression. UAE Federal Decree-Law 34 of 2021 criminalizes online content deemed to harm national unity or public order — a standard broad enough that a retweet about Gaza, Kashmir, or a domestic protest can void a residency.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the UAE Kafala system, who legally controls a migrant worker's ability to remain in the country?",
+            "options": [
+              "A labor court that reviews each case",
+              "The employer-sponsor, via the residency visa",
+              "The worker's home-country embassy",
+              "The UAE Federal Supreme Council"
+            ],
+            "correct": 1,
+            "explanation": "The sponsor holds the visa. Cancellation is administrative — no court reviews it before deportation."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2020 REFORMS, AND THEIR LIMITS",
+        "body": "The UAE and Saudi Arabia announced Kafala reforms in 2020-21 — workers could in principle change jobs without sponsor consent, and wage-protection systems were extended. But the residency-cancellation power remained intact, which means the reforms eased mobility inside the country without touching the deportation lever."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-04-29"
+    ],
+    "generatedAt": "2026-04-29T12:34:33.516Z",
+    "label": "Kafala & Gulf Labor",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-29-tether-leads-belo-s-14-million-raise-to-expand-stablecoin-pa": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY LATIN AMERICA",
+        "body": "When local currency loses 50% in a year, the dollar is the natural escape — but capital controls block bank access to it. A stablecoin is a dollar that fits in a phone, crosses borders without paperwork, and can't be confiscated by a bank freeze.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Argentina",
+                "value": "~140%",
+                "cc": "AR",
+                "tone": "unfavorable",
+                "weight": 140
+              },
+              {
+                "label": "Venezuela",
+                "value": "~190%",
+                "cc": "VE",
+                "tone": "unfavorable",
+                "weight": 190
+              },
+              {
+                "label": "Bolivia",
+                "value": "~10%",
+                "cc": "BO",
+                "tone": "unfavorable",
+                "weight": 10
+              },
+              {
+                "label": "US (anchor)",
+                "value": "~3%",
+                "cc": "US",
+                "tone": "favorable",
+                "weight": 3
+              }
+            ],
+            "label": "annual inflation, latest"
+          }
+        ]
+      },
+      {
+        "heading": "THE BUSINESS MODEL",
+        "body": "Tether earned over $13 billion in profit in 2024. The trick: users deposit dollars and receive USDT tokens. Tether invests those dollars in US Treasuries yielding 4–5%. Users get no interest. The issuer keeps all the yield on other people's money — a bank without deposit insurance or interest payments.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Tether now holds more **US Treasuries** than Germany — roughly **$120bn** — making it one of the twenty largest sovereign holders of US debt without being a sovereign."
+          }
+        ]
+      },
+      {
+        "heading": "THE NETWORK EFFECT",
+        "body": "Stablecoins concentrate winner-take-all. Once merchants, exchanges, and remittance corridors quote prices in USDT, the second-place token has no reason to exist. Tether's $14M into Belo isn't venture capital — it's distribution-channel capture before any regulator writes the rules.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AR",
+              "VE",
+              "BO",
+              "BR",
+              "CO",
+              "PE",
+              "MX"
+            ],
+            "label": "Belo's regional footprint",
+            "caption": "6 new markets in 2026 — none with stablecoin reserve rules"
+          }
+        ]
+      },
+      {
+        "heading": "THE RESERVE QUESTION",
+        "body": "A stablecoin is only as stable as what backs it. Tether long resisted full audits and settled with the NY AG in 2021 over reserve misrepresentations. Today it publishes attestations — snapshots, not audits — claiming Treasury-heavy backing. The distinction matters: an attestation confirms a number on one day; an audit verifies the system that produces it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What's the key difference between a Tether attestation and an audit?",
+            "options": [
+              "An attestation only confirms reserves on a single date",
+              "An audit is required by US law; attestations are voluntary",
+              "An attestation is signed by regulators; an audit by accountants"
+            ],
+            "correct": 0,
+            "explanation": "Attestations verify a snapshot; audits verify the controls and systems that produce reserves over time. Tether publishes the former."
+          }
+        ]
+      },
+      {
+        "heading": "THE DOLLARIZATION SHORTCUT",
+        "body": "Argentina, Ecuador, and El Salvador have flirted with formal dollarization — abandoning the local currency by law. Stablecoins deliver dollarization without the political fight: citizens dollarize themselves, transaction by transaction, while the central bank still pretends to run monetary policy."
+      },
+      {
+        "heading": "WHO LOSES",
+        "body": "Every peso held as USDT is a peso the central bank can't tax via inflation. As stablecoin penetration rises, the seigniorage that funds emerging-market governments shrinks. The state's traditional escape valve — print money to cover the gap — closes silently, one wallet at a time."
+      }
+    ],
+    "generatedAt": "2026-04-29T12:35:01.267Z",
+    "label": "Stablecoins as Dollar Substitutes",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-29-why-a-recent-supply-chain-attack-singled-out-security-firms": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRUST INVERSION",
+        "body": "Security tools sit deeper in the developer pipeline than the code they protect. A code scanner has read access to every repository it audits; a password manager holds the credentials that unlock everything else. Compromising the guard is more valuable than compromising any single vault.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why attackers increasingly target **upstream dependencies** rather than end targets — the *blast radius* multiplies with every downstream consumer."
+          }
+        ]
+      },
+      {
+        "heading": "THE SOLARWINDS PRECEDENT",
+        "body": "In 2020, Russian operators inserted malicious code into SolarWinds' Orion update server. Roughly 18,000 organizations downloaded the signed update — including the US Treasury, DHS, and Microsoft. The attack reframed supply chain compromise from theoretical risk to baseline threat model.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2020-12",
+                "label": "SolarWinds Orion breach disclosed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021-07",
+                "label": "Kaseya VSA ransomware cascade"
+              },
+              {
+                "year": "2021-12",
+                "label": "Log4j zero-day in Java logging library"
+              },
+              {
+                "year": "2022-03",
+                "label": "Lapsus$ breaches Okta, Microsoft, Nvidia"
+              },
+              {
+                "year": "2024-03",
+                "label": "XZ Utils backdoor caught pre-release"
+              },
+              {
+                "year": "2024-07",
+                "label": "CrowdStrike update bricks 8.5M Windows hosts"
+              }
+            ],
+            "label": "the modern supply-chain era"
+          }
+        ]
+      },
+      {
+        "heading": "THE ACCESS BROKER ECONOMY",
+        "body": "Modern ransomware is a division of labor. Initial access brokers — like TeamPCP — specialize in breaching networks and selling the foothold. Ransomware operators buy that access and run the extortion. The broker never touches the victim's data; the operator never wrote the original exploit.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "phish",
+                "label": "Phishing / token theft"
+              },
+              {
+                "id": "broker",
+                "label": "Access broker (TeamPCP)"
+              },
+              {
+                "id": "forum",
+                "label": "Dark-web forum"
+              },
+              {
+                "id": "ransom",
+                "label": "Ransomware crew (Lapsus$)"
+              },
+              {
+                "id": "victim",
+                "label": "Victim org"
+              },
+              {
+                "id": "leak",
+                "label": "Public leak site"
+              }
+            ],
+            "links": [
+              {
+                "source": "phish",
+                "target": "broker",
+                "value": 100,
+                "label": "raw access"
+              },
+              {
+                "source": "broker",
+                "target": "forum",
+                "value": 80,
+                "label": "sold credentials"
+              },
+              {
+                "source": "forum",
+                "target": "ransom",
+                "value": 80
+              },
+              {
+                "source": "ransom",
+                "target": "victim",
+                "value": 80,
+                "label": "deploy + extort"
+              },
+              {
+                "source": "victim",
+                "target": "ransom",
+                "value": 30,
+                "label": "payment"
+              },
+              {
+                "source": "ransom",
+                "target": "leak",
+                "value": 50,
+                "label": "non-payers"
+              }
+            ],
+            "label": "the ransomware supply chain"
+          }
+        ]
+      },
+      {
+        "heading": "WHO LAPSUS$ IS",
+        "body": "Lapsus$ surfaced in late 2021, breaching Nvidia, Samsung, Microsoft, Okta, and Uber within months. The group's core was reportedly teenagers operating from the UK and Brazil, using SIM-swapping and bribed insiders rather than novel exploits. Several members were arrested in 2022; the brand has since been used by successors.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Nvidia",
+                "value": "1TB exfil",
+                "cc": "US"
+              },
+              {
+                "label": "Samsung",
+                "value": "190GB source",
+                "cc": "KR"
+              },
+              {
+                "label": "Microsoft",
+                "value": "Bing/Cortana src",
+                "cc": "US"
+              },
+              {
+                "label": "Okta",
+                "value": "~366 tenants",
+                "cc": "US"
+              },
+              {
+                "label": "Uber",
+                "value": "internal sys",
+                "cc": "US"
+              },
+              {
+                "label": "Rockstar",
+                "value": "GTA VI footage",
+                "cc": "US"
+              }
+            ],
+            "label": "Lapsus$ confirmed victims, 2021–2022"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DEVELOPER TOOLS ARE SOFT TARGETS",
+        "body": "A code scanner needs read access to every repo it analyzes. A password manager browser extension can autofill into any site. The permissions required to do the job are also the permissions an attacker wants. Defense-in-depth fails when the defense itself is the privileged process.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In the SolarWinds breach, how did the malicious code reach 18,000 organizations?",
+            "options": [
+              "A phishing email targeting each victim individually",
+              "A compromised software update signed with SolarWinds' legitimate certificate",
+              "A zero-day exploit in Windows Server",
+              "A leaked admin password posted on a dark-web forum"
+            ],
+            "correct": 1,
+            "explanation": "The attackers inserted code into the Orion build pipeline, so the malware was signed with SolarWinds' real certificate and shipped through the normal update channel — bypassing every signature check."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-29T12:35:34.337Z",
+    "label": "Supply Chain Attacks",
+    "category": "tech",
+    "articleCount": 1
   }
 }
