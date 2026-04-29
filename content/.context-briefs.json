@@ -80204,5 +80204,1063 @@
     "label": "The Special Relationship",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-27-microsoft-openai-exclusive-deal-end": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ORIGINAL BARGAIN",
+        "body": "Microsoft committed roughly $13bn to OpenAI starting in 2019, but most of it was Azure compute credits, not cash. In exchange, Microsoft got exclusive cloud-provider rights and a claim on up to 75% of OpenAI's profits until its investment was repaid, then 49% thereafter — capped.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The structure was unusual: OpenAI's for-profit arm sat under a nonprofit board, and Microsoft's stake was a *capped-profit interest*, not equity. The cap was reportedly around **100x** the investment — a ceiling almost no venture deal carries."
+          }
+        ]
+      },
+      {
+        "heading": "WHY EXCLUSIVITY MATTERED",
+        "body": "Frontier models cost billions to train and tens of millions per month to serve. Locking OpenAI to Azure meant Microsoft captured the compute spend that OpenAI's investors were funding — the cloud bill flowed back to Microsoft as revenue while the GPU depreciation sat on OpenAI's books."
+      },
+      {
+        "heading": "THE HYPERSCALER LANDSCAPE",
+        "body": "Only three Western clouds can serve frontier-model inference at scale. Each has invested in a different lab — the AI race is increasingly a proxy war between cloud balance sheets.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Microsoft Azure",
+                "value": "OpenAI",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Google Cloud",
+                "value": "Anthropic + DeepMind",
+                "tone": "neutral"
+              },
+              {
+                "label": "AWS",
+                "value": "Anthropic ($8bn)",
+                "tone": "favorable"
+              }
+            ],
+            "label": "hyperscaler ↔ frontier-lab ties"
+          }
+        ]
+      },
+      {
+        "heading": "THE AGI CLAUSE",
+        "body": "Microsoft's contract reportedly contained a carve-out: if OpenAI's board declared it had achieved AGI, Microsoft would lose access to the resulting technology. The clause turned a technical milestone into a contractual trigger — and gave OpenAI's nonprofit board a unilateral kill switch on the partnership."
+      },
+      {
+        "heading": "WHY OPENAI WANTED OUT",
+        "body": "Exclusivity capped OpenAI's negotiating leverage on compute pricing. Once Oracle, CoreWeave, and Google offered competitive GPU clusters, every dollar OpenAI paid Azure above market was a transfer to Microsoft. Renegotiation lets OpenAI multi-source — and lets Microsoft stop subsidizing a competitor it now ships against in Copilot."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Strategic-investor arrangements between platforms and dependent suppliers historically unwind when the supplier matures. IBM's 1980 deal letting Microsoft retain DOS rights — a footnote at signing — created the entire PC software industry. Terms set when one party is desperate rarely survive when it isn't.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Microsoft's investment in OpenAI was structured primarily as what?",
+            "options": [
+              "Cash equity in a standard for-profit company",
+              "Azure compute credits plus a capped-profit interest",
+              "A convertible loan secured against OpenAI's IP",
+              "A joint venture with shared board control"
+            ],
+            "correct": 1,
+            "explanation": "Most of the headline figure was Azure credits, not cash, and the return was a capped-profit interest sitting beneath OpenAI's nonprofit board — not standard equity."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-29T04:36:22.382Z",
+    "label": "The Microsoft-OpenAI Deal",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-28-diezani-alison-madueke-nigeria-oil-bribes-trial": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISCRETIONARY ALLOCATION SYSTEM",
+        "body": "Nigeria's state oil company NNPC historically did not sell crude on open auction. The petroleum minister personally signed off on which trading houses received cargo lifting rights — a system that turned a single ministerial signature into hundreds of millions of dollars of margin per year.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism was called **crude oil lifting allocations** — the right to take physical barrels at official price and resell at market. The spread, not the oil, was the prize."
+          }
+        ]
+      },
+      {
+        "heading": "WHY NIGERIAN CRUDE",
+        "body": "Bonny Light and Qua Iboe are sweet, low-sulfur grades that European and US refineries pay a premium for. Light sweet crude from West Africa is the closest substitute for Brent — which is why traders fight for African allocations harder than for heavier Middle Eastern grades.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "~9.0",
+                "cc": "SA",
+                "weight": 9
+              },
+              {
+                "label": "Iraq",
+                "value": "~4.2",
+                "cc": "IQ",
+                "weight": 4.2
+              },
+              {
+                "label": "UAE",
+                "value": "~3.2",
+                "cc": "AE",
+                "weight": 3.2
+              },
+              {
+                "label": "Iran",
+                "value": "~3.3",
+                "cc": "IR",
+                "weight": 3.3
+              },
+              {
+                "label": "Nigeria",
+                "value": "~1.4",
+                "cc": "NG",
+                "weight": 1.4,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Angola",
+                "value": "~1.1",
+                "cc": "AO",
+                "weight": 1.1
+              }
+            ],
+            "label": "Nigeria vs OPEC peers, crude output (2024, mb/d)"
+          }
+        ]
+      },
+      {
+        "heading": "THE RESOURCE CURSE PARADOX",
+        "body": "Nigeria has earned over a trillion dollars from oil since the 1970s. Yet poverty, electricity access, and infrastructure metrics lag non-oil West African peers. The mechanism is well-documented: oil revenue accrues to the state, not households, and concentrates rent-seeking rather than productivity."
+      },
+      {
+        "heading": "WHY LONDON, NOT LAGOS",
+        "body": "The UK National Crime Agency pursues these cases because the bribes were paid in sterling through London property and accounts, and the traders are UK-resident. Nigerian prosecution of senior officials is rare; foreign jurisdictions where the laundering touched ground end up doing the work.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "GB",
+              "CH",
+              "AE"
+            ],
+            "label": "where oil patronage money lands",
+            "caption": "London property, Swiss accounts, Dubai real estate"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "The 1977 US Foreign Corrupt Practices Act criminalised bribing foreign officials by American firms. The UK Bribery Act 2010 went further — it covers any company with UK operations bribing anyone, anywhere. The Madueke case is one of the first major tests of cross-border crude allocation bribery under that statute.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which jurisdiction's anti-bribery law has the broadest extraterritorial reach over oil-trading firms?",
+            "options": [
+              "US Foreign Corrupt Practices Act",
+              "UK Bribery Act 2010",
+              "Nigeria's EFCC Act",
+              "OECD Anti-Bribery Convention"
+            ],
+            "correct": 1,
+            "explanation": "The UK Bribery Act covers any company with UK operations bribing anyone, anywhere — broader than the FCPA's nexus requirement and unlike the OECD convention, which is non-binding."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHARGE THAT IS HARD TO PROVE",
+        "body": "Bribery cases collapse on intent. Prosecutors must show the payment was for the official act, not a coincidental gift or legitimate consultancy. Defence strategy is almost always to reframe the cash flow as commercial — finder's fees, advisory contracts, marketing services — rather than denying the money moved."
+      }
+    ],
+    "generatedAt": "2026-04-29T04:36:52.588Z",
+    "label": "Nigeria's Oil Allocation Patronage",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-28-humanitarian-ai-irc-signpost-refugee-triage": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CASEWORKER GAP",
+        "body": "UNHCR counts roughly 120 million forcibly displaced people worldwide against a humanitarian workforce in the low hundreds of thousands. The ratio is structural, not budgetary — there is no scenario in which trained caseworkers reach every displaced person who needs orientation in a new country.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Middle East / N. Africa",
+                "value": "~22mn",
+                "weight": 22,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Sub-Saharan Africa",
+                "value": "~21mn",
+                "weight": 21,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Europe",
+                "value": "~13mn",
+                "weight": 13,
+                "tone": "neutral"
+              },
+              {
+                "label": "Americas",
+                "value": "~22mn",
+                "weight": 22,
+                "tone": "neutral"
+              },
+              {
+                "label": "Asia-Pacific",
+                "value": "~10mn",
+                "weight": 10,
+                "tone": "neutral"
+              }
+            ],
+            "label": "forcibly displaced, by host region (mn, 2024)"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT SIGNPOST IS",
+        "body": "Signpost is the IRC's information service — a network of moderated social channels and chatbots that has answered refugee questions in places like Greece, Italy, Colombia, and Venezuela since 2015. It predates the LLM era; the AI layer replaces what was previously a queue of human moderators answering repeat questions.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GR",
+              "IT",
+              "CO",
+              "VE",
+              "SV",
+              "KE",
+              "AF"
+            ],
+            "label": "where Signpost has operated"
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'IMPERFECT IS BETTER THAN NONE'",
+        "body": "The counterfactual for a refugee at 2 a.m. in a transit camp is not a caseworker — it is silence, or a smuggler, or a rumor on a Telegram channel. Aid agencies have always weighed accuracy against access; the LLM is a new instrument applied to an old triage problem.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine has a name in humanitarian ethics: ***do no harm*** is paired with ***do not abandon***. An over-cautious refusal to engage is itself a form of harm when the alternative is a smuggler's WhatsApp."
+          }
+        ]
+      },
+      {
+        "heading": "THE HALLUCINATION STAKES",
+        "body": "A wrong answer about asylum procedure can cost someone a deadline, a hearing, or a country. This is why the IRC is gating wider rollout on accuracy reviews — the failure mode is not embarrassing output, it is a missed 30-day filing window or a wrongly described safe-third-country rule.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the 1951 Refugee Convention, what is the core obligation states owe a refugee?",
+            "options": [
+              "Granting citizenship within five years",
+              "Non-refoulement — not returning them to persecution",
+              "Providing housing equivalent to citizens",
+              "Free movement across signatory states"
+            ],
+            "correct": 1,
+            "explanation": "Non-refoulement is the bedrock principle: a state cannot return a refugee to a territory where they face persecution. Everything else in asylum law is downstream of this."
+          }
+        ]
+      },
+      {
+        "heading": "THE LANGUAGE PROBLEM AID NEVER SOLVED",
+        "body": "Translators Without Borders has long flagged that humanitarian information rarely reaches displaced people in their actual languages — Rohingya, Tigrinya, Hausa, Pashto dialects. LLMs are the first technology that plausibly closes the long-tail language gap at the cost of new accuracy risks in exactly those low-resource languages.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Low-resource languages are precisely where models hallucinate most: less training data, fewer evaluation benchmarks, weaker safety tuning. The populations most underserved by human aid are also the hardest cases for the AI replacement."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-29T04:37:20.857Z",
+    "label": "Humanitarian AI & the Triage Gap",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-29-canada-dr-reddys-ozempic-generic-approval": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT SEMAGLUTIDE ACTUALLY DOES",
+        "body": "Semaglutide mimics GLP-1, a gut hormone released after eating that signals satiety to the brain and prompts insulin release from the pancreas. Native GLP-1 degrades in minutes; Novo Nordisk's molecule resists the enzyme that breaks it down, extending half-life to about a week.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The class is called **GLP-1 receptor agonists**. Semaglutide is sold as *Ozempic* (diabetes) and *Wegovy* (obesity) — same molecule, different dose, different label, different price."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CANADA CAN, AMERICA CAN'T",
+        "body": "Drug patents are territorial. A molecule patented in the US is only protected there if filed and granted by the USPTO. Novo Nordisk's semaglutide composition patent expires in Canada in 2026 but runs until 2031 in the US — different filing dates, different patent-term-extension rules.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India",
+                "value": "expired",
+                "cc": "IN",
+                "tone": "favorable"
+              },
+              {
+                "label": "Canada",
+                "value": "2026",
+                "cc": "CA",
+                "tone": "favorable"
+              },
+              {
+                "label": "China",
+                "value": "2026",
+                "cc": "CN",
+                "tone": "favorable"
+              },
+              {
+                "label": "EU",
+                "value": "2031",
+                "cc": "EU",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "USA",
+                "value": "2031",
+                "cc": "US",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "semaglutide patent expiry by jurisdiction"
+          }
+        ]
+      },
+      {
+        "heading": "THE INDIAN GENERICS MACHINE",
+        "body": "India's 1970 Patents Act recognized only process patents, not product patents, until WTO compliance in 2005. Forty years of legal reverse-engineering built companies — Dr Reddy's, Cipla, Sun Pharma — that now supply roughly a fifth of global generic volume and most of sub-Saharan Africa's antiretrovirals.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine that powered this was *jugaad* in industrial form: same active molecule, different synthesis route, no patent infringement under the old regime."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRICE COLLAPSE PATTERN",
+        "body": "When the first generic enters a market, prices typically fall 20-30%. With three or more generics, prices collapse 80-90%. The Canadian approval is one entrant; the cliff arrives when Apotex, Teva, and Sandoz follow.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of all US prescriptions filled is for generic drugs?",
+            "options": [
+              "About 30%",
+              "About 50%",
+              "About 70%",
+              "About 90%"
+            ],
+            "correct": 3,
+            "explanation": "Generics fill ~90% of US prescriptions but account for only ~20% of drug spending — the volume-vs-value gap brand makers protect with patent litigation."
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPOUNDING LOOPHOLE",
+        "body": "US pharmacies legally compounded semaglutide during the 2023-2024 official shortage under FDA Section 503A. When FDA declared the shortage resolved in 2025, compounders had to wind down — leaving US patients paying $1,000+/month while Canadians and Indians access the same molecule for under $100."
+      }
+    ],
+    "generatedAt": "2026-04-29T04:38:18.995Z",
+    "label": "Semaglutide & Generic Drug Geography",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-29-europe-warming-twice-global-wmo-climate-report": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ARCTIC AMPLIFICATION",
+        "body": "The Arctic is warming roughly four times the global average. Europe sits downstream of that heat: shrinking sea ice and a weakening jet stream funnel warmer air south, which is why the continent's land temperatures have outpaced the global mean since 1980.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Climatologists call this **Arctic amplification** — the feedback loop where melting ice exposes darker ocean, which absorbs more sunlight, which melts more ice."
+          }
+        ]
+      },
+      {
+        "heading": "LAND HEATS FASTER THAN OCEAN",
+        "body": "Two-thirds of Earth's surface is ocean, and water absorbs heat far more slowly than land. Continents warm faster than the global average by definition. Europe is a relatively small landmass surrounded by warming seas — it gets the land penalty plus a Mediterranean that is now one of the fastest-warming basins on Earth."
+      },
+      {
+        "heading": "THE AEROSOL UNMASKING",
+        "body": "European air pollution dropped sharply after the 1990s as coal plants closed and diesel was regulated. Sulfate aerosols had been reflecting sunlight and masking part of the underlying greenhouse warming. Cleaner air revealed warming that was always in the pipeline — a real climate gain that came with a thermal cost.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "FR",
+              "DE",
+              "ES",
+              "IT",
+              "GR",
+              "PL",
+              "NO",
+              "SE",
+              "FI",
+              "GB"
+            ],
+            "label": "the continent warming at 2× the global rate"
+          }
+        ]
+      },
+      {
+        "heading": "THE ALPINE GLACIER COLLAPSE",
+        "body": "Alpine glaciers have lost roughly two-thirds of their volume since 1900, with the steepest losses in the last decade. Glaciers are slow archives — by the time they retreat visibly, the climate signal driving the loss has been embedded for decades.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "2022",
+                "value": "-6.0%",
+                "tone": "unfavorable",
+                "weight": 6
+              },
+              {
+                "label": "2023",
+                "value": "-4.4%",
+                "tone": "unfavorable",
+                "weight": 4.4
+              },
+              {
+                "label": "2024",
+                "value": "-2.5%",
+                "tone": "unfavorable",
+                "weight": 2.5
+              },
+              {
+                "label": "avg 1976–2000",
+                "value": "-0.7%/yr",
+                "tone": "neutral",
+                "weight": 0.7
+              }
+            ],
+            "label": "Alpine glacier mass loss, recent years"
+          }
+        ]
+      },
+      {
+        "heading": "THE 46% NUMBER",
+        "body": "Renewables now generate nearly half of Europe's electricity, but electricity is only about a fifth of total energy use. Heating, transport, industry, and aviation still run mostly on fossil fuels. Decarbonizing the grid is the easy part of the transition — the rest is harder and slower.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of Europe's TOTAL energy use (not just electricity) comes from renewables?",
+            "options": [
+              "About 45%",
+              "About 25%",
+              "About 10%",
+              "About 60%"
+            ],
+            "correct": 1,
+            "explanation": "Electricity is ~20% of final energy. Even with 46% of power from renewables, total renewable share of final energy is closer to 24-25%."
+          }
+        ]
+      },
+      {
+        "heading": "THE MEDITERRANEAN HOTSPOT",
+        "body": "The IPCC classifies the Mediterranean as a climate change 'hotspot' — a region where multiple hazards (heat, drought, fire, marine heatwaves, sea-level rise) compound. Summer warming there is running 20% above the global mean, which is why Greek, Spanish, and Italian fire seasons now start in May."
+      }
+    ],
+    "generatedAt": "2026-04-29T04:38:45.427Z",
+    "label": "Why Europe Warms Faster",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-29-india-west-bengal-final-vote-modi-tmc": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WEST BENGAL'S LEFT-TO-MAMATA ARC",
+        "body": "Bengal was governed by the Communist Party (Marxist) for 34 consecutive years — 1977 to 2011 — the longest democratically elected communist government in history. Mamata Banerjee's Trinamool broke that streak and has held the state since. The BJP has never won Bengal.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1977",
+                "label": "CPI(M) takes power",
+                "emphasis": "start"
+              },
+              {
+                "year": "2007",
+                "label": "Nandigram massacre"
+              },
+              {
+                "year": "2011",
+                "label": "Mamata ousts the Left",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "TMC repels BJP surge"
+              },
+              {
+                "year": "2026",
+                "label": "Fourth-term test"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1977",
+                "to": "2011",
+                "label": "Left Front rule",
+                "tone": "neutral"
+              },
+              {
+                "from": "2011",
+                "to": "2026",
+                "label": "TMC era",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Bengal's political arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BENGAL IS DIFFERENT",
+        "body": "At 27% Muslim population, West Bengal has the highest Muslim share of any large non-Muslim-majority Indian state. Bengal's Muslims are urbanized, politically organized, and concentrated in border districts where Partition's wounds never fully closed — making any roll purge there read as communal, not administrative.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Lakshadweep",
+                "value": "~97%",
+                "weight": 97
+              },
+              {
+                "label": "J&K (UT)",
+                "value": "~68%",
+                "weight": 68
+              },
+              {
+                "label": "Assam",
+                "value": "~34%",
+                "weight": 34,
+                "tone": "neutral"
+              },
+              {
+                "label": "West Bengal",
+                "value": "~27%",
+                "weight": 27,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Kerala",
+                "value": "~27%",
+                "weight": 27,
+                "tone": "neutral"
+              },
+              {
+                "label": "UP",
+                "value": "~19%",
+                "weight": 19
+              },
+              {
+                "label": "India avg",
+                "value": "~14%",
+                "weight": 14
+              }
+            ],
+            "label": "Muslim share of state population"
+          }
+        ]
+      },
+      {
+        "heading": "THE ROLL AS A WEAPON",
+        "body": "India's electoral rolls are revised by the Election Commission ahead of every poll. The mechanism — house-to-house verification followed by deletions for duplicates, deaths, or non-residence — is technically neutral. In practice, who gets struck depends on which booth-level officers do the verifying, which is why roll revisions in contested states draw allegations of selective deletion.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Sabar Institute's finding is that the **9.1 million** deletions skew Muslim — the bias is in the *distribution*, not the topline number. A 12% purge that fell evenly would barely register politically; one that concentrates in a single community is the entire fight."
+          }
+        ]
+      },
+      {
+        "heading": "THE FEDERAL CHECK",
+        "body": "India's constitution gives states real power — police, land, education, much of taxation — but the BJP under Modi has won enough states that opposition parties now control fewer than a third of the legislatures. Bengal is the largest opposition-held state and the only one where the BJP has invested serious organizational muscle without breaking through.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "BD",
+              "NP",
+              "BT"
+            ],
+            "label": "Bengal sits on the Bangladesh border",
+            "markers": [
+              {
+                "lat": 22.5726,
+                "lng": 88.3639,
+                "label": "Kolkata"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE NRC SHADOW",
+        "body": "The 2019 National Register of Citizens exercise in Assam excluded 1.9 million people, disproportionately Muslims, who were then required to prove citizenship before tribunals. The roll-purge playbook in Bengal is read against that precedent: not as voter-list hygiene, but as a documentation regime that shifts the burden of proof onto a specific community.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many people were excluded from Assam's 2019 NRC final list?",
+            "options": [
+              "About 190,000",
+              "About 1.9 million",
+              "About 19 million",
+              "About 90 million"
+            ],
+            "correct": 1,
+            "explanation": "1.9 million were left off — a number small enough to be deniable as administrative, large enough to terrorize a community into stockpiling documents."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT MAY 4 ACTUALLY DECIDES",
+        "body": "A TMC hold preserves the template that opposition parties can win statewide against a fully mobilized BJP machine. A BJP breakthrough in Bengal — combined with its existing dominance in the Hindi belt — would leave the federal balance more lopsided than at any point since the Congress era of the 1970s."
+      }
+    ],
+    "generatedAt": "2026-04-29T04:39:17.839Z",
+    "label": "Bengal & India's Federal Balance",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-29-iran-school-strike-pentagon-silence-accountability": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DOCTRINE",
+        "body": "US targeting doctrine requires Collateral Damage Estimation before any strike — a multi-step process where analysts model blast radius, structural failure, and civilian presence against a sliding scale of authorized risk. Strikes above a casualty threshold require approval up to the Secretary of Defense or President.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The internal name is **CDE** — *Collateral Damage Estimation* — and it is the document trail that makes a strike legally defensible after the fact."
+          }
+        ]
+      },
+      {
+        "heading": "THE COORDINATES PROBLEM",
+        "body": "US precision munitions hit what they are aimed at. The failure mode is almost always upstream: stale intelligence, transposed digits in a target package, or a building that changed function since the imagery was collected. The 1999 Chinese embassy bombing in Belgrade was a CIA database error — the building had moved years earlier, and no one updated the file."
+      },
+      {
+        "heading": "THE INVESTIGATION NORM",
+        "body": "After a civilian-casualty incident, US Central Command typically opens a 15-6 investigation within days and publishes a redacted summary within months. The 2021 Kabul drone strike that killed ten civilians, including seven children, produced an admission and an internal review within six weeks. Two months of silence is the anomaly.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1999-05",
+                "label": "Chinese embassy, Belgrade — CIA admission within weeks",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2015-10",
+                "label": "Kunduz hospital — investigation within days"
+              },
+              {
+                "year": "2021-08",
+                "label": "Kabul drone strike — admission within 6 weeks"
+              },
+              {
+                "year": "2026-02",
+                "label": "Iran school strike — 2 months, no inquiry"
+              }
+            ],
+            "label": "recent US strike accountability"
+          }
+        ]
+      },
+      {
+        "heading": "THE TOMAHAWK",
+        "body": "The BGM-109 Tomahawk is a subsonic cruise missile guided by GPS, inertial navigation, and terrain-matching. It costs roughly $1.5–2 million per unit and flies a programmed route at low altitude, making it the standoff weapon of choice when crewed aircraft cannot enter contested airspace.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the primary terminal guidance system on a modern Tomahawk?",
+            "options": [
+              "Laser designation from a forward observer",
+              "GPS combined with terrain contour matching",
+              "Radar homing on the target's emissions",
+              "Optical recognition of the target image"
+            ],
+            "correct": 1,
+            "explanation": "Tomahawks fly a pre-programmed route using GPS and TERCOM (Terrain Contour Matching), which compares radar altimeter readings against stored elevation maps."
+          }
+        ]
+      },
+      {
+        "heading": "THE IRGC AS TARGET CATEGORY",
+        "body": "The IRGC is a parallel military to Iran's regular armed forces, with its own ground, air, and naval branches plus the external Quds Force. It controls Iran's missile program and large parts of the economy through bonyad foundations. The US designated the entire IRGC a Foreign Terrorist Organization in 2019 — the first time that label was applied to a state's official military.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "IQ",
+              "SY",
+              "LB",
+              "YE"
+            ],
+            "label": "IRGC and proxy footprint",
+            "caption": "Quds Force operates across the so-called axis of resistance"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SILENCE READS AS POLICY",
+        "body": "In US civil-military practice, the absence of an investigation is itself a signal. Either the strike was authorized at a level that makes inquiry politically inconvenient, or the target package contains intelligence sources the Pentagon will not declassify even to defend itself. Former officials parsing two months of silence are reading that signal."
+      }
+    ],
+    "generatedAt": "2026-04-29T04:39:46.865Z",
+    "label": "Battle Damage Accountability",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-29-png-court-starlink-ombudsman-ruling": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONNECTIVITY GAP",
+        "body": "Papua New Guinea has one of the lowest internet penetration rates in the Pacific — under 30% of the population, concentrated in Port Moresby and Lae. The country's terrain is the problem: 600 islands, highland valleys cut off by mountains, and rainforest that swallows fiber budgets. Terrestrial telecoms have spent decades not solving this.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PG",
+              "AU",
+              "ID",
+              "SB",
+              "FM"
+            ],
+            "label": "PNG and Pacific neighbors",
+            "markers": [
+              {
+                "lat": -9.4438,
+                "lng": 147.1803,
+                "label": "Port Moresby"
+              },
+              {
+                "lat": -6.7333,
+                "lng": 146.9833,
+                "label": "Lae"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY LEO SATELLITE WINS HERE",
+        "body": "Starlink's low-earth-orbit constellation bypasses the terrain problem entirely — a terminal anywhere with sky access gets 100+ Mbps. Geostationary satellites (the previous option) sit 36,000 km up and add 600ms of latency; LEO satellites at 550 km add about 25ms. For a country with PNG's geography, LEO is not an upgrade — it is the first viable broadband option.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Starlink terminals retail around **$400** with monthly service near **$100** — still expensive for PNG median income, but an order of magnitude cheaper than running fiber to a highland village."
+          }
+        ]
+      },
+      {
+        "heading": "THE OMBUDSMAN'S POWER",
+        "body": "PNG's Ombudsman Commission, established in the 1975 constitution, was designed as an anti-corruption watchdog with unusual teeth — it can issue binding directions to public officials, including ministers. The model came from Scandinavia but was adapted for a young state where formal courts were weak and patronage networks strong. The Commission's veto over the Starlink permit was an assertion of that broad mandate.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Michael Somare",
+                "role": "Founding Prime Minister",
+                "years": "1975–1980",
+                "cc": "PG"
+              },
+              {
+                "name": "John Momis",
+                "role": "Constitutional Planning Committee chair",
+                "years": "1972–1975",
+                "cc": "PG"
+              }
+            ],
+            "label": "PNG's constitutional architects"
+          }
+        ]
+      },
+      {
+        "heading": "THE INCUMBENT FIGHT",
+        "body": "Every Starlink market entry has the same opponents: incumbent telcos that built towers and undersea cable on assumptions about pricing power. PNG's market is dominated by Digicel (acquired by Telstra in 2022) and state-owned Telikom. A satellite competitor that needs no local infrastructure — and pays no local tower fees — is an existential threat to that revenue model.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many low-earth-orbit Starlink satellites are currently operational?",
+            "options": [
+              "About 800",
+              "About 2,500",
+              "About 7,000",
+              "About 20,000"
+            ],
+            "correct": 2,
+            "explanation": "SpaceX has launched over 7,000 Starlink satellites since 2019 — the largest satellite constellation in history, with FCC approval to expand to 12,000."
+          }
+        ]
+      },
+      {
+        "heading": "THE PACIFIC PATTERN",
+        "body": "Tonga, Fiji, Samoa, and Vanuatu have all approved Starlink in the past two years, often after subsea cable cuts exposed how fragile their connectivity was. The 2022 Hunga Tonga eruption severed Tonga's only undersea cable for five weeks; Starlink terminals were the emergency fallback. Each Pacific approval makes the next one politically easier."
+      }
+    ],
+    "generatedAt": "2026-04-29T04:40:14.507Z",
+    "label": "PNG Connectivity & Constitutional Watchdogs",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-29-russia-victory-day-parade-no-equipment-depletion": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY MAY 9, NOT MAY 8",
+        "body": "The German Instrument of Surrender was signed twice — first at Reims on May 7, 1945, then re-signed at Soviet insistence in Berlin-Karlshorst late on May 8. By Moscow time it was already past midnight. The one-day calendar gap is why the West commemorates VE Day on May 8 and Russia on May 9 — a small artifact of who was in the room when.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Stalin called the Reims signing a *preliminary protocol* and demanded a second ceremony in Berlin under Marshal Zhukov. The dual surrender was a status fight, not a logistical one."
+          }
+        ]
+      },
+      {
+        "heading": "THE SCALE OF THE EASTERN FRONT",
+        "body": "Roughly 80% of Wehrmacht combat losses occurred on the Eastern Front. The Soviet Union lost an estimated 27 million people — soldiers and civilians combined — more than any other belligerent. For Russia, World War II is not one war among many; it is the constitutive national event.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Soviet Union",
+                "value": "~27m",
+                "cc": "RU",
+                "weight": 27,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "China",
+                "value": "~15m",
+                "cc": "CN",
+                "weight": 15,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Germany",
+                "value": "~7m",
+                "cc": "DE",
+                "weight": 7
+              },
+              {
+                "label": "Poland",
+                "value": "~6m",
+                "cc": "PL",
+                "weight": 6
+              },
+              {
+                "label": "Japan",
+                "value": "~3m",
+                "cc": "JP",
+                "weight": 3
+              },
+              {
+                "label": "UK",
+                "value": "~450k",
+                "cc": "GB",
+                "weight": 0.45
+              },
+              {
+                "label": "USA",
+                "value": "~420k",
+                "cc": "US",
+                "weight": 0.42
+              }
+            ],
+            "label": "WWII deaths by country (millions, est.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE PARADE IS FOR",
+        "body": "The Victory Day parade was revived as an annual event by Yeltsin in 1995 and dramatically expanded under Putin. It is not a military review in the NATO sense — it is a civic ritual that fuses Soviet wartime sacrifice to the contemporary Russian state, casting any current adversary as the spiritual heir of the Wehrmacht."
+      },
+      {
+        "heading": "THE T-34 SIGNAL",
+        "body": "Most years the parade leads with a single restored T-34 — the WWII-era tank that became Soviet victory's icon — followed by modern armor: T-90s, Armatas, S-400 launchers. Stripping the modern column down to infantry while keeping the T-34 inverts the usual message: the past is on display, the present is at the front.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Wehrmacht combat losses occurred on the Eastern Front?",
+            "options": [
+              "About 30%",
+              "About 50%",
+              "About 80%",
+              "About 95%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 80% — the Eastern Front, not D-Day, was where the German army was actually destroyed. This is the historical claim that underwrites Russian war memory."
+          }
+        ]
+      },
+      {
+        "heading": "THE ATTRITION ARITHMETIC",
+        "body": "Pre-war Russia held the world's largest tank fleet on paper — most of it Soviet-era T-72s and T-80s in storage. Open-source trackers have confirmed thousands of armor losses in Ukraine since 2022. When parade armor is reassigned to the front, it signals that the active inventory — not the rusting reserves — has thinned enough to matter."
+      }
+    ],
+    "generatedAt": "2026-04-29T04:40:41.479Z",
+    "label": "Victory Day & Soviet Memory",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-29-southeast-asia-russia-fuel-fertiliser-iran-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHOKEPOINT EXPOSURE",
+        "body": "Southeast Asia imports over 60% of its oil, and nearly all of it transits two sequential chokepoints: Hormuz, then Malacca. A disruption at either one cuts the same supply. No ASEAN state holds strategic petroleum reserves at the IEA's 90-day standard.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "IN",
+              "ID",
+              "MY",
+              "SG",
+              "VN"
+            ],
+            "label": "the sequential chokepoints",
+            "caption": "oil from the Gulf to ASEAN passes through both",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 2.5,
+                "lng": 101.5,
+                "label": "Strait of Malacca"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PRICE CAP MECHANIC",
+        "body": "The G7 price cap, set at $60/barrel in 2022, only bites when buyers use Western shipping, insurance, or finance. Russia built a *shadow fleet* of older tankers with non-Western insurance to sell above the cap. Buyers who pay in non-dollar currencies through non-Western banks face no enforcement at all.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The cap is not a sanction on Russian oil — it is a sanction on **Western services** for Russian oil. The distinction is what makes the cap porous."
+          }
+        ]
+      },
+      {
+        "heading": "WHY FERTILISER TRAVELS WITH OIL",
+        "body": "Russia is the world's largest urea exporter and a top-three potash producer. Natural gas is roughly 80% of urea production cost, and Russian gas is the cheapest at scale. A country buying Russian crude often signs a fertiliser deal in the same package — both flow through the same sanctions-evasion plumbing.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Russia",
+                "value": "~7.0 mt",
+                "cc": "RU",
+                "weight": 7,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Qatar",
+                "value": "~5.5 mt",
+                "cc": "QA",
+                "weight": 5.5
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~4.5 mt",
+                "cc": "SA",
+                "weight": 4.5
+              },
+              {
+                "label": "Iran",
+                "value": "~4.0 mt",
+                "cc": "IR",
+                "weight": 4
+              },
+              {
+                "label": "UAE",
+                "value": "~3.5 mt",
+                "cc": "AE",
+                "weight": 3.5
+              }
+            ],
+            "label": "top urea exporters, 2024 (mn tonnes)"
+          }
+        ]
+      },
+      {
+        "heading": "THE WAIVER PRECEDENT",
+        "body": "US Treasury sanctions waivers are the dominant tool for managing third-country exposure. India received an informal nod to keep buying Russian crude after 2022; Hungary and Slovakia got formal carve-outs for pipeline crude. Waivers buy time without setting policy — every renewal is a separate decision.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What happens to a country buying Russian crude when its US waiver expires?",
+            "options": [
+              "The crude is automatically embargoed at port",
+              "Secondary sanctions risk applies to its banks using dollar clearing",
+              "The UN Security Council votes on enforcement",
+              "Russia is required to halt shipments"
+            ],
+            "correct": 1,
+            "explanation": "Waivers shield buyers from US secondary sanctions on banks touching dollar clearing — the real chokepoint is the dollar system, not the cargo itself."
+          }
+        ]
+      },
+      {
+        "heading": "THE NON-ALIGNMENT PLAYBOOK",
+        "body": "ASEAN's foundational doctrine is *equidistance* — refuse to choose between great powers, trade with all. Indonesia under Sukarno led the 1955 Bandung Conference that birthed the Non-Aligned Movement. Buying discounted Russian crude while accepting US security guarantees is the same playbook, sixty years on."
+      }
+    ],
+    "generatedAt": "2026-04-29T04:41:09.271Z",
+    "label": "Russian Crude & ASEAN Energy Security",
+    "category": "economy",
+    "articleCount": 1
   }
 }
