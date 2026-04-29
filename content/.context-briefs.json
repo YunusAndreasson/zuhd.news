@@ -85410,5 +85410,1067 @@
     "label": "DeFi, Tokens & Political Access",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-04-29-abc-fcc-license-threat-disney-1996-telecom-act": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY LICENSES EXIST AT ALL",
+        "body": "The broadcast spectrum is a finite public resource. Since the Radio Act of 1927, the federal government has licensed individual stations to use specific frequencies in the 'public interest, convenience, and necessity' — a phrase lifted from railroad regulation and grafted onto speech.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The constitutional logic was sealed in *Red Lion Broadcasting v. FCC* (1969): because spectrum is **scarce**, broadcasters get less First Amendment protection than newspapers. That asymmetry is what makes a license review a credible threat at all."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE 1996 ACT CHANGED",
+        "body": "The Telecommunications Act extended license terms from 5 to 8 years and created a renewal expectancy — the FCC must renew unless the licensee committed serious violations. Congress wrote the standard tight on purpose: to insulate broadcasters from the political administration of the day."
+      },
+      {
+        "heading": "THE STANDARD",
+        "body": "Revocation requires 'willful or repeated' violations of the Communications Act or FCC rules. In practice the agency has revoked licenses for fraud, character defects of owners, or technical violations — almost never for editorial content. The last major content-driven revocation was WLBT in Jackson, Mississippi in 1969, for excluding Black viewers from coverage during the civil rights era.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How often has the FCC revoked a major-network broadcast license over news content?",
+            "options": [
+              "Several times per decade",
+              "Roughly once a decade",
+              "Effectively never in the modern era",
+              "Only during wartime"
+            ],
+            "correct": 2,
+            "explanation": "Since the 1969 WLBT case, no major-network affiliate has lost a license over editorial content. The standard is designed to be near-impossible to meet."
+          }
+        ]
+      },
+      {
+        "heading": "THE FAIRNESS DOCTRINE GHOST",
+        "body": "From 1949 to 1987 the FCC required broadcasters to present 'contrasting viewpoints' on controversial issues. Reagan's FCC repealed it as unconstitutional viewpoint regulation. Every few years a sitting president floats reviving it — the doctrine's removal is what makes the license itself the only remaining lever."
+      },
+      {
+        "heading": "THE REAL LEVERAGE",
+        "body": "Disney owns ABC but also theme parks, cruise lines, ESPN's regulated sports-rights deals, and Hulu. The White House touches each through different agencies — antitrust review at DOJ, labor at NLRB, foreign filming permits at State. The license threat is the visible move; the cross-portfolio pressure is the structural one.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "ABC stations",
+                "value": "8 licenses",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "ESPN",
+                "value": "sports antitrust",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Theme parks",
+                "value": "OSHA, FAA",
+                "tone": "neutral"
+              },
+              {
+                "label": "Cruise line",
+                "value": "Coast Guard, EPA",
+                "tone": "neutral"
+              },
+              {
+                "label": "Hulu/streaming",
+                "value": "FTC, copyright",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Disney's regulated surface area"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT NIXON SET",
+        "body": "In 1972, the Nixon White House quietly encouraged challenges to the Washington Post Company's Florida TV license renewals during Watergate coverage. The licenses were renewed but the stock dropped roughly half. The lesson absorbed by every broadcaster since: the threat is the punishment, even when the revocation never comes.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The power of a license to broadcast must be sustained by a willingness to use it as a license to govern.",
+            "speaker": "Newton Minow, FCC Chairman",
+            "year": "1961"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-29T22:36:01.268Z",
+    "label": "FCC Broadcast Licenses & Political Leverage",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-29-ai-weather-models-extreme-events-underperform": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PARADIGM SHIFT",
+        "body": "For 70 years, weather forecasting solved the Navier-Stokes equations on supercomputers — physics in, forecast out. Models like GraphCast and Pangu-Weather skip the physics: they learn statistical patterns from 40 years of reanalysis data and produce forecasts in seconds rather than hours.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The benchmark dataset is **ERA5** — ECMWF's reanalysis archive covering 1940–present. Every major AI weather model is trained on it, which means they share a common ceiling: whatever ERA5 didn't see, the models didn't learn."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THEY BEAT PHYSICS ON AVERAGE",
+        "body": "On standard metrics — mean temperature error, 500hPa geopotential height — AI models match or beat the European Centre's flagship physical model. They run on a single GPU instead of a supercomputer. That efficiency is why every major weather agency now runs an AI track in parallel."
+      },
+      {
+        "heading": "THE EXTRAPOLATION TRAP",
+        "body": "A neural network is an interpolation engine. Inside the distribution it was trained on, it is brilliant. Outside that distribution — a heat dome 5°C beyond anything in the historical record, a Mediterranean hurricane in a basin that rarely produced them — it has no physics to fall back on. It guesses based on the nearest thing it has seen, which is exactly the wrong thing to do.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do AI weather models systematically under-predict record-breaking extremes?",
+            "options": [
+              "They use lower-resolution grids than physical models",
+              "Their training data contains no events more extreme than the historical record",
+              "They optimize for global accuracy, ignoring tail events deliberately",
+              "Their GPU hardware lacks the precision for extreme values"
+            ],
+            "correct": 1,
+            "explanation": "Models learn the distribution of past weather. An event more extreme than anything in the training set has no template to match — the model regresses toward the nearest familiar pattern."
+          }
+        ]
+      },
+      {
+        "heading": "THE NON-STATIONARITY PROBLEM",
+        "body": "Classical statistics assumes the underlying distribution is stable. Climate change breaks that assumption: the atmosphere of 2026 is not the atmosphere of 1990. A model trained on the past is increasingly forecasting a planet that no longer exists.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Statisticians call this *non-stationarity* — the data-generating process itself is moving. It is the same problem that breaks credit-risk models after a financial crisis and epidemiological models after a novel pathogen."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE WARNING MATTERS",
+        "body": "Extreme events are exactly the forecasts that save lives. A model that nails the average July temperature but misses the heat dome that kills 600 people has failed at its actual job. The Science Advances authors are not arguing AI is useless — they are arguing it cannot yet replace the physics-based systems for the events that matter most."
+      }
+    ],
+    "generatedAt": "2026-04-29T22:36:27.008Z",
+    "label": "AI Weather Models & the Extrapolation Problem",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-29-data-centers-latin-america-water-power-displacement": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WATER ARITHMETIC",
+        "body": "A single hyperscale data center can consume 1-5 million gallons of water per day for evaporative cooling — equivalent to the residential use of a town of 30,000 people. The water is not recycled in a closed loop; most evaporates into the atmosphere or is discharged at elevated temperatures.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is *water usage effectiveness* (**WUE**) — liters per kilowatt-hour. A well-designed facility runs ~1.8 L/kWh; legacy designs hit **9 L/kWh** or worse."
+          }
+        ]
+      },
+      {
+        "heading": "WHY LATIN AMERICA",
+        "body": "Hyperscalers chase three inputs: cheap power, cool climate, and lax permitting. Querétaro, Mexico and the Atacama corridor in Chile offer industrial electricity rates a fraction of California's, plus governments eager to book FDI announcements without the environmental review timelines US states now require.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MX",
+              "CL",
+              "BR",
+              "CO",
+              "UY"
+            ],
+            "label": "the new Latin American DC corridor",
+            "markers": [
+              {
+                "lat": 20.5888,
+                "lng": -100.3899,
+                "label": "Querétaro DC cluster"
+              },
+              {
+                "lat": -33.4489,
+                "lng": -70.6693,
+                "label": "Santiago DC cluster"
+              },
+              {
+                "lat": -34.9011,
+                "lng": -56.1645,
+                "label": "Montevideo (Google)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE ATACAMA PARADOX",
+        "body": "Chile's data center cluster sits adjacent to the driest non-polar desert on Earth. Aquifers in the central valley took millennia to fill from Andean snowmelt; current extraction rates exceed recharge by 4-to-1 in several basins. The same water table feeds avocado exports, copper mining, and now server cooling."
+      },
+      {
+        "heading": "THE GRID CROWD-OUT",
+        "body": "When a 100MW data center connects to a national grid, residential and small-industrial users compete for the remaining capacity. Wholesale prices rise; in liberalized markets like Mexico's, that pass-through hits households within billing cycles, not years.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Single hyperscale DC",
+                "value": "~100 MW",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Querétaro state peak",
+                "value": "~2,500 MW",
+                "tone": "neutral"
+              },
+              {
+                "label": "Uruguay national peak",
+                "value": "~2,000 MW",
+                "tone": "neutral"
+              },
+              {
+                "label": "Iceland national peak",
+                "value": "~2,300 MW",
+                "tone": "favorable"
+              }
+            ],
+            "label": "hyperscale DC power draw vs national context"
+          }
+        ]
+      },
+      {
+        "heading": "THE EXTRACTION PATTERN",
+        "body": "The economic geography mirrors older commodity cycles. Latin American copper, lithium, and now compute capacity flow north; the externalities — depleted aquifers, displaced communities, higher local prices — stay south. Eduardo Galeano's 'Open Veins of Latin America' (1971) named this pattern decades before AI existed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how much water does a single hyperscale data center consume daily for cooling?",
+            "options": [
+              "10,000–50,000 gallons",
+              "100,000–500,000 gallons",
+              "1–5 million gallons",
+              "20–50 million gallons"
+            ],
+            "correct": 2,
+            "explanation": "A hyperscale facility's evaporative cooling typically draws 1-5 million gallons daily — comparable to a town of 30,000 residents."
+          }
+        ]
+      },
+      {
+        "heading": "THE REGULATORY VACUUM",
+        "body": "Neither Mexico nor Chile classifies data centers as a distinct industrial category for water permitting. They are licensed as generic commercial facilities, which means environmental impact thresholds designed for office parks govern installations consuming utility-scale resources. The mismatch is not a loophole — it is the absence of a category."
+      }
+    ],
+    "generatedAt": "2026-04-29T22:36:57.457Z",
+    "label": "Data Centers & Resource Extraction",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-29-gaza-rats-tent-cities-public-health-siege": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SIEGE AS HEALTH POLICY",
+        "body": "Siege warfare kills more through disease than bombs. In every prolonged siege of the modern era — Leningrad, Sarajevo, Aleppo — the death toll from typhus, cholera, and dysentery eventually exceeded the toll from direct fire. The mechanism is always the same: water, sanitation, and waste collapse before food does.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Epidemiologists call this *indirect mortality* — deaths caused by the destruction of the systems that keep people alive, not by weapons. In Gaza's case, indirect mortality is now estimated to outpace direct deaths by a factor of **3 to 4**."
+          }
+        ]
+      },
+      {
+        "heading": "WHY RATS FOLLOW WAR",
+        "body": "Rats are not a symptom of poverty — they are a symptom of broken sanitation. Sewage pooling in streets, uncleared corpses, and rubble that creates burrowing voids produce explosive rodent population growth. A single breeding pair can produce 2,000 descendants in a year when food and shelter are unlimited."
+      },
+      {
+        "heading": "THE DISEASE LADDER",
+        "body": "Rats are vectors for leptospirosis, hantavirus, plague, and rat-bite fever. But the bigger threat in tent cities is what they enable indirectly — fleas carry typhus, contaminated water spreads cholera, and bites in malnourished children become septic wounds that don't heal.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which disease killed more people in besieged cities of the 20th century than any other?",
+            "options": [
+              "Cholera",
+              "Typhus",
+              "Tuberculosis",
+              "Plague"
+            ],
+            "correct": 1,
+            "explanation": "Louse- and flea-borne typhus killed millions in WWI camps, the Warsaw Ghetto, and post-WWII Europe — wherever sanitation collapsed and people were packed together."
+          }
+        ]
+      },
+      {
+        "heading": "THE NAKBA CONTINUITY",
+        "body": "Today's tent cities sit atop a 78-year displacement. The original Nakba of 1948 expelled roughly 750,000 Palestinians; their descendants in Gaza are now displaced again, often for the fourth or fifth time within a single lifetime. The UNRWA refugee registration system, created in 1949 as a temporary measure, has now run for three generations.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1948",
+                "label": "Nakba: 200,000 flee to Gaza",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1949",
+                "label": "UNRWA established"
+              },
+              {
+                "year": "1967",
+                "label": "Israeli occupation begins"
+              },
+              {
+                "year": "2007",
+                "label": "Blockade imposed"
+              },
+              {
+                "year": "2023",
+                "label": "Mass displacement north→south"
+              },
+              {
+                "year": "2026",
+                "label": "Tent settlements: 1.45M affected"
+              }
+            ],
+            "label": "displacement of Gaza's population"
+          }
+        ]
+      },
+      {
+        "heading": "THE BLOCKADE MECHANICS",
+        "body": "Sanitation repair requires specific imports — pipe, pumps, chlorine, generators, fuel. Israel's dual-use list designates most of these as restricted. The result is not a shortage of will to rebuild but a structural inability to acquire the inputs.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "PS",
+              "EG",
+              "JO"
+            ],
+            "label": "Gaza's two land crossings",
+            "markers": [
+              {
+                "lat": 31.5,
+                "lng": 34.46,
+                "label": "Gaza Strip"
+              },
+              {
+                "lat": 31.23,
+                "lng": 34.27,
+                "label": "Kerem Shalom crossing"
+              },
+              {
+                "lat": 31.22,
+                "lng": 34.1,
+                "label": "Rafah crossing"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT INTERNATIONAL LAW SAYS",
+        "body": "The Fourth Geneva Convention (1949), Article 55, obligates an occupying power to ensure food and medical supplies for the population. Article 56 extends this to public health and hygiene. The ICJ's January 2024 provisional measures order specifically cited humanitarian access as a binding obligation, not a negotiable concession.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "To the fullest extent of the means available to it, the Occupying Power has the duty of ensuring the food and medical supplies of the population.",
+            "speaker": "Fourth Geneva Convention, Article 55",
+            "year": "1949"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-29T22:37:29.838Z",
+    "label": "Siege & Public Health",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-29-jpmorgan-blockchain-chief-tokenization-liquidity-warning": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT TOKENIZATION ACTUALLY IS",
+        "body": "Tokenization means representing a real-world asset — a Treasury bill, a money-market fund share, a building — as a token on a blockchain. The token is a claim ticket; the underlying asset still sits in a custodian's vault or a registrar's database.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry pitch conflates two things: **representation** (a token exists) and **liquidity** (someone will trade it). Wrapping an illiquid asset in a token leaves it just as illiquid — now with extra steps."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE LIQUIDITY ACTUALLY COMES FROM",
+        "body": "Liquidity is not a property of an asset — it is the presence of willing buyers and sellers at narrow spreads. It comes from market makers, regulatory clarity, standardized contracts, and a critical mass of participants who trust the venue. None of those appear because an asset is on-chain."
+      },
+      {
+        "heading": "THE BLACKROCK BUIDL PRECEDENT",
+        "body": "BlackRock's tokenized Treasury fund (BUIDL) launched 2024 and grew past $2bn — the success case the industry cites. But BUIDL's liquidity comes from the underlying Treasuries, not from on-chain trading. Holders mostly redeem to USD; secondary on-chain trade volume is thin.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "US money-market funds",
+                "value": "$6.7tn",
+                "tone": "neutral",
+                "weight": 6700
+              },
+              {
+                "label": "US Treasuries outstanding",
+                "value": "$28tn",
+                "tone": "neutral",
+                "weight": 28000
+              },
+              {
+                "label": "Tokenized Treasuries",
+                "value": "~$5bn",
+                "tone": "unfavorable",
+                "weight": 5
+              },
+              {
+                "label": "Tokenized real estate",
+                "value": "~$300m",
+                "tone": "unfavorable",
+                "weight": 0.3
+              }
+            ],
+            "label": "tokenized vs traditional money-market scale, 2025"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT JPMORGAN IS BUILDING INSTEAD",
+        "body": "JPMorgan's Onyx (now Kinexys) settles intraday repo and cross-border payments on a permissioned ledger — over $1.5tn of cumulative volume. The bet is that the value is settlement finality and 24/7 availability, not tokenized assets seeking buyers."
+      },
+      {
+        "heading": "THE SETTLEMENT LAYER THESIS",
+        "body": "Banks lose two days of float on a typical cross-border payment moving through correspondent banks and SWIFT messaging. A unified ledger compresses that to seconds. The prize is the float and the operational cost — a real $50bn+ industry expense — not creating new tradeable assets."
+      },
+      {
+        "heading": "THE WALK-BACK",
+        "body": "Harris leading the unit is significant: JPMorgan was the loudest bank voice on tokenization through 2023-24. The CEO calls public blockchains useless for serious finance, then the bank's blockchain chief says tokenization itself is oversold. The pivot is from asset-creation to plumbing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does putting a Treasury bill on a blockchain actually change about its liquidity?",
+            "options": [
+              "It becomes 24/7 tradeable with deep markets automatically",
+              "Nothing inherent — liquidity still requires market makers and participants",
+              "Settlement is faster but liquidity is unchanged",
+              "It becomes more liquid because more investors can access it"
+            ],
+            "correct": 2,
+            "explanation": "Tokenization can speed settlement and broaden access at the margin, but liquidity comes from market makers and trading interest — neither of which a token wrapper creates."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-29T22:37:58.426Z",
+    "label": "Tokenization & Liquidity",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-29-mexico-sinaloa-governor-indicted-us-cartel": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL HOOK",
+        "body": "US prosecutors reach foreign officials through the Maritime Drug Law Enforcement Act and conspiracy statutes that attach jurisdiction whenever drugs are intended for US markets. The defendant need never have set foot in the United States — the conspiracy's destination is the jurisdictional anchor.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the same doctrine used to indict **Manuel Noriega** in 1988 and **Nicolás Maduro** in 2020 — sitting heads of state charged in absentia for narcotics conspiracies."
+          }
+        ]
+      },
+      {
+        "heading": "THE SDNY SPECIALTY",
+        "body": "The Southern District of New York has run the marquee cartel cases for four decades — El Chapo, Genaro García Luna (Mexico's former security chief, convicted 2023), the Honduran president Juan Orlando Hernández. Manhattan juries convict; Mexican courts rarely do."
+      },
+      {
+        "heading": "THE CHAPITOS FACTION",
+        "body": "After El Chapo's 2017 extradition, the Sinaloa Cartel split. Los Chapitos — his sons — pivoted hard into fentanyl, which yields higher margins per kilogram than cocaine and requires no agricultural footprint. The faction now wars with Ismael 'El Mayo' Zambada's older wing, whose 2024 capture in Texas Mexico City still calls a kidnapping.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Joaquín 'El Chapo' Guzmán",
+                "role": "Founder, extradited",
+                "years": "1980s–2017",
+                "cc": "MX"
+              },
+              {
+                "name": "Ismael 'El Mayo' Zambada",
+                "role": "Co-founder, captured 2024",
+                "years": "1980s–2024",
+                "cc": "MX"
+              },
+              {
+                "name": "Iván Archivaldo Guzmán",
+                "role": "Chapitos faction lead",
+                "years": "2017–",
+                "cc": "MX"
+              },
+              {
+                "name": "Ovidio Guzmán",
+                "role": "Extradited 2023, cooperating",
+                "years": "2017–2023",
+                "cc": "MX"
+              }
+            ],
+            "label": "the Sinaloa split"
+          }
+        ]
+      },
+      {
+        "heading": "THE FENTANYL ECONOMICS",
+        "body": "A kilogram of fentanyl precursors from China costs a few thousand dollars and yields retail product worth $1.5–2 million in US street markets. Cocaine requires Andean coca, processing labs, and maritime smuggling; fentanyl needs a kitchen and a press. The margin shift restructured cartel politics.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Fentanyl",
+                "value": "~$1.5M",
+                "tone": "unfavorable",
+                "weight": 1500
+              },
+              {
+                "label": "Heroin",
+                "value": "~$60k",
+                "tone": "neutral",
+                "weight": 60
+              },
+              {
+                "label": "Cocaine",
+                "value": "~$28k",
+                "tone": "neutral",
+                "weight": 28
+              },
+              {
+                "label": "Methamphetamine",
+                "value": "~$10k",
+                "tone": "favorable",
+                "weight": 10
+              }
+            ],
+            "label": "wholesale margin per kilogram (US market)"
+          }
+        ]
+      },
+      {
+        "heading": "THE EXTRADITION ASYMMETRY",
+        "body": "Mexico's 1978 treaty with the US permits extradition but historically blocked it for nationals facing potential life sentences without parole. A 2005 Supreme Court ruling loosened this; the AMLO and Sheinbaum governments have alternated between mass transfers (29 cartel figures sent north in February 2026) and refusals framed as sovereignty defense."
+      },
+      {
+        "heading": "THE SOVEREIGNTY FRAME",
+        "body": "Mexico's foreign ministry response — that charges lack 'evidentiary elements' — is the standard diplomatic register for cases Mexico City views as extraterritorial overreach. The deeper objection is structural: a US indictment of a sitting governor implies the elected official is illegitimate, which Mexico treats as interference under the Estrada Doctrine.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is Mexico's Estrada Doctrine, invoked when foreign governments judge Mexican officials?",
+            "options": [
+              "Non-intervention: states should not pass judgment on the legitimacy of other states' governments",
+              "Reciprocity: Mexico mirrors any diplomatic action taken against it",
+              "Sovereign immunity: sitting officials cannot be prosecuted abroad",
+              "Pacta sunt servanda: treaties must be honored regardless of domestic politics"
+            ],
+            "correct": 0,
+            "explanation": "Named for foreign minister Genaro Estrada in 1930, the doctrine holds that recognizing or judging another state's government is itself a violation of sovereignty."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-29T22:38:33.034Z",
+    "label": "US Extraterritorial Drug Indictments",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-29-pentagon-iran-war-cost-25-billion-hegseth-hearing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STATUTE",
+        "body": "The War Powers Resolution of 1973 requires the president to notify Congress within 48 hours of introducing forces into hostilities and to withdraw them within 60 days unless Congress authorizes the action. A 30-day extension is permitted only for safe withdrawal.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The President in every possible instance shall consult with Congress before introducing United States Armed Forces into hostilities… and shall terminate any such use within sixty calendar days.",
+            "speaker": "War Powers Resolution, §3 and §5(b)",
+            "year": "1973"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT EXISTS",
+        "body": "Congress passed the resolution over Nixon's veto in the wake of Vietnam and the secret bombing of Cambodia. The framers of Article I §8 gave Congress alone the power to declare war; the resolution was an attempt to claw back authority that had drifted to the executive across Korea, Vietnam, and the Gulf of Tonkin."
+      },
+      {
+        "heading": "WHY IT NEVER WORKS",
+        "body": "No president since 1973 has formally conceded the resolution's constitutionality. Reagan in Lebanon, Clinton in Kosovo, Obama in Libya, Trump in Yemen — each crossed the 60-day mark by reinterpreting 'hostilities' or simply running the clock. Congress has never enforced withdrawal through the courts; standing doctrine bars individual members from suing.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1983",
+                "label": "Reagan: Lebanon (Marine barracks)"
+              },
+              {
+                "year": "1999",
+                "label": "Clinton: Kosovo air war (78 days)"
+              },
+              {
+                "year": "2011",
+                "label": "Obama: Libya — 'no hostilities'",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2018",
+                "label": "Trump: Yemen support, vetoed SJ-7"
+              },
+              {
+                "year": "2026",
+                "label": "Hegseth: Iran, day 60"
+              }
+            ],
+            "label": "presidents who blew past the 60-day clock"
+          }
+        ]
+      },
+      {
+        "heading": "THE COST IN CONTEXT",
+        "body": "$25 billion in 60 days is roughly $400 million per day — pacing well above the Iraq surge ($300M/day in 2007 dollars) and dwarfing the Libya 2011 air campaign (~$1.1B total). The figure is dominated by Tomahawk and JASSM expenditures, carrier-group steaming costs, and accelerated munitions resupply.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Iran 2026",
+                "value": "$417M/day",
+                "tone": "unfavorable",
+                "weight": 417
+              },
+              {
+                "label": "Iraq surge '07",
+                "value": "$300M/day",
+                "tone": "neutral",
+                "weight": 300
+              },
+              {
+                "label": "Afghan peak '11",
+                "value": "$300M/day",
+                "tone": "neutral",
+                "weight": 300
+              },
+              {
+                "label": "Libya 2011",
+                "value": "$15M/day",
+                "tone": "favorable",
+                "weight": 15
+              }
+            ],
+            "label": "US war cost, daily run-rate (nominal $)"
+          }
+        ]
+      },
+      {
+        "heading": "THE AUMF GAP",
+        "body": "Every major US military action since 2001 has run on one of two Authorizations for Use of Military Force — the 2001 AUMF (al-Qaeda and 'associated forces') and the 2002 AUMF (Iraq). Neither covers Iran. A vote skipped is not a vote lost; it is the executive establishing that the statute is dead by inaction.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The political move is precise: by *not voting*, Republicans avoid both endorsing the war and triggering the **concurrent resolution** mechanism that would force withdrawal. Silence is the authorization."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT IRAN COSTS DIFFERENTLY",
+        "body": "Unlike Iraq or Afghanistan, Iran is a 90-million-person country with layered air defenses, a working ballistic missile industry, and naval mining capability in the Strait of Hormuz. The cost curve bends upward when the adversary can shoot back at oil infrastructure — every Aramco strike adds insurance premiums to global tanker traffic.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              71,
+              72.25,
+              67.72,
+              70.01,
+              71.15,
+              69.87,
+              70.45,
+              71.19,
+              71.01,
+              71.52,
+              69.8,
+              69.96,
+              70.81,
+              69.77,
+              71.78,
+              73.17,
+              72.75,
+              71.9,
+              71.21,
+              70.69,
+              71.66,
+              71.32,
+              77.24,
+              83.28,
+              81.56,
+              88.59,
+              95.74,
+              94.35,
+              89.84,
+              90.98,
+              102.38,
+              103.23,
+              101.04,
+              108.39,
+              118.09,
+              111.05,
+              118.42,
+              103.79,
+              108.42,
+              109.14,
+              113.39,
+              121.47,
+              121.88,
+              126.69,
+              119.56,
+              127.61,
+              138.21,
+              122.11,
+              119.03,
+              119.07,
+              123.28,
+              118.69,
+              114.93,
+              116.63,
+              98.63,
+              103.4,
+              106.14,
+              113.44,
+              113.25,
+              111.86,
+              113.89
+            ],
+            "periods": [
+              "Jan 29",
+              "Jan 30",
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 27"
+            ],
+            "label": "Brent crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE QUIZ",
+        "body": "The 60-day clock has been the central battlefield of every post-Vietnam intervention.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the War Powers Resolution, what happens automatically if Congress does not authorize hostilities within 60 days?",
+            "options": [
+              "The president must withdraw forces within 30 more days",
+              "Congress must hold a binding vote within 7 days",
+              "The Supreme Court is required to rule on the conflict",
+              "Funding for the operation is automatically suspended"
+            ],
+            "correct": 0,
+            "explanation": "§5(b) requires withdrawal by day 60, with up to 30 additional days permitted only for the safe extraction of forces. No president has formally complied."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · EIA · as of 2026-04-27"
+    ],
+    "generatedAt": "2026-04-29T22:39:08.757Z",
+    "label": "War Powers & the 60-Day Clock",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-29-putin-extreme-consequences-warning-trump-iran": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE URANIUM OFFER, IN HISTORICAL CONTEXT",
+        "body": "Russia has played custodian of foreign enriched uranium before. The 1993 Megatons to Megawatts deal saw 500 tonnes of weapons-grade Russian HEU downblended and shipped to the US to fuel reactors — for two decades, roughly 10% of American electricity came from former Soviet warheads. Taking Iran's stockpile would slot into a precedent Moscow knows how to run."
+      },
+      {
+        "heading": "THE 20% THRESHOLD",
+        "body": "Iran's stockpile sits at 60% enrichment — a short technical step from the 90% needed for a weapon. The jump from natural uranium (0.7%) to 20% is roughly 90% of the centrifuge work; from 20% to 90% is the remaining 10%. This is why the 2015 JCPOA capped Iran at 3.67% and shipped the excess to Russia.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Natural",
+                "value": "0.7%",
+                "weight": 0.7,
+                "tone": "favorable"
+              },
+              {
+                "label": "Reactor fuel",
+                "value": "3-5%",
+                "weight": 4,
+                "tone": "favorable"
+              },
+              {
+                "label": "Research reactor",
+                "value": "20%",
+                "weight": 20,
+                "tone": "neutral"
+              },
+              {
+                "label": "Iran today",
+                "value": "60%",
+                "weight": 60,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Weapons-grade",
+                "value": "90%+",
+                "weight": 90,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "uranium enrichment ladder"
+          }
+        ]
+      },
+      {
+        "heading": "THE BROKER-DETERRENT POSTURE",
+        "body": "A single conversation that offers mediation and threatens consequences is classic Soviet-era diplomacy — Gromyko's playbook. The mediator who can also escalate has more leverage than either a pure broker or a pure adversary. Kissinger called it 'linkage' when he did it; Putin learned it from the same school.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Russian phrase Putin used — translated as *extremely harmful consequences* — echoes the formulation used during the **1962 Cuban crisis** and again during **1973's Yom Kippur alert**. It signals Russia reserves the option of military involvement without specifying form."
+          }
+        ]
+      },
+      {
+        "heading": "THE MAY 9 PARADE",
+        "body": "Victory Day commemorates the Soviet defeat of Nazi Germany — the founding myth of post-war Russian identity. A truce timed to the parade is not a coincidence; it is a demand for symbolic recognition. The 2025 offer collapsed because Ukraine refused to give Putin a propaganda backdrop while Russian troops still occupied Ukrainian territory."
+      },
+      {
+        "heading": "RUSSIA'S IRAN STAKES",
+        "body": "Iran supplied Russia with thousands of Shahed-136 drones used against Ukraine starting in 2022 — the relationship reversed the historical pattern in which Moscow armed Tehran. A US-Israeli campaign that degrades Iran's drone industry directly degrades Russia's strike capacity in Ukraine.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did Iran supply Russia with starting in 2022 that reversed the historical arms-flow pattern?",
+            "options": [
+              "S-400 air defense systems",
+              "Shahed-136 loitering drones",
+              "Submarine-launched cruise missiles",
+              "Anti-ship ballistic missiles"
+            ],
+            "correct": 1,
+            "explanation": "The Shahed-136 is a cheap loitering munition Iran began exporting to Russia in 2022 — historically Moscow armed Tehran, not the reverse."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOMETRY",
+        "body": "Three nuclear powers and one threshold state are now connected through one mediator. Russia talks to Iran, Israel, and the US — none of whom talk directly to each other on this file. That position is itself the leverage Putin is selling.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "IR",
+              "IL",
+              "US",
+              "UA"
+            ],
+            "label": "the four-corner conversation"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-29T22:39:40.038Z",
+    "label": "Russia as Nuclear Broker",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-29-rightscon-cancelled-zambia-digital-rights": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT RIGHTSCON IS",
+        "body": "RightsCon is the largest annual gathering of digital rights activists, technologists, and policymakers — convened since 2011 by Access Now, a New York-based NGO that runs a 24/7 helpline for journalists and dissidents under digital attack.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Access Now's *Digital Security Helpline* fields thousands of cases yearly — phishing attacks on activists, account takeovers, **spyware** infections. RightsCon is where those casework patterns get translated into policy advocacy."
+          }
+        ]
+      },
+      {
+        "heading": "THE HOST-STATE GAMBLE",
+        "body": "International conferences on dissent live or die by their host. Pick a free state and the conference is preaching to the choir; pick a contested state and the host gets reputational laundering in exchange for letting activists in. The bet is that the bargain holds — until it doesn't.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011",
+                "label": "Silicon Valley — first edition"
+              },
+              {
+                "year": "2014",
+                "label": "San Francisco"
+              },
+              {
+                "year": "2016",
+                "label": "Silicon Valley"
+              },
+              {
+                "year": "2018",
+                "label": "Toronto"
+              },
+              {
+                "year": "2019",
+                "label": "Tunis — first African host"
+              },
+              {
+                "year": "2022",
+                "label": "Online (Costa Rica)"
+              },
+              {
+                "year": "2024",
+                "label": "Taipei"
+              },
+              {
+                "year": "2026",
+                "label": "Lusaka — cancelled",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "RightsCon's host trajectory"
+          }
+        ]
+      },
+      {
+        "heading": "THE SECURITY-CLEARANCE PRETEXT",
+        "body": "Authoritarian and semi-authoritarian states rarely ban conferences outright — that draws Western sanctions attention. The standard playbook is administrative friction: visa delays, vague security reviews, venue permits revoked at the last hour. The conference dies of paperwork, not censorship.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the most common method governments use to suppress international rights conferences?",
+            "options": [
+              "Outright banning by decree",
+              "Administrative delays and vague security reviews",
+              "Police raids on the venue",
+              "Arresting attendees on arrival"
+            ],
+            "correct": 1,
+            "explanation": "Bureaucratic friction lets the host claim neutrality while achieving the same outcome — and avoids the diplomatic blowback of an explicit ban."
+          }
+        ]
+      },
+      {
+        "heading": "ZAMBIA'S DIGITAL TURN",
+        "body": "Zambia passed the Cyber Security and Cyber Crimes Act in 2021 under Lungu, then expanded surveillance powers under Hichilema in 2024 despite his opposition-era promises to repeal it. The country has become one of Africa's quieter test cases for how a democratically-elected government inherits and extends its predecessor's surveillance toolkit."
+      },
+      {
+        "heading": "THE PEER PATTERN",
+        "body": "Zambia is not alone. Across sub-Saharan Africa, governments that campaigned on digital freedom have governed with the surveillance laws they inherited — often expanding them under cybersecurity framing.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ZM",
+              "TZ",
+              "UG",
+              "KE",
+              "ZW",
+              "MW"
+            ],
+            "label": "southern Africa's cyber-law cluster",
+            "caption": "all six passed or expanded cybercrime acts since 2018"
+          }
+        ]
+      },
+      {
+        "heading": "THE ACCESS NOW LEVERAGE",
+        "body": "Access Now operates in roughly 100 countries and its annual #KeepItOn coalition tracks internet shutdowns globally — documenting 283 shutdowns across 39 countries in 2023, a record. Cancelling RightsCon doesn't silence the organization; it relocates the conversation and adds Zambia to next year's report."
+      }
+    ],
+    "generatedAt": "2026-04-29T22:40:09.043Z",
+    "label": "RightsCon & Host-State Leverage",
+    "category": "tech",
+    "articleCount": 1
   }
 }
