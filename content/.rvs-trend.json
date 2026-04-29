@@ -244,5 +244,23 @@
       "category science below floor 2 (got 1)",
       "category tech below floor 2 (got 0)"
     ]
+  },
+  {
+    "ts": "2026-04-29T12:37:36.678Z",
+    "cycleId": "2026-04-29T12-37",
+    "cycleHour": "12",
+    "rvs": 66.24,
+    "clusters": {
+      "picking": 60,
+      "writing": 90.91,
+      "briefing": 73.2,
+      "sourcing": 29.09,
+      "coverage": 73.73
+    },
+    "articleCount": 11,
+    "briefCount": 11,
+    "guardrailFailures": [
+      "category economy below floor 3 (got 2)"
+    ]
   }
 ]
