@@ -369,5 +369,27 @@
     "guardrailFailures": [
       "category economy below floor 3 (got 2)"
     ]
+  },
+  {
+    "ts": "2026-04-30T22:14:53.218Z",
+    "cycleId": "2026-04-30T22-14",
+    "cycleHour": "22",
+    "rvs": 53.68,
+    "clusters": {
+      "picking": 60,
+      "writing": 100,
+      "briefing": 0,
+      "sourcing": 60,
+      "coverage": 44.5
+    },
+    "articleCount": 1,
+    "briefCount": 0,
+    "guardrailFailures": [
+      "publish count 1 below floor 8",
+      "category politics below floor 3 (got 1)",
+      "category economy below floor 3 (got 0)",
+      "category science below floor 2 (got 0)",
+      "category tech below floor 2 (got 0)"
+    ]
   }
 ]
