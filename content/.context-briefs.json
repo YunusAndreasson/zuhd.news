@@ -87530,5 +87530,1563 @@
     "label": "US Forces in Germany",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-28-ghostty-is-leaving-github": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT GITHUB ACTUALLY IS",
+        "body": "GitHub is not Git. Git is the distributed version-control system Linus Torvalds wrote in 2005 to manage the Linux kernel — every clone is a full copy of history. GitHub is a centralized hosting layer on top: issues, pull requests, CI runners, identity. The protocol is decentralized; the network effect is not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: a repo can move hosts in minutes (it's just `git remote set-url`), but **issues, PR threads, stars, and CI history** are GitHub-proprietary and don't travel with the clone."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2018 ACQUISITION",
+        "body": "Microsoft bought GitHub for $7.5 billion in 2018. At the time, the developer community feared enshittification; for years the opposite happened — free private repos, Codespaces, Copilot. The 2024-2026 reliability slide has revived the original anxiety.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2008",
+                "label": "GitHub founded"
+              },
+              {
+                "year": "2018",
+                "label": "Microsoft acquires for $7.5B",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Free private repos"
+              },
+              {
+                "year": "2021",
+                "label": "Copilot launches"
+              },
+              {
+                "year": "2022",
+                "label": "Actions becomes default CI"
+              },
+              {
+                "year": "2025",
+                "label": "Reliability complaints surge"
+              }
+            ],
+            "label": "GitHub under Microsoft"
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPETITION",
+        "body": "GitLab is the closest feature-equivalent, self-hostable and open-core. Codeberg and Forgejo are non-profit, EU-hosted forks of Gitea favored by privacy-conscious projects. Sourcehut is the minimalist mailing-list-style alternative used by Drew DeVault and parts of the Wayland ecosystem. None has GitHub's gravity.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "GitHub",
+                "value": "~420M",
+                "weight": 420,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "GitLab",
+                "value": "~40M",
+                "weight": 40,
+                "tone": "neutral"
+              },
+              {
+                "label": "Bitbucket",
+                "value": "~10M",
+                "weight": 10,
+                "tone": "neutral"
+              },
+              {
+                "label": "Codeberg",
+                "value": "~150K",
+                "weight": 0.15,
+                "tone": "favorable"
+              },
+              {
+                "label": "Sourcehut",
+                "value": "~40K",
+                "weight": 0.04,
+                "tone": "favorable"
+              }
+            ],
+            "label": "git hosts by public repo count (2025 est.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ACTIONS IS THE LOCK-IN",
+        "body": "Migrating a Git repository takes seconds. Migrating CI/CD does not. GitHub Actions workflows use proprietary YAML referencing a marketplace of 20,000+ actions; rewriting them for GitLab CI, Drone, or Buildkite is the real switching cost. Every project that adopted Actions traded portability for convenience.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What part of a GitHub project is hardest to migrate to another host?",
+            "options": [
+              "The Git repository itself",
+              "Issues and pull request history",
+              "GitHub Actions workflows and secrets",
+              "The list of stars and forks"
+            ],
+            "correct": 2,
+            "explanation": "Git history is portable by design. Issues can be exported via API. Actions workflows are tied to GitHub's runner ecosystem and proprietary marketplace — rewriting them is the real switching cost."
+          }
+        ]
+      },
+      {
+        "heading": "THE HASHIMOTO SIGNAL",
+        "body": "Mitchell Hashimoto co-founded HashiCorp (Terraform, Vault, Consul) and is one of the most-followed developers on GitHub. When a power user with that gravity defects, it is read as a leading indicator — the same way Linus Torvalds' choice of BitKeeper, then his rejection of it, shaped the entire DVCS landscape in 2005."
+      }
+    ],
+    "generatedAt": "2026-04-30T08:25:44.128Z",
+    "label": "GitHub & Developer Lock-In",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-28-humanitarian-aid-turns-to-ai-as-crises-outpace-capacity": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FUNDING GAP",
+        "body": "Global humanitarian appeals have been chronically underfunded for a decade — UN OCHA appeals typically close the year at 40-60% of requested funds. The gap widened sharply after 2023 as donor governments pivoted spending toward Ukraine reconstruction and domestic budgets, while displacement reached record highs.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shortfall is structural, not cyclical: pledges are denominated in *donor* fiscal cycles while crises run on **multi-year** timelines. Caseworkers are the first line cut because salaries are recurring; chatbots are capex."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT SIGNPOST ACTUALLY IS",
+        "body": "Signpost began in 2015 as a Facebook page run by IRC and Mercy Corps for Syrian refugees on the Greek islands. It evolved into a network of moderated information services across messaging platforms, and in 2023 added a GPT-4-based chatbot layer trained on vetted local information — shelter addresses, legal aid contacts, registration procedures.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "PS",
+              "UA",
+              "CO",
+              "VE",
+              "MX"
+            ],
+            "label": "where Signpost operates",
+            "caption": "deployed across active displacement corridors"
+          }
+        ]
+      },
+      {
+        "heading": "THE HALLUCINATION RISK",
+        "body": "A chatbot that invents an asylum deadline or misstates a country's non-refoulement protections can cost a refugee their case. Unlike a caseworker who knows what they don't know, a language model produces fluent wrong answers with the same confidence as correct ones. Humanitarian deployments handle this with retrieval-augmented generation and human-in-the-loop review of edge cases."
+      },
+      {
+        "heading": "THE LEGAL-ADVICE LINE",
+        "body": "In most jurisdictions, only licensed lawyers may give legal advice — bar associations have sued tech platforms over chatbot outputs. Humanitarian chatbots stay on the safe side by providing information (where to find a lawyer, what documents exist) rather than advice (what you should do). The line is thin and contested.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the principle of non-refoulement?",
+            "options": [
+              "A state cannot return a refugee to a country where they face persecution",
+              "A refugee must apply for asylum in the first safe country they reach",
+              "UN agencies have priority access to refugee camps",
+              "Refugees retain citizenship of their origin country"
+            ],
+            "correct": 0,
+            "explanation": "Codified in the 1951 Refugee Convention, non-refoulement is the cornerstone of refugee law — a state cannot expel or return a refugee to territories where their life or freedom would be threatened."
+          }
+        ]
+      },
+      {
+        "heading": "THE DISPLACEMENT SCALE",
+        "body": "UNHCR counts over 120 million forcibly displaced people worldwide as of 2024 — more than the population of Japan. Sudan alone has produced the largest displacement crisis on the planet since the war broke out in April 2023, with over 10 million displaced internally and across borders.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Syria",
+                "value": "13.8mn",
+                "cc": "SY",
+                "weight": 13.8,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Sudan",
+                "value": "10.7mn",
+                "cc": "SD",
+                "weight": 10.7,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Ukraine",
+                "value": "10.6mn",
+                "cc": "UA",
+                "weight": 10.6,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Afghanistan",
+                "value": "6.4mn",
+                "cc": "AF",
+                "weight": 6.4,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Venezuela",
+                "value": "6.1mn",
+                "cc": "VE",
+                "weight": 6.1,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Palestine",
+                "value": "6.0mn",
+                "cc": "PS",
+                "weight": 6,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "forcibly displaced, 2024 (mn people)"
+          }
+        ]
+      },
+      {
+        "heading": "THE LANGUAGE PROBLEM",
+        "body": "Humanitarian information has historically been bottlenecked by translation — a Sudanese refugee in Chad needs Arabic and Masalit, not the English in which UN guidance is drafted. Large language models collapse this cost dramatically, but they perform far worse in low-resource languages where training data is thin, exactly the languages most refugees speak."
+      }
+    ],
+    "generatedAt": "2026-04-30T08:26:16.055Z",
+    "label": "AI in Humanitarian Aid",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-28-your-phone-is-about-to-stop-being-yours": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT SIDELOADING IS",
+        "body": "Sideloading means installing software directly from a developer or third-party store, bypassing the platform's official app store. It is how Android has always differed from iOS — the open path that made F-Droid, alternative browsers, and modded apps possible.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The term predates phones: in the PC era, this was just *installing software*. Calling it **sideloading** reframes the default — the app store became the front door, and everything else became a side entrance."
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO-STORE WORLD",
+        "body": "iOS and Android took opposite philosophies in 2008. Apple required every app to pass review and ship through the App Store. Android allowed APK files from anywhere, with a warning toggle. That single architectural choice created the entire ecosystem of open-source Android software.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "iOS",
+                "value": "App Store only",
+                "tone": "unfavorable",
+                "cc": "US"
+              },
+              {
+                "label": "Android (legacy)",
+                "value": "any APK",
+                "tone": "favorable",
+                "cc": "US"
+              },
+              {
+                "label": "Android (2026)",
+                "value": "registered devs only",
+                "tone": "unfavorable",
+                "cc": "US"
+              }
+            ],
+            "label": "app distribution control, by platform"
+          }
+        ]
+      },
+      {
+        "heading": "F-DROID'S MODEL",
+        "body": "F-Droid is a 14-year-old volunteer-run catalog of free and open-source Android apps. It builds every app from public source code on its own servers — meaning users can verify the binary matches the code. This reproducible-build model is impossible if every developer must first register with Google."
+      },
+      {
+        "heading": "THE DMA PRECEDENT",
+        "body": "The EU's Digital Markets Act forced Apple to allow alternative app stores on iOS in 2024 — the first crack in fifteen years of walled-garden enforcement. Google's new policy moves Android the opposite direction at the same moment regulators are pulling iOS toward openness.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "DE",
+              "FR",
+              "IE",
+              "NL"
+            ],
+            "label": "where the DMA applies",
+            "caption": "EU gatekeeper rules took effect March 2024"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DEVELOPER ID MATTERS",
+        "body": "Requiring government ID to publish software is a structural change, not a UX tweak. It ends pseudonymous development — the model that produced Bitcoin (Satoshi), Tor, Signal's predecessors, and most privacy tooling. A developer in Iran, Russia, or Myanmar publishing an app the regime dislikes now has a name attached to it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which of these widely-used technologies was originally released by a pseudonymous or anonymous developer?",
+            "options": [
+              "Bitcoin",
+              "Linux",
+              "Android",
+              "iOS"
+            ],
+            "correct": 0,
+            "explanation": "Satoshi Nakamoto released Bitcoin in 2009 under a pseudonym and has never been publicly identified — a model of pseudonymous publishing that requiring government ID would foreclose."
+          }
+        ]
+      },
+      {
+        "heading": "THE REMOTE-OVERRIDE CLAUSE",
+        "body": "The 24-hour waiting period for power users is set by Google and adjustable by Google. A timer the platform owner can extend at will is not a user right; it is a permission slip. The mechanism matters more than the current duration."
+      }
+    ],
+    "generatedAt": "2026-04-30T08:26:46.036Z",
+    "label": "App Sideloading & Platform Control",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-29-5-takeaways-from-2025-s-cocaine-seizure-data": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY EUROPE OVERTOOK THE US",
+        "body": "For decades the US was the dominant cocaine market — geography made it so. Two shifts changed it: US demand plateaued as opioids and meth captured the addiction market, while European wholesale prices stayed roughly double American ones, pulling supply across the Atlantic.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A kilo that wholesales for around **$28,000** in Miami fetches **$40,000–60,000** in Rotterdam or Antwerp. That spread — not enforcement — sets the trade's direction."
+          }
+        ]
+      },
+      {
+        "heading": "THE COCA GEOGRAPHY",
+        "body": "Cocaine comes from the coca leaf, which grows commercially in just three countries: Colombia, Peru, Bolivia. Colombia alone produces roughly two-thirds of global supply, concentrated in a handful of departments where state presence is thinnest — Nariño, Putumayo, Norte de Santander.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Colombia",
+                "value": 67,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Peru",
+                "value": 22,
+                "tone": "neutral"
+              },
+              {
+                "label": "Bolivia",
+                "value": 11,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global cocaine production share, 2024 (est.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ANTWERP AND ROTTERDAM",
+        "body": "Two ports handle the bulk of European cocaine imports because they handle the bulk of European container traffic. Antwerp processes roughly 12 million containers a year; physical inspection covers under 2%. The cocaine isn't slipping past enforcement — it's swimming in volume too large to inspect.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NL",
+              "BE",
+              "ES",
+              "DE",
+              "FR"
+            ],
+            "label": "Europe's container gateways",
+            "markers": [
+              {
+                "lat": 51.2194,
+                "lng": 4.4025,
+                "label": "Antwerp"
+              },
+              {
+                "lat": 51.9244,
+                "lng": 4.4777,
+                "label": "Rotterdam"
+              },
+              {
+                "lat": 36.1408,
+                "lng": -5.3536,
+                "label": "Algeciras"
+              },
+              {
+                "lat": 53.5511,
+                "lng": 9.9937,
+                "label": "Hamburg"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE NARCO-SUBMARINE",
+        "body": "Semi-submersibles — low-profile vessels riding just below the waterline — emerged in Colombia's Pacific in the late 1990s. A typical hull carries 2–8 tons, costs around $1 million to build, and is scuttled after a single voyage. The 6.5-ton Azores haul signals the format has crossed the Atlantic.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1993",
+                "label": "first seized in Colombian Pacific"
+              },
+              {
+                "year": "2006",
+                "label": "US Coast Guard intercepts first transit",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "first transatlantic vessel found in Galicia"
+              },
+              {
+                "year": "2025",
+                "label": "6.5-ton haul near Azores"
+              }
+            ],
+            "label": "the semi-submersible arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PRICES DON'T MOVE",
+        "body": "Seizure totals keep climbing yet European street prices have barely budged in a decade. The reason is structural: enforcement removes a fraction of supply, but production capacity in the Andes is elastic — coca acreage expands faster than interdiction tightens. Economists call this the balloon effect.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of global cocaine shipments do authorities estimate they seize?",
+            "options": [
+              "Around 5%",
+              "Around 20%",
+              "Around 50%",
+              "Around 75%"
+            ],
+            "correct": 1,
+            "explanation": "UNODC estimates interdiction captures roughly 20% of global flow — high in absolute terms, far too low to constrain supply or move retail prices."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-30T08:27:18.765Z",
+    "label": "The Global Cocaine Trade",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-29-a-2022-law-may-be-quietly-helping-people-stay-on-their-meds": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NON-NEGOTIATION RULE",
+        "body": "When Medicare Part D was created in 2003, the law that established it explicitly forbade the federal government from negotiating drug prices with manufacturers. Every other major drug-buying entity on earth — the VA, the NHS, Germany's sickness funds — negotiates. Medicare alone was barred by statute from doing so for two decades.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The clause is known as the **non-interference provision**. It was the price pharma extracted for accepting Part D's existence at all."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE IRA CHANGED",
+        "body": "The 2022 Inflation Reduction Act did three things: capped insulin at $35/month, capped total Part D out-of-pocket spending at $2,000/year (effective 2025), and authorized Medicare to negotiate prices on a small set of high-cost drugs. The first negotiated prices took effect in 2026.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1965",
+                "label": "Medicare created — no drug coverage"
+              },
+              {
+                "year": "2003",
+                "label": "Part D + non-negotiation clause",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2010",
+                "label": "ACA closes 'donut hole' gradually"
+              },
+              {
+                "year": "2022",
+                "label": "IRA passes — caps + negotiation"
+              },
+              {
+                "year": "2025",
+                "label": "$2,000 OOP cap takes effect"
+              },
+              {
+                "year": "2026",
+                "label": "First negotiated prices"
+              }
+            ],
+            "label": "Medicare drug pricing arc"
+          }
+        ]
+      },
+      {
+        "heading": "COST-RELATED NONADHERENCE",
+        "body": "The clinical term is cost-related nonadherence — patients skipping doses, splitting pills, or not filling prescriptions because they cannot afford them. Pre-IRA surveys put the rate among Medicare beneficiaries at roughly one in five for those on multiple medications. Nonadherence to chronic-disease drugs raises hospitalization rates and overall Medicare spending downstream."
+      },
+      {
+        "heading": "WHY US PRICES ARE HIGHER",
+        "body": "Americans pay multiples of what peer countries pay for the same molecule from the same manufacturer. The gap is not manufacturing cost — it is bargaining power. Single-payer systems negotiate as a monopsony; the fragmented US market lets pharma price-discriminate by payer.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "1.0× (baseline)",
+                "cc": "US",
+                "tone": "unfavorable",
+                "weight": 100
+              },
+              {
+                "label": "Germany",
+                "value": "0.43×",
+                "cc": "DE",
+                "weight": 43
+              },
+              {
+                "label": "Canada",
+                "value": "0.44×",
+                "cc": "CA",
+                "weight": 44
+              },
+              {
+                "label": "France",
+                "value": "0.41×",
+                "cc": "FR",
+                "weight": 41
+              },
+              {
+                "label": "UK",
+                "value": "0.39×",
+                "cc": "GB",
+                "weight": 39,
+                "tone": "favorable"
+              },
+              {
+                "label": "Australia",
+                "value": "0.32×",
+                "cc": "AU",
+                "weight": 32,
+                "tone": "favorable"
+              }
+            ],
+            "label": "drug prices vs US (RAND, 2022, all drugs)"
+          }
+        ]
+      },
+      {
+        "heading": "THE DONUT HOLE",
+        "body": "Original Part D had a notorious gap: after a small initial deductible, coverage stopped at one threshold and resumed only after the patient had spent thousands more out of pocket. Beneficiaries called it the donut hole. The ACA began closing it in 2010; the IRA's $2,000 cap eliminates it entirely."
+      },
+      {
+        "heading": "WHO PAYS",
+        "body": "Capping patient costs does not make drugs cheaper — it shifts who pays. The first $2,000 falls on the beneficiary; everything above it falls on Medicare's Part D plans, partially offset by manufacturer rebates negotiated under the IRA. Pharma's argument is that the burden eventually circles back as higher launch prices on new drugs.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was Medicare statutorily forbidden to do with drug companies from 2003 to 2022?",
+            "options": [
+              "Cover any prescription drug at all",
+              "Negotiate prices on the drugs it bought",
+              "Require generic substitution",
+              "Require FDA approval before coverage"
+            ],
+            "correct": 1,
+            "explanation": "The 2003 Medicare Modernization Act's non-interference clause barred HHS from negotiating Part D prices — a uniquely American restriction, lifted only by the 2022 IRA."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-30T08:27:55.432Z",
+    "label": "Medicare & Drug Pricing",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-29-between-imf-conditions-and-rising-prices-is-sri-lanka-headin": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW SRI LANKA GOT HERE",
+        "body": "The 2022 default was the first sovereign default in Sri Lankan history. A decade of dollar-denominated borrowing for infrastructure — much of it Chinese-financed — collided with tax cuts in 2019, COVID tourism collapse, and a catastrophic 2021 fertilizer ban that wrecked the rice harvest. Reserves hit zero; fuel queues stretched for kilometers; Gotabaya Rajapaksa fled the presidential palace as crowds swam in his pool.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2009",
+                "label": "Civil war ends, borrowing surge begins"
+              },
+              {
+                "year": "2019",
+                "label": "Easter bombings; tax cuts"
+              },
+              {
+                "year": "2021",
+                "label": "Fertilizer ban destroys harvest"
+              },
+              {
+                "year": "2022-04",
+                "label": "Sovereign default",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-07",
+                "label": "Rajapaksa flees palace"
+              },
+              {
+                "year": "2023-03",
+                "label": "$3bn IMF EFF approved"
+              }
+            ],
+            "label": "the cascade"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE IMF ACTUALLY REQUIRES",
+        "body": "Sri Lanka's $3bn Extended Fund Facility (March 2023) conditioned disbursements on a primary surplus of 2.3% of GDP by 2025, VAT raised from 12% to 18%, electricity tariff hikes that tripled household bills, and a Central Bank Act restricting monetary financing. These are textbook IMF conditions — the same template applied to Argentina, Pakistan, Egypt, Ghana.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The IMF's standard recipe is **fiscal consolidation** plus **monetary tightening** plus **exchange rate flexibility**. The theory: stabilize first, growth follows. The critique, since the 1997 Asian crisis: the medicine deepens the recession before the recovery arrives — sometimes the recovery never arrives."
+          }
+        ]
+      },
+      {
+        "heading": "COST-PUSH VS DEMAND-PULL",
+        "body": "Standard IMF austerity assumes inflation comes from too much demand chasing too few goods — cool the economy, prices fall. Cost-push inflation runs the other way: VAT hikes, fuel taxes, and electricity tariffs raise the price of every input, so producers pass costs through even as demand collapses. Tightening into cost-push inflation crushes output without taming prices.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which kind of inflation does IMF-style monetary tightening actually address?",
+            "options": [
+              "Cost-push from tax and tariff hikes",
+              "Demand-pull from excess spending",
+              "Imported inflation from currency collapse",
+              "All inflation, regardless of source"
+            ],
+            "correct": 1,
+            "explanation": "Rate hikes cool demand. When prices rise from supply-side shocks (taxes, fuel, FX pass-through), tightening adds recession without curing inflation."
+          }
+        ]
+      },
+      {
+        "heading": "THE PEER LANDSCAPE",
+        "body": "Sri Lanka is one of several South and Central Asian economies inside an active IMF programme. Each entered for different reasons but operates under similar conditionality — surplus targets, subsidy cuts, tariff resets — and faces the same political ceiling on how much austerity a population will absorb.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Sri Lanka",
+                "value": "$3.0bn EFF",
+                "cc": "LK",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Pakistan",
+                "value": "$7.0bn EFF",
+                "cc": "PK",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Bangladesh",
+                "value": "$4.7bn ECF",
+                "cc": "BD",
+                "tone": "neutral"
+              },
+              {
+                "label": "Egypt",
+                "value": "$8.0bn EFF",
+                "cc": "EG",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "active IMF programmes in the region"
+          }
+        ]
+      },
+      {
+        "heading": "THE DEBT GEOGRAPHY",
+        "body": "Sri Lanka's $46bn external debt sits with three groups: bilateral lenders (China, Japan, India), multilateral institutions (ADB, World Bank, IMF), and private bondholders holding international sovereign bonds. Each negotiates separately; the Paris Club framework that historically coordinated bilateral creditors does not bind China, which now holds roughly 20% of the bilateral stack.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LK",
+              "CN",
+              "IN",
+              "JP",
+              "US"
+            ],
+            "label": "Sri Lanka's largest creditors",
+            "markers": [
+              {
+                "lat": 6.9271,
+                "lng": 79.8612,
+                "label": "Colombo"
+              },
+              {
+                "lat": 6.1241,
+                "lng": 81.1185,
+                "label": "Hambantota port (CN lease)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY HAMBANTOTA MATTERS",
+        "body": "In 2017, unable to service Chinese loans for the Hambantota port project, Sri Lanka leased the port to a Chinese state-owned company for 99 years. The case became the canonical example in Western policy circles of so-called debt-trap diplomacy — though academic studies have since complicated that framing, the political memory in Colombo is that infrastructure debt comes with sovereignty costs."
+      }
+    ],
+    "generatedAt": "2026-04-30T08:28:36.278Z",
+    "label": "IMF Conditionality & Sri Lanka",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-29-the-united-states-is-losing-the-race-for-central-asia-s-crit": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DOUBLE-LANDLOCKED PROBLEM",
+        "body": "Uzbekistan is one of only two doubly landlocked countries on earth — every export must cross at least two borders to reach a port. For Central Asia's minerals, the route question is the geopolitics question: whichever power builds the corridor owns the trade.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KZ",
+              "UZ",
+              "KG",
+              "TJ",
+              "TM",
+              "CN",
+              "RU",
+              "IR",
+              "AF"
+            ],
+            "label": "the corridor problem",
+            "caption": "five landlocked republics ringed by four powers"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT'S ACTUALLY THERE",
+        "body": "Kazakhstan holds roughly 40% of the world's uranium production, the largest reserves of chromium, and significant rare-earth deposits. Uzbekistan is a top-five gold producer and sits on lithium and tungsten. Tajikistan has antimony — critical for armor-piercing munitions and semiconductors.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Uranium",
+                "value": "~40%",
+                "tone": "unfavorable",
+                "weight": 40
+              },
+              {
+                "label": "Chromium",
+                "value": "~30%",
+                "tone": "unfavorable",
+                "weight": 30
+              },
+              {
+                "label": "Titanium",
+                "value": "~10%",
+                "tone": "neutral",
+                "weight": 10
+              },
+              {
+                "label": "Rare earths",
+                "value": "emerging",
+                "tone": "favorable",
+                "weight": 5
+              }
+            ],
+            "label": "Kazakhstan's share of global supply"
+          }
+        ]
+      },
+      {
+        "heading": "THE GREAT GAME, REPRISED",
+        "body": "Central Asia was the original *Great Game* — 19th-century rivalry between the British and Russian empires for the Eurasian heartland. Halford Mackinder's 1904 *Heartland Theory* argued that whoever controlled this interior controlled the world island. Beijing's Belt and Road is the most coherent execution of that thesis since the Soviets.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Mackinder's line: *\"Who rules the Heartland commands the World-Island; who rules the World-Island commands the World.\"* For a century it was a curiosity. China is now testing it."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PROCESSING IS THE CHOKEPOINT",
+        "body": "Mining the ore is the cheap part. Separating rare earths into individual elements requires hundreds of solvent-extraction stages, toxic reagents, and decades of accumulated process knowledge. China refines roughly 90% of the world's rare earths regardless of where they're dug up — including from US mines."
+      },
+      {
+        "heading": "THE RAIL THAT CHANGED EVERYTHING",
+        "body": "The China–Kyrgyzstan–Uzbekistan railway, broken ground 2024 after 25 years of negotiation, gives Beijing a direct rail link to the Caspian bypassing Russia entirely. It compresses Kashgar-to-Tashkent freight from weeks by truck to days by rail — and locks routing eastward before Western alternatives exist.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1991",
+                "label": "Soviet collapse; republics independent"
+              },
+              {
+                "year": "2013",
+                "label": "Belt and Road announced",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2017",
+                "label": "China-Kazakhstan oil pipeline at full capacity"
+              },
+              {
+                "year": "2022",
+                "label": "Russia's Ukraine war; CA states hedge"
+              },
+              {
+                "year": "2024",
+                "label": "CKU railway groundbreaking"
+              },
+              {
+                "year": "2026",
+                "label": "US C5+1 still no binding offtakes"
+              }
+            ],
+            "label": "the corridor race"
+          }
+        ]
+      },
+      {
+        "heading": "WHO PROCESSES WHAT",
+        "body": "The US Inflation Reduction Act subsidies require non-FEOC (Foreign Entity of Concern) sourcing — but with no Western processing capacity, even Australian or Canadian ore often routes through Chinese refineries to become battery-grade material. Permitting a single US separation plant takes 7-10 years.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of global rare-earth refining capacity does China control?",
+            "options": [
+              "~40%",
+              "~60%",
+              "~90%",
+              "~100%"
+            ],
+            "correct": 2,
+            "explanation": "China refines roughly 90% of rare earths — including ore mined in the US, Australia, and Africa — because separation plants take a decade to permit and require process knowledge accumulated over 40 years."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-30T08:29:11.740Z",
+    "label": "Central Asia & Critical Minerals",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-29-vaishnaw-flags-off-jammu-srinagar-vande-bharat-services-from": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOGRAPHIC PROBLEM",
+        "body": "The Pir Panjal range walls Kashmir off from the Indian plains. The Banihal Pass, the historic road link, closes for weeks each winter under snow and avalanche. Until now, Kashmir was the only major Indian region without year-round surface connectivity to the rest of the country.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "PK",
+              "CN",
+              "AF"
+            ],
+            "label": "the Pir Panjal corridor",
+            "markers": [
+              {
+                "lat": 33.0518,
+                "lng": 75.1958,
+                "label": "Chenab bridge"
+              },
+              {
+                "lat": 33.4929,
+                "lng": 75.1486,
+                "label": "Banihal Pass"
+              },
+              {
+                "lat": 34.0837,
+                "lng": 74.7973,
+                "label": "Srinagar"
+              },
+              {
+                "lat": 32.7266,
+                "lng": 74.857,
+                "label": "Jammu"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE ENGINEERING FEAT",
+        "body": "The Chenab bridge arches 359 meters above the river — taller than the Eiffel Tower — built to withstand earthquakes up to magnitude 8 and wind speeds of 266 km/h. Construction began in 2004 and took two decades. The line required 36 tunnels because the Himalayan geology made surface routing impossible.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "At **359m**, the Chenab arch surpasses the previous record-holder — China's Beipanjiang bridge — by nearly 80 meters. The structure is engineered for a **120-year** design life."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1947 PARTITION LINE",
+        "body": "When the princely state of Jammu and Kashmir acceded to India in October 1947, Pakistani tribal militias had already seized the western third. The 1949 Karachi Agreement froze the Line of Control as a ceasefire line, not a border. Both states still claim the entire pre-1947 territory in their constitutions."
+      },
+      {
+        "heading": "WHY RAIL CHANGES THE CALCULUS",
+        "body": "Kashmir's economy has been hostage to the road link. Apple harvests rotted in winter blockades; tourism collapsed when passes closed; troop rotation depended on weather. Rail moves freight at a fraction of road cost and runs through tunnels the weather cannot touch. Integration this deep is irreversible in a way roads were not.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of India's apple production comes from Jammu & Kashmir?",
+            "options": [
+              "About 15%",
+              "About 50%",
+              "About 75%",
+              "About 90%"
+            ],
+            "correct": 2,
+            "explanation": "J&K produces roughly three-quarters of India's apples; winter road closures historically stranded the harvest before it could reach southern markets."
+          }
+        ]
+      },
+      {
+        "heading": "THE STRATEGIC SUBTEXT",
+        "body": "The line is dual-use. The same tunnels that move tourists move tanks. India's military logistics into Ladakh — where it faces Chinese forces along the Line of Actual Control — and into Kashmir's LoC sectors against Pakistan have always been throttled by the Banihal bottleneck. Year-round rail capacity changes the force-projection math on both fronts.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Jammu & Kashmir",
+                "role": "Indian union territory since 2019",
+                "cc": "IN"
+              },
+              {
+                "name": "Azad Kashmir",
+                "role": "Pakistan-administered",
+                "cc": "PK"
+              },
+              {
+                "name": "Gilgit-Baltistan",
+                "role": "Pakistan-administered, claimed by India",
+                "cc": "PK"
+              },
+              {
+                "name": "Aksai Chin",
+                "role": "China-administered, claimed by India",
+                "cc": "CN"
+              }
+            ],
+            "label": "the disputed frontier"
+          }
+        ]
+      },
+      {
+        "heading": "ARTICLE 370'S ECHO",
+        "body": "Kashmir's special constitutional status was revoked in August 2019, downgrading the state to a union territory governed directly from Delhi. Infrastructure investment accelerated sharply afterward — the Chenab bridge, the Vande Bharat link, highway expansion. The rail line is the most visible artifact of post-2019 integration policy."
+      }
+    ],
+    "generatedAt": "2026-04-30T08:29:43.456Z",
+    "label": "Kashmir's Rail Link",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-30-india-s-bangladesh-gamble": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHICKEN'S NECK",
+        "body": "India's seven northeastern states connect to the rest of the country through the Siliguri Corridor — a 22-km-wide strip of land between Nepal and Bangladesh. Every road, rail, and pipeline to Assam, Manipur, and Nagaland threads through this bottleneck. Transit through Bangladesh isn't a convenience; it's the geographic alternative to a single point of failure.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "BD",
+              "NP",
+              "BT",
+              "MM"
+            ],
+            "label": "the chicken's neck and the alternative",
+            "markers": [
+              {
+                "lat": 26.7271,
+                "lng": 88.3953,
+                "label": "Siliguri Corridor"
+              },
+              {
+                "lat": 22.3569,
+                "lng": 91.7832,
+                "label": "Chattogram port"
+              },
+              {
+                "lat": 23.8103,
+                "lng": 90.4125,
+                "label": "Dhaka"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 1971 DEBT",
+        "body": "India's military intervention in 1971 broke East Pakistan from West Pakistan and birthed Bangladesh. For five decades the Awami League — Sheikh Mujibur Rahman's party, then his daughter Sheikh Hasina's — treated this as the foundational debt of the relationship. The 2024 student uprising that toppled Hasina cut the personal cord Delhi had relied on."
+      },
+      {
+        "heading": "THE TEESTA FREEZE",
+        "body": "The Teesta river flows from Sikkim into Bangladesh's parched northwest. A water-sharing deal has been negotiated since 2011 but blocked by West Bengal's chief minister, who refuses to sign. Bangladesh now negotiates parallel terms with China for Teesta basin development — leverage Dhaka never had under Hasina.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Under interim leader **Muhammad Yunus**, Dhaka has reopened formal talks with Islamabad after a 15-year freeze and entertained Chinese financing for the *Teesta River Comprehensive Management* project — both moves Hasina would have vetoed."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A POLITICIAN, NOT A DIPLOMAT",
+        "body": "India's foreign service runs on career diplomats — the IFS — trained for institutional continuity. Sending a politician as high commissioner is the move the US makes for London or Tokyo, not what Delhi typically does for a neighbor. The signal is that Dhaka is now a relationship that needs a phone call to the prime minister, not a cable to South Block."
+      },
+      {
+        "heading": "THE COMPETING SUITORS",
+        "body": "Bangladesh sits at the intersection of three infrastructure plays: India's Act East policy (northeast transit), China's BRI (Payra port, Padma rail), and a quieter Pakistani diplomatic reopening after 15 years of Hasina-era freeze. Whichever capital secures Chattogram port access shapes the Bay of Bengal's next decade.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "$25bn FDI/loans",
+                "cc": "CN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": "$8bn LOC",
+                "cc": "IN",
+                "tone": "neutral"
+              },
+              {
+                "label": "Pakistan",
+                "value": "reopening",
+                "cc": "PK",
+                "tone": "neutral"
+              },
+              {
+                "label": "Japan",
+                "value": "$10bn (Matarbari)",
+                "cc": "JP",
+                "tone": "favorable"
+              }
+            ],
+            "label": "Bangladesh's external pull (2024 est.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSIT PRIZE",
+        "body": "A 2023 agreement gave India use of Chattogram and Mongla ports to move cargo to its northeast — cutting trips from 1,600 km via Siliguri to 400 km via Bangladesh. The deal is operational but revocable. Every container that moves through Chattogram is a vote of confidence Dhaka can withdraw.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does India need transit rights through Bangladesh?",
+            "options": [
+              "Bangladesh has cheaper fuel",
+              "India's northeast connects to the mainland through a 22-km corridor",
+              "To avoid Pakistani airspace",
+              "Bangladesh has the only deepwater port in the region"
+            ],
+            "correct": 1,
+            "explanation": "The Siliguri Corridor is India's only land link to its seven northeastern states; Bangladesh transit is the strategic alternative to that single chokepoint."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-30T08:30:17.732Z",
+    "label": "India–Bangladesh & the Northeast Corridor",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-30-russian-drones-strike-ukraine-s-odesa-overnight-wounding-18": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CITY'S STRATEGIC WEIGHT",
+        "body": "Odesa is Ukraine's last major Black Sea port. Before the 2022 invasion it handled roughly two-thirds of Ukrainian grain exports — wheat, corn, sunflower oil that fed North Africa and the Middle East. Strikes on Odesa are strikes on the global food supply chain.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              208.3816845,
+              227.4307704166667,
+              205.2260548983333,
+              183.2256341666667,
+              175.5104662666666,
+              188.5052165740741,
+              197.3719458333333,
+              185.7347870824562,
+              185.7943505,
+              190.6296420634921,
+              190.1026421105263,
+              179.6065420634921,
+              174.8167426587301,
+              196.8410714285714,
+              173.1947634816666,
+              165.2666224637681,
+              159.3079408380954,
+              155.1151385317461,
+              157.39233125,
+              169.2032881647058,
+              165.6266704583334,
+              169.2505145833334,
+              174.7524918912281,
+              193.8771220833334
+            ],
+            "periods": [
+              "Apr 2024",
+              "May 2024",
+              "Jun 2024",
+              "Jul 2024",
+              "Aug 2024",
+              "Sep 2024",
+              "Oct 2024",
+              "Nov 2024",
+              "Dec 2024",
+              "Jan 2025",
+              "Feb 2025",
+              "Mar 2025",
+              "Apr 2025",
+              "May 2025",
+              "Jun 2025",
+              "Jul 2025",
+              "Aug 2025",
+              "Sep 2025",
+              "Oct 2025",
+              "Nov 2025",
+              "Dec 2025",
+              "Jan 2026",
+              "Feb 2026",
+              "Mar 2026"
+            ],
+            "label": "Wheat",
+            "unit": "$/mt",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE SHAHED ECONOMY",
+        "body": "Russia's workhorse strike drone is the Iranian-designed Shahed-136, now mass-produced in Tatarstan as the Geran-2. Unit cost is estimated at $20,000–50,000. A Patriot interceptor fired to shoot one down costs roughly $4 million. The asymmetry is the weapon.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The math forces a doctrinal choice: defend everything and go bankrupt, or triage. Ukraine increasingly meets Shaheds with **mobile gun teams** and **interceptor drones** — cheap against cheap."
+          }
+        ]
+      },
+      {
+        "heading": "THE TERROR DOCTRINE",
+        "body": "Strikes on residential buildings, schools, and hotels are not misfires. Russian doctrine since the Chechen wars — Grozny 1999, Aleppo 2016 — treats civilian infrastructure as a legitimate pressure point on enemy morale. The targeting is the message.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1999",
+                "label": "Grozny levelled, second Chechen war"
+              },
+              {
+                "year": "2015",
+                "label": "Russia enters Syrian war"
+              },
+              {
+                "year": "2016",
+                "label": "Aleppo siege; hospitals struck"
+              },
+              {
+                "year": "2022",
+                "label": "Full-scale Ukraine invasion",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "Systematic grid strikes begin"
+              },
+              {
+                "year": "2025",
+                "label": "Shahed swarms scale past 200/night"
+              }
+            ],
+            "label": "the doctrine's track record"
+          }
+        ]
+      },
+      {
+        "heading": "THE BLACK SEA THEATER",
+        "body": "Odesa sits ~150km from Russian-occupied Crimea and within easy Shahed range of launch sites in Krasnodar and occupied southern Ukraine. Romania, a NATO member, lies just across the Danube — debris from Odesa-area strikes has repeatedly fallen on Romanian soil.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU",
+              "RO",
+              "MD",
+              "BG",
+              "TR"
+            ],
+            "label": "Black Sea range",
+            "markers": [
+              {
+                "lat": 46.4825,
+                "lng": 30.7233,
+                "label": "Odesa"
+              },
+              {
+                "lat": 44.9572,
+                "lng": 34.1108,
+                "label": "Crimea (occupied)"
+              },
+              {
+                "lat": 45.0355,
+                "lng": 38.9753,
+                "label": "Krasnodar"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE CEASEFIRE ODDS",
+        "body": "Despite three years of negotiation cycles, prediction markets price near-term ceasefires in single digits. The pattern: each round of strikes resets diplomatic timelines rather than shortening them.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              12,
+              10,
+              9,
+              9,
+              9,
+              8,
+              10,
+              10,
+              10,
+              9,
+              8,
+              8,
+              8,
+              8,
+              8,
+              8,
+              8,
+              8,
+              8,
+              8,
+              8,
+              11,
+              10
+            ],
+            "periods": [
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 7",
+              "Apr 9",
+              "Apr 13",
+              "Apr 15",
+              "Apr 17",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "Apr 30"
+            ],
+            "label": "Russia x Ukraine ceasefire by June 30…",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "12%"
+              },
+              {
+                "atIndex": 22,
+                "label": "10%"
+              }
+            ],
+            "link": "https://polymarket.com/event/russia-x-ukraine-ceasefire-by-june-30-2026",
+            "source": 1
+          }
+        ]
+      },
+      {
+        "heading": "WHY KINDERGARTENS",
+        "body": "Under the Geneva Conventions, schools and hospitals are protected objects — striking them is a war crime absent specific military use. Documented strikes on such sites build the evidentiary record for future tribunals; they also signal that the attacker no longer expects post-war legal accountability.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how much does a single Shahed-136 cost compared to a Patriot interceptor used to shoot it down?",
+            "options": [
+              "About the same",
+              "~10x cheaper",
+              "~100x cheaper",
+              "~1000x cheaper"
+            ],
+            "correct": 2,
+            "explanation": "A Shahed runs ~$20–50k; a Patriot PAC-3 interceptor is ~$4M. The cost asymmetry is the strategic point of the weapon."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · IMF · as of 2026-03-01",
+      "Polymarket · as of 2026-04-30"
+    ],
+    "generatedAt": "2026-04-30T08:30:50.349Z",
+    "label": "Odesa & the Drone War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-30-snow-cover-on-greek-mountains-has-more-than-halved-in-four-d": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY MOUNTAINS ARE WATER TOWERS",
+        "body": "Mountains store winter precipitation as snow, then release it slowly through spring and summer melt. This natural reservoir delivers water exactly when rainfall is lowest and demand is highest — the inverse of how rain alone would behave.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Hydrologists call this the **seasonal lag**: a snowpack converts a winter pulse into a summer drip. Lose the snow and you lose the *timing*, not just the volume."
+          }
+        ]
+      },
+      {
+        "heading": "THE MEDITERRANEAN SQUEEZE",
+        "body": "Mediterranean climates are defined by wet winters and bone-dry summers. Snowpack is the bridge across the dry months. As warming pushes the freezing line uphill, winter precipitation increasingly falls as rain — running off in days instead of melting over months.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GR",
+              "IT",
+              "ES",
+              "TR",
+              "LB",
+              "SY",
+              "IL",
+              "PT"
+            ],
+            "label": "the same squeeze across the basin",
+            "caption": "shared climate, shared vulnerability"
+          }
+        ]
+      },
+      {
+        "heading": "THE HYDROPOWER LINK",
+        "body": "Hydropower dams are sized for predictable spring melt. When snowpack collapses, reservoirs miss their refill window — capacity factors drop in summer precisely when air-conditioning demand peaks. Greece, Italy, and Iberia all hit record-low hydro output during the 2022 drought."
+      },
+      {
+        "heading": "THE FIRE COROLLARY",
+        "body": "Soils dried by absent snowmelt cure forest fuel earlier in the year. The Mediterranean fire season has lengthened by roughly a month since the 1980s; the catastrophic fires in Greece (2021, 2023), Portugal (2017), and Turkey (2021) all followed snow-deficit winters."
+      },
+      {
+        "heading": "THE LEVANT PRECEDENT",
+        "body": "Mount Hermon and the Anti-Lebanon range feed the Jordan River and the springs of Damascus. A multi-year snowpack collapse from 2006–2010 preceded the Syrian rural collapse that drove farmers into cities — a documented amplifier of the unrest that began in 2011.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which mountain range's snowmelt historically supplies most of Damascus's drinking water?",
+            "options": [
+              "The Zagros",
+              "The Anti-Lebanon",
+              "The Taurus",
+              "The Pontic Alps"
+            ],
+            "correct": 1,
+            "explanation": "The Anti-Lebanon range, including Mount Hermon, feeds the Barada River and the springs that built classical Damascus."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SATELLITES SETTLE THIS",
+        "body": "Ground snow stations are sparse and biased toward accessible elevations. Passive-microwave and optical satellite records (MODIS since 2000, AVHRR back to the early 1980s) give continuous, basin-wide coverage — which is how a 40-year halving can be measured at all."
+      }
+    ],
+    "generatedAt": "2026-04-30T08:31:19.532Z",
+    "label": "Mediterranean Snowpack & the Water Tower",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-30-supreme-court-says-minor-cannot-be-forced-to-carry-pregnancy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STATUTE",
+        "body": "India legalized abortion in 1971 — earlier than the United States, the United Kingdom's full liberalization, or most of Western Europe. The Medical Termination of Pregnancy Act was framed as a public health measure against unsafe back-alley procedures, not as a rights statute. That framing still shapes the law: it grants doctors discretion to terminate, not women a right to terminate.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The statutory phrase is *\"may be terminated by a registered medical practitioner\"* — the agency sits with the doctor, not the patient."
+          }
+        ]
+      },
+      {
+        "heading": "THE 24-WEEK CEILING",
+        "body": "The 2021 amendment raised the upper limit from 20 to 24 weeks for specific categories — rape survivors, minors, women with disabilities, fetal abnormalities. Beyond 24 weeks, only a state-appointed medical board can authorize termination. The board is a panel of doctors, not judges; in practice they often refuse, sending petitioners to the Supreme Court.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1971",
+                "label": "MTP Act passed — 20-week ceiling",
+                "emphasis": "start"
+              },
+              {
+                "year": "2003",
+                "label": "Rules tightened on provider qualifications"
+              },
+              {
+                "year": "2017",
+                "label": "SC begins case-by-case late-term approvals"
+              },
+              {
+                "year": "2021",
+                "label": "Amendment raises ceiling to 24 weeks",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "SC: marital status irrelevant to MTP rights"
+              },
+              {
+                "year": "2026",
+                "label": "SC: no minor forced to carry to term"
+              }
+            ],
+            "label": "the MTP Act over five decades"
+          }
+        ]
+      },
+      {
+        "heading": "WHY MINORS ARE THE HARD CASE",
+        "body": "POCSO — the 2012 Protection of Children from Sexual Offences Act — requires doctors to report any pregnancy in a minor to police, because intercourse with anyone under 18 is statutorily rape. Families seeking confidential abortions for daughters therefore avoid registered providers, pushing them toward unsafe procedures. The reporting mandate designed to protect children produces the opposite effect at the point of care."
+      },
+      {
+        "heading": "WHAT 30 WEEKS MEANS CLINICALLY",
+        "body": "Fetal viability sits around 23–24 weeks with neonatal intensive care. By 30 weeks, the fetus would survive birth with a high probability. Late-term termination at this gestation is not a D&C; it is induced delivery, often involving feticide first. The procedure is medically and ethically distinct from earlier abortion, which is why every jurisdiction draws a line somewhere — and why the line is contested."
+      },
+      {
+        "heading": "THE COMPARATIVE PICTURE",
+        "body": "On paper, India's abortion regime is more permissive than most Muslim-majority neighbors and more permissive than the post-Dobbs United States in many states. In practice, access depends on the doctor's willingness, the hospital's policy, and — for late-term cases — a court order. Statutory liberalism and effective access are not the same thing.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India",
+                "value": "24 weeks",
+                "cc": "IN",
+                "tone": "favorable"
+              },
+              {
+                "label": "UK",
+                "value": "24 weeks",
+                "cc": "GB",
+                "tone": "favorable"
+              },
+              {
+                "label": "Nepal",
+                "value": "28 weeks",
+                "cc": "NP",
+                "tone": "favorable"
+              },
+              {
+                "label": "Pakistan",
+                "value": "~16 weeks",
+                "cc": "PK",
+                "tone": "neutral"
+              },
+              {
+                "label": "Bangladesh",
+                "value": "life-only",
+                "cc": "BD",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "US (varies)",
+                "value": "6–24 weeks",
+                "cc": "US",
+                "tone": "neutral"
+              }
+            ],
+            "label": "abortion ceilings in selected jurisdictions (on request or broad grounds)"
+          }
+        ]
+      },
+      {
+        "heading": "THE COURT'S ROLE",
+        "body": "India's Supreme Court has, since 2017, functioned as a de-facto appellate medical board for late-term cases — hearing individual petitions, ordering specific hospitals to perform specific terminations. Today's ruling is an attempt to exit that role: by directing Parliament to remove time limits for rape cases entirely, the Court is pushing the issue back to the legislature where it belongs.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What triggers the mandatory police-reporting requirement that complicates abortion access for Indian minors?",
+            "options": [
+              "The MTP Act itself",
+              "POCSO — the 2012 child sexual offences law",
+              "The Indian Penal Code's rape provisions",
+              "Hospital licensing rules"
+            ],
+            "correct": 1,
+            "explanation": "POCSO classifies all sexual activity with under-18s as statutory rape and requires medical professionals to report it, which deters families from seeking registered abortion providers."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-30T08:31:55.478Z",
+    "label": "India's Abortion Law & the MTP Act",
+    "category": "politics",
+    "articleCount": 1
   }
 }
