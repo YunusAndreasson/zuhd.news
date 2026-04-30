@@ -86472,5 +86472,1063 @@
     "label": "RightsCon & Host-State Leverage",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-04-28-android-developer-verification-sideloading-mandate": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT SIDELOADING IS",
+        "body": "Installing an app without going through the platform's official store. On Android it has always been a checkbox; on iOS it has never been allowed outside the EU. The word itself is platform-vendor framing — on a desktop, this is just called installing software.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The term *sideloading* implies the store is the front door and everything else is a back alley. On a PC, **nobody calls running an .exe \"sideloading\"** — it's just running a program. The vocabulary encodes the policy."
+          }
+        ]
+      },
+      {
+        "heading": "WHY F-DROID EXISTS",
+        "body": "F-Droid is a 15-year-old catalog of free and open-source Android apps, built and signed by volunteers from public source code. It is the main reason privacy tools, de-Googled ROMs, and reproducible builds have an audience on Android. A developer-ID requirement tied to a single corporate gatekeeper breaks the volunteer-rebuild model at its root.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Google Play",
+                "value": "~3M apps",
+                "weight": 3000000
+              },
+              {
+                "label": "Galaxy Store",
+                "value": "~1M apps",
+                "weight": 1000000
+              },
+              {
+                "label": "Amazon Appstore",
+                "value": "~500k",
+                "weight": 500000
+              },
+              {
+                "label": "Huawei AppGallery",
+                "value": "~220k",
+                "weight": 220000
+              },
+              {
+                "label": "F-Droid",
+                "value": "~4k apps",
+                "weight": 4000
+              }
+            ],
+            "label": "the major Android app sources"
+          }
+        ]
+      },
+      {
+        "heading": "THE DMA COLLISION",
+        "body": "The EU's Digital Markets Act, in force since 2024, designates Apple and Google as gatekeepers and requires them to permit alternative app stores and direct distribution. A worldwide Google rule that every developer must register with Google to ship an Android app is, on its face, the opposite of what the DMA mandates.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "DE",
+              "FR",
+              "IT",
+              "ES",
+              "NL",
+              "PL",
+              "BE",
+              "IE"
+            ],
+            "label": "DMA jurisdiction (selected EU members)"
+          }
+        ]
+      },
+      {
+        "heading": "THE APPLE PARALLEL",
+        "body": "Apple's Notarization regime — required for macOS apps since 2019 and for EU iOS sideloading since 2024 — is the template Google is now copying. Notarization scans an app, ties it to a paid Apple Developer ID, and lets Apple revoke the signature remotely. The mechanism is sold as security; it functions as a kill switch."
+      },
+      {
+        "heading": "PLAY INTEGRITY, THE DEEPER LOCK",
+        "body": "Beyond the store, Google's Play Integrity API lets banking, streaming, and government apps refuse to run on devices Google does not certify — rooted phones, custom ROMs, alternative app sources. Even if sideloading is technically legal, attestation can make a sideloaded device unusable for daily life.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which feature most directly determines whether a sideloaded Android phone can still run a banking app?",
+            "options": [
+              "The Android version number",
+              "Google's Play Integrity attestation",
+              "The phone's CPU architecture",
+              "Whether Google Play Store is installed"
+            ],
+            "correct": 1,
+            "explanation": "Play Integrity attests that the device, OS, and app source meet Google's criteria. Banks call this API; if it fails, the app refuses to run — regardless of whether sideloading itself was permitted."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT THAT SCARES DEVELOPERS",
+        "body": "Google has revoked developer accounts for Play Store policy violations for years, often without appeal. Extending that same identity-and-revocation regime to every Android app — Play Store or not — means a single corporate decision can erase a developer's ability to ship to two billion users."
+      }
+    ],
+    "generatedAt": "2026-04-30T04:22:01.039Z",
+    "label": "Sideloading & the Mobile Duopoly",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-29-house-fisa-702-reauthorization-warrant-backdoor": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ORIGINAL DEAL",
+        "body": "FISA was passed in 1978 after the Church Committee exposed COINTELPRO, NSA's Project SHAMROCK, and decades of warrantless wiretaps on civil rights leaders and antiwar activists. The bargain: foreign intelligence surveillance got a secret court (FISC), but Americans got warrant protection.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Church Committee's final report concluded that **every president from FDR to Nixon** had abused intelligence agencies for political ends. FISA was meant to make that structurally impossible."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 702 ACTUALLY DOES",
+        "body": "Added in 2008 after the warrantless Bush-era Stellarwind program was exposed, Section 702 authorizes bulk collection of foreigners' communications from US tech companies — Google, Microsoft, Meta, Apple. The FISC approves the targeting procedures once a year, not individual targets."
+      },
+      {
+        "heading": "THE BACKDOOR SEARCH",
+        "body": "Because foreigners email Americans, Americans' messages land in the 702 database. The FBI then queries that database for US persons' names without a warrant — the practice critics call the 'backdoor search loophole.' A 2023 FISC opinion disclosed 278,000 improper FBI queries, including searches on January 6 suspects, BLM protesters, and a US senator.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many improper FBI queries of the 702 database did a 2023 FISC opinion disclose?",
+            "options": [
+              "~3,000",
+              "~28,000",
+              "~278,000",
+              "~2.7 million"
+            ],
+            "correct": 2,
+            "explanation": "The FISC found 278,000 improper FBI queries between 2020-2021, including searches on protesters, donors, and a sitting US senator."
+          }
+        ]
+      },
+      {
+        "heading": "THE FOURTH AMENDMENT QUESTION",
+        "body": "The Fourth Amendment requires a warrant based on probable cause for searches of Americans. The government's position is that data already lawfully collected for foreign-intelligence purposes can be queried without a fresh warrant. No Supreme Court ruling has resolved this — every major 702 challenge has been dismissed for lack of standing because plaintiffs cannot prove they were surveilled.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The right of the people to be secure in their persons, houses, papers, and effects, against unreasonable searches and seizures, shall not be violated, and no Warrants shall issue, but upon probable cause...",
+            "speaker": "US Constitution, Fourth Amendment",
+            "year": "1791"
+          }
+        ]
+      },
+      {
+        "heading": "THE REAUTHORIZATION RHYTHM",
+        "body": "702 sunsets every few years, forcing Congress to reauthorize it. Each cycle produces a coalition of libertarian Republicans and progressive Democrats pushing for a warrant requirement, defeated by the intelligence committees and the executive branch. The vote pattern crosses normal party lines.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1975",
+                "label": "Church Committee hearings"
+              },
+              {
+                "year": "1978",
+                "label": "FISA enacted",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2001",
+                "label": "Stellarwind launched (warrantless)"
+              },
+              {
+                "year": "2005",
+                "label": "NYT exposes Stellarwind"
+              },
+              {
+                "year": "2008",
+                "label": "Section 702 codifies bulk collection"
+              },
+              {
+                "year": "2013",
+                "label": "Snowden disclosures"
+              },
+              {
+                "year": "2018",
+                "label": "702 reauthorized, no warrant rule"
+              },
+              {
+                "year": "2024",
+                "label": "reauthorized again"
+              }
+            ],
+            "label": "the surveillance arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE INCIDENTAL COLLECTION SCALE",
+        "body": "The government has never disclosed how many Americans' communications sit in the 702 database. ODNI estimates the FBI runs roughly 3 million US-person queries per year against it. The 'incidental' framing is a legal term of art — collection that is not the targeting purpose, even if it is the predictable result."
+      }
+    ],
+    "generatedAt": "2026-04-30T04:22:36.202Z",
+    "label": "FISA Section 702 & the Backdoor",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-29-iran-fall-armyworm-crops-war-agriculture": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PEST",
+        "body": "Fall armyworm (Spodoptera frugiperda) is a moth native to the Americas whose larvae feed on 350+ plant species but prefer maize, rice, sorghum, and wheat. A single female lays up to 1,000 eggs; larvae mature in two weeks; adults fly 100km per night on wind currents.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Latin name *frugiperda* means **'fruit-destroyer'** — the species was named in 1797 from cotton crops in Georgia, two centuries before it became a global threat."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2016 BREAKOUT",
+        "body": "For 500 years the pest stayed in the Americas. In January 2016 it was detected in Nigeria — likely arrived on imported produce or in cargo holds. Within two years it spread across all of sub-Saharan Africa. By 2018 it reached India; by 2019, China and Yemen. The march toward Iran was a matter of when, not if.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2016-01",
+                "label": "first detected in Nigeria",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2017",
+                "label": "across sub-Saharan Africa"
+              },
+              {
+                "year": "2018",
+                "label": "India"
+              },
+              {
+                "year": "2019",
+                "label": "China, Yemen"
+              },
+              {
+                "year": "2020",
+                "label": "Egypt, Sudan"
+              },
+              {
+                "year": "2022",
+                "label": "Syria, Iraq"
+              },
+              {
+                "year": "2026",
+                "label": "Iran"
+              }
+            ],
+            "label": "the global march"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT WINS",
+        "body": "Fall armyworm has no diapause — it does not overwinter dormant like temperate pests. Where winters are mild, populations breed year-round. It also shows resistance to most major pesticide classes (organophosphates, pyrethroids, carbamates) developed in its American range, so it arrives in new regions already pre-adapted to standard chemical defenses."
+      },
+      {
+        "heading": "THE AFRICAN TOLL",
+        "body": "FAO estimated fall armyworm caused $2-6 billion in annual maize losses across 12 African countries by 2018. Smallholders lost 20-50% of harvests where controls failed. The pest does not kill crops outright — it shreds leaves and bores into ears, reducing yield rather than wiping fields, which makes it harder to trigger emergency responses.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "KE",
+              "ET",
+              "ZA",
+              "GH",
+              "ZM",
+              "UG",
+              "TZ"
+            ],
+            "label": "the 2016–2018 African sweep",
+            "caption": "first continental front before Asia"
+          }
+        ]
+      },
+      {
+        "heading": "THE SANCTIONS PROBLEM",
+        "body": "Modern fall armyworm control relies on imported chlorantraniliprole and spinetoram — newer molecules the pest has not yet evolved against. Iran's sanctions regime restricts agricultural chemical imports through normal banking channels, and pesticide manufacturers (BASF, Syngenta, Corteva) face secondary sanctions risk on Iran sales. Surveillance equipment — pheromone traps, GIS modeling software — faces similar barriers.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Wheat",
+                "value": "~85%",
+                "tone": "favorable"
+              },
+              {
+                "label": "Rice",
+                "value": "~65%",
+                "tone": "neutral"
+              },
+              {
+                "label": "Maize",
+                "value": "~30%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Barley",
+                "value": "~70%",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Iran's grain self-sufficiency, 2024 est."
+          }
+        ]
+      },
+      {
+        "heading": "THE WHEAT EXPOSURE",
+        "body": "Iran already imports 3-5 million tons of wheat annually in normal years. A fall armyworm outbreak that cuts domestic yield by even 10% could push imports to record levels — at a moment when the rial has lost most of its purchasing power and the Black Sea wheat trade remains volatile from the Russia-Ukraine war.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              208.3816845,
+              227.4307704166667,
+              205.2260548983333,
+              183.2256341666667,
+              175.5104662666666,
+              188.5052165740741,
+              197.3719458333333,
+              185.7347870824562,
+              185.7943505,
+              190.6296420634921,
+              190.1026421105263,
+              179.6065420634921,
+              174.8167426587301,
+              196.8410714285714,
+              173.1947634816666,
+              165.2666224637681,
+              159.3079408380954,
+              155.1151385317461,
+              157.39233125,
+              169.2032881647058,
+              165.6266704583334,
+              169.2505145833334,
+              174.7524918912281,
+              193.8771220833334
+            ],
+            "periods": [
+              "Apr 2024",
+              "May 2024",
+              "Jun 2024",
+              "Jul 2024",
+              "Aug 2024",
+              "Sep 2024",
+              "Oct 2024",
+              "Nov 2024",
+              "Dec 2024",
+              "Jan 2025",
+              "Feb 2025",
+              "Mar 2025",
+              "Apr 2025",
+              "May 2025",
+              "Jun 2025",
+              "Jul 2025",
+              "Aug 2025",
+              "Sep 2025",
+              "Oct 2025",
+              "Nov 2025",
+              "Dec 2025",
+              "Jan 2026",
+              "Feb 2026",
+              "Mar 2026"
+            ],
+            "label": "Wheat",
+            "unit": "$/mt",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE BIOLOGICAL OPTION",
+        "body": "The most successful fall armyworm controls in Africa have not been pesticides but biological: parasitoid wasps (Telenomus remus) that lay eggs inside armyworm eggs, and the push-pull system — intercropping with Desmodium, which repels the moth, surrounded by Napier grass, which attracts and traps it. These require extension services and seed networks that wartime Iran cannot easily mobilize.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes fall armyworm spread faster than most agricultural pests?",
+            "options": [
+              "Adult moths fly up to 100km per night on wind currents",
+              "Larvae burrow underground and emerge years later",
+              "Eggs survive freezing for multiple winters",
+              "It can photosynthesize in larval stage"
+            ],
+            "correct": 0,
+            "explanation": "Adult moths are powerful long-distance fliers — a single generation can colonize a new country in weeks if winds align."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · IMF · as of 2026-03-01"
+    ],
+    "generatedAt": "2026-04-30T04:23:12.582Z",
+    "label": "Fall Armyworm & Crop Invasions",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-29-port-churchill-arctic-gateway-canada-sovereignty": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY CHURCHILL EXISTS",
+        "body": "Churchill is Canada's only deepwater Arctic port and the northern terminus of the Hudson Bay Railway, built in 1929 to give prairie wheat a shorter ocean route to Europe. The line crosses 1,000 km of muskeg and discontinuous permafrost — terrain that buckles rails every spring thaw.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CA",
+              "GL",
+              "US"
+            ],
+            "label": "Hudson Bay corridor",
+            "markers": [
+              {
+                "lat": 58.7684,
+                "lng": -94.165,
+                "label": "Port of Churchill"
+              },
+              {
+                "lat": 53.5461,
+                "lng": -113.4938,
+                "label": "Edmonton (prairie supply)"
+              },
+              {
+                "lat": 46.8139,
+                "lng": -71.208,
+                "label": "Quebec City (rival route)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE ICE WINDOW",
+        "body": "Hudson Bay freezes solid in winter; the shipping season has historically run roughly mid-July to early November. As Arctic sea ice retreats, that window is lengthening — but the bay still freezes every year, which means Churchill cannot be a year-round port without icebreaker escorts that would erase its cost advantage.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The constraint is **seasonality**, not depth. Churchill's harbor runs deeper than Montreal's; what closes it is *ice*, not silt."
+          }
+        ]
+      },
+      {
+        "heading": "THE OMNITRAX COLLAPSE",
+        "body": "US-based OmniTRAX bought the port and railway from CN in 1997 for a token sum, then mothballed both after a 2017 flood washed out 30 km of track. Service was suspended for 18 months until Ottawa subsidized a buyout by the Arctic Gateway Group, a consortium of First Nations and prairie communities, in 2018."
+      },
+      {
+        "heading": "WHY IT MATTERS NOW",
+        "body": "Carney's pivot reframes Churchill as sovereignty infrastructure rather than a grain terminal. The argument: every Canadian export that moves through a US port — Vancouver excepted — gives Washington a chokepoint. Churchill is the only deepwater alternative on the Atlantic side that bypasses both US rail and the St. Lawrence Seaway.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Vancouver",
+                "value": "~150 mn t",
+                "cc": "CA",
+                "weight": 150
+              },
+              {
+                "label": "Montreal",
+                "value": "~35 mn t",
+                "cc": "CA",
+                "weight": 35
+              },
+              {
+                "label": "Halifax",
+                "value": "~5 mn t",
+                "cc": "CA",
+                "weight": 5
+              },
+              {
+                "label": "Churchill",
+                "value": "<1 mn t",
+                "cc": "CA",
+                "weight": 1
+              }
+            ],
+            "label": "Canadian ports by 2024 cargo throughput"
+          }
+        ]
+      },
+      {
+        "heading": "THE PERMAFROST PROBLEM",
+        "body": "The Hudson Bay Railway crosses terrain where the active layer — the soil that thaws each summer — is deepening as the climate warms. Track that was stable for 90 years now requires constant re-leveling. Any expansion of Churchill's role multiplies a maintenance bill that already runs higher per km than any rail line in North America.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What forced the Hudson Bay Railway to suspend service for 18 months in 2017–2018?",
+            "options": [
+              "A derailment caused by Arctic ice on the tracks",
+              "Flooding that washed out 30 km of track across muskeg",
+              "A labor strike by First Nations rail workers",
+              "Federal sanctions against the US owner OmniTRAX"
+            ],
+            "correct": 1,
+            "explanation": "Spring 2017 flooding destroyed roughly 30 km of track; OmniTRAX refused to repair it, forcing the federal buyout that produced today's Arctic Gateway Group."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-30T04:23:42.432Z",
+    "label": "Churchill & the Arctic Gateway",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-29-ultrafinitism-mathematics-rejecting-infinity": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FOUNDATIONAL SPLIT",
+        "body": "Mainstream mathematics accepts actual infinity — completed infinite sets like all natural numbers — as a legitimate object. Ultrafinitism rejects this entirely, holding that only numbers a physical computer could in principle write down exist.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mainstream view traces to Cantor's *set theory* (1874), which treated infinite sets as completed wholes. Ultrafinitists treat even very large finite numbers — like 2^1000 — as **physically meaningless**, since no device in the observable universe could ever instantiate them."
+          }
+        ]
+      },
+      {
+        "heading": "THE INTERMEDIATE POSITIONS",
+        "body": "Between Platonist mainstream and ultrafinitism sit constructivism (only objects you can build exist) and finitism (only finite objects exist, but any finite size is allowed). Ultrafinitism is the strictest — it bounds even the finite.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Platonism",
+                "value": "actual infinity OK",
+                "tone": "neutral"
+              },
+              {
+                "label": "Constructivism",
+                "value": "build it or skip it",
+                "tone": "neutral"
+              },
+              {
+                "label": "Finitism",
+                "value": "any finite OK",
+                "tone": "neutral"
+              },
+              {
+                "label": "Ultrafinitism",
+                "value": "feasible only",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "schools of mathematical foundations"
+          }
+        ]
+      },
+      {
+        "heading": "THE ESENIN-VOLPIN CHALLENGE",
+        "body": "The Soviet mathematician Alexander Esenin-Volpin, who founded modern ultrafinitism in the 1960s, would respond to claims about large numbers by demanding the speaker count to them — taking progressively longer to acknowledge each successive number. The point: a number you cannot reach is not a number you possess."
+      },
+      {
+        "heading": "THE PHYSICS HOOK",
+        "body": "General relativity treats spacetime as a continuous manifold; quantum mechanics quantizes energy but not space itself. Approaches like loop quantum gravity and causal set theory propose spacetime is fundamentally discrete at the Planck scale — roughly 10^-35 meters — making continuous mathematics an approximation, not the underlying reality."
+      },
+      {
+        "heading": "THE COMPUTATIONAL UNIVERSE",
+        "body": "The observable universe contains roughly 10^80 atoms and has existed for about 10^17 seconds. Any number requiring more than ~10^120 elementary operations to compute is, in a strict ultrafinitist sense, beyond physical reach — yet such numbers appear routinely in mainstream proofs.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Approximately how many elementary particles are in the observable universe?",
+            "options": [
+              "10^23 (Avogadro's number)",
+              "10^50",
+              "10^80",
+              "10^200"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 10^80 — a number ultrafinitists treat as a hard ceiling on what can physically exist or be computed."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MOST MATHEMATICIANS DISAGREE",
+        "body": "Standard mathematics assumes the law of excluded middle and unrestricted induction — tools that let proofs reference arbitrarily large numbers without ever instantiating them. Abandoning these would invalidate huge swaths of analysis, topology, and number theory. The pragmatic majority view: infinity is a useful fiction, not a metaphysical claim."
+      }
+    ],
+    "generatedAt": "2026-04-30T04:24:08.732Z",
+    "label": "Ultrafinitism",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-30-india-ethanol-flex-fuel-emission-rules-e85-e100": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE NUMBERS MEAN",
+        "body": "E20 means 20% ethanol, 80% gasoline. E85 is 85% ethanol. E100 is hydrous ethanol — roughly 95% ethanol with the rest water. Each step up requires different engine seals, fuel lines, and cold-start systems because ethanol is corrosive and harder to ignite cold.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Ethanol carries about **two-thirds** the energy of gasoline per liter. An E85 vehicle burns *more* fuel per kilometer — the economics work only when ethanol is cheap enough to offset the volume penalty."
+          }
+        ]
+      },
+      {
+        "heading": "THE BRAZIL PRECEDENT",
+        "body": "Brazil mandated flex-fuel certification in 2003 after the 1970s oil shocks drove the original Proálcool program. By 2010, over 90% of new cars sold were flex-fuel, running anything from E27 to E100. The infrastructure — pumps, distribution, sugarcane mills — took thirty years to build.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Brazil",
+                "value": "E27–E100",
+                "cc": "BR",
+                "tone": "favorable"
+              },
+              {
+                "label": "USA",
+                "value": "E10–E85",
+                "cc": "US",
+                "tone": "favorable"
+              },
+              {
+                "label": "India",
+                "value": "E20 (cap)",
+                "cc": "IN",
+                "tone": "neutral"
+              },
+              {
+                "label": "EU",
+                "value": "E10",
+                "cc": "EU",
+                "tone": "neutral"
+              },
+              {
+                "label": "China",
+                "value": "E10 (partial)",
+                "cc": "CN",
+                "tone": "neutral"
+              }
+            ],
+            "label": "ethanol blending mandates, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "WHY INDIA PUSHES ETHANOL",
+        "body": "India imports over 85% of its crude oil — the largest line item in its trade deficit. Every percentage point of ethanol blending displaces roughly $1 billion in annual oil imports. The push is fiscal as much as environmental."
+      },
+      {
+        "heading": "THE FEEDSTOCK QUESTION",
+        "body": "India's ethanol comes mostly from sugarcane molasses and increasingly from surplus rice and damaged grain. Both compete with food markets in a country where 200 million people remain undernourished. Brazil sidestepped this by using sugarcane on land that did not displace staple crops; India has less margin."
+      },
+      {
+        "heading": "THE FLEX-FUEL ENGINEERING",
+        "body": "A flex-fuel vehicle uses a sensor to detect ethanol concentration in real time and adjusts injection timing and air-fuel ratio on the fly. The hardware adds roughly $100–200 per vehicle. The harder problem is the fueling network — without E85 pumps, the capability is dormant.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does ethanol corrode standard fuel system components?",
+            "options": [
+              "It is acidic and dissolves rubber seals over time",
+              "It absorbs water, which then attacks aluminum and steel",
+              "It burns hotter than gasoline, melting plastic lines",
+              "It contains sulfur compounds that pit metal"
+            ],
+            "correct": 1,
+            "explanation": "Ethanol is hygroscopic — it pulls water from the air. The resulting ethanol-water mix corrodes aluminum and degrades elastomers not rated for it."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-30T04:24:34.947Z",
+    "label": "Ethanol Blending & Flex-Fuel",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-30-israel-tanks-netting-hezbollah-fpv-drones-lebanon": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COST ASYMMETRY",
+        "body": "An FPV drone with a shaped-charge warhead costs a few hundred dollars. A Merkava Mark IV costs roughly $6 million. The economics of armored warfare invert when a quadcopter assembled from commodity parts can disable the most expensive vehicle in the brigade.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "FPV drone",
+                "value": "~$500",
+                "weight": 1
+              },
+              {
+                "label": "ATGM (Javelin)",
+                "value": "~$200k",
+                "weight": 400
+              },
+              {
+                "label": "Merkava IV tank",
+                "value": "~$6m",
+                "weight": 12000
+              }
+            ],
+            "label": "cost per kill, attacker vs target"
+          }
+        ]
+      },
+      {
+        "heading": "THE FIBER-OPTIC TURN",
+        "body": "Standard FPVs use a 2.4 or 5.8 GHz radio link the defender can jam. Fiber-optic drones spool out a hair-thin glass tether — up to 20 km — that carries video and control signals as light pulses. There is no RF emission to detect and no electromagnetic spectrum to jam. The jammer industry, built over a decade, was made obsolete in months.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technique was pioneered in **Ukraine** in early 2024 and migrated to Hezbollah's arsenal within a year — the first major non-state diffusion of *fiber-tethered* FPVs."
+          }
+        ]
+      },
+      {
+        "heading": "WHY NETTING WORKS",
+        "body": "Most anti-tank shaped charges use a copper liner that focuses explosive energy into a molten jet. The jet needs to form at a precise standoff distance from the armor. A wire cage detonates the warhead a meter early, defocusing the jet before it reaches the hull. Russians call it 'cope cage'; the principle is older than World War II — bedspring armor on Shermans in 1945."
+      },
+      {
+        "heading": "THE TOP-ATTACK PROBLEM",
+        "body": "Tank armor is concentrated on the front glacis where Cold War doctrine expected enemy fire. The roof is thin — sometimes 30mm of steel where the front carries 600mm-equivalent composite. FPVs and Javelins both exploit this by attacking from above. Active protection systems like Trophy were built to intercept fast incoming projectiles, not slow-moving rotorcraft hovering overhead."
+      },
+      {
+        "heading": "HEZBOLLAH'S DRONE PROGRAM",
+        "body": "Hezbollah began flying reconnaissance drones over northern Israel in 2004 and produced its first armed loitering munition, the Mirsad, by 2006. Iranian transfer of Shahed-class designs accelerated after 2018. The 2024 ceasefire degraded the senior command but the production lines — distributed across the Beqaa and Dahieh — were largely preserved.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL",
+              "SY"
+            ],
+            "label": "Hezbollah production geography",
+            "markers": [
+              {
+                "lat": 33.8463,
+                "lng": 35.9019,
+                "label": "Beqaa Valley"
+              },
+              {
+                "lat": 33.8547,
+                "lng": 35.505,
+                "label": "Dahieh"
+              },
+              {
+                "lat": 33.2721,
+                "lng": 35.2033,
+                "label": "South Lebanon front"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "KNOW YOUR COUNTERMEASURES",
+        "body": "Each tank-defense layer addresses a different threat. Knowing which is which is the difference between reading a battlefield report and merely watching one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which countermeasure defeats a fiber-optic FPV drone?",
+            "options": [
+              "RF jamming",
+              "Wire mesh netting (cope cage)",
+              "GPS spoofing",
+              "Signals interception"
+            ],
+            "correct": 1,
+            "explanation": "Fiber-optic drones emit no radio signal, so jamming, spoofing, and SIGINT all fail. Only physical interception — netting, active protection, or a shotgun — works."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-30T04:25:11.236Z",
+    "label": "FPV Drones & Tank Armor",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-30-nz-court-rejects-christchurch-gunman-plea-withdrawal": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FIRST WHOLE-LIFE SENTENCE",
+        "body": "Tarrant received New Zealand's first-ever sentence of life imprisonment without parole. Until 2019, NZ law had no mechanism for it — the Sentencing Act was amended specifically because existing maximums felt inadequate for the scale of the attack.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Before Christchurch, the harshest available sentence was life with a *minimum non-parole period* — typically 17 years. Whole-life imprisonment was a **statutory innovation** introduced for this case."
+          }
+        ]
+      },
+      {
+        "heading": "THE LIVESTREAM PROBLEM",
+        "body": "Tarrant broadcast 17 minutes of the attack on Facebook Live before it was removed. Copies spread to 1.5 million uploads in 24 hours. The footage forced a global reckoning over platform liability and produced the Christchurch Call — a non-binding pact signed by 55 countries and major tech firms to suppress terrorist content.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Jacinda Ardern",
+                "role": "NZ Prime Minister",
+                "years": "2017–2023",
+                "cc": "NZ"
+              },
+              {
+                "name": "Emmanuel Macron",
+                "role": "French President",
+                "years": "2017–",
+                "cc": "FR"
+              }
+            ],
+            "label": "the Christchurch Call architects"
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO MOSQUES",
+        "body": "Al Noor Mosque on Deans Avenue and the Linwood Islamic Centre were attacked seven minutes apart. Al Noor was the larger, more established congregation founded in the 1980s by South Asian and Arab migrants. Linwood was a smaller community center where a worshipper, Abdul Aziz Wahabzadah, charged the attacker and disrupted the second shooting.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NZ",
+              "AU"
+            ],
+            "label": "Christchurch attack sites",
+            "markers": [
+              {
+                "lat": -43.5333,
+                "lng": 172.6167,
+                "label": "Al Noor Mosque"
+              },
+              {
+                "lat": -43.539,
+                "lng": 172.6716,
+                "label": "Linwood Islamic Centre"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE GREAT REPLACEMENT",
+        "body": "Tarrant's manifesto cited the Great Replacement — a conspiracy theory popularized by French writer Renaud Camus claiming European populations are being deliberately displaced by non-white migrants. The same doctrine has been cited by attackers in El Paso (2019), Buffalo (2022), and Bratislava (2022). It is the connective tissue of contemporary white-supremacist terrorism.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which writer popularized the 'Great Replacement' phrase cited by Tarrant's manifesto?",
+            "options": [
+              "Steve Bannon",
+              "Renaud Camus",
+              "Tucker Carlson",
+              "Anders Breivik"
+            ],
+            "correct": 1,
+            "explanation": "French writer Renaud Camus coined the phrase in his 2011 book Le Grand Remplacement; later attackers adopted it as ideological branding."
+          }
+        ]
+      },
+      {
+        "heading": "THE GUN LAW PIVOT",
+        "body": "NZ banned military-style semi-automatic weapons within six days of the attack. A buyback collected 60,000 firearms. The speed was unprecedented — Australia's post-Port Arthur ban in 1996 took weeks of political negotiation; the US has not passed comparable federal legislation despite repeated mass shootings since Columbine in 1999."
+      },
+      {
+        "heading": "WHY APPEALS RARELY SUCCEED HERE",
+        "body": "Tarrant pleaded guilty in 2020 — withdrawing a guilty plea after sentencing requires showing a miscarriage of justice, an extraordinarily high bar. Courts treat post-sentence claims of mental illness skeptically when contemporaneous records show the defendant was lucid, represented by counsel, and entered the plea voluntarily."
+      }
+    ],
+    "generatedAt": "2026-04-30T04:25:42.486Z",
+    "label": "Christchurch & NZ Terrorism Law",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-30-trump-germany-troop-reduction-nato-review": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THEY'RE THERE",
+        "body": "The US troop presence in Germany was never primarily about defending Germany. After 1945, forward-deployed forces deterred Soviet armor in the Fulda Gap; after 1991, Germany became the staging platform for every US operation east of the Atlantic — Iraq, Afghanistan, evacuations from Sudan, medevac from Ukraine.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "DE",
+              "PL",
+              "BE",
+              "NL",
+              "IT"
+            ],
+            "label": "the US footprint in Germany",
+            "markers": [
+              {
+                "lat": 49.4369,
+                "lng": 7.6003,
+                "label": "Ramstein Air Base"
+              },
+              {
+                "lat": 49.8728,
+                "lng": 8.6512,
+                "label": "Landstuhl Medical Ctr"
+              },
+              {
+                "lat": 49.0134,
+                "lng": 11.1894,
+                "label": "Grafenwoehr training"
+              },
+              {
+                "lat": 50.0497,
+                "lng": 8.5836,
+                "label": "Wiesbaden HQ USAREUR"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "RAMSTEIN'S ROLE",
+        "body": "Ramstein is the largest US Air Force base outside the United States and the only airhead in Europe sized for strategic airlift at scale. Every C-17 flying wounded out of a war zone, every diplomatic evacuation, every Ukraine arms shipment routed by air passes through it. Closing or shrinking Ramstein is not a budget decision — it rewires Atlantic logistics.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Landstuhl Regional Medical Center, on the same complex, is the **largest US military hospital outside the US** — the first stop for casualties from CENTCOM, AFRICOM, and EUCOM theaters. There is no equivalent facility on US soil within range."
+          }
+        ]
+      },
+      {
+        "heading": "THE TROOP-COUNT ARC",
+        "body": "At Cold War peak in 1985, roughly 250,000 US troops were stationed in West Germany. The drawdown ran through the 1990s under Clinton, accelerated under Bush, and stabilized in the mid-30,000s by the late 2010s. Trump's first-term plan to cap Germany at 25,000 was reversed by Biden in 2021.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1955",
+                "label": "West Germany joins NATO; US presence formalized"
+              },
+              {
+                "year": "1985",
+                "label": "Cold War peak: ~250,000 troops",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1990",
+                "label": "Two-Plus-Four Treaty; reunification"
+              },
+              {
+                "year": "1994",
+                "label": "V Corps drawdown begins"
+              },
+              {
+                "year": "2020",
+                "label": "Trump caps at 25,000"
+              },
+              {
+                "year": "2021",
+                "label": "Biden reverses cap"
+              },
+              {
+                "year": "2026",
+                "label": "Trump orders new review"
+              }
+            ],
+            "label": "US troops in Germany"
+          }
+        ]
+      },
+      {
+        "heading": "WHO PAYS",
+        "body": "Under the NATO Status of Forces Agreement and bilateral side-deals, Germany covers a significant share of basing costs — land use, utilities, host-nation support — estimated above $1bn annually. Trump's framing that Germany 'doesn't pay' conflates basing costs (Berlin pays) with NATO's 2% defense-spending target (a separate metric Germany only crossed in 2024).",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When did Germany first meet NATO's 2% of GDP defense spending target?",
+            "options": [
+              "1999, after the Kosovo war",
+              "2014, after Crimea annexation",
+              "2024, after Zeitenwende reforms",
+              "Germany has never met it"
+            ],
+            "correct": 2,
+            "explanation": "Scholz's 2022 Zeitenwende created a €100bn special fund; Germany crossed 2% in 2024 for the first time since reunification."
+          }
+        ]
+      },
+      {
+        "heading": "THE MERZ FACTOR",
+        "body": "Friedrich Merz took the chancellery in May 2025 on a platform of European strategic autonomy — the idea that Europe must be able to defend itself even if the US withdraws. The national military strategy released last week is the first formal articulation: it names Russia as the principal threat and commits to a 460,000-strong Bundeswehr by 2031. The timing of Trump's review tests whether autonomy is a slogan or a plan."
+      },
+      {
+        "heading": "THE LEVERAGE QUESTION",
+        "body": "Past US troop reductions in Europe have been bargaining chips, not strategic decisions. Nixon threatened withdrawals to extract burden-sharing. Mansfield Amendments in the 1970s nearly cut the force in half. The pattern: announcements move European budgets faster than actual redeployments — most reviews end with smaller cuts than the opening bid.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Poland",
+                "value": "4.1%",
+                "cc": "PL",
+                "weight": 4.1,
+                "tone": "favorable"
+              },
+              {
+                "label": "United States",
+                "value": "3.4%",
+                "cc": "US",
+                "weight": 3.4,
+                "tone": "favorable"
+              },
+              {
+                "label": "Germany",
+                "value": "2.1%",
+                "cc": "DE",
+                "weight": 2.1,
+                "tone": "neutral"
+              },
+              {
+                "label": "France",
+                "value": "2.1%",
+                "cc": "FR",
+                "weight": 2.1,
+                "tone": "neutral"
+              },
+              {
+                "label": "Italy",
+                "value": "1.5%",
+                "cc": "IT",
+                "weight": 1.5,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Spain",
+                "value": "1.3%",
+                "cc": "ES",
+                "weight": 1.3,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "NATO defense spending, 2024 (% of GDP)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-04-30T04:26:20.545Z",
+    "label": "US Forces in Germany",
+    "category": "politics",
+    "articleCount": 1
   }
 }
