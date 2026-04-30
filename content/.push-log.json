@@ -7348,5 +7348,35 @@
       "skipped": 0,
       "tokens": 17
     }
+  },
+  {
+    "timestamp": "2026-04-30T22:14:46.268Z",
+    "candidateCount": 1,
+    "candidates": [
+      {
+        "slug": "2026-04-30-khamenei-iran-ongoing-control-strait-hormuz",
+        "title": "Khamenei Claims Hormuz Control",
+        "category": "politics",
+        "eventCoverage": 346,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-04-30-khamenei-iran-ongoing-control-strait-hormuz",
+      "title": "Khamenei Claims Hormuz Control",
+      "category": "politics",
+      "body": "[Iran](country:IR) claimed governance of the Strait of Hormuz. Mojtaba Khamenei",
+      "eventCoverage": 346,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "You've hit your org's monthly usage limit",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 17
+    }
   }
 ]
