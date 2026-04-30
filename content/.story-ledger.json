@@ -2,13 +2,257 @@
   "version": 1,
   "stories": [
     {
+      "id": "khamenei-iran-ongoing-control-strait-hormuz",
+      "label": "Supreme Leader Says Iran Is Planning for Ongoing Control of Strait",
+      "firstSeen": "2026-04-30T22:06:31.630Z",
+      "lastCovered": "2026-04-30T22:06:31.630Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-30-khamenei-iran-ongoing-control-strait-hormuz"
+      ],
+      "eventUri": "eng-11614857",
+      "summary": "Khamenei has signalled Iran intends indefinite control of Strait of Hormuz shipping — telling the US its 'only place in the Persian Gulf is at the bottom of its waters'. The angle: this reframes the Iran war from a transient strike-and-counterstrike into a structural seizure of a chokepoint that carries ~20% of global oil. Lead with the Khamenei quote, then explain what 'ongoing control' means for tanker traffic and insurance markets. Pairs with today's oil-price story.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Persian_Gulf",
+        "http://en.wikipedia.org/wiki/Ali_Khamenei",
+        "http://en.wikipedia.org/wiki/Supreme_Leader_of_Iran",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Tehran"
+      ]
+    },
+    {
+      "id": "israel-seizes-sumud-gaza-aid-flotilla-international-waters",
+      "label": "Iran accuses Israel of 'piracy' for seizure of Gaza aid flotilla",
+      "firstSeen": "2026-04-30T22:06:31.630Z",
+      "lastCovered": "2026-04-30T22:06:31.630Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-30-israel-seizes-sumud-gaza-aid-flotilla-international-waters"
+      ],
+      "eventUri": "eng-11614387",
+      "summary": "Israel intercepted the Sumud aid flotilla in international waters off Crete, detaining crew including three journalists; Iran is calling it piracy and RSF is demanding the journalists' release. The angle: the legal status of the seizure (international waters, not Israeli) and the targeting of accredited journalists alongside aid workers. Lead with the location and the journalists, then the diplomatic fallout. Symmetric dignity: name the detained.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Sumud",
+        "http://en.wikipedia.org/wiki/International_waters",
+        "http://en.wikipedia.org/wiki/Greece",
+        "http://en.wikipedia.org/wiki/Flotilla",
+        "http://en.wikipedia.org/wiki/Gaza_Strip",
+        "http://en.wikipedia.org/wiki/Crete",
+        "http://en.wikipedia.org/wiki/Humanitarian_aid"
+      ]
+    },
+    {
+      "id": "first-us-venezuela-commercial-flight-caracas-seven-years",
+      "label": "After Seven Years, First U.S. Direct Flight Lands in Caracas",
+      "firstSeen": "2026-04-30T22:06:31.630Z",
+      "lastCovered": "2026-04-30T22:06:31.630Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-30-first-us-venezuela-commercial-flight-caracas-seven-years"
+      ],
+      "eventUri": "eng-11614511",
+      "summary": "American Airlines just landed the first scheduled US-Venezuela commercial flight in seven years, ending a Maduro-era suspension. The angle: a quiet de facto normalisation under Trump that contradicts the simultaneous regime-change posture from Washington hawks. Lead with the flight number and the Miami-Caracas symbolism, then the contradiction with sanctions still in place. Latin America is too often a setting — here Venezuela is the actor reopening.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Venezuela",
+        "http://en.wikipedia.org/wiki/Caracas",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Miami",
+        "http://en.wikipedia.org/wiki/American_Airlines",
+        "http://en.wikipedia.org/wiki/Nicolás_Maduro",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Airline"
+      ]
+    },
+    {
+      "id": "egypt-discrimination-law-two-verdicts-decade-mada-masr",
+      "label": "Not a lack of cases, but a lack of will: Just 2 verdicts in over a decade of discrimination lawsuits",
+      "firstSeen": "2026-04-30T22:06:31.630Z",
+      "lastCovered": "2026-04-30T22:06:31.630Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-30-egypt-discrimination-law-two-verdicts-decade-mada-masr"
+      ],
+      "eventUri": null,
+      "summary": "Egypt's anti-discrimination statute, on the books for over a decade, has produced just two verdicts — Mada Masr's investigation traces the cases that were filed, dropped, or stalled. The angle: this is a structural accountability gap, not an absence of complaints. Lead with the 2-verdicts-in-a-decade number, then explain the prosecutorial discretion that buries the rest. Reader gets a mechanism for how legal protections become symbolic without enforcement.",
+      "conceptUris": []
+    },
+    {
+      "id": "kyrgyz-security-chief-coup-plotting-charge-japarov",
+      "label": "Former Kyrgyz Security Chief Charged With Coup-plotting and Abuse of Office",
+      "firstSeen": "2026-04-30T22:06:31.630Z",
+      "lastCovered": "2026-04-30T22:06:31.630Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-30-kyrgyz-security-chief-coup-plotting-charge-japarov"
+      ],
+      "eventUri": null,
+      "summary": "Kyrgyzstan's former GKNB security chief has been charged with plotting a coup against President Japarov — a case that fits the Central Asian pattern of post-handover purges of the previous regime's security apparatus. The angle: this is how Japarov consolidates, framed as anti-corruption. Lead with the office (intelligence chief), the charge, and the broader pattern of Central Asian leaders using coup-plotting indictments to neutralise rivals. Fills today's chronic Central Asia gap.",
+      "conceptUris": []
+    },
+    {
+      "id": "roblox-bookings-cut-child-safety-user-decline",
+      "label": "Roblox Shares Tumble After User Numbers Fall Short",
+      "firstSeen": "2026-04-30T22:06:31.630Z",
+      "lastCovered": "2026-04-30T22:06:31.630Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-30-roblox-bookings-cut-child-safety-user-decline"
+      ],
+      "eventUri": "eng-11613962",
+      "summary": "Roblox slashed its annual bookings forecast and the stock dropped after new child-safety features dragged user numbers down — Reuters and Bloomberg both flag the safety/growth tradeoff. The angle: regulatory and reputational pressure (post-Flock/CSAM scrutiny of platforms hosting minors) is now showing up directly in the financials of the largest minor-facing platform. Lead with the bookings cut, then the safety features that caused it. Mechanism: when you can't monetise an underage user, the unit economics shift.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Roblox",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Chief_executive_officer",
+        "http://en.wikipedia.org/wiki/Amazon_Web_Services",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Indonesia",
+        "http://en.wikipedia.org/wiki/Photorealism",
+        "http://en.wikipedia.org/wiki/Ecosystem"
+      ]
+    },
+    {
+      "id": "oil-prices-four-year-high-iran-war-passthrough",
+      "label": "Oil prices touched their highest level in 4 years. What does it mean for shoppers?",
+      "firstSeen": "2026-04-30T22:06:31.630Z",
+      "lastCovered": "2026-04-30T22:06:31.630Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-30-oil-prices-four-year-high-iran-war-passthrough"
+      ],
+      "eventUri": "zho-2021840",
+      "summary": "Brent has hit a 4-year high as the Iran war and Hormuz uncertainty bid up the barrel — and US retail diesel/gasoline pass-through is starting to land. The angle: this is the macro receipt for the Khamenei-Strait story; one news cycle, two sides of the same chokepoint shock. Lead with the price level and the specific consumer items already moving (diesel → trucking → grocery). Tie back to the Pentagon's $25B Iran-war cost figure on the ledger.",
+      "conceptUris": []
+    },
+    {
+      "id": "2025-cocaine-seizures-shift-west-africa-europe-corridors",
+      "label": "InSight Crime's 2025 Cocaine Seizure Round-Up",
+      "firstSeen": "2026-04-30T22:06:31.630Z",
+      "lastCovered": "2026-04-30T22:06:31.630Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-30-2025-cocaine-seizures-shift-west-africa-europe-corridors"
+      ],
+      "eventUri": null,
+      "summary": "InSight Crime's annual seizure tally maps where cocaine was intercepted in 2025 — and the geography has shifted decisively from the Caribbean to West African and European Atlantic ports. The angle: seizure data is the only public proxy for the trade itself, and the redirect through Senegal/Guinea-Bissau/Spain reveals where the new corridors run. Lead with the largest single seizures and the country shifts, then the implication for African coastal states becoming transshipment hubs.",
+      "conceptUris": []
+    },
+    {
+      "id": "quantum-key-distribution-existing-fiber-coexistence-breakthrough",
+      "label": "A longstanding quantum roadblock just fell, opening existing fiber networks to ultra-secure light signals",
+      "firstSeen": "2026-04-30T22:06:31.630Z",
+      "lastCovered": "2026-04-30T22:06:31.630Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-30-quantum-key-distribution-existing-fiber-coexistence-breakthrough"
+      ],
+      "eventUri": null,
+      "summary": "Researchers have demonstrated that quantum key distribution can travel over standard telecom fiber alongside classical traffic — removing the dedicated-fiber barrier that has kept QKD a lab toy. The angle: this is the engineering step that turns quantum-secure communication from infrastructure-replacement into infrastructure-overlay. Lead with what just changed (co-existence on existing fiber), then why the cost-deployment math now shifts. Reader is technically literate and will grasp the difference between 'theoretical possibility' and 'deploy-on-Tuesday'.",
+      "conceptUris": []
+    },
+    {
+      "id": "engineered-ecoli-19-amino-acid-genetic-code",
+      "label": "Researchers try to cut the genetic code from 20 to 19 amino acids",
+      "firstSeen": "2026-04-30T22:06:31.630Z",
+      "lastCovered": "2026-04-30T22:06:31.630Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-30-engineered-ecoli-19-amino-acid-genetic-code"
+      ],
+      "eventUri": null,
+      "summary": "A lab has engineered E. coli to live without isoleucine — knocking the universal genetic code from 20 amino acids to 19 — and the surviving cells then become a chassis where the freed codon can encode something synthetic. The angle: this is a foundational step toward organisms that natural viruses and horizontal gene transfer cannot infect, because the code itself no longer matches. Lead with the dropped amino acid and the freed codon, then the biocontainment / synthetic-biology implication.",
+      "conceptUris": []
+    },
+    {
+      "id": "severe-linux-kernel-privilege-escalation-cloud-scramble",
+      "label": "As the most severe Linux threat in years surfaces, the world scrambles",
+      "firstSeen": "2026-04-30T22:06:31.630Z",
+      "lastCovered": "2026-04-30T22:06:31.630Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-30-severe-linux-kernel-privilege-escalation-cloud-scramble"
+      ],
+      "eventUri": "eng-11614729",
+      "summary": "A kernel-level Linux privilege-escalation vulnerability is being patched globally; cloud providers and CI infrastructure are exposed because the bug lives in the kernel path used by container escapes. The angle: virtually every public-cloud workload runs on the affected kernel. Lead with the CVE class (privilege escalation in kernel), then the blast radius (containers → host → tenant). Reader is technical enough to want the mechanism, not just the panic level.",
+      "conceptUris": []
+    },
+    {
+      "id": "lobito-corridor-us-china-africa-critical-metals-rail",
+      "label": "An old railroad is key to U.S.-China race for critical metals in Africa",
+      "firstSeen": "2026-04-30T22:06:31.630Z",
+      "lastCovered": "2026-04-30T22:06:31.630Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-30-lobito-corridor-us-china-africa-critical-metals-rail"
+      ],
+      "eventUri": null,
+      "summary": "The Lobito Corridor — a colonial-era railway from Angola's Atlantic port through DRC's copperbelt — is being rebuilt with US backing as Washington's bid to break China's outbound logistics monopoly on African critical metals. The angle: the Lobito vs Tazara (China's east-coast line) rivalry is the physical infrastructure layer of the EV-supply-chain contest. Lead with the corridor's geography and the cobalt/copper tonnage at stake, then how African states play both sides. Pairs with the Central Asia minerals arc on the ledger.",
+      "conceptUris": []
+    },
+    {
+      "id": "coupang-data-breach-korea-us-tech-protection-precedent",
+      "label": "Coupang probe tests the U.S.'s willingness to protect its tech giants abroad",
+      "firstSeen": "2026-04-30T22:06:31.630Z",
+      "lastCovered": "2026-04-30T22:06:31.630Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-30-coupang-data-breach-korea-us-tech-protection-precedent"
+      ],
+      "eventUri": null,
+      "summary": "South Korean regulators are investigating Coupang — majority-owned by US-listed Coupang Inc. — over a data breach, and US Congress is being asked whether to treat foreign regulatory pressure on a US-listed firm as a trade issue. The angle: this is the inverse of the TikTok playbook. Lead with the ownership structure and the breach, then the precedent question of when a US-listed company's foreign subsidiary becomes a State Department file. Reader gets the mechanism by which 'national champion' arguments cut both ways.",
+      "conceptUris": []
+    },
+    {
       "id": "pivotal-us-iran-war-deadline-approaches-with-no-end-in-sight",
       "label": "Pivotal US-Iran war deadline approaches with no end in sight for conflict",
       "firstSeen": "2026-04-30T17:09:09.177Z",
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-30-pivotal-us-iran-war-deadline-approaches-with-no-end-in-sight"
@@ -33,7 +277,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-29-moscow-9-may-parade-no-military-equipment"
@@ -58,7 +302,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-29-israel-double-tap-strike-kills-lebanese-aid-workers"
@@ -74,7 +318,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-30-sudanese-refugees-drown-tobruk-libya"
@@ -90,7 +334,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-29-el-jardinero-cjng-power-broker-arrested-mexico"
@@ -106,7 +350,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-30-ecb-rates-iran-war-eurozone-inflation"
@@ -131,7 +375,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-30-aung-san-suu-kyi-moved-house-arrest-myanmar"
@@ -156,7 +400,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-30-egypt-draft-budget-debt-borrowing-half-resources"
@@ -172,7 +416,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-30-flock-cameras-childrens-gymnastics-sales-demo-dunwoody"
@@ -188,7 +432,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-30-craig-venter-human-genome-scientist-dies-79"
@@ -213,7 +457,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-30-coral-reef-expansion-20-million-years-origin"
@@ -229,7 +473,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-30-microsoft-open-sources-earliest-dos-source-code"
@@ -245,7 +489,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-30-japan-airkamuy-cardboard-suicide-drones"
@@ -261,7 +505,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-30-press-freedom-at-lowest-level-in-25-years-rsf"
@@ -286,7 +530,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-30-zelenskyy-responds-to-putin-s-proposal-to-declare-ceasefire"
@@ -311,7 +555,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-30-gaza-s-medical-evacuation-crisis-is-leaving-thousands-withou"
@@ -327,7 +571,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-30-sindh-education-department-to-introduce-religious-textbooks"
@@ -343,7 +587,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-30-us-court-dismisses-rohingya-hate-speech-lawsuit-against-meta"
@@ -359,7 +603,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-30-belgium-in-talks-with-engie-to-nationalise-country-s-nuclear"
@@ -384,7 +628,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-30-an-old-railroad-is-key-to-u-s-china-race-for-critical-metals"
@@ -400,7 +644,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-30-smog-from-wildfires-increasingly-harmful-data-show"
@@ -416,7 +660,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-29-will-chinese-megaprojects-solve-northern-peru-s-water-crisis"
@@ -432,7 +676,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-30-coupang-probe-tests-the-u-s-s-willingness-to-protect-its-tec"
@@ -448,7 +692,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-30-google-s-privacy-maze-how-gemini-traps-you-and-your-data"
@@ -464,7 +708,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-30-crypto-hacks-continue-as-wasabi-protocol-drained-for-4-5-mil"
@@ -480,7 +724,7 @@
       "lastCovered": "2026-04-30T08:08:59.422Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-30-russian-drones-strike-ukraine-s-odesa-overnight-wounding-18"
@@ -505,7 +749,7 @@
       "lastCovered": "2026-04-30T08:08:59.422Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-29-vaishnaw-flags-off-jammu-srinagar-vande-bharat-services-from"
@@ -530,7 +774,7 @@
       "lastCovered": "2026-04-30T08:08:59.422Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-30-supreme-court-says-minor-cannot-be-forced-to-carry-pregnancy"
@@ -555,7 +799,7 @@
       "lastCovered": "2026-04-30T08:08:59.422Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-29-5-takeaways-from-2025-s-cocaine-seizure-data"
@@ -571,7 +815,7 @@
       "lastCovered": "2026-04-30T08:08:59.422Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-30-india-s-bangladesh-gamble"
@@ -587,7 +831,7 @@
       "lastCovered": "2026-04-30T08:08:59.422Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-30-snow-cover-on-greek-mountains-has-more-than-halved-in-four-d"
@@ -603,7 +847,7 @@
       "lastCovered": "2026-04-30T08:08:59.422Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-29-a-2022-law-may-be-quietly-helping-people-stay-on-their-meds"
@@ -619,7 +863,7 @@
       "lastCovered": "2026-04-30T08:08:59.422Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-28-your-phone-is-about-to-stop-being-yours"
@@ -635,7 +879,7 @@
       "lastCovered": "2026-04-30T08:08:59.422Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-28-ghostty-is-leaving-github"
@@ -651,7 +895,7 @@
       "lastCovered": "2026-04-30T08:08:59.422Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-28-humanitarian-aid-turns-to-ai-as-crises-outpace-capacity"
@@ -667,7 +911,7 @@
       "lastCovered": "2026-04-30T08:08:59.422Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-04-29-us-losing-central-asia-critical-minerals-race",
@@ -684,7 +928,7 @@
       "lastCovered": "2026-04-30T08:08:59.422Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "developing",
       "articles": [
         "2026-04-29-sri-lanka-imf-conditions-stagflation-risk",
@@ -701,7 +945,7 @@
       "lastCovered": "2026-04-30T04:05:09.312Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-30-nz-court-rejects-christchurch-gunman-plea-withdrawal"
@@ -723,7 +967,7 @@
       "lastCovered": "2026-04-30T04:05:09.312Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-30-trump-germany-troop-reduction-nato-review"
@@ -745,7 +989,7 @@
       "lastCovered": "2026-04-30T04:05:09.312Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-30-israel-tanks-netting-hezbollah-fpv-drones-lebanon"
@@ -761,7 +1005,7 @@
       "lastCovered": "2026-04-30T04:05:09.312Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-30-india-bangladesh-high-commissioner-political-appointment"
@@ -777,7 +1021,7 @@
       "lastCovered": "2026-04-30T04:05:09.312Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-28-uae-opec-exit-quota-dispute-saudi"
@@ -793,7 +1037,7 @@
       "lastCovered": "2026-04-30T04:05:09.312Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-30-india-ethanol-flex-fuel-emission-rules-e85-e100"
@@ -815,7 +1059,7 @@
       "lastCovered": "2026-04-30T04:05:09.312Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-29-port-churchill-arctic-gateway-canada-sovereignty"
@@ -835,7 +1079,7 @@
       "lastCovered": "2026-04-30T04:05:09.312Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-29-iran-fall-armyworm-crops-war-agriculture"
@@ -851,7 +1095,7 @@
       "lastCovered": "2026-04-30T04:05:09.312Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-29-ultrafinitism-mathematics-rejecting-infinity"
@@ -867,7 +1111,7 @@
       "lastCovered": "2026-04-30T04:05:09.312Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-29-house-fisa-702-reauthorization-warrant-backdoor"
@@ -883,7 +1127,7 @@
       "lastCovered": "2026-04-30T04:05:09.312Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-28-android-developer-verification-sideloading-mandate"
@@ -899,7 +1143,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 3,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-04-29-top-10-islamic-fintech-markets-by-size"
@@ -915,7 +1159,7 @@
       "lastCovered": "2026-04-29T22:04:19.491Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-29-putin-extreme-consequences-warning-trump-iran"
@@ -940,7 +1184,7 @@
       "lastCovered": "2026-04-29T22:04:19.491Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-29-pentagon-iran-war-cost-25-billion-hegseth-hearing"
@@ -965,7 +1209,7 @@
       "lastCovered": "2026-04-29T22:04:19.491Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-29-mexico-sinaloa-governor-indicted-us-cartel"
@@ -990,7 +1234,7 @@
       "lastCovered": "2026-04-29T22:04:19.491Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-29-gaza-rats-tent-cities-public-health-siege"
@@ -1006,7 +1250,7 @@
       "lastCovered": "2026-04-29T22:04:19.491Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-29-jpmorgan-blockchain-chief-tokenization-liquidity-warning"
@@ -1022,7 +1266,7 @@
       "lastCovered": "2026-04-29T22:04:19.491Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-29-abc-fcc-license-threat-disney-1996-telecom-act"
@@ -1038,7 +1282,7 @@
       "lastCovered": "2026-04-29T22:04:19.491Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-29-math-final-axiom-controversy-zermelo-fraenkel"
@@ -1054,7 +1298,7 @@
       "lastCovered": "2026-04-29T22:04:19.491Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-29-ai-weather-models-extreme-events-underperform"
@@ -1070,7 +1314,7 @@
       "lastCovered": "2026-04-29T22:04:19.491Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-29-rightscon-cancelled-zambia-digital-rights"
@@ -1086,7 +1330,7 @@
       "lastCovered": "2026-04-29T22:04:19.491Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-29-data-centers-latin-america-water-power-displacement"
@@ -1102,198 +1346,13 @@
       "lastCovered": "2026-04-29T22:04:19.491Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-29-us-china-dubai-scam-compound-takedown-pig-butchering"
       ],
       "eventUri": null,
       "summary": "A rare US–China joint operation, coordinated with UAE authorities, dismantled a 'pig butchering' crypto-scam compound in Dubai run largely by trafficked Chinese workers — the same model previously documented in Cambodia and Myanmar. The angle: the cooperation is unusual, the geography (Gulf rather than Mekong) is new, and the victims include both retail US investors and the trafficked workers themselves. Lead with the dual victim story and the precedent of US/Chinese law-enforcement cooperation in a third country, then explain the pig-butchering supply chain for readers who haven't tracked it.",
-      "conceptUris": []
-    },
-    {
-      "id": "senate-panel-advances-kevin-warsh-s-nomination-for-us-fed-ch",
-      "label": "Senate panel advances Kevin Warsh's nomination for US Fed chair",
-      "firstSeen": "2026-04-29T17:06:31.032Z",
-      "lastCovered": "2026-04-29T17:06:31.032Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-29-senate-panel-advances-kevin-warsh-s-nomination-for-us-fed-ch"
-      ],
-      "eventUri": "eng-11610614",
-      "summary": "The Senate Banking Committee advanced Trump's pick to replace Powell — Warsh, a hedge fund veteran who has publicly attacked Fed independence. Lead with the structural shift: a chair installed explicitly to cut rates faster, after the most fractious Trump–Powell relationship in modern Fed history. Stakes for global readers are emerging-market borrowing costs and dollar funding, not US politics.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Kevin_Warsh",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Jerome_Powell",
-        "http://en.wikipedia.org/wiki/Central_bank",
-        "http://en.wikipedia.org/wiki/United_States_Senate",
-        "http://en.wikipedia.org/wiki/Federal_Reserve",
-        "http://en.wikipedia.org/wiki/Interest_rate",
-        "http://en.wikipedia.org/wiki/Inflation"
-      ]
-    },
-    {
-      "id": "limbo-in-the-south-despite-ceasefire-lebanon-s-displaced-sti",
-      "label": "Limbo in the south: Despite ceasefire, Lebanon's displaced still await political pathway",
-      "firstSeen": "2026-04-29T17:06:31.032Z",
-      "lastCovered": "2026-04-29T17:06:31.032Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-29-limbo-in-the-south-despite-ceasefire-lebanon-s-displaced-sti"
-      ],
-      "eventUri": null,
-      "summary": "Two weeks into the ceasefire, Lebanon's southern displaced are still in limbo — Mada Masr's ground reporting documents villages emptied with no political mechanism for return. Lead with the gap between ceasefire-on-paper and reconstruction-in-fact: who returns, who decides, and which neighborhoods Israel will not allow rebuilt. Continuation-of-injustice angle, not a 'new development' story.",
-      "conceptUris": []
-    },
-    {
-      "id": "how-syrian-forces-captured-the-man-behind-the-tadamon-massac",
-      "label": "How Syrian Forces Captured the Man Behind the Tadamon Massacre",
-      "firstSeen": "2026-04-29T17:06:31.032Z",
-      "lastCovered": "2026-04-29T17:06:31.032Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-28-how-syrian-forces-captured-the-man-behind-the-tadamon-massac"
-      ],
-      "eventUri": null,
-      "summary": "Amjad Youssef — the Assad-era intelligence officer filmed executing dozens of civilians in Tadamon's 2013 massacre — was tracked and arrested in rural Hama by post-Assad Syrian forces. Lead with the accountability mechanism: a transitional state hunting its predecessors' war criminals, and what that means for the wider Syrian transitional-justice docket. Name the victims; the massacre footage is one of the most documented atrocities of the war.",
-      "conceptUris": []
-    },
-    {
-      "id": "south-sudan-hunger-lebanon-double-tap",
-      "label": "U.S., Iran remain deadlocked over blockade; Lebanese aid workers killed in Israeli \"double tap\"; Over half of South Sudan's population faces acute hunger",
-      "firstSeen": "2026-04-29T17:06:31.032Z",
-      "lastCovered": "2026-04-29T17:06:31.032Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-29-south-sudan-hunger-lebanon-double-tap"
-      ],
-      "eventUri": null,
-      "summary": "Lead with South Sudan: the UN's latest food-security data shows over half the population — roughly 7 million people — in acute hunger, the worst level since independence, while donors cut funding amid the Iran war's fiscal crowd-out. Pair with the 'double tap' strike that killed Lebanese aid workers responding to a first hit — a war-crime pattern with a name and a precedent. Two underreported accountability stories the wires are missing because Iran-blockade headlines absorb the oxygen.",
-      "conceptUris": []
-    },
-    {
-      "id": "gcc-bond-and-sukuk-issuances-reach-55-billion-in-q1-2026-led",
-      "label": "GCC bond and Sukuk issuances reach $55 billion in Q1 2026, led by Saudi Arabia",
-      "firstSeen": "2026-04-29T17:06:31.032Z",
-      "lastCovered": "2026-04-29T17:06:31.032Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-29-gcc-bond-and-sukuk-issuances-reach-55-billion-in-q1-2026-led"
-      ],
-      "eventUri": null,
-      "summary": "Gulf governments and corporates raised $55B in bonds and sukuk in Q1 2026, with Saudi Arabia leading — the largest first-quarter issuance on record. Lead with the why: Vision-2030 capex against an oil price battered by the Iran war means Riyadh is funding through debt instead of revenue, and sukuk specifically is the instrument that lets sharia-conscious GCC pension funds and Asian Islamic banks absorb the supply. Mechanism for readers: petro-state debt issuance is now the swing variable for global sukuk pricing.",
-      "conceptUris": []
-    },
-    {
-      "id": "why-trump-backer-justin-sun-is-suing-the-trumps-firm",
-      "label": "Why Trump-backer Justin Sun is suing the Trumps' firm",
-      "firstSeen": "2026-04-29T17:06:31.032Z",
-      "lastCovered": "2026-04-29T17:06:31.032Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-29-why-trump-backer-justin-sun-is-suing-the-trumps-firm"
-      ],
-      "eventUri": null,
-      "summary": "Justin Sun — the Chinese-born crypto billionaire who poured $75M into World Liberty Financial, the Trump-family DeFi venture — is now suing the Trumps for fraud. Lead with the breakdown: the same crypto patrons who bought regulatory access are turning litigant when the token economics fail. Mechanism: presidential-family token sales blur the line between political bribe and securities fraud, and the courts will be the first venue forced to draw it. Accountability angle on oligarchic crypto governance.",
-      "conceptUris": []
-    },
-    {
-      "id": "the-wood-wide-web-the-forest-discovery-that-sparked-a-backla",
-      "label": "The Wood Wide Web: The Forest Discovery That Sparked a Backlash",
-      "firstSeen": "2026-04-29T17:06:31.032Z",
-      "lastCovered": "2026-04-29T17:06:31.032Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-29-the-wood-wide-web-the-forest-discovery-that-sparked-a-backla"
-      ],
-      "eventUri": null,
-      "summary": "Suzanne Simard's 'mother tree' hypothesis — that forests are mycorrhizal communication networks — has come under sharp scientific challenge after a decade as TED-talk orthodoxy. Lead with the methodological critique: replication failures, overstated effect sizes, and the gap between popular-science narrative and the underlying ecology data. Reader takeaway is how a beautiful hypothesis hardens into doctrine before the evidence settles — a pattern the Muslim reader will recognize across many fields.",
-      "conceptUris": []
-    },
-    {
-      "id": "world-will-not-see-significant-return-to-coal-in-2026-despit",
-      "label": "World 'will not see significant return to coal' in 2026 – despite Iran crisis",
-      "firstSeen": "2026-04-29T17:06:31.032Z",
-      "lastCovered": "2026-04-29T17:06:31.032Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-28-world-will-not-see-significant-return-to-coal-in-2026-despit"
-      ],
-      "eventUri": null,
-      "summary": "Carbon Brief's modeling: even with Hormuz blockaded and oil at $115, 2026 coal use will rise less than 1% — well below the 'coal renaissance' headlines. Lead with the surprise: the energy transition is now structural enough to absorb a major Middle East war without reversing. Mechanism is renewables-plus-storage now beating coal on marginal cost in China, India, and the EU even at war-shocked gas prices. Counterintuitive for the reader who has watched a month of 'coal is back' coverage.",
-      "conceptUris": []
-    },
-    {
-      "id": "apple-fixes-bug-that-let-fbi-extract-deleted-signal-messages",
-      "label": "Apple Fixes Bug That Let FBI Extract Deleted Signal Messages After 404 Media Coverage",
-      "firstSeen": "2026-04-29T17:06:31.032Z",
-      "lastCovered": "2026-04-29T17:06:31.032Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-29-apple-fixes-bug-that-let-fbi-extract-deleted-signal-messages"
-      ],
-      "eventUri": null,
-      "summary": "iOS stored Signal message previews in notification cache so the FBI could pull them off seized iPhones — even after the user deleted the chats. Apple patched only after 404 Media published. Lead with the mechanism: Signal's end-to-end crypto is intact, but the OS layer leaks plaintext to a forensic tool that any law-enforcement agency can run. Stakes are immediate for activists, journalists, and anyone in jurisdictions where 'deleted' has to actually mean deleted.",
-      "conceptUris": []
-    },
-    {
-      "id": "dhs-plans-to-buy-more-predator-style-drones",
-      "label": "DHS Plans to Buy More Predator-Style Drones",
-      "firstSeen": "2026-04-29T17:06:31.032Z",
-      "lastCovered": "2026-04-29T17:06:31.032Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-29-dhs-plans-to-buy-more-predator-style-drones"
-      ],
-      "eventUri": null,
-      "summary": "CBP is spending hundreds of millions on more MQ-9 Reaper-class drones, and other DHS components — ICE, the Coast Guard — are now drafting their own MQ-9 fleets. Lead with the mission creep: a military airframe designed to hunt insurgents is becoming standard kit for domestic immigration enforcement. Mechanism for readers: the drones the US flies over Yemen and Somalia are increasingly the same drones over Texas and the Caribbean, with the same targeting pods and far less oversight.",
-      "conceptUris": []
-    },
-    {
-      "id": "the-quiet-layoffs-sweeping-china-s-tech-giants",
-      "label": "The quiet layoffs sweeping China's tech giants",
-      "firstSeen": "2026-04-29T17:06:31.032Z",
-      "lastCovered": "2026-04-29T17:06:31.032Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-29-the-quiet-layoffs-sweeping-china-s-tech-giants"
-      ],
-      "eventUri": null,
-      "summary": "Alibaba cut headcount by a third in 2025; Baidu shed 7%. Lead with the AI pivot mechanism: Chinese platforms are quietly trimming non-AI engineering and rebuilding around model teams, mirroring the FAANG pattern but without the public IR communication. Reader takeaway is that the China–US AI race is being financed inside both countries by the same labor-side adjustment — and Chinese tech workers, who do not have the US severance norms, bear it harder.",
       "conceptUris": []
     }
   ]
