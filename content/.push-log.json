@@ -7148,5 +7148,91 @@
       "skipped": 0,
       "tokens": 16
     }
+  },
+  {
+    "timestamp": "2026-04-30T12:28:56.339Z",
+    "candidateCount": 9,
+    "candidates": [
+      {
+        "slug": "2026-04-30-press-freedom-at-lowest-level-in-25-years-rsf",
+        "title": "Press Freedom Hits 25-Year Low",
+        "category": "politics",
+        "eventCoverage": 204,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-30-zelenskyy-responds-to-putin-s-proposal-to-declare-ceasefire",
+        "title": "Kyiv Routes Ceasefire Response via Trump",
+        "category": "politics",
+        "eventCoverage": 83,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-30-belgium-in-talks-with-engie-to-nationalise-country-s-nuclear",
+        "title": "Belgium Reverses Nuclear Phase-Out",
+        "category": "economy",
+        "eventCoverage": 49,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-30-gaza-s-medical-evacuation-crisis-is-leaving-thousands-withou",
+        "title": "Gaza Evacuation Backlog Reaches 18,500",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-30-sindh-education-department-to-introduce-religious-textbooks",
+        "title": "Sindh Gives Hindu Students Own Textbooks",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-30-smog-from-wildfires-increasingly-harmful-data-show",
+        "title": "Wildfire Ozone Deaths Hit Record Share",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-29-will-chinese-megaprojects-solve-northern-peru-s-water-crisis",
+        "title": "China Wins Peru Water Megaproject Bid",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-30-google-s-privacy-maze-how-gemini-traps-you-and-your-data",
+        "title": "Gemini Trains on Email by Default",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-04-30-crypto-hacks-continue-as-wasabi-protocol-drained-for-4-5-mil",
+        "title": "Admin Key Drains Wasabi DeFi Protocol",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-04-30-press-freedom-at-lowest-level-in-25-years-rsf",
+      "title": "Press Freedom Hits 25-Year Low",
+      "category": "politics",
+      "body": "[Saudi Arabia](country:SA) executed a journalist in 2025. Reporters Without",
+      "eventCoverage": 204,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Global press freedom falls to lowest level in 25 years, report says",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 17
+    }
   }
 ]
