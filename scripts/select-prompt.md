@@ -52,6 +52,8 @@ Prioritize stories that reveal, surprise, or teach. Balance across these dimensi
 - Accountability: OCCRP, The Intercept, Bellingcat, HRW, Amnesty
 - Global South science: SciDev.Net, Mongabay, Nature
 
+**Regional source for OIC-region stories.** When a story's primary affected country is an OIC member (Afghanistan, Albania, Algeria, Azerbaijan, Bahrain, Bangladesh, Benin, Brunei, Burkina Faso, Cameroon, Chad, Comoros, Côte d'Ivoire, Djibouti, Egypt, Gabon, Gambia, Ghana, Guinea, Guinea-Bissau, Guyana, Indonesia, Iran, Iraq, Jordan, Kazakhstan, Kuwait, Kyrgyzstan, Lebanon, Libya, Malaysia, Maldives, Mali, Mauritania, Morocco, Mozambique, Niger, Nigeria, Oman, Pakistan, Palestine, Qatar, Saudi Arabia, Senegal, Sierra Leone, Somalia, Sudan, Suriname, Syria, Tajikistan, Togo, Tunisia, Turkey, Turkmenistan, Uganda, UAE, Uzbekistan, Yemen), scan the broader feed for a regional outlet covering the same event and merge it into the entry's `sources:` array — even if the cluster did not include it. Recognized regional outlets: Dawn / Geo / Express Tribune (PK); Anadolu Ajansı / TRT World / Daily Sabah (TR); Al Jazeera / The New Arab (QA); Arab News (SA); The National / Khaleej Times (AE); Mada Masr / Daily News Egypt (EG); Tehran Times / Mehr News / IRNA (IR); Jakarta Post (ID); New Straits Times / Free Malaysia Today (MY); Premium Times / Daily Trust / Vanguard (NG); Radio Dabanga (SD); Middle East Eye / Middle East Monitor (cross-region). Educated Muslim readers actively notice when an OIC-region story carries only Western wires — absence of a regional voice is a credibility signal. If the feed offers no regional coverage of the event, that is acceptable; note it in the selection summary so we can audit feed-side gaps separately.
+
 **Constraints:**
 - Max 3 stories from the same source.
 - Max 3 stories per story-ledger arc.
@@ -74,6 +76,7 @@ Check these privately before writing the selection file. Do not output this veri
 - Category counts meet the floors (`politics:3+ economy:3+ science:2+ tech:3+`).
 - No arc has more than 3 selections.
 - Multi-source floors when feed supplies them: politics ≥ 2 multi-source picks, economy ≥ 2 multi-source picks. Only drop below a floor if *every* available multi-source story in that category is genuinely weaker than the best niche alternative — in the selection summary, note which multi-source story you rejected and why. Do not pad with weak multi-source stories to meet a number.
+- OIC-region source carry-through: for each selected story whose primary affected country is an OIC member, the `sources:` array includes ≥1 regional outlet (see "Regional source for OIC-region stories" above) when the feed offers any. If no regional outlet covered the event, note that fact in the selection summary so feed-side gaps can be audited separately.
 - No two selections are about the same company, institution, or event — consolidate into one entry with the richest angle.
 - If science < 2, scan Nature, Quanta, New Scientist, STAT News, SciDev.Net, Carbon Brief again.
 </internal_verification>

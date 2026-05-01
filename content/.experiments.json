@@ -2,6 +2,42 @@
   "version": 1,
   "activeExperiments": [
     {
+      "id": "2026-05-01-oic-regional-source-floor",
+      "startDate": "2026-05-01",
+      "evaluateAfter": "2026-05-08",
+      "prNumber": null,
+      "hypothesis": "Audit of 2,569 published articles shows OIC-tagged stories (10% of corpus) have a median regional-source share of 20% and only 51.4% include ≥1 regional outlet. The selector currently treats regional outlets as a soft tiebreaker only, so when feed clustering doesn't bundle a regional outlet into a story's cluster, the regional voice gets dropped. Adding an explicit selection-criteria item plus an internal-verification check that requires regional carry-through for OIC-tagged stories — drawing from the broader feed, not just the cluster — should raise ≥1 regional-source coverage on OIC stories from 51.4% to ≥80% over the 7-day window without dropping throughput. Token-neutral: prompt change only, no extra NewsAPI calls.",
+      "parameter": "Selector OIC-regional-source carry-through",
+      "file": "scripts/select-prompt.md",
+      "oldValue": "Muslim-world outlets listed under reader-aligned-sources tiebreaker only",
+      "newValue": "Explicit OIC-region carry-through rule + internal-verification check, with named recognized outlets per OIC country",
+      "targetMetric": "OIC-tagged articles with ≥1 regional-OIC source (%)",
+      "targetDirection": "increase",
+      "baseline": {
+        "windowStart": "corpus-wide as of 2026-05-01",
+        "articlesAnalyzed": 2569,
+        "oicTaggedArticles": 257,
+        "oicWithAtLeastOneRegional": 132,
+        "oicAtLeastOneSharePct": 51.4,
+        "oicMedianRegionalSharePct": 20.0,
+        "regionalOicTierShareCorpusPct": 20.1,
+        "westernGlobalTierShareCorpusPct": 49.7,
+        "diagnosticScript": "scripts/audience-tests.js"
+      },
+      "target": {
+        "oicAtLeastOneSharePct": 80.0,
+        "oicMedianRegionalSharePct": 40.0
+      },
+      "guardrails": {
+        "throughput": "articles/cycle must not drop below 9 (current ~10–13). If the regional-source rule causes the selector to skip viable OIC stories due to feed gaps, throughput suffers — revert.",
+        "totalSourcesPerOicArticle": "mean sources/article on OIC-tagged stories must not drop (would mean displacement of existing sources, not addition).",
+        "multiSourceRate": "overall multi-source rate must not drop below 22% (current baseline from prior experiment) — adding regional sources should help, not hurt.",
+        "fabricatedSources": "spot-check 5 random new OIC-region articles for source legitimacy (URLs resolve, attribution matches outlet); >1 fabricated = revert.",
+        "selectorTime": "selector stage time must not climb >25% (~660s baseline) — extra feed scanning could slow it.",
+        "concurrentExperimentInteraction": "the title-echo (writer) and fabrication-gate (edu-context) experiments evaluate on different metrics from different files; if either's target metric is confounded by the source-rule change, note that in the audit but treat each on its own metric."
+      }
+    },
+    {
       "id": "2026-05-01-fabrication-gate-softening",
       "startDate": "2026-05-01",
       "evaluateAfter": "2026-05-04",
