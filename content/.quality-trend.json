@@ -122,5 +122,67 @@
         "economy": 81
       }
     }
+  },
+  {
+    "week": "2026-04-26",
+    "windowDays": 7,
+    "articleCount": 463,
+    "metrics": {
+      "charLengthAvg": 326,
+      "charOver350Pct": 17.1,
+      "wordCountAvg": 46,
+      "wordInRangePct": 79.5,
+      "titleEchoRatePct": 40,
+      "passiveHookRatePct": 0,
+      "causalClaimHits": 0,
+      "pressEraHits": 6,
+      "hedgeRatePct": 0.2,
+      "acronymViolations": 593,
+      "topAcronymViolators": [
+        [
+          "IR",
+          61
+        ],
+        [
+          "PK",
+          47
+        ],
+        [
+          "IN",
+          35
+        ],
+        [
+          "IL",
+          33
+        ],
+        [
+          "CN",
+          29
+        ]
+      ],
+      "countryNullCount": 1,
+      "topOutletSharePct": 12.2,
+      "top3Outlets": [
+        {
+          "name": "Dawn",
+          "count": 44
+        },
+        {
+          "name": "CoinDesk",
+          "count": 22
+        },
+        {
+          "name": "Bloomberg Business",
+          "count": 18
+        }
+      ],
+      "multiSourceRatePct": 22.7,
+      "categoryBalance": {
+        "tech": 82,
+        "politics": 180,
+        "science": 84,
+        "economy": 117
+      }
+    }
   }
 ]
