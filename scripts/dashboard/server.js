@@ -439,8 +439,12 @@ function handleExperiment() {
     if (!existsSync(expPath)) return { active: null, history: [], tracking: null }
 
     const data = JSON.parse(readFileSync(expPath, 'utf-8'))
+    const activeAll = Array.isArray(data.activeExperiments)
+      ? data.activeExperiments
+      : (data.activeExperiment ? [data.activeExperiment] : [])
     const result = {
-      active: data.activeExperiment || null,
+      active: activeAll[0] || null,
+      activeAll,
       history: (data.history || []).slice().reverse(),
       tracking: null,
     }
@@ -711,15 +715,19 @@ function handleRvsTrend() {
     const recent = trend.slice(-50) // last ~50 cycles ≈ 10 days
     const last = trend[trend.length - 1]
     const avg = (xs) => xs.reduce((a, b) => a + b, 0) / xs.length
+    const meanCluster = (xs) => {
+      const ys = xs.filter((v) => v != null)
+      return ys.length ? +avg(ys).toFixed(2) : null
+    }
     const summary = {
       latest: last,
       meanLast20: trend.length >= 5 ? +avg(trend.slice(-20).map((r) => r.rvs)).toFixed(2) : null,
       clusterMeansLast20: trend.length >= 5 ? {
-        picking: +avg(trend.slice(-20).map((r) => r.clusters.picking)).toFixed(2),
-        writing: +avg(trend.slice(-20).map((r) => r.clusters.writing)).toFixed(2),
-        briefing: +avg(trend.slice(-20).map((r) => r.clusters.briefing)).toFixed(2),
-        sourcing: +avg(trend.slice(-20).map((r) => r.clusters.sourcing)).toFixed(2),
-        coverage: +avg(trend.slice(-20).map((r) => r.clusters.coverage)).toFixed(2),
+        picking: meanCluster(trend.slice(-20).map((r) => r.clusters.picking)),
+        writing: meanCluster(trend.slice(-20).map((r) => r.clusters.writing)),
+        briefing: meanCluster(trend.slice(-20).map((r) => r.clusters.briefing)),
+        sourcing: meanCluster(trend.slice(-20).map((r) => r.clusters.sourcing)),
+        coverage: meanCluster(trend.slice(-20).map((r) => r.clusters.coverage)),
       } : null,
       cycleCount: trend.length,
     }
@@ -887,8 +895,12 @@ function handleEditorial() {
       try {
         const stat = statSync(expPath)
         const data = JSON.parse(readFileSync(expPath, 'utf-8'))
+        const activeAll = Array.isArray(data.activeExperiments)
+          ? data.activeExperiments
+          : (data.activeExperiment ? [data.activeExperiment] : [])
         result.experiments = {
-          active: data.activeExperiment || null,
+          active: activeAll[0] || null,
+          activeAll,
           history: (data.history || []).slice().reverse(),
           updatedAt: stat.mtime.toISOString(),
         }

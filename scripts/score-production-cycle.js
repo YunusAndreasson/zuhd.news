@@ -51,13 +51,19 @@ async function main() {
     skipJudges: true,
   })
 
+  // Picking is excluded from production RVS because skipJudges:true makes
+  // scorePicking() return a constant 60 (50-pt fallback × 0.8 + 100 × 0.2).
+  // Including it added 12% of dead weight to every cycle's score. The four
+  // remaining clusters carry signal; renormalize their weights to sum to 1.
+  const rvs = rvsWithoutPicking(score.clusters)
+
   const record = {
     ts: now.toISOString(),
     cycleId,
     cycleHour: hh,
-    rvs: round2(score.rvs),
+    rvs: round2(rvs),
     clusters: {
-      picking: round2(score.clusters.picking),
+      picking: null,
       writing: round2(score.clusters.writing),
       briefing: round2(score.clusters.briefing),
       sourcing: round2(score.clusters.sourcing),
@@ -77,7 +83,18 @@ async function main() {
   if (trend.length > 365) trend = trend.slice(-365)
   writeFileSync(TREND_PATH, JSON.stringify(trend, null, 2))
 
-  console.log(`Production RVS: ${record.rvs.toFixed(2)}  (picking=${record.clusters.picking.toFixed(0)}  writing=${record.clusters.writing.toFixed(0)}  briefing=${record.clusters.briefing.toFixed(0)}  sourcing=${record.clusters.sourcing.toFixed(0)}  coverage=${record.clusters.coverage.toFixed(0)})`)
+  console.log(`Production RVS: ${record.rvs.toFixed(2)}  (writing=${record.clusters.writing.toFixed(0)}  briefing=${record.clusters.briefing.toFixed(0)}  sourcing=${record.clusters.sourcing.toFixed(0)}  coverage=${record.clusters.coverage.toFixed(0)})`)
+}
+
+// Renormalized weights: writing 0.20, briefing 0.20, sourcing 0.15, coverage 0.15.
+// Sum = 0.70 → divide each by 0.70 so the four sum to 1.
+function rvsWithoutPicking(c) {
+  return (
+    c.writing  * (0.20 / 0.70) +
+    c.briefing * (0.20 / 0.70) +
+    c.sourcing * (0.15 / 0.70) +
+    c.coverage * (0.15 / 0.70)
+  )
 }
 
 function round2(x) { return Math.round(x * 100) / 100 }

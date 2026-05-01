@@ -569,7 +569,8 @@ function renderRvsTrend(rvs) {
   renderLineChart(chartEl, data, 'value', { labelFn: (d) => d.label, unit: '' })
   if (s.clusterMeansLast20) {
     const c = s.clusterMeansLast20
-    clusterEl.innerHTML = `cluster means (last 20): picking ${c.picking.toFixed(0)} · writing ${c.writing.toFixed(0)} · briefing ${c.briefing.toFixed(0)} · sourcing ${c.sourcing.toFixed(0)} · coverage ${c.coverage.toFixed(0)}`
+    const fmt = (v) => v == null ? '—' : v.toFixed(0)
+    clusterEl.innerHTML = `cluster means (last 20): picking ${fmt(c.picking)} · writing ${fmt(c.writing)} · briefing ${fmt(c.briefing)} · sourcing ${fmt(c.sourcing)} · coverage ${fmt(c.coverage)}`
   }
 }
 
@@ -1393,32 +1394,35 @@ async function loadExperiment() {
   const expHistory = document.getElementById('exp-history')
   const tabDot = document.getElementById('exp-tab-dot')
 
-  if (data.active) {
+  const activeList = data.activeAll && data.activeAll.length ? data.activeAll : (data.active ? [data.active] : [])
+  if (activeList.length) {
     tabDot.hidden = false
-    const e = data.active
     const t = data.tracking
 
-    // Progress bar
-    const pct = t ? Math.min(Math.round(t.daysElapsed / t.daysTotal * 100), 100) : 0
-    const daysLeft = t ? Math.max(t.daysTotal - t.daysElapsed, 0) : '?'
+    expActive.innerHTML = activeList.map((e) => {
+      const daysElapsed = Math.max(0, Math.floor((Date.now() - new Date(e.startDate).getTime()) / 86400000))
+      const daysTotal = Math.max(1, Math.floor((new Date(e.evaluateAfter).getTime() - new Date(e.startDate).getTime()) / 86400000))
+      const cardPct = Math.min(Math.round(daysElapsed / daysTotal * 100), 100)
+      return `<div class="exp-card exp-active-card">
+        <div class="exp-header"><strong>${esc(e.parameter || e.id)}</strong><span class="exp-change">${esc(String(e.oldValue ?? ''))} \u2192 ${esc(String(e.newValue ?? ''))}</span></div>
+        <div class="exp-detail">${esc(e.hypothesis || '')}</div>
+        <div class="exp-progress">
+          <div class="exp-progress-bar"><div class="exp-progress-fill" style="width:${cardPct}%"></div></div>
+          <span class="exp-progress-label">day ${daysElapsed} of ${daysTotal} \u2014 evaluates ${e.evaluateAfter}</span>
+        </div>
+        <div class="exp-meta">file: ${esc(e.file || '')} \u00b7 metric: ${esc(e.targetMetric || '')} ${e.targetDirection || ''}</div>
+        <div class="exp-baseline-section">
+          <span class="label">baseline</span>
+          ${e.baseline ? Object.entries(e.baseline).map(([k, v]) => `<span class="exp-baseline-item">${k}: <strong>${esc(String(v))}</strong></span>`).join('') : ''}
+        </div>
+      </div>`
+    }).join('')
 
-    expActive.innerHTML = `<div class="exp-card exp-active-card">
-      <div class="exp-header"><strong>${esc(e.parameter || e.id)}</strong><span class="exp-change">${e.oldValue} \u2192 ${e.newValue}</span></div>
-      <div class="exp-detail">${esc(e.hypothesis || '')}</div>
-      <div class="exp-progress">
-        <div class="exp-progress-bar"><div class="exp-progress-fill" style="width:${pct}%"></div></div>
-        <span class="exp-progress-label">day ${t?.daysElapsed ?? '?'} of ${t?.daysTotal ?? '?'} \u2014 evaluates ${e.evaluateAfter}</span>
-      </div>
-      <div class="exp-meta">file: ${esc(e.file || '')} \u00b7 metric: ${esc(e.targetMetric || '')} ${e.targetDirection || ''}</div>
-      <div class="exp-baseline-section">
-        <span class="label">baseline</span>
-        ${e.baseline ? Object.entries(e.baseline).map(([k, v]) => `<span class="exp-baseline-item">${k}: <strong>${v}</strong></span>`).join('') : ''}
-      </div>
-    </div>`
-
-    // Tracking chart — show daily metric values with baseline period
-    if (t?.dailyMetrics?.length) {
-      renderExperimentChart(expTracking, t.dailyMetrics, e)
+    // Tracking chart — only meaningful for category-count experiments (legacy single-experiment path)
+    if (t?.dailyMetrics?.length && activeList.length === 1) {
+      renderExperimentChart(expTracking, t.dailyMetrics, activeList[0])
+    } else if (activeList.length > 1) {
+      expTracking.innerHTML = `<span class="empty">${activeList.length} experiments active \u2014 chart suppressed; check target metrics on quality / pipeline tabs</span>`
     } else {
       expTracking.innerHTML = '<span class="empty">tracking data available after first full day</span>'
     }
