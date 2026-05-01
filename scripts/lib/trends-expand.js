@@ -40,10 +40,27 @@ export function loadTrendsDigest(path) {
  * Returns an empty string if the digest is null/empty, so callers can
  * unconditionally concatenate.
  */
+const TRENDS_OFFER_CAP = 25
+
+// Editor only picks ~5% of offered indicators (~2.6/cycle from ~54 offered).
+// Cap to the freshest TRENDS_OFFER_CAP so the prompt stays tight without
+// changing pick volume. Sort by `asOf` desc; missing/older entries fall last.
+export function selectOfferedIndicators(digest) {
+  if (!digest?.indicators?.length) return []
+  const ranked = [...digest.indicators].sort((a, b) => {
+    const aAt = a.asOf || ''
+    const bAt = b.asOf || ''
+    return bAt.localeCompare(aAt)
+  })
+  return ranked.slice(0, TRENDS_OFFER_CAP)
+}
+
 export function buildTrendsPromptSection(digest) {
   if (!digest?.indicators?.length) return ''
 
-  const lines = digest.indicators.map((i) => {
+  const offered = selectOfferedIndicators(digest)
+
+  const lines = offered.map((i) => {
     const latest = i.latest != null ? ` — latest ${i.latest}${i.unit ? ' ' + i.unit : ''}` : ''
     const tags = i.topicTags?.length ? ` · tags: ${i.topicTags.slice(0, 6).join(', ')}` : ''
     const countries = i.countryTags?.length ? ` · countries: ${i.countryTags.join(', ')}` : ''
