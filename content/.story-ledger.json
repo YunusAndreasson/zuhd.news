@@ -2,13 +2,222 @@
   "version": 1,
   "stories": [
     {
+      "id": "iran-air-defences-trump-war-powers-deadline",
+      "label": "Iran activates air defences as Trump faces war powers deadline in Congress",
+      "firstSeen": "2026-05-01T08:08:03.584Z",
+      "lastCovered": "2026-05-01T08:08:03.584Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-01-iran-air-defences-trump-war-powers-deadline"
+      ],
+      "eventUri": "eng-11617537",
+      "summary": "Tehran briefly activated air defences against drones and small aircraft Thursday night while the White House signalled it will not let Congress rein in war authorisation. Lead with the air-defence activation as the concrete new development on the war-powers arc — yesterday's coverage focused on the procedural deadline; today the war is materialising in Iranian skies. Reader gets the mechanism by which executive war-making bypasses legislative checks even as the conflict escalates.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Air_defence"
+      ]
+    },
+    {
+      "id": "palestine-action-defendants-dismiss-lawyers-uk-trial",
+      "label": "Palestine Action defendants dismiss lawyers to address jury directly",
+      "firstSeen": "2026-05-01T08:08:03.584Z",
+      "lastCovered": "2026-05-01T08:08:03.584Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-29-palestine-action-defendants-dismiss-lawyers-uk-trial"
+      ],
+      "eventUri": null,
+      "summary": "Pro-Palestine activists in a UK criminal trial dismissed their lawyers to address the jury themselves about Britain's role in Gaza. The angle: a rare procedural move that turns a property-damage prosecution into a public forum on UK arms exports and complicity. Lead with the courtroom mechanic — defendants weighed the trade-off and chose direct testimony over legal protection. Reader gets a concrete instance of how speech-restricted political defendants are using trial procedure itself as a platform.",
+      "conceptUris": []
+    },
+    {
+      "id": "gaza-tent-cities-rat-infestation-disease",
+      "label": "A Growing Rat Infestation Plagues Tent Cities in Gaza",
+      "firstSeen": "2026-05-01T08:08:03.584Z",
+      "lastCovered": "2026-05-01T08:08:03.584Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-29-gaza-tent-cities-rat-infestation-disease"
+      ],
+      "eventUri": null,
+      "summary": "Gaza City's preventive health chief: 'We are suffering from two wars — the war of bombs, and the war of rats.' The angle: rodent-borne disease is becoming a second front in the displacement camps as sanitation collapses. Lead with the health official's quote, then the mechanism — destroyed waste infrastructure plus tent density plus blocked aid creates the conditions for an epidemiological crisis on top of the kinetic one. Continuation of siege IS the development.",
+      "conceptUris": []
+    },
+    {
+      "id": "us-deep-sea-mining-pacific-partnerships",
+      "label": "US Deep-Sea Mining Policy Is Eroding Its Pacific Partnerships",
+      "firstSeen": "2026-05-01T08:08:03.584Z",
+      "lastCovered": "2026-05-01T08:08:03.584Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-30-us-deep-sea-mining-pacific-partnerships"
+      ],
+      "eventUri": null,
+      "summary": "Washington's unilateral push for seabed mining licences in the Pacific is alienating the island states it depends on for forward basing and deterrence. Lead with the trade-off: short-term mineral access for long-term loss of Pacific partnerships that took decades to build. Reader gets the strategic mechanism — extractive policy and security architecture are colliding in the same ocean. Addresses the Oceania coverage gap flagged in the audit.",
+      "conceptUris": []
+    },
+    {
+      "id": "china-zero-tariff-africa-trade-counter-tariff",
+      "label": "Africa embraces China's zero-tariff policy",
+      "firstSeen": "2026-05-01T08:08:03.584Z",
+      "lastCovered": "2026-05-01T08:08:03.584Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-01-china-zero-tariff-africa-trade-counter-tariff"
+      ],
+      "eventUri": "eng-11616966",
+      "summary": "China cleared its first import shipment under an expanded zero-tariff policy covering all least-developed African countries — a concrete trade-policy contrast with US tariff escalation. Sources span Beijing, Kuala Lumpur, Nairobi and Johannesburg, so coverage frames this as African policy uptake, not Chinese announcement. Lead with the first-shipment-cleared milestone and the country list, then the strategic angle: zero-tariff access is a counter-positioning move while Washington raises trade walls. Note the obvious caveat — China Daily is a state outlet — but the trade flows are verifiable and African outlets are reporting it as a real opening.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Tariff",
+        "http://en.wikipedia.org/wiki/Africa",
+        "http://en.wikipedia.org/wiki/Least_developed_countries"
+      ]
+    },
+    {
+      "id": "santa-marta-fossil-fuel-transition-summit-outcomes",
+      "label": "Santa Marta: Key outcomes from first summit on 'transitioning away' from fossil fuels",
+      "firstSeen": "2026-05-01T08:08:03.584Z",
+      "lastCovered": "2026-05-01T08:08:03.584Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-30-santa-marta-fossil-fuel-transition-summit-outcomes"
+      ],
+      "eventUri": null,
+      "summary": "The first ministerial summit dedicated to operationalising the COP28 'transition away' language closed in Santa Marta with a non-binding declaration, no production cap, and no finance mechanism for affected workers. Lead with what was NOT agreed — the absence is the story, given the summit's stated purpose. Reader gets the mechanism gap: language adopted at COP without enforcement architecture remains an aspirational signal, even three years on. Pairs with the China Briefing fossil-controls coverage from yesterday.",
+      "conceptUris": []
+    },
+    {
+      "id": "brazil-climate-aid-gender-age-disaster-response",
+      "label": "Two disasters in Brazil show climate aid must account for gender and age",
+      "firstSeen": "2026-05-01T08:08:03.584Z",
+      "lastCovered": "2026-05-01T08:08:03.584Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-29-brazil-climate-aid-gender-age-disaster-response"
+      ],
+      "eventUri": null,
+      "summary": "Field research from two Brazilian climate disasters — Rio Grande do Sul floods and the Amazon drought — finds aid distribution systematically missed elderly women and child-headed households. Lead with the demographic finding, then the operational mechanism: registration systems that assume adult male heads of household route aid past the most vulnerable. Reader gets a concrete failure mode in disaster response that generalises to every climate-amplified disaster zone, including Pakistan and Bangladesh. Addresses the Latin America sub-regional gap.",
+      "conceptUris": []
+    },
+    {
+      "id": "fisa-section-702-renewal-punted-june",
+      "label": "Congress punts FISA renewal to June",
+      "firstSeen": "2026-05-01T08:08:03.584Z",
+      "lastCovered": "2026-05-01T08:08:03.584Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-30-fisa-section-702-renewal-punted-june"
+      ],
+      "eventUri": null,
+      "summary": "Congress kicked Section 702 reauthorisation to June without resolving the warrant requirement for US-person queries — meaning the FBI will continue running backdoor searches under existing rules through the deadline. Lead with the procedural punt and what it means operationally: the surveillance machinery does not pause when the legislative calendar slips. Reader gets the mechanism by which 'temporary' surveillance authorities ratchet permanent through repeated short-term extensions.",
+      "conceptUris": []
+    },
+    {
+      "id": "china-ai-governance-human-rights-comparative",
+      "label": "The Chinese lesson on the human rights approach to AI",
+      "firstSeen": "2026-05-01T08:08:03.584Z",
+      "lastCovered": "2026-05-01T08:08:03.584Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-30-china-ai-governance-human-rights-comparative"
+      ],
+      "eventUri": null,
+      "summary": "China's AI governance — algorithm filings, generative-content rules, deepfake labelling — has produced a concrete enforcement regime even as Western 'AI ethics' debates remain advisory. Lead with the inversion: the authoritarian state is operating a denser AI rulebook than the democracies preaching rights frameworks, and Global South regulators are studying which model to copy. Reader gets the comparative-governance angle without endorsing either system — it's the regulatory mechanism, not the politics, that's worth understanding.",
+      "conceptUris": []
+    },
+    {
+      "id": "zed-1-0-editor-rust-collaborative",
+      "label": "Zed 1.0",
+      "firstSeen": "2026-05-01T08:08:03.584Z",
+      "lastCovered": "2026-05-01T08:08:03.584Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-04-29-zed-1-0-editor-rust-collaborative"
+      ],
+      "eventUri": null,
+      "summary": "Rust-based collaborative code editor Zed shipped 1.0 — a from-scratch GPU-rendered editor competing in a category long owned by Microsoft VS Code. Lead with the technical bet: native Rust, GPU rendering, real-time collaboration as a primitive, and what that means for editor performance on large codebases. Reader is the developer who has watched the editor space stagnate around Electron — this is a credible alternative reaching stable.",
+      "conceptUris": []
+    },
+    {
+      "id": "oil-prices-four-year-high-iran-war-passthrough",
+      "label": "Oil prices touched their highest level in 4 years. What does it mean for shoppers?",
+      "firstSeen": "2026-04-30T22:06:31.630Z",
+      "lastCovered": "2026-05-01T08:08:03.584Z",
+      "coverageCount": 2,
+      "category": "economy",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-04-30-oil-prices-four-year-high-iran-war-passthrough",
+        "2026-05-01-india-lpg-atf-prices-iran-war-passthrough"
+      ],
+      "eventUri": "zho-2021840",
+      "summary": "Brent has hit a 4-year high as the Iran war and Hormuz uncertainty bid up the barrel — and US retail diesel/gasoline pass-through is starting to land. The angle: this is the macro receipt for the Khamenei-Strait story; one news cycle, two sides of the same chokepoint shock. Lead with the price level and the specific consumer items already moving (diesel → trucking → grocery). Tie back to the Pentagon's $25B Iran-war cost figure on the ledger.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Liquefied_petroleum_gas",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/Delhi"
+      ]
+    },
+    {
+      "id": "2025-cocaine-seizures-shift-west-africa-europe-corridors",
+      "label": "InSight Crime's 2025 Cocaine Seizure Round-Up",
+      "firstSeen": "2026-04-30T22:06:31.630Z",
+      "lastCovered": "2026-05-01T08:08:03.584Z",
+      "coverageCount": 2,
+      "category": "economy",
+      "importance": 5,
+      "arc": "developing",
+      "articles": [
+        "2026-04-30-2025-cocaine-seizures-shift-west-africa-europe-corridors",
+        "2026-04-30-cocaine-seizure-roundup-2025-west-africa-europe"
+      ],
+      "eventUri": null,
+      "summary": "InSight Crime's annual seizure tally maps where cocaine was intercepted in 2025 — and the geography has shifted decisively from the Caribbean to West African and European Atlantic ports. The angle: seizure data is the only public proxy for the trade itself, and the redirect through Senegal/Guinea-Bissau/Spain reveals where the new corridors run. Lead with the largest single seizures and the country shifts, then the implication for African coastal states becoming transshipment hubs.",
+      "conceptUris": []
+    },
+    {
       "id": "egypt-discrimination-law-two-verdicts-decade-mada-masr",
       "label": "Not a lack of cases, but a lack of will: Just 2 verdicts in over a decade of discrimination lawsuits",
       "firstSeen": "2026-04-30T22:06:31.630Z",
       "lastCovered": "2026-05-01T04:09:01.197Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-04-30-egypt-discrimination-law-two-verdicts-decade-mada-masr",
@@ -25,7 +234,7 @@
       "lastCovered": "2026-05-01T04:09:01.197Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-04-30-lobito-corridor-us-china-africa-critical-metals-rail",
@@ -42,7 +251,7 @@
       "lastCovered": "2026-05-01T04:09:01.197Z",
       "coverageCount": 2,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-04-30-coupang-data-breach-korea-us-tech-protection-precedent",
@@ -59,7 +268,7 @@
       "lastCovered": "2026-05-01T04:09:01.197Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-30-louisiana-supreme-court-redistrict-voting-rights"
@@ -84,7 +293,7 @@
       "lastCovered": "2026-05-01T04:09:01.197Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-30-bangladesh-student-protestors-revolution-aftermath"
@@ -100,7 +309,7 @@
       "lastCovered": "2026-05-01T04:09:01.197Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-30-afghan-allies-relocated-congo-minerals-deal"
@@ -116,7 +325,7 @@
       "lastCovered": "2026-05-01T04:09:01.197Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-01-us-oil-intensity-hormuz-shock-gasoline"
@@ -132,7 +341,7 @@
       "lastCovered": "2026-05-01T04:09:01.197Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-01-nisar-radar-mexico-city-subsidence"
@@ -148,7 +357,7 @@
       "lastCovered": "2026-05-01T04:09:01.197Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-30-china-fossil-controls-cleantech-export-surge"
@@ -164,7 +373,7 @@
       "lastCovered": "2026-05-01T04:09:01.197Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-04-30-asia-data-center-environmental-disclosure-gap"
@@ -180,7 +389,7 @@
       "lastCovered": "2026-05-01T04:09:01.197Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-01-stock-market-holiday-today-are-nse-bse-mcx-open-or-closed-on"
@@ -205,7 +414,7 @@
       "lastCovered": "2026-04-30T22:06:31.630Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-30-khamenei-iran-ongoing-control-strait-hormuz"
@@ -230,7 +439,7 @@
       "lastCovered": "2026-04-30T22:06:31.630Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-30-israel-seizes-sumud-gaza-aid-flotilla-international-waters"
@@ -255,7 +464,7 @@
       "lastCovered": "2026-04-30T22:06:31.630Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-30-first-us-venezuela-commercial-flight-caracas-seven-years"
@@ -280,7 +489,7 @@
       "lastCovered": "2026-04-30T22:06:31.630Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-30-kyrgyz-security-chief-coup-plotting-charge-japarov"
@@ -296,7 +505,7 @@
       "lastCovered": "2026-04-30T22:06:31.630Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-30-roblox-bookings-cut-child-safety-user-decline"
@@ -315,45 +524,13 @@
       ]
     },
     {
-      "id": "oil-prices-four-year-high-iran-war-passthrough",
-      "label": "Oil prices touched their highest level in 4 years. What does it mean for shoppers?",
-      "firstSeen": "2026-04-30T22:06:31.630Z",
-      "lastCovered": "2026-04-30T22:06:31.630Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-30-oil-prices-four-year-high-iran-war-passthrough"
-      ],
-      "eventUri": "zho-2021840",
-      "summary": "Brent has hit a 4-year high as the Iran war and Hormuz uncertainty bid up the barrel — and US retail diesel/gasoline pass-through is starting to land. The angle: this is the macro receipt for the Khamenei-Strait story; one news cycle, two sides of the same chokepoint shock. Lead with the price level and the specific consumer items already moving (diesel → trucking → grocery). Tie back to the Pentagon's $25B Iran-war cost figure on the ledger.",
-      "conceptUris": []
-    },
-    {
-      "id": "2025-cocaine-seizures-shift-west-africa-europe-corridors",
-      "label": "InSight Crime's 2025 Cocaine Seizure Round-Up",
-      "firstSeen": "2026-04-30T22:06:31.630Z",
-      "lastCovered": "2026-04-30T22:06:31.630Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 5,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-30-2025-cocaine-seizures-shift-west-africa-europe-corridors"
-      ],
-      "eventUri": null,
-      "summary": "InSight Crime's annual seizure tally maps where cocaine was intercepted in 2025 — and the geography has shifted decisively from the Caribbean to West African and European Atlantic ports. The angle: seizure data is the only public proxy for the trade itself, and the redirect through Senegal/Guinea-Bissau/Spain reveals where the new corridors run. Lead with the largest single seizures and the country shifts, then the implication for African coastal states becoming transshipment hubs.",
-      "conceptUris": []
-    },
-    {
       "id": "quantum-key-distribution-existing-fiber-coexistence-breakthrough",
       "label": "A longstanding quantum roadblock just fell, opening existing fiber networks to ultra-secure light signals",
       "firstSeen": "2026-04-30T22:06:31.630Z",
       "lastCovered": "2026-04-30T22:06:31.630Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-30-quantum-key-distribution-existing-fiber-coexistence-breakthrough"
@@ -369,7 +546,7 @@
       "lastCovered": "2026-04-30T22:06:31.630Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-30-engineered-ecoli-19-amino-acid-genetic-code"
@@ -385,7 +562,7 @@
       "lastCovered": "2026-04-30T22:06:31.630Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-04-30-severe-linux-kernel-privilege-escalation-cloud-scramble"
@@ -401,7 +578,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-30-pivotal-us-iran-war-deadline-approaches-with-no-end-in-sight"
@@ -426,7 +603,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-29-moscow-9-may-parade-no-military-equipment"
@@ -451,7 +628,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-29-israel-double-tap-strike-kills-lebanese-aid-workers"
@@ -467,7 +644,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-30-sudanese-refugees-drown-tobruk-libya"
@@ -483,7 +660,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-29-el-jardinero-cjng-power-broker-arrested-mexico"
@@ -499,7 +676,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-30-ecb-rates-iran-war-eurozone-inflation"
@@ -524,7 +701,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-30-aung-san-suu-kyi-moved-house-arrest-myanmar"
@@ -549,7 +726,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-30-egypt-draft-budget-debt-borrowing-half-resources"
@@ -565,7 +742,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-30-flock-cameras-childrens-gymnastics-sales-demo-dunwoody"
@@ -581,7 +758,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-30-craig-venter-human-genome-scientist-dies-79"
@@ -606,7 +783,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-30-coral-reef-expansion-20-million-years-origin"
@@ -622,7 +799,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-30-microsoft-open-sources-earliest-dos-source-code"
@@ -638,7 +815,7 @@
       "lastCovered": "2026-04-30T17:09:09.177Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-04-30-japan-airkamuy-cardboard-suicide-drones"
@@ -654,7 +831,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-30-press-freedom-at-lowest-level-in-25-years-rsf"
@@ -679,7 +856,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-30-zelenskyy-responds-to-putin-s-proposal-to-declare-ceasefire"
@@ -704,7 +881,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-30-gaza-s-medical-evacuation-crisis-is-leaving-thousands-withou"
@@ -720,7 +897,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-30-sindh-education-department-to-introduce-religious-textbooks"
@@ -736,7 +913,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-30-us-court-dismisses-rohingya-hate-speech-lawsuit-against-meta"
@@ -752,7 +929,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-30-belgium-in-talks-with-engie-to-nationalise-country-s-nuclear"
@@ -777,7 +954,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-30-an-old-railroad-is-key-to-u-s-china-race-for-critical-metals"
@@ -793,7 +970,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-30-smog-from-wildfires-increasingly-harmful-data-show"
@@ -809,7 +986,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-29-will-chinese-megaprojects-solve-northern-peru-s-water-crisis"
@@ -825,7 +1002,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-30-coupang-probe-tests-the-u-s-s-willingness-to-protect-its-tec"
@@ -841,7 +1018,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-30-google-s-privacy-maze-how-gemini-traps-you-and-your-data"
@@ -857,7 +1034,7 @@
       "lastCovered": "2026-04-30T12:05:20.304Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-30-crypto-hacks-continue-as-wasabi-protocol-drained-for-4-5-mil"
@@ -873,7 +1050,7 @@
       "lastCovered": "2026-04-30T08:08:59.422Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-30-russian-drones-strike-ukraine-s-odesa-overnight-wounding-18"
@@ -898,7 +1075,7 @@
       "lastCovered": "2026-04-30T08:08:59.422Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-29-vaishnaw-flags-off-jammu-srinagar-vande-bharat-services-from"
@@ -923,7 +1100,7 @@
       "lastCovered": "2026-04-30T08:08:59.422Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-30-supreme-court-says-minor-cannot-be-forced-to-carry-pregnancy"
@@ -948,7 +1125,7 @@
       "lastCovered": "2026-04-30T08:08:59.422Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-29-5-takeaways-from-2025-s-cocaine-seizure-data"
@@ -964,7 +1141,7 @@
       "lastCovered": "2026-04-30T08:08:59.422Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-30-india-s-bangladesh-gamble"
@@ -980,7 +1157,7 @@
       "lastCovered": "2026-04-30T08:08:59.422Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-30-snow-cover-on-greek-mountains-has-more-than-halved-in-four-d"
@@ -996,7 +1173,7 @@
       "lastCovered": "2026-04-30T08:08:59.422Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-29-a-2022-law-may-be-quietly-helping-people-stay-on-their-meds"
@@ -1012,7 +1189,7 @@
       "lastCovered": "2026-04-30T08:08:59.422Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-28-your-phone-is-about-to-stop-being-yours"
@@ -1028,7 +1205,7 @@
       "lastCovered": "2026-04-30T08:08:59.422Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-28-ghostty-is-leaving-github"
@@ -1044,262 +1221,13 @@
       "lastCovered": "2026-04-30T08:08:59.422Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-04-28-humanitarian-aid-turns-to-ai-as-crises-outpace-capacity"
       ],
       "eventUri": null,
       "summary": "The IRC's Signpost service is using LLM-powered chatbots to triage refugee queries (asylum procedures, shelter, medical) at scale across Sudan, Gaza, Ukraine and Latin America — caseloads grew faster than caseworkers could be hired. Lead with the scale (queries served, languages, geographies) and one named failure mode (hallucinated legal advice, missed protection cases). Structural angle: humanitarian AI is happening because the funding gap is widening, not because the technology is ready — and the populations being experimented on have no realistic alternative.",
-      "conceptUris": []
-    },
-    {
-      "id": "top-10-islamic-fintech-markets-by-size",
-      "label": "Top 10 Islamic fintech markets by size",
-      "firstSeen": "2026-04-29T12:09:42.247Z",
-      "lastCovered": "2026-05-01T04:09:01.197Z",
-      "coverageCount": 4,
-      "category": "economy",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-29-top-10-islamic-fintech-markets-by-size",
-        "2026-04-29-top-islamic-fintech-markets-ranking"
-      ],
-      "eventUri": null,
-      "summary": "Salaam Gateway's ranking of the ten largest Islamic fintech markets — Saudi Arabia, Iran, Malaysia, UAE, Indonesia at the top — surfaces an underreported shift: Iran ranks second despite sanctions, because domestic shariah-compliant fintech is one of the only legal payment rails left after SWIFT cutoffs. Lead with that paradox. The structural angle for the reader is that Islamic fintech is no longer a niche product line; it is the de facto financial system for ~250 million people in jurisdictions where conventional rails have been weaponised.",
-      "conceptUris": []
-    },
-    {
-      "id": "us-losing-central-asia-critical-minerals-race",
-      "label": "The United States Is Losing the Race for Central Asia's Critical Minerals",
-      "firstSeen": "2026-04-29T22:04:19.491Z",
-      "lastCovered": "2026-04-30T08:08:59.422Z",
-      "coverageCount": 2,
-      "category": "politics",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-29-us-losing-central-asia-critical-minerals-race",
-        "2026-04-29-the-united-states-is-losing-the-race-for-central-asia-s-crit"
-      ],
-      "eventUri": null,
-      "summary": "Kazakhstan, Uzbekistan, and Kyrgyzstan hold large reserves of rare earths and critical minerals — and Chinese and Russian firms are locking in offtake while Washington sends working groups. The angle: a structural shift in the supply chain that powers EVs, wind turbines, and missile guidance is happening without US participation, and Central Asian governments are quietly choosing buyers. Lead with one concrete contract or refinery deal that already went to Beijing or Moscow, then explain why this matters to readers thinking about who controls 21st-century industrial power.",
-      "conceptUris": []
-    },
-    {
-      "id": "sri-lanka-imf-conditions-stagflation-risk",
-      "label": "Between IMF Conditions and Rising Prices, Is Sri Lanka Heading Toward Stagflation?",
-      "firstSeen": "2026-04-29T22:04:19.491Z",
-      "lastCovered": "2026-04-30T08:08:59.422Z",
-      "coverageCount": 2,
-      "category": "economy",
-      "importance": 1,
-      "arc": "developing",
-      "articles": [
-        "2026-04-29-sri-lanka-imf-conditions-stagflation-risk",
-        "2026-04-29-between-imf-conditions-and-rising-prices-is-sri-lanka-headin"
-      ],
-      "eventUri": null,
-      "summary": "Sri Lanka's inflation is now driven by costs (energy, IMF-mandated tax hikes, currency pass-through) rather than demand — the textbook setup for stagflation in a country that is still mid-recovery from its 2022 default. The angle: IMF conditionality designed to stabilize the currency may be the very thing tipping the real economy back into contraction. Lead with the cost-push numbers, then explain the policy trap — and what it signals for other Global South borrowers (Pakistan, Egypt, Kenya) on similar IMF programmes.",
-      "conceptUris": []
-    },
-    {
-      "id": "nz-court-rejects-christchurch-gunman-plea-withdrawal",
-      "label": "New Zealand court rejects mosque gunman's bid to withdraw guilty pleas",
-      "firstSeen": "2026-04-30T04:05:09.312Z",
-      "lastCovered": "2026-04-30T04:05:09.312Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-30-nz-court-rejects-christchurch-gunman-plea-withdrawal"
-      ],
-      "eventUri": "eng-11613680",
-      "summary": "New Zealand's Court of Appeal rejected Brenton Tarrant's attempt to withdraw guilty pleas for the 2019 Christchurch attacks that killed 51 Muslim worshippers — meaning the white supremacist will serve out his life-without-parole sentence with no retrial. The angle: dignity for the 51 named victims and a precedent against far-right defendants weaponising the courtroom for re-radicalisation theatre. Lead with the court's reasoning, name the victims' community, and frame against the global pattern of mosque attacks that anti-Muslim ideology continues to fuel.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Mosque",
-        "http://en.wikipedia.org/wiki/Christchurch",
-        "http://en.wikipedia.org/wiki/New_Zealand",
-        "http://en.wikipedia.org/wiki/Terrorism",
-        "http://en.wikipedia.org/wiki/White_supremacy"
-      ]
-    },
-    {
-      "id": "trump-germany-troop-reduction-nato-review",
-      "label": "Trump says the US is reviewing a potential reduction of its troops in Germany",
-      "firstSeen": "2026-04-30T04:05:09.312Z",
-      "lastCovered": "2026-04-30T04:05:09.312Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-30-trump-germany-troop-reduction-nato-review"
-      ],
-      "eventUri": "eng-11613397",
-      "summary": "Trump publicly confirmed on Truth Social that the US is reviewing a drawdown of troops in Germany — the largest US footprint in Europe and the logistical backbone of NATO operations from Ukraine to the Middle East. The angle: this is the first explicit presidential signal that the post-1945 transatlantic security architecture is on the table, even as the Iran war and Ukraine drag on. Lead with the troop numbers (roughly 35,000), name Ramstein and Stuttgart's role in CENTCOM logistics, and explain why a withdrawal would force European militaries to confront capabilities they have not built in 30 years.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Friedrich_Merz",
-        "http://en.wikipedia.org/wiki/Europe",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Germany",
-        "http://en.wikipedia.org/wiki/NATO"
-      ]
-    },
-    {
-      "id": "israel-tanks-netting-hezbollah-fpv-drones-lebanon",
-      "label": "Israel Now Using Netting To Protect Combat Vehicles Against Scourge Of Hezbollah Drones",
-      "firstSeen": "2026-04-30T04:05:09.312Z",
-      "lastCovered": "2026-04-30T04:05:09.312Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-30-israel-tanks-netting-hezbollah-fpv-drones-lebanon"
-      ],
-      "eventUri": null,
-      "summary": "The IDF is bolting wire mesh and netting onto Merkava tanks and armored vehicles in southern Lebanon — a battlefield admission that cheap Hezbollah FPV drones are penetrating the world's most expensive armored fleet. The angle: a $500 quadcopter is forcing a $7M tank to be wrapped in chicken wire, the same lesson Russia learned in Ukraine. Lead with the image of the netting, explain the kinetic geometry of FPV strikes against turret roofs, and frame this as the southern Lebanon front becoming a live testbed of the new asymmetric drone war — three months into a 'ceasefire' that has not stopped daily strikes.",
-      "conceptUris": []
-    },
-    {
-      "id": "india-bangladesh-high-commissioner-political-appointment",
-      "label": "India's Bangladesh gamble",
-      "firstSeen": "2026-04-30T04:05:09.312Z",
-      "lastCovered": "2026-04-30T04:05:09.312Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-30-india-bangladesh-high-commissioner-political-appointment"
-      ],
-      "eventUri": null,
-      "summary": "Delhi has appointed a career BJP politician — not a career diplomat — as high commissioner to Dhaka, breaking decades of convention and signaling a personalised, party-driven bet on the post-Hasina interim government. The angle: South Asia's most consequential bilateral relationship is being run on personal chemistry rather than institutional expertise, just as Bangladesh's election calendar tightens and Beijing courts Dhaka aggressively. Lead with the appointment break, name who Modi chose and why, and explain the stakes for water-sharing, border security, and the 1.7 million Rohingya whose status hinges on Dhaka-Delhi alignment.",
-      "conceptUris": []
-    },
-    {
-      "id": "uae-opec-exit-quota-dispute-saudi",
-      "label": "UAE to leave OPEC",
-      "firstSeen": "2026-04-30T04:05:09.312Z",
-      "lastCovered": "2026-04-30T04:05:09.312Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-28-uae-opec-exit-quota-dispute-saudi"
-      ],
-      "eventUri": null,
-      "summary": "The UAE is preparing to exit OPEC after 50 years of membership, frustrated that Saudi-led production quotas cap Abu Dhabi's $150B upstream investments at a fraction of nameplate capacity. The angle: this is the most consequential crack in the cartel since Qatar's 2019 departure, and it splits the Gulf at the exact moment Iran war disruptions are pushing Brent past $115. Lead with the quota dispute (UAE wants 4M+ b/d, OPEC allots ~3.2M), explain ADNOC's IPO incentives that demand higher production, and frame the geopolitical wedge: Riyadh-Abu Dhabi divergence reshapes both energy markets and the Gulf's posture toward Tehran.",
-      "conceptUris": []
-    },
-    {
-      "id": "india-ethanol-flex-fuel-emission-rules-e85-e100",
-      "label": "Govt proposes emission rule changes to boost ethanol blends, flex-fuel vehicles",
-      "firstSeen": "2026-04-30T04:05:09.312Z",
-      "lastCovered": "2026-04-30T04:05:09.312Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-30-india-ethanol-flex-fuel-emission-rules-e85-e100"
-      ],
-      "eventUri": "eng-11610328",
-      "summary": "India's draft amendments to the Central Motor Vehicles Rules legitimise E85, E100, B100 biodiesel and hydrogen-CNG blends — opening the regulatory door for flex-fuel vehicles that until now had no certification path. The angle: with E20 already deployed nationwide, this is India committing to sugarcane and corn ethanol at a scale that will reshape Bihar and UP farm economics, oil-import math (~$15B implied savings at 2030 targets), and the auto industry's EV-vs-flex-fuel split. Lead with what the rule actually permits, the agricultural feedstock dependence that flex-fuel embeds, and the food-vs-fuel tension already visible in sugar price spikes.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Common_ethanol_fuel_mixtures",
-        "http://en.wikipedia.org/wiki/Ethanol",
-        "http://en.wikipedia.org/wiki/Flexible-fuel_vehicle",
-        "http://en.wikipedia.org/wiki/Biodiesel",
-        "http://en.wikipedia.org/wiki/Gasoline"
-      ]
-    },
-    {
-      "id": "port-churchill-arctic-gateway-canada-sovereignty",
-      "label": "The 'Polar Bear Capital' with Arctic gateway ambitions",
-      "firstSeen": "2026-04-30T04:05:09.312Z",
-      "lastCovered": "2026-04-30T04:05:09.312Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-29-port-churchill-arctic-gateway-canada-sovereignty"
-      ],
-      "eventUri": null,
-      "summary": "Canada's Port of Churchill, idle for most of the year and accessible just 4-5 months in summer, is being repositioned as a sub-Arctic export gateway as climate-driven sea-ice retreat lengthens shipping windows. The angle: Ottawa is treating Churchill as a sovereignty asset against US tariff coercion and Russian/Chinese Arctic ambitions, retrofitting a town of 900 into critical infrastructure. Lead with the seasonal-window math (climate change is the business case), the Manitoba grain and potash that would route through it, and the unresolved Indigenous consent questions in Cree and Inuit territory.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Port_of_Churchill",
-        "http://en.wikipedia.org/wiki/Canada",
-        "http://en.wikipedia.org/wiki/Arctic"
-      ]
-    },
-    {
-      "id": "iran-fall-armyworm-crops-war-agriculture",
-      "label": "Iran faces new threat as fall armyworm targets crops",
-      "firstSeen": "2026-04-30T04:05:09.312Z",
-      "lastCovered": "2026-04-30T04:05:09.312Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-29-iran-fall-armyworm-crops-war-agriculture"
-      ],
-      "eventUri": null,
-      "summary": "Fall armyworm — the invasive pest that devastated African and South Asian maize since 2016 — has crossed into Iran's grain belt, and the war is gutting the surveillance and pesticide-import capacity needed to fight it. The angle: sanctions and bombing don't just kill people, they kill the agronomic infrastructure that keeps a country fed, and Iran is about to learn what Sudan and Yemen already know. Lead with the armyworm biology (one female lays 1,500 eggs, larvae destroy 80+ crops), name the Khuzestan and Golestan regions at first risk, and explain how disrupted phytosanitary services turn a manageable pest into a famine vector.",
-      "conceptUris": []
-    },
-    {
-      "id": "ultrafinitism-mathematics-rejecting-infinity",
-      "label": "What Can We Gain by Losing Infinity?",
-      "firstSeen": "2026-04-30T04:05:09.312Z",
-      "lastCovered": "2026-04-30T04:05:09.312Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-29-ultrafinitism-mathematics-rejecting-infinity"
-      ],
-      "eventUri": null,
-      "summary": "Ultrafinitism — the long-derided philosophy that rejects mathematical infinity entirely — is producing real results in computer science, physics, and the foundations of math. The angle: a reader who already followed yesterday's Axiom of Choice piece gets a coherent through-line on what's actually being contested at the foundations right now. Lead with the concrete claim ultrafinitists make (numbers larger than feasible computation simply do not exist), name Doron Zeilberger and the working mathematicians who take this seriously, and explain why physics flirts with the idea every time it tries to make spacetime discrete.",
-      "conceptUris": []
-    },
-    {
-      "id": "house-fisa-702-reauthorization-warrant-backdoor",
-      "label": "House approves spy program on second attempt, Senate fate murky",
-      "firstSeen": "2026-04-30T04:05:09.312Z",
-      "lastCovered": "2026-04-30T04:05:09.312Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-29-house-fisa-702-reauthorization-warrant-backdoor"
-      ],
-      "eventUri": null,
-      "summary": "The House passed a 3-year reauthorization of FISA Section 702 — 235-191 — after a first-attempt failure, with a watered-down warrant requirement that lets US persons' communications be queried without a probable-cause court order. The angle: this is the surveillance authority US intelligence used to read American journalists', activists', and Muslim community members' emails for a decade, and the 'reform' compromise preserves the warrantless backdoor. Lead with the vote count, name the dropped Davidson-Jayapal warrant amendment, and explain why the Senate fight matters for anyone who has ever emailed a foreign relative — particularly in the Iran war's expanded targeting environment.",
-      "conceptUris": []
-    },
-    {
-      "id": "android-developer-verification-sideloading-mandate",
-      "label": "Your phone is about to stop being yours",
-      "firstSeen": "2026-04-30T04:05:09.312Z",
-      "lastCovered": "2026-04-30T04:05:09.312Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-28-android-developer-verification-sideloading-mandate"
-      ],
-      "eventUri": null,
-      "summary": "Google's new Android Developer Verification mandate will require every app installed on certified Android devices — including sideloaded APKs — to be signed by a Google-verified developer identity, effectively ending anonymous app distribution on the world's dominant mobile OS. The angle: 3 billion Android users were sold a 'choose your own platform' device that is being retroactively converted into a curated walled garden, and the people who lose first are activists, journalists, and Muslims in surveillance states who depend on sideloading uncensored apps. Lead with what the mandate actually requires, name F-Droid and the privacy apps it threatens, and explain the regulatory irony that Google is doing this just as the EU's DMA tries to force the opposite direction.",
       "conceptUris": []
     }
   ]
