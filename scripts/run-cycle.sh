@@ -42,8 +42,14 @@ TOOLS_SELECTOR="Read,Write,Glob,Grep"
 TOOLS_WRITER="Read,Write"
 TOOLS_EDITOR="Read,Edit,Glob,Grep"
 TOOLS_REFLECT="Read,Write,Glob,Grep"
-# Common flags for all headless Claude CLI invocations (no --model: passed per stage)
-CLAUDE_FLAGS="--no-session-persistence"
+# Common flags for all headless Claude CLI invocations (no --model: passed per stage).
+#   --no-session-persistence   don't write resume state for headless calls
+#   --setting-sources project  skip ~/.claude/settings.json — only project settings
+#   --disable-slash-commands   skip user + project skills (cycle prompts are self-contained)
+#   --strict-mcp-config        skip every MCP server (we never pass --mcp-config)
+# Auto-memory still loads (tied to OAuth-compatible mode); prune memory files
+# manually if their content shouldn't reach the cycle.
+CLAUDE_FLAGS="--no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config"
 
 mkdir -p "$LOG_DIR"
 
