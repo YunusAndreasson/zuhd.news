@@ -94415,5 +94415,1837 @@
     "label": "War Powers & Iran's Air Defences",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-30-insight-crime-2025-cocaine-seizures-route-shift": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BALLOON EFFECT",
+        "body": "Pressure on coca production in one country pushes it to another, never eliminating it. When Peru cracked down in the 1990s, cultivation moved to Colombia. Plan Colombia (2000) pushed it back toward Peru and Bolivia. The total hectares barely changed across decades — only the map did.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Drug economists call this the **balloon effect**: squeeze one part, another bulges. It applies to cultivation, trafficking routes, and laboratories alike."
+          }
+        ]
+      },
+      {
+        "heading": "WHY COLOMBIA STILL DOMINATES",
+        "body": "Colombia produces roughly two-thirds of the world's cocaine. The Andean geography — high-altitude valleys with consistent rainfall, weak state presence in remote departments like Catatumbo and Nariño, and proximity to Pacific and Caribbean shipping lanes — is hard to replicate.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Colombia",
+                "value": 67,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Peru",
+                "value": 21,
+                "tone": "neutral"
+              },
+              {
+                "label": "Bolivia",
+                "value": 12,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global cocaine production share, 2024 est."
+          }
+        ]
+      },
+      {
+        "heading": "THE ROUTE CASCADE",
+        "body": "Cocaine leaves Colombia by sea or air, transits Central America or the Caribbean, then enters US or European markets. When one corridor hardens, traffic floods the next-weakest state. Honduras absorbed flow when Mexico tightened in the 2000s; Ecuador — historically peaceful — became a major transit hub after 2018, with its homicide rate quadrupling.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "co",
+                "label": "Colombia"
+              },
+              {
+                "id": "pe",
+                "label": "Peru/Bolivia"
+              },
+              {
+                "id": "ec",
+                "label": "Ecuador transit"
+              },
+              {
+                "id": "ca",
+                "label": "Central America"
+              },
+              {
+                "id": "car",
+                "label": "Caribbean"
+              },
+              {
+                "id": "us",
+                "label": "US market"
+              },
+              {
+                "id": "eu",
+                "label": "EU market"
+              }
+            ],
+            "links": [
+              {
+                "source": "co",
+                "target": "ec",
+                "value": 35
+              },
+              {
+                "source": "co",
+                "target": "ca",
+                "value": 40
+              },
+              {
+                "source": "co",
+                "target": "car",
+                "value": 25
+              },
+              {
+                "source": "pe",
+                "target": "ec",
+                "value": 15
+              },
+              {
+                "source": "pe",
+                "target": "car",
+                "value": 10
+              },
+              {
+                "source": "ec",
+                "target": "us",
+                "value": 25
+              },
+              {
+                "source": "ec",
+                "target": "eu",
+                "value": 25
+              },
+              {
+                "source": "ca",
+                "target": "us",
+                "value": 40
+              },
+              {
+                "source": "car",
+                "target": "us",
+                "value": 20
+              },
+              {
+                "source": "car",
+                "target": "eu",
+                "value": 15
+              }
+            ],
+            "label": "cocaine flow, Andean source to consumer markets"
+          }
+        ]
+      },
+      {
+        "heading": "LIQUID COCAINE",
+        "body": "Cocaine hydrochloride dissolves in water, alcohol, or oil. Traffickers impregnate clothing, soak it into wine bottles, mix it with diesel, even saturate plastic pellets. Modern container scanners look for density anomalies and crystalline structure — a homogeneous liquid passes through invisibly. Recovery requires a lab and acid extraction at the destination."
+      },
+      {
+        "heading": "THE NON-COOPERATION DESIGNATION",
+        "body": "Under US law (22 USC §2291j), the President annually designates major drug-producing countries that 'failed demonstrably' to meet counter-narcotics obligations. The label triggers automatic foreign-aid cuts unless waived for national-security reasons. Colombia's designation is striking because it follows two decades of being Washington's closest counter-narcotics partner — over $10 billion in Plan Colombia funding since 2000.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does the US 'non-cooperation' designation under 22 USC §2291j primarily trigger?",
+            "options": [
+              "Automatic military intervention",
+              "Automatic foreign-aid cuts unless waived for national-security reasons",
+              "Suspension from the OAS",
+              "Tariffs on the country's exports"
+            ],
+            "correct": 1,
+            "explanation": "The designation cuts most US foreign aid by default; the President can waive it on national-security grounds, which is how it's typically applied as diplomatic leverage rather than enforcement."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SEIZURES RISE WHEN ENFORCEMENT WORKS — AND WHEN IT FAILS",
+        "body": "A seizure surge is genuinely ambiguous. It can mean enforcement is winning (more interdictions per shipment) or that production has expanded so much that even constant interdiction rates yield more tons. Colombian coca cultivation hit record highs in 2023-24 per UNODC monitoring, suggesting the second story is closer to the truth."
+      }
+    ],
+    "generatedAt": "2026-05-01T22:39:15.977Z",
+    "label": "Cocaine Geography & the Balloon Effect",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-04-30-lobito-railway-us-china-africa-critical-minerals": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "The Lobito corridor runs 1,300 km from the Atlantic port of Lobito in Angola through to the copper-cobalt belt straddling southern DRC and Zambia. It cuts the route to market by roughly two-thirds compared to the eastward rail to Dar es Salaam or the truck route to Durban.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AO",
+              "CD",
+              "ZM"
+            ],
+            "label": "the corridor",
+            "markers": [
+              {
+                "lat": -12.3644,
+                "lng": 13.5456,
+                "label": "Lobito port"
+              },
+              {
+                "lat": -10.7167,
+                "lng": 26.6667,
+                "label": "Kolwezi (cobalt belt)"
+              },
+              {
+                "lat": -12.8083,
+                "lng": 28.2,
+                "label": "Chingola (copper)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BENGUELA RAILWAY",
+        "body": "The line was originally built between 1903 and 1929 by Portuguese colonial authorities and British financier Robert Williams to ship Katangan copper to the Atlantic. Angola's civil war (1975–2002) tore up the rails; UNITA mined the line, the Soviets and Cubans defended Luanda, and the corridor sat dormant for nearly three decades.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1929",
+                "label": "Benguela Railway completed"
+              },
+              {
+                "year": "1975",
+                "label": "Angolan independence; civil war begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2002",
+                "label": "Civil war ends"
+              },
+              {
+                "year": "2014",
+                "label": "China-rebuilt line reopens"
+              },
+              {
+                "year": "2024",
+                "label": "US-led Lobito consortium signs"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1975",
+                "to": "2002",
+                "label": "corridor inoperable",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "the corridor's long arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE MINERAL STAKES",
+        "body": "DRC produces roughly **70%** of the world's cobalt and is the second-largest copper producer. Cobalt is essential to current lithium-ion battery cathodes; copper is the bottleneck metal for every electrification scenario through 2050.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "DR Congo",
+                "value": 70,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Indonesia",
+                "value": 11,
+                "tone": "neutral"
+              },
+              {
+                "label": "Russia",
+                "value": 4,
+                "tone": "favorable"
+              },
+              {
+                "label": "Australia",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Philippines",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Canada",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Cuba",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Other",
+                "value": 5,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global cobalt mine production, 2024 (approx. share)"
+          },
+          {
+            "type": "prose",
+            "text": "The asymmetry the US is trying to crack: China refines roughly **three-quarters** of the world's cobalt and over **half** its copper, even when it mines almost none of either."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHINA OWNED THIS FIRST",
+        "body": "Beijing's Sicomines deal (2008) traded $6bn in Congolese infrastructure — roads, hospitals, the Kolwezi-bound TAZARA upgrade — for a stake in copper-cobalt concessions. By 2020, Chinese firms controlled roughly 15 of DRC's 19 largest cobalt mines. The corridor question is downstream: whoever moves the ore moves the supply chain.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Chinese firms",
+                "value": "~70%",
+                "tone": "unfavorable",
+                "weight": 70
+              },
+              {
+                "label": "Glencore (Swiss)",
+                "value": "~20%",
+                "tone": "neutral",
+                "weight": 20
+              },
+              {
+                "label": "Other Western",
+                "value": "~5%",
+                "tone": "favorable",
+                "weight": 5
+              },
+              {
+                "label": "Congolese state",
+                "value": "~5%",
+                "tone": "neutral",
+                "weight": 5
+              }
+            ],
+            "label": "DRC cobalt mine ownership, 2024 est."
+          }
+        ]
+      },
+      {
+        "heading": "THE PGI PLAYBOOK",
+        "body": "The Lobito investment is the flagship project of the G7's *Partnership for Global Infrastructure and Investment* — Washington's answer to China's Belt and Road. PGI promised $600bn over five years (2022–2027); actual mobilized capital has run far behind, and Lobito is the test case for whether the framework can deliver a single intercontinental corridor."
+      },
+      {
+        "heading": "THE HEDGE",
+        "body": "Neither Angola nor DRC has committed exclusively. Luanda still hosts Chinese-built ports at Caio and Barra do Dande; Kinshasa renegotiated rather than canceled Sicomines in 2024. The pattern across resource-rich African states is non-alignment as leverage — extracting better terms by keeping both bidders at the table.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country produces roughly 70% of the world's mined cobalt?",
+            "options": [
+              "Indonesia",
+              "DR Congo",
+              "Australia",
+              "China"
+            ],
+            "correct": 1,
+            "explanation": "DRC dominates mining; China dominates refining. The Lobito corridor fight is about who moves the ore from one to the other."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-01T22:39:52.169Z",
+    "label": "The Lobito Corridor",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-01-cambrian-china-lagerstatte-rewrites-early-life": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A LAGERSTÄTTE IS",
+        "body": "German for 'storage place,' a Lagerstätte is a fossil site with exceptional preservation — soft tissues, gut contents, even neural traces. Most fossils are bones and shells; Lagerstätten capture the 90% of past life that was never mineralized.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The two flavors: *Konservat-Lagerstätten* preserve soft anatomy (Burgess Shale, Chengjiang); *Konzentrat-Lagerstätten* are dense bone-bed accumulations (La Brea). Cambrian science depends almost entirely on the first kind."
+          }
+        ]
+      },
+      {
+        "heading": "THE CAMBRIAN EXPLOSION",
+        "body": "Roughly 538 million years ago, nearly every major animal body plan alive today appeared in the fossil record within ~20 million years. Before it: microbial mats and Ediacaran fronds. After it: arthropods, chordates, molluscs — the architecture of modern life, locked in."
+      },
+      {
+        "heading": "WHY SOFT TISSUE SHOULDN'T SURVIVE",
+        "body": "Decay starts within hours of death. To fossilize soft tissue requires rapid burial in oxygen-poor sediment, fine-grained mud that molds the body before bacteria consume it, and stable chemistry over half a billion years. The combination is so rare that the world's significant Cambrian Lagerstätten can be counted on two hands."
+      },
+      {
+        "heading": "WHY CHINA DOMINATES THIS FIELD",
+        "body": "The Chengjiang biota in Yunnan, discovered 1984, predates the Burgess Shale by ~10 million years and preserves earlier-stage soft-bodied fauna. Southern China's Cambrian seafloors were repeatedly buried by fine volcanic ash — the ideal preservation matrix. The geography did the science a favor.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN"
+            ],
+            "label": "Cambrian fossil belt, southern China",
+            "markers": [
+              {
+                "lat": 24.6747,
+                "lng": 102.9783,
+                "label": "Chengjiang biota (Yunnan)"
+              },
+              {
+                "lat": 28.7,
+                "lng": 109,
+                "label": "Guanshan / Qingjiang region"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE ORDOVICIAN BRIDGE",
+        "body": "After the initial Cambrian burst, the Great Ordovician Biodiversification Event (~485–460 mya) tripled marine genera. The interval between the two — long thought to be a quiet plateau — is exactly where these new fossils land, suggesting diversification was continuous rather than punctuated."
+      },
+      {
+        "heading": "WHY 'NEW TO SCIENCE' MATTERS",
+        "body": "Half the species being unknown isn't a footnote — it means the existing tree of early animal life has gaps the size of entire body plans. Each new soft-bodied taxon either fills a predicted node or forces phylogeneticists to redraw branches.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are most Cambrian Lagerstätten located in what is now China?",
+            "options": [
+              "Cambrian seas only existed in that latitude",
+              "Repeated fine volcanic ash burial preserved soft tissue",
+              "Chinese paleontologists discovered fossilization first",
+              "The continents have not moved since the Cambrian"
+            ],
+            "correct": 1,
+            "explanation": "Southern China's Cambrian seafloors were buried by fine volcanic ash that molded soft tissue before decay — the chemistry, not the geography, is what made the region exceptional."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-01T22:40:25.862Z",
+    "label": "Cambrian Lagerstätten",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-01-eu-parliament-trump-car-tariff-unreliable-partner": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BASELINE GAP",
+        "body": "Before any Trump-era hike, the EU charged 10% on US car imports while the US charged 2.5% on EU cars — a four-to-one asymmetry that has irritated every American administration since Reagan. The light truck loophole is the mirror image: a 25% US tariff on pickups, dating to the 1964 Chicken War with Europe over frozen poultry, that has never been repealed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **Chicken Tax** of 1964 is the longest-surviving retaliatory tariff in modern US trade policy — six decades after the dispute it answered ended."
+          }
+        ]
+      },
+      {
+        "heading": "WHY AUTOS, ALWAYS",
+        "body": "Cars are the largest single category of transatlantic goods trade and the most politically visible. Germany alone exports roughly half a million vehicles a year to the US; a tariff shock lands directly on Wolfsburg, Stuttgart, and Munich — the industrial spine of the EU's largest economy.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Germany",
+                "value": "~500k units",
+                "cc": "DE",
+                "weight": 500,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Italy",
+                "value": "~80k units",
+                "cc": "IT",
+                "weight": 80
+              },
+              {
+                "label": "Sweden",
+                "value": "~70k units",
+                "cc": "SE",
+                "weight": 70
+              },
+              {
+                "label": "Slovakia",
+                "value": "~60k units",
+                "cc": "SK",
+                "weight": 60
+              },
+              {
+                "label": "Hungary",
+                "value": "~40k units",
+                "cc": "HU",
+                "weight": 40
+              }
+            ],
+            "label": "EU car exports to the US, 2024 (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "SECTION 232",
+        "body": "The legal mechanism is the same one Trump used in his first term: Section 232 of the Trade Expansion Act of 1962, which lets the president raise tariffs unilaterally on national-security grounds without Congress. It was designed for Cold War strategic minerals; its use against allied passenger cars stretches the statute past anything its drafters imagined."
+      },
+      {
+        "heading": "THE EU'S RETALIATION PLAYBOOK",
+        "body": "Brussels does not match tariffs ton-for-ton. It targets politically symbolic American exports concentrated in Republican-leaning states — Harley-Davidsons (Wisconsin), bourbon (Kentucky), Levi's (originating from California but produced widely), peanut butter, motorcycles. The 2018 retaliation list was drafted to land on McConnell's and Ryan's home districts.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When the EU retaliated against US steel tariffs in 2018, which products did it target first?",
+            "options": [
+              "American semiconductors and aerospace components",
+              "Harley-Davidson motorcycles, bourbon, and Levi's jeans",
+              "California wine and Hollywood film exports",
+              "US soybeans and corn"
+            ],
+            "correct": 1,
+            "explanation": "Brussels deliberately picked products tied to senior Republican politicians' home states — the goal is domestic political pressure on the administration, not symmetric economic damage."
+          }
+        ]
+      },
+      {
+        "heading": "THE UNRELIABLE-PARTNER PROBLEM",
+        "body": "Trade deals depend on the assumption that signed terms hold across administrations. The Turnberry-style ceiling matters less for its specific number than for whether Washington's signature still binds the next four years. The EU's 'conditional ratification with sunset' is the diplomatic vocabulary for not trusting the counterparty."
+      },
+      {
+        "heading": "THE WTO BACKDROP",
+        "body": "Both sides nominally operate under WTO most-favored-nation rules, which forbid bilateral tariff hikes outside negotiated exceptions. The Appellate Body — the WTO's supreme court for trade disputes — has been non-functional since 2019, when the US blocked judge appointments. Without it, rulings cannot be enforced, and trade law has reverted to bilateral leverage."
+      }
+    ],
+    "generatedAt": "2026-05-01T22:40:56.988Z",
+    "label": "EU-US Auto Tariffs & Trade Asymmetry",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-01-iran-oil-exports-resilient-trump-sanctions-shadow-fleet": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STORAGE TRAP",
+        "body": "Oil sanctions aim for a specific failure mode: when buyers vanish faster than tankers can sail, crude backs up into onshore tank farms, then floating storage, then the wellhead itself. Once storage fills, producers must choke back wells — and restarting an aging field after a forced shutdown can permanently damage reservoir pressure.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pressure point is **wellhead shutdown**, not export volume. A field that flows at 2 mbpd and is choked to zero may only restart at 1.5 mbpd."
+          }
+        ]
+      },
+      {
+        "heading": "THE SHADOW FLEET",
+        "body": "Iran moves crude through hundreds of aging tankers that disable AIS transponders, repaint hulls mid-voyage, and conduct ship-to-ship transfers in the dark off Malaysia and the UAE. Buyers — overwhelmingly Chinese independent 'teapot' refiners — take delivery of 'Malaysian' or 'Omani' crude that satellite imagery traces back to Kharg Island.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China (teapots)",
+                "value": "~90%",
+                "cc": "CN",
+                "weight": 90,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Syria",
+                "value": "~5%",
+                "cc": "SY",
+                "weight": 5,
+                "tone": "neutral"
+              },
+              {
+                "label": "Other / unknown",
+                "value": "~5%",
+                "weight": 5,
+                "tone": "neutral"
+              }
+            ],
+            "label": "estimated Iran crude buyers, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "WHY KHARG IS THE BOTTLENECK",
+        "body": "Roughly 90% of Iranian crude exports load at a single terminal — Kharg Island, 25 km off the Gulf coast. Iraq bombed it repeatedly during the Tanker War (1984–88) and never knocked it offline; Iran kept exporting via shuttle tankers to Sirri and Larak further south. The lesson both sides took: Kharg is irreplaceable, and resilient.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "IQ"
+            ],
+            "label": "Iran's Gulf export terminals",
+            "markers": [
+              {
+                "lat": 29.2333,
+                "lng": 50.3167,
+                "label": "Kharg Island terminal"
+              },
+              {
+                "lat": 25.9,
+                "lng": 54.5,
+                "label": "Sirri Island"
+              },
+              {
+                "lat": 26.85,
+                "lng": 56,
+                "label": "Larak Island"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BRENT FLOOR",
+        "body": "Sanctions are easier to impose when global spare capacity is high — Saudi Arabia and the UAE can fill the gap and prices stay stable. With spare capacity tight and Brent above $120, every barrel of Iranian crude removed from the market raises prices for the sanctioning country's own consumers. The political pain compounds.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              279.079115,
+              278.399884,
+              278.399884,
+              278.399884,
+              279.05,
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75
+            ],
+            "periods": [
+              "Apr 2",
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE 1951 PRECEDENT",
+        "body": "When Mossadegh nationalized Anglo-Iranian Oil, Britain organized a global boycott that cut Iranian exports by over 90% for three years. It worked — the economy collapsed, the CIA-MI6 coup (Ajax, 1953) followed. But it required unanimous Western shipping cooperation in a world with no Chinese refining demand and no satellite-evading tanker networks. The toolkit needed for a 1951-style cutoff no longer exists.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1951",
+                "label": "Mossadegh nationalizes AIOC",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1953",
+                "label": "Operation Ajax coup"
+              },
+              {
+                "year": "1979",
+                "label": "Revolution; US embargo"
+              },
+              {
+                "year": "1995",
+                "label": "Clinton total embargo"
+              },
+              {
+                "year": "2012",
+                "label": "EU joins; SWIFT cutoff"
+              },
+              {
+                "year": "2015",
+                "label": "JCPOA; sanctions lifted"
+              },
+              {
+                "year": "2018",
+                "label": "Trump withdraws, max pressure"
+              },
+              {
+                "year": "2026",
+                "label": "Blockade strategy stalls"
+              }
+            ],
+            "label": "Iran oil sanctions, the long arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A BLOCKADE LEGALLY IS",
+        "body": "Under international law, a naval blockade is an act of war — it requires either declared armed conflict or UN Security Council authorization. Sanctions enforcement at sea (boardings, seizures) operates in a grayer zone: the US has used it for two decades against Iranian tankers under domestic authority, but allies treat actual port-denial differently from interdiction.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country buys roughly 90% of Iran's sanctioned crude oil exports?",
+            "options": [
+              "India",
+              "China",
+              "Russia",
+              "Turkey"
+            ],
+            "correct": 1,
+            "explanation": "Chinese independent 'teapot' refiners — small, privately-held, with no US asset exposure — absorb almost all sanctioned Iranian crude at steep discounts."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-01"
+    ],
+    "generatedAt": "2026-05-01T22:41:34.790Z",
+    "label": "Sanctioning Iranian Oil",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-01-iraq-pipeline-fiber-cloud-gulf-data-rerouting": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY SUBSEA DOMINATES",
+        "body": "Roughly 99% of intercontinental internet traffic moves through submarine cables, not satellites. A single modern cable carries hundreds of terabits per second; the entire global satellite fleet carries a rounding error by comparison.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The cliché that *the cloud* lives in the sky is exactly backwards — it lives in **glass strands on the seafloor**, mostly laid by a handful of cable ships."
+          }
+        ]
+      },
+      {
+        "heading": "THE GULF CHOKEPOINT",
+        "body": "Most Europe-Asia traffic threads through the Red Sea and the Gulf — past Yemen, past Hormuz, past Iran's coast. The same waterway that funnels oil also funnels data, and the same naval positions that threaten tankers threaten cables.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IQ",
+              "IR",
+              "SA",
+              "AE",
+              "OM",
+              "KW",
+              "TR",
+              "JO"
+            ],
+            "label": "the overland detour vs the maritime chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 30.5085,
+                "lng": 47.7804,
+                "label": "Basra landing"
+              },
+              {
+                "lat": 33.3152,
+                "lng": 44.3661,
+                "label": "Baghdad hub"
+              },
+              {
+                "lat": 36.9,
+                "lng": 42.35,
+                "label": "Fishkhabour (TR border)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 2008 PRECEDENT",
+        "body": "In early 2008, anchors severed the SEA-ME-WE 4 and FLAG cables off Egypt within days of each other. Internet capacity to India, the Gulf, and East Africa dropped by more than half overnight. The fragility of a few cable corridors became a planning assumption for every hyperscaler after that."
+      },
+      {
+        "heading": "WHY IRAQ, OF ALL PLACES",
+        "body": "Iraq sits on the only continuous overland path from the Gulf to the Mediterranean that avoids both Iranian and Syrian territory — Basra to Baghdad to the Turkish border at Fishkhabour, then onward to European landings. The route was upgraded after 2003 with US military fiber and is now operated commercially.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Red Sea subsea",
+                "value": "primary",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Iraq overland",
+                "value": "backup",
+                "tone": "favorable"
+              },
+              {
+                "label": "Iran overland",
+                "value": "sanctioned",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Saudi land cable",
+                "value": "partial",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Gulf-to-Europe data routes"
+          }
+        ]
+      },
+      {
+        "heading": "WHO OWNS THE CABLES",
+        "body": "Subsea infrastructure used to be a telco consortium business. Today the hyperscalers — Google, Meta, Microsoft, Amazon — own or co-own a majority of new transoceanic capacity. When they reroute, they are reconfiguring assets they paid for, not leasing space on someone else's network.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of new transoceanic cable capacity is owned or co-owned by hyperscalers (Google, Meta, Microsoft, Amazon)?",
+            "options": [
+              "Under 10%",
+              "About 25%",
+              "Over 60%",
+              "Effectively zero — telcos still dominate"
+            ],
+            "correct": 2,
+            "explanation": "By the mid-2020s hyperscalers backed the majority of new capacity, flipping a century-old telco-consortium model."
+          }
+        ]
+      },
+      {
+        "heading": "SOVEREIGNTY OVER PACKETS",
+        "body": "Whoever hosts the fiber sees the metadata, can throttle on demand, and can be served legal process by their own government. Baghdad becoming a transit hub for US cloud traffic is a quiet reversal — the country US forces occupied for surveillance reasons in 2003 is now positioned to surveil traffic flowing through its own pipes."
+      }
+    ],
+    "generatedAt": "2026-05-01T22:42:05.559Z",
+    "label": "Subsea Cables & the Gulf Detour",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-01-mali-jnim-bamako-checkpoints-tessalit-seized": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GROUP",
+        "body": "JNIM — Jama'at Nusrat al-Islam wal-Muslimin — formed in 2017 by merging four Sahelian jihadist factions under Iyad Ag Ghaly, a Tuareg notable who once negotiated hostage releases for the Malian state. It is the al-Qaeda franchise for the Sahel and now the most territorially successful jihadist insurgency on Earth.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The merger fused Tuareg separatist grievance (*Ansar Dine*), Arab smuggling networks (**al-Mourabitoun**), and Fulani herder mobilization (**Katiba Macina**) into one command — a coalition no counterinsurgency has been able to peel apart."
+          }
+        ]
+      },
+      {
+        "heading": "THE AZAWAD QUESTION",
+        "body": "Northern Mali — the Tuareg call it Azawad — has rebelled against Bamako roughly every decade since independence in 1960. The 2012 uprising briefly declared an independent state before jihadists hijacked it. Every Malian government has treated the north as a colony to be garrisoned, not a region to be governed; JNIM exploits the gap.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1963",
+                "label": "First Tuareg rebellion crushed"
+              },
+              {
+                "year": "1990",
+                "label": "Second Tuareg rebellion"
+              },
+              {
+                "year": "2006",
+                "label": "Third Tuareg rebellion"
+              },
+              {
+                "year": "2012",
+                "label": "Azawad independence declared",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2013",
+                "label": "French Operation Serval"
+              },
+              {
+                "year": "2017",
+                "label": "JNIM formed"
+              },
+              {
+                "year": "2022",
+                "label": "France expelled"
+              },
+              {
+                "year": "2026",
+                "label": "Tessalit falls"
+              }
+            ],
+            "label": "northern Mali rebellions"
+          }
+        ]
+      },
+      {
+        "heading": "THE WAGNER PIVOT",
+        "body": "Mali's 2020 and 2021 coups brought Colonel Assimi Goïta to power. He expelled French forces in 2022 and replaced them with Wagner Group mercenaries, rebranded as Africa Corps after Prigozhin's 2023 death. Russia trades counterinsurgency services for gold-mine concessions and UN votes — but mercenaries lack the air mobility and intelligence networks that French forces brought.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ML",
+              "BF",
+              "NE",
+              "DZ",
+              "MR"
+            ],
+            "label": "Sahel: the rebel arc",
+            "markers": [
+              {
+                "lat": 20.1986,
+                "lng": 1.0114,
+                "label": "Tessalit (fallen)"
+              },
+              {
+                "lat": 15.3333,
+                "lng": -1.4833,
+                "label": "Hombori (contested)"
+              },
+              {
+                "lat": 12.6392,
+                "lng": -8.0029,
+                "label": "Bamako"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SAHEL DOMINO",
+        "body": "Mali, Burkina Faso, and Niger all suffered jihadist-driven coups between 2020 and 2023. They formed the Alliance of Sahel States in 2024, quit ECOWAS, and aligned with Moscow. JNIM operates across all three borders — colonial-era frontiers mean nothing to Fulani herders or Tuareg traders, and the juntas cannot coordinate fast enough to seal them.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Mali",
+                "value": "2020 / 2021",
+                "cc": "ML",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Burkina Faso",
+                "value": "2022 (×2)",
+                "cc": "BF",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Niger",
+                "value": "2023",
+                "cc": "NE",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "the AES juntas — coup year & Russian footprint"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BAMAKO FALLING MATTERS",
+        "body": "Bamako sits in Mali's deep south, far from the historic insurgent heartland. JNIM checkpoints around the capital signal the insurgency has stopped being a northern problem and become a regime-survival problem. The last Sahelian capital to fall to jihadists was Timbuktu in 2012; the French intervened within weeks. No one is coming this time.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which foreign force replaced the French in Mali after the 2022 expulsion?",
+            "options": [
+              "UN MINUSMA peacekeepers",
+              "Wagner Group / Africa Corps",
+              "Turkish SADAT contractors",
+              "ECOWAS standby force"
+            ],
+            "correct": 1,
+            "explanation": "Wagner deployed in late 2021 and was rebranded Africa Corps under Russian Defense Ministry control after Prigozhin's death in 2023."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-01T22:42:38.447Z",
+    "label": "Mali, JNIM & the Sahel collapse",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-01-parasite-horizontal-gene-transfer-pnas-resistance": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO INHERITANCES",
+        "body": "Vertical inheritance passes genes parent-to-offspring. Horizontal gene transfer (HGT) moves them sideways between unrelated organisms — even across species. Bacteria do it constantly; the surprise is how much eukaryotes do it too.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: vertical evolution is *slow and tree-shaped*, horizontal evolution is **fast and web-shaped**. A drug designed against a stable lineage assumes the tree; resistance via HGT exploits the web."
+          }
+        ]
+      },
+      {
+        "heading": "THE THREE MECHANISMS",
+        "body": "Bacteria swap DNA three ways: transformation (uptake from the environment), transduction (delivery by viruses), and conjugation (direct transfer through a pilus). Plasmids — small circular DNA loops — are the most common vehicle, often carrying multiple resistance genes at once."
+      },
+      {
+        "heading": "THE HOSPITAL PRECEDENT",
+        "body": "The NDM-1 gene, which makes bacteria resistant to nearly all beta-lactam antibiotics including carbapenems, was first identified in 2008. Within five years it had jumped across more than 70 bacterial species on every inhabited continent — not by mutation, but by plasmid transfer in patient guts and hospital plumbing."
+      },
+      {
+        "heading": "WHY PROTISTS WERE THE BLIND SPOT",
+        "body": "Parasitic protists — Plasmodium (malaria), Trypanosoma (sleeping sickness), Leishmania, Giardia — are eukaryotes with nuclei, and dogma held that HGT in eukaryotes was rare and ancient. Recent sequencing keeps finding bacterial-origin genes embedded in protist genomes, including genes that confer drug resistance.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which disease is caused by a parasitic protist, not a bacterium or virus?",
+            "options": [
+              "Tuberculosis",
+              "Malaria",
+              "Cholera",
+              "Hepatitis B"
+            ],
+            "correct": 1,
+            "explanation": "Malaria is caused by Plasmodium, a single-celled eukaryotic parasite. Tuberculosis and cholera are bacterial; hepatitis B is viral."
+          }
+        ]
+      },
+      {
+        "heading": "THE DRUG-DESIGN PROBLEM",
+        "body": "Most antiparasitics target a specific protein the parasite needs — the assumption being that resistance requires a lucky point mutation that preserves the protein's function. If the resistance gene can simply arrive pre-built from another organism, the mutation rate ceases to be the rate-limiting step.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "point mutation",
+                "value": "years–decades",
+                "tone": "favorable"
+              },
+              {
+                "label": "gene amplification",
+                "value": "months–years",
+                "tone": "neutral"
+              },
+              {
+                "label": "horizontal transfer",
+                "value": "weeks–months",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "how fast resistance arrives"
+          }
+        ]
+      },
+      {
+        "heading": "THE EVOLUTIONARY IMPLICATION",
+        "body": "Carl Woese's 1990 three-domain tree of life assumed lineages branch and stay separate. Ford Doolittle argued in 1999 that HGT makes the deepest parts of the tree more web than tree. Each new finding of cross-domain transfer — bacterial genes in protists, protist genes in animals — pushes that web further up toward the present."
+      }
+    ],
+    "generatedAt": "2026-05-01T22:43:05.775Z",
+    "label": "Horizontal Gene Transfer",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-01-pentagon-classified-ai-deals-eight-firms": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DUAL-USE PIPELINE",
+        "body": "Modern AI labs sit on the same dual-use cliff that physicists faced in 1940. Frontier models trained for chatbots become targeting aids, signals analysts, and command-decision tools with minor fine-tuning. The Pentagon does not need to build its own labs — it just needs commercial access.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Defense Department calls this **commercial-first acquisition** — a doctrine that emerged after the F-35 program proved bespoke defense procurement could no longer keep pace with Silicon Valley's iteration speed."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'ANY LAWFUL USE' MEANS",
+        "body": "Standard DoD cloud contracts grant the government the right to apply a vendor's technology to any use that is not prohibited by US law. This is broader than it sounds: lethal autonomous weapons, mass surveillance of foreign populations, and offensive cyber operations are all lawful under US law. The clause shifts the moral line from the vendor's terms of service to Congress and the executive branch."
+      },
+      {
+        "heading": "THE JEDI PRECEDENT",
+        "body": "In 2018, Google withdrew from Project Maven — a Pentagon contract to apply computer vision to drone footage — after employee protests. Microsoft kept its DoD contracts; Amazon doubled down. The 2019 JEDI cloud contract ($10bn) and its successor JWCC ($9bn, split four ways in 2022) established that hyperscalers who refuse defense work cede the market to those who don't.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2017",
+                "label": "Project Maven launched"
+              },
+              {
+                "year": "2018",
+                "label": "Google withdraws from Maven",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "JEDI awarded to Microsoft"
+              },
+              {
+                "year": "2021",
+                "label": "JEDI cancelled, JWCC announced"
+              },
+              {
+                "year": "2022",
+                "label": "JWCC split: AWS, MSFT, GOOG, ORCL"
+              },
+              {
+                "year": "2024",
+                "label": "OpenAI drops 'military' usage ban"
+              },
+              {
+                "year": "2026",
+                "label": "8-firm classified-network clearance"
+              }
+            ],
+            "label": "the commercial-AI / DoD arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE CAST",
+        "body": "The eight firms cleared cover the full stack of a modern AI combat network: model labs, the cloud they run on, the chips underneath, and the satellites that connect the edge.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "OpenAI",
+                "role": "Frontier model lab",
+                "cc": "US"
+              },
+              {
+                "name": "Google DeepMind",
+                "role": "Models + cloud (GCP)",
+                "cc": "US"
+              },
+              {
+                "name": "Microsoft",
+                "role": "Azure + OpenAI partner",
+                "cc": "US"
+              },
+              {
+                "name": "Nvidia",
+                "role": "GPU supplier",
+                "cc": "US"
+              },
+              {
+                "name": "SpaceX",
+                "role": "Starshield satellite comms",
+                "cc": "US"
+              },
+              {
+                "name": "Anthropic",
+                "role": "Refused — facing ban",
+                "cc": "US"
+              }
+            ],
+            "label": "the cleared eight (selected)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ANTHROPIC IS DIFFERENT",
+        "body": "Anthropic was founded in 2021 by ex-OpenAI researchers who left over safety disagreements. Its usage policy explicitly prohibits weapons development and certain surveillance applications — language the Pentagon's 'any lawful use' clause overrides. The firm's RSP (Responsible Scaling Policy) is a contractual commitment to its investors, not just marketing — which is why bending it for a single customer is harder than it looks."
+      },
+      {
+        "heading": "THE 1.3 MILLION USER LOCK-IN",
+        "body": "When 1.3 million DoD personnel already use a platform, switching costs become a strategic weapon. The Pentagon's threat to ban Anthropic is credible precisely because it would be expensive — retraining users, migrating workflows, rebuilding integrations. This is the same leverage Microsoft Office wielded over federal IT for two decades.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of the US federal workforce does 1.3 million DoD users represent?",
+            "options": [
+              "About 10%",
+              "About 30%",
+              "About 60%",
+              "About 90%"
+            ],
+            "correct": 2,
+            "explanation": "The federal civilian workforce is roughly 2.2 million; DoD military and civilian personnel together exceed 2.8 million, but 1.3 million Anthropic users alone is roughly 60% of the civilian baseline — a single-vendor footprint without precedent in federal IT."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-01T22:43:37.884Z",
+    "label": "Pentagon AI Procurement",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-01-saudi-gdp-q1-slowdown-iran-war-spillover": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BREAKEVEN PROBLEM",
+        "body": "Saudi Arabia's fiscal breakeven oil price — the level Brent must hold for the budget to balance — sits near $90/barrel, well above the marginal cost of pumping a barrel (under $10). The gap is Vision 2030: NEOM, sports rights, tourism mega-projects. Every dollar Brent trades below breakeven, the deficit widens or PIF draws down.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The IMF's 2024 estimate put the Saudi breakeven at roughly **$96/bbl** including off-budget spending — one of the highest in the GCC despite being the lowest-cost producer."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A GULF WAR HURTS RIYADH TOO",
+        "body": "Conventional wisdom says oil-price spikes from Gulf conflict help producers. The reality is more complex: war-risk insurance premiums on Gulf-loaded tankers spike, Asian buyers (China, India, Japan, Korea) demand discounts on Saudi crude versus Atlantic-sourced Brent, and inbound tourism, Hajj traffic, and FDI all freeze. The price gain rarely offsets the volume and discount loss.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SA",
+              "IR",
+              "AE",
+              "QA",
+              "KW",
+              "BH",
+              "OM",
+              "IQ",
+              "YE"
+            ],
+            "label": "the Gulf bystander economies",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 26.5333,
+                "lng": 50.0167,
+                "label": "Ras Tanura terminal"
+              },
+              {
+                "lat": 25.1361,
+                "lng": 52.2,
+                "label": "Ras Laffan LNG"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BYPASS THAT ISN'T ENOUGH",
+        "body": "Saudi Arabia built the East-West Pipeline (Petroline) in the 1980s precisely to route crude around Hormuz to Yanbu on the Red Sea. Capacity is roughly 5 million barrels per day — meaningful but well short of the ~6-7 million bpd Saudi typically exports through the Gulf. Conflict scenarios that close Hormuz still strand a third or more of Saudi exports.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hormuz transit",
+                "value": "~21M bpd",
+                "tone": "unfavorable",
+                "weight": 21
+              },
+              {
+                "label": "Saudi Petroline",
+                "value": "~5M bpd",
+                "tone": "favorable",
+                "weight": 5
+              },
+              {
+                "label": "UAE Fujairah",
+                "value": "~1.5M bpd",
+                "tone": "favorable",
+                "weight": 1.5
+              }
+            ],
+            "label": "Hormuz bypass capacity vs. flows"
+          }
+        ]
+      },
+      {
+        "heading": "THE REVENUE MIX",
+        "body": "Despite a decade of diversification rhetoric, oil still funds the majority of the Saudi budget. VAT (introduced 2018, raised to 15% in 2020) and corporate tax now contribute meaningfully, but a sustained Brent shock still passes through to fiscal stress within two quarters.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "~$280bn",
+                "cc": "SA",
+                "segments": [
+                  {
+                    "value": 62,
+                    "tone": "unfavorable",
+                    "label": "oil"
+                  },
+                  {
+                    "value": 25,
+                    "tone": "neutral",
+                    "label": "tax"
+                  },
+                  {
+                    "value": 13,
+                    "tone": "favorable",
+                    "label": "other"
+                  }
+                ]
+              },
+              {
+                "label": "UAE",
+                "value": "~$140bn",
+                "cc": "AE",
+                "segments": [
+                  {
+                    "value": 35,
+                    "tone": "unfavorable",
+                    "label": "oil"
+                  },
+                  {
+                    "value": 45,
+                    "tone": "neutral",
+                    "label": "tax"
+                  },
+                  {
+                    "value": 20,
+                    "tone": "favorable",
+                    "label": "other"
+                  }
+                ]
+              },
+              {
+                "label": "Kuwait",
+                "value": "~$70bn",
+                "cc": "KW",
+                "segments": [
+                  {
+                    "value": 88,
+                    "tone": "unfavorable",
+                    "label": "oil"
+                  },
+                  {
+                    "value": 4,
+                    "tone": "neutral",
+                    "label": "tax"
+                  },
+                  {
+                    "value": 8,
+                    "tone": "favorable",
+                    "label": "other"
+                  }
+                ]
+              }
+            ],
+            "label": "Saudi government revenue mix, 2024 est."
+          }
+        ]
+      },
+      {
+        "heading": "THE PIF BACKSTOP",
+        "body": "The Public Investment Fund manages roughly $930 billion and has become the de facto fiscal stabilizer — funding mega-projects that would otherwise hit the budget directly. But PIF's own returns depend on Aramco dividends and global asset performance, both of which weaken when Gulf conflict hits oil and equity markets simultaneously. The hedge correlates with the risk it's hedging.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the Saudi government's primary fiscal cushion against an oil-price shock?",
+            "options": [
+              "Foreign-currency reserves at SAMA",
+              "The Public Investment Fund (PIF)",
+              "The Petroline bypass pipeline",
+              "Hajj and Umrah revenues"
+            ],
+            "correct": 1,
+            "explanation": "PIF, with ~$930bn AUM, increasingly absorbs spending that would otherwise widen the budget deficit — but its assets are correlated with the same shocks it cushions."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-01T22:44:11.239Z",
+    "label": "Saudi Fiscal Substrate & Gulf Spillover",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-01-spirit-airlines-shutdown-bailout-creditor-revolt": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ULCC MODEL",
+        "body": "Ultra-low-cost carriers unbundle the ticket from everything else — bag fees, seat selection, even printed boarding passes carry charges. The base fare loses money; ancillaries make the airline. Spirit pioneered this in the US after Ryanair proved it in Europe.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Industry data shows roughly **half of ULCC revenue** comes from ancillary fees, versus ~15% at legacy carriers. The base fare is essentially a *loss leader* to fill seats."
+          }
+        ]
+      },
+      {
+        "heading": "THE SENIORITY FIGHT",
+        "body": "In bankruptcy, debt is repaid in strict order: secured creditors first, then unsecured, then equity. When the government demands its rescue loan rank above $3bn of existing senior debt, it asks existing bondholders to subordinate themselves — accepting smaller recoveries so the deal closes. Often they refuse.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In a corporate bankruptcy, who gets paid first from the remaining assets?",
+            "options": [
+              "Equity shareholders",
+              "Secured creditors holding collateral",
+              "Employees owed back wages",
+              "The government, automatically"
+            ],
+            "correct": 1,
+            "explanation": "The absolute priority rule pays secured creditors first, then unsecured, then equity. Government claims have no automatic seniority — they must be negotiated, which is exactly the fight that killed Spirit's bailout."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2020 PRECEDENT",
+        "body": "The CARES Act gave US airlines $54bn in payroll support and loans during COVID. Crucially, those loans were structured as junior to existing debt — Treasury accepted subordination to keep carriers flying. The Spirit terms reversed that posture, and creditors noticed.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1978",
+                "label": "Airline Deregulation Act",
+                "emphasis": "start"
+              },
+              {
+                "year": "2001",
+                "label": "Post-9/11 ATSB loan program ($10bn)"
+              },
+              {
+                "year": "2005",
+                "label": "Delta, Northwest Chapter 11"
+              },
+              {
+                "year": "2011",
+                "label": "American Airlines Chapter 11"
+              },
+              {
+                "year": "2020",
+                "label": "CARES Act payroll support ($54bn)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Spirit first Chapter 11 filing"
+              },
+              {
+                "year": "2026",
+                "label": "Spirit liquidation"
+              }
+            ],
+            "label": "US airline rescues since deregulation"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ROUTES GET PRICIER",
+        "body": "Airline route pricing is dominated by Herfindahl concentration. When a low-cost carrier exits a city pair, the remaining carriers raise fares within months — the 'Southwest Effect' in reverse. DOT studies have measured 20-30% fare increases on routes that lose their ULCC.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "American",
+                "value": "~19%",
+                "cc": "US",
+                "weight": 19
+              },
+              {
+                "label": "Delta",
+                "value": "~18%",
+                "cc": "US",
+                "weight": 18
+              },
+              {
+                "label": "Southwest",
+                "value": "~17%",
+                "cc": "US",
+                "weight": 17
+              },
+              {
+                "label": "United",
+                "value": "~16%",
+                "cc": "US",
+                "weight": 16
+              },
+              {
+                "label": "Spirit",
+                "value": "~5%",
+                "cc": "US",
+                "weight": 5
+              },
+              {
+                "label": "JetBlue",
+                "value": "~5%",
+                "cc": "US",
+                "weight": 5
+              }
+            ],
+            "label": "US airlines by domestic seat share, 2025"
+          }
+        ]
+      },
+      {
+        "heading": "THE SLOT INHERITANCE",
+        "body": "At slot-controlled airports — LaGuardia, Reagan National, JFK — takeoff and landing rights are scarce regulatory assets, not assets the airline owns outright. When a carrier liquidates, the FAA reallocates slots, usually favoring incumbents already operating the airport. This is how each ULCC failure further entrenches the legacy four."
+      },
+      {
+        "heading": "THE GRAVEYARD",
+        "body": "Spirit joins a long list. Pan Am (1991), TWA (2001), Eastern (1991), People Express (1987), and ValuJet (1997) all followed the same arc — rapid expansion, thin margins, one shock too many. Deregulation rewards aggressive growth and punishes any carrier without the scale to weather a downturn."
+      }
+    ],
+    "generatedAt": "2026-05-01T22:44:42.730Z",
+    "label": "Airline Bankruptcy & ULCC Economics",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-01-sudan-rsf-tina-displacement-aid-truck-blue-nile": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO ARMIES",
+        "body": "Sudan's war is between two generals who once partnered to overthrow a civilian government. The SAF under Burhan and the RSF under Hemedti jointly crushed the 2019 democracy movement; when their power-sharing deal collapsed in April 2023, both turned their shared military infrastructure against each other and the population.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Abdel Fattah al-Burhan",
+                "role": "SAF commander, de facto head of state",
+                "years": "2019–",
+                "cc": "SD"
+              },
+              {
+                "name": "Mohamed Hamdan Dagalo (Hemedti)",
+                "role": "RSF commander",
+                "years": "2013–",
+                "cc": "SD"
+              }
+            ],
+            "label": "the two generals"
+          }
+        ]
+      },
+      {
+        "heading": "THE RSF'S ORIGINS",
+        "body": "The RSF evolved from the Janjaweed militias that carried out the Darfur genocide beginning in 2003. The Bashir regime armed Arab militias to fight non-Arab rebels, then formalized them as the Rapid Support Forces in 2013. Hemedti, a former camel trader from Darfur, rose from militia commander to the second most powerful man in Sudan — with troops loyal to him personally, not the state.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The name **Janjaweed** — roughly *devils on horseback* in Sudanese Arabic — is what survivors called the raiders. The 2013 rebrand to RSF formalized the same fighters under state payroll without dismantling the chain of command."
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO FRONTS",
+        "body": "Darfur in the west and Blue Nile in the southeast are not adjacent — they sit on opposite ends of Sudan. The RSF controls most of Darfur and is now pushing east into Blue Nile state toward Kurmuk on the Ethiopian border, threatening to bisect the country and cut SAF supply lines from the Red Sea to the south.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "TD",
+              "SS",
+              "ET",
+              "EG",
+              "LY",
+              "CF"
+            ],
+            "label": "Sudan's two fronts",
+            "markers": [
+              {
+                "lat": 13.6306,
+                "lng": 25.35,
+                "label": "El Fasher (N. Darfur)"
+              },
+              {
+                "lat": 11.0667,
+                "lng": 34.2833,
+                "label": "Kurmuk (Blue Nile)"
+              },
+              {
+                "lat": 15.5007,
+                "lng": 32.5599,
+                "label": "Khartoum"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE GEZIRA PRECEDENT",
+        "body": "The British built the Gezira Scheme in 1925 to grow cotton for Lancashire mills — at 8,800 km² it remains one of the largest irrigation projects on Earth, fed by the Sennar dam on the Blue Nile. RSF overran Gezira in late 2023; control of the country's breadbasket plus the Blue Nile's headwaters is the structural prize behind the eastern push."
+      },
+      {
+        "heading": "AID AS TARGET",
+        "body": "Under the Geneva Conventions, deliberate attacks on humanitarian convoys and personnel are war crimes. Sudan has become the world's largest displacement crisis — over 11 million displaced — and aid access is the lever both sides use. Destroying a UN truck is not collateral; it is signal.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many people have been displaced inside or from Sudan since the war began in April 2023?",
+            "options": [
+              "About 2 million",
+              "About 5 million",
+              "Over 11 million",
+              "Over 25 million"
+            ],
+            "correct": 2,
+            "explanation": "Sudan surpassed Ukraine and Syria to become the world's largest displacement crisis, with the UN tracking over 11 million displaced — roughly a quarter of the prewar population."
+          }
+        ]
+      },
+      {
+        "heading": "THE OUTSIDE BACKERS",
+        "body": "The RSF's resilience comes from external supply lines: gold smuggled out of Darfur funds weapons routed through Chad and Libya, with the UAE repeatedly named by UN panels as the principal external sponsor. The SAF receives Egyptian and Iranian backing. The war is internal; the financing is regional.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "gold",
+                "label": "Darfur gold"
+              },
+              {
+                "id": "uae",
+                "label": "UAE"
+              },
+              {
+                "id": "libya",
+                "label": "Libya/Haftar"
+              },
+              {
+                "id": "chad",
+                "label": "Chad corridor"
+              },
+              {
+                "id": "rsf",
+                "label": "RSF"
+              }
+            ],
+            "links": [
+              {
+                "source": "gold",
+                "target": "uae",
+                "value": 3,
+                "label": "refining"
+              },
+              {
+                "source": "uae",
+                "target": "libya",
+                "value": 2,
+                "label": "arms"
+              },
+              {
+                "source": "uae",
+                "target": "chad",
+                "value": 2,
+                "label": "arms"
+              },
+              {
+                "source": "libya",
+                "target": "rsf",
+                "value": 2
+              },
+              {
+                "source": "chad",
+                "target": "rsf",
+                "value": 3
+              },
+              {
+                "source": "gold",
+                "target": "rsf",
+                "value": 1,
+                "label": "cash"
+              }
+            ],
+            "label": "RSF financing & supply (schematic)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-01T22:45:17.891Z",
+    "label": "Sudan's War & the RSF",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-01-trump-cuba-sanctions-extraterritorial-executive-order": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT MAKES THEM SECONDARY",
+        "body": "Primary sanctions bar US persons from dealing with a target. Secondary sanctions punish non-US firms that do — freezing their dollar access or US assets. The leverage isn't law, it's the dollar: nearly half of global trade settles in USD, and clearing runs through New York correspondent banks.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism rests on **correspondent banking** — every USD wire ultimately touches a US-regulated bank, giving Treasury's *OFAC* a chokepoint over transactions that never legally enter American territory."
+          }
+        ]
+      },
+      {
+        "heading": "THE HELMS-BURTON PRECEDENT",
+        "body": "The 1996 Helms-Burton Act codified the Cuba embargo into statute and added Title III, allowing US nationals to sue foreign companies 'trafficking' in property confiscated after 1959. Every president from Clinton to Obama suspended Title III every six months. Trump activated it in 2019 — the first time secondary liability for Cuba dealings became live in US courts."
+      },
+      {
+        "heading": "WHY THE EU FOUGHT IT",
+        "body": "The EU passed a Blocking Statute in 1996 specifically to neutralize Helms-Burton, prohibiting European firms from complying with US extraterritorial sanctions and allowing them to recover damages. In practice, European banks comply with Washington anyway — the cost of losing dollar clearing dwarfs any EU fine.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "BNP Paribas",
+                "value": "$8.9bn",
+                "cc": "FR",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "HSBC",
+                "value": "$1.9bn",
+                "cc": "GB",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Standard Chartered",
+                "value": "$1.1bn",
+                "cc": "GB",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Credit Suisse",
+                "value": "$536m",
+                "cc": "CH",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "settlements paid by foreign banks for sanctions violations"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1959 EXPROPRIATIONS",
+        "body": "After the revolution, Cuba nationalized roughly $1.8bn of US-owned property — sugar mills, utilities, refineries — without compensation. Adjusted forward, certified claims now exceed $8bn. Every embargo measure since traces back to this unresolved property fight; Cuba refuses to pay, the US refuses to forget."
+      },
+      {
+        "heading": "THE EMBARGO'S LONG ARC",
+        "body": "The embargo is the longest continuously imposed trade sanction in modern history — older than the Cuban government has been Communist on paper.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1960",
+                "label": "Eisenhower bans most exports to Cuba"
+              },
+              {
+                "year": "1962",
+                "label": "Kennedy total embargo",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1992",
+                "label": "Cuban Democracy Act"
+              },
+              {
+                "year": "1996",
+                "label": "Helms-Burton codifies embargo"
+              },
+              {
+                "year": "2014",
+                "label": "Obama opens diplomatic relations"
+              },
+              {
+                "year": "2019",
+                "label": "Trump activates Title III"
+              },
+              {
+                "year": "2021",
+                "label": "Cuba returned to terror list"
+              }
+            ],
+            "label": "US-Cuba sanctions arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'COLLECTIVE PUNISHMENT' MEANS HERE",
+        "body": "The UN General Assembly has voted annually since 1992 to condemn the embargo; the 2024 vote was 187-2 (US, Israel against). The legal claim Havana invokes — collective punishment — is drawn from Article 33 of the Fourth Geneva Convention, which prohibits penalties on a population for acts they have not personally committed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many countries have voted with the US against the annual UN resolution condemning the Cuba embargo?",
+            "options": [
+              "About 30 — mostly NATO allies",
+              "Around 10 — small Pacific states",
+              "Just 1 — Israel",
+              "None — the US votes alone"
+            ],
+            "correct": 2,
+            "explanation": "For most of the past decade only Israel has joined the US in opposing the resolution; the rest of the world abstains or votes to condemn."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-01T22:45:49.912Z",
+    "label": "Secondary Sanctions & the Cuba Embargo",
+    "category": "politics",
+    "articleCount": 1
   }
 }
