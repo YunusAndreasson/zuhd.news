@@ -1,8 +1,8 @@
 import Constants from 'expo-constants';
 import * as Notifications from 'expo-notifications';
 import { deleteItemAsync, getItemAsync, setItemAsync } from 'expo-secure-store';
-import { API_BASE } from '../constants/theme';
 import { IS_ANDROID } from '../constants/platform';
+import { API_BASE } from '../constants/theme';
 
 const CHANNEL_ID = 'briefing';
 

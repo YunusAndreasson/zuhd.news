@@ -2,6 +2,7 @@ import { COUNTRY_DATA, type CountryData } from '@shared/countries/country-data';
 import { CITY_TZ, COUNTRY_TZ, SOURCE_COORDS } from '@shared/globe/coordinates';
 import type { Article, Chokepoint, HeatmapPoint } from '@shared/types';
 import {
+  Atlas,
   BlurMask,
   Canvas,
   Circle,
@@ -12,10 +13,12 @@ import {
   Picture,
   RadialGradient,
   Rect,
+  rect,
   Skia,
   Text as SkiaText,
   useFont,
   useImage,
+  useTexture,
   vec,
 } from '@shopify/react-native-skia';
 import {
@@ -49,7 +52,12 @@ import {
 import { BLACK } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { displayCountryName, displayLocation, wrapCountryLabel } from '../../lib/place-names';
-import { getLakeLabels, getMajorRiverFeatureCollection, getRiverLabels, SEAS } from './detail-geo';
+import {
+  getLakeLabels,
+  getMajorRiverFeatureCollection,
+  getRiverLabels,
+  getSeas,
+} from './detail-geo';
 import {
   ANTARCTIC_CIRCLE,
   ARCTIC_CIRCLE,
@@ -93,27 +101,31 @@ interface GlowLayer {
   blur?: number;
 }
 
-/** Concentric circle glow — data-driven layers with optional blur */
-function Glow({
-  x,
-  y,
-  color,
-  layers,
-}: {
-  x: number;
-  y: number;
-  color: string;
-  layers: GlowLayer[];
-}) {
-  return (
-    <>
-      {layers.map((l, i) => (
-        <Circle key={i} cx={x} cy={y} r={l.r} color={color} opacity={l.opacity}>
+/** Bake a GlowSpec into a Skia texture once per color. The concentric
+ *  circles + BlurMasks are drawn into an offscreen image so the runtime
+ *  cost of the glow is one Atlas draw call regardless of layer count. */
+function useGlowTexture(spec: GlowSpec, color: string) {
+  return useTexture(
+    <Group>
+      {spec.layers.map((l, i) => (
+        <Circle key={i} cx={spec.center} cy={spec.center} r={l.r} color={color} opacity={l.opacity}>
           {l.blur != null && <BlurMask blur={l.blur} style="solid" />}
         </Circle>
       ))}
-    </>
+    </Group>,
+    spec.size,
+    [color],
   );
+}
+
+/** Build Atlas inputs (sprites + translate-only RSXforms) for a glow at the
+ *  given points. Returns null when there are no points to draw. */
+function glowAtlas(spec: GlowSpec, points: { x: number; y: number }[]) {
+  if (points.length === 0) return null;
+  return {
+    sprites: points.map(() => spec.srcRect),
+    transforms: points.map((p) => Skia.RSXform(1, 0, p.x - spec.center, p.y - spec.center)),
+  };
 }
 
 /** Skia text drawn with an opaque halo for primary-tier labels (focused
@@ -196,6 +208,29 @@ const GHOST_GLOW_LAYERS: GlowLayer[] = [
   { r: 3.5, opacity: 0.08, blur: 2.5 },
   { r: 1.5, opacity: 0.22 },
 ];
+
+// A glow rendered to a baked texture and stamped via Atlas. `size` must
+// exceed the largest (r + blur) of any layer × 2 with comfortable slack.
+interface GlowSpec {
+  layers: GlowLayer[];
+  size: { width: number; height: number };
+  center: number;
+  srcRect: ReturnType<typeof rect>;
+}
+
+function makeGlowSpec(layers: GlowLayer[], size: number): GlowSpec {
+  return {
+    layers,
+    size: { width: size, height: size },
+    center: size / 2,
+    srcRect: rect(0, 0, size, size),
+  };
+}
+
+// Ghost: max r+blur ≈ 12 → 32px. Dot: max ≈ 24 → 56px. Makkah: max ≈ 20 → 48px.
+const GHOST_GLOW = makeGlowSpec(GHOST_GLOW_LAYERS, 32);
+const DOT_GLOW = makeGlowSpec(DOT_GLOW_LAYERS, 56);
+const MAKKAH_GLOW = makeGlowSpec(MAKKAH_GLOW_LAYERS, 48);
 
 // Scroll-order offsets for ghost pins (± settled index). Module constant so
 // the literal doesn't reallocate every frame inside callReproject.
@@ -622,6 +657,13 @@ export const MiniGlobe = memo(function MiniGlobe({
 }: MiniGlobeProps) {
   const { colors, bgAlpha, resolvedAppearance } = useTheme();
   const light = resolvedAppearance === 'light';
+
+  // Glow textures baked once per color so each glow renders as a single
+  // Atlas draw instead of N concentric Circle+BlurMask draws.
+  const ghostTexture = useGlowTexture(GHOST_GLOW, colors.textEmphasis);
+  const dotTexture = useGlowTexture(DOT_GLOW, colors.textEmphasis);
+  const makkahTexture = useGlowTexture(MAKKAH_GLOW, colors.dome);
+
   const globeRadius = width * 0.9;
   const cx = width / 2;
   const cy = height * 0.75;
@@ -1279,7 +1321,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           }
 
           // Seas / bays / gulfs — 54 entries, all relevant at globe scale.
-          for (const sea of SEAS) {
+          for (const sea of getSeas()) {
             const su = sea.unit;
             if (su[0] * camUnitX + su[1] * camUnitY + su[2] * camUnitZ <= 0) continue;
             const pt = proj([sea.lng, sea.lat]);
@@ -1950,6 +1992,14 @@ export const MiniGlobe = memo(function MiniGlobe({
     return [`${atm}${light ? '14' : '0A'}`, `${atm}${light ? '29' : '19'}`];
   }, [colors.atmosphere, light]);
 
+  // Per-glow Atlas inputs. Single-instance glows pass a one-element array.
+  const ghostAtlas = useMemo(() => glowAtlas(GHOST_GLOW, state.ghostDots), [state.ghostDots]);
+  const dotAtlas = useMemo(() => glowAtlas(DOT_GLOW, state.dot ? [state.dot] : []), [state.dot]);
+  const makkahAtlas = useMemo(
+    () => glowAtlas(MAKKAH_GLOW, state.makkah ? [state.makkah] : []),
+    [state.makkah],
+  );
+
   return (
     <Canvas style={[styles.canvas, { width, height }]} pointerEvents="none">
       {/* Stars — single cached Picture, no per-frame React overhead */}
@@ -2158,7 +2208,7 @@ export const MiniGlobe = memo(function MiniGlobe({
             color={colors.textEmphasis}
             style="stroke"
             strokeWidth={1.2}
-            opacity={(light ? 0.85 : 0.75) * state.riversOpacity}
+            opacity={(light ? 0.85 : 0.55) * state.riversOpacity}
           />
         </>
       )}
@@ -2185,36 +2235,30 @@ export const MiniGlobe = memo(function MiniGlobe({
         />
       )}
 
-      {/* Makkah — golden qibla reference point */}
-      {state.makkah && (
-        <Glow
-          x={state.makkah.x}
-          y={state.makkah.y}
-          color={colors.dome}
-          layers={MAKKAH_GLOW_LAYERS}
+      {/* Makkah — golden qibla reference point, baked Atlas. */}
+      {makkahAtlas && (
+        <Atlas
+          image={makkahTexture}
+          sprites={makkahAtlas.sprites}
+          transforms={makkahAtlas.transforms}
         />
       )}
 
       {/* Ghost dots — adjacent articles in the scroll, rendered under the
-          main dot so the settled story always reads brightest. */}
-      {state.ghostDots.map((g, i) => (
-        <Glow
-          key={`ghost-${i}`}
-          x={g.x}
-          y={g.y}
-          color={colors.textEmphasis}
-          layers={GHOST_GLOW_LAYERS}
+          main dot so the settled story always reads brightest. Drawn as a
+          single Atlas call against a baked glow texture (one draw + N
+          transforms instead of N × 3 Circle+BlurMask draws). */}
+      {ghostAtlas && (
+        <Atlas
+          image={ghostTexture}
+          sprites={ghostAtlas.sprites}
+          transforms={ghostAtlas.transforms}
         />
-      ))}
+      )}
 
-      {/* Story dot */}
-      {state.dot && (
-        <Glow
-          x={state.dot.x}
-          y={state.dot.y}
-          color={colors.textEmphasis}
-          layers={DOT_GLOW_LAYERS}
-        />
+      {/* Story dot — single Atlas draw against the baked dot texture. */}
+      {dotAtlas && (
+        <Atlas image={dotTexture} sprites={dotAtlas.sprites} transforms={dotAtlas.transforms} />
       )}
 
       {/* Tap pulse — expanding ring on globe tap */}

@@ -13,9 +13,9 @@ interface ZoomLevel {
  *  adaptive 1× clip is already 90° for any country ≥ 0.03 sr, so a
  *  clip: 90 preset would be identical to 1× for most articles. */
 const ZOOM_LEVELS: ZoomLevel[] = [
-  { label: '1× zoom', clip: null },
-  { label: '2× zoom', clip: 18 },
-  { label: '3× zoom', clip: 10 },
+  { label: 'zoom', clip: null },
+  { label: 'zoom', clip: 18 },
+  { label: 'zoom', clip: 10 },
 ];
 
 const DEFAULT_INDEX = 0;
@@ -30,7 +30,7 @@ interface ZoomCycle {
 /** Owns the zoom-level state that drives MiniGlobe's projection clip. */
 export function useZoomCycle(): ZoomCycle {
   const [index, setIndex] = useState(DEFAULT_INDEX);
-  const current = ZOOM_LEVELS[index] ?? { label: '1× zoom', clip: null };
+  const current = ZOOM_LEVELS[index] ?? { label: 'zoom', clip: null };
   const toggle = useCallback(() => {
     hapticTick();
     setIndex((i) => (i + 1) % ZOOM_LEVELS.length);

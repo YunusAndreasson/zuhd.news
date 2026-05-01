@@ -20,15 +20,28 @@ import { Icon, IconButton, Text } from './primitives';
 const BAR_MARGIN = SPACING.md;
 const PROGRESS_HEIGHT = 3;
 const TOOLTIP_WIDTH = 48;
-// progressTouch extends horizontally by -SPACING.md on each side (for easier
-// edge-reach) then pads content back. TRACK_INSET is that padding — seekToX
-// must subtract it so touching the visible left edge of the track yields 0%.
-const TRACK_INSET = SPACING.md;
+// Edge-to-edge progress sits at the pill's bottom — no horizontal inset, so
+// scrub fraction is just `x / barWidth` (no padding to subtract).
+const TRACK_INSET = 0;
+// Scrub thumb that rides the leading edge of the fill while the user is
+// dragging. Sized to read as a "handle" without crowding the 3px track.
+const SCRUB_THUMB = 9;
 
 function formatTime(seconds: number): string {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
   return `${m}:${s.toString().padStart(2, '0')}`;
+}
+
+/** UI-thread fraction calc shared between pan + tap callbacks. Returns null
+ *  when the bar isn't ready. Called from inside other worklets, so avoiding
+ *  a runOnJS hop just to compute the new progress fraction. */
+function computeScrubFraction(x: number, barWidth: number, duration: number): number | null {
+  'worklet';
+  if (duration <= 0 || barWidth <= 0) return null;
+  const trackWidth = barWidth - TRACK_INSET * 2;
+  if (trackWidth <= 0) return null;
+  return Math.max(0, Math.min(1, (x - TRACK_INSET) / trackWidth));
 }
 
 interface BriefingBarProps {
@@ -53,12 +66,9 @@ export const BriefingBar = memo(function BriefingBar({
   const { colors } = useTheme();
   const insets = useSafeAreaInsets();
   const barWidthSV = useSharedValue(0);
-  const barWidthRef = useRef(0);
   const onBarLayout = useCallback(
     (e: LayoutChangeEvent) => {
-      const w = e.nativeEvent.layout.width;
-      barWidthRef.current = w;
-      barWidthSV.value = w;
+      barWidthSV.value = e.nativeEvent.layout.width;
     },
     [barWidthSV],
   );
@@ -83,24 +93,29 @@ export const BriefingBar = memo(function BriefingBar({
   // before settling — gives the scrub handle a tactile "pop" on contact.
   const tooltipScale = useSharedValue(0.8);
   const scrubX = useSharedValue(0);
+  // Mirror `duration` into a SharedValue so the gesture worklet can read it
+  // without bridging to JS every frame to look up the prop.
+  const durationSV = useSharedValue(duration);
+  useEffect(() => {
+    durationSV.value = duration;
+  }, [duration, durationSV]);
   const [scrubLabel, setScrubLabel] = useState('');
   const prevLabelRef = useRef('');
 
-  const seekToX = useCallback(
-    (x: number) => {
-      if (duration <= 0 || barWidthRef.current <= 0) return;
-      const trackWidth = barWidthRef.current - TRACK_INSET * 2;
-      if (trackWidth <= 0) return;
-      const fraction = Math.max(0, Math.min(1, (x - TRACK_INSET) / trackWidth));
-      progressSV.value = fraction;
-      onSeek(fraction * duration);
-      const label = formatTime(Math.round(fraction * duration));
+  // JS-only side of a scrub: real audio seek + label update. Called via
+  // `runOnJS` from the gesture worklet, but only after the worklet has
+  // already updated `progressSV` for visual feedback — so the bar fill
+  // tracks the finger without waiting for the JS-thread round trip.
+  const commitSeek = useCallback(
+    (seconds: number) => {
+      onSeek(seconds);
+      const label = formatTime(Math.round(seconds));
       if (label !== prevLabelRef.current) {
         prevLabelRef.current = label;
         setScrubLabel(label);
       }
     },
-    [duration, onSeek, progressSV],
+    [onSeek],
   );
 
   const panGesture = Gesture.Pan()
@@ -113,12 +128,18 @@ export const BriefingBar = memo(function BriefingBar({
       isScrubbing.value = withSpring(1, ANIMATION.springSoft);
       tooltipScale.value = withSpring(1, { damping: 8, stiffness: 260, mass: 0.7 });
       scrubX.value = e.x;
-      runOnJS(seekToX)(e.x);
+      const fraction = computeScrubFraction(e.x, barWidthSV.value, durationSV.value);
+      if (fraction == null) return;
+      progressSV.value = fraction;
+      runOnJS(commitSeek)(fraction * durationSV.value);
     })
     .onChange((e) => {
       'worklet';
       scrubX.value = e.x;
-      runOnJS(seekToX)(e.x);
+      const fraction = computeScrubFraction(e.x, barWidthSV.value, durationSV.value);
+      if (fraction == null) return;
+      progressSV.value = fraction;
+      runOnJS(commitSeek)(fraction * durationSV.value);
     })
     .onFinalize(() => {
       'worklet';
@@ -134,7 +155,10 @@ export const BriefingBar = memo(function BriefingBar({
     .onEnd((e, success) => {
       'worklet';
       if (!success) return;
-      runOnJS(seekToX)(e.x);
+      const fraction = computeScrubFraction(e.x, barWidthSV.value, durationSV.value);
+      if (fraction == null) return;
+      progressSV.value = fraction;
+      runOnJS(commitSeek)(fraction * durationSV.value);
     });
 
   const scrubGesture = Gesture.Race(panGesture, tapGesture);
@@ -147,6 +171,17 @@ export const BriefingBar = memo(function BriefingBar({
     return {
       opacity: isScrubbing.value,
       transform: [{ translateX: clampedX - TOOLTIP_WIDTH / 2 }, { scale: tooltipScale.value }],
+    };
+  });
+
+  // Scrub thumb — small dot at the leading edge of the fill, only visible
+  // while the user is actively scrubbing. Translates by `progressSV * width`
+  // so it matches whatever the worklet has set, and centers via -SCRUB/2.
+  const thumbStyle = useAnimatedStyle(() => {
+    const w = barWidthSV.value || 1;
+    return {
+      opacity: isScrubbing.value,
+      transform: [{ translateX: progressSV.value * w - SCRUB_THUMB / 2 }],
     };
   });
 
@@ -174,6 +209,8 @@ export const BriefingBar = memo(function BriefingBar({
       pointerEvents="box-none"
     >
       <View style={[styles.bar, { backgroundColor: colors.pillBg }]} onLayout={onBarLayout}>
+        {/* Tooltip lives outside the clipping inner so it can float ABOVE
+            the bar without being chopped by the inner's overflow:hidden. */}
         <Animated.View
           style={[styles.tooltip, { backgroundColor: colors.toastBg }, tooltipStyle]}
           pointerEvents="none"
@@ -183,62 +220,72 @@ export const BriefingBar = memo(function BriefingBar({
           </Text>
         </Animated.View>
 
-        <View style={styles.row}>
-          <View style={styles.info}>
-            <Text variant="labelSm" tone="emphasis" numberOfLines={1}>
-              briefing
-              <Text variant="caption">
-                {' \u00b7 '}
-                {dateLabel}
+        {/* Inner container clips the edge-to-edge progress strip to the
+            pill's bottom-corner curve. The strip is only PROGRESS_HEIGHT
+            tall, so it can't carry RADIUS.floating on its own — the curve
+            has to come from a parent overflow:hidden + matching radius. */}
+        <View style={styles.barInner}>
+          <View style={styles.row}>
+            <View style={styles.info}>
+              <Text variant="labelSm" tone="emphasis" numberOfLines={1}>
+                briefing
+                <Text variant="labelSm">
+                  {' · '}
+                  {dateLabel}
+                </Text>
+              </Text>
+            </View>
+
+            <Text variant="tabular" tone="emphasis">
+              {formatTime(elapsed)}
+              <Text variant="tabular" tone="secondary">
+                {' / '}
+                {formatTime(duration)}
               </Text>
             </Text>
+
+            <IconButton
+              onPress={onToggle}
+              accessibilityLabel={playing ? 'Pause briefing' : 'Play briefing'}
+            >
+              <Icon name={playing ? 'pause' : 'play'} tone="emphasis" size="lg" />
+            </IconButton>
+
+            <IconButton onPress={onClose} accessibilityLabel="Close briefing player">
+              <Icon name="close-sharp" tone="secondary" />
+            </IconButton>
           </View>
 
-          <Text variant="tabular" tone="emphasis">
-            {formatTime(elapsed)}
-            <Text variant="tabular" tone="secondary">
-              {' / '}
-              {formatTime(duration)}
-            </Text>
-          </Text>
-
-          <IconButton
-            onPress={onToggle}
-            accessibilityLabel={playing ? 'Pause briefing' : 'Play briefing'}
-          >
-            <Icon name={playing ? 'pause' : 'play'} tone="emphasis" />
-          </IconButton>
-
-          <IconButton onPress={onClose} accessibilityLabel="Close briefing player">
-            <Icon name="close" tone="secondary" />
-          </IconButton>
-        </View>
-
-        <GestureDetector gesture={scrubGesture}>
-          <View
-            style={styles.progressTouch}
-            accessibilityRole="adjustable"
-            accessibilityLabel={`Briefing progress, ${formatTime(elapsed)} of ${formatTime(duration)}`}
-            accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
-            onAccessibilityAction={(e) => {
-              const step = Math.max(10, duration * 0.05);
-              if (e.nativeEvent.actionName === 'increment')
-                onSeek(Math.min(elapsed + step, duration));
-              else if (e.nativeEvent.actionName === 'decrement')
-                onSeek(Math.max(elapsed - step, 0));
-            }}
-          >
-            <View style={[styles.progressTrack, { backgroundColor: colors.rule }]}>
+          <GestureDetector gesture={scrubGesture}>
+            <View
+              style={styles.progressTouch}
+              accessibilityRole="adjustable"
+              accessibilityLabel={`Briefing progress, ${formatTime(elapsed)} of ${formatTime(duration)}`}
+              accessibilityActions={[{ name: 'increment' }, { name: 'decrement' }]}
+              onAccessibilityAction={(e) => {
+                const step = Math.max(10, duration * 0.05);
+                if (e.nativeEvent.actionName === 'increment')
+                  onSeek(Math.min(elapsed + step, duration));
+                else if (e.nativeEvent.actionName === 'decrement')
+                  onSeek(Math.max(elapsed - step, 0));
+              }}
+            >
+              <View style={[styles.progressTrack, { backgroundColor: `${colors.textEmphasis}26` }]}>
+                <Animated.View
+                  style={[
+                    styles.progressFill,
+                    { backgroundColor: colors.textSecondary },
+                    progressStyle,
+                  ]}
+                />
+              </View>
               <Animated.View
-                style={[
-                  styles.progressFill,
-                  { backgroundColor: colors.textSecondary },
-                  progressStyle,
-                ]}
+                pointerEvents="none"
+                style={[styles.scrubThumb, { backgroundColor: colors.textEmphasis }, thumbStyle]}
               />
             </View>
-          </View>
-        </GestureDetector>
+          </GestureDetector>
+        </View>
       </View>
     </Animated.View>
   );
@@ -251,43 +298,60 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     paddingHorizontal: BAR_MARGIN,
-    alignItems: 'flex-end',
   },
   // No overflow:hidden — the scrub tooltip floats above the bar. The
-  // progressFill is clipped by progressTrack's own overflow:hidden.
+  // progress strip is clipped by `barInner`'s overflow:hidden so it can
+  // run edge-to-edge and follow the pill's bottom-corner curve.
   bar: {
     width: '100%',
     borderRadius: RADIUS.floating,
+  },
+  // Clipping container for the bar's content. Holds the row + progress;
+  // shares the bar's borderRadius so its overflow:hidden trims the strip
+  // along the same outer curve. Padding lives here (was on `bar`) so the
+  // strip can sit flush with the inner's bottom edge.
+  barInner: {
+    borderRadius: RADIUS.floating,
+    overflow: 'hidden',
     paddingTop: SPACING.smPlus,
-    paddingHorizontal: SPACING.md,
   },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: SPACING.smPlus,
+    paddingHorizontal: SPACING.md,
   },
   info: {
     flex: 1,
     justifyContent: 'center',
   },
   progressTouch: {
-    // Generous vertical hit area so the 3px track is comfortable to tap —
-    // md above and below brings the effective target to ~35px tall.
+    // Vertical hit area above the visible 3px strip. The strip itself is
+    // flush with the bar's bottom edge, so all the touch slack goes above.
     paddingTop: SPACING.md,
-    paddingBottom: SPACING.md,
-    marginHorizontal: -SPACING.md,
-    paddingHorizontal: SPACING.md,
   },
   progressTrack: {
     height: PROGRESS_HEIGHT,
-    borderRadius: PROGRESS_HEIGHT,
     overflow: 'hidden',
+    // No border-radius needed — `barInner` clips the strip's corners to
+    // the pill's outer curve. A 3px strip can't carry a large radius on
+    // its own anyway (radius caps at half its height).
   },
   progressFill: {
     width: '100%',
     height: PROGRESS_HEIGHT,
-    borderRadius: PROGRESS_HEIGHT,
     transformOrigin: 'left',
+  },
+  scrubThumb: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    width: SCRUB_THUMB,
+    height: SCRUB_THUMB,
+    borderRadius: SCRUB_THUMB / 2,
+    // Lift the thumb so its center sits on the track baseline rather than
+    // hanging off the pill's bottom edge.
+    marginBottom: -SCRUB_THUMB / 2 + PROGRESS_HEIGHT / 2,
   },
   // Floats above the bar card so the finger never covers it.
   tooltip: {
