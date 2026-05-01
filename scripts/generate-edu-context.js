@@ -7,8 +7,8 @@ import { readFileSync, writeFileSync, existsSync, appendFileSync, mkdirSync } fr
 import { join, basename, dirname } from 'path'
 import { spawnSync } from 'child_process'
 import { parseFrontmatter } from './lib/frontmatter.js'
-import { buildTimelineWithCharts, loadTrendsSnapshot, buildTrendsPromptSection } from './lib/trends-expand.js'
-import { parseClaudeEnvelope } from './lib/claude-envelope.js'
+import { buildTimelineWithCharts, loadTrendsSnapshot, buildTrendsPromptSection, selectOfferedIndicators } from './lib/trends-expand.js'
+import { parseClaudeEnvelopeWithUsage } from './lib/claude-envelope.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const BRIEFS_PATH = join(ROOT, 'content', '.context-briefs.json')
@@ -149,8 +149,9 @@ const trendsDigest = existsSync(TRENDS_DIGEST_PATH)
   : null
 const trendsSnapshot = loadTrendsSnapshot(ROOT)
 const trendsSection = buildTrendsPromptSection(trendsDigest)
-if (trendsDigest?.indicators?.length) {
-  console.log(`  Trends: offered ${trendsDigest.indicators.length} indicators to editor`)
+const offeredIndicators = selectOfferedIndicators(trendsDigest)
+if (offeredIndicators.length) {
+  console.log(`  Trends: offered ${offeredIndicators.length} indicators to editor (capped from ${trendsDigest.indicators.length})`)
 }
 
 // --- Per-article generation ---
@@ -162,7 +163,7 @@ if (trendsDigest?.indicators?.length) {
 
 const env = { ...process.env }
 delete env.CLAUDECODE
-const offeredIds = trendsDigest?.indicators?.map((i) => i.id) || []
+const offeredIds = offeredIndicators.map((i) => i.id)
 
 /** Run one Claude call for one candidate. Returns the parsed brief envelope
  *  + timing + any parse/transport error. Failures are per-article; the
@@ -201,7 +202,8 @@ Generate the educational context brief for this article. Output ONLY the JSON ob
     return { elapsedMs, error: `claude exit ${result.status}: ${result.stderr?.slice(0, 200)}` }
   }
   try {
-    return { elapsedMs, parsed: parseClaudeEnvelope(result.stdout) }
+    const env = parseClaudeEnvelopeWithUsage(result.stdout)
+    return { elapsedMs, parsed: env.result, usage: env.usage, costUsd: env.total_cost_usd, durationMs: env.duration_ms }
   } catch (err) {
     return { elapsedMs, error: `parse: ${err.message}` }
   }
@@ -212,11 +214,19 @@ const stageT0 = Date.now()
 
 let generated = 0
 let totalPicks = 0
+const usageTotals = { input: 0, output: 0, cacheCreate: 0, cacheRead: 0, costUsd: 0 }
 
 for (const candidate of candidates) {
   if (generated >= MAX_BRIEFS_PER_CYCLE) break
-  const { elapsedMs, parsed, error } = generateOneBrief(candidate)
+  const { elapsedMs, parsed, usage, costUsd, error } = generateOneBrief(candidate)
   const secs = (elapsedMs / 1000).toFixed(1)
+  if (usage) {
+    usageTotals.input += usage.input_tokens || 0
+    usageTotals.output += usage.output_tokens || 0
+    usageTotals.cacheCreate += usage.cache_creation_input_tokens || 0
+    usageTotals.cacheRead += usage.cache_read_input_tokens || 0
+  }
+  if (typeof costUsd === 'number') usageTotals.costUsd += costUsd
 
   if (error) {
     console.log(`  ✗ ${candidate.slug}: ${error} (${secs}s)`)
@@ -281,6 +291,17 @@ for (const candidate of candidates) {
 
 const stageSecs = ((Date.now() - stageT0) / 1000).toFixed(1)
 console.log(`  Stage total: ${stageSecs}s across ${candidates.length} candidates`)
+
+// Cache-hit summary line — parsed by scripts/dashboard/server.js for the
+// pipeline tab. cacheHitPct is read tokens / (read + create) so a cold start
+// reads as 0% and a fully warm prefix reads as ~100%. Skipped silently when
+// the CLI envelope didn't carry usage (older versions or `--output-format`
+// not set).
+if (usageTotals.input + usageTotals.cacheCreate + usageTotals.cacheRead > 0) {
+  const cacheable = usageTotals.cacheCreate + usageTotals.cacheRead
+  const hitPct = cacheable > 0 ? (100 * usageTotals.cacheRead / cacheable).toFixed(1) : '0.0'
+  console.log(`Edu-context tokens: in=${usageTotals.input} out=${usageTotals.output} cache_create=${usageTotals.cacheCreate} cache_read=${usageTotals.cacheRead} hit=${hitPct}% cost=$${usageTotals.costUsd.toFixed(4)}`)
+}
 
 // Cycle-log summary line — parsed by scripts/dashboard/server.js.
 if (trendsDigest?.indicators?.length) {
