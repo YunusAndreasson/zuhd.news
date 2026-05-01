@@ -92106,5 +92106,1116 @@
     "label": "Sudan's War & the Libya Route",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-30-afghan-allies-relocated-congo-minerals-deal": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE SIV PROGRAM IS",
+        "body": "Special Immigrant Visas were created by Congress in 2009 for Iraqis and Afghans who worked for US forces — interpreters, drivers, fixers — and faced reprisal at home. The promise was statutory: serve, and the US resettles you. Outsourcing that obligation to a third country is a break with the program's design.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The acronym **SIV** is bureaucratic, but the moral contract behind it isn't — it was Congress's answer to the Vietnam-era memory of leaving allies on the embassy roof."
+          }
+        ]
+      },
+      {
+        "heading": "THE COBALT LEVERAGE",
+        "body": "The Democratic Republic of Congo produces roughly 70% of the world's mined cobalt — the metal that stabilizes lithium-ion cathodes in EV batteries and data-center backup power. China refines most of it. Washington's industrial-policy fight is to source the metal outside Chinese-controlled supply chains.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "DRC",
+                "value": 70,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Indonesia",
+                "value": 11,
+                "tone": "neutral"
+              },
+              {
+                "label": "Russia",
+                "value": 4,
+                "tone": "neutral"
+              },
+              {
+                "label": "Australia",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Philippines",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Canada",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Other",
+                "value": 7,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global mined cobalt, 2024 share"
+          }
+        ]
+      },
+      {
+        "heading": "WHY KINSHASA SAID YES",
+        "body": "Eastern Congo has been at war with M23 rebels backed across the Rwandan border since 2022; the Congolese army has lost ground around Goma and the cobalt belt. President Tshisekedi has been openly shopping security partnerships — minerals for protection — to Washington since 2024. The Afghan deal is the first concrete exchange.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CD",
+              "RW",
+              "UG",
+              "BI",
+              "TZ"
+            ],
+            "label": "Congo's geography of leverage",
+            "markers": [
+              {
+                "lat": -4.4419,
+                "lng": 15.2663,
+                "label": "Kinshasa"
+              },
+              {
+                "lat": -1.6792,
+                "lng": 29.2228,
+                "label": "Goma (M23 front)"
+              },
+              {
+                "lat": -10.7167,
+                "lng": 25.4667,
+                "label": "Kolwezi cobalt belt"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Outsourced asylum is now standard statecraft. The UK-Rwanda scheme, Australia's Nauru and Manus arrangements, Italy's Albania centers, the EU-Türkiye 2016 deal — all paid third countries to host people the originating state didn't want to admit. Each was litigated; most underdelivered on resettlement promises.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2001",
+                "label": "Australia: Nauru/Manus opens"
+              },
+              {
+                "year": "2016",
+                "label": "EU–Türkiye migration deal",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "UK–Rwanda scheme signed"
+              },
+              {
+                "year": "2023",
+                "label": "Italy–Albania centers"
+              },
+              {
+                "year": "2025",
+                "label": "US–Congo Afghan transfer"
+              }
+            ],
+            "label": "outsourced-asylum deals"
+          }
+        ]
+      },
+      {
+        "heading": "THE QATAR HOLDING PATTERN",
+        "body": "Roughly 1,500 Afghan evacuees remain at Camp As Sayliyah outside Doha, a US logistics base that became a transit hub during the 2021 airlift. Qatari authorities have hosted them on the understanding the stay would be measured in months; it is now in its fourth year.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of global mined cobalt comes from the Democratic Republic of Congo?",
+            "options": [
+              "About 25%",
+              "About 45%",
+              "About 70%",
+              "About 90%"
+            ],
+            "correct": 2,
+            "explanation": "DRC supplies around 70% of mined cobalt — the concentration that gives Kinshasa leverage over EV and data-center supply chains."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-01T04:26:43.196Z",
+    "label": "Transactional Asylum & Congo's Minerals",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-30-asia-data-center-environmental-disclosure-gap": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A HYPERSCALER ACTUALLY CONSUMES",
+        "body": "A single 100MW AI data center draws roughly the power of 80,000 homes and evaporates millions of liters of water daily through cooling. Training runs concentrate that load into months-long spikes the grid wasn't designed for.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is **PUE** (*power usage effectiveness*) — total facility power divided by IT power. A PUE of 1.5 means half the electricity goes to cooling, not compute."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ASIA",
+        "body": "Hyperscalers chase three things: cheap power, permissive permitting, and proximity to subsea cables. Johor (Malaysia), Batam (Indonesia), and Bangkok suburbs hit all three — Singapore's 2019 moratorium on new data centers pushed the buildout south across the causeway.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SG",
+              "MY",
+              "ID",
+              "TH",
+              "VN",
+              "PH"
+            ],
+            "label": "Southeast Asia's compute corridor",
+            "markers": [
+              {
+                "lat": 1.4927,
+                "lng": 103.7414,
+                "label": "Johor data center cluster"
+              },
+              {
+                "lat": 1.1301,
+                "lng": 104.053,
+                "label": "Batam (Nongsa)"
+              },
+              {
+                "lat": 13.7563,
+                "lng": 100.5018,
+                "label": "Bangkok metro"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE EIA, AND ITS ABSENCE",
+        "body": "An Environmental Impact Assessment is the standard regulatory gate — a public document modeling water draw, emissions, grid load, and community effects before a permit is issued. Most jurisdictions require one for projects above a size threshold; data centers in much of Southeast Asia fall into a definitional gap that classifies them as ordinary commercial buildings.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "EU (under DCEEC)",
+                "value": "required",
+                "tone": "favorable",
+                "cc": "EU"
+              },
+              {
+                "label": "Ireland",
+                "value": "required",
+                "tone": "favorable",
+                "cc": "IE"
+              },
+              {
+                "label": "Singapore",
+                "value": "required",
+                "tone": "favorable",
+                "cc": "SG"
+              },
+              {
+                "label": "Malaysia",
+                "value": "not required",
+                "tone": "unfavorable",
+                "cc": "MY"
+              },
+              {
+                "label": "Indonesia",
+                "value": "not required",
+                "tone": "unfavorable",
+                "cc": "ID"
+              },
+              {
+                "label": "Thailand",
+                "value": "not required",
+                "tone": "unfavorable",
+                "cc": "TH"
+              }
+            ],
+            "label": "data center EIA requirement, selected jurisdictions"
+          }
+        ]
+      },
+      {
+        "heading": "THE STRANDED ASSET RISK",
+        "body": "Data centers are 20-year capital commitments built on 3-year revenue assumptions. If model efficiency improves faster than demand grows — or if AI margins compress — the cooling towers and substations remain, but the compute tenants don't. The 2001 telecom dark-fiber bust is the closest analog: infrastructure overbuilt to a forecast that didn't arrive.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              25738.61,
+              25338.62,
+              24891.24,
+              24548.69,
+              25075.77,
+              25268.14,
+              25127.64,
+              25201.26,
+              24687.61,
+              24732.73,
+              24701.6,
+              24898.87,
+              24797.34,
+              25012.62,
+              24708.94,
+              24977.04,
+              25329.04,
+              25034.37,
+              24960.04,
+              24992.6,
+              24720.08,
+              25093.68,
+              25020.41,
+              24643.01,
+              24967.25,
+              24956.47,
+              24965.01,
+              24533.58,
+              24380.73,
+              24655.34,
+              24780.42,
+              24425.09,
+              24355.28,
+              23898.15,
+              24188.59,
+              24002.45,
+              24162.98,
+              23586.99,
+              23132.77,
+              22953.38,
+              23740.19,
+              24019.99,
+              24045.53,
+              24192.17,
+              24202.37,
+              24903.17,
+              25082.09,
+              25116.34,
+              25383.72,
+              25842,
+              26204.58,
+              26333,
+              26672.43,
+              26590.34,
+              26479.47,
+              26937.27,
+              26782.62,
+              27303.67,
+              27305.68,
+              27029.01,
+              27186.99,
+              27452.12
+            ],
+            "periods": [
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30"
+            ],
+            "label": "NASDAQ-100",
+            "unit": "index",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHO BEARS THE COST",
+        "body": "When a hyperscaler signs a 15-year power purchase agreement at a fixed rate, the utility's other ratepayers absorb fuel-price swings. When cooling draws from shared aquifers, neighboring farms see the water table drop. The externalities the EIA was designed to surface are precisely the ones that go unmeasured here.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how much water does a large AI training cluster evaporate per day?",
+            "options": [
+              "A few thousand liters — comparable to an office building",
+              "Hundreds of thousands of liters — like a small factory",
+              "Several million liters — comparable to a small town",
+              "Tens of millions of liters — comparable to a mid-size city"
+            ],
+            "correct": 2,
+            "explanation": "Evaporative cooling at hyperscale data centers consumes millions of liters daily — the reason siting decisions increasingly hinge on water rights, not just power."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · NASDAQ · as of 2026-04-30"
+    ],
+    "generatedAt": "2026-05-01T04:27:14.926Z",
+    "label": "Data Centers & the Externality Gap",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-30-china-fossil-controls-cleantech-export-surge": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DUAL CONTROL SYSTEM",
+        "body": "Beijing has run an 'energy intensity' cap since the 11th Five-Year Plan (2006) — energy used per unit of GDP. The newer layer, 'dual control,' adds an absolute ceiling on total fossil consumption, not just efficiency. The shift matters because intensity targets allow growth-driven emission rises; absolute caps do not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Chinese phrase is *shuangkong* — literally **'dual control.'** Energy efficiency was the first pillar; the **absolute carbon ceiling** is the second."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A PARTY-AND-STATE DIRECTIVE",
+        "body": "Most environmental rules in China issue from the State Council alone — government, not Party. A joint directive from the CCP Central Committee plus the State Council is the highest tier of binding instruction, used for priorities the leadership wants enforced through Party discipline channels, not just administrative ones. Provincial Party secretaries can now be sanctioned for missing targets."
+      },
+      {
+        "heading": "THE COAL PARADOX",
+        "body": "China approved more new coal plants in 2022–2023 than the rest of the world combined, while simultaneously installing more solar capacity than the rest of the world combined. The contradiction resolves through dispatch: new coal increasingly runs as backup for renewables, not baseload. Capacity is built; utilization is falling.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Solar PV",
+                "value": "~60%",
+                "tone": "favorable",
+                "weight": 60
+              },
+              {
+                "label": "Wind",
+                "value": "~50%",
+                "tone": "favorable",
+                "weight": 50
+              },
+              {
+                "label": "Coal plants",
+                "value": "~95%",
+                "tone": "unfavorable",
+                "weight": 95
+              },
+              {
+                "label": "EVs sold",
+                "value": "~60%",
+                "tone": "favorable",
+                "weight": 60
+              }
+            ],
+            "label": "2024 share of global new build"
+          }
+        ]
+      },
+      {
+        "heading": "THE EXPORT FLYWHEEL",
+        "body": "China dominates the cleantech supply chain — solar wafers, lithium cells, EV drivetrains, wind nacelles. Domestic decarbonization is now linked to industrial policy: the same factories that decarbonize Chinese provinces also export the surplus, capturing global market share before Western tariffs harden.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "China",
+                "value": 80,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Vietnam",
+                "value": 5,
+                "tone": "neutral"
+              },
+              {
+                "label": "India",
+                "value": 4,
+                "tone": "neutral"
+              },
+              {
+                "label": "Malaysia",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "South Korea",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "USA",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Other",
+                "value": 4,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global solar module production share, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2030 PEAK PLEDGE",
+        "body": "Xi Jinping pledged at the UN in 2020 that Chinese CO2 emissions would peak before 2030 and reach net zero by 2060. The dual-control rules are the enforcement mechanism — without provincial caps, the national pledge has no transmission belt to the factory floor."
+      },
+      {
+        "heading": "WHAT IT MEANS FOR COMMODITIES",
+        "body": "China consumes roughly half the world's coal, copper, and steel. A binding cap on Chinese fossil demand is the single largest variable in long-run oil and coal price decks — which is why every commodity desk reads these directives line by line.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "China's share of global coal consumption is closest to:",
+            "options": [
+              "~25%",
+              "~35%",
+              "~55%",
+              "~75%"
+            ],
+            "correct": 2,
+            "explanation": "China burns roughly 55% of the world's coal — more than the rest of the world combined — making any binding cap globally consequential."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-01T04:27:43.332Z",
+    "label": "China's Dual Control & the Energy Transition",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-04-30-egypt-discrimination-law-two-verdicts-decade": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONSTITUTIONAL PROMISE",
+        "body": "Egypt's 2014 constitution, drafted after the military's removal of Morsi, mandated an independent anti-discrimination commission in Article 53. Twelve years on, the commission does not exist — a pattern across the constitution's rights provisions, where enabling legislation simply never moves.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Article 53 obliges the state to *establish* an independent commission — not merely *permit* one. The omission is itself a constitutional violation, but Egypt has no court empowered to compel parliament to legislate."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DEFINITIONS MATTER",
+        "body": "A discrimination statute without a statutory definition forces every judge to invent the standard from scratch. Comparable laws in Tunisia (2018) and Morocco's draft framework enumerate protected categories — race, religion, gender, disability — and define direct, indirect, and structural discrimination. Egypt's law lists none.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does the absence of a legal definition of discrimination cripple enforcement?",
+            "options": [
+              "Judges cannot agree on what conduct counts, so prosecutions collapse on threshold questions",
+              "It violates international treaty law automatically",
+              "It means the police cannot make arrests",
+              "It triggers a constitutional review by default"
+            ],
+            "correct": 0,
+            "explanation": "Without enumerated categories or a defined standard, each case relitigates what discrimination even means — the burden becomes impossible before evidence is heard."
+          }
+        ]
+      },
+      {
+        "heading": "THE BURDEN-SHIFT PROBLEM",
+        "body": "Modern anti-discrimination regimes — the EU's Race Directive, US Title VII after McDonnell Douglas — shift the burden to the defendant once the victim shows a prima facie case. Egypt's law keeps the full burden on the victim throughout, which in practice means proving intent inside institutions the victim has no power to subpoena."
+      },
+      {
+        "heading": "THE COPTIC CONTEXT",
+        "body": "Roughly 10% of Egyptians are Coptic Christians, the largest Christian community in the Middle East. Church-building permits, sectarian violence prosecutions, and identity-card religion fields are the recurring flashpoints — almost none of which reach court as discrimination cases, because the statute offers no usable cause of action.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Tunisia",
+                "value": "Defined, 2018",
+                "cc": "TN",
+                "tone": "favorable"
+              },
+              {
+                "label": "Morocco",
+                "value": "Draft, stalled",
+                "cc": "MA",
+                "tone": "neutral"
+              },
+              {
+                "label": "Egypt",
+                "value": "No definition",
+                "cc": "EG",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "None",
+                "cc": "SA",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Lebanon",
+                "value": "Sectoral only",
+                "cc": "LB",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Arab world anti-discrimination frameworks"
+          }
+        ]
+      },
+      {
+        "heading": "TWO CONVICTIONS, TEN YEARS",
+        "body": "A conviction rate this low is not enforcement failure — it is a deliberate equilibrium. The statute exists to satisfy international human-rights reporting requirements (Egypt's UPR cycles at the UN Human Rights Council) without creating real legal exposure for state institutions or majority-group defendants."
+      }
+    ],
+    "generatedAt": "2026-05-01T04:28:10.524Z",
+    "label": "Egypt's Anti-Discrimination Law",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-04-30-louisiana-supreme-court-redistrict-voting-rights": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO COMMANDS",
+        "body": "The Voting Rights Act Section 2 requires states to draw majority-minority districts where minority voters are politically cohesive and bloc-voted against. The Fourteenth Amendment's Equal Protection Clause forbids using race as the predominant factor in drawing lines. Every redistricting cycle, courts decide which command wins.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the **Shaw/Gingles tension** — *Thornburg v. Gingles* (1986) tells states when they must consider race; *Shaw v. Reno* (1993) tells them when they must not."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1965 ACT",
+        "body": "The Voting Rights Act passed after Bloody Sunday in Selma. Section 5 — preclearance for states with histories of discrimination — was the enforcement engine; Section 2 was the nationwide ban on discriminatory practices. Louisiana was a covered jurisdiction from day one.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1965",
+                "label": "VRA signed"
+              },
+              {
+                "year": "1986",
+                "label": "Gingles test for §2 vote dilution"
+              },
+              {
+                "year": "1993",
+                "label": "Shaw v. Reno: race as predominant factor barred"
+              },
+              {
+                "year": "2013",
+                "label": "Shelby County guts §5 preclearance",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "Allen v. Milligan upholds §2 (Alabama)"
+              },
+              {
+                "year": "2026",
+                "label": "Louisiana map struck"
+              }
+            ],
+            "label": "the VRA's slow unwinding"
+          }
+        ]
+      },
+      {
+        "heading": "THE LOUISIANA ARITHMETIC",
+        "body": "Louisiana is roughly one-third Black but had only one of six congressional districts drawn as Black-majority. Federal courts ordered a second one in 2024; the legislature drew it as an oddly-shaped corridor linking Black populations in Shreveport and Baton Rouge — and that shape is what gave the Supreme Court its opening to call it a racial gerrymander.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Black population",
+                "value": "~33%",
+                "weight": 33,
+                "tone": "neutral"
+              },
+              {
+                "label": "Pre-2024 map",
+                "value": "1 of 6 (17%)",
+                "weight": 17,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "2024 court-ordered",
+                "value": "2 of 6 (33%)",
+                "weight": 33,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Black share: population vs. congressional seats"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE SHAPE MATTERS",
+        "body": "Courts can't see intent, only geometry. A compact district that happens to be majority-Black usually survives; a sprawling district that snakes between Black neighborhoods invites the inference that race, not community of interest, was the predominant factor. The legislature's defense — partisan protection of incumbents — is constitutionally permitted in a way racial sorting is not."
+      },
+      {
+        "heading": "THE PARTISAN STAKES",
+        "body": "Every Black-majority Southern district elects a Democrat; every neighboring district loses Black voters and trends Republican. A single seat in Louisiana, North Carolina, or Alabama can flip the US House. This is why VRA cases are no longer civil-rights litigation in any pure sense — they are redistricting fights with civil-rights vocabulary.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does removing a Black-majority district usually help Republicans even though it 'frees' Black voters into other districts?",
+            "options": [
+              "Black voters turn out at lower rates when not in a majority district",
+              "Black voters vote ~90% Democratic, so dispersing them dilutes the Democratic vote across multiple districts they can't win",
+              "Federal law requires the freed voters to be placed in safe Republican districts",
+              "Republicans gain a court-appointed seat as compensation"
+            ],
+            "correct": 1,
+            "explanation": "Concentration vs. dispersion of a cohesive voting bloc is the whole game — packing creates one safe Democratic seat, cracking creates zero."
+          }
+        ]
+      },
+      {
+        "heading": "THE JUNE 1 PROBLEM",
+        "body": "Louisiana's primaries are scheduled for May. A court order to redraw by June 1 means either the primaries run on a map about to be voided, the primaries are postponed, or the state uses an interim court-drawn map. Each option triggers its own lawsuit; the calendar itself becomes the constitutional question."
+      }
+    ],
+    "generatedAt": "2026-05-01T04:28:43.863Z",
+    "label": "VRA & Racial Gerrymandering",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-01-nisar-radar-mexico-city-subsidence": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW RADAR SEES THROUGH CLOUDS",
+        "body": "Synthetic aperture radar emits its own microwaves and times the echo, so it works at night, through cloud, and through smoke. Optical satellites like Landsat lose months of coverage over the tropics each year; SAR doesn't.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "NISAR carries two bands: an *L-band* radar (24cm wavelength) that penetrates forest canopy to read the ground, and an *S-band* (10cm) tuned for surface texture. Longer wavelength, deeper reach."
+          }
+        ]
+      },
+      {
+        "heading": "THE INTERFEROMETRY TRICK",
+        "body": "InSAR compares two radar passes over the same spot. The phase difference between echoes — fractions of a wavelength — translates directly into vertical movement. A satellite 700km up can detect a building sinking 5mm in a month."
+      },
+      {
+        "heading": "WHY MEXICO CITY SINKS",
+        "body": "The city sits on a drained lake bed. Aztec Tenochtitlan was an island in Lake Texcoco; Spanish colonizers drained it. The clay sediments compact as aquifers below are pumped dry to supply 22 million residents. Some neighborhoods drop nearly 50cm per year — among the fastest subsidence rates ever measured.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MX"
+            ],
+            "label": "the drained lake bed",
+            "markers": [
+              {
+                "lat": 19.4326,
+                "lng": -99.1332,
+                "label": "Mexico City"
+              },
+              {
+                "lat": 19.5,
+                "lng": -99,
+                "label": "former Lake Texcoco"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE GLOBAL PATTERN",
+        "body": "Jakarta is sinking up to 25cm/year and is being abandoned as capital. Tehran loses 25cm/year across its plain. Houston, Bangkok, Ho Chi Minh City, and the Central Valley of California all subside from groundwater overdraft. The mechanism is identical: pump faster than recharge, and the aquifer matrix collapses irreversibly.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Peak urban subsidence rate",
+            "peers": [
+              {
+                "value": 25,
+                "label": "Jakarta"
+              },
+              {
+                "value": 25,
+                "label": "Tehran"
+              },
+              {
+                "value": 40,
+                "label": "Mexico City"
+              },
+              {
+                "value": 8,
+                "label": "Ho Chi Minh"
+              },
+              {
+                "value": 3,
+                "label": "Bangkok"
+              },
+              {
+                "value": 2,
+                "label": "Houston"
+              }
+            ],
+            "subjectLabel": "Mexico City",
+            "unit": "cm/yr"
+          }
+        ]
+      },
+      {
+        "heading": "THE NISAR PARTNERSHIP",
+        "body": "NASA built the L-band radar; ISRO built the S-band and the bus. It is the first billion-dollar joint Earth-observation mission between the two agencies, and the data is open — any government, researcher, or city utility can pull subsidence maps without buying commercial imagery.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does pumping groundwater cause permanent ground subsidence?",
+            "options": [
+              "The water itself weighed the ground up",
+              "Clay aquifer layers compact irreversibly once dewatered",
+              "The pumps create vacuum cavities underground",
+              "Soil chemistry changes when exposed to air"
+            ],
+            "correct": 1,
+            "explanation": "Aquifer clays held open by pore-water pressure collapse when drained. Refilling the aquifer doesn't restore the lost volume — the compaction is permanent."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-01T04:29:12.366Z",
+    "label": "InSAR & Urban Subsidence",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-01-us-oil-intensity-hormuz-shock-gasoline": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT OIL INTENSITY MEANS",
+        "body": "Oil intensity is barrels consumed per dollar of GDP. It measures how exposed an economy is to a price shock — a high-intensity economy passes crude moves through to households fast; a low-intensity one absorbs them.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The US uses roughly **2x** the oil per dollar of GDP as the EU — a structural exposure baked in by suburban geography, truck-heavy fleets, and a freight system that runs on diesel, not rail."
+          }
+        ]
+      },
+      {
+        "heading": "WHY EUROPE IS LESS EXPOSED",
+        "body": "Europe taxed fuel heavily for decades, which shrank vehicle size, pushed freight onto rail, and built dense transit. The same Brent move lands as a smaller share of the household budget — the tax cushion absorbs part of the spike before it reaches the pump.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "~0.40 bbl",
+                "cc": "US",
+                "weight": 40,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Japan",
+                "value": "~0.25 bbl",
+                "cc": "JP",
+                "weight": 25,
+                "tone": "neutral"
+              },
+              {
+                "label": "China",
+                "value": "~0.30 bbl",
+                "cc": "CN",
+                "weight": 30,
+                "tone": "neutral"
+              },
+              {
+                "label": "Germany",
+                "value": "~0.20 bbl",
+                "cc": "DE",
+                "weight": 20,
+                "tone": "favorable"
+              },
+              {
+                "label": "France",
+                "value": "~0.18 bbl",
+                "cc": "FR",
+                "weight": 18,
+                "tone": "favorable"
+              }
+            ],
+            "label": "oil use per $1k of GDP, 2024 (barrels)"
+          }
+        ]
+      },
+      {
+        "heading": "THE PUMP LAG",
+        "body": "Crude moves take 4–6 weeks to fully reach US pumps. Refiners hedge inventory, retailers stagger price changes, and regional fuel blends slow the pass-through. The 6.2-million-barrel drawdown through late April means the worst is still in the pipeline.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              2.867,
+              2.902,
+              2.924,
+              2.937,
+              3.015,
+              3.502,
+              3.72,
+              3.961,
+              3.99,
+              4.12,
+              4.123,
+              4.044,
+              4.123
+            ],
+            "periods": [
+              "Feb 2",
+              "Feb 9",
+              "Feb 16",
+              "Feb 23",
+              "Mar 2",
+              "Mar 9",
+              "Mar 16",
+              "Mar 23",
+              "Mar 30",
+              "Apr 6",
+              "Apr 13",
+              "Apr 20",
+              "Apr 27"
+            ],
+            "label": "US gasoline (retail)",
+            "unit": "$/gal",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE STRATEGIC PETROLEUM RESERVE",
+        "body": "Created after the 1973 OPEC embargo, the SPR holds crude in salt caverns along the Gulf Coast. Drawdowns can release ~4.4 million barrels per day for months — enough to soften a shock but not replace a sustained Hormuz closure (~17 million barrels/day).",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how much oil moves through the Strait of Hormuz each day?",
+            "options": [
+              "~5 million barrels",
+              "~17 million barrels",
+              "~30 million barrels",
+              "~50 million barrels"
+            ],
+            "correct": 1,
+            "explanation": "About 17 million barrels per day — roughly a fifth of global oil consumption — transits Hormuz, mostly Gulf crude bound for Asia."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1979 RHYME",
+        "body": "The 1979 Iranian Revolution cut ~5% of global supply but pump prices doubled — panic buying, hoarding, and gas lines did more damage than the actual shortfall. Stagflation followed, and Volcker's rate hikes broke the back of two recessions to end it.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              67.72,
+              70.01,
+              71.15,
+              69.87,
+              70.45,
+              71.19,
+              71.01,
+              71.52,
+              69.8,
+              69.96,
+              70.81,
+              69.77,
+              71.78,
+              73.17,
+              72.75,
+              71.9,
+              71.21,
+              70.69,
+              71.66,
+              71.32,
+              77.24,
+              83.28,
+              81.56,
+              88.59,
+              95.74,
+              94.35,
+              89.84,
+              90.98,
+              102.38,
+              103.23,
+              101.04,
+              108.39,
+              118.09,
+              111.05,
+              118.42,
+              103.79,
+              108.42,
+              109.14,
+              113.39,
+              121.47,
+              121.88,
+              126.69,
+              119.56,
+              127.61,
+              138.21,
+              122.11,
+              119.03,
+              119.07,
+              123.28,
+              118.69,
+              114.93,
+              116.63,
+              98.63,
+              103.4,
+              106.14,
+              113.44,
+              113.25,
+              111.86,
+              113.89
+            ],
+            "periods": [
+              "Feb 2",
+              "Feb 3",
+              "Feb 4",
+              "Feb 5",
+              "Feb 6",
+              "Feb 9",
+              "Feb 10",
+              "Feb 11",
+              "Feb 12",
+              "Feb 13",
+              "Feb 16",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 27"
+            ],
+            "label": "Brent crude",
+            "unit": "$/bbl",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · EIA · as of 2026-04-27"
+    ],
+    "generatedAt": "2026-05-01T04:29:38.616Z",
+    "label": "Oil Intensity & the US Pump",
+    "category": "economy",
+    "articleCount": 1
   }
 }
