@@ -1,5 +1,65 @@
 {
   "version": 1,
+  "activeExperiments": [
+    {
+      "id": "2026-05-01-fabrication-gate-softening",
+      "startDate": "2026-05-01",
+      "evaluateAfter": "2026-05-04",
+      "prNumber": null,
+      "hypothesis": "Brief block adoption shows rank/sankey/treemap stuck at <2.5% of briefs over the past 7 days (3+3+7 = 13 of 286 briefs) despite the Apr 26 prompt overhaul that lifted timeline from 13 lifetime to 110 in one week. The remaining gap is the fabrication gate: it asks 'could I name peers WITHOUT inventing numbers?', which the model interprets as 'skip if I don't know exact values'. Timeline doesn't need numbers, so it cleared. Rank/sankey/treemap need values, so they default-skip. Reframing the gate to permit approximate magnitudes ('roughly half', '≈40%', '~$30bn') while still blocking fabricated specifics should unblock shape-correct adoption without raising fabrication.",
+      "parameter": "Fabrication-gate language for shape-specific blocks",
+      "file": "scripts/edu-context-prompt.md",
+      "oldValue": "skip if you'd be guessing values",
+      "newValue": "approximate magnitudes permitted; gate blocks fabricated specifics only",
+      "targetMetric": "rank+sankey+treemap blocks per brief (% of briefs with ≥1)",
+      "targetDirection": "increase",
+      "baseline": {
+        "windowStart": "2026-04-25",
+        "windowEnd": "2026-04-30",
+        "briefsAnalyzed": 286,
+        "rankCount": 3,
+        "sankeyCount": 3,
+        "treemapCount": 7,
+        "shapeSpecificRate": 0.045,
+        "rankBriefRate": 0.010,
+        "sankeyBriefRate": 0.010,
+        "treemapBriefRate": 0.024,
+        "comparisonContext": "timeline (also shape-specific but value-free) is at 38% of briefs in same window"
+      },
+      "guardrails": {
+        "fabricationJudgements": "fabrication-judgement hits in .daily-audit.json must not increase >20% vs prior 7-day baseline",
+        "totalBriefVolume": "briefs generated per cycle must not drop >15% (current ~10/cycle)",
+        "blockTotalCount": "total blocks per brief must not drop (would mean we replaced cheap blocks with skipped shape-specifics)",
+        "shapeMisuse": "spot-check 5 random new shape-specific blocks for shape-fit; >1 misuse = revert"
+      }
+    },
+    {
+      "id": "2026-05-01-title-echo-self-check",
+      "startDate": "2026-05-01",
+      "evaluateAfter": "2026-05-08",
+      "prNumber": null,
+      "hypothesis": "Title-echo rate has trended 53.8 → 49.1 → 40.0 over three weekly snapshots — declining at ~9pp/week but still 4× the <10% target. Reflection observed the rule 'nudges rather than blocks'. The current rule already includes a worked example (Microsoft pause); the missing element is a procedural self-check that forces evaluation. Adding 'redact title, re-read S1' as a mandatory pre-save check converts a description into a discrete action the writer model must perform, which should accelerate the decline.",
+      "parameter": "Title-echo self-check (procedural step in antipattern)",
+      "file": "scripts/write-prompt.md",
+      "oldValue": "title-echo rule with worked example, no procedural check",
+      "newValue": "title-echo rule + mandatory redact-and-reread self-check before saving",
+      "targetMetric": "titleEchoRatePct (.quality-trend.json weekly snapshot)",
+      "targetDirection": "decrease",
+      "baseline": {
+        "weekOf2026_04_26": 40.0,
+        "weekOf2026_04_19": 49.1,
+        "weekOf2026_04_17": 53.8,
+        "trendPpPerWeek": -9.0,
+        "target": 10.0
+      },
+      "guardrails": {
+        "wordInRangePct": "must stay ≥75% (currently 79.5%) — over-rewriting could break length",
+        "passiveHookRatePct": "must stay <5% (currently 0%) — rewrites could pull writers into passive constructions",
+        "charOver350Pct": "must not climb above 20% (currently 17.1%) — rewriting S1 with more specifics could push lead length up",
+        "hedgeRatePct": "must stay <5% (currently 0.2%) — uncertain rewrites tempt hedging"
+      }
+    }
+  ],
   "activeExperiment": null,
   "history": [
     {

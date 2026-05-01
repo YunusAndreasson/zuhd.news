@@ -1,29 +1,49 @@
 {
-  "date": "2026-04-29",
+  "date": "2026-05-01",
   "metrics": {
-    "articles": { "value": 41, "detail": "5 cycles, avg 8/cycle" },
-    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 16, "economy": 11, "science": 7, "tech": 7 },
-    "multiSource": { "value": 9, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 14, "EU": 10, "ME": 7, "AS": 7, "AF": 3 } },
-    "sciTech": { "ratio": 34, "target": 25, "met": true },
-    "topSourceShare": { "source": "Hindustan Times", "pct": 10, "target": 20, "met": true },
-    "uniqueSources": 40,
+    "articles": {
+      "value": 16,
+      "detail": "3 of 5 cycles completed (partial day); yesterday full day: 37 articles across 5 cycles"
+    },
+    "freshness": {
+      "median": 0,
+      "p90": 0,
+      "max": 0,
+      "target": 1.0,
+      "met": true,
+      "note": "Sample size 1 — insufficient for reliable freshness read; yesterday freshness data null (count 0)"
+    },
+    "categories": {
+      "politics": 6,
+      "economy": 5,
+      "science": 3,
+      "tech": 2,
+      "note": "Partial day (3/5 cycles). Projected full-day: science ~5 (borderline), tech ~3 (likely to miss ≥4 target)"
+    },
+    "multiSource": { "value": 6, "target": 4, "met": true },
+    "regions": {
+      "count": 5,
+      "target": 4,
+      "met": true,
+      "breakdown": { "AS": 3, "EU": 1, "ME": 4, "AF": 2, "AM": 6 }
+    },
+    "sciTech": { "ratio": 31, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online", "pct": 19, "target": 20, "met": true },
+    "uniqueSources": 26,
     "duplicates": 0,
-    "avgCycleDuration": 1682
+    "avgCycleDuration": 774
   },
-  "experiment": "Experiment 2026-04-26-standalone-cap-22 evaluated on day 3: KEPT. Freshness median dropped from 1.2-day baseline to 0 (well below ≤1.0 target). All guardrails intact: multi-source 9 (≥4 required), sci-tech 34% (≥25% required), publish count 8/cycle (exactly at minimum — worth monitoring).",
-  "weakestArea": "Publish count slipped to 8/cycle today, exactly at the guardrail floor set by the standalone-cap experiment. Article total (41) is the lowest in recent days (vs 57 yesterday, 49 prior). No target was missed, but throughput compression warrants watching — if this persists into tomorrow it may indicate the cap at 22 is trimming the feed too aggressively on lighter news days.",
+  "experiment": "Two experiments active, neither ready to evaluate. '2026-05-01-fabrication-gate-softening' (edu-context-prompt.md, evaluateAfter 2026-05-04) and '2026-05-01-title-echo-self-check' (write-prompt.md, evaluateAfter 2026-05-08) are both in their data-collection window. No new experiment proposed — two changes are already in flight today, and adding a third would violate the one-change-per-day rule.",
+  "weakestArea": "Tech coverage is the concern: only 2 articles in 3 cycles (12.5% of today's output) against the ≥4/day absolute target and the 3/cycle selector floor. The May Day news cycle is driving a labour/politics-heavy feed that is crowding out tech picks. The remaining two cycles (17:00 and 22:00 UTC) may partially recover this, but if tech finishes the day below 4 it will be the third metric worth watching alongside science (currently 3, needs 5/day).",
   "watching": [
-    "US-China trade negotiations: tariff signals and any interim deal framework remain the dominant economy story.",
-    "Gaza ceasefire talks: multiple mediation rounds active; any breakthrough or collapse warrants priority coverage.",
-    "India coverage concentration: Hindustan Times sourced 4 of 41 articles (10%) today — below the 20% cap but steady Indian source clustering warrants attention.",
-    "Sudan humanitarian situation: AF region down to 3 articles, no East Africa or Sahel representation."
+    "Al Jazeera is at 18.75% source share today (3 of 16 articles) — one more article in the remaining two cycles would breach the 20% ceiling; selector should prioritise non-AJE picks in the 17:00/22:00 cycles.",
+    "May Day labour and wage stories are dominating economy and politics; watch for Indian coverage clustering (TRT World + Hindustan Times + NDTV + India.com already account for 5 of 16 articles = 31% combined).",
+    "Fabrication-gate softening experiment entered its first live cycles today — monitor edu-context output in the build log for any fabrication-judgement flags before the 2026-05-04 evaluation date."
   ],
   "coverageGaps": [
-    "Oceania (OC) entirely absent today after just 1 article yesterday — consistent Pacific blind spot across multiple cycles.",
-    "Central Asia (Kazakhstan, Uzbekistan, Turkmenistan) chronically absent from regional breakdown.",
-    "Latin America sub-regional depth thin — AM articles skew heavily US/Canada rather than South or Central America."
+    "Oceania (OC) absent again today — no Pacific representation for the second consecutive day.",
+    "Europe has only 1 article (Le Monde); Eastern Europe, Balkans, and Caucasus coverage that appeared yesterday is entirely absent in today's early cycles.",
+    "Tech/AI depth is thin: only THE DECODER and Rest of World filed tech-categorised pieces; no Ars Technica, 404 Media, or Wired representation today."
   ],
-  "context": "All five cycles completed without errors. Freshness is essentially zero — all articles sourced from same-day feeds, well within target. Politics dominated output at 39% (16/41), driven by India and Gaza coverage; sci-tech combined reached 34%, comfortably above the 25% floor. The standalone cap reduction to 22 (experiment kept today) contributed to the freshness improvement, though the lower article count (41 vs 49–57 in prior days) suggests the tighter cap is slightly compressing daily throughput on lighter feed days. No new experiment proposed — all four primary metrics are within target."
+  "context": "Today is International Workers' Day, which predictably tilts the global news cycle toward labour, wages, and political demonstrations — explaining the elevated politics share (37.5%) and compressed tech output. The two active experiments both target output quality rather than feed parameters, so no feed-side intervention is warranted. Yesterday's full-day metrics (37 articles, sci-tech 38%, multi-source 10, 6 regions) were strong across the board; today's partial-day numbers are within expected range for a heavy-politics news day, with cycle duration notably faster at 774s avg vs the previous 1682s."
 }
