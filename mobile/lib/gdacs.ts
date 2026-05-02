@@ -1,35 +1,15 @@
-// GDACS (Global Disaster Alert and Coordination System) feed shapes + parser.
-//
-// Phase 1: mobile fetches the public GeoJSON feed directly. Phase 2 (deferred):
-// the same shape served from /api/gdacs.json with a daily server-side cache.
-// Swapping phases is a single-line URL change in useGdacsAlerts.
+// GDACS display helpers. The parser + detail fetcher have moved to
+// `scripts/lib/gdacs.js` (server-side, runs once per cycle); mobile now
+// reads the pre-parsed snapshot from /api/gdacs.json. What stays here is
+// purely render-time concerns: eyebrow labels, source-code display names,
+// severityText → focal-number reduction, and age-based opacity.
 
-import { fetchJson } from './fetchJson';
-
-// EVENTS4APP returns Point geometry for every feature, unlike MAP which mixes
-// Point/Polygon/MultiPolygon (cyclone tracks, fire perimeters, drought zones).
-// Mobile only consumes points, so EVENTS4APP gives us a usable feed every day
-// instead of a mostly-polygon feed that would render an empty globe.
-export const GDACS_GEOJSON_URL =
-  'https://www.gdacs.org/gdacsapi/api/events/geteventlist/EVENTS4APP';
-
-/** Per-event detail URL (single Feature, not a collection). Returns the
- *  same alert plus event-type-specific blocks like `earthquakedetails`
- *  with population estimates the list endpoint omits. We only call this
- *  lazily when an alert sheet opens. */
-export function gdacsEventDetailUrl(eventtype: EventType, eventid: string): string {
-  return `https://www.gdacs.org/gdacsapi/api/Events/geteventdata?eventtype=${eventtype}&eventid=${encodeURIComponent(eventid)}`;
-}
-
-export type EventType = 'EQ' | 'TC' | 'FL' | 'VO' | 'DR' | 'WF';
-export type AlertLevel = 'Green' | 'Orange' | 'Red';
-
-// ── Display helpers (for the alert sheet) ─────────────────────────────────
+import type { GdacsAlert, GdacsEventType } from '@shared/types';
 
 /** Eyebrow label — the all-caps event-type name that anchors the sheet
  *  before the focal severity number. Replaces the redundant 44px glyph
  *  that the reader already saw on the globe. */
-export const EVENT_TYPE_EYEBROW: Record<EventType, string> = {
+export const EVENT_TYPE_EYEBROW: Record<GdacsEventType, string> = {
   EQ: 'EARTHQUAKE',
   TC: 'TROPICAL CYCLONE',
   FL: 'FLOOD',
@@ -83,7 +63,6 @@ export function parseSeverityHero(alert: GdacsAlert): SeverityHero {
   if (text.length === 0) return { focal: EVENT_TYPE_EYEBROW[alert.eventtype], secondary: '' };
 
   if (alert.eventtype === 'EQ') {
-    // "Magnitude 5.2M, Depth:23km" → focal "M 5.2", secondary "23 km deep"
     const m = text.match(/Magnitude\s+([\d.]+)M?,?\s*Depth[:\s]+(\d+(?:\.\d+)?)\s*km/i);
     if (m) return { focal: `M ${m[1]}`, secondary: `${m[2]} km deep` };
     const m2 = text.match(/Magnitude\s+([\d.]+)/i);
@@ -91,8 +70,6 @@ export function parseSeverityHero(alert: GdacsAlert): SeverityHero {
   }
 
   if (alert.eventtype === 'TC') {
-    // "Tropical Storm wind speed of 95 km/h" → focal "95 km/h",
-    // secondary "tropical-storm strength" (Saffir-Simpson tier word).
     const m = text.match(
       /(Tropical\s+(?:Storm|Depression)|Hurricane|Typhoon|Cyclone).*?(\d+)\s*(km\/h|kt|mph)/i,
     );
@@ -106,8 +83,6 @@ export function parseSeverityHero(alert: GdacsAlert): SeverityHero {
   }
 
   if (alert.eventtype === 'WF') {
-    // "Green impact for forestfire in 7559 ha" → focal "7,559 ha",
-    // secondary "burn area".
     const m = text.match(/(\d+(?:\.\d+)?)\s*(ha|km2|km²)/i);
     if (m?.[1] && m[2]) {
       return { focal: `${formatGrouped(m[1])} ${normalizeUnit(m[2])}`, secondary: 'burn area' };
@@ -115,21 +90,15 @@ export function parseSeverityHero(alert: GdacsAlert): SeverityHero {
   }
 
   if (alert.eventtype === 'DR') {
-    // "Minor impact for agricultural drought in 37241 km2" → focal "37,241 km²"
     const m = text.match(/(\d+(?:\.\d+)?)\s*(ha|km2|km²)/i);
     if (m?.[1] && m[2]) {
       return { focal: `${formatGrouped(m[1])} ${normalizeUnit(m[2])}`, secondary: 'drought area' };
     }
   }
 
-  if (alert.eventtype === 'FL') {
-    // GDACS often publishes "Magnitude 0" for floods at this endpoint —
-    // there's nothing useful to extract. Fall through to the raw text;
-    // the formatter below will return it as focal so we never silently
-    // hide data, even when it's prose-only.
-  }
-
-  // Default fallback — raw severity text as the focal, no secondary.
+  // FL events publish "Magnitude 0" at this endpoint — nothing parseable.
+  // Default fallback returns the raw severityText as focal (never silently
+  // hide the data, even when it's prose-only).
   return { focal: text, secondary: '' };
 }
 
@@ -144,276 +113,6 @@ function normalizeUnit(u: string): string {
   return u;
 }
 
-export interface GdacsAlert {
-  eventid: string;
-  eventtype: EventType;
-  alertlevel: AlertLevel;
-  /** Human-readable event name, e.g. "M 7.4 Honshu, Japan". */
-  name: string;
-  /** Primary affected country (full name as published by GDACS). */
-  country: string;
-  iso3: string;
-  /** Country names of every affected jurisdiction, including primary. */
-  affectedCountries: string[];
-  lat: number;
-  lng: number;
-  /** ISO timestamps. `toDate` is null for open-ended events. */
-  fromDate: string;
-  toDate: string | null;
-  modifiedDate: string;
-  /** Pre-formatted GDACS severity string, e.g.
-   *  "Magnitude 7.4M, Depth:23km" / "Tropical Storm wind speed of 95 km/h". */
-  severityText: string;
-  /** Numeric severity (magnitude / wind speed / VEI) when GDACS publishes
-   *  a structured value alongside `severityText`. Null for events where
-   *  only the prose form exists. */
-  severityValue: number | null;
-  /** Unit string for `severityValue`, e.g. "M" for earthquakes, "kph" for
-   *  cyclones. Empty string when GDACS doesn't supply one. */
-  severityUnit: string;
-  /** Plain-text summary, HTML stripped, capped to ~280 chars. Auto-caption
-   *  strings — GDACS's templated "Green M 5 Earthquake in X at: <date>" —
-   *  are filtered out here (set to empty), since every scrap of them is
-   *  already carried by `name` + `severityText` + `fromDate`. The field
-   *  is non-empty only when there's substantive narrative the reader
-   *  hasn't already seen. */
-  description: string;
-  /** Originating authority — e.g. "NEIC" (US Geological Survey earthquake
-   *  network), "JRC" (EU flood centre), "JTWC" / "NHC" (cyclone centres),
-   *  "Smithsonian" (volcanoes). Empty string when GDACS doesn't publish
-   *  one. Surfaces in the alert sheet as proper attribution. */
-  source: string;
-  reportUrl: string | null;
-}
-
-const EVENT_TYPES: ReadonlySet<string> = new Set(['EQ', 'TC', 'FL', 'VO', 'DR', 'WF']);
-const ALERT_LEVELS: ReadonlySet<string> = new Set(['Green', 'Orange', 'Red']);
-
-/** Hard age cliff for alerts. Beyond this, drop entirely rather than fade —
- *  GDACS keeps long-running events (multi-month droughts, ongoing wildfires)
- *  on the feed indefinitely, and a half-faded marker from 8 months ago is
- *  not "happening now." */
-const MAX_ALERT_AGE_DAYS = 30;
-
-const isObject = (v: unknown): v is Record<string, unknown> =>
-  typeof v === 'object' && v !== null && !Array.isArray(v);
-
-const isFiniteNumber = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v);
-
-interface GdacsFeature {
-  type: 'Feature';
-  geometry: {
-    type: 'Point';
-    coordinates: [number, number];
-  };
-  properties: Record<string, unknown>;
-}
-
-export interface GdacsFeatureCollection {
-  type: 'FeatureCollection';
-  features: GdacsFeature[];
-}
-
-const isGdacsFeature = (v: unknown): v is GdacsFeature => {
-  if (!isObject(v)) return false;
-  if (v.type !== 'Feature') return false;
-  if (!isObject(v.geometry)) return false;
-  if (!isObject(v.properties)) return false;
-  // Only Point geometry is consumed; Polygon features (fire perimeters,
-  // 100km affected radii) ride along but are ignored. Filtering them out
-  // here keeps the downstream mapper simple.
-  if (v.geometry.type !== 'Point') return false;
-  const coords = v.geometry.coordinates;
-  if (!Array.isArray(coords) || coords.length < 2) return false;
-  if (!isFiniteNumber(coords[0]) || !isFiniteNumber(coords[1])) return false;
-  return true;
-};
-
-export const isGdacsFeatureCollection = (v: unknown): v is GdacsFeatureCollection => {
-  if (!isObject(v)) return false;
-  if (v.type !== 'FeatureCollection') return false;
-  if (!Array.isArray(v.features)) return false;
-  // Permissive — accept the collection if at least the array is well-formed.
-  // Per-feature validity is checked again in the mapper, where invalid rows
-  // are simply dropped.
-  return true;
-};
-
-/** Strip a small subset of HTML and decode the handful of entities GDACS
- *  emits. Not a general-purpose sanitizer — the field is treated as
- *  untrusted prose, not markup. */
-function htmlToPlain(html: string): string {
-  return html
-    .replace(/<br\s*\/?>(?:\s*\n)?/gi, '\n')
-    .replace(/<[^>]+>/g, '')
-    .replace(/&nbsp;/g, ' ')
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&#39;/g, "'")
-    .replace(/&quot;/g, '"')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
-function truncate(s: string, max: number): string {
-  if (s.length <= max) return s;
-  // Break on the nearest sentence end before max, falling back to a
-  // word boundary so the trailing ellipsis doesn't snip mid-word.
-  const cut = s.slice(0, max);
-  const lastDot = cut.lastIndexOf('. ');
-  if (lastDot > max * 0.6) return `${cut.slice(0, lastDot + 1)}`;
-  const lastSpace = cut.lastIndexOf(' ');
-  return `${cut.slice(0, lastSpace > 0 ? lastSpace : max)}…`;
-}
-
-function readAffectedCountryNames(raw: unknown): string[] {
-  // GDACS sends `affectedcountries` as an array of {iso2, iso3, countryname},
-  // sometimes also as a comma-separated string for legacy clients. Handle both.
-  if (Array.isArray(raw)) {
-    const out: string[] = [];
-    for (const entry of raw) {
-      if (
-        isObject(entry) &&
-        typeof entry.countryname === 'string' &&
-        entry.countryname.length > 0
-      ) {
-        out.push(entry.countryname);
-      }
-    }
-    return out;
-  }
-  if (typeof raw === 'string' && raw.length > 0) {
-    return raw
-      .split(',')
-      .map((s) => s.trim())
-      .filter((s) => s.length > 0);
-  }
-  return [];
-}
-
-function readSeverityText(props: Record<string, unknown>): string {
-  const sev = props.severitydata;
-  if (isObject(sev) && typeof sev.severitytext === 'string' && sev.severitytext.length > 0) {
-    return sev.severitytext;
-  }
-  return '';
-}
-
-function readSeverityValue(props: Record<string, unknown>): number | null {
-  const sev = props.severitydata;
-  if (isObject(sev) && isFiniteNumber(sev.severity)) return sev.severity;
-  return null;
-}
-
-function readSeverityUnit(props: Record<string, unknown>): string {
-  const sev = props.severitydata;
-  if (isObject(sev) && typeof sev.severityunit === 'string') return sev.severityunit;
-  return '';
-}
-
-/** GDACS auto-caption shape — e.g. "Green M 5 Earthquake in South Sandwich
- *  Islands Region at: 02 May 2026 10:31:40." Every component (alert level,
- *  magnitude, event type, region, datetime) is already surfaced through
- *  the structured fields, so the auto-caption adds no information and
- *  visually duplicates the sheet header. We blank these so the sheet
- *  doesn't render a redundant paragraph. Real narrative descriptions —
- *  what GDACS publishes for flagged Orange/Red events with situational
- *  context — never match this shape and pass through unchanged.
- *
- *  Anchored on both ends to avoid false positives: `^(Green|Orange|Red)\s`
- *  alone would also strip "Red Cross teams have deployed…", so we also
- *  require the literal `at: <date>` suffix that every auto-caption ends
- *  with. The two anchors together identify the GDACS template uniquely. */
-const AUTO_CAPTION = /^(Green|Orange|Red)\s.+\sat:\s\d/i;
-function dropAutoCaption(description: string): string {
-  return AUTO_CAPTION.test(description) ? '' : description;
-}
-
-function readReportUrl(props: Record<string, unknown>): string | null {
-  const url = props.url;
-  if (isObject(url) && typeof url.report === 'string' && /^https?:\/\//.test(url.report)) {
-    return url.report;
-  }
-  return null;
-}
-
-function featureToAlert(feature: GdacsFeature): GdacsAlert | null {
-  const p = feature.properties;
-  const eventtype = p.eventtype;
-  const alertlevel = p.alertlevel;
-  const eventid = p.eventid;
-  if (typeof eventtype !== 'string' || !EVENT_TYPES.has(eventtype)) return null;
-  if (typeof alertlevel !== 'string' || !ALERT_LEVELS.has(alertlevel)) return null;
-  // eventid arrives as a number in GDACS' payload but is conceptually opaque.
-  const id =
-    typeof eventid === 'number' ? String(eventid) : typeof eventid === 'string' ? eventid : null;
-  if (!id) return null;
-
-  const [lng, lat] = feature.geometry.coordinates;
-  const name =
-    typeof p.name === 'string' && p.name.length > 0
-      ? p.name
-      : typeof p.eventname === 'string'
-        ? p.eventname
-        : '';
-  const country = typeof p.country === 'string' ? p.country : '';
-  const iso3 = typeof p.iso3 === 'string' ? p.iso3 : '';
-  const fromDate = typeof p.fromdate === 'string' ? p.fromdate : '';
-  const toDate = typeof p.todate === 'string' && p.todate.length > 0 ? p.todate : null;
-  const modifiedDate = typeof p.datemodified === 'string' ? p.datemodified : fromDate;
-  const rawDescription =
-    typeof p.htmldescription === 'string'
-      ? truncate(htmlToPlain(p.htmldescription), 280)
-      : typeof p.description === 'string'
-        ? truncate(p.description, 280)
-        : '';
-  const description = dropAutoCaption(rawDescription);
-  const source = typeof p.source === 'string' ? p.source : '';
-
-  return {
-    eventid: id,
-    eventtype: eventtype as EventType,
-    alertlevel: alertlevel as AlertLevel,
-    name,
-    country,
-    iso3,
-    affectedCountries: readAffectedCountryNames(p.affectedcountries),
-    lat,
-    lng,
-    fromDate,
-    toDate,
-    modifiedDate,
-    severityText: readSeverityText(p),
-    severityValue: readSeverityValue(p),
-    severityUnit: readSeverityUnit(p),
-    description,
-    source,
-    reportUrl: readReportUrl(p),
-  };
-}
-
-/** Flatten a parsed GeoJSON collection into our internal record shape.
- *  Drops malformed features, unknown alert levels, non-current events,
- *  and anything older than MAX_ALERT_AGE_DAYS. Green alerts are kept at
- *  the data layer and capped per-tier downstream in MiniGlobe so the
- *  ambient pulse doesn't accumulate stale entries. */
-export function collectionToAlerts(
-  collection: GdacsFeatureCollection,
-  now: number = Date.now(),
-): GdacsAlert[] {
-  const out: GdacsAlert[] = [];
-  for (const feature of collection.features) {
-    if (!isGdacsFeature(feature)) continue;
-    if (feature.properties.iscurrent !== true && feature.properties.iscurrent !== 'true') continue;
-    const alert = featureToAlert(feature);
-    if (!alert) continue;
-    if (alertAgeDays(alert, now) > MAX_ALERT_AGE_DAYS) continue;
-    out.push(alert);
-  }
-  return out;
-}
-
 /** Days since `modifiedDate` — used to fade older markers via the same
  *  recency family hotspots use. Returns 0 for unparsable timestamps so
  *  borderline data still renders at full opacity. */
@@ -421,179 +120,4 @@ export function alertAgeDays(alert: GdacsAlert, now: number = Date.now()): numbe
   const t = Date.parse(alert.modifiedDate);
   if (!Number.isFinite(t)) return 0;
   return Math.max(0, (now - t) / 86_400_000);
-}
-
-// ── Per-event detail (lazy, on sheet open) ─────────────────────────────────
-
-/** Per-event detail surface — common shape for the population-exposure
- *  stat the sheet renders, regardless of event type. The list endpoint
- *  (EVENTS4APP) doesn't carry these; they're fetched lazily via
- *  `fetchGdacsDetail`.
- *
- *  Two tiers per event so the sheet can pick the most-severe zone with
- *  meaningful data:
- *    • critical  — people in the most severe impact zone
- *                  (EQ shaking footprint / TC hurricane-force winds)
- *    • wider     — broader exposure zone, used as fallback when critical
- *                  is null or not published for this event type
- *
- *  Each tier carries a plain-English clause that completes the sentence
- *  "<formatted number> people <clause>", so the sheet doesn't have to
- *  branch on `eventtype` to pick wording — and the wording is what the
- *  reader actually experiences (no "shaking zone" jargon). */
-export interface GdacsDetail {
-  criticalPopulation: number | null;
-  criticalClause: string;
-  widerPopulation: number | null;
-  widerClause: string;
-}
-
-const EMPTY_DETAIL: GdacsDetail = {
-  criticalPopulation: null,
-  criticalClause: '',
-  widerPopulation: null,
-  widerClause: '',
-};
-
-interface GdacsDetailFeature {
-  type: 'Feature';
-  properties: Record<string, unknown>;
-}
-
-export const isGdacsDetailFeature = (v: unknown): v is GdacsDetailFeature => {
-  if (!isObject(v)) return false;
-  if (v.type !== 'Feature') return false;
-  if (!isObject(v.properties)) return false;
-  return true;
-};
-
-/** Parse the population-string fields the GDACS detail endpoint publishes.
- *  Numbers come back string-typed ("12400000", "0", "") — coerce, then
- *  treat 0 / NaN as "no data" so the sheet doesn't render a meaningless
- *  "0 people" line on low-tier events. */
-function readPopulationField(v: unknown): number | null {
-  if (typeof v === 'number' && Number.isFinite(v)) return v > 0 ? v : null;
-  if (typeof v !== 'string' || v.length === 0) return null;
-  const n = Number(v);
-  return Number.isFinite(n) && n > 0 ? n : null;
-}
-
-/** EQ-shape parser. The geteventdata response carries
- *  `earthquakedetails.shakepop` (people in the shaking footprint, Mercalli
- *  ≥ V roughly) and `.rapidpop` (people in the wider rapid-impact radius). */
-export function featureToDetail(feature: GdacsDetailFeature): GdacsDetail {
-  const eq = feature.properties.earthquakedetails;
-  if (!isObject(eq)) return EMPTY_DETAIL;
-  return {
-    criticalPopulation: readPopulationField(eq.shakepop),
-    criticalClause: 'felt strong shaking',
-    widerPopulation: readPopulationField(eq.rapidpop),
-    widerClause: 'in the wider affected area',
-  };
-}
-
-/** Walk a GDACS getimpact response to find a named scalar. The schema is
- *  deeply nested ({datums:[{datum:[{scalars:{scalar:[{name,value,...}]}}]}]})
- *  so we recurse generically and stop at the first match. Returns null on
- *  any structural deviation, on missing/non-positive values, or on schema
- *  mismatches — defensive because the schema is generic-model-output, not
- *  a typed contract. */
-export function readImpactScalar(impact: unknown, fieldName: string): number | null {
-  if (impact === null || typeof impact !== 'object') return null;
-  if (Array.isArray(impact)) {
-    for (const item of impact) {
-      const v = readImpactScalar(item, fieldName);
-      if (v !== null) return v;
-    }
-    return null;
-  }
-  const o = impact as Record<string, unknown>;
-  if (o.name === fieldName) {
-    if (typeof o.value === 'number' && Number.isFinite(o.value) && o.value > 0) return o.value;
-    if (typeof o.value === 'string' && o.value.length > 0) {
-      const n = Number(o.value);
-      if (Number.isFinite(n) && n > 0) return n;
-    }
-  }
-  for (const k of Object.keys(o)) {
-    const v = readImpactScalar(o[k], fieldName);
-    if (v !== null) return v;
-  }
-  return null;
-}
-
-/** Locate a buffer-impact URL inside the TC detail response's `impacts`
- *  array. JTWC publishes two: `buffer74` (74kt = hurricane force) and
- *  `buffer39` (39kt = tropical-storm force). Returns null when GDACS
- *  hasn't computed a buffer for that wind tier — common on weak storms
- *  or before forecasts are issued. */
-function findBufferImpactUrl(
-  props: Record<string, unknown>,
-  kind: 'buffer74' | 'buffer39',
-): string | null {
-  const impacts = props.impacts;
-  if (!Array.isArray(impacts)) return null;
-  for (const imp of impacts) {
-    if (!isObject(imp)) continue;
-    const res = imp.resource;
-    if (!isObject(res)) continue;
-    const url = res[kind];
-    if (typeof url === 'string' && /^https?:\/\//.test(url)) return url;
-  }
-  return null;
-}
-
-/** Async dispatcher — fetches the right richer-detail surface for each
- *  event type and returns the unified `GdacsDetail` shape. EQ takes one
- *  fetch (geteventdata, parses earthquakedetails). TC takes two (event
- *  data → buffer URLs → getimpact for population scalars). Other types
- *  resolve to EMPTY_DETAIL — there's no equivalent population block at
- *  this endpoint per audit (FL/WF/DR/VO have severityText already
- *  carrying the relevant scale: burn area, flood km², drought km²). */
-export async function fetchGdacsDetail(
-  alert: GdacsAlert,
-  signal?: AbortSignal,
-): Promise<GdacsDetail> {
-  if (alert.eventtype === 'EQ') {
-    const feature = await fetchJson(
-      gdacsEventDetailUrl(alert.eventtype, alert.eventid),
-      isGdacsDetailFeature,
-      { signal, timeoutMs: 6000 },
-    );
-    return featureToDetail(feature);
-  }
-  if (alert.eventtype === 'TC') {
-    const feature = await fetchJson(
-      gdacsEventDetailUrl(alert.eventtype, alert.eventid),
-      isGdacsDetailFeature,
-      { signal, timeoutMs: 6000 },
-    );
-    const props = feature.properties;
-    const hurricaneUrl = findBufferImpactUrl(props, 'buffer74');
-    const tsUrl = findBufferImpactUrl(props, 'buffer39');
-    // Sequential rather than parallel — TC sheets are rare enough that
-    // halving the latency isn't worth the extra complexity, and the
-    // signal handling stays simpler with a linear chain.
-    const critical = hurricaneUrl
-      ? await fetchImpactPopulation(hurricaneUrl, signal).catch(() => null)
-      : null;
-    const wider = tsUrl ? await fetchImpactPopulation(tsUrl, signal).catch(() => null) : null;
-    return {
-      criticalPopulation: critical,
-      criticalClause: 'in the hurricane wind zone',
-      widerPopulation: wider,
-      widerClause: 'in the storm path',
-    };
-  }
-  return EMPTY_DETAIL;
-}
-
-async function fetchImpactPopulation(url: string, signal?: AbortSignal): Promise<number | null> {
-  // The getimpact response is generic model output, not a typed schema —
-  // accept any object and let `readImpactScalar` walk it defensively.
-  const res = await fetchJson(url, (v): v is unknown => v !== null && typeof v === 'object', {
-    signal,
-    timeoutMs: 6000,
-  });
-  return readImpactScalar(res, 'POP_AFFECTED');
 }

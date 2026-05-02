@@ -1,5 +1,5 @@
 import { Skia } from '@shopify/react-native-skia';
-import type { EventType } from '../../lib/gdacs';
+import type { GdacsEventType as EventType } from '@shared/types';
 
 /** Glyph paths for GDACS event types. Each path is centered at (0,0) inside
  *  a 22×22 unit box so MiniGlobe can translate by `(x - GLYPH_HALF, y - GLYPH_HALF)`

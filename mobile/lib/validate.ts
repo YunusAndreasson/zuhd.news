@@ -11,6 +11,9 @@ import type {
   Entity,
   EntityKind,
   FeedResponse,
+  GdacsAlert,
+  GdacsDetail,
+  GdacsSnapshot,
   HeatmapPoint,
   Indicator,
   MetaResponse,
@@ -292,6 +295,48 @@ export const isChokepointSnapshot = (v: unknown): v is ChokepointSnapshot =>
   typeof v.generated === 'string' &&
   Array.isArray(v.chokepoints) &&
   v.chokepoints.every(isChokepoint);
+
+const GDACS_EVENT_TYPES: ReadonlySet<string> = new Set(['EQ', 'TC', 'FL', 'VO', 'DR', 'WF']);
+const GDACS_ALERT_LEVELS: ReadonlySet<string> = new Set(['Green', 'Orange', 'Red']);
+
+const isGdacsAlert = (v: unknown): v is GdacsAlert => {
+  if (!isObject(v)) return false;
+  if (typeof v.eventid !== 'string' || v.eventid.length === 0) return false;
+  if (typeof v.eventtype !== 'string' || !GDACS_EVENT_TYPES.has(v.eventtype)) return false;
+  if (typeof v.alertlevel !== 'string' || !GDACS_ALERT_LEVELS.has(v.alertlevel)) return false;
+  if (typeof v.name !== 'string') return false;
+  if (typeof v.country !== 'string' || typeof v.iso3 !== 'string') return false;
+  if (!isStringArray(v.affectedCountries)) return false;
+  if (!isFiniteNumber(v.lat) || !isFiniteNumber(v.lng)) return false;
+  if (typeof v.fromDate !== 'string' || typeof v.modifiedDate !== 'string') return false;
+  if (v.toDate !== null && typeof v.toDate !== 'string') return false;
+  if (typeof v.severityText !== 'string') return false;
+  if (v.severityValue !== null && !isFiniteNumber(v.severityValue)) return false;
+  if (typeof v.severityUnit !== 'string') return false;
+  if (typeof v.description !== 'string') return false;
+  if (typeof v.source !== 'string') return false;
+  if (v.reportUrl !== null && typeof v.reportUrl !== 'string') return false;
+  return true;
+};
+
+const isGdacsDetail = (v: unknown): v is GdacsDetail => {
+  if (!isObject(v)) return false;
+  if (v.criticalPopulation !== null && !isFiniteNumber(v.criticalPopulation)) return false;
+  if (v.widerPopulation !== null && !isFiniteNumber(v.widerPopulation)) return false;
+  if (typeof v.criticalClause !== 'string' || typeof v.widerClause !== 'string') return false;
+  return true;
+};
+
+export const isGdacsSnapshot = (v: unknown): v is GdacsSnapshot => {
+  if (!isObject(v)) return false;
+  if (typeof v.generated !== 'string') return false;
+  if (!Array.isArray(v.alerts) || !v.alerts.every(isGdacsAlert)) return false;
+  if (!isObject(v.details)) return false;
+  for (const detail of Object.values(v.details)) {
+    if (!isGdacsDetail(detail)) return false;
+  }
+  return true;
+};
 
 const isIndicator = (v: unknown): v is Indicator => {
   if (!isObject(v)) return false;

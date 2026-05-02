@@ -589,6 +589,19 @@ if (existsSync(chokepointsSrc)) {
   console.log(`  Built: api/chokepoints.json (${enriched.chokepoints.length} chokepoints)`)
 }
 
+// GDACS disaster snapshot — pre-fetched alert list + EQ/TC population
+// details, one server-side fetch per cycle replacing N fetches per install.
+// Pure passthrough: the pipeline writes the API-shape directly, build just
+// mirrors it under dist/api/. Missing input degrades gracefully (mobile
+// renders an empty disaster layer when the endpoint 404s).
+const gdacsSrc = join(ROOT, 'content', '.gdacs.json')
+if (existsSync(gdacsSrc)) {
+  cpSync(gdacsSrc, join(DIST_DIR, 'api', 'gdacs.json'))
+  const g = JSON.parse(readFileSync(gdacsSrc, 'utf8'))
+  const detailCount = g.details ? Object.keys(g.details).length : 0
+  console.log(`  Built: api/gdacs.json (${g.alerts?.length ?? 0} alerts, ${detailCount} details)`)
+}
+
 // Trends snapshot — full indicator catalog with values/periods. Mobile
 // EntitySheet fetches this to render charts for any entity tapped in an
 // article body. Ships today's snapshot as api/trends.json (single file,

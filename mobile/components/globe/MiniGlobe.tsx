@@ -53,7 +53,8 @@ import {
 } from 'react-native-reanimated';
 import { BLACK } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
-import { alertAgeDays, type GdacsAlert } from '../../lib/gdacs';
+import type { GdacsAlert } from '@shared/types';
+import { alertAgeDays } from '../../lib/gdacs';
 import { displayCountryName, displayLocation, wrapCountryLabel } from '../../lib/place-names';
 import {
   getLakeLabels,

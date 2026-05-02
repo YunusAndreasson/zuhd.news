@@ -4,6 +4,7 @@ import {
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import { COUNTRY_DATA } from '@shared/countries/country-data';
+import type { GdacsAlert, GdacsDetail } from '@shared/types';
 import { memo, useCallback, useMemo } from 'react';
 import { Text as RNText, StyleSheet, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
@@ -11,12 +12,7 @@ import { ANIMATION, FLAG, SPACING, staggerDelay } from '../constants/theme';
 import { useGdacsDetail } from '../hooks/useGdacsDetail';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
-import {
-  displaySourceName,
-  EVENT_TYPE_EYEBROW,
-  type GdacsAlert,
-  parseSeverityHero,
-} from '../lib/gdacs';
+import { displaySourceName, EVENT_TYPE_EYEBROW, parseSeverityHero } from '../lib/gdacs';
 import { useOpenLink } from '../lib/open-link';
 import { displayCountryName } from '../lib/place-names';
 import { Pressable, Text } from './primitives';
@@ -25,6 +21,11 @@ import { SheetLayout } from './SheetLayout';
 interface DisasterSheetProps {
   sheetRef: React.RefObject<BottomSheetModal | null>;
   alert: GdacsAlert | null;
+  /** Pre-fetched detail map from /api/gdacs.json — keyed
+   *  `${eventtype}:${eventid}`. The sheet does a synchronous lookup; missing
+   *  keys (non-EQ/TC events, or EQ/TC where the cycle's detail fetch failed)
+   *  resolve to null and the population row hides. */
+  details: Record<string, GdacsDetail>;
   bottomInset: number;
   renderBackdrop: React.FC<BottomSheetBackdropProps>;
   onDismiss: () => void;
@@ -134,6 +135,7 @@ function FlagChip({
 export const DisasterSheet = memo(function DisasterSheet({
   sheetRef,
   alert,
+  details,
   bottomInset,
   renderBackdrop,
   onDismiss,
@@ -145,10 +147,11 @@ export const DisasterSheet = memo(function DisasterSheet({
   const handleReportPress = useCallback(() => {
     if (alert?.reportUrl) openLink(alert.reportUrl);
   }, [alert?.reportUrl, openLink]);
-  // Lazy per-event detail — population estimates for EQ and TC. Sheet
-  // chooses the most-severe zone GDACS publishes for this alert and
-  // renders it as a plain-English sentence below the hero.
-  const detail = useGdacsDetail(alert);
+  // Per-event detail — population estimates for EQ and TC. Pre-fetched
+  // server-side (stage 3.4c of run-cycle) and shipped with the alert list,
+  // so this is a synchronous map lookup and the population row renders the
+  // moment the sheet opens.
+  const detail = useGdacsDetail(alert, details);
   const populationCount =
     detail?.criticalPopulation && detail.criticalPopulation > 0
       ? detail.criticalPopulation

@@ -271,6 +271,17 @@ $BODY_LENGTHS
   CHOKEPOINTS_EXIT=$?
   echo "Chokepoints exit: $CHOKEPOINTS_EXIT — $((SECONDS - T34B))s" | tee -a "$LOG_FILE"
 
+  # Stage 3.4c: GDACS snapshot — disaster layer on mobile. Pulls EVENTS4APP
+  # list + per-event population details (EQ shakepop, TC JTWC buffer impact)
+  # in one batch so every install reads from /api/gdacs.json instead of
+  # hitting gdacs.org on launch + every sheet open. Fail-soft.
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.4c: GDACS snapshot ---" | tee -a "$LOG_FILE"
+  T34C=$SECONDS
+  timeout 120 node scripts/fetch-gdacs.js >> "$LOG_FILE" 2>&1
+  GDACS_EXIT=$?
+  echo "GDACS exit: $GDACS_EXIT — $((SECONDS - T34C))s" | tee -a "$LOG_FILE"
+
   # Stage 3.5: Educational context briefs
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 3.5: Educational context briefs ---" | tee -a "$LOG_FILE"

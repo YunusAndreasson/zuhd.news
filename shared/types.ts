@@ -308,6 +308,68 @@ export interface ChokepointSnapshot {
   chokepoints: Chokepoint[];
 }
 
+// ── GDACS (Global Disaster Alert and Coordination System) ──────────────────
+//
+// Pre-fetched server-side once per cycle (scripts/fetch-gdacs.js) and served
+// from /api/gdacs.json so mobile reads one Cloudflare-cached blob instead of
+// hitting gdacs.org on launch + every disaster sheet open.
+
+export type GdacsEventType = 'EQ' | 'TC' | 'FL' | 'VO' | 'DR' | 'WF';
+export type GdacsAlertLevel = 'Green' | 'Orange' | 'Red';
+
+export interface GdacsAlert {
+  eventid: string;
+  eventtype: GdacsEventType;
+  alertlevel: GdacsAlertLevel;
+  /** Human-readable event name, e.g. "M 7.4 Honshu, Japan". */
+  name: string;
+  /** Primary affected country (full name as published by GDACS). */
+  country: string;
+  iso3: string;
+  /** Country names of every affected jurisdiction, including primary. */
+  affectedCountries: string[];
+  lat: number;
+  lng: number;
+  /** ISO timestamps. `toDate` is null for open-ended events. */
+  fromDate: string;
+  toDate: string | null;
+  modifiedDate: string;
+  /** Pre-formatted GDACS severity string, e.g.
+   *  "Magnitude 7.4M, Depth:23km" / "Tropical Storm wind speed of 95 km/h". */
+  severityText: string;
+  severityValue: number | null;
+  severityUnit: string;
+  /** Plain-text summary, HTML stripped, capped to ~280 chars. Templated GDACS
+   *  auto-captions ("Green M 5 Earthquake in X at: <date>") are filtered to
+   *  empty server-side since their content is already in name + severityText
+   *  + fromDate. Non-empty only when GDACS publishes substantive narrative. */
+  description: string;
+  /** Originating authority code — "NEIC", "JRC", "JTWC", "Smithsonian", etc.
+   *  Empty when GDACS doesn't publish one. */
+  source: string;
+  reportUrl: string | null;
+}
+
+/** Population-exposure detail surface, fetched server-side for each EQ/TC
+ *  alert. Two tiers per event so the sheet picks the most-severe zone with
+ *  meaningful data; `null` populations mean GDACS published nothing
+ *  meaningful for that tier (the sheet hides the row). */
+export interface GdacsDetail {
+  criticalPopulation: number | null;
+  criticalClause: string;
+  widerPopulation: number | null;
+  widerClause: string;
+}
+
+/** /api/gdacs.json shape. `details` is keyed by `${eventtype}:${eventid}` —
+ *  only EQ and TC alerts have entries, since other event types surface their
+ *  scale through severityText already. */
+export interface GdacsSnapshot {
+  generated: string;
+  alerts: GdacsAlert[];
+  details: Record<string, GdacsDetail>;
+}
+
 /** One indicator from the trends snapshot at `/api/trends.json`. Mirrors the
  *  shape the pipeline writes in `content/trends/<date>.json`. Value/periods
  *  pairs drive the chart in `EntitySheet`; `topicTags` and `countryTags` are

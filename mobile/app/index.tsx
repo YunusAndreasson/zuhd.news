@@ -50,7 +50,7 @@ import { useTrendsSnapshot } from '../hooks/useTrendsSnapshot';
 import { useZoomCycle } from '../hooks/useZoomCycle';
 import { formatExactTime } from '../lib/article-utils';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
-import type { GdacsAlert } from '../lib/gdacs';
+import type { GdacsAlert } from '@shared/types';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
 
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
@@ -93,7 +93,7 @@ export default function HomeScreen() {
   } = useArticles();
   const heatmapPoints = useHeatmap(generated);
   const { chokepoints } = useChokepoints();
-  const { alerts: gdacsAlerts } = useGdacsAlerts();
+  const { alerts: gdacsAlerts, details: gdacsDetails } = useGdacsAlerts();
   const { byId: indicatorsById } = useTrendsSnapshot();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
@@ -533,6 +533,7 @@ export default function HomeScreen() {
       <DisasterSheet
         sheetRef={disasterSheetRef}
         alert={activeAlert}
+        details={gdacsDetails}
         bottomInset={insets.bottom}
         renderBackdrop={renderBackdrop}
         onDismiss={() => setActiveAlert(null)}

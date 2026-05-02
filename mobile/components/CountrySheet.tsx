@@ -11,7 +11,7 @@ import Animated, { FadeInDown } from 'react-native-reanimated';
 import { ANIMATION, FLAG, SPACING, staggerDelay } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
-import type { GdacsAlert } from '../lib/gdacs';
+import type { GdacsAlert } from '@shared/types';
 import { displayCountryName, displayLocation } from '../lib/place-names';
 import { CountryRankingView } from './CountryRankingView';
 import { EVENT_TYPE_LABEL, GLYPH_HALF, getGlyphPath } from './globe/disaster-glyphs';
