@@ -267,17 +267,17 @@ export const ArticlePage = memo(function ArticlePage({
         impact={hapticImpact}
       />
 
-      <Pressable
-        style={styles.content}
-        onPress={bodyTapEnabled ? handleSourcesPress : undefined}
-        onLongPress={bookmarkEnabled ? handleLongPress : undefined}
-        delayLongPress={400}
-        accessibilityRole={isInteractive ? 'button' : undefined}
-        accessibilityHint={accessibilityHint}
-        accessibilityActions={accessibilityActions}
-        onAccessibilityAction={bookmarkEnabled ? handleAccessibilityAction : undefined}
-      >
-        <Animated.View style={fadeStyle}>
+      {/* Layout container — owns the column padding only, never a touch
+          target. `pointerEvents="box-none"` so taps that miss the inner
+          Pressable's text bounds (paddingTop, paddingBottom, side gutters,
+          the empty space below short articles, the caught-up divider)
+          fall straight through to GlobeTapZone underneath. The previous
+          structure put the Pressable on the outside, which made the whole
+          padded region open the sources sheet — including the strip above
+          the title (felt like the globe but wasn't) and the empty space
+          below the last sentence on short articles. */}
+      <View style={styles.contentLayout} pointerEvents="box-none">
+        <Animated.View style={fadeStyle} pointerEvents="box-none">
           {showEarlierDivider && (
             <View
               style={styles.earlierDivider}
@@ -291,18 +291,28 @@ export const ArticlePage = memo(function ArticlePage({
               <View style={[styles.earlierLine, { backgroundColor: colors.rule }]} />
             </View>
           )}
-          <Text
-            variant="display"
-            tone="emphasis"
-            scale={readerScale}
-            numberOfLines={3}
-            style={styles.title}
+          <Pressable
+            onPress={bodyTapEnabled ? handleSourcesPress : undefined}
+            onLongPress={bookmarkEnabled ? handleLongPress : undefined}
+            delayLongPress={400}
+            accessibilityRole={isInteractive ? 'button' : undefined}
+            accessibilityHint={accessibilityHint}
+            accessibilityActions={accessibilityActions}
+            onAccessibilityAction={bookmarkEnabled ? handleAccessibilityAction : undefined}
           >
-            {article.title}
-          </Text>
-          {body}
+            <Text
+              variant="display"
+              tone="emphasis"
+              scale={readerScale}
+              numberOfLines={3}
+              style={styles.title}
+            >
+              {article.title}
+            </Text>
+            {body}
+          </Pressable>
         </Animated.View>
-      </Pressable>
+      </View>
     </View>
   );
 });
@@ -311,7 +321,7 @@ const styles = StyleSheet.create({
   container: {
     overflow: 'hidden',
   },
-  content: {
+  contentLayout: {
     paddingHorizontal: SPACING.articlePadding,
     paddingTop: CONTENT_PADDING_TOP,
     // Clear the BottomActionBar across all platforms. The bar's top edge
