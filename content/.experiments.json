@@ -4,14 +4,14 @@
     {
       "id": "2026-05-01-oic-regional-source-floor",
       "startDate": "2026-05-01",
-      "evaluateAfter": "2026-05-08",
+      "evaluateAfter": "2026-05-19",
       "prNumber": null,
-      "hypothesis": "Audit of 2,569 published articles shows OIC-tagged stories (10% of corpus) have a median regional-source share of 20% and only 51.4% include ≥1 regional outlet. The selector currently treats regional outlets as a soft tiebreaker only, so when feed clustering doesn't bundle a regional outlet into a story's cluster, the regional voice gets dropped. Adding an explicit selection-criteria item plus an internal-verification check that requires regional carry-through for OIC-tagged stories — drawing from the broader feed, not just the cluster — should raise ≥1 regional-source coverage on OIC stories from 51.4% to ≥80% over the 7-day window without dropping throughput. Token-neutral: prompt change only, no extra NewsAPI calls.",
+      "hypothesis": "Audit of 2,569 published articles shows OIC-tagged stories (10% of corpus) have a median regional-source share of 20% and only 51.4% include \u22651 regional outlet. The selector currently treats regional outlets as a soft tiebreaker only, so when feed clustering doesn't bundle a regional outlet into a story's cluster, the regional voice gets dropped. Adding an explicit selection-criteria item plus an internal-verification check that requires regional carry-through for OIC-tagged stories \u2014 drawing from the broader feed, not just the cluster \u2014 should raise \u22651 regional-source coverage on OIC stories from 51.4% to \u226580% over the 7-day window without dropping throughput. Token-neutral: prompt change only, no extra NewsAPI calls.",
       "parameter": "Selector OIC-regional-source carry-through",
       "file": "scripts/select-prompt.md",
       "oldValue": "Muslim-world outlets listed under reader-aligned-sources tiebreaker only",
       "newValue": "Explicit OIC-region carry-through rule + internal-verification check, with named recognized outlets per OIC country",
-      "targetMetric": "OIC-tagged articles with ≥1 regional-OIC source (%)",
+      "targetMetric": "OIC-tagged articles with \u22651 regional-OIC source (%)",
       "targetDirection": "increase",
       "baseline": {
         "windowStart": "corpus-wide as of 2026-05-01",
@@ -29,12 +29,17 @@
         "oicMedianRegionalSharePct": 40.0
       },
       "guardrails": {
-        "throughput": "articles/cycle must not drop below 9 (current ~10–13). If the regional-source rule causes the selector to skip viable OIC stories due to feed gaps, throughput suffers — revert.",
+        "throughput": "articles/cycle must not drop below 9 (current ~10\u201313). If the regional-source rule causes the selector to skip viable OIC stories due to feed gaps, throughput suffers \u2014 revert.",
         "totalSourcesPerOicArticle": "mean sources/article on OIC-tagged stories must not drop (would mean displacement of existing sources, not addition).",
-        "multiSourceRate": "overall multi-source rate must not drop below 22% (current baseline from prior experiment) — adding regional sources should help, not hurt.",
+        "multiSourceRate": "overall multi-source rate must not drop below 22% (current baseline from prior experiment) \u2014 adding regional sources should help, not hurt.",
         "fabricatedSources": "spot-check 5 random new OIC-region articles for source legitimacy (URLs resolve, attribution matches outlet); >1 fabricated = revert.",
-        "selectorTime": "selector stage time must not climb >25% (~660s baseline) — extra feed scanning could slow it.",
+        "selectorTime": "selector stage time must not climb >25% (~660s baseline) \u2014 extra feed scanning could slow it.",
         "concurrentExperimentInteraction": "the title-echo (writer) and fabrication-gate (edu-context) experiments evaluate on different metrics from different files; if either's target metric is confounded by the source-rule change, note that in the audit but treat each on its own metric."
+      },
+      "confounded": {
+        "on": "2026-05-02",
+        "reason": "select-prompt.md was edited on 2026-05-02 to add editorial-memo reading. Once the first memo lands (Sunday 2026-05-03 22:30 UTC), selector behavior is no longer attributable solely to the OIC carry-through rule. The OIC metric movement after 2026-05-03 cannot be used to keep/revert this experiment cleanly.",
+        "recommendation": "Either (a) evaluate using only the May 1\u2013May 3 window (3 days, below the 3-day minimum), (b) extend evaluateAfter past the new baseline window \u2014 re-baseline by 2026-05-12 then evaluate 2026-05-19, or (c) revert the selector memo-read edit until this experiment lands. Default: extend the window."
       }
     },
     {
@@ -42,12 +47,12 @@
       "startDate": "2026-05-01",
       "evaluateAfter": "2026-05-04",
       "prNumber": null,
-      "hypothesis": "Brief block adoption shows rank/sankey/treemap stuck at <2.5% of briefs over the past 7 days (3+3+7 = 13 of 286 briefs) despite the Apr 26 prompt overhaul that lifted timeline from 13 lifetime to 110 in one week. The remaining gap is the fabrication gate: it asks 'could I name peers WITHOUT inventing numbers?', which the model interprets as 'skip if I don't know exact values'. Timeline doesn't need numbers, so it cleared. Rank/sankey/treemap need values, so they default-skip. Reframing the gate to permit approximate magnitudes ('roughly half', '≈40%', '~$30bn') while still blocking fabricated specifics should unblock shape-correct adoption without raising fabrication.",
+      "hypothesis": "Brief block adoption shows rank/sankey/treemap stuck at <2.5% of briefs over the past 7 days (3+3+7 = 13 of 286 briefs) despite the Apr 26 prompt overhaul that lifted timeline from 13 lifetime to 110 in one week. The remaining gap is the fabrication gate: it asks 'could I name peers WITHOUT inventing numbers?', which the model interprets as 'skip if I don't know exact values'. Timeline doesn't need numbers, so it cleared. Rank/sankey/treemap need values, so they default-skip. Reframing the gate to permit approximate magnitudes ('roughly half', '\u224840%', '~$30bn') while still blocking fabricated specifics should unblock shape-correct adoption without raising fabrication.",
       "parameter": "Fabrication-gate language for shape-specific blocks",
       "file": "scripts/edu-context-prompt.md",
       "oldValue": "skip if you'd be guessing values",
       "newValue": "approximate magnitudes permitted; gate blocks fabricated specifics only",
-      "targetMetric": "rank+sankey+treemap blocks per brief (% of briefs with ≥1)",
+      "targetMetric": "rank+sankey+treemap blocks per brief (% of briefs with \u22651)",
       "targetDirection": "increase",
       "baseline": {
         "windowStart": "2026-04-25",
@@ -57,8 +62,8 @@
         "sankeyCount": 3,
         "treemapCount": 7,
         "shapeSpecificRate": 0.045,
-        "rankBriefRate": 0.010,
-        "sankeyBriefRate": 0.010,
+        "rankBriefRate": 0.01,
+        "sankeyBriefRate": 0.01,
         "treemapBriefRate": 0.024,
         "comparisonContext": "timeline (also shape-specific but value-free) is at 38% of briefs in same window"
       },
@@ -74,7 +79,7 @@
       "startDate": "2026-05-01",
       "evaluateAfter": "2026-05-08",
       "prNumber": null,
-      "hypothesis": "Title-echo rate has trended 53.8 → 49.1 → 40.0 over three weekly snapshots — declining at ~9pp/week but still 4× the <10% target. Reflection observed the rule 'nudges rather than blocks'. The current rule already includes a worked example (Microsoft pause); the missing element is a procedural self-check that forces evaluation. Adding 'redact title, re-read S1' as a mandatory pre-save check converts a description into a discrete action the writer model must perform, which should accelerate the decline.",
+      "hypothesis": "Title-echo rate has trended 53.8 \u2192 49.1 \u2192 40.0 over three weekly snapshots \u2014 declining at ~9pp/week but still 4\u00d7 the <10% target. Reflection observed the rule 'nudges rather than blocks'. The current rule already includes a worked example (Microsoft pause); the missing element is a procedural self-check that forces evaluation. Adding 'redact title, re-read S1' as a mandatory pre-save check converts a description into a discrete action the writer model must perform, which should accelerate the decline.",
       "parameter": "Title-echo self-check (procedural step in antipattern)",
       "file": "scripts/write-prompt.md",
       "oldValue": "title-echo rule with worked example, no procedural check",
@@ -89,10 +94,10 @@
         "target": 10.0
       },
       "guardrails": {
-        "wordInRangePct": "must stay ≥75% (currently 79.5%) — over-rewriting could break length",
-        "passiveHookRatePct": "must stay <5% (currently 0%) — rewrites could pull writers into passive constructions",
-        "charOver350Pct": "must not climb above 20% (currently 17.1%) — rewriting S1 with more specifics could push lead length up",
-        "hedgeRatePct": "must stay <5% (currently 0.2%) — uncertain rewrites tempt hedging"
+        "wordInRangePct": "must stay \u226575% (currently 79.5%) \u2014 over-rewriting could break length",
+        "passiveHookRatePct": "must stay <5% (currently 0%) \u2014 rewrites could pull writers into passive constructions",
+        "charOver350Pct": "must not climb above 20% (currently 17.1%) \u2014 rewriting S1 with more specifics could push lead length up",
+        "hedgeRatePct": "must stay <5% (currently 0.2%) \u2014 uncertain rewrites tempt hedging"
       }
     }
   ],
@@ -103,7 +108,7 @@
       "startDate": "2026-04-26",
       "evaluateAfter": "2026-04-29",
       "prNumber": null,
-      "hypothesis": "Freshness median has risen to 1.2 days (target ≤1.0). Standalone articles (NewsAPI non-event picks) are typically older than event-based articles. Trimming the cap from 25 to 22 will reduce the oldest-tail standalones, pulling freshness median below 1.0 without materially affecting multi-source or sci-tech coverage.",
+      "hypothesis": "Freshness median has risen to 1.2 days (target \u22641.0). Standalone articles (NewsAPI non-event picks) are typically older than event-based articles. Trimming the cap from 25 to 22 will reduce the oldest-tail standalones, pulling freshness median below 1.0 without materially affecting multi-source or sci-tech coverage.",
       "parameter": "Standalone total cap",
       "file": "scripts/fetch-news-api.js",
       "oldValue": 25,
@@ -124,19 +129,19 @@
       },
       "result": "kept",
       "evaluatedOn": "2026-04-29",
-      "notes": "Freshness median dropped from 1.2-day baseline to 0 on evaluation day (well below ≤1.0 target). All guardrails met: multi-source 9 (≥4), sci-tech 34% (≥25%), publish count 8/cycle (exactly at minimum). Article throughput compressed slightly to 41/day vs 49–57 prior days, suggesting the tighter cap trims the feed on lighter news days — worth watching but within acceptable range. Keeping cap at 22."
+      "notes": "Freshness median dropped from 1.2-day baseline to 0 on evaluation day (well below \u22641.0 target). All guardrails met: multi-source 9 (\u22654), sci-tech 34% (\u226525%), publish count 8/cycle (exactly at minimum). Article throughput compressed slightly to 41/day vs 49\u201357 prior days, suggesting the tighter cap trims the feed on lighter news days \u2014 worth watching but within acceptable range. Keeping cap at 22."
     },
     {
       "id": "2026-04-21-multi-source-floors",
       "startDate": "2026-04-21",
       "evaluateAfter": "2026-04-24",
       "prNumber": null,
-      "hypothesis": "Published multi-source rate is 22% overall (39% politics, 18% economy, 4% science, 6% tech) against an achievable ceiling of ~40% given current feed composition. Science and tech are structurally single-source (specialist outlets don't cluster into Event Registry events), so gains must come from politics and economy. The selector's current guidance ('at least half of politics+economy picks from multiSourceStories when available') is soft and not being enforced — actual politics+economy multi-rate is 31% (26/84) vs the 50% target. Converting the soft guidance to a hard floor (politics ≥ 2, economy ≥ 2 multi-source picks when the feed supplies them) with a 'note why rejected' escape hatch should raise economy multi% meaningfully without padding with weak stories. Token-neutral: prompt change only, no extra NewsAPI calls.",
+      "hypothesis": "Published multi-source rate is 22% overall (39% politics, 18% economy, 4% science, 6% tech) against an achievable ceiling of ~40% given current feed composition. Science and tech are structurally single-source (specialist outlets don't cluster into Event Registry events), so gains must come from politics and economy. The selector's current guidance ('at least half of politics+economy picks from multiSourceStories when available') is soft and not being enforced \u2014 actual politics+economy multi-rate is 31% (26/84) vs the 50% target. Converting the soft guidance to a hard floor (politics \u2265 2, economy \u2265 2 multi-source picks when the feed supplies them) with a 'note why rejected' escape hatch should raise economy multi% meaningfully without padding with weak stories. Token-neutral: prompt change only, no extra NewsAPI calls.",
       "parameter": "Selector multi-source enforcement in politics+economy",
       "file": "scripts/select-prompt.md",
       "oldValue": "Multi-source usage: at least half of politics+economy picks should come from multiSourceStories when available.",
-      "newValue": "Multi-source floors when feed supplies them: politics ≥ 2 multi-source picks, economy ≥ 2 multi-source picks. Note rejected multi-source story in selection summary when dropping below floor.",
-      "targetMetric": "published multi-source rate across politics+economy (sources ≥ 2 in frontmatter)",
+      "newValue": "Multi-source floors when feed supplies them: politics \u2265 2 multi-source picks, economy \u2265 2 multi-source picks. Note rejected multi-source story in selection summary when dropping below floor.",
+      "targetMetric": "published multi-source rate across politics+economy (sources \u2265 2 in frontmatter)",
       "targetDirection": "increase",
       "baseline": {
         "windowStart": "2026-04-19",
@@ -163,7 +168,7 @@
       },
       "result": "kept",
       "evaluatedOn": "2026-04-25",
-      "notes": "Evaluated 2026-04-21 to 2026-04-25 (4 days, ~20 cycles). Politics multi-rate: 0.39 → 0.41 (+5%). Economy multi-rate: 0.18 → 0.23 (+28%). Politics+economy combined: 0.31 → 0.336 (+8.4%). Overall: 0.22 → 0.239 (+8.6%). Direction improved on all measures; no guardrail metric degraded >20%. Target of p+e ≥ 0.45 was not reached — the hard-floor guidance raised economy multi-rate but the feed's multi-source supply (~9/cycle) constrains how high the rate can go. Keeping the change: it is a measurable improvement over the soft guidance and produces better editorial discipline. Publish count dipped to 7/cycle on Apr 25 (below the 8 guardrail), but this appears to be a one-day anomaly rather than a sustained trend."
+      "notes": "Evaluated 2026-04-21 to 2026-04-25 (4 days, ~20 cycles). Politics multi-rate: 0.39 \u2192 0.41 (+5%). Economy multi-rate: 0.18 \u2192 0.23 (+28%). Politics+economy combined: 0.31 \u2192 0.336 (+8.4%). Overall: 0.22 \u2192 0.239 (+8.6%). Direction improved on all measures; no guardrail metric degraded >20%. Target of p+e \u2265 0.45 was not reached \u2014 the hard-floor guidance raised economy multi-rate but the feed's multi-source supply (~9/cycle) constrains how high the rate can go. Keeping the change: it is a measurable improvement over the soft guidance and produces better editorial discipline. Publish count dipped to 7/cycle on Apr 25 (below the 8 guardrail), but this appears to be a one-day anomaly rather than a sustained trend."
     },
     {
       "id": "2026-04-19-prefilter-7d",
@@ -195,7 +200,7 @@
       },
       "result": "kept",
       "evaluatedOn": "2026-04-21",
-      "notes": "Closed one day early after 3 days of live cycles. Post-selection dedup (already-published count) averaged ~2/cycle across 04-20 and 04-21 vs 3.15 baseline — ~35% reduction in target direction. The 04-19 08:03 spike of 10 was pre-change-deployment. Publish count recovered to 10.4/cycle on 04-20 (above the 8 floor) after a wobbly 7/cycle on 04-19 that the 22:00 reflect attributed to Sunday feed thinness, not over-removal. Prefilter total stayed in normal range. Keeping 168h window."
+      "notes": "Closed one day early after 3 days of live cycles. Post-selection dedup (already-published count) averaged ~2/cycle across 04-20 and 04-21 vs 3.15 baseline \u2014 ~35% reduction in target direction. The 04-19 08:03 spike of 10 was pre-change-deployment. Publish count recovered to 10.4/cycle on 04-20 (above the 8 floor) after a wobbly 7/cycle on 04-19 that the 22:00 reflect attributed to Sunday feed thinness, not over-removal. Prefilter total stayed in normal range. Keeping 168h window."
     },
     {
       "id": "2026-04-16-push-min-coverage",
@@ -222,7 +227,7 @@
       },
       "result": "kept",
       "evaluatedOn": "2026-04-19",
-      "notes": "Zero-coverage pushes dropped from 3/3days (60% of pushes) to 1/3days (6% of pushes) — 83% reduction. Guardrail intact: push volume 5.3/day vs 5/day baseline (unchanged). 16 of 17 push decisions in the experiment window passed the coverage>=1 filter and were sent. Keeping MIN_PUSH_COVERAGE=1."
+      "notes": "Zero-coverage pushes dropped from 3/3days (60% of pushes) to 1/3days (6% of pushes) \u2014 83% reduction. Guardrail intact: push volume 5.3/day vs 5/day baseline (unchanged). 16 of 17 push decisions in the experiment window passed the coverage>=1 filter and were sent. Keeping MIN_PUSH_COVERAGE=1."
     },
     {
       "id": "2026-04-12-tech-floor-3",
@@ -246,14 +251,14 @@
       },
       "result": "kept",
       "evaluatedOn": "2026-04-15",
-      "notes": "Tech articles rose from baseline 10.3/day to ~13.5/day average (Apr 14: 14, Apr 15: 13), a +31% increase. Proportional degradation in other metrics: politics 43%→36% (-16%), economy 22%→19% (-14%), science 18%→19% (improved). No metric degraded >20% proportionally. Total output also declined (~51 vs 61 baseline) but this is not attributable to the floor change alone. Tech share rose from 17% to 26-28%. Keeping floor at 3."
+      "notes": "Tech articles rose from baseline 10.3/day to ~13.5/day average (Apr 14: 14, Apr 15: 13), a +31% increase. Proportional degradation in other metrics: politics 43%\u219236% (-16%), economy 22%\u219219% (-14%), science 18%\u219219% (improved). No metric degraded >20% proportionally. Total output also declined (~51 vs 61 baseline) but this is not attributable to the floor change alone. Tech share rose from 17% to 26-28%. Keeping floor at 3."
     },
     {
       "id": "2026-03-29-standalone-cap",
       "startDate": "2026-03-29",
       "evaluateAfter": "2026-04-01",
       "prNumber": null,
-      "hypothesis": "Reducing standalone article cap from 30 to 25 trims the tail of older/less-fresh standalone articles, modestly improving freshness median toward the ≤ 1.0 day target.",
+      "hypothesis": "Reducing standalone article cap from 30 to 25 trims the tail of older/less-fresh standalone articles, modestly improving freshness median toward the \u2264 1.0 day target.",
       "parameter": "Standalone total cap",
       "file": "scripts/fetch-news-api.js",
       "oldValue": 30,
@@ -268,7 +273,7 @@
       },
       "result": "kept",
       "evaluatedOn": "2026-04-01",
-      "notes": "Target metric freshness.today.median improved from 1.1 → 0.2 (well under ≤1.0 target). No other metric degraded >20%: sciTechRatio 41→40 (-2%), multiSource 4→10 (improved), uniqueRegions 6→6 (unchanged). Keeping cap at 25."
+      "notes": "Target metric freshness.today.median improved from 1.1 \u2192 0.2 (well under \u22641.0 target). No other metric degraded >20%: sciTechRatio 41\u219240 (-2%), multiSource 4\u219210 (improved), uniqueRegions 6\u21926 (unchanged). Keeping cap at 25."
     },
     {
       "id": "2026-03-24-min-articles-event",
@@ -289,7 +294,7 @@
         "uniqueRegions": 6
       },
       "result": "reverted_early",
-      "notes": "Reverted on 2026-03-25 as part of 'Experiment cycle 1' (commit d1e7faa) before evaluateAfter date. That commit simultaneously changed TOP_EVENTS_TO_FETCH 5→8 and reset minArticlesInEvent to 10. Duplicates reached 0 today (2026-03-29) but cannot be attributed to this experiment since it was reverted. TOP_EVENTS_TO_FETCH=8 likely responsible for duplicate elimination."
+      "notes": "Reverted on 2026-03-25 as part of 'Experiment cycle 1' (commit d1e7faa) before evaluateAfter date. That commit simultaneously changed TOP_EVENTS_TO_FETCH 5\u21928 and reset minArticlesInEvent to 10. Duplicates reached 0 today (2026-03-29) but cannot be attributed to this experiment since it was reverted. TOP_EVENTS_TO_FETCH=8 likely responsible for duplicate elimination."
     }
   ],
   "queuedExperiments": [
@@ -298,13 +303,13 @@
       "queuedFrom": "2026-05-02",
       "startAfter": "2026-05-08",
       "blockedBy": "2026-05-01-title-echo-self-check",
-      "blockedReason": "Both touch scripts/write-prompt.md — promote to activeExperiments only after title-echo evaluates on 2026-05-08",
+      "blockedReason": "Both touch scripts/write-prompt.md \u2014 promote to activeExperiments only after title-echo evaluates on 2026-05-08",
       "duration": "3 days minimum",
-      "hypothesis": "Bench test on 3 stories (write-prompt.md A vs E variants, Sonnet 4.6 medium) showed +38% specificity score (9.67 → 13.33) when adding an explicit 'Numerical density' rule to the principles block. Production 60-article baseline computes 8.58 specificity, so even 30% bench-to-prod attenuation would yield a meaningful gain. The current Precision principle says 'lead with the specific' but doesn't enforce a count; making 'at least 3 numerical specifics' a hard rule should push the writer toward number-leading copy, which is the wire-style discipline the prompt already aims for.",
+      "hypothesis": "Bench test on 3 stories (write-prompt.md A vs E variants, Sonnet 4.6 medium) showed +38% specificity score (9.67 \u2192 13.33) when adding an explicit 'Numerical density' rule to the principles block. Production 60-article baseline computes 8.58 specificity, so even 30% bench-to-prod attenuation would yield a meaningful gain. The current Precision principle says 'lead with the specific' but doesn't enforce a count; making 'at least 3 numerical specifics' a hard rule should push the writer toward number-leading copy, which is the wire-style discipline the prompt already aims for.",
       "parameter": "Numerical density principle in writer principles block",
       "file": "scripts/write-prompt.md",
       "oldValue": "No explicit numerical-density rule; only Precision principle ('lead with the specific')",
-      "newValue": "Add: '**Numerical density.** Every article must contain at least 3 numerical specifics — counts, dates, percentages, currency amounts, or named figures (e.g. \"5,000 troops,\" \"March 14,\" \"20% of supply,\" \"$120 a barrel\"). A wire dispatch without numbers is opinion. If adding a figure would push the body over 350 chars, drop an adjective or compress a clause to make room — don't drop the number.'",
+      "newValue": "Add: '**Numerical density.** Every article must contain at least 3 numerical specifics \u2014 counts, dates, percentages, currency amounts, or named figures (e.g. \"5,000 troops,\" \"March 14,\" \"20% of supply,\" \"$120 a barrel\"). A wire dispatch without numbers is opinion. If adding a figure would push the body over 350 chars, drop an adjective or compress a clause to make room \u2014 don't drop the number.'",
       "targetMetric": "specificity score (digits + proper-noun tokens per article body, computed by scripts/lib/quality-score.js)",
       "targetDirection": "increase",
       "baseline": {
@@ -321,25 +326,29 @@
         "specificityStretch": 12.5
       },
       "guardrails": {
-        "hedgeRate": "hedges/article must stay ≤ 0.30 (current 0.13). New rule could tempt the model to fabricate plausible-sounding numbers with hedges; spot-check.",
-        "titleEchoJaccard": "must stay ≤ 0.20 (current 0.15). Number-leading hooks could overlap title vocabulary. The active title-echo experiment evaluates on 2026-05-08 — promote this experiment only after that closes to avoid confound.",
+        "hedgeRate": "hedges/article must stay \u2264 0.30 (current 0.13). New rule could tempt the model to fabricate plausible-sounding numbers with hedges; spot-check.",
+        "titleEchoJaccard": "must stay \u2264 0.20 (current 0.15). Number-leading hooks could overlap title vocabulary. The active title-echo experiment evaluates on 2026-05-08 \u2014 promote this experiment only after that closes to avoid confound.",
         "charOver350Pct": "must not climb above 20% (current ~17% per title-echo experiment baseline). New rule includes a 'compress a clause' instruction designed to prevent overshoot, but verify.",
-        "sentenceCountCompliance": "≥ 95% of articles must hit exactly 3 sentences (current 98.3% from /tmp/zuhd-sentence-audit.js).",
-        "fabricatedNumbers": "spot-check 5 random new articles — every numerical specific must appear in at least one source body. >1 fabricated = revert."
+        "sentenceCountCompliance": "\u2265 95% of articles must hit exactly 3 sentences (current 98.3% from /tmp/zuhd-sentence-audit.js).",
+        "fabricatedNumbers": "spot-check 5 random new articles \u2014 every numerical specific must appear in at least one source body. >1 fabricated = revert."
       },
       "preflightChecks": [
         "Title-echo experiment (2026-05-01-title-echo-self-check) has evaluated on 2026-05-08 and been moved to history.",
-        "Production specificity baseline still holds (~8.5) — re-run scripts/lib/quality-score.js on most recent 60 articles before activating.",
+        "Production specificity baseline still holds (~8.5) \u2014 re-run scripts/lib/quality-score.js on most recent 60 articles before activating.",
         "No other write-prompt.md changes in flight.",
-        "LESSON FROM 2026-05-02 EVAL: Small-sample bench wins (n=3) did NOT replicate at n=24 for title-echo experiments. Before promoting, re-run quality-score.js on 20+ historical articles using the proposed prompt (variant E from /tmp logs) to confirm specificity gain replicates. If gain is <+15% at n=20+, do not promote — design needs reconsideration."
+        "LESSON FROM 2026-05-02 EVAL: Small-sample bench wins (n=3) did NOT replicate at n=24 for title-echo experiments. Before promoting, re-run quality-score.js on 20+ historical articles using the proposed prompt (variant E from /tmp logs) to confirm specificity gain replicates. If gain is <+15% at n=20+, do not promote \u2014 design needs reconsideration."
       ],
       "benchEvidence": {
         "promptVariants": "/tmp/zuhd-prompt-A.md (baseline) vs /tmp/zuhd-prompt-E.md (with rule)",
         "outputs": "/tmp/zuhd-eval-A/ vs /tmp/zuhd-eval-E/",
         "stories": 3,
-        "results": "A specificity 9.67, E specificity 13.33 (+38%). Hedges 0/0. Title-echo Jaccard 0.03 → 0.12. Sentence count 3/3 in both. E had 1/3 over 350 chars (378), guarded by the 'compress a clause' clause in the new rule.",
+        "results": "A specificity 9.67, E specificity 13.33 (+38%). Hedges 0/0. Title-echo Jaccard 0.03 \u2192 0.12. Sentence count 3/3 in both. E had 1/3 over 350 chars (378), guarded by the 'compress a clause' clause in the new rule.",
         "warning": "3-story bench result is preliminary. The 2026-05-02 24-story title-echo eval showed prompt-rule effects that look strong at n=8 fade to noise at n=24. Validate this at scale before activating."
       }
     }
-  ]
+  ],
+  "noNewExperimentsUntil": {
+    "date": "2026-05-12",
+    "reason": "Model lineup changed substantially on 2026-05-02: reflect\u2192Opus high, tune\u2192Opus medium, GDACS narrator added (Opus medium), and reflect output repurposed as an editorial memo consumed by the selector at every cycle. Any new experiment started before the new baseline stabilizes will have model-uplift drift mixed into its measurement. Wait until at least one full week of cycles has run on the new lineup before proposing the next experiment. The two remaining clean active experiments (fabrication-gate-softening, title-echo-self-check) are isolated to writer/edu-context (unchanged) and are not affected."
+  }
 }
