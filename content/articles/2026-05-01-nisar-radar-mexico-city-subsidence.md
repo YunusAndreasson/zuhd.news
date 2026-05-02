@@ -11,6 +11,7 @@ sources:
     country: "GB"
     sentiment: 0
     angle: "quantifies Mexico City subsidence in centimeters per month via NISAR; traces hundred-year aquifer-depletion trajectory from 1925 through modern infrastructure damage"
+    image: "https://scx2.b-cdn.net/gfx/news/2026/us-indian-space-missio.jpg"
 entities: []
 ---
 

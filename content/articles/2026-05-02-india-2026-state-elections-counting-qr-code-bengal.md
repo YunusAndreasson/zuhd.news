@@ -10,15 +10,18 @@ sources:
     url: "https://www.news18.com/india/assembly-elections-2026-live-updates-west-bengal-tamil-nadu-assam-kerala-pondicherry-election-results-date-exit-poll-seat-predictions-liveblog-ws-l-10067167.html"
     country: "IN"
     sentiment: 0.34
+    image: "https://images.news18.com/ibnlive/uploads/2026/04/4ce21978_6c3f_42c2_93aa_ce058fbbec65_0_1776952905412-1200x675.jpg"
   - name: "The Indian Express"
     url: "https://indianexpress.com/article/cities/kolkata/for-counting-election-commission-brings-in-qr-code-based-id-system-3-layer-scrutiny-10664913/"
     country: "IN"
     sentiment: 0.16
+    image: "https://images.indianexpress.com/2026/05/evm.jpg"
   - name: "Rediff.com India Ltd."
     url: "https://www.rediff.com/news/report/ec-to-reduce-counting-centres-in-bengal/20260430.htm"
     country: "IN"
     sentiment: -0.3
     angle: "flags unexplained reduction of vote-counting centres from 87 to 77 just before West Bengal count, raising election integrity questions"
+    image: "https://im.rediff.com/1200-630/news/2026/apr/30evm-strong-room.jpg"
 eventCoverage: 68
 concepts:
   - "QR code"

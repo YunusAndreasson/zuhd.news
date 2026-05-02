@@ -11,6 +11,7 @@ sources:
     country: "US"
     sentiment: -0.2
     angle: "emphasizes civil liberties risks: mandatory per-use age verification will force platforms to overcorrect, blocking educational uses"
+    image: "https://cms.therecord.media/uploads/Chat_GPT_e191e10413.jpg"
 eventCoverage: 268
 concepts:
   - "GUARD Act"

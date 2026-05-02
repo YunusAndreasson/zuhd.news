@@ -11,6 +11,7 @@ sources:
     country: "GB"
     sentiment: 0.35
     angle: "highlights optical communications milestone: laser uplinks transmitted HD video from lunar distance, enabling future mission bandwidth"
+    image: "https://scx2.b-cdn.net/gfx/news/2026/nasa-laser-terminal-en.jpg"
 eventCoverage: 268
 concepts:
   - "Artemis II"

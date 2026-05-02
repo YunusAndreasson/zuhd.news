@@ -11,6 +11,7 @@ sources:
     country: "US"
     sentiment: 0
     angle: "reports empirical finding that fine-tuning for conversational warmth increases error rates 60% on high-stakes objective tasks"
+    image: "https://cdn.arstechnica.net/wp-content/uploads/2026/05/GettyImages-1338190481-1152x648.jpg"
 eventCoverage: 268
 concepts:
   - "Artificial intelligence"

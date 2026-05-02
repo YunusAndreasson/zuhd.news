@@ -11,6 +11,7 @@ sources:
     country: "US"
     sentiment: 0.2
     angle: "ties Senate Clarity Act compromise to bitcoin's recovery above $78k, positioning regulatory certainty as market catalyst"
+    image: "https://cdn.sanity.io/images/s3y3vcno/production/2180f062d339af02b2052281b305e8f75b13fdef-1920x1281.jpg?auto=format&amp;w=960&amp;h=540&amp;crop=focalpoint&amp;fit=clip&amp;q=75&amp;fm=jpg"
 concepts:
   - "Clarity Act"
   - "United States Senate"

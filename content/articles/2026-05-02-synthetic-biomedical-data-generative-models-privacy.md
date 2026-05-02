@@ -11,6 +11,7 @@ sources:
     country: "GB"
     sentiment: 0.15
     angle: "proposes deep generative models as privacy-preserving solution to unlock multi-institutional biomedical data for rare disease research"
+    image: "https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41746-026-02662-x/MediaObjects/41746_2026_2662_Fig1_HTML.png"
 concepts:
   - "Medical research"
   - "Privacy"

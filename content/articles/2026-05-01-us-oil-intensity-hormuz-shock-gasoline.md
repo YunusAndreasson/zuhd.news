@@ -11,6 +11,7 @@ sources:
     country: "US"
     sentiment: -0.5
     angle: "refutes Trump immunity claims: US economy requires more oil per GDP than peers, thus more vulnerable to Hormuz price shocks than China/Russia/EU"
+    image: "https://responsiblestatecraft.org/media-library/us-gas-prices-iran-war.jpg?id=66662515&width=1200&height=600&coordinates=0%2C416%2C0%2C417"
 entities:
   - mention: "oil"
     indicatorId: "brent"

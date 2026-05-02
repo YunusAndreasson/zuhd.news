@@ -11,6 +11,7 @@ sources:
     country: "AE"
     sentiment: -0.05
     angle: "quantifies Iran war impact: 1.5% Saudi quarterly GDP decline, IMF downward revision, oil sector vulnerability despite price resilience"
+    image: "https://cdn.salaamgateway.com/posts/aa727228edd6e656ea4a88d8ae811dee893a2748.jpg"
 concepts:
   - "Saudi Arabia"
   - "GDP"

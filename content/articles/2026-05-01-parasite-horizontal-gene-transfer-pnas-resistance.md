@@ -11,6 +11,7 @@ sources:
     country: "GB"
     sentiment: 0
     angle: "reports genetic exchange dominates Leishmania, overturns clonal reproduction assumptions, reshapes disease control implications"
+    image: "https://scx2.b-cdn.net/gfx/news/hires/2026/insect-bite.jpg"
 concepts:
   - "Horizontal gene transfer"
   - "Parasitology"

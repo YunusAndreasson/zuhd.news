@@ -15,6 +15,7 @@ sources:
     country: "US"
     sentiment: -0.05
     angle: "forecasts cascade of consumer fare increases from combined effects of Spirit capacity exit and elevated fuel prices"
+    image: "https://assets3.cbsnewsstatic.com/hub/i/r/2026/05/01/89488dc0-de82-45f9-afd0-4efe91c3f5c0/thumbnail/1200x630/3a6720869d9e52c22b2d2a00a6e1d1cc/gettyimages-692589270.jpg"
 eventCoverage: 206
 concepts:
   - "Spirit Airlines"
