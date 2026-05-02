@@ -19,7 +19,7 @@
     "release:all": "./scripts/release.sh release all"
   },
   "dependencies": {
-    "@gorhom/bottom-sheet": "^5.2.10",
+    "@gorhom/bottom-sheet": "^5.2.13",
     "@shopify/react-native-skia": "2.4.18",
     "d3-array": "^3.2.4",
     "d3-geo": "^3.1.1",
@@ -29,7 +29,7 @@
     "d3-scale-chromatic": "^3.1.0",
     "d3-shape": "^3.2.0",
     "d3-time-format": "^4.1.0",
-    "expo": "55.0.17",
+    "expo": "55.0.19",
     "expo-asset": "55.0.16",
     "expo-audio": "55.0.14",
     "expo-background-task": "55.0.17",
@@ -41,7 +41,7 @@
     "expo-linking": "55.0.14",
     "expo-navigation-bar": "~55.0.12",
     "expo-network": "55.0.13",
-    "expo-notifications": "~55.0.20",
+    "expo-notifications": "~55.0.22",
     "expo-router": "55.0.13",
     "expo-secure-store": "55.0.13",
     "expo-splash-screen": "55.0.19",
@@ -61,7 +61,7 @@
     "topojson-simplify": "^3.0.3"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.13",
+    "@biomejs/biome": "^2.4.14",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/react": "^16.3.2",
     "@types/d3-array": "^3.2.2",
