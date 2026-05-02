@@ -1,7 +1,7 @@
 import type { Actor } from '@shared/types';
 import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
-import Animated, { FadeIn } from 'react-native-reanimated';
+import Animated, { FadeIn, useReducedMotion } from 'react-native-reanimated';
 import { ANIMATION, FLAG, SPACING, staggerDelay } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { ccToFlag } from '../../lib/article-utils';
@@ -24,6 +24,7 @@ export const ActorsBlock = memo(function ActorsBlock({
 }: ActorsBlockProps) {
   const { colors } = useTheme();
   const isContext = variant === 'context';
+  const reduceMotion = useReducedMotion();
 
   return (
     <View style={blockContainerStyle[isContext ? 'context' : 'article']}>
@@ -38,7 +39,9 @@ export const ActorsBlock = memo(function ActorsBlock({
         return (
           <Animated.View
             key={`${p.name}-${i}`}
-            entering={FadeIn.duration(ANIMATION.normal).delay(staggerDelay(i))}
+            entering={
+              reduceMotion ? undefined : FadeIn.duration(ANIMATION.normal).delay(staggerDelay(i))
+            }
             style={[
               styles.row,
               ruled && {

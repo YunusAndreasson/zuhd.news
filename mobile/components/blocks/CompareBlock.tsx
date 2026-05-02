@@ -1,7 +1,7 @@
 import type { CompareRow } from '@shared/types';
 import { memo } from 'react';
 import { StyleSheet, View } from 'react-native';
-import Animated, { FadeIn } from 'react-native-reanimated';
+import Animated, { FadeIn, useReducedMotion } from 'react-native-reanimated';
 import { ANIMATION, BLACK, RADIUS, SPACING, staggerDelay } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { ccToFlag } from '../../lib/article-utils';
@@ -39,6 +39,7 @@ export const CompareBlock = memo(function CompareBlock({
 }: CompareBlockProps) {
   const { colors, font } = useTheme();
   const rowPaddingV = variant === 'context' ? SPACING.xs : SPACING.sm;
+  const reduceMotion = useReducedMotion();
 
   // Derive a single legend from the first row that carries labeled segments.
   // All rows in a segmented compare share the same segment categories (e.g.
@@ -85,7 +86,9 @@ export const CompareBlock = memo(function CompareBlock({
           return (
             <Animated.View
               key={`${row.label}-${i}`}
-              entering={FadeIn.duration(ANIMATION.normal).delay(staggerDelay(i))}
+              entering={
+                reduceMotion ? undefined : FadeIn.duration(ANIMATION.normal).delay(staggerDelay(i))
+              }
               style={[
                 styles.segmentedRow,
                 { paddingVertical: rowPaddingV },

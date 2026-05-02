@@ -1,7 +1,7 @@
 import {
   type BottomSheetBackdropProps,
   type BottomSheetModal,
-  BottomSheetView,
+  BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import type { Chokepoint } from '@shared/types';
 import { Canvas, Circle, Path } from '@shopify/react-native-skia';
@@ -243,11 +243,13 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
       onDismiss={onDismiss}
       handleTitle="multiple items here"
     >
-      <BottomSheetView style={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}>
+      <BottomSheetScrollView
+        contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}
+      >
         {rows.map((row, i) => (
           <CandidateRow key={row.key} row={row} index={i} onPress={handleSelect} />
         ))}
-      </BottomSheetView>
+      </BottomSheetScrollView>
     </SheetLayout>
   );
 });
@@ -257,7 +259,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: SPACING.md,
-    paddingVertical: SPACING.sm,
+    paddingVertical: SPACING.smPlus,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   rowText: {

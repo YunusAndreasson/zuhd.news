@@ -13,7 +13,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { ANIMATION, RADIUS, SPACING } from '../constants/theme';
+import { ANIMATION, OPACITY, RADIUS, SPACING, withAlpha } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { Icon, IconButton, Text } from './primitives';
 
@@ -270,7 +270,12 @@ export const BriefingBar = memo(function BriefingBar({
                   onSeek(Math.max(elapsed - step, 0));
               }}
             >
-              <View style={[styles.progressTrack, { backgroundColor: `${colors.textEmphasis}26` }]}>
+              <View
+                style={[
+                  styles.progressTrack,
+                  { backgroundColor: withAlpha(colors.textEmphasis, OPACITY.soft) },
+                ]}
+              >
                 <Animated.View
                   style={[
                     styles.progressFill,

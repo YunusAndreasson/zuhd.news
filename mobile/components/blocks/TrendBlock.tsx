@@ -15,13 +15,13 @@ import {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { ANIMATION, EASING, SPACING } from '../../constants/theme';
+import { ANIMATION, EASING, RADIUS, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { formatTickLabel } from '../../lib/date-format';
 import { hapticTick } from '../../lib/haptics';
 import { Pressable, Text } from '../primitives';
 import { SourceCaption } from './SourceCaption';
-import type { BlockVariant } from './shared';
+import { type BlockVariant, blockContainerStyle } from './shared';
 
 const INITIAL_WIDTH_ESTIMATE = Dimensions.get('window').width - SPACING.screenPadding * 2;
 
@@ -499,7 +499,7 @@ export const TrendBlock = memo(function TrendBlock({
       : null;
 
   const inner = (
-    <View style={styles.container}>
+    <View style={blockContainerStyle[isContext ? 'context' : 'article']}>
       <Text variant="labelSm" numberOfLines={2} style={styles.label}>
         {label}
       </Text>
@@ -652,9 +652,6 @@ export const TrendBlock = memo(function TrendBlock({
 });
 
 const styles = StyleSheet.create({
-  container: {
-    marginVertical: SPACING.sm,
-  },
   label: {
     marginBottom: SPACING.sm,
   },
@@ -669,10 +666,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: SPACING.xxs,
   },
+  // Square swatch matches CompareBlock and TreemapBlock — the legend
+  // grammar reads as one system across charts. Was 10×2 (a line) which
+  // diverged when a Trend and a Compare appeared in the same article.
   legendSwatch: {
     width: 10,
-    height: 2,
-    borderRadius: 1,
+    height: 10,
+    borderRadius: RADIUS.handle,
   },
   chartWrap: {
     position: 'relative',

@@ -14,7 +14,12 @@ import {
 import { useTheme } from '../hooks/useTheme';
 import { Icon, IconButton } from './primitives';
 
-const TAB_LABELS = CATEGORIES.map((c) => c.toUpperCase());
+// Lowercase strings render via the dedicated small-caps font (SourceSans3SC),
+// matching the labelSm/labelXs treatment used by every other small-caps
+// surface (BottomActionBar pills, sheet titles). Uppercasing here would
+// route uppercase glyphs through the small-caps font, which renders them
+// as full caps and breaks the editorial smallcaps voice.
+const TAB_LABELS = [...CATEGORIES];
 const TAB_INDICES = TAB_LABELS.map((_, i) => i);
 
 interface TabLayout {
@@ -133,7 +138,7 @@ export const CategoryBar = memo(function CategoryBar({
   });
 
   const labelStyle = {
-    ...font.semiBold,
+    ...font.smallCaps,
     fontSize: typography.sizeXs,
     letterSpacing: typography.trackingCaps,
     color: colors.text,

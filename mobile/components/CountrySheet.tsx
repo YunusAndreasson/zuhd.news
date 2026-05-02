@@ -335,10 +335,7 @@ export const CountrySheet = memo(function CountrySheet({
         <BottomSheetScrollView
           contentContainerStyle={[
             sheetStyles.content,
-            {
-              paddingBottom: bottomInset + SPACING.lg,
-              paddingHorizontal: SPACING.sm,
-            },
+            { paddingBottom: bottomInset + SPACING.lg },
           ]}
         >
           {country?.data && (
@@ -400,7 +397,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: SPACING.sm,
+    paddingVertical: SPACING.smPlus,
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   rankCol: {
@@ -448,7 +445,6 @@ const styles = StyleSheet.create({
   },
   alertsHeading: {
     marginBottom: SPACING.xs,
-    letterSpacing: 1.2,
   },
   alertChip: {
     flexDirection: 'row',

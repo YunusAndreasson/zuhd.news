@@ -122,6 +122,19 @@ export type ColorPalette = { [K in keyof typeof DARK_COLORS]: string };
 export const makeBgAlpha = (bgRgb: [number, number, number]) => (a: number) =>
   `rgba(${bgRgb[0]},${bgRgb[1]},${bgRgb[2]},${a})`;
 
+/** Convert a 3- or 6-digit hex color to an rgba string at a given alpha.
+ *  Use when a palette color needs an inline transparency override (e.g. a
+ *  progress-track tint) — preferred over hex+alpha-byte concatenation
+ *  (`${color}26`) which is fragile and bypasses `OPACITY` tokens. */
+export function withAlpha(hex: string, alpha: number): string {
+  const m = hex.replace('#', '');
+  const expand = (s: string) => (s.length === 1 ? s + s : s);
+  const r = parseInt(expand(m.length === 3 ? (m[0] ?? '0') : m.slice(0, 2)), 16);
+  const g = parseInt(expand(m.length === 3 ? (m[1] ?? '0') : m.slice(2, 4)), 16);
+  const b = parseInt(expand(m.length === 3 ? (m[2] ?? '0') : m.slice(4, 6)), 16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
 export const BG_RGB: Record<'dark' | 'light', [number, number, number]> = {
   dark: [15, 15, 17],
   light: [245, 242, 237],
