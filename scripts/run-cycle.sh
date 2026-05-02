@@ -655,7 +655,10 @@ if [ "$DAY_OF_WEEK" = "7" ] && [ "$START_HOUR" = "22" ]; then
   # output to ground its audit in measurable rule compliance.
   node scripts/measure-quality.js 2>&1 | tee -a "$LOG_FILE"
   REFLECT_PROMPT=$(cat scripts/reflect-prompt.md)
-  timeout 900 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_MODEL --allowedTools $TOOLS_REFLECT --max-turns 20 -p "$REFLECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+  # Opus for the weekly audit — editorial judgment over a noisy week of corpus
+  # signal benefits from the deeper model. Low frequency (Sunday 22:30 only),
+  # so the cost differential vs Sonnet is negligible at the cycle level.
+  timeout 900 claude $CLAUDE_FLAGS --effort medium --model claude-opus-4-7 --allowedTools $TOOLS_REFLECT --max-turns 20 -p "$REFLECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
   REFLECT_EXIT=$?
   echo "Reflection exit: $REFLECT_EXIT" | tee -a "$LOG_FILE"
   # Failure here doesn't affect publishing — the cycle is already complete
