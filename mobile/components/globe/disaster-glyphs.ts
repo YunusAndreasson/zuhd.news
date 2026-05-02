@@ -135,6 +135,33 @@ export function getGlyphPath(type: EventType): SkPath {
   return PATHS[type];
 }
 
+function chokepointPath(): SkPath {
+  // Two opposing arcs with a center mark — the geographic signature of a
+  // strait/chokepoint: two coastlines pinching toward a narrow water
+  // passage. Arcs face each other (`)(` orientation) so the gap between
+  // them is the navigable channel; the center dot pins the chokepoint's
+  // exact location. Vertical orientation chosen because most named
+  // chokepoints (Hormuz, Bab-el-Mandeb, Malacca, Gibraltar, Dover) read
+  // as east/west land masses with north/south through-traffic.
+  const p = Skia.Path.Make();
+  const cx = GLYPH_HALF;
+  const cy = GLYPH_HALF;
+  // Left coastline arc — concave facing right (bulges left)
+  p.moveTo(cx - 3, cy - 7);
+  p.cubicTo(cx - 9, cy - 4, cx - 9, cy + 4, cx - 3, cy + 7);
+  // Right coastline arc — concave facing left (bulges right)
+  p.moveTo(cx + 3, cy - 7);
+  p.cubicTo(cx + 9, cy - 4, cx + 9, cy + 4, cx + 3, cy + 7);
+  // Center mark — the chokepoint itself
+  p.addCircle(cx, cy, 1.4);
+  return p;
+}
+
+/** Chokepoint pictogram — two facing coastline arcs around a center mark.
+ *  Used in DisambiguationSheet rows so straits read with the same
+ *  graphic confidence as GDACS event types instead of as a generic ring. */
+export const CHOKEPOINT_PATH: SkPath = chokepointPath();
+
 export const EVENT_TYPE_LABEL: Readonly<Record<EventType, string>> = {
   EQ: 'Earthquake',
   TC: 'Tropical cyclone',

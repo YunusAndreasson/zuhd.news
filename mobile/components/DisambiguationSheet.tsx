@@ -13,7 +13,12 @@ import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import type { GdacsAlert } from '@shared/types';
 import { displayCountryName } from '../lib/place-names';
-import { EVENT_TYPE_LABEL, GLYPH_HALF, getGlyphPath } from './globe/disaster-glyphs';
+import {
+  CHOKEPOINT_PATH,
+  EVENT_TYPE_LABEL,
+  GLYPH_HALF,
+  getGlyphPath,
+} from './globe/disaster-glyphs';
 import type { TapResult } from './globe/MiniGlobe';
 import { Pressable, Text } from './primitives';
 import { SheetLayout } from './SheetLayout';
@@ -138,11 +143,21 @@ function RowIcon({ row, tint }: RowIconProps) {
         <Circle
           cx={ROW_ICON / 2}
           cy={ROW_ICON / 2}
-          r={9}
+          r={ROW_ICON / 2}
+          color={colors.textSecondary}
+          opacity={0.12}
+        />
+        <Path
+          path={CHOKEPOINT_PATH}
           color={colors.textSecondary}
           style="stroke"
-          strokeWidth={1.4}
-          opacity={0.7}
+          strokeWidth={1.6}
+          strokeJoin="round"
+          strokeCap="round"
+          transform={[
+            { translateX: ROW_ICON / 2 - GLYPH_HALF },
+            { translateY: ROW_ICON / 2 - GLYPH_HALF },
+          ]}
         />
       </Canvas>
     );
