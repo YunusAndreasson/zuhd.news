@@ -5,21 +5,6 @@ import cardsRaw from '@shared/data/country-cards.json';
  *  `[year, value]` so it serialises tightly in JSON. */
 export type YearValue = [year: number, value: number];
 
-export interface ClimateCardData {
-  /** Annual mean temperature delta (°C) between 2014–2023 and 1951–1980. */
-  warmingC: number;
-  hotDaysBaseline: number;
-  hotDaysRecent: number;
-  coldNightsBaseline: number;
-  coldNightsRecent: number;
-  /** Per-year anomaly °C vs 1951–1980 baseline. Index 0 corresponds to
-   *  `sparklineStartYear`; subsequent entries advance one year each. */
-  anomalies: number[];
-  sparklineStartYear: number;
-  /** Decade buckets (key = first year of decade). For the expanded view. */
-  decadal: { d: number; t: number; hot: number }[];
-}
-
 export interface EconomyCardData {
   gdpPerCapita?: YearValue[];
   inflation?: YearValue[];
@@ -36,7 +21,6 @@ export interface TradeCardData {
 }
 
 export interface CountryCardData {
-  climate?: ClimateCardData;
   economy?: EconomyCardData;
   demography?: DemographyCardData;
   trade?: TradeCardData;
@@ -46,7 +30,6 @@ export interface CountryCardData {
  *  Computed once at fetch time so cards can render a comparison line
  *  without recomputing on every render. */
 export interface GlobalBenchmarks {
-  climate?: { anomalies: number[]; sparklineStartYear?: number; n: number };
   economy?: { gdpPerCapita?: YearValue[]; inflation?: YearValue[]; n: number };
   demography?: { fertility?: YearValue[]; n: number };
   trade?: { highIncomeShare?: YearValue[]; n: number };

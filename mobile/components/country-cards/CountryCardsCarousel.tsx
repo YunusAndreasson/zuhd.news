@@ -12,7 +12,6 @@ import { ANIMATION, EASING, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { type CountryCardData, getCountryCardData } from '../../lib/country-cards';
 import { hapticTick } from '../../lib/haptics';
-import { ClimateCard } from './ClimateCard';
 import { DemographyCard } from './DemographyCard';
 import { EconomyCard } from './EconomyCard';
 import { TradeCard } from './TradeCard';
@@ -21,18 +20,16 @@ interface CountryCardsCarouselProps {
   countryName: string | null;
 }
 
-type SlotKey = 'climate' | 'trade' | 'economy' | 'demography';
+type SlotKey = 'trade' | 'economy' | 'demography';
 
 interface SlotEntry {
   key: SlotKey;
   render: (data: CountryCardData) => ReactElement | null;
 }
 
-// Order: yearly-change (climate) first per user direction, then the
-// structural West↔East frame, then short-term economy, then demographic
-// long view. Slots without data are filtered out before render.
+// Order: structural West↔East frame first, then short-term economy, then
+// demographic long view. Slots without data are filtered out before render.
 const SLOTS: SlotEntry[] = [
-  { key: 'climate', render: (d) => (d.climate ? <ClimateCard data={d.climate} /> : null) },
   { key: 'trade', render: (d) => (d.trade?.highIncomeShare ? <TradeCard data={d.trade} /> : null) },
   {
     key: 'economy',
