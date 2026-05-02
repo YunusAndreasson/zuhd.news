@@ -113,7 +113,7 @@ export const SankeyBlock = memo(function SankeyBlock({
       return (
         <View style={blockContainerStyle[variant]}>
           {label ? (
-            <Text variant="labelXs" style={styles.label}>
+            <Text variant="labelSm" style={styles.label}>
               {label}
             </Text>
           ) : null}
@@ -137,7 +137,7 @@ export const SankeyBlock = memo(function SankeyBlock({
   return (
     <View style={blockContainerStyle[variant]}>
       {label ? (
-        <Text variant="labelXs" style={styles.label}>
+        <Text variant="labelSm" style={styles.label}>
           {label}
         </Text>
       ) : null}

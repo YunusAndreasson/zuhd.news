@@ -35,9 +35,12 @@ interface TreemapBlockProps {
 }
 
 function toneColor(tone: BlockTone | undefined, colors: Colors): string {
-  // For typed tones, use the tone palette; for untyped, fall back to the
-  // emphasis color and let the per-cell opacity carry the value hierarchy
-  // (the largest cell is the most opaque).
+  // For typed tones, use the tone palette; for untyped, fall back to a
+  // mid-luminance grey (textSecondary) and let the per-cell opacity carry
+  // the value hierarchy. Previously this returned textEmphasis (near-white
+  // in dark, near-black in light), which collapsed contrast against the
+  // emphasis-toned label on top of the cell — large cells became
+  // "white text on white fill" and dropped to ~1.4:1.
   switch (tone) {
     case 'favorable':
       return colors.toneFavorable;
@@ -46,7 +49,7 @@ function toneColor(tone: BlockTone | undefined, colors: Colors): string {
     case 'neutral':
       return colors.toneNeutral;
     default:
-      return colors.textEmphasis;
+      return colors.textSecondary;
   }
 }
 
@@ -103,7 +106,7 @@ export const TreemapBlock = memo(function TreemapBlock({
     return (
       <View style={blockContainerStyle[variant]}>
         {label ? (
-          <Text variant="labelXs" style={styles.label}>
+          <Text variant="labelSm" style={styles.label}>
             {label}
           </Text>
         ) : null}
@@ -120,7 +123,7 @@ export const TreemapBlock = memo(function TreemapBlock({
   return (
     <View style={blockContainerStyle[variant]}>
       {label ? (
-        <Text variant="labelXs" style={styles.label}>
+        <Text variant="labelSm" style={styles.label}>
           {label}
         </Text>
       ) : null}

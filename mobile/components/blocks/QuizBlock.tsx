@@ -76,16 +76,19 @@ export const QuizBlock = memo(function QuizBlock({
     );
   }, [selected, correct, options]);
 
+  // Tone signal lives in the answer-circle's fill (sage/rose), not the option
+  // text — the text color stays in the high-contrast palette so option labels
+  // remain readable. Previously the correct/wrong row text was recolored to
+  // toneFavorable/Unfavorable, which fail WCAG AA at body size on sheet bg.
   const rowTone = (idx: number): TextTone => {
     if (!answered) return 'default';
-    if (idx === correct) return 'favorable';
-    if (idx === selected) return 'unfavorable';
+    if (idx === correct || idx === selected) return 'emphasis';
     return 'secondary';
   };
 
   return (
     <View style={blockContainerStyle[isContext ? 'context' : 'article']}>
-      <Text variant="labelXs" style={styles.label}>
+      <Text variant="labelSm" style={styles.label}>
         choose one
       </Text>
       <Animated.View style={shakeStyle}>

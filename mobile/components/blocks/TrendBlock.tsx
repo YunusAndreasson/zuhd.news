@@ -500,7 +500,7 @@ export const TrendBlock = memo(function TrendBlock({
 
   const inner = (
     <View style={styles.container}>
-      <Text variant="labelXs" numberOfLines={2} style={styles.label}>
+      <Text variant="labelSm" numberOfLines={2} style={styles.label}>
         {label}
       </Text>
 

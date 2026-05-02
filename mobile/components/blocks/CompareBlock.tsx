@@ -56,7 +56,7 @@ export const CompareBlock = memo(function CompareBlock({
   return (
     <View style={blockContainerStyle[variant]}>
       {label ? (
-        <Text variant="labelXs" style={styles.blockLabel}>
+        <Text variant="labelSm" style={styles.blockLabel}>
           {label}
         </Text>
       ) : null}
@@ -143,7 +143,7 @@ export const CompareBlock = memo(function CompareBlock({
               {/* Pill value reads as mixed glyphs (numerals, %, operators) —
                   semiBold family preserves the original look rather than
                   forcing small-caps SC metrics onto the letters. */}
-              <Text variant="labelXs" style={[{ color: pill.fg }, font.semiBold]}>
+              <Text variant="labelSm" style={[{ color: pill.fg }, font.semiBold]}>
                 {row.value}
               </Text>
             </View>

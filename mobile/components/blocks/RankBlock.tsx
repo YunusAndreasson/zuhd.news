@@ -99,11 +99,11 @@ export const RankBlock = memo(function RankBlock({
   return (
     <View style={blockContainerStyle[variant]}>
       <View style={styles.headerRow}>
-        <Text variant="labelXs" style={styles.metric}>
+        <Text variant="labelSm" style={styles.metric}>
           {metric}
         </Text>
         {subject && rank > 0 ? (
-          <Text variant="labelXs" tone="accent">
+          <Text variant="labelSm" tone="accent">
             {`#${rank} OF ${total}`}
           </Text>
         ) : null}

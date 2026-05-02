@@ -28,7 +28,7 @@ export const ActorsBlock = memo(function ActorsBlock({
   return (
     <View style={blockContainerStyle[isContext ? 'context' : 'article']}>
       {label ? (
-        <Text variant="labelXs" style={styles.label}>
+        <Text variant="labelSm" style={styles.label}>
           {label}
         </Text>
       ) : null}

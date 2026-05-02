@@ -865,7 +865,7 @@ export const LocationsBlock = memo(function LocationsBlock({
   return (
     <View style={blockContainerStyle[isContext ? 'context' : 'article']}>
       {label ? (
-        <Text variant="labelXs" style={[styles.label, { lineHeight: typography.sizeXs * 1.1 }]}>
+        <Text variant="labelSm" style={[styles.label, { lineHeight: typography.sizeSm * 1.1 }]}>
           {label}
         </Text>
       ) : null}
@@ -1135,11 +1135,10 @@ export const LocationsBlock = memo(function LocationsBlock({
                 ]}
               >
                 <RNText style={styles.chipFlag}>{ccToFlag(r.code)}</RNText>
-                {/* Chip label: semiBold + sizeXs + bg-or-emphasis color —
-                    captionEmphasis is semiBold + sizeSm; scale down to sizeXs. */}
+                {/* Chip label: captionEmphasis is semiBold + sizeSm — used at
+                    its native size to match the other "one step up" pill text. */}
                 <Text
                   variant="captionEmphasis"
-                  scale={typography.sizeXs / typography.sizeSm}
                   style={{ color: isSelected ? colors.bg : colors.textEmphasis }}
                 >
                   {displayNameFromCode(r.code)}

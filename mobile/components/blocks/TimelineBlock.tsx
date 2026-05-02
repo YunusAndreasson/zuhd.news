@@ -151,7 +151,7 @@ export const TimelineBlock = memo(function TimelineBlock({
   return (
     <View style={blockContainerStyle[variant]}>
       {label ? (
-        <Text variant="labelXs" style={styles.label}>
+        <Text variant="labelSm" style={styles.label}>
           {label}
         </Text>
       ) : null}
