@@ -4,14 +4,17 @@ import {
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import { getMetricValue, getRanking, type MetricKey } from '@shared/countries/country-ranking';
+import { Canvas, Circle, Path } from '@shopify/react-native-skia';
 import { memo, useCallback, useMemo, useState } from 'react';
 import { Text as RNText, StyleSheet, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { ANIMATION, FLAG, SPACING, staggerDelay } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
+import type { GdacsAlert } from '../lib/gdacs';
 import { displayCountryName, displayLocation } from '../lib/place-names';
 import { CountryRankingView } from './CountryRankingView';
+import { EVENT_TYPE_LABEL, GLYPH_HALF, getGlyphPath } from './globe/disaster-glyphs';
 import type { TapResult } from './globe/MiniGlobe';
 import { Icon, Pressable, Text } from './primitives';
 import { SheetHandle } from './SheetHandle';
@@ -140,14 +143,88 @@ function MoreRow({
 interface CountrySheetProps {
   sheetRef: React.RefObject<BottomSheetModal | null>;
   country: TapResult | null;
+  /** GDACS alerts whose primary or affected-country list includes this
+   *  country. Empty when there are no active disaster alerts touching it. */
+  activeAlerts?: GdacsAlert[];
+  /** Called when the user taps an alert chip — opens DisasterSheet. */
+  onAlertPress?: (alert: GdacsAlert) => void;
   bottomInset: number;
   renderBackdrop: React.FC<BottomSheetBackdropProps>;
   onDismiss: () => void;
 }
 
+const ALERT_CHIP_GLYPH = 28;
+
+function AlertChip({
+  alert,
+  onPress,
+}: {
+  alert: GdacsAlert;
+  onPress: (alert: GdacsAlert) => void;
+}) {
+  const { colors } = useTheme();
+  const tint =
+    alert.alertlevel === 'Red'
+      ? colors.toneUnfavorable
+      : alert.alertlevel === 'Orange'
+        ? colors.alertOrange
+        : colors.alertGreen;
+  const handlePress = useCallback(() => onPress(alert), [alert, onPress]);
+  return (
+    <Pressable
+      haptic="tick"
+      onPress={handlePress}
+      style={[styles.alertChip, { borderColor: colors.rule }]}
+      accessibilityRole="button"
+      accessibilityLabel={`${alert.alertlevel} alert: ${EVENT_TYPE_LABEL[alert.eventtype]}`}
+    >
+      <Canvas style={{ width: ALERT_CHIP_GLYPH, height: ALERT_CHIP_GLYPH }}>
+        <Circle
+          cx={ALERT_CHIP_GLYPH / 2}
+          cy={ALERT_CHIP_GLYPH / 2}
+          r={ALERT_CHIP_GLYPH / 2}
+          color={tint}
+          opacity={0.18}
+        />
+        <Path
+          path={getGlyphPath(alert.eventtype)}
+          color={tint}
+          style="stroke"
+          strokeWidth={1.4}
+          strokeJoin="round"
+          strokeCap="round"
+          transform={[
+            { translateX: ALERT_CHIP_GLYPH / 2 - GLYPH_HALF },
+            { translateY: ALERT_CHIP_GLYPH / 2 - GLYPH_HALF },
+          ]}
+        />
+      </Canvas>
+      <View style={styles.alertChipText}>
+        <View style={styles.alertChipTitleRow}>
+          <Text variant="labelSm" tone="emphasis" numberOfLines={1} style={styles.alertChipTitle}>
+            {EVENT_TYPE_LABEL[alert.eventtype]}
+          </Text>
+          {/* Tiny level dot — restates the alert tier in chrome that's
+              visible at a glance. Same color family as the glyph so the
+              chip reads as a single unit, not stitched-together pieces. */}
+          <View style={[styles.alertChipDot, { backgroundColor: tint }]} />
+        </View>
+        {alert.severityText.length > 0 && (
+          <Text variant="labelXs" tone="secondary" numberOfLines={1}>
+            {alert.severityText}
+          </Text>
+        )}
+      </View>
+      <Icon name="chevron-forward" size="sm" tone="secondary" />
+    </Pressable>
+  );
+}
+
 export const CountrySheet = memo(function CountrySheet({
   sheetRef,
   country,
+  activeAlerts,
+  onAlertPress,
   bottomInset,
   renderBackdrop,
   onDismiss,
@@ -259,7 +336,7 @@ export const CountrySheet = memo(function CountrySheet({
           contentContainerStyle={[
             sheetStyles.content,
             {
-              paddingBottom: bottomInset + SPACING.xxl,
+              paddingBottom: bottomInset + SPACING.lg,
               paddingHorizontal: SPACING.sm,
             },
           ]}
@@ -278,6 +355,21 @@ export const CountrySheet = memo(function CountrySheet({
                   total={r.total}
                   onPress={() => setActiveRanking(r.key)}
                 />
+              ))}
+            </Animated.View>
+          )}
+          {activeAlerts && activeAlerts.length > 0 && onAlertPress && (
+            <Animated.View
+              entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(1))}
+              style={styles.alertsSection}
+            >
+              <Text variant="labelXs" tone="secondary" style={styles.alertsHeading}>
+                {activeAlerts.length === 1
+                  ? 'active alert'
+                  : `${activeAlerts.length} active alerts`}
+              </Text>
+              {activeAlerts.map((a) => (
+                <AlertChip key={a.eventid} alert={a} onPress={onAlertPress} />
               ))}
             </Animated.View>
           )}
@@ -350,5 +442,36 @@ const styles = StyleSheet.create({
   },
   value: {
     fontVariant: ['oldstyle-nums'],
+  },
+  alertsSection: {
+    marginTop: SPACING.lg,
+  },
+  alertsHeading: {
+    marginBottom: SPACING.xs,
+    letterSpacing: 1.2,
+  },
+  alertChip: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: SPACING.sm,
+    paddingVertical: SPACING.sm,
+    borderTopWidth: StyleSheet.hairlineWidth,
+  },
+  alertChipText: {
+    flex: 1,
+    gap: 1,
+  },
+  alertChipTitleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: SPACING.xs,
+  },
+  alertChipTitle: {
+    flexShrink: 1,
+  },
+  alertChipDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
   },
 });

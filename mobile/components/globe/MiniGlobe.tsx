@@ -6,6 +6,9 @@ import {
   BlurMask,
   Canvas,
   Circle,
+  CubicSampling,
+  FontEdging,
+  FontHinting,
   Group,
   Image,
   LinearGradient,
@@ -51,6 +54,7 @@ import {
 } from 'react-native-reanimated';
 import { BLACK } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
+import { alertAgeDays, type GdacsAlert } from '../../lib/gdacs';
 import { displayCountryName, displayLocation, wrapCountryLabel } from '../../lib/place-names';
 import {
   getLakeLabels,
@@ -58,6 +62,7 @@ import {
   getRiverLabels,
   getSeas,
 } from './detail-geo';
+import { GLYPH_HALF, getGlyphPath } from './disaster-glyphs';
 import {
   ANTARCTIC_CIRCLE,
   ARCTIC_CIRCLE,
@@ -295,6 +300,15 @@ export interface TapResult {
   /** Set when the tap landed on an ambient chokepoint ring. The parent
    *  resolves the ID to the full Chokepoint payload and opens ChokepointSheet. */
   chokepointId?: string;
+  /** Set when the tap landed on a GDACS disaster marker. The parent resolves
+   *  the eventid against the alerts list and opens DisasterSheet. */
+  gdacsEventId?: string;
+  /** Populated when the tap lands on 2+ overlapping markers. The parent
+   *  presents a chooser sheet listing these candidates; tapping one
+   *  re-dispatches that candidate through the same hit handler. When set,
+   *  it has length ≥ 2 and the outer fields (`countryName`, etc.) carry
+   *  no meaning — read from the candidates instead. */
+  candidates?: TapResult[];
 }
 
 export interface MiniGlobeRef {
@@ -306,6 +320,7 @@ interface MiniGlobeProps {
   articles: Article[];
   heatmapPoints?: HeatmapPoint[];
   chokepoints?: Chokepoint[];
+  gdacsAlerts?: GdacsAlert[];
   scrollY: SharedValue<number>;
   itemHeight: number;
   width: number;
@@ -359,6 +374,10 @@ interface GlobeState {
   hotspotGlows: {
     x: number;
     y: number;
+    /** Source lat/lng — propagated so the React key stays stable across
+     *  frames (x/y change every frame as the globe rotates). */
+    lat: number;
+    lng: number;
     intensity: number;
     recency: number;
     labels: string[];
@@ -374,6 +393,17 @@ interface GlobeState {
     label: string;
     intensity: number;
     disrupted: boolean;
+  }[];
+  /** GDACS disaster markers — Orange/Red current events. Projected every
+   *  frame like chokepoints (small set, reference signal). `recencyAlpha`
+   *  ∈ [0.5, 1] fades events older than ~7 days. */
+  gdacsMarks: {
+    x: number;
+    y: number;
+    eventid: string;
+    eventtype: GdacsAlert['eventtype'];
+    alertlevel: GdacsAlert['alertlevel'];
+    recencyAlpha: number;
   }[];
   /** Neighbour-country labels — every country within the camera's visible
    *  hemisphere EXCEPT the highlighted one. Emerges when the camera is
@@ -444,10 +474,21 @@ const Moon = memo(function Moon({
       <Circle cx={x} cy={y} r={r} color={accentColor} opacity={0.15}>
         <BlurMask blur={r * 0.25} style="outer" />
       </Circle>
-      {/* Moon texture — full disk */}
+      {/* Moon texture — full disk. CubicSampling: <Image>'s default sampler
+          is Nearest+Nearest, which pixelates the moon photo at our small
+          render radius. Cubic gives a smooth downscale at negligible cost
+          for a single static image. */}
       <Group clip={clip}>
         <BlurMask blur={r * 0.06} style="normal" />
-        <Image image={texture} x={x - r} y={y - r} width={r * 2} height={r * 2} opacity={0.45} />
+        <Image
+          image={texture}
+          x={x - r}
+          y={y - r}
+          width={r * 2}
+          height={r * 2}
+          opacity={0.45}
+          sampling={CubicSampling}
+        />
       </Group>
       {/* Gradient shadow — gradual terminator falloff */}
       <Group clip={clip}>
@@ -511,6 +552,7 @@ const EMPTY_GLOBE: GlobeState = {
   makkah: null,
   hotspotGlows: [],
   chokepoints: [],
+  gdacsMarks: [],
   neighborLabels: [],
   waterLabels: [],
   riversPath: null,
@@ -636,6 +678,7 @@ function projectInitial(
     makkah,
     hotspotGlows: [],
     chokepoints: [],
+    gdacsMarks: [],
     neighborLabels: [],
     waterLabels: [],
     riversPath: null,
@@ -647,6 +690,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   articles,
   heatmapPoints,
   chokepoints,
+  gdacsAlerts,
   scrollY,
   itemHeight,
   width,
@@ -666,7 +710,10 @@ export const MiniGlobe = memo(function MiniGlobe({
 
   const globeRadius = width * 0.9;
   const cx = width / 2;
-  const cy = height * 0.75;
+  // Vertical center sits on the lower rule-of-thirds line (2/3 from top).
+  // Was 0.75 — pulled up a touch so the globe disk reads as the lower
+  // composition anchor rather than crowding the bottom edge.
+  const cy = height * (2 / 3);
   // Cartographic typography:
   //   - Dot label  → SemiBold mixed case + halo. The *only* Title-Case label
   //     on the globe; intentionally non-atlas-style because it's the editorial
@@ -683,6 +730,28 @@ export const MiniGlobe = memo(function MiniGlobe({
   const countryFont = useFont(require('../../assets/fonts/SourceSans3SC-SemiBold.ttf'), 12);
   const neighborFont = useFont(require('../../assets/fonts/SourceSans3SC-SemiBold.ttf'), 11);
   const waterFont = useFont(require('../../assets/fonts/SourceSans3-Italic.ttf'), 11);
+  // Dynamic-text rendering polish for every map label. Skia's defaults
+  // (integer-snapped positioning, outline hinting, plain anti-alias) are
+  // tuned for static UI text. Each frame on the globe nudges every label to
+  // fractional pixel coordinates as the projection rotates — with the
+  // defaults, glyphs visibly shimmer between pixel-aligned and unaligned
+  // states. Canonical map/CAD recipe: subpixel positioning + subpixel AA
+  // edging + no hinting, so glyphs slide smoothly through fractional
+  // positions instead of snapping. One-time mutation per font instance.
+  //
+  // Note: setSubpixel's native binding calls `asNumber()` on its argument
+  // despite the TS type declaring `boolean`, so we pass `1` cast through
+  // unknown to satisfy the type while shipping the value the C++ side
+  // actually wants (a 0/1 numeric flag).
+  useEffect(() => {
+    const fonts = [labelFont, subFont, countryFont, neighborFont, waterFont];
+    for (const f of fonts) {
+      if (!f) continue;
+      f.setSubpixel(1 as unknown as boolean);
+      f.setEdging(FontEdging.SubpixelAntiAlias);
+      f.setHinting(FontHinting.None);
+    }
+  }, [labelFont, subFont, countryFont, neighborFont, waterFont]);
   // Fonts mirrored into refs so callReproject (a useCallback with `[]` deps,
   // stable closure) can measure text width for label-collision detection.
   // The fonts load asynchronously, so the ref pointer can flip from null to
@@ -869,7 +938,12 @@ export const MiniGlobe = memo(function MiniGlobe({
     () =>
       (chokepoints ?? []).map((cp) => ({
         id: cp.id,
-        label: cp.name.toUpperCase(),
+        // Mixed case (not UPPERCASE): chokepoints are passages — straits,
+        // canals, channels — which sit in the hydrography tier alongside
+        // rivers and seas. Atlas convention for hydrography is italic
+        // mixed case; uppercase reads as alarm even at baseline, fighting
+        // the "ambient reference geography" intent.
+        label: cp.name,
         coords: [cp.lng, cp.lat] as [number, number],
         absDelta: Math.abs(cp.delta7vs90[cp.primaryField] ?? 0),
       })),
@@ -877,6 +951,59 @@ export const MiniGlobe = memo(function MiniGlobe({
   );
   const chokepointsRef = useRef(enrichedChokepoints);
   chokepointsRef.current = enrichedChokepoints;
+  // GDACS alerts — precompute per-frame derivations once per snapshot:
+  // [lng,lat] tuple and recency alpha (fade events older than 14 days down
+  // to ~0.5; the data layer drops anything past 30 days). Greens are
+  // round-robin'd across event types and capped at GREEN_CAP — round-robin
+  // surfaces visual diversity (floods, droughts, fires, quakes) instead of
+  // letting the most frequent type monopolise (EQ + WF typically own ~80%
+  // of the raw count). The cap is set generously since perf isn't the
+  // constraint: today's feed of ~90 Greens fits comfortably; the cap only
+  // kicks in for pathological future feed sizes. Orange/Red are uncapped
+  // and pass through directly. Render order is Green → Orange → Red so
+  // consequential markers always paint over ambient ones.
+  const enrichedGdacs = useMemo(() => {
+    const alerts = gdacsAlerts ?? [];
+    const GREEN_CAP = 100;
+    const TYPES: GdacsAlert['eventtype'][] = ['EQ', 'TC', 'FL', 'VO', 'DR', 'WF'];
+    const byType: Record<string, GdacsAlert[]> = {};
+    for (const t of TYPES) byType[t] = [];
+    for (const a of alerts) {
+      if (a.alertlevel === 'Green') byType[a.eventtype]?.push(a);
+    }
+    for (const t of TYPES) {
+      byType[t]?.sort((a, b) => Date.parse(b.modifiedDate) - Date.parse(a.modifiedDate));
+    }
+    // Round-robin: take the most-recent of each type, then 2nd most-recent
+    // of each, etc., until we hit GREEN_CAP or every list is exhausted.
+    const greens: GdacsAlert[] = [];
+    let round = 0;
+    let progressed = true;
+    while (greens.length < GREEN_CAP && progressed) {
+      progressed = false;
+      for (const t of TYPES) {
+        const list = byType[t];
+        if (!list || round >= list.length) continue;
+        const item = list[round];
+        if (!item) continue;
+        greens.push(item);
+        progressed = true;
+        if (greens.length >= GREEN_CAP) break;
+      }
+      round++;
+    }
+    const oranges = alerts.filter((a) => a.alertlevel === 'Orange');
+    const reds = alerts.filter((a) => a.alertlevel === 'Red');
+    return [...greens, ...oranges, ...reds].map((a) => ({
+      eventid: a.eventid,
+      eventtype: a.eventtype,
+      alertlevel: a.alertlevel,
+      coords: [a.lng, a.lat] as [number, number],
+      recencyAlpha: Math.max(0.5, 1 - alertAgeDays(a) / 14),
+    }));
+  }, [gdacsAlerts]);
+  const gdacsAlertsRef = useRef(enrichedGdacs);
+  gdacsAlertsRef.current = enrichedGdacs;
   const layoutRef = useRef({ globeRadius, cx, cy });
   layoutRef.current = { globeRadius, cx, cy };
   // Mirror of last reproject args — avoids reading SharedValues outside worklets
@@ -1223,6 +1350,8 @@ export const MiniGlobe = memo(function MiniGlobe({
             hotspotGlows.push({
               x: pt[0],
               y: pt[1],
+              lat: zone.lat,
+              lng: zone.lng,
               intensity: zone.intensity,
               recency: zone.recency,
               labels: zone.labels,
@@ -1259,6 +1388,26 @@ export const MiniGlobe = memo(function MiniGlobe({
           label: cp.label,
           intensity: Math.min(1, cp.absDelta / CHOKEPOINT_SATURATION_DELTA),
           disrupted: cp.absDelta > CHOKEPOINT_DISRUPTED_DELTA,
+        });
+      }
+
+      // GDACS alerts — same cull + project pattern as chokepoints. Per-tier
+      // cap upstream (Green ≤30 most-recent; Orange/Red uncapped). Worst
+      // case ~30 + (orange+red) geoDistance calls + ≤(visible) proj()
+      // calls per frame — well under the 32ms budget alongside the
+      // existing chokepoint loop.
+      const gdacsMarks: GlobeState['gdacsMarks'] = [];
+      for (const a of gdacsAlertsRef.current) {
+        if (geoDistance(a.coords, cameraCoords) >= clipRad) continue;
+        const pt = proj(a.coords);
+        if (!pt) continue;
+        gdacsMarks.push({
+          x: pt[0],
+          y: pt[1],
+          eventid: a.eventid,
+          eventtype: a.eventtype,
+          alertlevel: a.alertlevel,
+          recencyAlpha: a.recencyAlpha,
         });
       }
 
@@ -1528,6 +1677,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         makkah,
         hotspotGlows,
         chokepoints: chokepointMarks,
+        gdacsMarks,
         neighborLabels: keptNeighbours,
         waterLabels: keptWaters,
         riversPath,
@@ -1809,19 +1959,28 @@ export const MiniGlobe = memo(function MiniGlobe({
         return seen.size > 0 ? [...seen] : undefined;
       };
 
-      // Check hotspot glows first — tight hit area (r²=900) signals precise intent
+      // Collect every marker tier hit within its calibrated tap zone, then
+      // decide: 0 hits → fall through to country-mass fallback; 1 hit →
+      // return it directly (current behaviour); 2+ hits → return a
+      // candidates list so the parent can show a disambiguation chooser.
+      // Tier order here is the priority used when only a single hit
+      // resolves and (more importantly) the order in which candidates
+      // appear in the chooser.
+      const candidates: TapResult[] = [];
+
+      // Hotspot glows — tight hit area (r²=900) signals precise intent.
       for (const z of state.hotspotGlows) {
         if (isNear(x, y, z.x, z.y, 900)) {
           const name = z.countryName ?? '';
           const tz = name ? COUNTRY_TZ[name] : undefined;
-          return {
+          candidates.push({
             countryName: name,
             location: null,
             localTime: tz ? formatLocalTime(tz) : null,
             data: name ? (COUNTRY_DATA[name] ?? null) : null,
             hotspotLabels: z.labels.length > 0 ? z.labels : undefined,
             isHotspot: true,
-          };
+          });
         }
       }
 
@@ -1830,40 +1989,69 @@ export const MiniGlobe = memo(function MiniGlobe({
       // window so chokepoints near the settled pin don't eat its taps.
       for (const c of state.chokepoints) {
         if (isNear(x, y, c.x, c.y, 1296)) {
-          return {
+          candidates.push({
             countryName: '',
             location: null,
             localTime: null,
             data: null,
             chokepointId: c.id,
-          };
+          });
         }
       }
 
-      // Then article dot (wider catch zone)
+      // GDACS disaster markers — Orange/Red get the 36px tap zone (matches
+      // chokepoints), Green gets a tighter 20px zone since the visual is a
+      // 2px ambient dot rather than a 22px glyph; the same 36px window for
+      // a 2px target would let invisible Greens intercept editorial taps
+      // near the article dot.
+      for (const m of state.gdacsMarks) {
+        const r2 = m.alertlevel === 'Green' ? 400 : 1296;
+        if (isNear(x, y, m.x, m.y, r2)) {
+          candidates.push({
+            countryName: '',
+            location: null,
+            localTime: null,
+            data: null,
+            gdacsEventId: m.eventid,
+          });
+        }
+      }
+
+      // Article dot — wider catch zone.
       const dot = state.dot;
       if (dot && isNear(x, y, dot.x, dot.y, 3600)) {
         const geoData = articleGeoRef.current[lastSettled.current];
         if (geoData?.countryName) {
           const tz = COUNTRY_TZ[geoData.countryName];
-          return {
+          candidates.push({
             countryName: geoData.countryName,
             location: displayLocation(geoData.location) ?? geoData.location,
             localTime: tz ? formatLocalTime(tz) : null,
             data: COUNTRY_DATA[geoData.countryName] ?? null,
             hotspotLabels: storiesFor(geoData.countryName),
-          };
+          });
         }
       }
 
-      // Then Makkah
+      // Makkah pin.
       if (state.makkah && isNear(x, y, state.makkah.x, state.makkah.y, 3600)) {
-        return {
+        candidates.push({
           countryName: 'Saudi Arabia',
           location: MAKKAH.name,
           localTime: formatLocalTime('Asia/Riyadh'),
           data: COUNTRY_DATA['Saudi Arabia'] ?? null,
           hotspotLabels: storiesFor('Saudi Arabia'),
+        });
+      }
+
+      if (candidates.length === 1) return candidates[0] ?? null;
+      if (candidates.length > 1) {
+        return {
+          countryName: '',
+          location: null,
+          localTime: null,
+          data: null,
+          candidates,
         };
       }
 
@@ -1949,13 +2137,19 @@ export const MiniGlobe = memo(function MiniGlobe({
       return seed / 2147483647;
     };
 
-    // Three tints — mostly neutral (accent), a pinch of cool (atmosphere) and warm (dome)
+    // Three tints — mostly neutral (accent), a pinch of cool (atmosphere) and warm (dome).
+    // AA explicit: imperative Skia.Paint() defaults antialias *off* (declarative
+    // primitives default it on). Without it, sub-pixel stars (r=0.2..1.6) render
+    // as aliased blocks instead of soft pinpricks.
     const neutral = Skia.Paint();
     neutral.setColor(Skia.Color(colors.accent));
+    neutral.setAntiAlias(true);
     const cool = Skia.Paint();
     cool.setColor(Skia.Color(colors.atmosphere));
+    cool.setAntiAlias(true);
     const warm = Skia.Paint();
     warm.setColor(Skia.Color(colors.dome));
+    warm.setAntiAlias(true);
 
     const glint = Skia.Paint();
     glint.setColor(Skia.Color(colors.accent));
@@ -2066,9 +2260,10 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       {/* Permanent ice sheets — Antarctica + Greenland. Scientifically the two
           land masses covered in year-round ice; rendered as a bright fill over
-          `landPath` so the globe reads climatologically correct. */}
+          `landPath` so the globe reads climatologically correct. Opacity kept
+          modest so Greenland doesn't punch through the article backdrop. */}
       {state.icePath && (
-        <Path path={state.icePath} color={colors.text} opacity={light ? 0.55 : 0.35} />
+        <Path path={state.icePath} color={colors.text} opacity={light ? 0.32 : 0.16} />
       )}
 
       {/* Neighbouring country borders — visible when scroll is at rest */}
@@ -2114,15 +2309,18 @@ export const MiniGlobe = memo(function MiniGlobe({
           Gradient shader gives smoother falloff than stacked BlurMask circles
           and skips the blur pass entirely. Recency fades older hotspots:
           fresh stories are prominent, stale ones whisper. */}
-      {state.hotspotGlows.map((z, i) => {
+      {state.hotspotGlows.map((z) => {
         const fade = 0.3 + 0.7 * z.recency;
         const haloR = 18 + z.intensity * 16;
         const peak = withAlpha(colors.text, (0.1 + z.intensity * 0.13) * fade);
         const mid = withAlpha(colors.text, (0.04 + z.intensity * 0.06) * fade);
         const edge = `${colors.text}00`;
         const coreR = 0.9 + z.intensity * 0.7;
+        // Key by lat,lng so reconciliation stays stable across heatmap
+        // refetches (top-12 list reorders frequently — index keys would
+        // reuse Group children for unrelated hotspots).
         return (
-          <Group key={i}>
+          <Group key={`${z.lat.toFixed(2)},${z.lng.toFixed(2)}`}>
             <Circle cx={z.x} cy={z.y} r={haloR}>
               <RadialGradient
                 c={vec(z.x, z.y)}
@@ -2198,6 +2396,67 @@ export const MiniGlobe = memo(function MiniGlobe({
                     ? LABEL_HALO_OPACITY_LIGHT
                     : LABEL_HALO_OPACITY_DARK
               }
+            />
+          </Group>
+        );
+      })}
+
+      {/* GDACS disaster markers — three tiers. Green is the ambient pulse:
+          a tiny tinted dot (no glyph, no backdrop, tight tap zone) — many
+          appear, none shouts. Orange and Red are read-and-tap landmarks:
+          backdrop disc + stroked event-type glyph at chokepoint-tier
+          weight (no glow, so the editorial story dot stays dominant).
+          Recency fades all tiers; anything past 30 days is dropped at the
+          data layer. Render order is Green → Orange → Red (set upstream
+          in enrichedGdacs) so consequential markers always paint over
+          ambient ones. Keys by eventid for stable reconciliation across
+          feed refetches. */}
+      {state.gdacsMarks.map((m) => {
+        if (m.alertlevel === 'Green') {
+          // Soft outer ring + sharp core dot. The two-layer pattern reads
+          // as an ambient marker (you can find it) without competing with
+          // editorial story dots (you can't mistake it for one). Was a
+          // bare 2px circle at 0.5 opacity — too faint to actually spot
+          // on the dark globe.
+          return (
+            <Group key={`gdacs-${m.eventid}`}>
+              <Circle
+                cx={m.x}
+                cy={m.y}
+                r={5}
+                color={colors.alertGreen}
+                opacity={(light ? 0.18 : 0.16) * m.recencyAlpha}
+              />
+              <Circle
+                cx={m.x}
+                cy={m.y}
+                r={2}
+                color={colors.alertGreen}
+                opacity={(light ? 0.85 : 0.8) * m.recencyAlpha}
+              />
+            </Group>
+          );
+        }
+        const tint = m.alertlevel === 'Red' ? colors.toneUnfavorable : colors.alertOrange;
+        const tx = m.x - GLYPH_HALF;
+        const ty = m.y - GLYPH_HALF;
+        return (
+          <Group key={`gdacs-${m.eventid}`} transform={[{ translateX: tx }, { translateY: ty }]}>
+            <Circle
+              cx={GLYPH_HALF}
+              cy={GLYPH_HALF}
+              r={GLYPH_HALF}
+              color={tint}
+              opacity={(light ? 0.14 : 0.18) * m.recencyAlpha}
+            />
+            <Path
+              path={getGlyphPath(m.eventtype)}
+              color={tint}
+              style="stroke"
+              strokeWidth={1.4}
+              strokeJoin="round"
+              strokeCap="round"
+              opacity={(light ? 0.9 : 0.85) * m.recencyAlpha}
             />
           </Group>
         );

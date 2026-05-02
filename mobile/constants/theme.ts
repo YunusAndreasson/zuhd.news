@@ -71,9 +71,22 @@ export const DARK_COLORS = {
   atmosphere: '#334455',
   shadow: 'rgba(0,0,0,0.6)',
   toastBg: 'rgba(48,48,48,0.92)',
-  toneFavorable: '#6b8f71', // muted sage
-  toneUnfavorable: '#8f6b6b', // muted rose
-  toneNeutral: '#6b7f8f', // muted slate
+  // Tone family — sage / rose / slate. Lifted one luminance step from the
+  // original muted set (#6b8f71 / #8f6b6b / #6b7f8f) so BLACK reads cleanly
+  // on tone-pill backgrounds in CompareBlock at 13pt: rose climbs from
+  // 4.48 → 6.09 contrast (was failing AA), the others sit at 7+. Still
+  // muted — saturation is unchanged, only luminance.
+  toneFavorable: '#82a98a',
+  toneUnfavorable: '#a98080',
+  toneNeutral: '#8298a9',
+  // Disaster-alert tints. Orange ships its own bronze-copper tint
+  // (deliberately away from `colors.dome` #c9a84c — the dome must remain
+  // the *only* gold in the app per foundation.md). Green is the ambient
+  // pulse: muted sage, distinct from `toneFavorable` so it doesn't read
+  // as "good news". Red alerts reuse `toneUnfavorable` (byte-identical to
+  // the previous alertRed) so the palette stays singular.
+  alertGreen: '#7a8a78',
+  alertOrange: '#b07a4c',
 } as const satisfies Record<string, string>;
 
 export const LIGHT_COLORS = {
@@ -89,9 +102,11 @@ export const LIGHT_COLORS = {
   atmosphere: '#8899aa',
   shadow: 'rgba(0,0,0,0.15)',
   toastBg: 'rgba(240,237,230,0.95)',
-  toneFavorable: '#6b8f71',
-  toneUnfavorable: '#8f6b6b',
-  toneNeutral: '#6b7f8f',
+  toneFavorable: '#82a98a',
+  toneUnfavorable: '#a98080',
+  toneNeutral: '#8298a9',
+  alertGreen: '#6b7a68',
+  alertOrange: '#945a2a',
 } as const satisfies Record<string, string>;
 
 export type ColorPalette = { [K in keyof typeof DARK_COLORS]: string };
@@ -178,6 +193,11 @@ export const SPACING = {
   xl: 32,
   xxl: 48,
   screenPadding: 18,
+  /** Tighter horizontal padding for the article reader and the section
+   *  header above it. Widens the text column a few pixels relative to
+   *  `screenPadding`; `CategoryBar` mirrors this so its tabs align with
+   *  the article body. */
+  articlePadding: 14,
 } as const;
 
 /** Named `gap` tiers for Stack. Derived from SPACING but intent-named so layout
@@ -358,14 +378,20 @@ export function makeTextVariants(colors: ColorPalette, font: FontSet, typography
       fontSize: typography.sizeH1,
       lineHeight: typography.sizeH1 * typography.leadingHeading,
       letterSpacing: typography.trackingHeading,
+      fontVariant: ['oldstyle-nums'] as TextStyle['fontVariant'],
       color: colors.text,
     } as TextStyle,
-    /** Row titles, block titles — ArticleRow, sheet pages */
+    /** Row titles, block titles — ArticleRow, sheet pages. Same negative
+     *  tracking as `display`: the rationale on `trackingHeading` (bold
+     *  large text feels airy at default kerning) applies to semibold 21pt
+     *  the same way it applies to bold 28pt. */
     title: {
       ...font.semiBold,
       ...ANDROID_TEXT_BASE,
       fontSize: typography.sizeLg,
       lineHeight: typography.sizeLg * typography.leadingHeading,
+      letterSpacing: typography.trackingHeading,
+      fontVariant: ['oldstyle-nums'] as TextStyle['fontVariant'],
       color: colors.text,
     } as TextStyle,
     /** Editorial lead — subtitle under a display title, About-page opener. */
@@ -374,6 +400,7 @@ export function makeTextVariants(colors: ColorPalette, font: FontSet, typography
       ...ANDROID_TEXT_BASE,
       fontSize: typography.sizeLg,
       lineHeight: typography.sizeLg * typography.leadingHeading,
+      fontVariant: ['oldstyle-nums'] as TextStyle['fontVariant'],
       color: colors.accent,
     } as TextStyle,
     /** Paragraph text with oldstyle nums */
@@ -400,6 +427,7 @@ export function makeTextVariants(colors: ColorPalette, font: FontSet, typography
       ...ANDROID_TEXT_BASE,
       fontSize: typography.sizeBase,
       lineHeight: typography.sizeBase * typography.leadingBody,
+      fontVariant: ['oldstyle-nums'] as TextStyle['fontVariant'],
       color: colors.text,
     } as TextStyle,
     /** Secondary body — captions, metadata sentences */

@@ -3,6 +3,7 @@ import {
   type BottomSheetBackdropProps,
   type BottomSheetModal,
 } from '@gorhom/bottom-sheet';
+import { COUNTRY_DATA } from '@shared/countries/country-data';
 import type { Article, ArticleSource, Category, Chokepoint, Entity } from '@shared/types';
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
@@ -28,6 +29,8 @@ import { CategoryBar } from '../components/CategoryBar';
 import { ChokepointSheet } from '../components/ChokepointSheet';
 import { ContextSheet } from '../components/ContextSheet';
 import { CountrySheet } from '../components/CountrySheet';
+import { DisambiguationSheet } from '../components/DisambiguationSheet';
+import { DisasterSheet } from '../components/DisasterSheet';
 import { EntitySheet } from '../components/EntitySheet';
 import { ErrorState } from '../components/ErrorState';
 import type { TapResult } from '../components/globe/MiniGlobe';
@@ -39,12 +42,15 @@ import { useArticles } from '../hooks/useArticles';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useChokepoints } from '../hooks/useChokepoints';
 import { useContextBrief } from '../hooks/useContextBrief';
+import { useGdacsAlerts } from '../hooks/useGdacsAlerts';
 import { useHeatmap } from '../hooks/useHeatmap';
 import { usePendingNotification } from '../hooks/usePendingNotification';
 import { useTheme } from '../hooks/useTheme';
 import { useTrendsSnapshot } from '../hooks/useTrendsSnapshot';
 import { useZoomCycle } from '../hooks/useZoomCycle';
+import { formatExactTime } from '../lib/article-utils';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
+import type { GdacsAlert } from '../lib/gdacs';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
 
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
@@ -56,6 +62,8 @@ export default function HomeScreen() {
   const sourcesSheetRef = useRef<BottomSheetModal>(null);
   const countrySheetRef = useRef<BottomSheetModal>(null);
   const chokepointSheetRef = useRef<BottomSheetModal>(null);
+  const disasterSheetRef = useRef<BottomSheetModal>(null);
+  const disambiguationSheetRef = useRef<BottomSheetModal>(null);
   const contextSheetRef = useRef<BottomSheetModal>(null);
   const entitySheetRef = useRef<BottomSheetModal>(null);
   const renderBackdrop = useCallback(
@@ -85,6 +93,7 @@ export default function HomeScreen() {
   } = useArticles();
   const heatmapPoints = useHeatmap(generated);
   const { chokepoints } = useChokepoints();
+  const { alerts: gdacsAlerts } = useGdacsAlerts();
   const { byId: indicatorsById } = useTrendsSnapshot();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
@@ -103,6 +112,8 @@ export default function HomeScreen() {
   const [sheetSources, setSheetSources] = useState<ArticleSource[]>([]);
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
   const [activeChokepoint, setActiveChokepoint] = useState<Chokepoint | null>(null);
+  const [activeAlert, setActiveAlert] = useState<GdacsAlert | null>(null);
+  const [chooserCandidates, setChooserCandidates] = useState<TapResult[]>([]);
   const [activeEntity, setActiveEntity] = useState<Entity | null>(null);
   const activeIndicator = useMemo(
     () => (activeEntity ? (indicatorsById.get(activeEntity.indicatorId) ?? null) : null),
@@ -147,7 +158,7 @@ export default function HomeScreen() {
     const category = CATEGORIES[catIndex] ?? 'politics';
     const added = toggleBookmark(article, category);
     hapticNotification();
-    toastRef.current?.show(added ? 'Saved' : 'Removed');
+    toastRef.current?.show(added ? 'Saved to bookmarks' : 'Removed from bookmarks');
   }, []);
 
   const handleMenuPress = useCallback(() => {
@@ -180,14 +191,7 @@ export default function HomeScreen() {
 
   const handleTimeAgoPress = useCallback((article: Article) => {
     hapticTick();
-    const exact = new Date(article.addedAt).toLocaleString(undefined, {
-      weekday: 'short',
-      month: 'short',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: '2-digit',
-    });
-    toastRef.current?.show(exact, undefined, 'top');
+    toastRef.current?.show(formatExactTime(article.addedAt), undefined, 'top');
   }, []);
 
   const handleBottomShare = useCallback(() => {
@@ -221,10 +225,30 @@ export default function HomeScreen() {
   // ArticleList doesn't invalidate on every chokepoint refetch.
   const chokepointsRef = useRef(chokepoints);
   chokepointsRef.current = chokepoints;
+  const gdacsAlertsRef = useRef(gdacsAlerts);
+  gdacsAlertsRef.current = gdacsAlerts;
 
   // Flat feed across categories — memoized so downstream memos keyed on it
   // (e.g. ChokepointSheet's findRelatedArticles) don't invalidate every render.
   const flatArticles = useMemo(() => Object.values(grouped).flat(), [grouped]);
+
+  // Active GDACS alerts whose primary or affected-country list includes the
+  // currently open country. Phase 1 matches by full country name (GDACS uses
+  // the same long-form names as our shared/countries dataset for the major
+  // jurisdictions); mismatches simply yield an empty strip.
+  const countryAlerts = useMemo<GdacsAlert[]>(() => {
+    const name = countrySheet?.countryName;
+    if (!name) return [];
+    const score = (l: GdacsAlert['alertlevel']) => (l === 'Red' ? 2 : l === 'Orange' ? 1 : 0);
+    return gdacsAlerts
+      .filter((a) => a.country === name || a.affectedCountries.includes(name))
+      .sort((a, b) => score(b.alertlevel) - score(a.alertlevel));
+  }, [countrySheet?.countryName, gdacsAlerts]);
+
+  const handleCountryAlertPress = useCallback((alert: GdacsAlert) => {
+    setActiveAlert(alert);
+    disasterSheetRef.current?.present();
+  }, []);
 
   const handleEntityPress = useCallback(
     (entity: Entity) => {
@@ -244,6 +268,23 @@ export default function HomeScreen() {
   const handleCountryPress = useCallback(
     (result: TapResult) => {
       hapticImpact();
+      // Multiple overlapping markers — surface a chooser instead of
+      // arbitrarily picking one. The chooser fires onSelect with the
+      // chosen candidate, which is dispatched back through this same
+      // handler (sans candidates field) to open its target sheet.
+      if (result.candidates && result.candidates.length > 1) {
+        setChooserCandidates(result.candidates);
+        disambiguationSheetRef.current?.present();
+        return;
+      }
+      if (result.gdacsEventId) {
+        const alert = gdacsAlertsRef.current.find((a) => a.eventid === result.gdacsEventId);
+        if (alert) {
+          setActiveAlert(alert);
+          disasterSheetRef.current?.present();
+        }
+        return;
+      }
       if (result.chokepointId) {
         const cp = chokepointsRef.current.find((c) => c.id === result.chokepointId);
         if (cp) {
@@ -345,9 +386,7 @@ export default function HomeScreen() {
   const handleEndReached = useCallback((catIndex: number) => {
     const cat = CATEGORIES[catIndex];
     if (!cat) return;
-    toastRef.current?.show('End \u00B7 tap for top', () =>
-      listRefs[catIndex]?.current?.scrollToTop(),
-    );
+    toastRef.current?.show('Tap for top', () => listRefs[catIndex]?.current?.scrollToTop());
   }, []);
 
   const handleRefresh = useCallback(async () => {
@@ -419,6 +458,7 @@ export default function HomeScreen() {
                 articles={grouped[cat]}
                 heatmapPoints={heatmapPoints}
                 chokepoints={chokepoints}
+                gdacsAlerts={gdacsAlerts}
                 viewportHeight={pagerHeight}
                 catIndex={catIndex}
                 lastSeenAt={lastSeenAt}
@@ -483,9 +523,53 @@ export default function HomeScreen() {
       <CountrySheet
         sheetRef={countrySheetRef}
         country={countrySheet}
+        activeAlerts={countryAlerts}
+        onAlertPress={handleCountryAlertPress}
         bottomInset={insets.bottom}
         renderBackdrop={renderBackdrop}
         onDismiss={() => setCountrySheet(null)}
+      />
+
+      <DisasterSheet
+        sheetRef={disasterSheetRef}
+        alert={activeAlert}
+        bottomInset={insets.bottom}
+        renderBackdrop={renderBackdrop}
+        onDismiss={() => setActiveAlert(null)}
+        onCountryPress={(countryName) => {
+          // Hop from disaster → country: dismiss this sheet, populate
+          // the country payload from shared data, present the country
+          // sheet. CountryAlerts memo will re-fire and the strip in
+          // the country sheet will surface the disaster (and any
+          // others affecting the same country).
+          disasterSheetRef.current?.dismiss();
+          const data = COUNTRY_DATA[countryName] ?? null;
+          setCountrySheet({
+            countryName,
+            location: null,
+            localTime: null,
+            data,
+          });
+          countrySheetRef.current?.present();
+        }}
+      />
+
+      <DisambiguationSheet
+        sheetRef={disambiguationSheetRef}
+        candidates={chooserCandidates}
+        chokepoints={chokepoints}
+        alerts={gdacsAlerts}
+        bottomInset={insets.bottom}
+        renderBackdrop={renderBackdrop}
+        onDismiss={() => setChooserCandidates([])}
+        onSelect={(candidate) => {
+          // Dismiss the chooser first so its dismiss animation overlaps
+          // the target sheet's enter animation; the candidate carries no
+          // `candidates` field, so handleCountryPress takes the normal
+          // single-hit branches.
+          disambiguationSheetRef.current?.dismiss();
+          handleCountryPress(candidate);
+        }}
       />
 
       <ChokepointSheet
