@@ -65,7 +65,8 @@ export function BottomActionBar({
         <ActionPill
           label="listen"
           onPress={onBriefingPress}
-          accessibilityLabel="Listen to daily briefing"
+          accessibilityLabel="Daily briefing"
+          accessibilityHint="Plays today's audio briefing"
         />
       )}
 
@@ -75,14 +76,20 @@ export function BottomActionBar({
         <ActionPill
           label={zoomLabel}
           onPress={onZoomPress}
-          accessibilityLabel={`Globe zoom, ${zoomLabel}`}
+          accessibilityLabel="Globe zoom"
           accessibilityHint="Cycles through zoom levels"
         />
-        <ActionPill label="share" onPress={onSharePress} accessibilityLabel="Share article" />
+        <ActionPill
+          label="share"
+          onPress={onSharePress}
+          accessibilityLabel="Share article"
+          accessibilityHint="Opens the system share sheet"
+        />
         <ActionPill
           label="context"
           onPress={onContextPress}
-          accessibilityLabel="Context about this story"
+          accessibilityLabel="Story context"
+          accessibilityHint="Shows background and related coverage"
         />
       </View>
     </View>
@@ -97,7 +104,11 @@ const styles = StyleSheet.create({
     right: 0,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: SPACING.md,
+    // Mirror `CategoryBar` and the article body: pill outer edges land on
+    // the same vertical as the article column, so chrome top and bottom
+    // share one rhythm. Previously `SPACING.md` (16) left a 2px outdent
+    // against the body's `articlePadding` (14).
+    paddingHorizontal: SPACING.articlePadding,
     zIndex: 10,
   },
   bottomSpacer: {

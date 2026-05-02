@@ -2,7 +2,13 @@ import { COUNTRY_DATA } from '@shared/countries/country-data';
 import { displayNameFromCode } from '@shared/countries/iso';
 import type { Article, Entity } from '@shared/types';
 import { memo, useCallback, useMemo } from 'react';
-import { type GestureResponderEvent, Pressable, StyleSheet, View } from 'react-native';
+import {
+  type AccessibilityActionEvent,
+  type GestureResponderEvent,
+  Pressable,
+  StyleSheet,
+  View,
+} from 'react-native';
 import Animated, {
   Extrapolation,
   interpolate,
@@ -74,13 +80,18 @@ function GlobeTapZone({
     [impact, globeRef, globeYOffset, onTap],
   );
 
+  // The hit-test relies on the precise tap coordinates, which screen-reader
+  // activations can't supply (VoiceOver/TalkBack fire at the element's
+  // geometric centre). Hide the zone from the a11y tree so reader users
+  // aren't sent to a "lottery country" sheet; inline country/entity links
+  // in prose remain the non-spatial path to the same sheets.
   return (
     <Pressable
       style={styles.globeTapZone}
       onPress={handleTap}
-      accessibilityRole="button"
-      accessibilityLabel="Globe map"
-      accessibilityHint="Select a country for details"
+      accessible={false}
+      accessibilityElementsHidden
+      importantForAccessibility="no-hide-descendants"
     />
   );
 }
@@ -219,6 +230,33 @@ export const ArticlePage = memo(function ArticlePage({
   // (entity, country, time-ago, the explicit "sources" word) capture first,
   // so this only fires for blank prose. Disabled when there's nothing to show.
   const bodyTapEnabled = sourceCount > 0 && !!onSourcesPress;
+  const bookmarkEnabled = !!onBookmarkPress;
+  const isInteractive = bodyTapEnabled || bookmarkEnabled;
+
+  // Spell out both gestures for assistive tech. Single-tap and long-press
+  // are otherwise undiscoverable to screen-reader users (the gestures are
+  // visual conventions). `accessibilityActions` registers the long-press
+  // in the rotor / TalkBack local context menu so it can be invoked
+  // explicitly even when the wrapper is treated as one focusable element.
+  const accessibilityHint = bodyTapEnabled
+    ? bookmarkEnabled
+      ? 'Open sources. Long press to bookmark.'
+      : 'Open sources'
+    : bookmarkEnabled
+      ? 'Long press to bookmark'
+      : undefined;
+  const accessibilityActions = useMemo(
+    () => (bookmarkEnabled ? [{ name: 'longpress', label: 'Bookmark' }] : undefined),
+    [bookmarkEnabled],
+  );
+  const handleAccessibilityAction = useCallback(
+    (event: AccessibilityActionEvent) => {
+      if (event.nativeEvent.actionName === 'longpress') {
+        onBookmarkPress?.(article);
+      }
+    },
+    [article, onBookmarkPress],
+  );
 
   return (
     <View style={[styles.container, { height: itemHeight }]}>
@@ -232,10 +270,12 @@ export const ArticlePage = memo(function ArticlePage({
       <Pressable
         style={styles.content}
         onPress={bodyTapEnabled ? handleSourcesPress : undefined}
-        onLongPress={handleLongPress}
+        onLongPress={bookmarkEnabled ? handleLongPress : undefined}
         delayLongPress={400}
-        accessibilityRole={bodyTapEnabled ? 'button' : undefined}
-        accessibilityHint={bodyTapEnabled ? 'Open sources' : undefined}
+        accessibilityRole={isInteractive ? 'button' : undefined}
+        accessibilityHint={accessibilityHint}
+        accessibilityActions={accessibilityActions}
+        onAccessibilityAction={bookmarkEnabled ? handleAccessibilityAction : undefined}
       >
         <Animated.View style={fadeStyle}>
           {showEarlierDivider && (
@@ -274,7 +314,13 @@ const styles = StyleSheet.create({
   content: {
     paddingHorizontal: SPACING.articlePadding,
     paddingTop: CONTENT_PADDING_TOP,
-    paddingBottom: SPACING.xl,
+    // Clear the BottomActionBar across all platforms. The bar's top edge
+    // sits at `max(bottomInset, SPACING.sm) + ~24px pill height` from the
+    // screen bottom; on Android with no inset that's only 32px, which the
+    // previous SPACING.xl matched exactly (zero buffer). SPACING.xxl gives
+    // ≥16px of breathing room everywhere and ~26px on devices with a home
+    // indicator — enough to feel deliberate, not enough to waste viewport.
+    paddingBottom: SPACING.xxl,
   },
   earlierDivider: {
     flexDirection: 'row',

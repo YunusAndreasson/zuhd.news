@@ -67,7 +67,12 @@ export const DARK_COLORS = {
   textEmphasis: '#FAFAFA',
   dome: '#c9a84c', // Dome of the Rock gold — the only color in the app
   sheetBg: '#161619',
-  pillBg: 'rgba(50,50,50,0.7)',
+  // 0.88 (was 0.7) keeps `labelSm` text WCAG AA across the brightest
+  // composites on the globe — over a `colors.dome` hotspot glow, pillBg(0.7)
+  // dropped to ~3.6:1 against `textSecondary`. Higher alpha trades a hint
+  // of globe peek-through for invariant legibility on `BottomActionBar` /
+  // `BriefingBar`; static callsites (sheets, blocks) shift imperceptibly.
+  pillBg: 'rgba(50,50,50,0.88)',
   atmosphere: '#334455',
   shadow: 'rgba(0,0,0,0.6)',
   toastBg: 'rgba(48,48,48,0.92)',
@@ -98,7 +103,7 @@ export const LIGHT_COLORS = {
   textEmphasis: '#1a1a1a',
   dome: '#c9a84c',
   sheetBg: '#eae6e0',
-  pillBg: 'rgba(220,216,210,0.7)',
+  pillBg: 'rgba(220,216,210,0.88)',
   atmosphere: '#8899aa',
   shadow: 'rgba(0,0,0,0.15)',
   toastBg: 'rgba(240,237,230,0.95)',

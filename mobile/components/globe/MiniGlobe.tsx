@@ -64,6 +64,8 @@ import {
 } from './detail-geo';
 import { GLYPH_HALF, getGlyphPath } from './disaster-glyphs';
 import {
+  ANCHOR_COUNTRY_AREA,
+  ANCHOR_NAMES_EXTRA,
   ANTARCTIC_CIRCLE,
   ARCTIC_CIRCLE,
   clipAngleForCountry,
@@ -273,6 +275,14 @@ const LABEL_HALO_OPACITY_DARK_STRONG = 0.7;
 // now carries the primary-tier halo.
 const LABEL_HALO_OPACITY_LIGHT_SOFT = 0.5;
 const LABEL_HALO_OPACITY_DARK_SOFT = 0.4;
+// Floor opacity for anchor-tier neighbour labels at 1× ambient zoom. Folds
+// through the same `(light ? 0.85 : 0.7)` tier multiplier as zoomed-in
+// neighbour labels, landing at perceived ~0.32 dark / ~0.38 light — quiet
+// orientation, never competing with the focused country's primary label.
+// As the user zooms, anchors strengthen via `Math.max(this, labelOpacity)`
+// so they never dim below their ambient floor while smaller countries fade
+// in around them.
+const ANCHOR_LABEL_OPACITY = 0.45;
 
 /** Widest line in `lines`, measured by font width when loaded; otherwise
  *  approximated at `fallbackChar` pixels per character so first-paint
@@ -1411,51 +1421,85 @@ export const MiniGlobe = memo(function MiniGlobe({
         });
       }
 
-      // Neighbour country + water-feature labels — zoom-gated on clipAngle
-      // so they only appear once the camera is genuinely zoomed past
-      // PLACES_APPEAR_CLIP. Iterates the precomputed
-      // label sets, skips the highlighted country, filters by camera-visible
-      // hemisphere, and projects. Lakes/rivers/seas precompute lazily on
-      // first zoom (see detail-geo.ts), so a reader who never zooms in
-      // pays zero cost for these layers.
+      // Country + water-feature labels.
+      //   • Anchor-tier countries (`area ≥ ANCHOR_COUNTRY_AREA`) render at
+      //     all zooms with a floor opacity, so the reader always has
+      //     continental orientation without touching the zoom pill.
+      //   • Non-anchor countries + water features stay zoom-gated, fading
+      //     in past PLACES_APPEAR_CLIP and reaching full opacity at
+      //     PLACES_FULL_CLIP.
+      // Hierarchy: focused country (haloed primary) ≻ anchors (quiet) ≻
+      // zoomed neighbours ≻ water features. Iterates the precomputed label
+      // sets, skips the highlighted country, filters by camera-visible
+      // hemisphere, projects. Lakes/rivers/seas precompute lazily on first
+      // zoom (see detail-geo.ts), so a reader who never zooms past
+      // PLACES_APPEAR_CLIP pays zero cost for those layers.
       const neighborLabels: GlobeState['neighborLabels'] = [];
       const waterLabels: GlobeState['waterLabels'] = [];
       let riversPath: GlobeState['riversPath'] = null;
       let riversOpacity = 0;
-      if (clipAngle < PLACES_APPEAR_CLIP) {
-        const span = PLACES_APPEAR_CLIP - PLACES_FULL_CLIP;
-        const labelOpacity = Math.min(1, Math.max(0, (PLACES_APPEAR_CLIP - clipAngle) / span));
-        const settledName = cachedCountryRef.current?.properties?.name as string | undefined;
+      const placesActive = clipAngle < PLACES_APPEAR_CLIP;
+      const labelOpacity = placesActive
+        ? Math.min(
+            1,
+            Math.max(0, (PLACES_APPEAR_CLIP - clipAngle) / (PLACES_APPEAR_CLIP - PLACES_FULL_CLIP)),
+          )
+        : 0;
+      const settledName = cachedCountryRef.current?.properties?.name as string | undefined;
 
-        // Neighbour + water layers are all nearSettled-gated — labels are
-        // illegible during fast rotation anyway, and at the small-country
-        // 1× clip angle where PLACES_APPEAR_CLIP fires (~25°), projecting
-        // + rendering ~60 country centroids + ~100 water labels every
-        // scroll frame was the dominant 1× cost. Labels + river path
-        // return together on settle so the visual contract stays intact.
-        if (nearSettled) {
-          // Neighbour country centroids — hemisphere cull uses a
-          // precomputed cartesian dot product against the camera axis
-          // (~900 trig ops saved per frame vs. geoDistance haversine).
-          // Iteration is over the parallel arrays (names/points/units)
-          // populated in shared.ts.
-          for (let i = 0; i < countryCentroidNames.length; i++) {
-            const name = countryCentroidNames[i];
-            if (!name || name === settledName) continue;
-            const unit = countryCentroidUnits[i];
-            if (!unit) continue;
-            if (unit[0] * camUnitX + unit[1] * camUnitY + unit[2] * camUnitZ <= clipCos) continue;
-            const coords = countryCentroidPoints[i];
-            if (!coords) continue;
-            const pt = proj(coords);
-            if (!pt) continue;
-            // Apply display-name normalization (e.g. "United States of America"
-            // → "United States") so neighbour labels match the focused country
-            // label and read like a real atlas. Single-line for perf — the
-            // collision packer drops long ones rather than wrapping them.
-            const display = displayCountryName(name) ?? name;
-            neighborLabels.push({ name: display, x: pt[0], y: pt[1], opacity: labelOpacity });
-          }
+      // Neighbour + water layers are all nearSettled-gated — labels are
+      // illegible during fast rotation anyway, and at the small-country
+      // 1× clip angle where PLACES_APPEAR_CLIP fires (~25°), projecting
+      // + rendering ~60 country centroids + ~100 water labels every
+      // scroll frame was the dominant 1× cost. Labels + river path
+      // return together on settle so the visual contract stays intact.
+      if (nearSettled) {
+        // Country centroids — hemisphere cull uses a precomputed cartesian
+        // dot product against the camera axis (~900 trig ops saved per
+        // frame vs. geoDistance haversine). Two passes so anchors win
+        // collisions in the greedy packer below: pass 1 collects anchors
+        // (always), pass 2 collects non-anchors (only when zoomed past
+        // PLACES_APPEAR_CLIP). Iteration is over the parallel arrays
+        // (names/points/units) populated in shared.ts.
+        const anchorBuf: GlobeState['neighborLabels'] = [];
+        const otherBuf: GlobeState['neighborLabels'] = [];
+        for (let i = 0; i < countryCentroidNames.length; i++) {
+          const name = countryCentroidNames[i];
+          if (!name || name === settledName) continue;
+          // Anchors come from two pools: spherical-area giants
+          // (`ANCHOR_COUNTRY_AREA`) and a curated recognition-tier list
+          // (`ANCHOR_NAMES_EXTRA`). The latter rebalances Europe and Asia,
+          // which are underweighted by area alone — see projection.ts.
+          const isAnchor =
+            (countryAreas[name] ?? 0) >= ANCHOR_COUNTRY_AREA || ANCHOR_NAMES_EXTRA.has(name);
+          if (!placesActive && !isAnchor) continue;
+          const unit = countryCentroidUnits[i];
+          if (!unit) continue;
+          if (unit[0] * camUnitX + unit[1] * camUnitY + unit[2] * camUnitZ <= clipCos) continue;
+          const coords = countryCentroidPoints[i];
+          if (!coords) continue;
+          const pt = proj(coords);
+          if (!pt) continue;
+          // Display-name normalization (e.g. "United States of America" →
+          // "United States") so labels match the focused country label and
+          // read like a real atlas. Single-line for perf — the collision
+          // packer drops long ones rather than wrapping them.
+          const display = displayCountryName(name) ?? name;
+          // Anchor labels never dim below their ambient floor as zoom
+          // increases — the larger of (floor, zoom-band ramp) wins, so a
+          // continuous strengthening replaces the prior all-or-nothing gate.
+          const opacity = isAnchor ? Math.max(ANCHOR_LABEL_OPACITY, labelOpacity) : labelOpacity;
+          (isAnchor ? anchorBuf : otherBuf).push({
+            name: display,
+            x: pt[0],
+            y: pt[1],
+            opacity,
+          });
+        }
+        for (const a of anchorBuf) neighborLabels.push(a);
+        for (const o of otherBuf) neighborLabels.push(o);
+
+        if (placesActive) {
           // Lakes — filter to visually-significant size at globe scale
           // (~8000 km² floor = Lake Tanganyika scale). Keeps labels to the
           // ~20-30 giants worldwide; anything smaller is invisible through

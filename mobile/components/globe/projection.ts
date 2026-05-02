@@ -22,15 +22,65 @@ export const DECAY_LAMBDA = Math.LN2 / 18;
 
 // ── Zoom / clip thresholds ─────────────────────────────────────────────────
 
-/** Cheap zoom-gated layers (neighbour labels, water-feature labels) fade
- *  in from clip=25°. Set at the natural floor of `clipAngleForArea` (small
- *  countries cap at 25°) so the default 1× framing is *consistent* across
- *  all articles — never shows neighbour/water labels regardless of country
- *  size. The zoom pill (level 1 = clip 18°, level 2 = clip 10°) is the
- *  single, predictable gesture that reveals atlas context. Full opacity
- *  at 10°. */
+/** Non-anchor neighbour labels and water-feature labels fade in from
+ *  clip=25°, full opacity at 10°. Set at the natural floor of
+ *  `clipAngleForArea` (small countries cap at 25°) so non-anchor labels
+ *  appear at the same zoom moment regardless of focused country.
+ *  Anchor-tier countries (`area ≥ ANCHOR_COUNTRY_AREA`) bypass this gate
+ *  and render at all zooms — they exist as persistent continental anchors
+ *  that orient the reader before the zoom pill is touched. The zoom pill
+ *  (level 1 = clip 18°, level 2 = clip 10°) reveals the rest of the atlas. */
 export const PLACES_APPEAR_CLIP = 25;
 export const PLACES_FULL_CLIP = 10;
+
+/** Spherical-area threshold (steradians on the unit sphere) above which a
+ *  country renders as an always-on anchor label at 1× ambient zoom. ~40
+ *  countries qualify worldwide by area alone. Tuned against the area
+ *  histogram of the 110m topology (`geoArea` per feature):
+ *    0.030 → 25 anchors  (intentionally sparse)
+ *    0.020 → 38 anchors  (adds Egypt, Nigeria, Pakistan, Chile, …)
+ *    0.018 → 40 anchors  (adds Turkey — too important to omit)
+ *    0.015 → 45 anchors  (starts crowding the eastern hemisphere)
+ *  Pure-area gating undercounts Europe (geographically compact) and
+ *  several primary Asian states, so the recognition-tier set below
+ *  (`ANCHOR_NAMES_EXTRA`) rebalances. */
+export const ANCHOR_COUNTRY_AREA = 0.018;
+
+/** Recognition-tier anchor countries — names a global news reader expects
+ *  to see oriented in 1× framings, but whose spherical area falls below
+ *  ANCHOR_COUNTRY_AREA. Geography means a pure area threshold underweights
+ *  Europe (a continent compact in real surface area) and several primary
+ *  Asian states, so this curated list rebalances. Sized at the bigger end
+ *  of each region — small enough that Europe doesn't outweigh Africa, large
+ *  enough that the camera lands on at least one familiar name in any view.
+ *  Membership criterion is recognition by a global reader, not population
+ *  or GDP — easy to argue at the margin, but the set is intentionally
+ *  conservative (additions invite a follow-on debate; subtractions don't). */
+export const ANCHOR_NAMES_EXTRA: ReadonlySet<string> = new Set([
+  // Europe
+  'France',
+  'Spain',
+  'Germany',
+  'Italy',
+  'Poland',
+  'United Kingdom',
+  'Ukraine',
+  'Sweden',
+  'Norway',
+  'Finland',
+  // Asia
+  'Japan',
+  'Vietnam',
+  'Thailand',
+  'Philippines',
+  'Malaysia',
+  'Iraq',
+  'Yemen',
+  'South Korea',
+  // Pacific / Caribbean — geographic isolates that benefit from the label
+  'New Zealand',
+  'Cuba',
+]);
 
 /** Heavy rivers-path projection fade range — gated tighter than the cheap
  *  layers so the ~9k-vertex projection only kicks in once the user actually
