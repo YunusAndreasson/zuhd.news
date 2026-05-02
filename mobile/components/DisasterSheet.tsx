@@ -209,7 +209,13 @@ export const DisasterSheet = memo(function DisasterSheet({
                 />
               </Canvas>
               <View style={styles.heroText}>
-                <Text variant="title" tone="emphasis" selectable>
+                {/* Severity readout uses `bodyEmphasis` (17pt semiBold), not
+                    `title` (21pt). A GDACS sheet is a data snapshot, not an
+                    article headline — pairing 21pt over the handle's 17pt
+                    label stacked two big title tiers in the first ~80px and
+                    fought the meta line beneath. bodyEmphasis lands hero:meta
+                    at 17:13 (ratio 1.3), proportional for a stat. */}
+                <Text variant="bodyEmphasis" tone="emphasis" selectable>
                   {alert.severityText.length > 0
                     ? alert.severityText
                     : EVENT_TYPE_LABEL[alert.eventtype]}
