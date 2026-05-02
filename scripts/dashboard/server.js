@@ -983,8 +983,11 @@ function handleEditorial() {
       } catch {}
     }
 
-    // Weekly reflection
-    const reflectPath = join(ROOT, 'content', '.weekly-reflection.md')
+    // Editorial memo (replaces the human-readable weekly reflection — the
+    // memo is now consumed by the selector at every cycle. Surfacing it on
+    // the dashboard gives a human window into what's actually steering
+    // selection for the next 7 days.)
+    const reflectPath = join(ROOT, 'content', '.editorial-memo.md')
     if (existsSync(reflectPath)) {
       try {
         const stat = statSync(reflectPath)
