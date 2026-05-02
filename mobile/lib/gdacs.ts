@@ -189,9 +189,13 @@ function readSeverityUnit(props: Record<string, unknown>): string {
  *  visually duplicates the sheet header. We blank these so the sheet
  *  doesn't render a redundant paragraph. Real narrative descriptions —
  *  what GDACS publishes for flagged Orange/Red events with situational
- *  context — never start with the alert level keyword and pass through
- *  unchanged. */
-const AUTO_CAPTION = /^(Green|Orange|Red)\s/;
+ *  context — never match this shape and pass through unchanged.
+ *
+ *  Anchored on both ends to avoid false positives: `^(Green|Orange|Red)\s`
+ *  alone would also strip "Red Cross teams have deployed…", so we also
+ *  require the literal `at: <date>` suffix that every auto-caption ends
+ *  with. The two anchors together identify the GDACS template uniquely. */
+const AUTO_CAPTION = /^(Green|Orange|Red)\s.+\sat:\s\d/i;
 function dropAutoCaption(description: string): string {
   return AUTO_CAPTION.test(description) ? '' : description;
 }
