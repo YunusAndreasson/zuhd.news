@@ -47,7 +47,7 @@ concepts:
   - "Key Entity"
 ---
 
-One paragraph. Exactly 3 sentences. 40-50 words total (body text only, excluding frontmatter). Follow the per-sentence word limits in `<rhythm>`.
+One paragraph. Exactly **3 sentences** — not 2, not 4. 40-50 words total (body text only, excluding frontmatter). Follow the per-sentence word limits in `<rhythm>`.
 ```
 
 **Hard limit: body text (everything after the closing `---`) must be ≤350 characters.** This is enforced downstream — articles that overshoot get rewritten shorter before publish, wasting cycle time. Aim for 280-330 characters; under-spending is better than overspending. A rough check: 50 words at ~6 chars/word ≈ 300 characters. Markdown link markup (`[text](url)` brackets and URLs) does **not** count against this budget — only the visible text does, so country tags and inline source links are free against the limit.
@@ -58,7 +58,7 @@ List every source from the selection's `sources` array (see task step 2). `event
 
 <rhythm>
 
-Every article follows a 3-sentence arc:
+Every article is **3 sentences**. Always 3. Hook → Context → Future:
 
 1. **Hook** (≤8 words) — the most arresting concrete detail. A number, a name, a consequence. Not the title restated. Not background that could have been written last week.
 
@@ -102,6 +102,8 @@ Every article follows a 3-sentence arc:
 </principles>
 
 <examples>
+
+Each example body below is **3 sentences**. Count them.
 
 <example>
 ---

@@ -150,7 +150,10 @@
         "techMultiRate": 0.06,
         "politicsEconomyMultiRate": 0.31,
         "feedMultiMedianPerCycle": 9,
-        "feedMultiRangePerCycle": [8, 14]
+        "feedMultiRangePerCycle": [
+          8,
+          14
+        ]
       },
       "guardrails": {
         "economyArticleQuality": "avg body word count should not drop >15% vs baseline (watch sentences.test.js output and generator quality metrics)",
@@ -210,7 +213,12 @@
         "pushesPerDay": 5,
         "zeroCoveragePushesPer3Days": 3,
         "avgCandidatesPerCycle": 9.7,
-        "categoryMix": { "politics": 67, "economy": 20, "tech": 13, "science": 0 }
+        "categoryMix": {
+          "politics": 67,
+          "economy": 20,
+          "tech": 13,
+          "science": 0
+        }
       },
       "result": "kept",
       "evaluatedOn": "2026-04-19",
@@ -282,6 +290,56 @@
       },
       "result": "reverted_early",
       "notes": "Reverted on 2026-03-25 as part of 'Experiment cycle 1' (commit d1e7faa) before evaluateAfter date. That commit simultaneously changed TOP_EVENTS_TO_FETCH 5→8 and reset minArticlesInEvent to 10. Duplicates reached 0 today (2026-03-29) but cannot be attributed to this experiment since it was reverted. TOP_EVENTS_TO_FETCH=8 likely responsible for duplicate elimination."
+    }
+  ],
+  "queuedExperiments": [
+    {
+      "id": "2026-05-08-numerical-density",
+      "queuedFrom": "2026-05-02",
+      "startAfter": "2026-05-08",
+      "blockedBy": "2026-05-01-title-echo-self-check",
+      "blockedReason": "Both touch scripts/write-prompt.md — promote to activeExperiments only after title-echo evaluates on 2026-05-08",
+      "duration": "3 days minimum",
+      "hypothesis": "Bench test on 3 stories (write-prompt.md A vs E variants, Sonnet 4.6 medium) showed +38% specificity score (9.67 → 13.33) when adding an explicit 'Numerical density' rule to the principles block. Production 60-article baseline computes 8.58 specificity, so even 30% bench-to-prod attenuation would yield a meaningful gain. The current Precision principle says 'lead with the specific' but doesn't enforce a count; making 'at least 3 numerical specifics' a hard rule should push the writer toward number-leading copy, which is the wire-style discipline the prompt already aims for.",
+      "parameter": "Numerical density principle in writer principles block",
+      "file": "scripts/write-prompt.md",
+      "oldValue": "No explicit numerical-density rule; only Precision principle ('lead with the specific')",
+      "newValue": "Add: '**Numerical density.** Every article must contain at least 3 numerical specifics — counts, dates, percentages, currency amounts, or named figures (e.g. \"5,000 troops,\" \"March 14,\" \"20% of supply,\" \"$120 a barrel\"). A wire dispatch without numbers is opinion. If adding a figure would push the body over 350 chars, drop an adjective or compress a clause to make room — don't drop the number.'",
+      "targetMetric": "specificity score (digits + proper-noun tokens per article body, computed by scripts/lib/quality-score.js)",
+      "targetDirection": "increase",
+      "baseline": {
+        "windowStart": "2026-04-25",
+        "windowEnd": "2026-05-02",
+        "articlesAnalyzed": 60,
+        "specificityMean": 8.58,
+        "hedgesPerArticle": 0.13,
+        "titleEchoJaccardMean": 0.15,
+        "scorerScript": "scripts/lib/quality-score.js"
+      },
+      "target": {
+        "specificityMean": 11.0,
+        "specificityStretch": 12.5
+      },
+      "guardrails": {
+        "hedgeRate": "hedges/article must stay ≤ 0.30 (current 0.13). New rule could tempt the model to fabricate plausible-sounding numbers with hedges; spot-check.",
+        "titleEchoJaccard": "must stay ≤ 0.20 (current 0.15). Number-leading hooks could overlap title vocabulary. The active title-echo experiment evaluates on 2026-05-08 — promote this experiment only after that closes to avoid confound.",
+        "charOver350Pct": "must not climb above 20% (current ~17% per title-echo experiment baseline). New rule includes a 'compress a clause' instruction designed to prevent overshoot, but verify.",
+        "sentenceCountCompliance": "≥ 95% of articles must hit exactly 3 sentences (current 98.3% from /tmp/zuhd-sentence-audit.js).",
+        "fabricatedNumbers": "spot-check 5 random new articles — every numerical specific must appear in at least one source body. >1 fabricated = revert."
+      },
+      "preflightChecks": [
+        "Title-echo experiment (2026-05-01-title-echo-self-check) has evaluated on 2026-05-08 and been moved to history.",
+        "Production specificity baseline still holds (~8.5) — re-run scripts/lib/quality-score.js on most recent 60 articles before activating.",
+        "No other write-prompt.md changes in flight.",
+        "LESSON FROM 2026-05-02 EVAL: Small-sample bench wins (n=3) did NOT replicate at n=24 for title-echo experiments. Before promoting, re-run quality-score.js on 20+ historical articles using the proposed prompt (variant E from /tmp logs) to confirm specificity gain replicates. If gain is <+15% at n=20+, do not promote — design needs reconsideration."
+      ],
+      "benchEvidence": {
+        "promptVariants": "/tmp/zuhd-prompt-A.md (baseline) vs /tmp/zuhd-prompt-E.md (with rule)",
+        "outputs": "/tmp/zuhd-eval-A/ vs /tmp/zuhd-eval-E/",
+        "stories": 3,
+        "results": "A specificity 9.67, E specificity 13.33 (+38%). Hedges 0/0. Title-echo Jaccard 0.03 → 0.12. Sentence count 3/3 in both. E had 1/3 over 350 chars (378), guarded by the 'compress a clause' clause in the new rule.",
+        "warning": "3-story bench result is preliminary. The 2026-05-02 24-story title-echo eval showed prompt-rule effects that look strong at n=8 fade to noise at n=24. Validate this at scale before activating."
+      }
     }
   ]
 }
