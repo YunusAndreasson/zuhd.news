@@ -100807,5 +100807,1439 @@
     "label": "Dreams & the Wandering Mind",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-04-30-the-hidden-costs-of-asia-s-data-center-rush": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WATER PROBLEM",
+        "body": "A hyperscale data center can evaporate millions of liters of water per day through cooling towers. Microsoft disclosed its global water use jumped 34% in a single year as AI training scaled. The water leaves the local watershed as vapor — it is consumed, not borrowed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is **PUE** (power usage effectiveness) for energy and **WUE** (water usage effectiveness) for water. A WUE of 1.8 L/kWh — typical for evaporative cooling in hot climates — means a 100MW facility drinks roughly *4 million liters a day*."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SOUTHEAST ASIA",
+        "body": "Land is cheap, power is subsidized, fiber lands at the coasts, and permitting is fast. Johor — across the causeway from Singapore — became the region's hotspot precisely because Singapore imposed a moratorium on new data centers in 2019 over grid and water strain.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MY",
+              "SG",
+              "ID",
+              "TH",
+              "VN",
+              "PH"
+            ],
+            "label": "the regional buildout",
+            "markers": [
+              {
+                "lat": 1.4927,
+                "lng": 103.7414,
+                "label": "Johor — hyperscaler cluster"
+              },
+              {
+                "lat": 1.3521,
+                "lng": 103.8198,
+                "label": "Singapore (capacity capped)"
+              },
+              {
+                "lat": -6.2088,
+                "lng": 106.8456,
+                "label": "Jakarta — Batam buildout"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "EIA, AND WHAT IT NORMALLY DOES",
+        "body": "An Environmental Impact Assessment is the procedural choke point that forces a developer to disclose water draw, emissions, and grid load before construction, and gives affected communities legal standing to object. Skipping the EIA does not just remove the study — it removes the courtroom.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "EU",
+                "value": "Mandatory >50MW",
+                "cc": "EU",
+                "tone": "favorable"
+              },
+              {
+                "label": "Ireland",
+                "value": "Mandatory + grid cap",
+                "cc": "IE",
+                "tone": "favorable"
+              },
+              {
+                "label": "Singapore",
+                "value": "Capped, then quota",
+                "cc": "SG",
+                "tone": "neutral"
+              },
+              {
+                "label": "Malaysia",
+                "value": "Not mandatory",
+                "cc": "MY",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Indonesia",
+                "value": "Discretionary",
+                "cc": "ID",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Thailand",
+                "value": "Not mandatory",
+                "cc": "TH",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "data-center EIA regimes (selected)"
+          }
+        ]
+      },
+      {
+        "heading": "THE STRANDED-ASSET RISK",
+        "body": "A data center is a 20-year capital commitment built on a 3-year revenue forecast. If AI inference demand consolidates onto fewer, more efficient chips — or the training-scale era ends — half-built campuses become concrete shells with substations attached. Power-purchase agreements signed at the peak still bind.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The historical analogue is the late-1990s **dark fiber** glut: telcos laid roughly *39 million miles* of fiber in the US alone; ~85% sat unlit for years. The capex was real; the demand curve wasn't."
+          }
+        ]
+      },
+      {
+        "heading": "THE GRID PROBLEM",
+        "body": "A single 1GW campus draws as much power as a mid-sized city. In Malaysia and Indonesia, that load lands on grids still ~80% fossil-fueled — so every megawatt of AI compute, however efficient, is a megawatt of new coal or gas demand at the margin.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how much electricity does a 1GW hyperscale data center consume per year?",
+            "options": [
+              "About what 100,000 homes use",
+              "About what 750,000 homes use",
+              "About what 5 million homes use"
+            ],
+            "correct": 1,
+            "explanation": "A 1GW campus running near capacity uses ~8.7 TWh/year — roughly the household consumption of 750,000 average US homes, or the entire annual demand of a country like Costa Rica."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-02T22:33:53.748Z",
+    "label": "Data Centers & the Resource Footprint",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-01-new-lawsuit-do-we-have-a-right-to-know-we-re-being-surveille": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT AN ALPR ACTUALLY DOES",
+        "body": "An automated license plate reader photographs every passing vehicle, runs OCR on the plate, and writes the plate, timestamp, and GPS to a database — typically retained for 30 days to several years depending on jurisdiction. The technology is cheap; the database is the product.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Flock cameras stream to a central cloud platform that any participating department can query. A search for one plate returns *every sighting across every customer agency* — a national movement graph stitched from local deployments."
+          }
+        ]
+      },
+      {
+        "heading": "THE THIRD-PARTY DOCTRINE",
+        "body": "Under Smith v. Maryland (1979), the Supreme Court held that information voluntarily shared with third parties — phone numbers dialed, in that case — carries no reasonable expectation of privacy. ALPRs exploit this: your plate is displayed publicly on your car, so capturing it is not a search requiring a warrant.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "A person has no legitimate expectation of privacy in information he voluntarily turns over to third parties.",
+            "speaker": "Smith v. Maryland, 442 U.S. 735",
+            "year": "1979"
+          }
+        ]
+      },
+      {
+        "heading": "THE MOSAIC THEORY",
+        "body": "Individual plate reads are trivial; aggregated reads reconstruct your life. United States v. Jones (2012) and Carpenter v. United States (2018) cracked the third-party doctrine for long-term location tracking — Carpenter required a warrant for seven days of cell-site data. Whether ALPR aggregation crosses the same line is unsettled."
+      },
+      {
+        "heading": "WHY MAPS MATTER",
+        "body": "Camera locations determine which neighborhoods get tracked. In practice, ALPRs cluster in lower-income and minority areas — the same pattern that drove redlining, stop-and-frisk, and predictive-policing audits. Hidden maps mean residents cannot audit the geography of their own surveillance.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal hook in the lawsuit is whether camera locations are *law-enforcement strategy* (exempt under FOIL) or *infrastructure siting* (a public record like a streetlight or stop sign). The distinction governs every transparency fight to come."
+          }
+        ]
+      },
+      {
+        "heading": "THE FUSION PROBLEM",
+        "body": "Flock's network now spans 5,000+ communities and shares data across jurisdictions by default. A camera in Scarsdale logs vehicles for an ICE query in Texas or an abortion-related investigation in Idaho. Local consent does not constrain downstream use.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many US communities have deployed Flock Safety's ALPR network?",
+            "options": [
+              "A few hundred",
+              "About 1,500",
+              "More than 5,000",
+              "Around 20,000"
+            ],
+            "correct": 2,
+            "explanation": "Flock's footprint crossed 5,000 jurisdictions by 2024, making it the largest private surveillance network in the US — none of it authorized by federal statute."
+          }
+        ]
+      },
+      {
+        "heading": "THE COINTELPRO PRECEDENT",
+        "body": "From 1956 to 1971, the FBI ran COINTELPRO — covert surveillance and disruption of civil-rights leaders, antiwar activists, and Muslim organizations. It ended only when burglars stole files from a Pennsylvania field office and leaked them to the press. The lesson encoded in modern transparency law: surveillance systems hidden from the public will be abused, and the only reliable check is forced disclosure."
+      }
+    ],
+    "generatedAt": "2026-05-02T22:34:22.852Z",
+    "label": "ALPRs & the Surveillance Transparency Question",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-02-a-compact-and-interpretable-multi-source-framework-for-heter": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PARAMETER GAP",
+        "body": "Frontier vision models for medical imaging routinely carry tens of millions of parameters — ResNet-50 has ~25M, ViT-Base ~86M. A 4,200-parameter model is roughly four orders of magnitude smaller, small enough to fit in the L1 cache of a phone CPU.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "ML-ConvNet",
+                "value": "~4.2k",
+                "tone": "favorable",
+                "weight": 4200
+              },
+              {
+                "label": "MobileNetV2",
+                "value": "~3.4M",
+                "tone": "neutral",
+                "weight": 3400000
+              },
+              {
+                "label": "ResNet-50",
+                "value": "~25M",
+                "tone": "neutral",
+                "weight": 25000000
+              },
+              {
+                "label": "ViT-Base",
+                "value": "~86M",
+                "tone": "unfavorable",
+                "weight": 86000000
+              },
+              {
+                "label": "MedSAM",
+                "value": "~94M",
+                "tone": "unfavorable",
+                "weight": 94000000
+              }
+            ],
+            "label": "parameter count, common imaging backbones"
+          }
+        ]
+      },
+      {
+        "heading": "WHY OVER-PARAMETERIZATION IS THE NORM",
+        "body": "Deep networks are trained massively over-parameterized because gradient descent finds good minima more reliably in high-dimensional loss landscapes. Most of those weights end up redundant — the lottery ticket hypothesis showed that tiny subnetworks inside a trained model can match the full model's accuracy if you find them."
+      },
+      {
+        "heading": "THE HOSPITAL CONSTRAINT",
+        "body": "Most of the world's MRI and CT scanners sit in facilities without GPU servers attached. Running inference on a CPU or a phone is not a nice-to-have — it is the difference between a model that ships to a rural clinic in Bangladesh and one that lives only in a research paper.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Roughly **two-thirds** of the world's population lacks routine access to medical imaging interpretation — not because scanners are absent, but because trained radiologists are concentrated in wealthy urban centers."
+          }
+        ]
+      },
+      {
+        "heading": "INTERPRETABILITY AS SAFETY",
+        "body": "Large vision models are black boxes — clinicians cannot audit why a tumor was flagged. Compact models with hand-engineered feature extractors expose their reasoning, which matters for regulatory approval under the FDA's Software-as-Medical-Device framework and the EU AI Act's high-risk classification."
+      },
+      {
+        "heading": "THE VALIDATION TRAP",
+        "body": "A model that aces one hospital's dataset routinely collapses on another's — different scanner vendors, calibration, patient demographics, and labeling conventions all shift the input distribution. Multi-institutional external validation, which the authors flag as still needed, is the bar that separates published papers from deployed tools.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What most often causes a medical AI model that performs well in development to fail in a new hospital?",
+            "options": [
+              "The new hospital uses different scanner hardware and protocols",
+              "The model was trained on too few parameters",
+              "Patient privacy laws block the model from running",
+              "Newer diseases were not in the training data"
+            ],
+            "correct": 0,
+            "explanation": "Distribution shift across scanner vendors, acquisition protocols, and patient populations is the dominant failure mode — known as the generalization gap in medical imaging."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-02T22:34:49.670Z",
+    "label": "Tiny Models in Medical Imaging",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-02-adam-not-satoshi-back-is-at-peace-with-wall-street-crypto-er": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO IS ADAM BACK",
+        "body": "Back invented Hashcash in 1997, a proof-of-work system Satoshi cited directly in the Bitcoin whitepaper. He is one of a handful of pre-Bitcoin cryptographers whose work was load-bearing for the protocol — and a recurring suspect in 'who is Satoshi' speculation he denies.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Bitcoin whitepaper has eight references. *Hashcash* is one of them — which is why Back's endorsement of any structural change carries weight the average commentator's does not."
+          }
+        ]
+      },
+      {
+        "heading": "THE CYPHERPUNK ORIGINAL POSITION",
+        "body": "The cypherpunk movement of the 1990s held that privacy and freedom required cryptographic tools deployed by individuals, not institutions. 'Don't trust, verify' meant running your own node and holding your own keys. Custodial Bitcoin — coins held by a third party on your behalf — was the explicit thing the movement was reacting against."
+      },
+      {
+        "heading": "WHY ETFS CHANGE THE MATH",
+        "body": "Spot Bitcoin ETFs launched in the US in January 2024 and absorbed roughly $50bn in net inflows in their first year. The coins sit with a handful of custodians — Coinbase holds the bulk. The cypherpunk concern is concentration; Back's counter-argument is that multiple competing custodians is itself a form of decentralization.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "BlackRock IBIT",
+                "value": "~$25bn",
+                "weight": 25,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Fidelity FBTC",
+                "value": "~$11bn",
+                "weight": 11,
+                "tone": "neutral"
+              },
+              {
+                "label": "Grayscale GBTC",
+                "value": "~$14bn",
+                "weight": 14,
+                "tone": "neutral"
+              },
+              {
+                "label": "Ark/21Shares",
+                "value": "~$3bn",
+                "weight": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Bitwise",
+                "value": "~$2bn",
+                "weight": 2,
+                "tone": "favorable"
+              }
+            ],
+            "label": "approximate spot BTC ETF AUM by issuer (2024)"
+          }
+        ]
+      },
+      {
+        "heading": "THE 51% ATTACK THRESHOLD",
+        "body": "Bitcoin's security assumes no single party controls a majority of mining hash power. Custody concentration is a different threat: if one custodian holds enough coins, governments can coerce policy through that single chokepoint without ever touching the protocol. This is the network-capture risk Back is addressing."
+      },
+      {
+        "heading": "THE QUANTUM PROBLEM",
+        "body": "Bitcoin addresses are protected by ECDSA over the secp256k1 curve. A sufficiently powerful quantum computer running Shor's algorithm could derive a private key from a public key in polynomial time — breaking every address whose public key has been revealed (i.e., every address that has ever sent a transaction).",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The migration plan is post-quantum signatures — likely *lattice-based* schemes like Dilithium. The hard part is not the cryptography; it's coordinating a soft fork that asks every holder to move funds to new address types before quantum hardware catches up."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRICE BACKDROP",
+        "body": "Back's endorsement lands as Bitcoin trades well below its late-2025 highs. Institutional custody arguments are easier to make in a bull market; a sustained drawdown tests whether ETF holders behave like long-term cypherpunks or like equity tourists.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              66891.66,
+              66939.69,
+              67304.25,
+              68985.53,
+              68864.23,
+              71975.62,
+              71117.08,
+              71770.75,
+              72972.71,
+              73053.89,
+              70756.75,
+              74514.63,
+              74181.11,
+              74833.51,
+              75149.19,
+              77128.44,
+              75728.46,
+              73856.06,
+              75874.55,
+              76350.25,
+              78194.78,
+              78260.62,
+              77444.8,
+              77619.14,
+              78645.13,
+              77361.3,
+              76345.23,
+              75774.89,
+              76286.58,
+              78172.07,
+              78643.91
+            ],
+            "periods": [
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 2"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "RETRIEVAL",
+        "body": "One concept worth keeping.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What pre-Bitcoin system did Adam Back invent that Satoshi cited in the whitepaper?",
+            "options": [
+              "Hashcash",
+              "b-money",
+              "BitGold",
+              "DigiCash"
+            ],
+            "correct": 0,
+            "explanation": "Hashcash (1997) introduced the proof-of-work concept Bitcoin's mining is built on. B-money and BitGold were proposals; DigiCash was Chaum's earlier centralized e-cash."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-02"
+    ],
+    "generatedAt": "2026-05-02T22:35:20.743Z",
+    "label": "Bitcoin Custody & Decentralization",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-02-brazil-s-central-bank-bans-stablecoin-and-crypto-settlement": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A STABLECOIN ACTUALLY IS",
+        "body": "A stablecoin is a token pegged to a fiat currency, almost always the dollar. The issuer (Tether, Circle) holds Treasuries and bank deposits as reserves and mints one token per dollar deposited. The token tracks $1 not by algorithm but by the promise the dollar is there.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Tether's **USDT** and Circle's **USDC** together hold over **$200bn** in reserves — most of it parked in short-dated US Treasuries, making the two issuers among the largest holders of US government debt in the world."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE CENTRAL BANK CARES",
+        "body": "When a Brazilian wants dollars, the legal path runs through a licensed FX dealer who reports the trade — that is how the central bank tracks capital flight, taxes the spread, and defends the real. A reais-to-USDT-to-dollars route bypasses every one of those checkpoints. The flow becomes invisible."
+      },
+      {
+        "heading": "THE EURODOLLAR PRECEDENT",
+        "body": "This is not the first time dollars have escaped the regulatory perimeter. In the 1950s, dollar deposits held in London banks — Eurodollars — emerged precisely because they sat outside the Fed's reach. Stablecoins are a digital-native version: dollar-denominated liabilities issued offshore, circulating without touching the US banking rails."
+      },
+      {
+        "heading": "WHY 90% IS THE TELL",
+        "body": "In a normal crypto market, Bitcoin and ETH dominate volume because users are speculating. When stablecoins are 90% of volume, users aren't speculating — they're moving money. The Brazilian market wasn't a casino; it was a parallel FX system.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Stablecoins",
+                "value": "~90%",
+                "tone": "unfavorable",
+                "weight": 90
+              },
+              {
+                "label": "BTC + ETH + alts",
+                "value": "~10%",
+                "tone": "neutral",
+                "weight": 10
+              }
+            ],
+            "label": "What Brazilian crypto users were actually doing"
+          }
+        ]
+      },
+      {
+        "heading": "THE GLOBAL PATTERN",
+        "body": "Countries with weak currencies and capital controls see the highest stablecoin adoption — Argentina, Turkey, Nigeria, Lebanon, Venezuela. The token isn't a speculative asset there; it's a synthetic dollar that crosses borders by API instead of by Western Union.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BR",
+              "AR",
+              "TR",
+              "NG",
+              "LB",
+              "VE"
+            ],
+            "label": "where stablecoins function as shadow dollars",
+            "caption": "high inflation or capital controls — or both"
+          }
+        ]
+      },
+      {
+        "heading": "THE ENFORCEMENT QUESTION",
+        "body": "Banning stablecoin settlement at the licensed-dealer level is straightforward. Stopping a Brazilian from opening a self-custody wallet and receiving USDT peer-to-peer is not. Capital controls in the crypto era police the on-ramps and off-ramps, not the network itself.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are stablecoins harder to capital-control than traditional foreign exchange?",
+            "options": [
+              "They are issued by foreign governments outside the central bank's jurisdiction",
+              "They settle peer-to-peer on a public network, bypassing the licensed-dealer chokepoint",
+              "They are legally classified as commodities, not currency",
+              "They are too small in volume for regulators to notice"
+            ],
+            "correct": 1,
+            "explanation": "Traditional FX flows through licensed dealers the central bank can audit and tax. Stablecoins move wallet-to-wallet on a public blockchain, so the only enforcement points are where crypto meets the banking system."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-02T22:35:51.579Z",
+    "label": "Stablecoins & Capital Controls",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-02-canada-proposes-poet-mission-to-hunt-earth-sized-planets": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CENSUS SO FAR",
+        "body": "Of roughly 6,300 confirmed exoplanets, the vast majority are gas giants or sub-Neptunes — easier to detect because they are larger and tug harder on their stars. Earth-sized rocky worlds are the rarest catalogued class, not because they are rare in nature but because they are the hardest to see.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The detection bias has a name: the **transit signal** of an Earth-sized planet around a sun-like star is roughly *84 parts per million* — a 0.0084% dip in starlight. Jupiter around the same star produces a 1% dip, more than a hundred times larger."
+          }
+        ]
+      },
+      {
+        "heading": "DISCOVERY VS CHARACTERIZATION",
+        "body": "Finding a planet only requires detecting a periodic dip in starlight. Characterizing its atmosphere requires capturing light that has passed through that atmosphere during transit — splitting it into a spectrum and reading the absorption lines of specific molecules. The photon budget is orders of magnitude harder."
+      },
+      {
+        "heading": "WHY ROCKY IS HARD",
+        "body": "A rocky planet's atmosphere is a thin shell — Earth's is ~100 km against a 12,742 km diameter. The transmission spectrum is correspondingly faint. Gas giants have deep, puffy atmospheres that imprint strong spectral features; rocky worlds whisper where Jupiters shout.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how much of a star's light does an Earth-sized planet block when it transits a sun-like star?",
+            "options": [
+              "About 1%",
+              "About 0.01%",
+              "About 0.1%",
+              "About 5%"
+            ],
+            "correct": 1,
+            "explanation": "Earth-sized transits dim the host star by roughly 84 parts per million — about 0.0084%. This is why characterizing such planets pushes telescope sensitivity to its limits."
+          }
+        ]
+      },
+      {
+        "heading": "THE BIOSIGNATURE TARGETS",
+        "body": "Astronomers look for molecules that shouldn't coexist in chemical equilibrium — oxygen alongside methane is the classic pair, because they react quickly and need continuous replenishment. On Earth, life does that replenishing. Detecting such disequilibrium on another world is the closest current proxy for life."
+      },
+      {
+        "heading": "THE M-DWARF BET",
+        "body": "Most rocky-planet characterization targets orbit M-dwarfs — small, cool stars where the planet-to-star size ratio is more favorable and transits are deeper. The catch: M-dwarfs flare violently in their youth, potentially stripping atmospheres before life could establish. Whether any M-dwarf rocky world keeps its atmosphere is itself the open question POET-class missions exist to answer."
+      },
+      {
+        "heading": "CANADA'S SPACE NICHE",
+        "body": "The Canadian Space Agency has historically punched above its weight in space optics — Canadarm on the Shuttle and ISS, the FGS/NIRISS instrument on JWST that handles fine guidance and exoplanet transit spectroscopy. A Canadian-led exoplanet characterization mission extends an existing instrumentation lineage rather than starting fresh."
+      }
+    ],
+    "generatedAt": "2026-05-02T22:36:17.459Z",
+    "label": "Characterizing Rocky Exoplanets",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-02-google-stopped-its-campaign-to-build-america-s-next-gen-dron": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A SWARM ACTUALLY IS",
+        "body": "A swarm is not a fleet of remotely piloted drones — it is a self-coordinating collective where each unit shares position and intent with neighbors over a mesh network. The operator gives an objective (search this grid, suppress that air defense); the swarm divides labor on its own.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *decentralized autonomy* — no single drone is the leader, so jamming any one node degrades the swarm gracefully rather than killing it."
+          }
+        ]
+      },
+      {
+        "heading": "THE COST INVERSION",
+        "body": "A Patriot interceptor costs roughly $4mn. A Shahed-style attack drone costs under $50,000. Defense planners realized that any future war in the Pacific or the Gulf would be lost on math alone unless the US could field cheap, mass-produced autonomy of its own.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Patriot PAC-3 missile",
+                "value": "~$4mn",
+                "tone": "unfavorable",
+                "weight": 4000
+              },
+              {
+                "label": "SM-6 interceptor",
+                "value": "~$4.3mn",
+                "tone": "unfavorable",
+                "weight": 4300
+              },
+              {
+                "label": "Switchblade 600",
+                "value": "~$80k",
+                "tone": "neutral",
+                "weight": 80
+              },
+              {
+                "label": "Shahed-136",
+                "value": "~$50k",
+                "tone": "favorable",
+                "weight": 50
+              },
+              {
+                "label": "FPV quadcopter",
+                "value": "~$500",
+                "tone": "favorable",
+                "weight": 1
+              }
+            ],
+            "label": "cost per unit, attacker vs defender"
+          }
+        ]
+      },
+      {
+        "heading": "PROJECT MAVEN, THE PRECEDENT",
+        "body": "In 2018, Google let its Pentagon contract for Project Maven — using AI to identify objects in drone footage — expire after thousands of employees signed a protest letter. The episode birthed Google's AI Principles forbidding weapons work, and shaped how every Big Tech firm now negotiates defense deals.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2017",
+                "label": "Google joins Project Maven"
+              },
+              {
+                "year": "2018",
+                "label": "Employee revolt; Google exits",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Microsoft wins $10bn JEDI cloud"
+              },
+              {
+                "year": "2021",
+                "label": "JEDI cancelled, replaced by JWCC"
+              },
+              {
+                "year": "2024",
+                "label": "Google rewrites AI Principles, drops weapons ban"
+              },
+              {
+                "year": "2026",
+                "label": "Google exits drone-swarm bid"
+              }
+            ],
+            "label": "Big Tech and the Pentagon"
+          }
+        ]
+      },
+      {
+        "heading": "WHO STAYED IN",
+        "body": "The remaining bidders are the new defense-tech stack: OpenAI (after dropping its own military prohibition in early 2024), Anduril (founded by Oculus's Palmer Luckey explicitly to build autonomous weapons), and Shield AI. The shift in two years has been from ethical refusal to active competition.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Palmer Luckey",
+                "role": "Anduril founder",
+                "years": "2017–",
+                "cc": "US"
+              },
+              {
+                "name": "Sam Altman",
+                "role": "OpenAI CEO, lifted military ban 2024",
+                "years": "2019–",
+                "cc": "US"
+              },
+              {
+                "name": "Brandon Tseng",
+                "role": "Shield AI co-founder, ex-SEAL",
+                "years": "2015–",
+                "cc": "US"
+              },
+              {
+                "name": "Sundar Pichai",
+                "role": "Google/Alphabet CEO",
+                "years": "2015–",
+                "cc": "US"
+              }
+            ],
+            "label": "the new defense-AI cohort"
+          }
+        ]
+      },
+      {
+        "heading": "THE VOICE-CONTROL TWIST",
+        "body": "Voice command is the hard part, not the drone. A field operator under fire cannot type coordinates; they need to say 'clear that building' and have the swarm parse intent, geolocate the target, deconflict with friendlies, and execute. This is a large-language-model problem grafted onto a robotics problem — which is why the bidder list reads like an AI-lab roster, not a defense-contractor roster."
+      },
+      {
+        "heading": "THE 600",
+        "body": "The 600 Google employees opposing military work are a fraction of Alphabet's ~180,000 headcount, but they sit in the AI research divisions whose retention determines the company's competitive position. Big Tech's defense calculus is not 'do we want the contract' — it's 'do we want the contract more than we want the engineers who would quit over it.'",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did Google reportedly exit the Pentagon's drone-swarm contest?",
+            "options": [
+              "The contract was too small to be material",
+              "Internal employee opposition to military AI work",
+              "Technical inability to meet the voice-control spec",
+              "Antitrust concerns from the FTC"
+            ],
+            "correct": 1,
+            "explanation": "Google's AI talent has repeatedly forced the company to back away from weapons-adjacent contracts — Maven in 2018, JEDI shortly after, and now the swarm bid."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-02T22:36:53.086Z",
+    "label": "Drone Swarms & Big Tech",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-02-interpreting-rare-missense-variants-in-abcb4-using-acmg-reco": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT ABCB4 DOES",
+        "body": "ABCB4 encodes a phospholipid transporter on the bile-canalicular membrane of liver cells. It pumps phosphatidylcholine into bile, where it neutralizes the detergent action of bile acids. Without it, raw bile acids strip the bile duct epithelium like soap on skin.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The gene's product is also called **MDR3** — multidrug resistance protein 3 — a name inherited from its discovery as a homolog of the cancer-drug efflux pump *MDR1*, before its actual liver function was understood."
+          }
+        ]
+      },
+      {
+        "heading": "THE MISSENSE PROBLEM",
+        "body": "A missense variant swaps one amino acid for another. Some are silent passengers; some destroy protein function; most sit in a vast grey zone. Of the ~75,000 missense variants catalogued in ClinVar, roughly 40% are classified 'variant of uncertain significance' — clinically useless to the patient holding the report."
+      },
+      {
+        "heading": "THE ACMG FRAMEWORK",
+        "body": "The American College of Medical Genetics 2015 guidelines score variants across 28 evidence criteria — population frequency, computational prediction, functional studies, family segregation, de novo occurrence — combined into five tiers from benign to pathogenic. The framework was designed to make classification reproducible across labs, but the computational criterion (PP3/BP4) is where AI tools enter and disagree."
+      },
+      {
+        "heading": "WHY AI TOOLS DISAGREE",
+        "body": "AlphaMissense, REVEL, CADD, and PrimateAI each train on different labeled datasets and weight evolutionary conservation differently. A variant rare in humans but conserved in fish reads as damaging to one model and tolerated by another. The 44% conflict rate in this study is typical, not anomalous.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do AI variant predictors disagree so often on the same mutation?",
+            "options": [
+              "They use different random seeds during inference",
+              "They train on different labeled datasets and weight evolutionary signals differently",
+              "Newer tools are simply more accurate than older ones",
+              "They sample different patient populations at runtime"
+            ],
+            "correct": 1,
+            "explanation": "Each predictor learns from a different curated training set and assigns different weights to conservation, structure, and population frequency — so the same variant can score damaging in one and tolerated in another."
+          }
+        ]
+      },
+      {
+        "heading": "ZYGOSITY MATTERS",
+        "body": "ABCB4 disease is dose-dependent: two broken copies cause progressive familial intrahepatic cholestasis in infancy, often requiring liver transplant. One broken copy causes intrahepatic cholestasis of pregnancy — the most common pregnancy liver disorder, triggered when estrogen further suppresses the half-functioning transporter."
+      },
+      {
+        "heading": "WHY FUNCTIONAL DATA WINS",
+        "body": "A functional assay expresses the variant protein in cultured cells and measures whether phospholipid actually crosses the membrane. It tests the molecule, not a model of the molecule. ACMG weights functional evidence (PS3/BS3) far above computational prediction (PP3/BP4) for exactly this reason — the wet-lab readout is ground truth that no in-silico score can override."
+      }
+    ],
+    "generatedAt": "2026-05-02T22:37:20.315Z",
+    "label": "Variant Classification & ABCB4",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-02-iran-handed-over-roadmap-to-reach-agreement-to-the-us-news-a": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY PAKISTAN CARRIED IT",
+        "body": "Pakistan shares a 900km border with Iran, hosts a Shia minority of ~20 million, and maintains military ties to Washington dating to the Cold War. It is one of the few states trusted by both capitals — neither aligned with the Gulf Arab bloc nor a treaty ally of either side.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "PK",
+              "AF",
+              "IQ",
+              "SA",
+              "AE",
+              "OM"
+            ],
+            "label": "the corridor that bypassed the Gulf",
+            "markers": [
+              {
+                "lat": 35.6892,
+                "lng": 51.389,
+                "label": "Tehran"
+              },
+              {
+                "lat": 33.6844,
+                "lng": 73.0479,
+                "label": "Islamabad"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "NO DIRECT CHANNEL SINCE 1980",
+        "body": "Washington and Tehran severed diplomatic relations after the 1979 hostage crisis. Since then, the Swiss embassy in Tehran has formally represented US interests, and Oman has carried most substantive backchannel messages — including the secret 2012–2013 talks that produced the JCPOA framework.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Embassy seized, hostages taken",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1980",
+                "label": "Relations severed; Swiss become protecting power"
+              },
+              {
+                "year": "1981",
+                "label": "Algiers Accords release hostages"
+              },
+              {
+                "year": "2012",
+                "label": "Oman-mediated secret talks begin"
+              },
+              {
+                "year": "2015",
+                "label": "JCPOA signed in Vienna"
+              },
+              {
+                "year": "2018",
+                "label": "US withdraws from JCPOA"
+              },
+              {
+                "year": "2025",
+                "label": "Muscat-mediated talks resume"
+              }
+            ],
+            "label": "45 years of indirect diplomacy"
+          }
+        ]
+      },
+      {
+        "heading": "WHY NOT OMAN THIS TIME",
+        "body": "Oman has been the default Iran–US mediator for over a decade — geographically neutral, monarchically discreet, trusted in Tehran. Switching to Pakistan signals either Iranian dissatisfaction with prior Omani-mediated rounds, or a deliberate move to keep Gulf Arab states — who have their own equities in any Iran deal — out of the loop."
+      },
+      {
+        "heading": "THE NUMBER GAME",
+        "body": "A 9-point US offer met with a 14-point Iranian counter is a familiar diplomatic shape: the receiving side adds items to surface red lines and create trading room. Sanctions relief sequencing, IRGC designation status, frozen-asset access, and regional proxy questions are the usual additions.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Iran's published red lines historically cluster around four pillars: **uranium enrichment rights**, **IRGC sovereignty**, **sanctions snapback guarantees**, and **non-interference with regional allies** (Hezbollah, Ansar Allah, Iraqi militias)."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE MARKET THINKS",
+        "body": "Prediction markets price the diplomatic track as alive but unlikely to land soon. The same markets price US military action against Iran before 2027 at roughly one-in-three — the two tracks running in parallel rather than as alternatives.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              37,
+              52,
+              43,
+              31,
+              36,
+              31,
+              30,
+              28,
+              30,
+              25,
+              19,
+              23,
+              19
+            ],
+            "periods": [
+              "Apr 9",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 2"
+            ],
+            "label": "US x Iran permanent peace deal by May…",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "37%"
+              },
+              {
+                "atIndex": 12,
+                "label": "19%"
+              }
+            ],
+            "link": "https://polymarket.com/event/us-x-iran-permanent-peace-deal-by",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "ISLAMABAD'S LEVERAGE",
+        "body": "Pakistan is the only Muslim nuclear power and shares a long, porous border with Iranian Balochistan. A successful mediation role rebuilds standing damaged by economic crisis and Afghan blowback — and gives Islamabad something Riyadh and Abu Dhabi cannot offer Washington: a channel into Tehran that does not run through a rival Gulf capital.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country has historically carried most US–Iran backchannel messages since 1980?",
+            "options": [
+              "Switzerland",
+              "Oman",
+              "Qatar",
+              "Pakistan"
+            ],
+            "correct": 1,
+            "explanation": "Oman has mediated nearly every major US–Iran channel since the 2012 secret talks; Switzerland is the formal protecting power but rarely carries substantive messages."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-02"
+    ],
+    "generatedAt": "2026-05-02T22:37:52.620Z",
+    "label": "US–Iran Backchannels",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-02-murad-urges-public-to-take-precautionary-measures-amid-heatw": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WET-BULB LIMIT",
+        "body": "Human survival depends on sweat evaporating to cool the body. Once wet-bulb temperature — heat plus humidity combined — passes ~35°C, sweat no longer evaporates and core temperature rises until organ failure. A healthy adult in shade with unlimited water dies within hours.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The threshold sits at **35°C wet-bulb**, roughly equivalent to 46°C dry heat at 50% humidity — a combination Jacobabad has already crossed in brief episodes since 2010."
+          }
+        ]
+      },
+      {
+        "heading": "WHY JACOBABAD",
+        "body": "Jacobabad sits in upper Sindh where the Indus plain traps heat against the Sulaiman range, with enough irrigation moisture from the canal system to push humidity well above the bone-dry interior of Balochistan. It is one of only two places on Earth — alongside Ras al Khaimah — to have crossed the wet-bulb survival threshold in modern records.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IN",
+              "AF",
+              "IR"
+            ],
+            "label": "Sindh's heat corridor",
+            "markers": [
+              {
+                "lat": 28.2812,
+                "lng": 68.4375,
+                "label": "Jacobabad"
+              },
+              {
+                "lat": 28.4348,
+                "lng": 69.4564,
+                "label": "Kashmore"
+              },
+              {
+                "lat": 24.8607,
+                "lng": 67.0011,
+                "label": "Karachi"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHO CANNOT STOP",
+        "body": "Heat mortality clusters among outdoor laborers — brick-kiln workers, farmhands during the wheat harvest, construction crews. In Pakistan roughly 60% of the workforce is in agriculture or construction. Stopping work means no wage that day; informal labor has no sick pay, no shaded break room, no air conditioning to return home to."
+      },
+      {
+        "heading": "THE HARVEST CALENDAR",
+        "body": "Wheat harvest in Sindh runs April through May — exactly when the heat dome arrives. Farmers race to cut and thresh before grain shatters in the field, which means the peak labor demand of the year now overlaps the peak danger window. The biological calendar and the agricultural calendar have desynchronized.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2026-04",
+                "label": "Wheat harvest begins"
+              },
+              {
+                "year": "2026-05",
+                "label": "Heatwave alert issued",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026-05",
+                "label": "Ramadan fasting overlap (recent years)"
+              },
+              {
+                "year": "2026-06",
+                "label": "Monsoon onset (relief)"
+              }
+            ],
+            "label": "Sindh's compressed danger window"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2015 PRECEDENT",
+        "body": "A June 2015 heatwave killed at least 1,200 people in Karachi over four days. Morgues ran out of space; the Edhi Foundation stacked bodies in refrigerated containers. The official toll almost certainly understated the true mortality — heat deaths get coded as cardiac arrest or stroke on the certificate."
+      },
+      {
+        "heading": "WHAT MOVES",
+        "body": "Pakistan's wheat-import bill is sensitive to harvest losses. A bad heat year means more imports priced in dollars Pakistan does not have, which pushes the rupee weaker and the subsidy budget wider — the climate shock arrives as a fiscal shock months later.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.399884,
+              278.399884,
+              278.399884,
+              279.05,
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775
+            ],
+            "periods": [
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "QUICK CHECK",
+        "body": "Heat physiology is counterintuitive — the danger isn't the temperature on the thermometer.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is wet-bulb temperature more dangerous than dry-bulb temperature at the same reading?",
+            "options": [
+              "Wet-bulb readings are taken in direct sunlight",
+              "High humidity prevents sweat from evaporating, so the body cannot cool itself",
+              "Wet conditions conduct heat into the skin faster than dry air",
+              "Wet-bulb thermometers are more accurate above 40°C"
+            ],
+            "correct": 1,
+            "explanation": "Sweat works by evaporation. When humidity saturates the air, sweat stays on the skin and core temperature climbs until organ failure — regardless of how much water you drink."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-02"
+    ],
+    "generatedAt": "2026-05-02T22:38:24.343Z",
+    "label": "Sindh & the Wet-Bulb Limit",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-02-oil-prices-now-determined-by-trump-s-mood-slovak-pm-fico": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY MAY 9 MATTERS",
+        "body": "Victory Day commemorates the Soviet defeat of Nazi Germany in 1945 and is the Kremlin's most important political ritual. Since 2022, Western leaders have boycotted the Red Square parade; attendance is now read as an explicit signal of alignment with Moscow.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The last sitting EU prime minister to attend a Moscow Victory Day parade was Cyprus's **Demetris Christofias** in 2010 — before the annexation of Crimea reframed attendance as a diplomatic statement."
+          }
+        ]
+      },
+      {
+        "heading": "THE DRUZHBA DEPENDENCY",
+        "body": "Slovakia, Hungary, and Czechia were built around the Druzhba (\"Friendship\") pipeline — a Soviet-era system that pumps Russian crude into Central European refineries calibrated specifically for heavy Urals blend. Switching feedstock requires capital retrofits and years.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "BY",
+              "UA",
+              "SK",
+              "HU",
+              "CZ",
+              "PL",
+              "DE"
+            ],
+            "label": "the Druzhba pipeline corridor",
+            "markers": [
+              {
+                "lat": 48.9869,
+                "lng": 21.2386,
+                "label": "Slovnaft refinery (Bratislava)"
+              },
+              {
+                "lat": 47.4979,
+                "lng": 19.0402,
+                "label": "MOL refinery (Hungary)"
+              },
+              {
+                "lat": 52.2297,
+                "lng": 21.0122,
+                "label": "Płock junction"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHO STILL BUYS RUSSIAN OIL IN THE EU",
+        "body": "The 2022 EU embargo on seaborne Russian crude carved out a pipeline exemption for landlocked Central European states that had no realistic alternative. Three countries kept the lifeline.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Slovakia",
+                "value": "~85%",
+                "cc": "SK",
+                "tone": "unfavorable",
+                "weight": 85
+              },
+              {
+                "label": "Hungary",
+                "value": "~70%",
+                "cc": "HU",
+                "tone": "unfavorable",
+                "weight": 70
+              },
+              {
+                "label": "Czechia",
+                "value": "~50%",
+                "cc": "CZ",
+                "tone": "unfavorable",
+                "weight": 50
+              },
+              {
+                "label": "Germany",
+                "value": "0%",
+                "cc": "DE",
+                "tone": "favorable",
+                "weight": 1
+              },
+              {
+                "label": "Poland",
+                "value": "0%",
+                "cc": "PL",
+                "tone": "favorable",
+                "weight": 1
+              }
+            ],
+            "label": "Russian crude share of total imports, 2024 (approx)"
+          }
+        ]
+      },
+      {
+        "heading": "FICO'S POLITICAL ARC",
+        "body": "Fico has led Slovakia's Smer party since 1999, serving three non-consecutive terms as prime minister. He survived an assassination attempt in May 2024 and returned to office having pivoted from social democracy to a Russia-sympathetic, EU-skeptical posture closer to Orbán's Fidesz than to Brussels' mainstream.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Robert Fico",
+                "role": "Slovak Prime Minister",
+                "years": "2023–",
+                "cc": "SK"
+              },
+              {
+                "name": "Viktor Orbán",
+                "role": "Hungarian Prime Minister",
+                "years": "2010–",
+                "cc": "HU"
+              },
+              {
+                "name": "Andrej Babiš",
+                "role": "Czech opposition leader",
+                "years": "2017–2021",
+                "cc": "CZ"
+              }
+            ],
+            "label": "Central Europe's Russia-friendly axis"
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSIT QUESTION",
+        "body": "Ukraine ended Russian gas transit through its territory on January 1, 2025, when the five-year contract with Gazprom expired. Slovakia lost its transit fees and its eastward gas route in one stroke, which is the immediate backdrop to Fico's grievance about who now sets European energy prices.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When did Russian natural gas transit through Ukraine to the EU formally end?",
+            "options": [
+              "February 2022, with the invasion",
+              "January 2025, when the Gazprom transit contract expired",
+              "September 2022, after the Nord Stream sabotage",
+              "It has not ended"
+            ],
+            "correct": 1,
+            "explanation": "The Ukraine–Gazprom transit contract ran out on Jan 1, 2025; Kyiv refused to renew, severing a route that had operated continuously since 1967."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-02T22:38:58.526Z",
+    "label": "Slovakia, Russia & the Energy Tether",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-02-two-killed-in-russian-attack-on-bus-in-kherson": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RIVER LINE",
+        "body": "Ukraine retook Kherson city in November 2022, but Russian forces dug in on the east bank of the Dnipro just across the water. The river is the front line — wide enough to stop an armored crossing, narrow enough that a quadcopter crosses it in under two minutes.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU",
+              "MD",
+              "RO",
+              "BY"
+            ],
+            "label": "the Dnipro line",
+            "markers": [
+              {
+                "lat": 46.6354,
+                "lng": 32.6169,
+                "label": "Kherson city"
+              },
+              {
+                "lat": 46.35,
+                "lng": 32.71,
+                "label": "Russian east-bank positions"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY SMALL DRONES CHANGED EVERYTHING",
+        "body": "A commercial FPV quadcopter costs roughly $500 and carries a grenade-sized warhead. It is too small for most air-defense radars, too cheap to justify a Patriot missile in response, and accurate enough to target a single bus stop. The economics invert every prior assumption about who can hunt whom on a battlefield.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine name in Ukrainian and Russian military writing is *human safari* — the deliberate use of small drones against named civilians in fixed daily routines (commutes, market runs, hospital visits)."
+          }
+        ]
+      },
+      {
+        "heading": "THE INTERCEPTOR MATH",
+        "body": "Ukraine's overnight ratio — 142 of 163 — is roughly 87% intercepted. The remaining 13% is what kills people. Each Shahed-type drone costs Russia ~$50,000 to launch; each Western-supplied interceptor missile costs $400,000 to several million. Russia wins this trade by an order of magnitude even when Ukraine wins the engagement.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Shahed-136",
+                "value": "~$50k",
+                "tone": "unfavorable",
+                "weight": 50
+              },
+              {
+                "label": "FPV quadcopter",
+                "value": "~$500",
+                "tone": "unfavorable",
+                "weight": 1
+              },
+              {
+                "label": "IRIS-T missile",
+                "value": "~$430k",
+                "tone": "neutral",
+                "weight": 430
+              },
+              {
+                "label": "Patriot PAC-3",
+                "value": "~$4m",
+                "tone": "favorable",
+                "weight": 4000
+              }
+            ],
+            "label": "cost per shot, attacker vs defender"
+          }
+        ]
+      },
+      {
+        "heading": "THE GENEVA CONVENTIONS",
+        "body": "Additional Protocol I (1977) prohibits attacks on civilians and on objects indispensable to civilian life — explicitly including transport. Russia ratified it in 1989. The systematic targeting of named civilian routes (a bus line, a market, an aid distribution point) is the textbook definition of the violation, not a borderline case.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The civilian population as such, as well as individual civilians, shall not be the object of attack. Acts or threats of violence the primary purpose of which is to spread terror among the civilian population are prohibited.",
+            "speaker": "Additional Protocol I, Article 51(2)",
+            "year": "1977"
+          }
+        ]
+      },
+      {
+        "heading": "KHERSON'S HISTORICAL WEIGHT",
+        "body": "Catherine the Great founded Kherson in 1778 as Russia's first Black Sea naval base — predating Sevastopol. Moscow's claim that the region is historically Russian rests on this founding. Ukraine's counter-claim rests on the fact that the city has had a Ukrainian-speaking majority since at least the 1989 Soviet census, before any war.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Before Russia's full-scale 2022 invasion, what was Kherson's pre-war population?",
+            "options": [
+              "About 50,000",
+              "About 290,000",
+              "About 750,000",
+              "About 1.4 million"
+            ],
+            "correct": 1,
+            "explanation": "Kherson had ~290,000 residents pre-war; roughly two-thirds fled or were displaced during the eight-month Russian occupation in 2022."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-02T22:39:30.355Z",
+    "label": "Kherson & the Drone War",
+    "category": "politics",
+    "articleCount": 1
   }
 }
