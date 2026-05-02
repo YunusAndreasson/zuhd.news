@@ -453,7 +453,7 @@ export const MenuSheet = memo(function MenuSheet({
           <BottomSheetScrollView
             contentContainerStyle={[
               sheetStyles.content,
-              { paddingBottom: bottomInset + SPACING.xxl },
+              { paddingBottom: bottomInset + SPACING.lg },
             ]}
           >
             {renderPage()}

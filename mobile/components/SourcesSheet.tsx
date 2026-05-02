@@ -49,7 +49,7 @@ export const SourcesSheet = memo(function SourcesSheet({
       onDismiss={onDismiss}
     >
       <BottomSheetScrollView
-        contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.xxl }]}
+        contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}
       >
         {sources.length > 0 && (
           <>

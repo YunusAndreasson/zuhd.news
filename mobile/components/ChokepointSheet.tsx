@@ -125,7 +125,7 @@ export const ChokepointSheet = memo(function ChokepointSheet({
       handleTitle={chokepoint?.name}
     >
       <BottomSheetScrollView
-        contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.xxl }]}
+        contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}
       >
         {chokepoint && (
           <>

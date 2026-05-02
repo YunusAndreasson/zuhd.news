@@ -122,7 +122,7 @@ export const EntitySheet = memo(function EntitySheet({
       handleTitle={handleTitle}
     >
       <BottomSheetScrollView
-        contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.xxl }]}
+        contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}
       >
         {indicator && (
           <>
