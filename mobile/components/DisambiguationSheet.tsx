@@ -178,7 +178,7 @@ function CandidateRow({
       : row.alertlevel === 'Orange'
         ? colors.alertOrange
         : row.alertlevel === 'Green'
-          ? colors.alertGreen
+          ? colors.alertLow
           : colors.textSecondary;
   const handlePress = useCallback(() => onPress(row.result), [onPress, row.result]);
   return (

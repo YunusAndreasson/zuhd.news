@@ -106,7 +106,7 @@ export const DisasterSheet = memo(function DisasterSheet({
       ? colors.toneUnfavorable
       : alert?.alertlevel === 'Orange'
         ? colors.alertOrange
-        : colors.alertGreen;
+        : colors.alertLow;
   // Tone-text vocabulary mirrors editorial signal: unfavorable for Red
   // (consequential), accent for Orange (notable), secondary for Green
   // (informational/ambient — same tone used for all chrome metadata).

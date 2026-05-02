@@ -168,7 +168,7 @@ function AlertChip({
       ? colors.toneUnfavorable
       : alert.alertlevel === 'Orange'
         ? colors.alertOrange
-        : colors.alertGreen;
+        : colors.alertLow;
   const handlePress = useCallback(() => onPress(alert), [alert, onPress]);
   return (
     <Pressable

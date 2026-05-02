@@ -2046,14 +2046,13 @@ export const MiniGlobe = memo(function MiniGlobe({
         }
       }
 
-      // GDACS disaster markers — Orange/Red get the 36px tap zone (matches
-      // chokepoints), Green gets a tighter 20px zone since the visual is a
-      // 2px ambient dot rather than a 22px glyph; the same 36px window for
-      // a 2px target would let invisible Greens intercept editorial taps
-      // near the article dot.
+      // GDACS disaster markers — 36px tap zone across all three tiers,
+      // matching the chokepoint pattern. The previous tighter 20px zone
+      // for Green-tier compensated for an invisible-feeling 2px ambient
+      // dot; with the unified 22px glyph the visual now matches the
+      // tap target across severity levels.
       for (const m of state.gdacsMarks) {
-        const r2 = m.alertlevel === 'Green' ? 400 : 1296;
-        if (isNear(x, y, m.x, m.y, r2)) {
+        if (isNear(x, y, m.x, m.y, 1296)) {
           candidates.push({
             countryName: '',
             location: null,
@@ -2459,51 +2458,47 @@ export const MiniGlobe = memo(function MiniGlobe({
           ambient ones. Keys by eventid for stable reconciliation across
           feed refetches. */}
       {state.gdacsMarks.map((m) => {
-        if (m.alertlevel === 'Green') {
-          // Soft outer ring + sharp core dot. The two-layer pattern reads
-          // as an ambient marker (you can find it) without competing with
-          // editorial story dots (you can't mistake it for one). Was a
-          // bare 2px circle at 0.5 opacity — too faint to actually spot
-          // on the dark globe.
-          return (
-            <Group key={`gdacs-${m.eventid}`}>
-              <Circle
-                cx={m.x}
-                cy={m.y}
-                r={5}
-                color={colors.alertGreen}
-                opacity={(light ? 0.18 : 0.16) * m.recencyAlpha}
-              />
-              <Circle
-                cx={m.x}
-                cy={m.y}
-                r={2}
-                color={colors.alertGreen}
-                opacity={(light ? 0.85 : 0.8) * m.recencyAlpha}
-              />
-            </Group>
-          );
-        }
-        const tint = m.alertlevel === 'Red' ? colors.toneUnfavorable : colors.alertOrange;
+        // Monochrome disaster glyphs — severity expressed through stroke
+        // weight, opacity, and (high-tier only) an outer alarm ring.
+        // Foundation rule "color carries meaning only" applied strictly:
+        // the editorial story dot, focused-country highlight, Makkah
+        // dome, and night terminator already do all the semantic
+        // colour-lifting on the globe; piling three alert hues on top
+        // would chase its own monochrome restraint and force the reader
+        // to disambiguate by hue. Severity now reads from glyph weight
+        // alone — low/medium/high are visually distinct without any
+        // chromatic vocabulary, and the high-tier ring is the universal
+        // "this is the consequential one" mark. Sheet UIs (CountrySheet,
+        // DisasterSheet, DisambiguationSheet) keep the tinted chips —
+        // flat chrome on a sheet bg is a different semantic context
+        // where colour coding doesn't compete with editorial layers.
+        const isHigh = m.alertlevel === 'Red';
+        const isLow = m.alertlevel === 'Green';
+        const strokeWidth = isHigh ? 1.8 : isLow ? 1.0 : 1.4;
+        const strokeOpacity = (isHigh ? 0.95 : isLow ? 0.45 : 0.75) * m.recencyAlpha;
         const tx = m.x - GLYPH_HALF;
         const ty = m.y - GLYPH_HALF;
         return (
           <Group key={`gdacs-${m.eventid}`} transform={[{ translateX: tx }, { translateY: ty }]}>
-            <Circle
-              cx={GLYPH_HALF}
-              cy={GLYPH_HALF}
-              r={GLYPH_HALF}
-              color={tint}
-              opacity={(light ? 0.14 : 0.18) * m.recencyAlpha}
-            />
+            {isHigh && (
+              <Circle
+                cx={GLYPH_HALF}
+                cy={GLYPH_HALF}
+                r={GLYPH_HALF + 2.5}
+                color={colors.text}
+                style="stroke"
+                strokeWidth={1}
+                opacity={0.55 * m.recencyAlpha}
+              />
+            )}
             <Path
               path={getGlyphPath(m.eventtype)}
-              color={tint}
+              color={colors.text}
               style="stroke"
-              strokeWidth={1.4}
+              strokeWidth={strokeWidth}
               strokeJoin="round"
               strokeCap="round"
-              opacity={(light ? 0.9 : 0.85) * m.recencyAlpha}
+              opacity={strokeOpacity}
             />
           </Group>
         );

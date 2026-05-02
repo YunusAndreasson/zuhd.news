@@ -84,13 +84,15 @@ export const DARK_COLORS = {
   toneFavorable: '#82a98a',
   toneUnfavorable: '#a98080',
   toneNeutral: '#8298a9',
-  // Disaster-alert tints. Orange ships its own bronze-copper tint
-  // (deliberately away from `colors.dome` #c9a84c — the dome must remain
-  // the *only* gold in the app per foundation.md). Green is the ambient
-  // pulse: muted sage, distinct from `toneFavorable` so it doesn't read
-  // as "good news". Red alerts reuse `toneUnfavorable` (byte-identical to
-  // the previous alertRed) so the palette stays singular.
-  alertGreen: '#7a8a78',
+  // Disaster-alert tints — three-tier severity ladder, all in the warm
+  // family so the gradient reads as one warning vocabulary (low amber →
+  // medium bronze → high rose). `alertLow` replaced an earlier muted-sage
+  // mapped to GDACS's "Green" tier, which read as "OK / good news" even
+  // though every tier is a warning. Ochre is desaturated and darker than
+  // `colors.dome` (#c9a84c) so the dome remains the *only* gold in the
+  // app per foundation.md. `alertOrange` keeps its bronze-copper. Red
+  // alerts reuse `toneUnfavorable` so the palette stays singular.
+  alertLow: '#a88840',
   alertOrange: '#b07a4c',
 } as const satisfies Record<string, string>;
 
@@ -110,7 +112,7 @@ export const LIGHT_COLORS = {
   toneFavorable: '#82a98a',
   toneUnfavorable: '#a98080',
   toneNeutral: '#8298a9',
-  alertGreen: '#6b7a68',
+  alertLow: '#786222',
   alertOrange: '#945a2a',
 } as const satisfies Record<string, string>;
 
