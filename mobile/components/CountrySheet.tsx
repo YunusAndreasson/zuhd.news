@@ -4,6 +4,7 @@ import {
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import { getMetricValue, getRanking, type MetricKey } from '@shared/countries/country-ranking';
+import type { GdacsAlert } from '@shared/types';
 import { Canvas, Circle, Path } from '@shopify/react-native-skia';
 import { memo, useCallback, useMemo, useState } from 'react';
 import { Text as RNText, StyleSheet, View } from 'react-native';
@@ -11,9 +12,9 @@ import Animated, { FadeInDown } from 'react-native-reanimated';
 import { ANIMATION, FLAG, SPACING, staggerDelay } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
-import type { GdacsAlert } from '@shared/types';
 import { displayCountryName, displayLocation } from '../lib/place-names';
 import { CountryRankingView } from './CountryRankingView';
+import { CountryCardsCarousel } from './country-cards/CountryCardsCarousel';
 import { EVENT_TYPE_LABEL, GLYPH_HALF, getGlyphPath } from './globe/disaster-glyphs';
 import type { TapResult } from './globe/MiniGlobe';
 import { Icon, Pressable, Text } from './primitives';
@@ -229,7 +230,7 @@ export const CountrySheet = memo(function CountrySheet({
   renderBackdrop,
   onDismiss,
 }: CountrySheetProps) {
-  const { colors, sheetStyles } = useTheme();
+  const { sheetStyles } = useTheme();
   const [activeRanking, setActiveRanking] = useState<MetricKey | null>(null);
   const snapProps = useSheetSnaps(activeRanking !== null);
   const flag = country?.data?.flag;
@@ -263,7 +264,12 @@ export const CountrySheet = memo(function CountrySheet({
                   {flag}
                 </RNText>
               )}
-              {name && <Text variant="label">{name}</Text>}
+              {/* Page title — 21pt semibold so the country name reads as
+               *  the canonical identifier ABOVE every card headline (also
+               *  21pt) and metric row label (13pt small-caps). Was `label`
+               *  (17pt small-caps), which felt subordinate to the per-card
+               *  headlines and broke the visual hierarchy. */}
+              {name && <Text variant="title">{name}</Text>}
               {dateline && (
                 <Text variant="labelXs" numberOfLines={1} style={styles.dateline}>
                   {dateline}
@@ -333,15 +339,21 @@ export const CountrySheet = memo(function CountrySheet({
         />
       ) : (
         <BottomSheetScrollView
-          contentContainerStyle={[
-            sheetStyles.content,
-            { paddingBottom: bottomInset + SPACING.lg },
-          ]}
+          contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}
         >
+          {country?.countryName && (
+            <Animated.View entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(0))}>
+              <CountryCardsCarousel countryName={country.countryName} />
+            </Animated.View>
+          )}
           {country?.data && (
             <Animated.View
-              entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(0))}
-              style={[styles.moreList, { borderTopColor: colors.rule }]}
+              entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(1))}
+              // No border-top here — the carousel above already provides the
+              // bottom hairline that separates story (carousel) from
+              // appendix (metric rows). Doubling them would read as a
+              // gutter.
+              style={styles.moreList}
             >
               {rankedRows.map((r) => (
                 <MoreRow
@@ -357,7 +369,7 @@ export const CountrySheet = memo(function CountrySheet({
           )}
           {activeAlerts && activeAlerts.length > 0 && onAlertPress && (
             <Animated.View
-              entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(1))}
+              entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(2))}
               style={styles.alertsSection}
             >
               <Text variant="labelXs" tone="secondary" style={styles.alertsHeading}>
