@@ -1,6 +1,6 @@
 import { COUNTRY_DATA, type CountryData } from '@shared/countries/country-data';
 import { displayNameFromCode, topojsonNameFromCode } from '@shared/countries/iso';
-import { Canvas, Circle, Group, Path, Skia, type SkPath } from '@shopify/react-native-skia';
+import { Canvas, Circle, Group, Path, Rect, Skia, type SkPath } from '@shopify/react-native-skia';
 import { extent } from 'd3-array';
 import { geoCentroid, geoEquirectangular, geoPath } from 'd3-geo';
 import { scaleSequential } from 'd3-scale';
@@ -874,6 +874,11 @@ export const LocationsBlock = memo(function LocationsBlock({
           <View onLayout={onLayout} style={[styles.mapWrap, { height }]}>
             {width > 0 && height > 0 ? (
               <Canvas style={{ width, height }}>
+                {/* Ocean — opaque water tone behind everything. Drawn outside
+                    the map transform so it always covers the full viewport,
+                    independent of pan/zoom. Gives the map a real water
+                    surface rather than rendering as gray-on-page-bg. */}
+                <Rect x={0} y={0} width={width} height={height} color={colors.water} />
                 <Group transform={mapTransform}>
                   {paths.landPath ? (
                     <Path
@@ -939,12 +944,16 @@ export const LocationsBlock = memo(function LocationsBlock({
                     </>
                   ) : null}
                   {/* Global borders draw after the highlight fill so country
-                      lines in non-highlighted regions remain visible. */}
+                      lines in non-highlighted regions remain visible. 0.5
+                      opacity (was 0.3) — coastlines need real presence to
+                      give the map graphic structure. The water tone now
+                      reads behind them, so faint borders read as washed-out
+                      rather than minimal. */}
                   {paths.borderPath ? (
                     <Path
                       path={paths.borderPath}
                       color={colors.textSecondary}
-                      opacity={0.3}
+                      opacity={0.5}
                       style="stroke"
                       strokeWidth={borderStrokeWidth}
                     />
@@ -996,13 +1005,14 @@ export const LocationsBlock = memo(function LocationsBlock({
                       />
                     </>
                   ) : null}
-                  {/* Lakes on top — painted with bg so they "punch through"
-                      land tint, highlight, and selected fill alike. A lake
-                      reads as water regardless of which country owns it.
-                      Drawn after rivers so a river flowing into the lake
-                      doesn't draw a line across the lake's interior. */}
+                  {/* Lakes on top — painted with `water` so they punch through
+                      land tint, highlight, and selected fill alike, matching
+                      the ocean Rect underneath. A lake reads as water
+                      regardless of which country owns it. Drawn after
+                      rivers so a river flowing into the lake doesn't draw
+                      a line across the lake's interior. */}
                   {paths.lakesPath ? (
-                    <Path path={paths.lakesPath} color={colors.bg} style="fill" />
+                    <Path path={paths.lakesPath} color={colors.water} style="fill" />
                   ) : null}
                   {/* Capital markers for each highlighted country — small
                       accent dot with a bg-colored ring so the marker reads

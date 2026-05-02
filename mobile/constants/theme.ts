@@ -74,6 +74,12 @@ export const DARK_COLORS = {
   // `BriefingBar`; static callsites (sheets, blocks) shift imperceptibly.
   pillBg: 'rgba(50,50,50,0.88)',
   atmosphere: '#334455',
+  // Editorial-map water tone — pre-composed `atmosphere` at 0.28 alpha
+  // over `bg`. Used by LocationsBlock as an explicit ocean fill so water
+  // reads as a distinct surface (deep slate-blue) rather than the absence
+  // of land. Pre-composed so lakes (which draw on top of land) can use
+  // the same opaque hex as the ocean Rect — alpha tricks would diverge.
+  water: '#191e24',
   toastBg: 'rgba(48,48,48,0.92)',
   // Tone family — sage / rose / slate. Lifted one luminance step from the
   // original muted set (#6b8f71 / #8f6b6b / #6b7f8f) so BLACK reads cleanly
@@ -112,6 +118,10 @@ export const LIGHT_COLORS = {
   sheetBg: '#eae6e0',
   pillBg: 'rgba(220,216,210,0.88)',
   atmosphere: '#8899aa',
+  // See DARK_COLORS.water for the rationale. Pre-composed `atmosphere`
+  // at 0.28 alpha over `bg` — sits a touch cooler/darker than cream so
+  // land (gray) reads as the warmer surface.
+  water: '#d6d9da',
   toastBg: 'rgba(240,237,230,0.95)',
   // Tones are intentionally identical between modes — they serve two roles
   // and the requirements pull opposite directions: as pill backgrounds
