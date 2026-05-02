@@ -641,7 +641,7 @@ async function main() {
 
   let added = 0
   for (const a of allCandidates) {
-    if (added >= 25) break
+    if (added >= 22) break
     const fp = a.title.toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 30)
     if (storyFingerprints.has(fp)) continue
     const srcName = a.source?.title || '?'

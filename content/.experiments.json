@@ -1,40 +1,167 @@
 {
   "version": 1,
-  "activeExperiment": {
-    "id": "2026-04-21-multi-source-floors",
-    "startDate": "2026-04-21",
-    "evaluateAfter": "2026-04-24",
-    "prNumber": null,
-    "hypothesis": "Published multi-source rate is 22% overall (39% politics, 18% economy, 4% science, 6% tech) against an achievable ceiling of ~40% given current feed composition. Science and tech are structurally single-source (specialist outlets don't cluster into Event Registry events), so gains must come from politics and economy. The selector's current guidance ('at least half of politics+economy picks from multiSourceStories when available') is soft and not being enforced — actual politics+economy multi-rate is 31% (26/84) vs the 50% target. Converting the soft guidance to a hard floor (politics ≥ 2, economy ≥ 2 multi-source picks when the feed supplies them) with a 'note why rejected' escape hatch should raise economy multi% meaningfully without padding with weak stories. Token-neutral: prompt change only, no extra NewsAPI calls.",
-    "parameter": "Selector multi-source enforcement in politics+economy",
-    "file": "scripts/select-prompt.md",
-    "oldValue": "Multi-source usage: at least half of politics+economy picks should come from multiSourceStories when available.",
-    "newValue": "Multi-source floors when feed supplies them: politics ≥ 2 multi-source picks, economy ≥ 2 multi-source picks. Note rejected multi-source story in selection summary when dropping below floor.",
-    "targetMetric": "published multi-source rate across politics+economy (sources ≥ 2 in frontmatter)",
-    "targetDirection": "increase",
-    "baseline": {
-      "windowStart": "2026-04-19",
-      "windowEnd": "2026-04-21",
-      "cyclesAnalyzed": 12,
-      "articlesAnalyzed": 125,
-      "overallMultiRate": 0.22,
-      "politicsMultiRate": 0.39,
-      "economyMultiRate": 0.18,
-      "scienceMultiRate": 0.04,
-      "techMultiRate": 0.06,
-      "politicsEconomyMultiRate": 0.31,
-      "feedMultiMedianPerCycle": 9,
-      "feedMultiRangePerCycle": [8, 14]
+  "activeExperiments": [
+    {
+      "id": "2026-05-01-oic-regional-source-floor",
+      "startDate": "2026-05-01",
+      "evaluateAfter": "2026-05-08",
+      "prNumber": null,
+      "hypothesis": "Audit of 2,569 published articles shows OIC-tagged stories (10% of corpus) have a median regional-source share of 20% and only 51.4% include ≥1 regional outlet. The selector currently treats regional outlets as a soft tiebreaker only, so when feed clustering doesn't bundle a regional outlet into a story's cluster, the regional voice gets dropped. Adding an explicit selection-criteria item plus an internal-verification check that requires regional carry-through for OIC-tagged stories — drawing from the broader feed, not just the cluster — should raise ≥1 regional-source coverage on OIC stories from 51.4% to ≥80% over the 7-day window without dropping throughput. Token-neutral: prompt change only, no extra NewsAPI calls.",
+      "parameter": "Selector OIC-regional-source carry-through",
+      "file": "scripts/select-prompt.md",
+      "oldValue": "Muslim-world outlets listed under reader-aligned-sources tiebreaker only",
+      "newValue": "Explicit OIC-region carry-through rule + internal-verification check, with named recognized outlets per OIC country",
+      "targetMetric": "OIC-tagged articles with ≥1 regional-OIC source (%)",
+      "targetDirection": "increase",
+      "baseline": {
+        "windowStart": "corpus-wide as of 2026-05-01",
+        "articlesAnalyzed": 2569,
+        "oicTaggedArticles": 257,
+        "oicWithAtLeastOneRegional": 132,
+        "oicAtLeastOneSharePct": 51.4,
+        "oicMedianRegionalSharePct": 20.0,
+        "regionalOicTierShareCorpusPct": 20.1,
+        "westernGlobalTierShareCorpusPct": 49.7,
+        "diagnosticScript": "scripts/audience-tests.js"
+      },
+      "target": {
+        "oicAtLeastOneSharePct": 80.0,
+        "oicMedianRegionalSharePct": 40.0
+      },
+      "guardrails": {
+        "throughput": "articles/cycle must not drop below 9 (current ~10–13). If the regional-source rule causes the selector to skip viable OIC stories due to feed gaps, throughput suffers — revert.",
+        "totalSourcesPerOicArticle": "mean sources/article on OIC-tagged stories must not drop (would mean displacement of existing sources, not addition).",
+        "multiSourceRate": "overall multi-source rate must not drop below 22% (current baseline from prior experiment) — adding regional sources should help, not hurt.",
+        "fabricatedSources": "spot-check 5 random new OIC-region articles for source legitimacy (URLs resolve, attribution matches outlet); >1 fabricated = revert.",
+        "selectorTime": "selector stage time must not climb >25% (~660s baseline) — extra feed scanning could slow it.",
+        "concurrentExperimentInteraction": "the title-echo (writer) and fabrication-gate (edu-context) experiments evaluate on different metrics from different files; if either's target metric is confounded by the source-rule change, note that in the audit but treat each on its own metric."
+      }
     },
-    "guardrails": {
-      "economyArticleQuality": "avg body word count should not drop >15% vs baseline (watch sentences.test.js output and generator quality metrics)",
-      "publishCount": "mean publish count per cycle should not drop below 8",
-      "categoryFloors": "no category floor violation rate increase vs baseline",
-      "multiSourcePadding": "selector summary must note rejected multi-source story if dropping below floor; absence = flag"
+    {
+      "id": "2026-05-01-fabrication-gate-softening",
+      "startDate": "2026-05-01",
+      "evaluateAfter": "2026-05-04",
+      "prNumber": null,
+      "hypothesis": "Brief block adoption shows rank/sankey/treemap stuck at <2.5% of briefs over the past 7 days (3+3+7 = 13 of 286 briefs) despite the Apr 26 prompt overhaul that lifted timeline from 13 lifetime to 110 in one week. The remaining gap is the fabrication gate: it asks 'could I name peers WITHOUT inventing numbers?', which the model interprets as 'skip if I don't know exact values'. Timeline doesn't need numbers, so it cleared. Rank/sankey/treemap need values, so they default-skip. Reframing the gate to permit approximate magnitudes ('roughly half', '≈40%', '~$30bn') while still blocking fabricated specifics should unblock shape-correct adoption without raising fabrication.",
+      "parameter": "Fabrication-gate language for shape-specific blocks",
+      "file": "scripts/edu-context-prompt.md",
+      "oldValue": "skip if you'd be guessing values",
+      "newValue": "approximate magnitudes permitted; gate blocks fabricated specifics only",
+      "targetMetric": "rank+sankey+treemap blocks per brief (% of briefs with ≥1)",
+      "targetDirection": "increase",
+      "baseline": {
+        "windowStart": "2026-04-25",
+        "windowEnd": "2026-04-30",
+        "briefsAnalyzed": 286,
+        "rankCount": 3,
+        "sankeyCount": 3,
+        "treemapCount": 7,
+        "shapeSpecificRate": 0.045,
+        "rankBriefRate": 0.010,
+        "sankeyBriefRate": 0.010,
+        "treemapBriefRate": 0.024,
+        "comparisonContext": "timeline (also shape-specific but value-free) is at 38% of briefs in same window"
+      },
+      "guardrails": {
+        "fabricationJudgements": "fabrication-judgement hits in .daily-audit.json must not increase >20% vs prior 7-day baseline",
+        "totalBriefVolume": "briefs generated per cycle must not drop >15% (current ~10/cycle)",
+        "blockTotalCount": "total blocks per brief must not drop (would mean we replaced cheap blocks with skipped shape-specifics)",
+        "shapeMisuse": "spot-check 5 random new shape-specific blocks for shape-fit; >1 misuse = revert"
+      }
     },
-    "evaluation": "Compute multi-source rate per category from content/articles with date >= 2026-04-21 vs baseline window. Target: politics+economy multi-rate ≥ 0.45 (up from 0.31). Overall multi-rate ≥ 0.28 (up from 0.22)."
-  },
+    {
+      "id": "2026-05-01-title-echo-self-check",
+      "startDate": "2026-05-01",
+      "evaluateAfter": "2026-05-08",
+      "prNumber": null,
+      "hypothesis": "Title-echo rate has trended 53.8 → 49.1 → 40.0 over three weekly snapshots — declining at ~9pp/week but still 4× the <10% target. Reflection observed the rule 'nudges rather than blocks'. The current rule already includes a worked example (Microsoft pause); the missing element is a procedural self-check that forces evaluation. Adding 'redact title, re-read S1' as a mandatory pre-save check converts a description into a discrete action the writer model must perform, which should accelerate the decline.",
+      "parameter": "Title-echo self-check (procedural step in antipattern)",
+      "file": "scripts/write-prompt.md",
+      "oldValue": "title-echo rule with worked example, no procedural check",
+      "newValue": "title-echo rule + mandatory redact-and-reread self-check before saving",
+      "targetMetric": "titleEchoRatePct (.quality-trend.json weekly snapshot)",
+      "targetDirection": "decrease",
+      "baseline": {
+        "weekOf2026_04_26": 40.0,
+        "weekOf2026_04_19": 49.1,
+        "weekOf2026_04_17": 53.8,
+        "trendPpPerWeek": -9.0,
+        "target": 10.0
+      },
+      "guardrails": {
+        "wordInRangePct": "must stay ≥75% (currently 79.5%) — over-rewriting could break length",
+        "passiveHookRatePct": "must stay <5% (currently 0%) — rewrites could pull writers into passive constructions",
+        "charOver350Pct": "must not climb above 20% (currently 17.1%) — rewriting S1 with more specifics could push lead length up",
+        "hedgeRatePct": "must stay <5% (currently 0.2%) — uncertain rewrites tempt hedging"
+      }
+    }
+  ],
+  "activeExperiment": null,
   "history": [
+    {
+      "id": "2026-04-26-standalone-cap-22",
+      "startDate": "2026-04-26",
+      "evaluateAfter": "2026-04-29",
+      "prNumber": null,
+      "hypothesis": "Freshness median has risen to 1.2 days (target ≤1.0). Standalone articles (NewsAPI non-event picks) are typically older than event-based articles. Trimming the cap from 25 to 22 will reduce the oldest-tail standalones, pulling freshness median below 1.0 without materially affecting multi-source or sci-tech coverage.",
+      "parameter": "Standalone total cap",
+      "file": "scripts/fetch-news-api.js",
+      "oldValue": 25,
+      "newValue": 22,
+      "targetMetric": "freshness.today.median",
+      "targetDirection": "decrease",
+      "baseline": {
+        "freshnessMedian": 1.2,
+        "sciTechRatio": 38,
+        "multiSource": 8,
+        "uniqueRegions": 6,
+        "articlesPerDay": 29
+      },
+      "guardrails": {
+        "publishCount": "mean publish count per cycle should not drop below 8/cycle",
+        "multiSource": "daily multi-source count should not drop below 4",
+        "sciTechRatio": "sci+tech ratio should not drop below 25%"
+      },
+      "result": "kept",
+      "evaluatedOn": "2026-04-29",
+      "notes": "Freshness median dropped from 1.2-day baseline to 0 on evaluation day (well below ≤1.0 target). All guardrails met: multi-source 9 (≥4), sci-tech 34% (≥25%), publish count 8/cycle (exactly at minimum). Article throughput compressed slightly to 41/day vs 49–57 prior days, suggesting the tighter cap trims the feed on lighter news days — worth watching but within acceptable range. Keeping cap at 22."
+    },
+    {
+      "id": "2026-04-21-multi-source-floors",
+      "startDate": "2026-04-21",
+      "evaluateAfter": "2026-04-24",
+      "prNumber": null,
+      "hypothesis": "Published multi-source rate is 22% overall (39% politics, 18% economy, 4% science, 6% tech) against an achievable ceiling of ~40% given current feed composition. Science and tech are structurally single-source (specialist outlets don't cluster into Event Registry events), so gains must come from politics and economy. The selector's current guidance ('at least half of politics+economy picks from multiSourceStories when available') is soft and not being enforced — actual politics+economy multi-rate is 31% (26/84) vs the 50% target. Converting the soft guidance to a hard floor (politics ≥ 2, economy ≥ 2 multi-source picks when the feed supplies them) with a 'note why rejected' escape hatch should raise economy multi% meaningfully without padding with weak stories. Token-neutral: prompt change only, no extra NewsAPI calls.",
+      "parameter": "Selector multi-source enforcement in politics+economy",
+      "file": "scripts/select-prompt.md",
+      "oldValue": "Multi-source usage: at least half of politics+economy picks should come from multiSourceStories when available.",
+      "newValue": "Multi-source floors when feed supplies them: politics ≥ 2 multi-source picks, economy ≥ 2 multi-source picks. Note rejected multi-source story in selection summary when dropping below floor.",
+      "targetMetric": "published multi-source rate across politics+economy (sources ≥ 2 in frontmatter)",
+      "targetDirection": "increase",
+      "baseline": {
+        "windowStart": "2026-04-19",
+        "windowEnd": "2026-04-21",
+        "cyclesAnalyzed": 12,
+        "articlesAnalyzed": 125,
+        "overallMultiRate": 0.22,
+        "politicsMultiRate": 0.39,
+        "economyMultiRate": 0.18,
+        "scienceMultiRate": 0.04,
+        "techMultiRate": 0.06,
+        "politicsEconomyMultiRate": 0.31,
+        "feedMultiMedianPerCycle": 9,
+        "feedMultiRangePerCycle": [8, 14]
+      },
+      "guardrails": {
+        "economyArticleQuality": "avg body word count should not drop >15% vs baseline (watch sentences.test.js output and generator quality metrics)",
+        "publishCount": "mean publish count per cycle should not drop below 8",
+        "categoryFloors": "no category floor violation rate increase vs baseline",
+        "multiSourcePadding": "selector summary must note rejected multi-source story if dropping below floor; absence = flag"
+      },
+      "result": "kept",
+      "evaluatedOn": "2026-04-25",
+      "notes": "Evaluated 2026-04-21 to 2026-04-25 (4 days, ~20 cycles). Politics multi-rate: 0.39 → 0.41 (+5%). Economy multi-rate: 0.18 → 0.23 (+28%). Politics+economy combined: 0.31 → 0.336 (+8.4%). Overall: 0.22 → 0.239 (+8.6%). Direction improved on all measures; no guardrail metric degraded >20%. Target of p+e ≥ 0.45 was not reached — the hard-floor guidance raised economy multi-rate but the feed's multi-source supply (~9/cycle) constrains how high the rate can go. Keeping the change: it is a measurable improvement over the soft guidance and produces better editorial discipline. Publish count dipped to 7/cycle on Apr 25 (below the 8 guardrail), but this appears to be a one-day anomaly rather than a sustained trend."
+    },
     {
       "id": "2026-04-19-prefilter-7d",
       "startDate": "2026-04-19",

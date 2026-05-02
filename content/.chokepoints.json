@@ -1,5 +1,5 @@
 {
-  "generated": "2026-04-25T08:26:19.401Z",
+  "generated": "2026-05-01T22:38:42.060Z",
   "chokepoints": [
     {
       "id": "hormuz",
@@ -19,39 +19,34 @@
       ],
       "primaryField": "n_tanker",
       "last7Avg": {
-        "n_total": 12,
-        "n_tanker": 5.1,
-        "n_container": 1.7,
-        "n_dry_bulk": 2.9,
-        "n_cargo": 6.9,
-        "n_general_cargo": 2.3,
+        "n_total": 5.3,
+        "n_tanker": 1.6,
+        "n_container": 0.9,
+        "n_dry_bulk": 1.4,
+        "n_cargo": 3.7,
+        "n_general_cargo": 1.4,
         "n_roro": 0
       },
       "baseline90Avg": {
-        "n_total": 43.8,
-        "n_tanker": 23.7,
-        "n_container": 7.5,
-        "n_dry_bulk": 8.2,
-        "n_cargo": 20.1,
-        "n_general_cargo": 2.8,
-        "n_roro": 1.5
+        "n_total": 39,
+        "n_tanker": 20.9,
+        "n_container": 6.6,
+        "n_dry_bulk": 7.7,
+        "n_cargo": 18.1,
+        "n_general_cargo": 2.6,
+        "n_roro": 1.3
       },
       "delta7vs90": {
-        "n_total": -0.726,
-        "n_tanker": -0.783,
-        "n_container": -0.772,
-        "n_dry_bulk": -0.654,
-        "n_cargo": -0.659,
-        "n_general_cargo": -0.178,
+        "n_total": -0.865,
+        "n_tanker": -0.925,
+        "n_container": -0.87,
+        "n_dry_bulk": -0.813,
+        "n_cargo": -0.795,
+        "n_general_cargo": -0.447,
         "n_roro": -1
       },
       "series": {
         "periods": [
-          "Jan 26",
-          "Jan 27",
-          "Jan 28",
-          "Jan 29",
-          "Jan 30",
           "Jan 31",
           "Feb 1",
           "Feb 2",
@@ -130,14 +125,16 @@
           "Apr 16",
           "Apr 17",
           "Apr 18",
-          "Apr 19"
+          "Apr 19",
+          "Apr 20",
+          "Apr 21",
+          "Apr 22",
+          "Apr 23",
+          "Apr 24",
+          "Apr 25",
+          "Apr 26"
         ],
         "total": [
-          54,
-          79,
-          67,
-          86,
-          86,
           100,
           80,
           90,
@@ -216,10 +213,17 @@
           6,
           14,
           29,
-          4
+          4,
+          7,
+          3,
+          7,
+          2,
+          8,
+          5,
+          5
         ]
       },
-      "asOf": "2026-04-19"
+      "asOf": "2026-04-26"
     },
     {
       "id": "bab-el-mandeb",
@@ -239,39 +243,34 @@
       ],
       "primaryField": "n_container",
       "last7Avg": {
-        "n_total": 32.9,
-        "n_tanker": 12.6,
-        "n_container": 6,
-        "n_dry_bulk": 9.4,
-        "n_cargo": 20.3,
-        "n_general_cargo": 4.3,
-        "n_roro": 0.6
+        "n_total": 36,
+        "n_tanker": 11.9,
+        "n_container": 6.3,
+        "n_dry_bulk": 10.9,
+        "n_cargo": 24.1,
+        "n_general_cargo": 5.4,
+        "n_roro": 1.6
       },
       "baseline90Avg": {
         "n_total": 33.6,
-        "n_tanker": 13,
-        "n_container": 5.2,
-        "n_dry_bulk": 10.1,
-        "n_cargo": 20.6,
-        "n_general_cargo": 4.4,
-        "n_roro": 1
+        "n_tanker": 13.1,
+        "n_container": 5.3,
+        "n_dry_bulk": 10,
+        "n_cargo": 20.5,
+        "n_general_cargo": 4.3,
+        "n_roro": 0.9
       },
       "delta7vs90": {
-        "n_total": -0.023,
-        "n_tanker": -0.032,
-        "n_container": 0.146,
-        "n_dry_bulk": -0.067,
-        "n_cargo": -0.018,
-        "n_general_cargo": -0.015,
-        "n_roro": -0.405
+        "n_total": 0.073,
+        "n_tanker": -0.091,
+        "n_container": 0.194,
+        "n_dry_bulk": 0.083,
+        "n_cargo": 0.177,
+        "n_general_cargo": 0.258,
+        "n_roro": 0.748
       },
       "series": {
         "periods": [
-          "Jan 26",
-          "Jan 27",
-          "Jan 28",
-          "Jan 29",
-          "Jan 30",
           "Jan 31",
           "Feb 1",
           "Feb 2",
@@ -350,14 +349,16 @@
           "Apr 16",
           "Apr 17",
           "Apr 18",
-          "Apr 19"
+          "Apr 19",
+          "Apr 20",
+          "Apr 21",
+          "Apr 22",
+          "Apr 23",
+          "Apr 24",
+          "Apr 25",
+          "Apr 26"
         ],
         "total": [
-          42,
-          32,
-          34,
-          27,
-          34,
           30,
           35,
           21,
@@ -436,10 +437,17 @@
           45,
           25,
           21,
-          39
+          39,
+          46,
+          33,
+          30,
+          26,
+          42,
+          39,
+          36
         ]
       },
-      "asOf": "2026-04-19"
+      "asOf": "2026-04-26"
     },
     {
       "id": "suez",
@@ -459,39 +467,34 @@
       ],
       "primaryField": "n_container",
       "last7Avg": {
-        "n_total": 36.1,
-        "n_tanker": 14,
-        "n_container": 7.7,
-        "n_dry_bulk": 8,
-        "n_cargo": 22.1,
-        "n_general_cargo": 5.3,
-        "n_roro": 1.1
+        "n_total": 41.6,
+        "n_tanker": 15.7,
+        "n_container": 8.6,
+        "n_dry_bulk": 12.7,
+        "n_cargo": 25.9,
+        "n_general_cargo": 3.1,
+        "n_roro": 1.4
       },
       "baseline90Avg": {
-        "n_total": 39.1,
-        "n_tanker": 15.5,
-        "n_container": 8.5,
-        "n_dry_bulk": 10.1,
-        "n_cargo": 23.5,
+        "n_total": 38.6,
+        "n_tanker": 15.4,
+        "n_container": 8.4,
+        "n_dry_bulk": 9.8,
+        "n_cargo": 23.2,
         "n_general_cargo": 4.2,
         "n_roro": 0.8
       },
       "delta7vs90": {
-        "n_total": -0.074,
-        "n_tanker": -0.098,
-        "n_container": -0.092,
-        "n_dry_bulk": -0.204,
-        "n_cargo": -0.059,
-        "n_general_cargo": 0.268,
-        "n_roro": 0.397
+        "n_total": 0.076,
+        "n_tanker": 0.02,
+        "n_container": 0.024,
+        "n_dry_bulk": 0.298,
+        "n_cargo": 0.114,
+        "n_general_cargo": -0.254,
+        "n_roro": 0.71
       },
       "series": {
         "periods": [
-          "Jan 26",
-          "Jan 27",
-          "Jan 28",
-          "Jan 29",
-          "Jan 30",
           "Jan 31",
           "Feb 1",
           "Feb 2",
@@ -570,14 +573,16 @@
           "Apr 16",
           "Apr 17",
           "Apr 18",
-          "Apr 19"
+          "Apr 19",
+          "Apr 20",
+          "Apr 21",
+          "Apr 22",
+          "Apr 23",
+          "Apr 24",
+          "Apr 25",
+          "Apr 26"
         ],
         "total": [
-          43,
-          48,
-          35,
-          42,
-          41,
           40,
           37,
           37,
@@ -656,10 +661,17 @@
           36,
           34,
           31,
-          41
+          41,
+          43,
+          46,
+          50,
+          44,
+          27,
+          42,
+          39
         ]
       },
-      "asOf": "2026-04-19"
+      "asOf": "2026-04-26"
     },
     {
       "id": "malacca",
@@ -679,39 +691,34 @@
       ],
       "primaryField": "n_tanker",
       "last7Avg": {
-        "n_total": 217.7,
-        "n_tanker": 71.3,
-        "n_container": 58.6,
-        "n_dry_bulk": 62,
-        "n_cargo": 146.4,
-        "n_general_cargo": 20,
-        "n_roro": 5.9
+        "n_total": 212.6,
+        "n_tanker": 68,
+        "n_container": 61.3,
+        "n_dry_bulk": 61.4,
+        "n_cargo": 144.6,
+        "n_general_cargo": 16.3,
+        "n_roro": 5.6
       },
       "baseline90Avg": {
-        "n_total": 222.2,
-        "n_tanker": 76.5,
-        "n_container": 60,
-        "n_dry_bulk": 61,
-        "n_cargo": 145.7,
-        "n_general_cargo": 17.4,
-        "n_roro": 7.3
+        "n_total": 221.1,
+        "n_tanker": 75.9,
+        "n_container": 59.4,
+        "n_dry_bulk": 61.1,
+        "n_cargo": 145.2,
+        "n_general_cargo": 17.8,
+        "n_roro": 7
       },
       "delta7vs90": {
-        "n_total": -0.02,
-        "n_tanker": -0.068,
-        "n_container": -0.024,
-        "n_dry_bulk": 0.016,
-        "n_cargo": 0.005,
-        "n_general_cargo": 0.153,
-        "n_roro": -0.198
+        "n_total": -0.039,
+        "n_tanker": -0.104,
+        "n_container": 0.032,
+        "n_dry_bulk": 0.006,
+        "n_cargo": -0.005,
+        "n_general_cargo": -0.083,
+        "n_roro": -0.206
       },
       "series": {
         "periods": [
-          "Jan 26",
-          "Jan 27",
-          "Jan 28",
-          "Jan 29",
-          "Jan 30",
           "Jan 31",
           "Feb 1",
           "Feb 2",
@@ -790,14 +797,16 @@
           "Apr 16",
           "Apr 17",
           "Apr 18",
-          "Apr 19"
+          "Apr 19",
+          "Apr 20",
+          "Apr 21",
+          "Apr 22",
+          "Apr 23",
+          "Apr 24",
+          "Apr 25",
+          "Apr 26"
         ],
         "total": [
-          237,
-          226,
-          228,
-          247,
-          226,
           229,
           266,
           251,
@@ -876,10 +885,17 @@
           239,
           202,
           202,
-          207
+          207,
+          210,
+          204,
+          197,
+          230,
+          211,
+          209,
+          227
         ]
       },
-      "asOf": "2026-04-19"
+      "asOf": "2026-04-26"
     },
     {
       "id": "taiwan",
@@ -899,39 +915,34 @@
       ],
       "primaryField": "n_container",
       "last7Avg": {
-        "n_total": 229,
-        "n_tanker": 47.1,
-        "n_container": 88.1,
-        "n_dry_bulk": 60.9,
-        "n_cargo": 181.9,
-        "n_general_cargo": 27.1,
+        "n_total": 229.7,
+        "n_tanker": 45.4,
+        "n_container": 88.3,
+        "n_dry_bulk": 64,
+        "n_cargo": 184.3,
+        "n_general_cargo": 26.3,
         "n_roro": 5.7
       },
       "baseline90Avg": {
-        "n_total": 222.8,
-        "n_tanker": 45.5,
-        "n_container": 87.5,
+        "n_total": 222.6,
+        "n_tanker": 45.3,
+        "n_container": 87.4,
         "n_dry_bulk": 59.2,
         "n_cargo": 177.3,
-        "n_general_cargo": 24.5,
-        "n_roro": 6
+        "n_general_cargo": 24.8,
+        "n_roro": 5.9
       },
       "delta7vs90": {
-        "n_total": 0.028,
-        "n_tanker": 0.036,
-        "n_container": 0.007,
-        "n_dry_bulk": 0.027,
-        "n_cargo": 0.026,
-        "n_general_cargo": 0.109,
-        "n_roro": -0.054
+        "n_total": 0.032,
+        "n_tanker": 0.003,
+        "n_container": 0.01,
+        "n_dry_bulk": 0.081,
+        "n_cargo": 0.04,
+        "n_general_cargo": 0.061,
+        "n_roro": -0.031
       },
       "series": {
         "periods": [
-          "Jan 26",
-          "Jan 27",
-          "Jan 28",
-          "Jan 29",
-          "Jan 30",
           "Jan 31",
           "Feb 1",
           "Feb 2",
@@ -1010,14 +1021,16 @@
           "Apr 16",
           "Apr 17",
           "Apr 18",
-          "Apr 19"
+          "Apr 19",
+          "Apr 20",
+          "Apr 21",
+          "Apr 22",
+          "Apr 23",
+          "Apr 24",
+          "Apr 25",
+          "Apr 26"
         ],
         "total": [
-          241,
-          229,
-          215,
-          253,
-          235,
           217,
           231,
           197,
@@ -1096,10 +1109,17 @@
           217,
           199,
           209,
-          253
+          253,
+          240,
+          209,
+          232,
+          214,
+          216,
+          234,
+          263
         ]
       },
-      "asOf": "2026-04-19"
+      "asOf": "2026-04-26"
     },
     {
       "id": "panama",
@@ -1118,39 +1138,34 @@
       ],
       "primaryField": "n_container",
       "last7Avg": {
-        "n_total": 35.3,
-        "n_tanker": 16.9,
-        "n_container": 7.9,
-        "n_dry_bulk": 5.9,
-        "n_cargo": 18.4,
-        "n_general_cargo": 1.7,
+        "n_total": 32.9,
+        "n_tanker": 14.9,
+        "n_container": 7.3,
+        "n_dry_bulk": 6.6,
+        "n_cargo": 18,
+        "n_general_cargo": 1.1,
         "n_roro": 3
       },
       "baseline90Avg": {
-        "n_total": 31.3,
-        "n_tanker": 13.8,
+        "n_total": 31.8,
+        "n_tanker": 14.2,
         "n_container": 7.9,
-        "n_dry_bulk": 6.3,
-        "n_cargo": 17.5,
-        "n_general_cargo": 1.2,
-        "n_roro": 2.1
+        "n_dry_bulk": 6.2,
+        "n_cargo": 17.6,
+        "n_general_cargo": 1.3,
+        "n_roro": 2.2
       },
       "delta7vs90": {
-        "n_total": 0.127,
-        "n_tanker": 0.223,
-        "n_container": -0.003,
-        "n_dry_bulk": -0.068,
-        "n_cargo": 0.051,
-        "n_general_cargo": 0.375,
-        "n_roro": 0.417
+        "n_total": 0.033,
+        "n_tanker": 0.049,
+        "n_container": -0.083,
+        "n_dry_bulk": 0.066,
+        "n_cargo": 0.02,
+        "n_general_cargo": -0.115,
+        "n_roro": 0.339
       },
       "series": {
         "periods": [
-          "Jan 26",
-          "Jan 27",
-          "Jan 28",
-          "Jan 29",
-          "Jan 30",
           "Jan 31",
           "Feb 1",
           "Feb 2",
@@ -1229,14 +1244,16 @@
           "Apr 16",
           "Apr 17",
           "Apr 18",
-          "Apr 19"
+          "Apr 19",
+          "Apr 20",
+          "Apr 21",
+          "Apr 22",
+          "Apr 23",
+          "Apr 24",
+          "Apr 25",
+          "Apr 26"
         ],
         "total": [
-          31,
-          30,
-          21,
-          31,
-          32,
           24,
           30,
           28,
@@ -1315,10 +1332,17 @@
           35,
           37,
           35,
-          36
+          36,
+          30,
+          32,
+          33,
+          33,
+          32,
+          36,
+          34
         ]
       },
-      "asOf": "2026-04-19"
+      "asOf": "2026-04-26"
     },
     {
       "id": "bosporus",
@@ -1337,39 +1361,34 @@
       ],
       "primaryField": "n_dry_bulk",
       "last7Avg": {
-        "n_total": 87,
-        "n_tanker": 23,
-        "n_container": 11.6,
-        "n_dry_bulk": 20,
-        "n_cargo": 64,
-        "n_general_cargo": 31.7,
-        "n_roro": 0.7
+        "n_total": 94.4,
+        "n_tanker": 22.7,
+        "n_container": 10.7,
+        "n_dry_bulk": 21.9,
+        "n_cargo": 71.7,
+        "n_general_cargo": 38.7,
+        "n_roro": 0.4
       },
       "baseline90Avg": {
-        "n_total": 82.8,
-        "n_tanker": 19.9,
-        "n_container": 9.5,
-        "n_dry_bulk": 19.5,
-        "n_cargo": 62.9,
-        "n_general_cargo": 33.4,
+        "n_total": 83.2,
+        "n_tanker": 20.1,
+        "n_container": 9.7,
+        "n_dry_bulk": 19.7,
+        "n_cargo": 63.2,
+        "n_general_cargo": 33.2,
         "n_roro": 0.5
       },
       "delta7vs90": {
-        "n_total": 0.05,
-        "n_tanker": 0.156,
-        "n_container": 0.219,
-        "n_dry_bulk": 0.025,
-        "n_cargo": 0.017,
-        "n_general_cargo": -0.05,
-        "n_roro": 0.375
+        "n_total": 0.135,
+        "n_tanker": 0.133,
+        "n_container": 0.106,
+        "n_dry_bulk": 0.108,
+        "n_cargo": 0.135,
+        "n_general_cargo": 0.165,
+        "n_roro": -0.194
       },
       "series": {
         "periods": [
-          "Jan 26",
-          "Jan 27",
-          "Jan 28",
-          "Jan 29",
-          "Jan 30",
           "Jan 31",
           "Feb 1",
           "Feb 2",
@@ -1448,14 +1467,16 @@
           "Apr 16",
           "Apr 17",
           "Apr 18",
-          "Apr 19"
+          "Apr 19",
+          "Apr 20",
+          "Apr 21",
+          "Apr 22",
+          "Apr 23",
+          "Apr 24",
+          "Apr 25",
+          "Apr 26"
         ],
         "total": [
-          96,
-          105,
-          83,
-          68,
-          60,
           85,
           61,
           28,
@@ -1534,10 +1555,17 @@
           84,
           95,
           93,
-          61
+          61,
+          92,
+          103,
+          98,
+          66,
+          118,
+          90,
+          94
         ]
       },
-      "asOf": "2026-04-19"
+      "asOf": "2026-04-26"
     },
     {
       "id": "gibraltar",
@@ -1555,39 +1583,34 @@
       ],
       "primaryField": "n_total",
       "last7Avg": {
-        "n_total": 129.1,
+        "n_total": 131.6,
         "n_tanker": 42.6,
-        "n_container": 30.3,
-        "n_dry_bulk": 30.1,
-        "n_cargo": 86.6,
-        "n_general_cargo": 20.6,
-        "n_roro": 5.6
+        "n_container": 31.7,
+        "n_dry_bulk": 28,
+        "n_cargo": 89,
+        "n_general_cargo": 24.6,
+        "n_roro": 4.7
       },
       "baseline90Avg": {
-        "n_total": 131.4,
-        "n_tanker": 45.4,
-        "n_container": 31.2,
-        "n_dry_bulk": 27.1,
-        "n_cargo": 86.1,
-        "n_general_cargo": 22.4,
-        "n_roro": 5.4
+        "n_total": 132.6,
+        "n_tanker": 45.3,
+        "n_container": 31.5,
+        "n_dry_bulk": 27.7,
+        "n_cargo": 87.2,
+        "n_general_cargo": 22.6,
+        "n_roro": 5.5
       },
       "delta7vs90": {
-        "n_total": -0.017,
+        "n_total": -0.008,
         "n_tanker": -0.061,
-        "n_container": -0.03,
-        "n_dry_bulk": 0.114,
-        "n_cargo": 0.006,
-        "n_general_cargo": -0.08,
-        "n_roro": 0.024
+        "n_container": 0.007,
+        "n_dry_bulk": 0.011,
+        "n_cargo": 0.02,
+        "n_general_cargo": 0.089,
+        "n_roro": -0.14
       },
       "series": {
         "periods": [
-          "Jan 26",
-          "Jan 27",
-          "Jan 28",
-          "Jan 29",
-          "Jan 30",
           "Jan 31",
           "Feb 1",
           "Feb 2",
@@ -1666,14 +1689,16 @@
           "Apr 16",
           "Apr 17",
           "Apr 18",
-          "Apr 19"
+          "Apr 19",
+          "Apr 20",
+          "Apr 21",
+          "Apr 22",
+          "Apr 23",
+          "Apr 24",
+          "Apr 25",
+          "Apr 26"
         ],
         "total": [
-          76,
-          104,
-          61,
-          116,
-          194,
           144,
           131,
           142,
@@ -1752,10 +1777,17 @@
           105,
           128,
           151,
-          122
+          122,
+          118,
+          138,
+          155,
+          119,
+          142,
+          112,
+          137
         ]
       },
-      "asOf": "2026-04-19"
+      "asOf": "2026-04-26"
     },
     {
       "id": "dover",
@@ -1772,39 +1804,34 @@
       ],
       "primaryField": "n_total",
       "last7Avg": {
-        "n_total": 166.4,
-        "n_tanker": 54.1,
-        "n_container": 36,
+        "n_total": 171.1,
+        "n_tanker": 57.4,
+        "n_container": 35.4,
         "n_dry_bulk": 24.7,
-        "n_cargo": 112.3,
-        "n_general_cargo": 42.6,
-        "n_roro": 9
+        "n_cargo": 113.7,
+        "n_general_cargo": 43,
+        "n_roro": 10.6
       },
       "baseline90Avg": {
-        "n_total": 169.6,
-        "n_tanker": 60.4,
-        "n_container": 35.3,
-        "n_dry_bulk": 23.8,
-        "n_cargo": 109.2,
-        "n_general_cargo": 40,
-        "n_roro": 10.2
+        "n_total": 170,
+        "n_tanker": 59.8,
+        "n_container": 35.4,
+        "n_dry_bulk": 23.9,
+        "n_cargo": 110.2,
+        "n_general_cargo": 40.6,
+        "n_roro": 10.3
       },
       "delta7vs90": {
-        "n_total": -0.019,
-        "n_tanker": -0.103,
-        "n_container": 0.021,
-        "n_dry_bulk": 0.04,
-        "n_cargo": 0.028,
-        "n_general_cargo": 0.065,
-        "n_roro": -0.118
+        "n_total": 0.007,
+        "n_tanker": -0.04,
+        "n_container": 0.001,
+        "n_dry_bulk": 0.034,
+        "n_cargo": 0.032,
+        "n_general_cargo": 0.059,
+        "n_roro": 0.025
       },
       "series": {
         "periods": [
-          "Jan 26",
-          "Jan 27",
-          "Jan 28",
-          "Jan 29",
-          "Jan 30",
           "Jan 31",
           "Feb 1",
           "Feb 2",
@@ -1883,14 +1910,16 @@
           "Apr 16",
           "Apr 17",
           "Apr 18",
-          "Apr 19"
+          "Apr 19",
+          "Apr 20",
+          "Apr 21",
+          "Apr 22",
+          "Apr 23",
+          "Apr 24",
+          "Apr 25",
+          "Apr 26"
         ],
         "total": [
-          129,
-          117,
-          171,
-          178,
-          200,
           145,
           115,
           133,
@@ -1969,10 +1998,17 @@
           181,
           176,
           186,
-          172
+          172,
+          159,
+          156,
+          144,
+          164,
+          192,
+          219,
+          164
         ]
       },
-      "asOf": "2026-04-19"
+      "asOf": "2026-04-26"
     },
     {
       "id": "cape-of-good-hope",
@@ -1989,39 +2025,34 @@
       ],
       "primaryField": "n_total",
       "last7Avg": {
-        "n_total": 93.4,
-        "n_tanker": 26,
-        "n_container": 19.4,
-        "n_dry_bulk": 41.4,
-        "n_cargo": 67.4,
-        "n_general_cargo": 3.1,
-        "n_roro": 3.4
+        "n_total": 96.4,
+        "n_tanker": 21.9,
+        "n_container": 21.3,
+        "n_dry_bulk": 44,
+        "n_cargo": 74.6,
+        "n_general_cargo": 3.9,
+        "n_roro": 5.4
       },
       "baseline90Avg": {
         "n_total": 87.8,
-        "n_tanker": 16.5,
-        "n_container": 19.8,
-        "n_dry_bulk": 43.9,
-        "n_cargo": 71.4,
-        "n_general_cargo": 3.9,
-        "n_roro": 3.7
+        "n_tanker": 17.2,
+        "n_container": 19.7,
+        "n_dry_bulk": 43.4,
+        "n_cargo": 70.6,
+        "n_general_cargo": 3.8,
+        "n_roro": 3.6
       },
       "delta7vs90": {
-        "n_total": 0.064,
-        "n_tanker": 0.576,
-        "n_container": -0.016,
-        "n_dry_bulk": -0.057,
-        "n_cargo": -0.055,
-        "n_general_cargo": -0.204,
-        "n_roro": -0.074
+        "n_total": 0.099,
+        "n_tanker": 0.271,
+        "n_container": 0.082,
+        "n_dry_bulk": 0.013,
+        "n_cargo": 0.057,
+        "n_general_cargo": 0.002,
+        "n_roro": 0.494
       },
       "series": {
         "periods": [
-          "Jan 26",
-          "Jan 27",
-          "Jan 28",
-          "Jan 29",
-          "Jan 30",
           "Jan 31",
           "Feb 1",
           "Feb 2",
@@ -2100,14 +2131,16 @@
           "Apr 16",
           "Apr 17",
           "Apr 18",
-          "Apr 19"
+          "Apr 19",
+          "Apr 20",
+          "Apr 21",
+          "Apr 22",
+          "Apr 23",
+          "Apr 24",
+          "Apr 25",
+          "Apr 26"
         ],
         "total": [
-          107,
-          97,
-          87,
-          93,
-          100,
           68,
           72,
           65,
@@ -2186,10 +2219,17 @@
           95,
           92,
           91,
-          86
+          86,
+          64,
+          82,
+          75,
+          117,
+          132,
+          125,
+          80
         ]
       },
-      "asOf": "2026-04-19"
+      "asOf": "2026-04-26"
     },
     {
       "id": "kerch",
@@ -2208,38 +2248,33 @@
       "primaryField": "n_total",
       "last7Avg": {
         "n_total": 8.7,
-        "n_tanker": 1.4,
+        "n_tanker": 2.4,
         "n_container": 0,
-        "n_dry_bulk": 1.4,
-        "n_cargo": 7.3,
-        "n_general_cargo": 5.9,
+        "n_dry_bulk": 1.7,
+        "n_cargo": 6.3,
+        "n_general_cargo": 4.6,
         "n_roro": 0
       },
       "baseline90Avg": {
-        "n_total": 13.7,
-        "n_tanker": 2.8,
+        "n_total": 13.4,
+        "n_tanker": 2.7,
         "n_container": 0.1,
-        "n_dry_bulk": 3.2,
-        "n_cargo": 10.9,
+        "n_dry_bulk": 3.1,
+        "n_cargo": 10.7,
         "n_general_cargo": 7.6,
         "n_roro": 0
       },
       "delta7vs90": {
-        "n_total": -0.364,
-        "n_tanker": -0.495,
+        "n_total": -0.35,
+        "n_tanker": -0.112,
         "n_container": -1,
-        "n_dry_bulk": -0.549,
-        "n_cargo": -0.33,
-        "n_general_cargo": -0.233,
+        "n_dry_bulk": -0.438,
+        "n_cargo": -0.411,
+        "n_general_cargo": -0.396,
         "n_roro": 0
       },
       "series": {
         "periods": [
-          "Jan 26",
-          "Jan 27",
-          "Jan 28",
-          "Jan 29",
-          "Jan 30",
           "Jan 31",
           "Feb 1",
           "Feb 2",
@@ -2318,14 +2353,16 @@
           "Apr 16",
           "Apr 17",
           "Apr 18",
-          "Apr 19"
+          "Apr 19",
+          "Apr 20",
+          "Apr 21",
+          "Apr 22",
+          "Apr 23",
+          "Apr 24",
+          "Apr 25",
+          "Apr 26"
         ],
         "total": [
-          8,
-          15,
-          10,
-          11,
-          13,
           8,
           22,
           16,
@@ -2404,10 +2441,17 @@
           20,
           8,
           8,
-          7
+          7,
+          9,
+          6,
+          9,
+          6,
+          7,
+          11,
+          13
         ]
       },
-      "asOf": "2026-04-19"
+      "asOf": "2026-04-26"
     }
   ]
 }

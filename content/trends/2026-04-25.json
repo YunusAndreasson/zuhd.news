@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-04-25T08:26:18.300Z",
+  "fetchedAt": "2026-04-25T22:35:55.165Z",
   "asOf": "2026-04-25",
   "indicators": [
     {
@@ -1456,8 +1456,8 @@
         279.757081,
         278.536876,
         279.179895,
-        279.736501,
         278.802622,
+        278.710762,
         278.31719
       ],
       "periods": [
@@ -1542,8 +1542,8 @@
         1346.63,
         1345.47,
         1348.77,
-        1351.09,
         1351.32,
+        1354.96,
         1351.847873
       ],
       "periods": [
@@ -1627,8 +1627,8 @@
         51.970698,
         51.9993,
         51.7463,
-        52.0118,
-        52.6203,
+        52.6215,
+        52.619542,
         52.572404
       ],
       "periods": [
@@ -1713,8 +1713,8 @@
         44.870503,
         44.889801,
         44.914199,
-        44.924198,
-        45.003997,
+        44.980798,
+        45.025177,
         45.015003
       ],
       "periods": [
@@ -1798,8 +1798,8 @@
         123.357642,
         122.580609,
         122.859886,
-        123.120944,
         122.710528,
+        122.673159,
         122.673159
       ],
       "periods": [
@@ -1882,8 +1882,8 @@
         17171.403531,
         17141.082458,
         17180.328876,
-        17298.023696,
-        17293.85,
+        17336.25,
+        17240.466306,
         17252.7
       ],
       "periods": [
@@ -1966,8 +1966,8 @@
         89848.110329,
         89471.453014,
         89501.323014,
-        89873.297866,
-        89491.784264,
+        89558.210208,
+        89527.619636,
         89404.207128
       ],
       "periods": [
@@ -2055,8 +2055,8 @@
         6.8192,
         6.8157,
         6.8235,
-        6.8327,
-        6.8368,
+        6.8265,
+        6.8363,
         6.8363
       ],
       "periods": [
@@ -2144,9 +2144,9 @@
         92.782407,
         93.348804,
         93.775164,
-        94.120461,
-        94.261853,
-        94.25049
+        94.11314,
+        94.143557,
+        94.0666
       ],
       "periods": [
         "Mar 27",
@@ -2232,9 +2232,9 @@
         5.0193,
         4.9539,
         5.0104,
-        4.9872,
-        5.0332,
-        5.00395
+        5.0326,
+        5.0178,
+        4.99655
       ],
       "periods": [
         "Mar 27",
@@ -2321,8 +2321,8 @@
         17.341558,
         17.31295,
         17.320129,
-        17.370605,
-        17.448375,
+        17.417307,
+        17.390525,
         17.3796
       ],
       "periods": [
@@ -2416,8 +2416,8 @@
         0.850349,
         0.849214,
         0.851902,
-        0.855018,
-        0.856306,
+        0.855896,
+        0.853401,
         0.853097
       ],
       "periods": [
@@ -2504,9 +2504,9 @@
         158.8855,
         158.9865,
         159.3964,
-        159.54668182,
-        159.7922,
-        159.365
+        159.76253049,
+        159.3556875,
+        159.36496265
       ],
       "periods": [
         "Mar 27",
@@ -2593,8 +2593,8 @@
         76.231376,
         74.947786,
         75.123411,
-        75.100327,
-        75.878875,
+        75.876,
+        75.246161,
         75.185828
       ],
       "periods": [
@@ -2681,8 +2681,8 @@
         16.3754,
         16.384099,
         16.4976,
-        16.531786,
-        16.66685,
+        16.637866,
+        16.508621,
         16.53436
       ],
       "periods": [
@@ -3827,7 +3827,7 @@
         17,
         8,
         10,
-        9
+        4
       ],
       "periods": [
         "Apr 9",
@@ -3866,7 +3866,7 @@
         52,
         26,
         61,
-        64
+        21
       ],
       "periods": [
         "Apr 13",
@@ -3884,68 +3884,41 @@
       "outcomeLabel": "Yes"
     },
     {
-      "id": "poly-will-kevin-warsh-be-confirmed-as-fed-chair",
-      "label": "Kevin Warsh be confirmed as Fed Chair?",
+      "id": "poly-trump-announces-end-of-military-operations-again",
+      "label": "Trump announces end of military…",
       "unit": "%",
       "source": "polymarket",
-      "seriesId": "will-kevin-warsh-be-confirmed-as-fed-chair",
+      "seriesId": "trump-announces-end-of-military-operations-against-iran-by-april-30th-753-882-164-769-641-926-643",
       "cadence": "daily",
       "topicTags": [
         "prediction",
         "polymarket",
         "odds",
-        "fed"
+        "iran",
+        "trump"
       ],
       "defaultHighlight": "last",
       "sourceLabel": "Polymarket",
       "values": [
-        95,
-        95,
-        95,
-        95,
-        96,
-        95,
-        95,
-        96,
-        97,
-        97,
-        96,
-        96,
-        95,
-        94,
-        95,
-        94,
-        94,
-        95,
-        94,
-        94,
-        94,
-        94,
-        94,
-        98,
-        98
+        56,
+        56,
+        47,
+        47,
+        42,
+        51,
+        19,
+        17,
+        7,
+        9,
+        5
       ],
       "periods": [
         "Mar 26",
         "Mar 27",
         "Mar 28",
         "Mar 29",
-        "Mar 30",
-        "Mar 31",
-        "Apr 1",
-        "Apr 2",
-        "Apr 3",
-        "Apr 4",
-        "Apr 6",
-        "Apr 7",
         "Apr 9",
-        "Apr 13",
-        "Apr 15",
-        "Apr 16",
-        "Apr 17",
-        "Apr 19",
-        "Apr 20",
-        "Apr 21",
+        "Apr 18",
         "Apr 22",
         "Apr 23",
         "Apr 24",
@@ -3953,7 +3926,7 @@
         "Apr 25"
       ],
       "asOf": "2026-04-25",
-      "marketUrl": "https://polymarket.com/event/who-will-be-confirmed-as-fed-chair",
+      "marketUrl": "https://polymarket.com/event/trump-announces-end-of-military-operations-against-iran-by",
       "outcomeLabel": "Yes"
     },
     {
@@ -4032,180 +4005,6 @@
       "outcomeLabel": "Yes"
     },
     {
-      "id": "poly-trump-announces-end-of-military-operations-again",
-      "label": "Trump announces end of military…",
-      "unit": "%",
-      "source": "polymarket",
-      "seriesId": "trump-announces-end-of-military-operations-against-iran-by-april-30th-753-882-164-769-641-926-643",
-      "cadence": "daily",
-      "topicTags": [
-        "prediction",
-        "polymarket",
-        "odds",
-        "iran",
-        "trump"
-      ],
-      "defaultHighlight": "last",
-      "sourceLabel": "Polymarket",
-      "values": [
-        56,
-        56,
-        47,
-        47,
-        42,
-        51,
-        19,
-        17,
-        7,
-        9,
-        9
-      ],
-      "periods": [
-        "Mar 26",
-        "Mar 27",
-        "Mar 28",
-        "Mar 29",
-        "Apr 9",
-        "Apr 18",
-        "Apr 22",
-        "Apr 23",
-        "Apr 24",
-        "Apr 25",
-        "Apr 25"
-      ],
-      "asOf": "2026-04-25",
-      "marketUrl": "https://polymarket.com/event/trump-announces-end-of-military-operations-against-iran-by",
-      "outcomeLabel": "Yes"
-    },
-    {
-      "id": "poly-will-the-us-invade-iran-before-2027",
-      "label": "US invade Iran before 2027?",
-      "unit": "%",
-      "source": "polymarket",
-      "seriesId": "will-the-us-invade-iran-before-2027",
-      "cadence": "daily",
-      "topicTags": [
-        "prediction",
-        "polymarket",
-        "odds",
-        "iran"
-      ],
-      "defaultHighlight": "last",
-      "sourceLabel": "Polymarket",
-      "values": [
-        62,
-        62,
-        61,
-        60,
-        68,
-        67,
-        55,
-        50,
-        57,
-        53,
-        58,
-        61,
-        28,
-        35,
-        30,
-        30,
-        33,
-        35,
-        30,
-        32,
-        31,
-        34,
-        36,
-        31,
-        28,
-        31,
-        33,
-        32,
-        32
-      ],
-      "periods": [
-        "Mar 26",
-        "Mar 27",
-        "Mar 28",
-        "Mar 29",
-        "Mar 30",
-        "Mar 31",
-        "Apr 1",
-        "Apr 2",
-        "Apr 3",
-        "Apr 4",
-        "Apr 6",
-        "Apr 7",
-        "Apr 8",
-        "Apr 9",
-        "Apr 10",
-        "Apr 11",
-        "Apr 13",
-        "Apr 14",
-        "Apr 15",
-        "Apr 16",
-        "Apr 17",
-        "Apr 19",
-        "Apr 20",
-        "Apr 21",
-        "Apr 22",
-        "Apr 23",
-        "Apr 24",
-        "Apr 25",
-        "Apr 25"
-      ],
-      "asOf": "2026-04-25",
-      "marketUrl": "https://polymarket.com/event/will-the-us-invade-iran-before-2027",
-      "outcomeLabel": "Yes"
-    },
-    {
-      "id": "poly-will-the-all-india-trinamool-congress-aitc-win-t",
-      "label": "All India Trinamool Congress (AITC) win…",
-      "unit": "%",
-      "source": "polymarket",
-      "seriesId": "will-the-all-india-trinamool-congress-aitc-win-the-most-seats-in-the-2026-west-bengal-legislative-assembly-election",
-      "cadence": "daily",
-      "topicTags": [
-        "prediction",
-        "polymarket",
-        "odds",
-        "election"
-      ],
-      "defaultHighlight": "last",
-      "sourceLabel": "Polymarket",
-      "values": [
-        74,
-        70,
-        71,
-        77,
-        64,
-        55,
-        59,
-        47,
-        50,
-        48,
-        44,
-        42
-      ],
-      "periods": [
-        "Mar 26",
-        "Mar 27",
-        "Mar 28",
-        "Apr 5",
-        "Apr 9",
-        "Apr 12",
-        "Apr 18",
-        "Apr 22",
-        "Apr 23",
-        "Apr 24",
-        "Apr 25",
-        "Apr 25"
-      ],
-      "asOf": "2026-04-25",
-      "marketUrl": "https://polymarket.com/event/west-bengal-legislative-assembly-election-winner",
-      "outcomeLabel": "Yes"
-    },
-    {
       "id": "btc",
       "label": "Bitcoin",
       "unit": "$",
@@ -4260,7 +4059,7 @@
         78194.78,
         78260.62,
         77444.8,
-        77561.14
+        77636.81
       ],
       "periods": [
         "Mar 27",
@@ -4352,7 +4151,7 @@
         2377.93,
         2330.83,
         2315.51,
-        2318.52
+        2319.63
       ],
       "periods": [
         "Mar 27",
@@ -4442,7 +4241,7 @@
         4714.79,
         4689.13,
         4697.32,
-        4699.2
+        4695.89
       ],
       "periods": [
         "Mar 27",
@@ -4531,7 +4330,7 @@
         367.27,
         378.91,
         368.11,
-        373.64
+        373.53
       ],
       "periods": [
         "Mar 27",
@@ -4645,7 +4444,7 @@
         "Apr 24"
       ],
       "asOf": "2026-04-24",
-      "_corpusCount": 58
+      "_corpusCount": 78
     },
     {
       "id": "wiki-strait-of-hormuz",
@@ -4724,7 +4523,7 @@
         "Apr 24"
       ],
       "asOf": "2026-04-24",
-      "_corpusCount": 35
+      "_corpusCount": 49
     },
     {
       "id": "wiki-donald-trump",
@@ -4803,7 +4602,7 @@
         "Apr 24"
       ],
       "asOf": "2026-04-24",
-      "_corpusCount": 34
+      "_corpusCount": 47
     },
     {
       "id": "wiki-pakistan",
@@ -4882,7 +4681,7 @@
         "Apr 24"
       ],
       "asOf": "2026-04-24",
-      "_corpusCount": 26
+      "_corpusCount": 38
     },
     {
       "id": "wiki-united-states",
@@ -4961,7 +4760,7 @@
         "Apr 24"
       ],
       "asOf": "2026-04-24",
-      "_corpusCount": 24
+      "_corpusCount": 37
     },
     {
       "id": "wiki-russia",
@@ -5040,7 +4839,7 @@
         "Apr 24"
       ],
       "asOf": "2026-04-24",
-      "_corpusCount": 24
+      "_corpusCount": 29
     },
     {
       "id": "wiki-israel",
@@ -5119,7 +4918,7 @@
         "Apr 24"
       ],
       "asOf": "2026-04-24",
-      "_corpusCount": 18
+      "_corpusCount": 28
     },
     {
       "id": "wiki-artificial-intelligence",
@@ -5198,7 +4997,7 @@
         "Apr 24"
       ],
       "asOf": "2026-04-24",
-      "_corpusCount": 18
+      "_corpusCount": 28
     },
     {
       "id": "wiki-india",
@@ -5277,7 +5076,7 @@
         "Apr 24"
       ],
       "asOf": "2026-04-24",
-      "_corpusCount": 16
+      "_corpusCount": 21
     },
     {
       "id": "wiki-lebanon",
@@ -5356,7 +5155,7 @@
         "Apr 24"
       ],
       "asOf": "2026-04-24",
-      "_corpusCount": 14
+      "_corpusCount": 18
     },
     {
       "id": "wiki-european-union",
@@ -5435,244 +5234,7 @@
         "Apr 24"
       ],
       "asOf": "2026-04-24",
-      "_corpusCount": 12
-    },
-    {
-      "id": "wiki-petroleum",
-      "label": "Petroleum — Wikipedia views",
-      "unit": "views/day",
-      "source": "wikipedia",
-      "seriesId": "Petroleum",
-      "cadence": "daily",
-      "topicTags": [
-        "petroleum"
-      ],
-      "defaultHighlight": "max",
-      "sourceLabel": "Wikipedia pageviews",
-      "values": [
-        4065,
-        3948,
-        3201,
-        3271,
-        3980,
-        3819,
-        3207,
-        3483,
-        3490,
-        2806,
-        2775,
-        3153,
-        3188,
-        3586,
-        3119,
-        2652,
-        2335,
-        2608,
-        3104,
-        3315,
-        2873,
-        2858,
-        2986,
-        2737,
-        2525,
-        2654,
-        2742,
-        2569,
-        2556,
-        2296
-      ],
-      "periods": [
-        "Mar 26",
-        "Mar 27",
-        "Mar 28",
-        "Mar 29",
-        "Mar 30",
-        "Mar 31",
-        "Apr 1",
-        "Apr 2",
-        "Apr 3",
-        "Apr 4",
-        "Apr 5",
-        "Apr 6",
-        "Apr 7",
-        "Apr 8",
-        "Apr 9",
-        "Apr 10",
-        "Apr 11",
-        "Apr 12",
-        "Apr 13",
-        "Apr 14",
-        "Apr 15",
-        "Apr 16",
-        "Apr 17",
-        "Apr 18",
-        "Apr 19",
-        "Apr 20",
-        "Apr 21",
-        "Apr 22",
-        "Apr 23",
-        "Apr 24"
-      ],
-      "asOf": "2026-04-24",
-      "_corpusCount": 11
-    },
-    {
-      "id": "wiki-ukraine",
-      "label": "Ukraine — Wikipedia views",
-      "unit": "views/day",
-      "source": "wikipedia",
-      "seriesId": "Ukraine",
-      "cadence": "daily",
-      "topicTags": [
-        "ukraine"
-      ],
-      "defaultHighlight": "max",
-      "sourceLabel": "Wikipedia pageviews",
-      "values": [
-        9759,
-        8653,
-        9685,
-        9914,
-        9102,
-        8342,
-        9020,
-        8604,
-        25444,
-        29474,
-        23493,
-        22582,
-        11063,
-        8546,
-        7950,
-        9018,
-        7866,
-        8422,
-        8712,
-        8864,
-        8521,
-        8798,
-        12899,
-        8424,
-        9314,
-        9099,
-        12074,
-        16175,
-        17050,
-        10102
-      ],
-      "periods": [
-        "Mar 26",
-        "Mar 27",
-        "Mar 28",
-        "Mar 29",
-        "Mar 30",
-        "Mar 31",
-        "Apr 1",
-        "Apr 2",
-        "Apr 3",
-        "Apr 4",
-        "Apr 5",
-        "Apr 6",
-        "Apr 7",
-        "Apr 8",
-        "Apr 9",
-        "Apr 10",
-        "Apr 11",
-        "Apr 12",
-        "Apr 13",
-        "Apr 14",
-        "Apr 15",
-        "Apr 16",
-        "Apr 17",
-        "Apr 18",
-        "Apr 19",
-        "Apr 20",
-        "Apr 21",
-        "Apr 22",
-        "Apr 23",
-        "Apr 24"
-      ],
-      "asOf": "2026-04-24",
-      "_corpusCount": 11
-    },
-    {
-      "id": "wiki-unmanned-aerial-vehicle",
-      "label": "Unmanned aerial vehicle — Wikipedia views",
-      "unit": "views/day",
-      "source": "wikipedia",
-      "seriesId": "Unmanned_aerial_vehicle",
-      "cadence": "daily",
-      "topicTags": [
-        "unmanned aerial vehicle"
-      ],
-      "defaultHighlight": "max",
-      "sourceLabel": "Wikipedia pageviews",
-      "values": [
-        2376,
-        2212,
-        2019,
-        2321,
-        2430,
-        2349,
-        2225,
-        2598,
-        2847,
-        2019,
-        2145,
-        2192,
-        2142,
-        2151,
-        2183,
-        2146,
-        1915,
-        1813,
-        2099,
-        2466,
-        2187,
-        2197,
-        1909,
-        1826,
-        1794,
-        1884,
-        2258,
-        2078,
-        1989,
-        1791
-      ],
-      "periods": [
-        "Mar 26",
-        "Mar 27",
-        "Mar 28",
-        "Mar 29",
-        "Mar 30",
-        "Mar 31",
-        "Apr 1",
-        "Apr 2",
-        "Apr 3",
-        "Apr 4",
-        "Apr 5",
-        "Apr 6",
-        "Apr 7",
-        "Apr 8",
-        "Apr 9",
-        "Apr 10",
-        "Apr 11",
-        "Apr 12",
-        "Apr 13",
-        "Apr 14",
-        "Apr 15",
-        "Apr 16",
-        "Apr 17",
-        "Apr 18",
-        "Apr 19",
-        "Apr 20",
-        "Apr 21",
-        "Apr 22",
-        "Apr 23",
-        "Apr 24"
-      ],
-      "asOf": "2026-04-24",
-      "_corpusCount": 11
+      "_corpusCount": 17
     },
     {
       "id": "wiki-china",
@@ -5751,44 +5313,281 @@
         "Apr 24"
       ],
       "asOf": "2026-04-24",
-      "_corpusCount": 10
+      "_corpusCount": 16
     },
     {
-      "id": "stocks:COIN",
-      "label": "Coinbase Global, Inc.",
-      "unit": "$",
-      "source": "stocks",
-      "seriesId": "COIN",
+      "id": "wiki-ukraine",
+      "label": "Ukraine — Wikipedia views",
+      "unit": "views/day",
+      "source": "wikipedia",
+      "seriesId": "Ukraine",
       "cadence": "daily",
       "topicTags": [
-        "coinbase global",
-        "coin"
+        "ukraine"
+      ],
+      "defaultHighlight": "max",
+      "sourceLabel": "Wikipedia pageviews",
+      "values": [
+        9759,
+        8653,
+        9685,
+        9914,
+        9102,
+        8342,
+        9020,
+        8604,
+        25444,
+        29474,
+        23493,
+        22582,
+        11063,
+        8546,
+        7950,
+        9018,
+        7866,
+        8422,
+        8712,
+        8864,
+        8521,
+        8798,
+        12899,
+        8424,
+        9314,
+        9099,
+        12074,
+        16175,
+        17050,
+        10102
+      ],
+      "periods": [
+        "Mar 26",
+        "Mar 27",
+        "Mar 28",
+        "Mar 29",
+        "Mar 30",
+        "Mar 31",
+        "Apr 1",
+        "Apr 2",
+        "Apr 3",
+        "Apr 4",
+        "Apr 5",
+        "Apr 6",
+        "Apr 7",
+        "Apr 8",
+        "Apr 9",
+        "Apr 10",
+        "Apr 11",
+        "Apr 12",
+        "Apr 13",
+        "Apr 14",
+        "Apr 15",
+        "Apr 16",
+        "Apr 17",
+        "Apr 18",
+        "Apr 19",
+        "Apr 20",
+        "Apr 21",
+        "Apr 22",
+        "Apr 23",
+        "Apr 24"
+      ],
+      "asOf": "2026-04-24",
+      "_corpusCount": 14
+    },
+    {
+      "id": "wiki-unmanned-aerial-vehicle",
+      "label": "Unmanned aerial vehicle — Wikipedia views",
+      "unit": "views/day",
+      "source": "wikipedia",
+      "seriesId": "Unmanned_aerial_vehicle",
+      "cadence": "daily",
+      "topicTags": [
+        "unmanned aerial vehicle"
+      ],
+      "defaultHighlight": "max",
+      "sourceLabel": "Wikipedia pageviews",
+      "values": [
+        2376,
+        2212,
+        2019,
+        2321,
+        2430,
+        2349,
+        2225,
+        2598,
+        2847,
+        2019,
+        2145,
+        2192,
+        2142,
+        2151,
+        2183,
+        2146,
+        1915,
+        1813,
+        2099,
+        2466,
+        2187,
+        2197,
+        1909,
+        1826,
+        1794,
+        1884,
+        2258,
+        2078,
+        1989,
+        1791
+      ],
+      "periods": [
+        "Mar 26",
+        "Mar 27",
+        "Mar 28",
+        "Mar 29",
+        "Mar 30",
+        "Mar 31",
+        "Apr 1",
+        "Apr 2",
+        "Apr 3",
+        "Apr 4",
+        "Apr 5",
+        "Apr 6",
+        "Apr 7",
+        "Apr 8",
+        "Apr 9",
+        "Apr 10",
+        "Apr 11",
+        "Apr 12",
+        "Apr 13",
+        "Apr 14",
+        "Apr 15",
+        "Apr 16",
+        "Apr 17",
+        "Apr 18",
+        "Apr 19",
+        "Apr 20",
+        "Apr 21",
+        "Apr 22",
+        "Apr 23",
+        "Apr 24"
+      ],
+      "asOf": "2026-04-24",
+      "_corpusCount": 14
+    },
+    {
+      "id": "wiki-nigeria",
+      "label": "Nigeria — Wikipedia views",
+      "unit": "views/day",
+      "source": "wikipedia",
+      "seriesId": "Nigeria",
+      "cadence": "daily",
+      "topicTags": [
+        "nigeria"
+      ],
+      "defaultHighlight": "max",
+      "sourceLabel": "Wikipedia pageviews",
+      "values": [
+        6720,
+        6756,
+        6094,
+        6772,
+        7277,
+        7132,
+        6860,
+        6494,
+        7365,
+        6166,
+        6004,
+        6568,
+        7276,
+        6424,
+        6622,
+        6418,
+        6268,
+        6681,
+        7155,
+        7225,
+        7272,
+        7245,
+        7740,
+        6061,
+        6290,
+        7225,
+        7844,
+        7101,
+        7239,
+        7055
+      ],
+      "periods": [
+        "Mar 26",
+        "Mar 27",
+        "Mar 28",
+        "Mar 29",
+        "Mar 30",
+        "Mar 31",
+        "Apr 1",
+        "Apr 2",
+        "Apr 3",
+        "Apr 4",
+        "Apr 5",
+        "Apr 6",
+        "Apr 7",
+        "Apr 8",
+        "Apr 9",
+        "Apr 10",
+        "Apr 11",
+        "Apr 12",
+        "Apr 13",
+        "Apr 14",
+        "Apr 15",
+        "Apr 16",
+        "Apr 17",
+        "Apr 18",
+        "Apr 19",
+        "Apr 20",
+        "Apr 21",
+        "Apr 22",
+        "Apr 23",
+        "Apr 24"
+      ],
+      "asOf": "2026-04-24",
+      "_corpusCount": 13
+    },
+    {
+      "id": "stocks:BLK",
+      "label": "BlackRock, Inc.",
+      "unit": "$",
+      "source": "stocks",
+      "seriesId": "BLK",
+      "cadence": "daily",
+      "topicTags": [
+        "blackrock",
+        "blk"
       ],
       "defaultHighlight": "last",
-      "sourceLabel": "Yahoo Finance · NMS",
+      "sourceLabel": "Yahoo Finance · NYQ",
       "values": [
-        181.1,
-        173.38,
-        161.14,
-        160.79,
-        174.61,
-        172.99,
-        171.46,
-        174.79,
-        175.18,
-        175.09,
-        169.02,
-        167.85,
-        174.53,
-        184.41,
-        195.9,
-        199.83,
-        206.33,
-        211.63,
-        195.95,
-        206.24,
-        197.93,
-        199.77
+        981.35,
+        968.46,
+        933.85,
+        934.06,
+        961.71,
+        957.4,
+        966.56,
+        959.41,
+        958.46,
+        1001.54,
+        1001.62,
+        999.31,
+        1023.65,
+        1054.56,
+        1048.6,
+        1024.95,
+        1052.14,
+        1048.42,
+        1042.85,
+        1062.47,
+        1053.47,
+        1044.97
       ],
       "periods": [
         "Mar 25",
@@ -5815,8 +5614,8 @@
         "Apr 24"
       ],
       "asOf": "2026-04-24",
-      "latest": 199.77,
-      "previous": 197.93,
+      "latest": 1044.97,
+      "previous": 1053.47,
       "points": 22
     }
   ]

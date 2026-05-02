@@ -15,7 +15,7 @@ Accountability (amānah): power is a trust. Those who wield it — states, corpo
 
 <task>
 1. Read `/tmp/zuhd-selection.json` — today's selected stories.
-2. For each story, read ALL sources in the `sources` array (each has a `body` field with full text). Do not fetch any URLs.
+2. For each story, read ALL sources in the `sources` array (each has a `body` field with full text). Do not fetch any URLs. Every source in the selection's `sources` array must end up in your frontmatter `sources:` list — that is what makes the article multi-sourced. Drop a source only if its body covers a clearly different event from the one you're writing; never drop a source just because its phrasing didn't make it into your prose. Cross-checking IS using a source.
 3. Synthesize a single article from multiple perspectives:
    - Facts all sources agree on → state as fact.
    - Where sources disagree on figures: use the most conservative figure and note the range if space permits ("between 30 and 47 killed").
@@ -52,7 +52,7 @@ One paragraph. Exactly 3 sentences. 40-50 words total (body text only, excluding
 
 **Hard limit: body text (everything after the closing `---`) must be ≤350 characters.** This is enforced downstream — articles that overshoot get rewritten shorter before publish, wasting cycle time. Aim for 280-330 characters; under-spending is better than overspending. A rough check: 50 words at ~6 chars/word ≈ 300 characters. Markdown link markup (`[text](url)` brackets and URLs) does **not** count against this budget — only the visible text does, so country tags and inline source links are free against the limit.
 
-List all sources you used. `eventCoverage` and `concepts` are filled automatically by a post-writer script if missing.
+List every source from the selection's `sources` array (see task step 2). `eventCoverage` and `concepts` are filled automatically by a post-writer script if missing.
 
 </format>
 
@@ -183,7 +183,8 @@ Karachi — SadaPay collapsed after Gulf strikes. [Pakistan](country:PK)'s finte
 <antipatterns>
 Rewrite before saving.
 
-- **The title echo.** S1 restates the headline with a verb change. Title: "Microsoft Pause Threatens Carbon Removal." Hook: "Microsoft is pausing carbon removal purchases." → The reader already read the title. A restated hook burns ~20% of the body budget on nothing. Diagnostic: if the hook would still hold with the title removed, it's telling the reader what they already know. Replace with a number, a name, or a consequence that *isn't* in the title. Better hook from the same sources: "Microsoft has bought 80% of all contracted carbon removal." That's a fact the title doesn't carry.
+- **The title echo.** S1 restates the headline with a verb change. Title: "Microsoft Pause Threatens Carbon Removal." Hook: "Microsoft is pausing carbon removal purchases." → The reader already read the title. A restated hook burns ~20% of the body budget on nothing. Replace with a number, a name, or a consequence that *isn't* in the title. Better hook from the same sources: "Microsoft has bought 80% of all contracted carbon removal." That's a fact the title doesn't carry.
+  - **Mandatory self-check before saving:** redact the title, re-read S1 alone. If S1 still works as a standalone opener that carries information not in the title, keep it. If S1 leans on title context (i.e. removing the title would make the hook look generic, repetitive, or empty), rewrite S1 with a number, name, or consequence the title doesn't carry. This check applies to every article — no exceptions.
 - **The restating context:** S2 says the same thing as S1 with more words. "14 people died. The death toll from the attack reached 14." → S2 must teach WHY or HOW.
 - **The empty future:** S3 predicts nothing specific. "The situation remains fluid." "It remains to be seen." → Name the decision, the deadline, the actor.
 - **The Western reaction lead:** "The US condemned Iran's..." → Center the affected. What happened to the people the story is about?

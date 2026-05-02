@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "description": "Frozen eval set for autoresearch sessions. Each entry replays one historical cycle. Picked to span time-of-day, news-day variety, and recency (within 30 days so trends snapshots are still meaningful). Add or swap entries between sessions; freeze for the duration of a session so iteration deltas are comparable.",
+  "cycles": [
+    {
+      "id": "2026-04-22T22-02",
+      "feedSnapshot": "content/.feed-snapshots/2026-04-22T22-02.json",
+      "trendsSnapshot": "content/trends/2026-04-22.json",
+      "notes": "Politics-heavy late cycle — good test of selector under regional-balance pressure"
+    },
+    {
+      "id": "2026-04-25T17-02",
+      "feedSnapshot": "content/.feed-snapshots/2026-04-25T17-02.json",
+      "trendsSnapshot": "content/trends/2026-04-25.json",
+      "notes": "Economy-tech mix, evening cycle — exercises trends pickup and shape-specific blocks"
+    },
+    {
+      "id": "2026-04-26T04-01",
+      "feedSnapshot": "content/.feed-snapshots/2026-04-26T04-01.json",
+      "trendsSnapshot": "content/trends/2026-04-26.json",
+      "notes": "Early-cycle balanced day — good baseline for voice and brevity scoring"
+    }
+  ]
+}

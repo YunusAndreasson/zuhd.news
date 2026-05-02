@@ -42,8 +42,14 @@ TOOLS_SELECTOR="Read,Write,Glob,Grep"
 TOOLS_WRITER="Read,Write"
 TOOLS_EDITOR="Read,Edit,Glob,Grep"
 TOOLS_REFLECT="Read,Write,Glob,Grep"
-# Common flags for all headless Claude CLI invocations (no --model: passed per stage)
-CLAUDE_FLAGS="--no-session-persistence"
+# Common flags for all headless Claude CLI invocations (no --model: passed per stage).
+#   --no-session-persistence   don't write resume state for headless calls
+#   --setting-sources project  skip ~/.claude/settings.json — only project settings
+#   --disable-slash-commands   skip user + project skills (cycle prompts are self-contained)
+#   --strict-mcp-config        skip every MCP server (we never pass --mcp-config)
+# Auto-memory still loads (tied to OAuth-compatible mode); prune memory files
+# manually if their content shouldn't reach the cycle.
+CLAUDE_FLAGS="--no-session-persistence --setting-sources project --disable-slash-commands --strict-mcp-config"
 
 mkdir -p "$LOG_DIR"
 
@@ -490,6 +496,13 @@ $ARTICLE_TEXT" 2>/dev/null)
       # Commit push log
       git add content/.push-log.json 2>/dev/null
       git diff --cached --quiet content/.push-log.json || git commit -m "Push log $(date -u +%Y-%m-%dT%H:%M)" 2>&1 | tee -a "$LOG_FILE"
+
+      # Stage 3c: Production RVS — score this cycle's output against the
+      # autoresearch rubric (deterministic clusters only, zero token cost),
+      # append to content/.rvs-trend.json. Fail-soft: never blocks the cycle.
+      timeout 60 node scripts/score-production-cycle.js 2>&1 | tee -a "$LOG_FILE"
+      git add content/.rvs-trend.json 2>/dev/null
+      git diff --cached --quiet content/.rvs-trend.json || git commit -m "RVS trend $(date -u +%Y-%m-%dT%H:%M)" 2>&1 | tee -a "$LOG_FILE"
     fi
   else
     echo "Build failed — skipping deploy" | tee -a "$LOG_FILE"

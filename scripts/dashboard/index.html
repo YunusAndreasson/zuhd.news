@@ -18,6 +18,7 @@
   <button class="tab-btn" role="tab" aria-selected="false" data-tab="quality">quality</button>
   <button class="tab-btn" role="tab" aria-selected="false" data-tab="logs">logs</button>
   <button class="tab-btn" role="tab" aria-selected="false" data-tab="experiment">experiment<span class="exp-tab-dot" id="exp-tab-dot" hidden></span></button>
+  <button class="tab-btn" role="tab" aria-selected="false" data-tab="autoresearch">autoresearch</button>
   <button class="tab-btn" role="tab" aria-selected="false" data-tab="editorial">editorial</button>
   <button class="tab-btn" role="tab" aria-selected="false" data-tab="status">status</button>
 </nav>
@@ -77,6 +78,23 @@
   </section>
 
   <section>
+    <h3>NewsAPI tokens per cycle</h3>
+    <div id="ops-tokens-summary" class="stat-row"></div>
+    <div id="chart-newsapi-tokens"></div>
+  </section>
+
+  <section>
+    <h3>trends pick rate</h3>
+    <div id="ops-trends-summary" class="stat-row"></div>
+    <div id="chart-trends-pick"></div>
+  </section>
+
+  <section>
+    <h3>backfill activity</h3>
+    <div id="ops-backfill-summary"></div>
+  </section>
+
+  <section>
     <h3>audio briefing</h3>
     <div id="briefing-info"></div>
   </section>
@@ -119,6 +137,22 @@
   <section>
     <h3>articles per day</h3>
     <div id="chart-articles-day"></div>
+  </section>
+
+  <section>
+    <h3>reader value score (per production cycle)</h3>
+    <div id="rvs-summary" class="stat-row"></div>
+    <div id="chart-rvs"></div>
+    <div id="rvs-cluster-means" style="margin-top: 0.5rem; font-size: var(--size-xs); color: var(--text-secondary);"></div>
+  </section>
+
+  <section>
+    <h3>brief block adoption (last 14 days)</h3>
+    <div id="block-adoption-summary" class="stat-row"></div>
+    <div id="block-adoption-bars"></div>
+    <div style="margin-top: 0.75rem; font-size: var(--size-xs); color: var(--text-secondary);">
+      Shape-specific = timeline / rank / sankey / treemap. Cheap = prose / quiz / locations / compare / actors / quote. Charts = trend / chart / multi-chart.
+    </div>
   </section>
 
   <section>
@@ -181,6 +215,22 @@
 
 </div>
 
+<!-- ── Autoresearch ───────────────────────────────────────────── -->
+<div class="tab-panel" id="panel-autoresearch">
+
+  <section>
+    <h3>session totals</h3>
+    <div id="ar-totals" class="stat-row"></div>
+  </section>
+
+  <section>
+    <h3>session history</h3>
+    <div id="ar-sessions"></div>
+    <div id="ar-empty" class="empty" hidden>no autoresearch sessions yet — run /autoresearch and the persisted history will appear here</div>
+  </section>
+
+</div>
+
 <!-- ── Editorial ─────────────────────────────────────────────── -->
 <div class="tab-panel" id="panel-editorial">
 
@@ -225,7 +275,7 @@
 // ── Tabs ──────────────────────────────────────────────────────
 const tabs = document.querySelectorAll('.tab-btn')
 const panels = document.querySelectorAll('.tab-panel')
-const tabLoaders = { pipeline: loadPipeline, quality: loadQuality, logs: loadLogs, experiment: loadExperiment, editorial: loadEditorial, status: loadStatus }
+const tabLoaders = { pipeline: loadPipeline, quality: loadQuality, logs: loadLogs, experiment: loadExperiment, autoresearch: loadAutoresearch, editorial: loadEditorial, status: loadStatus }
 let activeTab = 'pipeline'
 
 tabs.forEach(btn => {
@@ -473,7 +523,7 @@ let overviewData = null
 let cyclesData = null
 
 async function loadPipeline() {
-  const [overview, cycles, feedHealth, media] = await Promise.all([api('/api/overview'), api('/api/cycles'), api('/api/feed-health'), api('/api/media')])
+  const [overview, cycles, feedHealth, media, ops] = await Promise.all([api('/api/overview'), api('/api/cycles'), api('/api/feed-health'), api('/api/media'), api('/api/operations')])
   overviewData = overview
   cyclesData = cycles
   if (overview) renderOverview(overview)
@@ -493,6 +543,83 @@ async function loadPipeline() {
     const lastCompleted = cycles.find(c => c.completed)
     if (lastCompleted) renderFunnel(document.getElementById('funnel'), lastCompleted.funnel)
   }
+  if (ops) renderOperations(ops)
+}
+
+function renderRvsTrend(rvs) {
+  const summaryEl = document.getElementById('rvs-summary')
+  const chartEl = document.getElementById('chart-rvs')
+  const clusterEl = document.getElementById('rvs-cluster-means')
+  if (!rvs || rvs.empty) {
+    summaryEl.innerHTML = `<span class="empty">${rvs?.hint || 'available after the next production cycle'}</span>`
+    chartEl.innerHTML = ''
+    clusterEl.innerHTML = ''
+    return
+  }
+  const s = rvs.summary
+  summaryEl.innerHTML = `
+    <div class="stat"><span class="stat-value">${s.latest.rvs.toFixed(1)}</span><span class="stat-label">latest cycle</span></div>
+    ${s.meanLast20 != null ? `<div class="stat"><span class="stat-value">${s.meanLast20.toFixed(1)}</span><span class="stat-label">mean last 20</span></div>` : ''}
+    <div class="stat"><span class="stat-value">${s.cycleCount}</span><span class="stat-label">cycles tracked</span></div>
+  `
+  const data = rvs.series.map((r) => ({
+    label: `${r.cycleId.slice(5, 10)} ${r.cycleHour}`,
+    value: r.rvs,
+  }))
+  renderLineChart(chartEl, data, 'value', { labelFn: (d) => d.label, unit: '' })
+  if (s.clusterMeansLast20) {
+    const c = s.clusterMeansLast20
+    const fmt = (v) => v == null ? '—' : v.toFixed(0)
+    clusterEl.innerHTML = `cluster means (last 20): picking ${fmt(c.picking)} · writing ${fmt(c.writing)} · briefing ${fmt(c.briefing)} · sourcing ${fmt(c.sourcing)} · coverage ${fmt(c.coverage)}`
+  }
+}
+
+function renderBlockAdoption(blocks) {
+  const summaryEl = document.getElementById('block-adoption-summary')
+  const t = blocks.recentTiers
+  const total = t.shape + t.cheap + t.charts + t.other || 1
+  const shapePct = (t.shape / total * 100).toFixed(0)
+  summaryEl.innerHTML = `
+    <div class="stat"><span class="stat-value">${t.shape}</span><span class="stat-label">shape-specific blocks</span></div>
+    <div class="stat"><span class="stat-value">${t.cheap}</span><span class="stat-label">cheap blocks</span></div>
+    <div class="stat"><span class="stat-value">${t.charts}</span><span class="stat-label">chart blocks</span></div>
+    <div class="stat"><span class="stat-value">${shapePct}%</span><span class="stat-label">share-specific share</span></div>
+  `
+  // Per-type bar list — recent 14 days only
+  const types = Object.entries(blocks.recentTypes).sort((a, b) => b[1] - a[1])
+  const items = types.map(([type, count]) => ({ label: type, value: count, display: String(count) }))
+  renderBars(document.getElementById('block-adoption-bars'), items)
+}
+
+function renderOperations(ops) {
+  // NewsAPI tokens — line chart over the last ~35 cycles
+  const tokenSummary = document.getElementById('ops-tokens-summary')
+  tokenSummary.innerHTML = `
+    <div class="stat"><span class="stat-value">${ops.summary.tokenSum}</span><span class="stat-label">tokens last ${ops.summary.cycles} cycles</span></div>
+    <div class="stat"><span class="stat-value">${ops.summary.tokenAvg}</span><span class="stat-label">per cycle (avg)</span></div>
+  `
+  const tokenData = ops.series.map((c) => ({ label: `${c.date?.slice(5)} ${c.hour}`, value: c.tokens || 0 }))
+  renderLineChart(document.getElementById('chart-newsapi-tokens'), tokenData, 'value', { labelFn: (d) => d.label, unit: '' })
+
+  // Trends pick rate — line chart of picked / offered per cycle
+  const trendSummary = document.getElementById('ops-trends-summary')
+  trendSummary.innerHTML = `
+    <div class="stat"><span class="stat-value">${(ops.summary.trendsPickRate * 100).toFixed(0)}%</span><span class="stat-label">pick rate (rolling)</span></div>
+  `
+  const trendData = ops.series.map((c) => ({
+    label: `${c.date?.slice(5)} ${c.hour}`,
+    value: c.trendsOffered ? Math.round((c.trendsPicked || 0) / c.trendsOffered * 100) : 0,
+  }))
+  renderLineChart(document.getElementById('chart-trends-pick'), trendData, 'value', { labelFn: (d) => d.label, unit: '%' })
+
+  // Backfill — count of cycles that fired and that failed
+  const bfEl = document.getElementById('ops-backfill-summary')
+  bfEl.innerHTML = `
+    <div class="stat-row">
+      <div class="stat"><span class="stat-value">${ops.summary.backfillFireCount}</span><span class="stat-label">cycles needed backfill</span></div>
+      <div class="stat"><span class="stat-value" style="color:${ops.summary.backfillFailCount > 0 ? 'var(--amber)' : 'inherit'}">${ops.summary.backfillFailCount}</span><span class="stat-label">cycles backfill failed</span></div>
+    </div>
+  `
 }
 
 function renderFeedHealth(data) {
@@ -775,8 +902,10 @@ function renderFunnelTrend(cycles) {
 
 // ── Quality Tab ───────────────────────────────────────────────
 async function loadQuality() {
-  const q = await api('/api/quality')
+  const [q, blocks, rvs] = await Promise.all([api('/api/quality'), api('/api/blocks'), api('/api/rvs-trend')])
   if (!q) return
+  if (blocks && !blocks.empty) renderBlockAdoption(blocks)
+  renderRvsTrend(rvs)
 
   // Categories
   if (q.categories) {
@@ -1192,6 +1321,69 @@ function regionBreakdown(breakdown) {
   return Object.entries(breakdown).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${k}\u00a0${v}`).join(' ')
 }
 
+// ── Autoresearch Tab ──────────────────────────────────────────
+async function loadAutoresearch() {
+  const data = await api('/api/autoresearch')
+  const totalsEl = document.getElementById('ar-totals')
+  const sessionsEl = document.getElementById('ar-sessions')
+  const emptyEl = document.getElementById('ar-empty')
+  if (!data || data.empty) {
+    totalsEl.innerHTML = ''
+    sessionsEl.innerHTML = ''
+    emptyEl.hidden = false
+    if (data?.hint) emptyEl.textContent = data.hint
+    return
+  }
+  emptyEl.hidden = true
+
+  const s = data.summary
+  totalsEl.innerHTML = `
+    <div class="stat"><span class="stat-value">${s.sessionCount}</span><span class="stat-label">sessions</span></div>
+    <div class="stat"><span class="stat-value">${s.totalIters}</span><span class="stat-label">total iterations</span></div>
+    <div class="stat"><span class="stat-value">${s.totalAccepted}</span><span class="stat-label">accepted diffs</span></div>
+  `
+
+  const rows = data.sessions.map((sess) => {
+    if (sess.error) {
+      return `<tr><td>${escapeHTML(sess.sessionId)}</td><td colspan="6" style="color:var(--red)">parse error: ${escapeHTML(sess.error)}</td></tr>`
+    }
+    const baseline = sess.baselineRvs?.toFixed(1) ?? '—'
+    const best = sess.bestRvs?.toFixed(1) ?? '—'
+    const delta = sess.delta != null
+      ? `<span style="color:${sess.delta > 0 ? 'var(--green, #4a9a4a)' : sess.delta < 0 ? 'var(--red)' : 'inherit'}">${sess.delta > 0 ? '+' : ''}${sess.delta.toFixed(1)}</span>`
+      : '—'
+    const started = sess.startedAt ? new Date(sess.startedAt).toISOString().slice(0, 16).replace('T', ' ') : '—'
+    const acceptedDetail = sess.accepted.length > 0
+      ? sess.accepted.map((a) => `<div style="font-size:var(--size-xs);margin-top:0.25rem"><strong>iter ${a.iter}</strong> Δ${a.delta > 0 ? '+' : ''}${a.delta?.toFixed(2)} → <code>${escapeHTML(a.file)}</code> (${escapeHTML(a.targetCluster)})<br><span style="color:var(--text-secondary)">${escapeHTML(a.rationale?.slice(0, 200) || '')}</span></div>`).join('')
+      : '<span class="empty" style="font-size:var(--size-xs)">no accepted diffs</span>'
+    return `
+      <tr>
+        <td><code>${escapeHTML(sess.sessionId)}</code><br><span style="font-size:var(--size-xs);color:var(--text-secondary)">${started}</span></td>
+        <td>${baseline}</td>
+        <td>${best}</td>
+        <td>${delta}</td>
+        <td>${sess.iterCount}</td>
+        <td><span style="color:${sess.acceptedCount > 0 ? 'inherit' : 'var(--text-secondary)'}">${sess.acceptedCount}</span> / ${sess.rejectedCount}</td>
+        <td>${acceptedDetail}</td>
+      </tr>
+    `
+  }).join('')
+
+  sessionsEl.innerHTML = `
+    <table class="trend-table">
+      <thead>
+        <tr><th>session</th><th>baseline</th><th>best</th><th>Δ</th><th>iters</th><th>acc / rej</th><th>accepted diffs</th></tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+  `
+}
+
+function escapeHTML(s) {
+  if (s == null) return ''
+  return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]))
+}
+
 // ── Experiment Tab ────────────────────────────────────────────
 async function loadExperiment() {
   const data = await api('/api/experiment')
@@ -1202,32 +1394,35 @@ async function loadExperiment() {
   const expHistory = document.getElementById('exp-history')
   const tabDot = document.getElementById('exp-tab-dot')
 
-  if (data.active) {
+  const activeList = data.activeAll && data.activeAll.length ? data.activeAll : (data.active ? [data.active] : [])
+  if (activeList.length) {
     tabDot.hidden = false
-    const e = data.active
     const t = data.tracking
 
-    // Progress bar
-    const pct = t ? Math.min(Math.round(t.daysElapsed / t.daysTotal * 100), 100) : 0
-    const daysLeft = t ? Math.max(t.daysTotal - t.daysElapsed, 0) : '?'
+    expActive.innerHTML = activeList.map((e) => {
+      const daysElapsed = Math.max(0, Math.floor((Date.now() - new Date(e.startDate).getTime()) / 86400000))
+      const daysTotal = Math.max(1, Math.floor((new Date(e.evaluateAfter).getTime() - new Date(e.startDate).getTime()) / 86400000))
+      const cardPct = Math.min(Math.round(daysElapsed / daysTotal * 100), 100)
+      return `<div class="exp-card exp-active-card">
+        <div class="exp-header"><strong>${esc(e.parameter || e.id)}</strong><span class="exp-change">${esc(String(e.oldValue ?? ''))} \u2192 ${esc(String(e.newValue ?? ''))}</span></div>
+        <div class="exp-detail">${esc(e.hypothesis || '')}</div>
+        <div class="exp-progress">
+          <div class="exp-progress-bar"><div class="exp-progress-fill" style="width:${cardPct}%"></div></div>
+          <span class="exp-progress-label">day ${daysElapsed} of ${daysTotal} \u2014 evaluates ${e.evaluateAfter}</span>
+        </div>
+        <div class="exp-meta">file: ${esc(e.file || '')} \u00b7 metric: ${esc(e.targetMetric || '')} ${e.targetDirection || ''}</div>
+        <div class="exp-baseline-section">
+          <span class="label">baseline</span>
+          ${e.baseline ? Object.entries(e.baseline).map(([k, v]) => `<span class="exp-baseline-item">${k}: <strong>${esc(String(v))}</strong></span>`).join('') : ''}
+        </div>
+      </div>`
+    }).join('')
 
-    expActive.innerHTML = `<div class="exp-card exp-active-card">
-      <div class="exp-header"><strong>${esc(e.parameter || e.id)}</strong><span class="exp-change">${e.oldValue} \u2192 ${e.newValue}</span></div>
-      <div class="exp-detail">${esc(e.hypothesis || '')}</div>
-      <div class="exp-progress">
-        <div class="exp-progress-bar"><div class="exp-progress-fill" style="width:${pct}%"></div></div>
-        <span class="exp-progress-label">day ${t?.daysElapsed ?? '?'} of ${t?.daysTotal ?? '?'} \u2014 evaluates ${e.evaluateAfter}</span>
-      </div>
-      <div class="exp-meta">file: ${esc(e.file || '')} \u00b7 metric: ${esc(e.targetMetric || '')} ${e.targetDirection || ''}</div>
-      <div class="exp-baseline-section">
-        <span class="label">baseline</span>
-        ${e.baseline ? Object.entries(e.baseline).map(([k, v]) => `<span class="exp-baseline-item">${k}: <strong>${v}</strong></span>`).join('') : ''}
-      </div>
-    </div>`
-
-    // Tracking chart — show daily metric values with baseline period
-    if (t?.dailyMetrics?.length) {
-      renderExperimentChart(expTracking, t.dailyMetrics, e)
+    // Tracking chart — only meaningful for category-count experiments (legacy single-experiment path)
+    if (t?.dailyMetrics?.length && activeList.length === 1) {
+      renderExperimentChart(expTracking, t.dailyMetrics, activeList[0])
+    } else if (activeList.length > 1) {
+      expTracking.innerHTML = `<span class="empty">${activeList.length} experiments active \u2014 chart suppressed; check target metrics on quality / pipeline tabs</span>`
     } else {
       expTracking.innerHTML = '<span class="empty">tracking data available after first full day</span>'
     }

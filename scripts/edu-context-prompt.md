@@ -251,19 +251,22 @@ type TimelineBlock = {
   source?: number
 }
 
-// Peer-position dot-on-strip — locates a SUBJECT country among its peers on
-// a single metric. The renderer draws a horizontal axis with grey dots for
-// each peer and an emphasis dot for `subjectCc`. Headline shows "#7 of 145".
-// Use when the article's claim is comparative ranking — "Pakistan has one of
-// the world's highest debt-to-GDP ratios", "Saudi Arabia is the largest oil
-// exporter". Don't use when peers ≤ 4 — that's a `compare` block. Need ≥5
-// peers including the subject; values must be comparable on the same axis.
+// Peer-position dot-on-strip — locates a SUBJECT among its peers on a single
+// metric. Two modes: country (peers keyed by ISO-2 `cc`, subject by `subjectCc`,
+// flag rendered) and non-country (peers keyed by free-text `label`, subject by
+// `subjectLabel`, label rendered). Use the non-country mode for cases,
+// companies, indicators, or any ranking where the subject isn't a country —
+// e.g. largest ISDS awards, hyperscaler GPU capacity, central-bank policy
+// rates. Don't use when peers ≤ 4 — that's a `compare` block. Need ≥5 peers
+// including the subject; values must be comparable on the same axis.
 type RankBlock = {
   type: 'rank'
-  metric: string              // "Debt-to-GDP", "Oil exports per capita"
-  unit?: string               // "%", "$bn", "barrels/day"
-  subjectCc: string           // ISO-2 — must also appear in peers[]
-  peers: { cc: string; value: number }[]
+  metric: string              // "Debt-to-GDP", "Award amount", "GPU capacity"
+  unit?: string               // "%", "$bn", "MW"
+  // Provide exactly ONE of these — and the matching key on each peer:
+  subjectCc?: string          // ISO-2; peers use { cc, value }
+  subjectLabel?: string       // free-text; peers use { label, value }
+  peers: { cc?: string; label?: string; value: number }[]
   source?: number
 }
 
@@ -316,7 +319,9 @@ Two tiers separated by failure mode, not by enthusiasm:
 - **Shape-specific** (timeline, rank, sankey, treemap) — also free token-wise, but each has a SHAPE the body must already match. They're not interchangeable with `compare`: a `compare` of five rows is not a `rank` (rank needs the subject's percentile-position to be the point); a two-bar `compare` is not a `treemap` (treemap needs composition that adds to a whole); a list of dated events under a heading is not a `timeline` (timeline needs a multi-period arc with a turning point). Pick them when the entry's argument *is* that shape — and skip them otherwise. A forced rank/sankey/treemap reads worse than no block at all. **However**: if the shape genuinely fits and you can name the peers/flow-stages/composition-items from training knowledge with values you're confident in, emit it — these are the blocks that make a brief feel rich rather than thin.
 - **Guarded** (chart, multi-chart, quote) — real failure modes. Charts drop silently if the `ref` id is not in the live-indicators list. Quote wording must be canonical, not reconstructed. Canonical text (constitutional clauses, treaty articles, famous on-record speech lines) is the documented exception on the quote side — safe to cite verbatim.
 
-**Fabrication gate for shape-specific blocks.** Before emitting a `rank`, `sankey`, or `treemap`, ask: "Could I name the peers / nodes-and-links / items WITHOUT inventing numbers?" If you'd be guessing values to fill the slots, skip the block — a `compare` of the two or three things you actually know reads better than a `rank` of five things where three values are made up. The reverse trap is also real: do not skip a `sankey` just because it feels novel. Energy mix at source → end-use, refugee origins → host countries, sanctions revenue routed through intermediaries, central-bank reserves by currency composition — these are arcs and flows you know from training. Use the right shape.
+**Fabrication gate for shape-specific blocks.** The gate is against *fabricated specifics* — citing "$2.1tn" when you don't know whether it's $2.1 or $2.7, naming "37%" when you only know "about a third". The gate is NOT against *approximate magnitudes*: "roughly half", "about $30bn", "a few hundred", "~10×", "≈40%", "low single digits", "the dominant share" are normal prose and belong in the brief. Treemap items can carry approximate values that capture the ratio (China 43, India 4, Russia 4 reads correctly even if the truth is 42.7 / 4.1 / 3.8). Sankey link weights only need to be comparable on the same scale — orders of magnitude matter, second-decimal precision does not. Rank peers must be on the same metric and the subject's relative position must be clear, not exact.
+
+Before emitting a `rank`, `sankey`, or `treemap`, ask: "Can I name the peers / nodes-and-links / items, and assign approximate magnitudes that preserve the actual ratios?" If yes, emit it. If you'd be guessing the SHAPE itself (which countries are even in the league table, what stages a flow has), then skip — a `compare` of the two or three things you actually know reads better. But if you know the shape and only the precise numbers are uncertain, emit with approximate values labeled where useful ("~$30bn", "≈40%"). Energy mix at source → end-use, refugee origins → host countries, sanctions revenue routed through intermediaries, central-bank reserves by currency composition, GDP by sector for major economies, top producers of any major commodity — these are arcs and flows you know from training. Use the right shape.
 
 ## Pre-flight signal scan
 
@@ -330,7 +335,7 @@ After drafting entries, run this scan. For *always-cheap* blocks (prose, quiz, l
 | Names 2+ specific people with distinct roles and tenures | `actors` |
 | Cites ≥3 comparable peers — or a sharp 2-peer contrast worth weighting | `compare` |
 | Story is COMPOSITION (energy mix, GDP by sector, vote share by party, casualty categories) | `compare` with `segments` (stacked) — or `treemap` if the lead is "X dwarfs everyone" |
-| Subject country sits at an extreme position among its peers on one metric (and you can name ≥5 peer values) | `rank` |
+| Subject (country, case, company, indicator) sits at an extreme position among ≥5 peers on one metric, with values you can name | `rank` (country mode via `subjectCc`, non-country via `subjectLabel`) |
 | Story has a multi-decade ARC with named events / phases (treaty → collapse → re-emergence; sanctions cycle; election arc; occupation) | `timeline` |
 | Story is a FLOW or CASCADE through stages (circular debt, refugee origins → hosts, energy generation → end-use, aid donor → intermediary → recipient) | `sankey` |
 | Contains a term, foreign-language word, distinction, or numeric contrast worth remembering | `prose` with inline `**bold**` / `*italic*` |
