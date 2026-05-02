@@ -602,6 +602,17 @@ if (existsSync(gdacsSrc)) {
   console.log(`  Built: api/gdacs.json (${g.alerts?.length ?? 0} alerts, ${detailCount} details)`)
 }
 
+// Conflict-events snapshot — UCDP candidate GED, parallel to GDACS but
+// for the mobile globe's conflict layer. Pure passthrough: pipeline
+// writes the API-shape directly, build mirrors. Missing input degrades
+// gracefully (mobile renders an empty conflict layer on 404).
+const conflictSrc = join(ROOT, 'content', '.conflict.json')
+if (existsSync(conflictSrc)) {
+  cpSync(conflictSrc, join(DIST_DIR, 'api', 'conflict.json'))
+  const c = JSON.parse(readFileSync(conflictSrc, 'utf8'))
+  console.log(`  Built: api/conflict.json (${c.events?.length ?? 0} events, ${c.windowStart} → ${c.windowEnd})`)
+}
+
 // Trends snapshot — full indicator catalog with values/periods. Mobile
 // EntitySheet fetches this to render charts for any entity tapped in an
 // article body. Ships today's snapshot as api/trends.json (single file,

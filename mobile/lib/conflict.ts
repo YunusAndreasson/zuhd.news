@@ -60,12 +60,9 @@ export function eventAgeDays(event: ConflictEvent, now: number = Date.now()): nu
   return Math.max(0, (now - t) / 86_400_000);
 }
 
-/** Source display — until we have a real-data feed, every fixture row
- *  carries `source: "PROTOTYPE_FIXTURE"`, and the sheet should say so
- *  loud enough that nobody mistakes it for journalism. Real ACLED feeds
- *  would put the originating outlet name in `source`; this fallthrough
- *  preserves it verbatim. */
+/** Source display — UCDP rows carry the originating wire/outlet in
+ *  `source` (e.g. "Reuters", "AFP", or a Telegram handle). When the
+ *  field is empty we attribute the dataset itself: UCDP. */
 export function displayConflictSource(source: string): string {
-  if (source === 'PROTOTYPE_FIXTURE') return 'Prototype data — not live ACLED';
-  return source.length > 0 ? source : 'ACLED';
+  return source.length > 0 ? source : 'UCDP';
 }

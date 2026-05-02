@@ -282,6 +282,17 @@ $BODY_LENGTHS
   GDACS_EXIT=$?
   echo "GDACS exit: $GDACS_EXIT — $((SECONDS - T34C))s" | tee -a "$LOG_FILE"
 
+  # Stage 3.4c2: Conflict-events snapshot — UCDP candidate GED for the
+  # mobile globe's conflict layer. Cached upstream-side at 6h since UCDP
+  # candidate refreshes monthly. Fail-soft: prior snapshot stays in place
+  # on any error and mobile renders empty when /api/conflict.json 404s.
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.4c2: Conflict snapshot ---" | tee -a "$LOG_FILE"
+  T34C2=$SECONDS
+  timeout 120 node scripts/fetch-conflict.js >> "$LOG_FILE" 2>&1
+  CONFLICT_EXIT=$?
+  echo "Conflict exit: $CONFLICT_EXIT — $((SECONDS - T34C2))s" | tee -a "$LOG_FILE"
+
   # Stage 3.4d: GDACS narration — Opus writes a 2-3 sentence narrative for
   # each Orange/Red alert grounded in country profile + recent weather +
   # nearby chokepoint. Cached by inputs-hash so multi-day events aren't

@@ -172,26 +172,21 @@ export const EVENT_TYPE_LABEL: Readonly<Record<EventType, string>> = {
 };
 
 function kineticPath(): SkPath {
-  // Asymmetric impact burst — five rays radiating from a centre point at
-  // uneven angles and varied lengths. The asymmetry distinguishes it from
-  // the drought sun (8 evenly-spaced rays) so kinetic violence reads as
-  // "impact" rather than "radiance" at a glance. Centre is a small ring
-  // under stroke style — grounds the mark like the earthquake epicentre.
+  // Two crossed diagonals — the universal "site of incident / casualty"
+  // mark used in conflict-mapping vocabularies (ICRC, ACLED). Two strokes
+  // total: minimal at globe scale, geometrically opposite to the drought
+  // sun (radial → orthogonal-rotated cross), and distinct from every
+  // other glyph in the family (no circles, no curves, no fill). Replaced
+  // the prior 6-stroke asymmetric burst (2026-05-02) which read as noise
+  // when 30-50 markers crowd the same theatre.
   const p = Skia.Path.Make();
   const cx = GLYPH_HALF;
   const cy = GLYPH_HALF;
-  p.addCircle(cx, cy, 1.6);
-  const rays: { a: number; inner: number; outer: number }[] = [
-    { a: -1.3, inner: 3, outer: 8.5 },
-    { a: -2.4, inner: 3, outer: 7.5 },
-    { a: 0.4, inner: 3, outer: 7 },
-    { a: 1.9, inner: 3, outer: 8 },
-    { a: -2.9, inner: 3, outer: 6.5 },
-  ];
-  for (const r of rays) {
-    p.moveTo(cx + Math.cos(r.a) * r.inner, cy + Math.sin(r.a) * r.inner);
-    p.lineTo(cx + Math.cos(r.a) * r.outer, cy + Math.sin(r.a) * r.outer);
-  }
+  const r = 5.5;
+  p.moveTo(cx - r, cy - r);
+  p.lineTo(cx + r, cy + r);
+  p.moveTo(cx + r, cy - r);
+  p.lineTo(cx - r, cy + r);
   return p;
 }
 

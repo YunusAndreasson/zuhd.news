@@ -64,15 +64,11 @@ describe('eventAgeDays', () => {
 });
 
 describe('displayConflictSource', () => {
-  it('flags prototype fixture rows so the sheet says so loudly', () => {
-    expect(displayConflictSource('PROTOTYPE_FIXTURE')).toMatch(/prototype/i);
-  });
-
   it('passes a real source through verbatim', () => {
     expect(displayConflictSource('Reuters')).toBe('Reuters');
   });
 
-  it('falls back to ACLED when source is empty', () => {
-    expect(displayConflictSource('')).toBe('ACLED');
+  it('falls back to UCDP when source is empty', () => {
+    expect(displayConflictSource('')).toBe('UCDP');
   });
 });
