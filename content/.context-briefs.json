@@ -98422,5 +98422,1053 @@
     "label": "Naval Blockade & Hormuz",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-04-30-subnautica-2-cinematic-trailer-what-you-missed": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT EARLY ACCESS IS",
+        "body": "Steam's Early Access program, launched in 2013, lets studios sell unfinished games to players who fund development and shape it through feedback. The original Subnautica spent three years in Early Access before its 2018 1.0 release — a model that turned a small Unknown Worlds team into a studio worth acquiring.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Early Access flips the publisher model: instead of a studio borrowing against future sales, *players themselves* become the financiers, paying full price for a game that may never ship."
+          }
+        ]
+      },
+      {
+        "heading": "THE EARNOUT TRAP",
+        "body": "When a big publisher acquires a studio, part of the price is often deferred — paid only if the studio hits revenue or release milestones. Earnouts align incentives on paper but create a structural conflict: the acquirer controls the conditions that trigger the payment it owes.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do acquirers sometimes prefer earnouts over a single upfront price?",
+            "options": [
+              "They reduce upfront cash and shift risk onto the sellers",
+              "They are tax-free under most jurisdictions",
+              "They are required by securities law for game studios",
+              "They eliminate the need for due diligence"
+            ],
+            "correct": 0,
+            "explanation": "Earnouts let the buyer pay less now and only top up if the acquired team delivers — but they also give the buyer levers to delay or block the milestones."
+          }
+        ]
+      },
+      {
+        "heading": "WHO KRAFTON IS",
+        "body": "Krafton is the South Korean publisher behind PUBG: Battlegrounds, one of the best-selling games in history. Flush with PUBG cash, it acquired Unknown Worlds in 2021 — part of a wave of Korean and Chinese publishers buying Western studios after the mobile-gaming boom funded their war chests.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Unknown Worlds",
+                "value": "2021, ~$500m",
+                "cc": "US"
+              },
+              {
+                "label": "Striking Distance",
+                "value": "2020",
+                "cc": "US"
+              },
+              {
+                "label": "ReLU Games",
+                "value": "2022",
+                "cc": "KR"
+              },
+              {
+                "label": "Tango Gameworks",
+                "value": "2024 (assets)",
+                "cc": "JP"
+              }
+            ],
+            "label": "selected Krafton acquisitions"
+          }
+        ]
+      },
+      {
+        "heading": "KOREA'S WRONGFUL-DISMISSAL DOCTRINE",
+        "body": "South Korean labor courts apply a 'just cause' standard that is markedly stricter than US at-will employment. Reinstatement — not just back pay — is the default remedy when a firing is found to be pretextual, which is why a court could put Ted Gill back in the CEO seat rather than simply award damages."
+      },
+      {
+        "heading": "WHY THE DELAY MATTERS",
+        "body": "A founder fired mid-development typically means a ship slip: institutional knowledge walks out, milestones get renegotiated, and the studio's roadmap gets rewritten by an interim team. Subnautica 2 was originally targeted for 2025; the leadership fight pushed it into 2026 Early Access — itself a sign Krafton wants revenue flowing before the game is finished."
+      }
+    ],
+    "generatedAt": "2026-05-02T12:23:44.415Z",
+    "label": "Early Access & Studio Earnouts",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-04-30-trump-afghan-allies-drc-asylum-outsourcing-minerals": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Wealthy states have outsourced asylum processing for decades: Australia to Nauru and Papua New Guinea since 2001, the UK's failed Rwanda scheme in 2022-2024, Italy to Albania in 2024. The pattern transfers the legal obligation while keeping the migrants beyond the host's courts.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2001",
+                "label": "Australia → Nauru/PNG",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2013",
+                "label": "Israel → Rwanda/Uganda"
+              },
+              {
+                "year": "2022",
+                "label": "UK–Rwanda agreement"
+              },
+              {
+                "year": "2024",
+                "label": "Italy → Albania camps"
+              },
+              {
+                "year": "2025",
+                "label": "US → DRC (Afghans)"
+              }
+            ],
+            "label": "the outsourcing playbook"
+          }
+        ]
+      },
+      {
+        "heading": "WHY COBALT",
+        "body": "The DRC produces roughly 70% of the world's cobalt, the metal that stabilizes lithium-ion battery cathodes. China refines most of it. Every Western EV and data-center battery strategy runs through Katanga province — which is why Kinshasa has leverage Washington cannot ignore.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "DR Congo",
+                "value": 70,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Indonesia",
+                "value": 7,
+                "tone": "neutral"
+              },
+              {
+                "label": "Russia",
+                "value": 4,
+                "tone": "neutral"
+              },
+              {
+                "label": "Australia",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Philippines",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Cuba",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Canada",
+                "value": 2,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global cobalt mine production, 2024 (share)"
+          }
+        ]
+      },
+      {
+        "heading": "THE M23 PROBLEM",
+        "body": "M23 is a Tutsi-led rebel group operating in eastern DRC's North Kivu province. UN expert panels have repeatedly documented Rwandan military backing — troops, weapons, command. Kigali denies it. The group seized Goma in January 2025, putting the cobalt heartland under contested control.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CD",
+              "RW",
+              "UG",
+              "BI",
+              "TZ"
+            ],
+            "label": "the Great Lakes theatre",
+            "markers": [
+              {
+                "lat": -1.6792,
+                "lng": 29.2228,
+                "label": "Goma (M23-held)"
+              },
+              {
+                "lat": -10.7167,
+                "lng": 25.4667,
+                "label": "Kolwezi cobalt belt"
+              },
+              {
+                "lat": -4.3217,
+                "lng": 15.3125,
+                "label": "Kinshasa"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SIV PROMISE",
+        "body": "The Special Immigrant Visa, created by Congress in 2009, was the legal commitment to Afghans who worked for US forces — interpreters, fixers, contractors. Roughly 150,000 remain in the pipeline. The August 2021 Kabul evacuation processed only a fraction; the rest have waited in Pakistan, Qatar, and the UAE.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The SIV statute promises resettlement *in the United States* — not in a third country. Routing applicants to Kinshasa raises the question of whether the **statutory obligation** can be discharged abroad."
+          }
+        ]
+      },
+      {
+        "heading": "THE RECIPIENT'S CALCULUS",
+        "body": "States that accept outsourced migrants demand payment, recognition, or both. Rwanda extracted £140m from the UK before processing a single asylum seeker. Nauru's economy is roughly half-funded by Australian processing fees. The DRC's price is a security guarantee against M23 — far costlier than cash.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of the world's mined cobalt comes from the Democratic Republic of Congo?",
+            "options": [
+              "About 30%",
+              "About 50%",
+              "About 70%",
+              "About 90%"
+            ],
+            "correct": 2,
+            "explanation": "DRC produces roughly 70% of mined cobalt. China refines the majority of it, which is why Western supply-chain strategy runs through Katanga."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL QUESTION",
+        "body": "The 1951 Refugee Convention's non-refoulement principle bars sending asylum seekers to places where they face persecution. It does not clearly bar sending them to safe third countries — but the UK Supreme Court ruled in 2023 that Rwanda was not, in fact, safe. The DRC, with active conflict in its east, faces a steeper version of that test."
+      }
+    ],
+    "generatedAt": "2026-05-02T12:24:18.019Z",
+    "label": "Asylum Outsourcing & Minerals Diplomacy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-01-hormuz-asia-food-energy-tractors-fertiliser-diesel": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 80% FACT",
+        "body": "Roughly four-fifths of crude leaving the Strait of Hormuz heads east — to China, India, Japan, South Korea, and the ASEAN economies. Europe and the Americas are marginal customers of Gulf oil; Asia is the chokepoint's real downstream.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "IN",
+              "CN",
+              "JP",
+              "KR",
+              "ID"
+            ],
+            "label": "Hormuz oil flows east",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "DIESEL IS THE TRANSMISSION BELT",
+        "body": "A barrel of crude is not eaten — it becomes diesel that runs tractors, irrigation pumps, trucks hauling grain to port, and the boilers that synthesize urea fertiliser. When crude rises, every step from field to plate repays the increase.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "crude",
+                "label": "Gulf crude"
+              },
+              {
+                "id": "diesel",
+                "label": "Diesel"
+              },
+              {
+                "id": "gas",
+                "label": "Natural gas"
+              },
+              {
+                "id": "tractor",
+                "label": "Tractors & pumps"
+              },
+              {
+                "id": "urea",
+                "label": "Urea fertiliser"
+              },
+              {
+                "id": "freight",
+                "label": "Freight & trucking"
+              },
+              {
+                "id": "food",
+                "label": "Food prices"
+              }
+            ],
+            "links": [
+              {
+                "source": "crude",
+                "target": "diesel",
+                "value": 60
+              },
+              {
+                "source": "crude",
+                "target": "gas",
+                "value": 20
+              },
+              {
+                "source": "diesel",
+                "target": "tractor",
+                "value": 35
+              },
+              {
+                "source": "diesel",
+                "target": "freight",
+                "value": 25
+              },
+              {
+                "source": "gas",
+                "target": "urea",
+                "value": 20
+              },
+              {
+                "source": "tractor",
+                "target": "food",
+                "value": 35
+              },
+              {
+                "source": "urea",
+                "target": "food",
+                "value": 20
+              },
+              {
+                "source": "freight",
+                "target": "food",
+                "value": 25
+              }
+            ],
+            "label": "how a barrel of Gulf crude reaches the dinner plate"
+          }
+        ]
+      },
+      {
+        "heading": "HABER-BOSCH AND THE GAS LINK",
+        "body": "Modern nitrogen fertiliser is made by the **Haber-Bosch** process — atmospheric nitrogen plus hydrogen cracked from natural gas, fused under extreme pressure. Roughly half of humanity is alive because of it; the same process makes food prices a hostage of gas prices.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Without **Haber-Bosch**, demographers estimate the planet could feed perhaps *four billion people*. The Gulf supplies a disproportionate share of the gas feedstock that keeps the other half fed."
+          }
+        ]
+      },
+      {
+        "heading": "THE FUEL-SUBSIDY TRAP",
+        "body": "Indonesia, India, Malaysia, and Egypt all subsidize diesel at the pump. When import costs spike, the choice is fiscal blowout or street protest — Jakarta in 1998, Cairo in 1977, Jakarta again in 2022 all began as fuel-price riots.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~50% via Hormuz",
+                "cc": "CN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": "~60%",
+                "cc": "IN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "South Korea",
+                "value": "~70%",
+                "cc": "KR",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Japan",
+                "value": "~80%",
+                "cc": "JP",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Indonesia",
+                "value": "~40%",
+                "cc": "ID",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Asian importers' exposure to Hormuz crude"
+          }
+        ]
+      },
+      {
+        "heading": "WEEKS, NOT MONTHS",
+        "body": "Strategic petroleum reserves cover roughly 90 days of imports for IEA members; most Asian importers hold less. Fertiliser inventories at planting season run two to four weeks. A Hormuz disruption shows up at the dinner table within a single cropping cycle.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How long do fertiliser stocks at planting season typically last before depletion?",
+            "options": [
+              "A few days",
+              "2–4 weeks",
+              "3–6 months",
+              "Over a year"
+            ],
+            "correct": 1,
+            "explanation": "Fertiliser is bulky and capital-intensive to store; importers run lean inventories timed to the planting calendar, which is why a chokepoint shock transmits to crops within a single season."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1973 RHYME",
+        "body": "The Arab oil embargo of 1973 quadrupled crude prices and triggered a global food crisis the following year — Bangladesh's 1974 famine, the Sahel drought-and-fuel-price collapse, the Philippines rice riots. Fuel and food crises run on the same clock because they run through the same molecules."
+      }
+    ],
+    "generatedAt": "2026-05-02T12:24:51.274Z",
+    "label": "Hormuz, Diesel & Asian Food Security",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-01-india-green-steel-scrap-shortage-electric-arc": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO ROUTES",
+        "body": "Steel is made one of two ways. The blast furnace burns coking coal to reduce iron ore — emitting roughly 2 tonnes of CO2 per tonne of steel. The electric arc furnace (EAF) melts scrap with electricity, cutting emissions by about 75%. The choice between them is the entire decarbonization story.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Steelmaking accounts for roughly **7-9% of global CO2 emissions** — more than aviation, shipping, and cement individually. The blast furnace is the single largest industrial emitter humans have ever built."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SCRAP IS THE CONSTRAINT",
+        "body": "An EAF needs scrap as feedstock. Scrap availability depends on how much steel a country put into buildings, cars, and infrastructure 30-50 years ago — the lag between construction and demolition. Countries that industrialized early have abundant scrap; countries still building don't.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "USA",
+                "value": "~70%",
+                "cc": "US",
+                "tone": "favorable",
+                "weight": 70
+              },
+              {
+                "label": "Turkey",
+                "value": "~70%",
+                "cc": "TR",
+                "tone": "favorable",
+                "weight": 70
+              },
+              {
+                "label": "EU",
+                "value": "~55%",
+                "cc": "EU",
+                "tone": "favorable",
+                "weight": 55
+              },
+              {
+                "label": "India",
+                "value": "~23%",
+                "cc": "IN",
+                "tone": "unfavorable",
+                "weight": 23
+              },
+              {
+                "label": "China",
+                "value": "~22%",
+                "cc": "CN",
+                "tone": "unfavorable",
+                "weight": 22
+              }
+            ],
+            "label": "scrap share of crude steel production, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE INDIAN STOCK PROBLEM",
+        "body": "India's per-capita steel stock is roughly 40 kg — against 8,000 kg in the US and 6,000 kg in China. The buildings and bridges that will become tomorrow's scrap have not been built yet. Even at aggressive growth, domestic scrap supply cannot match a doubling of output by 2035."
+      },
+      {
+        "heading": "WHERE SCRAP COMES FROM",
+        "body": "The global scrap trade is dominated by a handful of net exporters whose own steel demand has plateaued. The US, EU, Japan, and UK ship surplus to growth markets. Turkey is both the world's largest scrap importer and the largest EAF producer — the template India would have to follow.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "GB",
+              "DE",
+              "JP",
+              "TR",
+              "IN"
+            ],
+            "label": "the global scrap trade",
+            "caption": "net exporters (US, EU, Japan) supply net importers (Turkey, India)"
+          }
+        ]
+      },
+      {
+        "heading": "THE GREEN HYDROGEN ALTERNATIVE",
+        "body": "Where scrap runs short, the other low-carbon route is direct reduced iron (DRI) using green hydrogen instead of coking coal. Sweden's HYBRIT and H2 Green Steel have proven the chemistry; the obstacle is the cost of green hydrogen, currently 3-5x natural gas at industrial scale.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't India simply scale electric arc furnaces to hit its 2047 target?",
+            "options": [
+              "EAFs require more electricity than India's grid can supply",
+              "Domestic scrap supply is constrained by India's young building stock",
+              "Indian iron ore is incompatible with EAF technology",
+              "EAFs cannot produce structural steel grades"
+            ],
+            "correct": 1,
+            "explanation": "Scrap accumulates from demolished infrastructure built decades earlier. India's per-capita steel stock is a fraction of mature economies, so the scrap simply hasn't been laid down yet."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-02T12:25:17.481Z",
+    "label": "Scrap & the Steel Decarbonization Path",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-01-nepal-climate-resilience-education-rainwater-forest-fires": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE THIRD POLE",
+        "body": "The Hindu Kush-Himalaya holds more frozen water than anywhere outside the Arctic and Antarctic — feeding ten major river systems that supply nearly two billion people downstream. Nepal sits at its center.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NP",
+              "IN",
+              "CN",
+              "BT",
+              "PK",
+              "BD"
+            ],
+            "label": "the Hindu Kush-Himalaya watershed",
+            "caption": "ten rivers, two billion people downstream"
+          }
+        ]
+      },
+      {
+        "heading": "WHY NEPAL WARMS FASTER",
+        "body": "High-altitude regions warm at roughly twice the global average — a phenomenon called elevation-dependent warming. Snow and ice that once reflected sunlight melt to expose darker rock and soil, which absorb heat and accelerate the next melt. The feedback loop runs hottest above 4,000m.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism has a name: ***elevation-dependent warming***. The same dynamic that's stripping Annapurna's snowpack is shrinking glaciers across the Karakoram, Tien Shan, and Andes."
+          }
+        ]
+      },
+      {
+        "heading": "THE SNOW LEOPARD AS INDICATOR",
+        "body": "Snow leopards live between 3,000–5,500m and depend on blue sheep, which graze the alpine meadows that exist only in a narrow temperature band. When the snowline retreats upward, the meadows shrink against the rock ceiling above. The cat disappears before the headlines do."
+      },
+      {
+        "heading": "GLOF — THE ACUTE RISK",
+        "body": "Glacial Lake Outburst Floods form when meltwater pools behind unstable moraine dams. Nepal has identified at least 21 lakes at imminent risk; a single breach can release tens of millions of cubic meters in hours, scouring valleys 100km downstream. The 1985 Dig Tsho event destroyed a hydro plant, fourteen bridges, and thirty homes."
+      },
+      {
+        "heading": "THE REMITTANCE TRAP",
+        "body": "Roughly a quarter of Nepal's GDP comes from remittances — workers in the Gulf and Malaysia sending money home. Climate-driven crop failure pushes more young men abroad, hollowing out the labor force needed to maintain terraced farms and forests, which accelerates land degradation. Adaptation policy has to break this loop, not just describe it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Remittances account for roughly what share of Nepal's GDP?",
+            "options": [
+              "About 5%",
+              "About 10%",
+              "About 25%",
+              "About 50%"
+            ],
+            "correct": 2,
+            "explanation": "Remittances are ~22–27% of GDP — among the highest ratios globally, and a structural feature of Nepal's economy since the 2000s Gulf labor boom."
+          }
+        ]
+      },
+      {
+        "heading": "WHY TEACH IT YOUNG",
+        "body": "Climate adaptation in mountain societies is intergenerational knowledge — which slope to terrace, when to release irrigation channels, which forests to coppice. The traditional knowledge transfer broke when fathers left for Gulf labor. Schools are now the only institution still in the village every weekday."
+      }
+    ],
+    "generatedAt": "2026-05-02T12:25:45.188Z",
+    "label": "Nepal's Climate Frontline",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-01-uk-uyghur-genocide-recognition-five-years-no-policy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL THRESHOLD",
+        "body": "The 1948 Genocide Convention defines genocide as acts committed with intent to destroy a national, ethnical, racial, or religious group. Proving intent is famously hard — most mass atrocities get prosecuted as crimes against humanity instead, which has a lower bar.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Convention obliges signatories to *prevent and punish* — but enforcement runs through the **ICJ** or domestic courts, not through automatic sanctions."
+          }
+        ]
+      },
+      {
+        "heading": "WHO HAS DECLARED",
+        "body": "By 2024, parliaments in the UK, Canada, Netherlands, Belgium, Lithuania, Czechia, and France had passed Uyghur genocide motions. The US State Department made the formal executive determination in January 2021 — the only Western government where the executive, not just the legislature, has done so.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "GB",
+              "CA",
+              "NL",
+              "BE",
+              "LT",
+              "CZ",
+              "FR"
+            ],
+            "label": "states recognizing Uyghur genocide"
+          }
+        ]
+      },
+      {
+        "heading": "DECLARATION VS POLICY",
+        "body": "A parliamentary vote expresses the will of the legislature; it does not create law. Sanctions, import bans, and visa restrictions require separate statutory instruments. The US Uyghur Forced Labor Prevention Act (2021) is the rare case where recognition was paired with a binding enforcement mechanism — a rebuttable presumption that any Xinjiang-origin good is made with forced labour."
+      },
+      {
+        "heading": "THE COTTON AND POLYSILICON CHOKEPOINTS",
+        "body": "Xinjiang produces roughly 20% of the world's cotton and over 35% of global polysilicon — the feedstock for solar panels. Any serious import ban collides directly with apparel supply chains and the energy transition, which is why most governments declare and then defer.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Polysilicon",
+                "value": "~35%",
+                "weight": 35,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Cotton",
+                "value": "~20%",
+                "weight": 20,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Tomato paste",
+                "value": "~15%",
+                "weight": 15,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Xinjiang's share of global supply"
+          }
+        ]
+      },
+      {
+        "heading": "THE MAGNITSKY TOOLKIT",
+        "body": "The UK's Global Human Rights Sanctions Regulations (2020) — its Magnitsky regime — let ministers freeze assets and ban travel of named individuals without primary legislation. London used it against four Xinjiang officials in March 2021, in coordination with the EU, Canada, and US. No additional Xinjiang designations have followed."
+      },
+      {
+        "heading": "THE QUIZ",
+        "body": "The gap between recognition and enforcement is structural, not accidental — it lets governments register moral position without absorbing trade cost.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Western government's EXECUTIVE branch — not just legislature — has formally determined Uyghur genocide?",
+            "options": [
+              "United Kingdom",
+              "Canada",
+              "United States",
+              "Germany"
+            ],
+            "correct": 2,
+            "explanation": "Pompeo issued the State Department determination on his last day in office (Jan 2021); Blinken affirmed it. UK, Canadian, and Dutch recognition came only via parliamentary vote."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-02T12:26:13.065Z",
+    "label": "Genocide Declarations & Enforcement",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-02-a-membrane-modulated-chemoenzymatic-dynamic-kinetic-resoluti": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY CHIRALITY MATTERS",
+        "body": "Most drug molecules exist as two mirror-image forms that cannot be superimposed, like left and right hands. One enantiomer typically does the healing; the other is inert at best, toxic at worst. The thalidomide disaster of the 1950s — one enantiomer sedated pregnant women, the other caused birth defects — is why every modern drug approval requires the active enantiomer in pure form.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Chemists call the two forms ***R*** and ***S***. A 50/50 mix is a *racemate*; isolating one form is *resolution*."
+          }
+        ]
+      },
+      {
+        "heading": "THE 50% CEILING",
+        "body": "Classical kinetic resolution exploits one fact: enzymes react with one enantiomer faster than the other. The unreacted half is thrown away. Maximum theoretical yield is 50%, which for an expensive drug intermediate is economically painful."
+      },
+      {
+        "heading": "THE DKR TRICK",
+        "body": "Dynamic kinetic resolution adds a second catalyst that constantly racemizes the unreacted enantiomer back into the 50/50 mix, feeding it to the enzyme. In theory: 100% yield of one pure enantiomer. In practice: the racemization catalyst (usually a transition metal) and the enzyme hate each other — metals denature proteins, and aqueous enzyme conditions deactivate the metal."
+      },
+      {
+        "heading": "THE COMPARTMENTALIZATION ANALOGUE",
+        "body": "Living cells solve the same problem with membranes — incompatible reactions run in different organelles, with selective transport between them. The mitochondrion's electron transport chain would destroy the cytosol's protein synthesis machinery if the two were not separated by a lipid bilayer. The membrane reactor borrows the strategy.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't a metal racemization catalyst and an enzyme simply be mixed in one pot?",
+            "options": [
+              "Metals denature the enzyme's protein structure",
+              "Enzymes are too slow to keep up",
+              "The metal absorbs all the substrate",
+              "Enzymes only work in organic solvents"
+            ],
+            "correct": 0,
+            "explanation": "Transition metals coordinate to the amino acid side chains that hold an enzyme folded — exposure unfolds the protein and kills its activity within minutes."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PHTHALIDES",
+        "body": "Phthalides are a chemical scaffold present in cardiovascular drugs (butylphthalide for stroke recovery), antifungals, and natural-product fragrances. Their chiral center is notoriously hard to set with classical methods because the racemization catalysts that work on the substrate also chew through the enzyme that does the resolution.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Butylphthalide (***NBP***) was approved in China in 2002 for ischemic stroke and remains one of the few neuroprotective drugs in clinical use anywhere."
+          }
+        ]
+      },
+      {
+        "heading": "THE ECONOMICS",
+        "body": "A pharmaceutical intermediate that runs at 50% yield versus 95% yield is the difference between a viable manufacturing process and one that gets shelved. For high-value APIs costing thousands of dollars per kilogram, doubling yield is the entire business case for adopting a new platform."
+      }
+    ],
+    "generatedAt": "2026-05-02T12:26:40.673Z",
+    "label": "Chirality & Dynamic Kinetic Resolution",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-02-russia-nicaragua-military-cooperation-ratification-putin": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MONROE DOCTRINE",
+        "body": "James Monroe's 1823 declaration warned European powers against new colonization or political intervention in the Americas. For two centuries it has been the organizing principle behind US reactions to extra-hemispheric military presence — from Maximilian's Mexico to Soviet Cuba.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The American continents… are henceforth not to be considered as subjects for future colonization by any European powers.",
+            "speaker": "President James Monroe, annual message to Congress",
+            "year": "1823"
+          }
+        ]
+      },
+      {
+        "heading": "THE SANDINISTA THREAD",
+        "body": "Daniel Ortega first took power in 1979 after the Sandinista revolution toppled Somoza. The Reagan administration responded by funding the Contras — a covert war that produced the Iran-Contra scandal. Ortega lost office in 1990, returned in 2007, and has since dismantled term limits and jailed virtually every credible opposition figure.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Sandinista revolution topples Somoza",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1984",
+                "label": "Ortega elected president"
+              },
+              {
+                "year": "1986",
+                "label": "Iran-Contra scandal breaks"
+              },
+              {
+                "year": "1990",
+                "label": "Ortega loses to Chamorro"
+              },
+              {
+                "year": "2007",
+                "label": "Ortega returns to power"
+              },
+              {
+                "year": "2021",
+                "label": "Jails opposition before re-election"
+              }
+            ],
+            "label": "Ortega's two arcs"
+          }
+        ]
+      },
+      {
+        "heading": "RUSSIA'S LATIN FOOTHOLDS",
+        "body": "Moscow keeps a small but symbolic security presence across three Latin American states aligned against Washington. The pattern is less about projecting force than about signaling that the hemisphere is contestable — a mirror of US basing in Russia's near-abroad.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "NI",
+              "VE",
+              "CU"
+            ],
+            "label": "Moscow's hemispheric partners",
+            "caption": "Nicaragua, Venezuela, and Cuba host Russian military cooperation"
+          }
+        ]
+      },
+      {
+        "heading": "THE GLONASS STATION",
+        "body": "Russia operates a *GLONASS* satellite-tracking ground station near Managua, opened in 2017. Officially it supports civilian navigation; US analysts have long argued such stations double as **signals intelligence** platforms. Hosting trainers on top of that infrastructure deepens the same posture.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2022 accord also covers *counterterrorism* and *security research* — categories broad enough to legitimize almost any Russian uniformed presence Managua chooses to invite."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'RATIFICATION' MEANS",
+        "body": "Bilateral military accords typically need both parliaments to ratify before they enter into force. Nicaragua's National Assembly approved the pact years ago; Putin's signature this week was the final legal step. Until ratification, no Russian trainer could lawfully deploy under the agreement's protections."
+      },
+      {
+        "heading": "THE COMPARISON",
+        "body": "Russia's deployments to friendly Latin states are tiny next to the US footprint in Russia's neighborhood. The asymmetry is the point — and the reason each Russian announcement gets outsized attention in Washington.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many US troops are stationed in NATO's eastern-flank states (Poland, the Baltics, Romania) as of 2026?",
+            "options": [
+              "A few hundred",
+              "Around 5,000",
+              "Around 20,000",
+              "Over 80,000"
+            ],
+            "correct": 2,
+            "explanation": "The US maintains roughly 20,000 rotational and forward-stationed troops across NATO's eastern flank — orders of magnitude more than any Russian presence in the Western Hemisphere."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-02T12:27:10.680Z",
+    "label": "Russia in the Western Hemisphere",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-02-saudi-arabia-haj-minimum-age-15-pilgrim-restrictions": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FIFTH PILLAR",
+        "body": "Hajj is one of the five pillars of Islam, obligatory once in a lifetime for every Muslim with the physical and financial means. The rites trace to Prophet Ibrahim and his family — the running between Safa and Marwa commemorates Hagar's search for water for Ismail.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *istita'ah* — capability. Classical jurists held that hajj is only obligatory on the *mustati'*, the one who has the means; the under-aged child is excluded from obligation regardless, which makes the new rule an administrative filter, not a religious deprivation."
+          }
+        ]
+      },
+      {
+        "heading": "THE QUOTA SYSTEM",
+        "body": "Since 1987, the Organisation of Islamic Cooperation has allocated hajj visas to each country at roughly 1,000 pilgrims per million Muslims. Indonesia, Pakistan, India, and Bangladesh receive the largest quotas — and the longest waiting lists, often stretching past 20 years.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Indonesia",
+                "value": "~221k",
+                "cc": "ID"
+              },
+              {
+                "label": "Pakistan",
+                "value": "~180k",
+                "cc": "PK"
+              },
+              {
+                "label": "India",
+                "value": "~175k",
+                "cc": "IN"
+              },
+              {
+                "label": "Bangladesh",
+                "value": "~127k",
+                "cc": "BD"
+              },
+              {
+                "label": "Nigeria",
+                "value": "~95k",
+                "cc": "NG"
+              },
+              {
+                "label": "Egypt",
+                "value": "~90k",
+                "cc": "EG"
+              }
+            ],
+            "label": "largest national hajj quotas"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CROWD CONTROL DOMINATES",
+        "body": "The 2015 Mina crush killed over 2,400 pilgrims — the deadliest in modern hajj history. Saudi Arabia has since invested billions in RFID wristbands, density sensors, and tiered access permits. Age limits, gender escorts, and health certifications are administrative tools to compress the crowd-management problem before pilgrims ever arrive.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1990",
+                "label": "Al-Ma'aisim tunnel: 1,426 dead"
+              },
+              {
+                "year": "2006",
+                "label": "Jamarat bridge crush: 346 dead"
+              },
+              {
+                "year": "2015",
+                "label": "Mina crush: 2,400+ dead",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "heatwave deaths: 1,300+"
+              }
+            ],
+            "label": "deadliest hajj incidents"
+          }
+        ]
+      },
+      {
+        "heading": "THE LUNAR DRIFT",
+        "body": "Hajj falls on the 8th–13th of Dhul Hijjah in the Hijri calendar, which runs about 11 days shorter than the Gregorian year. The pilgrimage drifts backwards through the seasons over a 33-year cycle. The 2024 deaths during a 51°C heatwave reflect where in that cycle Makkah currently sits — and why under-15s are the first risk category to be cut."
+      },
+      {
+        "heading": "THE CUSTODIAN'S TITLE",
+        "body": "The Saudi king's formal title is Khadim al-Haramayn al-Sharifayn — Custodian of the Two Holy Mosques. King Fahd adopted it in 1986, replacing 'His Majesty.' The title binds Saudi legitimacy to hajj administration; every fatality, every logistical failure, is read as a test of the custodianship.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does the Saudi king's title 'Khadim al-Haramayn al-Sharifayn' mean?",
+            "options": [
+              "King of Arabia and the Hijaz",
+              "Custodian of the Two Holy Mosques",
+              "Imam of the Worldwide Ummah",
+              "Protector of the Hajj Routes"
+            ],
+            "correct": 1,
+            "explanation": "Adopted by King Fahd in 1986, the title frames Saudi sovereignty as a stewardship duty over Makkah and Madinah — making hajj management a matter of regime legitimacy, not just policy."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-02T12:27:43.189Z",
+    "label": "Hajj & the Saudi Custodianship",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-02-sheremetyevo-airport-handles-flights-after-coordination-with": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BASIC RULE",
+        "body": "The Chicago Convention (1944) established that every state has complete and exclusive sovereignty over the airspace above its territory. Civilian flights operate under standing permissions; when those are suspended, every takeoff becomes a discrete diplomatic and bureaucratic act.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is a ***plan bar*** — Russia's Federal Air Transport Agency (**Rosaviatsia**) blocks flight plans from being filed, then releases them one by one after manual coordination."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SHEREMETYEVO MATTERS",
+        "body": "Sheremetyevo is Russia's busiest airport and the main hub of Aeroflot. Since 2022, Russian carriers have been locked out of EU, US, UK, and Canadian airspace; the domestic and eastward network running through Sheremetyevo is what remains of Russian commercial aviation.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU"
+            ],
+            "label": "Moscow's three main airports",
+            "markers": [
+              {
+                "lat": 55.9728,
+                "lng": 37.4147,
+                "label": "Sheremetyevo (SVO)"
+              },
+              {
+                "lat": 55.5914,
+                "lng": 37.2615,
+                "label": "Vnukovo (VKO)"
+              },
+              {
+                "lat": 55.5728,
+                "lng": 37.9072,
+                "label": "Domodedovo (DME)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DRONE-ERA PATTERN",
+        "body": "Since Ukrainian long-range drones began reaching deep into European Russia in 2023, Rosaviatsia has imposed the 'Kover' (Carpet) plan with rising frequency — temporary airspace closures around Moscow, Kazan, St. Petersburg, and Volga industrial cities. Each closure cascades: diverted aircraft burn fuel reserves, crew duty hours run out, and the disruption lingers long after airspace reopens."
+      },
+      {
+        "heading": "THE FLEET CONSTRAINT",
+        "body": "Roughly two-thirds of Russia's commercial fleet is Western-built — Boeings and Airbuses now cut off from manufacturer support, spare parts, and software updates. Sanctions force cannibalization of grounded airframes for parts. Every avoidable stress on the fleet — extra holds, diversions, abrupt descents — accelerates an attrition curve the industry cannot replace."
+      },
+      {
+        "heading": "THE INSURANCE PROBLEM",
+        "body": "After 2022, Western reinsurers withdrew coverage for aircraft operating in Russian airspace. Russian carriers now self-insure through state-backed pools, and most leased Western jets were nationalized — a step that locked them out of any future return to international leasing markets even if sanctions ease.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Russia's pre-2022 commercial fleet was leased from Western lessors?",
+            "options": [
+              "About 15%",
+              "About 30%",
+              "About 55%",
+              "About 80%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 55% of Russia's ~800 commercial aircraft were leased from Western firms — most were re-registered in Russia in 2022, effectively nationalized."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-02T12:28:10.400Z",
+    "label": "Airspace Restrictions & Plan Bars",
+    "category": "economy",
+    "articleCount": 1
   }
 }
