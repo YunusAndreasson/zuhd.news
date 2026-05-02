@@ -1,6 +1,6 @@
 import { COUNTRY_DATA, type CountryData } from '@shared/countries/country-data';
 import { CITY_TZ, COUNTRY_TZ, SOURCE_COORDS } from '@shared/globe/coordinates';
-import type { Article, Chokepoint, HeatmapPoint } from '@shared/types';
+import type { Article, Chokepoint, ConflictEvent, GdacsAlert, HeatmapPoint } from '@shared/types';
 import {
   Atlas,
   BlurMask,
@@ -53,7 +53,7 @@ import {
 } from 'react-native-reanimated';
 import { BLACK } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
-import type { GdacsAlert } from '@shared/types';
+import { eventAgeDays } from '../../lib/conflict';
 import { alertAgeDays } from '../../lib/gdacs';
 import { displayCountryName, displayLocation, wrapCountryLabel } from '../../lib/place-names';
 import {
@@ -62,7 +62,7 @@ import {
   getRiverLabels,
   getSeas,
 } from './detail-geo';
-import { CHOKEPOINT_PATH, GLYPH_HALF, getGlyphPath } from './disaster-glyphs';
+import { CHOKEPOINT_PATH, GLYPH_HALF, getConflictGlyphPath, getGlyphPath } from './disaster-glyphs';
 import {
   ANCHOR_COUNTRY_AREA,
   ANCHOR_NAMES_EXTRA,
@@ -314,6 +314,9 @@ export interface TapResult {
   /** Set when the tap landed on a GDACS disaster marker. The parent resolves
    *  the eventid against the alerts list and opens DisasterSheet. */
   gdacsEventId?: string;
+  /** Set when the tap landed on a conflict-event marker. The parent
+   *  resolves the id against the events list and opens ConflictSheet. */
+  conflictEventId?: string;
   /** Populated when the tap lands on 2+ overlapping markers. The parent
    *  presents a chooser sheet listing these candidates; tapping one
    *  re-dispatches that candidate through the same hit handler. When set,
@@ -332,6 +335,7 @@ interface MiniGlobeProps {
   heatmapPoints?: HeatmapPoint[];
   chokepoints?: Chokepoint[];
   gdacsAlerts?: GdacsAlert[];
+  conflictEvents?: ConflictEvent[];
   scrollY: SharedValue<number>;
   itemHeight: number;
   width: number;
@@ -414,6 +418,22 @@ interface GlobeState {
     eventid: string;
     eventtype: GdacsAlert['eventtype'];
     alertlevel: GdacsAlert['alertlevel'];
+    recencyAlpha: number;
+  }[];
+  /** Conflict-event markers — kinetic + unrest layer parallel to gdacsMarks.
+   *  Same per-frame cull+project pattern. `recencyAlpha` ∈ [0.4, 1] fades
+   *  across the 14-day window relative to the dataset's latest event.
+   *  `strokeWidth` and `strokeOpacityBase` are precomputed in
+   *  `enrichedConflict` so the render block stays purely positional —
+   *  no ternary chains hot-loop per frame. */
+  conflictMarks: {
+    x: number;
+    y: number;
+    id: string;
+    family: ConflictEvent['family'];
+    strokeWidth: number;
+    /** Multiplied by `recencyAlpha` at render time — see render block. */
+    strokeOpacityBase: number;
     recencyAlpha: number;
   }[];
   /** Neighbour-country labels — every country within the camera's visible
@@ -564,6 +584,7 @@ const EMPTY_GLOBE: GlobeState = {
   hotspotGlows: [],
   chokepoints: [],
   gdacsMarks: [],
+  conflictMarks: [],
   neighborLabels: [],
   waterLabels: [],
   riversPath: null,
@@ -690,6 +711,7 @@ function projectInitial(
     hotspotGlows: [],
     chokepoints: [],
     gdacsMarks: [],
+    conflictMarks: [],
     neighborLabels: [],
     waterLabels: [],
     riversPath: null,
@@ -702,6 +724,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   heatmapPoints,
   chokepoints,
   gdacsAlerts,
+  conflictEvents,
   scrollY,
   itemHeight,
   width,
@@ -1015,6 +1038,42 @@ export const MiniGlobe = memo(function MiniGlobe({
   }, [gdacsAlerts]);
   const gdacsAlertsRef = useRef(enrichedGdacs);
   gdacsAlertsRef.current = enrichedGdacs;
+  // Conflict events — pre-shape into the same coords/recency pair the GDACS
+  // loop uses, so the per-frame projection cost is identical. Recency
+  // anchors on the *dataset's* latest event rather than Date.now(): the
+  // upstream (UCDP candidate today, ACLED later) always trails real-time
+  // by some lag, and "today" as the reference would push every marker to
+  // minimum opacity whenever the snapshot is more than ~14 days stale.
+  // Anchoring on the dataset tail keeps the freshest available data at
+  // full weight and fades older events relative to that.
+  const enrichedConflict = useMemo(() => {
+    const events = conflictEvents ?? [];
+    if (events.length === 0) return [];
+    let latestMs = 0;
+    for (const e of events) {
+      const t = Date.parse(e.eventDate);
+      if (Number.isFinite(t) && t > latestMs) latestMs = t;
+    }
+    return events.map((e) => {
+      const heavy = e.fatalities >= 10;
+      const medium = e.fatalities >= 1;
+      return {
+        id: e.id,
+        family: e.family,
+        coords: [e.lng, e.lat] as [number, number],
+        // Bake the fatality-tier style here so the render block doesn't
+        // ternary per frame. Stroke width and opacity-base are pure
+        // functions of fatalities; recencyAlpha is per-event-age. The
+        // final per-frame opacity is strokeOpacityBase × recencyAlpha,
+        // computed once in callReproject below.
+        strokeWidth: heavy ? 1.6 : medium ? 1.3 : 1.0,
+        strokeOpacityBase: heavy ? 0.85 : medium ? 0.7 : 0.5,
+        recencyAlpha: Math.max(0.4, 1 - eventAgeDays(e, latestMs) / 14),
+      };
+    });
+  }, [conflictEvents]);
+  const conflictEventsRef = useRef(enrichedConflict);
+  conflictEventsRef.current = enrichedConflict;
   const layoutRef = useRef({ globeRadius, cx, cy });
   layoutRef.current = { globeRadius, cx, cy };
   // Mirror of last reproject args — avoids reading SharedValues outside worklets
@@ -1425,6 +1484,26 @@ export const MiniGlobe = memo(function MiniGlobe({
         });
       }
 
+      // Conflict events — same pattern. The fixture is ~50 events at
+      // WINDOW_DAYS=1; a real ACLED feed at the same window would land
+      // in the low hundreds for active theatres. Style is fully
+      // precomputed in enrichedConflict; this loop is pure projection.
+      const conflictMarks: GlobeState['conflictMarks'] = [];
+      for (const e of conflictEventsRef.current) {
+        if (geoDistance(e.coords, cameraCoords) >= clipRad) continue;
+        const pt = proj(e.coords);
+        if (!pt) continue;
+        conflictMarks.push({
+          x: pt[0],
+          y: pt[1],
+          id: e.id,
+          family: e.family,
+          strokeWidth: e.strokeWidth,
+          strokeOpacityBase: e.strokeOpacityBase,
+          recencyAlpha: e.recencyAlpha,
+        });
+      }
+
       // Country + water-feature labels.
       //   • Anchor-tier countries (`area ≥ ANCHOR_COUNTRY_AREA`) render at
       //     all zooms with a floor opacity, so the reader always has
@@ -1726,6 +1805,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         hotspotGlows,
         chokepoints: chokepointMarks,
         gdacsMarks,
+        conflictMarks,
         neighborLabels: keptNeighbours,
         waterLabels: keptWaters,
         riversPath,
@@ -2060,6 +2140,21 @@ export const MiniGlobe = memo(function MiniGlobe({
             localTime: null,
             data: null,
             gdacsEventId: m.eventid,
+          });
+        }
+      }
+
+      // Conflict-event markers — same 36px tap zone. Conflict density in a
+      // theatre like Sudan or Gaza will produce overlapping hits regularly;
+      // those resolve to the disambiguation chooser via the candidates path.
+      for (const m of state.conflictMarks) {
+        if (isNear(x, y, m.x, m.y, 1296)) {
+          candidates.push({
+            countryName: '',
+            location: null,
+            localTime: null,
+            data: null,
+            conflictEventId: m.id,
           });
         }
       }
@@ -2421,10 +2516,7 @@ export const MiniGlobe = memo(function MiniGlobe({
               strokeJoin="round"
               strokeCap="round"
               opacity={glyphOpacity}
-              transform={[
-                { translateX: c.x - GLYPH_HALF },
-                { translateY: c.y - GLYPH_HALF },
-              ]}
+              transform={[{ translateX: c.x - GLYPH_HALF }, { translateY: c.y - GLYPH_HALF }]}
             />
             <HaloLabel
               x={labelTx}
@@ -2504,6 +2596,39 @@ export const MiniGlobe = memo(function MiniGlobe({
           </Group>
         );
       })}
+
+      {/* Conflict-event markers (PROTOTYPE). Mirror the GDACS render
+          family — monochrome stroke, no backdrop disc, no alarm ring —
+          so the layer reads as the same visual cohort as natural-hazard
+          markers. The kinetic/unrest split is encoded in glyph SHAPE only
+          (impact burst vs crowd), keeping the "color carries meaning
+          only" rule intact. Stroke weight bumps modestly with fatalities
+          so a 20-killed event reads heavier than a 0-killed protest at
+          the same age, without introducing a third visual axis (no halo,
+          no disc, just line weight). Style is precomputed in
+          enrichedConflict; this block is pure positional emit. Future
+          scaling lever: bake each glyph into a Skia texture (one per
+          family × stroke-tier, ≤6 sprites) and replace this map with a
+          single <Atlas/> per family — collapses N React elements into 1
+          and N Skia draws into 1. Worth it past ~150 visible markers;
+          at today's ~50, the per-marker pattern keeps parity with the
+          GDACS render and is cheaper to read than to optimise. */}
+      {state.conflictMarks.map((m) => (
+        <Group
+          key={`conflict-${m.id}`}
+          transform={[{ translateX: m.x - GLYPH_HALF }, { translateY: m.y - GLYPH_HALF }]}
+        >
+          <Path
+            path={getConflictGlyphPath(m.family)}
+            color={colors.text}
+            style="stroke"
+            strokeWidth={m.strokeWidth}
+            strokeJoin="round"
+            strokeCap="round"
+            opacity={m.strokeOpacityBase * m.recencyAlpha}
+          />
+        </Group>
+      ))}
 
       {/* Country highlight — opacity scales with area so small nations pop */}
       {state.countryPath && (

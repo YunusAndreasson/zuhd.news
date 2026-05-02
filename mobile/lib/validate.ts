@@ -7,6 +7,10 @@ import type {
   ChokepointCounts,
   ChokepointSnapshot,
   CompareRow,
+  ConflictEvent,
+  ConflictEventFamily,
+  ConflictSnapshot,
+  ConflictSubEvent,
   ContextBrief,
   Entity,
   EntityKind,
@@ -345,6 +349,57 @@ export const isGdacsSnapshot = (v: unknown): v is GdacsSnapshot => {
   for (const detail of Object.values(v.details)) {
     if (!isGdacsDetail(detail)) return false;
   }
+  return true;
+};
+
+// Conflict-event validators. Used today against the bundled fixture in
+// useConflictEvents; will be reused unchanged when the hook swaps to a
+// network fetch from /api/conflict.json. Mirror the GDACS pair above.
+
+const CONFLICT_FAMILIES: ReadonlySet<ConflictEventFamily> = new Set(['kinetic', 'unrest']);
+const CONFLICT_SUB_EVENTS: ReadonlySet<ConflictSubEvent> = new Set([
+  'armed_clash',
+  'air_drone_strike',
+  'shelling_artillery',
+  'remote_explosive_ied',
+  'attack_on_civilians',
+  'abduction_disappearance',
+  'sexual_violence',
+  'peaceful_protest',
+  'protest_intervention',
+  'violent_demonstration',
+  'mob_violence',
+]);
+
+const isConflictEvent = (v: unknown): v is ConflictEvent => {
+  if (!isObject(v)) return false;
+  if (typeof v.id !== 'string' || v.id.length === 0) return false;
+  if (typeof v.eventDate !== 'string' || v.eventDate.length === 0) return false;
+  if (typeof v.family !== 'string' || !CONFLICT_FAMILIES.has(v.family as ConflictEventFamily)) {
+    return false;
+  }
+  if (typeof v.subEvent !== 'string' || !CONFLICT_SUB_EVENTS.has(v.subEvent as ConflictSubEvent)) {
+    return false;
+  }
+  if (typeof v.actor1 !== 'string') return false;
+  if (v.actor2 !== undefined && typeof v.actor2 !== 'string') return false;
+  if (typeof v.country !== 'string' || typeof v.iso3 !== 'string') return false;
+  if (v.admin1 !== undefined && typeof v.admin1 !== 'string') return false;
+  if (typeof v.location !== 'string') return false;
+  if (!isFiniteNumber(v.lat) || !isFiniteNumber(v.lng)) return false;
+  if (!isFiniteNumber(v.fatalities) || v.fatalities < 0) return false;
+  if (typeof v.notes !== 'string') return false;
+  if (typeof v.source !== 'string') return false;
+  if (v.sourceUrl !== undefined && typeof v.sourceUrl !== 'string') return false;
+  return true;
+};
+
+export const isConflictSnapshot = (v: unknown): v is ConflictSnapshot => {
+  if (!isObject(v)) return false;
+  if (typeof v.generated !== 'string') return false;
+  if (typeof v.windowStart !== 'string') return false;
+  if (typeof v.windowEnd !== 'string') return false;
+  if (!Array.isArray(v.events) || !v.events.every(isConflictEvent)) return false;
   return true;
 };
 

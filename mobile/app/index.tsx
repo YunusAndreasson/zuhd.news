@@ -4,7 +4,15 @@ import {
   type BottomSheetModal,
 } from '@gorhom/bottom-sheet';
 import { COUNTRY_DATA } from '@shared/countries/country-data';
-import type { Article, ArticleSource, Category, Chokepoint, Entity } from '@shared/types';
+import type {
+  Article,
+  ArticleSource,
+  Category,
+  Chokepoint,
+  ConflictEvent,
+  Entity,
+  GdacsAlert,
+} from '@shared/types';
 import { useNetworkState } from 'expo-network';
 import * as SplashScreen from 'expo-splash-screen';
 import { createRef, useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -27,6 +35,7 @@ import { BottomActionBar } from '../components/BottomActionBar';
 import { BriefingBar } from '../components/BriefingBar';
 import { CategoryBar } from '../components/CategoryBar';
 import { ChokepointSheet } from '../components/ChokepointSheet';
+import { ConflictSheet } from '../components/ConflictSheet';
 import { ContextSheet } from '../components/ContextSheet';
 import { CountrySheet } from '../components/CountrySheet';
 import { DisambiguationSheet } from '../components/DisambiguationSheet';
@@ -41,6 +50,7 @@ import { CATEGORIES, EDITORIAL, OPACITY } from '../constants/theme';
 import { useArticles } from '../hooks/useArticles';
 import { useBriefingPlayer } from '../hooks/useBriefingPlayer';
 import { useChokepoints } from '../hooks/useChokepoints';
+import { useConflictEvents } from '../hooks/useConflictEvents';
 import { useContextBrief } from '../hooks/useContextBrief';
 import { useGdacsAlerts } from '../hooks/useGdacsAlerts';
 import { useHeatmap } from '../hooks/useHeatmap';
@@ -50,7 +60,6 @@ import { useTrendsSnapshot } from '../hooks/useTrendsSnapshot';
 import { useZoomCycle } from '../hooks/useZoomCycle';
 import { formatExactTime } from '../lib/article-utils';
 import { getSnapshot as getBookmarks, toggle as toggleBookmark } from '../lib/bookmark-store';
-import type { GdacsAlert } from '@shared/types';
 import { hapticImpact, hapticNotification, hapticTick } from '../lib/haptics';
 
 const listRefs = CATEGORIES.map(() => createRef<ArticleListRef>());
@@ -63,6 +72,7 @@ export default function HomeScreen() {
   const countrySheetRef = useRef<BottomSheetModal>(null);
   const chokepointSheetRef = useRef<BottomSheetModal>(null);
   const disasterSheetRef = useRef<BottomSheetModal>(null);
+  const conflictSheetRef = useRef<BottomSheetModal>(null);
   const disambiguationSheetRef = useRef<BottomSheetModal>(null);
   const contextSheetRef = useRef<BottomSheetModal>(null);
   const entitySheetRef = useRef<BottomSheetModal>(null);
@@ -94,6 +104,7 @@ export default function HomeScreen() {
   const heatmapPoints = useHeatmap(generated);
   const { chokepoints } = useChokepoints();
   const { alerts: gdacsAlerts, details: gdacsDetails } = useGdacsAlerts();
+  const { events: conflictEvents } = useConflictEvents();
   const { byId: indicatorsById } = useTrendsSnapshot();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
@@ -113,6 +124,7 @@ export default function HomeScreen() {
   const [countrySheet, setCountrySheet] = useState<TapResult | null>(null);
   const [activeChokepoint, setActiveChokepoint] = useState<Chokepoint | null>(null);
   const [activeAlert, setActiveAlert] = useState<GdacsAlert | null>(null);
+  const [activeConflict, setActiveConflict] = useState<ConflictEvent | null>(null);
   const [chooserCandidates, setChooserCandidates] = useState<TapResult[]>([]);
   const [activeEntity, setActiveEntity] = useState<Entity | null>(null);
   const activeIndicator = useMemo(
@@ -227,6 +239,8 @@ export default function HomeScreen() {
   chokepointsRef.current = chokepoints;
   const gdacsAlertsRef = useRef(gdacsAlerts);
   gdacsAlertsRef.current = gdacsAlerts;
+  const conflictEventsRef = useRef(conflictEvents);
+  conflictEventsRef.current = conflictEvents;
 
   // Flat feed across categories — memoized so downstream memos keyed on it
   // (e.g. ChokepointSheet's findRelatedArticles) don't invalidate every render.
@@ -282,6 +296,14 @@ export default function HomeScreen() {
         if (alert) {
           setActiveAlert(alert);
           disasterSheetRef.current?.present();
+        }
+        return;
+      }
+      if (result.conflictEventId) {
+        const evt = conflictEventsRef.current.find((e) => e.id === result.conflictEventId);
+        if (evt) {
+          setActiveConflict(evt);
+          conflictSheetRef.current?.present();
         }
         return;
       }
@@ -459,6 +481,7 @@ export default function HomeScreen() {
                 heatmapPoints={heatmapPoints}
                 chokepoints={chokepoints}
                 gdacsAlerts={gdacsAlerts}
+                conflictEvents={conflictEvents}
                 viewportHeight={pagerHeight}
                 catIndex={catIndex}
                 lastSeenAt={lastSeenAt}
@@ -555,11 +578,31 @@ export default function HomeScreen() {
         }}
       />
 
+      <ConflictSheet
+        sheetRef={conflictSheetRef}
+        event={activeConflict}
+        bottomInset={insets.bottom}
+        renderBackdrop={renderBackdrop}
+        onDismiss={() => setActiveConflict(null)}
+        onCountryPress={(countryName) => {
+          conflictSheetRef.current?.dismiss();
+          const data = COUNTRY_DATA[countryName] ?? null;
+          setCountrySheet({
+            countryName,
+            location: null,
+            localTime: null,
+            data,
+          });
+          countrySheetRef.current?.present();
+        }}
+      />
+
       <DisambiguationSheet
         sheetRef={disambiguationSheetRef}
         candidates={chooserCandidates}
         chokepoints={chokepoints}
         alerts={gdacsAlerts}
+        conflictEvents={conflictEvents}
         bottomInset={insets.bottom}
         renderBackdrop={renderBackdrop}
         onDismiss={() => setChooserCandidates([])}

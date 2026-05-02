@@ -3,7 +3,7 @@ import {
   type BottomSheetModal,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
-import type { Chokepoint } from '@shared/types';
+import type { Chokepoint, ConflictEvent, GdacsAlert } from '@shared/types';
 import { Canvas, Circle, Path } from '@shopify/react-native-skia';
 import { memo, useCallback, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
@@ -11,12 +11,14 @@ import Animated, { FadeInDown } from 'react-native-reanimated';
 import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
-import type { GdacsAlert } from '@shared/types';
+import { SUB_EVENT_LABEL } from '../lib/conflict';
 import { displayCountryName } from '../lib/place-names';
 import {
   CHOKEPOINT_PATH,
+  CONFLICT_FAMILY_LABEL,
   EVENT_TYPE_LABEL,
   GLYPH_HALF,
+  getConflictGlyphPath,
   getGlyphPath,
 } from './globe/disaster-glyphs';
 import type { TapResult } from './globe/MiniGlobe';
@@ -33,6 +35,7 @@ interface DisambiguationSheetProps {
    *  individual sheets. Used here to derive readable labels per row. */
   chokepoints: Chokepoint[];
   alerts: GdacsAlert[];
+  conflictEvents: ConflictEvent[];
   bottomInset: number;
   renderBackdrop: React.FC<BottomSheetBackdropProps>;
   onDismiss: () => void;
@@ -50,10 +53,14 @@ interface DisplayRow {
   result: TapResult;
   primary: string;
   secondary: string;
-  kind: 'gdacs' | 'chokepoint' | 'article' | 'hotspot';
+  kind: 'gdacs' | 'chokepoint' | 'conflict' | 'article' | 'hotspot';
   /** GDACS-only — drives the glyph + tint inside the icon canvas. */
   eventtype?: GdacsAlert['eventtype'];
   alertlevel?: GdacsAlert['alertlevel'];
+  /** Conflict-only — drives the glyph + tint inside the icon canvas. */
+  conflictFamily?: ConflictEvent['family'];
+  /** Conflict-only — non-zero fatalities tilt the row tint to unfavorable. */
+  fatalities?: number;
 }
 
 function buildRow(
@@ -61,6 +68,7 @@ function buildRow(
   index: number,
   chokepointsById: Map<string, Chokepoint>,
   alertsById: Map<string, GdacsAlert>,
+  conflictById: Map<string, ConflictEvent>,
 ): DisplayRow | null {
   if (result.gdacsEventId) {
     const alert = alertsById.get(result.gdacsEventId);
@@ -74,6 +82,24 @@ function buildRow(
       kind: 'gdacs',
       eventtype: alert.eventtype,
       alertlevel: alert.alertlevel,
+    };
+  }
+  if (result.conflictEventId) {
+    const evt = conflictById.get(result.conflictEventId);
+    if (!evt) return null;
+    const country = displayCountryName(evt.country) ?? evt.country;
+    const primary =
+      evt.fatalities > 0
+        ? `${evt.fatalities.toLocaleString('en-US')} killed · ${SUB_EVENT_LABEL[evt.subEvent]}`
+        : SUB_EVENT_LABEL[evt.subEvent];
+    return {
+      key: `conflict-${evt.id}`,
+      result,
+      primary,
+      secondary: `${CONFLICT_FAMILY_LABEL[evt.family].toLowerCase()}${country ? ` · ${country}` : ''}`,
+      kind: 'conflict',
+      conflictFamily: evt.family,
+      fatalities: evt.fatalities,
     };
   }
   if (result.chokepointId) {
@@ -137,6 +163,25 @@ function RowIcon({ row, tint }: RowIconProps) {
       </Canvas>
     );
   }
+  if (row.kind === 'conflict' && row.conflictFamily) {
+    return (
+      <Canvas style={{ width: ROW_ICON, height: ROW_ICON }}>
+        <Circle cx={ROW_ICON / 2} cy={ROW_ICON / 2} r={ROW_ICON / 2} color={tint} opacity={0.18} />
+        <Path
+          path={getConflictGlyphPath(row.conflictFamily)}
+          color={tint}
+          style="stroke"
+          strokeWidth={1.6}
+          strokeJoin="round"
+          strokeCap="round"
+          transform={[
+            { translateX: ROW_ICON / 2 - GLYPH_HALF },
+            { translateY: ROW_ICON / 2 - GLYPH_HALF },
+          ]}
+        />
+      </Canvas>
+    );
+  }
   if (row.kind === 'chokepoint') {
     return (
       <Canvas style={{ width: ROW_ICON, height: ROW_ICON }}>
@@ -169,7 +214,13 @@ function RowIcon({ row, tint }: RowIconProps) {
     // article row, which is a single framed dot.
     return (
       <Canvas style={{ width: ROW_ICON, height: ROW_ICON }}>
-        <Circle cx={ROW_ICON / 2} cy={ROW_ICON / 2} r={ROW_ICON / 2} color={colors.accent} opacity={0.12} />
+        <Circle
+          cx={ROW_ICON / 2}
+          cy={ROW_ICON / 2}
+          r={ROW_ICON / 2}
+          color={colors.accent}
+          opacity={0.12}
+        />
         <Circle
           cx={ROW_ICON / 2}
           cy={ROW_ICON / 2}
@@ -220,7 +271,9 @@ function CandidateRow({
         ? colors.alertOrange
         : row.alertlevel === 'Green'
           ? colors.alertLow
-          : colors.textSecondary;
+          : row.kind === 'conflict' && row.fatalities !== undefined && row.fatalities > 0
+            ? colors.toneUnfavorable
+            : colors.textSecondary;
   const handlePress = useCallback(() => onPress(row.result), [onPress, row.result]);
   return (
     <Animated.View entering={FadeInDown.duration(ANIMATION.fast).delay(staggerDelay(index))}>
@@ -250,6 +303,7 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
   candidates,
   chokepoints,
   alerts,
+  conflictEvents,
   bottomInset,
   renderBackdrop,
   onDismiss,
@@ -261,13 +315,14 @@ export const DisambiguationSheet = memo(function DisambiguationSheet({
   const rows = useMemo<DisplayRow[]>(() => {
     const cpById = new Map(chokepoints.map((c) => [c.id, c]));
     const alertById = new Map(alerts.map((a) => [a.eventid, a]));
+    const conflictById = new Map(conflictEvents.map((e) => [e.id, e]));
     const out: DisplayRow[] = [];
     for (let i = 0; i < candidates.length; i++) {
-      const row = buildRow(candidates[i] as TapResult, i, cpById, alertById);
+      const row = buildRow(candidates[i] as TapResult, i, cpById, alertById, conflictById);
       if (row) out.push(row);
     }
     return out;
-  }, [candidates, chokepoints, alerts]);
+  }, [candidates, chokepoints, alerts, conflictEvents]);
 
   const handleSelect = useCallback(
     (result: TapResult) => {

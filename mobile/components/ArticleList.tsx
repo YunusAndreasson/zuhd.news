@@ -1,4 +1,11 @@
-import type { Article, Chokepoint, Entity, HeatmapPoint } from '@shared/types';
+import type {
+  Article,
+  Chokepoint,
+  ConflictEvent,
+  Entity,
+  GdacsAlert,
+  HeatmapPoint,
+} from '@shared/types';
 import { LinearGradient } from 'expo-linear-gradient';
 import {
   memo,
@@ -30,7 +37,6 @@ import { ANIMATION } from '../constants/theme';
 import { useScrollState } from '../hooks/useScrollState';
 import { useTheme } from '../hooks/useTheme';
 import { formatTimeAgo } from '../lib/article-utils';
-import type { GdacsAlert } from '@shared/types';
 import { hapticNotification, hapticTick } from '../lib/haptics';
 import { maybeRequestReview } from '../lib/store-review';
 import { ArticlePage } from './ArticlePage';
@@ -54,6 +60,7 @@ interface ArticleListProps {
   heatmapPoints?: HeatmapPoint[];
   chokepoints?: Chokepoint[];
   gdacsAlerts?: GdacsAlert[];
+  conflictEvents?: ConflictEvent[];
   viewportHeight: number;
   catIndex: number;
   lastSeenAt: number;
@@ -78,6 +85,7 @@ export const ArticleList = memo(function ArticleList({
   heatmapPoints,
   chokepoints,
   gdacsAlerts,
+  conflictEvents,
   viewportHeight,
   catIndex,
   lastSeenAt,
@@ -301,6 +309,7 @@ export const ArticleList = memo(function ArticleList({
         heatmapPoints={heatmapPoints}
         chokepoints={chokepoints}
         gdacsAlerts={gdacsAlerts}
+        conflictEvents={conflictEvents}
         scrollY={scrollY}
         itemHeight={itemHeight}
         width={screenWidth}

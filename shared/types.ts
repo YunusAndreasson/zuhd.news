@@ -389,6 +389,83 @@ export interface GdacsSnapshot {
   details: Record<string, GdacsDetail>;
 }
 
+// ── Conflict events ────────────────────────────────────────────────────────
+//
+// Today: mobile reads from a bundled fixture (mobile/lib/conflict-fixture.json)
+// produced by scripts/fetch-conflict-prototype.js, sourced from UCDP's
+// Candidate GED (academic, monthly, CC-BY 4.0).
+//
+// Backend path (when ready):
+//   1. Add scripts/fetch-conflict.js — same shape as fetch-gdacs.js, reuses
+//      the transform in scripts/lib/conflict.js, writes content/.conflict.json.
+//   2. Add a /api/conflict.json mirror in scripts/build.js (mirror the
+//      /api/gdacs.json hop).
+//   3. Swap the hook body in mobile/hooks/useConflictEvents.ts (one-liner;
+//      see comment block in that file).
+// The schema below is the canonical contract — ConflictSnapshot is what
+// the file at /api/conflict.json must conform to, and isConflictSnapshot
+// in mobile/lib/validate.ts gates the runtime parse.
+//
+// Two-tier visual family — `kinetic` covers armed violence (battles,
+// explosions, violence against civilians) and reads as the impact-burst
+// glyph; `unrest` covers protests + riots and reads as the crowd glyph.
+// ACLED's "strategic developments" category is intentionally excluded —
+// it's useful sheet context but doesn't deserve a globe marker. UCDP
+// covers only kinetic events (it's fatality-gated); ACLED would later
+// populate the unrest layer too.
+
+export type ConflictEventFamily = 'kinetic' | 'unrest';
+
+export type ConflictSubEvent =
+  | 'armed_clash'
+  | 'air_drone_strike'
+  | 'shelling_artillery'
+  | 'remote_explosive_ied'
+  | 'attack_on_civilians'
+  | 'abduction_disappearance'
+  | 'sexual_violence'
+  | 'peaceful_protest'
+  | 'protest_intervention'
+  | 'violent_demonstration'
+  | 'mob_violence';
+
+export interface ConflictEvent {
+  id: string;
+  /** ISO date (YYYY-MM-DD), the day the event occurred. */
+  eventDate: string;
+  family: ConflictEventFamily;
+  subEvent: ConflictSubEvent;
+  /** Primary actor — group, force, or label as published by the source. */
+  actor1: string;
+  actor2?: string;
+  country: string;
+  iso3: string;
+  /** ACLED's admin1 — typically state/province. Optional because not every
+   *  reported event resolves to that level. */
+  admin1?: string;
+  /** Town/village name as reported. */
+  location: string;
+  lat: number;
+  lng: number;
+  /** Reported fatalities. 0 is meaningful for unrest events; the sheet uses
+   *  it to choose the focal metric (fatalities > 0 → fatalities; else
+   *  sub-event label). */
+  fatalities: number;
+  /** One-sentence summary. */
+  notes: string;
+  /** Originating outlet / aggregator. */
+  source: string;
+  sourceUrl?: string;
+}
+
+export interface ConflictSnapshot {
+  generated: string;
+  /** Inclusive ISO dates bracketing the events array. */
+  windowStart: string;
+  windowEnd: string;
+  events: ConflictEvent[];
+}
+
 /** One indicator from the trends snapshot at `/api/trends.json`. Mirrors the
  *  shape the pipeline writes in `content/trends/<date>.json`. Value/periods
  *  pairs drive the chart in `EntitySheet`; `topicTags` and `countryTags` are
