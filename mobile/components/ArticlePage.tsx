@@ -1,7 +1,6 @@
 import { COUNTRY_DATA } from '@shared/countries/country-data';
 import { displayNameFromCode } from '@shared/countries/iso';
 import type { Article, Entity } from '@shared/types';
-import { LinearGradient } from 'expo-linear-gradient';
 import { memo, useCallback, useMemo } from 'react';
 import { type GestureResponderEvent, Pressable, StyleSheet, View } from 'react-native';
 import Animated, {
@@ -12,7 +11,7 @@ import Animated, {
   useDerivedValue,
   useReducedMotion,
 } from 'react-native-reanimated';
-import { HIT_SLOP, SPACING } from '../constants/theme';
+import { SPACING } from '../constants/theme';
 import { useTheme } from '../hooks/useTheme';
 import { computeFontScale, formatTimeAgo } from '../lib/article-utils';
 import { hapticImpact, hapticTick } from '../lib/haptics';
@@ -21,13 +20,21 @@ import { useOpenLink } from '../lib/open-link';
 import type { MiniGlobeRef, TapResult } from './globe/MiniGlobe';
 import { Text } from './primitives';
 
-const GRADIENT_HEIGHT_TOP = 32;
-const GRADIENT_HEIGHT_BOTTOM = 72;
+// Title's distance from the container top. Smaller than the prior 32px gap
+// so the headline sits closer to the CategoryBar; the article backdrop
+// gradient (rendered once in ArticleList) handles the top map-bleed.
+const CONTENT_PADDING_TOP = 18;
+
+// Reader-only text scale. Bumps the article-page title and body ~4% so the
+// reader feels a touch more relaxed than the rest of the app, paired with
+// the slightly tighter `SPACING.articlePadding` to widen the column. The
+// scale lives local because it's a per-surface tuning; the padding lives
+// in `SPACING` so `CategoryBar` can mirror it.
+const READER_TEXT_SCALE = 1.04;
 
 interface ArticlePageProps {
   article: Article;
   itemHeight: number;
-  screenWidth: number;
   index: number;
   scrollY: SharedValue<number>;
   onBookmarkPress?: (article: Article) => void;
@@ -81,7 +88,6 @@ function GlobeTapZone({
 export const ArticlePage = memo(function ArticlePage({
   article,
   itemHeight,
-  screenWidth,
   index,
   scrollY,
   onBookmarkPress,
@@ -94,7 +100,7 @@ export const ArticlePage = memo(function ArticlePage({
   onCountryPress,
   tick: _tick,
 }: ArticlePageProps) {
-  const { colors, font, typography, textVariants, bgAlpha } = useTheme();
+  const { colors, font, typography } = useTheme();
   const timeAgo = formatTimeAgo(article.addedAt);
   const pageStart = index * itemHeight;
   const reduceMotion = useReducedMotion();
@@ -134,7 +140,12 @@ export const ArticlePage = memo(function ArticlePage({
     [article.title, article.sentences],
   );
 
-  const bodyFontSize = fontScale < 1 ? Math.round(typography.sizeBase * fontScale) : undefined;
+  // Reader scale always applies — for short articles (fontScale=1) it lifts
+  // the body from sizeBase to a slightly larger reader size; for long
+  // articles (fontScale<1) it partially counteracts the auto-shrink so
+  // readability stays comfortable.
+  const readerScale = fontScale * READER_TEXT_SCALE;
+  const bodyFontSize = Math.round(typography.sizeBase * readerScale);
 
   const mdStyles = useMemo(
     () => makeMarkdownStyles(colors, font, typography),
@@ -170,28 +181,7 @@ export const ArticlePage = memo(function ArticlePage({
     onTimeAgoPress?.(article);
   }, [article, onTimeAgoPress]);
 
-  // Inline source link — rendered as nested RN Text because it lives inside
-  // a markdown-styled sentence composite, not as a standalone `<Text variant>`.
-  // `hitSlop` on inline <Text> with `onPress` expands the tap target around
-  // the small-caps word so it's comfortable to thumb at the end of the body.
   const sourceCount = article.sources.length;
-  const sourcesTrailing = useMemo(() => {
-    if (sourceCount === 0 || !onSourcesPress) return null;
-    return (
-      <Animated.Text style={textVariants.labelXs}>
-        {'\u2002'}
-        <Animated.Text
-          onPress={handleSourcesPress}
-          // @ts-expect-error — `hitSlop` on inline Text with onPress expands the tap target at runtime (RN docs) but isn't surfaced on TextProps
-          hitSlop={HIT_SLOP}
-          style={{ color: colors.accent }}
-        >
-          {sourceCount === 1 ? 'source' : 'sources'}
-        </Animated.Text>
-      </Animated.Text>
-    );
-  }, [sourceCount, onSourcesPress, handleSourcesPress, textVariants.labelXs, colors.accent]);
-
   const body = useMemo(
     () =>
       renderSentences(
@@ -202,7 +192,6 @@ export const ArticlePage = memo(function ArticlePage({
         article.location,
         timeAgo,
         openLink,
-        sourcesTrailing,
         onTimeAgoPress ? handleTimeAgoPress : undefined,
         article.entities,
         onEntityPress,
@@ -216,7 +205,6 @@ export const ArticlePage = memo(function ArticlePage({
       bodyFontSize,
       timeAgo,
       openLink,
-      sourcesTrailing,
       onTimeAgoPress,
       handleTimeAgoPress,
       onEntityPress,
@@ -227,6 +215,11 @@ export const ArticlePage = memo(function ArticlePage({
     onBookmarkPress?.(article);
   }, [article, onBookmarkPress]);
 
+  // Tap anywhere on the body opens the sources sheet. Inline tappables
+  // (entity, country, time-ago, the explicit "sources" word) capture first,
+  // so this only fires for blank prose. Disabled when there's nothing to show.
+  const bodyTapEnabled = sourceCount > 0 && !!onSourcesPress;
+
   return (
     <View style={[styles.container, { height: itemHeight }]}>
       <GlobeTapZone
@@ -236,17 +229,13 @@ export const ArticlePage = memo(function ArticlePage({
         impact={hapticImpact}
       />
 
-      <LinearGradient
-        colors={[bgAlpha(0), bgAlpha(0.4), bgAlpha(0.8), colors.bg]}
-        locations={[0, 0.3, 0.7, 1]}
-        style={[styles.gradientTop, { width: screenWidth }]}
-        pointerEvents="none"
-      />
-
       <Pressable
-        style={[styles.content, { backgroundColor: colors.bg }]}
+        style={styles.content}
+        onPress={bodyTapEnabled ? handleSourcesPress : undefined}
         onLongPress={handleLongPress}
         delayLongPress={400}
+        accessibilityRole={bodyTapEnabled ? 'button' : undefined}
+        accessibilityHint={bodyTapEnabled ? 'Open sources' : undefined}
       >
         <Animated.View style={fadeStyle}>
           {showEarlierDivider && (
@@ -265,7 +254,7 @@ export const ArticlePage = memo(function ArticlePage({
           <Text
             variant="display"
             tone="emphasis"
-            scale={fontScale}
+            scale={readerScale}
             numberOfLines={3}
             style={styles.title}
           >
@@ -274,13 +263,6 @@ export const ArticlePage = memo(function ArticlePage({
           {body}
         </Animated.View>
       </Pressable>
-
-      <LinearGradient
-        colors={[colors.bg, bgAlpha(0.8), bgAlpha(0.35), bgAlpha(0)]}
-        locations={[0, 0.2, 0.55, 1]}
-        style={[styles.gradientBottom, { width: screenWidth }]}
-        pointerEvents="none"
-      />
     </View>
   );
 });
@@ -290,15 +272,9 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   content: {
-    paddingHorizontal: SPACING.screenPadding,
-    paddingTop: 0,
+    paddingHorizontal: SPACING.articlePadding,
+    paddingTop: CONTENT_PADDING_TOP,
     paddingBottom: SPACING.xl,
-  },
-  gradientTop: {
-    height: GRADIENT_HEIGHT_TOP,
-  },
-  gradientBottom: {
-    height: GRADIENT_HEIGHT_BOTTOM,
   },
   earlierDivider: {
     flexDirection: 'row',
@@ -313,7 +289,6 @@ const styles = StyleSheet.create({
   },
   title: {
     marginBottom: SPACING.md,
-    fontVariant: ['oldstyle-nums'],
   },
   globeTapZone: {
     ...StyleSheet.absoluteFillObject,

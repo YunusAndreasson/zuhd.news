@@ -1,5 +1,10 @@
 import { getCoords } from '../components/globe/storyDots';
-import { ccToFlag, computeFontScale, formatTimeAgo } from '../lib/article-utils';
+import {
+  ccToFlag,
+  computeFontScale,
+  formatExactTime,
+  formatTimeAgo,
+} from '../lib/article-utils';
 import { displayLocation } from '../lib/place-names';
 import type { Article } from '@shared/types';
 
@@ -191,6 +196,52 @@ describe('formatTimeAgo', () => {
     const result = formatTimeAgo(new Date(2026, 3, 1, 10, 0, 0).getTime());
     expect(result).toMatch(/[A-Za-z]/);
     expect(result.length).toBeGreaterThan(0);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// formatExactTime — contextual absolute time shown when tapping the dateline
+// ---------------------------------------------------------------------------
+describe('formatExactTime', () => {
+  beforeEach(() => jest.useFakeTimers());
+  afterEach(() => jest.useRealTimers());
+
+  it('uses Today, HH:MM for same-calendar-day timestamps', () => {
+    const now = new Date(2026, 3, 16, 14, 30, 0).getTime();
+    jest.setSystemTime(now);
+    expect(formatExactTime(new Date(2026, 3, 16, 9, 5, 0).getTime())).toBe('Today, 09:05');
+    expect(formatExactTime(new Date(2026, 3, 16, 0, 0, 0).getTime())).toBe('Today, 00:00');
+  });
+
+  it('uses Yesterday, HH:MM for the previous calendar day', () => {
+    const now = new Date(2026, 3, 16, 14, 30, 0).getTime();
+    jest.setSystemTime(now);
+    expect(formatExactTime(new Date(2026, 3, 15, 23, 45, 0).getTime())).toBe('Yesterday, 23:45');
+  });
+
+  it('uses weekday, HH:MM for 2–6 days back', () => {
+    const now = new Date(2026, 3, 16, 14, 30, 0).getTime();
+    jest.setSystemTime(now);
+    // 4 days back from Thursday Apr 16 = Sunday Apr 12
+    const result = formatExactTime(new Date(2026, 3, 12, 10, 15, 0).getTime());
+    expect(result).toMatch(/^[A-Za-z]+, 10:15$/);
+  });
+
+  it('uses Mon D, HH:MM for older same-year timestamps', () => {
+    const now = new Date(2026, 3, 16, 14, 30, 0).getTime();
+    jest.setSystemTime(now);
+    const result = formatExactTime(new Date(2026, 0, 5, 8, 0, 0).getTime());
+    // matches "Jan 5, 08:00" or locale equivalent ending with the time
+    expect(result).toMatch(/, 08:00$/);
+    expect(result).not.toContain('2026');
+  });
+
+  it('uses Mon D, YYYY for prior-year timestamps (no time)', () => {
+    const now = new Date(2026, 3, 16, 14, 30, 0).getTime();
+    jest.setSystemTime(now);
+    const result = formatExactTime(new Date(2024, 5, 1, 12, 0, 0).getTime());
+    expect(result).toContain('2024');
+    expect(result).not.toContain(':');
   });
 });
 

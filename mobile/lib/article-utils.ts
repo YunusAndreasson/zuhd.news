@@ -15,6 +15,50 @@ export function formatTimeAgo(addedAt: number): string {
   return new Date(addedAt).toLocaleDateString(undefined, { day: 'numeric', month: 'short' });
 }
 
+/** Absolute time shown when the user taps a relative dateline. The relative
+ *  form ("5h ago") asked the temporal question; this answers with exactly the
+ *  granularity the question implied:
+ *    same day  → "Today, 14:30"
+ *    prev day  → "Yesterday, 14:30"
+ *    this week → "Tuesday, 14:30"
+ *    this year → "Mar 5, 14:30"
+ *    older     → "Mar 5, 2025"
+ *  24h time matches the globe's wire-service timestamp convention so the two
+ *  surfaces don't disagree. Locale handles weekday/month names. */
+export function formatExactTime(addedAt: number): string {
+  const now = new Date();
+  const then = new Date(addedAt);
+  const time = then.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+
+  const sameDate = (a: Date, b: Date) =>
+    a.getFullYear() === b.getFullYear() &&
+    a.getMonth() === b.getMonth() &&
+    a.getDate() === b.getDate();
+
+  if (sameDate(then, now)) return `Today, ${time}`;
+
+  const yesterday = new Date(now);
+  yesterday.setDate(now.getDate() - 1);
+  if (sameDate(then, yesterday)) return `Yesterday, ${time}`;
+
+  const diffDays = (now.getTime() - then.getTime()) / 86_400_000;
+  if (diffDays < 7) {
+    const weekday = then.toLocaleDateString(undefined, { weekday: 'long' });
+    return `${weekday}, ${time}`;
+  }
+
+  if (then.getFullYear() === now.getFullYear()) {
+    const date = then.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+    return `${date}, ${time}`;
+  }
+
+  return then.toLocaleDateString(undefined, {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
+}
+
 export function ccToFlag(cc: string): string {
   return cc
     .toUpperCase()

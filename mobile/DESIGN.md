@@ -6,7 +6,7 @@ See root `foundation.md` for the philosophy. This document is the operational re
 
 ## Voice
 
-One typeface family. Whitespace is designed. Color carries meaning only — every non-monochrome element must justify its hue. No shadows, no gradients except the top/bottom globe fades, no decorative icons. Restraint is the brand.
+One typeface family. Whitespace is designed. Color carries meaning only — every non-monochrome element must justify its hue. No shadows, no gradients except the `ArticlePage` globe-fade backdrop, no decorative icons. Restraint is the brand.
 
 ## Tokens — `constants/theme.ts`
 
@@ -107,7 +107,7 @@ Override color with `tone`; scale by a fraction with `scale` prop. Caps from `VA
 - Setting `fontSize` or `lineHeight` in a component — use a variant, or add one.
 - A second font family. The app ships Source Sans 3 only.
 - Decorative icons just to pad a label. Use words.
-- Shadows, gradients, box-shadows (except the two globe-fade gradients in `ArticlePage`).
+- Shadows, gradients, box-shadows (except the `ArticlePage` globe-fade backdrop gradient).
 - Raw `@expo/vector-icons` imports outside `Icon.tsx`.
 - Introducing a styling library (NativeWind, Unistyles, Tamagui, Restyle). Vanilla StyleSheet + theme hooks is the decision — documented, don't re-litigate.
 

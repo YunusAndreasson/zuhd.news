@@ -176,12 +176,14 @@ const styles = StyleSheet.create({
   tabRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    // Left: +2 optical compensation — the small-caps labels have tighter
-    // side-bearings than H1 body text, so matching screenPadding exactly
-    // makes the row look outdented. Right: raw screenPadding (the menu
-    // glyph's own sidebearing reads flush against the right edge).
-    paddingLeft: SPACING.screenPadding + 2,
-    paddingRight: SPACING.screenPadding,
+    // Aligned with the article reader's column — `articlePadding` mirrors
+    // the body's horizontal inset so the small-caps labels visually line up
+    // with the title's first character. Left: +2 optical compensation
+    // because the small-caps side-bearings are tighter than H1 body text;
+    // matching the inset exactly makes the row look outdented. Right: raw
+    // `articlePadding` (the menu glyph's own sidebearing reads flush).
+    paddingLeft: SPACING.articlePadding + 2,
+    paddingRight: SPACING.articlePadding,
     paddingTop: SPACING.sm,
     paddingBottom: SPACING.xs,
     gap: SPACING.lg,

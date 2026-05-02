@@ -1,4 +1,5 @@
 import type { Article, Chokepoint, Entity, HeatmapPoint } from '@shared/types';
+import { LinearGradient } from 'expo-linear-gradient';
 import {
   memo,
   useCallback,
@@ -29,6 +30,7 @@ import { ANIMATION } from '../constants/theme';
 import { useScrollState } from '../hooks/useScrollState';
 import { useTheme } from '../hooks/useTheme';
 import { formatTimeAgo } from '../lib/article-utils';
+import type { GdacsAlert } from '../lib/gdacs';
 import { hapticNotification, hapticTick } from '../lib/haptics';
 import { maybeRequestReview } from '../lib/store-review';
 import { ArticlePage } from './ArticlePage';
@@ -36,6 +38,11 @@ import { EmptyState } from './EmptyState';
 import { MiniGlobe, type MiniGlobeRef, type TapResult } from './globe/MiniGlobe';
 
 const BREAKING_THRESHOLD = 100;
+
+// Article backdrop gradient stops. Hoisted to the list container so a single
+// LinearGradient view is rendered per category — cells scroll through a
+// fixed fade pattern rather than each cell carrying its own.
+const BG_FADE_LOCATIONS = [0, 0.02, 0.14, 0.28, 0.48, 0.72, 1] as const;
 
 export interface ArticleListRef {
   scrollToTop: () => void;
@@ -46,6 +53,7 @@ interface ArticleListProps {
   articles: Article[];
   heatmapPoints?: HeatmapPoint[];
   chokepoints?: Chokepoint[];
+  gdacsAlerts?: GdacsAlert[];
   viewportHeight: number;
   catIndex: number;
   lastSeenAt: number;
@@ -69,6 +77,7 @@ export const ArticleList = memo(function ArticleList({
   articles,
   heatmapPoints,
   chokepoints,
+  gdacsAlerts,
   viewportHeight,
   catIndex,
   lastSeenAt,
@@ -87,8 +96,21 @@ export const ArticleList = memo(function ArticleList({
   resetKey,
   ref,
 }: ArticleListProps) {
-  const { colors } = useTheme();
+  const { colors, bgAlpha } = useTheme();
   const insets = useSafeAreaInsets();
+  const bgFadeColors = useMemo(
+    () =>
+      [
+        bgAlpha(0),
+        bgAlpha(1),
+        bgAlpha(1),
+        bgAlpha(0.85),
+        bgAlpha(0.55),
+        bgAlpha(0.2),
+        bgAlpha(0),
+      ] as const,
+    [bgAlpha],
+  );
   const { width: screenWidth } = useWindowDimensions();
   // Chronological sort, but within the same time bucket (e.g. all "1h ago")
   // breaking stories (eventCoverage >= 100) float to top of their bucket.
@@ -233,7 +255,6 @@ export const ArticleList = memo(function ArticleList({
       <ArticlePage
         article={item}
         itemHeight={itemHeight}
-        screenWidth={screenWidth}
         index={index}
         scrollY={scrollY}
         onBookmarkPress={onBookmarkPress}
@@ -249,7 +270,6 @@ export const ArticleList = memo(function ArticleList({
     ),
     [
       itemHeight,
-      screenWidth,
       scrollY,
       onCountryPress,
       onBookmarkPress,
@@ -280,12 +300,23 @@ export const ArticleList = memo(function ArticleList({
         articles={sortedArticles}
         heatmapPoints={heatmapPoints}
         chokepoints={chokepoints}
+        gdacsAlerts={gdacsAlerts}
         scrollY={scrollY}
         itemHeight={itemHeight}
         width={screenWidth}
         height={viewportHeight}
         zoomClipOverride={zoomClipOverride}
         tick={tick}
+      />
+      {/* Single article backdrop fade — sits between MiniGlobe and the
+          FlatList so cells scroll through a fixed fade pattern instead of
+          each cell carrying its own. pointerEvents:none keeps the per-cell
+          GlobeTapZone reachable through it. */}
+      <LinearGradient
+        colors={bgFadeColors}
+        locations={BG_FADE_LOCATIONS}
+        style={styles.bgFade}
+        pointerEvents="none"
       />
       <Animated.FlatList
         key={resetKey}
@@ -322,4 +353,5 @@ export const ArticleList = memo(function ArticleList({
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
+  bgFade: { ...StyleSheet.absoluteFillObject },
 });
