@@ -11,6 +11,14 @@
 export const GDACS_GEOJSON_URL =
   'https://www.gdacs.org/gdacsapi/api/events/geteventlist/EVENTS4APP';
 
+/** Per-event detail URL (single Feature, not a collection). Returns the
+ *  same alert plus event-type-specific blocks like `earthquakedetails`
+ *  with population estimates the list endpoint omits. We only call this
+ *  lazily when an alert sheet opens. */
+export function gdacsEventDetailUrl(eventtype: EventType, eventid: string): string {
+  return `https://www.gdacs.org/gdacsapi/api/Events/geteventdata?eventtype=${eventtype}&eventid=${encodeURIComponent(eventid)}`;
+}
+
 export type EventType = 'EQ' | 'TC' | 'FL' | 'VO' | 'DR' | 'WF';
 export type AlertLevel = 'Green' | 'Orange' | 'Red';
 
@@ -291,4 +299,52 @@ export function alertAgeDays(alert: GdacsAlert, now: number = Date.now()): numbe
   const t = Date.parse(alert.modifiedDate);
   if (!Number.isFinite(t)) return 0;
   return Math.max(0, (now - t) / 86_400_000);
+}
+
+// ── Per-event detail (lazy, on sheet open) ─────────────────────────────────
+
+/** Per-event detail surface — only the fields with reader-facing value the
+ *  list endpoint doesn't carry. Today: earthquake population estimates
+ *  (`rapidpop` = people in the affected radius, `shakepop` = people in the
+ *  shaking zone). Other event types don't publish equivalent population
+ *  blocks at this endpoint, so this surface stays EQ-shaped — extending
+ *  later (e.g. cyclone wind tracks) means adding a discriminated variant. */
+export interface GdacsDetail {
+  /** People in GDACS's "rapid impact" affected radius, or null when the
+   *  field is empty / zero (typical for low-impact events). */
+  affectedPopulation: number | null;
+  /** People in the shaking-zone footprint (Mercalli ≥ V, roughly). */
+  shakingPopulation: number | null;
+}
+
+interface GdacsDetailFeature {
+  type: 'Feature';
+  properties: Record<string, unknown>;
+}
+
+export const isGdacsDetailFeature = (v: unknown): v is GdacsDetailFeature => {
+  if (!isObject(v)) return false;
+  if (v.type !== 'Feature') return false;
+  if (!isObject(v.properties)) return false;
+  return true;
+};
+
+/** Parse the population-string fields the GDACS detail endpoint publishes.
+ *  Numbers come back string-typed ("12400000", "0", "") — coerce, then
+ *  treat 0 / NaN as "no data" so the sheet doesn't render a meaningless
+ *  "0 people" line on low-tier events. */
+function readPopulationField(v: unknown): number | null {
+  if (typeof v === 'number' && Number.isFinite(v)) return v > 0 ? v : null;
+  if (typeof v !== 'string' || v.length === 0) return null;
+  const n = Number(v);
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+
+export function featureToDetail(feature: GdacsDetailFeature): GdacsDetail {
+  const eq = feature.properties.earthquakedetails;
+  if (!isObject(eq)) return { affectedPopulation: null, shakingPopulation: null };
+  return {
+    affectedPopulation: readPopulationField(eq.rapidpop),
+    shakingPopulation: readPopulationField(eq.shakepop),
+  };
 }

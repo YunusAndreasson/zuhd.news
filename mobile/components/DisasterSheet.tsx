@@ -9,6 +9,7 @@ import { memo, useCallback, useMemo } from 'react';
 import { Text as RNText, StyleSheet, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { ANIMATION, FLAG, SPACING, staggerDelay } from '../constants/theme';
+import { useGdacsDetail } from '../hooks/useGdacsDetail';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import type { GdacsAlert } from '../lib/gdacs';
@@ -74,6 +75,21 @@ function formatStatus(alert: GdacsAlert, now: number = Date.now()): string {
   return '';
 }
 
+/** Compact human form for population estimates. Earthquake exposure
+ *  numbers span 5+ orders of magnitude (a few hundred for offshore
+ *  events; tens of millions for shallow shocks under a megacity), so
+ *  bucket by magnitude rather than render full digits — the precision
+ *  is illusory anyway (GDACS itself tags these as "rapid impact"
+ *  estimates). Returns null when n is null or 0 so the caller can
+ *  hide the row entirely. */
+function formatPopulation(n: number | null): string | null {
+  if (n === null || n <= 0) return null;
+  if (n < 1_000) return `~${Math.round(n / 100) * 100}`;
+  if (n < 1_000_000) return `~${Math.round(n / 1_000)}K`;
+  if (n < 1_000_000_000) return `~${(n / 1_000_000).toFixed(n < 10_000_000 ? 1 : 0)}M`;
+  return `~${(n / 1_000_000_000).toFixed(1)}B`;
+}
+
 function FlagChip({
   name,
   flag,
@@ -131,6 +147,19 @@ export const DisasterSheet = memo(function DisasterSheet({
   const handleReportPress = useCallback(() => {
     if (alert?.reportUrl) openLink(alert.reportUrl);
   }, [alert?.reportUrl, openLink]);
+  // Lazy per-event detail — earthquake population estimates today.
+  // Fetches on alert change, caches per process, returns null otherwise.
+  const detail = useGdacsDetail(alert);
+  // Prefer the shaking-zone count (more directly meaningful — people
+  // actually felt it) and fall back to the wider rapid-impact radius.
+  // Either yields a row; both null hides the row entirely.
+  const populationText =
+    formatPopulation(detail?.shakingPopulation ?? null) ??
+    formatPopulation(detail?.affectedPopulation ?? null);
+  const populationLabel =
+    detail?.shakingPopulation && detail.shakingPopulation > 0
+      ? 'in shaking zone'
+      : 'in affected radius';
 
   const tint =
     alert?.alertlevel === 'Red'
@@ -232,6 +261,23 @@ export const DisasterSheet = memo(function DisasterSheet({
               </View>
             </Animated.View>
 
+            {/* Population stat — the human stake of the event. EQ-only;
+                fetched lazily from the GDACS detail endpoint and rendered
+                only when GDACS publishes a meaningful number (low-impact
+                events get 0/empty and the row hides entirely). Sits
+                between the hero (severity) and the flags (where) so the
+                reading order goes WHAT → HOW MANY → WHERE. */}
+            {populationText && (
+              <Animated.View entering={enter()} style={styles.populationRow}>
+                <Text variant="bodyEmphasis" tone="emphasis">
+                  {populationText}{' '}
+                  <Text variant="caption" tone="secondary">
+                    {populationLabel}
+                  </Text>
+                </Text>
+              </Animated.View>
+            )}
+
             {flags.length > 0 && (
               <Animated.View entering={enter()} style={styles.flagsRow}>
                 {flags.map((f) => (
@@ -300,6 +346,9 @@ const styles = StyleSheet.create({
   },
   heroMeta: {
     marginTop: SPACING.xxs,
+  },
+  populationRow: {
+    marginTop: SPACING.md,
   },
   flagsRow: {
     marginTop: SPACING.lg,

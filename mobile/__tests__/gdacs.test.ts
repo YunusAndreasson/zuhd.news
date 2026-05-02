@@ -1,7 +1,9 @@
 import {
   alertAgeDays,
   collectionToAlerts,
+  featureToDetail,
   type GdacsFeatureCollection,
+  isGdacsDetailFeature,
   isGdacsFeatureCollection,
 } from '../lib/gdacs';
 
@@ -157,6 +159,42 @@ describe('collectionToAlerts', () => {
     const out = collectionToAlerts(collection, FIXTURE_NOW);
     expect(out).toHaveLength(1);
     expect(out[0]?.modifiedDate).toBe('2026-05-01T08:00:00');
+  });
+});
+
+describe('featureToDetail', () => {
+  it('parses non-zero string-typed population fields', () => {
+    const feature = {
+      type: 'Feature' as const,
+      properties: {
+        earthquakedetails: {
+          rapidpop: '12400000',
+          shakepop: '5200000',
+        },
+      },
+    };
+    expect(isGdacsDetailFeature(feature)).toBe(true);
+    expect(featureToDetail(feature)).toEqual({
+      affectedPopulation: 12_400_000,
+      shakingPopulation: 5_200_000,
+    });
+  });
+
+  it('treats zero / empty / missing as null so the sheet hides the row', () => {
+    // Low-tier earthquakes typically publish "0" or "" in these fields.
+    // Surfacing "0 people affected" as a stat would be misleading; the
+    // formatter and parser cooperate to hide the row entirely.
+    expect(
+      featureToDetail({
+        type: 'Feature',
+        properties: { earthquakedetails: { rapidpop: '0', shakepop: '' } },
+      }),
+    ).toEqual({ affectedPopulation: null, shakingPopulation: null });
+
+    // Missing block at all — non-EQ events, defensive default.
+    expect(
+      featureToDetail({ type: 'Feature', properties: {} }),
+    ).toEqual({ affectedPopulation: null, shakingPopulation: null });
   });
 });
 
