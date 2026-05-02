@@ -3,10 +3,11 @@
 // Read-only: parses cycle logs, reads metrics/meta JSON, queries systemd
 
 import { createServer } from 'node:http'
-import { readFileSync, readdirSync, existsSync, statSync, watch } from 'node:fs'
+import { readFileSync, readdirSync, existsSync, statSync, watch, writeFileSync } from 'node:fs'
 import { join, extname } from 'node:path'
 import { execSync } from 'node:child_process'
 import { parseFrontmatter } from '../lib/frontmatter.js'
+import { scoreDir } from '../lib/quality-score.js'
 
 const PORT = 7777
 const HOST = '127.0.0.1'
@@ -420,6 +421,61 @@ function handleWritingQuality() {
   })
 }
 
+// Per-article objective quality scoring (specificity, hedges, title-echo).
+// Computes from the most recent N articles, persists daily snapshots so we
+// build a trend without changing the cycle. Read on every dashboard hit.
+function handleSpecificity() {
+  return cached('specificity', 5 * 60_000, () => {
+    const articlesDir = join(ROOT, 'content', 'articles')
+    if (!existsSync(articlesDir)) return { current: null, history: [], perArticle: [] }
+
+    const N = 60
+    const { rows, mean } = scoreDir(articlesDir, N)
+    if (!mean) return { current: null, history: [], perArticle: [] }
+
+    const today = new Date().toISOString().slice(0, 10)
+    const trendPath = join(ROOT, 'content', '.specificity-trend.json')
+    let trend = []
+    if (existsSync(trendPath)) {
+      try { trend = JSON.parse(readFileSync(trendPath, 'utf-8')) } catch { trend = [] }
+    }
+
+    // One snapshot per day — overwrite today's entry, append on day rollover
+    const todayIdx = trend.findIndex(t => t.date === today)
+    const snapshot = {
+      date: today,
+      articleCount: mean.articleCount,
+      specificity: +mean.specificity.toFixed(2),
+      digits: +mean.digits.toFixed(2),
+      properNouns: +mean.properNouns.toFixed(2),
+      hedges: +mean.hedges.toFixed(3),
+      titleEcho: +mean.titleEcho.toFixed(3),
+      sentences: +mean.sentences.toFixed(2),
+    }
+    if (todayIdx >= 0) trend[todayIdx] = snapshot
+    else trend.push(snapshot)
+    if (trend.length > 60) trend = trend.slice(-60)
+    try { writeFileSync(trendPath, JSON.stringify(trend, null, 2)) } catch {}
+
+    const prior = trend.length >= 2 ? trend[trend.length - 2] : null
+    const delta = {}
+    if (prior) {
+      for (const k of ['specificity', 'digits', 'properNouns', 'hedges', 'titleEcho']) {
+        if (typeof snapshot[k] === 'number' && typeof prior[k] === 'number') {
+          delta[k] = +(snapshot[k] - prior[k]).toFixed(2)
+        }
+      }
+    }
+
+    // Bottom 5 by specificity for drill-down
+    const worst = rows.slice().sort((a, b) => a.specificity - b.specificity).slice(0, 5).map(r => ({
+      file: r.file, specificity: r.specificity, digits: r.digits, hedges: r.hedges, titleEcho: +r.titleEcho.toFixed(2),
+    }))
+
+    return { current: snapshot, delta, history: trend, worst, windowArticles: N }
+  })
+}
+
 function regionFromCoords(lat, lng) {
   if (lat == null || lng == null) return 'unknown'
   if (lat > 15 && lat < 45 && lng > 25 && lng < 75) return 'ME'
@@ -442,9 +498,11 @@ function handleExperiment() {
     const activeAll = Array.isArray(data.activeExperiments)
       ? data.activeExperiments
       : (data.activeExperiment ? [data.activeExperiment] : [])
+    const queued = Array.isArray(data.queuedExperiments) ? data.queuedExperiments : []
     const result = {
       active: activeAll[0] || null,
       activeAll,
+      queued,
       history: (data.history || []).slice().reverse(),
       tracking: null,
     }
@@ -898,9 +956,11 @@ function handleEditorial() {
         const activeAll = Array.isArray(data.activeExperiments)
           ? data.activeExperiments
           : (data.activeExperiment ? [data.activeExperiment] : [])
+        const queued = Array.isArray(data.queuedExperiments) ? data.queuedExperiments : []
         result.experiments = {
           active: activeAll[0] || null,
           activeAll,
+          queued,
           history: (data.history || []).slice().reverse(),
           updatedAt: stat.mtime.toISOString(),
         }
@@ -1027,6 +1087,7 @@ const server = createServer((req, res) => {
   if (path === '/api/cycles') return sendJSON(res, handleCycles())
   if (path === '/api/quality') return sendJSON(res, handleQuality())
   if (path === '/api/writing-quality') return sendJSON(res, handleWritingQuality())
+  if (path === '/api/specificity') return sendJSON(res, handleSpecificity())
   if (path === '/api/editorial') return sendJSON(res, handleEditorial())
   if (path === '/api/feed-health') return sendJSON(res, handleFeedHealth())
   if (path === '/api/operations') return sendJSON(res, handleOperations())

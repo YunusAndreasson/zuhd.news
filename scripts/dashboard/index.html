@@ -9,8 +9,33 @@
 <body>
 
 <div class="header">
-  <div class="wordmark"><span class="header-dot" id="header-dot"></span>zuhd<span class="wordmark-sep"> / </span>dashboard</div>
+  <button type="button" class="wordmark" id="home-link" title="back to start">
+    <span class="header-dot" id="header-dot"></span>zuhd<span class="wordmark-sep"> / </span>dashboard
+  </button>
   <div class="clock" id="clock"></div>
+</div>
+
+<div class="status-bar" id="status-bar" role="navigation" aria-label="pipeline health">
+  <button type="button" class="status-chip" id="chip-cycle" data-target-tab="pipeline" data-target-scroll="cycle-history" title="jump to 7-day cycle history">
+    <span class="chip-head"><span class="dot dot-unknown"></span><span class="chip-label">last cycle</span></span>
+    <span class="chip-value">—</span>
+  </button>
+  <button type="button" class="status-chip" id="chip-next" data-target-tab="status" data-target-scroll="systemd" title="jump to systemd status">
+    <span class="chip-head"><span class="dot dot-unknown"></span><span class="chip-label">next cycle</span></span>
+    <span class="chip-value">—</span>
+  </button>
+  <button type="button" class="status-chip" id="chip-exp" data-target-tab="experiment" title="jump to experiments">
+    <span class="chip-head"><span class="dot dot-unknown"></span><span class="chip-label">experiments</span></span>
+    <span class="chip-value">—</span>
+  </button>
+  <button type="button" class="status-chip" id="chip-quality" data-target-tab="quality" data-target-scroll="compliance-trend" title="jump to compliance trend">
+    <span class="chip-head"><span class="dot dot-unknown"></span><span class="chip-label">quality</span></span>
+    <span class="chip-value">—</span>
+  </button>
+  <button type="button" class="status-chip" id="chip-fresh" data-target-tab="status" data-target-scroll="health-indicators" title="jump to health indicators">
+    <span class="chip-head"><span class="dot dot-unknown"></span><span class="chip-label">site fresh</span></span>
+    <span class="chip-value">—</span>
+  </button>
 </div>
 
 <nav class="tab-strip" role="tablist">
@@ -26,31 +51,43 @@
 <!-- ── Pipeline ──────────────────────────────────────────────── -->
 <div class="tab-panel active" id="panel-pipeline">
 
-  <section>
-    <h3>today at a glance</h3>
-    <div class="audit-row" id="glance-row"></div>
-    <div id="glance-alerts"></div>
-  </section>
+  <h2 class="group-divider">now — current state</h2>
 
-  <section>
-    <h3>current state</h3>
-    <dl class="state-grid" id="state-grid">
-      <dt>cycle</dt><dd id="st-cycle">...</dd>
-      <dt>last completed</dt><dd id="st-last">...</dd>
-      <dt>next scheduled</dt><dd id="st-next">...</dd>
-      <dt>site freshness</dt><dd id="st-fresh">...</dd>
-    </dl>
-  </section>
+  <div class="section-grid-2">
+    <section>
+      <h3>today at a glance</h3>
+      <div class="audit-row" id="glance-row"></div>
+      <div id="glance-alerts"></div>
+    </section>
+    <section>
+      <h3>current state</h3>
+      <dl class="state-grid" id="state-grid">
+        <dt>cycle</dt><dd id="st-cycle">...</dd>
+        <dt>last completed</dt><dd id="st-last">...</dd>
+        <dt>next scheduled</dt><dd id="st-next">...</dd>
+        <dt>site freshness</dt><dd id="st-fresh">...</dd>
+      </dl>
+    </section>
+  </div>
 
-  <section>
+  <section id="cycle-history">
     <h3>7-day cycle history</h3>
     <div class="cycle-grid" id="cycle-grid"></div>
   </section>
 
+  <h2 class="group-divider">last cycle — what just ran</h2>
+
   <section>
-    <h3>feed source health</h3>
-    <div id="feed-health"></div>
+    <h3>funnel (last cycle)</h3>
+    <div class="funnel" id="funnel"></div>
   </section>
+
+  <section>
+    <h3>stage time breakdown</h3>
+    <div id="chart-stages"></div>
+  </section>
+
+  <h2 class="group-divider">trends — 7-day patterns</h2>
 
   <section>
     <h3>cycle duration trend</h3>
@@ -63,81 +100,82 @@
   </section>
 
   <section>
-    <h3>stage time breakdown</h3>
-    <div id="chart-stages"></div>
-  </section>
-
-  <section>
     <h3>funnel efficiency</h3>
     <div id="chart-funnel-trend"></div>
   </section>
 
-  <section>
-    <h3>funnel (last cycle)</h3>
-    <div class="funnel" id="funnel"></div>
-  </section>
+  <h2 class="group-divider">sources &amp; ops</h2>
 
   <section>
-    <h3>NewsAPI tokens per cycle</h3>
-    <div id="ops-tokens-summary" class="stat-row"></div>
-    <div id="chart-newsapi-tokens"></div>
+    <h3>feed source health</h3>
+    <div id="feed-health"></div>
   </section>
 
-  <section>
-    <h3>trends pick rate</h3>
-    <div id="ops-trends-summary" class="stat-row"></div>
-    <div id="chart-trends-pick"></div>
-  </section>
+  <details class="detail-section">
+    <summary>NewsAPI tokens per cycle</summary>
+    <div class="detail-body">
+      <div id="ops-tokens-summary" class="stat-row"></div>
+      <div id="chart-newsapi-tokens"></div>
+    </div>
+  </details>
 
-  <section>
-    <h3>backfill activity</h3>
-    <div id="ops-backfill-summary"></div>
-  </section>
+  <details class="detail-section">
+    <summary>trends pick rate</summary>
+    <div class="detail-body">
+      <div id="ops-trends-summary" class="stat-row"></div>
+      <div id="chart-trends-pick"></div>
+    </div>
+  </details>
 
-  <section>
-    <h3>audio briefing</h3>
-    <div id="briefing-info"></div>
-  </section>
+  <details class="detail-section">
+    <summary>backfill activity</summary>
+    <div class="detail-body">
+      <div id="ops-backfill-summary"></div>
+    </div>
+  </details>
 
-  <section>
-    <h3>push notifications</h3>
-    <div id="push-history"></div>
-  </section>
+  <h2 class="group-divider">channels — downstream output</h2>
+
+  <div class="section-grid-2">
+    <section>
+      <h3>audio briefing</h3>
+      <div id="briefing-info"></div>
+    </section>
+    <section>
+      <h3>push notifications</h3>
+      <div id="push-history"></div>
+    </section>
+  </div>
 
 </div>
 
 <!-- ── Quality ───────────────────────────────────────────────── -->
 <div class="tab-panel" id="panel-quality">
 
-  <section>
-    <h3>categories (today)</h3>
-    <div id="cat-bars"></div>
+  <h2 class="group-divider">compliance — is the writing on-spec?</h2>
+
+  <section id="compliance-trend">
+    <h3>compliance trend</h3>
+    <div id="compliance-chart"></div>
   </section>
 
   <section>
-    <h3>source diversity</h3>
-    <div id="source-info"></div>
+    <h3>writing quality (last 7 days)</h3>
+    <div id="writing-quality-summary"></div>
+    <div class="stat-row" id="writing-quality-stats" style="margin-top:0.5rem"></div>
+    <div id="writing-quality-extra" style="margin-top:0.5rem"></div>
+    <div id="writing-quality-trend" style="margin-top:0.75rem"></div>
   </section>
 
   <section>
-    <h3>geographic spread</h3>
-    <div class="region-tags" id="region-tags"></div>
+    <h3>specificity (last 60 articles, daily snapshot)</h3>
+    <div id="specificity-summary"></div>
+    <div class="stat-row" id="specificity-stats" style="margin-top:0.5rem"></div>
+    <div id="specificity-trend" style="margin-top:0.75rem"></div>
+    <div id="specificity-worst" style="margin-top:0.75rem"></div>
   </section>
 
-  <section>
-    <h3>freshness</h3>
-    <div class="stat-row" id="freshness-stats"></div>
-  </section>
-
-  <section>
-    <h3>story arcs</h3>
-    <div class="stat-row" id="arc-stats"></div>
-  </section>
-
-  <section>
-    <h3>articles per day</h3>
-    <div id="chart-articles-day"></div>
-  </section>
+  <h2 class="group-divider">output — what got produced?</h2>
 
   <section>
     <h3>reader value score (per production cycle)</h3>
@@ -147,13 +185,33 @@
   </section>
 
   <section>
-    <h3>brief block adoption (last 14 days)</h3>
-    <div id="block-adoption-summary" class="stat-row"></div>
-    <div id="block-adoption-bars"></div>
-    <div style="margin-top: 0.75rem; font-size: var(--size-xs); color: var(--text-secondary);">
-      Shape-specific = timeline / rank / sankey / treemap. Cheap = prose / quiz / locations / compare / actors / quote. Charts = trend / chart / multi-chart.
-    </div>
+    <h3>articles per day</h3>
+    <div id="chart-articles-day"></div>
   </section>
+
+  <div class="section-grid-2">
+    <section>
+      <h3>freshness</h3>
+      <div class="stat-row" id="freshness-stats"></div>
+    </section>
+    <section>
+      <h3>story arcs</h3>
+      <div class="stat-row" id="arc-stats"></div>
+    </section>
+  </div>
+
+  <h2 class="group-divider">mix — how is the coverage shaped?</h2>
+
+  <div class="section-grid-2">
+    <section>
+      <h3>categories (today)</h3>
+      <div id="cat-bars"></div>
+    </section>
+    <section>
+      <h3>geographic spread</h3>
+      <div class="region-tags" id="region-tags"></div>
+    </section>
+  </div>
 
   <section>
     <h3>category balance (7 days)</h3>
@@ -161,21 +219,36 @@
   </section>
 
   <section>
-    <h3>edu context coverage</h3>
-    <div id="edu-coverage"></div>
+    <h3>source diversity</h3>
+    <div id="source-info"></div>
   </section>
 
-  <section>
-    <h3>duplicates &amp; validation</h3>
-    <div id="quality-issues"></div>
-  </section>
+  <h2 class="group-divider">detail — secondary signals</h2>
 
-  <section>
-    <h3>writing quality (last 7 days)</h3>
-    <div id="writing-quality-summary"></div>
-    <div class="stat-row" id="writing-quality-stats" style="margin-top:0.5rem"></div>
-    <div id="writing-quality-trend" style="margin-top:0.75rem"></div>
-  </section>
+  <details class="detail-section">
+    <summary>brief block adoption (last 14 days)</summary>
+    <div class="detail-body">
+      <div id="block-adoption-summary" class="stat-row"></div>
+      <div id="block-adoption-bars"></div>
+      <div style="margin-top: 0.75rem; font-size: var(--size-xs); color: var(--text-secondary);">
+        Shape-specific = timeline / rank / sankey / treemap. Cheap = prose / quiz / locations / compare / actors / quote. Charts = trend / chart / multi-chart.
+      </div>
+    </div>
+  </details>
+
+  <details class="detail-section">
+    <summary>edu context coverage</summary>
+    <div class="detail-body">
+      <div id="edu-coverage"></div>
+    </div>
+  </details>
+
+  <details class="detail-section">
+    <summary>duplicates &amp; validation</summary>
+    <div class="detail-body">
+      <div id="quality-issues"></div>
+    </div>
+  </details>
 
 </div>
 
@@ -206,6 +279,11 @@
   <section>
     <h3>tracking</h3>
     <div id="exp-tracking"></div>
+  </section>
+
+  <section>
+    <h3>queued</h3>
+    <div id="exp-queued"></div>
   </section>
 
   <section>
@@ -254,12 +332,12 @@
 <!-- ── Status ────────────────────────────────────────────────── -->
 <div class="tab-panel" id="panel-status">
 
-  <section>
+  <section id="health-indicators">
     <h3>health indicators</h3>
     <ul class="health-list" id="health-list"></ul>
   </section>
 
-  <section>
+  <section id="systemd">
     <h3>systemd</h3>
     <dl class="state-grid" id="systemd-info"></dl>
   </section>
@@ -278,15 +356,47 @@ const panels = document.querySelectorAll('.tab-panel')
 const tabLoaders = { pipeline: loadPipeline, quality: loadQuality, logs: loadLogs, experiment: loadExperiment, autoresearch: loadAutoresearch, editorial: loadEditorial, status: loadStatus }
 let activeTab = 'pipeline'
 
+function switchTab(tabName, scrollTargetId) {
+  const targetBtn = Array.from(tabs).find(b => b.dataset.tab === tabName)
+  if (!targetBtn) return
+  tabs.forEach(b => b.setAttribute('aria-selected', 'false'))
+  panels.forEach(p => p.classList.remove('active'))
+  targetBtn.setAttribute('aria-selected', 'true')
+  activeTab = tabName
+  document.getElementById(`panel-${tabName}`).classList.add('active')
+  tabLoaders[tabName]?.()
+  if (scrollTargetId) {
+    // Defer to let the panel render before scrolling
+    requestAnimationFrame(() => {
+      const target = document.getElementById(scrollTargetId)
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        // Brief visual highlight so the user sees what got the focus
+        target.classList.add('section-flash')
+        setTimeout(() => target.classList.remove('section-flash'), 1200)
+      }
+    })
+  } else {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+}
+
 tabs.forEach(btn => {
-  btn.addEventListener('click', () => {
-    tabs.forEach(b => b.setAttribute('aria-selected', 'false'))
-    panels.forEach(p => p.classList.remove('active'))
-    btn.setAttribute('aria-selected', 'true')
-    activeTab = btn.dataset.tab
-    document.getElementById(`panel-${activeTab}`).classList.add('active')
-    tabLoaders[activeTab]?.()
+  btn.addEventListener('click', () => switchTab(btn.dataset.tab))
+})
+
+// Status-bar chips deep-link to relevant tab + section
+document.querySelectorAll('.status-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    const tab = chip.dataset.targetTab
+    const scroll = chip.dataset.targetScroll
+    if (tab) switchTab(tab, scroll)
   })
+})
+
+// Wordmark — back to default view (pipeline tab, scrolled to top)
+document.getElementById('home-link')?.addEventListener('click', () => {
+  switchTab('pipeline')
 })
 
 // ── Clock ─────────────────────────────────────────────────────
@@ -995,6 +1105,147 @@ async function loadQuality() {
 
   // Writing quality (editorial rule compliance)
   loadWritingQuality()
+  loadSpecificity()
+  loadComplianceChart()
+}
+
+async function loadComplianceChart() {
+  const wq = await api('/api/writing-quality')
+  const el = document.getElementById('compliance-chart')
+  if (!el) return
+  if (!wq?.history || wq.history.length < 2) {
+    el.innerHTML = '<span class="empty">trend builds over future weeks (snapshots taken at Sunday 22:00 UTC reflect cycle)</span>'
+    return
+  }
+
+  // 4 lower-is-better compliance metrics, with their target thresholds
+  const series = [
+    { key: 'titleEchoRatePct',   label: 'title echo %',  target: 10, color: '#e8a64a' },
+    { key: 'passiveHookRatePct', label: 'passive hook %', target: 15, color: '#6db4d6' },
+    { key: 'hedgeRatePct',       label: 'hedges %',       target: 5,  color: '#c87c98' },
+    { key: 'charOver350Pct',     label: 'over 350 char %', target: 5,  color: '#88b985' },
+  ]
+  const history = wq.history
+  const n = history.length
+
+  // Y range: max of all values + headroom, but at least show the highest target line
+  const allVals = series.flatMap(s => history.map(h => h.metrics[s.key] || 0))
+  const maxTarget = Math.max(...series.map(s => s.target))
+  const yMax = Math.max(Math.max(...allVals), maxTarget) * 1.15
+
+  const p = CHART.pad, w = CHART.w, h = CHART.h
+  const pw = w - p.l - p.r, ph = h - p.t - p.b
+  const xFn = (i) => p.l + (i / Math.max(n - 1, 1)) * pw
+  const yFn = (v) => p.t + ph - (v / yMax) * ph
+
+  let html = svgOpen(w, h)
+
+  // Y grid + labels
+  for (let i = 0; i <= 4; i++) {
+    const v = (yMax / 4) * i
+    const y = yFn(v)
+    html += `<line x1="${p.l}" x2="${w - p.r}" y1="${y}" y2="${y}" class="chart-grid"/>`
+    html += `<text x="${p.l - 6}" y="${y + 3}" class="chart-label" text-anchor="end">${Math.round(v)}%</text>`
+  }
+
+  // Target lines (dashed, color-matched per series)
+  for (const s of series) {
+    const y = yFn(s.target)
+    html += `<line x1="${p.l}" x2="${w - p.r}" y1="${y}" y2="${y}" stroke="${s.color}" stroke-width="0.8" stroke-dasharray="2,4" opacity="0.5"/>`
+  }
+
+  // Data lines
+  for (const s of series) {
+    const points = history.map((hh, i) => `${xFn(i)},${yFn(hh.metrics[s.key] || 0)}`).join(' ')
+    html += `<polyline points="${points}" fill="none" stroke="${s.color}" stroke-width="2"/>`
+    // Dots at each data point, with tooltip
+    history.forEach((hh, i) => {
+      const v = hh.metrics[s.key] || 0
+      const overTarget = v > s.target
+      html += `<circle cx="${xFn(i)}" cy="${yFn(v)}" r="${overTarget ? 3.5 : 2.5}" fill="${s.color}" stroke="${overTarget ? 'var(--red)' : 'none'}" stroke-width="1.5"><title>${hh.week} — ${s.label}: ${v}% (target ${s.target}%)</title></circle>`
+    })
+  }
+
+  // X labels (show first, middle, last)
+  const labelIdx = n <= 4 ? history.map((_, i) => i) : [0, Math.floor((n - 1) / 2), n - 1]
+  for (const i of labelIdx) {
+    html += `<text x="${xFn(i)}" y="${h - 4}" class="chart-label" text-anchor="middle">${(history[i].week || '').slice(5)}</text>`
+  }
+
+  // Legend below
+  html += '</svg>'
+  html += '<div class="compliance-legend" style="display:flex;flex-wrap:wrap;gap:1rem;font-size:var(--size-xs);color:var(--text-secondary);margin-top:0.5rem">' +
+    series.map(s => {
+      const last = history[n - 1].metrics[s.key] || 0
+      const breach = last > s.target
+      return `<span style="display:inline-flex;align-items:center;gap:0.35rem"><span style="display:inline-block;width:10px;height:2px;background:${s.color}"></span>${s.label} <strong style="color:${breach ? 'var(--amber)' : 'var(--text-primary, inherit)'}">${last}%</strong> <span style="opacity:0.6">(target &lt;${s.target}%)</span></span>`
+    }).join('') +
+    '</div>'
+
+  el.innerHTML = html
+}
+
+async function loadSpecificity() {
+  const data = await api('/api/specificity')
+  const sumEl = document.getElementById('specificity-summary')
+  const statsEl = document.getElementById('specificity-stats')
+  const trendEl = document.getElementById('specificity-trend')
+  const worstEl = document.getElementById('specificity-worst')
+  if (!data || !data.current) {
+    sumEl.innerHTML = '<span class="empty">no scoring data yet</span>'
+    statsEl.innerHTML = ''; trendEl.innerHTML = ''; worstEl.innerHTML = ''
+    return
+  }
+  const c = data.current, d = data.delta || {}
+  const fmtDelta = (k, opts = {}) => {
+    const v = d[k]; if (v === undefined || v === 0) return ''
+    // higher is better for specificity/digits/properNouns; lower for hedges/titleEcho
+    const lowerIsBetter = ['hedges', 'titleEcho'].includes(k)
+    const good = lowerIsBetter ? v < 0 : v > 0
+    const sign = v > 0 ? '+' : ''
+    return `<span style="color:${good ? 'var(--green, #4a9)' : 'var(--amber)'};font-size:var(--size-xs);margin-left:0.35em">(${sign}${v})</span>`
+  }
+  sumEl.innerHTML = `<span class="stat-label">${c.articleCount} articles · ${c.date}</span>`
+  const rows = [
+    { k: 'specificity', l: 'specificity score',  v: c.specificity, target: '↑' },
+    { k: 'digits',      l: 'digits/article',     v: c.digits,      target: '↑' },
+    { k: 'properNouns', l: 'proper nouns',       v: c.properNouns, target: '↑' },
+    { k: 'hedges',      l: 'hedges/article',     v: c.hedges,      target: '< 0.30' },
+    { k: 'titleEcho',   l: 'title-echo Jaccard', v: c.titleEcho,   target: '< 0.20' },
+    { k: 'sentences',   l: 'avg sentences',      v: c.sentences,   target: '= 3.0' },
+  ]
+  statsEl.innerHTML = rows.map(r =>
+    `<div class="stat"><span class="stat-value">${r.v}${fmtDelta(r.k)}</span><span class="stat-label">${r.l} (target ${r.target})</span></div>`
+  ).join('')
+
+  // Trend sparklines for specificity + hedges + titleEcho
+  if (data.history && data.history.length >= 2) {
+    const series = [
+      { key: 'specificity', label: 'specificity' },
+      { key: 'hedges', label: 'hedges/article' },
+      { key: 'titleEcho', label: 'title-echo' },
+    ]
+    trendEl.innerHTML = '<div style="font-size:var(--size-xs);color:var(--text-secondary);margin-bottom:0.3rem">trend (last ' + data.history.length + ' days)</div>' +
+      series.map(s => {
+        const vals = data.history.map(h => h[s.key] || 0)
+        const max = Math.max(0.01, ...vals)
+        const spark = vals.map(v => {
+          const h = Math.max(2, Math.round((v / max) * 24))
+          return `<span style="display:inline-block;width:6px;height:${h}px;background:var(--text-secondary);vertical-align:bottom;margin-right:1px"></span>`
+        }).join('')
+        return `<div style="margin-bottom:0.4rem"><span style="font-size:var(--size-xs);color:var(--text-secondary);display:inline-block;min-width:9rem">${s.label}</span>${spark} <span style="font-size:var(--size-xs);color:var(--text-secondary);margin-left:0.4rem">${vals[vals.length-1]}</span></div>`
+      }).join('')
+  } else {
+    trendEl.innerHTML = '<span class="empty" style="font-size:var(--size-xs)">trend builds over future days (one snapshot/day)</span>'
+  }
+
+  // Bottom 5 — useful for spotting outliers pulling the average down
+  if (data.worst && data.worst.length) {
+    worstEl.innerHTML = '<div style="font-size:var(--size-xs);color:var(--text-secondary);margin-bottom:0.3rem">lowest specificity (drag on average)</div>' +
+      data.worst.map(w =>
+        `<div style="font-size:var(--size-xs);color:var(--text-secondary);margin-bottom:0.2rem"><span style="display:inline-block;min-width:3rem"><strong>${w.specificity}</strong></span><span>${esc(w.file)}</span></div>`
+      ).join('')
+  }
 }
 
 async function loadWritingQuality() {
@@ -1031,18 +1282,46 @@ async function loadWritingQuality() {
     { k: 'multiSourceRatePct', l: 'multi-source',     v: m.multiSourceRatePct, u: '%',  target: '>40%' },
     { k: 'topOutletSharePct',  l: 'top-3 outlet',     v: m.topOutletSharePct,  u: '%',  target: '<35%' },
     { k: 'charOver350Pct',     l: 'over 350 char',    v: m.charOver350Pct,     u: '%',  target: '<5%' },
+    { k: 'wordCountAvg',       l: 'avg word count',   v: m.wordCountAvg,       u: '',   target: '40-50' },
+    { k: 'wordInRangePct',     l: 'words in range',   v: m.wordInRangePct,     u: '%',  target: '>75%' },
+    { k: 'charLengthAvg',      l: 'avg char length',  v: m.charLengthAvg,      u: '',   target: '280-330' },
   ]
   statsEl.innerHTML = rows.map(r =>
     `<div class="stat"><span class="stat-value">${r.v}${r.u}${fmtDelta(r.k, r.u)}</span><span class="stat-label">${r.l} (target ${r.target})</span></div>`
   ).join('')
+
+  // Top outlets and acronym violators — exposed but previously unrendered
+  const extraEl = document.getElementById('writing-quality-extra')
+  if (extraEl) {
+    const parts = []
+    if (Array.isArray(m.top3Outlets) && m.top3Outlets.length) {
+      parts.push('<div style="font-size:var(--size-xs);color:var(--text-secondary);margin-bottom:0.4rem"><strong>top outlets:</strong> ' +
+        m.top3Outlets.map(o => `${esc(o.name)} <span style="opacity:0.7">(${o.count})</span>`).join(' · ') +
+        '</div>')
+    }
+    if (Array.isArray(m.topAcronymViolators) && m.topAcronymViolators.length && m.acronymViolations > 0) {
+      parts.push('<div style="font-size:var(--size-xs);color:var(--text-secondary)"><strong>top acronym violators:</strong> ' +
+        m.topAcronymViolators.map(v => Array.isArray(v) ? `${esc(v[0])} <span style="opacity:0.7">(${v[1]})</span>` : `${esc(v.code || v.name || '')} <span style="opacity:0.7">(${v.count || 0})</span>`).join(' · ') +
+        '</div>')
+    }
+    extraEl.innerHTML = parts.join('')
+  }
 
   // Trend mini-charts for the headline metrics
   if (wq.history && wq.history.length >= 2) {
     const series = [
       { key: 'titleEchoRatePct', label: 'title echo %' },
       { key: 'passiveHookRatePct', label: 'passive hook %' },
+      { key: 'hedgeRatePct', label: 'hedges %' },
+      { key: 'causalClaimHits', label: 'causal claims' },
+      { key: 'pressEraHits', label: 'press-era hits' },
       { key: 'multiSourceRatePct', label: 'multi-source %' },
+      { key: 'topOutletSharePct', label: 'top-3 outlet %' },
+      { key: 'charOver350Pct', label: 'over 350 char %' },
+      { key: 'countryNullCount', label: 'country:null' },
       { key: 'acronymViolations', label: 'acronym viol.' },
+      { key: 'wordCountAvg', label: 'avg word count' },
+      { key: 'wordInRangePct', label: 'words in range %' },
     ]
     trendEl.innerHTML = '<div style="font-size:var(--size-xs);color:var(--text-secondary);margin-bottom:0.3rem">trend (last ' + wq.history.length + ' weeks)</div>' +
       series.map(s => {
@@ -1432,6 +1711,27 @@ async function loadExperiment() {
     expTracking.innerHTML = ''
   }
 
+  // Queued (blocked or scheduled to start later)
+  const expQueued = document.getElementById('exp-queued')
+  if (data.queued?.length) {
+    expQueued.innerHTML = data.queued.map(e => {
+      const startWhen = e.startAfter || e.startDate || 'TBD'
+      const blockedNote = e.blockedBy ? `blocked by <code>${esc(e.blockedBy)}</code>` : ''
+      return `<div class="exp-card exp-neutral">
+        <div class="exp-header">
+          <strong>${esc(e.parameter || e.id)}</strong>
+          <span class="exp-change">${esc(String(e.oldValue ?? ''))} → ${esc(String(e.newValue ?? ''))}</span>
+          <span class="exp-result">starts ${esc(startWhen)}</span>
+        </div>
+        <div class="exp-meta">file: ${esc(e.file || '')} · metric: ${esc(e.targetMetric || '')} ${e.targetDirection || ''} ${blockedNote ? '· ' + blockedNote : ''}</div>
+        ${e.baseline ? `<div class="exp-baseline-section"><span class="label">baseline</span>${Object.entries(e.baseline).map(([k, v]) => `<span class="exp-baseline-item">${k}: <strong>${esc(String(v))}</strong></span>`).join('')}</div>` : ''}
+        <div class="exp-detail">${esc(e.hypothesis || e.blockedReason || '')}</div>
+      </div>`
+    }).join('')
+  } else {
+    expQueued.innerHTML = '<span class="empty">no queued experiments</span>'
+  }
+
   // History
   if (data.history?.length) {
     expHistory.innerHTML = data.history.map(e => {
@@ -1662,7 +1962,7 @@ async function loadStatus() {
   }
 }
 
-// ── Header Health Dot ─────────────────────────────────────────
+// ── Header Health Dot + Status Bar ────────────────────────────
 async function updateHeaderDot() {
   const data = await api('/api/overview')
   if (!data) return
@@ -1671,6 +1971,90 @@ async function updateHeaderDot() {
   const status = data.status?.overall || 'unknown'
   dot.className = `header-dot dot dot-${status}`
   dot.title = `overall: ${status}`
+  updateStatusBar(data)
+}
+
+function fmtAge(ms) {
+  if (!ms || ms < 0) return '—'
+  const m = Math.floor(ms / 60_000)
+  if (m < 60) return `${m}m`
+  const h = Math.floor(m / 60)
+  return `${h}h${m % 60 ? (m % 60) + 'm' : ''}`
+}
+
+async function updateStatusBar(overview) {
+  const setChip = (id, dotState, valueText, alert) => {
+    const el = document.getElementById(id)
+    if (!el) return
+    el.querySelector('.dot').className = `dot dot-${dotState}`
+    el.querySelector('.chip-value').textContent = valueText
+    el.classList.toggle('alert', alert === 'amber')
+    el.classList.toggle('fail', alert === 'red')
+  }
+
+  // Last cycle
+  if (overview?.lastCycle) {
+    const lc = overview.lastCycle
+    const ageMs = Date.now() - new Date(lc.finishedAt).getTime()
+    const txt = `${lc.published || 0} articles · ${fmtAge(ageMs)} ago`
+    setChip('chip-cycle', overview.status?.lastCycle || 'unknown', txt)
+  } else {
+    setChip('chip-cycle', 'unknown', 'no cycle yet')
+  }
+
+  // Next cycle
+  if (overview?.nextFire) {
+    const ms = new Date(overview.nextFire).getTime() - Date.now()
+    setChip('chip-next', overview.status?.cycleTiming || 'unknown',
+      ms > 0 ? `in ${fmtAge(ms)}` : 'overdue',
+      ms < 0 ? 'amber' : null)
+  } else {
+    setChip('chip-next', 'unknown', '—')
+  }
+
+  // Site freshness
+  if (overview?.metaAge !== undefined) {
+    const hrs = overview.metaAge
+    setChip('chip-fresh', overview.status?.siteFreshness || 'unknown',
+      hrs < 1 ? `${Math.round(hrs * 60)}m` : `${hrs.toFixed(1)}h`)
+  }
+
+  // Experiments
+  try {
+    const exp = await api('/api/experiment')
+    if (exp) {
+      const active = exp.activeAll?.length || (exp.active ? 1 : 0)
+      const queued = exp.queued?.length || 0
+      const txt = active === 0 && queued === 0 ? 'none'
+        : `${active} active${queued ? ' · ' + queued + ' queued' : ''}`
+      setChip('chip-exp', active > 0 ? 'green' : 'unknown', txt)
+    }
+  } catch {}
+
+  // Quality alerts — count metrics breaching their target
+  try {
+    const wq = await api('/api/writing-quality')
+    if (wq?.current?.metrics) {
+      const m = wq.current.metrics
+      const breaches = []
+      if (m.titleEchoRatePct > 10) breaches.push('title echo')
+      if (m.passiveHookRatePct > 15) breaches.push('passive hook')
+      if (m.hedgeRatePct > 5) breaches.push('hedges')
+      if (m.charOver350Pct > 5) breaches.push('over 350')
+      if (m.multiSourceRatePct < 40) breaches.push('multi-source')
+      if (m.acronymViolations > 0) breaches.push('acronyms')
+      if (m.causalClaimHits > 0) breaches.push('causal claims')
+      if (m.pressEraHits > 0) breaches.push('press-era')
+      if (m.countryNullCount > 0) breaches.push('country:null')
+      const n = breaches.length
+      setChip('chip-quality',
+        n === 0 ? 'green' : n <= 2 ? 'amber' : 'red',
+        n === 0 ? 'all targets met' : `${n} breach${n > 1 ? 'es' : ''}`,
+        n === 0 ? null : n <= 2 ? 'amber' : 'red')
+      const el = document.getElementById('chip-quality')
+      if (el) el.title = breaches.length ? 'breaches: ' + breaches.join(', ') : 'all targets met'
+    }
+  } catch {}
 }
 
 // ── Initial Load ──────────────────────────────────────────────

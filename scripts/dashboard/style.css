@@ -70,7 +70,17 @@ body {
   font-size: var(--size-h2);
   font-weight: 700;
   letter-spacing: -0.02em;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font-family: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: baseline;
 }
+.wordmark:hover { opacity: 0.75; }
+.wordmark:focus-visible { outline: 1px solid var(--text-secondary); outline-offset: 2px; }
 
 .wordmark-sep { color: var(--text-secondary); font-weight: 300; }
 
@@ -98,6 +108,127 @@ body {
   color: var(--text-secondary);
   font-size: var(--size-sm);
 }
+
+/* --- Status bar --- */
+.status-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0;
+  margin-bottom: var(--space-md);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--bg-secondary, transparent);
+}
+.status-chip {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+  font-size: var(--size-xs);
+  padding: 0.55rem 0.85rem;
+  background: transparent;
+  border: 0;
+  border-right: 1px solid var(--rule);
+  text-align: left;
+  font-family: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition: background 0.12s ease;
+  min-width: 0;
+}
+.status-chip:last-child { border-right: 0; }
+.status-chip:hover, .status-chip:focus-visible {
+  background: rgba(127, 127, 127, 0.08);
+  outline: none;
+}
+.status-chip:focus-visible { box-shadow: inset 0 0 0 1px var(--text-secondary); }
+.status-chip .chip-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.status-chip .chip-label {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.status-chip .chip-value {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary, inherit);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.status-chip .dot { width: 0.55em; height: 0.55em; flex-shrink: 0; }
+.status-chip.alert .chip-value { color: var(--amber); }
+.status-chip.fail .chip-value { color: var(--red); }
+@media (max-width: 720px) {
+  .status-chip { padding: 0.5rem 0.7rem; }
+}
+
+/* Brief highlight when a section is jumped to via a status chip */
+.section-flash {
+  animation: section-flash-anim 1.1s ease-out;
+}
+@keyframes section-flash-anim {
+  0%   { box-shadow: inset 0 0 0 2px var(--text-secondary); }
+  100% { box-shadow: inset 0 0 0 2px transparent; }
+}
+
+/* --- Section grouping (visual rhythm on long tabs) --- */
+.group-divider {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: var(--size-xs);
+  margin: var(--space-lg) 0 var(--space-xs);
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+.group-divider:first-child { margin-top: 0; }
+
+/* --- Collapsible detail sections --- */
+.detail-section {
+  margin: 0.5rem 0 1rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 0;
+}
+.detail-section > summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.55rem 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  user-select: none;
+}
+.detail-section > summary::-webkit-details-marker { display: none; }
+.detail-section > summary::before {
+  content: "▸";
+  color: var(--text-secondary);
+  font-size: 0.8em;
+  transition: transform 0.15s ease;
+  display: inline-block;
+}
+.detail-section[open] > summary::before { transform: rotate(90deg); }
+.detail-section > summary:hover { background: rgba(127, 127, 127, 0.06); }
+.detail-section > .detail-body {
+  padding: 0 0.85rem 0.75rem;
+}
+
+/* --- Compact 2-column grid for short stat-row sections --- */
+.section-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-md);
+}
+.section-grid-2 > section { margin: 0; }
 
 /* --- Tabs --- */
 .tab-strip {
