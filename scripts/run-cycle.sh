@@ -660,9 +660,16 @@ if [ "$DAY_OF_WEEK" = "7" ] && [ "$START_HOUR" = "22" ]; then
   # this single weekly call compounds across the whole week of output.
   # Cost is negligible at weekly cadence; the alternative is suboptimal
   # parameter recommendations running for 7 days.
-  timeout 900 claude $CLAUDE_FLAGS --effort high --model claude-opus-4-7 --allowedTools $TOOLS_REFLECT --max-turns 20 -p "$REFLECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+  # Timeout 1800s (30min): Opus high thinks longer per turn than Sonnet
+  # medium did at 900s. 20 turns × ~60–90s per turn under high effort
+  # fits comfortably; partial-budget bump prevents silent timeout drops.
+  timeout 1800 claude $CLAUDE_FLAGS --effort high --model claude-opus-4-7 --allowedTools $TOOLS_REFLECT --max-turns 20 -p "$REFLECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
   REFLECT_EXIT=$?
-  echo "Reflection exit: $REFLECT_EXIT" | tee -a "$LOG_FILE"
+  if [ "$REFLECT_EXIT" = "124" ]; then
+    echo "Reflection exit: 124 (TIMEOUT — exceeded 1800s budget; bump if recurring)" | tee -a "$LOG_FILE"
+  else
+    echo "Reflection exit: $REFLECT_EXIT" | tee -a "$LOG_FILE"
+  fi
   # Failure here doesn't affect publishing — the cycle is already complete
 else
   echo "" | tee -a "$LOG_FILE"
@@ -685,9 +692,15 @@ if [ "$START_HOUR" = "22" ]; then
     # the next day's 5 cycles. Same judgment class as reflect (just narrower
     # blast radius). Daily cadence makes Opus affordable; medium effort is
     # enough since the metric inputs are deterministic.
-    timeout 300 claude $CLAUDE_FLAGS --effort medium --model claude-opus-4-7 --allowedTools $TOOLS_TUNE --max-turns 15 -p "$TUNE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+    # Timeout 600s (10min): Opus medium runs slower per turn than Sonnet
+    # medium; doubling the budget keeps 15 max-turns comfortably in scope.
+    timeout 600 claude $CLAUDE_FLAGS --effort medium --model claude-opus-4-7 --allowedTools $TOOLS_TUNE --max-turns 15 -p "$TUNE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
     TUNE_EXIT=$?
-    echo "Tuning exit: $TUNE_EXIT — $((SECONDS - T6))s" | tee -a "$LOG_FILE"
+    if [ "$TUNE_EXIT" = "124" ]; then
+      echo "Tuning exit: 124 (TIMEOUT — exceeded 600s budget; bump if recurring) — $((SECONDS - T6))s" | tee -a "$LOG_FILE"
+    else
+      echo "Tuning exit: $TUNE_EXIT — $((SECONDS - T6))s" | tee -a "$LOG_FILE"
+    fi
     # Tuning session handles its own git workflow (experiment branches + PRs).
     # Here we only commit the tracking files if they changed.
     AUDIT_CHANGES=$(git diff --name-only content/.experiments.json content/.daily-audit.json content/.daily-audit.md 2>/dev/null | wc -l)
