@@ -42,6 +42,15 @@ export function smartTypography(s: string): string {
     .replace(/\b2\/3\b/g, '\u2154'); // ⅔
 }
 
+/** Strip any unpaired markdown emphasis markers from a literal text run.
+ *  `parseInline` only matches balanced pairs; any leftover `**` or `__`
+ *  in the text means an unbalanced marker survived (most often from a
+ *  writer's bold spanning a sentence boundary, since we parse per-sentence).
+ *  Without this scrub, the literal markers render visible to the reader. */
+function stripStrayEmphasis(text: string): string {
+  return text.replace(/\*\*|__/g, '');
+}
+
 export function parseInline(line: string): Segment[] {
   const segments: Segment[] = [];
   const regex = /\*\*(.+?)\*\*|\*(.+?)\*|\[([^\]]+)\]\(([^)]+)\)/g;
@@ -50,7 +59,10 @@ export function parseInline(line: string): Segment[] {
   for (const match of line.matchAll(regex)) {
     const idx = match.index ?? 0;
     if (idx > lastIndex) {
-      segments.push({ type: 'text', text: smartTypography(line.slice(lastIndex, idx)) });
+      segments.push({
+        type: 'text',
+        text: smartTypography(stripStrayEmphasis(line.slice(lastIndex, idx))),
+      });
     }
     if (match[1]) {
       // Parse nested italic (*...*) within bold content
@@ -80,9 +92,14 @@ export function parseInline(line: string): Segment[] {
     lastIndex = idx + match[0].length;
   }
   if (lastIndex < line.length) {
-    segments.push({ type: 'text', text: smartTypography(line.slice(lastIndex)) });
+    segments.push({
+      type: 'text',
+      text: smartTypography(stripStrayEmphasis(line.slice(lastIndex))),
+    });
   }
-  return segments.length ? segments : [{ type: 'text', text: smartTypography(line) }];
+  return segments.length
+    ? segments
+    : [{ type: 'text', text: smartTypography(stripStrayEmphasis(line)) }];
 }
 
 /** Split plain-text segments on any entity mentions, in-place, preserving
@@ -206,8 +223,19 @@ export function makeMarkdownStyles(
     entity: {
       color: colors.accent,
     },
+    // Inline dateline: matches the design system's small-caps tiers
+    // (label/labelSm/labelXs) — secondary tone so the temporal frame reads
+    // as quiet metadata against the body, plus the same caps tracking so
+    // glyphs breathe at small sizes. fontVariant must be set *here* and not
+    // relied on from the parent `sentence` style: RN doesn't reliably
+    // propagate fontVariant across a fontFamily switch, so without this the
+    // SC font defaulted to lining figures — making the "8" in "8h ago"
+    // tower over the small-cap "h ago" at cap height.
     dateline: {
       ...font.smallCaps,
+      color: colors.textSecondary,
+      letterSpacing: typography.trackingCaps,
+      fontVariant: ['oldstyle-nums'],
     },
   });
 }
@@ -283,10 +311,6 @@ export function renderSentences(
   location?: string | null,
   dateline?: string | null,
   openLink: LinkOpener = defaultOpenLink,
-  /** Optional inline node appended after the last word of the final sentence —
-   *  used by ArticlePage to append a tappable "sources" link without costing
-   *  a new line of vertical space. */
-  trailing?: ReactNode,
   /** If provided, the inline dateline becomes tappable (e.g. to reveal the
    *  exact timestamp in a toast). */
   onDatelinePress?: () => void,
@@ -303,8 +327,6 @@ export function renderSentences(
         marginBottom: size * 0.5,
       }
     : null;
-
-  const lastIdx = sentences.length - 1;
 
   // Entities fire on first occurrence only across the whole body — track
   // which indicator ids have already been consumed so later sentences don't
@@ -332,7 +354,6 @@ export function renderSentences(
   };
 
   return sentences.map((sentence, i) => {
-    const isLast = i === lastIdx;
     if (i === 0) {
       // Strip "Location — " prefix from first sentence if present
       let rest = sentence;
@@ -345,19 +366,22 @@ export function renderSentences(
         ? splitSegmentsWithEntities(baseSegments, consume(baseSegments))
         : baseSegments;
       // Show dateline (e.g. time ago) in small-caps before first sentence.
+      // Whole phrase rendered one step smaller than the body so the temporal
+      // frame reads as quiet metadata; "8h" and "ago" stay equal size so the
+      // phrase still hangs together as one bound unit.
       if (dateline) {
+        const datelineSize = size * 0.9;
         return (
           <Text
             key={i}
             style={[mdStyles.sentence, sizeStyle]}
             maxFontSizeMultiplier={MAX_FONT_SCALE.body}
           >
-            <Text style={mdStyles.dateline} onPress={onDatelinePress}>
+            <Text style={[mdStyles.dateline, { fontSize: datelineSize }]} onPress={onDatelinePress}>
               {dateline}
             </Text>
             {'\u2002'}
             {renderSegments(segmentsForRender, mdStyles, openLink, onEntityPress)}
-            {isLast && trailing}
           </Text>
         );
       }
@@ -368,7 +392,6 @@ export function renderSentences(
           maxFontSizeMultiplier={MAX_FONT_SCALE.body}
         >
           {renderSegments(segmentsForRender, mdStyles, openLink, onEntityPress)}
-          {isLast && trailing}
         </Text>
       );
     }
@@ -383,7 +406,6 @@ export function renderSentences(
         maxFontSizeMultiplier={MAX_FONT_SCALE.body}
       >
         {renderSegments(segmentsForRender, mdStyles, openLink, onEntityPress)}
-        {isLast && trailing}
       </Text>
     );
   });

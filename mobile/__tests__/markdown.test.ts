@@ -99,9 +99,15 @@ describe('parseInline', () => {
     ]);
   });
 
-  it('passes through unmatched bold markers as text', () => {
-    const result = parseInline('**unclosed bold');
-    expect(result).toEqual([{ type: 'text', text: '**unclosed bold' }]);
+  it('strips unmatched bold markers from text', () => {
+    // Unbalanced `**` (most often from a writer's bold spanning a sentence
+    // boundary, since we parse per-sentence) used to leak literal asterisks
+    // into the rendered text. We scrub stray `**` / `__` from text segments.
+    expect(parseInline('**unclosed bold')).toEqual([{ type: 'text', text: 'unclosed bold' }]);
+    expect(parseInline('trailing **')).toEqual([{ type: 'text', text: 'trailing ' }]);
+    expect(parseInline('__double underscore__ orphan __')).toEqual([
+      { type: 'text', text: 'double underscore orphan ' },
+    ]);
   });
 
   it('returns fallback segment for empty string', () => {
