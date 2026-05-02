@@ -476,6 +476,56 @@ function handleSpecificity() {
   })
 }
 
+// Article-image preview: scan latest articles for source-level image URLs.
+// Captured starting 2026-05-02 by flipping NewsAPI's includeArticleImage flag.
+function handleArticleImages() {
+  return cached('article-images', 5 * 60_000, () => {
+    const articlesDir = join(ROOT, 'content', 'articles')
+    if (!existsSync(articlesDir)) return { articles: [], total: 0, withImage: 0 }
+
+    const files = readdirSync(articlesDir).filter(f => f.endsWith('.md')).sort().reverse().slice(0, 30)
+    const out = []
+    let withImage = 0
+    for (const f of files) {
+      try {
+        const raw = readFileSync(join(articlesDir, f), 'utf-8')
+        const m = raw.match(/^---\n([\s\S]*?)\n---/)
+        if (!m) continue
+        const fm = m[1]
+        const titleM = fm.match(/^title:\s*"([^"]+)"/m)
+        const dateM = fm.match(/^date:\s*"([^"]+)"/m)
+        const catM = fm.match(/^category:\s*"?([a-z]+)"?/m)
+        // Find sources with image: field. Slice from "sources:\n" to the next
+        // top-level key (start-of-line letter+colon), then iterate source entries.
+        const sourcesIdx = fm.indexOf('sources:\n')
+        let sourcesBlock = ''
+        if (sourcesIdx !== -1) {
+          sourcesBlock = fm.slice(sourcesIdx + 'sources:\n'.length)
+          const nextTopKey = sourcesBlock.search(/\n[a-zA-Z][\w]*:/)
+          if (nextTopKey >= 0) sourcesBlock = sourcesBlock.slice(0, nextTopKey)
+        }
+        const sourceImages = []
+        const sourceMatches = sourcesBlock.matchAll(/  - name:\s*"([^"]+)"([\s\S]*?)(?=\n  - name:|$)/g)
+        for (const sm of sourceMatches) {
+          const name = sm[1]
+          const block = sm[2]
+          const im = block.match(/\n\s+image:\s*"([^"]+)"/)?.[1]
+          if (im) sourceImages.push({ source: name, url: im })
+        }
+        if (sourceImages.length) withImage++
+        out.push({
+          slug: f.replace(/\.md$/, ''),
+          title: titleM?.[1] || f,
+          date: dateM?.[1] || '',
+          category: catM?.[1] || '',
+          images: sourceImages,
+        })
+      } catch {}
+    }
+    return { articles: out, total: out.length, withImage }
+  })
+}
+
 function regionFromCoords(lat, lng) {
   if (lat == null || lng == null) return 'unknown'
   if (lat > 15 && lat < 45 && lng > 25 && lng < 75) return 'ME'
@@ -1088,6 +1138,7 @@ const server = createServer((req, res) => {
   if (path === '/api/quality') return sendJSON(res, handleQuality())
   if (path === '/api/writing-quality') return sendJSON(res, handleWritingQuality())
   if (path === '/api/specificity') return sendJSON(res, handleSpecificity())
+  if (path === '/api/article-images') return sendJSON(res, handleArticleImages())
   if (path === '/api/editorial') return sendJSON(res, handleEditorial())
   if (path === '/api/feed-health') return sendJSON(res, handleFeedHealth())
   if (path === '/api/operations') return sendJSON(res, handleOperations())

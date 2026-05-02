@@ -83,6 +83,32 @@ for (const f of files) {
     }
   }
 
+  // Add image URLs to source entries from selection data (NewsAPI publisher images).
+  // Captured for evaluation; not yet rendered in the article surface.
+  if (story.sources?.some(s => s.image)) {
+    for (const selSrc of story.sources) {
+      if (!selSrc.image) continue
+      const namePattern = `name: "${selSrc.name}"`
+      const nameIdx = yaml.indexOf(namePattern)
+      if (nameIdx === -1) continue
+      const nextSourceIdx = yaml.indexOf('  - name:', nameIdx + 1)
+      const block = nextSourceIdx === -1 ? yaml.slice(nameIdx) : yaml.slice(nameIdx, nextSourceIdx)
+      if (block.includes('image:')) continue
+      // Insert after country/url, like sentiment
+      const sentimentLine = block.match(/\n\s+sentiment:.*/)
+      const countryLine = block.match(/\n\s+country:.*/)
+      const urlLine = block.match(/\n\s+url:.*/)
+      const insertAfter = sentimentLine ? sentimentLine[0] : (countryLine ? countryLine[0] : (urlLine ? urlLine[0] : null))
+      if (insertAfter) {
+        const insertIdx = yaml.indexOf(insertAfter, nameIdx) + insertAfter.length
+        // YAML-escape the URL: quote it
+        const escaped = String(selSrc.image).replace(/"/g, '\\"')
+        yaml = yaml.slice(0, insertIdx) + `\n    image: "${escaped}"` + yaml.slice(insertIdx)
+        changed = true
+      }
+    }
+  }
+
   // Fill empty sources array from selection
   if (yaml.includes('sources: []') && story.sources?.length > 0) {
     const sourcesYaml = 'sources:\n' + story.sources.map(s => {

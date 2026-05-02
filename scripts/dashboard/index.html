@@ -177,6 +177,12 @@
 
   <h2 class="group-divider">output — what got produced?</h2>
 
+  <section id="image-preview">
+    <h3>image preview (NewsAPI publisher images, captured from next cycle)</h3>
+    <div id="image-preview-summary" style="font-size:var(--size-xs);color:var(--text-secondary);margin-bottom:0.5rem"></div>
+    <div id="image-preview-grid" class="image-preview-grid"></div>
+  </section>
+
   <section>
     <h3>reader value score (per production cycle)</h3>
     <div id="rvs-summary" class="stat-row"></div>
@@ -1107,6 +1113,40 @@ async function loadQuality() {
   loadWritingQuality()
   loadSpecificity()
   loadComplianceChart()
+  loadImagePreview()
+}
+
+async function loadImagePreview() {
+  const summaryEl = document.getElementById('image-preview-summary')
+  const gridEl = document.getElementById('image-preview-grid')
+  if (!summaryEl || !gridEl) return
+  const data = await api('/api/article-images')
+  if (!data || !data.articles?.length) {
+    summaryEl.textContent = ''
+    gridEl.innerHTML = '<span class="empty">no articles yet</span>'
+    return
+  }
+  const withImage = data.articles.filter(a => a.images.length > 0)
+  if (withImage.length === 0) {
+    summaryEl.innerHTML = `<strong>0 / ${data.total}</strong> articles have publisher images. Captured starting the next cycle (NewsAPI flag flipped 2026-05-02).`
+    gridEl.innerHTML = data.articles.slice(0, 8).map(a => `
+      <div class="image-preview-card">
+        <div class="thumb-placeholder">no image yet</div>
+        <div class="meta"><span class="title">${esc(a.title)}</span><span class="src">${esc(a.category)} · ${esc(a.date.slice(0, 10))}</span></div>
+      </div>`).join('')
+    return
+  }
+  summaryEl.innerHTML = `<strong>${withImage.length} / ${data.articles.length}</strong> recent articles have publisher images.`
+  gridEl.innerHTML = withImage.slice(0, 16).map(a => {
+    const img = a.images[0]
+    return `<div class="image-preview-card">
+      <img class="thumb" src="${esc(img.url)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.outerHTML='<div class=\\'thumb-placeholder\\'>load failed</div>'"/>
+      <div class="meta">
+        <span class="title">${esc(a.title)}</span>
+        <span class="src">${esc(img.source || '?')} · ${esc(a.category)}</span>
+      </div>
+    </div>`
+  }).join('')
 }
 
 async function loadComplianceChart() {

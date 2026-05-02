@@ -215,7 +215,7 @@ const ARTICLE_DEFAULTS = {
   includeArticleCategories: true,
   includeArticleLocation: true,
   includeArticleSentiment: true, // per-source tone for divergence detection
-  includeArticleImage: false,   // never used
+  includeArticleImage: true,    // captured as image: <url> per source for evaluation
   includeArticleAuthors: false, // never used
   includeSourceLocation: true,
   includeSourceRanking: true,
@@ -594,6 +594,7 @@ async function main() {
         body: (a.body || '').slice(0, MAX_BODY),
         importanceRank: a.source?.ranking?.importanceRank || null,
         sentiment: a.sentiment != null ? +a.sentiment.toFixed(2) : null,
+        image: a.image || null,
       })),
       concepts,
       location,
@@ -665,6 +666,7 @@ async function main() {
         country: a._sourceCountry,
         body: (a.body || '').slice(0, MAX_BODY),
         importanceRank: a.source?.ranking?.importanceRank || null,
+        image: a.image || null,
       }],
       concepts: (a.concepts || []).slice(0, 5).map(c => c.label?.eng || '').filter(Boolean),
       location: a.location?.label?.eng || null,
@@ -707,7 +709,7 @@ async function main() {
         suggestedSlug: s.suggestedSlug,
         eventUri: s.eventUri,
         eventCoverage: s.eventCoverage,
-        sources: (s.sources || []).map(src => ({ name: src.name, url: src.url, country: src.country, importanceRank: src.importanceRank })),
+        sources: (s.sources || []).map(src => ({ name: src.name, url: src.url, country: src.country, importanceRank: src.importanceRank, image: src.image || null })),
         location: s.location,
         sentiment: s.sentiment,
         origin: s.origin,
