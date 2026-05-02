@@ -9,7 +9,7 @@
 
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { filterRecentWindow, mapUcdpRow, parseCsv, rowsToObjects } from './conflict.js'
+import { filterRecentWindow, mapUcdpRow, parseCsv, parseSourceArticle, rowsToObjects } from './conflict.js'
 
 const baseRow = {
   id: '1',
@@ -121,4 +121,78 @@ test('filterRecentWindow anchors on the dataset max date, not Date.now()', () =>
 test('filterRecentWindow handles empty input without throwing', () => {
   const out = filterRecentWindow([], 1)
   assert.deepEqual(out, { kept: [], windowStart: '', windowEnd: '' })
+})
+
+// --- enrichment fields (2026-05-02 expansion) ---
+
+test('mapUcdpRow attaches enrichment fields when present', () => {
+  const out = mapUcdpRow({
+    ...baseRow,
+    conflict_name: 'Sudan: Government',
+    region: 'Africa',
+    where_description: 'Khartoum North, near the bridge',
+    date_end: '2026-04-01 00:00:00.000',
+    deaths_civilians: '3',
+    deaths_a: '2',
+    deaths_b: '0',
+    deaths_unknown: '0',
+    low: '4',
+    high: '8',
+    number_of_sources: '5',
+  })
+  assert.equal(out.conflictName, 'Sudan: Government')
+  assert.equal(out.region, 'Africa')
+  assert.equal(out.locationDetail, 'Khartoum North, near the bridge')
+  assert.equal(out.dateEnd, '2026-04-01')
+  assert.equal(out.deathsCivilians, 3)
+  assert.equal(out.deathsSideA, 2)
+  assert.equal(out.deathsSideB, undefined) // zero → omitted
+  assert.equal(out.fatalitiesLow, 4)
+  assert.equal(out.fatalitiesHigh, 8)
+  assert.equal(out.numSources, 5)
+})
+
+test('mapUcdpRow omits fatalities range when low/high == best (no info)', () => {
+  // UCDP fills low=high=best for tight estimates. Sheet shouldn't render
+  // "5 (5-5)" — the absence of the range is the signal.
+  const out = mapUcdpRow({ ...baseRow, low: '5', high: '5' })
+  assert.equal(out.fatalitiesLow, undefined)
+  assert.equal(out.fatalitiesHigh, undefined)
+})
+
+test('mapUcdpRow omits dateEnd when same as dateStart (single-day event)', () => {
+  const out = mapUcdpRow({ ...baseRow, date_end: '2026-03-31 00:00:00.000' })
+  assert.equal(out.dateEnd, undefined)
+})
+
+test('parseSourceArticle parses N records with embedded headlines', () => {
+  const raw = '"Reuters,2026-03-15,Clashes in Khartoum kill 12";"BBC,2026-03-15,Sudan violence escalates"'
+  const out = parseSourceArticle(raw)
+  assert.equal(out.length, 2)
+  assert.deepEqual(out[0], { outlet: 'Reuters', date: '2026-03-15', headline: 'Clashes in Khartoum kill 12' })
+  assert.deepEqual(out[1], { outlet: 'BBC', date: '2026-03-15', headline: 'Sudan violence escalates' })
+})
+
+test('parseSourceArticle truncates UCDP-appended CR/Source metadata', () => {
+  // UCDP packs `\nCR \tSource: BBC Monitoring` after some headlines —
+  // wire-service framing that's noise in our display.
+  const raw = '"BBC Monitoring,2026-03-03,Watchlist 3 Mar 26\nCR \tSource: BBC Monitoring"'
+  const out = parseSourceArticle(raw)
+  assert.equal(out.length, 1)
+  assert.equal(out[0].headline, 'Watchlist 3 Mar 26')
+})
+
+test('parseSourceArticle returns [] for empty input rather than throwing', () => {
+  assert.deepEqual(parseSourceArticle(''), [])
+  assert.deepEqual(parseSourceArticle(undefined), [])
+  assert.deepEqual(parseSourceArticle(null), [])
+})
+
+test('mapUcdpRow attaches structured sources from source_article', () => {
+  const out = mapUcdpRow({
+    ...baseRow,
+    source_article: '"Reuters,2026-03-15,Khartoum clashes";"AFP,2026-03-15,Sudan death toll rises"',
+  })
+  assert.equal(out.sources.length, 2)
+  assert.equal(out.sources[0].outlet, 'Reuters')
 })

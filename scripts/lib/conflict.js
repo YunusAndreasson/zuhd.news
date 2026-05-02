@@ -225,6 +225,53 @@ function pickNotes(row) {
 
 const XXX_ACTOR = /^XXX\d+$/
 
+/** Parse UCDP `source_article` into a structured list. The field packs N
+ *  records as `;`-joined `"outlet,date,headline"` triplets where outlet
+ *  may itself contain commas in rare cases (e.g. "Reuters, India"). We
+ *  split conservatively: first comma → outlet, second comma → date, rest
+ *  is the headline. Embedded newlines (UCDP appends `\nCR \tSource: ...`
+ *  metadata to some headlines) get truncated at the first newline.
+ *
+ *  Returns [] for empty/malformed input rather than throwing — UCDP's
+ *  format is consistent enough that bad rows are individual data
+ *  problems, not pipeline failures. */
+export function parseSourceArticle(raw) {
+  const text = (raw ?? '').trim()
+  if (text.length === 0) return []
+  const out = []
+  // Split on `";"` boundaries between records. Each record is wrapped in
+  // its own quotes; we strip them after splitting.
+  const records = text.split(/"\s*;\s*"/)
+  for (let i = 0; i < records.length; i++) {
+    let rec = records[i]
+    // Trim leading/trailing quote (only on the first/last entry; the
+    // middle ones already had their wrapping quotes consumed by split).
+    if (i === 0) rec = rec.replace(/^"/, '')
+    if (i === records.length - 1) rec = rec.replace(/"$/, '')
+    rec = rec.trim()
+    if (!rec) continue
+
+    const firstComma = rec.indexOf(',')
+    if (firstComma < 0) continue
+    const outlet = rec.slice(0, firstComma).trim()
+    const restAfterOutlet = rec.slice(firstComma + 1)
+    const secondComma = restAfterOutlet.indexOf(',')
+    if (secondComma < 0) continue
+    const date = restAfterOutlet.slice(0, secondComma).trim()
+    let headline = restAfterOutlet.slice(secondComma + 1).trim()
+    // Strip the trailing "\nCR \tSource: ..." metadata UCDP appends.
+    headline = headline.split(/[\r\n]+/)[0].trim()
+    if (!outlet || !headline) continue
+    out.push({ outlet, date, headline })
+  }
+  return out
+}
+
+function intOrUndef(s) {
+  const n = parseInt(s, 10)
+  return Number.isFinite(n) && n >= 0 ? n : undefined
+}
+
 /** Map one UCDP row to a ConflictEvent, applying all quality gates.
  *  Returns null when the row should be dropped (low precision, no
  *  fatalities, bad coords, placeholder actors, etc.). */
@@ -275,6 +322,48 @@ export function mapUcdpRow(r) {
   }
   if (sideB && sideB !== sideA && !XXX_ACTOR.test(sideB)) event.actor2 = sideB
   if (r.adm_1 && r.adm_1.trim().length > 0) event.admin1 = r.adm_1.trim()
+
+  // Enrichment fields (all optional). The base event above stays
+  // backwards-compatible; a consumer that only knows the original 15
+  // fields keeps working unchanged.
+  const dateEnd = (r.date_end ?? '').slice(0, 10)
+  if (dateEnd.length === 10 && dateEnd !== dateStart) event.dateEnd = dateEnd
+
+  if (r.conflict_name && r.conflict_name.trim().length > 0) {
+    event.conflictName = r.conflict_name.trim()
+  }
+  if (r.region && r.region.trim().length > 0) event.region = r.region.trim()
+  if (r.where_description && r.where_description.trim().length > 0) {
+    event.locationDetail = r.where_description.trim()
+  }
+
+  // Confidence interval — only attach when it carries information beyond
+  // `best`. UCDP fills low/high to `best` for tight estimates, in which
+  // case the range is uninteresting and the sheet would render "12 (12-12)".
+  const low = intOrUndef(r.low)
+  const high = intOrUndef(r.high)
+  if (low !== undefined && high !== undefined && (low !== fatalities || high !== fatalities)) {
+    event.fatalitiesLow = low
+    event.fatalitiesHigh = high
+  }
+
+  // Casualty breakdown — attach individual fields when non-zero so the
+  // sheet can render "12 killed (8 civilian, 4 combatant)".
+  const dCiv = intOrUndef(r.deaths_civilians)
+  const dA = intOrUndef(r.deaths_a)
+  const dB = intOrUndef(r.deaths_b)
+  const dU = intOrUndef(r.deaths_unknown)
+  if (dCiv !== undefined && dCiv > 0) event.deathsCivilians = dCiv
+  if (dA !== undefined && dA > 0) event.deathsSideA = dA
+  if (dB !== undefined && dB > 0) event.deathsSideB = dB
+  if (dU !== undefined && dU > 0) event.deathsUnknown = dU
+
+  const numSources = intOrUndef(r.number_of_sources)
+  if (numSources !== undefined && numSources > 0) event.numSources = numSources
+
+  const sources = parseSourceArticle(r.source_article)
+  if (sources.length > 0) event.sources = sources
+
   return event
 }
 

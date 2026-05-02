@@ -371,6 +371,16 @@ const CONFLICT_SUB_EVENTS: ReadonlySet<ConflictSubEvent> = new Set([
   'mob_violence',
 ]);
 
+const isOptionalString = (v: unknown): boolean => v === undefined || typeof v === 'string';
+const isOptionalNonNegInt = (v: unknown): boolean =>
+  v === undefined || (isFiniteNumber(v) && v >= 0);
+
+const isConflictReportedSource = (v: unknown): boolean =>
+  isObject(v) &&
+  typeof v.outlet === 'string' &&
+  typeof v.date === 'string' &&
+  typeof v.headline === 'string';
+
 const isConflictEvent = (v: unknown): v is ConflictEvent => {
   if (!isObject(v)) return false;
   if (typeof v.id !== 'string' || v.id.length === 0) return false;
@@ -382,15 +392,29 @@ const isConflictEvent = (v: unknown): v is ConflictEvent => {
     return false;
   }
   if (typeof v.actor1 !== 'string') return false;
-  if (v.actor2 !== undefined && typeof v.actor2 !== 'string') return false;
+  if (!isOptionalString(v.actor2)) return false;
+  if (!isOptionalString(v.conflictName)) return false;
   if (typeof v.country !== 'string' || typeof v.iso3 !== 'string') return false;
-  if (v.admin1 !== undefined && typeof v.admin1 !== 'string') return false;
+  if (!isOptionalString(v.region)) return false;
+  if (!isOptionalString(v.admin1)) return false;
   if (typeof v.location !== 'string') return false;
+  if (!isOptionalString(v.locationDetail)) return false;
   if (!isFiniteNumber(v.lat) || !isFiniteNumber(v.lng)) return false;
   if (!isFiniteNumber(v.fatalities) || v.fatalities < 0) return false;
+  if (!isOptionalNonNegInt(v.fatalitiesLow)) return false;
+  if (!isOptionalNonNegInt(v.fatalitiesHigh)) return false;
+  if (!isOptionalNonNegInt(v.deathsSideA)) return false;
+  if (!isOptionalNonNegInt(v.deathsSideB)) return false;
+  if (!isOptionalNonNegInt(v.deathsCivilians)) return false;
+  if (!isOptionalNonNegInt(v.deathsUnknown)) return false;
+  if (!isOptionalNonNegInt(v.numSources)) return false;
+  if (!isOptionalString(v.dateEnd)) return false;
   if (typeof v.notes !== 'string') return false;
   if (typeof v.source !== 'string') return false;
-  if (v.sourceUrl !== undefined && typeof v.sourceUrl !== 'string') return false;
+  if (!isOptionalString(v.sourceUrl)) return false;
+  if (v.sources !== undefined) {
+    if (!Array.isArray(v.sources) || !v.sources.every(isConflictReportedSource)) return false;
+  }
   return true;
 };
 

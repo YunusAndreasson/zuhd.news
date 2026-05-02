@@ -429,33 +429,77 @@ export type ConflictSubEvent =
   | 'violent_demonstration'
   | 'mob_violence';
 
+/** One source/article record from the upstream `source_article` field —
+ *  outlet name, the date it reported, and its headline. UCDP packs N of
+ *  these per event; we expose them as a structured array so the sheet
+ *  can show "5 sources confirm" with attribution rather than truncating
+ *  the first one to 140 chars. */
+export interface ConflictReportedSource {
+  outlet: string;
+  /** YYYY-MM-DD when this outlet reported the event. */
+  date: string;
+  headline: string;
+}
+
 export interface ConflictEvent {
   id: string;
   /** ISO date (YYYY-MM-DD), the day the event occurred. */
   eventDate: string;
+  /** ISO date when the event ended. Equal to eventDate for single-day
+   *  events; differs for multi-day operations (siege, sweep, prolonged
+   *  shelling). */
+  dateEnd?: string;
   family: ConflictEventFamily;
   subEvent: ConflictSubEvent;
   /** Primary actor — group, force, or label as published by the source. */
   actor1: string;
   actor2?: string;
+  /** UCDP `conflict_name` — proper geopolitical conflict label, e.g.
+   *  "Afghanistan - Pakistan" or "Government of Sudan - SPLM/A-North".
+   *  More specific than the actor pairing alone. */
+  conflictName?: string;
   country: string;
   iso3: string;
+  /** UCDP region — Asia, Africa, Middle East, Americas, Europe. Optional
+   *  on consumer; lets a future filter UI scope by region without
+   *  re-deriving from country. */
+  region?: string;
   /** ACLED's admin1 — typically state/province. Optional because not every
    *  reported event resolves to that level. */
   admin1?: string;
   /** Town/village name as reported. */
   location: string;
+  /** Verbose location description from upstream `where_description`
+   *  ("Hijrat Abad camp / Hajratabad in Kunar province's Khas Kunar
+   *  district"). Richer than `location` for the sheet's secondary line. */
+  locationDetail?: string;
   lat: number;
   lng: number;
-  /** Reported fatalities. 0 is meaningful for unrest events; the sheet uses
-   *  it to choose the focal metric (fatalities > 0 → fatalities; else
-   *  sub-event label). */
+  /** Reported fatalities (UCDP `best` estimate). 0 is meaningful for
+   *  unrest events; the sheet uses it to choose the focal metric
+   *  (fatalities > 0 → fatalities; else sub-event label). */
   fatalities: number;
-  /** One-sentence summary. */
+  /** Confidence interval on fatalities — UCDP `low` and `high`. Lets the
+   *  sheet render "12 (3-15)" when low ≠ best ≠ high. */
+  fatalitiesLow?: number;
+  fatalitiesHigh?: number;
+  /** Casualty breakdown by side. UCDP labels: deaths_a (side_a forces),
+   *  deaths_b (side_b forces), deaths_civilians (non-combatants),
+   *  deaths_unknown. Together these sum to (or under) `fatalities`. */
+  deathsSideA?: number;
+  deathsSideB?: number;
+  deathsCivilians?: number;
+  deathsUnknown?: number;
+  /** Number of distinct sources UCDP cited for this event. ≥3 is solid
+   *  corroboration; 1 is single-source. Drives a credibility chip. */
+  numSources?: number;
+  /** One-sentence summary derived from the upstream lead headline. */
   notes: string;
-  /** Originating outlet / aggregator. */
+  /** Originating outlet / aggregator (single primary). */
   source: string;
   sourceUrl?: string;
+  /** Full list of corroborating reports parsed from `source_article`. */
+  sources?: ConflictReportedSource[];
 }
 
 export interface ConflictSnapshot {

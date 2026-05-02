@@ -30,10 +30,12 @@ const OUTPUT_PATH = join(ROOT, 'content', '.conflict.json')
 const UCDP_URL = 'https://ucdp.uu.se/downloads/candidateged/GEDEvent_v26_0_3.csv'
 
 // UCDP candidate is a daily-precision dataset trailing real-time by 1-3
-// months. WINDOW_DAYS=1 typically yields 30-60 events globally — visually
-// dense without overwhelming React reconciliation in MiniGlobe. Override
-// with WINDOW_DAYS=3 to roughly double marker count.
-const WINDOW_DAYS = Math.max(1, parseInt(process.env.WINDOW_DAYS ?? '1', 10) || 1)
+// months — narrow windows (1-2d) collapse to whatever the dataset's max
+// date is, producing a sparse single-day pile. 7d spreads markers across
+// a real conflict week (Burkina, Sudan, Myanmar, Mexico, Ukraine, Lebanon)
+// and stays under MiniGlobe's ~150-marker perf threshold (typical: ~240
+// events globally, 30-50 visible per hemisphere on the globe).
+const WINDOW_DAYS = Math.max(1, parseInt(process.env.WINDOW_DAYS ?? '7', 10) || 7)
 
 // Skip re-fetch when the local snapshot is younger than this. UCDP
 // candidate updates monthly so 6h is plenty fresh; saves ~50 MB/day of
