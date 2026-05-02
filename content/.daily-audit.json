@@ -1,49 +1,30 @@
 {
-  "date": "2026-05-01",
+  "date": "2026-05-02",
   "metrics": {
-    "articles": {
-      "value": 16,
-      "detail": "3 of 5 cycles completed (partial day); yesterday full day: 37 articles across 5 cycles"
-    },
-    "freshness": {
-      "median": 0,
-      "p90": 0,
-      "max": 0,
-      "target": 1.0,
-      "met": true,
-      "note": "Sample size 1 — insufficient for reliable freshness read; yesterday freshness data null (count 0)"
-    },
-    "categories": {
-      "politics": 6,
-      "economy": 5,
-      "science": 3,
-      "tech": 2,
-      "note": "Partial day (3/5 cycles). Projected full-day: science ~5 (borderline), tech ~3 (likely to miss ≥4 target)"
-    },
-    "multiSource": { "value": 6, "target": 4, "met": true },
-    "regions": {
-      "count": 5,
-      "target": 4,
-      "met": true,
-      "breakdown": { "AS": 3, "EU": 1, "ME": 4, "AF": 2, "AM": 6 }
-    },
+    "articles": { "value": 32, "detail": "5 cycles, avg 6.4/cycle (per-cycle published stat 8)" },
+    "freshness": { "median": 0, "p90": 1.4, "max": 1.4, "target": 1.0, "met": true },
+    "categories": { "politics": 12, "economy": 10, "science": 7, "tech": 3 },
+    "multiSource": { "value": 4, "target": 4, "met": true },
+    "regions": { "count": 4, "target": 4, "met": true, "breakdown": { "EU": 12, "AM": 8, "AS": 4, "ME": 8 } },
     "sciTech": { "ratio": 31, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online", "pct": 19, "target": 20, "met": true },
+    "topSourceShare": { "source": "Nature", "pct": 19, "target": 20, "met": true },
     "uniqueSources": 26,
     "duplicates": 0,
-    "avgCycleDuration": 774
+    "avgCycleDuration": 1687
   },
-  "experiment": "Two experiments active, neither ready to evaluate. '2026-05-01-fabrication-gate-softening' (edu-context-prompt.md, evaluateAfter 2026-05-04) and '2026-05-01-title-echo-self-check' (write-prompt.md, evaluateAfter 2026-05-08) are both in their data-collection window. No new experiment proposed — two changes are already in flight today, and adding a third would violate the one-change-per-day rule.",
-  "weakestArea": "Tech coverage is the concern: only 2 articles in 3 cycles (12.5% of today's output) against the ≥4/day absolute target and the 3/cycle selector floor. The May Day news cycle is driving a labour/politics-heavy feed that is crowding out tech picks. The remaining two cycles (17:00 and 22:00 UTC) may partially recover this, but if tech finishes the day below 4 it will be the third metric worth watching alongside science (currently 3, needs 5/day).",
+  "experiment": "Skipped — pause gate active until 2026-05-12 (model lineup change baselining). 3 active experiments still gathering data; earliest evaluation 2026-05-04 (fabrication-gate-softening).",
+  "weakestArea": "Tech is at 3 articles for the whole day across 5 cycles — well below the per-cycle floor of 3 (expected ~15). Likely feed-supply thinness combined with selector substituting hard-news picks rather than a parameter problem; revisit if pattern persists 2+ days.",
   "watching": [
-    "Al Jazeera is at 18.75% source share today (3 of 16 articles) — one more article in the remaining two cycles would breach the 20% ceiling; selector should prioritise non-AJE picks in the 17:00/22:00 cycles.",
-    "May Day labour and wage stories are dominating economy and politics; watch for Indian coverage clustering (TRT World + Hindustan Times + NDTV + India.com already account for 5 of 16 articles = 31% combined).",
-    "Fabrication-gate softening experiment entered its first live cycles today — monitor edu-context output in the build log for any fabrication-judgement flags before the 2026-05-04 evaluation date."
+    "Tech category undershoot: only 3 articles vs ~15 expected from per-cycle floor of 3 across 5 cycles — confirm whether selector dropped the floor or tech feed was thin.",
+    "Top-source share: Nature at 19% sits right at the 20% ceiling — concentration risk if it recurs.",
+    "Region coverage narrowed to 4 (EU/AM/AS/ME) with no AF or OC today vs 5 regions yesterday.",
+    "Title-echo experiment (2026-05-01-title-echo-self-check) evaluates 2026-05-08 — needs weekly snapshot.",
+    "Fabrication-gate softening evaluates 2026-05-04 — review block-adoption telemetry then."
   ],
   "coverageGaps": [
-    "Oceania (OC) absent again today — no Pacific representation for the second consecutive day.",
-    "Europe has only 1 article (Le Monde); Eastern Europe, Balkans, and Caucasus coverage that appeared yesterday is entirely absent in today's early cycles.",
-    "Tech/AI depth is thin: only THE DECODER and Rest of World filed tech-categorised pieces; no Ars Technica, 404 Media, or Wired representation today."
+    "Africa: 0 articles tagged AF today (3 yesterday).",
+    "Oceania: 0 articles, ongoing structural gap.",
+    "Tech category badly under-served (3/32 = 9%); science healthy at 7."
   ],
-  "context": "Today is International Workers' Day, which predictably tilts the global news cycle toward labour, wages, and political demonstrations — explaining the elevated politics share (37.5%) and compressed tech output. The two active experiments both target output quality rather than feed parameters, so no feed-side intervention is warranted. Yesterday's full-day metrics (37 articles, sci-tech 38%, multi-source 10, 6 regions) were strong across the board; today's partial-day numbers are within expected range for a heavy-politics news day, with cycle duration notably faster at 774s avg vs the previous 1682s."
+  "context": "Pause gate (noNewExperimentsUntil 2026-05-12) is in force following the 2026-05-02 model lineup change (reflect→Opus high, tune→Opus medium, GDACS narrator added, editorial memo introduced). Three active experiments are isolated to unaffected files and continue to collect data. All headline metrics meet targets today; the only soft signal is tech undershoot, a single-day observation likely feed-driven."
 }
