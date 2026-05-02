@@ -348,6 +348,12 @@ export interface GdacsAlert {
    *  Empty when GDACS doesn't publish one. */
   source: string;
   reportUrl: string | null;
+  /** LLM-composed 2-3 sentence narrative tying the alert to country context,
+   *  recent weather (FL/WF/DR), nearby chokepoints, and recent coverage. Only
+   *  written for Orange/Red alerts; cached across cycles by an inputs-hash so
+   *  multi-day events aren't re-narrated every 4 hours. Absent on Green
+   *  alerts and on Orange/Red where the narration call failed. */
+  narrative?: string;
 }
 
 /** Population-exposure detail surface, fetched server-side for each EQ/TC

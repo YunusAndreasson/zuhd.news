@@ -252,6 +252,19 @@ export const DisasterSheet = memo(function DisasterSheet({
               </Animated.View>
             )}
 
+            {/* Narrative — server-composed 2-3 sentence context tying
+                the alert to country profile, recent weather (FL/WF/DR),
+                and nearby chokepoints. Only present on Orange/Red alerts
+                where the cycle's narration call validated successfully;
+                Green alerts and validation-rejected calls fall through. */}
+            {alert.narrative && alert.narrative.length > 0 && (
+              <Animated.View entering={enter()} style={styles.narrativeRow}>
+                <Text variant="body" selectable>
+                  {alert.narrative}
+                </Text>
+              </Animated.View>
+            )}
+
             {/* Meta — when did it start, when was the data last refreshed,
                 or whether it's already over. Alert-level word dropped
                 because the focal number above already carries it via tint. */}
@@ -329,6 +342,9 @@ const styles = StyleSheet.create({
     marginTop: SPACING.xxs,
   },
   populationRow: {
+    marginTop: SPACING.md,
+  },
+  narrativeRow: {
     marginTop: SPACING.md,
   },
   metaRow: {

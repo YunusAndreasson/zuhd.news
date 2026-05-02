@@ -316,6 +316,7 @@ const isGdacsAlert = (v: unknown): v is GdacsAlert => {
   if (typeof v.description !== 'string') return false;
   if (typeof v.source !== 'string') return false;
   if (v.reportUrl !== null && typeof v.reportUrl !== 'string') return false;
+  if (v.narrative !== undefined && typeof v.narrative !== 'string') return false;
   return true;
 };
 

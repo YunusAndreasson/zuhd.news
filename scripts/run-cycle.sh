@@ -282,6 +282,17 @@ $BODY_LENGTHS
   GDACS_EXIT=$?
   echo "GDACS exit: $GDACS_EXIT — $((SECONDS - T34C))s" | tee -a "$LOG_FILE"
 
+  # Stage 3.4d: GDACS narration — Sonnet writes a 2-3 sentence narrative for
+  # each Orange/Red alert grounded in country profile + recent weather +
+  # nearby chokepoint. Cached by inputs-hash so multi-day events aren't
+  # re-narrated each cycle. Fail-soft.
+  echo "" | tee -a "$LOG_FILE"
+  echo "--- Stage 3.4d: GDACS narration ---" | tee -a "$LOG_FILE"
+  T34D=$SECONDS
+  timeout 600 node scripts/narrate-gdacs.js >> "$LOG_FILE" 2>&1
+  NARRATE_EXIT=$?
+  echo "Narration exit: $NARRATE_EXIT — $((SECONDS - T34D))s" | tee -a "$LOG_FILE"
+
   # Stage 3.5: Educational context briefs
   echo "" | tee -a "$LOG_FILE"
   echo "--- Stage 3.5: Educational context briefs ---" | tee -a "$LOG_FILE"
