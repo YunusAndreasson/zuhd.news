@@ -282,7 +282,7 @@ $BODY_LENGTHS
   GDACS_EXIT=$?
   echo "GDACS exit: $GDACS_EXIT — $((SECONDS - T34C))s" | tee -a "$LOG_FILE"
 
-  # Stage 3.4d: GDACS narration — Sonnet writes a 2-3 sentence narrative for
+  # Stage 3.4d: GDACS narration — Opus writes a 2-3 sentence narrative for
   # each Orange/Red alert grounded in country profile + recent weather +
   # nearby chokepoint. Cached by inputs-hash so multi-day events aren't
   # re-narrated each cycle. Fail-soft.

@@ -33,7 +33,7 @@ const INCLUDE_GREEN = process.env.NARRATE_GDACS_INCLUDE_GREEN === '1'
 const MAX_NARRATIONS = Number(process.env.NARRATE_GDACS_MAX) || Infinity
 const FORCE = process.env.NARRATE_GDACS_FORCE === '1'
 const CONCURRENCY = 3
-const MODEL = 'claude-sonnet-4-6'
+const MODEL = 'claude-opus-4-7'
 const EFFORT = 'medium'
 const CHOKEPOINT_RANGE_KM = 500
 const WEATHER_TYPES = new Set(['FL', 'WF', 'DR'])
