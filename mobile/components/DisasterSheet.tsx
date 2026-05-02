@@ -12,6 +12,7 @@ import { ANIMATION, FLAG, SPACING, staggerDelay } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
 import type { GdacsAlert } from '../lib/gdacs';
+import { useOpenLink } from '../lib/open-link';
 import { displayCountryName } from '../lib/place-names';
 import { EVENT_TYPE_LABEL, GLYPH_HALF, getGlyphPath } from './globe/disaster-glyphs';
 import { Pressable, Text } from './primitives';
@@ -32,19 +33,45 @@ interface DisasterSheetProps {
 // alert chips so it doesn't dominate alongside title-sized severity text.
 const HERO_GLYPH = 44;
 
+function relativeTime(iso: string, now: number = Date.now()): string {
+  const t = Date.parse(iso);
+  if (!Number.isFinite(t)) return '';
+  const diffMs = Math.abs(now - t);
+  const diffHours = Math.floor(diffMs / 3_600_000);
+  if (diffHours < 1) return 'just now';
+  if (diffHours < 24) return `${diffHours}h ago`;
+  const diffDays = Math.floor(diffHours / 24);
+  if (diffDays < 7) return `${diffDays}d ago`;
+  if (diffDays < 30) return `${Math.floor(diffDays / 7)}w ago`;
+  if (diffDays < 365) return `${Math.floor(diffDays / 30)}mo ago`;
+  return `${Math.floor(diffDays / 365)}y ago`;
+}
+
 function formatStarted(fromIso: string, now: number = Date.now()): string {
   const f = Date.parse(fromIso);
   if (!Number.isFinite(f)) return '';
-  const diffMs = now - f;
-  if (diffMs < 0) return 'starting today';
-  const diffHours = Math.floor(diffMs / 3_600_000);
-  if (diffHours < 1) return 'started just now';
-  if (diffHours < 24) return `started ${diffHours}h ago`;
-  const diffDays = Math.floor(diffHours / 24);
-  if (diffDays < 7) return `started ${diffDays}d ago`;
-  if (diffDays < 30) return `started ${Math.floor(diffDays / 7)}w ago`;
-  if (diffDays < 365) return `started ${Math.floor(diffDays / 30)}mo ago`;
-  return `started ${Math.floor(diffDays / 365)}y ago`;
+  if (now - f < 0) return 'starting today';
+  return `started ${relativeTime(fromIso, now)}`;
+}
+
+/** Status line built from the alert's three timestamps. The reader gets
+ *  one of three signals:
+ *    • ended Xh ago — `toDate` is in the past (storm passed, fire out)
+ *    • updated Xh ago — `datemodified` is meaningfully fresher than
+ *      `fromDate`, so GDACS is actively monitoring
+ *    • (nothing) — for instant events where modified ≈ from and no end
+ *  Returns the empty string when there's nothing useful to add. */
+function formatStatus(alert: GdacsAlert, now: number = Date.now()): string {
+  const to = alert.toDate ? Date.parse(alert.toDate) : NaN;
+  if (Number.isFinite(to) && to < now) {
+    return `ended ${relativeTime(alert.toDate ?? '', now)}`;
+  }
+  const modified = Date.parse(alert.modifiedDate);
+  const from = Date.parse(alert.fromDate);
+  if (Number.isFinite(modified) && Number.isFinite(from) && modified - from > 3_600_000) {
+    return `updated ${relativeTime(alert.modifiedDate, now)}`;
+  }
+  return '';
 }
 
 function FlagChip({
@@ -100,6 +127,10 @@ export const DisasterSheet = memo(function DisasterSheet({
 }: DisasterSheetProps) {
   const { colors, sheetStyles } = useTheme();
   const snapProps = useSheetSnaps(false);
+  const openLink = useOpenLink();
+  const handleReportPress = useCallback(() => {
+    if (alert?.reportUrl) openLink(alert.reportUrl);
+  }, [alert?.reportUrl, openLink]);
 
   const tint =
     alert?.alertlevel === 'Red'
@@ -184,7 +215,13 @@ export const DisasterSheet = memo(function DisasterSheet({
                     : EVENT_TYPE_LABEL[alert.eventtype]}
                 </Text>
                 <Text variant="labelSm" tone={tone} style={styles.heroMeta} numberOfLines={1}>
-                  {alert.alertlevel.toLowerCase()} · {formatStarted(alert.fromDate)}
+                  {[
+                    alert.alertlevel.toLowerCase(),
+                    formatStarted(alert.fromDate),
+                    formatStatus(alert),
+                  ]
+                    .filter((s) => s.length > 0)
+                    .join(' · ')}
                 </Text>
               </View>
             </Animated.View>
@@ -211,10 +248,32 @@ export const DisasterSheet = memo(function DisasterSheet({
               </Animated.View>
             )}
 
+            {/* Footer attribution + tappable GDACS report. The originating
+                authority (NEIC for earthquakes, JTWC for cyclones, JRC for
+                floods) gives the alert a name reader can credit; the
+                report link is the deep-dive escape hatch when the brief
+                fields aren't enough. Tappable only when GDACS supplies a
+                URL — otherwise just the source line. */}
             <Animated.View entering={enter()} style={styles.sourceLine}>
-              <Text variant="labelXs" tone="secondary">
-                source: global disaster alert system
-              </Text>
+              {alert.reportUrl ? (
+                <Pressable
+                  haptic="tick"
+                  onPress={handleReportPress}
+                  accessibilityRole="link"
+                  accessibilityLabel="Open the GDACS event report"
+                  hitSlop={SPACING.sm}
+                >
+                  <Text variant="labelXs" tone="secondary">
+                    {[alert.source, 'gdacs report ↗'].filter((s) => s.length > 0).join(' · ')}
+                  </Text>
+                </Pressable>
+              ) : (
+                <Text variant="labelXs" tone="secondary">
+                  {alert.source.length > 0
+                    ? `${alert.source} · gdacs`
+                    : 'global disaster alert system'}
+                </Text>
+              )}
             </Animated.View>
           </>
         )}

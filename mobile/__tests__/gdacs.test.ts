@@ -103,6 +103,42 @@ describe('collectionToAlerts', () => {
     expect(collectionToAlerts(collection, FIXTURE_NOW)).toHaveLength(0);
   });
 
+  it('exposes structured severity, source, and a substantive description', () => {
+    const collection: GdacsFeatureCollection = {
+      type: 'FeatureCollection',
+      features: [{ ...validFeature, properties: { ...validFeature.properties, source: 'NEIC' } }],
+    };
+    const out = collectionToAlerts(collection, FIXTURE_NOW);
+    expect(out[0]).toMatchObject({
+      severityValue: 7.4,
+      severityUnit: 'M',
+      source: 'NEIC',
+    });
+    // Real narrative survives — only auto-captions are filtered.
+    expect(out[0]?.description).toMatch(/magnitude 7\.4 earthquake/i);
+  });
+
+  it('drops auto-caption descriptions that just restate the header', () => {
+    // GDACS publishes templated captions for low-impact events:
+    //   "Green M 5 Earthquake in <region> at: <date>."
+    // Every component is already in `name` + `severityText` + `fromDate`,
+    // so the description is dropped to remove the visual repetition.
+    const autoCaption = {
+      ...validFeature,
+      properties: {
+        ...validFeature.properties,
+        alertlevel: 'Green',
+        htmldescription:
+          'Green M 5 Earthquake in South Sandwich Islands Region at: 02 May 2026 10:31:40.',
+      },
+    };
+    const out = collectionToAlerts(
+      { type: 'FeatureCollection', features: [autoCaption] },
+      FIXTURE_NOW,
+    );
+    expect(out[0]?.description).toBe('');
+  });
+
   it('drops alerts older than 30 days', () => {
     // Long-running events (multi-month droughts, ongoing wildfires) keep
     // appearing on the GDACS feed forever. The 30-day cliff prevents the

@@ -34,8 +34,25 @@ export interface GdacsAlert {
   /** Pre-formatted GDACS severity string, e.g.
    *  "Magnitude 7.4M, Depth:23km" / "Tropical Storm wind speed of 95 km/h". */
   severityText: string;
-  /** Plain-text summary, HTML stripped, capped to ~280 chars. */
+  /** Numeric severity (magnitude / wind speed / VEI) when GDACS publishes
+   *  a structured value alongside `severityText`. Null for events where
+   *  only the prose form exists. */
+  severityValue: number | null;
+  /** Unit string for `severityValue`, e.g. "M" for earthquakes, "kph" for
+   *  cyclones. Empty string when GDACS doesn't supply one. */
+  severityUnit: string;
+  /** Plain-text summary, HTML stripped, capped to ~280 chars. Auto-caption
+   *  strings — GDACS's templated "Green M 5 Earthquake in X at: <date>" —
+   *  are filtered out here (set to empty), since every scrap of them is
+   *  already carried by `name` + `severityText` + `fromDate`. The field
+   *  is non-empty only when there's substantive narrative the reader
+   *  hasn't already seen. */
   description: string;
+  /** Originating authority — e.g. "NEIC" (US Geological Survey earthquake
+   *  network), "JRC" (EU flood centre), "JTWC" / "NHC" (cyclone centres),
+   *  "Smithsonian" (volcanoes). Empty string when GDACS doesn't publish
+   *  one. Surfaces in the alert sheet as proper attribution. */
+  source: string;
   reportUrl: string | null;
 }
 
@@ -153,6 +170,32 @@ function readSeverityText(props: Record<string, unknown>): string {
   return '';
 }
 
+function readSeverityValue(props: Record<string, unknown>): number | null {
+  const sev = props.severitydata;
+  if (isObject(sev) && isFiniteNumber(sev.severity)) return sev.severity;
+  return null;
+}
+
+function readSeverityUnit(props: Record<string, unknown>): string {
+  const sev = props.severitydata;
+  if (isObject(sev) && typeof sev.severityunit === 'string') return sev.severityunit;
+  return '';
+}
+
+/** GDACS auto-caption shape — e.g. "Green M 5 Earthquake in South Sandwich
+ *  Islands Region at: 02 May 2026 10:31:40." Every component (alert level,
+ *  magnitude, event type, region, datetime) is already surfaced through
+ *  the structured fields, so the auto-caption adds no information and
+ *  visually duplicates the sheet header. We blank these so the sheet
+ *  doesn't render a redundant paragraph. Real narrative descriptions —
+ *  what GDACS publishes for flagged Orange/Red events with situational
+ *  context — never start with the alert level keyword and pass through
+ *  unchanged. */
+const AUTO_CAPTION = /^(Green|Orange|Red)\s/;
+function dropAutoCaption(description: string): string {
+  return AUTO_CAPTION.test(description) ? '' : description;
+}
+
 function readReportUrl(props: Record<string, unknown>): string | null {
   const url = props.url;
   if (isObject(url) && typeof url.report === 'string' && /^https?:\/\//.test(url.report)) {
@@ -185,12 +228,14 @@ function featureToAlert(feature: GdacsFeature): GdacsAlert | null {
   const fromDate = typeof p.fromdate === 'string' ? p.fromdate : '';
   const toDate = typeof p.todate === 'string' && p.todate.length > 0 ? p.todate : null;
   const modifiedDate = typeof p.datemodified === 'string' ? p.datemodified : fromDate;
-  const description =
+  const rawDescription =
     typeof p.htmldescription === 'string'
       ? truncate(htmlToPlain(p.htmldescription), 280)
       : typeof p.description === 'string'
         ? truncate(p.description, 280)
         : '';
+  const description = dropAutoCaption(rawDescription);
+  const source = typeof p.source === 'string' ? p.source : '';
 
   return {
     eventid: id,
@@ -206,7 +251,10 @@ function featureToAlert(feature: GdacsFeature): GdacsAlert | null {
     toDate,
     modifiedDate,
     severityText: readSeverityText(p),
+    severityValue: readSeverityValue(p),
+    severityUnit: readSeverityUnit(p),
     description,
+    source,
     reportUrl: readReportUrl(p),
   };
 }
