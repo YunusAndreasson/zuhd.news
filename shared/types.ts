@@ -288,6 +288,18 @@ export type ChokepointCounts = Partial<Record<VesselField, number>>;
  *  disruption trigger care about (tanker for oil chokepoints, container for
  *  commercial routes). `delta7vs90[field]` is a signed fraction: +0.12 means
  *  last-7d average is 12% above the 90d baseline. */
+/** Marine-weather sidecar attached server-side from open-meteo's Marine API.
+ *  `maxWave24hM` is the peak combined-sea wave height (metres) over the
+ *  past 24h at the chokepoint coordinates. `alert` is set when waves cross
+ *  small-craft / disruption thresholds — `rough` ≥2.5m, `very_rough` ≥4m.
+ *  Absent on inland canals (Suez, Panama) where wave height isn't
+ *  meaningful — open-meteo returns null and the field silently drops. */
+export interface ChokepointWeather {
+  asOf: string;
+  maxWave24hM: number;
+  alert: 'rough' | 'very_rough' | null;
+}
+
 export interface Chokepoint {
   id: string;
   name: string;
@@ -301,6 +313,7 @@ export interface Chokepoint {
   delta7vs90: ChokepointCounts;
   series: { periods: string[]; total: number[] };
   asOf: string;
+  weather?: ChokepointWeather;
 }
 
 export interface ChokepointSnapshot {

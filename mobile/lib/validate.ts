@@ -275,6 +275,14 @@ export const isHeatmapResponse = (v: unknown): v is HeatmapResponse =>
 const isCounts = (v: unknown): v is ChokepointCounts =>
   isObject(v) && Object.values(v).every(isFiniteNumber);
 
+const isChokepointWeather = (v: unknown): boolean => {
+  if (!isObject(v)) return false;
+  if (typeof v.asOf !== 'string') return false;
+  if (!isFiniteNumber(v.maxWave24hM)) return false;
+  if (v.alert !== null && v.alert !== 'rough' && v.alert !== 'very_rough') return false;
+  return true;
+};
+
 const isChokepoint = (v: unknown): v is Chokepoint => {
   if (!isObject(v)) return false;
   if (typeof v.id !== 'string' || v.id.length === 0) return false;
@@ -287,6 +295,7 @@ const isChokepoint = (v: unknown): v is Chokepoint => {
   if (!isObject(v.series)) return false;
   if (!isStringArray(v.series.periods) || !isNumberArray(v.series.total)) return false;
   if (typeof v.asOf !== 'string') return false;
+  if (v.weather !== undefined && !isChokepointWeather(v.weather)) return false;
   return true;
 };
 

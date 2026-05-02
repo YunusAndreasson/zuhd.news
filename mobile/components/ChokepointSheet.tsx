@@ -141,6 +141,33 @@ export const ChokepointSheet = memo(function ChokepointSheet({
               </Text>
             </Animated.View>
 
+            {/* Marine-weather hint — server-side from open-meteo. Renders
+                only when waves crossed the small-craft threshold (≥2.5 m
+                peak in past 24h). Disambiguates transit drops: storm =
+                weather explanation; calm + drop = real disruption. Severity
+                tier reuses existing tokens (rough = bronze alertOrange;
+                very_rough = the existing red toneUnfavorable) — no new
+                design tokens. */}
+            {chokepoint.weather?.alert && (
+              <Animated.View entering={enter()} style={styles.weatherRow}>
+                <Text
+                  variant="captionEmphasis"
+                  style={{
+                    color:
+                      chokepoint.weather.alert === 'very_rough'
+                        ? colors.toneUnfavorable
+                        : colors.alertOrange,
+                  }}
+                >
+                  {chokepoint.weather.alert === 'very_rough' ? 'very rough seas' : 'rough seas'}
+                </Text>
+                <Text variant="caption" tone="secondary">
+                  {' · '}
+                  {chokepoint.weather.maxWave24hM.toFixed(1)} m peak (24h)
+                </Text>
+              </Animated.View>
+            )}
+
             <Animated.View entering={enter()} style={styles.blurb}>
               <Text selectable variant="body">
                 {chokepoint.blurb}
@@ -202,6 +229,12 @@ const styles = StyleSheet.create({
   },
   delta: {
     marginTop: SPACING.xxs,
+  },
+  weatherRow: {
+    marginTop: SPACING.xs,
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    flexWrap: 'wrap',
   },
   relatedHeading: {
     marginBottom: SPACING.xs,

@@ -6,7 +6,8 @@
 //
 // Output: content/.chokepoints.json
 // Shape:  { generated, chokepoints: [{id, name, blurb, lat, lng, last7Avg,
-//          baseline90Avg, delta7vs90, series, asOf, topicTags, primaryField}] }
+//          baseline90Avg, delta7vs90, series, asOf, topicTags, primaryField,
+//          weather?: { asOf, maxWave24hM, alert? }}] }
 //
 // Best-effort: if PortWatch is unreachable the script logs and exits 0,
 // leaving any previous .chokepoints.json intact (build.js skips the mirror
@@ -19,6 +20,14 @@ import { fetchAllChokepointsSnapshot } from './lib/trends-sources/portwatch.js'
 
 const ROOT = new URL('..', import.meta.url).pathname
 const OUTPUT_PATH = join(ROOT, 'content', '.chokepoints.json')
+
+// Wave-height thresholds (combined sea + swell, peak over past 24h):
+//   < 2.5 m  → calm/moderate, no alert
+//   2.5–4 m  → "rough" — small craft warnings; some ports restrict
+//   ≥ 4 m    → "very rough" — real shipping disruption
+const ROUGH_M = 2.5
+const VERY_ROUGH_M = 4.0
+const MARINE_TIMEOUT_MS = 8000
 
 const started = Date.now()
 console.log('Fetching chokepoints snapshot (PortWatch)')
@@ -47,6 +56,25 @@ const chokepoints = rows.map((r) => {
   }
 })
 
+// Marine weather attachment — open-meteo Marine API gives 24h wave-height at
+// sea-level coords. Used to disambiguate transit-volume drops on the
+// chokepoint sheet: storm hovering + transits down = weather; calm seas +
+// transits down = actual disruption. Inland canals (Suez, Panama) and
+// shallow narrow straits return null/missing wave data and silently skip.
+console.log('  Fetching marine weather (open-meteo Marine API)…')
+await Promise.all(
+  chokepoints.map(async (c) => {
+    try {
+      const w = await fetchMarineWeather(c.lat, c.lng)
+      if (w) c.weather = w
+    } catch {
+      /* per-point fail-soft — snapshot ships without weather for this one */
+    }
+  }),
+)
+const weatherCount = chokepoints.filter((c) => c.weather).length
+const alertCount = chokepoints.filter((c) => c.weather?.alert).length
+
 const payload = {
   generated: new Date().toISOString(),
   chokepoints,
@@ -57,5 +85,37 @@ writeFileSync(OUTPUT_PATH, JSON.stringify(payload, null, 2) + '\n')
 const missing = CHOKEPOINT_CATALOG.length - chokepoints.length
 const note = missing > 0 ? ` (${missing} missing)` : ''
 console.log(
-  `  ✓ wrote ${chokepoints.length}/${CHOKEPOINT_CATALOG.length} chokepoints${note} in ${((Date.now() - started) / 1000).toFixed(1)}s`,
+  `  ✓ wrote ${chokepoints.length}/${CHOKEPOINT_CATALOG.length} chokepoints${note}, ${weatherCount} with weather${alertCount > 0 ? ` (${alertCount} alerts)` : ''} in ${((Date.now() - started) / 1000).toFixed(1)}s`,
 )
+
+async function fetchMarineWeather(lat, lng) {
+  const url = new URL('https://marine-api.open-meteo.com/v1/marine')
+  url.searchParams.set('latitude', String(lat))
+  url.searchParams.set('longitude', String(lng))
+  url.searchParams.set('hourly', 'wave_height')
+  url.searchParams.set('past_days', '1')
+  url.searchParams.set('forecast_days', '1')
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), MARINE_TIMEOUT_MS)
+  let res
+  try {
+    res = await fetch(url, { signal: controller.signal })
+  } finally {
+    clearTimeout(timer)
+  }
+  if (!res.ok) return null
+  const json = await res.json()
+  const series = json?.hourly?.wave_height
+  if (!Array.isArray(series)) return null
+  // Take last 24 hours (most recent 24 entries — past_days=1 + 1 forecast
+  // gives ~48 entries, we only want what's already happened/imminent).
+  const window = series.slice(-24).filter((n) => Number.isFinite(n) && n > 0)
+  if (window.length === 0) return null
+  const max = Math.max(...window)
+  const alert = max >= VERY_ROUGH_M ? 'very_rough' : max >= ROUGH_M ? 'rough' : null
+  return {
+    asOf: new Date().toISOString(),
+    maxWave24hM: Math.round(max * 10) / 10,
+    alert,
+  }
+}
