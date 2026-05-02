@@ -1,6 +1,7 @@
 import type { Article, Category } from '@shared/types';
 import { useEffect } from 'react';
 import { CATEGORIES } from '../constants/theme';
+import { getSnapshot as getBookmarks } from '../lib/bookmark-store';
 import {
   clearBriefing as clearPendingBriefing,
   clear as clearPendingSlug,
@@ -27,12 +28,22 @@ export function usePendingNotification(
     const slug = getPendingSlug();
     if (slug) {
       clearPendingSlug();
+      // Try the live feed first; if the article rotated out, fall back to the
+      // bookmark store (which carries its own category and lets `onSelectArticle`
+      // inject it). Without this fallback, taps on older breaking-news pushes
+      // silently did nothing once the article scrolled out of the feed window.
+      let category: Category | null = null;
       for (const cat of CATEGORIES) {
         if (grouped[cat].some((a) => a.slug === slug)) {
-          onSelectArticle(slug, cat);
+          category = cat;
           break;
         }
       }
+      if (!category) {
+        const bookmark = getBookmarks().find((b) => b.article.slug === slug);
+        if (bookmark) category = bookmark.category;
+      }
+      if (category) onSelectArticle(slug, category);
     }
     if (getPendingBriefing() && briefingAvailable && onPlayBriefing) {
       clearPendingBriefing();

@@ -62,7 +62,7 @@ export default function RootLayout() {
 
   useEffect(() => {
     registerBackgroundTask();
-    const sub = Notifications.addNotificationResponseReceivedListener((response) => {
+    const stashResponse = (response: Notifications.NotificationResponse) => {
       const data = response.notification.request.content.data;
       // Daily-briefing pushes carry `kind: 'briefing'` — they have no article
       // slug, so route them to the briefing player rather than the article view.
@@ -71,7 +71,26 @@ export default function RootLayout() {
         return;
       }
       if (typeof data?.slug === 'string') setPendingSlug(data.slug);
-    });
+    };
+    const sub = Notifications.addNotificationResponseReceivedListener(stashResponse);
+    // Cold-start: the listener above only catches responses delivered AFTER it
+    // subscribes, but a tap on a notification while the app was killed launches
+    // the JS bundle with the response already dispatched. `getLastNotificationResponseAsync`
+    // returns the response that brought the app to the foreground, so we
+    // route it through the same handler. Without this, cold-start taps were
+    // silently dropped.
+    //
+    // Clearing afterwards is critical: the OS persists the last response
+    // across app launches, so without `clearLastNotificationResponseAsync`
+    // a user who taps a push, reads, swipes the app away, and re-opens it
+    // would see the same article re-open every launch.
+    Notifications.getLastNotificationResponseAsync()
+      .then((response) => {
+        if (!response) return;
+        stashResponse(response);
+        Notifications.clearLastNotificationResponseAsync();
+      })
+      .catch(() => {});
 
     // Fallback: force-hide the splash if fonts/feed stall so the user sees
     // something rather than a frozen launch screen. Cleared on unmount.
