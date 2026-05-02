@@ -95,13 +95,13 @@ export const ContextSheet = memo(function ContextSheet({
 
     if (!entry.year) {
       return (
-        <View key={i}>
+        <View key={i} style={styles.eduEntry}>
           {entry.heading && (
-            <Text variant="labelXs" style={styles.eduHeading}>
+            <Text variant="labelSm" style={styles.eduHeading}>
               {entry.heading}
             </Text>
           )}
-          <Text selectable variant="body" style={styles.bodySpacing}>
+          <Text selectable variant="body">
             {entry.body}
           </Text>
           {blocksNode}
@@ -109,18 +109,25 @@ export const ContextSheet = memo(function ContextSheet({
       );
     }
     const nextHasYear = arr[i + 1]?.year != null;
+    // Vertically center the dot on the year text's optical midline. labelSm
+    // sits at sizeSm × leadingBody; the cap-height midpoint is roughly
+    // 0.42 × line-height for Source Sans 3 small-caps (slightly above the
+    // geometric midline because of the smallcaps-cap construction).
+    const yearLineHeight = typography.sizeSm * typography.leadingBody;
+    const dotTop = yearLineHeight * 0.42 - TIMELINE_DOT / 2;
     return (
       <View
         key={i}
         style={[styles.entry, nextHasYear && [styles.entryLine, { borderLeftColor: colors.rule }]]}
       >
-        <View
-          style={[styles.dot, { top: typography.sizeXs * 0.55, backgroundColor: colors.accent }]}
-        />
+        {/* Closure: the absence of a left-border on the last year entry,
+            combined with the dot still being present, naturally signals
+            "the chronology stops here." No explicit terminus tick needed. */}
+        <View style={[styles.dot, { top: dotTop, backgroundColor: colors.accent }]} />
         <View style={styles.entryContent}>
           <Text
             selectable
-            variant="labelXs"
+            variant="labelSm"
             tone="accent"
             style={[styles.entryYear, styles.yearNum]}
           >
@@ -156,12 +163,24 @@ export const ContextSheet = memo(function ContextSheet({
       onDismiss={onDismiss}
     >
       <BottomSheetScrollView
-        contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.xxl }]}
+        contentContainerStyle={[sheetStyles.content, { paddingBottom: bottomInset + SPACING.lg }]}
       >
         {hasThread && (
-          <Text selectable variant="title" tone="emphasis" style={[styles.threadTitle, font.bold]}>
-            {threadLabel}
-          </Text>
+          <>
+            <Text
+              selectable
+              variant="title"
+              tone="emphasis"
+              style={[styles.threadTitle, font.bold]}
+            >
+              {threadLabel}
+            </Text>
+            {/* Title rule — a faint hairline beneath the multi-article title.
+                Acts as a gestalt boundary between "what this brief covers"
+                and the brief's content, similar to the rule beneath a
+                masthead. */}
+            <View style={[styles.titleRule, { backgroundColor: colors.rule }]} />
+          </>
         )}
 
         {loading && !brief && hasThread && (
@@ -177,8 +196,15 @@ export const ContextSheet = memo(function ContextSheet({
             onCountryPress,
           })}
 
+        {/* Spanning blocks → timeline transition. A centered hairline with
+            generous vertical air signals "the overview is complete; the
+            chronology begins." Only renders when both sides are present. */}
+        {hasSpanning && timeline.length > 0 && (
+          <View style={[styles.sectionDivider, { backgroundColor: colors.rule }]} />
+        )}
+
         {timeline.length > 0 && (
-          <View style={hasSpanning ? styles.timelineAfterArc : undefined}>
+          <View>
             {timeline.map((entry, i, arr) => (
               <Animated.View
                 key={i}
@@ -196,10 +222,19 @@ export const ContextSheet = memo(function ContextSheet({
 
 const styles = StyleSheet.create({
   threadTitle: {
+    marginBottom: SPACING.sm,
+  },
+  titleRule: {
+    height: StyleSheet.hairlineWidth,
     marginBottom: SPACING.lg,
   },
-  timelineAfterArc: {
-    marginTop: SPACING.md,
+  sectionDivider: {
+    height: StyleSheet.hairlineWidth,
+    marginVertical: SPACING.lg,
+    // Pulled in modestly on both sides so the divider reads as an editorial
+    // beat, not a full-width separator. The eye registers it as "pause" —
+    // similar to the centered three-dot section break in long-form essays.
+    marginHorizontal: SPACING.lg,
   },
   loader: {
     marginTop: SPACING.lg,
@@ -207,7 +242,9 @@ const styles = StyleSheet.create({
   entry: {
     flexDirection: 'row',
     paddingLeft: SPACING.sm,
-    paddingBottom: SPACING.md,
+    // Generous bottom padding so each timeline beat reads as a discrete
+    // chapter; previously md (16) made consecutive entries blur together.
+    paddingBottom: SPACING.lg,
   },
   entryLine: {
     borderLeftWidth: TIMELINE_LINE,
@@ -221,26 +258,35 @@ const styles = StyleSheet.create({
   },
   entryContent: {
     flex: 1,
-    paddingLeft: SPACING.sm,
+    paddingLeft: SPACING.md,
   },
   entryYear: {
-    marginBottom: SPACING.xxs,
-  },
-  yearNum: {
-    fontVariant: ['oldstyle-nums'],
-  },
-  entryHeading: {
     marginBottom: SPACING.xs,
   },
-  bodySpacing: {
-    marginBottom: SPACING.sm,
+  yearNum: {
+    // Lining-tabular figures for chronology markers. Lining (default — no
+    // `oldstyle-nums`) puts every digit at cap-height, matching the
+    // small-cap letterform height around them so "1948" reads as a clean
+    // date stamp rather than wavy body-text numerals. Tabular gives every
+    // digit the same advance, so stacked years column-align down the
+    // timeline ("1948" / "1967" / "2003" line up digit-by-digit) —
+    // reinforcing the chronological structure. Standard reference-book
+    // convention for years in tables.
+    fontVariant: ['tabular-nums'],
+  },
+  entryHeading: {
+    // Tight to body — heading + body read as a single bound unit, matching
+    // the "proximity = grouping" gestalt principle. The chapter break lives
+    // at entry.paddingBottom, not between heading and body.
+    marginBottom: SPACING.xxs,
+  },
+  eduEntry: {
+    paddingBottom: SPACING.lg,
   },
   eduHeading: {
-    marginTop: SPACING.md,
     marginBottom: SPACING.xs,
   },
   entryBlocks: {
-    marginTop: SPACING.sm,
-    marginBottom: SPACING.xs,
+    marginTop: SPACING.md,
   },
 });
