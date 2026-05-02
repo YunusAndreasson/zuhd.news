@@ -99470,5 +99470,1342 @@
     "label": "Airspace Restrictions & Plan Bars",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-05-01-iraq-dark-fiber-hyperscaler-oil-pipeline-cable-resilience": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT DARK FIBER IS",
+        "body": "When pipeline operators trench a right-of-way, laying fiber alongside costs almost nothing extra. Most strands sit unlit for years — 'dark' until someone leases capacity and attaches their own optical equipment at each end.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The lessee controls the *wavelengths*; the pipeline owner just rents the **glass**. This is why oil and rail companies quietly became some of the largest fiber landlords in the world."
+          }
+        ]
+      },
+      {
+        "heading": "WHY OIL CORRIDORS",
+        "body": "Pipelines and long-haul fiber want the same things: straight rights-of-way, security perimeters, government clearances, and grid power every few hundred kilometers for compressor stations that double as repeater huts. The hard part of building cable is not the cable.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IQ",
+              "TR",
+              "JO",
+              "SA",
+              "IR",
+              "SY"
+            ],
+            "label": "Iraq's pipeline neighborhood",
+            "markers": [
+              {
+                "lat": 36.8485,
+                "lng": 36.17,
+                "label": "Ceyhan terminal (Turkey)"
+              },
+              {
+                "lat": 29.9667,
+                "lng": 48.7333,
+                "label": "Basra oil hub"
+              },
+              {
+                "lat": 33.3152,
+                "lng": 44.3661,
+                "label": "Baghdad"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SUBSEA VULNERABILITY",
+        "body": "Roughly 99% of intercontinental data moves on submarine cables. A handful of Gulf chokepoints — Bab el-Mandeb, Hormuz, the Suez/Red Sea corridor — carry most Europe-to-Asia traffic. Anchors, fishing trawlers, and deliberate cuts have severed bundles repeatedly; the 2008 Mediterranean cuts knocked out 75% of Egypt-India capacity for days."
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "Saudi Arabia's East-West Pipeline was built in the 1980s explicitly to bypass Hormuz after Iran-Iraq tanker attacks. The same logic now applies to bits: when subsea routes through contested water become unreliable, terrestrial corridors across allied territory become the hedge.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Tanker War begins in Gulf"
+              },
+              {
+                "year": "1987",
+                "label": "Saudi East-West pipeline online",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2008",
+                "label": "Mediterranean subsea cuts"
+              },
+              {
+                "year": "2024",
+                "label": "Houthi Red Sea cable damage"
+              },
+              {
+                "year": "2026",
+                "label": "Iraq dark-fiber leases"
+              }
+            ],
+            "label": "why bypasses get built"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY BUYS",
+        "body": "Hyperscalers — the handful of companies running the world's data centers — increasingly buy fiber the way oil majors buy pipeline capacity: long-term, exclusive, and at scale that no telco could absorb alone. They are now infrastructure principals, not customers.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Microsoft",
+                "value": "~$80bn",
+                "weight": 80
+              },
+              {
+                "label": "Google",
+                "value": "~$75bn",
+                "weight": 75
+              },
+              {
+                "label": "Amazon",
+                "value": "~$83bn",
+                "weight": 83
+              },
+              {
+                "label": "Meta",
+                "value": "~$40bn",
+                "weight": 40
+              }
+            ],
+            "label": "hyperscaler capex, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE LATENCY MATH",
+        "body": "Light in fiber travels at roughly two-thirds the speed of light in vacuum — about 200,000 km/sec. A Frankfurt-to-Mumbai route via the Red Sea is ~7,500 km; via Iraq overland it is shorter. Every 1,000 km saved cuts ~5 ms of round-trip latency, which is why route geography is a financial product."
+      },
+      {
+        "heading": "THE DUAL-USE RISK",
+        "body": "Co-located oil and data infrastructure means a strike on one disables the other. Pipelines are routine targets in this region — the Kirkuk-Ceyhan line has been bombed dozens of times since 2003. Fiber riding the same right-of-way inherits that target list.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of intercontinental data traffic moves on submarine cables rather than satellites?",
+            "options": [
+              "About half",
+              "Around 75%",
+              "Roughly 99%",
+              "Nearly all of it, but split with satellite for backup"
+            ],
+            "correct": 2,
+            "explanation": "Satellites handle a tiny fraction; ~99% of intercontinental capacity is subsea fiber. This is why a few cable cuts cause continental outages."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-02T17:31:21.948Z",
+    "label": "Dark Fiber on Oil Corridors",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-02-denim-rinse-water-reuse-circular-textile-bangladesh-pakistan": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE THIRSTY JEAN",
+        "body": "A single pair of jeans absorbs roughly 7,500 liters of freshwater across its lifecycle — most of it consumed during cotton cultivation and the wet-processing stages that turn raw denim into the soft, faded fabric consumers expect.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The wet steps — *desizing*, *dyeing*, *rinsing*, *finishing* — each demand clean water in and discharge contaminated water out. Rinse cycles alone can consume **60–70%** of a mill's freshwater intake."
+          }
+        ]
+      },
+      {
+        "heading": "WHY INDIGO IS THE PROBLEM",
+        "body": "Indigo dye doesn't bond chemically to cotton; it sits inside the fiber mechanically. That's why jeans fade — and why dye baths must be repeatedly flushed with fresh water to wash out unfixed pigment, sending blue-tinted effluent downstream."
+      },
+      {
+        "heading": "THE CASCADE PRINCIPLE",
+        "body": "Industrial water reuse rarely means closed-loop recycling. It means cascading — water clean enough for a final rinse becomes the input for an earlier dirtier step, then the input for a step dirtier still. Each tier tolerates more contamination than the last.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "fresh",
+                "label": "Fresh water"
+              },
+              {
+                "id": "final",
+                "label": "Final rinse"
+              },
+              {
+                "id": "mid",
+                "label": "Mid rinse"
+              },
+              {
+                "id": "first",
+                "label": "First rinse / dye bath"
+              },
+              {
+                "id": "etp",
+                "label": "Effluent treatment"
+              },
+              {
+                "id": "river",
+                "label": "Discharge"
+              }
+            ],
+            "links": [
+              {
+                "source": "fresh",
+                "target": "final",
+                "value": 100
+              },
+              {
+                "source": "final",
+                "target": "mid",
+                "value": 85
+              },
+              {
+                "source": "mid",
+                "target": "first",
+                "value": 75
+              },
+              {
+                "source": "first",
+                "target": "etp",
+                "value": 70
+              },
+              {
+                "source": "etp",
+                "target": "river",
+                "value": 65
+              }
+            ],
+            "label": "rinse-water cascade in a denim mill"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE WATER COMES FROM",
+        "body": "Bangladesh's Dhaka cluster and Pakistan's Faisalabad–Karachi corridor host most of South Asia's denim capacity. Both draw on shallow aquifers that have been falling for decades — Dhaka's water table has dropped roughly 2–3 meters per year in industrial zones.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BD",
+              "PK",
+              "IN",
+              "LK"
+            ],
+            "label": "South Asia's denim belt",
+            "markers": [
+              {
+                "lat": 23.8103,
+                "lng": 90.4125,
+                "label": "Dhaka denim cluster"
+              },
+              {
+                "lat": 31.4504,
+                "lng": 73.135,
+                "label": "Faisalabad mills"
+              },
+              {
+                "lat": 24.8607,
+                "lng": 67.0011,
+                "label": "Karachi industrial zones"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE REGULATORY GAP",
+        "body": "The EU's Corporate Sustainability Reporting Directive forces European brands to disclose supplier water use, which is why H&M, Levi's, and Inditex now audit mills on freshwater intensity. The pressure flows backward through the supply chain — not from Dhaka or Islamabad outward.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do Bangladeshi and Pakistani denim mills adopt water-saving tech faster than domestic regulators require?",
+            "options": [
+              "Local water tariffs have spiked",
+              "EU buyer disclosure rules force supplier audits",
+              "WTO trade rules mandate it",
+              "Aquifer depletion has triggered rationing"
+            ],
+            "correct": 1,
+            "explanation": "EU CSRD and brand-level sustainability targets push buyers to audit suppliers — the regulatory force on South Asian mills comes from European customers, not local governments."
+          }
+        ]
+      },
+      {
+        "heading": "WATER STRESS, RANKED",
+        "body": "Pakistan and Bangladesh both sit near the top of global water-stress league tables — meaning withdrawals approach or exceed renewable supply. Industrial reuse is no longer optional in either; it's the difference between operating and shutting down.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Baseline water stress (WRI Aqueduct, ratio of withdrawals to supply)",
+            "peers": [
+              {
+                "value": 82,
+                "cc": "PK"
+              },
+              {
+                "value": 68,
+                "cc": "IN"
+              },
+              {
+                "value": 45,
+                "cc": "BD"
+              },
+              {
+                "value": 42,
+                "cc": "CN"
+              },
+              {
+                "value": 95,
+                "cc": "EG"
+              },
+              {
+                "value": 58,
+                "cc": "TR"
+              },
+              {
+                "value": 35,
+                "cc": "VN"
+              }
+            ],
+            "subjectCc": "PK",
+            "unit": "%"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-02T17:31:55.577Z",
+    "label": "Denim's Water Footprint",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-02-first-evidence-of-allexiviruses-in-allium-plants-in-ukraine": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY GARLIC IS UNIQUELY VULNERABLE",
+        "body": "Garlic is propagated vegetatively — every new plant is a clone grown from a clove of the last. There is no seed generation to reset the pathogen load, so viruses accumulate across decades of replanting.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Botanically, garlic is *sterile* in commercial cultivation — it almost never sets viable true seed. The clove is the plant; the plant is the clove."
+          }
+        ]
+      },
+      {
+        "heading": "THE ALLEXIVIRUS GENUS",
+        "body": "Allexiviruses are filamentous RNA viruses transmitted by the eriophyid mite Aceria tulipae, which lives in the bulb scales. Once a field is infected, the mite carries the virus into storage and onto the next planting cycle.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mite is microscopic — about **0.2 mm** — and survives on dormant cloves in cold storage, which is why curing and refrigeration don't break the cycle."
+          }
+        ]
+      },
+      {
+        "heading": "THE GATEWAY MECHANISM",
+        "body": "Synergistic co-infection is well documented in plant virology: one virus suppresses the host's RNA-silencing defense, opening the door for others. Maize lethal necrosis works the same way — a mild potyvirus disables defenses so a second virus can devastate the crop.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do plant viruses often arrive in pairs rather than alone?",
+            "options": [
+              "Mites carry only paired species",
+              "The first virus disables the plant's RNA-silencing immune defense",
+              "Plants reject single infections automatically",
+              "Viruses need each other to replicate"
+            ],
+            "correct": 1,
+            "explanation": "Plants defend themselves by chopping up viral RNA. A first virus that suppresses this defense lets a second virus colonize tissue it otherwise couldn't."
+          }
+        ]
+      },
+      {
+        "heading": "THE YIELD PENALTY",
+        "body": "Virus-infected garlic shows no dramatic symptoms — leaves stay green, bulbs still form — but yields decline 20-60% over successive generations. This is why the damage compounds invisibly: farmers don't know their seed stock is degrading until total output collapses.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~21mt",
+                "cc": "CN",
+                "weight": 21
+              },
+              {
+                "label": "India",
+                "value": "~3.2mt",
+                "cc": "IN",
+                "weight": 3.2
+              },
+              {
+                "label": "Bangladesh",
+                "value": "~0.5mt",
+                "cc": "BD",
+                "weight": 0.5
+              },
+              {
+                "label": "Egypt",
+                "value": "~0.3mt",
+                "cc": "EG",
+                "weight": 0.3
+              },
+              {
+                "label": "Ukraine",
+                "value": "~0.2mt",
+                "cc": "UA",
+                "weight": 0.2,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Top garlic producers, 2023 (mn tonnes)"
+          }
+        ]
+      },
+      {
+        "heading": "THE CERTIFICATION FIX",
+        "body": "Meristem-tip culture — growing new plants from a few cells at the shoot's growing tip, where viruses haven't yet penetrated — produces clean stock. The Netherlands and South Korea built national programs on this technique; most garlic-growing countries did not.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "PL",
+              "RO",
+              "HU",
+              "MD"
+            ],
+            "label": "Ukraine and Black Sea garlic belt",
+            "caption": "region shares seed stock through informal cross-border trade"
+          }
+        ]
+      },
+      {
+        "heading": "THE WAR DIMENSION",
+        "body": "Ukraine's agricultural research institutes — including the seed-certification infrastructure — have been disrupted since 2022. A virology survey is the kind of baseline work that normally precedes a certification program; doing it during wartime means the data may inform recovery rather than current policy."
+      }
+    ],
+    "generatedAt": "2026-05-02T17:32:28.740Z",
+    "label": "Allexiviruses & Vegetative Crops",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-02-gaza-flotilla-israeli-prison-detention-abuse-testimony": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL FRAME",
+        "body": "Under the UN Convention on the Law of the Sea, vessels in international waters fall under the exclusive jurisdiction of their flag state. Boarding a foreign-flagged ship outside territorial waters without consent is, by default, an act of piracy — the narrow exceptions (slavery, unflagged vessels, hot pursuit) do not include enforcing a unilateral blockade.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 12-nautical-mile territorial limit and the 200nm Exclusive Economic Zone are codified in **UNCLOS** (1982). Israel signed but never ratified — yet customary international law binds non-parties to the same core rules."
+          }
+        ]
+      },
+      {
+        "heading": "THE BLOCKADE DOCTRINE",
+        "body": "Israel has maintained a naval blockade of Gaza since 2007, after Hamas took control. Under the San Remo Manual — the modern restatement of naval warfare law — a blockade is only lawful if it is declared, effective, impartial, and does not cause disproportionate civilian harm. The 2010 UN Palmer Report found Israel's blockade legal in principle but the enforcement against the Mavi Marmara excessive."
+      },
+      {
+        "heading": "THE MAVI MARMARA PRECEDENT",
+        "body": "In May 2010, Israeli commandos boarded the Turkish-flagged Mavi Marmara — part of a Gaza-bound flotilla — in international waters, killing 10 activists. Turkey expelled Israel's ambassador; relations froze for six years. Israel eventually paid $20 million in compensation in 2016. The episode is the template every flotilla since has been measured against.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2008",
+                "label": "First Free Gaza boats reach the strip"
+              },
+              {
+                "year": "2010-05",
+                "label": "Mavi Marmara raid kills 10",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011",
+                "label": "Freedom Flotilla II blocked in Greece"
+              },
+              {
+                "year": "2015",
+                "label": "Marianne intercepted off Gaza"
+              },
+              {
+                "year": "2018",
+                "label": "Al-Awda and Freedom boats seized"
+              },
+              {
+                "year": "2024",
+                "label": "Handala intercepted"
+              },
+              {
+                "year": "2026-05",
+                "label": "Global Sumud Flotilla intercepted"
+              }
+            ],
+            "label": "flotillas to Gaza"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'SUMUD' MEANS",
+        "body": "Sumud (صمود) is Arabic for steadfastness — a Palestinian political concept that emerged after 1967, denoting the act of simply remaining on the land in the face of pressure to leave. Naming a flotilla 'Sumud' frames the voyage less as humanitarian aid than as solidarity with that posture.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The companion concept is *samidin* — those who practice sumud. Both terms entered Western policy vocabulary after the **First Intifada** (1987–1993), when the strategy moved from passive endurance to organised civil resistance."
+          }
+        ]
+      },
+      {
+        "heading": "CONSULAR ACCESS",
+        "body": "The Vienna Convention on Consular Relations (1963) requires detaining states to notify a foreign national's consulate 'without delay' and permit visits. The US used this same convention to sue Iran at the ICJ in 1979 over the Tehran embassy hostages — and won. Denying consular access to detained Western nationals is itself a treaty violation, separate from any underlying treatment claim."
+      },
+      {
+        "heading": "THE ACCOUNTABILITY GAP",
+        "body": "Allegations of sexual abuse against Palestinian detainees at the Sde Teiman facility were documented by Israeli human rights group B'Tselem and UN rapporteurs through 2024–2025. Israeli prosecutors indicted reservists in one case; the indictment triggered protests at the base by other reservists who tried to free the accused. The institutional response, not just the alleged acts, is what international monitors flag.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under UNCLOS, what is the default jurisdiction over a vessel in international waters?",
+            "options": [
+              "The nearest coastal state",
+              "The vessel's flag state",
+              "Any UN member state",
+              "No state — international waters are jurisdiction-free"
+            ],
+            "correct": 1,
+            "explanation": "Flag-state jurisdiction is the foundational rule; boarding a foreign-flagged ship on the high seas without consent is piracy absent narrow exceptions like slavery or unflagged vessels."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-02T17:33:04.575Z",
+    "label": "Flotillas & the Law of the Sea",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-02-india-sarv-shakti-lpg-tanker-hormuz-transit-visakhapatnam": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT LPG ACTUALLY IS",
+        "body": "Liquefied petroleum gas is propane and butane — byproducts of crude refining and natural gas processing — compressed into liquid at modest pressure. Unlike LNG, which needs cryogenic tankers at -162°C, LPG ships in ordinary pressurized vessels. That makes it cheap to move but tied to the same Gulf loading terminals as crude.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: **LNG** is methane chilled to liquid; **LPG** is propane/butane pressurized to liquid. Different molecules, different ships, different chokepoints — but in the Gulf, both load from the same coast."
+          }
+        ]
+      },
+      {
+        "heading": "WHY INDIA'S KITCHEN DEPENDS ON HORMUZ",
+        "body": "India consumes roughly 30 million tonnes of LPG a year and imports more than half of it — overwhelmingly from Saudi Arabia, the UAE, Qatar, and Kuwait. Every one of those cargoes loads inside the Persian Gulf and exits through Hormuz. There is no pipeline alternative for LPG bound for the Indian east coast.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "KW"
+            ],
+            "label": "Gulf loading → Indian east coast",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 17.6868,
+                "lng": 83.2185,
+                "label": "Visakhapatnam"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 53.95,
+                "label": "Bandar Abbas"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil pass through daily, about 21% of global consumption. The deepest channel hugs the Iranian side, which is why Iranian naval positioning matters disproportionately."
+      },
+      {
+        "heading": "WHY FLAGS MATTER",
+        "body": "The Sarv Shakti flies the Marshall Islands flag — a flag of convenience used by half the world's oil tankers. In wartime, the flag becomes a signal: Iran has historically distinguished between vessels tied to belligerents and those serving neutral buyers. During the 1987-88 Tanker War, Kuwait reflagged its tankers under the US flag for protection; today, neutral flags signal the opposite — please do not target this ship.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was the largest naval engagement the US fought during the 1987-88 Tanker War?",
+            "options": [
+              "Operation Praying Mantis",
+              "Operation Earnest Will",
+              "Operation Nimble Archer",
+              "Operation Eager Glacier"
+            ],
+            "correct": 0,
+            "explanation": "Praying Mantis (April 1988) sank or crippled half the Iranian navy in a single day — the largest US surface engagement since WWII."
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Lloyd's of London war-risk premiums — not the mines or missiles themselves — are what close a shipping lane. Once premiums spike, commercial vessels reroute regardless of physical risk. A single successful transit like Sarv Shakti's helps suppress those premiums; a single hit would multiply them within hours."
+      },
+      {
+        "heading": "THE BYPASS THAT ISN'T",
+        "body": "Saudi Arabia's East-West Pipeline (5 mn bbl/day) and the UAE's Habshan-Fujairah line together can reroute roughly a third of Gulf crude around Hormuz. Neither carries LPG. Qatar — the world's largest LNG exporter and a major LPG supplier — has zero pipeline bypass: the entire peninsula has one export route, and it runs through the strait.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "5 mn bbl/d",
+                "cc": "SA",
+                "tone": "favorable"
+              },
+              {
+                "label": "UAE",
+                "value": "1.8 mn bbl/d",
+                "cc": "AE",
+                "tone": "favorable"
+              },
+              {
+                "label": "Iraq",
+                "value": "limited (north)",
+                "cc": "IQ",
+                "tone": "neutral"
+              },
+              {
+                "label": "Qatar",
+                "value": "none",
+                "cc": "QA",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Kuwait",
+                "value": "none",
+                "cc": "KW",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Iran",
+                "value": "Jask (partial)",
+                "cc": "IR",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Gulf export bypass capacity"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-02T17:33:41.268Z",
+    "label": "LPG, Hormuz & India's Kitchen",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-02-japan-vietnam-takaichi-energy-critical-minerals-agreement": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 'RARE EARTH' ACTUALLY MEANS",
+        "body": "The 17 rare-earth elements are not geologically rare — cerium is more abundant than copper. What's rare is finding them concentrated enough to mine economically, and harder still, separating chemically near-identical elements from one another.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bottleneck is not mining but **separation** — dissolving ore in acid and running it through hundreds of *solvent extraction* stages to isolate each element. China perfected this dirty, capital-intensive chemistry while the West offshored it."
+          }
+        ]
+      },
+      {
+        "heading": "THE PROCESSING MONOPOLY",
+        "body": "China mines roughly 60% of the world's rare earths but processes nearly 90%. Even ore dug in Australia or California is typically shipped to Chinese refineries. The chokepoint is the chemistry, not the dirt.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "China",
+                "value": 89,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Malaysia",
+                "value": 4,
+                "tone": "neutral"
+              },
+              {
+                "label": "Estonia",
+                "value": 2,
+                "tone": "neutral"
+              },
+              {
+                "label": "Japan",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "USA",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Other",
+                "value": 1,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global rare-earth processing share, 2024 est."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2010 PRECEDENT",
+        "body": "After a Japanese coast guard vessel collided with a Chinese trawler near the Senkaku islands, Beijing halted rare-earth exports to Japan for two months. Prices spiked tenfold. Tokyo learned that supply diversification was a national-security project, not a commercial one — and began funding Lynas in Australia and processing capacity at home.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2010",
+                "label": "China halts REE exports to Japan",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011",
+                "label": "JOGMEC funds Lynas (Australia)"
+              },
+              {
+                "year": "2013",
+                "label": "WTO rules China quotas illegal"
+              },
+              {
+                "year": "2023",
+                "label": "Japan-Vietnam REE cooperation MOU"
+              },
+              {
+                "year": "2026",
+                "label": "Takaichi-Lam agreements"
+              }
+            ],
+            "label": "Japan's rare-earth diversification arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY VIETNAM",
+        "body": "Vietnam holds the world's second-largest rare-earth reserves after China — roughly 22 million tonnes, mostly in the northwest near the Chinese border. Production has been negligible because Vietnam never built separation capacity. Japan brings the chemistry; Vietnam brings the ore.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "VN",
+              "JP",
+              "CN",
+              "MY",
+              "AU"
+            ],
+            "label": "Japan's rare-earth supply diversification",
+            "markers": [
+              {
+                "lat": 22.3964,
+                "lng": 103.4239,
+                "label": "Lai Chau REE deposits"
+              },
+              {
+                "lat": 19.2667,
+                "lng": 105.7667,
+                "label": "Nghi Son refinery"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SOUTH CHINA SEA STAKE",
+        "body": "Vietnam and China have overlapping claims around the Paracel and Spratly islands, where Chinese coast guard vessels regularly ram Vietnamese fishing boats. Hanoi's pivot toward Tokyo is partly maritime: Japan supplies patrol vessels and shares China-deterrence interests without the colonial baggage of France or the alliance complications of the US."
+      },
+      {
+        "heading": "TAKAICHI'S POSTURE",
+        "body": "Sanae Takaichi, who became LDP leader and prime minister in late 2025, is the most hawkish Japanese leader in a generation on China — a protégé of the late Shinzo Abe and a regular visitor to Yasukuni Shrine. Her foreign policy treats economic security and military security as one file.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of global rare-earth processing capacity does China control?",
+            "options": [
+              "About 40%",
+              "About 60%",
+              "About 90%",
+              "Nearly 100%"
+            ],
+            "correct": 2,
+            "explanation": "China processes ~90% of the world's rare earths even though it mines only ~60% — the chokepoint is the separation chemistry, not the ore."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-02T17:34:17.242Z",
+    "label": "Rare Earths & the China Chokehold",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-02-kelp-dao-292m-defi-exploit-institutional-readiness": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY SMART CONTRACTS GET DRAINED",
+        "body": "A smart contract is code that custodies funds and executes automatically when conditions are met. Unlike a bank, there is no human in the loop to halt a suspicious transfer. If the code has a flaw — a reentrancy bug, an oracle manipulation, a missing access check — the attacker drains the contract before anyone can react.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The defining property is *immutability*: once deployed, the code runs as written. **Code is law** was DeFi's founding slogan; it is also why $292m can leave in a single transaction."
+          }
+        ]
+      },
+      {
+        "heading": "THE BRIDGE PROBLEM",
+        "body": "Most large DeFi exploits in the last five years have hit cross-chain bridges — contracts that lock tokens on one blockchain and mint equivalents on another. Bridges concentrate enormous value in a single contract while connecting ecosystems with different security assumptions, creating the largest honeypots in crypto.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ronin Bridge",
+                "value": "$625m",
+                "tone": "unfavorable",
+                "weight": 625
+              },
+              {
+                "label": "Poly Network",
+                "value": "$611m",
+                "tone": "unfavorable",
+                "weight": 611
+              },
+              {
+                "label": "BNB Bridge",
+                "value": "$586m",
+                "tone": "unfavorable",
+                "weight": 586
+              },
+              {
+                "label": "Wormhole",
+                "value": "$326m",
+                "tone": "unfavorable",
+                "weight": 326
+              },
+              {
+                "label": "Kelp",
+                "value": "$292m",
+                "tone": "unfavorable",
+                "weight": 292
+              },
+              {
+                "label": "Nomad",
+                "value": "$190m",
+                "tone": "unfavorable",
+                "weight": 190
+              }
+            ],
+            "label": "largest DeFi exploits to date"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A GOVERNANCE TIMELOCK DOES",
+        "body": "A timelock forces a delay — typically 24 to 72 hours — between when a protocol change is approved and when it executes. The point is to give users a window to exit if a malicious or compromised governance vote pushes through a contract upgrade that would drain funds.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do DeFi protocols add governance timelocks?",
+            "options": [
+              "To prevent users from withdrawing too quickly during volatility",
+              "To give users time to exit before a malicious upgrade executes",
+              "To comply with US securities regulation",
+              "To reduce gas costs by batching transactions"
+            ],
+            "correct": 1,
+            "explanation": "Timelocks turn instant code changes into pre-announced ones — the delay is the user's escape hatch if a vote is captured or a key is compromised."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ZERO-TRUST IS ABSENT",
+        "body": "Traditional finance assumes every counterparty might fail and builds layered controls — segregation of duties, dual approval, circuit breakers, insurance. DeFi's original ethos was the opposite: trust the code, eliminate intermediaries. Institutional capital cannot operate without the layered model, which is why hybrid systems with multisig admin keys, on-chain insurance, and rate-limited withdrawals are now appearing."
+      },
+      {
+        "heading": "WHAT INSTITUTIONS BRING",
+        "body": "BlackRock's BUIDL fund and Apollo's tokenized credit products move regulated capital onto public blockchains. They demand custody by qualified third parties, audited code, and recourse if something breaks — none of which the original DeFi stack provides. The Kelp exploit lands precisely as this collision is being negotiated.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The crypto term for this convergence is **TradFi-DeFi** — traditional finance instruments wrapped as on-chain tokens. The unresolved question is whether the *institutional* side bends toward DeFi's transparency, or DeFi bends toward TradFi's controls."
+          }
+        ]
+      },
+      {
+        "heading": "THE ATTRIBUTION CHALLENGE",
+        "body": "Stolen funds typically move through mixers like Tornado Cash or convert to privacy coins like Monero within hours. Chain-analysis firms can trace the initial hop, but once funds enter a mixer the trail fragments across thousands of addresses. Recovery rates for major DeFi exploits are below 20%.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              325.91,
+              315.86,
+              325.38,
+              331,
+              325.82,
+              345.05,
+              324.43,
+              347.38,
+              343.91,
+              338.55,
+              335.3,
+              346.7,
+              344.38,
+              345.99,
+              343.4,
+              348.24,
+              349.81,
+              347.8,
+              353.64,
+              385.07,
+              367.27,
+              378.91,
+              368.11,
+              372.84,
+              393.09,
+              379.87,
+              378.17,
+              376.32,
+              379.51,
+              379.15,
+              385.23
+            ],
+            "periods": [
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 2"
+            ],
+            "label": "Monero",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-02"
+    ],
+    "generatedAt": "2026-05-02T17:34:47.539Z",
+    "label": "DeFi Exploits & Institutional Risk",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-02-pakistan-kp-jirga-drone-attacks-federal-talks-afridi": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A JIRGA ACTUALLY IS",
+        "body": "A jirga is a Pashtun assembly of elders that predates the Pakistani state by centuries. It operates by consensus, not majority — decisions require unanimity, which forces negotiation until everyone agrees or walks out. Under Pashtunwali, a jirga's verdict is binding on its participants in a way no Islamabad court order is.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The codified tribal law is **Pashtunwali**, with obligations like *melmastia* (hospitality), *nanawatai* (sanctuary for the supplicant), and *badal* (revenge). A jirga adjudicates these — it is not advisory."
+          }
+        ]
+      },
+      {
+        "heading": "THE FATA MERGER",
+        "body": "Until 2018, the seven tribal agencies along the Afghan border were the Federally Administered Tribal Areas — governed not by Pakistani law but by the colonial-era Frontier Crimes Regulation, which permitted collective punishment and barred regular courts. The 25th Amendment merged FATA into Khyber Pakhtunkhwa, promising 100bn rupees a year for ten years to bring infrastructure and services up to provincial standard. Most of that money never arrived — the 800bn rupee demand traces directly to this unmet pledge.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF"
+            ],
+            "label": "the merged tribal belt",
+            "markers": [
+              {
+                "lat": 34.0151,
+                "lng": 71.5249,
+                "label": "Peshawar (KP capital)"
+              },
+              {
+                "lat": 33.6844,
+                "lng": 73.0479,
+                "label": "Islamabad"
+              },
+              {
+                "lat": 33,
+                "lng": 70.1,
+                "label": "Former FATA belt"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DRONE INHERITANCE",
+        "body": "From 2004 to 2018, the US ran roughly 430 drone strikes in Pakistan, almost all of them in the FATA belt that is now part of KP. Estimates of civilian dead range from a few hundred to over a thousand. The strikes happened with quiet ISI cooperation but were officially denied by Islamabad — a public-private split that bred deep distrust of the federal state in the affected districts.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2004",
+                "label": "first US strike (Nek Muhammad killed)"
+              },
+              {
+                "year": "2008",
+                "label": "Bush authorizes signature strikes"
+              },
+              {
+                "year": "2011",
+                "label": "peak year — 117 strikes",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2014",
+                "label": "Operation Zarb-e-Azb (PK military)"
+              },
+              {
+                "year": "2018",
+                "label": "25th Amendment merges FATA into KP"
+              },
+              {
+                "year": "2021",
+                "label": "Taliban return to Kabul; TTP regroups"
+              }
+            ],
+            "label": "the drone war over the tribal belt"
+          }
+        ]
+      },
+      {
+        "heading": "WHO CONTROLS THE PROVINCE",
+        "body": "Khyber Pakhtunkhwa is the political base of Pakistan Tehreek-e-Insaf — Imran Khan's party — which has held the provincial government since 2013. The federal government in Islamabad is run by a PML-N/PPP coalition that ousted Khan in 2022 and jailed him in 2023. The drone-and-funds dispute is therefore also a proxy for the Khan-vs-establishment fight that has destabilized national politics for four years."
+      },
+      {
+        "heading": "THE MARCH ON ISLAMABAD",
+        "body": "A jirga marching on the capital is not a protest tactic invented for this moment. The Pashtun Tahafuz Movement marched in 2018 over enforced disappearances; PTI itself led marches on Islamabad in 2014 and 2022. The threat is credible because the route from Peshawar to Islamabad is short — about 180 km on a single motorway — and the marchers can be tens of thousands strong before they reach the federal capital's outskirts.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which colonial-era law governed Pakistan's tribal areas until the 2018 merger?",
+            "options": [
+              "Frontier Crimes Regulation",
+              "Indian Penal Code",
+              "Government of India Act",
+              "Durand Line Convention"
+            ],
+            "correct": 0,
+            "explanation": "The FCR, drafted by the British in 1901, allowed collective punishment and excluded regular courts — a regime that survived in FATA for 117 years."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-02T17:35:46.262Z",
+    "label": "Jirgas, FATA & the Drone Legacy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-02-russia-oil-exports-keep-flowing-despite-ukrainian-attacks": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE THREE-COAST SYSTEM",
+        "body": "Russia is the rare petrostate with export coasts on three oceans: Baltic (Primorsk, Ust-Luga), Black Sea (Novorossiysk), and Pacific (Kozmino). Plus Arctic loadings at Murmansk. Strike one cluster and barrels reroute — slowly, expensively, but they reroute.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "UA",
+              "TR",
+              "CN",
+              "IN"
+            ],
+            "label": "Russia's seaborne export coasts",
+            "markers": [
+              {
+                "lat": 59.9633,
+                "lng": 28.6086,
+                "label": "Primorsk (Baltic)"
+              },
+              {
+                "lat": 44.7239,
+                "lng": 37.7708,
+                "label": "Novorossiysk (Black Sea)"
+              },
+              {
+                "lat": 42.6536,
+                "lng": 133.0708,
+                "label": "Kozmino (Pacific)"
+              },
+              {
+                "lat": 68.9585,
+                "lng": 33.0827,
+                "label": "Murmansk (Arctic)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SHADOW FLEET",
+        "body": "After the 2022 G7 price cap, Russia assembled a fleet of ~600 aging tankers operating outside Western insurance and flag regimes. Ownership routes through shell companies in the UAE, Hong Kong, and India; vessels go dark on AIS during transfers. The cap was meant to keep oil flowing at a discount; the shadow fleet largely defeated the discount.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The cap set a **$60/barrel** ceiling on Russian crude moved by Western-insured tankers. Within 18 months, the shadow fleet handled roughly **70%** of seaborne exports — enforcement collapsed because the alternative was higher global prices."
+          }
+        ]
+      },
+      {
+        "heading": "THE CUSTOMER PIVOT",
+        "body": "Pre-2022, Europe took two-thirds of Russian crude. By 2024, China and India together took roughly 80%. India barely imported Russian oil before the war; it is now the second-largest buyer, refining the discounted crude and exporting products back to Europe — sanctions-laundered diesel.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~47%",
+                "cc": "CN",
+                "weight": 47
+              },
+              {
+                "label": "India",
+                "value": "~37%",
+                "cc": "IN",
+                "weight": 37
+              },
+              {
+                "label": "Turkey",
+                "value": "~7%",
+                "cc": "TR",
+                "weight": 7
+              },
+              {
+                "label": "EU (residual)",
+                "value": "~5%",
+                "cc": "EU",
+                "weight": 5
+              }
+            ],
+            "label": "Russian seaborne crude buyers, share"
+          }
+        ]
+      },
+      {
+        "heading": "WHY STORAGE TANKS, NOT REFINERIES",
+        "body": "Ukraine's 2024–2026 strike doctrine targeted Russian refineries — burning processing capacity to choke domestic fuel supply. The pivot to port storage tanks is different: it attacks export revenue directly. Storage farms are softer than reactor-grade refinery towers but harder to repair quickly because of fire-suppression and grounding requirements.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why has Ukraine increasingly targeted Russian oil infrastructure rather than military bases?",
+            "options": [
+              "Oil sites are less defended",
+              "Oil revenue funds 30–40% of Russia's federal budget",
+              "Refineries are easier to hit than airbases",
+              "Western allies require it"
+            ],
+            "correct": 1,
+            "explanation": "Oil and gas revenues fund roughly a third of Russia's federal budget; degrading export capacity is the most direct way to constrain the war economy."
+          }
+        ]
+      },
+      {
+        "heading": "THE WAIVER PARADOX",
+        "body": "The US Treasury periodically renews general licenses that let certain Russian energy transactions clear the dollar system — gas to Europe, certain oil-related payments. The logic is that fully cutting Russia off would spike global prices and hand Moscow a windfall. The contradiction the war exposes: the same Treasury that funds Ukraine also keeps the pipes open that fund the Russian army.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              80.332725,
+              80.325737,
+              80.409851,
+              80.188632,
+              78.425742,
+              78.552067,
+              77.620679,
+              77.111135,
+              77.104548,
+              77.405049,
+              76.169531,
+              75.375678,
+              75.496169,
+              76.374389,
+              76.231514,
+              76.231514,
+              76.231514,
+              76.231376,
+              74.947786,
+              75.123411,
+              75.876,
+              75.246161,
+              75.185828,
+              75.185828,
+              75.229128,
+              74.873368,
+              75.315304,
+              74.749689,
+              74.94766,
+              74.972582
+            ],
+            "periods": [
+              "Apr 3",
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2"
+            ],
+            "label": "Russian ruble",
+            "unit": "RUB / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-02"
+    ],
+    "generatedAt": "2026-05-02T17:36:21.266Z",
+    "label": "Russia's Oil Export Architecture",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-02-this-personality-trait-makes-dreams-more-bizarre-scientists": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEFAULT MODE NETWORK",
+        "body": "When you stop focusing on a task, a specific brain network lights up — the medial prefrontal cortex, posterior cingulate, and angular gyrus. It is the same network active during REM sleep. Daydreaming and dreaming are not metaphorically similar; they share circuitry.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Marcus Raichle named the **default mode network** in 2001 after noticing it consumed *more* energy at rest than during attention tasks — the brain's idling state burns hotter than its working state."
+          }
+        ]
+      },
+      {
+        "heading": "WHY REM IS WHERE BIZARRENESS LIVES",
+        "body": "Dreams occur in all sleep stages, but REM dreams are the strange ones — narrative, emotional, illogical. During REM, the dorsolateral prefrontal cortex (the brain's reality-checker) goes quiet while the limbic system runs hot. Logic offline, emotion online."
+      },
+      {
+        "heading": "THE CONTINUITY HYPOTHESIS",
+        "body": "Decades of research show dreams reflect waking concerns, not random noise. People who think about death dream about death; people who play Tetris for hours dream in falling blocks. Bizarreness is not randomness — it is waking cognition recombined without the prefrontal censor."
+      },
+      {
+        "heading": "THE LOCKDOWN SIGNAL",
+        "body": "Researchers worldwide documented more vivid, more emotional, more remembered dreams during COVID-19 lockdowns in 2020. Disrupted sleep schedules meant more REM (which clusters in the late morning hours people now slept through to). Heightened anxiety meant the limbic system had more to process.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did dream recall spike during COVID lockdowns?",
+            "options": [
+              "People had more anxiety to process",
+              "People slept later, getting more REM",
+              "Both — disrupted schedules and elevated stress",
+              "Lockdowns reduced caffeine intake"
+            ],
+            "correct": 2,
+            "explanation": "REM clusters in late sleep cycles. Sleeping in captures more of it; stress loads it with content. Both effects compounded."
+          }
+        ]
+      },
+      {
+        "heading": "THE MEASUREMENT PROBLEM",
+        "body": "Dream science depends on self-report — you cannot observe a dream from outside. Studies like this one rely on multi-year nightly logs, which means findings track who reports vivid dreams as much as who has them. Mind-wanderers may simply be better at noticing and recalling inner states."
+      }
+    ],
+    "generatedAt": "2026-05-02T17:36:44.767Z",
+    "label": "Dreams & the Wandering Mind",
+    "category": "science",
+    "articleCount": 1
   }
 }
