@@ -655,10 +655,12 @@ if [ "$DAY_OF_WEEK" = "7" ] && [ "$START_HOUR" = "22" ]; then
   # output to ground its audit in measurable rule compliance.
   node scripts/measure-quality.js 2>&1 | tee -a "$LOG_FILE"
   REFLECT_PROMPT=$(cat scripts/reflect-prompt.md)
-  # Opus for the weekly audit — editorial judgment over a noisy week of corpus
-  # signal benefits from the deeper model. Low frequency (Sunday 22:30 only),
-  # so the cost differential vs Sonnet is negligible at the cycle level.
-  timeout 900 claude $CLAUDE_FLAGS --effort medium --model claude-opus-4-7 --allowedTools $TOOLS_REFLECT --max-turns 20 -p "$REFLECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+  # Opus + high effort for the weekly audit. The output proposes parameter
+  # changes that govern the next week's 35 cycles, so reasoning depth on
+  # this single weekly call compounds across the whole week of output.
+  # Cost is negligible at weekly cadence; the alternative is suboptimal
+  # parameter recommendations running for 7 days.
+  timeout 900 claude $CLAUDE_FLAGS --effort high --model claude-opus-4-7 --allowedTools $TOOLS_REFLECT --max-turns 20 -p "$REFLECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
   REFLECT_EXIT=$?
   echo "Reflection exit: $REFLECT_EXIT" | tee -a "$LOG_FILE"
   # Failure here doesn't affect publishing — the cycle is already complete
@@ -679,7 +681,11 @@ if [ "$START_HOUR" = "22" ]; then
   METRICS_OK=$?
   if [ "$METRICS_OK" -eq 0 ]; then
     TUNE_PROMPT=$(cat scripts/tune-prompt.md)
-    timeout 300 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_MODEL --allowedTools $TOOLS_TUNE --max-turns 15 -p "$TUNE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+    # Opus for daily tuning — proposes bounded parameter changes that govern
+    # the next day's 5 cycles. Same judgment class as reflect (just narrower
+    # blast radius). Daily cadence makes Opus affordable; medium effort is
+    # enough since the metric inputs are deterministic.
+    timeout 300 claude $CLAUDE_FLAGS --effort medium --model claude-opus-4-7 --allowedTools $TOOLS_TUNE --max-turns 15 -p "$TUNE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
     TUNE_EXIT=$?
     echo "Tuning exit: $TUNE_EXIT — $((SECONDS - T6))s" | tee -a "$LOG_FILE"
     # Tuning session handles its own git workflow (experiment branches + PRs).
