@@ -14,7 +14,7 @@ if (!existsSync(FEED)) process.exit(0)
 // 48h to 7d so the selector stops picking stories that match articles
 // published 2-3 days ago (causes post-selection dedup cascade + backfill filler).
 const ctx = loadDedupContext(7 * 24 * 3600 * 1000)
-const counts = { exact: 0, eventUri: 0, fuzzy: 0 }
+const counts = { exact: 0, eventUri: 0, fuzzy: 0, recap: 0 }
 
 function filterSection(stories) {
   return stories.filter(s => {
@@ -32,7 +32,7 @@ const feed = JSON.parse(readFileSync(FEED, 'utf-8'))
 feed.multiSourceStories = filterSection(feed.multiSourceStories || [])
 feed.nicheStories = filterSection(feed.nicheStories || [])
 
-const total = counts.exact + counts.eventUri + counts.fuzzy
+const total = counts.exact + counts.eventUri + counts.fuzzy + counts.recap
 writeFileSync(FEED, JSON.stringify(feed, null, 2))
 
 // Also update the slim feed so selector sees the same filtered set
@@ -47,7 +47,7 @@ if (existsSync(SLIM)) {
 }
 
 if (total > 0) {
-  console.log(`Pre-filtered: removed ${total} stories (exact: ${counts.exact}, eventUri: ${counts.eventUri}, fuzzy: ${counts.fuzzy})`)
+  console.log(`Pre-filtered: removed ${total} stories (exact: ${counts.exact}, eventUri: ${counts.eventUri}, fuzzy: ${counts.fuzzy}, recap: ${counts.recap})`)
 } else {
   console.log('Pre-filter: all feed stories are new')
 }
