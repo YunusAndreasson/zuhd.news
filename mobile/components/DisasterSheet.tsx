@@ -4,7 +4,6 @@ import {
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
 import { COUNTRY_DATA } from '@shared/countries/country-data';
-import { Canvas, Circle, Path } from '@shopify/react-native-skia';
 import { memo, useCallback, useMemo } from 'react';
 import { Text as RNText, StyleSheet, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
@@ -12,10 +11,14 @@ import { ANIMATION, FLAG, SPACING, staggerDelay } from '../constants/theme';
 import { useGdacsDetail } from '../hooks/useGdacsDetail';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
-import type { GdacsAlert } from '../lib/gdacs';
+import {
+  displaySourceName,
+  EVENT_TYPE_EYEBROW,
+  type GdacsAlert,
+  parseSeverityHero,
+} from '../lib/gdacs';
 import { useOpenLink } from '../lib/open-link';
 import { displayCountryName } from '../lib/place-names';
-import { EVENT_TYPE_LABEL, GLYPH_HALF, getGlyphPath } from './globe/disaster-glyphs';
 import { Pressable, Text } from './primitives';
 import { SheetLayout } from './SheetLayout';
 
@@ -28,11 +31,6 @@ interface DisasterSheetProps {
   /** Tap on a country chip — opens the CountrySheet for that country. */
   onCountryPress?: (countryName: string) => void;
 }
-
-// Hero glyph is 44 — bigger than the 22 globe marker so it reads as the
-// sheet's identifying mark, smaller than the 36 used in CountrySheet's
-// alert chips so it doesn't dominate alongside title-sized severity text.
-const HERO_GLYPH = 44;
 
 function relativeTime(iso: string, now: number = Date.now()): string {
   const t = Date.parse(iso);
@@ -147,35 +145,35 @@ export const DisasterSheet = memo(function DisasterSheet({
   const handleReportPress = useCallback(() => {
     if (alert?.reportUrl) openLink(alert.reportUrl);
   }, [alert?.reportUrl, openLink]);
-  // Lazy per-event detail — earthquake population estimates today.
-  // Fetches on alert change, caches per process, returns null otherwise.
+  // Lazy per-event detail — population estimates for EQ and TC. Sheet
+  // chooses the most-severe zone GDACS publishes for this alert and
+  // renders it as a plain-English sentence below the hero.
   const detail = useGdacsDetail(alert);
-  // Prefer the shaking-zone count (more directly meaningful — people
-  // actually felt it) and fall back to the wider rapid-impact radius.
-  // Either yields a row; both null hides the row entirely.
-  const populationText =
-    formatPopulation(detail?.shakingPopulation ?? null) ??
-    formatPopulation(detail?.affectedPopulation ?? null);
-  const populationLabel =
-    detail?.shakingPopulation && detail.shakingPopulation > 0
-      ? 'in shaking zone'
-      : 'in affected radius';
+  const populationCount =
+    detail?.criticalPopulation && detail.criticalPopulation > 0
+      ? detail.criticalPopulation
+      : detail?.widerPopulation && detail.widerPopulation > 0
+        ? detail.widerPopulation
+        : null;
+  const populationClause =
+    detail?.criticalPopulation && detail.criticalPopulation > 0
+      ? detail.criticalClause
+      : (detail?.widerClause ?? '');
+  const populationText = formatPopulation(populationCount);
 
+  // Severity tint moves from the (now-removed) glyph backdrop disc to the
+  // focal number itself — the magnitude / wind speed / burn area is
+  // *literally* coloured by severity tier, so the reader's eye picks up
+  // "how bad?" pre-attentively from a single tinted number rather than
+  // hunting for a coloured disc and a separate text caption.
   const tint =
     alert?.alertlevel === 'Red'
       ? colors.toneUnfavorable
       : alert?.alertlevel === 'Orange'
         ? colors.alertOrange
         : colors.alertLow;
-  // Tone-text vocabulary mirrors editorial signal: unfavorable for Red
-  // (consequential), accent for Orange (notable), secondary for Green
-  // (informational/ambient — same tone used for all chrome metadata).
-  const tone =
-    alert?.alertlevel === 'Red'
-      ? 'unfavorable'
-      : alert?.alertlevel === 'Orange'
-        ? 'accent'
-        : 'secondary';
+
+  const hero = useMemo(() => (alert ? parseSeverityHero(alert) : null), [alert]);
 
   const flags = useMemo(() => {
     if (!alert) return [] as { name: string; flag: string }[];
@@ -208,75 +206,59 @@ export const DisasterSheet = memo(function DisasterSheet({
       >
         {alert && (
           <>
-            {/* Hero — the answer to "how bad and when?". Glyph + severity
-                readout side-by-side; severity is the lead text (title
-                variant), with a tone-coloured caption beneath restating
-                the alert level and recency. The handle title above
-                already covers the "what + where" identifier, so the body
-                opens directly with the magnitude/wind-speed/burn-area
-                number that's the actual answer the reader came for. */}
-            <Animated.View entering={enter()} style={styles.hero}>
-              <Canvas style={{ width: HERO_GLYPH, height: HERO_GLYPH }}>
-                <Circle
-                  cx={HERO_GLYPH / 2}
-                  cy={HERO_GLYPH / 2}
-                  r={HERO_GLYPH / 2}
-                  color={tint}
-                  opacity={0.18}
-                />
-                <Path
-                  path={getGlyphPath(alert.eventtype)}
-                  color={tint}
-                  style="stroke"
-                  strokeWidth={1.8}
-                  strokeJoin="round"
-                  strokeCap="round"
-                  transform={[
-                    { translateX: HERO_GLYPH / 2 - GLYPH_HALF },
-                    { translateY: HERO_GLYPH / 2 - GLYPH_HALF },
-                  ]}
-                />
-              </Canvas>
-              <View style={styles.heroText}>
-                {/* Severity readout uses `bodyEmphasis` (17pt semiBold), not
-                    `title` (21pt). A GDACS sheet is a data snapshot, not an
-                    article headline — pairing 21pt over the handle's 17pt
-                    label stacked two big title tiers in the first ~80px and
-                    fought the meta line beneath. bodyEmphasis lands hero:meta
-                    at 17:13 (ratio 1.3), proportional for a stat. */}
-                <Text variant="bodyEmphasis" tone="emphasis" selectable>
-                  {alert.severityText.length > 0
-                    ? alert.severityText
-                    : EVENT_TYPE_LABEL[alert.eventtype]}
+            {/* Hero — eyebrow + focal severity number + supporting clause.
+                Cognitive-load shape: the reader's eye lands on a single
+                large tinted number (the magnitude / wind speed / burn
+                area) and gets the "how bad?" answer pre-attentively.
+                Severity tier is encoded in the colour of that number,
+                so the meta line below doesn't need to repeat the
+                alert-level word. The 44px glyph that used to sit here
+                was redundant — the reader just tapped the same shape
+                on the globe. */}
+            <Animated.View entering={enter()}>
+              <Text variant="labelXs" tone="secondary" style={styles.eyebrow}>
+                {EVENT_TYPE_EYEBROW[alert.eventtype]}
+              </Text>
+              <Text
+                variant="display"
+                style={[styles.focal, { color: tint }]}
+                numberOfLines={2}
+                selectable
+              >
+                {hero?.focal ?? ''}
+              </Text>
+              {hero?.secondary && hero.secondary.length > 0 && (
+                <Text variant="caption" tone="secondary" style={styles.heroSecondary}>
+                  {hero.secondary}
                 </Text>
-                <Text variant="labelSm" tone={tone} style={styles.heroMeta} numberOfLines={1}>
-                  {[
-                    alert.alertlevel.toLowerCase(),
-                    formatStarted(alert.fromDate),
-                    formatStatus(alert),
-                  ]
-                    .filter((s) => s.length > 0)
-                    .join(' · ')}
-                </Text>
-              </View>
+              )}
             </Animated.View>
 
-            {/* Population stat — the human stake of the event. EQ-only;
-                fetched lazily from the GDACS detail endpoint and rendered
-                only when GDACS publishes a meaningful number (low-impact
-                events get 0/empty and the row hides entirely). Sits
-                between the hero (severity) and the flags (where) so the
-                reading order goes WHAT → HOW MANY → WHERE. */}
-            {populationText && (
+            {/* Population sentence — plain-English form of the human
+                stake. Renders only when GDACS publishes a meaningful
+                number (EQ shaking footprint or TC hurricane wind zone);
+                low-tier events get null detail and the row stays hidden. */}
+            {populationText && populationClause.length > 0 && (
               <Animated.View entering={enter()} style={styles.populationRow}>
-                <Text variant="bodyEmphasis" tone="emphasis">
+                <Text variant="bodyEmphasis" tone="emphasis" selectable>
                   {populationText}{' '}
-                  <Text variant="caption" tone="secondary">
-                    {populationLabel}
+                  <Text variant="body" tone="default">
+                    people {populationClause}
                   </Text>
                 </Text>
               </Animated.View>
             )}
+
+            {/* Meta — when did it start, when was the data last refreshed,
+                or whether it's already over. Alert-level word dropped
+                because the focal number above already carries it via tint. */}
+            <Animated.View entering={enter()} style={styles.metaRow}>
+              <Text variant="labelXs" tone="secondary">
+                {[formatStarted(alert.fromDate), formatStatus(alert)]
+                  .filter((s) => s.length > 0)
+                  .join(' · ')}
+              </Text>
+            </Animated.View>
 
             {flags.length > 0 && (
               <Animated.View entering={enter()} style={styles.flagsRow}>
@@ -300,31 +282,27 @@ export const DisasterSheet = memo(function DisasterSheet({
               </Animated.View>
             )}
 
-            {/* Footer attribution + tappable GDACS report. The originating
-                authority (NEIC for earthquakes, JTWC for cyclones, JRC for
-                floods) gives the alert a name reader can credit; the
-                report link is the deep-dive escape hatch when the brief
-                fields aren't enough. Tappable only when GDACS supplies a
-                URL — otherwise just the source line. */}
+            {/* Footer — full source name (no acronyms) + tappable report.
+                The acronym alone ("NEIC", "JTWC") forces the reader to
+                either know the org or read the line as opaque chrome;
+                the spelled-out name carries the trust signal directly. */}
             <Animated.View entering={enter()} style={styles.sourceLine}>
-              {alert.reportUrl ? (
+              <Text variant="caption" tone="secondary">
+                {displaySourceName(alert.source)}
+              </Text>
+              {alert.reportUrl && (
                 <Pressable
                   haptic="tick"
                   onPress={handleReportPress}
                   accessibilityRole="link"
                   accessibilityLabel="Open the GDACS event report"
                   hitSlop={SPACING.sm}
+                  style={styles.reportLink}
                 >
-                  <Text variant="labelXs" tone="secondary">
-                    {[alert.source, 'gdacs report ↗'].filter((s) => s.length > 0).join(' · ')}
+                  <Text variant="caption" tone="accent">
+                    GDACS report →
                   </Text>
                 </Pressable>
-              ) : (
-                <Text variant="labelXs" tone="secondary">
-                  {alert.source.length > 0
-                    ? `${alert.source} · gdacs`
-                    : 'global disaster alert system'}
-                </Text>
               )}
             </Animated.View>
           </>
@@ -335,20 +313,23 @@ export const DisasterSheet = memo(function DisasterSheet({
 });
 
 const styles = StyleSheet.create({
-  hero: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: SPACING.md,
+  eyebrow: {
+    marginBottom: SPACING.xs,
   },
-  heroText: {
-    flex: 1,
-    gap: SPACING.xxs,
+  focal: {
+    // The hero pre-attentive cue — large, severity-tinted, single-line
+    // first scan target. `display` variant is 28pt bold; we keep that
+    // and override only the colour via the inline tint so the variant's
+    // tracking + line-height stay intact.
   },
-  heroMeta: {
+  heroSecondary: {
     marginTop: SPACING.xxs,
   },
   populationRow: {
     marginTop: SPACING.md,
+  },
+  metaRow: {
+    marginTop: SPACING.sm,
   },
   flagsRow: {
     marginTop: SPACING.lg,
@@ -374,6 +355,13 @@ const styles = StyleSheet.create({
   },
   sourceLine: {
     marginTop: SPACING.xl,
-    alignItems: 'flex-end',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'baseline',
+  },
+  reportLink: {
+    // Report link sits on the right of the source line baseline-aligned
+    // with the source name on the left, so the sheet's last row reads
+    // as one balanced footer rather than a stacked block.
   },
 });

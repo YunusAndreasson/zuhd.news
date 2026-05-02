@@ -5,6 +5,7 @@ import {
   type GdacsFeatureCollection,
   isGdacsDetailFeature,
   isGdacsFeatureCollection,
+  parseSeverityHero,
 } from '../lib/gdacs';
 
 const validFeature = {
@@ -174,9 +175,13 @@ describe('featureToDetail', () => {
       },
     };
     expect(isGdacsDetailFeature(feature)).toBe(true);
+    // shakepop → critical (the felt-it count), rapidpop → wider radius.
+    // Plain-English clauses come from the parser, not the call site.
     expect(featureToDetail(feature)).toEqual({
-      affectedPopulation: 12_400_000,
-      shakingPopulation: 5_200_000,
+      criticalPopulation: 5_200_000,
+      criticalClause: 'felt strong shaking',
+      widerPopulation: 12_400_000,
+      widerClause: 'in the wider affected area',
     });
   });
 
@@ -189,12 +194,82 @@ describe('featureToDetail', () => {
         type: 'Feature',
         properties: { earthquakedetails: { rapidpop: '0', shakepop: '' } },
       }),
-    ).toEqual({ affectedPopulation: null, shakingPopulation: null });
+    ).toEqual({
+      criticalPopulation: null,
+      criticalClause: 'felt strong shaking',
+      widerPopulation: null,
+      widerClause: 'in the wider affected area',
+    });
 
     // Missing block at all — non-EQ events, defensive default.
-    expect(
-      featureToDetail({ type: 'Feature', properties: {} }),
-    ).toEqual({ affectedPopulation: null, shakingPopulation: null });
+    expect(featureToDetail({ type: 'Feature', properties: {} })).toEqual({
+      criticalPopulation: null,
+      criticalClause: '',
+      widerPopulation: null,
+      widerClause: '',
+    });
+  });
+});
+
+describe('parseSeverityHero', () => {
+  // Pure parser test — uses minimal alert shapes since only severityText
+  // and eventtype are read.
+  const baseAlert = {
+    eventid: '1',
+    alertlevel: 'Green' as const,
+    name: '',
+    country: '',
+    iso3: '',
+    affectedCountries: [],
+    lat: 0,
+    lng: 0,
+    fromDate: '',
+    toDate: null,
+    modifiedDate: '',
+    severityValue: null,
+    severityUnit: '',
+    description: '',
+    source: '',
+    reportUrl: null,
+  };
+
+  it('reduces EQ severityText to a focal "M X.X" + depth subtitle', () => {
+    const result = parseSeverityHero({
+      ...baseAlert,
+      eventtype: 'EQ',
+      severityText: 'Magnitude 7.4M, Depth:23km',
+    });
+    expect(result).toEqual({ focal: 'M 7.4', secondary: '23 km deep' });
+  });
+
+  it('reduces TC severityText to "<n> km/h" + tier word', () => {
+    const result = parseSeverityHero({
+      ...baseAlert,
+      eventtype: 'TC',
+      severityText: 'Tropical Storm wind speed of 95 km/h',
+    });
+    expect(result).toEqual({ focal: '95 km/h', secondary: 'tropical-storm strength' });
+  });
+
+  it('groups WF burn-area thousands and labels it', () => {
+    const result = parseSeverityHero({
+      ...baseAlert,
+      eventtype: 'WF',
+      severityText: 'Green impact for forestfire in 7559 ha',
+    });
+    expect(result).toEqual({ focal: '7,559 ha', secondary: 'burn area' });
+  });
+
+  it('falls back to raw severityText when no pattern matches', () => {
+    // FL events often publish "Magnitude 0" — nothing parseable, never
+    // silently hide. The eyebrow + raw text is honest about the data.
+    const result = parseSeverityHero({
+      ...baseAlert,
+      eventtype: 'FL',
+      severityText: 'Magnitude 0 ',
+    });
+    expect(result.focal).toContain('Magnitude 0');
+    expect(result.secondary).toBe('');
   });
 });
 
