@@ -163,16 +163,42 @@ function RowIcon({ row, tint }: RowIconProps) {
     );
   }
   if (row.kind === 'hotspot') {
+    // Pulse pattern — three concentric layers read as "density radiating
+    // from this point," the visual analogue of "multiple stories here."
+    // Distinguishes structurally (not just by halo size) from the
+    // article row, which is a single framed dot.
     return (
       <Canvas style={{ width: ROW_ICON, height: ROW_ICON }}>
-        <Circle cx={ROW_ICON / 2} cy={ROW_ICON / 2} r={10} color={colors.accent} opacity={0.18} />
-        <Circle cx={ROW_ICON / 2} cy={ROW_ICON / 2} r={4} color={colors.accent} />
+        <Circle cx={ROW_ICON / 2} cy={ROW_ICON / 2} r={ROW_ICON / 2} color={colors.accent} opacity={0.12} />
+        <Circle
+          cx={ROW_ICON / 2}
+          cy={ROW_ICON / 2}
+          r={8}
+          color={colors.accent}
+          opacity={0.5}
+          style="stroke"
+          strokeWidth={1}
+        />
+        <Circle cx={ROW_ICON / 2} cy={ROW_ICON / 2} r={2.5} color={colors.accent} />
       </Canvas>
     );
   }
+  // Article row — single story at a place. Framed dot: a thin outer ring
+  // contains the marker so it reads as "a focused, single point" rather
+  // than a stray pixel. Quieter than hotspot (no halo, no accent ring) so
+  // the cohort hierarchy stays: GDACS > chokepoint > hotspot > article.
   return (
     <Canvas style={{ width: ROW_ICON, height: ROW_ICON }}>
-      <Circle cx={ROW_ICON / 2} cy={ROW_ICON / 2} r={4} color={colors.accent} />
+      <Circle
+        cx={ROW_ICON / 2}
+        cy={ROW_ICON / 2}
+        r={6}
+        color={colors.textSecondary}
+        opacity={0.4}
+        style="stroke"
+        strokeWidth={1}
+      />
+      <Circle cx={ROW_ICON / 2} cy={ROW_ICON / 2} r={2.5} color={colors.accent} />
     </Canvas>
   );
 }

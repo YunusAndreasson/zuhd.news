@@ -62,7 +62,7 @@ import {
   getRiverLabels,
   getSeas,
 } from './detail-geo';
-import { GLYPH_HALF, getGlyphPath } from './disaster-glyphs';
+import { CHOKEPOINT_PATH, GLYPH_HALF, getGlyphPath } from './disaster-glyphs';
 import {
   ANCHOR_COUNTRY_AREA,
   ANCHOR_NAMES_EXTRA,
@@ -2381,12 +2381,15 @@ export const MiniGlobe = memo(function MiniGlobe({
         );
       })}
 
-      {/* Chokepoint rings — ambient reference geography. Quiet when transit
-          flow is near baseline, accent-fill when disrupted (±>15% from 90d
-          average). Label is always drawn so the reader learns the geography. */}
+      {/* Chokepoint glyphs — strait pictogram (two facing coastline arcs +
+          center mark) so the marker reads semantically as a narrow water
+          passage rather than as an anonymous ring. Same family as the
+          disaster glyphs — 22pt box, stroked, transformed into position.
+          Quiet when transit flow is near baseline, accent-tinted when
+          disrupted (±>15% from 90d average). Label is always drawn. */}
       {state.chokepoints.map((c) => {
-        const ringOpacity = 0.35 + 0.45 * c.intensity;
-        const ringColor = c.disrupted ? colors.accent : colors.rule;
+        const glyphOpacity = 0.35 + 0.45 * c.intensity;
+        const glyphColor = c.disrupted ? colors.accent : colors.rule;
         // Label centering uses getTextWidth when the font has loaded;
         // before that we fall back to a char-count approximation so the
         // first frame doesn't misplace the text.
@@ -2410,21 +2413,18 @@ export const MiniGlobe = memo(function MiniGlobe({
                 />
               </Circle>
             )}
-            <Circle
-              cx={c.x}
-              cy={c.y}
-              r={6}
-              color={ringColor}
-              opacity={ringOpacity}
+            <Path
+              path={CHOKEPOINT_PATH}
+              color={glyphColor}
               style="stroke"
               strokeWidth={1.0}
-            />
-            <Circle
-              cx={c.x}
-              cy={c.y}
-              r={1}
-              color={ringColor}
-              opacity={Math.min(1, ringOpacity + 0.2)}
+              strokeJoin="round"
+              strokeCap="round"
+              opacity={glyphOpacity}
+              transform={[
+                { translateX: c.x - GLYPH_HALF },
+                { translateY: c.y - GLYPH_HALF },
+              ]}
             />
             <HaloLabel
               x={labelTx}
