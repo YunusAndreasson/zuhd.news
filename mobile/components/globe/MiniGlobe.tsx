@@ -25,7 +25,6 @@ import {
   vec,
 } from '@shopify/react-native-skia';
 import {
-  geoCentroid,
   geoCircle,
   geoContains,
   geoDistance,
@@ -92,6 +91,7 @@ import {
   countryBboxes,
   countryCentroidNames,
   countryCentroidPoints,
+  countryCentroids,
   countryCentroidUnits,
   countrySimplifiedByName,
   createSkiaPathContext,
@@ -1049,10 +1049,13 @@ export const MiniGlobe = memo(function MiniGlobe({
           ? (countrySimplifiedByName[settledName] ?? null)
           : null;
         // Centroid cached alongside the feature — projected per frame to
-        // follow rotation, but the expensive sphere-centroid math runs only
-        // when the settled country actually changes.
-        cachedCountryCentroidRef.current = cachedCountryRef.current
-          ? (geoCentroid(cachedCountryRef.current) as [number, number])
+        // follow rotation. Reads from the precomputed map (which uses the
+        // largest-polygon centroid for MultiPolygon features), keeping the
+        // focused-country label on the primary landmass even when overseas
+        // territories would otherwise drag the geometric centroid into a
+        // neighbour (e.g. France → French Guiana drags into Spain).
+        cachedCountryCentroidRef.current = settledName
+          ? (countryCentroids[settledName] ?? null)
           : null;
       }
 

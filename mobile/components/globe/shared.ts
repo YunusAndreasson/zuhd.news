@@ -124,14 +124,44 @@ for (const f of countries.features) {
   if (name) countryAreas[name] = geoArea(f);
 }
 
-// Precomputed spherical centroids (lng, lat) per country. Used by MiniGlobe
-// to project neighbour-country labels when zoomed past PLACES_APPEAR_CLIP.
-// One-time cost at module load; keeps the per-frame projection of ~20-40
-// visible labels below a millisecond.
+/** Centroid intended for label placement. Plain `geoCentroid` averages
+ *  across every part of a MultiPolygon, so a country with far-flung
+ *  territories (France's French Guiana, Norway's Svalbard, USA's Alaska
+ *  + Hawaii, UK's overseas territories, Spain's Canaries, Portugal's
+ *  Azores, Denmark's Greenland — though Greenland is its own feature
+ *  here, …) lands its label off the mainland: France's full centroid
+ *  resolves to [-6.8°, 43.1°] in the Bay of Biscay just above Spain's
+ *  north coast, which projects on top of Spain at globe scale. Picking
+ *  the largest polygon by spherical area keeps the label on the country's
+ *  primary landmass where readers expect it. Singular-polygon features
+ *  fall through to plain `geoCentroid`. */
+function countryLabelCentroid(f: GeoJSON.Feature): [number, number] {
+  const g = f.geometry;
+  if (g?.type !== 'MultiPolygon' || g.coordinates.length <= 1) {
+    return geoCentroid(f) as [number, number];
+  }
+  let bestArea = -Infinity;
+  let bestPoly: GeoJSON.Position[][] | null = null;
+  for (const poly of g.coordinates) {
+    if (!poly) continue;
+    const a = geoArea({ type: 'Polygon', coordinates: poly });
+    if (a > bestArea) {
+      bestArea = a;
+      bestPoly = poly;
+    }
+  }
+  if (!bestPoly) return geoCentroid(f) as [number, number];
+  return geoCentroid({ type: 'Polygon', coordinates: bestPoly }) as [number, number];
+}
+
+// Precomputed centroids (lng, lat) per country, optimised for label
+// placement via `countryLabelCentroid` (see comment above). One-time cost
+// at module load; the per-frame projection of ~20–40 visible labels stays
+// below a millisecond.
 export const countryCentroids: Record<string, [number, number]> = {};
 for (const f of countries.features) {
   const name = f.properties?.name;
-  if (name) countryCentroids[name] = geoCentroid(f) as [number, number];
+  if (name) countryCentroids[name] = countryLabelCentroid(f);
 }
 
 // Cartesian unit vector form of each centroid. Lets the per-frame hemisphere
