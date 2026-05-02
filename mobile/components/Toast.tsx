@@ -24,7 +24,8 @@ export interface ToastRef {
 }
 
 // Actionable toasts linger — user needs time to decide to tap. Passive
-// acknowledgements ("Saved", "Removed") clear quickly to stay out of the way.
+// acknowledgements ("Saved to bookmarks", "Removed from bookmarks") clear
+// quickly to stay out of the way.
 // Callers that need a custom dwell (e.g. educational copy that takes longer
 // to read) pass `durationMs` explicitly.
 const TOAST_VISIBLE_ACTIONABLE_MS = 4000;
