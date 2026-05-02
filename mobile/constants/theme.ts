@@ -74,7 +74,6 @@ export const DARK_COLORS = {
   // `BriefingBar`; static callsites (sheets, blocks) shift imperceptibly.
   pillBg: 'rgba(50,50,50,0.88)',
   atmosphere: '#334455',
-  shadow: 'rgba(0,0,0,0.6)',
   toastBg: 'rgba(48,48,48,0.92)',
   // Tone family — sage / rose / slate. Lifted one luminance step from the
   // original muted set (#6b8f71 / #8f6b6b / #6b7f8f) so BLACK reads cleanly
@@ -103,12 +102,25 @@ export const LIGHT_COLORS = {
   accent: '#5a5a5a',
   rule: '#d8d4ce',
   textEmphasis: '#1a1a1a',
-  dome: '#c9a84c',
+  // Dome darkens significantly on cream — the dark-mode #c9a84c gold sits
+  // at ~2:1 against `bg`, invisible as foreground text. Shifting to a
+  // deeper bronze-gold (~5:1 on bg) preserves the warm signature while
+  // clearing AA for the top-rank rows in CountrySheet/CountryRankingView
+  // that color text via `tone="dome"`. The single-gold rule from
+  // foundation.md is honored — both modes still use one gold, hue-aligned.
+  dome: '#7a5e1a',
   sheetBg: '#eae6e0',
   pillBg: 'rgba(220,216,210,0.88)',
   atmosphere: '#8899aa',
-  shadow: 'rgba(0,0,0,0.15)',
   toastBg: 'rgba(240,237,230,0.95)',
+  // Tones are intentionally identical between modes — they serve two roles
+  // and the requirements pull opposite directions: as pill backgrounds
+  // (CompareBlock) BLACK foreground needs them mid-luminance (current
+  // L≈0.25–0.35 gives BLACK 5.5–8:1); as decorative fills (TimelineBlock
+  // spans, TreemapBlock cells) they sit on bg/sheetBg with no foreground.
+  // Mid-luminance is the only set that satisfies both. The cream bg makes
+  // standalone fills subtler in light mode (~2.1–3.1:1), which is
+  // acceptable for non-essential decorative UI.
   toneFavorable: '#82a98a',
   toneUnfavorable: '#a98080',
   toneNeutral: '#8298a9',
