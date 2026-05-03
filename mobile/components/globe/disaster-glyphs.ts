@@ -172,21 +172,29 @@ export const EVENT_TYPE_LABEL: Readonly<Record<EventType, string>> = {
 };
 
 function kineticPath(): SkPath {
-  // Two crossed diagonals — the universal "site of incident / casualty"
-  // mark used in conflict-mapping vocabularies (ICRC, ACLED). Two strokes
-  // total: minimal at globe scale, geometrically opposite to the drought
-  // sun (radial → orthogonal-rotated cross), and distinct from every
-  // other glyph in the family (no circles, no curves, no fill). Replaced
-  // the prior 6-stroke asymmetric burst (2026-05-02) which read as noise
-  // when 30-50 markers crowd the same theatre.
+  // Crosshair / targeting reticle — outer ring with horizontal and
+  // vertical hairs extending past the rim. The universal "targeted
+  // location / site of incident" mark in military and crisis-mapping
+  // vocabularies (OCHA situation maps, Reuters Graphics, NATO joint
+  // operations). Reads as a SITE, not a finality — quieter editorial
+  // tone than the X-as-death pictogram, while staying geometrically
+  // distinct from every other glyph in the family (only one with the
+  // circle + orthogonal-cross combo; the earthquake uses concentric
+  // rings without cross-hairs, the drought uses radial spokes without
+  // a rim). Replaced the prior X (2026-05-03), which read as
+  // death-coded at globe scale alongside humanitarian context.
   const p = Skia.Path.Make();
   const cx = GLYPH_HALF;
   const cy = GLYPH_HALF;
-  const r = 5.5;
-  p.moveTo(cx - r, cy - r);
-  p.lineTo(cx + r, cy + r);
-  p.moveTo(cx + r, cy - r);
-  p.lineTo(cx - r, cy + r);
+  // Outer ring — same family of stroked rings used by the earthquake
+  // glyph, sized so cross-hairs protrude ~3 units past the rim.
+  p.addCircle(cx, cy, 6.5);
+  // Horizontal cross-hair — runs the full glyph box width
+  p.moveTo(1.5, cy);
+  p.lineTo(20.5, cy);
+  // Vertical cross-hair
+  p.moveTo(cx, 1.5);
+  p.lineTo(cx, 20.5);
   return p;
 }
 

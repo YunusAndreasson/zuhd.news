@@ -62,7 +62,7 @@ import {
   getRiverLabels,
   getSeas,
 } from './detail-geo';
-import { CHOKEPOINT_PATH, GLYPH_HALF, getConflictGlyphPath, getGlyphPath } from './disaster-glyphs';
+import { CHOKEPOINT_PATH, GLYPH_HALF, getGlyphPath } from './disaster-glyphs';
 import {
   ANCHOR_COUNTRY_AREA,
   ANCHOR_NAMES_EXTRA,
@@ -133,6 +133,25 @@ function glowAtlas(spec: GlowSpec, points: { x: number; y: number }[]) {
   return {
     sprites: points.map(() => spec.srcRect),
     transforms: points.map((p) => Skia.RSXform(1, 0, p.x - spec.center, p.y - spec.center)),
+  };
+}
+
+/** Atlas inputs for the conflict layer. Same pipeline as glowAtlas — the
+ *  conflict layer reuses the ghost-pin baked texture, just at a different
+ *  point set. Per-instance recency fade is intentionally not encoded via
+ *  Atlas's `colors` prop: in the bundled RN-Skia version that prop's
+ *  default blend mode paints the full sprite bounding box (visible as
+ *  white squares) instead of multiplying by texture alpha. The
+ *  client-side 1-day filter means all visible events share the same
+ *  date and would render at the same recencyAlpha anyway, so the per-
+ *  instance fade is not load-bearing. If we widen the window past 1
+ *  day, options are (a) inline rendering with per-marker opacity, or
+ *  (b) bucketing markers into N atlases by recency tier. */
+function conflictAtlas(spec: GlowSpec, marks: { x: number; y: number }[]) {
+  if (marks.length === 0) return null;
+  return {
+    sprites: marks.map(() => spec.srcRect),
+    transforms: marks.map((m) => Skia.RSXform(1, 0, m.x - spec.center, m.y - spec.center)),
   };
 }
 
@@ -420,20 +439,16 @@ interface GlobeState {
     alertlevel: GdacsAlert['alertlevel'];
     recencyAlpha: number;
   }[];
-  /** Conflict-event markers — kinetic + unrest layer parallel to gdacsMarks.
-   *  Same per-frame cull+project pattern. `recencyAlpha` ∈ [0.4, 1] fades
-   *  across the 14-day window relative to the dataset's latest event.
-   *  `strokeWidth` and `strokeOpacityBase` are precomputed in
-   *  `enrichedConflict` so the render block stays purely positional —
-   *  no ternary chains hot-loop per frame. */
+  /** Conflict-event markers — rendered as the ghost-dot glow family
+   *  (same visual register as neighbor-article pins) so the layer reads
+   *  as ambient density rather than as its own pictogram vocabulary.
+   *  `recencyAlpha` ∈ [0.4, 1] fades across the 14-day window relative
+   *  to the dataset's latest event; render block multiplies it into
+   *  each layer's opacity. */
   conflictMarks: {
     x: number;
     y: number;
     id: string;
-    family: ConflictEvent['family'];
-    strokeWidth: number;
-    /** Multiplied by `recencyAlpha` at render time — see render block. */
-    strokeOpacityBase: number;
     recencyAlpha: number;
   }[];
   /** Neighbour-country labels — every country within the camera's visible
@@ -1054,23 +1069,11 @@ export const MiniGlobe = memo(function MiniGlobe({
       const t = Date.parse(e.eventDate);
       if (Number.isFinite(t) && t > latestMs) latestMs = t;
     }
-    return events.map((e) => {
-      const heavy = e.fatalities >= 10;
-      const medium = e.fatalities >= 1;
-      return {
-        id: e.id,
-        family: e.family,
-        coords: [e.lng, e.lat] as [number, number],
-        // Bake the fatality-tier style here so the render block doesn't
-        // ternary per frame. Stroke width and opacity-base are pure
-        // functions of fatalities; recencyAlpha is per-event-age. The
-        // final per-frame opacity is strokeOpacityBase × recencyAlpha,
-        // computed once in callReproject below.
-        strokeWidth: heavy ? 1.6 : medium ? 1.3 : 1.0,
-        strokeOpacityBase: heavy ? 0.85 : medium ? 0.7 : 0.5,
-        recencyAlpha: Math.max(0.4, 1 - eventAgeDays(e, latestMs) / 14),
-      };
-    });
+    return events.map((e) => ({
+      id: e.id,
+      coords: [e.lng, e.lat] as [number, number],
+      recencyAlpha: Math.max(0.4, 1 - eventAgeDays(e, latestMs) / 14),
+    }));
   }, [conflictEvents]);
   const conflictEventsRef = useRef(enrichedConflict);
   conflictEventsRef.current = enrichedConflict;
@@ -1484,10 +1487,10 @@ export const MiniGlobe = memo(function MiniGlobe({
         });
       }
 
-      // Conflict events — same pattern. The fixture is ~50 events at
-      // WINDOW_DAYS=1; a real ACLED feed at the same window would land
-      // in the low hundreds for active theatres. Style is fully
-      // precomputed in enrichedConflict; this loop is pure projection.
+      // Conflict events — same cull+project pattern. The hook narrows
+      // upstream's 7-day window to the most-recent calendar day, so this
+      // loop sees ~40 events. Each marker carries only what render
+      // needs: position + recencyAlpha for the per-instance fade.
       const conflictMarks: GlobeState['conflictMarks'] = [];
       for (const e of conflictEventsRef.current) {
         if (geoDistance(e.coords, cameraCoords) >= clipRad) continue;
@@ -1497,9 +1500,6 @@ export const MiniGlobe = memo(function MiniGlobe({
           x: pt[0],
           y: pt[1],
           id: e.id,
-          family: e.family,
-          strokeWidth: e.strokeWidth,
-          strokeOpacityBase: e.strokeOpacityBase,
           recencyAlpha: e.recencyAlpha,
         });
       }
@@ -2354,6 +2354,13 @@ export const MiniGlobe = memo(function MiniGlobe({
 
   // Per-glow Atlas inputs. Single-instance glows pass a one-element array.
   const ghostAtlas = useMemo(() => glowAtlas(GHOST_GLOW, state.ghostDots), [state.ghostDots]);
+  // Conflict markers ride the SAME baked texture as ghost dots, just
+  // with per-instance alpha encoded into the colors array. One Skia
+  // draw call regardless of marker count, no separate texture bake.
+  const conflictGlowAtlas = useMemo(
+    () => conflictAtlas(GHOST_GLOW, state.conflictMarks),
+    [state.conflictMarks],
+  );
   const dotAtlas = useMemo(() => glowAtlas(DOT_GLOW, state.dot ? [state.dot] : []), [state.dot]);
   const makkahAtlas = useMemo(
     () => glowAtlas(MAKKAH_GLOW, state.makkah ? [state.makkah] : []),
@@ -2597,38 +2604,26 @@ export const MiniGlobe = memo(function MiniGlobe({
         );
       })}
 
-      {/* Conflict-event markers (PROTOTYPE). Mirror the GDACS render
-          family — monochrome stroke, no backdrop disc, no alarm ring —
-          so the layer reads as the same visual cohort as natural-hazard
-          markers. The kinetic/unrest split is encoded in glyph SHAPE only
-          (impact burst vs crowd), keeping the "color carries meaning
-          only" rule intact. Stroke weight bumps modestly with fatalities
-          so a 20-killed event reads heavier than a 0-killed protest at
-          the same age, without introducing a third visual axis (no halo,
-          no disc, just line weight). Style is precomputed in
-          enrichedConflict; this block is pure positional emit. Future
-          scaling lever: bake each glyph into a Skia texture (one per
-          family × stroke-tier, ≤6 sprites) and replace this map with a
-          single <Atlas/> per family — collapses N React elements into 1
-          and N Skia draws into 1. Worth it past ~150 visible markers;
-          at today's ~50, the per-marker pattern keeps parity with the
-          GDACS render and is cheaper to read than to optimise. */}
-      {state.conflictMarks.map((m) => (
-        <Group
-          key={`conflict-${m.id}`}
-          transform={[{ translateX: m.x - GLYPH_HALF }, { translateY: m.y - GLYPH_HALF }]}
-        >
-          <Path
-            path={getConflictGlyphPath(m.family)}
-            color={colors.text}
-            style="stroke"
-            strokeWidth={m.strokeWidth}
-            strokeJoin="round"
-            strokeCap="round"
-            opacity={m.strokeOpacityBase * m.recencyAlpha}
-          />
-        </Group>
-      ))}
+      {/* Conflict-event markers — ghost-dot glow family, batched. Same
+          baked texture as the neighbour-article pins (no separate bake;
+          shared `ghostTexture` above), stamped at every event location
+          via a single <Atlas/> call. The kinetic/unrest distinction
+          stays in the data and shows up in ConflictSheet's eyebrow +
+          DisambiguationSheet's row icon, where pictograms earn their
+          place. The globe just gets quiet dots so the layer reads as
+          ambient context rather than its own pictogram vocabulary. One
+          Skia draw call regardless of marker count — the perf cost is
+          the same whether the layer shows 5 events or 200. Recency
+          fade is currently whole-batch (all markers share the texture's
+          baked alpha) — see conflictAtlas() for why per-instance fade
+          isn't wired today. */}
+      {conflictGlowAtlas && (
+        <Atlas
+          image={ghostTexture}
+          sprites={conflictGlowAtlas.sprites}
+          transforms={conflictGlowAtlas.transforms}
+        />
+      )}
 
       {/* Country highlight — opacity scales with area so small nations pop */}
       {state.countryPath && (
