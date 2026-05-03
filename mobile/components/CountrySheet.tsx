@@ -242,36 +242,42 @@ export const CountrySheet = memo(function CountrySheet({
     const parts: string[] = [];
     const capital = displayLocation(country.data.capital);
     if (capital) parts.push(capital);
-    const currency = country.data.currencySymbol || country.data.currency;
-    if (currency) parts.push(currency);
-    if (country.data.languages) {
-      const first = country.data.languages.split(',')[0]?.trim();
-      if (first) parts.push(first);
-    }
     if (country.localTime) parts.push(country.localTime);
     return parts.join(' · ');
   }, [country?.data, country?.localTime]);
 
+  const hasBack = activeRanking !== null;
   const CountryHandle = useCallback(
     () => (
       <SheetHandle
-        onBack={activeRanking ? onBackToCountry : undefined}
+        onBack={hasBack ? onBackToCountry : undefined}
         title={
           flag || name ? (
-            <View style={styles.handleStack}>
-              {flag && (
-                <RNText allowFontScaling={false} style={styles.handleFlag}>
-                  {flag}
-                </RNText>
-              )}
-              {/* Page title — 21pt semibold so the country name reads as
-               *  the canonical identifier ABOVE every card headline (also
-               *  21pt) and metric row label (13pt small-caps). Was `label`
-               *  (17pt small-caps), which felt subordinate to the per-card
-               *  headlines and broke the visual hierarchy. */}
-              {name && <Text variant="title">{name}</Text>}
+            <View style={[styles.handleRow, hasBack && styles.handleRowWithBack]}>
+              <View style={styles.handleIdent}>
+                {flag && (
+                  <RNText allowFontScaling={false} style={styles.handleFlag}>
+                    {flag}
+                  </RNText>
+                )}
+                {/* 21pt semibold so the country name reads as the canonical
+                 *  identifier above every card headline (also 21pt) and metric
+                 *  row label (13pt small-caps). `flexShrink` lets a long name
+                 *  (e.g. Bosnia and Herzegovina) ellipsize before pushing the
+                 *  meta off the right edge. */}
+                {name && (
+                  <Text variant="title" numberOfLines={1} style={styles.handleName}>
+                    {name}
+                  </Text>
+                )}
+              </View>
               {dateline && (
-                <Text variant="labelXs" numberOfLines={1} style={styles.dateline}>
+                <Text
+                  variant="labelXs"
+                  tone="secondary"
+                  numberOfLines={1}
+                  style={styles.handleMeta}
+                >
                   {dateline}
                 </Text>
               )}
@@ -280,7 +286,7 @@ export const CountrySheet = memo(function CountrySheet({
         }
       />
     ),
-    [activeRanking, onBackToCountry, flag, name, dateline],
+    [hasBack, onBackToCountry, flag, name, dateline],
   );
 
   const rankFor = useMemo(() => {
@@ -389,18 +395,36 @@ export const CountrySheet = memo(function CountrySheet({
 });
 
 const styles = StyleSheet.create({
-  handleStack: {
-    flexDirection: 'column',
+  handleRow: {
+    flexDirection: 'row',
     alignItems: 'center',
-    gap: SPACING.xs,
+    justifyContent: 'space-between',
+    width: '100%',
+    paddingHorizontal: SPACING.screenPadding,
+    gap: SPACING.md,
+  },
+  // When the back chevron is present (absolute-positioned at screenPadding),
+  // shift the row content right so flag/name don't sit under the chevron.
+  handleRowWithBack: {
+    paddingLeft: SPACING.screenPadding + SPACING.lg,
+  },
+  handleIdent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: SPACING.sm,
+    flexShrink: 1,
+    minWidth: 0,
   },
   handleFlag: {
-    fontSize: FLAG.display,
-    lineHeight: FLAG.display * 1.125,
+    fontSize: FLAG.inline,
+    lineHeight: FLAG.inline * 1.125,
   },
-  dateline: {
-    marginTop: SPACING.xxs,
-    textAlign: 'center',
+  handleName: {
+    flexShrink: 1,
+  },
+  handleMeta: {
+    flexShrink: 0,
+    textAlign: 'right',
   },
   moreList: {
     borderTopWidth: StyleSheet.hairlineWidth,

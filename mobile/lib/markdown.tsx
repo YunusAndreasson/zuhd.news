@@ -377,11 +377,12 @@ export function renderSentences(
         ? splitSegmentsWithEntities(baseSegments, consume(baseSegments))
         : baseSegments;
       // Show dateline (e.g. time ago) in small-caps before first sentence.
-      // Whole phrase rendered one step smaller than the body so the temporal
-      // frame reads as quiet metadata; "8h" and "ago" stay equal size so the
-      // phrase still hangs together as one bound unit.
+      // One step above `sizeSm` (labelSm) so the time-ago glyphs sit firmly
+      // in the section-heading family without dipping to the labelXs whisper
+      // tier — was `size * 0.9` which scaled with the body and read as
+      // ~14–18pt, towering over every other small-caps run.
       if (dateline) {
-        const datelineSize = size * 0.9;
+        const datelineSize = typography.sizeSm + 1;
         return (
           <Text
             key={i}

@@ -2,11 +2,11 @@
 // One-off (annual-ish) fetch of country-card datasets:
 //   1. Economic momentum — World Bank GDP/cap + inflation, 1990-latest
 //   2. Demographic curve — World Bank fertility + population, 1960-latest
-//   3. Trade orientation — World Bank "% merch exports to high-income", 1990-latest
+//   3. Economic complexity — Harvard Growth Lab ECI (HS92), 1995-latest
 //
 // Output: shared/data/country-cards.json
 //
-// Run: node scripts/fetch-country-cards.js [--only=economy,demography,trade]
+// Run: node scripts/fetch-country-cards.js [--only=economy,demography,complexity]
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync, renameSync } from 'node:fs'
 import { dirname, join } from 'node:path'
@@ -196,15 +196,75 @@ if (want('demography')) {
   console.log(`  ${ok}/${countries.length} OK · ${Date.now() - t0}ms\n`)
 }
 
-if (want('trade')) {
-  console.log('Trade (WB exports to high-income share)…')
+// Harvard Atlas of Economic Complexity ECI series. Stable Dataverse file
+// ID (doi:10.7910/DVN/XTAQMC) — bumps each annual revision. HS92 column is
+// the longest-running ECI variant the Atlas publishes (1995→present); the
+// HS12 series is shorter and the SITC series is being phased out, so HS92
+// is the right anchor for a multi-decade trajectory.
+async function fetchECI() {
+  const url = 'https://dataverse.harvard.edu/api/access/datafile/13439575'
+  const res = await fetch(url, { signal: AbortSignal.timeout(60_000) })
+  if (!res.ok) throw new Error(`Dataverse ECI HTTP ${res.status}`)
+  const csv = await res.text()
+  const lines = csv.split('\n')
+  if (lines.length < 2) throw new Error('Dataverse ECI CSV empty')
+  const header = lines[0].split(',')
+  const iso3Idx = header.indexOf('country_iso3_code')
+  const yearIdx = header.indexOf('year')
+  const eciIdx = header.indexOf('eci_hs92')
+  const rankIdx = header.indexOf('eci_rank_hs92')
+  if (iso3Idx < 0 || yearIdx < 0 || eciIdx < 0 || rankIdx < 0) {
+    throw new Error(`Dataverse ECI CSV missing expected columns: ${header.join(',')}`)
+  }
+  // Two parallel maps so the card can show both rank (focal headline) and
+  // value (chart trajectory) without re-deriving rank from value at runtime.
+  const eciByIso3 = new Map()
+  const rankByIso3 = new Map()
+  for (let i = 1; i < lines.length; i++) {
+    const line = lines[i]
+    if (!line) continue
+    // Atlas CSV has no quoted strings, so a plain split is safe.
+    const cols = line.split(',')
+    const iso3 = cols[iso3Idx]
+    const yearStr = cols[yearIdx]
+    const eciStr = cols[eciIdx]
+    const rankStr = cols[rankIdx]
+    if (!iso3 || !yearStr) continue
+    const year = parseInt(yearStr, 10)
+    if (!Number.isFinite(year)) continue
+    if (eciStr) {
+      const eci = parseFloat(eciStr)
+      if (Number.isFinite(eci)) {
+        if (!eciByIso3.has(iso3)) eciByIso3.set(iso3, [])
+        eciByIso3.get(iso3).push([year, +eci.toFixed(3)])
+      }
+    }
+    if (rankStr) {
+      const rank = parseInt(rankStr, 10)
+      if (Number.isFinite(rank)) {
+        if (!rankByIso3.has(iso3)) rankByIso3.set(iso3, [])
+        rankByIso3.get(iso3).push([year, rank])
+      }
+    }
+  }
+  for (const arr of eciByIso3.values()) arr.sort((a, b) => a[0] - b[0])
+  for (const arr of rankByIso3.values()) arr.sort((a, b) => a[0] - b[0])
+  return { eci: eciByIso3, rank: rankByIso3 }
+}
+
+if (want('complexity')) {
+  console.log('Complexity (Harvard Atlas ECI HS92)…')
   const t0 = Date.now()
-  const hi = await fetchWorldBank('TX.VAL.MRCH.HI.ZS', '1990:2024')
+  const { eci, rank } = await fetchECI()
   let ok = 0
   for (const c of countries) {
     if (!c.iso3) continue
-    if (hi.has(c.iso3)) {
-      out.byIso2[c.iso2].trade = { highIncomeShare: hi.get(c.iso3) }
+    const series = eci.get(c.iso3)
+    if (series) {
+      out.byIso2[c.iso2].complexity = {
+        eci: series,
+        eciRank: rank.get(c.iso3) ?? [],
+      }
       ok++
     }
   }
@@ -251,8 +311,8 @@ const inflationMedian = medianSeries(
 const fertilityMedian = medianSeries(
   allCountries.map((c) => c.demography?.fertility).filter(Boolean)
 )
-const tradeMedian = medianSeries(
-  allCountries.map((c) => c.trade?.highIncomeShare).filter(Boolean)
+const complexityMedian = medianSeries(
+  allCountries.map((c) => c.complexity?.eci).filter(Boolean)
 )
 
 out.global = {
@@ -265,13 +325,13 @@ out.global = {
     fertility: fertilityMedian,
     n: allCountries.filter((c) => c.demography?.fertility).length,
   },
-  trade: {
-    highIncomeShare: tradeMedian,
-    n: allCountries.filter((c) => c.trade?.highIncomeShare).length,
+  complexity: {
+    eci: complexityMedian,
+    n: allCountries.filter((c) => c.complexity?.eci).length,
   },
 }
 console.log(
-  `Globals · economy n=${out.global.economy.n} · demography n=${out.global.demography.n} · trade n=${out.global.trade.n}\n`
+  `Globals · economy n=${out.global.economy.n} · demography n=${out.global.demography.n} · complexity n=${out.global.complexity.n}\n`
 )
 
 // ---- 6. Write ----

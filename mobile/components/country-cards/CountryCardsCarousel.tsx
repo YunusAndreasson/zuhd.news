@@ -12,25 +12,29 @@ import { ANIMATION, EASING, SPACING } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { type CountryCardData, getCountryCardData } from '../../lib/country-cards';
 import { hapticTick } from '../../lib/haptics';
+import { ComplexityCard } from './ComplexityCard';
 import { DemographyCard } from './DemographyCard';
 import { EconomyCard } from './EconomyCard';
-import { TradeCard } from './TradeCard';
 
 interface CountryCardsCarouselProps {
   countryName: string | null;
 }
 
-type SlotKey = 'trade' | 'economy' | 'demography';
+type SlotKey = 'complexity' | 'economy' | 'demography';
 
 interface SlotEntry {
   key: SlotKey;
   render: (data: CountryCardData) => ReactElement | null;
 }
 
-// Order: structural West↔East frame first, then short-term economy, then
-// demographic long view. Slots without data are filtered out before render.
+// Order: structural sophistication frame first (slow-moving, decades), then
+// short-term economy, then demographic long view. Slots without data are
+// filtered out before render.
 const SLOTS: SlotEntry[] = [
-  { key: 'trade', render: (d) => (d.trade?.highIncomeShare ? <TradeCard data={d.trade} /> : null) },
+  {
+    key: 'complexity',
+    render: (d) => (d.complexity?.eci ? <ComplexityCard data={d.complexity} /> : null),
+  },
   {
     key: 'economy',
     render: (d) => (d.economy?.gdpPerCapita ? <EconomyCard data={d.economy} /> : null),

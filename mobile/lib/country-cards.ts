@@ -15,15 +15,20 @@ export interface DemographyCardData {
   population?: YearValue[];
 }
 
-export interface TradeCardData {
-  /** % merchandise exports to high-income economies (World Bank). */
-  highIncomeShare?: YearValue[];
+export interface ComplexityCardData {
+  /** Economic Complexity Index (HS92), Harvard Growth Lab. Roughly z-scored:
+   *  positive = export basket more sophisticated than the world median. */
+  eci?: YearValue[];
+  /** Country rank within the year's ECI ranking (1 = most complex). Stored
+   *  alongside the value so the card can show a focal `#N` headline without
+   *  re-deriving rank from the eci series at runtime. */
+  eciRank?: YearValue[];
 }
 
 export interface CountryCardData {
   economy?: EconomyCardData;
   demography?: DemographyCardData;
-  trade?: TradeCardData;
+  complexity?: ComplexityCardData;
 }
 
 /** Global benchmark series — median across all countries, per year.
@@ -32,7 +37,7 @@ export interface CountryCardData {
 export interface GlobalBenchmarks {
   economy?: { gdpPerCapita?: YearValue[]; inflation?: YearValue[]; n: number };
   demography?: { fertility?: YearValue[]; n: number };
-  trade?: { highIncomeShare?: YearValue[]; n: number };
+  complexity?: { eci?: YearValue[]; n: number };
 }
 
 interface CountryCardsRoot {

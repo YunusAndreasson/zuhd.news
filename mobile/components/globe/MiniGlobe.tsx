@@ -2748,8 +2748,8 @@ export const MiniGlobe = memo(function MiniGlobe({
           highlighted country = primary, neighbours = secondary.
           Rendered BEFORE the highlighted country label so the focused
           country's name draws on top if they collide. Halo removed for
-          the same perf reason as water labels; the text tier is quiet
-          enough that a slight opacity bump restores readability. */}
+          the same perf reason as water labels; readability comes from
+          the body-text color tone + a high tier-multiplier instead. */}
       {neighborFont &&
         state.neighborLabels.map((n) => {
           const tx = n.x - neighborFont.getTextWidth(n.name) / 2;
@@ -2760,8 +2760,14 @@ export const MiniGlobe = memo(function MiniGlobe({
               y={n.y}
               text={n.name}
               font={neighborFont}
-              color={colors.textSecondary}
-              opacity={(light ? 0.85 : 0.7) * n.opacity}
+              // `text` (not `textSecondary`) — the muted gray was getting
+              // eaten by the land tint, especially in dark mode where #999
+              // sits within ~1px of the terrain shade. Body-text tone keeps
+              // the hierarchy intact (focused label still owns `textEmphasis`
+              // + halo) while making neighbours legible without re-adding
+              // the per-frame halo passes that the comment above warns off.
+              color={colors.text}
+              opacity={(light ? 0.95 : 0.85) * n.opacity}
             />
           );
         })}

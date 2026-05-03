@@ -314,11 +314,14 @@ export const ICON = {
 } as const;
 
 /** Flag-emoji pixel sizes. Emoji glyphs don't map to `<Text variant>` sizing
- *  (they're pictograms, not type), so they get their own two-tier scale:
- *  `chip` for inline chips/rows, `display` for sheet-header badges. */
+ *  (they're pictograms, not type), so they get their own scale: `chip` for
+ *  inline chips/rows, `inline` for sheet-header titles where the flag sits
+ *  beside (not above) the country name, `display` for stacked sheet-header
+ *  badges where the flag is its own row. */
 export const FLAG = {
   chip: 16,
   row: 18,
+  inline: 22,
   display: 32,
 } as const;
 
