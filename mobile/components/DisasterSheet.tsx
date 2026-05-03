@@ -15,7 +15,7 @@ import { useTheme } from '../hooks/useTheme';
 import { displaySourceName, EVENT_TYPE_EYEBROW, parseSeverityHero } from '../lib/gdacs';
 import { useOpenLink } from '../lib/open-link';
 import { displayCountryName } from '../lib/place-names';
-import { Pressable, Text } from './primitives';
+import { Markdown, Pressable, Text } from './primitives';
 import { SheetLayout } from './SheetLayout';
 
 interface DisasterSheetProps {
@@ -259,9 +259,9 @@ export const DisasterSheet = memo(function DisasterSheet({
                 Green alerts and validation-rejected calls fall through. */}
             {alert.narrative && alert.narrative.length > 0 && (
               <Animated.View entering={enter()} style={styles.narrativeRow}>
-                <Text variant="body" selectable>
+                <Markdown variant="body" selectable>
                   {alert.narrative}
-                </Text>
+                </Markdown>
               </Animated.View>
             )}
 

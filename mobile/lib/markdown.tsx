@@ -43,12 +43,16 @@ export function smartTypography(s: string): string {
 }
 
 /** Strip any unpaired markdown emphasis markers from a literal text run.
- *  `parseInline` only matches balanced pairs; any leftover `**` or `__`
- *  in the text means an unbalanced marker survived (most often from a
- *  writer's bold spanning a sentence boundary, since we parse per-sentence).
- *  Without this scrub, the literal markers render visible to the reader. */
+ *  `parseInline` only matches balanced pairs; anything that survives to
+ *  here is an unbalanced marker (most often from an LLM-emitted bullet
+ *  list, a single `*` footnote marker, or a writer's italic spanning a
+ *  sentence boundary since we parse per-sentence). `\*+` catches single
+ *  `*`, `**`, `***`. Underscores stay in single form because file paths
+ *  and identifiers legitimately contain them; only paired `__` is
+ *  stripped, parallel to `**`. Without this scrub the literal markers
+ *  render visible to the reader. */
 function stripStrayEmphasis(text: string): string {
-  return text.replace(/\*\*|__/g, '');
+  return text.replace(/\*+|__/g, '');
 }
 
 export function parseInline(line: string): Segment[] {
@@ -65,7 +69,10 @@ export function parseInline(line: string): Segment[] {
       });
     }
     if (match[1]) {
-      // Parse nested italic (*...*) within bold content
+      // Parse nested italic (*...*) within bold content. Stray asterisks
+      // that fall outside the nested italic pair (e.g. `**foo*bar**`)
+      // are scrubbed via stripStrayEmphasis on each emitted bold slice;
+      // the boldItalic content itself is already a balanced match.
       const boldContent = match[1];
       const italicRe = /\*(.+?)\*/g;
       let bLast = 0;
@@ -76,17 +83,21 @@ export function parseInline(line: string): Segment[] {
         if (imIdx > bLast)
           segments.push({
             type: 'bold',
-            text: smartTypography(boldContent.slice(bLast, imIdx)),
+            text: smartTypography(stripStrayEmphasis(boldContent.slice(bLast, imIdx))),
           });
         segments.push({ type: 'boldItalic', text: smartTypography(im[1] ?? '') });
         bLast = imIdx + im[0].length;
       }
       if (!hasNested) {
-        segments.push({ type: 'bold', text: smartTypography(boldContent) });
+        segments.push({ type: 'bold', text: smartTypography(stripStrayEmphasis(boldContent)) });
       } else if (bLast < boldContent.length) {
-        segments.push({ type: 'bold', text: smartTypography(boldContent.slice(bLast)) });
+        segments.push({
+          type: 'bold',
+          text: smartTypography(stripStrayEmphasis(boldContent.slice(bLast))),
+        });
       }
-    } else if (match[2]) segments.push({ type: 'italic', text: smartTypography(match[2]) });
+    } else if (match[2])
+      segments.push({ type: 'italic', text: smartTypography(stripStrayEmphasis(match[2])) });
     else if (match[3])
       segments.push({ type: 'link', text: smartTypography(match[3]), url: match[4] });
     lastIndex = idx + match[0].length;

@@ -18,7 +18,7 @@ import { useTheme } from '../hooks/useTheme';
 import { makeMarkdownStyles } from '../lib/markdown';
 import { useOpenLink } from '../lib/open-link';
 import { renderBlocks } from './blocks';
-import { Text } from './primitives';
+import { Markdown, Text } from './primitives';
 import { SheetLayout } from './SheetLayout';
 
 interface ContextSheetProps {
@@ -101,9 +101,9 @@ export const ContextSheet = memo(function ContextSheet({
               {entry.heading}
             </Text>
           )}
-          <Text selectable variant="body">
+          <Markdown selectable variant="body" openLink={openLink}>
             {entry.body}
-          </Text>
+          </Markdown>
           {blocksNode}
         </View>
       );
@@ -146,9 +146,9 @@ export const ContextSheet = memo(function ContextSheet({
               {entry.heading}
             </Text>
           ) : null}
-          <Text selectable variant="body">
+          <Markdown selectable variant="body" openLink={openLink}>
             {entry.body}
-          </Text>
+          </Markdown>
           {blocksNode}
         </View>
       </View>

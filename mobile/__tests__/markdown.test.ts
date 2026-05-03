@@ -110,6 +110,24 @@ describe('parseInline', () => {
     ]);
   });
 
+  it('strips stray single asterisks from text', () => {
+    // LLM-emitted bullet lists, single-`*` footnote markers, and italic
+    // spans split across our per-sentence parse all leave orphan single
+    // `*` characters that used to render literally — most visibly in
+    // ContextSheet briefs.
+    expect(parseInline('Lorem * ipsum')).toEqual([{ type: 'text', text: 'Lorem  ipsum' }]);
+    expect(parseInline('* item one')).toEqual([{ type: 'text', text: ' item one' }]);
+    // Stray `*` after a balanced italic pair leaks through the post-match slice.
+    const pairThenStray = parseInline('*one* and *two');
+    expect(pairThenStray).toEqual([
+      { type: 'italic', text: 'one' },
+      { type: 'text', text: ' and two' },
+    ]);
+    // Stray single underscore is left alone — file paths and identifiers
+    // legitimately contain it, and stripping would corrupt them.
+    expect(parseInline('see foo_bar.ts')).toEqual([{ type: 'text', text: 'see foo_bar.ts' }]);
+  });
+
   it('returns fallback segment for empty string', () => {
     const result = parseInline('');
     expect(result).toEqual([{ type: 'text', text: '' }]);
