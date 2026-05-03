@@ -104163,5 +104163,1386 @@
     "label": "India's LPG Subsidy Architecture",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-05-01-ai-water-use-myth-california-datacenter-cooling": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COOLING LOOP",
+        "body": "Most modern hyperscale data centers use closed-loop cooling: water circulates through chillers, transfers heat, and recirculates. Evaporative top-up replaces only what's lost to drift and blowdown — typically a small fraction of the total in circulation.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The headline number often conflates **withdrawal** (water pulled from a source, mostly returned) with **consumption** (water permanently lost to evaporation). The two can differ by an order of magnitude."
+          }
+        ]
+      },
+      {
+        "heading": "THE HIDDEN WATER",
+        "body": "Thermoelectric power plants — coal, gas, nuclear — use enormous volumes of water for steam cycles and condenser cooling. When studies attribute water to AI, they often include the upstream electricity-generation water, which is a property of the grid, not the data center."
+      },
+      {
+        "heading": "WUE VS PUE",
+        "body": "The industry tracks Water Usage Effectiveness (liters per kWh of IT load) alongside Power Usage Effectiveness. Air-cooled and dry-cooler designs push WUE near zero by trading water for electricity — a tradeoff invisible in headline water figures."
+      },
+      {
+        "heading": "WHO ACTUALLY USES CALIFORNIA'S WATER",
+        "body": "Agriculture consumes roughly 80% of California's developed water supply. Almonds, alfalfa, and rice alone dwarf the state's entire urban and industrial footprint. Data centers sit inside the residual industrial slice.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Agriculture",
+                "value": 80,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Urban",
+                "value": 15,
+                "tone": "neutral"
+              },
+              {
+                "label": "Industrial (incl. DCs)",
+                "value": 5,
+                "tone": "favorable"
+              }
+            ],
+            "label": "California developed water use (approx. share)"
+          }
+        ]
+      },
+      {
+        "heading": "THE DISCLOSURE GAP",
+        "body": "No US federal rule requires data center operators to report water withdrawal or consumption. Voluntary sustainability reports vary in scope and methodology, which lets advocacy figures and industry figures diverge by 5–10× without either being falsifiable.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of California's developed water supply goes to agriculture?",
+            "options": [
+              "About 30%",
+              "About 50%",
+              "About 80%",
+              "About 95%"
+            ],
+            "correct": 2,
+            "explanation": "Agriculture accounts for roughly 80% of California's developed water use — the dominant driver of the state's water stress, dwarfing all industrial uses combined."
+          }
+        ]
+      },
+      {
+        "heading": "THE REAL CONSTRAINT",
+        "body": "Where data centers do strain water systems, it's local — a single campus drawing from a small aquifer or municipal supply in a drought-stressed county. The aggregate national footprint is small; the localized footprint can be acute."
+      }
+    ],
+    "generatedAt": "2026-05-03T12:36:35.684Z",
+    "label": "Data Center Water Use",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-03-channel-crossing-sudanese-women-boulogne-deaths": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE CHANNEL",
+        "body": "The Dover Strait is the narrowest point between Britain and continental Europe — 33 km of water. It is also the only EU-UK land-adjacent border where asylum claims can be lodged on British soil, since the UK is outside Schengen and Dublin returns no longer apply post-Brexit.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GB",
+              "FR",
+              "BE",
+              "NL"
+            ],
+            "label": "the Pas-de-Calais crossing zone",
+            "markers": [
+              {
+                "lat": 50.9513,
+                "lng": 1.8587,
+                "label": "Calais"
+              },
+              {
+                "lat": 50.7264,
+                "lng": 1.6147,
+                "label": "Boulogne-sur-Mer"
+              },
+              {
+                "lat": 51.1279,
+                "lng": 1.3134,
+                "label": "Dover"
+              },
+              {
+                "lat": 50.4993,
+                "lng": 1.5661,
+                "label": "Neufchâtel-Hardelot"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE ENFORCEMENT PARADOX",
+        "body": "Tighter beach patrols don't stop crossings — they change their shape. Smugglers respond by overloading fewer boats, launching from beaches further south, and timing departures to weather windows that small craft cannot safely handle. Deaths per crossing rise even as crossings per month fall.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Aid groups call this the *balloon effect*: squeeze enforcement in one place and the route bulges elsewhere. The same dynamic appeared at the **US-Mexico border** after Operation Gatekeeper (1994) pushed migration from urban San Diego into the Sonoran Desert — apprehensions fell, deaths rose."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SUDANESE",
+        "body": "Sudan's civil war between the SAF and RSF, which began in April 2023, has displaced over 12 million people — the largest displacement crisis in the world. Most remain inside Sudan or in Chad and Egypt, but a thin, persistent stream reaches Libya, crosses the Mediterranean, and works north through France toward English-speaking relatives or labour networks in the UK.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Inside Sudan",
+                "value": "~8.5m",
+                "weight": 85,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Chad",
+                "value": "~700k",
+                "weight": 7,
+                "tone": "neutral"
+              },
+              {
+                "label": "Egypt",
+                "value": "~600k",
+                "weight": 6,
+                "tone": "neutral"
+              },
+              {
+                "label": "South Sudan",
+                "value": "~900k",
+                "weight": 9,
+                "tone": "neutral"
+              },
+              {
+                "label": "Europe",
+                "value": "~50k",
+                "weight": 1,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Sudanese displaced by destination (2024 est.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE LE TOUQUET FRAMEWORK",
+        "body": "Britain has paid France to police its northern coast since the 2003 Le Touquet Treaty, which moved UK border checks to French soil at Calais. Every subsequent deal — including the £660m 2023 agreement — is an expansion of the same bargain: France enforces, Britain pays, the legal frontier sits in the wrong country.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1986",
+                "label": "Channel Tunnel treaty signed"
+              },
+              {
+                "year": "2003",
+                "label": "Le Touquet — UK checks move to France",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2016",
+                "label": "Sandhurst Treaty (£44.5m)"
+              },
+              {
+                "year": "2020",
+                "label": "Brexit ends Dublin returns"
+              },
+              {
+                "year": "2023",
+                "label": "£660m border deal"
+              }
+            ],
+            "label": "the Anglo-French border bargain"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE UK SPECIFICALLY",
+        "body": "Most Channel crossers have already passed through one or more safe EU countries where they could have claimed asylum. They aim for Britain anyway: English is the world's most common second language, the UK has no national ID card system (making informal work easier), and family or community networks from prior migration waves create gravity that policy alone cannot offset.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't the UK simply return Channel crossers to France?",
+            "options": [
+              "France refuses to accept them",
+              "The Dublin Regulation no longer applies to the UK after Brexit",
+              "International law forbids returning asylum seekers anywhere",
+              "The crossings happen in international waters"
+            ],
+            "correct": 1,
+            "explanation": "The Dublin Regulation let EU states return asylum seekers to the first safe country they entered. Brexit removed UK access to it; no replacement bilateral framework has been agreed."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-03T12:37:17.428Z",
+    "label": "The Channel Crossing Economy",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-03-india-galaxeye-drishti-optosar-falcon9-all-weather": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY TWO SENSORS",
+        "body": "Optical cameras see color and texture but go blind through cloud and at night. Synthetic aperture radar bounces microwaves off the surface and reads the echo — it works in any weather, any hour, but produces speckled grayscale that's hard to interpret alone. Each sensor's weakness is the other's strength.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The trick is **coherent fusion**: an SAR pixel and an optical pixel describing the *same square meter at the same instant*, not stitched together hours apart from two passing satellites."
+          }
+        ]
+      },
+      {
+        "heading": "HOW SAR ACTUALLY WORKS",
+        "body": "A real radar antenna small enough to fit on a satellite would resolve features kilometers wide — useless. Synthetic aperture radar fakes a giant antenna by moving the small one along its orbit and stitching the returns coherently, yielding sub-meter resolution from a refrigerator-sized box."
+      },
+      {
+        "heading": "THE MATCHING PROBLEM",
+        "body": "When two separate satellites image the same scene minutes or hours apart, ships have moved, clouds have shifted, shadows have rotated. Analysts spend more time aligning the two images than interpreting them. One platform with co-boresighted sensors collapses that whole pipeline."
+      },
+      {
+        "heading": "WHY INDIA, WHY NOW",
+        "body": "India's space sector opened to private launch and satellite manufacture in 2020. ISRO became an anchor customer rather than a monopoly. GalaxEye is one of roughly 190 Indian space startups that incorporated since the policy shift — the country is trying to repeat the SpaceX-era US pattern of state-seeded private capacity.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "USA (Capella, Umbra)",
+                "value": "~30 sats",
+                "cc": "US",
+                "weight": 30
+              },
+              {
+                "label": "Finland (ICEYE)",
+                "value": "~40 sats",
+                "cc": "FI",
+                "weight": 40
+              },
+              {
+                "label": "China (state)",
+                "value": "~20 sats",
+                "cc": "CN",
+                "weight": 20
+              },
+              {
+                "label": "Japan (iQPS, Synspective)",
+                "value": "~15 sats",
+                "cc": "JP",
+                "weight": 15
+              },
+              {
+                "label": "India (GalaxEye)",
+                "value": "1, → 10",
+                "cc": "IN",
+                "weight": 10
+              }
+            ],
+            "label": "SAR-capable Earth observation constellations"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE FALCON 9 RIDE MEANS",
+        "body": "India has its own launchers (PSLV, GSLV, the new SSLV) but a 190 kg satellite slotted onto a SpaceX rideshare instead. Rideshare windows on Falcon 9 cost roughly $5,500 per kg — cheaper and more frequent than booking a dedicated PSLV slot. Even ISRO's customers vote with their checkbooks.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did an Indian startup launch on an American rocket instead of an Indian one?",
+            "options": [
+              "US sanctions block ISRO from launching commercial payloads",
+              "Falcon 9 rideshare is cheaper per kg and has more frequent windows",
+              "India's PSLV cannot reach the required orbit",
+              "ISRO refused to launch a private competitor"
+            ],
+            "correct": 1,
+            "explanation": "SpaceX rideshare costs ~$5,500/kg with launches every few months; PSLV slots are scarcer and pricier per kg for small payloads."
+          }
+        ]
+      },
+      {
+        "heading": "WHO BUYS THIS DATA",
+        "body": "Defense intelligence is the anchor customer for any all-weather, day-night imaging constellation — but the commercial market is now larger: maritime tracking (dark vessels with transponders off), insurance loss assessment after floods and cyclones, illegal mining and deforestation monitoring, and crop yield forecasting in monsoon-clouded regions where optical-only satellites are blind for months."
+      }
+    ],
+    "generatedAt": "2026-05-03T12:37:49.049Z",
+    "label": "Optical + SAR Fusion",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-03-israel-f35-f15ia-lockheed-boeing-fourth-squadron-gaza": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STRUCTURAL SUBSIDY",
+        "body": "US military aid to Israel — roughly $3.8 billion annually under the 2016 MOU — is conditioned on being spent overwhelmingly on American defense contractors. The aid is functionally a transfer to Lockheed, Boeing, RTX, and General Dynamics that flows through Israeli procurement.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Until 2028, Israel may convert **26%** of US aid into shekels to buy from Israeli firms — a carve-out being phased out, after which **100%** must go to US contractors."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ISRAEL FLIES THE F-35I",
+        "body": "Israel is the only F-35 customer permitted to integrate its own electronic warfare suite, weapons, and command systems into the airframe. The F-35I 'Adir' variant exists because Israel refused to accept Lockheed's standard software lock — a concession no NATO buyer received.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "~2,470",
+                "cc": "US",
+                "weight": 2470
+              },
+              {
+                "label": "Japan",
+                "value": "147",
+                "cc": "JP",
+                "weight": 147
+              },
+              {
+                "label": "UK",
+                "value": "138",
+                "cc": "GB",
+                "weight": 138
+              },
+              {
+                "label": "Israel",
+                "value": "75",
+                "cc": "IL",
+                "weight": 75,
+                "tone": "neutral"
+              },
+              {
+                "label": "South Korea",
+                "value": "60",
+                "cc": "KR",
+                "weight": 60
+              },
+              {
+                "label": "Italy",
+                "value": "90",
+                "cc": "IT",
+                "weight": 90
+              }
+            ],
+            "label": "F-35 fleet by operator (planned/delivered)"
+          }
+        ]
+      },
+      {
+        "heading": "THE QUALITATIVE MILITARY EDGE",
+        "body": "US law since 2008 requires every arms sale to the Middle East to preserve Israel's 'Qualitative Military Edge' — codified after the 1973 war as a binding statutory test. This is why Gulf states historically receive downgraded F-15 variants and were blocked from F-35 sales until the Abraham Accords reopened the question.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "EG",
+              "JO",
+              "SA",
+              "AE",
+              "QA",
+              "IR"
+            ],
+            "label": "QME applies across this perimeter"
+          }
+        ]
+      },
+      {
+        "heading": "THE GENOCIDE CASE",
+        "body": "South Africa filed proceedings against Israel at the International Court of Justice in December 2023 under the Genocide Convention. The ICJ issued provisional measures in January and March 2024 ordering Israel to prevent genocidal acts and ensure humanitarian aid — orders that are binding under international law but lack an enforcement mechanism beyond the UN Security Council, where the US holds a veto.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2023-12",
+                "label": "South Africa files case",
+                "emphasis": "start"
+              },
+              {
+                "year": "2024-01",
+                "label": "First provisional measures order",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024-03",
+                "label": "Additional measures on aid"
+              },
+              {
+                "year": "2024-05",
+                "label": "Rafah halt order"
+              },
+              {
+                "year": "2026",
+                "label": "Merits phase ongoing"
+              }
+            ],
+            "label": "ICJ proceedings"
+          }
+        ]
+      },
+      {
+        "heading": "THE ARMS-EXPORT QUESTION",
+        "body": "Several states have suspended or restricted weapons transfers to Israel citing ICJ obligations — the Netherlands halted F-35 parts exports after a Dutch court ruling, Spain and Belgium imposed restrictions, Canada paused new permits. The US and Germany, the two largest suppliers, have not.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "United States",
+                "value": 69,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Germany",
+                "value": 30,
+                "tone": "neutral"
+              },
+              {
+                "label": "Italy",
+                "value": 0.9,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Israel's major arms suppliers, 2019–2023 (share)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY $119 BILLION",
+        "body": "Multi-year procurement programs let governments lock in unit prices and let contractors plan production lines. But they also commit successor governments to spending paths that are politically expensive to reverse — a feature Israeli defense planners use deliberately to insulate force structure from coalition turnover.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of annual US military aid to Israel must be spent on US defense contractors after 2028?",
+            "options": [
+              "About half",
+              "About 74%",
+              "100%",
+              "It is unrestricted"
+            ],
+            "correct": 2,
+            "explanation": "The 26% off-shore procurement carve-out that let Israel buy from its own defense industry is being phased out by 2028, after which the full $3.8B/year must flow to US firms."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-03T12:38:24.595Z",
+    "label": "Israel's Air Power & US Military Aid",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-03-living-plastic-bacterial-self-destruct-six-days-acs": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY PLASTICS PERSIST",
+        "body": "Conventional plastics are long carbon chains held together by C-C bonds that no enzyme in nature evolved to cleave at scale. Sunlight and abrasion shatter them into smaller fragments, but the bonds themselves rarely break — which is why a polyethylene bag fragments for centuries without truly disappearing.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: **fragmentation** is not **degradation**. Most so-called *biodegradable* plastics only fragment faster, producing microplastics sooner rather than fewer."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT MICROPLASTICS ACTUALLY ARE",
+        "body": "Particles under 5mm — and increasingly nanoplastics under 1 micron — that pass through wastewater filters, accumulate in marine food chains, and cross biological membranes. They have been detected in human placentas, testes, arterial plaque, and breast milk. Filtration is downstream of a problem that is fundamentally about polymer chemistry."
+      },
+      {
+        "heading": "THE BIOPLASTIC FALSE START",
+        "body": "PLA (polylactic acid) and PHA, the dominant 'compostable' plastics, only break down in industrial composters at 58°C with controlled humidity. In a landfill, ocean, or backyard pile, they behave like conventional plastic for decades. The label promised what the chemistry could not deliver.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Polyethylene",
+                "value": "~500 yrs",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "PET bottle",
+                "value": "~450 yrs",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "PLA 'compostable'",
+                "value": "decades",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "PHA",
+                "value": "1–5 yrs",
+                "tone": "neutral"
+              },
+              {
+                "label": "This polymer",
+                "value": "6 days",
+                "tone": "favorable"
+              }
+            ],
+            "label": "degradation time in seawater (approx)"
+          }
+        ]
+      },
+      {
+        "heading": "HOW EMBEDDED BACTERIA WORK",
+        "body": "Synthetic biology lets engineers insert spore-forming bacteria into the polymer matrix in dormant state. The spores survive the polymer's useful life, then germinate when triggered by a specific signal — pH shift, UV, moisture, or a chemical cue — and secrete enzymes that cleave the polymer's bonds from within. The plastic eats itself."
+      },
+      {
+        "heading": "THE CONTAINMENT QUESTION",
+        "body": "Engineered organisms released at consumer scale raise the same biosafety questions as any GMO: horizontal gene transfer to wild microbes, ecological niche disruption, and the difficulty of recall once deployed. Spore-forming strains are particularly hardy — the trait that makes them shelf-stable also makes them persistent in the environment.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do industrial 'compostable' plastics like PLA usually fail to degrade in the ocean?",
+            "options": [
+              "Saltwater inhibits the breakdown enzymes",
+              "They require sustained temperatures around 58°C only found in industrial composters",
+              "UV light from the sun destroys the degradation pathway",
+              "Marine bacteria cannot recognize the polymer"
+            ],
+            "correct": 1,
+            "explanation": "PLA's hydrolysis only proceeds meaningfully above its glass transition temperature (~55–60°C), which industrial composters maintain but oceans never reach."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-03T12:38:51.592Z",
+    "label": "Living Plastics & Microplastics",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-03-nigeria-fuel-price-fct-car-owners-public-transport": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SUBSIDY THAT BROKE THE BUDGET",
+        "body": "Nigeria spent decades selling petrol below import cost, with the federal government absorbing the gap through NNPC. By 2022 the subsidy bill exceeded ₦4 trillion — larger than the entire health and education budgets combined. Tinubu's first act on inauguration day in May 2023 was to declare 'subsidy is gone,' tripling pump prices overnight.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phrase **'subsidy is gone'** was extemporaneous — not in the prepared text. Markets and motorists reacted within hours; queues formed before the cabinet had even been sworn in."
+          }
+        ]
+      },
+      {
+        "heading": "THE IMPORT PARADOX",
+        "body": "Nigeria is Africa's largest crude producer yet imports nearly all its refined petrol. Four state-owned refineries — Port Harcourt, Warri, Kaduna — have run at single-digit capacity for over a decade due to chronic underinvestment and theft along the supply chain. Crude is shipped out, refined abroad, and shipped back at a markup."
+      },
+      {
+        "heading": "THE NAIRA COMPOUNDING",
+        "body": "Tinubu also floated the naira in June 2023, ending the dual exchange-rate regime. The official rate collapsed from roughly ₦460 to over ₦1,500 per dollar. Because petrol is dollar-priced at import, every naira of devaluation passes directly to the pump — a second shock stacked on top of the subsidy removal.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              1378.13,
+              1377.8,
+              1379.1,
+              1382.755193,
+              1378.98,
+              1361.72,
+              1359.5,
+              1358.675299,
+              1358.34,
+              1358.85,
+              1351.86,
+              1344.68,
+              1340.88,
+              1342.48,
+              1345.790676,
+              1345.790676,
+              1346.63,
+              1345.47,
+              1348.77,
+              1351.32,
+              1354.96,
+              1351.847873,
+              1351.847873,
+              1352.81,
+              1360.19,
+              1374.96,
+              1375.07,
+              1374.69,
+              1375.98,
+              1375.98
+            ],
+            "periods": [
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3"
+            ],
+            "label": "Nigerian naira",
+            "unit": "NGN / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY FUEL HITS HARDER IN NIGERIA",
+        "body": "Public transport in most Nigerian cities is informal — danfo minibuses, keke napep tricycles, okada motorcycles — all running on petrol, all pricing dynamically. There is no subsidized rail or metro absorbing the shock. A pump-price move is a wage cut for anyone who commutes, shops, or runs a generator (which, given grid unreliability, is most households).",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Nigeria runs an estimated **22 million** small petrol generators — 'I better pass my neighbour' is the colloquial name. Generator fuel is a household line item, not an industrial one."
+          }
+        ]
+      },
+      {
+        "heading": "THE OIL-REVENUE DIVERGENCE",
+        "body": "Rising Brent should help Abuja — Nigeria's federal budget is dollar-denominated on the revenue side. But output has stagnated near 1.4 million barrels per day, well below the 1.8 million OPEC quota, due to theft from Niger Delta pipelines and chronic underinvestment. Higher prices do not flow through when you cannot pump the barrels.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "OPEC quota",
+                "value": "1.8 mbpd",
+                "weight": 1.8,
+                "tone": "neutral"
+              },
+              {
+                "label": "Actual output",
+                "value": "~1.4 mbpd",
+                "weight": 1.4,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "2010s peak",
+                "value": "2.5 mbpd",
+                "weight": 2.5,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Nigerian crude output vs OPEC quota (mn bpd)"
+          }
+        ]
+      },
+      {
+        "heading": "WHO BEARS THE COST",
+        "body": "IMF and World Bank doctrine holds that fuel subsidies are regressive — wealthy car owners consume more petrol than the poor, so removing them should hit the rich hardest. In practice, transport costs cascade into food, school fees, and informal-sector wages. The poor own no cars but ride the buses whose fares just doubled.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is Nigeria, Africa's largest oil producer, dependent on imported petrol?",
+            "options": [
+              "OPEC export quotas forbid domestic refining",
+              "State-owned refineries operate at single-digit capacity",
+              "Nigerian crude is too heavy to refine into petrol",
+              "The constitution requires crude exports"
+            ],
+            "correct": 1,
+            "explanation": "Nigeria's four state refineries have run at near-zero capacity for over a decade; crude is exported and refined products imported back at a markup."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-03"
+    ],
+    "generatedAt": "2026-05-03T12:39:25.809Z",
+    "label": "Nigeria's Fuel Subsidy & the Naira",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-03-nigeria-summons-south-africa-xenophobia-odumegwu-ojukwu": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RECURRING PATTERN",
+        "body": "South Africa has cycled through major xenophobic outbreaks roughly every four to six years since the end of apartheid. Each cycle targets African migrants — Nigerians, Zimbabweans, Mozambicans, Somalis — and each cycle ends with government condemnations that do not translate into prosecutions.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1994",
+                "label": "End of apartheid; migrant inflows begin"
+              },
+              {
+                "year": "2008",
+                "label": "May riots — 62 killed nationwide",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2015",
+                "label": "KZN attacks; Zulu king's remarks blamed"
+              },
+              {
+                "year": "2019",
+                "label": "Johannesburg looting; Nigerian shops targeted"
+              },
+              {
+                "year": "2022",
+                "label": "Operation Dudula vigilante movement"
+              },
+              {
+                "year": "2026",
+                "label": "SANDF killings of Nigerians"
+              }
+            ],
+            "label": "South African xenophobic violence"
+          }
+        ]
+      },
+      {
+        "heading": "WHY NIGERIANS",
+        "body": "Nigerians are visible in South African townships through small business — auto parts, hair salons, restaurants, informal lending. The same entrepreneurial concentration that lifted them out of unemployment makes them targets when local frustration over 32% national unemployment looks for a face. The dispossessed do not riot against capital; they riot against the migrant next door.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "South Africa's term for the violence is *Afrophobia* — a deliberate naming choice, since attacks fall almost exclusively on Black African migrants, not white Europeans or Asians on the same visas."
+          }
+        ]
+      },
+      {
+        "heading": "THE GIANT-OF-AFRICA TENSION",
+        "body": "Nigeria and South Africa are the continent's two largest economies and have spent two decades competing for diplomatic primacy — AU leadership, UN Security Council reform, ECOWAS vs SADC influence. Xenophobic flare-ups force Abuja into a posture it dislikes: defending citizens against a peer it would rather partner with against extra-continental powers.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Nigeria",
+                "value": "~230m people",
+                "cc": "NG",
+                "weight": 230
+              },
+              {
+                "label": "South Africa",
+                "value": "~63m people",
+                "cc": "ZA",
+                "weight": 63
+              }
+            ],
+            "label": "Nigeria vs South Africa, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "SANDF, NOT A MOB",
+        "body": "The April killings are a structural escalation. Previous cycles featured civilian mobs and looting; soldiers from the South African National Defence Force shooting Nigerians moves the violence from social pathology to state conduct, which is why a diplomatic summons followed.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "ZA",
+              "ZW",
+              "MZ",
+              "BW",
+              "NA"
+            ],
+            "label": "the diaspora corridor",
+            "caption": "Nigerian migrants and the SADC frontline states most affected"
+          }
+        ]
+      },
+      {
+        "heading": "THE DIPLOMATIC TOOL",
+        "body": "Summoning a high commissioner is the second-mildest formal protest in the diplomatic ladder — above a démarche, below recalling an ambassador or expelling diplomats. It signals seriousness without burning the relationship. Nigeria has used it against South Africa in 2015 and 2019; both times Pretoria pledged action, both times the cycle returned.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which step is more severe than summoning a foreign envoy?",
+            "options": [
+              "Issuing a démarche",
+              "Recalling your own ambassador",
+              "Filing a UN complaint",
+              "Expressing concern via spokesperson"
+            ],
+            "correct": 1,
+            "explanation": "Recalling your ambassador withdraws your country's senior representation; summoning theirs only registers a protest."
+          }
+        ]
+      },
+      {
+        "heading": "THE FOREIGN MINISTER",
+        "body": "Bianca Odumegwu-Ojukwu is the widow of Chukwuemeka Odumegwu-Ojukwu, the Biafran secessionist leader whose 1967–70 war against the federal government killed roughly a million people. Her appointment as foreign minister is itself a statement about how completely the Biafra wound has been folded back into the Nigerian state.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Biafra war ended in 1970 with the slogan **\"No victor, no vanquished\"** — a reconciliation doctrine that has held, imperfectly, for over fifty years."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-03T12:40:00.333Z",
+    "label": "Nigerian Diaspora & SA Xenophobia",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-03-pakistan-passive-cooling-urban-heat-island-ac-trap": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY CITIES COOK",
+        "body": "Asphalt, concrete, and dark roofs absorb solar radiation by day and re-radiate it at night. Add waste heat from engines and air conditioners and the city never cools off — the diurnal swing that lets the human body recover collapses.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The effect has a name coined in 1818 by London chemist Luke Howard: the **urban heat island**. Modern megacities run *2–7°C* hotter than their rural surroundings, with the gap widest at night."
+          }
+        ]
+      },
+      {
+        "heading": "THE AC TRAP",
+        "body": "Air conditioners dump indoor heat outdoors. The more units a neighborhood runs, the hotter the street becomes, which drives more AC use. A Tokyo study found that AC waste heat alone raises ambient summer temperatures by ~1°C. In a grid that already blacks out, the trap closes faster.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.399884,
+              278.399884,
+              279.05,
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775
+            ],
+            "periods": [
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE OLD ANSWERS",
+        "body": "Before electricity, hot-climate architecture had solved this. Persian wind catchers (badgir), Mughal courtyards with central fountains, mashrabiya screens, thick mud-brick walls with high thermal mass — every desert civilization independently arrived at the same toolkit: shade, evaporation, ventilation, mass.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IR",
+              "AE",
+              "EG",
+              "MA"
+            ],
+            "label": "the passive cooling tradition",
+            "caption": "badgirs, courtyards, mashrabiya — solved by 1500"
+          }
+        ]
+      },
+      {
+        "heading": "WET-BULB AND THE LIMIT",
+        "body": "Heat tolerance is governed not by air temperature alone but by wet-bulb temperature — the lowest temperature evaporative sweat can reach. Above ~35°C wet-bulb, even a healthy person in shade with unlimited water dies within hours. Jacobabad in Sindh has already crossed this line.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Above what wet-bulb temperature does the human body fail to cool itself, even at rest?",
+            "options": [
+              "28°C",
+              "31°C",
+              "35°C",
+              "40°C"
+            ],
+            "correct": 2,
+            "explanation": "At 35°C wet-bulb, sweat no longer evaporates fast enough to shed metabolic heat. Death follows in hours regardless of hydration or shade."
+          }
+        ]
+      },
+      {
+        "heading": "WHO IS EXPOSED",
+        "body": "Heat mortality clusters among outdoor laborers, the elderly, and those without AC. In Pakistan roughly 60% of the workforce is in agriculture or construction — outdoors, during peak heat, with no practical option to stop working. The 2015 Karachi heatwave killed over 1,200 people in a week.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Karachi",
+                "value": "+5.6°C",
+                "cc": "PK",
+                "weight": 5.6,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Delhi",
+                "value": "+4.8°C",
+                "cc": "IN",
+                "weight": 4.8,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Dhaka",
+                "value": "+4.5°C",
+                "cc": "BD",
+                "weight": 4.5,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Cairo",
+                "value": "+3.5°C",
+                "cc": "EG",
+                "weight": 3.5,
+                "tone": "neutral"
+              },
+              {
+                "label": "Tokyo",
+                "value": "+2.0°C",
+                "cc": "JP",
+                "weight": 2,
+                "tone": "favorable"
+              }
+            ],
+            "label": "urban heat island intensity (selected megacities)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY TREES BEAT TECH",
+        "body": "A mature tree transpires hundreds of liters of water per day, each liter absorbing ~2,400 kJ of heat — the cooling equivalent of two domestic AC units, running for free. Singapore's tree-canopy mandate cools its hottest streets by 2–3°C. The intervention is ancient; the political will is the new variable."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-03"
+    ],
+    "generatedAt": "2026-05-03T12:40:35.087Z",
+    "label": "The Urban Heat Island & Passive Cooling",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-03-south-africa-whatsapp-ai-hearing-loss-screening-pretoria": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY HEARING LOSS IN CHILDREN MATTERS",
+        "body": "Undetected hearing loss in school-age children cascades into language delay, reading failure, and dropout. The WHO estimates 60% of childhood hearing loss is preventable or treatable if caught early — but the screening window is narrow, roughly the first decade of life when neural pathways for speech are still plastic.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The clinical term is *auditory deprivation* — when the brain's language centers don't receive sound input during the critical period, the cortical real estate gets reassigned and never fully recovers, even after hearing is restored."
+          }
+        ]
+      },
+      {
+        "heading": "THE SCREENING GAP",
+        "body": "A standard pure-tone audiometer costs $1,500–$5,000 and requires a sound-treated booth and a trained audiologist. South Africa has roughly one audiologist per 30,000 people; in rural provinces the ratio is closer to one per 100,000. The math of screening 13 million schoolchildren annually with that workforce simply does not close.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "~4.5",
+                "cc": "US",
+                "weight": 4.5,
+                "tone": "favorable"
+              },
+              {
+                "label": "UK",
+                "value": "~3.0",
+                "cc": "GB",
+                "weight": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Brazil",
+                "value": "~1.2",
+                "cc": "BR",
+                "weight": 1.2,
+                "tone": "neutral"
+              },
+              {
+                "label": "South Africa",
+                "value": "~0.3",
+                "cc": "ZA",
+                "weight": 0.3,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Nigeria",
+                "value": "~0.05",
+                "cc": "NG",
+                "weight": 0.05,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "audiologists per 100k people"
+          }
+        ]
+      },
+      {
+        "heading": "WHY WHATSAPP, NOT AN APP",
+        "body": "WhatsApp is the dominant messaging platform across sub-Saharan Africa — 90%+ of South African smartphone users have it installed, and Meta zero-rates its data on most local carriers. A bespoke health app requires download, signup, and data charges; a WhatsApp chatbot inherits an existing install base, an existing identity, and free data. This is the deployment pattern for digital health across the continent.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ZA",
+              "NG",
+              "KE",
+              "GH",
+              "EG",
+              "TZ"
+            ],
+            "label": "WhatsApp-first health pilots have launched across these markets"
+          }
+        ]
+      },
+      {
+        "heading": "THE DIGITS-IN-NOISE TEST",
+        "body": "The screener almost certainly uses a digits-in-noise (DIN) protocol — the user listens to triplets of spoken digits embedded in increasing background noise and types what they hear. It correlates strongly with clinical audiometry but needs no sound booth, no calibration of absolute decibel levels, and works on consumer earbuds. The hearX group at Pretoria pioneered the method and licenses it globally as hearZA / hearScreen."
+      },
+      {
+        "heading": "WHAT 'TASK-SHIFTING' MEANS",
+        "body": "Training teachers to do work normally reserved for clinicians is called *task-shifting* — a WHO-endorsed strategy to extend specialist capacity in low-resource settings. The same logic put HIV testing in the hands of community health workers in the 2000s and antenatal ultrasound on midwives' phones in the 2010s. The bottleneck is rarely the technology; it is the professional credentialing system that decides who is allowed to use it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the main reason WHO endorses task-shifting in health systems?",
+            "options": [
+              "It lowers costs by paying non-specialists less",
+              "It extends scarce specialist capacity to populations they cannot otherwise reach",
+              "It reduces medical errors through simpler protocols",
+              "It bypasses regulatory bodies that slow innovation"
+            ],
+            "correct": 1,
+            "explanation": "Task-shifting exists because in most of the world there are not enough specialists to serve the population — delegating defined tasks to trained non-specialists is the only way to achieve coverage."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-03T12:41:06.098Z",
+    "label": "Hearing Screening at Scale",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-03-ukraine-drones-primorsk-baltic-oil-terminal-1m-bpd": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY PRIMORSK MATTERS",
+        "body": "Primorsk is the western terminus of the Baltic Pipeline System, handling around 1 million barrels per day — roughly a fifth of Russia's seaborne crude exports. It was built in the 2000s precisely to bypass transit countries (Latvia, Lithuania, Belarus) that Moscow no longer trusted.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "UA",
+              "FI",
+              "EE",
+              "LV",
+              "LT",
+              "PL"
+            ],
+            "label": "Russia's seaborne export terminals",
+            "markers": [
+              {
+                "lat": 60.3636,
+                "lng": 28.6133,
+                "label": "Primorsk terminal"
+              },
+              {
+                "lat": 59.6383,
+                "lng": 30.2056,
+                "label": "Ust-Luga terminal"
+              },
+              {
+                "lat": 44.7235,
+                "lng": 37.7689,
+                "label": "Novorossiysk"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO-FRONT EXPORT MAP",
+        "body": "Russia's seaborne crude leaves through three main hubs: Primorsk and Ust-Luga on the Baltic, and Novorossiysk on the Black Sea. Until now, only the Black Sea side was inside Ukrainian drone range. Hitting Primorsk means every Russian export terminal is now contestable.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Primorsk",
+                "value": "~1.0M bpd",
+                "cc": "RU",
+                "weight": 100,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Ust-Luga",
+                "value": "~0.7M bpd",
+                "cc": "RU",
+                "weight": 70,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Novorossiysk",
+                "value": "~0.6M bpd",
+                "cc": "RU",
+                "weight": 60,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Kozmino (Pacific)",
+                "value": "~0.8M bpd",
+                "cc": "RU",
+                "weight": 80,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Russia's seaborne crude export terminals"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRICE CAP REGIME",
+        "body": "G7 sanctions don't ban Russian crude — they cap it at $60/barrel for any cargo using Western shipping, insurance, or finance. The cap works only if alternative logistics are scarce. Damaging an export terminal tightens the chokepoint mechanically, regardless of whether the cap is being enforced.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The cap's real teeth come from **Lloyd's of London** war-risk premiums and **P&I club** insurance — strike a terminal and underwriters reprice every cargo loading there, not just the damaged berth."
+          }
+        ]
+      },
+      {
+        "heading": "THE SHADOW FLEET",
+        "body": "Russia assembled roughly 600 aging tankers operating outside Western insurance to evade the cap. These ships load at Primorsk, Ust-Luga, and Novorossiysk, then ship-to-ship transfer in the Mediterranean or off Greece before delivery to India and China. Damage at the loading end ripples through a logistics chain Moscow spent two years building."
+      },
+      {
+        "heading": "THE DRONE REACH",
+        "body": "Primorsk sits roughly 1,000 km from the Ukrainian border — beyond the range of most early-war Ukrainian drones. The Liutyi long-range UAV, with a claimed 2,000 km reach, changed this geometry through 2025. The Baltic was considered Russia's safe rear; that assumption no longer holds.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did Russia build the Baltic Pipeline System to Primorsk in the 2000s?",
+            "options": [
+              "To shorten the route to Asian markets",
+              "To bypass transit fees and political risk in Baltic states and Belarus",
+              "To replace aging Black Sea infrastructure",
+              "To supply Kaliningrad with domestic crude"
+            ],
+            "correct": 1,
+            "explanation": "BPS was built to route exports directly through Russian territory to a Russian port, eliminating dependence on Latvian, Lithuanian, and Belarusian transit infrastructure that Moscow saw as politically unreliable."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-03T12:41:38.127Z",
+    "label": "Russia's Seaborne Oil Exports",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-03-ukraine-shadow-fleet-novorossiysk-tankers-sanctions-evasion": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE SHADOW FLEET IS",
+        "body": "A loose flotilla of aging tankers — typically 15-20 years old, often one voyage from the scrapyard — bought up after 2022 through opaque shell companies in the UAE, Hong Kong, and Marshall Islands. Estimates put the fleet at 600-1,400 vessels, roughly a fifth of the global crude tanker count.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The defining feature is *flag-hopping* and disabled **AIS transponders** — ships go dark mid-voyage, conduct ship-to-ship transfers in international waters, then reappear under a new flag with new paperwork."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRICE CAP MECHANISM",
+        "body": "The G7 price cap (December 2022) does not ban Russian oil — it bans Western shipping, insurance, and financial services for cargoes priced above $60 per barrel. Lloyd's of London insures roughly 90% of the world's tanker tonnage; cutting off that insurance was meant to be the chokepoint."
+      },
+      {
+        "heading": "WHY NOVOROSSIYSK",
+        "body": "Novorossiysk is Russia's largest Black Sea oil terminal, handling around 2 million barrels per day of crude and products — including the CPC pipeline flow from Kazakhstan. With Baltic ports under tighter Western surveillance, the Black Sea route through the Bosphorus became the shadow fleet's preferred export path.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "UA",
+              "TR",
+              "GE",
+              "RO",
+              "BG"
+            ],
+            "label": "Black Sea oil corridor",
+            "markers": [
+              {
+                "lat": 44.7235,
+                "lng": 37.7686,
+                "label": "Novorossiysk port"
+              },
+              {
+                "lat": 41.0082,
+                "lng": 28.9784,
+                "label": "Bosphorus chokepoint"
+              },
+              {
+                "lat": 46.4825,
+                "lng": 30.7233,
+                "label": "Odesa"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE WORKAROUND",
+        "body": "Russia and its buyers built a parallel insurance ecosystem — the Russian National Reinsurance Company underwrites hulls; Indian and Chinese P&I clubs cover liability. The protection is thinner: a major spill from an uninsured shadow tanker in the Baltic or Bosphorus could leave coastal states with no party to bill."
+      },
+      {
+        "heading": "THE BUYERS",
+        "body": "India and China absorbed the displaced flow. Indian refiners — Reliance and the state-owned Indian Oil Corporation — became major buyers of Urals crude at discounts of $10-20 per barrel below Brent, then re-exported refined products to Europe. The cap created an arbitrage, not a shortfall.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~47%",
+                "cc": "CN",
+                "weight": 47,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": "~38%",
+                "cc": "IN",
+                "weight": 38,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Turkey",
+                "value": "~9%",
+                "cc": "TR",
+                "weight": 9,
+                "tone": "neutral"
+              },
+              {
+                "label": "Other",
+                "value": "~6%",
+                "weight": 6,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Russian seaborne crude buyers, 2024 share"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Iran has run a sanctions-evasion fleet for over a decade — same playbook of flag-of-convenience registries, disabled transponders, and ship-to-ship transfers off Malaysia and the UAE. Russia did not invent the shadow fleet; it scaled an existing Iranian template by an order of magnitude in eighteen months.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what fraction of the global crude tanker fleet is now estimated to be operating as 'shadow' tonnage?",
+            "options": [
+              "About 2%",
+              "About 8%",
+              "About 20%",
+              "About 45%"
+            ],
+            "correct": 2,
+            "explanation": "Estimates of 600-1,400 shadow vessels against a global crude tanker count near 3,000 put the share at roughly a fifth — a structural change to maritime oil trade in under three years."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-03T12:42:09.428Z",
+    "label": "Russia's Shadow Fleet",
+    "category": "economy",
+    "articleCount": 1
   }
 }
