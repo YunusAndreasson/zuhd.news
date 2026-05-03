@@ -2,13 +2,200 @@
   "version": 1,
   "stories": [
     {
+      "id": "opec-plus-188k-bpd-uae-exit-third-hike",
+      "label": "Opec+ to raise oil output by 188,000 barrels",
+      "firstSeen": "2026-05-03T17:08:17.215Z",
+      "lastCovered": "2026-05-03T17:08:17.215Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-03-opec-plus-188k-bpd-uae-exit-third-hike"
+      ],
+      "eventUri": "spa-4186495",
+      "summary": "Seven OPEC+ nations — Saudi, Russia, Iraq, Kuwait, Kazakhstan, Algeria, Oman — agreed a 188,000 bpd June increase in their first meeting after the UAE walked out of the cartel. Lead with the UAE exit reshaping the bloc's arithmetic: this is the third consecutive output hike, but the more consequential story is that one of the cartel's wealthiest members has unilaterally chosen to defect rather than abide by quotas. Reader takes away that OPEC's pricing discipline is fracturing while Hormuz tensions and the Iran blockade keep the demand side fragile.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/OPEC",
+        "http://en.wikipedia.org/wiki/United_Arab_Emirates",
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/Saudi_Arabia",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Kuwait",
+        "http://en.wikipedia.org/wiki/Iraq",
+        "http://en.wikipedia.org/wiki/Barrel_(unit)"
+      ]
+    },
+    {
+      "id": "iran-mothballing-oil-wells-bessent-blockade",
+      "label": "Iran may begin mothballing its oil wells next week — US treasury secretary",
+      "firstSeen": "2026-05-03T17:08:17.215Z",
+      "lastCovered": "2026-05-03T17:08:17.215Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-03-iran-mothballing-oil-wells-bessent-blockade"
+      ],
+      "eventUri": "eng-11613984",
+      "summary": "US Treasury Secretary Scott Bessent says Iran will run out of storage and have to begin mothballing oil wells within a week as the blockade chokes exports. Lead with the technical detail: mothballing damages reservoirs, so this isn't reversible the moment a deal is struck — the blockade is permanently degrading Iranian production capacity. Pair Bessent's confidence with the counter-data: satellite imagery still shows tankers loading at Kharg Island, suggesting the predicted storage crisis hasn't actually arrived. Reader gets both the US theory of victory and its empirical wobble.",
+      "conceptUris": []
+    },
+    {
+      "id": "adb-70bn-asia-pacific-grid-broadband-2035",
+      "label": "ADB announces $70bn initiative to boost cross-border electricity trade, increase broadband access in Asia-Pacific",
+      "firstSeen": "2026-05-03T17:08:17.215Z",
+      "lastCovered": "2026-05-03T17:08:17.215Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-03-adb-70bn-asia-pacific-grid-broadband-2035"
+      ],
+      "eventUri": "eng-11622270",
+      "summary": "Asian Development Bank pledges $70 billion through 2035 to wire up regional power grids and broadband — a counterweight to China's BRI infrastructure financing in the same geography. Lead with the structural play: cross-border electricity trade only works if neighbors trust each other's regulators, and most ADB borrowers (Pakistan, Bangladesh, Central Asia) currently have brittle bilateral grid links. Reader is a Pakistani who pays for outages — explain that this is the financing layer, not a wires-on-the-ground commitment.",
+      "conceptUris": []
+    },
+    {
+      "id": "us-troops-missing-morocco-african-lion-tan-tan",
+      "label": "2 US Troops Go Missing During Joint Military Exercise In Morocco",
+      "firstSeen": "2026-05-03T17:08:17.215Z",
+      "lastCovered": "2026-05-03T17:08:17.215Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-03-us-troops-missing-morocco-african-lion-tan-tan"
+      ],
+      "eventUri": "eng-11622247",
+      "summary": "Two US service members vanished Saturday near the Cap Draa training area outside Tan Tan during AFRICOM's African Lion exercise — the largest US drill on the continent. Lead with the location: Tan Tan sits at the edge of the disputed Western Sahara, where Morocco's military presence is itself contested. The angle is what AFRICOM doesn't say — whether the men disappeared in friendly territory or crossed into Polisario-claimed areas, and what that means for a US footprint that has grown quietly under successive administrations. Reader gets the Africa coverage gap filled with substance, not statement.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Morocco",
+        "http://en.wikipedia.org/wiki/United_States_Africa_Command",
+        "http://en.wikipedia.org/wiki/Lion",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Military_exercise",
+        "http://en.wikipedia.org/wiki/Search_and_rescue",
+        "http://en.wikipedia.org/wiki/Africa",
+        "http://en.wikipedia.org/wiki/United_States_Armed_Forces"
+      ]
+    },
+    {
+      "id": "rubio-vatican-pope-leo-trump-feud-cleanup",
+      "label": "Italian media reports US top diplomat Rubio to meet Pope Leo",
+      "firstSeen": "2026-05-03T17:08:17.215Z",
+      "lastCovered": "2026-05-03T17:08:17.215Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-03-rubio-vatican-pope-leo-trump-feud-cleanup"
+      ],
+      "eventUri": "eng-11622004",
+      "summary": "Marco Rubio is heading to the Vatican this week to repair ties after Trump publicly attacked Pope Leo XIV's anti-war remarks. Lead with the substance Rubio is being sent to defuse: the Pope explicitly named the Iran blockade and Gaza in his criticism, and Trump's rebuke turned Vatican neutrality into a domestic US political target. The angle is institutional: a US administration that treats the Holy See as an opponent is a structural break, and Meloni — also strained with Trump — is hosting the cleanup. Reader sees the geometry of three allies negotiating around moral language they no longer share.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Marco_Rubio",
+        "http://en.wikipedia.org/wiki/Pope",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Vatican_City",
+        "http://en.wikipedia.org/wiki/Italy",
+        "http://en.wikipedia.org/wiki/United_States_Secretary_of_State",
+        "http://en.wikipedia.org/wiki/Rome",
+        "http://en.wikipedia.org/wiki/Catholic_Church"
+      ]
+    },
+    {
+      "id": "israel-strikes-north-litani-zawtar-ceasefire-breach",
+      "label": "Israel attacks villages north of Litani to ease pressure on troops occupying crucial axis",
+      "firstSeen": "2026-05-03T17:08:17.215Z",
+      "lastCovered": "2026-05-03T17:08:17.215Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-03-israel-strikes-north-litani-zawtar-ceasefire-breach"
+      ],
+      "eventUri": null,
+      "summary": "Israeli forces have escalated airstrikes on villages north of the Litani River — past the line set by the November ceasefire — after their troops south of the river took repeated Hezbollah fire. Lead with the geography: 'north of Litani' is the line UN Resolution 1701 was supposed to make untouchable, and Zawtar's twin villages are now being struck simultaneously to relieve a pinned occupying force. The angle is that the ceasefire has been functionally voided not by a single dramatic break but by accumulated 'defensive' escalation that southern Lebanese civilians absorb daily.",
+      "conceptUris": []
+    },
+    {
+      "id": "iraq-evaporative-cooling-hot-arid-thermal-comfort",
+      "label": "Sustainable thermal comfort assessment of evaporative cooling systems in hot and arid climates",
+      "firstSeen": "2026-05-03T17:08:17.215Z",
+      "lastCovered": "2026-05-03T17:08:17.215Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-03-iraq-evaporative-cooling-hot-arid-thermal-comfort"
+      ],
+      "eventUri": null,
+      "summary": "Researchers test evaporative coolers across Iraqi summer conditions and find they can hold thermal comfort while cutting AC energy use sharply — the kind of low-tech adaptation that scales without grid expansion. Lead with the Iraqi field readings, not the abstract: this is engineering for 50°C cities where conventional AC has become a single-point grid failure mode. The reader is in Karachi or Lahore reading about a heatwave; tell them what works.",
+      "conceptUris": []
+    },
+    {
+      "id": "craig-venter-synthetic-biology-fifteen-year-audit",
+      "label": "Synthetic biology promised to rewrite life — with the death of its pioneer J. Craig Venter, how close are scientists?",
+      "firstSeen": "2026-05-03T17:08:17.215Z",
+      "lastCovered": "2026-05-03T17:08:17.215Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-03-craig-venter-synthetic-biology-fifteen-year-audit"
+      ],
+      "eventUri": null,
+      "summary": "Venter's 2010 synthetic-genome cell promised programmable life — fifteen years on, what was actually built? Lead with the gap between the 2010 announcement and current reality: minimal synthetic genomes exist in lab strains but the 'design organisms from scratch' future has not arrived; the bottleneck is genome-design tooling, not DNA synthesis cost. Use Venter's death as the occasion to audit a field, not eulogize it. Reader is technically literate and wants the honest scorecard.",
+      "conceptUris": []
+    },
+    {
+      "id": "xbat-shield-ai-hivemind-autonomous-fighter-drone",
+      "label": "Could The X-BAT Stealth Fighter Drone Change The Air Combat Game?",
+      "firstSeen": "2026-05-03T17:08:17.215Z",
+      "lastCovered": "2026-05-03T17:08:17.215Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-03-xbat-shield-ai-hivemind-autonomous-fighter-drone"
+      ],
+      "eventUri": null,
+      "summary": "Shield AI's X-BAT pairs a thrust-vectoring GE engine with the Hivemind autonomous 'pilot' — no human in the cockpit, no runway needed. Lead with what's new in the loop: the AI is the pilot of record for combat maneuvering, not a co-pilot or weapons-officer assistant. The angle for a developer reader is the verification problem — how does any air force certify a closed-loop neural pilot for live-fire engagement, and what happens to rules-of-engagement when the kill chain is fully software-mediated.",
+      "conceptUris": []
+    },
+    {
+      "id": "methanol-synthesis-catalyst-co2-shipping-fuel",
+      "label": "Nature Nanotechnology — Cooperative interface drives methanol synthesis",
+      "firstSeen": "2026-05-03T17:08:17.215Z",
+      "lastCovered": "2026-05-03T17:08:17.215Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-03-methanol-synthesis-catalyst-co2-shipping-fuel"
+      ],
+      "eventUri": null,
+      "summary": "A new catalyst paper shows a cooperative metal-oxide interface dropping the energy barrier for methanol synthesis from CO2 — relevant because methanol is the e-fuel pathway shipping is currently betting on. Lead with the chain-of-consequence: cheaper green methanol means container shipping (Maersk, CMA CGM) can decarbonize without waiting for ammonia infrastructure. The reader is technical; explain that the structural shift is the catalyst pairing, not the molecule, and that this is a step toward gigaton-scale CO2 conversion that has been stuck on selectivity-vs-yield tradeoffs for a decade.",
+      "conceptUris": []
+    },
+    {
       "id": "israel-f35-f15ia-lockheed-boeing-fourth-squadron-gaza",
       "label": "Israel to acquire F-35, F-15IA jets amid plans to resume Gaza genocide",
       "firstSeen": "2026-05-03T12:06:23.886Z",
       "lastCovered": "2026-05-03T12:06:23.886Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-03-israel-f35-f15ia-lockheed-boeing-fourth-squadron-gaza"
@@ -33,7 +220,7 @@
       "lastCovered": "2026-05-03T12:06:23.886Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-03-ukraine-drones-primorsk-baltic-oil-terminal-1m-bpd"
@@ -58,7 +245,7 @@
       "lastCovered": "2026-05-03T12:06:23.886Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-03-nigeria-summons-south-africa-xenophobia-odumegwu-ojukwu"
@@ -74,7 +261,7 @@
       "lastCovered": "2026-05-03T12:06:23.886Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-03-ukraine-shadow-fleet-novorossiysk-tankers-sanctions-evasion"
@@ -99,7 +286,7 @@
       "lastCovered": "2026-05-03T12:06:23.886Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-03-channel-crossing-sudanese-women-boulogne-deaths"
@@ -124,7 +311,7 @@
       "lastCovered": "2026-05-03T12:06:23.886Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-03-nigeria-fuel-price-fct-car-owners-public-transport"
@@ -140,7 +327,7 @@
       "lastCovered": "2026-05-03T12:06:23.886Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-03-living-plastic-bacterial-self-destruct-six-days-acs"
@@ -156,7 +343,7 @@
       "lastCovered": "2026-05-03T12:06:23.886Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-03-pakistan-passive-cooling-urban-heat-island-ac-trap"
@@ -172,7 +359,7 @@
       "lastCovered": "2026-05-03T12:06:23.886Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-03-south-africa-whatsapp-ai-hearing-loss-screening-pretoria"
@@ -188,7 +375,7 @@
       "lastCovered": "2026-05-03T12:06:23.886Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-01-ai-water-use-myth-california-datacenter-cooling"
@@ -204,7 +391,7 @@
       "lastCovered": "2026-05-03T12:06:23.886Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-03-india-galaxeye-drishti-optosar-falcon9-all-weather"
@@ -229,7 +416,7 @@
       "lastCovered": "2026-05-03T08:06:55.133Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-02-peru-probes-trafficking-of-citizens-to-fight-for-russia-in-u"
@@ -254,7 +441,7 @@
       "lastCovered": "2026-05-03T08:06:55.133Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-03-narges-mohammadi-zanjan-prison-cardiac-crisis-hospitalized"
@@ -276,7 +463,7 @@
       "lastCovered": "2026-05-03T08:06:55.133Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-03-pakistan-bar-councils-judicial-transfer-punitive"
@@ -292,7 +479,7 @@
       "lastCovered": "2026-05-03T08:06:55.133Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-01-saudi-arabia-gdp-q1-contraction-iran-conflict"
@@ -308,7 +495,7 @@
       "lastCovered": "2026-05-03T08:06:55.133Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-03-tamil-nadu-lpg-hostel-rent-hike-may5"
@@ -324,7 +511,7 @@
       "lastCovered": "2026-05-03T08:06:55.133Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-03-delhi-delivery-agent-flyover-death-gig-economy"
@@ -340,7 +527,7 @@
       "lastCovered": "2026-05-03T08:06:55.133Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-01-china-cambrian-fossils-half-new-species"
@@ -356,7 +543,7 @@
       "lastCovered": "2026-05-03T08:06:55.133Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-01-china-clean-tech-surge-fossil-fuels-forest-loss-debrief"
@@ -372,7 +559,7 @@
       "lastCovered": "2026-05-03T08:06:55.133Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-01-ti-84-evo-graphing-calculator-monopoly"
@@ -388,7 +575,7 @@
       "lastCovered": "2026-05-03T08:06:55.133Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-01-ai-battlefield-decision-support-targeting-automation"
@@ -404,7 +591,7 @@
       "lastCovered": "2026-05-03T04:04:39.105Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-03-trump-iran-paid-big-enough-price-peace-proposal-rejection"
@@ -426,7 +613,7 @@
       "lastCovered": "2026-05-03T04:04:39.105Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-03-mali-insurgency-russia-wagner-africa-corps-sahel"
@@ -442,7 +629,7 @@
       "lastCovered": "2026-05-03T04:04:39.105Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-03-japan-sdf-djibouti-hormuz-deployment-middle-east"
@@ -458,7 +645,7 @@
       "lastCovered": "2026-05-03T04:04:39.105Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-03-north-korea-workers-party-congress-medium-term-plan"
@@ -474,7 +661,7 @@
       "lastCovered": "2026-05-03T04:04:39.105Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-03-pakistan-foreign-investors-exit-t-bills-iran-war"
@@ -490,7 +677,7 @@
       "lastCovered": "2026-05-03T04:04:39.105Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-03-north-macedonia-russian-gas-imports-zykov-tass"
@@ -506,7 +693,7 @@
       "lastCovered": "2026-05-03T04:04:39.105Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-03-delhi-vivek-vihar-shahdara-fire-building-code"
@@ -528,7 +715,7 @@
       "lastCovered": "2026-05-03T04:04:39.105Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-03-ai-chatbot-sentience-claims-induced-delusions-bbc"
@@ -544,7 +731,7 @@
       "lastCovered": "2026-05-03T04:04:39.105Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-03-arsenic-exposure-dna-methylation-marker-toxicity-screening"
@@ -560,7 +747,7 @@
       "lastCovered": "2026-05-03T04:04:39.105Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-03-bitcoin-ecash-fork-sztorc-airdrop-developer-warning"
@@ -576,7 +763,7 @@
       "lastCovered": "2026-05-03T04:04:39.105Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-03-uber-claude-code-2026-ai-budget-burn-rate"
@@ -592,7 +779,7 @@
       "lastCovered": "2026-05-02T22:07:49.811Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-02-oil-prices-now-determined-by-trump-s-mood-slovak-pm-fico"
@@ -616,7 +803,7 @@
       "lastCovered": "2026-05-02T22:07:49.811Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-02-two-killed-in-russian-attack-on-bus-in-kherson"
@@ -640,7 +827,7 @@
       "lastCovered": "2026-05-02T22:07:49.811Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-02-iran-handed-over-roadmap-to-reach-agreement-to-the-us-news-a"
@@ -656,7 +843,7 @@
       "lastCovered": "2026-05-02T22:07:49.811Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-01-new-lawsuit-do-we-have-a-right-to-know-we-re-being-surveille"
@@ -672,7 +859,7 @@
       "lastCovered": "2026-05-02T22:07:49.811Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-04-30-the-hidden-costs-of-asia-s-data-center-rush"
@@ -688,7 +875,7 @@
       "lastCovered": "2026-05-02T22:07:49.811Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-02-brazil-s-central-bank-bans-stablecoin-and-crypto-settlement"
@@ -704,7 +891,7 @@
       "lastCovered": "2026-05-02T22:07:49.811Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-02-adam-not-satoshi-back-is-at-peace-with-wall-street-crypto-er"
@@ -729,7 +916,7 @@
       "lastCovered": "2026-05-02T22:07:49.811Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-02-murad-urges-public-to-take-precautionary-measures-amid-heatw"
@@ -745,7 +932,7 @@
       "lastCovered": "2026-05-02T22:07:49.811Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-02-canada-proposes-poet-mission-to-hunt-earth-sized-planets"
@@ -761,7 +948,7 @@
       "lastCovered": "2026-05-02T22:07:49.811Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-02-interpreting-rare-missense-variants-in-abcb4-using-acmg-reco"
@@ -777,7 +964,7 @@
       "lastCovered": "2026-05-02T22:07:49.811Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-02-google-stopped-its-campaign-to-build-america-s-next-gen-dron"
@@ -793,7 +980,7 @@
       "lastCovered": "2026-05-02T22:07:49.811Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-01-uae-organizations-among-most-advanced-in-ai-deployment-with"
@@ -809,7 +996,7 @@
       "lastCovered": "2026-05-02T22:07:49.811Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-02-a-compact-and-interpretable-multi-source-framework-for-heter"
@@ -825,7 +1012,7 @@
       "lastCovered": "2026-05-03T08:06:55.133Z",
       "coverageCount": 3,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "developing",
       "articles": [
         "2026-05-01-grok-4-3-xai-frontier-model-release",
@@ -847,7 +1034,7 @@
       "lastCovered": "2026-05-02T17:06:31.915Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-02-japan-vietnam-takaichi-energy-critical-minerals-agreement"
@@ -872,7 +1059,7 @@
       "lastCovered": "2026-05-02T17:06:31.915Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-02-pakistan-kp-jirga-drone-attacks-federal-talks-afridi"
@@ -888,7 +1075,7 @@
       "lastCovered": "2026-05-02T17:06:31.915Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-02-gaza-flotilla-israeli-prison-detention-abuse-testimony"
@@ -904,7 +1091,7 @@
       "lastCovered": "2026-05-02T17:06:31.915Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-02-india-sarv-shakti-lpg-tanker-hormuz-transit-visakhapatnam"
@@ -929,7 +1116,7 @@
       "lastCovered": "2026-05-02T17:06:31.915Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-02-kelp-dao-292m-defi-exploit-institutional-readiness"
@@ -945,7 +1132,7 @@
       "lastCovered": "2026-05-02T17:06:31.915Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-02-denim-rinse-water-reuse-circular-textile-bangladesh-pakistan"
@@ -961,7 +1148,7 @@
       "lastCovered": "2026-05-02T17:06:31.915Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-01-iraq-dark-fiber-hyperscaler-oil-pipeline-cable-resilience"
@@ -977,7 +1164,7 @@
       "lastCovered": "2026-05-02T17:06:31.915Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-02-russia-oil-exports-keep-flowing-despite-ukrainian-attacks"
@@ -1002,7 +1189,7 @@
       "lastCovered": "2026-05-02T17:06:31.915Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-02-first-evidence-of-allexiviruses-in-allium-plants-in-ukraine"
@@ -1018,190 +1205,13 @@
       "lastCovered": "2026-05-02T17:06:31.915Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-02-this-personality-trait-makes-dreams-more-bizarre-scientists"
       ],
       "eventUri": null,
       "summary": "[Auto-backfill for tech floor] Scientists analyzed thousands of self-reported dreams and discovered that our sleeping visions are influenced by personality traits and external events, such as the pandemic.",
-      "conceptUris": []
-    },
-    {
-      "id": "saudi-arabia-haj-minimum-age-15-pilgrim-restrictions",
-      "label": "Saudi Arabia sets minimum age for Haj pilgrims at 15 years",
-      "firstSeen": "2026-05-02T12:05:37.024Z",
-      "lastCovered": "2026-05-02T12:05:37.024Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-02-saudi-arabia-haj-minimum-age-15-pilgrim-restrictions"
-      ],
-      "eventUri": null,
-      "summary": "Saudi Arabia's religious affairs ministry has barred any pilgrim under 15 from boarding a Haj flight, a quiet but significant tightening of access to the obligation that affects every Muslim country. Lead with the practical consequence — families with younger children must defer or split travel — and place it in the recent pattern of Saudi rationing of Haj quotas and visas as crowd-management infrastructure strains.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Pilgrim",
-        "http://en.wikipedia.org/wiki/Saudi_Arabia",
-        "http://en.wikipedia.org/wiki/Hijri_year"
-      ]
-    },
-    {
-      "id": "uk-uyghur-genocide-recognition-five-years-no-policy",
-      "label": "5 Years Since UK Parliament Recognized the Uyghur Genocide, There's Been Little Policy Action",
-      "firstSeen": "2026-05-02T12:05:37.024Z",
-      "lastCovered": "2026-05-02T12:05:37.024Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-01-uk-uyghur-genocide-recognition-five-years-no-policy"
-      ],
-      "eventUri": null,
-      "summary": "Five years after the UK Commons unanimously declared China's treatment of the Uyghurs a genocide, almost no enforcement followed — no sanctions regime targeting Xinjiang officials, no import ban on cotton or polysilicon. Lead with the gap between recognition and action; the structural lesson is that parliamentary genocide declarations without trade or sanctions tools are theatre. Useful comparison frame for readers tracking the parallel debate over Gaza recognitions.",
-      "conceptUris": []
-    },
-    {
-      "id": "russia-nicaragua-military-cooperation-ratification-putin",
-      "label": "Russia ratifies military cooperation agreement with Nicaragua",
-      "firstSeen": "2026-05-02T12:05:37.024Z",
-      "lastCovered": "2026-05-02T12:05:37.024Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-02-russia-nicaragua-military-cooperation-ratification-putin"
-      ],
-      "eventUri": null,
-      "summary": "Putin signed the ratification of a Russia-Nicaragua military cooperation accord, formalising a hemispheric foothold in the Sandinista-led Caribbean state. Lead with the geographic fact: Russian military presence ratified within 1,500km of the US Gulf Coast, signed during the Iran war when US naval attention is fixed on Hormuz. Note this is the document Russia and Nicaragua first inked in 2022; ratification now is the political signal.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Nicaragua",
-        "http://en.wikipedia.org/wiki/Vladimir_Putin"
-      ]
-    },
-    {
-      "id": "iran-protracted-war-economic-sustainability-rial-fx",
-      "label": "Can Iran economically sustain a protracted war?",
-      "firstSeen": "2026-05-02T12:05:37.024Z",
-      "lastCovered": "2026-05-02T12:05:37.024Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-01-iran-protracted-war-economic-sustainability-rial-fx"
-      ],
-      "eventUri": null,
-      "summary": "Gulf-based analysis of Iran's wartime fiscal position: oil revenue continues despite the Hormuz disruption, but the rial, FX reserves, and subsidy bill are the load-bearing variables. Lead with the mechanism — Iran's oil keeps moving through the shadow fleet (a story we covered) but the regime's ability to keep paying salaries, subsidies, and the IRGC depends on FX it cannot freely access. Frame this as the financial counterpart to the oil-physical resilience story.",
-      "conceptUris": []
-    },
-    {
-      "id": "hormuz-asia-food-energy-tractors-fertiliser-diesel",
-      "label": "When the tankers stop, the tractors stop",
-      "firstSeen": "2026-05-02T12:05:37.024Z",
-      "lastCovered": "2026-05-02T12:05:37.024Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-01-hormuz-asia-food-energy-tractors-fertiliser-diesel"
-      ],
-      "eventUri": null,
-      "summary": "Asia consumes 80% of oil and gas flowing through the Strait of Hormuz, and the same fuel runs the diesel pumps, fertiliser plants, and tractors that feed the continent. Lead with the systemic insight: the war's food crisis and energy crisis are not parallel — they are the same crisis, propagated through agricultural inputs. The educated reader gets a structural framework that explains why South Asia and Southeast Asia will feel the war in food prices before petrol prices.",
-      "conceptUris": []
-    },
-    {
-      "id": "india-green-steel-scrap-shortage-electric-arc",
-      "label": "India needs more scrap to boost green steelmaking. Can it find it?",
-      "firstSeen": "2026-05-02T12:05:37.024Z",
-      "lastCovered": "2026-05-02T12:05:37.024Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-01-india-green-steel-scrap-shortage-electric-arc"
-      ],
-      "eventUri": null,
-      "summary": "India is the world's #2 steel producer; decarbonising via electric-arc furnaces requires steel scrap, which India does not have at scale because it is a young consuming economy with little end-of-life infrastructure to demolish. Lead with the bind: a country can want green steel and still lack the metabolic mass to make it. Reader takeaway is that climate transitions are constrained by stocks (cumulative built environment), not just flows.",
-      "conceptUris": []
-    },
-    {
-      "id": "nepal-climate-resilience-education-rainwater-forest-fires",
-      "label": "Educating for climate resilience: Anil Adhikari on conservation and community action in Nepal",
-      "firstSeen": "2026-05-02T12:05:37.024Z",
-      "lastCovered": "2026-05-02T12:05:37.024Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-01-nepal-climate-resilience-education-rainwater-forest-fires"
-      ],
-      "eventUri": null,
-      "summary": "A Nepali educator on how school programs use storytelling to link wildlife conservation with concrete climate adaptation — rainwater harvesting, forest-fire reduction. Lead with the substantive content of the curriculum, not the human-interest framing. Reader takeaway: climate resilience in Himalayan communities is being built bottom-up through schools, while donor frameworks remain top-down.",
-      "conceptUris": []
-    },
-    {
-      "id": "sheremetyevo-airport-handles-flights-after-coordination-with",
-      "label": "Sheremetyevo airport handles flights after coordination with government",
-      "firstSeen": "2026-05-02T12:05:37.024Z",
-      "lastCovered": "2026-05-02T12:05:37.024Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-02-sheremetyevo-airport-handles-flights-after-coordination-with"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for economy floor] It noted that adjustments to the flight schedule are possible\n\nMOSCOW, May 2. /TASS/. Temporary restrictions have been imposed on the use of airspace in the Sheremetyevo airport area, and the hub accepts and dispatches flights in coordination with the government, the Federal Air Transport Agency sai",
-      "conceptUris": []
-    },
-    {
-      "id": "subnautica-2-cinematic-trailer-what-you-missed",
-      "label": "Subnautica 2 Cinematic Trailer: What You Missed",
-      "firstSeen": "2026-05-02T12:05:37.024Z",
-      "lastCovered": "2026-05-02T12:05:37.024Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-04-30-subnautica-2-cinematic-trailer-what-you-missed"
-      ],
-      "eventUri": "eng-11615778",
-      "summary": "[Auto-backfill for tech floor] Subnautica 2 finally has a concrete release date for its early access, and it's very soon.\n\nSubnautica 2 will enter early access on PC and Xbox Series X|S on May 14, 2026, at 8am PT. The game will cost $29.99, making for a very accessible price point in a crowded month for games. The deep-sea game w",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Subnautica",
-        "http://en.wikipedia.org/wiki/Early_access",
-        "http://en.wikipedia.org/wiki/Krafton",
-        "http://en.wikipedia.org/wiki/Sequel",
-        "http://en.wikipedia.org/wiki/Steam_(service)",
-        "http://en.wikipedia.org/wiki/Personal_computer",
-        "http://en.wikipedia.org/wiki/Unknown_Worlds_Entertainment",
-        "http://en.wikipedia.org/wiki/Xbox_Series_X_and_Series_S"
-      ]
-    },
-    {
-      "id": "a-membrane-modulated-chemoenzymatic-dynamic-kinetic-resoluti",
-      "label": "A membrane-modulated chemoenzymatic dynamic kinetic resolution for the synthesis of chiral phthalidyl esters - Nature Communications",
-      "firstSeen": "2026-05-02T12:05:37.024Z",
-      "lastCovered": "2026-05-02T12:05:37.024Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-02-a-membrane-modulated-chemoenzymatic-dynamic-kinetic-resoluti"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for tech floor] We are providing an unedited version of this manuscript to give early access to its findings. Before final publication, the manuscript will undergo further editing. Please note there may be errors present which affect the content, and all legal disclaimers apply.\n\nChemoenzymatic dynamic kinetic reso",
       "conceptUris": []
     }
   ]

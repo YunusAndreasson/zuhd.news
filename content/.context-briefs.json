@@ -105544,5 +105544,1167 @@
     "label": "Russia's Shadow Fleet",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-05-03-adb-70bn-asia-pacific-grid-broadband-2035": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY GRIDS DON'T CONNECT",
+        "body": "Electricity grids are synchronous machines — every generator on the network spins in lockstep at 50 or 60 Hz. Connecting two grids means matching frequency, voltage, and phase to the millisecond, or installing expensive HVDC converter stations that decouple them. Politics is the easier problem; physics is the binding one.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *synchronous interconnection* — and most cross-border ties in Asia are actually **HVDC back-to-back** stations because the alternative requires near-total operational integration."
+          }
+        ]
+      },
+      {
+        "heading": "PAKISTAN'S SURPLUS PARADOX",
+        "body": "Pakistan has roughly 46 GW of installed capacity against peak demand near 30 GW. Yet it suffers chronic loadshedding because the transmission network can't move power from where it's generated (south, on imported LNG and coal) to where it's needed (north, in Punjab industrial belt). Surplus on paper, deficit at the meter.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.399884,
+              278.399884,
+              279.05,
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775
+            ],
+            "periods": [
+              "Apr 4",
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE CASA-1000 PRECEDENT",
+        "body": "The Central Asia-South Asia 1000 MW transmission line — Tajikistan and Kyrgyzstan summer hydro surplus to Afghanistan and Pakistan — has been under construction since 2016. Originally due 2018, it remains incomplete a decade later. Cross-border power lines die in the last mile: a single insurgent attack on a pylon, a tariff dispute, a coup.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TJ",
+              "KG",
+              "AF",
+              "PK"
+            ],
+            "label": "CASA-1000 corridor",
+            "caption": "~1,200 km from Datka substation to Peshawar"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE ADB ACTUALLY IS",
+        "body": "Founded 1966 in Manila, modeled on the World Bank but Asia-led — Japan and the United States hold the largest shareholdings, and the presidency has been Japanese since founding. It lends at concessional rates against sovereign guarantees, which is why its infrastructure pledges materialize where commercial banks won't lend.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "World Bank",
+                "value": "~$300bn",
+                "weight": 300
+              },
+              {
+                "label": "ADB",
+                "value": "~$150bn",
+                "weight": 150
+              },
+              {
+                "label": "AIIB",
+                "value": "~$100bn",
+                "weight": 100
+              },
+              {
+                "label": "EBRD",
+                "value": "~$35bn",
+                "weight": 35
+              },
+              {
+                "label": "AfDB",
+                "value": "~$30bn",
+                "weight": 30
+              }
+            ],
+            "label": "multilateral development banks by capital base"
+          }
+        ]
+      },
+      {
+        "heading": "THE BRI COUNTERWEIGHT",
+        "body": "The ADB pledge sits alongside China's Belt and Road infrastructure lending, which since 2013 has financed comparable cross-border energy and digital projects across the same geography. Recipient governments increasingly play the two against each other — concessional ADB terms versus faster Chinese execution and fewer governance conditions.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which institution holds the largest shareholding in the ADB?",
+            "options": [
+              "China",
+              "Japan",
+              "United States",
+              "India"
+            ],
+            "correct": 1,
+            "explanation": "Japan and the US are tied as the largest shareholders at ~15.6% each, but the ADB presidency has been Japanese since the bank's 1966 founding."
+          }
+        ]
+      },
+      {
+        "heading": "THE 200M USER FIGURE",
+        "body": "Roughly 2.6 billion people globally remain offline, with the largest unconnected populations in South and Southeast Asia. The marginal cost of the last user is the highest — rural fiber, mountainous terrain, low ARPU — which is why connectivity gaps persist even where backbone capacity exists. Subsidized fiber is the only economics that closes the gap."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-03"
+    ],
+    "generatedAt": "2026-05-03T17:30:28.115Z",
+    "label": "Cross-Border Grids & Multilateral Banks",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-03-craig-venter-synthetic-biology-fifteen-year-audit": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 2010 MILESTONE",
+        "body": "Venter's team chemically synthesized the 1.08-million-base-pair genome of Mycoplasma mycoides, transplanted it into an emptied bacterial cell of a different species, and watched it boot up. The cell replicated. It was the first organism whose entire genetic code had been written on a computer.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The team embedded **watermarks** in the synthetic DNA — encoded quotes from Joyce, Feynman, and Oppenheimer — so any descendant cell could be traced to its synthetic origin."
+          }
+        ]
+      },
+      {
+        "heading": "READ VS. WRITE VS. DESIGN",
+        "body": "Three capabilities, three different curves. Reading DNA (sequencing) collapsed in cost faster than Moore's Law. Writing DNA (synthesis) followed, more slowly. Designing DNA — knowing which sequence will produce a desired behavior — has barely moved. The bottleneck is no longer the printer; it is the blueprint.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Read (sequence)",
+                "value": "~$0.01 / base",
+                "tone": "favorable",
+                "weight": 100
+              },
+              {
+                "label": "Write (synthesize)",
+                "value": "~$0.05 / base",
+                "tone": "neutral",
+                "weight": 40
+              },
+              {
+                "label": "Design (predict function)",
+                "value": "largely unsolved",
+                "tone": "unfavorable",
+                "weight": 3
+              }
+            ],
+            "label": "the three curves since 2003"
+          }
+        ]
+      },
+      {
+        "heading": "THE MINIMAL CELL",
+        "body": "In 2016 Venter's group built JCVI-syn3.0 — a stripped-down organism with just 473 genes, the smallest genome of any free-living cell. Roughly a third of those genes have unknown function. Even the simplest life we can build contains machinery we cannot yet read.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Of the 473 genes in the minimal synthetic cell JCVI-syn3.0, roughly how many have unknown function?",
+            "options": [
+              "Fewer than 10",
+              "Around 50",
+              "Around 150",
+              "Nearly all of them"
+            ],
+            "correct": 2,
+            "explanation": "About 149 genes — a third — are essential for life but their biochemical role is unknown. We can't fully describe the simplest organism we've built."
+          }
+        ]
+      },
+      {
+        "heading": "WHY COMMERCIAL ENGINEERING STALLED",
+        "body": "The dream was designer microbes producing fuels, drugs, and materials on demand. The reality: cells fight back. Engineered pathways drain the host's metabolism, mutations disable inserted genes within generations, and emergent interactions between circuits are unpredictable. Biology is not a programming language — it is an ecosystem inside every cell."
+      },
+      {
+        "heading": "THE AI INFLECTION",
+        "body": "Protein-structure predictors like AlphaFold (2021) and genome-scale language models (2024 onward) are now attacking the design gap directly. The bet is that deep learning can learn the sequence-to-function mapping that decades of bottom-up molecular biology could not. If it works, Venter's 2010 demonstration becomes the prelude rather than the peak.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1995",
+                "label": "First full bacterial genome sequenced (Venter)"
+              },
+              {
+                "year": "2003",
+                "label": "Human Genome Project completed"
+              },
+              {
+                "year": "2010",
+                "label": "First synthetic-genome cell (Venter)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2016",
+                "label": "JCVI-syn3.0 minimal cell"
+              },
+              {
+                "year": "2021",
+                "label": "AlphaFold solves protein folding"
+              },
+              {
+                "year": "2024",
+                "label": "Genome-scale AI design models emerge"
+              }
+            ],
+            "label": "the synthetic biology arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-03T17:30:58.626Z",
+    "label": "Synthetic Genomes & the Design Gap",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-03-iran-mothballing-oil-wells-bessent-blockade": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 'SHUTTING IN' MEANS",
+        "body": "Oil wells are not taps. When you stop production, you must seal the wellhead, depressurize the lines, and often inject inhibitors to prevent corrosion and paraffin buildup. Restarting a shut-in field can take weeks to months — and a fraction of wells never recover their original flow rate.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is **deliverability loss** — the gap between a field's pre-shutdown rate and what it can produce after restart. For mature fields it commonly runs **10–30%**, occasionally higher."
+          }
+        ]
+      },
+      {
+        "heading": "WHY STORAGE FILLS FAST",
+        "body": "Iran's onshore crude storage capacity is finite — roughly 30–40 million barrels of usable tank farm space, plus a floating fleet of NITC tankers used as offshore storage. At normal export rates of ~1.5 million barrels per day, blockaded storage saturates in weeks, not months."
+      },
+      {
+        "heading": "THE KHARG BOTTLENECK",
+        "body": "Roughly 90% of Iranian crude exports load at a single facility: Kharg Island, in the northern Gulf. Iran built smaller terminals at Sirri and Lavan during the Tanker War for redundancy, but never matched Kharg's throughput. A blockade enforced at one chokepoint shuts almost the entire export system.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "SA",
+              "AE",
+              "QA",
+              "BH",
+              "KW",
+              "OM"
+            ],
+            "label": "Iran's export geography",
+            "markers": [
+              {
+                "lat": 29.2333,
+                "lng": 50.3167,
+                "label": "Kharg Island terminal"
+              },
+              {
+                "lat": 25.9,
+                "lng": 54.5,
+                "label": "Sirri Island"
+              },
+              {
+                "lat": 26.8167,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SPARE-CAPACITY BUFFER",
+        "body": "Global spare capacity — barrels producers could bring online within 90 days — usually sits around 3-4 million bpd, almost entirely held by Saudi Arabia and the UAE. Iran's full export volume is roughly 1.5 million bpd. On paper, Riyadh and Abu Dhabi can backfill — which is why Bessent can credibly forecast falling prices.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "~3.0 mbpd",
+                "cc": "SA",
+                "weight": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "UAE",
+                "value": "~1.0 mbpd",
+                "cc": "AE",
+                "weight": 1,
+                "tone": "favorable"
+              },
+              {
+                "label": "Iraq",
+                "value": "~0.3 mbpd",
+                "cc": "IQ",
+                "weight": 0.3,
+                "tone": "neutral"
+              },
+              {
+                "label": "Kuwait",
+                "value": "~0.2 mbpd",
+                "cc": "KW",
+                "weight": 0.2,
+                "tone": "neutral"
+              }
+            ],
+            "label": "who could backfill Iran's 1.5 mbpd"
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR LESSON",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial vessels in the Gulf. Oil prices spiked briefly but markets adapted within months — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson planners took: physical disruption is easier to threaten than to sustain, and markets reprice down once the workaround is visible.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "During the 1984–88 Tanker War, roughly how many commercial ships were attacked in the Persian Gulf?",
+            "options": [
+              "Around 50",
+              "Around 150",
+              "Over 400",
+              "Over 1,000"
+            ],
+            "correct": 2,
+            "explanation": "Iran and Iraq attacked more than 400 vessels between 1984 and 1988 — yet oil prices stabilized within months as tankers were reflagged and escorted."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL FRAME",
+        "body": "A naval blockade is, under customary international law, an act of war — codified in the 1909 Declaration of London and the San Remo Manual. Calling an interdiction a 'sanctions enforcement' or 'quarantine' (as Kennedy did with Cuba in 1962) is the diplomatic device used to avoid the legal threshold. Tehran's 'state piracy' framing is a counter-claim that the action lacks UN Security Council authorization."
+      }
+    ],
+    "generatedAt": "2026-05-03T17:31:31.310Z",
+    "label": "Shutting in Oil Wells",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-03-iraq-evaporative-cooling-hot-arid-thermal-comfort": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PHYSICS",
+        "body": "Water absorbs about 2,260 kilojoules per kilogram when it evaporates — energy pulled directly from the surrounding air. A swamp cooler exploits this latent heat: dry hot air passes over a wet pad, water phase-changes to vapor, and the air emerges cooler by 10–15°C in arid conditions.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The same principle is why sweat cools the body and why a *qanat*-fed wind tower in old Yazd or Baghdad could drop indoor temperatures 20°C below the courtyard outside — without a single watt of electricity."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ONLY IN DRY AIR",
+        "body": "Evaporative cooling works in inverse proportion to humidity. At 20% relative humidity, the air can absorb enormous amounts of water vapor and cool sharply. At 70%, it's already near saturation — the pad gets wet, the air doesn't get cool. This is why the technology fails in coastal Karachi or Mumbai but excels in Baghdad, Phoenix, and Riyadh."
+      },
+      {
+        "heading": "THE ENERGY ARITHMETIC",
+        "body": "A residential swamp cooler draws roughly 100–300 watts — the load of a few light bulbs. A comparable air conditioner draws 1,500–3,500 watts. Across an Iraqi summer, the gap is the difference between a grid that holds and one that collapses at peak load.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Swamp cooler",
+                "value": "~200 W",
+                "tone": "favorable",
+                "weight": 200
+              },
+              {
+                "label": "Window AC",
+                "value": "~1,200 W",
+                "tone": "neutral",
+                "weight": 1200
+              },
+              {
+                "label": "Central AC",
+                "value": "~3,500 W",
+                "tone": "unfavorable",
+                "weight": 3500
+              }
+            ],
+            "label": "cooling a typical room, peak draw"
+          }
+        ]
+      },
+      {
+        "heading": "IRAQ'S GRID PROBLEM",
+        "body": "Iraq has spent over $80 billion on its electricity sector since 2003 and still imports roughly a third of its summer power from Iran. Peak demand exceeds supply by 30–40% in July and August; rolling blackouts are routine. Any cooling technology that cuts per-household draw by 80% is not a comfort upgrade — it is a grid survival strategy.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IQ",
+              "IR",
+              "KW",
+              "SA",
+              "SY",
+              "TR"
+            ],
+            "label": "Iraq's three study cities",
+            "caption": "Basrah's Gulf humidity caps evaporative gains; Mosul's drier air maximises them.",
+            "markers": [
+              {
+                "lat": 33.3152,
+                "lng": 44.3661,
+                "label": "Baghdad"
+              },
+              {
+                "lat": 30.5085,
+                "lng": 47.7804,
+                "label": "Basrah"
+              },
+              {
+                "lat": 36.34,
+                "lng": 43.13,
+                "label": "Mosul"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE WATER TRADEOFF",
+        "body": "Evaporative coolers consume 15–40 liters of water per hour of operation. In a country where the Tigris and Euphrates have lost roughly 40% of their flow since the 1970s — driven by Turkish and Iranian upstream dams plus climate-driven drought — water is the binding constraint. The technology trades an electricity problem for a water problem."
+      },
+      {
+        "heading": "THE ANCIENT PRECEDENT",
+        "body": "The wind-catcher (badgir) and qanat-fed cooling systems of Persia and Mesopotamia used the same evaporative principle for over 2,000 years. Excavations at Hatra and traditional courtyard houses in Baghdad's Rusafa district show plastered water basins positioned in the path of prevailing winds — passive air conditioning engineered for a climate the modern grid still struggles with.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does evaporative cooling work in Baghdad but fail in Mumbai?",
+            "options": [
+              "Baghdad has cleaner water",
+              "Baghdad's air is much drier, so it can absorb more water vapor",
+              "Mumbai is hotter, exceeding the cooler's range",
+              "Mumbai's electricity grid blocks the technology"
+            ],
+            "correct": 1,
+            "explanation": "Cooling depends on water evaporating into the air. Humid air is already near saturation and can't absorb more vapor — so the pad gets wet but the air stays hot."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-03T17:32:06.533Z",
+    "label": "Evaporative Cooling & Arid Heat",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-03-israel-strikes-north-litani-zawtar-ceasefire-breach": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LITANI AS BORDER",
+        "body": "The Litani River runs entirely within Lebanon but has functioned as a de facto military border since 1978. UN Resolution 425 demanded Israeli withdrawal to it; Resolution 1701 in 2006 demanded Hezbollah withdraw north of it. Neither side has fully complied in nearly two decades.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL",
+              "SY"
+            ],
+            "label": "south of the Litani",
+            "markers": [
+              {
+                "lat": 33.2733,
+                "lng": 35.2033,
+                "label": "Litani river mouth"
+              },
+              {
+                "lat": 33.3886,
+                "lng": 35.4869,
+                "label": "Nabatieh"
+              },
+              {
+                "lat": 33.3625,
+                "lng": 35.4789,
+                "label": "Zawtar"
+              },
+              {
+                "lat": 33.2664,
+                "lng": 35.4014,
+                "label": "Taybeh"
+              },
+              {
+                "lat": 33.5631,
+                "lng": 35.3719,
+                "label": "Saida"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "RESOLUTION 1701",
+        "body": "The 2006 ceasefire resolution created a buffer zone between the Blue Line and the Litani, patrolled by UNIFIL and the Lebanese Army. Hezbollah was supposed to withdraw all heavy weapons north of the Litani. The resolution had no enforcement mechanism beyond the parties' goodwill — which never materialized.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "UNIFIL has roughly **10,000 peacekeepers** across **~1,060 km²** of southern Lebanon. Their mandate is to *support* the Lebanese Army, not to disarm Hezbollah — a distinction that has hollowed the mission since day one."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DRONES CHANGE THE GROUND",
+        "body": "Hezbollah ambushes that stalled the Israeli advance at Taybeh use small FPV drones costing a few hundred dollars each. They negate the armor advantage that determined every prior Israel-Lebanon ground engagement. The same asymmetry that humbled Russia in Ukraine is now operating on the Blue Line."
+      },
+      {
+        "heading": "THE DISPLACEMENT PATTERN",
+        "body": "Civilians in Nabatieh fleeing toward Saida are retracing the route of the 2006 war and the 1982 invasion before it. South Lebanon's Shia population has been displaced northward at least four times in living memory — 1978, 1982, 2006, and 2024. Each cycle deepens the sectarian geography Hezbollah's recruitment depends on.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1978",
+                "label": "Operation Litani"
+              },
+              {
+                "year": "1982",
+                "label": "Invasion, Beirut siege",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2000",
+                "label": "Israeli withdrawal"
+              },
+              {
+                "year": "2006",
+                "label": "34-day war"
+              },
+              {
+                "year": "2024-09",
+                "label": "Ground invasion"
+              },
+              {
+                "year": "2025-04",
+                "label": "Ceasefire line set"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1985",
+                "to": "2000",
+                "label": "South Lebanon occupation",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Israeli operations in south Lebanon"
+          }
+        ]
+      },
+      {
+        "heading": "THE TAIF GHOST",
+        "body": "The 1989 Taif Accord that ended Lebanon's civil war disarmed every militia except Hezbollah, exempted as a 'resistance' against Israeli occupation. When Israel withdrew in 2000, the exemption's logic expired — but the weapons did not. Every Israeli incursion since has retroactively justified the carve-out.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which militia kept its weapons under the 1989 Taif Accord?",
+            "options": [
+              "The Lebanese Forces",
+              "Amal Movement",
+              "Hezbollah",
+              "The PLO"
+            ],
+            "correct": 2,
+            "explanation": "Hezbollah alone was exempted as a 'resistance' force against the then-ongoing Israeli occupation of south Lebanon."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-03T17:32:35.654Z",
+    "label": "The Litani Line & Lebanon's South",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-03-opec-plus-188k-bpd-uae-exit-third-hike": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY CARTELS LEAK",
+        "body": "Every OPEC member faces the same temptation: the cartel works only if everyone restrains output, but each individual member earns more by cheating while others comply. Economists call this the prisoner's dilemma. OPEC's history is a long ledger of quota violations, side deals, and quiet over-production papered over at ministerial meetings.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is the **free-rider problem** — the cheater enjoys the high price the cartel sustains while pocketing the volume the cartel forgoes."
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO-TIER STRUCTURE",
+        "body": "OPEC+ is not one bloc but two. The original OPEC (founded 1960 in Baghdad) is 12 members anchored by Saudi Arabia. The '+' is a 2016 alliance with 10 non-OPEC producers — most importantly Russia. Decisions require both halves to agree, which is why a single defection from either side reverberates through the whole structure.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "~9 mn bpd",
+                "cc": "SA",
+                "weight": 9,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Russia",
+                "value": "~9.5 mn bpd",
+                "cc": "RU",
+                "weight": 9.5,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Iraq",
+                "value": "~4.3 mn bpd",
+                "cc": "IQ",
+                "weight": 4.3,
+                "tone": "neutral"
+              },
+              {
+                "label": "UAE",
+                "value": "~3.2 mn bpd",
+                "cc": "AE",
+                "weight": 3.2,
+                "tone": "neutral"
+              },
+              {
+                "label": "Kuwait",
+                "value": "~2.5 mn bpd",
+                "cc": "KW",
+                "weight": 2.5,
+                "tone": "favorable"
+              },
+              {
+                "label": "Iran",
+                "value": "~3.3 mn bpd",
+                "cc": "IR",
+                "weight": 3.3,
+                "tone": "neutral"
+              }
+            ],
+            "label": "OPEC+ output, mn bpd (2024 est.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE UAE GRIEVANCE",
+        "body": "Quotas are set as a share of historical output. The UAE spent the 2010s building roughly 4 million bpd of nameplate capacity at ADNOC's onshore and offshore fields, but its OPEC quota stayed near 3 million bpd. Abu Dhabi has argued for years that paying for idle capacity makes no economic sense — the May exit is the culmination of that argument, not a surprise."
+      },
+      {
+        "heading": "THE DISCIPLINE CHOICE",
+        "body": "When a cartel cracks, the dominant producer faces a binary: cut deeper to defend the price (and watch market share erode), or open the taps to discipline the defectors (and crash the price short-term). Saudi Arabia chose discipline in 1985 against North Sea producers and again in 2014 against US shale. Each price war ended with the cartel weaker than before.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1973",
+                "label": "OPEC oil embargo"
+              },
+              {
+                "year": "1985",
+                "label": "Saudis flood market",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1986",
+                "label": "Brent collapses to ~$10"
+              },
+              {
+                "year": "2014",
+                "label": "Anti-shale price war"
+              },
+              {
+                "year": "2020",
+                "label": "COVID/Russia price war"
+              },
+              {
+                "year": "2023",
+                "label": "Voluntary cuts begin"
+              },
+              {
+                "year": "2026",
+                "label": "UAE exits, cuts unwind"
+              }
+            ],
+            "label": "Saudi discipline cycles"
+          }
+        ]
+      },
+      {
+        "heading": "THE 188,000 BPD MATH",
+        "body": "188,000 barrels per day is small in absolute terms — under 0.2% of global supply. The signal value is what matters: it's the third consecutive monthly hike unwinding the 2023 voluntary cuts. Markets read the pace, not the volume, as the cartel's resolve."
+      },
+      {
+        "heading": "WHO BREAKS EVEN WHERE",
+        "body": "Saudi Arabia's fiscal breakeven oil price (the level needed to balance its budget) is roughly $90/bbl. The UAE's is closer to $55. That gap is structural — Abu Dhabi's sovereign wealth funds, lower population, and diversified non-oil revenue mean it can tolerate prices that would force Riyadh to draw down reserves or cut Vision 2030 spending.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which OPEC+ producer has the lowest fiscal breakeven oil price?",
+            "options": [
+              "Saudi Arabia",
+              "UAE",
+              "Iraq",
+              "Russia"
+            ],
+            "correct": 1,
+            "explanation": "The UAE's diversified revenue, sovereign wealth funds, and small population give it the lowest fiscal breakeven of the major Gulf producers — which is why it can tolerate the price war exit."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-03T17:33:08.870Z",
+    "label": "OPEC+ & Quota Discipline",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-03-rubio-vatican-pope-leo-trump-feud-cleanup": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SMALLEST SOVEREIGN",
+        "body": "Vatican City is 0.49 square kilometers — smaller than most golf courses — yet exchanges ambassadors with 184 countries. Its statehood was created by the 1929 Lateran Treaty between Mussolini and Pius XI, ending six decades during which popes refused to leave the Vatican after Italy seized the Papal States in 1870.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1870",
+                "label": "Italy seizes Papal States",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1871",
+                "label": "Popes become 'prisoners in the Vatican'"
+              },
+              {
+                "year": "1929",
+                "label": "Lateran Treaty signed with Mussolini"
+              },
+              {
+                "year": "1984",
+                "label": "US restores full diplomatic ties"
+              }
+            ],
+            "label": "how the Vatican became a state"
+          }
+        ]
+      },
+      {
+        "heading": "THE OLDEST DIPLOMATIC SERVICE",
+        "body": "The Holy See's diplomatic corps dates to the 5th century and is the oldest continuously operating in the world. Papal nuncios outrank other ambassadors in most Catholic countries by tradition codified at the 1815 Congress of Vienna — a protocol detail that still governs which envoy speaks first at state functions.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Vatican distinguishes between the **Holy See** (the spiritual government, which conducts diplomacy) and **Vatican City State** (the territorial entity created in 1929). Treaties are signed by the Holy See; the territory is just where it happens to sit."
+          }
+        ]
+      },
+      {
+        "heading": "THE POPE AS GEOPOLITICAL ACTOR",
+        "body": "John Paul II's 1979 visit to Poland is widely credited with accelerating the collapse of the Eastern Bloc — nine days that put 13 million Poles in the streets without a single state institution organizing them. Popes have brokered the 1978 Beagle Channel mediation between Argentina and Chile and the 2014 US-Cuba thaw. Refusing a US base request fits this template, not deviates from it."
+      },
+      {
+        "heading": "WHY SICILY",
+        "body": "Sigonella Naval Air Station in eastern Sicily is the largest US base in the Mediterranean and the closest NATO airfield to Iran outside the Gulf itself. Italy hosts roughly 12,000 US troops under bilateral agreements that require Italian government approval for combat operations launched from Italian soil — a clause invoked rarely but binding when invoked.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IT",
+              "VA",
+              "US",
+              "IR"
+            ],
+            "label": "the staging geography",
+            "markers": [
+              {
+                "lat": 37.4017,
+                "lng": 14.9222,
+                "label": "Sigonella NAS"
+              },
+              {
+                "lat": 40.6333,
+                "lng": 17.9333,
+                "label": "Aviano AB"
+              },
+              {
+                "lat": 41.9028,
+                "lng": 12.4534,
+                "label": "Vatican City"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LEO PRECEDENT",
+        "body": "Leo XIII (1878–1903) was the first pope to engage modern industrial politics, issuing Rerum Novarum on labor rights and brokering the 1885 Caroline Islands dispute between Spain and Germany. A pope choosing the regnal name Leo signals continuity with that activist diplomatic tradition — a deliberate choice readable to anyone schooled in the Curia's symbolic vocabulary."
+      },
+      {
+        "heading": "WHO THE READER SHOULD KNOW",
+        "body": "Cardinal Parolin has been Vatican Secretary of State since 2013 and is the institution's lead diplomat — the rough Catholic equivalent of a foreign minister. Tajani leads Italy's Forza Italia and runs the Farnesina. The Rubio-Parolin meeting is the substantive one; the Tajani meeting is protocol.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Marco Rubio",
+                "role": "US Secretary of State",
+                "years": "2025–",
+                "cc": "US"
+              },
+              {
+                "name": "Pietro Parolin",
+                "role": "Vatican Secretary of State",
+                "years": "2013–",
+                "cc": "VA"
+              },
+              {
+                "name": "Antonio Tajani",
+                "role": "Italian Foreign Minister",
+                "years": "2022–",
+                "cc": "IT"
+              },
+              {
+                "name": "Giorgia Meloni",
+                "role": "Italian Prime Minister",
+                "years": "2022–",
+                "cc": "IT"
+              }
+            ],
+            "label": "the cleanup cast"
+          }
+        ]
+      },
+      {
+        "heading": "THE QUIZ",
+        "body": "Diplomatic relations between the US and the Holy See were severed for over a century before Reagan restored them.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In what year did the United States establish full diplomatic relations with the Holy See?",
+            "options": [
+              "1929, after the Lateran Treaty",
+              "1945, after World War II",
+              "1984, under Reagan",
+              "Always — since 1797"
+            ],
+            "correct": 2,
+            "explanation": "Anti-Catholic sentiment in Congress blocked formal ties for 117 years. Reagan restored them in 1984, partly to coordinate on undermining Soviet influence in Eastern Europe."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-03T17:33:46.297Z",
+    "label": "The Vatican as a State",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-03-us-troops-missing-morocco-african-lion-tan-tan": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OLDEST TREATY",
+        "body": "Morocco was the first country to recognize American independence — Sultan Mohammed III opened Moroccan ports to US ships in 1777. The 1786 Treaty of Peace and Friendship is the longest unbroken treaty relationship in US history, still in force today.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1777",
+                "label": "Morocco recognizes US independence",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1786",
+                "label": "Treaty of Peace and Friendship signed"
+              },
+              {
+                "year": "1942",
+                "label": "Operation Torch landings at Casablanca"
+              },
+              {
+                "year": "1956",
+                "label": "Morocco independence from France"
+              },
+              {
+                "year": "2004",
+                "label": "Major Non-NATO Ally designation"
+              },
+              {
+                "year": "2020",
+                "label": "Abraham Accords; US recognizes Western Sahara claim"
+              }
+            ],
+            "label": "the US-Morocco arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT AFRICAN LION IS",
+        "body": "African Lion is AFRICOM's flagship annual exercise — roughly 8,000 troops from 50+ nations training across Morocco, Tunisia, Senegal, and Ghana. It has run yearly since 2002 and is the largest sustained US military presence on the continent outside Djibouti.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MA",
+              "TN",
+              "SN",
+              "GH",
+              "MR"
+            ],
+            "label": "African Lion 2026 footprint",
+            "markers": [
+              {
+                "lat": 28.4378,
+                "lng": -11.1028,
+                "label": "Tan Tan / Cap Draa range"
+              },
+              {
+                "lat": 33.5731,
+                "lng": -7.5898,
+                "label": "Casablanca"
+              },
+              {
+                "lat": 31.6295,
+                "lng": -7.9811,
+                "label": "Marrakech HQ"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY MOROCCO",
+        "body": "Morocco is one of only two African states with **Major Non-NATO Ally** status (Tunisia is the other), granting access to advanced US weapons sales and joint training. The Cap Draa range near Tan Tan offers something rare — vast empty terrain bordering the Atlantic and the disputed Western Sahara, suitable for live-fire and amphibious drills the US can't easily run elsewhere on the continent.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The *Major Non-NATO Ally* designation, created by Congress in 1989, currently covers 19 countries. In Africa, only **Morocco** (2004) and **Tunisia** (2015) hold it."
+          }
+        ]
+      },
+      {
+        "heading": "AFRICOM'S HOMELESS HEADQUARTERS",
+        "body": "US Africa Command was created in 2007 but no African country agreed to host it — Libya's Gaddafi led the rejection, citing sovereignty. AFRICOM still runs from Stuttgart, Germany. Exercises like African Lion are how the command projects presence without basing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Where is US Africa Command headquartered?",
+            "options": [
+              "Djibouti City, Djibouti",
+              "Stuttgart, Germany",
+              "Rabat, Morocco",
+              "Dakar, Senegal"
+            ],
+            "correct": 1,
+            "explanation": "AFRICOM has been based in Stuttgart since its 2007 creation; no African government agreed to host it, despite years of US lobbying."
+          }
+        ]
+      },
+      {
+        "heading": "THE WESTERN SAHARA BACKDROP",
+        "body": "Tan Tan sits 200 km north of the Western Sahara boundary — territory Morocco controls but the UN classifies as non-self-governing. In 2020, the US became the first major power to recognize Moroccan sovereignty over the territory, in exchange for Morocco normalizing ties with Israel under the Abraham Accords. Exercises in this zone carry diplomatic weight that exercises elsewhere don't."
+      }
+    ],
+    "generatedAt": "2026-05-03T17:34:17.266Z",
+    "label": "African Lion & US-Morocco Military Ties",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-03-xbat-shield-ai-hivemind-autonomous-fighter-drone": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY VTOL MATTERS",
+        "body": "Conventional fighters need 2,000m runways — the first targets in any war. Vertical takeoff lets an aircraft launch from a parking lot, a forest clearing, or a ship deck without a catapult. The Harrier proved the concept in 1969; the F-35B inherited it. The tradeoff is brutal: lift fans steal payload, range, and radar cross-section.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The physics: hovering on jet thrust burns roughly **10× the fuel** of level flight. Every kilo of vertical-lift hardware is a kilo not spent on fuel, weapons, or stealth shaping."
+          }
+        ]
+      },
+      {
+        "heading": "THE LOYAL WINGMAN DOCTRINE",
+        "body": "The US Air Force's Collaborative Combat Aircraft program imagines one crewed F-35 directing 2-5 autonomous drones — sensors, jammers, missile trucks — flying ahead into contested airspace. The drones are attritable: cheap enough to lose, capable enough to matter. X-BAT is pitched into this slot.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Boeing MQ-28",
+                "value": "Australia, flying",
+                "cc": "AU"
+              },
+              {
+                "label": "Anduril Fury",
+                "value": "USAF CCA winner",
+                "cc": "US"
+              },
+              {
+                "label": "GA YFQ-42",
+                "value": "USAF CCA winner",
+                "cc": "US"
+              },
+              {
+                "label": "Shield AI X-BAT",
+                "value": "VTOL, testing",
+                "cc": "US"
+              },
+              {
+                "label": "Kratos Valkyrie",
+                "value": "flying since 2019",
+                "cc": "US"
+              }
+            ],
+            "label": "the autonomous wingman field"
+          }
+        ]
+      },
+      {
+        "heading": "THE OODA LOOP",
+        "body": "John Boyd's 1970s framework — Observe, Orient, Decide, Act — defines air combat. Whoever cycles faster wins. A human pilot cycles in roughly 2-3 seconds at peak. A neural pilot cycles in milliseconds. This is the structural reason militaries cannot ignore autonomy even when they distrust it."
+      },
+      {
+        "heading": "THE CERTIFICATION PROBLEM",
+        "body": "Aviation safety regulators certify deterministic systems — give the same inputs, get the same outputs, every time. Neural networks are statistical: same inputs can yield different outputs depending on training state, and the decision path is not fully inspectable. No regulator has solved how to certify a system that cannot explain itself.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why have no air forces yet certified a neural-network pilot for live-fire combat?",
+            "options": [
+              "The technology doesn't work reliably enough",
+              "Neural decisions can't be audited like traditional code",
+              "International treaty bans autonomous weapons",
+              "Pilot unions have successfully blocked it"
+            ],
+            "correct": 1,
+            "explanation": "Aviation certification requires deterministic, inspectable decision logic. Neural networks are statistical and their reasoning paths cannot be fully traced — a structural mismatch with how safety regulators work."
+          }
+        ]
+      },
+      {
+        "heading": "THE HUMAN-IN-THE-LOOP DEBATE",
+        "body": "US Department of Defense Directive 3000.09 (2012, updated 2023) requires 'appropriate levels of human judgment' over the use of force — but does not ban autonomous lethal decisions. The UN has debated a binding treaty since 2014; the US, Russia, China, Israel, and the UK have all blocked it. The doctrine is being written by deployment, not negotiation."
+      },
+      {
+        "heading": "THE COST INVERSION",
+        "body": "An F-35 costs roughly $80M and takes years to replace a lost pilot. An attritable autonomous fighter targets $25-30M with no pilot to lose. If autonomous drones can absorb the first wave of any air war, the calculus of who can afford to fight changes — wealth still matters, but trained aircrew stops being the binding constraint.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "F-35A",
+                "value": "~$80M",
+                "weight": 80,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "F-15EX",
+                "value": "~$90M",
+                "weight": 90,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "MQ-28 Ghost Bat",
+                "value": "~$20M",
+                "weight": 20,
+                "tone": "favorable"
+              },
+              {
+                "label": "X-BAT (target)",
+                "value": "~$25-30M",
+                "weight": 27,
+                "tone": "favorable"
+              },
+              {
+                "label": "Valkyrie",
+                "value": "~$4M",
+                "weight": 4,
+                "tone": "favorable"
+              }
+            ],
+            "label": "unit cost, rough order"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-03T17:34:52.386Z",
+    "label": "Autonomous Combat Aircraft",
+    "category": "tech",
+    "articleCount": 1
   }
 }
