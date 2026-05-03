@@ -103417,5 +103417,751 @@
     "label": "AI Coding Economics",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-05-01-ai-battlefield-decision-support-targeting-automation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE KILL CHAIN",
+        "body": "Military doctrine breaks targeting into six stages: find, fix, track, target, engage, assess (F2T2EA). Automation has crept into each stage over decades — satellites for find, radar for fix, GPS for track. The classification step inside 'target' is the last one where a human analyst's judgment was the default.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The US military calls this the **F2T2EA** loop; NATO doctrine uses the same six stages under different names. The compression of this loop — from days in Desert Storm to minutes in Ukraine — is the central trend of 21st-century warfare."
+          }
+        ]
+      },
+      {
+        "heading": "THE MEANINGFUL HUMAN CONTROL DEBATE",
+        "body": "International humanitarian law requires that attacks distinguish combatants from civilians and that the harm be proportional. Both judgments traditionally required a human in the loop. The phrase 'meaningful human control' emerged in 2014 UN discussions as the threshold below which autonomy crosses into illegality — but no treaty defines what 'meaningful' means."
+      },
+      {
+        "heading": "THE TRAINING DATA PROBLEM",
+        "body": "A model trained on 7,747 images has seen a tiny slice of what battlefields actually contain. Real combat features decoys, civilian vehicles modified for war, weather degradation, and adversaries who deliberately exploit known classifier weaknesses. The Pentagon's Project Maven hit this wall in 2018 — Google engineers quit when they saw how brittle the classifications were against real footage."
+      },
+      {
+        "heading": "THE ACCOUNTABILITY DIFFUSION",
+        "body": "When a human analyst misidentifies a target, command responsibility is clear. When a model does it, blame fragments across the vendor who trained it, the officer who approved deployment, the commander who acted on its output, and the data engineer who labeled the training set. International law has no doctrine for distributed culpability of this kind.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under current international humanitarian law, who is legally responsible when an AI targeting system causes a war crime?",
+            "options": [
+              "The vendor who trained the model",
+              "The commander who deployed it",
+              "The state that operates the military",
+              "No clear answer — the law predates the technology"
+            ],
+            "correct": 3,
+            "explanation": "The Geneva Conventions and Rome Statute assume human decision-makers. No treaty or tribunal has yet established doctrine for AI-mediated targeting errors."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT FROM CIVILIAN AI",
+        "body": "Facial recognition systems deployed by US police forces produced false matches at rates 10–100× higher for darker-skinned faces than lighter ones — a finding documented by NIST in 2019. Battlefield classifiers face a harder version of the same problem: adversaries who actively engineer the inputs to fool them, with lethal stakes on every misclassification.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is called **adversarial robustness** — and unlike civilian deployments, the adversary in war has explicit incentive and capability to find inputs that break the model. A few pixels of paint can flip a tank classifier; a tarp pattern can hide artillery from overhead infrared."
+          }
+        ]
+      },
+      {
+        "heading": "THE LAVENDER PRECEDENT",
+        "body": "Israel's 'Lavender' system, exposed in 2024 reporting by +972 Magazine, reportedly generated kill lists in Gaza by scoring individuals on suspected Hamas affiliation. Human review averaged about 20 seconds per name before strike authorization. This is the operational template the new research extends — not a hypothetical future, but a documented present."
+      }
+    ],
+    "generatedAt": "2026-05-03T08:34:38.006Z",
+    "label": "AI Targeting & Accountability",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-01-china-clean-tech-surge-fossil-fuels-forest-loss-debrief": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT OPEC ACTUALLY IS",
+        "body": "OPEC is a quota cartel, not a price-setter. Members agree to production ceilings; the residual supply meets global demand and the market clears the price. The cartel works only when members accept output below what their wells could produce — a discipline that fractures whenever members need cash or fear losing market share.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is **quota compliance**, not price targeting. When Saudi Arabia cuts a million barrels and Iraq quietly produces above quota, the cut leaks into the market and the price effect dissipates."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE UAE HAS BEEN RESTLESS",
+        "body": "The UAE has spent a decade investing roughly $100bn to expand production capacity to 5 million barrels per day. OPEC quotas — anchored to a 2018 baseline — left that capacity stranded. In 2023 Abu Dhabi nearly walked over the same dispute; the cartel patched it with a baseline revision. The structural grievance never went away.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "~12.0 / 9.9 mb/d",
+                "cc": "SA",
+                "tone": "neutral"
+              },
+              {
+                "label": "UAE",
+                "value": "~5.0 / 3.2 mb/d",
+                "cc": "AE",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Iraq",
+                "value": "~5.0 / 4.0 mb/d",
+                "cc": "IQ",
+                "tone": "neutral"
+              },
+              {
+                "label": "Kuwait",
+                "value": "~3.2 / 2.5 mb/d",
+                "cc": "KW",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Gulf producers — capacity vs OPEC quota"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1973 PRECEDENT",
+        "body": "The Yom Kippur War split OPEC the same way. Arab members embargoed the West; non-Arab Iran kept selling. The cartel survived because the political crisis was time-limited. A US-Iran war is not — which is why a UAE walkout under those conditions reads as structural, not cyclical.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1960",
+                "label": "OPEC founded in Baghdad",
+                "emphasis": "start"
+              },
+              {
+                "year": "1973",
+                "label": "Arab oil embargo splits the cartel",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1986",
+                "label": "Saudi price war collapses oil to $10"
+              },
+              {
+                "year": "2016",
+                "label": "OPEC+ formed with Russia"
+              },
+              {
+                "year": "2020",
+                "label": "Saudi-Russia price war during COVID"
+              },
+              {
+                "year": "2023",
+                "label": "UAE quota dispute, near-walkout"
+              }
+            ],
+            "label": "OPEC's fracture moments"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SANTA MARTA MATTERS",
+        "body": "The 57 signatories represent roughly a third of global GDP but well under a quarter of fossil-fuel consumption. The largest emitters — China, the US, India, Russia — did not sign. Transition roadmaps without the demand-side giants are a coordination signal, not a supply constraint.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CO",
+              "BR",
+              "CL",
+              "FR",
+              "DE",
+              "KE",
+              "ZA",
+              "AE"
+            ],
+            "label": "Santa Marta signatories (selected)",
+            "caption": "Notable absences: US, China, India, Russia, Saudi Arabia"
+          }
+        ]
+      },
+      {
+        "heading": "THE BRAZIL DEFORESTATION SHIFT",
+        "body": "Tropical forest loss tracks political will more than economics. Brazil cut Amazon deforestation 50% in Lula's first year by reactivating IBAMA enforcement that Bolsonaro had gutted — the same satellites, the same laws, different orders. Forest cover responds to who is in the presidential palace, not to commodity prices.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What drove Brazil's 2023-24 Amazon deforestation decline?",
+            "options": [
+              "Falling soy and beef prices",
+              "Reactivated environmental enforcement under Lula",
+              "New satellite monitoring technology",
+              "International carbon credit payments"
+            ],
+            "correct": 1,
+            "explanation": "The satellites and laws existed under Bolsonaro too; what changed was IBAMA's enforcement mandate and field presence after Lula took office in January 2023."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-03T08:35:14.793Z",
+    "label": "OPEC, Quotas & the Transition",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-01-ti-84-evo-graphing-calculator-monopoly": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CAPTIVE MARKET",
+        "body": "The TI-83/84 line has dominated US high school math classrooms for over 30 years, with margins estimated above 50% on hardware that costs roughly $15-20 to manufacture and retails for $100-150. The product is approved by the College Board for the SAT and AP exams — that approval is the moat.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Texas Instruments holds an estimated **80%+ share** of the US graphing calculator market. The chip inside a TI-84 Plus is a *Zilog Z80* — a processor designed in **1976**, the same one that ran the original Game Boy."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT'S DELIBERATELY OBSOLETE",
+        "body": "Standardized testing bodies require calculators without wireless, cameras, or QWERTY keyboards to prevent cheating. This freezes the product category — any vendor that adds modern features loses exam eligibility, which means losing the entire classroom channel. The constraint protects the incumbent."
+      },
+      {
+        "heading": "THE TEXTBOOK LOCK-IN",
+        "body": "US algebra and pre-calculus textbooks include TI-specific keystroke instructions in their margins — press [2nd][TRACE] for calculus menu, etc. Switching calculator brands would require rewriting every textbook and retraining every teacher. The lock-in is pedagogical, not technical.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "TI-83/84 family",
+                "value": "~80%",
+                "tone": "unfavorable",
+                "weight": 80
+              },
+              {
+                "label": "Casio fx-CG",
+                "value": "~15%",
+                "tone": "neutral",
+                "weight": 15
+              },
+              {
+                "label": "HP Prime / Numworks",
+                "value": "~5%",
+                "tone": "favorable",
+                "weight": 5
+              }
+            ],
+            "label": "graphing calculator market (US classroom)"
+          }
+        ]
+      },
+      {
+        "heading": "THE PHONE PARADOX",
+        "body": "Every student carries a smartphone with a CPU thousands of times faster than a TI-84, capable of running Desmos, GeoGebra, and Wolfram Alpha for free. Yet schools mandate the $130 calculator because the phone cannot be trusted in an exam room. The market exists because of what the device cannot do.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly when was the original TI-83 released?",
+            "options": [
+              "1996",
+              "2004",
+              "2010",
+              "1988"
+            ],
+            "correct": 0,
+            "explanation": "The TI-83 launched in 1996; the TI-84 Plus followed in 2004. The core architecture — Z80 CPU, monochrome screen — has barely changed in nearly 30 years of classroom dominance."
+          }
+        ]
+      },
+      {
+        "heading": "THE REGULATORY CAPTURE PATTERN",
+        "body": "This is a textbook case of standards-driven monopoly: a private company's product becomes embedded in public exam specifications, and the specifications then protect the product from competition. The same pattern shaped Scantron sheets, ETS testing, and proprietary scoring rubrics — public infrastructure built around private hardware."
+      }
+    ],
+    "generatedAt": "2026-05-03T08:35:42.115Z",
+    "label": "The Graphing Calculator Monopoly",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-02-peru-probes-trafficking-of-citizens-to-fight-for-russia-in-u": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MANPOWER PROBLEM",
+        "body": "Russia has avoided a second mass mobilization since the politically costly September 2022 call-up. Instead, Moscow buys soldiers — through signing bonuses that exceed a decade of average Russian wages, and through foreign recruits drawn from countries where $2,000 a month is life-changing money.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Russian term is *dobrovoltsy* — **'volunteers'** — a category that legally distinguishes recruits from conscripts and lets the state pay them as contractors rather than mobilize them as citizens."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRAFFICKING PATTERN",
+        "body": "The recruitment script is consistent across continents: a recruiter offers a security, construction, or logistics job in Russia, often at a wage that signals nothing dangerous. Travel and visas are arranged. On arrival the recruit is taken to a training base, handed a contract in Russian, and told the actual assignment is the front line. Cuban, Nepalese, Indian, Sri Lankan, and now Latin American men have all reported the same arc.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PE",
+              "RU",
+              "UA",
+              "CU",
+              "NP",
+              "IN",
+              "LK"
+            ],
+            "label": "reported recruit-origin countries"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL EXPOSURE",
+        "body": "Most sending countries criminalize mercenary service abroad. Peru's penal code carries up to 8 years; India and Nepal have prosecuted recruiters under anti-trafficking statutes; Cuba publicly arrested 17 people in 2023 for running a Russia-bound network. The 1989 UN Mercenary Convention bans recruitment for foreign armed conflict, but Russia is not a party — the legal weight falls entirely on the country of origin."
+      },
+      {
+        "heading": "THE WAGE ARBITRAGE",
+        "body": "The $2,000–$3,000 monthly rate offered to Peruvians is below what Russian citizen-contractors receive but far above local labor markets. Peru's monthly minimum wage is roughly $280; Cuba's average state wage is under $50. The pricing is calibrated to the sending country, not the battlefield — Moscow pays just enough to clear local opportunity cost.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Peru min. wage",
+                "value": "~$280",
+                "cc": "PE",
+                "weight": 280
+              },
+              {
+                "label": "Cuba state avg",
+                "value": "~$50",
+                "cc": "CU",
+                "weight": 50
+              },
+              {
+                "label": "Nepal avg",
+                "value": "~$140",
+                "cc": "NP",
+                "weight": 140
+              },
+              {
+                "label": "Russia offer",
+                "value": "$2,000–3,000",
+                "cc": "RU",
+                "weight": 2500,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "monthly wage vs Russia recruit offer"
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL ECHO",
+        "body": "Foreign manpower has filled Russian ranks before. Catherine the Great recruited German settlers and soldiers; the Soviet Union ran international brigades through the Comintern; the Wagner Group prototyped the contractor model in Syria and Africa from 2014 onward. What is new in 2024–2026 is the scale of Global South recruitment for a European land war.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country first publicly arrested recruiters running a Russia-bound trafficking network in 2023?",
+            "options": [
+              "Nepal",
+              "Cuba",
+              "India",
+              "Peru"
+            ],
+            "correct": 1,
+            "explanation": "Cuba arrested 17 people in September 2023 — an unusual public move from a state historically aligned with Moscow, signaling the recruitment had outrun what Havana would tolerate."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-03T08:36:11.921Z",
+    "label": "Foreign Fighters & Manpower Trafficking",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-03-delhi-delivery-agent-flyover-death-gig-economy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SCALE",
+        "body": "India's platform gig workforce is roughly 7-8 million and projected to triple by 2030. Delivery riders — Zomato, Swiggy, Blinkit, Zepto, Amazon — are the visible front of a labor pool that the country's labor laws barely recognize.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The official term in Indian policy documents is **platform worker** — a 2020 coinage in the Code on Social Security designed to sidestep the binary of *employee* vs *contractor* without conferring either's protections."
+          }
+        ]
+      },
+      {
+        "heading": "THE CLASSIFICATION TRAP",
+        "body": "Platforms classify riders as independent contractors, not employees. This means no minimum wage, no provident fund, no employer liability for workplace injury or death. A rider killed on shift is, in legal terms, a self-employed person who had an accident — the platform's exposure is close to zero."
+      },
+      {
+        "heading": "THE JHARKHAND PIPELINE",
+        "body": "Jharkhand, Bihar, eastern UP, and Odisha supply the bulk of Delhi's migrant labor. The economics are stark: a Jharkhand farm laborer earns roughly ₹200-300 a day; a Delhi delivery rider can clear ₹600-900 on a good day. The wage gap pulls millions north despite housing, health, and safety costs that erase much of the gain.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN"
+            ],
+            "label": "the migrant labor pipeline into Delhi",
+            "markers": [
+              {
+                "lat": 28.6139,
+                "lng": 77.209,
+                "label": "Delhi"
+              },
+              {
+                "lat": 23.6102,
+                "lng": 85.2799,
+                "label": "Ranchi, Jharkhand"
+              },
+              {
+                "lat": 25.0961,
+                "lng": 85.3131,
+                "label": "Patna, Bihar"
+              },
+              {
+                "lat": 20.9517,
+                "lng": 85.0985,
+                "label": "Bhubaneswar, Odisha"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE INCENTIVE STRUCTURE",
+        "body": "Platform algorithms penalize late deliveries and reward speed. Riders carry the time pressure but not the insurance. A 2022 Fairwork India study found zero of eleven major platforms met all five basic labor standards — fair pay, conditions, contracts, management, and representation.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under India's 2020 Code on Social Security, platform delivery riders are classified as:",
+            "options": [
+              "Employees of the platform",
+              "Independent contractors with no platform liability",
+              "A new category — 'platform workers' — with limited, mostly unfunded benefits",
+              "Casual laborers covered under factory legislation"
+            ],
+            "correct": 2,
+            "explanation": "The Code created a third category that requires platforms to contribute 1-2% of turnover to a welfare fund — but rules implementing it have been delayed for years, leaving riders in legal limbo."
+          }
+        ]
+      },
+      {
+        "heading": "THE HIT-AND-RUN PATTERN",
+        "body": "India records over 150,000 road deaths a year — the world's highest absolute toll. Hit-and-run cases involving two-wheeler riders are notoriously hard to prosecute: low CCTV density on flyovers, witnesses who don't want to testify, and a court system where vehicular homicide cases routinely take 5-7 years to reach verdict."
+      },
+      {
+        "heading": "THE MISSING SAFETY NET",
+        "body": "A migrant worker killed within days of arriving in a new city typically has no Delhi address, no local bank account, and family hundreds of kilometers away who cannot easily travel to claim the body or pursue compensation. The Motor Vehicles Act provides for hit-and-run compensation (₹2 lakh for death since 2022), but uptake among migrant families is low — most never learn the scheme exists."
+      }
+    ],
+    "generatedAt": "2026-05-03T08:36:46.067Z",
+    "label": "India's Gig Economy & Migrant Labor",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-03-narges-mohammadi-zanjan-prison-cardiac-crisis-hospitalized": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LAUREATE",
+        "body": "Mohammadi won the 2023 Nobel Peace Prize while imprisoned in Tehran's Evin facility. She is the second Iranian woman to receive it, after Shirin Ebadi in 2003. Both were honored for work the Iranian state classifies as criminal.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Shirin Ebadi",
+                "role": "Lawyer, women's rights",
+                "years": "2003",
+                "cc": "IR"
+              },
+              {
+                "name": "Narges Mohammadi",
+                "role": "Journalist, abolitionist",
+                "years": "2023",
+                "cc": "IR"
+              }
+            ],
+            "label": "Iranian Nobel Peace laureates"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHARGE STACK",
+        "body": "Iranian political prisoners typically face stacked charges — *propaganda against the state*, *assembly and collusion against national security*, *insulting the Supreme Leader*. Each carries a separate sentence, served consecutively. Mohammadi has accumulated more than 13 years across multiple convictions since 2011.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is called *ta'addod-e jaraem* — multiplicity of crimes. A single act (a published letter, an interview) can trigger three or four separate Penal Code articles, each prosecuted independently."
+          }
+        ]
+      },
+      {
+        "heading": "DELIBERATE MEDICAL NEGLECT",
+        "body": "Withholding healthcare from political prisoners is a documented pattern across Iran's prison system, used as coercion to extract confessions or force exile. The UN Special Rapporteur on Iran has repeatedly cited it; survivors describe medical furloughs offered conditional on signed renunciations.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the legal mechanism Iranian prosecutors use to keep prisoners away from outside hospitals?",
+            "options": [
+              "A judge must approve every medical transfer, even for emergencies",
+              "Prison medical staff have final authority and can override doctors",
+              "Only family members can request transfers, and they need security clearance",
+              "Transfers require sign-off from the same prosecutor who brought the original charges"
+            ],
+            "correct": 3,
+            "explanation": "The prosecuting authority retains transfer veto power — the same office that secured the conviction decides whether the prisoner sees a cardiologist."
+          }
+        ]
+      },
+      {
+        "heading": "ZANJAN, NOT EVIN",
+        "body": "Mohammadi was moved from Tehran's Evin prison — where international attention concentrates — to Zanjan, ~330km northwest. Geographic dispersal of high-profile prisoners is a standard tactic: it isolates them from legal teams, family, and diplomatic visitors clustered in the capital.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR"
+            ],
+            "label": "the 330km transfer",
+            "markers": [
+              {
+                "lat": 35.6892,
+                "lng": 51.389,
+                "label": "Tehran (Evin prison)"
+              },
+              {
+                "lat": 36.6736,
+                "lng": 48.4787,
+                "label": "Zanjan prison"
+              },
+              {
+                "lat": 34.6416,
+                "lng": 50.8746,
+                "label": "Qom"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE FAMILY IN EXILE",
+        "body": "Mohammadi's husband Taghi Rahmani and their twin children live in Paris; she has not seen them since 2015. The Nobel medal was accepted on her behalf by her teenage children, who read her smuggled acceptance speech aloud in Oslo. The family separation is itself the punishment.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Iran's exit-ban regime — *mamnu' al-khoruj* — bars dissidents and their relatives from leaving. The state weaponizes the choice: stay and be imprisoned, or leave and never return."
+          }
+        ]
+      },
+      {
+        "heading": "THE WOMAN, LIFE, FREEDOM ARC",
+        "body": "Mohammadi's current sentences trace back to her support for the 2022 *Zhina Amini* protests — *Zan, Zendegi, Azadi* (Woman, Life, Freedom). The movement was suppressed but the prosecutions continue, with new indictments filed against jailed activists for statements written from inside prison.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011",
+                "label": "First imprisonment, 11-year sentence"
+              },
+              {
+                "year": "2015",
+                "label": "Family flees to Paris"
+              },
+              {
+                "year": "2022",
+                "label": "Zhina Amini protests erupt",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "Awarded Nobel Peace Prize in absentia"
+              },
+              {
+                "year": "2026-03",
+                "label": "First cardiac episode in custody"
+              },
+              {
+                "year": "2026-05",
+                "label": "Second collapse, transferred to ICU"
+              }
+            ],
+            "label": "Mohammadi's arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-03T08:37:21.745Z",
+    "label": "Iran's Prison System & Political Detention",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-03-pakistan-bar-councils-judicial-transfer-punitive": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 26TH AMENDMENT",
+        "body": "Passed in October 2024, the amendment stripped the Supreme Court of its self-regulating power over constitutional cases and handed judicial appointments to a parliamentary commission dominated by the executive. Critics called it a soft coup against the bench; the government framed it as democratic accountability.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The amendment also created a separate **Constitutional Bench** — judges hand-picked by the commission now hear all cases challenging government action, while the regular Supreme Court is left with commercial appeals."
+          }
+        ]
+      },
+      {
+        "heading": "WHY TRANSFERS ARE THE WEAPON",
+        "body": "Under Article 200 of Pakistan's constitution, a judge can be moved between High Courts only with their consent and the approval of both chief justices. The 26th Amendment loosened this lock. Transferring a senior judge resets their seniority at the new court — a clean way to block someone from becoming chief justice without firing them."
+      },
+      {
+        "heading": "THE LAWYERS' MOVEMENT",
+        "body": "Pakistan's bar associations have a history of toppling regimes. The 2007 Lawyers' Movement against Musharraf — black-suited lawyers marching from Lahore to Islamabad to restore Chief Justice Iftikhar Chaudhry — became the template for organized legal resistance and ultimately forced Musharraf from power.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2007",
+                "label": "Musharraf sacks CJ Chaudhry; Lawyers' Movement begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2009",
+                "label": "Chaudhry restored; lawyers win"
+              },
+              {
+                "year": "2017",
+                "label": "SC disqualifies PM Nawaz Sharif"
+              },
+              {
+                "year": "2024",
+                "label": "26th Amendment passed"
+              }
+            ],
+            "label": "Pakistan's judicial-political flashpoints"
+          }
+        ]
+      },
+      {
+        "heading": "THE DOCTRINE OF NECESSITY",
+        "body": "Pakistani courts have a notorious record of legitimizing military coups under the 'doctrine of necessity' — invented by Chief Justice Munir in 1954 to validate the dissolution of the Constituent Assembly. Every coup since (1958, 1977, 1999) was blessed by the Supreme Court. The current fight is over whether the bench can be independent enough to ever break that cycle."
+      },
+      {
+        "heading": "THE ISLAMABAD HIGH COURT",
+        "body": "The IHC is small but disproportionately powerful — it hears cases against the federal government, the intelligence agencies, and election authorities. Control over its composition is control over which executive actions get judicial scrutiny in the capital.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Pakistan's 'doctrine of necessity' was invented in which year to legitimize what?",
+            "options": [
+              "1958, to validate Ayub Khan's coup",
+              "1954, to validate dissolution of the Constituent Assembly",
+              "1977, to validate Zia-ul-Haq's coup",
+              "1999, to validate Musharraf's coup"
+            ],
+            "correct": 1,
+            "explanation": "Chief Justice Munir's 1954 ruling in the Maulvi Tamizuddin case set the precedent that every subsequent court used to bless military takeovers."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-03T08:37:47.917Z",
+    "label": "Pakistan's Judiciary & the 26th Amendment",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-03-tamil-nadu-lpg-hostel-rent-hike-may5": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO-PRICE SYSTEM",
+        "body": "India runs parallel LPG markets: subsidized 14.2 kg domestic cylinders for households, and unsubsidized 19 kg commercial cylinders for businesses. The price gap is enormous — and it creates a permanent black-market incentive to divert household gas into restaurants, hostels, and tea stalls.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **14.2 kg** household cylinder retails around Rs 800–900. The **19 kg** commercial cylinder now costs Rs 3,071 — roughly *4× the per-kilo price*. Every diverted domestic cylinder is pure arbitrage."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HOSTELS GET HIT FIRST",
+        "body": "Hostels, paying guest accommodations, and small mess kitchens occupy a regulatory gray zone — too commercial to legally use household cylinders, too small to negotiate bulk piped-gas contracts. They absorb the full commercial price with no buffer, which is why every cylinder hike passes through to rent within weeks."
+      },
+      {
+        "heading": "THE IMPORT EXPOSURE",
+        "body": "India imports roughly 60% of its LPG, mostly from Saudi Arabia, the UAE, and Qatar. Domestic prices track the Saudi Contract Price (Saudi CP) — the monthly benchmark Aramco sets for propane and butane. A move in Gulf gas markets shows up in Indian cylinder prices within 30 days.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "~30%",
+                "cc": "SA",
+                "weight": 30
+              },
+              {
+                "label": "UAE",
+                "value": "~20%",
+                "cc": "AE",
+                "weight": 20
+              },
+              {
+                "label": "Qatar",
+                "value": "~12%",
+                "cc": "QA",
+                "weight": 12
+              },
+              {
+                "label": "USA",
+                "value": "~10%",
+                "cc": "US",
+                "weight": 10
+              },
+              {
+                "label": "Kuwait",
+                "value": "~8%",
+                "cc": "KW",
+                "weight": 8
+              }
+            ],
+            "label": "India's LPG import sources (rough share, 2024)"
+          }
+        ]
+      },
+      {
+        "heading": "THE UJJWALA POLITICS",
+        "body": "The Pradhan Mantri Ujjwala Yojana (2016) handed out 100 million free LPG connections to poor households, replacing wood and dung as cooking fuel. The scheme made LPG politically untouchable on the household side — but commercial cylinders carry no such protection, so the fiscal burden of every global price spike lands on businesses and the urban service economy.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does India subsidize household LPG but not commercial cylinders?",
+            "options": [
+              "Commercial users can pass costs through; households can't",
+              "Household cylinders are domestically produced",
+              "Commercial gas is a different chemical",
+              "WTO rules forbid commercial subsidies"
+            ],
+            "correct": 0,
+            "explanation": "Household LPG replaced biomass cooking — a public-health priority. Commercial users are assumed to pass costs to customers, which is exactly what the hostel rent hike demonstrates."
+          }
+        ]
+      },
+      {
+        "heading": "THE PASS-THROUGH CHAIN",
+        "body": "A Rs 993 cylinder hike doesn't stop at the kitchen. Hostels raise rent, mess fees rise, street-food prices creep up, and gig-economy delivery riders — many of whom live in exactly these hostels — face squeezed margins on both ends. Tamil Nadu's hostel ecosystem houses hundreds of thousands of students and migrant workers; the Rs 1,000 monthly increase is a real-wage cut for a population already at the margin."
+      }
+    ],
+    "generatedAt": "2026-05-03T08:38:16.588Z",
+    "label": "India's LPG Subsidy Architecture",
+    "category": "economy",
+    "articleCount": 1
   }
 }
