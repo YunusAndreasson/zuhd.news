@@ -109761,5 +109761,1441 @@
     "label": "Wheat Blight & Wide Crosses",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-05-03-banksy-london-suited-man-blinded-flag-statue": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ANONYMITY PREMIUM",
+        "body": "Banksy's market value depends on his identity remaining unknown. The 2003 Pest Control authentication body issues certificates for his works — without one, a piece is unsellable at major auction houses. The mystery is not aesthetic; it is the asset.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Pest Control refuses to authenticate *street pieces* — only studio works on canvas or paper. This is why walls bearing Banksys are physically cut out and sold separately, but rarely fetch the prices of his certified gallery editions."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL PARADOX",
+        "body": "Under UK law, graffiti on property you don't own is criminal damage under the 1971 Act, regardless of artistic merit. But once installed, the work belongs to the property owner — who can sell it. Banksy effectively gifts assets worth millions to whoever owns the wall.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Banksy avoid trademarking his name and works?",
+            "options": [
+              "UK trademark law requires the holder to be publicly identified",
+              "He philosophically opposes intellectual property",
+              "Trademarks expire after 10 years",
+              "Street art cannot legally be trademarked"
+            ],
+            "correct": 0,
+            "explanation": "A 2014 EU ruling stripped one of his trademarks because anonymous holders cannot demonstrate 'genuine use' — forcing him to choose between identity and IP protection."
+          }
+        ]
+      },
+      {
+        "heading": "THE SHREDDER",
+        "body": "In 2018, 'Girl with Balloon' partially shredded itself the moment Sotheby's gavel fell at £1.04m. The renamed 'Love is in the Bin' resold in 2021 for £18.6m — proof that destruction inside the Banksy frame multiplies value rather than destroying it.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The urge to destroy is also a creative urge.",
+            "speaker": "Picasso, often quoted in the shredder's caption card"
+          }
+        ]
+      },
+      {
+        "heading": "THE LINEAGE",
+        "body": "Public art that critiques the state has a long English tradition. Hogarth's 1751 'Gin Lane' engravings circulated as cheap prints attacking urban decay. The Diggers occupied St George's Hill in 1649 to protest enclosure. Banksy works in this tradition — anonymous, reproducible, sited in public space."
+      },
+      {
+        "heading": "WHY AUTHORITIES LEAVE IT",
+        "body": "Westminster Council learned in the 2000s that removing Banksys generates more press than the works themselves. The Bristol 'Mild Mild West' mural was nearly painted over in 1999; today it is grade-listed. Councils now treat his pieces as found heritage, regardless of how they arrived.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GB"
+            ],
+            "label": "notable Banksy sites",
+            "markers": [
+              {
+                "lat": 51.5074,
+                "lng": -0.1325,
+                "label": "Waterloo Place"
+              },
+              {
+                "lat": 51.4545,
+                "lng": -2.5879,
+                "label": "Mild Mild West, Bristol"
+              },
+              {
+                "lat": 51.5194,
+                "lng": -0.127,
+                "label": "Girl with Balloon, Shoreditch"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T12:33:45.134Z",
+    "label": "Banksy & the Anonymous Author",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-03-latus-bio-huntington-aav-gene-therapy-trial": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SINGLE-GENE CULPRIT",
+        "body": "Huntington's is caused by one mutation: an expanded CAG repeat in the HTT gene on chromosome 4. Healthy people have under 36 repeats; Huntington's patients have 40 or more. The longer the repeat, the earlier symptoms appear — a near-perfect dose-response in human genetics.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mutation produces a toxic version of *huntingtin* protein that aggregates in neurons. Unlike Alzheimer's, where the **amyloid hypothesis** has wobbled for decades, Huntington's etiology is not in dispute — which is why it has been gene therapy's white whale."
+          }
+        ]
+      },
+      {
+        "heading": "AUTOSOMAL DOMINANT",
+        "body": "A child of one affected parent has a 50% chance of inheriting the disease. Onset typically arrives in the 30s or 40s — after most patients have already had children. Genetic testing is available, but uptake is low: many at-risk people would rather not know."
+      },
+      {
+        "heading": "WHAT AAV ACTUALLY DOES",
+        "body": "Adeno-associated virus is a small, mostly harmless virus that researchers gut and refill with a therapeutic gene. Injected into tissue, it delivers DNA payloads to non-dividing cells like neurons — where the new gene can persist for years. It is the dominant delivery vehicle for in-vivo gene therapy."
+      },
+      {
+        "heading": "THE BLOOD-BRAIN BARRIER",
+        "body": "The brain's tight capillary lining blocks roughly 98% of small molecules and essentially all large biologics. Huntington's gene therapies bypass it the hard way — direct stereotactic injection into the striatum during neurosurgery. This is why each patient costs millions and trials enroll slowly.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why must Huntington's gene therapies be injected directly into the brain?",
+            "options": [
+              "Oral AAV is destroyed by stomach acid",
+              "The blood-brain barrier blocks IV-delivered viral vectors",
+              "FDA requires neurosurgical delivery for CNS drugs",
+              "Striatal neurons only divide during surgery"
+            ],
+            "correct": 1,
+            "explanation": "The blood-brain barrier excludes nearly all biologics, so vectors must be placed surgically into the target tissue."
+          }
+        ]
+      },
+      {
+        "heading": "THE FAILED PRECEDENTS",
+        "body": "Roche's tominersen, an antisense oligonucleotide, was halted in 2021 after treated patients did worse than placebo. uniQure's AMT-130, an AAV-delivered gene therapy, has shown mixed Phase I/II signals. The graveyard of Huntington's trials is why a $42M Series A is small money for what is actually a high-risk bet.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Tominersen",
+                "value": "halted 2021",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "AMT-130",
+                "value": "mixed Phase I/II",
+                "tone": "neutral"
+              },
+              {
+                "label": "Branaplam",
+                "value": "halted 2022",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Latus Bio",
+                "value": "preclinical",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Huntington's therapeutic attempts"
+          }
+        ]
+      },
+      {
+        "heading": "WHY VC TOUCHES IT AT ALL",
+        "body": "Rare-disease gene therapies enjoy regulatory shortcuts: orphan-drug designation grants seven years of US market exclusivity, fast-track review, and tax credits on trial costs. A successful one-time therapy can price at $2-3 million per patient — Novartis's Zolgensma set the template. The economics work even with a few hundred patients a year."
+      }
+    ],
+    "generatedAt": "2026-05-04T12:34:14.479Z",
+    "label": "Huntington's & AAV Gene Therapy",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-04-assam-bjp-retains-himanta-northeast-hindutva": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SEVEN SISTERS",
+        "body": "India's northeast is eight states connected to the rest of the country by the Siliguri Corridor — a 22-km-wide strip of land sometimes called the Chicken's Neck. The region borders Bhutan, China, Myanmar, and Bangladesh, but only barely connects to India itself.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "BD",
+              "BT",
+              "CN",
+              "MM",
+              "NP"
+            ],
+            "label": "the chicken's neck",
+            "markers": [
+              {
+                "lat": 26.7271,
+                "lng": 88.3953,
+                "label": "Siliguri Corridor"
+              },
+              {
+                "lat": 26.1445,
+                "lng": 91.7362,
+                "label": "Guwahati"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE CONGRESS COLLAPSE",
+        "body": "Congress governed Assam for most of the period from 1947 to 2016 — Tarun Gogoi alone ruled fifteen straight years. Himanta Biswa Sarma was a Congress minister under Gogoi until he defected to the BJP in 2015, taking much of Gogoi's machine with him. The party that built modern Assam now struggles to win double-digit seats."
+      },
+      {
+        "heading": "WHY ASSAM MATTERS TO HINDUTVA",
+        "body": "The northeast was the last region the BJP penetrated. Hindutva — the ideology that India is fundamentally a Hindu civilizational state — historically reads as alien in tribal-Christian Nagaland, Mizoram, Meghalaya. Holding Assam, the region's demographic anchor, is what lets the BJP project influence into states where its core ideology doesn't naturally travel.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Sarma's signature project — the **National Register of Citizens** — required 33 million Assamese to prove ancestry predating 1971. Roughly 1.9 million were excluded, mostly Bengali-speaking Muslims, raising the prospect of mass statelessness."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1971 CUTOFF",
+        "body": "The Assam Accord of 1985 set March 24, 1971 — the eve of Bangladesh's independence war — as the cutoff for legal residency. Anyone who arrived after that date is, by treaty, a foreigner. Forty years later, the state is still litigating who belongs."
+      },
+      {
+        "heading": "THE NORTHEAST AS BORDERLAND",
+        "body": "Assam shares borders with Bhutan and Bangladesh; the broader region touches China and Myanmar. Insurgencies — ULFA in Assam, NSCN in Nagaland — drew on cross-border sanctuaries for decades. The BJP's pitch is that only a strong-state government can secure a region the central state has historically struggled to integrate.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the Siliguri Corridor sometimes called?",
+            "options": [
+              "The Chicken's Neck",
+              "The Silk Road",
+              "The Khyber Pass",
+              "The Wakhan Strip"
+            ],
+            "correct": 0,
+            "explanation": "The 22-km-wide Siliguri Corridor connects India's northeast to the rest of the country — a chokepoint Indian planners have long worried about."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2029 SETUP",
+        "body": "India's federal election cycle runs every five years; the next is 2029. State election results in the year before federal polls function as morale and machine tests. A third Assam term consolidates the BJP's organizational depth in a region where Congress and regional parties have historically dominated."
+      }
+    ],
+    "generatedAt": "2026-05-04T12:34:43.170Z",
+    "label": "Assam & the Northeast",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-04-ather-energy-q4-loss-narrows-revenue-jumps-india-ev": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY TWO-WHEELERS FIRST",
+        "body": "India is the world's largest two-wheeler market — roughly 18 million units a year, more than cars and trucks combined. Electrification arrives here before passenger cars because the battery is small enough to be cheap, and the daily commute fits the range.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A typical Indian commuter rides **30–40 km/day** — well inside the 100 km range a *sub-3 kWh* battery delivers. The same battery in a car wouldn't move it across a city."
+          }
+        ]
+      },
+      {
+        "heading": "THE FAME SUBSIDY ARC",
+        "body": "FAME-II (Faster Adoption and Manufacturing of Electric Vehicles), launched 2019, paid up to Rs 15,000 per kWh on electric two-wheelers. The subsidy was cut in mid-2023 and replaced by the leaner EMPS, then PM E-Drive in late 2024. Every margin gain at Ather and its rivals has happened against this shrinking tailwind.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2015",
+                "label": "FAME-I launched"
+              },
+              {
+                "year": "2019",
+                "label": "FAME-II, Rs 10,000 cr outlay",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-06",
+                "label": "FAME-II subsidy halved"
+              },
+              {
+                "year": "2024-04",
+                "label": "EMPS replaces FAME-II"
+              },
+              {
+                "year": "2024-10",
+                "label": "PM E-Drive scheme"
+              }
+            ],
+            "label": "India EV-2W policy arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPETITIVE STACK",
+        "body": "Ather is the design-led premium player but not the volume leader. Ola Electric, TVS, and Bajaj outsell it; Hero MotoCorp's Vida is closing in. The market shape matters because EV scooter unit economics turn on scale, and the leader gets the cheapest cells.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "TVS Motor",
+                "value": "~24%",
+                "cc": "IN",
+                "weight": 24
+              },
+              {
+                "label": "Bajaj Auto",
+                "value": "~22%",
+                "cc": "IN",
+                "weight": 22
+              },
+              {
+                "label": "Ola Electric",
+                "value": "~20%",
+                "cc": "IN",
+                "weight": 20
+              },
+              {
+                "label": "Ather Energy",
+                "value": "~11%",
+                "cc": "IN",
+                "weight": 11
+              },
+              {
+                "label": "Hero/Vida",
+                "value": "~7%",
+                "cc": "IN",
+                "weight": 7
+              }
+            ],
+            "label": "India electric 2W market share, FY25 (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'LOSS NARROWING' MEANS HERE",
+        "body": "Indian EV makers report under Ind AS, where unit economics — gross margin per scooter — matter more than headline net loss. A loss falling while revenue jumps 74% signals operating leverage: fixed costs (R&D, retail) spread over more units, not necessarily a profitable per-unit sale yet.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The investor watch number is **contribution margin per vehicle** — revenue minus variable cost per scooter. Ola's IPO prospectus showed it crossed positive in late FY24; Ather's path hinges on the same crossover."
+          }
+        ]
+      },
+      {
+        "heading": "THE CRORE / LAKH SYSTEM",
+        "body": "Indian financial reporting uses the South Asian numbering system: 1 lakh = 100,000; 1 crore = 10 million. Rs 1,175 crore is roughly $140 million; Rs 517 crore annual loss is about $62 million. Reading Indian results without converting hides the scale.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Rs 1,000 crore equals how many US dollars (at ~Rs 84/USD)?",
+            "options": [
+              "About $12 million",
+              "About $120 million",
+              "About $1.2 billion",
+              "About $12 billion"
+            ],
+            "correct": 1,
+            "explanation": "1 crore = 10 million, so 1,000 crore = 10 billion rupees ≈ $120 million at current exchange rates."
+          }
+        ]
+      },
+      {
+        "heading": "THE PLI BACKBONE",
+        "body": "India's Production Linked Incentive scheme for advanced cells (Rs 18,100 crore, 2021) and the auto-component PLI (Rs 25,938 crore, 2021) underwrite domestic battery and drivetrain manufacturing. Without this, every EV maker would be reselling Chinese cells at thin margins. With it, localization above 50% unlocks subsidies that flip the unit economics."
+      }
+    ],
+    "generatedAt": "2026-05-04T12:35:19.497Z",
+    "label": "India's EV Two-Wheeler Race",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-04-bitcoin-80k-stalls-iran-tension-geopolitical-risk": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CORRELATION FLIP",
+        "body": "Bitcoin was sold as digital gold — a hedge against geopolitical chaos. In practice, since 2020 it trades like a high-beta tech stock: it falls when stocks fall, and falls harder when risk spikes. The 'safe haven' role belongs to gold and Treasuries; Bitcoin is the asset that gets liquidated to cover margin calls elsewhere.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In risk-off episodes, traders sell *what they can*, not what they want to. Bitcoin trades 24/7 with deep liquidity — which makes it the **first** thing margin desks unwind on a Friday afternoon Iran headline."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ETFS CHANGED THE TAPE",
+        "body": "Spot Bitcoin ETFs launched January 2024. They turned BTC from a wallet-and-key asset into a brokerage-account allocation, which means the same wealth advisors who rebalance on macro news now move billions of Bitcoin exposure on a Friday afternoon. A $630mn outflow day is an order of magnitude that didn't exist before 2024.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              67304.25,
+              68985.53,
+              68864.23,
+              71975.62,
+              71117.08,
+              71770.75,
+              72972.71,
+              73053.89,
+              70756.75,
+              74514.63,
+              74181.11,
+              74833.51,
+              75149.19,
+              77128.44,
+              75728.46,
+              73856.06,
+              75874.55,
+              76350.25,
+              78194.78,
+              78260.62,
+              77444.8,
+              77619.14,
+              78645.13,
+              77361.3,
+              76345.23,
+              75774.89,
+              76286.58,
+              78172.07,
+              78655.35,
+              78562.55,
+              78933.67
+            ],
+            "periods": [
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 4"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE SELL-OFF CEILING",
+        "body": "Technical analysts mark prior breakdown levels as resistance — the price where the last wave of holders bought in and got trapped. November's $80,619 was such a level: a wall of break-even sellers waiting to exit. Until that supply clears, every rally meets it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does a prior sell-off level often act as future resistance?",
+            "options": [
+              "The exchange algorithmically caps the price there",
+              "Holders who bought near that level sell to break even when price returns",
+              "Regulators flag round numbers above $80k",
+              "Mining costs are pinned to that level"
+            ],
+            "correct": 1,
+            "explanation": "Trapped longs from the prior decline use a return to their cost basis as an exit — that selling pressure is the resistance."
+          }
+        ]
+      },
+      {
+        "heading": "THE IRAN RISK PREMIUM",
+        "body": "Iran-tied selling shows up first in oil and the dollar, then bleeds across risk assets. Prediction markets price the diplomatic track in real time — and right now they price almost no near-term breakthrough.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "US invades by 2027",
+                "value": "31%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Permanent peace by May 15",
+                "value": "5%",
+                "tone": "neutral"
+              },
+              {
+                "label": "Diplomatic meeting by May 5",
+                "value": "1%",
+                "tone": "neutral"
+              },
+              {
+                "label": "Trump declares Hormuz closed",
+                "value": "6%",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Polymarket: US–Iran near-term outcomes"
+          }
+        ]
+      },
+      {
+        "heading": "THE INSTITUTIONAL FLOOR",
+        "body": "Two months of $3.29bn net ETF inflows establishes what traders call a 'sticky bid' — allocators who rebalance quarterly, not on headlines. They cushion drawdowns but don't catch falling knives; their bid sits well below spot and only activates on weakness."
+      },
+      {
+        "heading": "WHAT REAL YIELDS DO",
+        "body": "Bitcoin pays no coupon. When 10-year real yields rise, holding a zero-yield asset has a measurable opportunity cost — every basis point of real yield is a reason to rotate into Treasuries. Geopolitical scares often push real yields up (flight to dollars) AND push Bitcoin down through the same channel.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why Bitcoin can fall on an Iran headline even though the headline *should* be bullish for a 'digital gold': the dollar strengthens, real yields rise, and the **opportunity cost** of holding BTC goes up at the exact moment fear spikes."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-04"
+    ],
+    "generatedAt": "2026-05-04T12:35:56.439Z",
+    "label": "Bitcoin & Geopolitical Risk",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-04-france-kenya-defense-pact-mombasa-sahel-pivot": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EXPULSION ARC",
+        "body": "Since 2020, France has been ejected from a contiguous belt of former colonies — Mali, Burkina Faso, Niger, Chad, Senegal, and Central African Republic. Operation Barkhane, the 5,000-troop counterterrorism mission launched in 2014, was wound down by 2022. Russian Wagner/Africa Corps contractors filled much of the security vacuum.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2013",
+                "label": "Operation Serval — Mali intervention"
+              },
+              {
+                "year": "2014",
+                "label": "Barkhane launched"
+              },
+              {
+                "year": "2020",
+                "label": "Mali coup",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "France withdraws from Mali"
+              },
+              {
+                "year": "2023",
+                "label": "Niger coup, French troops expelled"
+              },
+              {
+                "year": "2024",
+                "label": "Chad ends defense pact"
+              },
+              {
+                "year": "2025",
+                "label": "Senegal, Côte d'Ivoire bases close"
+              }
+            ],
+            "label": "France's Sahel exit"
+          },
+          {
+            "type": "locations",
+            "codes": [
+              "FR",
+              "ML",
+              "BF",
+              "NE",
+              "TD",
+              "SN",
+              "CF"
+            ],
+            "label": "the six expulsions",
+            "caption": "Francophone Africa, 2020–2025"
+          }
+        ]
+      },
+      {
+        "heading": "FRANÇAFRIQUE",
+        "body": "For sixty years after independence, France maintained a parallel system in its former African colonies — the *Françafrique* — built on the CFA franc currency peg, permanent garrisons, and personal ties between Élysée and African presidents. The system delivered uranium for French reactors, oil for Total, and reliable UN votes.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **CFA franc**, originally the *Colonies Françaises d'Afrique* franc, was pegged to the French franc in 1945 and to the euro since 1999 — with reserves held at the French Treasury until reforms began in 2020."
+          }
+        ]
+      },
+      {
+        "heading": "WHY KENYA",
+        "body": "Kenya is Anglophone, was never French-colonized, and carries none of the Françafrique baggage. It hosts the largest US military presence in East Africa (Manda Bay), runs the regional anti-Shabaab campaign, and Mombasa is the deepwater gateway for landlocked Uganda, Rwanda, South Sudan, and eastern DRC. Nairobi is also the UN's third global hub, after New York and Geneva.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KE",
+              "UG",
+              "RW",
+              "SS",
+              "CD",
+              "TZ",
+              "ET"
+            ],
+            "label": "Mombasa as East Africa's gateway",
+            "markers": [
+              {
+                "lat": -4.0435,
+                "lng": 39.6682,
+                "label": "Mombasa port"
+              },
+              {
+                "lat": -1.2921,
+                "lng": 36.8219,
+                "label": "Nairobi"
+              },
+              {
+                "lat": -2.2696,
+                "lng": 40.9006,
+                "label": "Manda Bay (US base)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE NEW SCRAMBLE",
+        "body": "China built Djibouti's first overseas naval base in 2017; the US, Japan, France, and Italy all maintain bases in the same country. Russia signed defense pacts with Mali, Burkina Faso, and CAR. Turkey runs drone exports across the Sahel. The post-colonial monopoly is gone — African capitals now shop for security partners.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "~29 sites",
+                "cc": "US",
+                "weight": 29
+              },
+              {
+                "label": "France",
+                "value": "~3,500 troops",
+                "cc": "FR",
+                "weight": 15
+              },
+              {
+                "label": "China",
+                "value": "Djibouti base",
+                "cc": "CN",
+                "weight": 10
+              },
+              {
+                "label": "Russia",
+                "value": "Africa Corps in 5+",
+                "cc": "RU",
+                "weight": 12
+              },
+              {
+                "label": "Turkey",
+                "value": "Somalia base + drones",
+                "cc": "TR",
+                "weight": 8
+              }
+            ],
+            "label": "Foreign military footprint in Africa, 2025"
+          }
+        ]
+      },
+      {
+        "heading": "THE SUMMIT SIGNAL",
+        "body": "The Africa-France Summit has been held since 1973, always in a Francophone capital — Paris, Bamako, Dakar, Yaoundé. Hosting in Nairobi breaks that frame entirely. The summit's working language has been French; an Anglophone host forces a structural shift in who is in the room and what gets discussed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many of France's former African colonies have expelled French troops or ended defense pacts since 2020?",
+            "options": [
+              "Two",
+              "Four",
+              "Six",
+              "All of them"
+            ],
+            "correct": 2,
+            "explanation": "Mali, Burkina Faso, Niger, Chad, Senegal, and CAR have all severed military ties — a contiguous Sahel-to-Atlantic belt lost in five years."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T12:36:30.005Z",
+    "label": "France's Africa Pivot",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-04-hantavirus-cruise-ship-mv-hondius-rodent-outbreak": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PATHOGEN",
+        "body": "Hantaviruses are RNA viruses carried asymptomatically by rodents — each virus species pairs with a specific rodent host that sheds it for life in urine, saliva, and droppings. Humans inhale aerosolized particles when disturbed dust enters enclosed spaces.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The two clinical syndromes split by hemisphere: ***hantavirus pulmonary syndrome*** (HPS) in the Americas, and ***hemorrhagic fever with renal syndrome*** (HFRS) across Eurasia. Same virus family, different organs, different rodents."
+          }
+        ]
+      },
+      {
+        "heading": "THE FATALITY ASYMMETRY",
+        "body": "HPS kills roughly 38% of those infected — comparable to untreated bubonic plague. HFRS, the Eurasian form, kills 1–15%. The difference is which rodent species hosts the local strain, which then determines which human tissues the virus targets.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ebola (avg)",
+                "value": "~50%",
+                "tone": "unfavorable",
+                "weight": 50
+              },
+              {
+                "label": "Hantavirus (HPS)",
+                "value": "~38%",
+                "tone": "unfavorable",
+                "weight": 38
+              },
+              {
+                "label": "MERS",
+                "value": "~34%",
+                "tone": "unfavorable",
+                "weight": 34
+              },
+              {
+                "label": "H5N1 (human)",
+                "value": "~30%",
+                "tone": "unfavorable",
+                "weight": 30
+              },
+              {
+                "label": "Hantavirus (HFRS)",
+                "value": "1–15%",
+                "tone": "neutral",
+                "weight": 8
+              },
+              {
+                "label": "COVID-19 (early)",
+                "value": "~2%",
+                "tone": "neutral",
+                "weight": 2
+              }
+            ],
+            "label": "case fatality rate by viral disease"
+          }
+        ]
+      },
+      {
+        "heading": "FOUR CORNERS, 1993",
+        "body": "HPS was unknown to medicine until a cluster of healthy young Navajo adults died of acute respiratory failure in the US Southwest. Investigators traced it to deer mice whose population had exploded after a wet El Niño year multiplied piñon nut crops. The virus had been there for centuries; the ecology surfaced it."
+      },
+      {
+        "heading": "WHY SHIPS ARE NOVEL",
+        "body": "Cruise sanitation regimes were built around Norovirus and Legionella — person-to-person and waterborne pathogens. Rodent control exists for cargo holds (the historical plague vector) but not for passenger spaces, where the assumption was that modern vessels simply don't have mice. Antarctic expedition ships load stores in remote ports where that assumption fails."
+      },
+      {
+        "heading": "THE ANTARCTIC IRONY",
+        "body": "The Antarctic Treaty's environmental protocol forbids introducing non-native species to the continent — passengers vacuum their boots before landing. The same biosecurity lens never extended inward to the ship's own hold, where rodents from the embarkation port can ride south undetected.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NL",
+              "AR",
+              "CL",
+              "ZA"
+            ],
+            "label": "Antarctic expedition gateways",
+            "caption": "MV Hondius is Netherlands-flagged; expedition ships embark from Ushuaia or Cape Town",
+            "markers": [
+              {
+                "lat": -54.8019,
+                "lng": -68.303,
+                "label": "Ushuaia (typical embark)"
+              },
+              {
+                "lat": -33.9249,
+                "lng": 18.4241,
+                "label": "Cape Town"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "NO VACCINE, NO ANTIVIRAL",
+        "body": "There is no licensed hantavirus vaccine outside South Korea and China (where Hantavax targets HFRS). Treatment is supportive — ECMO and ventilator care during the cardiopulmonary phase. Survival depends almost entirely on reaching an ICU before pulmonary edema sets in.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How does hantavirus typically reach humans?",
+            "options": [
+              "Bite from an infected rodent",
+              "Inhaling aerosolized rodent urine or droppings",
+              "Person-to-person droplet spread",
+              "Contaminated drinking water"
+            ],
+            "correct": 1,
+            "explanation": "Hantavirus aerosolizes when dried rodent excreta is disturbed — sweeping a shed or cabin can release infectious particles into the air."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T12:37:03.857Z",
+    "label": "Hantavirus & Rodent-Borne Disease",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-04-motorola-india-lawsuit-platform-defamation-takedown": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SAFE HARBOR",
+        "body": "Section 79 of India's IT Act gives platforms immunity from user content — but only if they remove unlawful material on government or court order within 36 hours. Lose safe harbor and the platform becomes the publisher of every post.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 36-hour window comes from the **2021 IT Rules**, which also forced platforms to appoint India-resident *grievance officers* personally liable for non-compliance."
+          }
+        ]
+      },
+      {
+        "heading": "THE SHREYA SINGHAL LINE",
+        "body": "In 2015, India's Supreme Court struck down Section 66A — the law criminalizing 'offensive' online speech — and ruled that intermediaries need only act on a court order or government notice, not private complaints. Motorola's filing seeks exactly the kind of judicial order that ruling left as the legitimate path."
+      },
+      {
+        "heading": "WHY COMPANIES PREFER COURTS",
+        "body": "A defamation suit against an individual reviewer is slow, public, and risks Streisand effects. A takedown order against the platform is fast, private to the docket, and removes the content globally from Indian IPs. The cost-benefit favors the platform route even when the underlying claim is weak.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under India's IT Act, when must a platform remove content to keep its safe harbor?",
+            "options": [
+              "Within 24 hours of any user complaint",
+              "Within 36 hours of a court or government order",
+              "Immediately upon receiving a legal notice from any party",
+              "Within 7 days of a defamation lawsuit being filed"
+            ],
+            "correct": 1,
+            "explanation": "The 2021 IT Rules set a 36-hour window from a court order or authorized government notice — private complaints alone don't trigger the obligation."
+          }
+        ]
+      },
+      {
+        "heading": "THE GLOBAL TAKEDOWN MAP",
+        "body": "India is now among the world's top sources of government takedown requests to Google, Meta, and X — alongside Russia, Turkey, and Brazil. The volume reflects both legitimate court orders and a growing executive appetite for content control.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "RU",
+              "TR",
+              "BR",
+              "PK",
+              "ID"
+            ],
+            "label": "top takedown-request jurisdictions",
+            "caption": "Volume reflects court orders plus executive notices."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHILLING-EFFECT MECHANIC",
+        "body": "When platforms face liability for failing to remove disputed content, the rational response is over-removal. Reviewers self-censor, platforms auto-comply, and the public record of consumer experience thins out. The legal regime doesn't have to win every case to reshape what gets said.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Lawyers call this *collateral censorship* — the platform, not the state, does the silencing, but the incentive structure is set by law."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT STAKES",
+        "body": "If Indian courts grant pre-emptive takedown orders against entire categories of reviews, the regime shifts from reactive (remove-this-post) to predictive (block-this-topic). That's the model China, Vietnam, and increasingly Turkey use — and the line digital-rights groups are fighting to hold."
+      }
+    ],
+    "generatedAt": "2026-05-04T12:37:30.048Z",
+    "label": "India's Intermediary Liability Regime",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-04-philippines-sandy-cay-flag-atin-ito-sovereignty-act": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY SANDBARS MATTER",
+        "body": "Under UNCLOS, a naturally formed feature above water at high tide generates a 12-nautical-mile territorial sea. Sandy Cay qualifies; the much larger Subi Reef nearby does not. Whoever holds Sandy Cay can argue Subi — China's largest militarized base in the Spratlys — sits inside Philippine waters.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PH",
+              "CN",
+              "VN",
+              "MY",
+              "TW",
+              "BN"
+            ],
+            "label": "the Spratly cluster",
+            "markers": [
+              {
+                "lat": 11.0444,
+                "lng": 114.2167,
+                "label": "Sandy Cay"
+              },
+              {
+                "lat": 10.9217,
+                "lng": 114.0856,
+                "label": "Subi Reef (CN base)"
+              },
+              {
+                "lat": 11.0531,
+                "lng": 114.2847,
+                "label": "Thitu / Pag-asa (PH)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 2016 RULING",
+        "body": "The Permanent Court of Arbitration in The Hague unanimously rejected China's *nine-dash line* claim, ruling it had no basis in international law. China refused to participate and dismissed the verdict as *waste paper*. The ruling has no enforcement mechanism — only the political weight states choose to give it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The tribunal also ruled that **none** of the Spratly features — including Taiwan-held Itu Aba, the largest natural island — qualifies as an *island* under UNCLOS Article 121. They generate territorial seas at most, not 200-mile exclusive economic zones."
+          }
+        ]
+      },
+      {
+        "heading": "THE CIVILIAN LANDING DOCTRINE",
+        "body": "Atin Ito (*This Is Ours*) sails fishermen, clergy, and journalists to contested features. The logic mirrors how China itself built its claim — through a *cabbage strategy* of civilian fishing fleets backed by coast guard, backed by navy. Sending uniformed forces would be escalation; sending civilians forces Beijing to either let them through or be filmed harassing nuns and reporters.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "China's claim to most of the South China Sea is depicted on its maps as what?",
+            "options": [
+              "The nine-dash line",
+              "The Mischief Reef boundary",
+              "The Hainan exclusion zone",
+              "The Zheng He arc"
+            ],
+            "correct": 0,
+            "explanation": "The nine-dash line first appeared on a 1947 Republic of China map and was inherited by the PRC. The Hague rejected it in 2016."
+          }
+        ]
+      },
+      {
+        "heading": "THE CLAIMANTS",
+        "body": "Six governments claim all or part of the Spratlys. The overlapping claims are why no multilateral settlement has ever been reached — any deal that satisfies one claimant antagonizes the others.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "7 militarized reefs",
+                "cc": "CN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Vietnam",
+                "value": "~21 features",
+                "cc": "VN",
+                "tone": "neutral"
+              },
+              {
+                "label": "Philippines",
+                "value": "9 features",
+                "cc": "PH",
+                "tone": "favorable"
+              },
+              {
+                "label": "Malaysia",
+                "value": "5 features",
+                "cc": "MY",
+                "tone": "neutral"
+              },
+              {
+                "label": "Taiwan",
+                "value": "Itu Aba (largest)",
+                "cc": "TW",
+                "tone": "neutral"
+              },
+              {
+                "label": "Brunei",
+                "value": "claim only, no holding",
+                "cc": "BN",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Spratly claimants and what they hold"
+          }
+        ]
+      },
+      {
+        "heading": "THE MUTUAL DEFENSE TREATY",
+        "body": "The 1951 US–Philippines Mutual Defense Treaty obligates each party to act if the other is attacked in the Pacific. Washington clarified in 2019 that this *includes* armed attacks on Philippine vessels and aircraft anywhere in the South China Sea — closing the ambiguity Beijing had relied on for decades.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1947",
+                "label": "ROC publishes nine-dash line map"
+              },
+              {
+                "year": "1951",
+                "label": "US–PH Mutual Defense Treaty"
+              },
+              {
+                "year": "1988",
+                "label": "Johnson Reef clash (CN vs VN, 64 killed)"
+              },
+              {
+                "year": "2012",
+                "label": "Scarborough Shoal standoff",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2014",
+                "label": "China begins island-building"
+              },
+              {
+                "year": "2016",
+                "label": "Hague arbitration ruling"
+              },
+              {
+                "year": "2024",
+                "label": "PH passes Maritime Zones Act"
+              }
+            ],
+            "label": "the long arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T12:38:04.604Z",
+    "label": "Sandy Cay & the Spratly Contest",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-04-tamil-nadu-tvk-vijay-shock-mk-stalin-loses-seat": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DUOPOLY",
+        "body": "Tamil Nadu has been governed by either the DMK or AIADMK without interruption since 1967 — nearly six decades. No national party has won the state on its own in that span. The split traces to a 1972 schism inside the Dravidian movement when MGR broke from Karunanidhi to found AIADMK.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1967",
+                "label": "Congress loses TN, never recovers",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1972",
+                "label": "MGR breaks away to found AIADMK"
+              },
+              {
+                "year": "1987",
+                "label": "MGR dies; Jayalalithaa rises"
+              },
+              {
+                "year": "2016",
+                "label": "Jayalalithaa dies"
+              },
+              {
+                "year": "2018",
+                "label": "Karunanidhi dies"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1967",
+                "to": "1977",
+                "label": "DMK (Karunanidhi era begins)",
+                "tone": "neutral"
+              },
+              {
+                "from": "1977",
+                "to": "1987",
+                "label": "AIADMK under MGR",
+                "tone": "favorable"
+              },
+              {
+                "from": "1991",
+                "to": "2016",
+                "label": "DMK / AIADMK alternation (Jaya & Karuna)",
+                "tone": "neutral"
+              }
+            ],
+            "label": "who ruled Tamil Nadu"
+          }
+        ]
+      },
+      {
+        "heading": "THE DRAVIDIAN MOVEMENT",
+        "body": "Both parties descend from Periyar's Self-Respect Movement of the 1920s — a campaign against caste, Brahmin dominance, and Hindi imposition from the north. The 1965 anti-Hindi agitations, in which students self-immolated against making Hindi the sole official language, are the political founding event of the modern state.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The party names tell the story: *Dravida Munnetra Kazhagam* means \"Dravidian Progress Federation,\" *Anna Dravida Munnetra Kazhagam* adds the honorific for founder C.N. Annadurai. Vijay's *Tamilaga Vettri Kazhagam* — \"Tamil Nadu Victory Federation\" — drops the Dravidian label entirely, signaling a generational rebrand."
+          }
+        ]
+      },
+      {
+        "heading": "THE STAR-POLITICIAN PIPELINE",
+        "body": "Tamil cinema and Tamil politics have been fused since the 1950s. MGR was a leading man before he was chief minister; Jayalalithaa was his on-screen partner before she succeeded him; Karunanidhi wrote the screenplays that launched both. Vijay, with 60+ films and a fan-club network spanning every district, inherits a template that does not exist anywhere else in India.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "M.G. Ramachandran",
+                "role": "Chief Minister, AIADMK founder",
+                "years": "1977–1987",
+                "cc": "IN"
+              },
+              {
+                "name": "J. Jayalalithaa",
+                "role": "Chief Minister, AIADMK",
+                "years": "1991–2016",
+                "cc": "IN"
+              },
+              {
+                "name": "M. Karunanidhi",
+                "role": "Chief Minister, DMK, screenwriter",
+                "years": "1969–2011",
+                "cc": "IN"
+              },
+              {
+                "name": "Vijay",
+                "role": "Actor, TVK founder",
+                "years": "founded 2024",
+                "cc": "IN"
+              }
+            ],
+            "label": "actor → chief minister"
+          }
+        ]
+      },
+      {
+        "heading": "WHY HUNG HOUSES MATTER",
+        "body": "Indian state assemblies elect chief ministers by simple majority of seated MLAs. With 234 seats, the magic number is 118. A 106-seat plurality means TVK must either find 12 defectors, secure outside support without a coalition, or watch the governor invite the second-largest grouping to try forming a government — a process that has historically favored whichever bloc Congress backs.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "TVK (Vijay)",
+                "value": "106 / 234",
+                "weight": 106,
+                "tone": "favorable"
+              },
+              {
+                "label": "DMK",
+                "value": "~70",
+                "weight": 70,
+                "tone": "neutral"
+              },
+              {
+                "label": "AIADMK",
+                "value": "~40",
+                "weight": 40,
+                "tone": "neutral"
+              },
+              {
+                "label": "Congress",
+                "value": "~15",
+                "weight": 15,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Majority line",
+                "value": "118",
+                "weight": 118
+              }
+            ],
+            "label": "Tamil Nadu Assembly, 2026 result"
+          },
+          {
+            "type": "trend",
+            "values": [
+              6,
+              6,
+              18,
+              12,
+              12,
+              11,
+              11,
+              8,
+              7,
+              8,
+              8,
+              8,
+              8,
+              10,
+              99
+            ],
+            "periods": [
+              "Apr 9",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 4"
+            ],
+            "label": "Tamilaga Vettri Kazhagam (TVK) win the…",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "6%"
+              },
+              {
+                "atIndex": 14,
+                "label": "99%"
+              }
+            ],
+            "link": "https://polymarket.com/event/tamil-nadu-legislative-assembly-election-winner",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE STALIN DEFEAT",
+        "body": "MK Stalin, son of Karunanidhi, has held Kolathur constituency since 2011 — a seat carved partly to ensure his safe entry to the assembly. A sitting chief minister losing his own seat is rare in Indian politics; the last comparable case was Indira Gandhi losing Rae Bareli in 1977 after the Emergency.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When was the last time a non-Dravidian party won a Tamil Nadu state election outright?",
+            "options": [
+              "1962, when Congress won under K. Kamaraj",
+              "1991, when AIADMK swept post-Rajiv assassination",
+              "2014, when BJP entered the state",
+              "It has never happened since 1967"
+            ],
+            "correct": 0,
+            "explanation": "Congress's 1962 victory under Kamaraj was the last non-Dravidian sweep. DMK won in 1967 and no national party has won the state alone since."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-04"
+    ],
+    "generatedAt": "2026-05-04T12:38:43.798Z",
+    "label": "Tamil Nadu's Dravidian Duopoly",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-04-toyota-woven-city-fuji-corporate-surveillance-utopia": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COMPANY TOWN LINEAGE",
+        "body": "Toyota's Woven City is the latest entry in a 150-year tradition of corporations building their own settlements. The model has always carried the same tradeoff: housing and amenities in exchange for the company's near-total visibility into workers' lives.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1880",
+                "label": "Pullman, Illinois (railcar workers)"
+              },
+              {
+                "year": "1894",
+                "label": "Pullman strike collapses the model",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1908",
+                "label": "Hershey, Pennsylvania (chocolate)"
+              },
+              {
+                "year": "1928",
+                "label": "Fordlandia, Brazil (rubber)"
+              },
+              {
+                "year": "1947",
+                "label": "Levittown (mass suburbia template)"
+              },
+              {
+                "year": "2020",
+                "label": "Saudi Arabia announces NEOM"
+              },
+              {
+                "year": "2026",
+                "label": "Toyota Woven City opens"
+              }
+            ],
+            "label": "the company-town arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY RE-IDENTIFICATION IS THE FRONTIER",
+        "body": "Facial recognition fails when faces are masked, turned, or low-resolution. Re-identification — tracking a person across cameras by clothing, gait, posture, and body shape — sidesteps that limit. It works on the back of a head and through a crowd, which is why it is the surveillance technology cities will buy next.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **person re-identification** (often *re-ID*) — distinct from face recognition because it does not require a face. A 2024 model can re-identify a target across non-overlapping cameras with **>90% accuracy** within a single venue."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL VACUUM",
+        "body": "Japan's 2003 Personal Information Protection Act regulates personal data but predates ubiquitous video analytics. There is no GDPR-equivalent right to object to public-space tracking, no warrant requirement for private operators, and no obligation to disclose what a private company does with footage of you on its own land.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "EU",
+                "value": "GDPR + AI Act",
+                "cc": "EU",
+                "tone": "favorable"
+              },
+              {
+                "label": "Illinois (US)",
+                "value": "BIPA biometrics",
+                "cc": "US",
+                "tone": "favorable"
+              },
+              {
+                "label": "UK",
+                "value": "DPA + ICO codes",
+                "cc": "GB",
+                "tone": "neutral"
+              },
+              {
+                "label": "Japan",
+                "value": "APPI (2003)",
+                "cc": "JP",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "China",
+                "value": "PIPL + state access",
+                "cc": "CN",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "surveillance-law strictness, selected jurisdictions"
+          }
+        ]
+      },
+      {
+        "heading": "THE LIVING-LAB BUSINESS MODEL",
+        "body": "Woven City is not a real estate project — it is a product showroom. The 100 residents are the unit test; the buyer is a municipal government. Toyota is following the Alphabet/Sidewalk Labs Toronto playbook, which collapsed in 2020 after residents revolted over data governance.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "JP"
+            ],
+            "label": "Woven City sits at Toyota's old Higashi-Fuji plant",
+            "markers": [
+              {
+                "lat": 35.1722,
+                "lng": 138.9089,
+                "label": "Woven City, Susono"
+              },
+              {
+                "lat": 35.3606,
+                "lng": 138.7274,
+                "label": "Mount Fuji"
+              },
+              {
+                "lat": 35.6762,
+                "lng": 139.6503,
+                "label": "Tokyo HQ"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PANOPTICON LOGIC",
+        "body": "Bentham's 18th-century design proposed that constant potential observation — even without actual watching — modifies behavior. Foucault later argued the panopticon's real power was internalization: the watched eventually police themselves. Eight cameras per intersection is well past the threshold where residents stop noticing the watching but never stop being shaped by it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Whose 1791 architectural design is the conceptual ancestor of modern urban surveillance?",
+            "options": [
+              "Le Corbusier's Radiant City",
+              "Jeremy Bentham's Panopticon",
+              "Ebenezer Howard's Garden City",
+              "Frank Lloyd Wright's Broadacre"
+            ],
+            "correct": 1,
+            "explanation": "Bentham's panopticon — a circular prison where one guard could potentially watch every cell — became Foucault's central metaphor for how visibility itself produces compliance."
+          }
+        ]
+      },
+      {
+        "heading": "WHY TOYOTA, WHY NOW",
+        "body": "Toyota was the world's largest automaker by volume for most of the 2010s and 2020s but has lagged Tesla and BYD in software-defined vehicles. The Vision Engine pivot reframes Toyota as a mobility-data company — selling not cars but the operating layer beneath cities. The company town is the demo."
+      }
+    ],
+    "generatedAt": "2026-05-04T12:39:20.116Z",
+    "label": "Corporate Company Towns & Surveillance Urbanism",
+    "category": "tech",
+    "articleCount": 1
   }
 }
