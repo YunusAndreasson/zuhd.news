@@ -112450,5 +112450,1372 @@
     "label": "Fujairah & the Hormuz Bypass",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-04-educational-company-infrastructure-reports-cyber-incident": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE QUIET MONOPOLY",
+        "body": "Canvas runs the learning management systems of most US universities and a growing share of K-12 districts. Instructure went public in 2015, was taken private by Thoma Bravo in 2020, then re-listed in 2021 — a typical PE consolidation arc that left one platform holding coursework, grades, and messages for tens of millions of American students.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Canvas",
+                "value": "~40%",
+                "tone": "unfavorable",
+                "weight": 40
+              },
+              {
+                "label": "Blackboard",
+                "value": "~25%",
+                "tone": "neutral",
+                "weight": 25
+              },
+              {
+                "label": "D2L Brightspace",
+                "value": "~15%",
+                "tone": "neutral",
+                "weight": 15
+              },
+              {
+                "label": "Moodle",
+                "value": "~10%",
+                "tone": "favorable",
+                "weight": 10
+              },
+              {
+                "label": "Other",
+                "value": "~10%",
+                "tone": "favorable",
+                "weight": 10
+              }
+            ],
+            "label": "US higher-ed LMS market share (rough)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY STUDENT DATA IS DIFFERENT",
+        "body": "Adults can change passwords, freeze credit, sue. A minor's leaked name, school, and behavioral record sits exposed for the rest of their digital life — and they had no contracting power when the data was collected. This is why FERPA exists, and why edtech breaches carry liabilities that adult-platform breaches do not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**FERPA** (Family Educational Rights and Privacy Act, 1974) gives parents control over a student's education records until the student turns 18 — at which point control transfers to the student. Schools that release records without consent risk losing all federal funding, the only enforcement mechanism the law actually has."
+          }
+        ]
+      },
+      {
+        "heading": "THE INCIDENT ECONOMICS",
+        "body": "An LMS breach is not lucrative the way a bank breach is — student emails do not sell well on criminal markets. The leverage is institutional: ransomware crews increasingly target school districts and edtech vendors because they pay quickly to restore the school year. Disclosure laws then force the vendor to surface the breach months after the actual intrusion."
+      },
+      {
+        "heading": "THE NOTIFICATION GAP",
+        "body": "All 50 US states now have data breach notification laws, but the trigger thresholds and timelines vary by state and by data type. Education records often sit in a gray zone — covered by FERPA federally and by general breach laws at the state level — which is why disclosures like this one routinely omit which schools, how many students, and over what period.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under FERPA, who controls a student's education records once the student turns 18?",
+            "options": [
+              "The parents, until the student graduates",
+              "The student",
+              "The school district indefinitely",
+              "Whichever party paid the tuition"
+            ],
+            "correct": 1,
+            "explanation": "FERPA rights transfer from parent to student at age 18 or upon enrollment in a post-secondary institution — whichever comes first."
+          }
+        ]
+      },
+      {
+        "heading": "THE THIRD-PARTY PROBLEM",
+        "body": "A school's perimeter no longer ends at its servers. Every cloud LMS, plagiarism checker, proctoring tool, and gradebook integration extends the attack surface to a vendor the school cannot audit. Ed-Fi and 1EdTech standards push more data sharing between these systems, not less — efficiency and exposure scale together."
+      }
+    ],
+    "generatedAt": "2026-05-04T22:40:43.352Z",
+    "label": "Canvas & Student Data",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-04-gamestop-offers-56-billion-for-ebay-struggles-to-explain-how": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FINANCING CONDITION",
+        "body": "Serious M&A bids arrive with committed financing — signed letters from banks promising the cash. An offer without it is called a 'highly conditional' or 'non-binding' proposal. Boards are not obligated to engage with one and usually don't.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In US takeover practice, the bright line is **fully financed** vs **subject to financing**. The latter is treated by target boards as a press release, not an offer."
+          }
+        ]
+      },
+      {
+        "heading": "THE MEME-STOCK PLAYBOOK",
+        "body": "GameStop's market cap was $300M in early 2020. The January 2021 short squeeze — driven by retail traders on Reddit's r/wallstreetbets — pushed it past $20B in days. The company used the rally to issue stock and stockpile cash, converting volatility into a war chest. That cash pile is what makes a $56B bid even sayable.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2020",
+                "label": "Market cap ~$300M, near bankruptcy"
+              },
+              {
+                "year": "2021-01",
+                "label": "Reddit short squeeze",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021-06",
+                "label": "$1.7B raised via at-the-market offering"
+              },
+              {
+                "year": "2024",
+                "label": "Cash pile passes $4B"
+              },
+              {
+                "year": "2025",
+                "label": "Begins buying Bitcoin as treasury asset"
+              },
+              {
+                "year": "2026-05",
+                "label": "$56B unfunded eBay bid"
+              }
+            ],
+            "label": "GameStop's transformation"
+          }
+        ]
+      },
+      {
+        "heading": "THE SIZE MISMATCH",
+        "body": "Conventional M&A theory says the acquirer should be larger than the target, or at least comparable. A buyer one-fifth the size of its target — a 'reverse merger' in scale — is rare and usually requires the target's cooperation, which an unsolicited bid by definition lacks.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "eBay",
+                "value": "~$30bn cap",
+                "weight": 30
+              },
+              {
+                "label": "GameStop",
+                "value": "~$11bn cap",
+                "weight": 11
+              },
+              {
+                "label": "Funding gap",
+                "value": "$16bn short",
+                "weight": 16,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "the size gap"
+          }
+        ]
+      },
+      {
+        "heading": "WHY UNFUNDED BIDS HAPPEN",
+        "body": "Sometimes to force a board into the open. Sometimes to test market appetite for financing — if the stock rallies on the news, banks become willing lenders. Sometimes purely for the publicity. The SEC requires disclosure of any tender offer, so even a half-serious bid generates a regulatory record."
+      },
+      {
+        "heading": "THE BUSINESS-MODEL POINT",
+        "body": "GameStop sells physical games and collectibles through ~3,000 stores. eBay runs a peer-to-peer marketplace with no inventory. The synergy case — what the combined company does that neither can alone — is the question Morgan Stanley flagged. Without it, the deal is a cash grab dressed as strategy.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does an acquirer typically need before making a binding takeover bid?",
+            "options": [
+              "A board-approved press release",
+              "Committed financing letters from banks",
+              "SEC pre-approval of the offer price",
+              "A shareholder vote at the acquirer"
+            ],
+            "correct": 1,
+            "explanation": "Committed financing — signed bank letters guaranteeing the cash — is what separates a binding offer from a publicity stunt."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T22:41:10.502Z",
+    "label": "Unsolicited Bids & the Funding Gap",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-04-hormuz-tensions-push-ceasefire-to-the-brink-as-trump-threate": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil pass through daily, about a fifth of global consumption.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the Persian Gulf chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.1667,
+                "lng": 56.3333,
+                "label": "Fujairah terminal"
+              },
+              {
+                "lat": 29.0667,
+                "lng": 50.75,
+                "label": "Kharg Island"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY FUJAIRAH MATTERS",
+        "body": "Fujairah sits on the UAE's Indian Ocean coast — outside the Strait of Hormuz. The Habshan-Fujairah pipeline (1.5 mbpd) was built explicitly as a Hormuz hedge, allowing Abu Dhabi crude to bypass the strait. Striking Fujairah negates the bypass and signals every Gulf monarchy that no port is geographically safe.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pipeline was Abu Dhabi's answer to a generation of war planners asking *what if Hormuz closes?* Hitting Fujairah turns the hedge itself into a target."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson planners took: disruption is easier to threaten than to sustain.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Tanker War begins",
+                "emphasis": "start"
+              },
+              {
+                "year": "1987",
+                "label": "USS Stark hit by Iraqi missile"
+              },
+              {
+                "year": "1988",
+                "label": "Operation Praying Mantis",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Fujairah tanker attacks"
+              },
+              {
+                "year": "2020",
+                "label": "Soleimani assassination"
+              },
+              {
+                "year": "2026",
+                "label": "Fujairah strike + 6 boats sunk",
+                "emphasis": "end"
+              }
+            ],
+            "label": "Persian Gulf flashpoints"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL REGIME",
+        "body": "Under UNCLOS Article 38, ships have a right of transit passage through international straits — coastal states cannot suspend passage. Iran ratified UNCLOS in 1982 but has long argued Hormuz is governed by its own domestic law, not the convention. The US never ratified UNCLOS at all, yet enforces it as customary international law.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which two countries border the Strait of Hormuz at its narrowest point?",
+            "options": [
+              "Iran and Saudi Arabia",
+              "Iran and the UAE",
+              "Iran and Oman",
+              "Iran and Qatar"
+            ],
+            "correct": 2,
+            "explanation": "The strait runs between Iran's southern coast and Oman's Musandam peninsula — not between Iran and any Arab Gulf state. The deepest channel hugs the Iranian side."
+          }
+        ]
+      },
+      {
+        "heading": "THE PREDICTION MARKETS",
+        "body": "Polymarket has run contracts on US-Iran escalation throughout the year. The 'invasion before 2027' contract is the cleanest read on whether traders see this as posturing or trajectory — distinct from the diplomatic-meeting and peace-deal contracts that price the off-ramps.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              58,
+              61,
+              28,
+              35,
+              30,
+              30,
+              33,
+              35,
+              30,
+              32,
+              31,
+              34,
+              36,
+              31,
+              28,
+              31,
+              33,
+              32,
+              34,
+              34,
+              34,
+              34,
+              33,
+              34,
+              31,
+              30,
+              30,
+              31
+            ],
+            "periods": [
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 4"
+            ],
+            "label": "US invade Iran before 2027?",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "58%"
+              },
+              {
+                "atIndex": 27,
+                "label": "31%"
+              }
+            ],
+            "link": "https://polymarket.com/event/will-the-us-invade-iran-before-2027",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE ESCHATOLOGICAL TERRAIN",
+        "body": "The Persian Gulf and Arabian Peninsula appear repeatedly in eschatological hadith collections describing end-times signs. Authenticated narrations in Bukhari and Muslim describe a major fitnah emerging from the east. For many readers across the Muslim world, the spiritual stakes of a regional war are not separable from the geopolitical ones."
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-04"
+    ],
+    "generatedAt": "2026-05-04T22:41:42.230Z",
+    "label": "Hormuz, Fujairah & the Escalation Ladder",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-04-in-canada-a-canary-trap-springs-shut-and-ids-election-databa": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CANARY TRAP",
+        "body": "A canary trap seeds each copy of a document with a unique, invisible variant — a misspelled name, a fabricated address, a transposed digit. When the data leaks, the variant identifies which copy was the source. The technique is named after Tom Clancy's Patriot Games, but intelligence services used it for decades before that.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is a *barium meal* in British intelligence usage; the cryptographic equivalent is **fingerprinting** — embedding a per-recipient watermark that survives copying."
+          }
+        ]
+      },
+      {
+        "heading": "THE ELECTORAL LIST PROBLEM",
+        "body": "Most democracies share the voter roll with registered parties as a matter of law — parties need to know who can vote to campaign to them. The roll is the single most valuable civic dataset: name, address, age, often phone. Once shared with multiple parties, containment depends on each recipient's discipline, not the state's."
+      },
+      {
+        "heading": "WHY SEEDING WORKS",
+        "body": "A list of 3 million real voters is statistically indistinguishable from a list of 3 million real voters plus 50 fakes. The fakes only resolve as evidence when the leaked copy is compared against the master. Each party gets a distinct fake set; whoever's fakes appear downstream is the leaker.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't a leaker simply remove the canary entries before redistributing?",
+            "options": [
+              "The fakes look identical to real voters in the data itself",
+              "Removing them is illegal under election law",
+              "The fakes are encrypted and can't be edited",
+              "Parties don't have edit access to their copies"
+            ],
+            "correct": 0,
+            "explanation": "The whole point of a canary trap is plausibility — a seeded fake reads as a real record. Without the master list to compare against, a leaker can't tell which 50 of 3 million entries to scrub."
+          }
+        ]
+      },
+      {
+        "heading": "THE PROVINCIAL DESIGN",
+        "body": "Canada runs elections at two levels with separate rolls: Elections Canada federally, and a provincial body in each province. Alberta's Elections Alberta is unusually aggressive on data discipline — the province has been a target of separatist organizing for decades, and the registrar has tightened controls each cycle.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CA",
+              "US"
+            ],
+            "label": "Alberta in context",
+            "caption": "Alberta borders Montana — the same prairie geography that fuels cross-border separatist sympathies"
+          }
+        ]
+      },
+      {
+        "heading": "THE WESTERN ALIENATION ROOT",
+        "body": "Centurion is the latest expression of a century-old grievance: Alberta and Saskatchewan generate disproportionate federal revenue through oil and gas but feel governed by Ontario and Quebec voting blocs. Separatist parties have surfaced and dissolved repeatedly since the 1980s National Energy Program, which Alberta still treats as the founding wound."
+      },
+      {
+        "heading": "WHO PAYS WHEN ROLLS LEAK",
+        "body": "Voter rolls fuel targeted disinformation, vote suppression robocalls, and door-knocking by groups the voter never opted into. Once a roll is in the wild, it cannot be recalled — every future campaign cycle inherits the breach. The remedy is structural: tighter access controls, shorter retention, and traps like this one that at least identify the source."
+      }
+    ],
+    "generatedAt": "2026-05-04T22:42:11.704Z",
+    "label": "Canary Traps & Voter Rolls",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-04-india-loses-its-last-left-wing-government-after-five-decades": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 1957 MOMENT",
+        "body": "Kerala elected E.M.S. Namboodiripad's Communist government in 1957 — one of the first communist parties in the world to take power through a free election rather than a revolution. Nehru's Congress dismissed it via Article 356 two years later, a constitutional override that the left never forgot.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 1959 dismissal — known in Kerala as the *vimochana samaram* (liberation struggle) — was triggered by Catholic and Nair landowner protests against land reform and education laws."
+          }
+        ]
+      },
+      {
+        "heading": "WHY KERALA WAS DIFFERENT",
+        "body": "Kerala's left built the most literate, highest-life-expectancy state in India on a fraction of the per-capita income of Punjab or Maharashtra. Land reform broke the *jenmi* landlord system; public health and schooling reached villages decades before the rest of India. Economists call it the Kerala Model — high human development without high growth.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Literacy",
+                "value": "96% vs 78%",
+                "cc": "IN",
+                "tone": "favorable"
+              },
+              {
+                "label": "Life expectancy",
+                "value": "75 vs 70 yrs",
+                "cc": "IN",
+                "tone": "favorable"
+              },
+              {
+                "label": "Infant mortality",
+                "value": "6 vs 28 /1k",
+                "cc": "IN",
+                "tone": "favorable"
+              },
+              {
+                "label": "Per-capita GDP",
+                "value": "~₹2.7L (avg)",
+                "cc": "IN",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Kerala vs India on human development"
+          }
+        ]
+      },
+      {
+        "heading": "THE LONG RETREAT",
+        "body": "The CPI(M) and its allies governed three states at peak: West Bengal continuously from 1977 to 2011 (the longest-elected communist government anywhere), Tripura from 1993 to 2018 with one break, and Kerala in alternating five-year cycles. Each fell to a different opponent — Trinamool in Bengal, BJP in Tripura, Congress now in Kerala.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1957",
+                "label": "EMS wins Kerala",
+                "emphasis": "start"
+              },
+              {
+                "year": "1959",
+                "label": "Article 356 dismissal"
+              },
+              {
+                "year": "1977",
+                "label": "Left Front takes Bengal",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1993",
+                "label": "Tripura turns left"
+              },
+              {
+                "year": "2011",
+                "label": "Bengal falls to Trinamool"
+              },
+              {
+                "year": "2018",
+                "label": "Tripura falls to BJP"
+              },
+              {
+                "year": "2026",
+                "label": "Kerala falls to Congress",
+                "emphasis": "end"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1977",
+                "to": "2011",
+                "label": "Bengal Left Front rule",
+                "tone": "neutral"
+              }
+            ],
+            "label": "India's left in power"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE BASE ERODED",
+        "body": "The CPI(M)'s Bengal collapse came from Singur and Nandigram — the party that built itself on land reform tried to seize farmland for a Tata car factory and an SEZ. Trinamool turned the betrayal into a 34-year reversal. Kerala's left held on longer through welfare delivery, but Gulf remittances, a shrinking unionized workforce, and a generation that has never seen the *jenmi* system weakened the structural base.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What single industrial project most damaged the CPI(M)'s land-reform credibility in West Bengal?",
+            "options": [
+              "The Haldia petrochemicals complex",
+              "The Tata Nano factory at Singur",
+              "The Salboni steel plant",
+              "The Kolkata metro extension"
+            ],
+            "correct": 1,
+            "explanation": "Forcible land acquisition at Singur (2006) for the Tata Nano factory, and police firing at Nandigram (2007) over an SEZ, broke the party's claim to represent the peasantry."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT REMAINS",
+        "body": "Eight Lok Sabha seats out of 543. No state government. The CPI(M) still runs the All India Kisan Sabha (one of the world's largest farmer unions) and CITU (a major trade-union federation), so the cadre infrastructure persists even without electoral office — but for the first time in seventy years, Indian communism has no place to legislate.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN"
+            ],
+            "label": "the three left capitals",
+            "markers": [
+              {
+                "lat": 8.5241,
+                "lng": 76.9366,
+                "label": "Thiruvananthapuram"
+              },
+              {
+                "lat": 22.5726,
+                "lng": 88.3639,
+                "label": "Kolkata (lost 2011)"
+              },
+              {
+                "lat": 23.8315,
+                "lng": 91.2868,
+                "label": "Agartala (lost 2018)"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T22:42:47.271Z",
+    "label": "India's Long Left",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-04-nature-retracts-paper-on-the-benefits-of-chatgpt-in-educatio": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A META-ANALYSIS IS",
+        "body": "A meta-analysis pools effect sizes from many smaller studies into one statistical estimate. Done well, it cuts through noise; done poorly, it laundlers weak studies into a confident-looking number.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The core operation is converting each study to a common metric — usually **Cohen's d** or a standardized mean difference — then weighting by inverse variance. Garbage in, weighted garbage out."
+          }
+        ]
+      },
+      {
+        "heading": "GIGO AT SCALE",
+        "body": "Pooling does not fix bad inputs. If the underlying 51 studies suffered small samples, missing controls, or selection bias, the meta-analysis amplifies the bias rather than averaging it away. Heterogeneity tests (I²) are supposed to flag this, but reviewers often skim them."
+      },
+      {
+        "heading": "THE FILE-DRAWER PROBLEM",
+        "body": "Studies showing ChatGPT helps students get published; studies showing no effect get filed away. A meta-analysis that doesn't aggressively correct for this — via funnel plots, trim-and-fill, or registered protocols — systematically overstates the effect.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does a funnel-plot asymmetry typically indicate in a meta-analysis?",
+            "options": [
+              "The studies used different statistical software",
+              "Publication bias — null results are missing",
+              "The effect size is unusually large",
+              "The sample size was too small"
+            ],
+            "correct": 1,
+            "explanation": "Asymmetric funnel plots suggest small studies with null findings never reached print, inflating the pooled effect."
+          }
+        ]
+      },
+      {
+        "heading": "WHY RETRACTIONS LAG",
+        "body": "Retraction Watch tracks roughly 5,000 retractions per year against ~3 million papers published — a rounding error. The median time from publication to retraction is around three years; citations to the flawed paper keep accruing the entire time."
+      },
+      {
+        "heading": "THE AI-EDUCATION EVIDENCE GAP",
+        "body": "Most ChatGPT-in-classroom studies run weeks, not semesters; measure short-term task performance, not retention; and rarely use blinded grading. The retracted paper was the closest thing to a synthesis — its loss leaves the field with no peer-reviewed top-line claim."
+      },
+      {
+        "heading": "NATURE'S INCENTIVE",
+        "body": "High-impact journals face a tradeoff: novel, headline-friendly findings drive citations and prestige, but the same novelty correlates with replication failure. Nature's retraction rate has roughly tripled since 2010, partly reflecting tougher scrutiny, partly reflecting how much weaker work slipped through during the open-science transition.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Nature",
+                "value": "~14",
+                "tone": "unfavorable",
+                "weight": 14
+              },
+              {
+                "label": "Science",
+                "value": "~12",
+                "tone": "unfavorable",
+                "weight": 12
+              },
+              {
+                "label": "PNAS",
+                "value": "~9",
+                "tone": "neutral",
+                "weight": 9
+              },
+              {
+                "label": "PLOS ONE",
+                "value": "~6",
+                "tone": "neutral",
+                "weight": 6
+              },
+              {
+                "label": "All journals avg",
+                "value": "~4",
+                "tone": "favorable",
+                "weight": 4
+              }
+            ],
+            "label": "retraction rate per 10,000 papers (selected venues, recent)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T22:43:14.107Z",
+    "label": "Meta-Analysis & Retraction",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-04-oil-prices-flat-as-trump-s-plan-for-strait-of-hormuz-fails-t": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil pass through daily, about 21% of global consumption.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the Persian Gulf chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.1,
+                "lng": 56.35,
+                "label": "Fujairah (UAE bypass)"
+              },
+              {
+                "lat": 29.0667,
+                "lng": 50.7667,
+                "label": "Kharg Island"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT CAN'T BE BYPASSED",
+        "body": "Saudi Arabia's East-West Pipeline (5 million bbl/day) and the UAE's Habshan-Fujairah pipeline together could reroute maybe a third of Gulf exports. The rest has no alternative route — Qatari LNG, Kuwaiti crude, and Iraqi southern exports must transit Hormuz or stay home.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "6.3",
+                "cc": "SA",
+                "weight": 6.3
+              },
+              {
+                "label": "Iraq",
+                "value": "3.4",
+                "cc": "IQ",
+                "weight": 3.4
+              },
+              {
+                "label": "UAE",
+                "value": "2.7",
+                "cc": "AE",
+                "weight": 2.7
+              },
+              {
+                "label": "Kuwait",
+                "value": "2.0",
+                "cc": "KW",
+                "weight": 2
+              },
+              {
+                "label": "Iran",
+                "value": "1.4",
+                "cc": "IR",
+                "weight": 1.4
+              },
+              {
+                "label": "Qatar",
+                "value": "0.6",
+                "cc": "QA",
+                "weight": 0.6
+              }
+            ],
+            "label": "crude exports through Hormuz, 2024 (mn bbl/day)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PRICES DON'T ALWAYS SPIKE",
+        "body": "Markets price expected disruption, not announced disruption. By the time a closure is in headlines, traders have already positioned; the move happened weeks earlier on the threat. The flat tape after Project Freedom means the *risk premium* was already in $108 — only a sustained physical shortfall moves it from here.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The market term is **risk premium** — the gap between the price implied by physical supply and the price actually paid. When the premium is already large, a confirming event releases no new information."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson: disruption is easier to threaten than to sustain.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Iraq begins attacks on Kharg-bound tankers",
+                "emphasis": "start"
+              },
+              {
+                "year": "1987-07",
+                "label": "US reflags Kuwaiti tankers (Operation Earnest Will)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1988-04",
+                "label": "Operation Praying Mantis"
+              },
+              {
+                "year": "1988-08",
+                "label": "Iran-Iraq ceasefire",
+                "emphasis": "end"
+              }
+            ],
+            "label": "the Tanker War arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE STRATEGIC PETROLEUM RESERVE",
+        "body": "The US SPR holds roughly 360 million barrels in salt caverns along the Gulf Coast — about 18 days of US consumption. Maximum drawdown is 4.4 mn bbl/day, well below the 14.5 mn bbl/day Goldman estimates is missing. The SPR is a buffer, not a substitute.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the US Strategic Petroleum Reserve's maximum sustained drawdown rate?",
+            "options": [
+              "About 1 million barrels per day",
+              "About 4.4 million barrels per day",
+              "About 10 million barrels per day",
+              "About 14 million barrels per day"
+            ],
+            "correct": 1,
+            "explanation": "The physical pumping infrastructure caps drawdown at ~4.4 mn bbl/day — far less than a Hormuz-scale shortfall, which is why the SPR cushions price shocks but cannot replace lost flow."
+          }
+        ]
+      },
+      {
+        "heading": "THE PUMP-PRICE LAG",
+        "body": "Crude prices reach US gasoline pumps in roughly 4-6 weeks. Refining margins, regional logistics, and state taxes layer on top. Eurasia's '$5 in weeks' warning assumes the lag has already started — by the time voters feel it, the underlying disruption is two months old.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              58,
+              61,
+              28,
+              35,
+              30,
+              30,
+              33,
+              35,
+              30,
+              32,
+              31,
+              34,
+              36,
+              31,
+              28,
+              31,
+              33,
+              32,
+              34,
+              34,
+              34,
+              34,
+              33,
+              34,
+              31,
+              30,
+              30,
+              31
+            ],
+            "periods": [
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 4"
+            ],
+            "label": "US invade Iran before 2027?",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "58%"
+              },
+              {
+                "atIndex": 27,
+                "label": "31%"
+              }
+            ],
+            "link": "https://polymarket.com/event/will-the-us-invade-iran-before-2027",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-04"
+    ],
+    "generatedAt": "2026-05-04T22:43:49.180Z",
+    "label": "Hormuz & the Oil Price",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-04-soldiers-assault-thecable-journalist-in-lagos": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COLONIAL INHERITANCE",
+        "body": "Nigeria's army was built by the British as the West African Frontier Force in 1900 to police colonial subjects, not protect citizens. Independence in 1960 transferred the institution intact — its doctrine, training, and posture toward civilians never reset.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The force's first deployments after independence were not external defense but **internal suppression** — the 1962 Western Region crisis, then the Biafra war."
+          }
+        ]
+      },
+      {
+        "heading": "THE COUP DECADES",
+        "body": "Between 1966 and 1999, Nigeria spent 29 of 33 years under military rule. Six successful coups, three failed ones. An entire generation of officers learned that the army governs civilians rather than answering to them — a posture that outlived the return to democracy.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1960",
+                "label": "Independence"
+              },
+              {
+                "year": "1966",
+                "label": "First coup (Aguiyi-Ironsi)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1975",
+                "label": "Murtala coup"
+              },
+              {
+                "year": "1983",
+                "label": "Buhari coup"
+              },
+              {
+                "year": "1985",
+                "label": "Babangida coup"
+              },
+              {
+                "year": "1993",
+                "label": "Abacha takeover"
+              },
+              {
+                "year": "1999",
+                "label": "Fourth Republic begins"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1966",
+                "to": "1979",
+                "label": "Military rule (first phase)",
+                "tone": "unfavorable"
+              },
+              {
+                "from": "1983",
+                "to": "1999",
+                "label": "Military rule (second phase)",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Nigeria under the boot"
+          }
+        ]
+      },
+      {
+        "heading": "#ENDSARS AND THE LEKKI TOLL GATE",
+        "body": "In October 2020, soldiers opened fire on peaceful protesters at the Lekki Toll Gate in Lagos, demonstrating against the Special Anti-Robbery Squad (SARS). A judicial panel later called it a massacre; the army denied live rounds were used despite forensic evidence. No soldier has been prosecuted."
+      },
+      {
+        "heading": "THE IMMUNITY ARCHITECTURE",
+        "body": "Nigerian soldiers accused of civilian abuse are tried — when tried at all — under the Armed Forces Act in military courts that report up the chain of command. Civilian courts rarely get jurisdiction. The structure was designed for battlefield discipline; it functions as a shield."
+      },
+      {
+        "heading": "THE PRESS FREEDOM CONTEXT",
+        "body": "Nigeria ranks 122nd of 180 on the 2024 RSF Press Freedom Index. Journalists covering the military, oil theft, or banditry are routinely detained under cybercrime statutes or simply assaulted on the street with no follow-up.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Press Freedom Index rank (lower = freer)",
+            "peers": [
+              {
+                "value": 50,
+                "cc": "GH"
+              },
+              {
+                "value": 38,
+                "cc": "ZA"
+              },
+              {
+                "value": 102,
+                "cc": "KE"
+              },
+              {
+                "value": 122,
+                "cc": "NG"
+              },
+              {
+                "value": 141,
+                "cc": "ET"
+              },
+              {
+                "value": 170,
+                "cc": "EG"
+              }
+            ],
+            "subjectCc": "NG",
+            "unit": "rank"
+          }
+        ]
+      },
+      {
+        "heading": "WHO HOLDS THE ARMY ACCOUNTABLE",
+        "body": "In theory, the National Assembly's defence committees and the National Human Rights Commission. In practice, neither has ever forced a prosecution of a serving soldier for civilian assault. The president is constitutionally Commander-in-Chief; oversight runs through him, not around him.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under Nigerian law, who has primary jurisdiction when a soldier assaults a civilian?",
+            "options": [
+              "A regular civilian magistrate court",
+              "A military court-martial under the Armed Forces Act",
+              "The National Human Rights Commission",
+              "The Economic and Financial Crimes Commission"
+            ],
+            "correct": 1,
+            "explanation": "The Armed Forces Act routes soldier misconduct to military courts that report up the chain of command — a key reason civilian-assault cases rarely produce convictions."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T22:44:19.077Z",
+    "label": "Nigerian Army & Civilian Impunity",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-04-suicide-attack-foiled-on-army-check-post-in-south-waziristan": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TERRITORY",
+        "body": "South Waziristan is part of Pakistan's former Federally Administered Tribal Areas — a belt along the Afghan border that the British governed through the Frontier Crimes Regulation of 1901, a code that bypassed normal courts and held entire tribes collectively liable for individual acts. Pakistan inherited the FCR at independence and only formally repealed it in 2018, merging the tribal agencies into Khyber Pakhtunkhwa province.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF"
+            ],
+            "label": "the Waziristan border belt",
+            "markers": [
+              {
+                "lat": 32.3017,
+                "lng": 69.5781,
+                "label": "Azam Warsak"
+              },
+              {
+                "lat": 32.3014,
+                "lng": 69.5694,
+                "label": "Wana"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TTP",
+        "body": "Tehrik-i-Taliban Pakistan formed in 2007 as an umbrella of Pashtun militant factions, distinct from the Afghan Taliban but ideologically aligned. Its founding base was South Waziristan under Baitullah Mehsud; after his 2009 killing by a US drone, the leadership rotated through Hakimullah Mehsud, Mullah Fazlullah, and now Noor Wali Mehsud.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The group is often called the **Pakistani Taliban**, but it is organizationally separate from the Afghan **Taliban** — different command, different targets. The TTP's war is *against the Pakistani state*; the Afghan Taliban's was against NATO and Kabul."
+          }
+        ]
+      },
+      {
+        "heading": "THE OPERATIONS",
+        "body": "Pakistan ran four major military operations in Waziristan between 2004 and 2017 — Al-Mizan, Rah-e-Nijat, Zarb-e-Azb, Radd-ul-Fasaad — that pushed most TTP commanders across the Durand Line into Afghan sanctuaries. Attacks dropped sharply by 2018; the post-2021 reversal correlates exactly with the Afghan Taliban's return to Kabul.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2004",
+                "label": "Operation Al-Mizan begins"
+              },
+              {
+                "year": "2007",
+                "label": "TTP founded",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2009",
+                "label": "Operation Rah-e-Nijat (S. Waziristan)"
+              },
+              {
+                "year": "2014",
+                "label": "Operation Zarb-e-Azb (N. Waziristan)"
+              },
+              {
+                "year": "2017",
+                "label": "Operation Radd-ul-Fasaad"
+              },
+              {
+                "year": "2021",
+                "label": "Afghan Taliban retake Kabul"
+              },
+              {
+                "year": "2022",
+                "label": "TTP ends ceasefire, attacks resume"
+              }
+            ],
+            "label": "the Waziristan campaigns"
+          }
+        ]
+      },
+      {
+        "heading": "THE SANCTUARY PROBLEM",
+        "body": "The Durand Line — the 2,640 km Pakistan-Afghanistan border drawn by a British official in 1893 — was never accepted by any Afghan government, Taliban or otherwise. Kabul's refusal to recognize it is what turns Pashtun tribal areas on both sides into a single operational space for militants and a divided one for state security."
+      },
+      {
+        "heading": "THE VBIED",
+        "body": "A vehicle-borne improvised explosive device — what hit Azam Warsak — is the signature TTP tactic for hardened targets like checkpoints and barracks. The cost asymmetry is brutal: a few thousand dollars of explosives and a stolen vehicle against fortified positions that took years to build.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When was Pakistan's Federally Administered Tribal Areas (FATA) system, with its colonial-era Frontier Crimes Regulation, formally abolished?",
+            "options": [
+              "1973, with Pakistan's new constitution",
+              "1997, after the Taliban first took Kabul",
+              "2018, merged into Khyber Pakhtunkhwa",
+              "It still exists as a separate jurisdiction"
+            ],
+            "correct": 2,
+            "explanation": "The 25th Constitutional Amendment in 2018 merged FATA into Khyber Pakhtunkhwa province, ending 117 years of the FCR — though normal court infrastructure is still being built out."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T22:44:50.427Z",
+    "label": "South Waziristan & the TTP",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-04-the-platform-doesn-t-speak-arabic-women-are-paying-for-it": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LANGUAGE GAP",
+        "body": "Meta's own 2021 internal documents, leaked by Frances Haugen, showed Arabic was the platform's third-most-used language but received only a fraction of the moderation resources English did. Classifiers trained on Modern Standard Arabic routinely fail on the dozens of regional dialects people actually post in — Egyptian, Levantine, Gulf, Maghrebi.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Arabic is **diglossic**: *fusha* (Modern Standard Arabic) is the written, formal register taught to NLP models, while *ammiyya* (colloquial dialects) is what users actually type. A classifier fluent in one is functionally illiterate in the other."
+          }
+        ]
+      },
+      {
+        "heading": "THE ECONOMICS OF MODERATION",
+        "body": "Moderation investment follows ad revenue, not user count. The MENA region generates a small share of global platform ARPU despite huge user bases, so reviewer headcount, classifier training data, and policy specialists all skew toward English-speaking markets. The result is structural under-protection, not malice."
+      },
+      {
+        "heading": "THE TAKEDOWN ASYMMETRY",
+        "body": "Arab civil society groups have documented the inverse problem since 2020: legitimate Palestinian, Syrian, and Yemeni content gets removed as 'terrorism' at high rates, while harassment, doxxing, and non-consensual intimate imagery against Arab women stays up. Same broken pipeline, opposite failure modes — over-removal of speech, under-removal of abuse.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Arab region",
+                "value": "~50%",
+                "tone": "unfavorable",
+                "weight": 50
+              },
+              {
+                "label": "Global avg",
+                "value": "~38%",
+                "tone": "neutral",
+                "weight": 38
+              },
+              {
+                "label": "EU",
+                "value": "~28%",
+                "tone": "favorable",
+                "weight": 28
+              }
+            ],
+            "label": "Arab women feeling unsafe online (UN Women, ESCWA surveys)"
+          }
+        ]
+      },
+      {
+        "heading": "DEEPFAKES AS POLITICAL WEAPON",
+        "body": "Fabricated intimate imagery of women in public life has become a standard tool in Arab political conflicts — used against MPs, journalists, and activists from Iraq to Tunisia to Egypt. The cultural cost of even a debunked clip is asymmetric: in honor-based social structures, the suspicion outlives the fact-check.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IQ",
+              "LB",
+              "EG",
+              "TN",
+              "JO",
+              "SA",
+              "MA"
+            ],
+            "label": "documented deepfake harassment cases against women in public life"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL VACUUM",
+        "body": "Most Arab states have cybercrime laws written to protect the state from citizens, not citizens from each other. Iraq's 2011 draft cybercrime law was shelved after activists warned it would criminalize dissent; a decade later, victims of non-consensual imagery still have no dedicated statute and rely on vague 'public morality' provisions that often turn on the victim instead."
+      },
+      {
+        "heading": "WHY 'JUST REPORT IT' FAILS",
+        "body": "Reporting flows on every major platform default to English-language category names and require the reporter to correctly classify the violation. An Arabic-speaking user reporting a deepfake in Iraqi dialect goes through an English UI, gets routed to a queue where reviewers may not speak Arabic at all, and receives a templated denial. Each step is a filter that drops legitimate reports.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did Meta's 2021 internal documents reveal about its Arabic-language moderation?",
+            "options": [
+              "Arabic had dedicated reviewers in every dialect",
+              "Arabic was the third-largest language but severely under-resourced",
+              "Arabic content was moderated more strictly than English",
+              "Arabic moderation was outsourced entirely to AI"
+            ],
+            "correct": 1,
+            "explanation": "The Haugen disclosures showed Meta knew Arabic was a top-3 platform language yet allocated a fraction of the moderation resources given to English."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T22:45:25.659Z",
+    "label": "Arabic Content Moderation",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-04-thin-atmosphere-detected-around-distant-object-beyond-pluto": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ESCAPE PROBLEM",
+        "body": "A planet keeps an atmosphere only when its gravity holds molecules faster than they can escape to space. The threshold scales with mass and temperature — small, warm bodies lose gas; large, cold bodies retain it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The relevant number is **escape velocity** versus the *thermal velocity* of gas molecules. When the second exceeds about a sixth of the first, the atmosphere bleeds away over geological time."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 500 KM IS SURPRISING",
+        "body": "Pluto (2,377 km) holds a thin nitrogen atmosphere; Triton (2,707 km) holds one too. Bodies under ~1,000 km were assumed too small to retain anything. A 500-km object with measurable atmosphere breaks the size floor by half.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Diameter of bodies known to host atmospheres",
+            "peers": [
+              {
+                "value": 5150,
+                "label": "Titan"
+              },
+              {
+                "value": 2707,
+                "label": "Triton"
+              },
+              {
+                "value": 2377,
+                "label": "Pluto"
+              },
+              {
+                "value": 2326,
+                "label": "Eris"
+              },
+              {
+                "value": 1430,
+                "label": "Makemake"
+              },
+              {
+                "value": 500,
+                "label": "new KBO"
+              }
+            ],
+            "subjectLabel": "new KBO",
+            "unit": "km"
+          }
+        ]
+      },
+      {
+        "heading": "THE OCCULTATION TECHNIQUE",
+        "body": "When a distant body passes in front of a background star, an airless surface causes the star to vanish instantly. An atmosphere makes the starlight dim gradually — the slope of the dimming curve reveals atmospheric pressure and composition. The method dates to the 1988 detection of Pluto's atmosphere from a Kuiper Airborne Observatory flight."
+      },
+      {
+        "heading": "WHERE CRYOVOLCANISM COMES FROM",
+        "body": "On bodies far from the Sun, water ice behaves like rock and ammonia-water mixtures behave like magma. Radioactive decay or tidal flexing can melt subsurface pockets, which erupt as nitrogen, methane, or water vapor — replenishing atmospheres that would otherwise escape. Triton's geysers and Enceladus's plumes are the canonical examples."
+      },
+      {
+        "heading": "THE KUIPER BELT",
+        "body": "Beyond Neptune lies a disk of icy bodies — leftovers from solar system formation that never coalesced into a planet. Most are too small and cold to be geologically active; finding one with a live atmosphere reshapes assumptions about how many minor bodies hide internal heat.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which technique first revealed Pluto's atmosphere in 1988?",
+            "options": [
+              "Direct imaging from Hubble",
+              "Stellar occultation",
+              "Radio waves bounced off the surface",
+              "Spectroscopy of reflected sunlight"
+            ],
+            "correct": 1,
+            "explanation": "A stellar occultation observed from a NASA airborne telescope showed gradual dimming — the signature of an atmosphere — eight years before any spacecraft visit."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T22:45:50.472Z",
+    "label": "Atmospheres in the Outer Solar System",
+    "category": "science",
+    "articleCount": 1
   }
 }
