@@ -106706,5 +106706,1413 @@
     "label": "Autonomous Combat Aircraft",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-05-04-asean-rules-of-origin-us-china-supply-chain": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT RULES OF ORIGIN DO",
+        "body": "Every trade agreement needs a way to decide which goods qualify for preferential treatment. Rules of origin draw the line — a product gets the lower tariff only if enough of its value was added inside the qualifying country. Without them, any third country could route exports through the cheapest-tariff partner.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The two main tests are *change in tariff classification* (the input crosses an HS-code boundary during processing) and *regional value content* (a minimum percentage of the final value originated locally). The US increasingly demands **both**."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHINA+1 PLAYBOOK",
+        "body": "After the 2018 tariffs on Chinese goods, multinationals shifted final assembly to ASEAN while keeping component supply chains anchored in Guangdong and Jiangsu. A solar panel's cells, glass, backsheet, and frame still came from China; a Vietnamese factory laminated them together and stamped 'Made in Vietnam.' The tariff arbitrage was the entire business model.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Vietnam",
+                "value": "~3x",
+                "cc": "VN",
+                "weight": 3,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Malaysia",
+                "value": "~2x",
+                "cc": "MY",
+                "weight": 2,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Thailand",
+                "value": "~1.6x",
+                "cc": "TH",
+                "weight": 1.6,
+                "tone": "neutral"
+              },
+              {
+                "label": "Indonesia",
+                "value": "~1.5x",
+                "cc": "ID",
+                "weight": 1.5,
+                "tone": "neutral"
+              }
+            ],
+            "label": "US imports from ASEAN, growth since 2018"
+          }
+        ]
+      },
+      {
+        "heading": "THE LOCAL-CONTENT THRESHOLD",
+        "body": "The new US framework sets regional value content floors — typically 35% to 60% depending on the product — that exclude inputs traceable to China. For an electronics assembler whose PCB, chips, and casing all ship from Shenzhen, even sophisticated final-stage work in Hanoi can't clear the bar. The math is the trap."
+      },
+      {
+        "heading": "WHO IS EXPOSED",
+        "body": "The corridor runs from southern China through the Mekong and Malacca to US ports. Vietnam took the heaviest reshoring inflows; Malaysia became a semiconductor packaging hub; Indonesia caught nickel and EV battery investment. All three now face the same audit.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "VN",
+              "ID",
+              "MY",
+              "TH",
+              "CN",
+              "SG"
+            ],
+            "label": "the China+1 corridor",
+            "markers": [
+              {
+                "lat": 20.8449,
+                "lng": 106.6881,
+                "label": "Haiphong port"
+              },
+              {
+                "lat": 3.0319,
+                "lng": 101.7912,
+                "label": "Port Klang"
+              },
+              {
+                "lat": -6.1045,
+                "lng": 106.88,
+                "label": "Tanjung Priok"
+              },
+              {
+                "lat": 1.2649,
+                "lng": 103.824,
+                "label": "Singapore"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL ECHO",
+        "body": "This is not new. In the 1980s the US accused Japanese carmakers of using Mexican maquiladoras to dodge import limits; NAFTA's auto rules of origin (62.5% North American content) were the response. USMCA tightened that to 75% in 2020. Each tightening forces a supply chain reorganization that takes years.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1985",
+                "label": "Japan VER triggers Mexico assembly route"
+              },
+              {
+                "year": "1994",
+                "label": "NAFTA: 62.5% auto content"
+              },
+              {
+                "year": "2018",
+                "label": "Section 301 China tariffs",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020",
+                "label": "USMCA: 75% auto content"
+              },
+              {
+                "year": "2026",
+                "label": "ASEAN content floors enforced"
+              }
+            ],
+            "label": "the rules-of-origin ratchet"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHOICE FOR ASEAN",
+        "body": "Either build out genuine upstream capacity — wafer fabs, steel mills, chemical precursors — which takes a decade and tens of billions, or accept losing the tariff preference and compete on labor cost alone. The middle path of light-touch assembly is closing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is meeting US local-content thresholds so hard for ASEAN assemblers?",
+            "options": [
+              "Their workers lack technical skills",
+              "Upstream inputs (chips, chemicals, components) still come from China",
+              "ASEAN tariffs on Chinese goods are too high",
+              "US inspectors block ASEAN factory visits"
+            ],
+            "correct": 1,
+            "explanation": "Final assembly moved south, but the component supply chain stayed in China — so traceable Chinese content blows through the value-content floor."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T04:37:08.139Z",
+    "label": "Rules of Origin & ASEAN Transshipment",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-04-california-driverless-car-traffic-tickets-liability": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CITATION GAP",
+        "body": "Traffic tickets are issued to drivers, not vehicles. Every state's vehicle code presumes a human recipient who can be summoned, fined, and have points assessed against a license. A driverless car has none of these — no license to suspend, no person to summons.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "California's old code required officers to hand a citation to a *natural person* operating the vehicle. With no driver, the legal instrument simply had **nowhere to land**."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "In 2018, San Francisco police pulled over a Cruise vehicle for failing to yield to a pedestrian. The officer approached the empty driver's seat and let the car go — there was no one to ticket. The video went viral and exposed the gap regulators had not closed."
+      },
+      {
+        "heading": "THE STRICT-LIABILITY MODEL",
+        "body": "California's fix shifts moving violations to the manufacturer under a strict-liability framework: the company pays regardless of fault or intent. This mirrors how product-liability law treats defective goods, not how traffic law treats drivers.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "California",
+                "value": "Manufacturer",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "Arizona",
+                "value": "No framework",
+                "cc": "US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Texas",
+                "value": "Operator entity",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "Germany",
+                "value": "Tech supervisor",
+                "cc": "DE",
+                "tone": "favorable"
+              },
+              {
+                "label": "UK",
+                "value": "ASDE (2024 Act)",
+                "cc": "GB",
+                "tone": "favorable"
+              }
+            ],
+            "label": "how jurisdictions assign AV violation liability"
+          }
+        ]
+      },
+      {
+        "heading": "THE 30-SECOND RULE",
+        "body": "Requiring operators to answer a police call within 30 seconds creates a remote-human standby requirement. Waymo and Cruise already staff remote assistance centers, but the legal duty to respond turns a service-quality metric into a regulated obligation."
+      },
+      {
+        "heading": "WHY EMERGENCY ZONES MATTER",
+        "body": "AVs have repeatedly driven into active fire scenes, drifted through police tape, and stalled in front of ambulances. The vehicles' map data updates slower than emergency cordons appear, and computer vision struggles with flares, cones, and hand signals from officers."
+      },
+      {
+        "heading": "THE FEDERAL VACUUM",
+        "body": "NHTSA regulates vehicle design; states regulate driver behavior. AVs collapse this distinction — the 'driver' is the design. Congress has not passed comprehensive AV legislation since the issue first reached committee in 2017, leaving 50 state experiments to define the rules.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why couldn't California police ticket a driverless Waymo before this law?",
+            "options": [
+              "State traffic code required citations be issued to a human operator",
+              "Federal law preempts state enforcement against AVs",
+              "Waymo's terms of service waived municipal jurisdiction",
+              "AVs are classified as commercial freight, not passenger vehicles"
+            ],
+            "correct": 0,
+            "explanation": "Traffic codes were written assuming a human driver to receive the citation, summons, and license points — a structural gap, not a loophole."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T04:37:37.595Z",
+    "label": "AV Citations & Liability",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-04-india-state-elections-bengal-modi-bjp-tmc": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LONGEST RED RULE",
+        "body": "Bengal was governed by the Communist Party (Marxist) for 34 consecutive years — 1977 to 2011 — the longest democratically elected communist government in history. Mamata Banerjee's Trinamool broke that streak and has held the state since.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1977",
+                "label": "CPI(M) Left Front sweeps Bengal",
+                "emphasis": "start"
+              },
+              {
+                "year": "2007",
+                "label": "Nandigram land protests; 14 killed"
+              },
+              {
+                "year": "2011",
+                "label": "Mamata's TMC ends 34-year Left rule",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "TMC repels BJP's biggest Bengal push"
+              },
+              {
+                "year": "2026",
+                "label": "BJP early lead"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1977",
+                "to": "2011",
+                "label": "Left Front rule",
+                "tone": "neutral"
+              },
+              {
+                "from": "2011",
+                "to": "2026",
+                "label": "TMC rule",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Bengal's post-Emergency arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE HINDI-BELT CEILING",
+        "body": "BJP's national dominance rests on the Hindi-speaking heartland — UP, Bihar, MP, Rajasthan, Haryana. Outside that belt, the party has struggled to crack regional-language strongholds where caste and linguistic identity outrank Hindutva mobilization. Bengal, Tamil Nadu, Kerala, and the south have been the structural ceiling.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN"
+            ],
+            "label": "the non-Hindi-belt states voting this cycle",
+            "markers": [
+              {
+                "lat": 22.5726,
+                "lng": 88.3639,
+                "label": "Kolkata (Bengal)"
+              },
+              {
+                "lat": 13.0827,
+                "lng": 80.2707,
+                "label": "Chennai (Tamil Nadu)"
+              },
+              {
+                "lat": 26.1445,
+                "lng": 91.7362,
+                "label": "Guwahati (Assam)"
+              },
+              {
+                "lat": 8.5241,
+                "lng": 76.9366,
+                "label": "Thiruvananthapuram (Kerala)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY STATE ELECTIONS MATTER STRUCTURALLY",
+        "body": "India's upper house — the Rajya Sabha — is elected by state legislatures, not voters. Capturing a state legislature buys senators for six years. This is how a party with a Lok Sabha majority can still lose decade-long fights over constitutional amendments and federal-state finance.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Land, police, and public order are *State List* subjects under the Indian Constitution. A hostile state government can blunt the centre's writ on everything from farm laws to **CAA-NRC** rollout — which is why Bengal's chief minister has been the loudest non-Congress voice against Modi-era legislation."
+          }
+        ]
+      },
+      {
+        "heading": "THE 27% QUESTION",
+        "body": "At 27% Muslim population, West Bengal has the highest Muslim share of any non-Muslim-majority Indian state. Mamata's TMC has consolidated that vote almost entirely; BJP's path to Bengal runs through fragmenting it or driving up Hindu-consolidation turnout above the combined opposition.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Lakshadweep",
+                "value": "~96%",
+                "cc": "IN"
+              },
+              {
+                "label": "J&K",
+                "value": "~68%",
+                "cc": "IN"
+              },
+              {
+                "label": "Assam",
+                "value": "~35%",
+                "cc": "IN"
+              },
+              {
+                "label": "West Bengal",
+                "value": "~27%",
+                "cc": "IN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Kerala",
+                "value": "~27%",
+                "cc": "IN"
+              },
+              {
+                "label": "UP",
+                "value": "~19%",
+                "cc": "IN"
+              },
+              {
+                "label": "India avg",
+                "value": "~14%",
+                "cc": "IN"
+              }
+            ],
+            "label": "Muslim population share, selected Indian states"
+          }
+        ]
+      },
+      {
+        "heading": "THE DRAVIDIAN EXCEPTION",
+        "body": "Tamil Nadu has not elected the Congress or BJP as its state government since 1967 — power has alternated between the DMK and AIADMK, both descendants of the Dravidian self-respect movement. The cycle's tight race involves an actor entrant — Vijay's TVK — testing whether the binary can be broken from inside the Tamil ecosystem rather than from Delhi."
+      },
+      {
+        "heading": "QUIZ",
+        "body": "Active retrieval check on Bengal's recent political history.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many consecutive years did the Communist Party (Marxist) govern West Bengal before Mamata Banerjee's TMC ended their rule in 2011?",
+            "options": [
+              "12 years",
+              "21 years",
+              "34 years",
+              "48 years"
+            ],
+            "correct": 2,
+            "explanation": "34 years (1977–2011) — the longest democratically elected communist government in history."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T04:38:13.191Z",
+    "label": "Bengal & India's Federal Map",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-04-mercedes-physical-buttons-euro-ncap-touchscreen": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EYES-OFF-ROAD PROBLEM",
+        "body": "Driver attention research consistently finds that operating a touchscreen requires looking away from the road for longer than a physical button press. A button can be found by feel alone — proprioception, the sense of where your limbs are in space, lets a trained driver hit the volume knob without glancing down. A flat glass surface offers no such tactile landmark.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *haptic feedback* — the mechanical confirmation a switch has actuated. Capacitive glass eliminates it, which is why every touchscreen control demands at least one visual confirmation glance."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MANUFACTURERS WENT GLASS",
+        "body": "A single touchscreen replaces dozens of switches, knobs, wiring harnesses, and the tooling to install them. It is cheaper to manufacture, simpler to update via software, and lets designers ship the same dashboard across trim levels by just changing the UI. The savings per vehicle run into the hundreds of euros at scale.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Physical buttons",
+                "value": "~50–80 parts",
+                "tone": "neutral"
+              },
+              {
+                "label": "Single touchscreen",
+                "value": "1 panel + ECU",
+                "tone": "favorable"
+              }
+            ],
+            "label": "control surfaces in a typical premium cabin"
+          }
+        ]
+      },
+      {
+        "heading": "THE EURO NCAP SHIFT",
+        "body": "From 2026, Euro NCAP — Europe's vehicle safety rating body — requires that core driving controls (turn signals, hazards, wipers, horn, SOS) be operable via physical switches to earn a full five-star rating. The rating is not legally binding but is decisive for fleet sales and insurance pricing across Europe, which is why every major OEM is now retrofitting buttons.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2012",
+                "label": "Tesla Model S debuts 17-inch center screen"
+              },
+              {
+                "year": "2018",
+                "label": "VW ID.3 ships nearly button-free cabin",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "Euro NCAP signals physical-control requirement"
+              },
+              {
+                "year": "2026",
+                "label": "NCAP rule takes effect"
+              },
+              {
+                "year": "2027",
+                "label": "Mercedes C-Class returns to hybrid layout"
+              }
+            ],
+            "label": "the touchscreen pendulum"
+          }
+        ]
+      },
+      {
+        "heading": "THE HICK–HYMAN INSIGHT",
+        "body": "A 1950s information-theory result in human-computer interaction: reaction time grows with the logarithm of the number of choices presented. A touchscreen menu that nests climate controls three taps deep imposes far more cognitive load than a dedicated knob, even when the total information is identical. Hidden controls are slow controls.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does Hick–Hyman law predict about touchscreen menus vs. physical buttons?",
+            "options": [
+              "Touchscreens are faster because the screen is bigger",
+              "Reaction time grows with the log of available choices, so nested menus are slower",
+              "Both are equivalent once the driver memorizes the layout",
+              "Physical buttons are slower because they require more force"
+            ],
+            "correct": 1,
+            "explanation": "Each menu level adds choices the driver must scan and select among; physical controls present a fixed, learnable spatial layout that bypasses the choice-time penalty."
+          }
+        ]
+      },
+      {
+        "heading": "THE REGULATORY RHYME",
+        "body": "This is not the first time car interiors have been re-regulated after a design fad. Pop-up headlights were effectively killed by 1990s pedestrian-impact rules. Bench front seats vanished when three-point belts became mandatory. Dashboard design follows safety regulation on a long lag — the touchscreen era is now entering its correction phase."
+      }
+    ],
+    "generatedAt": "2026-05-04T04:38:51.833Z",
+    "label": "Touchscreens vs Physical Controls",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-04-morgan-stanley-bitcoin-bank-balance-sheet-basel": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 1,250% RULE",
+        "body": "Basel's December 2022 crypto standard sorts digital assets into two groups. Unhedged exposures to assets like bitcoin land in Group 2, which carries a 1,250% risk-weight — the regulatory ceiling, applied to the riskiest exposures a bank can hold.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A **1,250% risk-weight** is not arbitrary: it is the multiplier that, combined with Basel's **8% minimum capital ratio**, forces a bank to hold *one dollar of capital for every dollar of exposure*. The asset is treated as if it could go to zero overnight."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THIS KILLS THE TRADE",
+        "body": "A bank's return on equity depends on leverage — earning a spread on assets funded mostly by deposits. If bitcoin requires dollar-for-dollar capital, the bank cannot lever it at all. The math that makes mortgages and Treasuries profitable simply does not work.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "US Treasuries",
+                "value": "0%",
+                "tone": "favorable",
+                "weight": 0
+              },
+              {
+                "label": "AAA corporate bond",
+                "value": "20%",
+                "tone": "favorable",
+                "weight": 20
+              },
+              {
+                "label": "Residential mortgage",
+                "value": "35%",
+                "tone": "neutral",
+                "weight": 35
+              },
+              {
+                "label": "Unrated corporate",
+                "value": "100%",
+                "tone": "neutral",
+                "weight": 100
+              },
+              {
+                "label": "Bitcoin (Group 2)",
+                "value": "1,250%",
+                "tone": "unfavorable",
+                "weight": 1250
+              }
+            ],
+            "label": "Basel risk-weights, selected exposures"
+          }
+        ]
+      },
+      {
+        "heading": "THE THREE-REGULATOR PROBLEM",
+        "body": "In the US, a national bank touching crypto on its balance sheet needs alignment from three bodies: the Federal Reserve (holding-company supervision), the OCC (national bank charters), and the FDIC (deposit insurance). Each can independently block, and the SEC's old SAB 121 forced custodied crypto onto bank balance sheets as a liability — repealed in 2025, but the muscle memory remains.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Federal Reserve",
+                "role": "Holding-company supervisor",
+                "cc": "US"
+              },
+              {
+                "name": "OCC",
+                "role": "National bank chartering",
+                "cc": "US"
+              },
+              {
+                "name": "FDIC",
+                "role": "Deposit insurance",
+                "cc": "US"
+              },
+              {
+                "name": "SEC",
+                "role": "Securities/custody accounting",
+                "cc": "US"
+              }
+            ],
+            "label": "who has to say yes"
+          }
+        ]
+      },
+      {
+        "heading": "THE FUND WORKAROUND",
+        "body": "What Morgan Stanley actually offers is access to spot bitcoin ETFs through wealth-management accounts. The bank never touches the asset; the client owns shares of a trust that owns the coins. This is the regulatory seam that lets banks participate in crypto distribution without triggering Basel capital charges."
+      },
+      {
+        "heading": "THE BTC TAPE",
+        "body": "The fund inflows come against a backdrop of bitcoin trading well off its highs. Self-directed wealth clients are buying the dip; the bank is collecting fees, not balance-sheet exposure.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              67304.25,
+              68985.53,
+              68864.23,
+              71975.62,
+              71117.08,
+              71770.75,
+              72972.71,
+              73053.89,
+              70756.75,
+              74514.63,
+              74181.11,
+              74833.51,
+              75149.19,
+              77128.44,
+              75728.46,
+              73856.06,
+              75874.55,
+              76350.25,
+              78194.78,
+              78260.62,
+              77444.8,
+              77619.14,
+              78645.13,
+              77361.3,
+              76345.23,
+              75774.89,
+              76286.58,
+              78172.07,
+              78655.35,
+              78562.55,
+              80370.65
+            ],
+            "periods": [
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 4"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY BASEL EXISTS",
+        "body": "The Basel framework was born from Herstatt Bank's 1974 collapse, which spread cross-border losses through the FX settlement system. Every subsequent revision — Basel I, II, III, and the crypto annex — has answered a specific failure. The 1,250% weight is the regulators' verdict that crypto's tail risk has not yet been domesticated.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does a 1,250% risk-weight effectively force banks to hold $1 of capital per $1 of exposure?",
+            "options": [
+              "Because 1,250% is the maximum risk-weight Basel allows",
+              "Because 1,250% × Basel's 8% minimum capital ratio equals 100%",
+              "Because crypto is excluded from deposit insurance",
+              "Because the Fed sets crypto capital separately from Basel"
+            ],
+            "correct": 1,
+            "explanation": "Basel requires capital equal to 8% of risk-weighted assets. 1,250% × 8% = 100%, meaning the bank must hold capital equal to the full exposure."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-04"
+    ],
+    "generatedAt": "2026-05-04T04:39:24.261Z",
+    "label": "Basel & Bank Crypto Capital",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-04-pakistan-sbp-rate-hike-115-stabilisation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A BASIS POINT IS",
+        "body": "One basis point is one-hundredth of a percentage point. A 100bp hike moves the policy rate from 10.5% to 11.5%. Central bankers use the unit because saying 'one percent' is ambiguous — it could mean a percentage point or a relative change.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A move from 10.5% to 11.5% is **100bp** in absolute terms but only a *9.5% relative* increase — the basis-point convention removes that ambiguity."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSMISSION MECHANISM",
+        "body": "Raising the policy rate makes borrowing more expensive, which is meant to cool demand and pull inflation down. But it also raises what the government pays on its own debt — and in Pakistan, the government is the largest borrower in the economy. The same lever that fights inflation deepens the fiscal hole.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.399884,
+              279.05,
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775
+            ],
+            "periods": [
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE DEBT-SERVICE TRAP",
+        "body": "When interest payments exceed economic growth, debt-to-GDP rises even with a balanced budget. Pakistan spends 46.7% of federal expenditure on debt service before a single rupee goes to schools, hospitals, or defence. A rate hike that adds to that share narrows the budget further.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Debt service as share of govt revenue",
+            "peers": [
+              {
+                "value": 60,
+                "cc": "PK"
+              },
+              {
+                "value": 55,
+                "cc": "EG"
+              },
+              {
+                "value": 45,
+                "cc": "NG"
+              },
+              {
+                "value": 24,
+                "cc": "IN"
+              },
+              {
+                "value": 15,
+                "cc": "BD"
+              },
+              {
+                "value": 18,
+                "cc": "ID"
+              },
+              {
+                "value": 13,
+                "cc": "TR"
+              }
+            ],
+            "subjectCc": "PK",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "THE FUEL-PRICE PASSTHROUGH",
+        "body": "Pakistan imports roughly 80% of its petroleum. When the rupee weakens or global crude rises, pump prices follow within weeks, then ripple into transport, food, and electricity tariffs. A 50% petrol surge in two months is not retail volatility — it is the import bill arriving at the consumer.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "SA",
+              "AE",
+              "KW",
+              "IR"
+            ],
+            "label": "where Pakistan's fuel comes from",
+            "caption": "Saudi Arabia and the UAE supply the bulk on deferred-payment terms"
+          }
+        ]
+      },
+      {
+        "heading": "THE IMF SHADOW",
+        "body": "Pakistan has been in 24 IMF programmes since 1958 — more than almost any other country. Each programme demands the same medicine: raise rates, cut subsidies, let the rupee float. The hike is not just monetary policy; it is a signal to Washington that the conditions are being met.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many IMF programmes has Pakistan entered since independence?",
+            "options": [
+              "6",
+              "12",
+              "24",
+              "40"
+            ],
+            "correct": 2,
+            "explanation": "Pakistan has signed 24 IMF arrangements since 1958 — among the highest counts globally, reflecting a chronic balance-of-payments problem rather than episodic crises."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GULF DEPOSITS BUY TIME, NOT SOLVENCY",
+        "body": "Saudi Arabia and the UAE periodically deposit dollars at the State Bank of Pakistan to inflate headline reserves. The deposits are short-term liabilities — typically 12-month rollovers — that count as reserves on paper but cannot be spent. Each rollover is a discretionary favour Riyadh or Abu Dhabi can withhold."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-04"
+    ],
+    "generatedAt": "2026-05-04T04:39:58.819Z",
+    "label": "Pakistan's Rate Hike & the Debt Trap",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-04-png-frontier-judges-hela-enga-peacebuilding": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HIGHLANDS GEOGRAPHY",
+        "body": "Hela and Enga sit in PNG's western highlands — rugged valleys above 1,500m where the Australian colonial administration only made first contact in the 1930s. The terrain isolates clans into hundreds of micro-territories, each with its own land claims and grievance ledgers.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PG",
+              "ID",
+              "AU",
+              "SB"
+            ],
+            "label": "PNG Highlands",
+            "markers": [
+              {
+                "lat": -5.8479,
+                "lng": 142.9509,
+                "label": "Tari (Hela capital)"
+              },
+              {
+                "lat": -5.4633,
+                "lng": 143.7136,
+                "label": "Wabag (Enga capital)"
+              },
+              {
+                "lat": -9.4438,
+                "lng": 147.1803,
+                "label": "Port Moresby"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE FIGHTING ESCALATED",
+        "body": "Traditional Highlands warfare used bows, spears, and strict reciprocity rules — a death demanded one death, then compensation negotiations. The arrival of high-powered rifles in the 1990s, often traded for gold and gas royalties, broke the proportionality. A single ambush can now kill dozens, making compensation arithmetic impossible.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Anthropologists call the customary system *payback* — but the Tok Pisin term is **bel kaikai**, literally 'the stomach eats.' The point is that grievance is *digested* through compensation, not avenged indefinitely. Automatic weapons broke the digestion."
+          }
+        ]
+      },
+      {
+        "heading": "THE RESOURCE CURSE OVERLAY",
+        "body": "Hela hosts the PNG LNG project — ExxonMobil's $19bn liquefied natural gas operation that began exports in 2014. Royalty disputes between clans, landowner groups, and the state inject cash and weapons into communities whose customary land tenure was never designed to handle hydrocarbon rents."
+      },
+      {
+        "heading": "WHY COURTS, NOT POLICE",
+        "body": "PNG's Royal Constabulary has roughly 6,000 officers for 10 million people across some of the world's most rugged terrain. In the Highlands, the police presence is often a single station per district. Judicial injunctions backed by contempt powers are an attempt to project state authority where physical enforcement cannot reach.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many police officers does PNG have to cover its ~10 million people?",
+            "options": [
+              "~6,000",
+              "~30,000",
+              "~80,000",
+              "~150,000"
+            ],
+            "correct": 0,
+            "explanation": "PNG has one of the lowest police-to-population ratios in the world — roughly 1 officer per 1,700 people, versus ~1 per 400 in most OECD countries."
+          }
+        ]
+      },
+      {
+        "heading": "THE CONSTITUTIONAL HOOK",
+        "body": "PNG's 1975 Constitution embeds enforceable human rights — including the right to life and security of the person — directly in Section 57, which lets the National Court issue protective orders on its own motion. Judges are reading this as authority to act before harm occurs, not just to remedy it after. The Supreme Court has not yet ruled on whether preemptive injunctions against named clans stretch the section past its intent.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Section 57 is unusual globally — it lets a court act *suo motu* (on its own initiative) to enforce constitutional rights, without waiting for a victim to file. Most common-law jurisdictions require a complainant with **standing**."
+          }
+        ]
+      },
+      {
+        "heading": "THE COLONIAL INHERITANCE",
+        "body": "PNG's legal system is grafted onto thousands of distinct customary jurisdictions — over 800 languages, each with its own dispute-resolution norms. The 1963 Native Customs (Recognition) Act and later Underlying Law Act tried to fuse the two, giving courts discretion to apply custom where it doesn't conflict with constitutional rights. Highlands judges are operating at the seam."
+      }
+    ],
+    "generatedAt": "2026-05-04T04:40:32.696Z",
+    "label": "PNG Highlands & Tribal Fighting",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-04-tracheal-patch-mechanical-microcurrent-regeneration": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE TRACHEA RESISTS REPAIR",
+        "body": "The trachea is a cartilage-ringed tube with sparse native vasculature. Unlike skin or liver, it has no reservoir of stem cells that proliferate after injury, and its blood supply enters through tiny segmental arteries that surgeons routinely sever during resection.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The clinical term is **tracheomalacia** when the rings collapse, and **tracheal stenosis** when scar tissue narrows the lumen — both are defects synthetic grafts have failed to fix for forty years."
+          }
+        ]
+      },
+      {
+        "heading": "THE ANASTOMOSIS PROBLEM",
+        "body": "An anastomosis is the surgical join between native tissue and graft. Without capillaries crossing the seam within days, the graft tissue starves, necroses, and the immune system reads the dying interface as foreign — triggering rejection even when materials are biocompatible."
+      },
+      {
+        "heading": "THE MACCHIARINI SCANDAL",
+        "body": "Italian surgeon Paolo Macchiarini implanted plastic-scaffold tracheas in patients from 2011, claiming stem-cell seeding would revascularize them. Most patients died; an investigation found falsified data and unconsented experimentation. The case poisoned the field and made regulators wary of any synthetic tracheal graft.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did synthetic tracheal grafts fail in the Macchiarini cases?",
+            "options": [
+              "The plastic scaffolds were toxic to lung tissue",
+              "Blood vessels never grew into the grafts, so tissue at the seams died",
+              "The patients' immune systems rejected the donor stem cells",
+              "Surgical technique caused mechanical collapse of the airway"
+            ],
+            "correct": 1,
+            "explanation": "Without vascularization across the anastomosis, graft tissue necroses within days — the failure mode the new dual-signal patch directly targets."
+          }
+        ]
+      },
+      {
+        "heading": "PIEZOELECTRICITY IN BIOLOGY",
+        "body": "Certain materials generate electric charge under mechanical stress — the piezoelectric effect, discovered by the Curies in 1880. Bone is naturally piezoelectric, which is why physical loading remodels it; engineered piezoelectric polymers reproduce the effect in soft tissue, converting ultrasound vibrations into microcurrents that biology evolved to read as injury signals."
+      },
+      {
+        "heading": "WHY TWO SIGNALS BEAT ONE",
+        "body": "Mechanical stretch alone activates endothelial cells but not strongly enough to overcome the anastomotic blood-supply gap. Microcurrents alone bias cells toward migration without telling them where to go. The patch couples both — stretch saying grow, current saying here — which is why the dual-signal version vascularizes where each signal alone fails."
+      }
+    ],
+    "generatedAt": "2026-05-04T04:41:03.760Z",
+    "label": "Tracheal Regeneration",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-04-tui-renaissance-cloud-dev-terminal-tooling": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE TERMINAL OUTLASTS",
+        "body": "The VT100 terminal protocol was standardized in 1978 and remains the lingua franca of every shell today. Any tool written against it runs unchanged across macOS, Linux, BSD, and Windows WSL — a portability budget no GUI framework has ever matched.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The terminal is the only UI layer in computing where a program written in *1985* still renders correctly in **2026** without modification."
+          }
+        ]
+      },
+      {
+        "heading": "THE WINDOWS CHURN",
+        "body": "Microsoft has shipped a new 'preferred' UI framework roughly every five years — and each one orphans the last. Developers who bet on the official path got burned repeatedly; the terminal sat through every cycle untouched.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2002",
+                "label": "Windows Forms"
+              },
+              {
+                "year": "2006",
+                "label": "WPF"
+              },
+              {
+                "year": "2012",
+                "label": "WinRT / Metro"
+              },
+              {
+                "year": "2015",
+                "label": "UWP"
+              },
+              {
+                "year": "2020",
+                "label": "WinUI 3"
+              },
+              {
+                "year": "2023",
+                "label": "Electron dominates",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "Microsoft's UI framework cycle"
+          }
+        ]
+      },
+      {
+        "heading": "THE LINUX TOOLKIT SCHISM",
+        "body": "Linux desktop apps must pick GTK (GNOME) or Qt (KDE) — the two toolkits look alien on each other's desktops, share no widgets, and require duplicate maintenance. Shipping one Electron binary that bundles Chromium is cheaper than maintaining two native ports."
+      },
+      {
+        "heading": "WHY ELECTRON WON, AND WHY IT'S LOSING",
+        "body": "Electron bundles a full Chromium browser per app — Slack, Discord, VS Code each ship ~150MB and consume gigabytes of RAM. The web stack solved fragmentation but imported the browser's resource cost; on a 16GB laptop, ten Electron apps eat half the memory before any work begins.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Slack (Electron)",
+                "value": "~600 MB",
+                "tone": "unfavorable",
+                "weight": 600
+              },
+              {
+                "label": "VS Code (Electron)",
+                "value": "~500 MB",
+                "tone": "unfavorable",
+                "weight": 500
+              },
+              {
+                "label": "Discord (Electron)",
+                "value": "~400 MB",
+                "tone": "unfavorable",
+                "weight": 400
+              },
+              {
+                "label": "Neovim",
+                "value": "~40 MB",
+                "tone": "favorable",
+                "weight": 40
+              },
+              {
+                "label": "k9s",
+                "value": "~30 MB",
+                "tone": "favorable",
+                "weight": 30
+              },
+              {
+                "label": "lazygit",
+                "value": "~25 MB",
+                "tone": "favorable",
+                "weight": 25
+              }
+            ],
+            "label": "memory footprint, idle (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE CLOUD-DEV ACCELERANT",
+        "body": "When your code runs in a remote container, AWS instance, or Kubernetes pod, a local GUI cannot reach it without a tunnel. SSH plus a TUI is the shortest path from laptop to production — which is why k9s (Kubernetes), lazygit (git), and btop (system monitor) exploded alongside the shift to remote development.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A TUI runs *inside* the SSH session. A GUI requires X-forwarding, a VPN, or a port-forward — three failure modes the terminal doesn't have."
+          }
+        ]
+      },
+      {
+        "heading": "THE VIM PROOF",
+        "body": "Vim (1991) outlasted Atom (2014–2022, killed by GitHub), Sublime Text (peaked ~2015, now niche), and is currently outlasting every Electron editor that promised to replace it. The pattern: tools tied to a specific GUI runtime inherit that runtime's mortality.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which editor, released decades before its Electron-based competitors, has outlived all of them?",
+            "options": [
+              "Atom",
+              "Sublime Text",
+              "Vim",
+              "Brackets"
+            ],
+            "correct": 2,
+            "explanation": "Vim (1991) predates Atom, Sublime, and Brackets — all GUI editors that have since been discontinued or marginalized — because its terminal substrate has no vendor and no runtime to deprecate."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T04:41:36.111Z",
+    "label": "Terminal UIs & GUI Fragmentation",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-04-us-project-freedom-hormuz-escort-centcom": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. The US response — Operation Earnest Will — reflagged Kuwaiti tankers under American colors and escorted them through the strait. It was the largest naval convoy operation since WWII and lasted 14 months.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1987",
+                "label": "Operation Earnest Will begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1988",
+                "label": "USS Vincennes downs Iran Air 655"
+              },
+              {
+                "year": "1988",
+                "label": "Operation Praying Mantis"
+              },
+              {
+                "year": "2019",
+                "label": "Operation Sentinel (IMSC)"
+              },
+              {
+                "year": "2023",
+                "label": "Operation Prosperity Guardian"
+              },
+              {
+                "year": "2026",
+                "label": "Project Freedom"
+              }
+            ],
+            "label": "US escort missions in the Gulf"
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "The strait sits between Iran and Oman, not Iran and any Arab Gulf state. Iran's coastline runs along the entire northern edge. The deepest shipping channel hugs the Iranian side, which is why Iranian naval positioning matters disproportionately.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the Persian Gulf chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.2854,
+                "lng": 51.531,
+                "label": "Doha"
+              },
+              {
+                "lat": 26.2235,
+                "lng": 50.5876,
+                "label": "Manama (5th Fleet HQ)"
+              },
+              {
+                "lat": 25.4052,
+                "lng": 55.5136,
+                "label": "Fujairah pipeline terminus"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY GETS ESCORTED",
+        "body": "Escort missions are not for everyone — they protect vessels of participating flag states whose owners pay war-risk premiums and accept naval routing. Insurers, not navies, decide which tankers transit; the convoy is the political wrapper around an insurance arrangement.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The decisive instrument is **Lloyd's of London war-risk premiums**. Once underwriters list the strait as a *Listed Area*, every transit triggers an additional premium — often 0.5% of hull value — which can exceed the cargo's profit margin. Closure happens at the underwriter's desk, not on the water."
+          }
+        ]
+      },
+      {
+        "heading": "THE FIFTH FLEET",
+        "body": "US Naval Forces Central Command is headquartered in Manama, Bahrain — a kingdom of 1.5 million that hosts roughly 9,000 American personnel. Bahrain has been the US Gulf basing anchor since 1949, when the Royal Navy first allowed an American naval mission alongside its own.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Qatar (Al Udeid)",
+                "value": "~10,000",
+                "cc": "QA",
+                "weight": 10000
+              },
+              {
+                "label": "Bahrain (NAVCENT)",
+                "value": "~9,000",
+                "cc": "BH",
+                "weight": 9000
+              },
+              {
+                "label": "Kuwait",
+                "value": "~13,500",
+                "cc": "KW",
+                "weight": 13500
+              },
+              {
+                "label": "UAE (Al Dhafra)",
+                "value": "~3,500",
+                "cc": "AE",
+                "weight": 3500
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~2,700",
+                "cc": "SA",
+                "weight": 2700
+              }
+            ],
+            "label": "US military footprint in the Gulf"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL REGIME",
+        "body": "Under UNCLOS Article 38, ships have a right of transit passage through international straits — coastal states cannot suspend passage or impose conditions. Iran signed UNCLOS in 1982 but never ratified it, and argues Hormuz is governed by its own domestic law. The legal ambiguity is structural, not accidental.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is Iran's UNCLOS status the chokepoint within the chokepoint?",
+            "options": [
+              "Iran ratified UNCLOS but exempted Hormuz",
+              "Iran signed but never ratified UNCLOS",
+              "Iran rejected UNCLOS entirely in 1982",
+              "Iran ratified UNCLOS only after the Tanker War"
+            ],
+            "correct": 1,
+            "explanation": "Signing without ratifying lets Iran invoke transit-passage norms when convenient and reject them when not — the ambiguity is the leverage."
+          }
+        ]
+      },
+      {
+        "heading": "THE MARKET'S READ",
+        "body": "Prediction markets are pricing the standoff. Watch how the same contract moves when escorts deploy versus when diplomatic drafts circulate — the spread between military and diplomatic signals is where the actual probability sits.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              58,
+              61,
+              28,
+              35,
+              30,
+              30,
+              33,
+              35,
+              30,
+              32,
+              31,
+              34,
+              36,
+              31,
+              28,
+              31,
+              33,
+              32,
+              34,
+              34,
+              34,
+              34,
+              33,
+              34,
+              31,
+              30,
+              30,
+              30
+            ],
+            "periods": [
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 4"
+            ],
+            "label": "US invade Iran before 2027?",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "58%"
+              },
+              {
+                "atIndex": 27,
+                "label": "30%"
+              }
+            ],
+            "link": "https://polymarket.com/event/will-the-us-invade-iran-before-2027",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-04"
+    ],
+    "generatedAt": "2026-05-04T04:42:12.480Z",
+    "label": "Hormuz Escort Missions",
+    "category": "politics",
+    "articleCount": 1
   }
 }
