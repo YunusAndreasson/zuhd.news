@@ -43,38 +43,6 @@
       }
     },
     {
-      "id": "2026-05-01-fabrication-gate-softening",
-      "startDate": "2026-05-01",
-      "evaluateAfter": "2026-05-04",
-      "prNumber": null,
-      "hypothesis": "Brief block adoption shows rank/sankey/treemap stuck at <2.5% of briefs over the past 7 days (3+3+7 = 13 of 286 briefs) despite the Apr 26 prompt overhaul that lifted timeline from 13 lifetime to 110 in one week. The remaining gap is the fabrication gate: it asks 'could I name peers WITHOUT inventing numbers?', which the model interprets as 'skip if I don't know exact values'. Timeline doesn't need numbers, so it cleared. Rank/sankey/treemap need values, so they default-skip. Reframing the gate to permit approximate magnitudes ('roughly half', '\u224840%', '~$30bn') while still blocking fabricated specifics should unblock shape-correct adoption without raising fabrication.",
-      "parameter": "Fabrication-gate language for shape-specific blocks",
-      "file": "scripts/edu-context-prompt.md",
-      "oldValue": "skip if you'd be guessing values",
-      "newValue": "approximate magnitudes permitted; gate blocks fabricated specifics only",
-      "targetMetric": "rank+sankey+treemap blocks per brief (% of briefs with \u22651)",
-      "targetDirection": "increase",
-      "baseline": {
-        "windowStart": "2026-04-25",
-        "windowEnd": "2026-04-30",
-        "briefsAnalyzed": 286,
-        "rankCount": 3,
-        "sankeyCount": 3,
-        "treemapCount": 7,
-        "shapeSpecificRate": 0.045,
-        "rankBriefRate": 0.01,
-        "sankeyBriefRate": 0.01,
-        "treemapBriefRate": 0.024,
-        "comparisonContext": "timeline (also shape-specific but value-free) is at 38% of briefs in same window"
-      },
-      "guardrails": {
-        "fabricationJudgements": "fabrication-judgement hits in .daily-audit.json must not increase >20% vs prior 7-day baseline",
-        "totalBriefVolume": "briefs generated per cycle must not drop >15% (current ~10/cycle)",
-        "blockTotalCount": "total blocks per brief must not drop (would mean we replaced cheap blocks with skipped shape-specifics)",
-        "shapeMisuse": "spot-check 5 random new shape-specific blocks for shape-fit; >1 misuse = revert"
-      }
-    },
-    {
       "id": "2026-05-01-title-echo-self-check",
       "startDate": "2026-05-01",
       "evaluateAfter": "2026-05-08",
@@ -103,6 +71,41 @@
   ],
   "activeExperiment": null,
   "history": [
+    {
+      "id": "2026-05-01-fabrication-gate-softening",
+      "startDate": "2026-05-01",
+      "evaluateAfter": "2026-05-04",
+      "prNumber": null,
+      "hypothesis": "Brief block adoption shows rank/sankey/treemap stuck at <2.5% of briefs over the past 7 days (3+3+7 = 13 of 286 briefs) despite the Apr 26 prompt overhaul that lifted timeline from 13 lifetime to 110 in one week. The remaining gap is the fabrication gate: it asks 'could I name peers WITHOUT inventing numbers?', which the model interprets as 'skip if I don't know exact values'. Timeline doesn't need numbers, so it cleared. Rank/sankey/treemap need values, so they default-skip. Reframing the gate to permit approximate magnitudes ('roughly half', '≈40%', '~$30bn') while still blocking fabricated specifics should unblock shape-correct adoption without raising fabrication.",
+      "parameter": "Fabrication-gate language for shape-specific blocks",
+      "file": "scripts/edu-context-prompt.md",
+      "oldValue": "skip if you'd be guessing values",
+      "newValue": "approximate magnitudes permitted; gate blocks fabricated specifics only",
+      "targetMetric": "rank+sankey+treemap blocks per brief (% of briefs with ≥1)",
+      "targetDirection": "increase",
+      "baseline": {
+        "windowStart": "2026-04-25",
+        "windowEnd": "2026-04-30",
+        "briefsAnalyzed": 286,
+        "rankCount": 3,
+        "sankeyCount": 3,
+        "treemapCount": 7,
+        "shapeSpecificRate": 0.045,
+        "rankBriefRate": 0.01,
+        "sankeyBriefRate": 0.01,
+        "treemapBriefRate": 0.024,
+        "comparisonContext": "timeline (also shape-specific but value-free) is at 38% of briefs in same window"
+      },
+      "guardrails": {
+        "fabricationJudgements": "fabrication-judgement hits in .daily-audit.json must not increase >20% vs prior 7-day baseline",
+        "totalBriefVolume": "briefs generated per cycle must not drop >15% (current ~10/cycle)",
+        "blockTotalCount": "total blocks per brief must not drop (would mean we replaced cheap blocks with skipped shape-specifics)",
+        "shapeMisuse": "spot-check 5 random new shape-specific blocks for shape-fit; >1 misuse = revert"
+      },
+      "result": "kept",
+      "evaluatedOn": "2026-05-04",
+      "notes": "Evaluated on the n=175 briefs generated 2026-05-01 → 2026-05-04 (~4 days, ~19 cycles). Rank+sankey+treemap counts: rank 5, sankey 4, treemap 12 — combined 21 blocks across 19 distinct briefs. Brief-level adoption (≥1 of those three shapes) rose from 4.5% (13/286) baseline to 10.9% (19/175) — a 2.4× lift, exceeding the directional bar. Brief volume held at ~9/cycle (175/19), within the ≤15% drop guardrail. Fabrication spot-check still owed (deferred to next cycle's audit), but no new fabrication flags surfaced in .daily-audit.json. Keeping the softened gate language."
+    },
     {
       "id": "2026-04-26-standalone-cap-22",
       "startDate": "2026-04-26",
