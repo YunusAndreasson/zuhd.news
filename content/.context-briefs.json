@@ -108114,5 +108114,1652 @@
     "label": "Hormuz Escort Missions",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-03-openai-o1-er-triage-diagnosis-harvard-trial": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY TRIAGE IS HARD",
+        "body": "An ER physician sees a patient for minutes and must rank dozens of possible diagnoses by likelihood and lethality. The cognitive load is not knowledge recall — it is generating the differential, the list of what this could be, before tests narrow it down.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The classic teaching: *common things are common*, but **the diagnosis you don't consider is the one you miss**. Most ER misses are not wrong answers — they are unasked questions."
+          }
+        ]
+      },
+      {
+        "heading": "THE ANCHORING TRAP",
+        "body": "Human clinicians anchor on the first plausible diagnosis and stop searching. Studies of diagnostic error consistently find that 70-80% of misses trace to incomplete differentials, not to misreading tests. The fix is structural: force the differential wider before committing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the leading cause of diagnostic error in emergency medicine?",
+            "options": [
+              "Misreading lab or imaging results",
+              "Failing to consider the correct diagnosis at all",
+              "Equipment malfunction",
+              "Patient withholding symptoms"
+            ],
+            "correct": 1,
+            "explanation": "Premature closure — anchoring on one diagnosis and never generating the alternative — accounts for the majority of preventable diagnostic errors."
+          }
+        ]
+      },
+      {
+        "heading": "WHY LANGUAGE MODELS DO WELL HERE",
+        "body": "A reasoning model has no fatigue, no anchoring bias, and no shift to finish. It generates a wide differential by default — the same property that makes it verbose in casual chat makes it thorough in diagnosis. The 'edge' is not superior knowledge; it is exhaustive enumeration."
+      },
+      {
+        "heading": "THE BAYESIAN SUBSTRATE",
+        "body": "Diagnosis is Bayesian: prior probability of disease times likelihood of symptoms given disease. Doctors learn priors implicitly through training; LLMs absorb them from the medical literature corpus. Where corpora are thin — rare diseases, non-Western populations — model performance degrades sharply.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why the *base-rate* problem matters: a model trained mostly on US case reports will overweight American disease prevalence when triaging a patient in Lagos or Lahore."
+          }
+        ]
+      },
+      {
+        "heading": "THE LIABILITY GAP",
+        "body": "US medical liability is built on the standard-of-care doctrine — a physician is judged against what a reasonable peer would have done. There is no equivalent doctrine for an algorithm. If the model is right and the doctor overrules it, who is liable? If the doctor follows the model and the model is wrong, who is liable? Neither question has a settled answer in any jurisdiction.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "unsettled",
+                "cc": "US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "EU (AI Act)",
+                "value": "high-risk class",
+                "cc": "EU",
+                "tone": "neutral"
+              },
+              {
+                "label": "UK (MHRA)",
+                "value": "device framework",
+                "cc": "GB",
+                "tone": "neutral"
+              },
+              {
+                "label": "China",
+                "value": "state-approved",
+                "cc": "CN",
+                "tone": "neutral"
+              }
+            ],
+            "label": "approaches to medical AI liability (2026)"
+          }
+        ]
+      },
+      {
+        "heading": "THE MISSING SENSE",
+        "body": "The study explicitly excluded visual assessment — skin color, gait, the look of distress that experienced clinicians read in seconds. Medicine calls this the 'end-of-the-bed' diagnosis. It is the part of the job hardest to encode and, so far, the part where humans remain irreplaceable."
+      }
+    ],
+    "generatedAt": "2026-05-04T08:28:31.136Z",
+    "label": "AI Triage & Diagnostic Reasoning",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-04-africa-ai-access-12-percent-power-connectivity-gap": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STACK",
+        "body": "AI access is a stack: electricity, then connectivity, then a device, then literacy. Each layer depends on the one below. Skipping the bottom is impossible — a smartphone with no charger is not a leapfrog, it is a paperweight.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The much-celebrated *mobile leapfrog* — Africa skipping landlines for cellular — worked because handsets sip power. **Generative AI inference does not leapfrog**; it requires sustained grid current at the data center and at the edge."
+          }
+        ]
+      },
+      {
+        "heading": "THE GRID GAP",
+        "body": "Sub-Saharan Africa has roughly 600 million people without any electricity access at all, and hundreds of millions more on grids that load-shed daily. South Africa, the continent's most industrialized economy, ran rolling blackouts of 6-12 hours daily through much of 2023.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "South Africa",
+                "value": "~85%",
+                "cc": "ZA",
+                "weight": 85,
+                "tone": "neutral"
+              },
+              {
+                "label": "Kenya",
+                "value": "~76%",
+                "cc": "KE",
+                "weight": 76,
+                "tone": "neutral"
+              },
+              {
+                "label": "Nigeria",
+                "value": "~60%",
+                "cc": "NG",
+                "weight": 60,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "DR Congo",
+                "value": "~21%",
+                "cc": "CD",
+                "weight": 21,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Chad",
+                "value": "~12%",
+                "cc": "TD",
+                "weight": 12,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "S. Sudan",
+                "value": "~8%",
+                "cc": "SS",
+                "weight": 8,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "electricity access, % of population (2023)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DATA CENTERS CLUSTER",
+        "body": "A hyperscale AI data center draws 100-300 MW continuously — equivalent to a small city. Africa hosts under 2% of global data center capacity, and most of it sits in two places: Johannesburg and Cape Town, where the grid is weakest among industrialized economies, or Nairobi and Lagos, where diesel backup is a permanent line item.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ZA",
+              "KE",
+              "NG",
+              "EG",
+              "MA"
+            ],
+            "label": "Africa's data center clusters",
+            "markers": [
+              {
+                "lat": -26.2041,
+                "lng": 28.0473,
+                "label": "Johannesburg"
+              },
+              {
+                "lat": -33.9249,
+                "lng": 18.4241,
+                "label": "Cape Town"
+              },
+              {
+                "lat": -1.2921,
+                "lng": 36.8219,
+                "label": "Nairobi"
+              },
+              {
+                "lat": 6.5244,
+                "lng": 3.3792,
+                "label": "Lagos"
+              },
+              {
+                "lat": 30.0444,
+                "lng": 31.2357,
+                "label": "Cairo"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE COLONIAL GRID",
+        "body": "Most African grids were built by colonial administrations to extract resources — rail to port, mine to smelter — not to electrify populations. Independence-era governments inherited radial networks pointing outward, with little interconnection between neighboring countries. The African Union's continental power pool has been an aspiration since 2003; integration remains partial."
+      },
+      {
+        "heading": "THE DIESEL TAX",
+        "body": "Where the grid fails, diesel generators fill the gap. Nigerian businesses spend an estimated $14 billion annually on backup power. This is the hidden cost of any African digital service: every cloud bill quietly subsidizes diesel.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              1377.8,
+              1379.1,
+              1382.755193,
+              1378.98,
+              1361.72,
+              1359.5,
+              1358.675299,
+              1358.34,
+              1358.85,
+              1351.86,
+              1344.68,
+              1340.88,
+              1342.48,
+              1345.790676,
+              1345.790676,
+              1346.63,
+              1345.47,
+              1348.77,
+              1351.32,
+              1354.96,
+              1351.847873,
+              1351.847873,
+              1352.81,
+              1360.19,
+              1374.96,
+              1375.07,
+              1374.69,
+              1375.98,
+              1375.98,
+              1375.65
+            ],
+            "periods": [
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4"
+            ],
+            "label": "Nigerian naira",
+            "unit": "NGN / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE LEAPFROG QUESTION",
+        "body": "Off-grid solar plus battery storage has dropped fast enough that some analysts argue Africa can skip centralized grids entirely — the way it skipped landlines. The math works for lighting and phone charging. It does not yet work for the megawatt-scale loads AI training requires.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Africans currently has meaningful access to AI tools?",
+            "options": [
+              "Under 12%",
+              "About 30%",
+              "Roughly half",
+              "Over 70%"
+            ],
+            "correct": 0,
+            "explanation": "The bottleneck is stable electricity, not devices or connectivity — and grid coverage gates everything above it in the stack."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-04"
+    ],
+    "generatedAt": "2026-05-04T08:29:02.327Z",
+    "label": "Africa's Power Gap & AI Access",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-04-bengal-bjp-lead-tmc-trailing-mamata-end-of-era": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BENGAL EXCEPTION",
+        "body": "West Bengal voted Communist for 34 straight years (1977–2011) — the longest democratically elected communist government in history. The CPI(M)'s land-reform program (Operation Barga) registered sharecroppers and built a rural patronage machine that outlasted every challenger until Mamata broke it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The state has cycled through exactly three regimes since independence: **Congress** (1947–1977), **Left Front** (1977–2011), **Trinamool** (2011–2026). Each transition took a generation; none came back."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BJP STRUGGLED HERE",
+        "body": "Bengal's politics absorbed Partition refugees, hosted India's most secular literary tradition (the Bengal Renaissance), and treated Hindutva as culturally alien. The BJP polled under 5% in Bengal as recently as 2014. A 180-seat lead in 2026 is a structural realignment, not a swing.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1947",
+                "label": "Partition; refugee influx from East Bengal"
+              },
+              {
+                "year": "1977",
+                "label": "Left Front takes power",
+                "emphasis": "start"
+              },
+              {
+                "year": "1984",
+                "label": "Operation Barga registers sharecroppers"
+              },
+              {
+                "year": "2011",
+                "label": "Mamata ends 34-year Left rule",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "BJP wins 18 of 42 Lok Sabha seats"
+              },
+              {
+                "year": "2021",
+                "label": "TMC holds state despite BJP surge"
+              },
+              {
+                "year": "2026",
+                "label": "BJP leads 185 of 294 seats"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1977",
+                "to": "2011",
+                "label": "Left Front (CPI-M)",
+                "tone": "neutral"
+              },
+              {
+                "from": "2011",
+                "to": "2026",
+                "label": "Trinamool Congress",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Bengal's political eras"
+          }
+        ]
+      },
+      {
+        "heading": "THE ELECTORAL ROLL FIGHT",
+        "body": "India's Election Commission revises voter rolls before each election — adding new voters, removing the dead, the moved, and the unverifiable. In Bengal, opposition parties have long alleged that rolls included Bangladeshi migrants; the ruling party alleged that revisions strip legitimate voters. Whoever controls the revision narrative shapes margins of 2–4% — enough to flip a state."
+      },
+      {
+        "heading": "THE MAMATA MACHINE",
+        "body": "Mamata Banerjee built TMC after splitting from Congress in 1998. Her appeal fused street-fighter populism with Bengali sub-nationalism — she resisted the central government on demonetisation, NRC, and farm laws. Losing Bengal removes the most prominent non-Congress, non-BJP regional leader from the national opposition.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Jyoti Basu",
+                "role": "CPI(M) Chief Minister",
+                "years": "1977–2000",
+                "cc": "IN"
+              },
+              {
+                "name": "Buddhadeb Bhattacharjee",
+                "role": "CPI(M) Chief Minister",
+                "years": "2000–2011",
+                "cc": "IN"
+              },
+              {
+                "name": "Mamata Banerjee",
+                "role": "TMC Chief Minister",
+                "years": "2011–2026",
+                "cc": "IN"
+              }
+            ],
+            "label": "Bengal's three eras, three leaders"
+          }
+        ]
+      },
+      {
+        "heading": "THE COMMUNAL ARITHMETIC",
+        "body": "Bengal is roughly 70% Hindu, 27% Muslim — the highest Muslim share of any major Indian state outside Kashmir and Assam. TMC consolidated Muslim voters; the BJP's path required consolidating the Hindu vote across caste lines. 'Communal polarisation' in this context means that consolidation succeeded.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Indian state has the highest Muslim population share outside Kashmir, Assam, and Lakshadweep?",
+            "options": [
+              "West Bengal",
+              "Uttar Pradesh",
+              "Kerala",
+              "Bihar"
+            ],
+            "correct": 0,
+            "explanation": "West Bengal is ~27% Muslim — higher than Kerala (~26%), UP (~20%), and Bihar (~17%) — which is why religious polarization matters more electorally there than in most states."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE RUPEE WATCHES",
+        "body": "State elections rarely move the rupee, but Bengal matters for the 2029 general election arithmetic. A BJP that holds Hindi-belt states plus Bengal has a structural majority that doesn't depend on coalition partners — and the currency tends to firm when single-party-majority outcomes look durable.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              92.978498,
+              92.9636,
+              92.86045,
+              92.283354,
+              92.47006,
+              93.10605,
+              93.10525,
+              94.508943,
+              94.94696,
+              93.165649,
+              93.387156,
+              93.048145,
+              92.602452,
+              92.60245,
+              92.60245,
+              92.782407,
+              93.348804,
+              93.775164,
+              94.11314,
+              94.143557,
+              94.0666,
+              94.0666,
+              94.257338,
+              94.420855,
+              94.762974,
+              95.171392,
+              94.951559,
+              94.89165,
+              94.910513,
+              94.951346
+            ],
+            "periods": [
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-04"
+    ],
+    "generatedAt": "2026-05-04T08:29:37.952Z",
+    "label": "Bengal & the BJP's Eastern Frontier",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-04-efflux-pump-inhibitors-antibiotic-resistance-pyrpip": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FOUR ESCAPES",
+        "body": "Bacteria resist antibiotics through four mechanisms: enzymatically destroying the drug (beta-lactamases), modifying the target so the drug can't bind, reducing membrane permeability, or pumping the drug back out. Efflux is the most general — one pump can expel many unrelated drug classes.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "AcrB belongs to the **RND family** (resistance-nodulation-division), the broadest-spectrum efflux machinery in Gram-negative bacteria. A single AcrAB-TolC complex spans both membranes and ejects tetracyclines, fluoroquinolones, beta-lactams, and macrolides — drug classes that share almost nothing chemically."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GRAM-NEGATIVES ARE HARDER",
+        "body": "Gram-negative bacteria like E. coli have two membranes — an outer lipopolysaccharide layer and an inner cytoplasmic membrane. Drugs must cross both. Efflux pumps span the entire envelope, grabbing molecules from the periplasm or even the inner membrane and shooting them clear of the outer wall.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why have so few new antibiotics been developed for Gram-negative infections in the last 40 years?",
+            "options": [
+              "The bacteria evolve resistance instantly",
+              "The double-membrane envelope blocks most drug candidates",
+              "Gram-negative infections are rare",
+              "Regulators ban Gram-negative trials"
+            ],
+            "correct": 1,
+            "explanation": "The outer membrane plus broad-spectrum efflux pumps reject most drug-like molecules — most candidates fail before reaching their target."
+          }
+        ]
+      },
+      {
+        "heading": "THE ADJUVANT STRATEGY",
+        "body": "An efflux pump inhibitor isn't itself an antibiotic. It restores existing antibiotics by jamming the bacterial export machinery. The closest analogy is clavulanic acid, which has no antibacterial effect alone but rescued amoxicillin from beta-lactamase resistance — Augmentin, on the market since 1981, is still one of the world's most-prescribed antibiotics."
+      },
+      {
+        "heading": "WHY THE PIPELINE IS EMPTY",
+        "body": "Only two genuinely new antibiotic classes have reached clinics since the 1980s. Antibiotics are economically punishing — short courses, low margins, and any new drug is held in reserve to delay resistance, gutting sales. Most major pharma exited the space; the remaining work happens in small biotechs and academic labs.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1928",
+                "label": "Penicillin discovered"
+              },
+              {
+                "year": "1944",
+                "label": "Streptomycin (aminoglycosides)"
+              },
+              {
+                "year": "1962",
+                "label": "Nalidixic acid (quinolones)"
+              },
+              {
+                "year": "1987",
+                "label": "Last pre-2000 novel class",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2000",
+                "label": "Linezolid (oxazolidinones)"
+              },
+              {
+                "year": "2003",
+                "label": "Daptomycin (lipopeptides)"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1987",
+                "to": "2000",
+                "label": "the discovery void",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "new antibiotic classes reaching clinics"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CRYO-EM CHANGED THE GAME",
+        "body": "Cryo-electron microscopy lets researchers see membrane proteins like AcrB in their native shape, frozen mid-action. Before the 2017 'resolution revolution,' membrane pumps were nearly invisible to structural biology — they don't crystallize. Drug design without the structure is guesswork; with it, you can target specific pockets atom by atom."
+      },
+      {
+        "heading": "THE GLOBAL TOLL",
+        "body": "The 2022 Lancet GRAM study estimated 1.27 million deaths in 2019 directly attributable to bacterial antimicrobial resistance — more than HIV or malaria. Projections by 2050 reach 10 million annually if the resistance curve isn't bent.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "AMR (direct)",
+                "value": "1.27M",
+                "tone": "unfavorable",
+                "weight": 127
+              },
+              {
+                "label": "Tuberculosis",
+                "value": "1.23M",
+                "tone": "neutral",
+                "weight": 123
+              },
+              {
+                "label": "HIV/AIDS",
+                "value": "860K",
+                "tone": "neutral",
+                "weight": 86
+              },
+              {
+                "label": "Malaria",
+                "value": "640K",
+                "tone": "neutral",
+                "weight": 64
+              }
+            ],
+            "label": "annual deaths, leading infectious causes (2019)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T08:30:10.460Z",
+    "label": "Efflux Pumps & Antibiotic Resistance",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-04-iea-methane-flaring-double-hormuz-gas-waste": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY GAS GETS FLARED",
+        "body": "Most flared gas is associated gas — methane that comes up alongside oil. If there is no pipeline at the wellhead and no liquefaction nearby, the cheapest disposal is to burn it on a stack. The molecule has economic value but no route to market.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is *stranded gas* — fuel separated from demand by geography, not by geology. Roughly **140 billion cubic metres** are flared every year; another **60 bcm** vents unburned as raw methane."
+          }
+        ]
+      },
+      {
+        "heading": "WHY METHANE LEAKS MATTER MORE THAN CO2",
+        "body": "Methane traps roughly 80 times more heat than CO2 over a 20-year horizon. A small leak rate — even 2-3% of throughput — can erase the climate advantage natural gas claims over coal. The molecule that escapes unburned does more damage than the one that combusts.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Over a 20-year horizon, how much more warming does a tonne of methane cause than a tonne of CO2?",
+            "options": [
+              "About 5x",
+              "About 25x",
+              "About 80x",
+              "About 500x"
+            ],
+            "correct": 2,
+            "explanation": "Methane's 20-year global warming potential is ~80x CO2. It decays faster (12-year atmospheric lifetime vs centuries for CO2), which is why short-horizon comparisons hit hardest."
+          }
+        ]
+      },
+      {
+        "heading": "WHO BURNS THE MOST",
+        "body": "Flaring is concentrated in a handful of producers. Russia, Iraq, Iran, the United States, Venezuela, and Algeria together account for the bulk of global flaring — generally because their oilfields outran the gas infrastructure built to capture the byproduct.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Russia",
+                "value": 24,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Iraq",
+                "value": 17,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Iran",
+                "value": 15,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "USA",
+                "value": 9,
+                "tone": "neutral"
+              },
+              {
+                "label": "Venezuela",
+                "value": 6,
+                "tone": "neutral"
+              },
+              {
+                "label": "Algeria",
+                "value": 5,
+                "tone": "neutral"
+              },
+              {
+                "label": "Nigeria",
+                "value": 4,
+                "tone": "favorable"
+              },
+              {
+                "label": "Libya",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Mexico",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "rest of world",
+                "value": 14,
+                "tone": "favorable"
+              }
+            ],
+            "label": "share of global gas flaring, recent years"
+          }
+        ]
+      },
+      {
+        "heading": "THE EU IMPORT RULE",
+        "body": "The EU's 2024 Methane Regulation extends emissions standards to imported gas, requiring exporters to monitor, report, and verify methane intensity by 2027. It is the first major regulation that conditions market access on upstream practices the importer cannot directly inspect — and the reason exporters are pushing back hard.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is called *equivalence* — exporters must show their monitoring regime is comparable to the EU's. **Russia, Algeria, the US, and Qatar** together supply the majority of EU gas; each has different exposure to the rule."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 15 BCM IS THE EASY WIN",
+        "body": "The IEA's 15 bcm figure is gas that could reach markets with existing infrastructure — leak repairs, vapor recovery units, replacing high-bleed pneumatic devices. These are pay-back-in-months interventions. The remaining 185 bcm needs pipelines, gathering systems, or LNG trains that take years and billions to build.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "IQ",
+              "IR",
+              "US",
+              "VE",
+              "DZ",
+              "NG",
+              "LY"
+            ],
+            "label": "top flaring jurisdictions"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T08:30:41.542Z",
+    "label": "Methane Flaring & the Wasted Molecule",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-04-india-manufacturing-pmi-iran-war-input-cost-inflation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE PMI ACTUALLY MEASURES",
+        "body": "The Purchasing Managers' Index surveys procurement officers — the people who actually place orders — on whether output, new orders, employment, supplier deliveries, and stocks are rising or falling versus last month. It is a diffusion index: 50 means flat, above 50 means more firms reporting expansion than contraction. The level matters less than the direction.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A PMI of **54.7** does not mean the economy grew 4.7%. It means the *breadth* of expansion across surveyed firms widened — a leading indicator that lands weeks before official IIP or GDP prints."
+          }
+        ]
+      },
+      {
+        "heading": "WHY INDIA IMPORTS THE WAR",
+        "body": "India imports roughly 85% of its crude oil. Any Persian Gulf disruption transmits within weeks: shipping insurance premiums spike, Brent rises, and refiners pass costs into diesel — which moves every input good in a country where road freight dominates logistics.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Russia",
+                "value": "~36%",
+                "cc": "RU",
+                "weight": 36
+              },
+              {
+                "label": "Iraq",
+                "value": "~20%",
+                "cc": "IQ",
+                "weight": 20
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~15%",
+                "cc": "SA",
+                "weight": 15
+              },
+              {
+                "label": "UAE",
+                "value": "~9%",
+                "cc": "AE",
+                "weight": 9
+              },
+              {
+                "label": "US",
+                "value": "~5%",
+                "cc": "US",
+                "weight": 5
+              }
+            ],
+            "label": "India crude import sources, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ EXPOSURE",
+        "body": "Even Russian barrels reach India by sea, but the Gulf suppliers — Iraq, Saudi, UAE, Kuwait — together still send roughly half of India's crude through or near the Strait of Hormuz. Mining or insurance withdrawal in that 33-km channel is, mechanically, a tax on every Indian factory.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "IQ",
+              "KW",
+              "QA"
+            ],
+            "label": "the Gulf-to-India oil corridor",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 19.076,
+                "lng": 72.8777,
+                "label": "Mumbai"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "INPUT COSTS VS. OUTPUT PRICES",
+        "body": "The dangerous PMI signature is when input prices rise faster than output prices — firms absorb the squeeze in margins until they break and pass it through. April's print shows both rising at six-month highs, meaning Indian manufacturers have pricing power and are using it. That is how a commodity shock becomes core inflation.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call this the *second-round effect*: when imported price shocks stop being a one-time level shift and start embedding into wage and pricing expectations. It is what central banks fear most — and what forces rate hikes even when the original shock is external."
+          }
+        ]
+      },
+      {
+        "heading": "THE RBI'S DILEMMA",
+        "body": "The Reserve Bank of India targets 4% CPI inflation with a ±2% tolerance band. An imported oil shock raises headline inflation without raising domestic demand — tightening rates does nothing to the cause but crushes growth. Every Indian central banker since the 1990s has faced this exact trap during a Gulf crisis.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              92.978498,
+              92.9636,
+              92.86045,
+              92.283354,
+              92.47006,
+              93.10605,
+              93.10525,
+              94.508943,
+              94.94696,
+              93.165649,
+              93.387156,
+              93.048145,
+              92.602452,
+              92.60245,
+              92.60245,
+              92.782407,
+              93.348804,
+              93.775164,
+              94.11314,
+              94.143557,
+              94.0666,
+              94.0666,
+              94.257338,
+              94.420855,
+              94.762974,
+              95.171392,
+              94.951559,
+              94.89165,
+              94.910513,
+              94.951346
+            ],
+            "periods": [
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE 1990 PRECEDENT",
+        "body": "India's 1991 balance-of-payments crisis — which forced the gold airlift to the Bank of England and the Manmohan Singh liberalization — was triggered by the Gulf War oil spike. Reserves fell to two weeks of imports. The current reserve position is far stronger, but the transmission mechanism from Gulf war to Indian fiscal stress is the same one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did India physically pledge to the Bank of England in 1991 to secure emergency financing?",
+            "options": [
+              "Sovereign bonds",
+              "47 tonnes of gold from RBI reserves",
+              "Equity in public-sector banks",
+              "Future oil import contracts"
+            ],
+            "correct": 1,
+            "explanation": "The RBI flew 47 tonnes of gold to London as collateral — a moment of national humiliation that catalyzed the 1991 reforms."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-04"
+    ],
+    "generatedAt": "2026-05-04T08:31:15.940Z",
+    "label": "PMI & Imported Inflation",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-04-iranian-ship-crew-pakistan-mediator-us-blockade": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY PAKISTAN",
+        "body": "Pakistan is the only nuclear-armed Muslim state, shares a 909km border with Iran, and maintains formal diplomatic relations with both Tehran and Washington. That triangulation — Sunni-majority but Shi'a-tolerant, US-aligned but not US-dependent — is rare. Oman has played the same role for decades; Pakistan is the larger, less neutral alternative.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IR",
+              "OM",
+              "AE",
+              "US"
+            ],
+            "label": "the mediator triangle",
+            "markers": [
+              {
+                "lat": 25.3,
+                "lng": 61.16,
+                "label": "Gwadar"
+              },
+              {
+                "lat": 26.566,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 23.614,
+                "lng": 58.545,
+                "label": "Muscat"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE OMAN PRECEDENT",
+        "body": "Oman brokered the secret 2012-2013 backchannel that produced the JCPOA. Sultan Qaboos hosted American and Iranian officials in Muscat for months before the talks went public. Mediator states earn the role by being trusted by both sides — and by accepting that the credit, when it comes, goes to others.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Sultan Qaboos",
+                "role": "Omani ruler, JCPOA broker",
+                "years": "1970–2020",
+                "cc": "OM"
+              },
+              {
+                "name": "John Kerry",
+                "role": "US Secretary of State",
+                "years": "2013–2017",
+                "cc": "US"
+              },
+              {
+                "name": "Javad Zarif",
+                "role": "Iranian Foreign Minister",
+                "years": "2013–2021",
+                "cc": "IR"
+              }
+            ],
+            "label": "the mediator tradition"
+          }
+        ]
+      },
+      {
+        "heading": "THE BLOCKADE MECHANIC",
+        "body": "A naval blockade under international law requires formal declaration, neutral notification, and effective enforcement — anything less is technically piracy. The US has avoided the word 'blockade' since the Cuban Missile Crisis, when Kennedy used 'quarantine' for the same reason. Legal framing determines whether third-party shipping insurers will cover transits.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 1962 Cuba operation was called a *quarantine* precisely because *blockade* is an act of war under the **1909 London Declaration**. Operation Freedom inherits the same euphemism problem."
+          }
+        ]
+      },
+      {
+        "heading": "THE STRAIT GEOGRAPHY",
+        "body": "Hormuz is 33km wide at its narrowest, with shipping lanes hugging the Iranian side because that's where the deep water is. Roughly a fifth of global oil consumption transits daily. Iran's coastline runs the entire northern edge — every tanker is within small-boat range of an IRGC base."
+      },
+      {
+        "heading": "THE PAKISTAN-IRAN BORDER",
+        "body": "The 909km Iran-Pakistan border runs through Balochistan on both sides — the same restive ethnic territory split by the 1893 Goldsmid Line, drawn by a British colonial commission. Both governments have spent decades suppressing Baloch separatist movements; the cooperation creates a baseline of working diplomatic infrastructure that survives broader rivalries."
+      },
+      {
+        "heading": "WHO PAYS FOR MEDIATION",
+        "body": "Mediator states extract concessions: Oman secured US security guarantees, Qatar leveraged Taliban talks into permanent regional standing. Pakistan, mid-IMF program with $278/USD inflation, needs both Iranian gas and US financial blessing. The Touska handover is a down payment on both sides of that ledger.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.399884,
+              279.05,
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775
+            ],
+            "periods": [
+              "Apr 5",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-04"
+    ],
+    "generatedAt": "2026-05-04T08:31:46.893Z",
+    "label": "Pakistan as Iran-US Mediator",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-04-japan-australia-tokyo-cooling-beijing-realignment": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE QUASI-ALLIANCE",
+        "body": "Japan and Australia signed a Reciprocal Access Agreement in 2022 — the first such pact Japan concluded with any country other than the United States. It allows troops to deploy on each other's soil with streamlined legal status, the scaffolding of an alliance without the treaty obligation.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2022 RAA broke a postwar pattern: Japan had spent 70 years routing every defense relationship *through Washington*. Canberra became the first exception."
+          }
+        ]
+      },
+      {
+        "heading": "WHY AUSTRALIA, NOT SEOUL",
+        "body": "South Korea is geographically closer and militarily larger, but the colonial legacy — comfort women, forced labor, the 1910–1945 occupation — makes deep defense integration politically radioactive in both capitals. Australia carries no such baggage with Tokyo, which is why the strategic substitution flows there.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Shinzo Abe",
+                "role": "Japanese PM, framed Indo-Pacific concept",
+                "years": "2012–2020",
+                "cc": "JP"
+              },
+              {
+                "name": "Fumio Kishida",
+                "role": "signed 2022 RAA",
+                "years": "2021–2024",
+                "cc": "JP"
+              },
+              {
+                "name": "Anthony Albanese",
+                "role": "Australian PM, AUKUS continuator",
+                "years": "2022–",
+                "cc": "AU"
+              }
+            ],
+            "label": "the architects"
+          }
+        ]
+      },
+      {
+        "heading": "THE TRADE PARADOX",
+        "body": "China is Australia's largest trading partner and Japan's second-largest. Both economies depend on Chinese demand for iron ore, LNG, and manufactured exports — yet both are deepening security alignment against Beijing. The split between economic integration and security balancing is the defining tension of Indo-Pacific statecraft.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "JP",
+              "AU",
+              "CN",
+              "KR",
+              "US"
+            ],
+            "label": "the realignment geometry"
+          }
+        ]
+      },
+      {
+        "heading": "AUKUS AND THE QUAD",
+        "body": "Australia sits inside two overlapping anti-Beijing frameworks: AUKUS (2021, with US and UK, centered on nuclear-powered submarines) and the Quad (with US, India, Japan). Japan is in the Quad but excluded from AUKUS — a gap Tokyo has been quietly lobbying to close through a 'AUKUS Pillar 2' technology track.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2007",
+                "label": "first Quad dialogue (collapsed)"
+              },
+              {
+                "year": "2017",
+                "label": "Quad revived under Abe"
+              },
+              {
+                "year": "2021",
+                "label": "AUKUS announced",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "Japan–Australia RAA signed"
+              },
+              {
+                "year": "2024",
+                "label": "Japan joins AUKUS Pillar 2 talks"
+              }
+            ],
+            "label": "the alignment arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1% CEILING, BROKEN",
+        "body": "From 1976 to 2022, Japan informally capped defense spending at 1% of GDP. The 2022 strategy doubled this to 2% — making Japan the world's third-largest military spender in absolute terms by 2027, behind only the US and China. The Australia pivot is one application of that newly available capacity."
+      },
+      {
+        "heading": "THE DURABILITY QUESTION",
+        "body": "Australian China policy has whiplashed before: the Howard government courted Beijing, the Morrison government called for a COVID-origins probe and triggered Chinese trade sanctions, Albanese stabilized ties. A future Coalition return or a commodity-cycle reversal could re-tilt Canberra toward Beijing — leaving Tokyo's structural bet exposed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country is Australia's largest trading partner?",
+            "options": [
+              "United States",
+              "Japan",
+              "China",
+              "United Kingdom"
+            ],
+            "correct": 2,
+            "explanation": "China buys roughly a third of Australia's exports, dwarfing all other partners — which is why the security-economic split defines Canberra's strategic dilemma."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T08:32:18.429Z",
+    "label": "Japan–Australia Alignment",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-04-moscow-drone-mosfilmovskaya-victory-day-parade-eve": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY MAY 9 MATTERS",
+        "body": "Victory Day commemorates Nazi Germany's 1945 surrender, signed late on May 8 Berlin time — already May 9 in Moscow. Under Putin it has eclipsed November 7 (the Bolshevik Revolution) as Russia's central civic ritual: the parade on Red Square is where the state performs continuity with the Great Patriotic War.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In Russian usage it is the *Velikaya Otechestvennaya Voyna* — the **Great Patriotic War** — and it begins in 1941, not 1939. The framing erases the 1939–41 Molotov-Ribbentrop period when Moscow and Berlin partitioned Poland."
+          }
+        ]
+      },
+      {
+        "heading": "THE PARADE AS DOCTRINE",
+        "body": "The hardware that rolls past the Lenin Mausoleum is curated to telegraph posture: which missile system is shown, which is withheld, who stands on the reviewing stand. Foreign leaders who attend are signalling alignment; Xi's 2015 attendance, alone among major powers, marked the post-Crimea pivot."
+      },
+      {
+        "heading": "THE SKYLINE TARGET LOGIC",
+        "body": "Mosfilmovskaya is in a cluster of luxury high-rises near Moscow City — the financial district built in the 2000s as Russia's bid for a global skyline. Strikes there are not militarily decisive; they puncture the social contract Putin offered the urban middle class after 2000: stay out of politics, the war stays far away.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "UA",
+              "BY"
+            ],
+            "label": "the strike, 4 miles from the Kremlin",
+            "markers": [
+              {
+                "lat": 55.7558,
+                "lng": 37.6173,
+                "label": "Kremlin"
+              },
+              {
+                "lat": 55.727,
+                "lng": 37.534,
+                "label": "Mosfilmovskaya tower"
+              },
+              {
+                "lat": 55.7494,
+                "lng": 37.5378,
+                "label": "Moscow City"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TRUCE ASYMMETRY",
+        "body": "A short ceasefire timed to a Russian holiday lets Moscow stage the parade unmolested while preserving the front lines. Kyiv reads the same proposal as a propaganda freeze with no path to withdrawal — which is why Ukraine has consistently demanded longer truces tied to substantive talks, not symbolic dates."
+      },
+      {
+        "heading": "THE LONG WAR'S RHYTHM",
+        "body": "Wars of attrition develop liturgical calendars — anniversaries, parade days, founding myths — that both sides target. Germany bombed London on the anniversary of the Blitz; the IRA timed attacks to Remembrance Sunday. Hitting Moscow before May 9 is in that tradition: the date is the message.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1941-06",
+                "label": "Nazi invasion (Operation Barbarossa)"
+              },
+              {
+                "year": "1945-05",
+                "label": "Berlin surrender",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1965",
+                "label": "May 9 made a public holiday"
+              },
+              {
+                "year": "2008",
+                "label": "Heavy military hardware returns to parade"
+              },
+              {
+                "year": "2014",
+                "label": "Crimea annexation; parade hardens"
+              },
+              {
+                "year": "2022-02",
+                "label": "Full-scale invasion of Ukraine"
+              }
+            ],
+            "label": "Russia's war calendar"
+          }
+        ]
+      },
+      {
+        "heading": "WHO STILL SHOWS UP",
+        "body": "The reviewing stand has thinned. In the 2000s, Western leaders attended; by the 2010s, mostly CIS and CSTO heads; since 2022, the guest list narrowed to a handful of post-Soviet states plus visiting non-aligned leaders. The optics of who stands beside Putin on May 9 are themselves a measure of Russia's diplomatic isolation.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Western leader most recently attended a Moscow Victory Day parade?",
+            "options": [
+              "Angela Merkel in 2010",
+              "Emmanuel Macron in 2018",
+              "George W. Bush in 2005",
+              "No major Western leader since 2010"
+            ],
+            "correct": 2,
+            "explanation": "Bush attended the 60th anniversary in 2005; the 2010 parade drew several Western dignitaries but Western heads of state largely stopped attending after 2014."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T08:32:52.426Z",
+    "label": "Victory Day & the Moscow Skyline",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-04-singapore-new-zealand-essential-supply-treaty-iran-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EXPORT-BAN REFLEX",
+        "body": "When supply shocks hit, governments hoard. India banned rice exports in 2023; Indonesia banned palm oil in 2022; over 80 countries imposed food export restrictions during COVID. Each ban is rational nationally and catastrophic globally — it converts a price shock into a supply shock for everyone downstream.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call this the **export-restriction cascade**: one country's ban raises world prices, which triggers the next country's ban, which raises prices further. The 2007–08 rice crisis tripled prices in six months almost entirely through cascading bans, not actual shortage."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SINGAPORE",
+        "body": "Singapore imports over 90% of its food and 100% of its fuel. It has no agricultural hinterland, no oil wells, no domestic pharma manufacturing at scale. For Singapore, a global export-ban cascade is not an inconvenience — it is an existential threat. This is why Singapore has historically been the loudest WTO voice against food export bans.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Singapore",
+                "value": "~10%",
+                "cc": "SG",
+                "tone": "unfavorable",
+                "weight": 10
+              },
+              {
+                "label": "Japan",
+                "value": "~38%",
+                "cc": "JP",
+                "tone": "unfavorable",
+                "weight": 38
+              },
+              {
+                "label": "UK",
+                "value": "~60%",
+                "cc": "GB",
+                "tone": "neutral",
+                "weight": 60
+              },
+              {
+                "label": "New Zealand",
+                "value": ">200%",
+                "cc": "NZ",
+                "tone": "favorable",
+                "weight": 200
+              },
+              {
+                "label": "USA",
+                "value": "~130%",
+                "cc": "US",
+                "tone": "favorable",
+                "weight": 130
+              }
+            ],
+            "label": "food self-sufficiency, selected economies"
+          }
+        ]
+      },
+      {
+        "heading": "WHY NEW ZEALAND",
+        "body": "New Zealand is the mirror image: a net exporter of food and dairy, geographically remote, dependent on imported fuel and pharmaceuticals shipped through Asian sea lanes. Pairing with Singapore trades what each lacks — Singapore guarantees medicine and fuel transit; New Zealand guarantees food.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SG",
+              "NZ",
+              "ID",
+              "MY",
+              "AU"
+            ],
+            "label": "the supply corridor",
+            "markers": [
+              {
+                "lat": 1.3521,
+                "lng": 103.8198,
+                "label": "Singapore"
+              },
+              {
+                "lat": -41.2865,
+                "lng": 174.7762,
+                "label": "Wellington"
+              },
+              {
+                "lat": 2.5,
+                "lng": 101.5,
+                "label": "Strait of Malacca"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE WTO GAP",
+        "body": "WTO rules under GATT Article XI permit export restrictions for 'critical shortages' of foodstuffs and 'essential' products — a loophole wide enough to drive any national emergency through. Every major food-ban episode since 2008 has cited it. The WTO has never successfully challenged a food export ban.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal term is *exception clause* — a deliberate carve-out negotiated in 1947 when food security trumped trade liberalization. Successive rounds (Uruguay, Doha) failed to tighten it because exporting countries refuse to surrender the option."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Singapore and New Zealand made an earlier, narrower pledge in March 2020 — a COVID-era declaration to keep supply lines open for essential goods. Chile, Brunei, Myanmar and Canada later joined. That declaration was political; this 2026 treaty is legal — binding under international law and enforceable by mutual consent.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1947",
+                "label": "GATT Article XI exception drafted"
+              },
+              {
+                "year": "2007",
+                "label": "global rice export-ban cascade"
+              },
+              {
+                "year": "2020-03",
+                "label": "SG–NZ COVID declaration"
+              },
+              {
+                "year": "2022",
+                "label": "Indonesia palm oil ban"
+              },
+              {
+                "year": "2023",
+                "label": "India rice export ban"
+              },
+              {
+                "year": "2026-05",
+                "label": "binding SG–NZ treaty",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "the path to a binding treaty"
+          }
+        ]
+      },
+      {
+        "heading": "THE COALITION QUESTION",
+        "body": "A bilateral pact is symbolic; a plurilateral one bites. The treaty's value rises non-linearly with members — each addition both adds a guaranteed supplier and removes a potential defector. Singapore taking the ASEAN chair in 2027 is the recruiting window.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which clause of which treaty is the loophole that lets countries impose food export bans?",
+            "options": [
+              "WTO Agreement on Agriculture, Article 12",
+              "GATT 1947, Article XI",
+              "UNCLOS, Article 38",
+              "TRIPS, Article 31"
+            ],
+            "correct": 1,
+            "explanation": "GATT Article XI generally bans quantitative export restrictions but exempts those 'temporarily applied to prevent or relieve critical shortages of foodstuffs.'"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T08:33:32.395Z",
+    "label": "Essential-Goods Continuity Treaties",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-04-wheat-hybrids-elymus-fusarium-resistance-70pct": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT FUSARIUM DOES",
+        "body": "Fusarium graminearum infects wheat heads at flowering, shriveling kernels and contaminating surviving grain with deoxynivalenol — a mycotoxin that makes flour unfit for human or animal consumption. The yield loss is bad; the toxin is worse, because contaminated grain has to be discarded, not just sold cheap.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The toxin's nickname in the trade is **vomitoxin** — pigs refuse to eat feed above ~1 ppm, and most countries cap food-grade flour at **1 ppm DON** or lower."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE WEED HAS THE GENE",
+        "body": "Elymus repens — quackgrass, couch grass — is one of the world's most successful agricultural weeds precisely because it survived millennia of fungal pressure in temperate grasslands. Wild relatives of crops are reservoirs of resistance genes that domestication, by selecting for yield and uniformity, bred out of the cultivated line."
+      },
+      {
+        "heading": "THE WIDE CROSS",
+        "body": "Interspecific hybridization — crossing wheat with a related grass and rescuing the embryo before it aborts — has been the workhorse of cereal breeding since the 1950s. Triticale (wheat × rye) and the Sr31 stem-rust gene (from rye) reached global fields without ever being called GMO, because no foreign DNA was inserted with a vector — the chromosomes recombined naturally.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Triticale",
+                "value": "wheat × rye",
+                "tone": "favorable"
+              },
+              {
+                "label": "Sr31 stem rust",
+                "value": "rye → wheat",
+                "tone": "favorable"
+              },
+              {
+                "label": "Lr19 leaf rust",
+                "value": "Agropyron → wheat",
+                "tone": "favorable"
+              },
+              {
+                "label": "Pm21 mildew",
+                "value": "Haynaldia → wheat",
+                "tone": "favorable"
+              }
+            ],
+            "label": "famous wide crosses already in your bread"
+          }
+        ]
+      },
+      {
+        "heading": "THE REGULATORY ARBITRAGE",
+        "body": "EU law (Directive 2001/18) defines a GMO by the *technique* used, not the resulting DNA. A gene moved by Agrobacterium or CRISPR triggers years of approval; the same gene moved by pollen and embryo rescue is conventional breeding. The biology is similar; the paperwork is not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why **cisgenics** (moving a gene between sexually compatible species) and **wide crosses** are the favored route for European breeders — identical end product, no *Directive 2001/18* dossier."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BLIGHT IS GETTING WORSE",
+        "body": "Fusarium thrives in warm, wet flowering seasons and on corn residue left in no-till fields. Climate shift has lengthened the infection window across the North American and European wheat belts; the corn-wheat rotation that boosted yields in the 1990s also seeded the soil with the inoculum that now attacks the next crop.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "CA",
+              "CN",
+              "FR",
+              "DE",
+              "UA",
+              "AR"
+            ],
+            "label": "top wheat producers exposed to FHB",
+            "caption": "the corn-belt overlap matters most in the US, China, and Ukraine"
+          }
+        ]
+      },
+      {
+        "heading": "THE 70% NUMBER",
+        "body": "A 70% reduction in disease severity is large but not eradication. Fungal populations evolve around single-gene resistance within a decade or two — the Sr31 gene held for 30 years before Ug99 broke it in Uganda in 1999. Durable control needs gene stacks, not single bullets.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do plant breeders prefer 'stacking' multiple resistance genes over deploying one strong gene alone?",
+            "options": [
+              "Stacked genes produce higher yields than single genes",
+              "Pathogens evolve around single-gene resistance within years; multiple genes require simultaneous mutations",
+              "Regulators require at least three resistance genes per variety",
+              "Single genes are more expensive to license"
+            ],
+            "correct": 1,
+            "explanation": "A pathogen needs only one mutation to defeat a single resistance gene; defeating a stack requires multiple simultaneous mutations, which is exponentially less likely."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T08:34:09.074Z",
+    "label": "Wheat Blight & Wide Crosses",
+    "category": "science",
+    "articleCount": 1
   }
 }
