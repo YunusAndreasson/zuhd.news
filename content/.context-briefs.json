@@ -111197,5 +111197,1258 @@
     "label": "Corporate Company Towns & Surveillance Urbanism",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-05-04-amazon-repackaging-of-shipping-services-fuels-ups-fedex-sell": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BUILD-OUT",
+        "body": "Amazon spent a decade quietly constructing a parallel logistics network — sortation centers, last-mile vans, cargo aircraft — originally to escape its dependence on UPS and FedEx during peak season. What began as cost defense became infrastructure rivaling the incumbents.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pattern is familiar: AWS started as internal Amazon infrastructure before becoming the cloud business that now generates most of the company's profit. **Logistics-as-a-service** is the same playbook applied to physical freight."
+          }
+        ]
+      },
+      {
+        "heading": "THE DENSITY ECONOMICS",
+        "body": "Parcel delivery is a density game. The marginal cost of a second package on a route that already exists is near zero. Amazon's own volume — billions of packages a year — created the density; selling capacity to third parties is pure margin on infrastructure already paid for.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Amazon Logistics",
+                "value": "~6.3bn",
+                "weight": 6.3,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "UPS",
+                "value": "~5.7bn",
+                "weight": 5.7,
+                "tone": "neutral"
+              },
+              {
+                "label": "USPS",
+                "value": "~6.6bn",
+                "weight": 6.6,
+                "tone": "neutral"
+              },
+              {
+                "label": "FedEx",
+                "value": "~3.4bn",
+                "weight": 3.4,
+                "tone": "neutral"
+              }
+            ],
+            "label": "US parcel volume, 2024 (billion packages)"
+          }
+        ]
+      },
+      {
+        "heading": "THE HUB-AND-SPOKE INHERITANCE",
+        "body": "FedEx invented overnight air freight in 1973 by routing every package through a single Memphis hub at night. UPS copied the model in Louisville. Both networks were optimized for time-definite business shipping — not the residential e-commerce flood that now dominates volume.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Frederick W. Smith",
+                "role": "Founded FedEx, 1971",
+                "years": "1944–2025",
+                "cc": "US"
+              },
+              {
+                "name": "James E. Casey",
+                "role": "Founded UPS, 1907",
+                "years": "1888–1983",
+                "cc": "US"
+              },
+              {
+                "name": "Jeff Bezos",
+                "role": "Founded Amazon, 1994",
+                "years": "1964–",
+                "cc": "US"
+              }
+            ],
+            "label": "the incumbents' founders"
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPETITOR PARADOX",
+        "body": "Selling logistics to merchants who compete with Amazon's retail business creates a structural conflict — the same conflict AWS faced when Netflix ran on Amazon's cloud while Prime Video competed with Netflix. The answer in cloud was strict separation; whether shippers trust the same firewall in shipping is the open question."
+      },
+      {
+        "heading": "THE AIR FLEET",
+        "body": "Amazon Air now operates more than 100 cargo aircraft from a hub in Northern Kentucky — minutes from UPS Worldport in Louisville. The fleet was unthinkable a decade ago; FedEx and UPS treated air freight as an unassailable moat.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When did Amazon launch its first dedicated air cargo operation?",
+            "options": [
+              "2008, during the financial crisis",
+              "2016, leasing planes from ATSG",
+              "2020, during the pandemic surge",
+              "2023, after the FedEx contract ended"
+            ],
+            "correct": 1,
+            "explanation": "Amazon Air began in 2016 with leased Boeing 767s from Air Transport Services Group — eight years before the network reached scale to threaten incumbents."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T17:46:53.681Z",
+    "label": "Amazon's Logistics Pivot",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-04-array-of-spy-antennas-prompts-austria-to-expel-russian-envoy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY VIENNA",
+        "body": "Austria's permanent neutrality, codified in 1955 as the price of Soviet withdrawal, made Vienna the only European capital where both blocs could operate openly. The UN, OPEC, IAEA, and CTBTO all set up headquarters there — and so did the intelligence services watching them.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Vienna hosts more accredited diplomats per capita than any other Western city. The Austrian press calls it the *Spionagehauptstadt* — **spy capital** — and treats expulsions as routine municipal news rather than scandal."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL GAP",
+        "body": "Until now, Austrian law criminalized espionage only when directed against Austria itself. Spying on the IAEA or OPEC from a Vienna rooftop was, technically, not a crime. This is why expulsion — not prosecution — has been the only tool, and why the Russian station grew so large.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why has Austria historically struggled to prosecute foreign spies operating from Vienna?",
+            "options": [
+              "Diplomatic immunity blocked all cases",
+              "Austrian law only criminalized espionage against Austria, not against hosted international bodies",
+              "The constitution forbids any prosecution of foreign nationals",
+              "NATO membership rules preempt national law"
+            ],
+            "correct": 1,
+            "explanation": "Austria's espionage statute protected the Austrian state but left the UN, IAEA, and OPEC — all headquartered in Vienna — outside the law's scope."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT ROOFTOP ANTENNAS DO",
+        "body": "Embassy roofs in capital cities are dense with directional antennas aimed at nearby ministries, conferences, and international bodies. They harvest unencrypted radio, microwave links between buildings, and the leakage from poorly shielded electronics — a discipline called SIGINT that long predates cyber.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technique is called *near-field collection*: an antenna within a few hundred meters can pick up signals that would be unreadable from a satellite. Proximity is the entire reason embassy real estate near sensitive institutions is so prized."
+          }
+        ]
+      },
+      {
+        "heading": "THE IAEA TARGET",
+        "body": "The International Atomic Energy Agency runs the world's nuclear inspection regime from Vienna — including the Iran nuclear file. Intercepting cables between IAEA inspectors and capitals would reveal what monitors found before the findings reach the UN Security Council. Few intelligence prizes are larger.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AT",
+              "RU",
+              "IR",
+              "UA",
+              "DE",
+              "CH"
+            ],
+            "label": "the Vienna cluster",
+            "markers": [
+              {
+                "lat": 48.2351,
+                "lng": 16.4163,
+                "label": "IAEA / VIC"
+              },
+              {
+                "lat": 48.2156,
+                "lng": 16.3633,
+                "label": "Russian embassy"
+              },
+              {
+                "lat": 48.2,
+                "lng": 16.3667,
+                "label": "OPEC HQ"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE EXPULSION RATCHET",
+        "body": "Diplomatic expulsions are reciprocal by tradition: Moscow expels three Austrians within days. The math matters because Russia maintains far more diplomats abroad than most countries host in Moscow — each round shrinks Russian presence in Europe faster than it shrinks Western presence in Russia.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2020",
+                "label": "first post-2014 expulsion"
+              },
+              {
+                "year": "2022-04",
+                "label": "4 expelled after Bucha",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "further reductions"
+              },
+              {
+                "year": "2026-05",
+                "label": "3 expelled over antennas"
+              }
+            ],
+            "label": "Russian expulsions from Austria"
+          }
+        ]
+      },
+      {
+        "heading": "THE NEUTRALITY PARADOX",
+        "body": "Austrian neutrality was meant to keep the country out of bloc politics. In practice it created a permissive environment where every intelligence service worked openly, and Austrian counterintelligence — the BVT, dissolved and rebuilt in 2021 after a corruption scandal — was historically the weakest in Western Europe."
+      }
+    ],
+    "generatedAt": "2026-05-04T17:47:28.053Z",
+    "label": "Vienna & the Spy Capital",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-04-canada-just-got-its-first-regulated-digital-dollar-to-take-o": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A STABLECOIN ACTUALLY IS",
+        "body": "A token issued against reserve assets — typically short-dated government bills and bank deposits — where the issuer mints one token per dollar deposited and burns it on redemption. The peg holds not by algorithm but by the proof that the reserves exist.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: **reserve-backed** stablecoins (USDC, USDT, now Tetra's CAD token) hold real assets. **Algorithmic** stablecoins like Terra's UST in 2022 tried to hold the peg with code alone — and collapsed in 72 hours, wiping out $40bn."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1980s RAILS PROBLEM",
+        "body": "Canada's interbank settlement runs on batch systems designed in an era of magnetic tape. Payments queue up during the day and clear in scheduled windows, not continuously. The US ACH system has the same architecture; the UK replaced it with Faster Payments in 2008, the EU with SEPA Instant. North America is the laggard."
+      },
+      {
+        "heading": "WHY USD STABLECOINS DOMINATE",
+        "body": "Roughly 99% of stablecoin supply is dollar-denominated. Every other major currency has lacked either regulatory clarity (EU until MiCA), domestic demand (yen, where cash and bank transfers work), or issuer willingness. A regulated CAD stablecoin in a G7 economy is the first crack in that monopoly.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "USD",
+                "value": "~$220bn",
+                "weight": 220,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "EUR",
+                "value": "~$600m",
+                "weight": 0.6,
+                "tone": "neutral"
+              },
+              {
+                "label": "Other",
+                "value": "<$200m",
+                "weight": 0.2,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Stablecoin supply by peg currency, 2026"
+          }
+        ]
+      },
+      {
+        "heading": "THE PROVINCIAL ROUTE",
+        "body": "Tetra was approved by Alberta, not by federal regulators. Canadian financial regulation is split: securities are provincial, banking is federal. Stablecoin issuers have exploited this seam — the same way US issuers worked through New York's BitLicense or Wyoming's special-purpose depository charters before federal rules existed."
+      },
+      {
+        "heading": "THE SOVEREIGNTY ARGUMENT",
+        "body": "When Canadians transact in USDC, they are effectively holding US Treasuries through Circle. Every USD stablecoin transaction abroad strengthens dollar network effects and exports demand for US debt. A domestic CAD stablecoin keeps the float — and the seigniorage — onshore.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What backs a regulated fiat-pegged stablecoin like USDC or Tetra's CAD token?",
+            "options": [
+              "An algorithm that adjusts supply to hold the peg",
+              "A reserve of short-dated government bills and bank deposits",
+              "A pool of other cryptocurrencies as collateral",
+              "Gold held in a vault"
+            ],
+            "correct": 1,
+            "explanation": "Reserve-backed stablecoins hold cash and short-term sovereign debt 1:1 against tokens issued. Algorithmic designs (Terra/UST) collapsed; crypto-collateralized designs (DAI) exist but are a smaller niche."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ETHEREUM FIRST",
+        "body": "Ethereum settles roughly $5-10bn in stablecoin transfers daily and hosts the deepest liquidity for token swaps. Solana is faster and cheaper but thinner. Issuers launch on Ethereum for credibility and reach, then expand to other chains for cost — the same pattern USDC followed from 2018 onward."
+      }
+    ],
+    "generatedAt": "2026-05-04T17:47:59.532Z",
+    "label": "Stablecoins & Payment Rails",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-04-dtcc-sets-october-launch-for-tokenized-securities-platform-i": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PLUMBING NOBODY SEES",
+        "body": "When you buy a stock, your broker doesn't actually move a share certificate. DTCC's subsidiary Cede & Co. is the registered owner of nearly every US-listed share; brokers just update entries in DTCC's ledger. The corporation sits behind roughly $3 quadrillion in annual transactions and processes more US trades than any other entity on earth.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Cede & Co. is the *nominee* on the share register — the legal owner of record — while the actual investor is the **beneficial owner**. Almost no retail investor knows their broker doesn't hold their shares directly."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1968 PAPERWORK CRISIS",
+        "body": "Before DTCC, settlement was physical. By 1968, NYSE volume had so overwhelmed back offices that the exchange closed every Wednesday just to clear paperwork backlogs. Brokerages went bankrupt from lost certificates. DTCC's predecessor was created in 1973 to dematerialize — replace paper with book entries — and that one shift quietly enabled every modern market structure.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1968",
+                "label": "Paperwork crisis; NYSE closes Wednesdays",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1973",
+                "label": "DTC founded — dematerialization"
+              },
+              {
+                "year": "1995",
+                "label": "T+5 → T+3"
+              },
+              {
+                "year": "2017",
+                "label": "T+3 → T+2"
+              },
+              {
+                "year": "2024",
+                "label": "T+2 → T+1"
+              },
+              {
+                "year": "2026",
+                "label": "Tokenized pilot"
+              }
+            ],
+            "label": "settlement cycle history"
+          }
+        ]
+      },
+      {
+        "heading": "WHY TOKENIZATION ≠ CRYPTO",
+        "body": "A tokenized security is a database entry on a blockchain instead of in DTCC's centralized ledger. The asset, the issuer, the regulator, and the legal claim are unchanged. What changes is the rails — programmable settlement, 24/7 availability, and the possibility of atomic delivery-versus-payment in seconds rather than a day."
+      },
+      {
+        "heading": "THE NETTING TRADEOFF",
+        "body": "DTCC nets roughly 98% of trade obligations against each other before settlement — only the residual moves. Atomic settlement on-chain breaks netting: every trade settles individually, gross. This frees collateral from settlement risk but multiplies the cash and securities firms need on hand by 50x or more. The pilot is essentially an experiment in which side of that tradeoff Wall Street prefers.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "T+1 netted",
+                "value": "~2% gross flow"
+              },
+              {
+                "label": "Atomic on-chain",
+                "value": "100% gross flow"
+              }
+            ],
+            "label": "settlement models"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ELSE IS BUILDING THIS",
+        "body": "BlackRock's BUIDL fund tokenizes Treasury bills on Ethereum. JPMorgan's Onyx settles repo trades on a private chain. The DTCC move matters because it is the central counterparty — once the plumbing tokenizes, parallel private experiments either plug in or become obsolete.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does DTCC's subsidiary Cede & Co. legally do for nearly every US-listed share?",
+            "options": [
+              "Holds it as the registered owner on the share register",
+              "Issues new shares on behalf of the company",
+              "Audits the company's quarterly financials",
+              "Sets the daily closing price"
+            ],
+            "correct": 0,
+            "explanation": "Cede & Co. is the nominee owner of record; brokers and investors hold beneficial interests tracked in DTCC's ledger, not direct title."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T17:48:32.375Z",
+    "label": "Tokenized Settlement & DTCC",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-04-ecuador-says-extortion-is-down-the-reality-is-more-complicat": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRANSFORMATION",
+        "body": "Ecuador was Latin America's safest mainland country a decade ago. By 2023 it had the region's highest homicide rate. The collapse happened not because cartels invaded, but because Ecuador's dollarized economy and Pacific ports became indispensable infrastructure for cocaine flowing from Colombia and Peru to Europe.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "EC",
+              "CO",
+              "PE",
+              "MX"
+            ],
+            "label": "the cocaine corridor",
+            "markers": [
+              {
+                "lat": -2.1709,
+                "lng": -79.9224,
+                "label": "Guayaquil port"
+              },
+              {
+                "lat": 0.9538,
+                "lng": -79.6539,
+                "label": "Esmeraldas"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY DOLLARIZATION MATTERS",
+        "body": "Ecuador adopted the US dollar in 2000 after a banking collapse. For traffickers, this is a feature: laundering proceeds requires no currency conversion, no exchange-rate risk, no suspicious foreign-currency transfers. The dollar is both the street currency and the wholesale settlement currency.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *bancarization risk*: when a country uses the same currency as the destination market, the laundering chain shortens dramatically — fewer hops mean fewer chances for FinCEN-style tripwires to fire."
+          }
+        ]
+      },
+      {
+        "heading": "THE FRAGMENTATION DYNAMIC",
+        "body": "When a state dismantles a hierarchical cartel, mid-level lieutenants don't retire — they franchise. The Cali cartel's 1995 destruction birthed dozens of smaller Colombian groups. Mexico's 2009 Beltrán-Leyva split spawned the violence that defined the 2010s. The kingpin strategy reliably trades concentrated power for distributed chaos.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1993",
+                "label": "Pablo Escobar killed; Medellín fragments"
+              },
+              {
+                "year": "1995",
+                "label": "Cali cartel dismantled"
+              },
+              {
+                "year": "2009",
+                "label": "Beltrán-Leyva split, Mexico"
+              },
+              {
+                "year": "2017",
+                "label": "Ecuador's Choneros split after Rasquiña murder",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "23,080 extortion cases recorded"
+              }
+            ],
+            "label": "the kingpin pattern"
+          }
+        ]
+      },
+      {
+        "heading": "WHY EXTORTION SCALES",
+        "body": "Cocaine trafficking requires logistics, capital, and international contacts. Extortion requires only a phone and a willingness to inflict violence. When a major group fragments, the splinters that can't access export markets pivot to local revenue — and bus drivers, shopkeepers, and primary schools become the tax base.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In Italian, the same shift has a name: *pizzo* — the protection tax that mafias levy when they can no longer dominate transnational markets. It's the revenue model of organizational decline."
+          }
+        ]
+      },
+      {
+        "heading": "THE STATISTICAL TRAP",
+        "body": "Reported extortion can rise even as actual extortion falls — victims trust the police more, so they file. It can also fall while extortion rises — victims learn that filing brings reprisal, so they stop. Without victimization surveys, ministry statistics measure reporting behavior, not crime.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When a government dismantles a hierarchical cartel, what most often happens to street-level violence in the following years?",
+            "options": [
+              "It declines as enforcement deters successors",
+              "It rises as fragments compete for territory and revenue",
+              "It stays flat until a new dominant group emerges",
+              "It shifts entirely to neighboring countries"
+            ],
+            "correct": 1,
+            "explanation": "The 'kingpin strategy' has a consistent track record across Colombia, Mexico, and now Ecuador: removing the apex predator creates competition among smaller groups, which is bloodier than the monopoly it replaced."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T17:49:05.420Z",
+    "label": "Extortion as Governance",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-04-forbes-preliminarily-agrees-to-pay-10-million-to-settle-cali": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STATUTE FROM 1967",
+        "body": "California's Invasion of Privacy Act was written when wiretapping meant alligator clips on copper phone lines. Section 631 prohibits any third party from reading a communication 'in transit' without consent of all parties — a two-party consent regime stricter than federal law.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "CIPA's *all-party consent* rule is the engine: federal wiretap law requires only **one** party to consent, but California requires **everyone** on the line. A pixel that pipes your scroll behavior to Meta is, under this reading, the uninvited third party."
+          }
+        ]
+      },
+      {
+        "heading": "THE PEN-REGISTER THEORY",
+        "body": "Plaintiffs' lawyers found a second weapon in §638.51, which bans 'pen registers' — devices that record dialing or routing information. Courts have begun accepting that a tracking pixel capturing URLs, clicks, and form fields is functionally a pen register on a browser session."
+      },
+      {
+        "heading": "WHY $5,000 PER VISITOR",
+        "body": "CIPA sets statutory damages at $5,000 per violation. A publisher with a million California visitors per month faces nominal exposure in the billions before any actual harm is shown. This arithmetic — not privacy theory — is what drives the settlements.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do CIPA cases settle so frequently rather than going to trial?",
+            "options": [
+              "Defendants concede the trackers were illegal",
+              "Statutory damages multiplied by site traffic create catastrophic theoretical exposure",
+              "Federal courts have ruled tracking pixels are wiretaps",
+              "California juries are uniquely hostile to tech companies"
+            ],
+            "correct": 1,
+            "explanation": "$5,000 per visitor times millions of users produces numbers no insurer will defend at trial — settlement becomes the rational choice regardless of merit."
+          }
+        ]
+      },
+      {
+        "heading": "THE FEDERAL VACUUM",
+        "body": "The US has no comprehensive federal privacy law. The 1986 Electronic Communications Privacy Act predates the commercial web. HIPAA covers health data, GLBA covers finance, COPPA covers kids — but the open web is governed by a patchwork of state statutes and FTC consent decrees.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "EU",
+                "value": "GDPR + ePrivacy",
+                "cc": "EU",
+                "tone": "favorable"
+              },
+              {
+                "label": "California",
+                "value": "CCPA + CIPA (1967)",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "Federal US",
+                "value": "no omnibus law",
+                "cc": "US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "China",
+                "value": "PIPL (2021)",
+                "cc": "CN",
+                "tone": "neutral"
+              },
+              {
+                "label": "Brazil",
+                "value": "LGPD (2020)",
+                "cc": "BR",
+                "tone": "favorable"
+              }
+            ],
+            "label": "how major economies regulate web tracking"
+          }
+        ]
+      },
+      {
+        "heading": "THE PIXEL ECONOMY",
+        "body": "A typical news site loads 30–80 third-party scripts per page — ad exchanges, analytics, session replay, audience-measurement, fraud detection. Each is a contract the publisher signed and a potential CIPA defendant. The plaintiff bar has been working through the list one publisher at a time.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The standard tools — *Meta Pixel*, *Google Analytics*, *TikTok Pixel*, *session-replay* SDKs like FullStory and Hotjar — have each spawned their own wave of CIPA suits. The Forbes case follows settlements by the **Hearst** papers, **NBA.com**, and dozens of healthcare systems whose patient portals leaked diagnoses to advertisers."
+          }
+        ]
+      },
+      {
+        "heading": "THE FIX NOBODY WANTS",
+        "body": "A genuine consent regime — banner that actually blocks trackers until the user opts in — would collapse ad revenue across the open web. The European experience after GDPR showed publishers losing 40–60% of programmatic yield from non-consenting users. The CIPA settlements are, in effect, the tax on not implementing that fix."
+      }
+    ],
+    "generatedAt": "2026-05-04T17:49:38.762Z",
+    "label": "CIPA & Web Tracking Liability",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-04-how-a-university-s-censorship-conference-got-censored": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IRONY MECHANISM",
+        "body": "A conference on censorship being canceled by a censorship-adjacent law is not coincidence — it is the predictable output of broadly worded statutes. When a law bans funding for events that 'promote' contested concepts, university counsel must read the statute conservatively, which means canceling anything ambiguous.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal term is *chilling effect* — speech suppressed not by direct prohibition but by the *risk* of penalty. Vague statutes chill more speech than narrow ones because compliance officers must guess where the line is."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT UTAH'S LAW ACTUALLY DOES",
+        "body": "Utah HB 261 (2024) prohibits public universities from maintaining DEI offices, requiring diversity statements, or spending state funds on programs that advance specified concepts around race and identity. Enforcement runs through the state auditor, with funding clawback as the stick."
+      },
+      {
+        "heading": "THE CASCADE OF STATES",
+        "body": "DEI restrictions have moved from a Florida experiment to a regional pattern. Each state borrows language from the prior one, but the definitions widen — Texas's 2023 law targeted offices; later laws reach programs, training, and now events.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "FL",
+              "TX",
+              "UT",
+              "NC",
+              "IA",
+              "AL"
+            ],
+            "label": "states with DEI restrictions on public universities",
+            "caption": "Florida 2023 was the template; ~10 states have followed"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL PRECEDENT",
+        "body": "The Supreme Court has long held that public universities are not pure free-speech zones — the state, as employer and funder, has wider latitude to regulate institutional speech than individual speech. Garcetti v. Ceballos (2006) ruled public employees' job-related speech is not First Amendment protected.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "When public employees make statements pursuant to their official duties, the employees are not speaking as citizens for First Amendment purposes.",
+            "speaker": "Garcetti v. Ceballos, US Supreme Court",
+            "year": "2006"
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPLIANCE INCENTIVE",
+        "body": "Universities facing funding clawback rarely litigate the edges of a vague law. The cheaper move is over-compliance: cancel the event, drop the program, remove the syllabus. This is why broad statutes shape behavior far beyond what they explicitly forbid.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which 1969 ruling established that students and teachers do not 'shed their constitutional rights to freedom of speech at the schoolhouse gate'?",
+            "options": [
+              "Tinker v. Des Moines",
+              "Brown v. Board of Education",
+              "Garcetti v. Ceballos",
+              "Citizens United v. FEC"
+            ],
+            "correct": 0,
+            "explanation": "Tinker (1969) protected student armband protests against the Vietnam War, but later rulings like Garcetti narrowed the doctrine for public employees."
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL RHYME",
+        "body": "Loyalty oaths in the 1950s required University of California faculty to swear they were not Communists; ~30 professors refused and were fired. The California Supreme Court struck the oath down in 1967. The pattern — funding tied to ideological compliance — is older than the current debate."
+      }
+    ],
+    "generatedAt": "2026-05-04T17:50:06.977Z",
+    "label": "Campus Speech & DEI Bans",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-04-japan-vietnam-agree-to-bolster-cooperation-in-energy-critica": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 'RARE EARTH' ACTUALLY MEANS",
+        "body": "The 17 rare earth elements are not geologically rare — cerium is more abundant than copper. They are 'rare' because they almost never form concentrated ore bodies; they appear in trace amounts mixed with each other and with radioactive thorium, making separation the hard part.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bottleneck is *separation*, not extraction. Each element has nearly identical chemistry to its neighbors, requiring hundreds of solvent-extraction stages to isolate."
+          }
+        ]
+      },
+      {
+        "heading": "CHINA'S REAL MONOPOLY",
+        "body": "China mines roughly 60% of the world's rare earths but processes nearly 90%. The chokepoint is not the mine — it is the refinery. Vietnam, Australia, and the US all have deposits; almost none have separation capacity at scale.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "China",
+                "value": 89,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Malaysia",
+                "value": 4,
+                "tone": "neutral"
+              },
+              {
+                "label": "Estonia",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Japan",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "USA",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Other",
+                "value": 1,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global rare earth processing share, 2024 (%)"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2010 PRECEDENT",
+        "body": "After a maritime collision near the Senkaku/Diaoyu islands, China cut rare earth exports to Japan for two months. Prices spiked tenfold. Japan responded by funding processing in Vietnam, stockpiling reserves, and investing in Australia's Lynas — the only large non-Chinese refiner. That playbook is what Tokyo is now scaling.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2010-09",
+                "label": "Senkaku embargo",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011",
+                "label": "Japan-Vietnam rare earth MOU"
+              },
+              {
+                "year": "2013",
+                "label": "Lynas Malaysia plant online"
+              },
+              {
+                "year": "2023",
+                "label": "China bans gallium/germanium exports"
+              },
+              {
+                "year": "2025",
+                "label": "China rare earth magnet curbs"
+              },
+              {
+                "year": "2026-05",
+                "label": "Japan-Vietnam minerals pact"
+              }
+            ],
+            "label": "Japan's rare earth decoupling arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY VIETNAM",
+        "body": "Vietnam's reserves sit in the northwest near the Chinese border, in a belt geologically similar to China's Bayan Obo deposits. Hanoi has the deposits but lacks both refining technology and capital — exactly the gap Japanese industrial policy is built to fill.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "VN",
+              "JP",
+              "CN",
+              "AU",
+              "MY"
+            ],
+            "label": "Japan's rare earth network",
+            "markers": [
+              {
+                "lat": 22.3333,
+                "lng": 103.8333,
+                "label": "Lai Chau rare earth belt"
+              },
+              {
+                "lat": 4.4667,
+                "lng": 103.4333,
+                "label": "Lynas Kuantan plant"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE FOIP DOCTRINE",
+        "body": "Free and Open Indo-Pacific was coined by Shinzo Abe in 2016 — a deliberate counter-frame to China's Belt and Road. Its operational core is supply chain redundancy: rerouting critical inputs through Japan-aligned democracies (Vietnam, India, Australia, Philippines) rather than through Chinese-controlled nodes.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country processes the second-largest share of global rare earths after China?",
+            "options": [
+              "Australia",
+              "Malaysia",
+              "Japan",
+              "United States"
+            ],
+            "correct": 1,
+            "explanation": "Lynas operates a separation plant in Kuantan, Malaysia, making Malaysia the largest non-Chinese processor — though still under 5% of global throughput."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THEY ACTUALLY GO INTO",
+        "body": "Neodymium and dysprosium are the magnetic core of every electric vehicle motor and offshore wind turbine. A single F-35 fighter contains roughly 400 kg of rare earth materials. The supply chain question is downstream of every clean-energy and defense industrial plan in the OECD."
+      }
+    ],
+    "generatedAt": "2026-05-04T17:50:38.922Z",
+    "label": "Rare Earths & Supply Chain Decoupling",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-04-multi-omics-reveals-cxcr4-drives-immune-escape-in-colorectal": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT CHECKPOINT INHIBITORS DO",
+        "body": "T cells carry built-in brakes — PD-1, CTLA-4 — that prevent autoimmune attack on healthy tissue. Tumors hijack these brakes by displaying PD-L1 to switch attacking T cells off. Checkpoint inhibitors are antibodies that block the brakes, releasing the T cells to kill the tumor.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2018 Nobel Prize went to **James Allison** and **Tasuku Honjo** for discovering CTLA-4 and PD-1 — the two checkpoints that built the entire field."
+          }
+        ]
+      },
+      {
+        "heading": "HOT VS COLD TUMORS",
+        "body": "Checkpoint therapy only works if T cells are already inside the tumor waiting to be unleashed. 'Hot' tumors — melanoma, lung — are infiltrated by T cells and respond well. 'Cold' tumors like microsatellite-stable colorectal cancer have almost no T cell infiltration; releasing brakes that aren't there does nothing."
+      },
+      {
+        "heading": "THE COLORECTAL FAILURE",
+        "body": "Roughly 95% of metastatic colorectal cancers are microsatellite-stable, meaning their DNA repair works and they generate few neoantigens for the immune system to recognize. Response rates to checkpoint monotherapy in this group are in the low single digits — among the worst in oncology.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do most colorectal cancers fail to respond to checkpoint inhibitors?",
+            "options": [
+              "The tumors don't express PD-L1 at all",
+              "They have few mutations and few infiltrating T cells",
+              "Colorectal tumors lack blood supply for drug delivery",
+              "The colon's microbiome neutralizes the antibodies"
+            ],
+            "correct": 1,
+            "explanation": "Microsatellite-stable colorectal tumors have low mutation burden and few tumor-infiltrating lymphocytes — there are no T cells inside to release."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT CXCR4 DOES",
+        "body": "CXCR4 is a chemokine receptor — a docking site that tells immune cells where to go. Tumors flood the surrounding tissue with its ligand CXCL12, which recruits macrophages and reprograms them from tumor-killing (M1) to tumor-protecting (M2). The same signal repels CD8 T cells from the tumor core.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Macrophages exist on a spectrum from *M1* (inflammatory, kills pathogens and tumors) to *M2* (wound-healing, suppresses inflammation). Tumors actively push them toward M2."
+          }
+        ]
+      },
+      {
+        "heading": "THE REPURPOSING SHORTCUT",
+        "body": "Plerixafor, a CXCR4 inhibitor, was approved in 2008 for mobilizing stem cells in lymphoma and myeloma transplants. Drugs already cleared for human safety can move into combination oncology trials in months rather than the decade a new molecule requires — bypassing Phase 1 toxicity studies entirely."
+      },
+      {
+        "heading": "WHY COMBINATIONS DOMINATE NOW",
+        "body": "Pure checkpoint monotherapy plateaued around 2018. The frontier is combinations — checkpoint plus chemotherapy, checkpoint plus a second checkpoint, checkpoint plus a stromal-modifier like CXCR4. The bet is that turning a cold tumor hot first, then releasing the brakes, beats either move alone."
+      }
+    ],
+    "generatedAt": "2026-05-04T17:51:07.136Z",
+    "label": "Checkpoint Inhibitors & the Cold Tumor Problem",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-04-openai-google-and-microsoft-back-bill-to-fund-ai-literacy-in": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE NSF ACTUALLY DOES",
+        "body": "The National Science Foundation funds roughly a quarter of all federally supported basic research at US universities. Unlike NIH (biomedicine) or DOE (energy/weapons), NSF covers the unsexy substrate — math, computer science theory, materials science — that has no obvious commercial sponsor. Its annual budget is about $9 billion.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "NSF's defining bet is on *basic* research — work with no immediate application. Google's PageRank algorithm came out of an NSF-funded grad student project; **mRNA vaccine** chemistry traces back to NSF grants in the 1990s."
+          }
+        ]
+      },
+      {
+        "heading": "THE BOARD AND THE DIRECTOR",
+        "body": "The 24-member National Science Board sets NSF policy and approves major awards above $100 million. Members serve staggered six-year terms specifically to insulate science funding from any one administration. Firing all 22 sitting members at once breaks that insulation by design.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Sethuraman Panchanathan",
+                "role": "Last confirmed NSF Director",
+                "years": "2020–2024",
+                "cc": "US"
+              },
+              {
+                "name": "Vannevar Bush",
+                "role": "Architect of NSF (Science: The Endless Frontier)",
+                "years": "1945",
+                "cc": "US"
+              }
+            ],
+            "label": "the structure being dismantled"
+          }
+        ]
+      },
+      {
+        "heading": "WHY VENDORS WRITE CURRICULUM",
+        "body": "Whoever defines 'AI literacy' for 50 million K-12 students shapes a generation's mental model of what AI is, which products are normal, and which API conventions feel natural. The CS curriculum precedent is instructive — Microsoft's 1990s Office certifications made its file formats the default literacy standard for office workers worldwide."
+      },
+      {
+        "heading": "THE CAPTURE PATTERN",
+        "body": "Industry-funded curriculum is not new. The American Petroleum Institute wrote energy lessons used in thousands of US schools through the 1990s. Tobacco companies funded 'critical thinking' curricula that taught students to question health science. The pattern: when an industry faces regulatory or reputational risk, it invests in shaping how the next cohort of voters and regulators understands the field.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which industry pioneered the modern playbook of funding K-12 curriculum to shape public perception of its products?",
+            "options": [
+              "Pharmaceutical companies in the 1980s",
+              "Tobacco companies from the 1950s onward",
+              "Tech firms in the 2010s",
+              "Defense contractors after WWII"
+            ],
+            "correct": 1,
+            "explanation": "Tobacco-funded 'critical thinking' programs from the 1950s established the template later used by oil, sugar, and now AI vendors."
+          }
+        ]
+      },
+      {
+        "heading": "THE FINANCIER NOMINEE",
+        "body": "NSF directors have historically been working scientists — Panchanathan was a computer science professor, his predecessor France Córdova was an astrophysicist. A finance-background nominee signals the agency's mission is being reframed from 'fund the best science' to 'allocate capital efficiently' — two very different optimization functions."
+      },
+      {
+        "heading": "THE COMPARISON",
+        "body": "China's equivalent funding body, the National Natural Science Foundation of China (NSFC), saw its budget grow from roughly $2 billion in 2010 to over $5 billion by 2023. The US NSF budget grew much more slowly in the same period. Curriculum capture matters less than basic-research capacity — and that gap is widening.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "US NSF",
+                "value": "~$9bn",
+                "cc": "US",
+                "weight": 9
+              },
+              {
+                "label": "China NSFC",
+                "value": "~$5bn",
+                "cc": "CN",
+                "weight": 5
+              },
+              {
+                "label": "Germany DFG",
+                "value": "~$4bn",
+                "cc": "DE",
+                "weight": 4
+              },
+              {
+                "label": "UK UKRI",
+                "value": "~$10bn",
+                "cc": "GB",
+                "weight": 10
+              },
+              {
+                "label": "France ANR",
+                "value": "~$1bn",
+                "cc": "FR",
+                "weight": 1
+              }
+            ],
+            "label": "basic-research funding agencies, ~2024"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T17:51:38.218Z",
+    "label": "NSF & Curriculum Capture",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-04-the-hidden-mathematical-dance-inside-plant-cells": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DUAL CONSTRAINT",
+        "body": "Photosynthesis needs light, but the same photons that drive it also damage DNA and the photosynthetic machinery itself. Plants cannot move to shade, so the organelles inside their cells move instead.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phenomenon has a name: ***chloroplast avoidance and accumulation movement***. It was first observed in the 1850s but the molecular trigger wasn't identified until the 2000s."
+          }
+        ]
+      },
+      {
+        "heading": "THE PHOTORECEPTOR",
+        "body": "Phototropins — blue-light receptors anchored in the cell membrane — sense intensity. Below a threshold they trigger the accumulation response (chloroplasts spread along the upper cell wall). Above it, the avoidance response engages and chloroplasts retreat to the side walls, edge-on to the incoming light."
+      },
+      {
+        "heading": "THE ACTIN HIGHWAY",
+        "body": "Movement runs on actin filaments, the same cytoskeletal protein that powers muscle contraction in animals. Short actin tracks reorganize on the chloroplast surface and pull the organelle through the cytoplasm at roughly 1 micrometer per minute — slow by animal standards, fast by plant standards."
+      },
+      {
+        "heading": "WHY GEOMETRY MATTERS",
+        "body": "A flat-facing chloroplast intercepts roughly ten times more light than an edge-on one. The switch between configurations is effectively a built-in aperture — the cell's f-stop — and the math of how cells pack chloroplasts efficiently across both states is what the new modeling work is trying to formalize.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do chloroplasts move edge-on under bright light rather than just producing more protective pigment?",
+            "options": [
+              "Pigment synthesis is too slow to respond to minute-by-minute light changes",
+              "Pigments would block useful wavelengths along with damaging ones",
+              "Movement costs less energy than continuous pigment turnover",
+              "All of the above"
+            ],
+            "correct": 3,
+            "explanation": "Mechanical repositioning is faster, more selective, and cheaper than chemical defense — which is why evolution converged on movement as the primary photoprotection strategy."
+          }
+        ]
+      },
+      {
+        "heading": "THE EVOLUTIONARY ORIGIN",
+        "body": "Chloroplasts were once free-living cyanobacteria, engulfed by an ancestral eukaryote roughly 1.5 billion years ago in an event called primary endosymbiosis. They retain their own circular DNA and divide by binary fission — which is why protecting that DNA from UV damage is a survival imperative the host cell evolved elaborate machinery to serve."
+      }
+    ],
+    "generatedAt": "2026-05-04T17:52:03.546Z",
+    "label": "Chloroplast Movement",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-04-two-dead-after-car-rams-into-crowd-in-germany-reports": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TACTIC",
+        "body": "Vehicle ramming requires no permits, no networks, no training. Al-Qaeda's Inspire magazine called it the 'ultimate mowing machine' in 2010; ISIS's Rumiyah issued explicit how-to guides in 2016. The barrier to entry is a driver's license.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The tactical doctrine names the weapon the **vehicle as a weapon** (VAW) — the appeal is precisely that it sidesteps every counter-terror choke point: no firearm purchase, no precursor chemicals, no flagged travel."
+          }
+        ]
+      },
+      {
+        "heading": "THE EUROPEAN ARC",
+        "body": "Nice 2016 (86 dead, cargo truck on Bastille Day promenade), Berlin 2016 (12 dead, hijacked truck at a Christmas market), Stockholm 2017, Barcelona 2017, Münster 2018, Magdeburg 2024. The pattern is dense pedestrian zones during civic events — exactly what postwar German urbanism prizes.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2016-07",
+                "label": "Nice — 86 killed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2016-12",
+                "label": "Berlin Christmas market — 12 killed"
+              },
+              {
+                "year": "2017-04",
+                "label": "Stockholm — 5 killed"
+              },
+              {
+                "year": "2017-08",
+                "label": "Barcelona Las Ramblas — 13 killed"
+              },
+              {
+                "year": "2018-04",
+                "label": "Münster — 4 killed"
+              },
+              {
+                "year": "2024-12",
+                "label": "Magdeburg Christmas market — 6 killed"
+              },
+              {
+                "year": "2026-05",
+                "label": "Leipzig"
+              }
+            ],
+            "label": "vehicle-ramming attacks in Europe"
+          }
+        ]
+      },
+      {
+        "heading": "THE FUSSGÄNGERZONE",
+        "body": "Germany pioneered the modern car-free pedestrian zone — the Fussgängerzone — in the 1950s rebuilding of bombed city centers. Leipzig's Augustusplatz and the surrounding Innenstadt are textbook examples: bollard-light, café-dense, deliberately permeable. The same design philosophy that makes them civic treasures makes them tactically soft."
+      },
+      {
+        "heading": "WHY MOTIVE LAGS",
+        "body": "German police are unusually disciplined about not naming suspects or motives in early hours — a legacy of Basic Law privacy protections and the Lüth doctrine balancing press freedom against personality rights. Western readers used to American police press conferences mistake this caution for opacity; it is law.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The relevant statute is **§ 33 KunstUrhG** plus the **Allgemeines Persönlichkeitsrecht** read into Articles 1 and 2 of the Grundgesetz — even confirmed suspects are typically named only by first name and last initial until conviction."
+          }
+        ]
+      },
+      {
+        "heading": "HOSTILE VEHICLE MITIGATION",
+        "body": "The counter is bollards, planters, and retractable barriers — 'hostile vehicle mitigation' in the trade. Berlin spent roughly €50 million hardening Christmas markets after Breitscheidplatz. The trade-off is permanent: every bollard added is a small loss of the open civic feel the zones were built to deliver.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was the deadliest vehicle-ramming attack in modern European history?",
+            "options": [
+              "Berlin Christmas market 2016",
+              "Nice Bastille Day 2016",
+              "Barcelona Las Ramblas 2017",
+              "Magdeburg Christmas market 2024"
+            ],
+            "correct": 1,
+            "explanation": "A 19-tonne cargo truck killed 86 people on the Promenade des Anglais on July 14, 2016 — the attack that turned VAW from theory into an operational European pattern."
+          }
+        ]
+      },
+      {
+        "heading": "THE LOCATION",
+        "body": "Leipzig sits in Saxony, the eastern German state where the Monday demonstrations of 1989 helped bring down the Berlin Wall. Augustusplatz — adjacent to the opera house and the university — is the city's largest civic square and a regular protest site, which adds political ambiguity to any incident there until motive is confirmed.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "DE"
+            ],
+            "label": "German vehicle-ramming sites",
+            "markers": [
+              {
+                "lat": 51.3397,
+                "lng": 12.3805,
+                "label": "Augustusplatz, Leipzig"
+              },
+              {
+                "lat": 52.1316,
+                "lng": 11.6398,
+                "label": "Magdeburg market (2024)"
+              },
+              {
+                "lat": 51.9624,
+                "lng": 7.6256,
+                "label": "Münster (2018)"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-04T17:52:39.458Z",
+    "label": "Vehicle-Ramming Attacks",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-04-uae-reports-first-missile-drone-attack-since-iran-ceasefire": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY FUJAIRAH EXISTS",
+        "body": "Fujairah is the only UAE emirate facing the Indian Ocean rather than the Persian Gulf. The Habshan-Fujairah pipeline, opened in 2012, was built precisely so Abu Dhabi's crude could reach tankers without transiting the Strait of Hormuz. Striking it is striking the bypass, not the chokepoint.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AE",
+              "OM",
+              "IR",
+              "SA",
+              "QA"
+            ],
+            "label": "the bypass and the chokepoint",
+            "markers": [
+              {
+                "lat": 25.1288,
+                "lng": 56.3265,
+                "label": "Fujairah terminal"
+              },
+              {
+                "lat": 26.5167,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 24.1167,
+                "lng": 53.4333,
+                "label": "Habshan field"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BYPASS MATH",
+        "body": "Saudi Arabia's East-West Pipeline and the Habshan-Fujairah line together can move roughly 6.5 million barrels per day around Hormuz — about a third of the strait's normal flow. There is no infrastructure substitute for the other two-thirds.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The strait normally carries **~20 million bbl/day**. The two bypass pipelines max out near **~6.5 million bbl/day** combined. The arithmetic is unforgiving."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson planners took from that war: disruption is easier to threaten than to sustain."
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Lloyd's of London war-risk premiums — not the missiles themselves — close a shipping lane. Once underwriters reclassify a route as a war zone, premiums multiply tenfold within hours and commercial vessels reroute regardless of how many hulls have actually been hit. The financial chokepoint tightens before the physical one does."
+      },
+      {
+        "heading": "WHY THE DENIAL",
+        "body": "Iran routinely denies attacks it conducts through proxies or deniable assets — the 2019 Aramco strike, the 2021 Mercer Street tanker, the 2024 Red Sea campaign via the Houthis. Plausible deniability lets Tehran calibrate escalation without crossing the threshold that would trigger a direct US response under Article 51.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "After Iran-aligned forces struck Saudi Aramco's Abqaiq facility in 2019, what share of global oil supply went offline overnight?",
+            "options": [
+              "About 1%",
+              "About 5%",
+              "About 10%",
+              "About 20%"
+            ],
+            "correct": 2,
+            "explanation": "The Abqaiq strike took ~5.7 million bbl/day offline — roughly 5% of global supply and about half of Saudi production — the single largest disruption in history."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRICE SIGNAL",
+        "body": "Brent above $110 is the level at which OECD strategic petroleum reserves typically get coordinated releases, and at which non-OPEC production (US shale, Brazilian pre-salt, Guyana) becomes profitable enough to ramp within months. The ceiling on a Gulf shock is set less by diplomacy than by the global cost curve."
+      }
+    ],
+    "generatedAt": "2026-05-04T17:53:08.769Z",
+    "label": "Fujairah & the Hormuz Bypass",
+    "category": "politics",
+    "articleCount": 1
   }
 }
