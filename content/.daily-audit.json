@@ -1,30 +1,27 @@
 {
-  "date": "2026-05-02",
+  "date": "2026-05-05",
   "metrics": {
-    "articles": { "value": 32, "detail": "5 cycles, avg 6.4/cycle (per-cycle published stat 8)" },
-    "freshness": { "median": 0, "p90": 1.4, "max": 1.4, "target": 1.0, "met": true },
-    "categories": { "politics": 12, "economy": 10, "science": 7, "tech": 3 },
-    "multiSource": { "value": 4, "target": 4, "met": true },
-    "regions": { "count": 4, "target": 4, "met": true, "breakdown": { "EU": 12, "AM": 8, "AS": 4, "ME": 8 } },
-    "sciTech": { "ratio": 31, "target": 25, "met": true },
-    "topSourceShare": { "source": "Nature", "pct": 19, "target": 20, "met": true },
-    "uniqueSources": 26,
+    "articles": { "value": 61, "detail": "5 cycles, avg ~12/cycle" },
+    "freshness": { "median": 0.2, "p90": 0.8, "max": 0.8, "target": 1.0, "met": true },
+    "categories": { "politics": 18, "economy": 15, "science": 12, "tech": 16 },
+    "multiSource": { "value": 12, "target": 4, "met": true },
+    "regions": { "count": 7, "target": 4, "met": true, "breakdown": { "EU": 16, "AM": 17, "AS": 7, "OC": 3, "ME": 13, "AF": 4, "GL": 1 } },
+    "sciTech": { "ratio": 46, "target": 25, "met": true },
+    "topSourceShare": { "source": "Nature / CoinDesk / Al Jazeera / MoneyControl / The Diplomat (tied)", "pct": 7, "target": 20, "met": true },
+    "uniqueSources": 55,
     "duplicates": 0,
-    "avgCycleDuration": 1687
+    "avgCycleDuration": 2252
   },
-  "experiment": "Skipped — pause gate active until 2026-05-12 (model lineup change baselining). 3 active experiments still gathering data; earliest evaluation 2026-05-04 (fabrication-gate-softening).",
-  "weakestArea": "Tech is at 3 articles for the whole day across 5 cycles — well below the per-cycle floor of 3 (expected ~15). Likely feed-supply thinness combined with selector substituting hard-news picks rather than a parameter problem; revisit if pattern persists 2+ days.",
+  "experiment": "Skipped — pause gate active until 2026-05-12 (post 2026-05-02 model-lineup change). Two active experiments still pre-evaluation: title-echo (eval 2026-05-08) and OIC-regional-source-floor (eval 2026-05-19, confounded window extended).",
+  "weakestArea": "Asia coverage at 7 articles is the lowest non-tiny region today despite being the highest-population bloc — yesterday it sat at 16. Likely a feed-mix artifact of a heavy Europe/Americas news day rather than a selector bias, but worth watching if it persists into 2026-05-06.",
   "watching": [
-    "Tech category undershoot: only 3 articles vs ~15 expected from per-cycle floor of 3 across 5 cycles — confirm whether selector dropped the floor or tech feed was thin.",
-    "Top-source share: Nature at 19% sits right at the 20% ceiling — concentration risk if it recurs.",
-    "Region coverage narrowed to 4 (EU/AM/AS/ME) with no AF or OC today vs 5 regions yesterday.",
-    "Title-echo experiment (2026-05-01-title-echo-self-check) evaluates 2026-05-08 — needs weekly snapshot.",
-    "Fabrication-gate softening evaluates 2026-05-04 — review block-adoption telemetry then."
+    "Title-echo experiment evaluates 2026-05-08 — quality-trend snapshot needs to be ready for the keep/revert decision.",
+    "Asia regional count dropped 16 → 7 day-over-day; check if the Diplomat/Straits Times/Dawn supply softened or if selector deprioritized.",
+    "Cycle duration averaged 2252s today vs typical ~22 min — writer at 1024s and editor at 723s are both elevated; not failing but slower."
   ],
   "coverageGaps": [
-    "Africa: 0 articles tagged AF today (3 yesterday).",
-    "Oceania: 0 articles, ongoing structural gap.",
-    "Tech category badly under-served (3/32 = 9%); science healthy at 7."
+    "Africa at 4 articles (down from 5 yesterday) — sub-Saharan beyond Vanguard/Daily Maverick stayed thin.",
+    "Latin America specifically hard to read from AM=17 (mixes US + LatAm); no dedicated LatAm regional outlet appeared in today's source list."
   ],
-  "context": "Pause gate (noNewExperimentsUntil 2026-05-12) is in force following the 2026-05-02 model lineup change (reflect→Opus high, tune→Opus medium, GDACS narrator added, editorial memo introduced). Three active experiments are isolated to unaffected files and continue to collect data. All headline metrics meet targets today; the only soft signal is tech undershoot, a single-day observation likely feed-driven."
+  "context": "Five clean cycles, zero duplicates, freshness median 0.2 days, sciTech ratio 46% — a strong day across every tracked target. Two active experiments remain (title-echo on writer, OIC carry-through on selector); both are isolated and continue to accrue data. The 2026-05-12 pause gate prevents introducing a third variable while the post-2026-05-02 model-lineup change (Opus tune/reflect, GDACS narrator, editorial memo consumption by selector) is still re-baselining."
 }
