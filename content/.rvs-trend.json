@@ -688,5 +688,21 @@
     "guardrailFailures": [
       "category economy below floor 3 (got 2)"
     ]
+  },
+  {
+    "ts": "2026-05-05T04:54:35.923Z",
+    "cycleId": "2026-05-05T04-54",
+    "cycleHour": "04",
+    "rvs": 69.59,
+    "clusters": {
+      "picking": null,
+      "writing": 93.75,
+      "briefing": 78.08,
+      "sourcing": 23.33,
+      "coverage": 72.33
+    },
+    "articleCount": 12,
+    "briefCount": 12,
+    "guardrailFailures": []
   }
 ]
