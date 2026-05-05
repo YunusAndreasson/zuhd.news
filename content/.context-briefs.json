@@ -115519,5 +115519,1389 @@
     "label": "Hormuz & the Tanker War Pattern",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-05-ai-local-language-harms-multilingual-coverage-gap": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BENCHMARK PROBLEM",
+        "body": "Almost every published AI safety benchmark — MMLU, HellaSwag, TruthfulQA, ToxiGen — was built in English. Models are tuned to score well on these, so failure modes that only surface in Hindi, Swahili, or Tagalog are literally invisible to the leaderboards that drive deployment decisions.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **benchmark contamination by language** — when the evaluation set systematically excludes the populations most exposed to the system."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRAINING DATA SKEW",
+        "body": "Common Crawl, the open web scrape underlying most large language models, is roughly 45% English by token count. Hindi — spoken by 600 million people — is under 0.2%. The model has read more fan-fiction in English than news in Hindi.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "English",
+                "value": "~45%",
+                "weight": 45,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Russian",
+                "value": "~6%",
+                "weight": 6,
+                "tone": "neutral"
+              },
+              {
+                "label": "German",
+                "value": "~5.9%",
+                "weight": 5.9,
+                "tone": "neutral"
+              },
+              {
+                "label": "Spanish",
+                "value": "~4.6%",
+                "weight": 4.6,
+                "tone": "neutral"
+              },
+              {
+                "label": "Arabic",
+                "value": "~0.7%",
+                "weight": 0.7,
+                "tone": "favorable"
+              },
+              {
+                "label": "Hindi",
+                "value": "~0.2%",
+                "weight": 0.2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Swahili",
+                "value": "<0.05%",
+                "weight": 0.05,
+                "tone": "favorable"
+              }
+            ],
+            "label": "web text by language (Common Crawl share)"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE HARM CONCENTRATES",
+        "body": "Border enforcement, welfare-fraud detection, and predictive policing systems are deployed disproportionately on populations whose primary language the model handles worst. The error rate is highest exactly where the consequence — deportation, benefits denial, arrest — is most severe.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "US",
+              "GB",
+              "NL",
+              "DE",
+              "FR"
+            ],
+            "label": "countries with documented AI border / welfare harms",
+            "caption": "Netherlands SyRI ruling (2020) was the first court strikedown of an algorithmic welfare system."
+          }
+        ]
+      },
+      {
+        "heading": "THE TOKENIZATION PENALTY",
+        "body": "Most LLM tokenizers were trained on English text, so a sentence in Burmese or Amharic gets chopped into many more tokens than its English equivalent — sometimes 5–10× more. Users in those languages pay more per query, hit context limits faster, and get worse output. The tax is invisible and asymmetric."
+      },
+      {
+        "heading": "THE AUDIT GAP",
+        "body": "The EU AI Act, NIST's AI Risk Management Framework, and most corporate red-teaming protocols specify what to test for but not in which languages. A system can be 'audited' and certified having only been probed in English, then deployed in 40 countries where Anglophone failure modes are the wrong failure modes to be looking for.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of the world's roughly 7,000 living languages have any published NLP benchmark at all?",
+            "options": [
+              "About 1%",
+              "About 10%",
+              "About 25%",
+              "Over half"
+            ],
+            "correct": 0,
+            "explanation": "Roughly 20–100 languages have meaningful benchmarks; the rest — including languages with tens of millions of speakers — have none, so model performance on them is literally unmeasured."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T08:38:33.356Z",
+    "label": "AI & Language Coverage Gaps",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-05-apple-intel-samsung-us-chipmaking-tsmc-hedge": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY 3NM IS THE GAME",
+        "body": "Below 7 nanometers, transistor density determines whether a phone chip can run modern AI models on-device without melting the battery. Apple's A-series and M-series silicon ride the leading edge — every node shrink is a generational performance jump competitors can't match without the same fab.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The *node number* (3nm, 5nm) stopped meaning literal transistor size around 2017. It's now a **marketing label** for a generation of process technology — but the hierarchy still tracks real density gains."
+          }
+        ]
+      },
+      {
+        "heading": "THE FOUNDRY OLIGOPOLY",
+        "body": "Only three companies fabricate at the leading edge. TSMC dominates; Samsung trails by one node and struggles with yield; Intel is years behind after missing the EUV transition and is now trying to re-enter the foundry business as a customer-serving fab.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "TSMC",
+                "value": "~90% share",
+                "cc": "TW",
+                "tone": "unfavorable",
+                "weight": 90
+              },
+              {
+                "label": "Samsung",
+                "value": "~8% share",
+                "cc": "KR",
+                "tone": "neutral",
+                "weight": 8
+              },
+              {
+                "label": "Intel",
+                "value": "~2% share",
+                "cc": "US",
+                "tone": "favorable",
+                "weight": 2
+              }
+            ],
+            "label": "leading-edge logic foundries, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE YIELD PROBLEM",
+        "body": "At 3nm, a single dust particle ruins a chip. TSMC's yield — the percentage of usable dies per wafer — is reportedly above 80%; Samsung's 3nm GAA process has been stuck closer to 50%. The gap means Samsung loses money on chips TSMC profits on, even at identical prices."
+      },
+      {
+        "heading": "WHY APPLE IS HEDGING NOW",
+        "body": "Apple is TSMC's largest customer and typically buys the entire first year of each new node. That privilege is also a vulnerability: a Taiwan Strait crisis would halt iPhone production within months. Diversification is strategic insurance, not procurement strategy.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TW",
+              "KR",
+              "US",
+              "JP",
+              "CN"
+            ],
+            "label": "the leading-edge fab map",
+            "markers": [
+              {
+                "lat": 24.7736,
+                "lng": 120.9966,
+                "label": "TSMC Hsinchu (HQ)"
+              },
+              {
+                "lat": 33.4255,
+                "lng": -111.94,
+                "label": "TSMC Arizona"
+              },
+              {
+                "lat": 37.2453,
+                "lng": 127.0773,
+                "label": "Samsung Pyeongtaek"
+              },
+              {
+                "lat": 30.5083,
+                "lng": -97.6789,
+                "label": "Samsung Taylor, TX"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE INTEL REVERSAL",
+        "body": "Intel built the modern semiconductor industry — Moore's Law was named for its co-founder. Then it missed mobile, missed EUV lithography by half a decade, and watched TSMC become the world's most strategic company. The CHIPS Act exists largely to undo this.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1968",
+                "label": "Intel founded by Noyce and Moore"
+              },
+              {
+                "year": "2007",
+                "label": "Misses iPhone chip — gives it to ARM/Samsung",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2014",
+                "label": "14nm launches; node hits multi-year delay"
+              },
+              {
+                "year": "2020",
+                "label": "Apple drops Intel for in-house Apple Silicon"
+              },
+              {
+                "year": "2021",
+                "label": "Pat Gelsinger returns; foundry pivot announced"
+              },
+              {
+                "year": "2022",
+                "label": "CHIPS Act signed — $52bn for US fabs"
+              }
+            ],
+            "label": "Intel's lost decade"
+          }
+        ]
+      },
+      {
+        "heading": "WHY GEOGRAPHY MATTERS",
+        "body": "TSMC's Arizona fab will produce 4nm chips by 2025 and 3nm by 2028 — but the most advanced node always stays in Taiwan. This is deliberate: the 'silicon shield' doctrine holds that Taiwan's irreplaceable position deters Chinese invasion. Moving the leading edge offshore would weaken it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does TSMC keep its most advanced node in Taiwan rather than its Arizona fab?",
+            "options": [
+              "Lower labor costs in Taiwan",
+              "The 'silicon shield' — irreplaceability is a deterrent against Chinese invasion",
+              "US export controls forbid leading-edge production abroad",
+              "Arizona lacks the water supply needed for fabrication"
+            ],
+            "correct": 1,
+            "explanation": "Taiwan's strategic value to the US depends on TSMC being indispensable. Diluting that by moving the bleeding edge to Arizona would weaken Taipei's deterrent."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T08:39:12.094Z",
+    "label": "The TSMC Dependency",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-05-biocon-mazumdar-shaw-succession-claire-biosimilars": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A BIOSIMILAR IS",
+        "body": "A biosimilar is a near-copy of a biologic drug — a protein produced inside living cells, not synthesized chemically. Unlike generic pills, biosimilars cannot be identical because the manufacturing organism itself shapes the final molecule. Regulators approve them on demonstrated equivalence, not chemical sameness.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters commercially: a generic launches at **80–90% off** the originator price; a biosimilar typically launches at only **20–40% off**, because the development and manufacturing burden is closer to a new drug than to a copy."
+          }
+        ]
+      },
+      {
+        "heading": "WHY INSULIN MATTERS",
+        "body": "Insulin was the first biologic drug, isolated in 1921 and given away by its discoverers for $1 to the University of Toronto. A century later, three companies — Novo Nordisk, Eli Lilly, Sanofi — control roughly 90% of the global insulin market. Biocon's entry as a low-cost biosimilar producer broke that structure for emerging markets.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Novo Nordisk",
+                "value": "~45%",
+                "cc": "DK",
+                "weight": 45
+              },
+              {
+                "label": "Eli Lilly",
+                "value": "~25%",
+                "cc": "US",
+                "weight": 25
+              },
+              {
+                "label": "Sanofi",
+                "value": "~20%",
+                "cc": "FR",
+                "weight": 20
+              },
+              {
+                "label": "Biocon + others",
+                "value": "~10%",
+                "cc": "IN",
+                "weight": 10,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global insulin market share"
+          }
+        ]
+      },
+      {
+        "heading": "INDIA'S PHARMA STACK",
+        "body": "India produces roughly 20% of the world's generic drugs by volume and supplies about 40% of US generic prescriptions. The country's pharma industry was built on a 1970 patent law that recognized only process patents, not product patents — letting Indian firms reverse-engineer Western drugs legally for three decades until TRIPS forced compliance in 2005."
+      },
+      {
+        "heading": "THE FOUNDER-HEIR PATTERN",
+        "body": "Indian business is overwhelmingly family-controlled — Tata, Reliance, Birla, Adani, Mahindra. Even publicly listed conglomerates pass leadership through bloodlines. Niece-to-aunt succession is unusual only in that the heir is female; the dynastic structure itself is the norm.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Kiran Mazumdar-Shaw",
+                "role": "Biocon founder, brewmaster-turned-biotech",
+                "years": "1978–",
+                "cc": "IN"
+              },
+              {
+                "name": "Indra Nooyi",
+                "role": "PepsiCo CEO, Chennai-born",
+                "years": "2006–2018",
+                "cc": "US"
+              },
+              {
+                "name": "Roshni Nadar",
+                "role": "HCL chair, inherited from father",
+                "years": "2020–",
+                "cc": "IN"
+              },
+              {
+                "name": "Leena Tewari",
+                "role": "USV chair, inherited from father",
+                "years": "2011–",
+                "cc": "IN"
+              }
+            ],
+            "label": "women who built and inherited Indian business"
+          }
+        ]
+      },
+      {
+        "heading": "THE FIVE-YEAR HANDOVER",
+        "body": "Long handover windows are the standard playbook for founder-led firms with cult-of-personality leadership. Bill Gates spent eight years stepping back from Microsoft. Ratan Tata took six years to hand to Cyrus Mistry — and then unwound it. The risk is not the heir's competence; it is whether the founder actually leaves.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was Kiran Mazumdar-Shaw's profession before founding Biocon in 1978?",
+            "options": [
+              "Pharmaceutical chemist",
+              "Brewmaster",
+              "Medical doctor",
+              "Investment banker"
+            ],
+            "correct": 1,
+            "explanation": "She trained as a brewmaster in Australia — one of the few women in the field — and applied fermentation expertise to enzyme production, then to biologics."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T08:39:40.766Z",
+    "label": "Biosimilars & Founder Succession",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-05-bitcoin-inflation-hedge-etf-regime-shift": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE THESIS",
+        "body": "Bitcoin's inflation-hedge case rests on its hard cap: 21 million coins, issued on a fixed schedule no government can alter. When fiat money supply expands faster than bitcoin issuance, the relative scarcity should bid the price.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The supply schedule is enforced by the **halving** — the block reward cuts in half roughly every four years. The April 2024 halving dropped issuance from 6.25 to *3.125 BTC per block*, tightening new supply just as ETF demand arrived."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE CASE WAS UNTESTED",
+        "body": "Bitcoin launched in January 2009 — into the deflationary aftermath of the financial crisis. For its first thirteen years, US inflation averaged under 2%. The 2021-2023 inflation spike was bitcoin's first real test, and it failed: BTC collapsed from $69,000 to $16,000 as CPI peaked.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              68985.53,
+              68864.23,
+              71975.62,
+              71117.08,
+              71770.75,
+              72972.71,
+              73053.89,
+              70756.75,
+              74514.63,
+              74181.11,
+              74833.51,
+              75149.19,
+              77128.44,
+              75728.46,
+              73856.06,
+              75874.55,
+              76350.25,
+              78194.78,
+              78260.62,
+              77444.8,
+              77619.14,
+              78645.13,
+              77361.3,
+              76345.23,
+              75774.89,
+              76286.58,
+              78172.07,
+              78655.35,
+              78562.55,
+              79823.89,
+              80827.75
+            ],
+            "periods": [
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 5"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE CORRELATION PROBLEM",
+        "body": "Through most of its history bitcoin has traded as a high-beta tech asset, correlating with the Nasdaq rather than gold. When the Fed tightens, bitcoin sells off with growth stocks; when liquidity returns, it rallies with them. A genuine inflation hedge would do the opposite — rise when real yields fall regardless of equity direction."
+      },
+      {
+        "heading": "THE ETF REGIME SHIFT",
+        "body": "The SEC approved spot bitcoin ETFs in January 2024 after a decade of rejections. This routed pension funds, RIAs, and 401(k) flows into bitcoin through familiar brokerage rails. The buyer base is now structurally different from the 2021 retail mania.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "BlackRock IBIT",
+                "value": "~$50bn",
+                "weight": 50
+              },
+              {
+                "label": "Fidelity FBTC",
+                "value": "~$18bn",
+                "weight": 18
+              },
+              {
+                "label": "Grayscale GBTC",
+                "value": "~$15bn",
+                "weight": 15
+              },
+              {
+                "label": "ARK 21Shares",
+                "value": "~$3bn",
+                "weight": 3
+              },
+              {
+                "label": "Bitwise BITB",
+                "value": "~$2.5bn",
+                "weight": 2.5
+              }
+            ],
+            "label": "spot bitcoin ETF AUM, top issuers"
+          }
+        ]
+      },
+      {
+        "heading": "THE GOLD COMPARISON",
+        "body": "Gold is the benchmark inflation hedge because it has 5,000 years of monetary history and a market cap near $15 trillion. Bitcoin's market cap is roughly a tenth of that. Bulls argue bitcoin is gold for a digital generation; skeptics note gold survived multiple currency collapses while bitcoin has survived only one inflation cycle, badly.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of bitcoin's maximum 21M supply has already been mined?",
+            "options": [
+              "About 50%",
+              "About 75%",
+              "About 95%",
+              "All of it — issuance ended in 2024"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 19.8M bitcoin (~94%) have been mined. The last bitcoin will not be issued until around 2140 because the halving schedule asymptotically slows new supply."
+          }
+        ]
+      },
+      {
+        "heading": "THE REAL-YIELD MECHANISM",
+        "body": "Bitcoin pays no coupon, no dividend, no yield. When real interest rates (nominal rate minus inflation) are negative, holding cash is a guaranteed loss and zero-yield scarce assets bid up. When real yields turn positive, Treasury bonds offer a risk-free real return and the opportunity cost of holding bitcoin becomes measurable. This is the same mechanism that drives gold."
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-05"
+    ],
+    "generatedAt": "2026-05-05T08:40:08.925Z",
+    "label": "Bitcoin as Inflation Hedge",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-05-cacao-rock-dust-enhanced-weathering-smallholders": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE REACTION",
+        "body": "Silicate rocks like basalt slowly weather in rainwater: CO2 dissolves into carbonic acid, which dissolves the rock, locking carbon as bicarbonate that flows to the ocean and stays there for ~10,000 years. Geology already does this — it's the planet's slow thermostat. Crushing the rock to dust accelerates the reaction by orders of magnitude.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The natural process is called *silicate weathering*; the engineered version is **enhanced rock weathering (ERW)**. The rate-limiting step is surface area — a tonne of basalt dust exposes thousands of times more reactive surface than the same tonne as boulders."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CACAO FIELDS",
+        "body": "Tropical soils are old, leached, and acidic. Decades of monocropping have stripped calcium, magnesium, and phosphorus. Basalt dust replaces exactly those cations while neutralizing acidity — the same logic farmers have used with agricultural lime for two centuries, except basalt also captures CO2 as it dissolves."
+      },
+      {
+        "heading": "THE SMALLHOLDER MAP",
+        "body": "Roughly 70% of the world's cocoa comes from West Africa, with Côte d'Ivoire and Ghana alone producing about 60%. Indonesia is the largest non-African producer. The crop is grown almost entirely on farms under five hectares — millions of households, not plantations.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Côte d'Ivoire",
+                "value": 44,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Ghana",
+                "value": 14,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Indonesia",
+                "value": 13,
+                "tone": "neutral"
+              },
+              {
+                "label": "Ecuador",
+                "value": 7,
+                "tone": "favorable"
+              },
+              {
+                "label": "Cameroon",
+                "value": 6,
+                "tone": "favorable"
+              },
+              {
+                "label": "Nigeria",
+                "value": 5,
+                "tone": "favorable"
+              },
+              {
+                "label": "Brazil",
+                "value": 4,
+                "tone": "favorable"
+              },
+              {
+                "label": "Peru",
+                "value": 3,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global cocoa production share, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE CARBON ACCOUNTING",
+        "body": "Per tonne of basalt applied, ERW theoretically removes 0.2–0.3 tonnes of CO2 over years. The catch: mining, crushing, and trucking the rock burn diesel. Net removal depends on grinding finely without overshooting the energy budget — and on verifying that bicarbonate actually reaches the ocean rather than re-releasing CO2 en route."
+      },
+      {
+        "heading": "THE VERIFICATION PROBLEM",
+        "body": "Carbon credits require proof. Unlike a tree you can count, weathering happens invisibly in soil chemistry over years. Buyers like Microsoft and Stripe have pre-purchased ERW credits, but the measurement standard — soil cation balance, runoff sampling, isotope tracing — is still being written.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how long does CO2 captured by silicate weathering stay locked away?",
+            "options": [
+              "A few decades, like soil carbon",
+              "Centuries, like deep-ocean storage",
+              "Around 10,000 years, as ocean bicarbonate",
+              "Permanently, as solid mineral in the field"
+            ],
+            "correct": 2,
+            "explanation": "The captured CO2 becomes bicarbonate that flows to the ocean and remains stable on geological timescales — far longer than forest or soil-carbon storage."
+          }
+        ]
+      },
+      {
+        "heading": "THE COLONIAL ECHO",
+        "body": "West African cocoa was a colonial-era crop, planted to feed European chocolate factories. The economics never inverted: growers still capture a small share of the bar's retail price while bearing all the soil-depletion cost. Whether ERW revenue flows to smallholders or to the certifying intermediaries is the same distributional question that has shadowed cocoa for a century."
+      }
+    ],
+    "generatedAt": "2026-05-05T08:40:40.936Z",
+    "label": "Enhanced Weathering & Cocoa",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-05-china-liuyang-fireworks-factory-explosion-21-dead": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHERE FIREWORKS COME FROM",
+        "body": "Liuyang, a county-level city in Hunan province, produces the overwhelming majority of the world's fireworks. The industry traces back over 1,400 years — gunpowder was invented in Tang-dynasty China by alchemists searching for an elixir of immortality, and Liuyang's clay soil and bamboo forests made it the natural manufacturing center.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN"
+            ],
+            "label": "the world's fireworks capital",
+            "markers": [
+              {
+                "lat": 28.1639,
+                "lng": 113.6336,
+                "label": "Liuyang"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE COTTAGE-INDUSTRY PROBLEM",
+        "body": "Fireworks manufacturing in Liuyang remains heavily decentralized — hundreds of small workshops mix and pack black powder by hand, often in family compounds. Consolidation has been a stated state goal since the 2000s, but rural employment dependence keeps the cottage structure alive. The hand-mixing of explosive composition is what makes accidents catastrophic when they happen.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The active explosive in consumer fireworks is *black powder* — 75% potassium nitrate, 15% charcoal, 10% sulfur. The formula has been essentially unchanged since the **9th century**."
+          }
+        ]
+      },
+      {
+        "heading": "THE EXPORT CONCENTRATION",
+        "body": "China supplies roughly 90% of the world's consumer fireworks by volume. Liuyang alone accounts for the bulk of that. Every July 4th in America, every Diwali in the diaspora, every New Year's display in Sydney harbor — the powder was almost certainly mixed in this one Hunan valley."
+      },
+      {
+        "heading": "WHY DISASTERS CASCADE",
+        "body": "Black powder is a deflagrant — it burns rapidly rather than detonating — but stored in bulk near finished shells, a single ignition triggers sympathetic detonation across an entire facility. The 2015 Tianjin port explosion, which killed 173 from stored ammonium nitrate and other chemicals, set the modern Chinese template: managers arrested within days, a sector-wide audit, then a quiet return to operations once political attention faded.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2013",
+                "label": "Qingdao pipeline blast (62 dead)"
+              },
+              {
+                "year": "2015",
+                "label": "Tianjin port explosion (173 dead)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Xiangshui chemical plant (78 dead)"
+              },
+              {
+                "year": "2022",
+                "label": "Anyang factory fire (38 dead)"
+              },
+              {
+                "year": "2026",
+                "label": "Liuyang fireworks blast (21+ dead)"
+              }
+            ],
+            "label": "China's industrial-disaster pattern"
+          }
+        ]
+      },
+      {
+        "heading": "THE POLITICAL RITUAL",
+        "body": "Xi's response — managers arrested, sector-wide audit — follows a script Chinese leaders have used since the Mao era: visible accountability theater that protects the Party from being blamed for structural failure. The pattern is so consistent that arrests typically precede investigation, not follow it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of the world's consumer fireworks does China produce?",
+            "options": [
+              "About 40%",
+              "About 65%",
+              "About 90%",
+              "Nearly all of them"
+            ],
+            "correct": 2,
+            "explanation": "China supplies roughly 90% of the world's consumer fireworks by volume, with Liuyang as the dominant production hub."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T08:41:13.536Z",
+    "label": "Liuyang & the Fireworks Industry",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-05-china-pakistan-taliban-mediation-fails": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FIGHTERS IN QUESTION",
+        "body": "The Tehrik-i-Taliban Pakistan (TTP) is a separate organization from the Afghan Taliban, but the two share Deobandi roots, Pashtun kinship networks, and a long history of mutual shelter. When the Afghan Taliban retook Kabul in 2021, TTP commanders walked out of Pakistani-funded prisons and crossed the border to safe houses in Kunar and Nangarhar.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: Pakistan helped midwife the *Afghan* Taliban in the 1990s, expecting a friendly western flank. Instead it got the **TTP** — an ideological offspring that turned its guns on the Pakistani state."
+          }
+        ]
+      },
+      {
+        "heading": "THE DURAND LINE PROBLEM",
+        "body": "The 2,640 km Pakistan-Afghanistan border was drawn in 1893 by a British colonial officer through Pashtun tribal lands. No Afghan government — monarchist, communist, republican, or Taliban — has ever formally recognized it. For Pashtun fighters, crossing the line is not crossing a border; it is moving between cousins.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF",
+              "CN",
+              "IR",
+              "TJ"
+            ],
+            "label": "the Durand Line and the Wakhan",
+            "markers": [
+              {
+                "lat": 34.5553,
+                "lng": 69.2075,
+                "label": "Kabul"
+              },
+              {
+                "lat": 33.6844,
+                "lng": 73.0479,
+                "label": "Islamabad"
+              },
+              {
+                "lat": 34.0151,
+                "lng": 71.5249,
+                "label": "Peshawar"
+              },
+              {
+                "lat": 36.7128,
+                "lng": 71.8092,
+                "label": "Wakhan Corridor (CN-AF)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHINA CARES",
+        "body": "Beijing shares a 76 km border with Afghanistan through the Wakhan Corridor, a finger of land that touches Xinjiang. China's fear is not the TTP but the East Turkestan Islamic Movement (ETIM) — Uyghur fighters who used Afghan sanctuary against Chinese targets in the 2010s. Every Beijing-Kabul conversation circles back to ETIM."
+      },
+      {
+        "heading": "THE CPEC LEVERAGE",
+        "body": "The China-Pakistan Economic Corridor is a roughly $62bn web of roads, ports, and power plants threaded from Kashgar to Gwadar. Beijing's pitch to the Taliban was an extension northward — mineral concessions, a copper deal at Mes Aynak that has sat dormant since 2008, road links into Central Asia. The offer assumed economic gravity would pull the Taliban toward Pakistani security preferences.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Mes Aynak copper",
+                "value": "~$3bn deal",
+                "cc": "AF",
+                "tone": "neutral"
+              },
+              {
+                "label": "CPEC extension",
+                "value": "roads + power",
+                "cc": "PK",
+                "tone": "neutral"
+              },
+              {
+                "label": "Hajigak iron ore",
+                "value": "untapped",
+                "cc": "AF",
+                "tone": "neutral"
+              },
+              {
+                "label": "Wakhan road link",
+                "value": "to Xinjiang",
+                "cc": "CN",
+                "tone": "neutral"
+              }
+            ],
+            "label": "what Beijing put on the table"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2023 PRECEDENT",
+        "body": "China's diplomatic confidence comes from the March 2023 Beijing-mediated restoration of Saudi-Iranian relations after seven years of rupture. That deal worked because both Riyadh and Tehran wanted off the escalation ladder; Beijing supplied the face-saving venue. The Taliban-TTP problem is structurally different — the Taliban does not want to expel its kin.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2023-03",
+                "label": "Saudi-Iran normalization (Beijing)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "Iran-Afghanistan water talks (stalled)"
+              },
+              {
+                "year": "2024",
+                "label": "Pakistan-Afghanistan trilateral begins"
+              },
+              {
+                "year": "2026-05",
+                "label": "TTP mediation collapses"
+              }
+            ],
+            "label": "China's mediation arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY MONEY DOESN'T BUY THIS",
+        "body": "Counterterrorism cooperation against ideological cousins is the hardest ask in international politics. Pakistan learned this hosting Afghan mujahideen in the 1980s; Saudi Arabia learned it funding Wahhabi networks that later targeted the kingdom; the United States learned it arming Syrian rebels who defected to al-Nusra. Beijing is now learning the same lesson — economic incentives bend states, not movements built on kinship.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country shares the Wakhan Corridor border with Afghanistan?",
+            "options": [
+              "Tajikistan",
+              "China",
+              "Uzbekistan",
+              "Iran"
+            ],
+            "correct": 1,
+            "explanation": "The 76 km Wakhan Corridor connects Afghanistan directly to China's Xinjiang — the geographic reason Beijing cannot ignore Afghan-based militancy."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T08:41:50.813Z",
+    "label": "China, the Taliban & the TTP",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-05-druzhba-pipeline-kazakhstan-oil-routing-resilience": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NAME",
+        "body": "Druzhba means 'friendship' in Russian. Built in 1964 to bind Soviet satellites to Moscow's oil, it became the longest pipeline in the world — over 4,000 km from the Volga to refineries in East Germany, Poland, Hungary, and Czechoslovakia. The name was a Cold War statement: oil as the connective tissue of the bloc.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The northern leg feeds *Schwedt* and *Leuna* in Germany and *Płock* in Poland; the southern leg feeds *Százhalombatta* in Hungary and *Bratislava* in Slovakia. The two legs have different politics — the northern leg's customers spent 2022–2023 weaning themselves off; the southern leg's haven't."
+          }
+        ]
+      },
+      {
+        "heading": "THE EU EXEMPTION",
+        "body": "When the EU embargoed Russian seaborne crude in December 2022, pipeline crude was carved out — explicitly to keep Druzhba flowing to landlocked Hungary, Slovakia, and Czechia, who argued they had no alternative. Germany and Poland voluntarily stopped taking Druzhba oil at the start of 2023. The pipeline still runs; the customer list is shorter.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "BY",
+              "UA",
+              "PL",
+              "DE",
+              "CZ",
+              "SK",
+              "HU"
+            ],
+            "label": "the Druzhba route",
+            "caption": "northern leg to Germany & Poland; southern leg to Hungary & Slovakia"
+          }
+        ]
+      },
+      {
+        "heading": "WHY KAZAKHSTAN CAN BACKFILL",
+        "body": "Kazakhstan has no border with Germany, but it has the Caspian Pipeline Consortium — a 1,500 km line from the Tengiz field across southern Russia to the Black Sea port of Novorossiysk. From there, tankers can reach Rotterdam in two weeks. CPC is majority-owned by Chevron, ExxonMobil, and the Kazakh state; Russia holds the right of way but not the cargo.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "CPC (Black Sea)",
+                "value": "~80% of exports",
+                "tone": "favorable"
+              },
+              {
+                "label": "Druzhba (via RU)",
+                "value": "~10%",
+                "tone": "neutral"
+              },
+              {
+                "label": "China pipeline",
+                "value": "~8%",
+                "tone": "neutral"
+              },
+              {
+                "label": "Caspian-Baku-Ceyhan",
+                "value": "~2%",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Kazakhstan's crude export routes"
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSIT WEAPON",
+        "body": "Russia has used Druzhba flows as leverage before — a 2007 cutoff to Belarus over transit fees, a 2019 contamination incident that halted Polish and German deliveries for weeks, and repeated 'technical' suspensions since 2022. The pattern: the disruption is brief, the message is durable. Customers learn that pipeline crude carries political risk priced into every barrel."
+      },
+      {
+        "heading": "THE GERMAN VULNERABILITY",
+        "body": "Schwedt refinery in Brandenburg was built in 1964 specifically for Druzhba's Urals-grade crude. Its catalytic units are tuned to that sulfur profile; switching to lighter Kazakh or Saudi grades costs throughput. After Berlin took 54% control from Rosneft in 2022, the refinery has run on a patchwork of Kazakh oil through Druzhba and tanker imports through Rostock — never at full capacity.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              0.86648,
+              0.855689,
+              0.857703,
+              0.855318,
+              0.852479,
+              0.852769,
+              0.856529,
+              0.849799,
+              0.847567,
+              0.846973,
+              0.848788,
+              0.849437,
+              0.849545,
+              0.849401,
+              0.850349,
+              0.849214,
+              0.851902,
+              0.855896,
+              0.853401,
+              0.853097,
+              0.853024,
+              0.852591,
+              0.853706,
+              0.854264,
+              0.857195,
+              0.852427,
+              0.852799,
+              0.852624,
+              0.851959,
+              0.855884
+            ],
+            "periods": [
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5"
+            ],
+            "label": "Euro",
+            "unit": "EUR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE QUIZ",
+        "body": "The pattern of suspensions reveals the structural asymmetry: Russia controls the right of way, but the oil belongs to whoever loaded it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can Kazakhstan reroute Druzhba volumes to Germany so quickly?",
+            "options": [
+              "Kazakhstan owns a parallel pipeline through Belarus",
+              "The Caspian Pipeline Consortium goes around Russia to the Black Sea, where tankers can reach Rotterdam",
+              "Russia agreed to swap supply at the German border",
+              "Kazakhstan ships crude across the Caspian to Azerbaijan and onward by rail"
+            ],
+            "correct": 1,
+            "explanation": "CPC crosses Russian territory but is owned by a Chevron/ExxonMobil/Kazakh consortium — Russia holds the pipe, not the cargo, and the Black Sea outlet bypasses Druzhba entirely."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-05"
+    ],
+    "generatedAt": "2026-05-05T08:42:24.228Z",
+    "label": "Druzhba & Oil Pipeline Geopolitics",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-05-india-west-bengal-sir-voter-deletions-bjp-wins": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT SIR IS",
+        "body": "Special Intensive Revision is the Election Commission's door-to-door audit of voter rolls — booth-level officers verify each entry against documents and remove duplicates, deceased voters, and those who have moved. The process is routine; what is contested is its selectivity.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal hook is **Section 21** of the Representation of the People Act, 1950 — it gives the ECI broad discretion over how and when rolls are revised, with limited judicial review of individual deletions."
+          }
+        ]
+      },
+      {
+        "heading": "WEST BENGAL'S LEFT-TO-MAMATA ARC",
+        "body": "Bengal was governed by the Communist Party (Marxist) for 34 consecutive years — 1977 to 2011 — the longest democratically elected communist government in history. Mamata Banerjee's Trinamool broke that streak and has held the state since. The BJP has never won Bengal.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1977",
+                "label": "CPI(M) Left Front begins",
+                "emphasis": "start"
+              },
+              {
+                "year": "2007",
+                "label": "Nandigram massacre"
+              },
+              {
+                "year": "2011",
+                "label": "Mamata's TMC ousts Left",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "TMC defeats BJP surge"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1977",
+                "to": "2011",
+                "label": "CPI(M) Left Front rule",
+                "tone": "neutral"
+              },
+              {
+                "from": "2011",
+                "to": "2026",
+                "label": "TMC under Mamata",
+                "tone": "neutral"
+              }
+            ],
+            "label": "who has governed Bengal"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BENGAL IS DIFFERENT",
+        "body": "At 27% Muslim population, West Bengal has the highest Muslim share of any non-Muslim-majority Indian state. Bengal's Muslims are urbanized, politically organized, and overwhelmingly vote Trinamool — making the demographic composition of the rolls itself a partisan question."
+      },
+      {
+        "heading": "THE MARGIN PROBLEM",
+        "body": "Indian assembly seats are often decided by margins smaller than the local deletion count. A constituency with a 5,000-vote margin and 60,000 deletions concentrated in one community is mechanically transformed, regardless of intent.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many voters were removed from the West Bengal rolls in this revision?",
+            "options": [
+              "900,000",
+              "9 million",
+              "90 million",
+              "900 million"
+            ],
+            "correct": 1,
+            "explanation": "9 million deletions in a state with ~76 million voters is roughly one in eight — large enough to shift outcomes in any close constituency."
+          }
+        ]
+      },
+      {
+        "heading": "THE COMMISSION'S INDEPENDENCE",
+        "body": "The Election Commission of India was once held up as the gold standard of insulated election administration. A 2023 law changed the appointment panel — replacing the Chief Justice with a cabinet minister — giving the ruling party a 2-1 majority over who runs the rolls. Critics argue the SIR controversies are downstream of that change.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India (pre-2023)",
+                "value": "PM, LoP, CJI",
+                "tone": "favorable"
+              },
+              {
+                "label": "India (post-2023)",
+                "value": "PM, LoP, Cabinet min.",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "UK",
+                "value": "parliamentary cmte",
+                "tone": "favorable"
+              },
+              {
+                "label": "US",
+                "value": "president + senate",
+                "tone": "neutral"
+              }
+            ],
+            "label": "how election commissioners are appointed"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT THAT WORRIES CRITICS",
+        "body": "Assam's 2019 National Register of Citizens excluded 1.9 million people — disproportionately Muslims and Bengali-speakers — from the citizenship list. Bengal's opposition reads SIR through that lens: an administrative process whose technical neutrality produces a politically uniform result.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "BD"
+            ],
+            "label": "Bengal & the Assam precedent",
+            "markers": [
+              {
+                "lat": 22.5726,
+                "lng": 88.3639,
+                "label": "Kolkata"
+              },
+              {
+                "lat": 26.1445,
+                "lng": 91.7362,
+                "label": "Guwahati (NRC)"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T08:42:55.995Z",
+    "label": "Voter Rolls & Bengal Politics",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-05-ripple-north-korea-threat-intel-drift-hack": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO LAZARUS IS",
+        "body": "Lazarus Group is a unit within North Korea's Reconnaissance General Bureau, the DPRK's foreign intelligence service. Crypto theft is not a side hustle — UN monitors estimate it funds roughly half the country's missile program.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **Reconnaissance General Bureau** runs both the missile-program financing operations and the cyber-theft units that fund them — the same agency holds both ends of the loop."
+          }
+        ]
+      },
+      {
+        "heading": "WHY NORTH KOREA",
+        "body": "UN sanctions cut North Korea off from the global financial system. The regime generates hard currency through counterfeiting, arms sales, and — since 2017 — cryptocurrency theft. The UN Panel of Experts estimated DPRK cyber operations funded roughly 40% of the weapons program as of 2023."
+      },
+      {
+        "heading": "THE IT WORKER PIPELINE",
+        "body": "Lazarus operatives apply for remote engineering jobs at crypto firms using stolen or fabricated identities, often routed through laptop farms in the US that disguise the originating IP. Once inside, they spend weeks reading code and building trust before triggering the exploit — the social-engineering phase often outlasts the technical one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How does Lazarus Group most commonly gain initial access to crypto firms it later robs?",
+            "options": [
+              "Phishing emails to executives",
+              "Posing as remote job applicants and getting hired",
+              "Bribing insiders at exchanges",
+              "Exploiting unpatched servers from outside"
+            ],
+            "correct": 1,
+            "explanation": "DPRK operatives apply for legitimate engineering roles using stolen identities, then deploy malware from inside the company's own systems."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BRIDGES AND DEFI GET HIT",
+        "body": "Bridges and DeFi protocols concentrate enormous value in single smart contracts that must accept deposits from one chain and release them on another. A flaw in one contract can drain hundreds of millions in a single transaction — a target profile no traditional bank presents."
+      },
+      {
+        "heading": "THE TRANSPARENCY PARADOX",
+        "body": "Every blockchain transaction is public and permanent. Pseudonymous addresses provide privacy, but the transaction graph is visible to everyone. This is why threat-intelligence sharing works at all: once one firm tags a Lazarus-linked address, every other firm can blacklist it instantly."
+      },
+      {
+        "heading": "THE LAUNDERING CHAIN",
+        "body": "After a theft, funds typically flow through chain-hopping bridges, then mixers like Tornado Cash, then over-the-counter brokers in jurisdictions with weak KYC who convert to stablecoins or fiat. Each hop adds friction; the goal is not perfect anonymity but enough delay that exchanges can't freeze before cash-out.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "hack",
+                "label": "Stolen funds"
+              },
+              {
+                "id": "bridge",
+                "label": "Cross-chain bridge"
+              },
+              {
+                "id": "mixer",
+                "label": "Mixer (Tornado, Sinbad)"
+              },
+              {
+                "id": "otc",
+                "label": "OTC brokers"
+              },
+              {
+                "id": "stable",
+                "label": "Stablecoins / fiat"
+              },
+              {
+                "id": "frozen",
+                "label": "Frozen by exchanges"
+              }
+            ],
+            "links": [
+              {
+                "source": "hack",
+                "target": "bridge",
+                "value": 100
+              },
+              {
+                "source": "bridge",
+                "target": "mixer",
+                "value": 85
+              },
+              {
+                "source": "bridge",
+                "target": "frozen",
+                "value": 15
+              },
+              {
+                "source": "mixer",
+                "target": "otc",
+                "value": 75
+              },
+              {
+                "source": "mixer",
+                "target": "frozen",
+                "value": 10
+              },
+              {
+                "source": "otc",
+                "target": "stable",
+                "value": 70
+              },
+              {
+                "source": "otc",
+                "target": "frozen",
+                "value": 5
+              }
+            ],
+            "label": "DPRK crypto laundering flow"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SHARING IS HARD",
+        "body": "Crypto firms compete fiercely and treat breach data as reputational poison. Voluntary information-sharing groups exist, but legal teams routinely block disclosures that could expose the firm to lawsuits or regulatory probes — so Lazarus often runs the same playbook against three or four targets before the pattern surfaces publicly."
+      }
+    ],
+    "generatedAt": "2026-05-05T08:43:27.063Z",
+    "label": "Lazarus & Crypto Theft",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-05-smoldering-multiple-myeloma-redefined-early-disease": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CLONAL CASCADE",
+        "body": "Multiple myeloma is a cancer of plasma cells — the antibody factories of the immune system. It almost never appears from nothing: nearly every case is preceded by MGUS (monoclonal gammopathy of undetermined significance), which progresses to smoldering myeloma, which progresses to active disease. The clonal sequence was only mapped definitively in the 2009 Mayo cohort.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The progression has a name worth knowing: **MGUS → smoldering → active**. Each stage is the same clone accumulating mutations; the labels are clinical thresholds, not biological boundaries."
+          }
+        ]
+      },
+      {
+        "heading": "WATCH-AND-WAIT'S LOGIC",
+        "body": "For decades, oncologists deliberately did not treat smoldering myeloma. The reasoning was statistical: only about 10% of MGUS cases and roughly half of smoldering cases progress to active disease within five years. Treating all of them meant exposing many patients who would never have gotten sick to chemotherapy's toxicity."
+      },
+      {
+        "heading": "WHAT CHANGED",
+        "body": "Two things broke the watch-and-wait consensus. First, genetic risk-stratification got sharp enough to identify which smoldering patients would almost certainly progress. Second, monoclonal antibodies like daratumumab — which target the CD38 protein on plasma cells — produced deep responses without the bone-marrow devastation of older cytotoxic regimens. The cost-benefit math flipped.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does daratumumab target on myeloma cells?",
+            "options": [
+              "The BCMA receptor",
+              "The CD38 surface protein",
+              "The PD-1 checkpoint",
+              "The HER2 receptor"
+            ],
+            "correct": 1,
+            "explanation": "Daratumumab binds CD38, a protein heavily expressed on plasma cells; this lineage-selectivity is why it spares most healthy tissue."
+          }
+        ]
+      },
+      {
+        "heading": "THE RECLASSIFICATION PROBLEM",
+        "body": "If you treat smoldering myeloma like a disease, it stops being a precursor and becomes a stage. The diagnostic boundary moves: what used to be \"high-risk smoldering\" is now \"early myeloma,\" and what remains in the smoldering category may be closer to benign MGUS. The cancer registries, the clinical trials, the survival statistics — all calibrated to the old definition — start measuring different populations."
+      },
+      {
+        "heading": "THE LEAD-TIME ILLUSION",
+        "body": "Earlier diagnosis automatically extends measured survival even if treatment does nothing — patients are simply counted from an earlier date. Distinguishing real benefit from this lead-time bias requires randomized trials with hard endpoints (death, organ damage), not just \"time from diagnosis.\" The daratumumab approval rests on trials designed specifically to clear that bar.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why oncology trials obsess over *overall survival* rather than *progression-free survival* — only the former is immune to the lead-time trap."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Medicine has redrawn precursor lines before. Ductal carcinoma in situ (DCIS) was reclassified from \"pre-cancer\" to \"stage 0 breast cancer\" in the 1990s, driving a surge in mastectomies — and a still-unresolved debate about overtreatment. Smoldering myeloma's reclassification is walking the same road, with the same tradeoff between catching disease early and treating people who would never have needed it."
+      }
+    ],
+    "generatedAt": "2026-05-05T08:43:55.908Z",
+    "label": "Smoldering Myeloma & Early Intervention",
+    "category": "science",
+    "articleCount": 1
   }
 }
