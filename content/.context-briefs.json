@@ -118470,5 +118470,1317 @@
     "label": "UK Mobile Consolidation",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-05-05-australia-cyber-incident-review-board-csrb-model": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE AVIATION PRECEDENT",
+        "body": "The model is the US National Transportation Safety Board, founded in 1967. NTSB investigators arrive at crash sites with subpoena power but no authority to punish — findings cannot be used in civil suits against operators. Aviation's safety record since is the strongest argument for separating learning from blame.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine has a name: ***just culture***. Operators report near-misses honestly because honest reports cannot be weaponized against them. Punitive culture produces silence; silence produces repeat accidents."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CYBER IS HARDER",
+        "body": "A plane crash leaves wreckage anyone can photograph. A breach leaves logs the victim controls and an attacker who wants them erased. Investigators must compel cooperation from a company whose stock price, insurance premiums, and class-action exposure all depend on minimizing what the report says happened."
+      },
+      {
+        "heading": "THE US CSRB AND ITS END",
+        "body": "The US Cyber Safety Review Board was created by executive order in 2021 after the SolarWinds and Colonial Pipeline incidents. It published reports on Lapsus$, Log4j, and the 2023 Microsoft Exchange Online breach by Chinese state actors. The Trump administration disbanded it in January 2025 along with other DHS advisory committees.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2020-12",
+                "label": "SolarWinds breach disclosed"
+              },
+              {
+                "year": "2021-05",
+                "label": "Colonial Pipeline ransomware"
+              },
+              {
+                "year": "2021-05",
+                "label": "Executive Order 14028 establishes CSRB",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-07",
+                "label": "First report: Log4j vulnerability"
+              },
+              {
+                "year": "2024-03",
+                "label": "Report on Microsoft Exchange breach"
+              },
+              {
+                "year": "2025-01",
+                "label": "CSRB disbanded"
+              }
+            ],
+            "label": "the US review board's short arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE FIVE EYES SPLIT",
+        "body": "Australia, the UK, Canada, New Zealand, and the US share signals intelligence through Five Eyes. On cybersecurity policy they are diverging: Canberra and London are building permanent civilian incident-review structures; Washington has just dismantled its equivalent. Operators that span the alliance now face different disclosure regimes in each capital.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AU",
+              "US",
+              "GB",
+              "CA",
+              "NZ"
+            ],
+            "label": "Five Eyes — diverging cyber regimes"
+          }
+        ]
+      },
+      {
+        "heading": "THE LIABILITY TRADE",
+        "body": "No-fault means the report's findings cannot be entered as evidence in lawsuits or used by regulators to fine the operator. The trade is explicit: society gets the truth about what happened; the victim gets a shield from being punished for telling it. Without the shield, every breached company would lawyer the report into uselessness."
+      },
+      {
+        "heading": "WHAT GETS REVIEWED",
+        "body": "The Australian board, like the US one before it, reviews systemically significant incidents — breaches at critical infrastructure operators, supply-chain compromises affecting many downstream victims, novel attack techniques. Routine ransomware at a single mid-sized company does not qualify. The criterion is whether the lessons generalize.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does no-fault review require legal protection from the findings being used in court?",
+            "options": [
+              "To protect investigators from being sued by attackers",
+              "Because operators will sanitize their account if the report can be used against them",
+              "To comply with international cybersecurity treaties",
+              "Because cyber evidence is inadmissible by default"
+            ],
+            "correct": 1,
+            "explanation": "The whole value of no-fault review is candor. Strip the legal shield and operators describe only what is already public — the report becomes a press release."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T17:42:24.501Z",
+    "label": "No-Fault Incident Review",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-05-caisi-microsoft-google-xai-frontier-model-access": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT CAISI IS",
+        "body": "The Center for AI Standards and Innovation sits inside NIST at the Commerce Department. It replaced the Biden-era AI Safety Institute in 2025, narrowing the mandate from broad safety research to evaluating frontier models for national-security risk before they ship.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The rename matters: *safety* implied a consumer-protection frame; *standards and innovation* signals an **industrial-policy** frame where the same evaluations double as a competitive moat."
+          }
+        ]
+      },
+      {
+        "heading": "WHY UNGUARDED MODELS",
+        "body": "Production models ship with refusal training — they decline to explain bioweapon synthesis, write malware, or describe nuclear enrichment steps. Evaluators need the unguarded base model because the danger is what the network actually knows, not what the politeness layer permits. Guardrails can be jailbroken; latent capability cannot be unlearned."
+      },
+      {
+        "heading": "THE THREE LABS",
+        "body": "The frontier-model market has consolidated to a handful of labs whose flagship systems define the capability frontier. CAISI's access deal covers three of them.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Microsoft",
+                "role": "OpenAI's compute backer, owns Azure deployment",
+                "cc": "US"
+              },
+              {
+                "name": "Google DeepMind",
+                "role": "Gemini developer, Alphabet subsidiary",
+                "cc": "US"
+              },
+              {
+                "name": "xAI",
+                "role": "Musk-founded, builds Grok on Memphis Colossus cluster",
+                "cc": "US"
+              }
+            ],
+            "label": "the three labs in the deal"
+          }
+        ]
+      },
+      {
+        "heading": "THE FOREIGN-VETO MECHANIC",
+        "body": "Foreign AI safety institutes — UK AISI, EU AI Office, Singapore's IMDA — get access only after CAISI signs off on security parameters. This inverts the usual regulatory order: instead of each jurisdiction evaluating independently, the US becomes the upstream gate.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "GB",
+              "DE",
+              "FR",
+              "JP",
+              "SG",
+              "CA"
+            ],
+            "label": "AI safety institutes in the network",
+            "caption": "each waits on CAISI clearance before evaluation"
+          }
+        ]
+      },
+      {
+        "heading": "THE EXPORT-CONTROL PARALLEL",
+        "body": "This mirrors how the US already governs advanced semiconductors. Under the October 2022 export controls, NVIDIA cannot ship its top GPUs to China without a Commerce Department license. Frontier models are now being slotted into the same regulatory machinery — the export-control regime built for chips applied to weights."
+      },
+      {
+        "heading": "THE COMPUTE CHOKEPOINT",
+        "body": "All three labs run their training on US-soil hyperscaler clusters. The leverage is physical: a frontier training run requires tens of thousands of H100 or B200 GPUs, gigawatt-scale power, and months of engineering. There are perhaps a dozen sites on Earth that can do it, and Commerce knows where each one is.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many GPUs are needed to train a frontier-class language model today?",
+            "options": [
+              "A few hundred",
+              "A few thousand",
+              "Tens of thousands",
+              "Hundreds of millions"
+            ],
+            "correct": 2,
+            "explanation": "GPT-4-class training runs used ~25,000 A100s; current frontier runs use 50,000+ H100s or B200s — the cluster itself is the chokepoint Commerce regulates."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T17:42:54.811Z",
+    "label": "CAISI & Frontier Model Evaluation",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-05-canada-arbour-governor-general-war-crimes-prosecutor": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OFFICE",
+        "body": "The Governor General is the King's representative in Canada and the formal commander-in-chief. The role is largely ceremonial, but the reserve powers — proroguing Parliament, refusing royal assent, dismissing a prime minister — are real and have been used in Commonwealth crises within living memory.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 1975 Australian dismissal — when Governor-General **John Kerr** sacked PM Gough Whitlam — is the precedent every Westminster system remembers. Reserve powers exist precisely because they are almost never invoked."
+          }
+        ]
+      },
+      {
+        "heading": "THE FIRST INDICTMENT",
+        "body": "As chief prosecutor of the ICTY from 1996 to 1999, Arbour issued the first indictment of a sitting head of state in history: Slobodan Milošević, charged in May 1999 while NATO bombs were still falling on Belgrade. The doctrine that office-holders enjoy no immunity for atrocity crimes traces directly to that filing.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1945",
+                "label": "Nuremberg charter rejects 'act of state' defense"
+              },
+              {
+                "year": "1993",
+                "label": "ICTY established by UN Security Council"
+              },
+              {
+                "year": "1998",
+                "label": "Rome Statute creates the ICC"
+              },
+              {
+                "year": "1999",
+                "label": "Milošević indicted in office",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2009",
+                "label": "Bashir (Sudan) — first sitting ICC indictment"
+              },
+              {
+                "year": "2023",
+                "label": "Putin ICC arrest warrant issued"
+              }
+            ],
+            "label": "the architecture of head-of-state accountability"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ICTY MATTERED",
+        "body": "The International Criminal Tribunal for the former Yugoslavia was the first international war-crimes court since Nuremberg and Tokyo. It established that rape could constitute a crime against humanity, that command responsibility extends to civilian leaders, and that a UN Security Council resolution alone could create a binding criminal jurisdiction over individuals."
+      },
+      {
+        "heading": "THE KING'S APPOINTMENT",
+        "body": "Canada's Governor General is appointed by the monarch on the prime minister's advice. Charles III acceded in September 2022; Arbour is the first GG he has named. The constitutional fiction is royal prerogative; the political reality is that the PM chooses and the King signs.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Who formally appoints Canada's Governor General?",
+            "options": [
+              "The Canadian Parliament by majority vote",
+              "The monarch, on the prime minister's advice",
+              "The provincial premiers in joint conference",
+              "The Supreme Court of Canada"
+            ],
+            "correct": 1,
+            "explanation": "The PM selects; the King formally appoints. Parliament has no role — the office sits above the legislature in the Westminster hierarchy."
+          }
+        ]
+      },
+      {
+        "heading": "THE CARNEY SIGNAL",
+        "body": "Mark Carney — former Bank of Canada and Bank of England governor — picked a 79-year-old jurist famous for prosecuting heads of state. The selection reads as deliberate signaling about institutional accountability at a moment when Canada is navigating tariff confrontations and the rule-of-law erosion happening across allied democracies.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Louise Arbour",
+                "role": "ICTY/ICTR chief prosecutor",
+                "years": "1996–1999",
+                "cc": "CA"
+              },
+              {
+                "name": "Louise Arbour",
+                "role": "Supreme Court of Canada justice",
+                "years": "1999–2004",
+                "cc": "CA"
+              },
+              {
+                "name": "Louise Arbour",
+                "role": "UN High Commissioner for Human Rights",
+                "years": "2004–2008",
+                "cc": "CA"
+              },
+              {
+                "name": "Louise Arbour",
+                "role": "Governor General of Canada",
+                "years": "2026–",
+                "cc": "CA"
+              }
+            ],
+            "label": "Arbour's institutional arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T17:43:25.859Z",
+    "label": "The Governor General & International Justice",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-05-internet-archive-hdd-shortage-ai-data-centers": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY HDDs, NOT SSDs",
+        "body": "Cold archival storage runs on spinning disks because the cost-per-terabyte gap is still roughly 5–6× in HDDs' favor. Flash wins on speed and power; rust wins on price per bit, and the Internet Archive is buying bits, not latency.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Industry shorthand splits storage into **hot** (SSD, accessed constantly), **warm** (nearline HDD, accessed occasionally), and **cold** (tape or dense HDD, accessed rarely). Archives live in the cold tier — where price-per-TB is the only number that matters."
+          }
+        ]
+      },
+      {
+        "heading": "THE DUOPOLY",
+        "body": "Three companies make every hard drive sold globally: Seagate, Western Digital, and Toshiba. After two decades of consolidation, the HDD industry has the supply-side concentration of a commodity cartel — and AI hyperscaler demand can move prices the way OPEC moves oil.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Seagate",
+                "value": "~43%",
+                "weight": 43,
+                "cc": "US"
+              },
+              {
+                "label": "Western Digital",
+                "value": "~37%",
+                "weight": 37,
+                "cc": "US"
+              },
+              {
+                "label": "Toshiba",
+                "value": "~20%",
+                "weight": 20,
+                "cc": "JP"
+              }
+            ],
+            "label": "global HDD market share, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "WHY AI EATS DRIVES",
+        "body": "Training a frontier model means storing trillions of tokens of scraped text, image, and video — plus checkpoints at every training step, which can each weigh hundreds of terabytes. A single hyperscaler's quarterly drive order now exceeds the lifetime storage of most national libraries."
+      },
+      {
+        "heading": "THE ARCHIVE'S SCALE",
+        "body": "210 petabytes is roughly 7,500 of the largest consumer drives running at full capacity. Adding 100 TB daily means buying ~4 new 28 TB drives every week just to stay even — a budget line that scales linearly with hyperscaler-driven prices.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How much new data does the Internet Archive ingest per day?",
+            "options": [
+              "10 TB",
+              "100 TB",
+              "1 PB",
+              "10 PB"
+            ],
+            "correct": 1,
+            "explanation": "100 TB/day — about a full modern hard drive's worth every six hours, against 210 PB already preserved."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRESERVATION PARADOX",
+        "body": "The same AI systems driving the price spike were trained on data the Internet Archive and Common Crawl preserved. Now those archives are being priced out of preserving the next generation of the web by the very industry that depends on their past work.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is a recurring pattern in digital infrastructure: the **commons** that enabled an industry's takeoff gets squeezed by that industry's success. Open-source maintainers, public DNS resolvers, and now web archives all sit in this position."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT GETS LOST",
+        "body": "When archive budgets miss a year, the loss is invisible until you go looking — a deleted government page, a vanished forum thread, a news site sold for parts. Link rot studies suggest roughly half of URLs cited in academic papers from 20 years ago no longer resolve to original content. The archive is the difference between citation and reconstruction."
+      }
+    ],
+    "generatedAt": "2026-05-05T17:43:54.918Z",
+    "label": "HDDs & the Archive Squeeze",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-05-llm-pharmacotherapy-simulation-clinical-education-nature": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PREFERENCE TRAP",
+        "body": "Learners systematically prefer instruction that feels fluent, responsive, and non-judgmental over instruction that is accurate. This is well-documented in education research: student evaluations of teaching correlate weakly with learning outcomes and sometimes negatively with rigor.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical name is the *fluency heuristic* — the brain treats easy-to-process information as more likely to be true. LLMs are **fluency machines** by construction, which makes them maximally seductive and maximally dangerous in exactly the domains where confidence and correctness diverge."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PHARMACOLOGY IS BRUTAL FOR LLMS",
+        "body": "Drug knowledge is a dense graph of interactions, contraindications, dose adjustments by renal and hepatic function, and narrow therapeutic windows. A single wrong digit on warfarin or a missed CYP3A4 interaction can kill. Language models interpolate plausibly between training examples — exactly the wrong behavior when the answer space is discrete and the cost of being almost-right is death."
+      },
+      {
+        "heading": "FABRICATED CITATIONS",
+        "body": "LLMs hallucinate references because they learned the *shape* of a citation — author names, journal abbreviations, year, volume, page — without learning that the referent must exist. The model generates a citation that pattern-matches a real one. In pharmacotherapy this is especially dangerous because students are taught to trust evidence-graded recommendations.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do language models fabricate plausible-sounding journal citations?",
+            "options": [
+              "They are trained on a corpus that contains many fake citations",
+              "They learn the statistical pattern of what a citation looks like, not the requirement that it refer to a real paper",
+              "They deliberately invent sources to pad answers",
+              "Citation databases are blocked from training data"
+            ],
+            "correct": 1,
+            "explanation": "LLMs model surface-level token patterns. A citation has a recognizable shape; generating one that fits the shape is rewarded by the training objective even when no real paper exists."
+          }
+        ]
+      },
+      {
+        "heading": "THE PHARMD PIPELINE",
+        "body": "A US Doctor of Pharmacy is a four-year post-baccalaureate professional degree, followed by board licensure (NAPLEX) and often one or two years of residency. The training is heavily case-based — which is precisely the modality LLM tutors target, and precisely where confident-but-wrong reasoning compounds across thousands of practice questions."
+      },
+      {
+        "heading": "INSTRUCTIONAL DESIGN'S OLD LESSON",
+        "body": "Decades before LLMs, instructional designers found that *desirable difficulties* — friction, retrieval practice, spaced testing — produced durable learning, while smooth, fluent instruction produced confidence without competence. An always-available, always-patient AI tutor optimizes for the wrong half of that tradeoff by default.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Chose AI tutor",
+                "value": "49.8%",
+                "tone": "unfavorable",
+                "weight": 49.8
+              },
+              {
+                "label": "Chose faculty",
+                "value": "30.0%",
+                "tone": "favorable",
+                "weight": 30
+              },
+              {
+                "label": "AI cases substandard",
+                "value": "48%",
+                "tone": "unfavorable",
+                "weight": 48
+              }
+            ],
+            "label": "Student preference vs expert-rated accuracy"
+          }
+        ]
+      },
+      {
+        "heading": "THE OVERSIGHT GAP",
+        "body": "Most LLM tutoring deployments lack a credentialed reviewer in the loop. The pharmacy school adopting an AI simulator typically does not have the faculty bandwidth to audit thousands of generated cases — which is the same constraint that made the AI tutor attractive in the first place. The economics of oversight run opposite to the economics of deployment."
+      }
+    ],
+    "generatedAt": "2026-05-05T17:44:26.773Z",
+    "label": "LLMs in Clinical Education",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-05-london-tower-hamlets-synagogue-arson-counterterror": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE THREAT LEVEL SYSTEM",
+        "body": "The UK's Joint Terrorism Analysis Centre sets a five-tier threat level: low, moderate, substantial, severe, critical. 'Severe' means an attack is highly likely; 'critical' means one is expected imminently. The level has sat at substantial or severe almost continuously since 2014.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The level is set by **JTAC**, an inter-agency body housed inside MI5 but staffed across 16 departments — deliberately insulated from ministers so the rating can't be politically tuned."
+          }
+        ]
+      },
+      {
+        "heading": "TOWER HAMLETS",
+        "body": "The borough is one of London's most diverse — roughly 35% Bangladeshi-heritage Muslim, with historic Jewish East End roots in adjacent Spitalfields. The Brick Lane mosque was originally a Huguenot chapel, then a synagogue, then a mosque — three waves of refugees in the same building.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GB"
+            ],
+            "label": "East London",
+            "markers": [
+              {
+                "lat": 51.5203,
+                "lng": -0.0293,
+                "label": "Tower Hamlets"
+              },
+              {
+                "lat": 51.5155,
+                "lng": -0.0719,
+                "label": "Brick Lane"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHO TRACKS WHAT",
+        "body": "In Britain, antisemitic incidents are catalogued by the Community Security Trust — a Jewish charity, not the police — which has logged record annual totals every year since October 2023. Anti-Muslim incidents are tracked by Tell MAMA. Both feed the Home Office, but neither has statutory power.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Antisemitic (CST)",
+                "value": "~3,500",
+                "tone": "unfavorable",
+                "weight": 3500
+              },
+              {
+                "label": "Anti-Muslim (Tell MAMA)",
+                "value": "~6,000",
+                "tone": "unfavorable",
+                "weight": 6000
+              }
+            ],
+            "label": "recorded hate incidents, UK 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE PROSCRIPTION POWER",
+        "body": "The Terrorism Act 2000 lets the Home Secretary ban an organization by laying an order in Parliament — membership becomes a criminal offence punishable by up to 14 years. Starmer's government used this power to proscribe Palestine Action in 2025, the first non-violent direct-action group banned under the Act, expanding the tool's traditional scope.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Proscription is fast — *no trial, no jury* — and uses civil-standard evidence. Critics call it the executive's bluntest counter-terror instrument; defenders call it the only one that moves at the speed of radicalization."
+          }
+        ]
+      },
+      {
+        "heading": "THE STARMER CALCULATION",
+        "body": "Labour governments historically face a hate-crime trilemma: protect Jewish communities (acute since the party's own antisemitism crisis under Corbyn), maintain Muslim voter coalitions (Labour lost five seats to pro-Gaza independents in 2024), and avoid expanding speech-restriction powers the left will inherit and dislike. Fast-tracked legislation usually means choosing one and deferring the others."
+      },
+      {
+        "heading": "QUICK CHECK",
+        "body": "Britain's terrorism threat-level system has five tiers. Knowing the ladder helps read what 'severe' actually signals.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does the UK's 'severe' threat level mean?",
+            "options": [
+              "An attack has just occurred",
+              "An attack is expected imminently",
+              "An attack is highly likely",
+              "An attack is possible but not likely"
+            ],
+            "correct": 2,
+            "explanation": "'Severe' means highly likely; 'critical' is the tier above, reserved for imminent attack."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T17:44:57.408Z",
+    "label": "UK Hate Crime & Counter-Terror Architecture",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-05-machine-speed-trading-clearing-circuit-breakers": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT SETTLEMENT IS",
+        "body": "When you 'buy' a stock, the trade executes instantly but ownership transfers later. The US moved from T+2 to T+1 in 2024 — meaning the share legally changes hands one business day after the trade. That gap exists for a reason: it is the window in which clearinghouses net offsetting trades, margin calls get made, and humans catch errors.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is **deferred net settlement** — billions of trades collapse into a few thousand actual movements of cash and securities. Tokenization replaces this with **atomic settlement**: every trade settles on its own, immediately, with no netting."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE GAP MATTERS",
+        "body": "On May 6, 2010, the Flash Crash erased nearly $1 trillion of US equity value in 36 minutes. The Dow fell 9% before recovering. Circuit breakers — automatic trading halts triggered by price moves — gave humans time to investigate. Those halts work because settlement hadn't happened yet; trades executed during the chaos could be cancelled.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1987-10-19",
+                "label": "Black Monday — Dow down 22.6%",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2010-05-06",
+                "label": "Flash Crash"
+              },
+              {
+                "year": "2015-08-24",
+                "label": "ETF flash crash"
+              },
+              {
+                "year": "2018-02-05",
+                "label": "Volmageddon"
+              },
+              {
+                "year": "2021-01",
+                "label": "GameStop / retail squeeze"
+              },
+              {
+                "year": "2022-09",
+                "label": "UK gilt LDI crisis"
+              }
+            ],
+            "label": "flash events that needed a pause"
+          }
+        ]
+      },
+      {
+        "heading": "BUSTED TRADES",
+        "body": "After the 2010 Flash Crash, exchanges 'busted' — cancelled — over 20,000 trades that printed at absurd prices, including Accenture shares that traded for one cent. This is only possible because settlement happens later. On a tokenized rail where ownership transfers in three seconds, there is nothing to bust — the seller already has the buyer's money on-chain."
+      },
+      {
+        "heading": "WHO HALTS THE MARKET",
+        "body": "In the US, the SEC sets market-wide halt rules; individual exchanges (NYSE, Nasdaq) trigger them. In a tokenized system there is no exchange — trades happen peer-to-peer against smart contracts. Pausing requires either a built-in admin key (which defeats decentralization) or coordinated governance among token holders (which takes hours, not milliseconds).",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "NYSE/Nasdaq",
+                "value": "seconds",
+                "tone": "favorable"
+              },
+              {
+                "label": "CME futures",
+                "value": "seconds",
+                "tone": "favorable"
+              },
+              {
+                "label": "DTCC clearing",
+                "value": "hours",
+                "tone": "neutral"
+              },
+              {
+                "label": "Smart contract",
+                "value": "undefined",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "who can halt trading"
+          }
+        ]
+      },
+      {
+        "heading": "THE KNIGHT CAPITAL LESSON",
+        "body": "In 2012, a software bug at Knight Capital sent millions of erroneous orders in 45 minutes. The firm lost $440 million and was acquired within days. Knight survived as a corporate entity because settlement gaps and counterparty unwinds contained the damage. On instant-settlement rails, the same bug would have transferred $440 million of irreversible asset movements before anyone read the first alert.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How long did it take Knight Capital's runaway algorithm to lose $440 million in 2012?",
+            "options": [
+              "45 seconds",
+              "45 minutes",
+              "4 hours",
+              "A full trading day"
+            ],
+            "correct": 1,
+            "explanation": "45 minutes — fast enough to bankrupt the firm, slow enough that settlement gaps and post-trade unwinds prevented systemic contagion."
+          }
+        ]
+      },
+      {
+        "heading": "THE GOVERNANCE GAP",
+        "body": "Tom Zschach spent years at Swift — the messaging network that moves $5 trillion a day between banks. Swift works because every member bank operates under known jurisdictions, known regulators, and known liability rules. Tokenized settlement networks have the technology but not the rulebook: who is liable when a smart contract executes a trade that should have been halted is, as he noted, an unwritten question."
+      }
+    ],
+    "generatedAt": "2026-05-05T17:45:32.973Z",
+    "label": "Settlement Speed & Circuit Breakers",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-05-mali-bamako-jnim-camara-killed-junta-collapse": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TUAREG QUESTION",
+        "body": "The Tuareg are a Berber people whose homeland — the Azawad — was sliced by colonial borders into Mali, Niger, Algeria, Libya and Burkina Faso. They have rebelled against Bamako four times since independence in 1960; each rebellion ends in an accord Bamako then ignores.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ML",
+              "DZ",
+              "NE",
+              "BF",
+              "LY",
+              "MR"
+            ],
+            "label": "the Tuareg homeland (Azawad)",
+            "caption": "Berber pastoralists across five colonial borders"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2012 PIVOT",
+        "body": "When Gaddafi fell in 2011, Tuareg fighters in his army drove south with his weapons and declared the independent state of Azawad in northern Mali. Within months al-Qaeda affiliates hijacked the rebellion, imposed harsh rule on Timbuktu, and pulled in a French intervention (Operation Serval) that pushed them into the desert but never destroyed them.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1960",
+                "label": "Independence from France"
+              },
+              {
+                "year": "2011",
+                "label": "Libya collapses; arms flow south"
+              },
+              {
+                "year": "2012",
+                "label": "Tuareg/AQIM seize the north",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2013",
+                "label": "French Operation Serval"
+              },
+              {
+                "year": "2017",
+                "label": "JNIM forms (al-Qaeda merger)"
+              },
+              {
+                "year": "2020",
+                "label": "Goïta coup"
+              },
+              {
+                "year": "2022",
+                "label": "France expelled; Wagner arrives"
+              },
+              {
+                "year": "2023",
+                "label": "UN MINUSMA forced out"
+              }
+            ],
+            "label": "Mali's unraveling"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT JNIM ACTUALLY IS",
+        "body": "Jama'at Nasr al-Islam wal-Muslimin — the Group for the Support of Islam and Muslims — is the 2017 merger of four jihadist factions under Iyad Ag Ghaly, himself a former Tuareg rebel commander. It is al-Qaeda's most successful franchise: it taxes livestock markets, runs shadow courts, and now operates within striking distance of three Sahel capitals.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "JNIM is a *coalition*, not a single group: **Ansar Dine** (Tuareg), **Katiba Macina** (Fulani), **AQIM-Sahara**, and **al-Mourabitoun**. The Fulani-Tuareg-Arab cross-ethnic structure is exactly what makes it harder to defeat than a tribal militia."
+          }
+        ]
+      },
+      {
+        "heading": "THE COUP BELT",
+        "body": "Since 2020, military officers have seized power across a continuous strip of the Sahel — Mali (2020, 2021), Guinea (2021), Burkina Faso (2022, twice), Niger (2023), Gabon (2023). Each junta blamed France, expelled Western forces, and turned to Russia. The Sahel is now the world's densest cluster of military regimes.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ML",
+              "BF",
+              "NE",
+              "GN",
+              "TD",
+              "SD"
+            ],
+            "label": "the Sahel coup belt, 2020–2025"
+          }
+        ]
+      },
+      {
+        "heading": "FROM WAGNER TO AFRICA CORPS",
+        "body": "After Prigozhin's 2023 mutiny and death, the Kremlin rebranded Wagner's Africa operations as 'Africa Corps' under GRU control. The contracts — gold mines for security — stayed; the chain of command moved from a freelance warlord to Russia's military intelligence directorate. Mali pays in mining concessions worth an estimated several hundred million dollars a year.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Assimi Goïta",
+                "role": "Junta leader, transition president",
+                "years": "2021–",
+                "cc": "ML"
+              },
+              {
+                "name": "Iyad Ag Ghaly",
+                "role": "JNIM emir, ex-Tuareg rebel",
+                "years": "2017–",
+                "cc": "ML"
+              },
+              {
+                "name": "Abdoulaye Maïga",
+                "role": "Prime minister",
+                "years": "2024–",
+                "cc": "ML"
+              },
+              {
+                "name": "Yunus-Bek Yevkurov",
+                "role": "Russian deputy defmin, Africa Corps",
+                "years": "2023–",
+                "cc": "RU"
+              }
+            ],
+            "label": "the Bamako junta and its patrons"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BAMAKO MATTERS",
+        "body": "Mali is landlocked: every fuel truck, every container, every wheat shipment reaches Bamako via roads from Dakar, Abidjan, or Conakry. JNIM does not need to take the capital — it only needs to make those roads ungovernable. The 2024 Bamako airport raid and the current strikes are about cost, not territory.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What ended the French Operation Barkhane counterterrorism mission in the Sahel?",
+            "options": [
+              "A negotiated settlement with JNIM",
+              "Mali's junta expelled French forces in 2022",
+              "French parliament voted to withdraw",
+              "Defeat of al-Qaeda in the region"
+            ],
+            "correct": 1,
+            "explanation": "After the 2021 coup, Goïta's junta turned to Wagner and ordered France out by August 2022 — ending nine years of French ground operations without defeating the insurgency."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T17:46:13.408Z",
+    "label": "Mali, JNIM & the Sahel Coup Belt",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-05-ovarian-cancer-ccne1-parp-inhibitor-resistance-bjc": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SYNTHETIC LETHALITY TRICK",
+        "body": "PARP inhibitors exploit a clever vulnerability: cells have two main DNA repair systems, and BRCA-mutant tumors have already lost one. Block PARP, the second system, and the tumor cell collapses under unrepaired damage while healthy cells — which still have BRCA — survive.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is called **synthetic lethality** — neither defect alone kills the cell, but the *combination* does. It was a Nobel-worthy idea precisely because it gave oncology its first truly tumor-selective mechanism."
+          }
+        ]
+      },
+      {
+        "heading": "WHY OVARIAN CANCER FIRST",
+        "body": "Roughly 15-20% of ovarian cancers carry BRCA1 or BRCA2 mutations — far higher than most solid tumors. This made ovarian cancer the natural proving ground for PARP inhibitors; olaparib was approved for it in 2014, before any other indication."
+      },
+      {
+        "heading": "WHAT CCNE1 DOES",
+        "body": "Cyclin E1 is the throttle on the G1-to-S phase transition — the moment a cell commits to copying its DNA. When CCNE1 is amplified (extra gene copies producing extra protein), cells race through this checkpoint, accumulating replication errors but proliferating faster than repair pathways can keep up."
+      },
+      {
+        "heading": "COPY NUMBER VS MUTATION",
+        "body": "Most cancer genetics focuses on point mutations — single letters changed in the DNA code. Copy number variation is different: the gene sequence is normal, but the cell has 5, 10, or 50 copies instead of 2. The protein is wild-type but produced in overwhelming quantities.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How does CCNE1 amplification differ from a typical cancer mutation like BRCA1?",
+            "options": [
+              "The protein is mutated and dysfunctional",
+              "The gene is normal but present in many extra copies",
+              "The gene is deleted entirely",
+              "The protein is missing a chemical tag"
+            ],
+            "correct": 1,
+            "explanation": "CCNE1 amplification means extra copies of an unmutated gene — the protein is normal but dramatically overproduced, driving cells through the cell cycle faster than repair can keep up."
+          }
+        ]
+      },
+      {
+        "heading": "THE RESISTANCE LOGIC",
+        "body": "PARP inhibitors kill cells that can't repair DNA damage. CCNE1-amplified cells don't need to repair damage well — they replicate so fast that damaged daughter cells are simply outpaced by undamaged ones. Selection pressure during treatment lets the CCNE1-high subclone take over the tumor."
+      },
+      {
+        "heading": "WHY SCREENING MATTERS",
+        "body": "A relapsed tumor is not the same disease as the original. CCNE1-amplified relapses are resistant not just to PARP inhibitors but often to platinum chemotherapy too, because both rely on DNA damage. Sequencing the recurrence — not just the original biopsy — determines whether the next line has any chance of working."
+      }
+    ],
+    "generatedAt": "2026-05-05T17:46:39.901Z",
+    "label": "PARP Inhibitors & Resistance",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-05-pakistan-maulana-idrees-killed-jui-f-protests": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO JUI-F IS",
+        "body": "Jamiat Ulema-e-Islam (Fazl) is Pakistan's largest Deobandi religious party, rooted in the same school of Sunni thought that produced the Taliban movement in Afghanistan. Its base is the rural Pashtun belt of Khyber Pakhtunkhwa and northern Balochistan, where madrasa networks double as political machines.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **Deobandi** movement was founded in 1866 in the Indian town of Deoband as a reformist response to British colonial rule. JUI's lineage runs directly to that seminary — making it less a modern political party than the political wing of a 160-year-old scholarly tradition."
+          }
+        ]
+      },
+      {
+        "heading": "FAZLUR REHMAN'S LEVERAGE",
+        "body": "Fazlur Rehman has led JUI-F since 1988. He has never won a national majority but has been a coalition kingmaker in nearly every government for three decades — the man who can put 100,000 turbaned protesters on Islamabad's streets within 48 hours, which is leverage no other religious leader commands.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF"
+            ],
+            "label": "JUI-F's geography",
+            "markers": [
+              {
+                "lat": 34.1463,
+                "lng": 71.7308,
+                "label": "Charsadda"
+              },
+              {
+                "lat": 33.6938,
+                "lng": 73.0652,
+                "label": "Islamabad"
+              },
+              {
+                "lat": 30.1798,
+                "lng": 66.975,
+                "label": "Quetta (JUI-F base)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PASHTUN BELT",
+        "body": "Khyber Pakhtunkhwa borders Afghanistan along the Durand Line — the 1893 colonial border the Afghan state has never recognized. Charsadda sits in the Peshawar valley, historically the heartland of Pashtun politics and now the front line of Pakistan's resurgent TTP insurgency, which has killed dozens of clerics and politicians since 2022."
+      },
+      {
+        "heading": "KILLING THE ULAMA",
+        "body": "Targeted assassination of religious scholars is a deliberate insurgent tactic in Pakistan. The TTP and Islamic State Khorasan have killed Deobandi clerics who issue fatwas against suicide bombing or who cooperate with the state. Each killing is meant to silence the scholarly voices that can theologically challenge militant claims.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do militant groups specifically target Deobandi clerics who oppose them?",
+            "options": [
+              "Deobandi clerics control the largest madrasa networks",
+              "Their fatwas carry theological weight that can delegitimize militant violence",
+              "They are unprotected by the state",
+              "All of the above"
+            ],
+            "correct": 1,
+            "explanation": "The decisive factor is theological authority — a Deobandi fatwa against suicide bombing undercuts the militants' own scholarly claim to legitimacy in a way state condemnation cannot."
+          }
+        ]
+      },
+      {
+        "heading": "THE PROTEST PLAYBOOK",
+        "body": "Calling nationwide protests within hours of a killing is JUI-F's signature move. The 2020 Pakistan Democratic Movement and the 2019 'Azadi March' on Islamabad both used the same template: madrasa students provide the bodies, the party provides the logistics, the state negotiates rather than confront."
+      }
+    ],
+    "generatedAt": "2026-05-05T17:47:08.397Z",
+    "label": "JUI-F & Pakistan's Deobandi Politics",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-05-romania-bolojan-no-confidence-debt-coalition": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEFICIT PROBLEM",
+        "body": "Romania ran the EU's largest budget deficit — over 8% of GDP in 2024 — triggering the European Commission's excessive deficit procedure. Brussels demanded a credible path back to 3%, the Maastricht ceiling, or face suspension of EU cohesion funds that Romania depends on more than almost any member state.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **excessive deficit procedure** is not symbolic — Romania receives roughly **€80bn** in EU funds through 2027, and continued disbursement is conditional on fiscal credibility."
+          }
+        ]
+      },
+      {
+        "heading": "THE AUSTERITY TRAP",
+        "body": "Every elected government that cuts spending to satisfy creditors loses the next confidence vote. The pattern is structural: the politicians who do the painful work are punished by the voters who feel the pain, while the politicians who promised relief inherit the recovery.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which European leader was forced from office in 2011 after imposing austerity demanded by the EU and IMF?",
+            "options": [
+              "George Papandreou (Greece)",
+              "Angela Merkel (Germany)",
+              "Mariano Rajoy (Spain)",
+              "François Hollande (France)"
+            ],
+            "correct": 0,
+            "explanation": "Papandreou resigned in November 2011 after announcing a referendum on the bailout terms; he was replaced by a technocrat. The pattern — austerity government falls, technocrat or opposition inherits — repeated across Italy, Portugal, and Ireland in the same crisis."
+          }
+        ]
+      },
+      {
+        "heading": "THE SEMI-PRESIDENTIAL SYSTEM",
+        "body": "Romania's 1991 constitution gives the president — directly elected — the power to nominate the prime minister, who must then win parliamentary confidence. When parliament removes a PM, the president picks the next nominee. This is the French model, transplanted post-Ceaușescu, and it concentrates a remarkable amount of agency in the presidency during coalition collapses.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Nicușor Dan",
+                "role": "President of Romania",
+                "years": "2025–",
+                "cc": "RO"
+              },
+              {
+                "name": "Ilie Bolojan",
+                "role": "outgoing PM (PNL)",
+                "years": "2025",
+                "cc": "RO"
+              },
+              {
+                "name": "Marcel Ciolacu",
+                "role": "PSD leader",
+                "years": "2023–",
+                "cc": "RO"
+              },
+              {
+                "name": "George Simion",
+                "role": "AUR leader",
+                "years": "2019–",
+                "cc": "RO"
+              }
+            ],
+            "label": "who decides what happens next"
+          }
+        ]
+      },
+      {
+        "heading": "THE STRANGE COALITION",
+        "body": "The Social Democrats (PSD) are the post-communist successor party — center-left, pro-EU, the establishment. The Alliance for Romanian Unity (AUR) is hard-right, nationalist, EU-skeptic. Their joint vote against Bolojan is not ideological alignment — it is the politics of opposition convenience, where two parties with nothing in common combine because each gains from the government's fall.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "AUR rose from **2.5%** in 2019 to roughly **20%** by 2024 — Romania's fastest-growing political force, built on anti-EU, anti-Hungarian, and anti-vaccine messaging."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE CURRENCY MOVED",
+        "body": "Romania has run a managed-float regime — the National Bank lets the leu drift within an unannounced band against the euro. A record low signals the band has shifted. For a country with significant euro-denominated debt and a current account deficit near 7% of GDP, currency weakness compounds the fiscal problem the austerity was meant to solve.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Romania",
+                "value": "-7.0%",
+                "cc": "RO",
+                "tone": "unfavorable",
+                "weight": 7
+              },
+              {
+                "label": "Hungary",
+                "value": "-2.1%",
+                "cc": "HU",
+                "tone": "neutral",
+                "weight": 2.1
+              },
+              {
+                "label": "Poland",
+                "value": "-1.4%",
+                "cc": "PL",
+                "tone": "neutral",
+                "weight": 1.4
+              },
+              {
+                "label": "Czechia",
+                "value": "+0.8%",
+                "cc": "CZ",
+                "tone": "favorable",
+                "weight": 0.8
+              },
+              {
+                "label": "Bulgaria",
+                "value": "-1.9%",
+                "cc": "BG",
+                "tone": "neutral",
+                "weight": 1.9
+              }
+            ],
+            "label": "current account deficits, 2024 (% of GDP)"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2028 PROBLEM",
+        "body": "Without dissolution, Romania faces nearly three years of minority or technocratic government. The constitution permits the president to dissolve parliament only after two failed PM nominations within 60 days — a high bar. The likely outcome is a caretaker cabinet implementing what the elected one was punished for.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RO",
+              "HU",
+              "BG",
+              "MD",
+              "UA",
+              "RS"
+            ],
+            "label": "Romania and its neighborhood",
+            "caption": "NATO's eastern flank; Moldova border; Black Sea coast"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T17:47:44.321Z",
+    "label": "Romania's Fiscal Bind",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-05-singapore-new-zealand-agree-to-keep-vital-supplies-flowing-i": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COVID TRIGGER",
+        "body": "In early 2020, more than 80 countries imposed export restrictions on medical supplies and food. Masks paid for by importers sat in warehouses; rice exporters cancelled contracts overnight. Small open economies — those that import most of what they consume — discovered that WTO rules permit export bans during 'critical shortages.' The legal floor was lower than anyone assumed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Agreement on Trade in Essential Supplies (**ATES**) is the first treaty to legally bind signatories *not* to impose export restrictions on listed essential goods during a crisis — inverting the WTO's permissive default."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SINGAPORE AND NEW ZEALAND",
+        "body": "Both are small, wealthy, food-import-dependent island economies with high trust in each other's regulatory systems. Singapore imports over 90% of its food; New Zealand exports more dairy than any other country. Each is the other's insurance policy — and neither has the domestic political pressure that forces larger economies to hoard.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SG",
+              "NZ",
+              "AU",
+              "MY",
+              "ID"
+            ],
+            "label": "the trans-Pacific food corridor",
+            "caption": "Singapore imports food; New Zealand and Australia produce the surplus."
+          }
+        ]
+      },
+      {
+        "heading": "THE IMPORT-DEPENDENCE SPECTRUM",
+        "body": "Food self-sufficiency varies wildly across rich economies. The countries at the bottom of the league table are the ones most exposed to export bans — and the ones most motivated to write treaties like this.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Food self-sufficiency ratio",
+            "peers": [
+              {
+                "value": 10,
+                "cc": "SG"
+              },
+              {
+                "value": 38,
+                "cc": "JP"
+              },
+              {
+                "value": 45,
+                "cc": "KR"
+              },
+              {
+                "value": 60,
+                "cc": "GB"
+              },
+              {
+                "value": 300,
+                "cc": "NZ"
+              },
+              {
+                "value": 200,
+                "cc": "AU"
+              },
+              {
+                "value": 125,
+                "cc": "FR"
+              },
+              {
+                "value": 130,
+                "cc": "US"
+              }
+            ],
+            "subjectCc": "SG",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1973 PRECEDENT",
+        "body": "In June 1973 the Nixon administration imposed a sudden embargo on US soybean exports to fight domestic inflation. Japan — which then sourced over 90% of its soybeans from the US — was blindsided, and within weeks began funding soy production in Brazil. Cerrado agriculture, today the backbone of Chinese food security, traces directly to that embargo. Export bans reshape global supply chains for decades."
+      },
+      {
+        "heading": "WHY MOST TREATIES DON'T BIND",
+        "body": "Trade agreements typically carve out 'essential security' and 'critical shortage' exceptions so broad that any government can invoke them. ATES narrows these exceptions, lists the covered goods explicitly (medical equipment, food staples, agricultural inputs), and includes consultation requirements before any restriction can be imposed. The legal innovation is the specificity — vague treaties don't survive panic.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under standard WTO rules, when may a country legally ban exports of food or medicine?",
+            "options": [
+              "Never — WTO prohibits all export restrictions",
+              "Only with Security Council authorization",
+              "During a 'critical shortage' the country itself defines",
+              "Only if the importing country agrees"
+            ],
+            "correct": 2,
+            "explanation": "GATT Article XI(2)(a) permits export restrictions to address 'critical shortages of foodstuffs or other essential products' — and the exporting country is the one that judges criticality."
+          }
+        ]
+      },
+      {
+        "heading": "THE TEMPLATE QUESTION",
+        "body": "The pact is designed to be replicated. The signatories explicitly invited other small open economies — Switzerland, the UAE, the Nordics — to accede. Whether ATES becomes a coalition of vulnerable importers or stays a bilateral curiosity will depend on whether the next supply shock arrives before political memory of COVID fades."
+      }
+    ],
+    "generatedAt": "2026-05-05T17:48:16.964Z",
+    "label": "Supply-Chain Resilience Treaties",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-05-uk-ios-age-verification-aylo-platform-asymmetry": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LAW",
+        "body": "The UK Online Safety Act (2023) requires platforms hosting adult content to verify users are 18+, with Ofcom empowered to fine non-compliant services up to 10% of global revenue or block them entirely. The statute names the duty but not the method — it is technology-neutral by design.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Ofcom's enforcement teeth: fines up to **10% of global revenue** or **£18m**, whichever is higher, plus the power to order ISP-level blocking."
+          }
+        ]
+      },
+      {
+        "heading": "THE DELEGATION",
+        "body": "Rather than collect IDs themselves, large platforms increasingly push verification to the operating system. The OS already knows the user's age (from Apple ID, payment method, family settings) and exposes a yes/no signal via API — no document upload, no third-party verifier holding sensitive data."
+      },
+      {
+        "heading": "THE ASYMMETRY",
+        "body": "Apple shipped the Declared Age Range API in iOS 26.4. Android's equivalent — Google's Credential Manager age signals — exists in spec but is not yet rolled out at the OS level across the fragmented Android fleet. Aylo's compliance toggle therefore flips on for one platform and not the other.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "iOS",
+                "value": "OS-native API",
+                "tone": "favorable",
+                "weight": 70
+              },
+              {
+                "label": "Android",
+                "value": "fragmented",
+                "tone": "unfavorable",
+                "weight": 30
+              }
+            ],
+            "label": "who controls the age signal"
+          }
+        ]
+      },
+      {
+        "heading": "THE GATEKEEPER PROBLEM",
+        "body": "When a law's only practical compliance path runs through one private company's API, that company becomes a regulatory chokepoint. Apple gains de facto authority over which adult services operate in Britain — a power Parliament neither granted nor debated. The EU's Digital Markets Act exists precisely to police this kind of accidental gatekeeping.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many US states have adopted age-verification laws of the type now in effect in the UK?",
+            "options": [
+              "Around 10",
+              "Around 25",
+              "Over 40",
+              "All 50"
+            ],
+            "correct": 1,
+            "explanation": "Over half of US states — roughly 25 — have passed age-verification statutes since Louisiana's 2022 law, creating a patchwork that platforms increasingly resolve via OS-level signals."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Louisiana passed the first US age-verification law for adult sites in 2022. Pornhub's response — block the state entirely rather than verify — became the template: in Texas, Utah, Virginia, and a dozen others, Aylo chose geo-blocking over compliance. Britain is the first major market where it reversed that posture, because iOS gave it a low-friction path.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GB",
+              "US",
+              "FR",
+              "DE",
+              "AU"
+            ],
+            "label": "jurisdictions with active age-verification mandates",
+            "caption": "UK + over half of US states; France and Australia have passed parallel laws"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRIVACY TRADE",
+        "body": "OS-mediated verification is more private than uploading a passport to a third-party verifier — Apple returns only a boolean, not the underlying ID. But it concentrates a new behavioral signal at the platform layer: Apple now knows which of its users tried to access age-gated content, even if the destination doesn't."
+      }
+    ],
+    "generatedAt": "2026-05-05T17:48:46.141Z",
+    "label": "Platform-Level Age Verification",
+    "category": "tech",
+    "articleCount": 1
   }
 }
