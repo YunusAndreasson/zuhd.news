@@ -119782,5 +119782,1534 @@
     "label": "Platform-Level Age Verification",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-05-05-bahrain-mps-removal-citizenship-revocation-iran-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SHI'A MAJORITY UNDER SUNNI RULE",
+        "body": "Bahrain is roughly 60-70% Shi'a Muslim, ruled since 1783 by the Sunni Al Khalifa dynasty that conquered the island from Persia. This demographic inversion — majority population, minority rulers — is the structural fact beneath every political crisis on the island.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The ruling family treats the **Shi'a majority** as a permanent security question rather than a constituency. Citizenship policy is one lever; *naturalization* of Sunni foreigners from Pakistan, Jordan, and Yemen into the security forces is another."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2011 PRECEDENT",
+        "body": "When Pearl Roundabout protests erupted during the Arab Spring, Saudi and Emirati troops crossed the King Fahd Causeway under the GCC's Peninsula Shield to crush the uprising. The protests were framed abroad as sectarian; on the ground they were about constitutional monarchy and an elected prime minister.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011",
+                "label": "Pearl Roundabout crushed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2012",
+                "label": "First mass revocations begin"
+              },
+              {
+                "year": "2014",
+                "label": "Citizenship law amended"
+              },
+              {
+                "year": "2018",
+                "label": "Al-Wefaq dissolved, leaders stripped"
+              },
+              {
+                "year": "2024",
+                "label": "Courts stripped of jurisdiction"
+              },
+              {
+                "year": "2026",
+                "label": "MPs expelled for questioning"
+              }
+            ],
+            "label": "Bahrain's revocation arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT REVOCATION ACTUALLY DOES",
+        "body": "Stripping citizenship doesn't just punish — it makes the person stateless and deportable, often to countries they have no connection to. The 1961 UN Convention on Statelessness forbids it precisely because the practice was used by Nazi Germany against Jews and by Soviet states against dissidents.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does international law specifically prohibit rendering citizens stateless?",
+            "options": [
+              "It violates the right of return under UN Charter",
+              "It was a tool of Nazi denationalization of Jews before deportation",
+              "It interferes with diplomatic immunity",
+              "It conflicts with refugee resettlement quotas"
+            ],
+            "correct": 1,
+            "explanation": "The 1961 Convention emerged directly from the Nazi practice of stripping Jews of German citizenship as a legal predicate for deportation and murder."
+          }
+        ]
+      },
+      {
+        "heading": "THE GULF PATTERN",
+        "body": "Bahrain is not alone. The UAE has revoked citizenship from Islamists and dissidents; Kuwait stripped tens of thousands in a 2024 sweep; Saudi Arabia uses denaturalization more selectively. The tool tracks the Gulf monarchies' shared anxiety: any constitutional check on sovereign power is a threat.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Kuwait",
+                "value": "~42,000",
+                "cc": "KW",
+                "tone": "unfavorable",
+                "weight": 42000
+              },
+              {
+                "label": "Bahrain",
+                "value": "~1,000",
+                "cc": "BH",
+                "tone": "unfavorable",
+                "weight": 1000
+              },
+              {
+                "label": "UAE",
+                "value": "~150",
+                "cc": "AE",
+                "tone": "unfavorable",
+                "weight": 150
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "selective",
+                "cc": "SA",
+                "tone": "neutral",
+                "weight": 50
+              }
+            ],
+            "label": "Gulf citizenship revocations (cumulative, est.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE PARLIAMENT THAT ISN'T",
+        "body": "Bahrain's National Assembly looks bicameral but the upper Shura Council is fully appointed by the king and matches the elected Council of Representatives seat-for-seat. Any law requires both chambers, so the king's appointees hold a permanent veto. Expelling three MPs for questioning a royal prerogative is the system working as designed."
+      },
+      {
+        "heading": "THE FIFTH FLEET FACTOR",
+        "body": "The US Navy's Fifth Fleet has been headquartered in Manama since 1995 — the forward-deployed force for the entire Persian Gulf. This makes Washington structurally reluctant to pressure Bahrain on human rights; the base lease and the regime's survival are entangled.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BH",
+              "SA",
+              "QA",
+              "AE",
+              "IR"
+            ],
+            "label": "US bases ring the Gulf",
+            "markers": [
+              {
+                "lat": 26.2089,
+                "lng": 50.6022,
+                "label": "NSA Bahrain (5th Fleet HQ)"
+              },
+              {
+                "lat": 25.2854,
+                "lng": 51.531,
+                "label": "Al Udeid (CENTCOM)"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T22:33:05.699Z",
+    "label": "Citizenship Revocation & Gulf Monarchy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-05-chrome-gemini-nano-silent-4gb-install-consent": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY 4 GB",
+        "body": "Gemini Nano is a small language model with roughly 1.8–3.25 billion parameters, quantized to int4 or int8 to fit in browser-accessible storage. Even quantized, modern transformer weights sit in the gigabytes — orders of magnitude larger than any prior browser component.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The file is literally named **weights.bin** — a serialized neural network, not code. Deleting it triggers a re-download because Chrome treats it as a *component*, the same update channel that ships the certificate revocation list and the Widevine DRM module."
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPONENT UPDATER",
+        "body": "Chrome has long used a background service called the Component Updater to push critical pieces — root certificates, malware definitions, codec libraries — without user prompts. It was designed for tiny, security-critical payloads. AI weights ride the same rails, but neither the size nor the purpose matches the original justification."
+      },
+      {
+        "heading": "WHAT GDPR ACTUALLY REQUIRES",
+        "body": "Under the ePrivacy Directive Article 5(3), storing or accessing information on a user's device requires prior informed consent — except for what is strictly necessary to deliver a service the user requested. The legal question is whether a 4 GB AI model the user never asked for can possibly qualify as strictly necessary.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Member States shall ensure that the storing of information, or the gaining of access to information already stored, in the terminal equipment of a subscriber or user is only allowed on condition that the subscriber or user concerned has given his or her consent, having been provided with clear and comprehensive information.",
+            "speaker": "ePrivacy Directive 2002/58/EC, Article 5(3)",
+            "year": "2002"
+          }
+        ]
+      },
+      {
+        "heading": "ON-DEVICE IS NOT THE SAME AS PRIVATE",
+        "body": "Running the model locally avoids sending prompts to Google's servers — a real privacy gain over cloud AI. But the act of *placing* a multi-gigabyte binary on someone's disk, consuming bandwidth and storage, is itself a processing event the law treats separately from what the model later does.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: *data minimization* (GDPR Art. 5) governs what lands on the device; *purpose limitation* governs what it's used for. On-device inference fixes the second; it doesn't automatically fix the first."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT THAT MATTERS",
+        "body": "In 2014 the CNIL fined Google over Chrome's privacy policy consolidation; in 2022 it fined Google again for cookie-consent dark patterns. Each ruling tightened the same principle: defaults that favor the platform over the user fail the consent test, regardless of whether a settings page technically exists somewhere.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Privacy policy",
+                "value": "€150K",
+                "cc": "FR"
+              },
+              {
+                "label": "Cookie consent",
+                "value": "€150M",
+                "cc": "FR",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Android consent",
+                "value": "€50M",
+                "cc": "FR",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "CNIL fines against Google"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BROWSERS ARE THE BATTLEGROUND",
+        "body": "A browser is the most privileged piece of software most users run — it sees every site visited, every form submitted, every credential entered. Embedding a model with that level of access changes the threat model: a future Chrome update could route any page text through the local model before anything else happens.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under EU ePrivacy rules, what is the default rule for storing data on a user's device?",
+            "options": [
+              "Allowed unless the user opts out",
+              "Requires prior informed consent",
+              "Allowed for any first-party software",
+              "Allowed if the data stays on-device"
+            ],
+            "correct": 1,
+            "explanation": "Article 5(3) sets opt-in as the default — local-only processing does not exempt the initial storage from the consent requirement."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T22:33:37.214Z",
+    "label": "On-Device AI & Consent",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-05-daemon-tools-supply-chain-monthlong-backdoor": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRUST INVERSION",
+        "body": "Traditional malware has to bypass user suspicion and security tools. A supply chain attack inverts this — the malicious code arrives through the update channel the user already trusts, signed with the vendor's legitimate certificate. Defense in depth fails because every layer was designed to trust the publisher.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is a **trojanized update** — legitimate software with malicious code injected before signing, so the cryptographic signature validates correctly."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CODE SIGNING DOESN'T HELP",
+        "body": "Code signing certificates prove the code came from a specific publisher. They prove nothing about whether that publisher's build pipeline was compromised. If the attacker is inside the build server, every output is signed legitimately — the signature is working as designed."
+      },
+      {
+        "heading": "THE SOLARWINDS PRECEDENT",
+        "body": "In 2020, attackers compromised SolarWinds' build system and inserted a backdoor into Orion network-monitoring software. 18,000 organizations downloaded the signed update, including the US Treasury, Pentagon, and Microsoft. The intrusion went undetected for nine months.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2017-06",
+                "label": "NotPetya via M.E.Doc Ukrainian tax software"
+              },
+              {
+                "year": "2017-09",
+                "label": "CCleaner backdoor — 2.3M downloads"
+              },
+              {
+                "year": "2020-12",
+                "label": "SolarWinds Orion — 18K orgs",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021-07",
+                "label": "Kaseya VSA ransomware"
+              },
+              {
+                "year": "2024-03",
+                "label": "XZ Utils backdoor caught pre-release"
+              },
+              {
+                "year": "2026-05",
+                "label": "Daemon Tools — 27 days, 100+ countries"
+              }
+            ],
+            "label": "major supply chain compromises"
+          }
+        ]
+      },
+      {
+        "heading": "THE DWELL TIME PROBLEM",
+        "body": "The industry average for detecting a breach is around 200 days. Supply chain attacks are typically caught faster — but only because researchers happen to notice unusual network traffic from a trusted process. There is no systematic detection method; the field relies on luck and curious analysts."
+      },
+      {
+        "heading": "WHY THE INSTALLER MATTERS",
+        "body": "Installers run with elevated privileges by design — they need to write to system directories, register services, and modify the registry. Malicious code in a signed installer inherits all of that. A backdoor delivered this way starts with administrator access, the security state every other attack works to achieve.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes a signed-installer backdoor especially dangerous compared to typical malware?",
+            "options": [
+              "It runs faster than unsigned code",
+              "It inherits administrator privileges from the installer",
+              "It cannot be removed by antivirus",
+              "It encrypts itself in memory"
+            ],
+            "correct": 1,
+            "explanation": "Installers legitimately need elevated privileges to modify system files. A backdoor in a signed installer starts with admin access — the prize most attacks spend weeks trying to win."
+          }
+        ]
+      },
+      {
+        "heading": "THE SBOM RESPONSE",
+        "body": "After SolarWinds, the US issued Executive Order 14028 requiring federal software vendors to provide a Software Bill of Materials — an ingredient list of every component in a build. The premise: you cannot defend what you cannot inventory. Adoption outside federal contracting remains uneven."
+      }
+    ],
+    "generatedAt": "2026-05-05T22:34:07.867Z",
+    "label": "Supply Chain Attacks & Code Signing",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-05-eagles-wings-christian-zionist-undisclosed-israel-funding": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT FARA ACTUALLY REQUIRES",
+        "body": "The Foreign Agents Registration Act of 1938 doesn't ban foreign lobbying — it requires disclosure. Anyone acting in the US on behalf of a foreign principal must register with the DOJ, label their materials, and file semi-annual reports detailing payments and activities. The crime is the secrecy, not the advocacy.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "FARA was passed in response to **Nazi propaganda networks** operating openly in 1930s America. The premise: Americans deserve to know when a foreign government is paying for the message they're hearing."
+          }
+        ]
+      },
+      {
+        "heading": "THE ENFORCEMENT GAP",
+        "body": "For decades FARA was effectively dormant — between 1966 and 2015, the DOJ brought only seven criminal cases. Enforcement woke up after 2017 when Mueller used FARA charges against Manafort and Flynn. Most violations are still resolved through letters asking targets to register retroactively, not prosecution."
+      },
+      {
+        "heading": "THE ISRAEL EXCEPTION",
+        "body": "Foreign-government lobbying is normally registered routinely — Saudi Arabia, UAE, Qatar, and Japan all run large registered operations. Pro-Israel advocacy is structured differently: AIPAC operates as a domestic lobby funded by American donors, not Israel directly, which exempts it from FARA. Direct Israeli ministry payments to a US group bypass that structure and trigger the registration requirement.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "~$32M",
+                "cc": "SA",
+                "weight": 32
+              },
+              {
+                "label": "UAE",
+                "value": "~$25M",
+                "cc": "AE",
+                "weight": 25
+              },
+              {
+                "label": "Qatar",
+                "value": "~$22M",
+                "cc": "QA",
+                "weight": 22
+              },
+              {
+                "label": "Japan",
+                "value": "~$18M",
+                "cc": "JP",
+                "weight": 18
+              },
+              {
+                "label": "South Korea",
+                "value": "~$15M",
+                "cc": "KR",
+                "weight": 15
+              }
+            ],
+            "label": "top foreign-government FARA spenders, 2023"
+          }
+        ]
+      },
+      {
+        "heading": "CHRISTIAN ZIONISM AS POLITICAL FORCE",
+        "body": "Eagles' Wings sits within the Christian Zionist movement — evangelical Protestants who view the modern state of Israel as fulfillment of biblical prophecy. The movement mobilizes roughly 30 million American evangelicals and outweighs American Jewish political organizing in raw numbers. Its theological commitment to Israel predates and operates independently of Israeli policy."
+      },
+      {
+        "heading": "WHY THE PENALTIES ARE LIGHT",
+        "body": "Failure to register under FARA carries up to 5 years in prison, but in practice the DOJ usually negotiates retroactive registration with civil penalties. The deeper consequence is reputational — once a group is publicly identified as a foreign agent, its access to lawmakers and credibility with media collapses.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the typical DOJ resolution when an unregistered group is found to be acting for a foreign principal?",
+            "options": [
+              "Criminal prosecution and prison time",
+              "A letter requesting retroactive registration",
+              "Automatic deportation of the group's officers",
+              "Permanent ban from US political activity"
+            ],
+            "correct": 1,
+            "explanation": "FARA is enforced primarily through retroactive-registration letters; criminal cases remain rare even after the post-2017 enforcement uptick."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "In 2019 the Saudi-funded lobbying operation behind a US PR campaign was forced to register retroactively after the Khashoggi killing exposed undisclosed payments. In 2018 a pro-Turkey group did the same. The pattern: undisclosed foreign-government money surfaces through journalism or leaks, not proactive DOJ investigation."
+      }
+    ],
+    "generatedAt": "2026-05-05T22:34:36.897Z",
+    "label": "FARA & Foreign Influence",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-05-ftc-kochava-location-broker-mosque-clinic-ban": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT KOCHAVA ACTUALLY SELLS",
+        "body": "Kochava is a mobile measurement firm that aggregates location pings from thousands of apps via embedded SDKs. Its 'Kochava Collective' marketplace offered datasets of precise lat/lng traces — billions of points per day — keyed to mobile advertising IDs that are trivially re-identifiable to a household.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The trade name for the dataset was *Kochava Collective*, marketed as 'the largest independent data marketplace for mobile.' The FTC's 2022 complaint alleged a single sample contained over **61 million** unique device IDs."
+          }
+        ]
+      },
+      {
+        "heading": "THE THIRD-PARTY DOCTRINE",
+        "body": "US privacy law rests on a 1979 Supreme Court ruling (Smith v. Maryland) that information shared with a third party — a phone company, a bank, an app — loses Fourth Amendment protection. Location data sits inside this doctrine: you 'shared' it with the app, so the government and commercial buyers can acquire it without a warrant.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "A person has no legitimate expectation of privacy in information he voluntarily turns over to third parties.",
+            "speaker": "Smith v. Maryland (US Supreme Court)",
+            "year": "1979"
+          }
+        ]
+      },
+      {
+        "heading": "WHY MOSQUES AND CLINICS",
+        "body": "Location is not sensitive in the abstract — it becomes sensitive at the destination. A pattern showing weekly Friday visits to a specific mosque reveals religion; a single visit to a Planned Parenthood reveals reproductive choices. Brokers historically argued the raw coordinates were 'anonymous'; the FTC's complaint hinged on demonstrating that destination categories make re-identification trivial.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does location data uniquely identify individuals even when stripped of names?",
+            "options": [
+              "GPS coordinates contain hidden device serial numbers",
+              "Home and workplace pairs are nearly unique to one person",
+              "Phones broadcast names over Bluetooth",
+              "Cell towers store user identities"
+            ],
+            "correct": 1,
+            "explanation": "A 2013 MIT study found four timestamped location points are enough to uniquely identify 95% of people in a dataset of 1.5M users."
+          }
+        ]
+      },
+      {
+        "heading": "THE PATCHWORK",
+        "body": "The US has no federal privacy law. The FTC enforces under Section 5 of the FTC Act — a 1914 statute against 'unfair or deceptive practices' — case by case. California, Colorado, Virginia, and a handful of other states have their own laws; most do not. Compare to the EU, where GDPR has treated precise location as sensitive personal data since 2018.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "EU",
+                "value": "GDPR — sensitive",
+                "cc": "EU",
+                "tone": "favorable"
+              },
+              {
+                "label": "California",
+                "value": "CCPA/CPRA",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "US federal",
+                "value": "case-by-case",
+                "cc": "US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "China",
+                "value": "PIPL — strict consent",
+                "cc": "CN",
+                "tone": "neutral"
+              }
+            ],
+            "label": "location-data legal regimes"
+          }
+        ]
+      },
+      {
+        "heading": "THE DOBBS PIVOT",
+        "body": "After Roe was overturned in 2022, location data around reproductive clinics became prosecutorial evidence in states that criminalized abortion. The FTC's enforcement posture shifted: clinic geofences moved from 'targeted advertising' to 'unfair practice causing substantial injury.' This case is the doctrine being formalized.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pivot phrase in FTC complaints is *substantial injury not reasonably avoidable* — the statutory test under Section 5(n). Once a use case clears that bar, the broker model itself becomes legally exposed, not just specific sales."
+          }
+        ]
+      },
+      {
+        "heading": "THE BUSINESS MODEL",
+        "body": "Free apps embed advertising SDKs that quietly siphon location to brokers in exchange for revenue share. The user pays nothing; the app maker takes a cut; the broker resells to advertisers, hedge funds, insurers, and — until courts intervened — federal agencies bypassing warrant requirements.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "user",
+                "label": "Phone user"
+              },
+              {
+                "id": "app",
+                "label": "Free app"
+              },
+              {
+                "id": "sdk",
+                "label": "Ad SDK"
+              },
+              {
+                "id": "broker",
+                "label": "Data broker"
+              },
+              {
+                "id": "adv",
+                "label": "Advertisers"
+              },
+              {
+                "id": "gov",
+                "label": "Govt agencies"
+              },
+              {
+                "id": "fin",
+                "label": "Hedge funds"
+              }
+            ],
+            "links": [
+              {
+                "source": "user",
+                "target": "app",
+                "value": 100,
+                "label": "location permission"
+              },
+              {
+                "source": "app",
+                "target": "sdk",
+                "value": 100
+              },
+              {
+                "source": "sdk",
+                "target": "broker",
+                "value": 100
+              },
+              {
+                "source": "broker",
+                "target": "adv",
+                "value": 60
+              },
+              {
+                "source": "broker",
+                "target": "gov",
+                "value": 15
+              },
+              {
+                "source": "broker",
+                "target": "fin",
+                "value": 25
+              }
+            ],
+            "label": "how location reaches buyers"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T22:35:12.547Z",
+    "label": "Location Data & the Broker Economy",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-05-irgc-hormuz-designated-shipping-corridors-insurance": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "The Strait of Hormuz sits between Iran and Oman, not Iran and any Arab Gulf state. Iran's coastline runs the entire northern edge, and the deepest shipping channel hugs the Iranian side — which is why Iranian naval positioning matters disproportionately.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the Hormuz chokepoint",
+            "markers": [
+              {
+                "lat": 26.2569,
+                "lng": 56.2517,
+                "label": "Larak Island"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait narrows"
+              },
+              {
+                "lat": 25.1,
+                "lng": 56.35,
+                "label": "Khor Fakkan"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL REGIME",
+        "body": "Under UNCLOS Article 38, ships have a right of transit passage through international straits — coastal states cannot suspend passage or impose conditions. Iran signed UNCLOS in 1982 but never ratified it, and has long argued Hormuz is governed by its own domestic law, not the convention.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The IMO sets *traffic separation schemes* — the inbound/outbound lanes ships actually follow — and these are agreed multilaterally, not declared unilaterally. A coastal state announcing its own corridors without IMO adoption has no force in international maritime law."
+          }
+        ]
+      },
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil pass through daily, about 21 percent of global consumption."
+      },
+      {
+        "heading": "WHO BEARS THE RISK",
+        "body": "Lloyd's of London war-risk premiums — not the threats themselves — close shipping lanes. Once underwriters reclassify the strait as a war-risk zone, premiums spike from a fraction of a percent of hull value to several percent per voyage, and commercial vessels reroute or self-insure regardless of whether any vessel has actually been attacked.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What typically forces tankers to avoid a contested strait?",
+            "options": [
+              "Naval warnings from the coastal state",
+              "A spike in Lloyd's war-risk insurance premiums",
+              "UN Security Council resolutions",
+              "IMO route advisories"
+            ],
+            "correct": 1,
+            "explanation": "Insurance is the binding chokepoint — once premiums spike, charterers reroute commercial vessels regardless of how many ships have actually been hit."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson planners took: disruption is easier to threaten than to sustain.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              39,
+              35,
+              22,
+              20,
+              14,
+              11,
+              16,
+              11,
+              7
+            ],
+            "periods": [
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 5"
+            ],
+            "label": "Donald Trump announce that the United…",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "39%"
+              },
+              {
+                "atIndex": 8,
+                "label": "7%"
+              }
+            ],
+            "link": "https://polymarket.com/event/trump-announces-us-blockade-of-hormuz-lifted-by",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT CAN'T BE BYPASSED",
+        "body": "Saudi Arabia built the East-West Pipeline (5 million barrels/day capacity) partly as a Hormuz hedge, and the UAE built the Habshan-Fujairah pipeline. Together they could reroute maybe a third of Gulf exports. The rest has no alternative route.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hormuz",
+                "value": "~21 mbpd",
+                "tone": "unfavorable",
+                "weight": 21
+              },
+              {
+                "label": "Saudi E-W pipeline",
+                "value": "5 mbpd cap",
+                "tone": "neutral",
+                "weight": 5
+              },
+              {
+                "label": "UAE Fujairah",
+                "value": "1.5 mbpd",
+                "tone": "favorable",
+                "weight": 1.5
+              }
+            ],
+            "label": "Gulf oil export routes"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-05"
+    ],
+    "generatedAt": "2026-05-05T22:35:44.140Z",
+    "label": "Hormuz Corridors & Maritime Law",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-05-meta-ai-age-assurance-teen-safeguards-eu-facebook": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INFERENCE SHIFT",
+        "body": "Traditional age gates ask the user. Inference systems read behavioral signals — language patterns in bios, follower graphs, posting cadence, friend-network age distributions — and output a probability the account belongs to a minor. The user is no longer a witness to their own age; they are a subject being classified.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is a move from **declared identity** to **inferred identity** — the same paradigm shift that turned credit scoring from \"what you tell the bank\" into \"what your data exhaust says about you.\""
+          }
+        ]
+      },
+      {
+        "heading": "WHY NOW",
+        "body": "The EU's Digital Services Act (in force 2024) and the UK's Online Safety Act (2023) shifted liability: platforms must take \"proportionate measures\" to protect minors or face fines up to 6% of global revenue. Self-declared birthdays — trivially bypassed by typing a different year — no longer count as proportionate. Inference is the cheapest path to compliance.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GB",
+              "IE",
+              "FR",
+              "DE",
+              "ES",
+              "IT",
+              "NL",
+              "BE",
+              "PL"
+            ],
+            "label": "jurisdictions tightening platform-liability rules"
+          }
+        ]
+      },
+      {
+        "heading": "THE FALSE POSITIVE PROBLEM",
+        "body": "An age-inference model that's 95% accurate sounds excellent until you apply it to 3 billion users. 5% error means 150 million accounts misclassified — adults locked out of features, teens admitted as adults. There is no appeals process that scales to that volume, which is why these systems quietly default to friction rather than blockage.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "If an age-inference model is 95% accurate across 3 billion users, roughly how many accounts are misclassified?",
+            "options": [
+              "1.5 million",
+              "15 million",
+              "150 million",
+              "1.5 billion"
+            ],
+            "correct": 2,
+            "explanation": "5% of 3 billion is 150 million — a scale at which any individual appeals process collapses, forcing platforms toward soft friction instead of hard blocks."
+          }
+        ]
+      },
+      {
+        "heading": "THE COPPA PRECEDENT",
+        "body": "The US Children's Online Privacy Protection Act (1998) made it illegal to knowingly collect data from under-13s without parental consent. Platforms responded by writing terms-of-service that banned under-13s entirely — a legal fiction everyone knew was false. \"Actual knowledge\" became the standard, which incentivized NOT looking. Inference systems flip this: now the platform is presumed to know.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1998",
+                "label": "COPPA enacted (US)",
+                "emphasis": "start"
+              },
+              {
+                "year": "2018",
+                "label": "GDPR Article 8 (EU child consent)"
+              },
+              {
+                "year": "2023",
+                "label": "UK Online Safety Act"
+              },
+              {
+                "year": "2024",
+                "label": "EU Digital Services Act enforcement"
+              },
+              {
+                "year": "2026",
+                "label": "Meta AI age inference",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "the age-verification arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE BIOMETRIC ALTERNATIVE",
+        "body": "The other compliance path is face-scan estimation — Yoti and similar vendors photograph the user and predict age within a 1-2 year band. It works, but stores or processes facial biometrics, which triggers GDPR Article 9's special-category data rules. Inference from text and behavior sidesteps the biometric category, which is why Meta's approach is regulator-friendlier even without explicit sign-off."
+      },
+      {
+        "heading": "WHO PAYS",
+        "body": "Age-assurance compliance costs are fixed regardless of user count. Meta absorbs them across 3 billion accounts; a startup absorbs the same engineering bill across thousands. The result is a regulatory moat — child-safety rules written to constrain large platforms end up entrenching them by raising the cost of competition."
+      }
+    ],
+    "generatedAt": "2026-05-05T22:36:17.204Z",
+    "label": "Age Assurance & Platform Liability",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-05-planet-9-citizen-science-brown-dwarfs-doubled": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FAILED STARS",
+        "body": "Brown dwarfs are objects too massive to be planets but too light to fuse hydrogen — roughly 13 to 80 Jupiter masses. Without sustained fusion they slowly cool over billions of years, glowing faintly in the infrared rather than visible light.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The threshold is set by physics, not convention: below about **0.075 solar masses**, the core never gets hot enough to fuse ordinary hydrogen. They burn *deuterium* briefly, then fade."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THEY HID",
+        "body": "Optical telescopes — the workhorse of astronomy for four centuries — barely see them. Brown dwarfs were only confirmed to exist in 1995, the same year as the first exoplanet. Until WISE launched in 2009, the sky in the relevant infrared bands was largely uncharted."
+      },
+      {
+        "heading": "WHY HUMANS BEAT ALGORITHMS",
+        "body": "Brown dwarfs reveal themselves by moving against the fixed background of distant stars across years of imagery. Algorithms struggle with image artifacts, diffraction spikes, and crowded fields; humans flicking between frames spot real motion that classifiers reject as noise.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did volunteers outperform automated pipelines at finding nearby brown dwarfs?",
+            "options": [
+              "Volunteers had access to better telescope data",
+              "Algorithms misclassify real motion as imaging artifacts in crowded fields",
+              "Brown dwarfs emit signals only humans can hear",
+              "Machine learning was banned from the dataset"
+            ],
+            "correct": 1,
+            "explanation": "Pattern-matching on flickering image pairs is a task humans still do better than classifiers — especially around bright stars where artifacts swamp signal."
+          }
+        ]
+      },
+      {
+        "heading": "THE CENSUS REVISION",
+        "body": "The new ratio — roughly one brown dwarf per three or four sun-like stars — means the local neighborhood is far more crowded than mid-2000s estimates suggested. The galaxy doesn't have more mass; it has more objects, most of them dim and cold.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Sun-like stars",
+                "value": "~20",
+                "weight": 20,
+                "tone": "neutral"
+              },
+              {
+                "label": "Red dwarfs",
+                "value": "~250",
+                "weight": 250,
+                "tone": "neutral"
+              },
+              {
+                "label": "Brown dwarfs",
+                "value": "~80+",
+                "weight": 80,
+                "tone": "favorable"
+              },
+              {
+                "label": "White dwarfs",
+                "value": "~20",
+                "weight": 20,
+                "tone": "neutral"
+              }
+            ],
+            "label": "objects within ~30 light-years of the Sun (rough)"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Citizen science isn't new to astronomy. Galaxy Zoo (2007) classified a million galaxies with volunteer eyes after the Sloan survey overwhelmed its team. The pattern repeats: surveys produce data faster than professionals can examine it, and the long tail of human attention closes the gap."
+      },
+      {
+        "heading": "WHY IT MATTERS",
+        "body": "The mass budget of the Milky Way — how much is in stars, gas, dust, dark matter — depends on counting what's actually there. Each revision of the brown dwarf count adjusts the substellar mass function, which constrains theories of how stars and planets form from the same collapsing clouds."
+      }
+    ],
+    "generatedAt": "2026-05-05T22:36:45.232Z",
+    "label": "Brown Dwarfs & the Stellar Census",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-05-rfk-jr-ssri-antidepressants-curb-heroin-comparison": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT SSRIs ACTUALLY DO",
+        "body": "Selective serotonin reuptake inhibitors block the reabsorption of serotonin into the presynaptic neuron, leaving more available in the synaptic cleft. The mechanism is well-characterized; the reason this lifts depression in some patients is not — the serotonin hypothesis as a complete explanation has weakened over two decades of research.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The textbook line is *low serotonin causes depression*. Modern reviews — including a 2022 umbrella study by **Moncrieff et al.** — found no consistent evidence that depressed patients have lower serotonin than controls. SSRIs work for some patients; *why* they work remains contested."
+          }
+        ]
+      },
+      {
+        "heading": "DISCONTINUATION VS DEPENDENCE",
+        "body": "Stopping an SSRI abruptly can produce dizziness, electric-shock sensations, insomnia, and emotional volatility — the discontinuation syndrome. This is distinct from addiction: there is no compulsive seeking, no escalating dose, no euphoria. The body adapts to the drug's presence; removing it disrupts that adaptation.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did the 2024 Lancet review find about severe SSRI discontinuation symptoms?",
+            "options": [
+              "About 3% of patients experience severe symptoms",
+              "About 30% of patients experience severe symptoms",
+              "Roughly half of all patients",
+              "Symptoms are clinically indistinguishable from opioid withdrawal"
+            ],
+            "correct": 0,
+            "explanation": "The 2024 Lancet meta-analysis put severe discontinuation at ~3%, with milder symptoms more common — far from the heroin comparison."
+          }
+        ]
+      },
+      {
+        "heading": "THE HALF-LIFE GRADIENT",
+        "body": "Discontinuation severity tracks how fast the drug clears the body. Paroxetine and venlafaxine have short half-lives (under a day) and produce the worst symptoms. Fluoxetine has an active metabolite with a half-life of weeks, so it self-tapers — patients can often stop it abruptly with minimal effect.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Paroxetine",
+                "value": "~21 hours",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Venlafaxine",
+                "value": "~5 hours",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Sertraline",
+                "value": "~26 hours",
+                "tone": "neutral"
+              },
+              {
+                "label": "Citalopram",
+                "value": "~35 hours",
+                "tone": "neutral"
+              },
+              {
+                "label": "Fluoxetine",
+                "value": "~4–6 days",
+                "tone": "favorable"
+              }
+            ],
+            "label": "SSRI/SNRI half-lives (parent drug)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DEPRESCRIBING IS HARD",
+        "body": "Many patients stay on SSRIs for years because tapering attempts trigger symptoms that look like depression returning — but may be discontinuation effects that resolve in weeks. Distinguishing the two requires slow tapers (months, not weeks) and clinical attention most primary-care visits don't have time for. Hyperbolic tapering — exponentially smaller dose reductions — is the emerging best practice."
+      },
+      {
+        "heading": "THE INSTITUTIONAL POSTURE",
+        "body": "The American Psychiatric Association sets the field's clinical standards through the DSM and treatment guidelines. When a federal health initiative bypasses APA consultation, it signals that the policy is not seeking professional consensus — it is overriding it. This is structurally similar to past clashes between HHS and CDC advisory committees on vaccine schedules.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The APA's *practice guidelines* aren't legally binding, but they set the **standard of care** courts use to judge malpractice. A federal program that pays doctors to deviate from those guidelines puts prescribers in an awkward liability position."
+          }
+        ]
+      },
+      {
+        "heading": "THE HEROIN COMPARISON",
+        "body": "Heroin acts on mu-opioid receptors, producing euphoria, tolerance, compulsive use, and withdrawal that includes vomiting, cramping, and intense craving. SSRIs act on serotonin transporters, produce no euphoria, no tolerance escalation, and no craving on cessation. Conflating the two is not a clinical claim — it is a rhetorical one."
+      }
+    ],
+    "generatedAt": "2026-05-05T22:37:16.406Z",
+    "label": "SSRIs & Discontinuation",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-05-russia-poltava-naftogaz-double-tap-rescuers": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DOUBLE-TAP",
+        "body": "A double-tap strike hits the same target twice: the first blast wounds, the second kills the responders who arrive to help. The tactic is banned under international humanitarian law because it deliberately targets medical and rescue personnel protected by the Geneva Conventions.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technique was documented extensively in **Syria** from 2012 onward, where Russian and Syrian aircraft repeatedly struck **White Helmets** rescue teams. Investigators traced the same operational pattern from Aleppo to Ukrainian cities a decade later."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GAS, WHY NOW",
+        "body": "Naftogaz operates Ukraine's gas extraction in Poltava and Kharkiv oblasts — the heart of domestic production. Striking wellheads and compressor stations before winter forces Ukraine to import LNG at European spot prices, draining hard currency reserves at the moment heating demand peaks.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU",
+              "BY",
+              "MD",
+              "RO",
+              "PL"
+            ],
+            "label": "Ukraine's gas heartland",
+            "markers": [
+              {
+                "lat": 49.5883,
+                "lng": 34.5514,
+                "label": "Poltava (gas fields)"
+              },
+              {
+                "lat": 49.9935,
+                "lng": 36.2304,
+                "label": "Kharkiv (production hub)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE STORAGE GAMBLE",
+        "body": "Ukraine holds Europe's largest underground gas storage capacity — roughly 31 billion cubic meters, mostly in western Ukraine near the Polish border. Russia cannot easily reach these caverns with drones, so the war on gas focuses on extraction and distribution, not storage."
+      },
+      {
+        "heading": "THE VICTORY DAY RITUAL",
+        "body": "May 9 — Victory Day — is the most sacred date in Russia's political calendar, marking the Soviet defeat of Nazi Germany in 1945. Putin has wrapped the Ukraine war in this memory from day one, framing Kyiv's government as neo-Nazi to justify invasion as a continuation of the Great Patriotic War.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Russia's leadership treat May 9 as politically untouchable?",
+            "options": [
+              "It marks the founding of the Russian Federation",
+              "It commemorates the Soviet defeat of Nazi Germany in 1945",
+              "It is the anniversary of Putin's first inauguration",
+              "It marks the dissolution of the USSR"
+            ],
+            "correct": 1,
+            "explanation": "Victory Day anchors Russian national identity to the WWII narrative — the lens through which the Kremlin frames every subsequent conflict."
+          }
+        ]
+      },
+      {
+        "heading": "CEASEFIRE THEATER",
+        "body": "Unilateral ceasefires announced around symbolic dates rarely hold because neither side trusts the other to stop firing first. Zelensky's counter-offer of a midnight Tuesday truce mirrors a diplomatic move pioneered in the Korean War armistice talks: match the opponent's offer to expose whether the offer was sincere or performative."
+      },
+      {
+        "heading": "THE INFRASTRUCTURE DOCTRINE",
+        "body": "Striking energy infrastructure to break civilian morale has a name in airpower theory: the Douhet doctrine, after the Italian general Giulio Douhet who argued in 1921 that bombing cities would force quick surrender. A century of evidence — London, Hanoi, Baghdad, Aleppo — suggests it hardens resistance instead.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              80.188632,
+              78.425742,
+              78.552067,
+              77.620679,
+              77.111135,
+              77.104548,
+              77.405049,
+              76.169531,
+              75.375678,
+              75.496169,
+              76.374389,
+              76.231514,
+              76.231514,
+              76.231514,
+              76.231376,
+              74.947786,
+              75.123411,
+              75.876,
+              75.246161,
+              75.185828,
+              75.185828,
+              75.229128,
+              74.873368,
+              75.315304,
+              74.749689,
+              74.94766,
+              74.972582,
+              74.972579,
+              74.935527,
+              75.000725
+            ],
+            "periods": [
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5"
+            ],
+            "label": "Russian ruble",
+            "unit": "RUB / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-05"
+    ],
+    "generatedAt": "2026-05-05T22:37:48.392Z",
+    "label": "Double-Tap Strikes & Gas Infrastructure War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-05-us-gas-price-iran-war-rubio-fortunate": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil pass through daily, about a fifth of global consumption.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the Gulf chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.3,
+                "lng": 56.35,
+                "label": "Fujairah (UAE bypass terminal)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT CAN'T BE BYPASSED",
+        "body": "Saudi Arabia's East-West Pipeline (5 million bbl/day) and the UAE's Habshan-Fujairah line were built partly as Hormuz hedges. Together they could reroute roughly a third of Gulf exports. The rest has no alternative route — Qatari LNG, Kuwaiti crude, and Iraqi southern exports all sail through the strait or not at all."
+      },
+      {
+        "heading": "WHY US PRICES STILL MOVE",
+        "body": "The US has been a net petroleum exporter since 2020, but gasoline tracks the global Brent benchmark, not domestic production. American refiners buy crude at world prices and sell gasoline at margins set by global supply. Net-exporter status changes the trade balance — it does not insulate the pump.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Energy independence is a *trade-flow* concept, not a *price* concept. The US can be a net exporter and still pay world prices because oil is **fungible** — a barrel sold to Rotterdam and a barrel sold to Houston clear at the same global benchmark."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson planners took: disruption is easier to threaten than to sustain."
+      },
+      {
+        "heading": "THE LEGAL REGIME",
+        "body": "Under UNCLOS Article 38, ships have a right of transit passage through international straits — coastal states cannot suspend passage or impose conditions. Iran signed UNCLOS in 1982 but never ratified it, and has long argued Hormuz is governed by its own domestic law. A Security Council resolution would force the question into the open."
+      },
+      {
+        "heading": "WHAT $112 OIL MEANS AT THE PUMP",
+        "body": "A rough rule: every $10/bbl move in crude shifts US retail gasoline by ~25 cents per gallon, with a 4-6 week lag through refinery and distribution. Crude at $112 — up from the $70s before the strait incident — implies most of the move is already in the price; the question is whether it stays there.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does US gasoline rise when Hormuz is threatened, even though almost no Gulf crude reaches the US?",
+            "options": [
+              "US refiners are contractually tied to Gulf suppliers",
+              "Oil is a global commodity priced off one benchmark, regardless of physical flow",
+              "Strategic Petroleum Reserve releases are blocked by treaty",
+              "Pipeline capacity from Texas can't meet East Coast demand"
+            ],
+            "correct": 1,
+            "explanation": "Crude is fungible and trades against a global benchmark (Brent). A supply shock anywhere raises the price everywhere — physical sourcing is irrelevant to the price."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T22:38:20.650Z",
+    "label": "Hormuz & US Gasoline",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-05-us-serra-verde-brazil-rare-earth-china-monopoly": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT RARE EARTHS ACTUALLY ARE",
+        "body": "The 17 rare-earth elements are not geologically rare — they are crustally common but almost never concentrated. Economic deposits require unusual geology that pools them into mineable ratios. Finding ore is easy; finding ore worth digging is not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The strategic ones are the *heavies* — **dysprosium**, **terbium**, **neodymium** — the magnets in F-35 actuators, EV motors, and wind turbines. A single F-35 contains roughly 400kg of rare-earth materials."
+          }
+        ]
+      },
+      {
+        "heading": "THE REAL CHOKEPOINT IS SEPARATION",
+        "body": "Rare earths come out of the ground bonded together in nearly identical chemistry. Separating them requires hundreds of solvent-extraction stages in cascading mixer-settler tanks — a slow, toxic, capital-intensive process. China runs roughly 90% of global separation capacity, regardless of where the ore is mined."
+      },
+      {
+        "heading": "HOW CHINA GOT HERE",
+        "body": "Deng Xiaoping's 1992 line — \"the Middle East has oil, China has rare earths\" — became industrial policy. Beijing subsidized refining, tolerated the environmental cost (radioactive thorium tailings, acidified groundwater), and undercut Western producers until they closed. Mountain Pass in California shut in 2002; Molycorp went bankrupt in 2015.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1992",
+                "label": "Deng's \"Middle East has oil\" line",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2002",
+                "label": "Mountain Pass (CA) shuts down"
+              },
+              {
+                "year": "2010",
+                "label": "China cuts Japan exports over Senkaku dispute"
+              },
+              {
+                "year": "2015",
+                "label": "Molycorp bankruptcy"
+              },
+              {
+                "year": "2023",
+                "label": "China restricts gallium, germanium exports"
+              },
+              {
+                "year": "2024",
+                "label": "China bans rare-earth processing tech exports"
+              }
+            ],
+            "label": "the monopoly arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2010 PRECEDENT",
+        "body": "After a fishing-boat collision near the Senkaku Islands, China cut rare-earth exports to Japan for two months. Prices spiked tenfold. The episode taught every defense planner that supply concentration is a weapon — and that diversification takes a decade Beijing won't grant."
+      },
+      {
+        "heading": "WHY SERRA VERDE MATTERS",
+        "body": "Most rare-earth deposits are hard-rock mines requiring crushing and acid leaching. Serra Verde is an ionic-clay deposit — heavy rare earths sit loosely bound in weathered clay and can be extracted with mild salt solutions. This geology exists almost nowhere outside southern China and a thin band of Brazil, which is why it commands strategic premium.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~270kt",
+                "cc": "CN",
+                "weight": 270,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "USA",
+                "value": "~45kt",
+                "cc": "US",
+                "weight": 45,
+                "tone": "neutral"
+              },
+              {
+                "label": "Myanmar",
+                "value": "~31kt",
+                "cc": "MM",
+                "weight": 31,
+                "tone": "neutral"
+              },
+              {
+                "label": "Australia",
+                "value": "~13kt",
+                "cc": "AU",
+                "weight": 13,
+                "tone": "favorable"
+              },
+              {
+                "label": "Thailand",
+                "value": "~13kt",
+                "cc": "TH",
+                "weight": 13,
+                "tone": "neutral"
+              },
+              {
+                "label": "Brazil",
+                "value": "~20 (target)",
+                "cc": "BR",
+                "weight": 20,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global rare-earth mine production, 2024 (kt REO)"
+          }
+        ]
+      },
+      {
+        "heading": "THE DOWNSTREAM PROBLEM",
+        "body": "Even if Serra Verde scales, the ore must still be separated and turned into metal, then into magnets. The US has almost no commercial separation capacity and no integrated magnet production. Mining is the easy 10% of the supply chain; the hard 90% — separation, metal-making, magnet sintering — still routes through China.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "mine-cn",
+                "label": "China mines"
+              },
+              {
+                "id": "mine-row",
+                "label": "Rest-of-world mines"
+              },
+              {
+                "id": "sep-cn",
+                "label": "China separation"
+              },
+              {
+                "id": "sep-row",
+                "label": "Other separation"
+              },
+              {
+                "id": "mag-cn",
+                "label": "China magnets"
+              },
+              {
+                "id": "mag-row",
+                "label": "Other magnets"
+              },
+              {
+                "id": "end",
+                "label": "End-use (EVs, defense, wind)"
+              }
+            ],
+            "links": [
+              {
+                "source": "mine-cn",
+                "target": "sep-cn",
+                "value": 60
+              },
+              {
+                "source": "mine-row",
+                "target": "sep-cn",
+                "value": 30
+              },
+              {
+                "source": "mine-row",
+                "target": "sep-row",
+                "value": 10
+              },
+              {
+                "source": "sep-cn",
+                "target": "mag-cn",
+                "value": 85
+              },
+              {
+                "source": "sep-cn",
+                "target": "mag-row",
+                "value": 5
+              },
+              {
+                "source": "sep-row",
+                "target": "mag-row",
+                "value": 10
+              },
+              {
+                "source": "mag-cn",
+                "target": "end",
+                "value": 90
+              },
+              {
+                "source": "mag-row",
+                "target": "end",
+                "value": 10
+              }
+            ],
+            "label": "rare-earth supply chain (illustrative shares)"
+          }
+        ]
+      },
+      {
+        "heading": "TEST YOURSELF",
+        "body": "The bottleneck the US is actually trying to break.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the dominant chokepoint in the rare-earth supply chain?",
+            "options": [
+              "Mining the ore from the ground",
+              "Separating the 17 elements from each other",
+              "Shipping the ore across the Pacific",
+              "Discovering new deposits"
+            ],
+            "correct": 1,
+            "explanation": "China controls ~90% of separation capacity — the toxic, capital-intensive step that turns mixed ore into usable individual elements."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T22:38:59.650Z",
+    "label": "Rare Earths & the China Monopoly",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-05-zebrafish-heart-scrna-metabolic-labeling-neutrophils": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY ZEBRAFISH",
+        "body": "Zebrafish can regrow up to 20% of their heart muscle after injury, scar-free. Mammals cannot — adult human cardiomyocytes essentially stop dividing after birth, which is why a heart attack leaves permanent scar tissue instead of new muscle.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The trait is called *cardiac regeneration competence*, and zebrafish share it with newts and neonatal mice — but humans lose it within the **first week of life**."
+          }
+        ]
+      },
+      {
+        "heading": "THE SNAPSHOT PROBLEM",
+        "body": "Standard single-cell sequencing reads every RNA molecule in a cell at the moment of capture. It cannot distinguish a transcript made minutes ago from one made hours ago — so you see what the cell IS, not what it just became."
+      },
+      {
+        "heading": "METABOLIC LABELING",
+        "body": "Feeding cells a chemically tagged nucleotide (like 4-thiouridine) marks only newly made RNA. Sequencing then separates fresh transcripts from old ones, turning a static snapshot into a record of which genes just turned on."
+      },
+      {
+        "heading": "THE INFLAMMATION PARADOX",
+        "body": "Neutrophils are the immune system's first responders — they arrive within minutes of tissue damage and were long thought to cause collateral harm. Regeneration biology has flipped this view: the early inflammatory burst is not noise to suppress, it is a signal that licenses repair.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which lifelong human tissue retains the strongest regenerative capacity?",
+            "options": [
+              "Cardiac muscle",
+              "Liver",
+              "Spinal cord neurons",
+              "Articular cartilage"
+            ],
+            "correct": 1,
+            "explanation": "The liver can regrow most of its mass from a fraction of remaining tissue. Heart muscle, neurons, and cartilage essentially do not regenerate in adults."
+          }
+        ]
+      },
+      {
+        "heading": "TLR SIGNALING",
+        "body": "Toll-like receptors sit on macrophages and detect damage-associated molecular patterns released by dying cells. They were named for their resemblance to the Drosophila Toll gene — the 2011 Nobel Prize recognized the discovery that this ancient pathway governs innate immunity across the animal kingdom.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Blocking a pathway to *improve* outcomes is counterintuitive — but in regeneration, the question is rarely whether to inflame, it is **how long** and **how loud**."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSLATION GAP",
+        "body": "A target that works in zebrafish has cleared the easiest hurdle. Mammalian hearts have thicker walls, denser scarring, and an immune system tuned over millions of years toward fibrosis instead of regrowth. Most fish-to-human regeneration leads die in mouse models long before reaching trials."
+      }
+    ],
+    "generatedAt": "2026-05-05T22:39:25.072Z",
+    "label": "Heart Regeneration & the Immune First Responders",
+    "category": "science",
+    "articleCount": 1
   }
 }
