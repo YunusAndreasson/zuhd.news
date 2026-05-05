@@ -116903,5 +116903,1572 @@
     "label": "Smoldering Myeloma & Early Intervention",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-05-05-coinbase-14pct-layoffs-ai-substitution": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PATTERN",
+        "body": "Tech layoffs since 2023 have increasingly cited AI productivity gains as justification, not just cost-cutting. The framing matters: 'restructuring' implies temporary correction; 'AI substitution' implies the headcount is never coming back.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shift in language — from **restructuring** to **AI-driven efficiency** — signals a structural rather than cyclical view of the cuts."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ENGINEERS FIRST",
+        "body": "Code generation is where large language models perform best — the training corpus is enormous, syntax errors are immediately verifiable, and unit tests provide instant feedback. White-collar work with messy human inputs (sales, HR, legal judgment) is harder to automate than the engineering jobs that built the AI."
+      },
+      {
+        "heading": "THE COINBASE CONTEXT",
+        "body": "Coinbase has cycled through major workforce contractions before — roughly 18% in June 2022 and another 20% in January 2023, both during crypto winters. The company's headcount has been a barometer of crypto sentiment as much as a measure of operational need.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2021",
+                "label": "Direct listing on Nasdaq",
+                "emphasis": "start"
+              },
+              {
+                "year": "2022-06",
+                "label": "~18% layoff (crypto winter)"
+              },
+              {
+                "year": "2023-01",
+                "label": "~20% layoff"
+              },
+              {
+                "year": "2024",
+                "label": "Re-hiring as BTC recovers"
+              },
+              {
+                "year": "2026-05",
+                "label": "14% layoff cites AI",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "Coinbase workforce cycles"
+          }
+        ]
+      },
+      {
+        "heading": "THE LUMP-OF-LABOR FALLACY",
+        "body": "Economists have long warned against assuming a fixed amount of work to be divided. ATMs did not eliminate bank tellers — branch counts grew because each branch became cheaper to staff. Whether AI follows that pattern or breaks it is the trillion-dollar open question."
+      },
+      {
+        "heading": "THE SEVERANCE SIGNAL",
+        "body": "16 weeks of severance is generous by tech-sector norms — typically 8-12 weeks plus tenure-based add-ons. Generous packages reduce litigation risk and protect employer brand for future hiring, suggesting Coinbase expects to recruit aggressively again when the cycle turns."
+      },
+      {
+        "heading": "WHO ELSE IS CUTTING",
+        "body": "Major tech employers have run substantial AI-cited reductions through 2024-2026. The cuts cluster in middle-management, recruiting, and junior engineering — roles where AI tooling has demonstrably compressed task timelines.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which job category has been most affected by AI-cited tech layoffs so far?",
+            "options": [
+              "Senior executives",
+              "Junior software engineers and middle managers",
+              "Sales representatives",
+              "Hardware engineers"
+            ],
+            "correct": 1,
+            "explanation": "AI tools compress the work of junior coders and middle managers (whose role is largely information routing) faster than they replace specialized or relationship-driven roles."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T12:32:18.643Z",
+    "label": "AI & Labor Substitution",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-05-cytokinetics-myqorzo-non-obstructive-hcm-trial": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISEASE",
+        "body": "Hypertrophic cardiomyopathy is the most common inherited heart disorder, affecting roughly 1 in 500 people. Mutations in sarcomere genes — the contractile machinery itself — cause the heart muscle to thicken pathologically. It is the leading cause of sudden cardiac death in young athletes.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Most cases trace to mutations in **MYH7** or **MYBPC3** — the genes encoding beta-myosin heavy chain and myosin-binding protein C. The mutations make myosin heads too eager to grab actin, so the muscle contracts when it should rest."
+          }
+        ]
+      },
+      {
+        "heading": "OBSTRUCTIVE VS NON-OBSTRUCTIVE",
+        "body": "In obstructive HCM, the thickened septum bulges into the outflow tract and physically blocks blood leaving the heart. Non-obstructive HCM has the same thickening and stiffness but no outflow gradient — the heart fails by failing to relax, not by being blocked. Roughly a third of HCM cases are non-obstructive."
+      },
+      {
+        "heading": "WHY THE SARCOMERE IS A NEW TARGET",
+        "body": "Heart drugs for sixty years worked on plumbing — beta blockers slowed the pump, ACE inhibitors widened the pipes, diuretics drained the load. Cardiac myosin inhibitors are the first class to target the contractile protein itself, dialing down the molecular over-eagerness that drives HCM at the source."
+      },
+      {
+        "heading": "THE MAVACAMTEN PRECEDENT",
+        "body": "Bristol Myers Squibb's mavacamten (Camzyos), approved in 2022 for obstructive HCM, validated the mechanism. Its non-obstructive trial (ODYSSEY-HCM) failed in 2025 — the obstructive form responds to myosin inhibition, the non-obstructive form may not. Cytokinetics' positive readout here is the first evidence the class can work in both.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Mavacamten",
+                "value": "approved 2022",
+                "tone": "favorable"
+              },
+              {
+                "label": "Aficamten",
+                "value": "Cytokinetics",
+                "tone": "neutral"
+              }
+            ],
+            "label": "cardiac myosin inhibitors"
+          }
+        ]
+      },
+      {
+        "heading": "THE LABEL ECONOMICS",
+        "body": "A drug approved for obstructive HCM addresses perhaps two-thirds of the diagnosed pool. Label expansion to non-obstructive — a population with literally no approved therapy — does not double the market; it can multiply it, because untreated diseases get diagnosed once a treatment exists.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does an approved drug for a related condition often see explosive growth when its label expands?",
+            "options": [
+              "Pricing rises after expansion",
+              "Untreated diseases are systematically under-diagnosed until a therapy exists",
+              "Insurance only reimburses expanded labels",
+              "Generic competitors are blocked"
+            ],
+            "correct": 1,
+            "explanation": "Diagnosis rates track treatment availability — clinicians work up patients more aggressively when they have something to offer."
+          }
+        ]
+      },
+      {
+        "heading": "WHY RELAXATION IS HARDER THAN CONTRACTION",
+        "body": "A failing heart in non-obstructive HCM pumps fine; it just won't fill. Stiffened ventricles need higher pressures to accept blood, which backs up into the lungs. Drugs that improve diastolic function — the relaxation phase — have been pharmacology's white whale for decades."
+      }
+    ],
+    "generatedAt": "2026-05-05T12:32:49.911Z",
+    "label": "Cardiac Myosin Inhibition & HCM",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-05-egypt-future-authority-rice-export-monopoly": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OFFICER ECONOMY",
+        "body": "Egypt's armed forces run a parallel commercial empire — bottled water, pasta, cement, fuel stations, resorts, gated cities. Estimates of its share of GDP range from 2% (the military's claim) to 40% (analyst estimates). The opacity is the point.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The umbrella terms are *jihaz* (authority) and *hayʾa* (body) — bureaucratic shells that hold commercial assets while enjoying **military exemption** from taxes, customs, audit, and parliamentary oversight."
+          }
+        ]
+      },
+      {
+        "heading": "THE FUTURE OF EGYPT AUTHORITY",
+        "body": "Created in 2017 under the armed forces, the Future of Egypt Authority began as a desert-reclamation project on the Cairo–Alexandria desert road. It expanded into procurement, storage, and now monopoly export of strategic crops — wheat (2020), sugar, and rice."
+      },
+      {
+        "heading": "WHY STAPLES MATTER",
+        "body": "Egypt is the world's largest wheat importer and depends on Nile-irrigated rice for domestic supply. Bread riots toppled Sadat's economic liberalization in 1977; the 2011 uprising began with the slogan 'bread, freedom, social justice.' Whoever controls the staples controls the political weather.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1977",
+                "label": "Bread Intifada — Sadat reverses subsidy cuts",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2008",
+                "label": "Global wheat spike triggers bread queues"
+              },
+              {
+                "year": "2011",
+                "label": "Tahrir Square — 'aish, hurriya, adala'"
+              },
+              {
+                "year": "2017",
+                "label": "Future of Egypt Authority founded"
+              },
+              {
+                "year": "2020",
+                "label": "Military absorbs wheat exports"
+              },
+              {
+                "year": "2026",
+                "label": "Rice export monopoly formalized"
+              }
+            ],
+            "label": "Egypt's bread-and-staples politics"
+          }
+        ]
+      },
+      {
+        "heading": "THE NILE CONSTRAINT",
+        "body": "Egypt's 105 million people draw 97% of their freshwater from the Nile. Rice is water-intensive — roughly 2,500 liters per kilogram. Cairo periodically restricts rice planting to conserve water, then lifts the ban when domestic prices spike. The export monopoly gives the state a single lever over the entire chain."
+      },
+      {
+        "heading": "WHO GETS DISPLACED",
+        "body": "Ibrahim al-Argany — Sinai businessman, founder of the Organi Group — built a private empire on Gaza-crossing logistics and rice exports under Sisi-era patronage. His displacement signals that even regime-aligned tycoons are subordinate to the officer economy when the two conflict.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Argany's company controlled the **Rafah crossing** logistics during the Gaza war, charging Palestinians thousands of dollars per evacuation — a business that drew international scrutiny and made him politically expendable."
+          }
+        ]
+      },
+      {
+        "heading": "THE IMF TENSION",
+        "body": "Egypt's $8bn IMF program (2024) explicitly requires shrinking the military's economic footprint and 'levelling the playing field' between state and private firms. Each new monopoly is a quiet reversal of that conditionality — bet against by markets but tolerated as long as Gulf bailouts cover the gap.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              54.2427,
+              54.6838,
+              53.2548,
+              53.0913,
+              53.108563,
+              53.108563,
+              53.3639,
+              53.1356,
+              52.4198,
+              51.9627,
+              51.7698,
+              51.884157,
+              51.884157,
+              51.884157,
+              51.970698,
+              51.9993,
+              51.7463,
+              52.6215,
+              52.619542,
+              52.572404,
+              52.572404,
+              52.6099,
+              52.5498,
+              52.8295,
+              53.0206,
+              53.623047,
+              53.639736,
+              53.639736,
+              53.5567,
+              53.5362
+            ],
+            "periods": [
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5"
+            ],
+            "label": "Egyptian pound",
+            "unit": "EGP / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE PATTERN",
+        "body": "Military commercial empires recur where civilian institutions are weak — Pakistan's Fauji Foundation, Indonesia's Suharto-era yayasan, Iran's IRGC-linked Khatam al-Anbiya. Each began as a welfare arm for officers and grew into the largest non-state actor in the economy.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Egypt",
+                "value": "~5–40%",
+                "cc": "EG",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Pakistan",
+                "value": "~7%",
+                "cc": "PK",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Iran (IRGC)",
+                "value": "~20%",
+                "cc": "IR",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Indonesia",
+                "value": "<2% (post-1998)",
+                "cc": "ID",
+                "tone": "neutral"
+              }
+            ],
+            "label": "officer economies, rough share of GDP"
+          },
+          {
+            "type": "quiz",
+            "question": "Which crop did Egypt's Future of Egypt Authority absorb FIRST under its export monopoly?",
+            "options": [
+              "Rice",
+              "Wheat",
+              "Cotton",
+              "Sugar"
+            ],
+            "correct": 1,
+            "explanation": "The military took over wheat exports in 2020; sugar followed, and rice in 2026 completes the staples portfolio."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-05"
+    ],
+    "generatedAt": "2026-05-05T12:33:26.778Z",
+    "label": "Egypt's Military Economy",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-05-geopolitical-tensions-rupee-at-record-low-weigh-on-market-se": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STRUCTURAL DEFICIT",
+        "body": "India imports roughly 85% of its crude oil. Every $10 rise in Brent adds about $13-15 billion to the annual import bill. Oil is the single largest line item in India's current account — when crude moves, the rupee moves with it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is mechanical: refiners must buy *dollars* to pay foreign suppliers. A spike in Brent means more dollar demand, which pulls the **rupee** down — independent of any policy decision."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HORMUZ MATTERS TO MUMBAI",
+        "body": "Roughly two-thirds of India's crude imports transit the Strait of Hormuz. The geography is unforgiving — there is no overland alternative with comparable throughput, and the Gulf-to-India sea route is the shortest crude voyage of any major importer.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "PK"
+            ],
+            "label": "India's crude lifeline",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 18.9667,
+                "lng": 72.8333,
+                "label": "Mumbai"
+              },
+              {
+                "lat": 25.4052,
+                "lng": 55.5136,
+                "label": "Fujairah terminal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE RBI'S DILEMMA",
+        "body": "India's central bank holds about $640 billion in reserves and intervenes routinely to smooth currency moves. But defending the rupee burns reserves; letting it fall imports inflation. With CPI already pressured by food prices, the RBI cannot let crude-driven depreciation pass through unchecked."
+      },
+      {
+        "heading": "THE FII REFLEX",
+        "body": "Foreign Institutional Investors — the dominant marginal buyer of Indian equities — sell first when the rupee weakens, because their returns are dollar-denominated. A falling rupee turns a flat Sensex into a loss for a New York fund. This is why FII flows often amplify currency moves rather than cushion them."
+      },
+      {
+        "heading": "THE 1991 GHOST",
+        "body": "India's worst balance-of-payments crisis came after the 1990 Gulf War spiked oil and remittances from Kuwait collapsed. Reserves fell to two weeks of imports; the government airlifted gold to London as IMF collateral. Every Hormuz scare since is read against that memory — which is why Delhi treats oil-supply risk as a national security matter, not just an economic one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "During India's 1991 balance-of-payments crisis, what did the government physically pledge as collateral for emergency loans?",
+            "options": [
+              "Sovereign bonds held by the RBI",
+              "Gold reserves airlifted to London",
+              "Equity stakes in state-owned oil companies",
+              "Future tax revenue from fuel excise"
+            ],
+            "correct": 1,
+            "explanation": "India airlifted 47 tonnes of gold to the Bank of England as collateral — a moment of national humiliation that still shapes how Delhi reads every oil shock."
+          }
+        ]
+      },
+      {
+        "heading": "THE STRATEGIC HEDGE",
+        "body": "India built a Strategic Petroleum Reserve at Visakhapatnam, Mangalore, and Padur — but it holds only about 10 days of imports. The US SPR holds roughly 30 days; China's holds an estimated 90. India's buffer is the thinnest of any major importer relative to consumption.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              92.9636,
+              92.86045,
+              92.283354,
+              92.47006,
+              93.10605,
+              93.10525,
+              94.508943,
+              94.94696,
+              93.165649,
+              93.387156,
+              93.048145,
+              92.602452,
+              92.60245,
+              92.60245,
+              92.782407,
+              93.348804,
+              93.775164,
+              94.11314,
+              94.143557,
+              94.0666,
+              94.0666,
+              94.257338,
+              94.420855,
+              94.762974,
+              95.171392,
+              94.951559,
+              94.89165,
+              94.910513,
+              94.951346,
+              95.361112
+            ],
+            "periods": [
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-05"
+    ],
+    "generatedAt": "2026-05-05T12:33:57.772Z",
+    "label": "India's Oil-Currency Trap",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-05-hsbc-q1-private-credit-fraud-400m-iran-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT PRIVATE CREDIT ACTUALLY IS",
+        "body": "Loans made by non-bank funds — pensions, insurers, asset managers — directly to mid-sized companies, bypassing the syndicated loan market. Borrowers pay 200-400 basis points more than bank loans for speed and discretion. The market grew from roughly $400bn in 2014 to $3.5tn today.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical name is **direct lending**; the regulatory name is *non-bank financial intermediation* (NBFI). Both describe the same thing: credit creation outside the prudential perimeter."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BANKS ARE STILL EXPOSED",
+        "body": "Banks don't originate the loans, but they finance the funds that do — through subscription lines, NAV facilities, and back-leverage on private-credit portfolios. This is the 'secondary securitisation' chain: a bank lends to a fund, which lends to a borrower, sometimes through several layers of SPVs."
+      },
+      {
+        "heading": "THE OVERSIGHT GAP",
+        "body": "Basel III capital rules apply to bank balance sheets. Once a loan sits inside a private-credit fund, it escapes the risk-weighting framework — even if a bank ultimately funds it. The IMF and FSB have flagged this as the largest unmapped systemic risk since the 2008 shadow-banking buildup.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Bank loans",
+                "value": "$60tn",
+                "weight": 60,
+                "tone": "neutral"
+              },
+              {
+                "label": "Public bonds",
+                "value": "$130tn",
+                "weight": 130,
+                "tone": "neutral"
+              },
+              {
+                "label": "Private credit",
+                "value": "$3.5tn",
+                "weight": 3.5,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Leveraged loans",
+                "value": "$1.4tn",
+                "weight": 1.4,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Global credit markets, 2024 ($tn)"
+          }
+        ]
+      },
+      {
+        "heading": "THE FRAUD VECTOR",
+        "body": "Secondary securitisation chains obscure the underlying borrower. A bank financing a fund-of-funds may be three legal entities away from the actual loan, with no direct visibility into collateral or covenants. Fraud at the borrower level surfaces only when payments stop.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "bank",
+                "label": "HSBC"
+              },
+              {
+                "id": "fund",
+                "label": "Private-credit fund"
+              },
+              {
+                "id": "spv",
+                "label": "SPV / feeder"
+              },
+              {
+                "id": "borrower",
+                "label": "Borrower (fraud)"
+              }
+            ],
+            "links": [
+              {
+                "source": "bank",
+                "target": "fund",
+                "value": 400,
+                "label": "NAV facility"
+              },
+              {
+                "source": "fund",
+                "target": "spv",
+                "value": 400,
+                "label": "securitisation"
+              },
+              {
+                "source": "spv",
+                "target": "borrower",
+                "value": 400,
+                "label": "loan"
+              }
+            ],
+            "label": "how a $400m bank loss reaches a fraudulent borrower"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2008 RHYME",
+        "body": "Pre-2008, banks moved subprime mortgages off balance sheet via CDOs and SIVs — same logic, different wrapper. Regulators closed those channels. Private credit reopened them in a venue Basel III doesn't touch. The shape of the risk hasn't changed; the legal envelope has."
+      },
+      {
+        "heading": "WHY IRAN MOVES THE FORECAST",
+        "body": "HSBC raised its 2026 credit-charge forecast on Iran war risk because trade-finance exposure across the Gulf is concentrated on its books — Hormuz disruption flows directly into shipping, commodities, and Asian corporate loan books HSBC underwrites.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              58,
+              61,
+              28,
+              35,
+              30,
+              30,
+              33,
+              35,
+              30,
+              32,
+              31,
+              34,
+              36,
+              31,
+              28,
+              31,
+              33,
+              32,
+              34,
+              34,
+              34,
+              34,
+              33,
+              34,
+              31,
+              30,
+              30,
+              30,
+              31
+            ],
+            "periods": [
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 5"
+            ],
+            "label": "US invade Iran before 2027?",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "58%"
+              },
+              {
+                "atIndex": 28,
+                "label": "31%"
+              }
+            ],
+            "link": "https://polymarket.com/event/will-the-us-invade-iran-before-2027",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "TEST YOURSELF",
+        "body": "Private credit's growth is often described as 'disintermediation' — borrowers going around banks. The reality is more layered.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How are large banks typically exposed to private-credit losses?",
+            "options": [
+              "They originate the loans directly",
+              "They finance the funds that originate the loans",
+              "They insure the borrowers against default",
+              "They are not exposed; the market is fully separate"
+            ],
+            "correct": 1,
+            "explanation": "Banks provide subscription lines, NAV facilities, and back-leverage to private-credit funds — so a borrower default eventually flows back to bank balance sheets through the financing chain."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-05"
+    ],
+    "generatedAt": "2026-05-05T12:34:30.213Z",
+    "label": "Private Credit & Bank Risk",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-05-icj-rohingya-international-justice-limits": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COURT'S JURISDICTION",
+        "body": "The ICJ adjudicates disputes between states, not individuals. Gambia brought the case against Myanmar in 2019 under the Genocide Convention — any signatory can sue another for breaches, even without being directly harmed. This is the erga omnes principle: some obligations are owed to humanity itself.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The case rests on *erga omnes partes* standing — Gambia has no Rohingya population and no border with Myanmar, but every Genocide Convention signatory has a legal interest in compliance."
+          }
+        ]
+      },
+      {
+        "heading": "NO ENFORCEMENT ARM",
+        "body": "ICJ rulings are binding but the court has no police, no army, no sanctions power. Enforcement runs through the UN Security Council, where China — Myanmar's largest arms supplier and economic patron — holds a veto. Rulings against Myanmar's junta die at that chokepoint."
+      },
+      {
+        "heading": "THE CITIZENSHIP ROOT",
+        "body": "Myanmar's 1982 Citizenship Law recognized 135 'national races'; Rohingya were excluded. Most became stateless overnight, denied passports, restricted from movement between townships, barred from secondary education in many cases. The 2017 military operation was the violent climax of a forty-year administrative erasure.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1948",
+                "label": "Burma independence; Rohingya recognized"
+              },
+              {
+                "year": "1962",
+                "label": "Ne Win military coup"
+              },
+              {
+                "year": "1982",
+                "label": "Citizenship Law strips Rohingya status",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1991",
+                "label": "First mass exodus to Bangladesh (~250k)"
+              },
+              {
+                "year": "2012",
+                "label": "Rakhine communal violence"
+              },
+              {
+                "year": "2017",
+                "label": "Military 'clearance operations'; ~750k flee"
+              },
+              {
+                "year": "2019",
+                "label": "Gambia files ICJ case"
+              },
+              {
+                "year": "2021",
+                "label": "Junta retakes power in coup"
+              }
+            ],
+            "label": "the long erasure"
+          }
+        ]
+      },
+      {
+        "heading": "COX'S BAZAR'S BURDEN",
+        "body": "Bangladesh — itself among the world's most densely populated countries — hosts roughly 1 million Rohingya in what became the largest refugee settlement on earth. Dhaka's position has hardened: it accepted the refugees in 2017 on humanitarian grounds but never agreed to permanent integration.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BD",
+              "MM",
+              "IN",
+              "TH",
+              "CN"
+            ],
+            "label": "the Rohingya corridor",
+            "markers": [
+              {
+                "lat": 21.2,
+                "lng": 92.17,
+                "label": "Cox's Bazar camps"
+              },
+              {
+                "lat": 20.15,
+                "lng": 92.9,
+                "label": "Maungdaw (Rakhine origin)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT GAP",
+        "body": "The ICJ ruled against Serbia in the 2007 Bosnia genocide case but found no state responsibility for Srebrenica itself — only failure to prevent. No ICJ judgment has ever produced safe refugee return. The Rwanda tribunal jailed perpetrators; refugees still went home only after the regime fell."
+      },
+      {
+        "heading": "WHAT THE COURT CAN ACTUALLY DO",
+        "body": "Provisional measures (the ICJ ordered Myanmar to prevent genocide in 2020), formal findings of state responsibility, reparations awards. What it cannot do: change a regime, guarantee a border crossing, or override a Security Council veto. Justice and return are different instruments.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What happened the last time an ICJ genocide ruling produced large-scale refugee return?",
+            "options": [
+              "Bosnia 1995 — Serbia complied with the ruling",
+              "Rwanda 1996 — the Hutu regime accepted the verdict",
+              "It has never happened",
+              "Cambodia 2003 — the Khmer Rouge tribunal forced return"
+            ],
+            "correct": 2,
+            "explanation": "No ICJ genocide ruling has ever directly produced refugee return; returns have followed regime change, not court orders."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T12:35:02.804Z",
+    "label": "ICJ & the Limits of International Justice",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-05-imo-net-zero-shipping-framework-carbon-pricing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PARIS GAP",
+        "body": "International shipping and aviation were deliberately carved out of the 1997 Kyoto Protocol and the 2015 Paris Agreement. Emissions from a ship flagged in Panama burning bunker fuel between Singapore and Rotterdam belong to no country's national inventory — they fall to the IMO and ICAO instead.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The carve-out exists because emissions from *international bunkers* — fuel loaded in one country and burned over the high seas — defied the territorial accounting that underpins UNFCCC inventories."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE IMO IS UNUSUAL",
+        "body": "The International Maritime Organization, founded in 1948 and headquartered in London, is one of the few UN bodies where shipowner-friendly flag states (Panama, Liberia, Marshall Islands) wield outsized influence — voting weight tracks registered tonnage, not population or GDP. The three largest open registries together flag roughly 40% of the world fleet.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Panama",
+                "value": "~16%",
+                "cc": "PA",
+                "weight": 16
+              },
+              {
+                "label": "Liberia",
+                "value": "~14%",
+                "cc": "LR",
+                "weight": 14
+              },
+              {
+                "label": "Marshall Islands",
+                "value": "~12%",
+                "cc": "MH",
+                "weight": 12
+              },
+              {
+                "label": "Hong Kong",
+                "value": "~7%",
+                "cc": "HK",
+                "weight": 7
+              },
+              {
+                "label": "Singapore",
+                "value": "~6%",
+                "cc": "SG",
+                "weight": 6
+              }
+            ],
+            "label": "top flag states by registered tonnage"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PACIFIC ISLANDS LEAD",
+        "body": "Tuvalu, the Marshall Islands, Vanuatu, and Fiji have been the most aggressive voices for shipping decarbonization at the IMO since the mid-2010s. Their highest points sit a few meters above sea level; for them, a 1.5°C overshoot is not an economic question but an existential one.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TV",
+              "MH",
+              "FJ",
+              "VU",
+              "KI",
+              "WS",
+              "TO",
+              "SB"
+            ],
+            "label": "the Pacific climate-vulnerable bloc",
+            "caption": "highest points: Tuvalu 4.6m, Marshall Islands 10m, Kiribati 81m"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SHIPPING IS HARD TO DECARBONIZE",
+        "body": "A container ship's main engine runs on heavy fuel oil — the cheapest, dirtiest residue of crude refining — because diesel-electric battery propulsion cannot store the energy density a transoceanic voyage requires. The plausible alternatives (green ammonia, methanol, hydrogen) cost 2-4× more per energy unit and need a global bunkering network that does not yet exist.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Heavy fuel oil is so viscous it must be **heated to ~50°C** before it can even be pumped into the engine — yet it remains the marine industry's default because no alternative matches its energy-per-dollar."
+          }
+        ]
+      },
+      {
+        "heading": "HOW IMO CONSENSUS WORKS",
+        "body": "IMO decisions on environmental measures formally require a two-thirds majority at MEPC, but the body operates by consensus norm — measures rarely advance over strong objection from major flag or trading states. The Pacific bloc's procedural maneuver here was to invoke the formal vote when consensus collapsed, forcing the framework through despite US, Saudi, and Russian opposition.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of global CO2 emissions does international shipping represent?",
+            "options": [
+              "About 0.5%",
+              "About 2-3%",
+              "About 7%",
+              "About 12%"
+            ],
+            "correct": 1,
+            "explanation": "International shipping emits roughly 1 billion tonnes of CO2 annually, about 2-3% of the global total — comparable to Germany's entire national footprint."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "The EU's Emissions Trading System extended to shipping in 2024, charging vessels for emissions on voyages into European ports. The IMO framework globalizes that logic — once a carbon price exists at the IMO level, the EU's unilateral measure folds in. The pattern (regional regulator forces global standard) mirrors how California vehicle emissions rules dragged US federal policy for decades."
+      }
+    ],
+    "generatedAt": "2026-05-05T12:35:38.745Z",
+    "label": "Shipping & Carbon Pricing",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-05-pakistan-nccia-punjab-13-activists-peca-arrests": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LAW",
+        "body": "The Prevention of Electronic Crimes Act passed in 2016 to address cyberstalking and financial fraud. Successive amendments — 2022, then 2025 — quietly expanded its scope to cover political speech, with the 2025 revision criminalizing criticism of state institutions including the military.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The original PECA bill carried 23 offences. The amended text now exceeds **50**, with maximum penalties raised from 3 years to **7** for institutional criticism."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE ARMY IS UNTOUCHABLE",
+        "body": "Pakistan has spent roughly half its existence under direct military rule — Ayub (1958), Yahya (1969), Zia (1977), Musharraf (1999). Even under civilian governments, the army controls foreign policy, nuclear command, and a vast commercial empire (Fauji Foundation, DHA, Askari Bank). Criticizing it has never been a normal civic act; codifying that into law is the new step.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1958",
+                "label": "Ayub Khan coup",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1969",
+                "label": "Yahya Khan takes over"
+              },
+              {
+                "year": "1977",
+                "label": "Zia coup, Bhutto hanged"
+              },
+              {
+                "year": "1999",
+                "label": "Musharraf coup"
+              },
+              {
+                "year": "2008",
+                "label": "return to civilian rule"
+              },
+              {
+                "year": "2025",
+                "label": "PECA criminalizes army criticism"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1958",
+                "to": "1971",
+                "label": "Ayub/Yahya era",
+                "tone": "unfavorable"
+              },
+              {
+                "from": "1977",
+                "to": "1988",
+                "label": "Zia era",
+                "tone": "unfavorable"
+              },
+              {
+                "from": "1999",
+                "to": "2008",
+                "label": "Musharraf era",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "military rule in Pakistan"
+          }
+        ]
+      },
+      {
+        "heading": "THE NCCIA",
+        "body": "The National Cyber Crime Investigation Agency replaced the FIA's cybercrime wing in 2024. Its mandate is broader, its budget larger, and its remit extends to social-media monitoring at scale. The shift from a police unit to a standalone agency mirrors the institutional pattern by which speech enforcement gets professionalized."
+      },
+      {
+        "heading": "BLASPHEMY AS PRECEDENT",
+        "body": "Pakistan's blasphemy laws — sections 295-A through 295-C of the Penal Code — show how a vaguely-worded speech offence becomes a tool of routine prosecution. Roughly 80 people sit on death row for blasphemy; the law's chilling effect extends far beyond convictions, since accusation alone can end a career or trigger mob violence. PECA's military-criticism clause sits in the same legal architecture.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many people have been judicially executed for blasphemy in Pakistan?",
+            "options": [
+              "Zero — every death sentence has been overturned or commuted",
+              "Roughly 30 since 1990",
+              "Over 100 since the 1980s"
+            ],
+            "correct": 0,
+            "explanation": "No one has been executed by the state for blasphemy in Pakistan, but dozens of accused have been killed extrajudicially — by mobs, cellmates, or vigilantes — before trial concludes."
+          }
+        ]
+      },
+      {
+        "heading": "THE REGIONAL PATTERN",
+        "body": "Pakistan's 2025 amendments arrive in a region tightening online-speech laws in parallel — India's IT Rules, Bangladesh's Digital Security Act (renamed Cyber Security Act in 2023), Sri Lanka's Online Safety Act. The drafting language travels: 'false information,' 'institutional reputation,' 'national interest.'",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IN",
+              "BD",
+              "LK",
+              "NP"
+            ],
+            "label": "South Asian speech laws"
+          }
+        ]
+      },
+      {
+        "heading": "THE DIASPORA LOOPHOLE",
+        "body": "PECA arrests target accounts inside Pakistan; diaspora critics in Toronto, London, and Dubai post freely. The state's response has been to prosecute family members at home — a tactic borrowed from Iran's playbook against expatriate journalists. The law is territorial; the chilling effect is not."
+      }
+    ],
+    "generatedAt": "2026-05-05T12:36:10.997Z",
+    "label": "PECA & Speech Crime in Pakistan",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-05-rest-of-world-ai-cybersecurity-defense-gap": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ASYMMETRY",
+        "body": "Defense must close every hole; offense needs only one. For decades this favored attackers — a single zero-day broke a system that thousands of engineers had hardened. Automated discovery flips the math: if defenders find bugs at machine speed too, the attacker's structural advantage erodes.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The asymmetry has a name in the literature: **defender's dilemma**. It explains why a billion-dollar security budget can lose to a $50,000 exploit kit."
+          }
+        ]
+      },
+      {
+        "heading": "FUZZING, THE OLD WAY",
+        "body": "Before AI, the dominant bug-finding technique was fuzzing — feeding random or mutated inputs into a program until it crashes. Google's OSS-Fuzz has run continuously since 2016 and has found over 36,000 bugs across open-source projects. It works, but it's blind: it cannot reason about what a function is supposed to do.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What's the core limitation of traditional fuzzing compared to AI-assisted vulnerability discovery?",
+            "options": [
+              "It runs too slowly on modern hardware",
+              "It cannot reason about a function's intended behavior",
+              "It only works on open-source code",
+              "It produces too many false positives to be useful"
+            ],
+            "correct": 1,
+            "explanation": "Fuzzers throw inputs at code blindly. They find crashes but cannot tell whether a non-crashing input violates the program's logic — which is where many real vulnerabilities hide."
+          }
+        ]
+      },
+      {
+        "heading": "COORDINATED DISCLOSURE",
+        "body": "Since the 1990s, security researchers have followed a norm called coordinated (or responsible) disclosure: tell the vendor first, give them a window — typically 90 days, the standard Google's Project Zero set in 2014 — to ship a patch, then publish. Bypassing this norm and going straight to public release is called full disclosure, and it remains controversial.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Project Zero",
+                "role": "Google's bug-hunting team",
+                "years": "2014–",
+                "cc": "US"
+              },
+              {
+                "name": "CERT/CC",
+                "role": "Carnegie Mellon coordinator",
+                "years": "1988–",
+                "cc": "US"
+              },
+              {
+                "name": "CISA",
+                "role": "US federal vulnerability hub",
+                "years": "2018–",
+                "cc": "US"
+              }
+            ],
+            "label": "who shaped the disclosure norm"
+          }
+        ]
+      },
+      {
+        "heading": "THE GREY MARKET",
+        "body": "A working zero-day in iOS or Chrome can sell for seven figures on the brokered market. Zerodium has publicly offered up to $2.5M for an Android remote chain; NSO Group's Pegasus relied on similar exploits. Every bug an AI finds and discloses is a bug that vanishes from this market — which is why defensive automation has geopolitical weight, not just commercial.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Zerodium",
+                "value": "$2.5M",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Crowdfense",
+                "value": "$3M+",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Apple",
+                "value": "$2M",
+                "tone": "favorable"
+              },
+              {
+                "label": "Google",
+                "value": "$250k",
+                "tone": "favorable"
+              }
+            ],
+            "label": "public bug bounty payouts (top tier, 2024)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY 40 PARTNERS",
+        "body": "Modern software stacks are layered: a browser bug may live in a rendering library shared across Chrome, Firefox, and Safari; a kernel bug may affect Linux distributions, Android, and embedded devices simultaneously. Disclosing to one vendor leaves the others exposed. Multi-party coordinated disclosure — managed through hubs like CERT/CC — is how the industry handles findings that cross product boundaries."
+      }
+    ],
+    "generatedAt": "2026-05-05T12:36:42.273Z",
+    "label": "AI & Vulnerability Discovery",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-05-russia-ukraine-competing-ceasefires-victory-day": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY MAY 9 MATTERS",
+        "body": "Victory Day commemorates the Soviet defeat of Nazi Germany in 1945 — the central legitimating myth of the modern Russian state. Putin has rebuilt the holiday from a quiet veterans' observance under Yeltsin into the regime's largest annual mobilization of patriotic identity.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Russian framing calls it the *Great Patriotic War* — a deliberately narrower window (1941–1945) that excludes the 1939–1941 period when the **Molotov-Ribbentrop Pact** made Moscow Berlin's partner in carving up Poland."
+          }
+        ]
+      },
+      {
+        "heading": "THE PARADE AS DETERRENCE TEST",
+        "body": "Red Square parades stage missiles, ICBM launchers, and now drone systems before foreign dignitaries. A Ukrainian strike during the ceremony would humiliate the security services in front of the cameras the Kremlin spent a year choreographing — which is why Moscow's threat language escalates around this date every year.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2022",
+                "label": "First wartime parade; muted flyover cancelled"
+              },
+              {
+                "year": "2023",
+                "label": "Single tank on display; drone strikes on Kremlin days prior"
+              },
+              {
+                "year": "2024",
+                "label": "Putin pledges victory; parade scaled down again"
+              },
+              {
+                "year": "2025",
+                "label": "Xi Jinping attends; foreign-leader showcase",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026",
+                "label": "Competing ceasefire announcements"
+              }
+            ],
+            "label": "Russia's wartime May 9s"
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPETING-CEASEFIRE GAMBIT",
+        "body": "A ceasefire offer narrowly tailored to one side's calendar is a diplomatic tell: it asks the adversary to absorb risk during your most vulnerable window, then resume the war. Kyiv's response — declaring its own open-ended truce from Tuesday — flips the burden of proof onto Moscow without conceding the parade's symbolic protection."
+      },
+      {
+        "heading": "THE MARKET'S READING",
+        "body": "Prediction markets pricing a near-term ceasefire stay in single-digit territory despite the dueling announcements — the market reads them as posturing around May 9, not the start of negotiations.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4,
+              5,
+              5,
+              3,
+              4,
+              5,
+              5,
+              5,
+              4,
+              4,
+              4,
+              8,
+              9,
+              6,
+              6,
+              6,
+              6,
+              5
+            ],
+            "periods": [
+              "Apr 7",
+              "Apr 9",
+              "Apr 18",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 5"
+            ],
+            "label": "Russia x Ukraine ceasefire by May 31…",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "4%"
+              },
+              {
+                "atIndex": 17,
+                "label": "5%"
+              }
+            ],
+            "link": "https://polymarket.com/event/russia-x-ukraine-ceasefire-by-may-31-2026",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'CENTRAL KYIV' IS THE THREAT",
+        "body": "Russia has struck Kyiv hundreds of times, but central districts — the government quarter, foreign embassies, the Maidan — are usually avoided to preserve diplomatic optionality. Naming central Kyiv specifically signals a willingness to cross a threshold Moscow has policed itself on for three years.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU",
+              "BY",
+              "MD",
+              "PL"
+            ],
+            "label": "the two capitals",
+            "markers": [
+              {
+                "lat": 50.4501,
+                "lng": 30.5234,
+                "label": "Kyiv government quarter"
+              },
+              {
+                "lat": 55.752,
+                "lng": 37.6175,
+                "label": "Red Square"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL ECHO",
+        "body": "The 1944 Warsaw Uprising offers the template Ukrainians read this moment through: Soviet forces halted on the Vistula's east bank while the Polish Home Army was destroyed in the city, then resumed the advance once the resistance was gone. Pauses tied to a calendar, not a settlement, have a documented history of serving the side that called them.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which event did Stalin's Red Army wait out across the Vistula before resuming its advance on Berlin?",
+            "options": [
+              "The Warsaw Uprising of 1944",
+              "The Prague Spring of 1968",
+              "The Hungarian Revolution of 1956",
+              "The Katyn massacre of 1940"
+            ],
+            "correct": 0,
+            "explanation": "Soviet forces paused for roughly two months while the Nazi-led suppression of the Polish Home Army eliminated the non-communist resistance Moscow would otherwise have had to share postwar Poland with."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-05"
+    ],
+    "generatedAt": "2026-05-05T12:37:15.776Z",
+    "label": "Victory Day & Ceasefire Diplomacy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-05-saudi-arabia-wastewater-aquifer-depletion-kfupm": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT FOSSIL WATER MEANS",
+        "body": "Fossil aquifers hold water that fell as rain tens of thousands of years ago, during wetter Pleistocene climates. They do not meaningfully recharge on human timescales — pumping them is mining, not harvesting.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Hydrologists call these aquifers *non-renewable* on purpose: the recharge rate is so slow relative to extraction that the resource behaves like **oil**, not like surface water."
+          }
+        ]
+      },
+      {
+        "heading": "THE WHEAT EXPERIMENT",
+        "body": "From 1980 to 2008, Saudi Arabia subsidized domestic wheat farming to chase food self-sufficiency, becoming briefly the world's sixth-largest exporter. The program drained an estimated four-fifths of the Saq and Wajid aquifer systems before Riyadh reversed course and phased out wheat production by 2016."
+      },
+      {
+        "heading": "WHY DESALINATION DOESN'T SOLVE IT",
+        "body": "Saudi Arabia is the world's largest desalination producer, but desalinated water costs roughly 5–10× groundwater and is too expensive to flood-irrigate alfalfa or wheat. Desalination supplies cities; aquifers supply farms. The two systems barely connect.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SA",
+              "AE",
+              "KW",
+              "QA",
+              "BH",
+              "OM"
+            ],
+            "label": "GCC desalination dependence",
+            "caption": "Gulf states share the same fossil-aquifer-plus-desalination water stack"
+          }
+        ]
+      },
+      {
+        "heading": "THE WASTEWATER GAP",
+        "body": "Israel reuses roughly 90% of its treated wastewater for agriculture — the global benchmark. Spain reuses about 14%, the US about 7%, Saudi Arabia under 20% despite the infrastructure existing. The bottleneck is not technology but tariff structure and farmer-side distribution networks.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Israel",
+                "value": "~90%",
+                "cc": "IL",
+                "weight": 90,
+                "tone": "favorable"
+              },
+              {
+                "label": "Singapore",
+                "value": "~40%",
+                "cc": "SG",
+                "weight": 40,
+                "tone": "favorable"
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "<20%",
+                "cc": "SA",
+                "weight": 18,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Spain",
+                "value": "~14%",
+                "cc": "ES",
+                "weight": 14,
+                "tone": "neutral"
+              },
+              {
+                "label": "USA",
+                "value": "~7%",
+                "cc": "US",
+                "weight": 7,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "treated wastewater reused for agriculture"
+          }
+        ]
+      },
+      {
+        "heading": "THE VIRTUAL WATER PIVOT",
+        "body": "After abandoning domestic wheat, Saudi Arabia bought farmland abroad — in Sudan, Ethiopia, Argentina, and famously Arizona, where Fondomonte's alfalfa farms drew from US groundwater to feed Saudi dairy cows. The strategy is called virtual water: import the crop, leave the aquifer depletion overseas."
+      },
+      {
+        "heading": "THE QURANIC FRAME",
+        "body": "Surah al-Anbiya describes water as the source from which every living thing is made. Classical fiqh developed elaborate rules for water rights — the principle of shafa (priority of use) and the prohibition on monopolizing flowing water — precisely because Arabian scarcity made allocation a moral, not just economic, question.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are Saudi Arabia's aquifers called 'fossil'?",
+            "options": [
+              "They contain dissolved fossil minerals",
+              "The water entered the ground tens of thousands of years ago",
+              "They lie beneath fossil-fuel reservoirs",
+              "They were discovered during oil exploration"
+            ],
+            "correct": 1,
+            "explanation": "Fossil aquifers hold ancient rainwater that does not meaningfully recharge — once pumped, it is gone on human timescales."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T12:37:48.420Z",
+    "label": "Fossil Aquifers & the Saudi Water Equation",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-05-vodafone-three-ck-hutchison-uk-buyout": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY FOUR BECAME THREE",
+        "body": "UK mobile economics broke under four operators competing on price. Each needed roughly 25% market share to fund a national 5G rollout; none had it. The Vodafone-Three merger (closed 2025) cut the field to three — the structure regulators in Germany, France, and Italy already accepted years earlier.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The economic doctrine is the **Herfindahl tradeoff**: regulators historically blocked telecom consolidation to preserve price competition, then reversed when capex starvation began producing worse coverage than price."
+          }
+        ]
+      },
+      {
+        "heading": "THE HUTCHISON RETREAT",
+        "body": "CK Hutchison is liquidating its global infrastructure portfolio at an accelerating pace. The £2.65bn valuation haircut signals it preferred cash now over par later — the same logic that drove its $22.8bn Panama ports sale to BlackRock earlier this year.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Li Ka-shing",
+                "role": "CK Hutchison founder",
+                "years": "1928–",
+                "cc": "HK"
+              },
+              {
+                "name": "Victor Li",
+                "role": "CK Hutchison chairman",
+                "years": "2018–",
+                "cc": "HK"
+              }
+            ],
+            "label": "the Li family conglomerate"
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOPOLITICAL OVERLAY",
+        "body": "Hong Kong-domiciled capital owning critical Western infrastructure — ports, telecoms, energy grids — became politically untenable after Beijing's 2020 national security law collapsed the one-country-two-systems firewall. Hutchison's exits are the market pricing this in.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GB",
+              "HK",
+              "CN",
+              "PA"
+            ],
+            "label": "Hutchison's recent divestments",
+            "markers": [
+              {
+                "lat": 51.5074,
+                "lng": -0.1278,
+                "label": "VodafoneThree (London)"
+              },
+              {
+                "lat": 8.9824,
+                "lng": -79.5199,
+                "label": "Panama Canal ports"
+              },
+              {
+                "lat": 22.3193,
+                "lng": 114.1694,
+                "label": "CKH HQ (Hong Kong)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE NATIONAL SECURITY REVIEW",
+        "body": "The UK's National Security and Investment Act (2022) gives ministers retroactive power to unwind deals in 17 sensitive sectors, including communications. The original Vodafone-Three merger cleared this gate in 2024; this buyout is structurally easier — same buyer, same network, fewer foreign hands.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which UK law lets ministers block or unwind deals in sensitive sectors like telecoms?",
+            "options": [
+              "Enterprise Act 2002",
+              "National Security and Investment Act 2021",
+              "Communications Act 2003",
+              "Competition Act 1998"
+            ],
+            "correct": 1,
+            "explanation": "The NSI Act (in force January 2022) created a mandatory notification regime for 17 sectors and lets the government call in deals up to five years after completion."
+          }
+        ]
+      },
+      {
+        "heading": "THE 5G CAPEX BILL",
+        "body": "Building a national standalone 5G network costs roughly £2bn per operator over a decade — before spectrum fees. Joint ownership made the merger work; full ownership lets Vodafone consolidate procurement, vendor contracts, and tower-sharing economics under one balance sheet."
+      }
+    ],
+    "generatedAt": "2026-05-05T12:38:16.373Z",
+    "label": "UK Mobile Consolidation",
+    "category": "tech",
+    "articleCount": 1
   }
 }
