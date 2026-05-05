@@ -113817,5 +113817,1707 @@
     "label": "Atmospheres in the Outer Solar System",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-05-05-asean-myanmar-five-point-consensus-failure": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ASEAN WAY",
+        "body": "ASEAN's founding principle since 1967 is non-interference in member states' internal affairs, with all decisions by consensus. Every member holds an effective veto. The doctrine was designed during the Cold War to keep Indonesia, Malaysia, Singapore, and Thailand from fighting each other — it was never built to discipline a member.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine has a name in the bloc's own discourse — *musyawarah* (consultation) and *mufakat* (consensus), borrowed from Javanese village governance. It is procedural, not principled: the goal is no walkouts, not the right outcome."
+          }
+        ]
+      },
+      {
+        "heading": "THE FIVE POINTS",
+        "body": "Agreed in April 2021, two months after the Tatmadaw coup: end violence, dialogue among all parties, ASEAN special envoy mediation, humanitarian assistance, envoy visits to all stakeholders. The junta signed it, then ignored every point. The plan required the perpetrator's cooperation to enforce — a structural impossibility.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which of the Five-Point Consensus commitments did Myanmar's junta substantively implement?",
+            "options": [
+              "Cessation of violence",
+              "Inclusive dialogue with the NUG",
+              "Humanitarian access via ASEAN",
+              "None of them"
+            ],
+            "correct": 3,
+            "explanation": "The junta signed the consensus then refused dialogue with the National Unity Government, blocked the special envoy from meeting Aung San Suu Kyi, and intensified airstrikes on civilians."
+          }
+        ]
+      },
+      {
+        "heading": "THE COUP IN CONTEXT",
+        "body": "Myanmar's military has ruled directly for most of the post-1962 period. The 2008 constitution it drafted reserves 25% of parliamentary seats and three key ministries — defence, home affairs, border affairs — for the Tatmadaw, making constitutional civilian control mathematically impossible. The 2021 coup was the failsafe firing when the NLD's electoral landslide threatened to amend that arrangement.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1962",
+                "label": "Ne Win coup ends parliamentary rule"
+              },
+              {
+                "year": "1988",
+                "label": "8888 uprising crushed"
+              },
+              {
+                "year": "2008",
+                "label": "Military-drafted constitution"
+              },
+              {
+                "year": "2011",
+                "label": "Civilian transition begins"
+              },
+              {
+                "year": "2015",
+                "label": "NLD wins first free election"
+              },
+              {
+                "year": "2021",
+                "label": "Tatmadaw seizes power",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "NUG controls ~40% of territory"
+              }
+            ],
+            "label": "Myanmar's cycle"
+          }
+        ]
+      },
+      {
+        "heading": "THE ROHINGYA DISPLACEMENT",
+        "body": "The 1982 citizenship law stripped Rohingya of recognition, classifying them as Bengali migrants despite centuries of presence in Rakhine. The 2017 clearance operations — described by UN investigators as bearing genocidal intent — drove ~740,000 across the Naf River into Bangladesh. ASEAN, with two Muslim-majority members directly affected, never used the word genocide.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MM",
+              "BD",
+              "TH",
+              "MY",
+              "ID"
+            ],
+            "label": "Rohingya displacement corridor",
+            "markers": [
+              {
+                "lat": 21.2,
+                "lng": 92.16,
+                "label": "Cox's Bazar camps"
+              },
+              {
+                "lat": 20.85,
+                "lng": 92.36,
+                "label": "Rakhine state"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY SUSPENSION IS HARD",
+        "body": "ASEAN has barred the junta from leader-level summits since 2021 — a partial freeze, not a suspension. Full suspension requires consensus, which Cambodia, Laos, and Vietnam have blocked. Each has its own reasons to defend the non-interference doctrine: Phnom Penh's Hun dynasty, Vientiane's one-party rule, Hanoi's South China Sea cases. Setting a precedent for collective discipline of a member is a tool every authoritarian member fears being used on them.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Indonesia",
+                "value": "Electoral democracy",
+                "cc": "ID",
+                "tone": "favorable"
+              },
+              {
+                "label": "Philippines",
+                "value": "Electoral democracy",
+                "cc": "PH",
+                "tone": "favorable"
+              },
+              {
+                "label": "Malaysia",
+                "value": "Electoral democracy",
+                "cc": "MY",
+                "tone": "favorable"
+              },
+              {
+                "label": "Thailand",
+                "value": "Hybrid (military-influenced)",
+                "cc": "TH",
+                "tone": "neutral"
+              },
+              {
+                "label": "Singapore",
+                "value": "Dominant-party",
+                "cc": "SG",
+                "tone": "neutral"
+              },
+              {
+                "label": "Cambodia",
+                "value": "Authoritarian",
+                "cc": "KH",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Vietnam",
+                "value": "One-party",
+                "cc": "VN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Laos",
+                "value": "One-party",
+                "cc": "LA",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Myanmar",
+                "value": "Military junta",
+                "cc": "MM",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "ASEAN bloc, by regime type"
+          }
+        ]
+      },
+      {
+        "heading": "THE NUG ALTERNATIVE",
+        "body": "The National Unity Government, formed by ousted NLD lawmakers and ethnic armed organisations in 2021, claims to be Myanmar's legitimate authority. By 2024 its allied resistance forces controlled significant territory in Sagaing, Chin, and Kayah states. No country has formally recognised it. Recognition by even one ASEAN member would shatter the consensus framework — which is precisely why it has not happened."
+      }
+    ],
+    "generatedAt": "2026-05-05T04:46:02.136Z",
+    "label": "ASEAN & the Non-Interference Doctrine",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-05-china-ev-dominance-australia-tipping-point": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "VERTICAL INTEGRATION",
+        "body": "BYD mines lithium, refines it, makes cathodes, assembles cells, builds packs, and ships finished cars — all in-house. Western automakers buy batteries from suppliers who buy cells from other suppliers who buy materials from refiners. Every handoff adds margin.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "BYD started as a battery company in 1995 and only began making cars in 2003 — the opposite sequence from every legacy automaker, and the reason its **gross margin on EVs exceeds Tesla's**."
+          }
+        ]
+      },
+      {
+        "heading": "THE REFINING CHOKEPOINT",
+        "body": "China refines roughly 70% of the world's lithium, 75% of cobalt, and over 90% of the rare earths used in EV motors — even when the raw ore is mined in Australia, Chile, or the DRC. The mines are scattered; the processing is not.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "China",
+                "value": 70,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Chile",
+                "value": 12,
+                "tone": "neutral"
+              },
+              {
+                "label": "Argentina",
+                "value": 6,
+                "tone": "favorable"
+              },
+              {
+                "label": "Australia",
+                "value": 5,
+                "tone": "favorable"
+              },
+              {
+                "label": "Other",
+                "value": 7,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Global lithium refining capacity, 2024 share"
+          }
+        ]
+      },
+      {
+        "heading": "WHY AUSTRALIA IS THE TEST CASE",
+        "body": "Australia mines more lithium than anywhere else on earth but refines almost none of it. It also has no domestic auto industry — Holden's last factory closed in 2017 — and no protective tariff on Chinese EVs. The market is a clean experiment in price-only competition.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AU",
+              "CN",
+              "ID",
+              "TH",
+              "NZ",
+              "PG"
+            ],
+            "label": "the unprotected Pacific market",
+            "caption": "no domestic auto industry, no EV tariff, free-trade agreement with China since 2015"
+          }
+        ]
+      },
+      {
+        "heading": "THE TARIFF GRADIENT",
+        "body": "The US imposes 100% tariffs on Chinese EVs; the EU 17–35% depending on the brand; Turkey 40%; Brazil ramping to 35% by 2026. Australia, Thailand, Indonesia, and most of the Global South sit at zero. The geography of where Chinese EVs sell is the geography of who didn't put up a wall.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "100%",
+                "cc": "US",
+                "tone": "unfavorable",
+                "weight": 100
+              },
+              {
+                "label": "Turkey",
+                "value": "40%",
+                "cc": "TR",
+                "tone": "unfavorable",
+                "weight": 40
+              },
+              {
+                "label": "Brazil",
+                "value": "35% (2026)",
+                "cc": "BR",
+                "tone": "unfavorable",
+                "weight": 35
+              },
+              {
+                "label": "EU (BYD)",
+                "value": "27%",
+                "cc": "EU",
+                "tone": "neutral",
+                "weight": 27
+              },
+              {
+                "label": "Australia",
+                "value": "0%",
+                "cc": "AU",
+                "tone": "favorable",
+                "weight": 1
+              },
+              {
+                "label": "Thailand",
+                "value": "0%",
+                "cc": "TH",
+                "tone": "favorable",
+                "weight": 1
+              }
+            ],
+            "label": "EV tariff on Chinese imports"
+          }
+        ]
+      },
+      {
+        "heading": "THE SUBSIDY STACK",
+        "body": "Chinese EV makers received an estimated $230bn in state support between 2009 and 2023 — direct subsidies, tax breaks, cheap land, R&D grants, and below-market loans from state banks. The cost advantage is partly engineering, partly accounting: subsidized capex doesn't appear in the sticker price.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was BYD's original business before it made cars?",
+            "options": [
+              "Mobile phone batteries",
+              "Solar panels",
+              "Bicycles",
+              "State-owned bus manufacturing"
+            ],
+            "correct": 0,
+            "explanation": "BYD was founded in 1995 making rechargeable batteries for Motorola and Nokia phones — its battery expertise predates its car business by eight years."
+          }
+        ]
+      },
+      {
+        "heading": "THE TIPPING-POINT MECHANIC",
+        "body": "Auto markets flip non-linearly: once an EV crosses ~20% of new sales, charging infrastructure, dealer networks, and used-car liquidity reinforce each other. Norway hit it in 2017; China in 2022; Australia is crossing it now. Below the threshold, EVs are a niche. Above it, internal-combustion becomes the niche."
+      }
+    ],
+    "generatedAt": "2026-05-05T04:46:38.208Z",
+    "label": "China's EV Cost Stack",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-05-ethiopia-tiktok-meta-afan-oromo-creator-death": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LANGUAGE GAP",
+        "body": "Major platforms build automated safety systems — suicide-risk detection, harassment classifiers, hate-speech filters — language by language. Each new language requires labeled training data, native-speaker reviewers, and tuned models. Most of the world's 7,000 languages get none of this.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Internal Meta documents leaked in 2021 revealed that **87% of the company's misinformation-classifier spend** went to English content, despite English speakers being a minority of users."
+          }
+        ]
+      },
+      {
+        "heading": "WHO SPEAKS AFAN OROMO",
+        "body": "Afan Oromo is the working language of the Oromo, Ethiopia's largest ethnic group at roughly 35-40% of the population — over 40 million speakers. It is a Cushitic language written in a Latin-based script called Qubee, officially adopted only in 1991 after the fall of the Derg regime suppressed it for decades.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Afan Oromo",
+                "value": "~40M",
+                "weight": 40
+              },
+              {
+                "label": "Amharic",
+                "value": "~32M",
+                "weight": 32
+              },
+              {
+                "label": "Somali",
+                "value": "~7M",
+                "weight": 7
+              },
+              {
+                "label": "Tigrinya",
+                "value": "~7M",
+                "weight": 7
+              }
+            ],
+            "label": "Ethiopia's largest languages by speakers"
+          }
+        ]
+      },
+      {
+        "heading": "THE AMHARIC PRECEDENT",
+        "body": "Facebook's role in amplifying ethnic violence during the 2020-2022 Tigray war centered on Amharic-language posts the company's classifiers could not parse. Whistleblower Frances Haugen's disclosures showed Meta had no hate-speech classifier for Amharic at the time, despite operating in Ethiopia for years.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ET",
+              "ER",
+              "SO",
+              "DJ",
+              "SS",
+              "SD",
+              "KE"
+            ],
+            "label": "Horn of Africa",
+            "caption": "Region where Meta's content moderation gaps converged with active conflict"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SUICIDE DETECTION MATTERS",
+        "body": "TikTok and Meta both deploy automated systems that scan for suicide-risk keywords and patterns, then surface crisis hotlines or escalate to human reviewers. These systems work in roughly 30-70 languages depending on the platform. Outside that list, the safety net does not exist — videos signaling crisis pass through with the same algorithmic boost as any other engagement-driving content.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many languages does TikTok's automated content moderation actively cover?",
+            "options": [
+              "Around 10 — only the largest markets",
+              "Around 35-50 — major regional languages",
+              "All 200+ languages spoken by users",
+              "Every UN official language plus the top 100"
+            ],
+            "correct": 1,
+            "explanation": "Platforms publicly cover ~35-50 languages with full safety tooling. Hundreds more have user interfaces translated but no automated moderation."
+          }
+        ]
+      },
+      {
+        "heading": "THE BUSINESS LOGIC",
+        "body": "Building moderation infrastructure for a new language costs millions and produces no revenue. The decision to invest tracks ad-market size, not user count or risk exposure. Languages spoken in low-ARPU markets — most of Africa, much of South Asia — sit perpetually below the threshold that triggers investment, even when user counts run into tens of millions."
+      }
+    ],
+    "generatedAt": "2026-05-05T04:47:08.500Z",
+    "label": "Language Coverage in Content Moderation",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-05-hantavirus-outbreak-ship-cape-verde-150-trapped": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PATHOGEN",
+        "body": "Hantaviruses are rodent-borne RNA viruses. Humans inhale aerosolized particles from dried urine, droppings, or saliva when entering enclosed spaces — barns, cabins, ship holds — where infected rodents have nested. There is no person-to-person transmission for almost every known strain.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The exception is **Andes virus** (ANDV), endemic to southern Argentina and Chile — the *only* hantavirus with documented **human-to-human spread**, first proven in a 1996 Patagonia outbreak."
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO SYNDROMES",
+        "body": "Old World hantaviruses (Hantaan, Seoul, Puumala) cause hemorrhagic fever with renal syndrome — kidneys fail, blood pressure crashes. New World hantaviruses (Sin Nombre, Andes) cause pulmonary syndrome — lungs fill with fluid within days. The pulmonary form kills 35-40% of those infected; there is no specific antiviral."
+      },
+      {
+        "heading": "THE FOUR CORNERS DISCOVERY",
+        "body": "Hantavirus pulmonary syndrome was unknown to Western medicine until 1993, when healthy young Navajo adults began dying of acute respiratory failure in the US Four Corners region. Tribal elders told CDC investigators their oral tradition described identical deaths in 1918 and 1933 — both years of pinyon mast and deer mouse population booms.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was the first major outbreak of hantavirus pulmonary syndrome identified by Western medicine?",
+            "options": [
+              "1976 Four Corners region, USA",
+              "1993 Four Corners region, USA",
+              "2003 Hong Kong SARS cluster",
+              "1981 Los Angeles HIV cluster"
+            ],
+            "correct": 1,
+            "explanation": "The 1993 Navajo Nation outbreak led to the discovery of Sin Nombre virus and the recognition of hantavirus pulmonary syndrome as a distinct disease."
+          }
+        ]
+      },
+      {
+        "heading": "THE FREE PRATIQUE TRADITION",
+        "body": "International maritime law gives every coastal state the right to refuse a ship 'free pratique' — clearance to dock and disembark — on health grounds. The practice is older than germ theory: Venice held Black Death ships at anchor for *quaranta giorni*, forty days, in 1377. The word 'quarantine' is the duration.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The modern framework is the **WHO International Health Regulations (2005)**, which require ships to report illness via a *Maritime Declaration of Health* before arrival — but the final docking decision remains the port state's sovereign call."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "In February 2020 the Diamond Princess sat in Yokohama harbor for two weeks with 3,711 souls aboard while COVID spread cabin to cabin through shared ventilation. 712 infections, 14 deaths. The lesson port authorities took: a sealed ship is an incubator, not an isolation ward — refusing entry can be epidemiologically worse than admitting under controlled conditions.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CV",
+              "AR",
+              "ES",
+              "PT"
+            ],
+            "label": "the ship's transit",
+            "markers": [
+              {
+                "lat": -34.6037,
+                "lng": -58.3816,
+                "label": "Buenos Aires (origin)"
+              },
+              {
+                "lat": 14.9177,
+                "lng": -23.5092,
+                "label": "Praia, Cape Verde"
+              },
+              {
+                "lat": 28.4636,
+                "lng": -16.2518,
+                "label": "Tenerife (Spain)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE ANDES STRAIN GEOGRAPHY",
+        "body": "Andes virus circulates in the long-tailed pygmy rice rat (Oligoryzomys longicaudatus) across Patagonia, southern Chile, and northwestern Argentina. The 1996 El Bolsón cluster — a doctor infected during patient care, then his colleagues — broke the textbook rule that hantaviruses don't spread between people. Genomic studies suggest the trait is unique to this strain's M-segment glycoprotein."
+      }
+    ],
+    "generatedAt": "2026-05-05T04:47:43.517Z",
+    "label": "Hantavirus & Quarantine at Sea",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-05-israel-first-kc-46-tanker-iran-strike-range": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FORCE MULTIPLIER",
+        "body": "A fighter jet without refueling has a combat radius of 500–800 km. With tanker support, it can fly indefinitely. Every long-range strike the modern US, Israeli, or Saudi air force has executed since the 1980s is, structurally, a tanker operation with fighters attached.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The combat aircraft gets the headline; the **tanker** is the mission. Lose the tanker fleet and the strike package collapses to its unrefueled radius."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY PROBLEM",
+        "body": "From Israeli airbases to Iran's nuclear sites at Natanz, Fordow, and Isfahan is roughly 1,500–2,000 km one way. An F-35I's combat radius is about 1,100 km clean, less with weapons. Without tankers, Israel cannot reach the targets, strike, and return — the math simply does not close.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "JO",
+              "SA",
+              "IQ",
+              "SY",
+              "IR"
+            ],
+            "label": "Israel-to-Iran strike geometry",
+            "markers": [
+              {
+                "lat": 33.7233,
+                "lng": 51.7269,
+                "label": "Natanz enrichment"
+              },
+              {
+                "lat": 34.8847,
+                "lng": 50.9939,
+                "label": "Fordow (buried)"
+              },
+              {
+                "lat": 32.6539,
+                "lng": 51.666,
+                "label": "Isfahan complex"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BOOM VS PROBE-AND-DROGUE",
+        "body": "US-style tankers use a rigid flying **boom** operated from the tanker — fast transfer rates, suited to large strike packages. Most other air forces use a flexible **probe-and-drogue** hose. The KC-46 carries both, which is why Israel chose it: F-35I (boom) and older F-15s (drogue) refuel from the same aircraft.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The KC-46 is the first Western tanker certified for *both* methods on the same sortie — a logistical force-multiplier inside the multiplier."
+          }
+        ]
+      },
+      {
+        "heading": "THE FLEET ARITHMETIC",
+        "body": "Israel's seven Boeing 707-based Re'em tankers were converted in the 1970s — older than most of their pilots. Six KC-46s replaces seven aging frames one-for-one and adds satellite communications, defensive systems, and digital boom control. The two extra ordered after last year's war reflect a planning conclusion: one strike package is not enough.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "~450",
+                "cc": "US",
+                "weight": 450
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "8",
+                "cc": "SA",
+                "weight": 8
+              },
+              {
+                "label": "Israel (now)",
+                "value": "7",
+                "cc": "IL",
+                "weight": 7
+              },
+              {
+                "label": "Israel (planned)",
+                "value": "15",
+                "cc": "IL",
+                "weight": 15
+              },
+              {
+                "label": "UAE",
+                "value": "3",
+                "cc": "AE",
+                "weight": 3
+              },
+              {
+                "label": "Iran",
+                "value": "~3",
+                "cc": "IR",
+                "weight": 3
+              }
+            ],
+            "label": "selected tanker fleets, 2026"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE US CONTROLS THE FAUCET",
+        "body": "Tankers are the single most concentrated American advantage in modern airpower. The US operates around 450 tankers; the rest of the world combined operates fewer than 100. When Washington wants to constrain a partner's strike options, it does not need to deny aircraft or munitions — it can simply slow tanker deliveries or withhold the certification that lets them fly.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What roughly is a modern fighter's combat radius without aerial refueling?",
+            "options": [
+              "100–300 km",
+              "500–800 km",
+              "2,000–3,000 km",
+              "Unlimited with afterburner"
+            ],
+            "correct": 1,
+            "explanation": "Combat radius — out, fight, return with reserves — is 500–800 km for most fighters. Tankers are what turn that into intercontinental reach."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT: OPERATION OPERA",
+        "body": "Israel struck Iraq's Osirak reactor in 1981 with F-16s flying at the absolute edge of unrefueled range — pilots landed with minutes of fuel left. Iran is roughly twice as far. The lesson Israeli planners took from 1981 was not that long-range strikes are possible without tankers; it was that they barely are, and only once.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1981",
+                "label": "Osirak (Iraq) — unrefueled, F-16",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1985",
+                "label": "PLO HQ Tunis — single-refuel"
+              },
+              {
+                "year": "2007",
+                "label": "Al-Kibar (Syria) — short range"
+              },
+              {
+                "year": "2024",
+                "label": "Iran strikes — tanker fleet exhausted"
+              },
+              {
+                "year": "2026",
+                "label": "First KC-46 delivery"
+              }
+            ],
+            "label": "Israeli long-range strikes"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T04:48:21.263Z",
+    "label": "Aerial Refueling & Strike Range",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-05-long-covid-cfs-gpcr-autoantibodies-nature": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISMISSAL PROBLEM",
+        "body": "ME/CFS was classified as psychosomatic for decades. The 1980s 'yuppie flu' framing collapsed serious post-viral illness into a personality diagnosis, and millions of patients — disproportionately women — were told their symptoms were anxiety. No blood test existed to contradict the doctor.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The clinical term *neurasthenia* was used into the 1980s — a 19th-century diagnosis essentially meaning **'tired nerves'** — to dismiss what is now recognized as organic post-viral disease."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT GPCRs ACTUALLY DO",
+        "body": "G-protein-coupled receptors sit on cell surfaces and translate outside signals — adrenaline, acetylcholine, light, taste — into internal cellular action. About a third of all approved drugs target them. They are how the autonomic nervous system tells your heart to beat faster and your blood vessels to constrict."
+      },
+      {
+        "heading": "THE β2-ADRENERGIC RECEPTOR",
+        "body": "This specific receptor responds to adrenaline and noradrenaline. It governs heart rate, airway dilation, and vascular tone. Asthma inhalers (salbutamol) are β2 agonists; beta-blockers for hypertension target the related β1. An autoantibody jamming β2 would scramble the body's stress-response signaling at its source."
+      },
+      {
+        "heading": "WHY AUTOANTIBODIES FIT",
+        "body": "In autoimmune disease, the immune system makes antibodies against the body's own proteins. Functional autoantibodies against GPCRs don't destroy the receptor — they bind it and either block or over-activate it, like a stuck key in a lock. This explains why post-viral patients can have normal organ scans and yet measurable dysfunction.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of all approved pharmaceutical drugs target G-protein-coupled receptors?",
+            "options": [
+              "About 5%",
+              "About 15%",
+              "About 33%",
+              "About 70%"
+            ],
+            "correct": 2,
+            "explanation": "GPCRs are the largest druggable target class — roughly a third of all approved drugs act on them, which is why a GPCR-autoantibody mechanism has plausible therapeutic paths."
+          }
+        ]
+      },
+      {
+        "heading": "THE POST-VIRAL PATTERN",
+        "body": "Sustained illness following infection is not new. The 1918 flu left a wave of encephalitis lethargica; Epstein-Barr is the leading suspect in multiple sclerosis; Lyme, SARS, Ebola, and dengue all have documented post-acute syndromes. COVID's scale simply made the pattern impossible to ignore — tens of millions of cases at once forced the research dollars that ME/CFS never attracted alone.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1918",
+                "label": "Spanish flu → encephalitis lethargica wave"
+              },
+              {
+                "year": "1955",
+                "label": "Royal Free Hospital outbreak (London ME)"
+              },
+              {
+                "year": "1984",
+                "label": "Incline Village cluster — 'chronic EBV'"
+              },
+              {
+                "year": "1988",
+                "label": "CDC names CFS, dismisses as psychosomatic"
+              },
+              {
+                "year": "2015",
+                "label": "IOM report: ME/CFS is biological, not psychiatric"
+              },
+              {
+                "year": "2020",
+                "label": "COVID pandemic begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Long COVID prevalence est. 65M+ globally"
+              }
+            ],
+            "label": "the post-viral lineage"
+          }
+        ]
+      },
+      {
+        "heading": "WHY A BIOMARKER MATTERS",
+        "body": "Without an objective test, disability claims fail, drug trials cannot stratify patients, and insurers deny coverage. A confirmed blood marker shifts the disease from contested to billable — the same transition rheumatoid arthritis made when rheumatoid factor was identified in 1940 and multiple sclerosis made when MRI lesions became diagnostic in the 1980s."
+      }
+    ],
+    "generatedAt": "2026-05-05T04:48:52.368Z",
+    "label": "Autoantibodies & Post-Viral Illness",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-05-pacific-islands-solar-microgrids-hormuz-fuel": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DIESEL TRAP",
+        "body": "Small Pacific islands import almost every litre of liquid fuel they burn. Shipping diesel across thousands of kilometres of ocean to a few thousand customers makes per-kWh costs 3–5× what a mainland grid pays — before any geopolitical premium.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the **island premium**: the same barrel of Brent that fuels a Rotterdam power station costs roughly four times as much by the time it reaches a *genset* in Tarawa or Funafuti."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HORMUZ MATTERS HERE",
+        "body": "Pacific island fuel typically transships through Singapore from Persian Gulf refiners. A Hormuz disruption raises the landed price at every step — Brent, refining margin, tanker insurance, regional bunker — and the small-volume, long-route last leg amplifies each move.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "SG",
+              "FJ",
+              "TV",
+              "KI",
+              "WS",
+              "TO"
+            ],
+            "label": "the fuel route from Gulf to Pacific",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 1.2649,
+                "lng": 103.8201,
+                "label": "Singapore bunker hub"
+              },
+              {
+                "lat": -18.1416,
+                "lng": 178.4419,
+                "label": "Suva"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE CROSSOVER",
+        "body": "Solar PV module prices have fallen roughly 90% since 2010; lithium-iron-phosphate battery cells fell about 80% from 2015 to 2024. The crossover where solar-plus-storage beats diesel happened first in places with the highest delivered fuel cost — remote islands, not industrial mainlands."
+      },
+      {
+        "heading": "WHAT 'MICROGRID' MEANS",
+        "body": "A microgrid is a self-contained generation, storage, and distribution network that can island from any larger grid. For an isolated archipelago there is no larger grid to connect to — the microgrid is the entire electricity system, which is why control software and battery sizing matter more than on a mainland."
+      },
+      {
+        "heading": "THE 90% CEILING",
+        "body": "Going from 0 to 90% renewables is the cheap part; the last 10% is where costs explode. The final slice covers monsoon weeks and equipment failures, requiring either oversized batteries, a backup diesel genset kept warm, or imported synthetic fuel — which is why most island systems stop at 90–95% rather than chase 100%.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do most island solar microgrids stop at ~90% renewable rather than aim for 100%?",
+            "options": [
+              "Solar panels degrade too quickly in tropical humidity",
+              "The marginal cost of the last 10% — covering rare cloudy stretches — exceeds keeping a small diesel backup",
+              "International aid funding caps renewable share at 90%",
+              "Batteries cannot legally store more than 90% of grid demand"
+            ],
+            "correct": 1,
+            "explanation": "Sizing storage and generation for the worst-case week of low sun makes the final percentage points disproportionately expensive; a small diesel backup is usually cheaper than chasing pure renewables."
+          }
+        ]
+      },
+      {
+        "heading": "THE REGIONAL SCALE LEVER",
+        "body": "Pacific states procuring solar and storage individually pay small-buyer prices; pooling tenders across the Pacific Islands Forum captures volume discounts and shared technical capacity. The same logic that makes Caribbean states club together for vaccines and reinsurance applies to energy hardware.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Diesel (post-Hormuz)",
+                "value": "~55¢",
+                "tone": "unfavorable",
+                "weight": 55
+              },
+              {
+                "label": "Diesel (pre-shock)",
+                "value": "~35¢",
+                "tone": "neutral",
+                "weight": 35
+              },
+              {
+                "label": "Solar + storage",
+                "value": "~22¢",
+                "tone": "favorable",
+                "weight": 22
+              },
+              {
+                "label": "US mainland avg",
+                "value": "~16¢",
+                "tone": "neutral",
+                "weight": 16
+              }
+            ],
+            "label": "Pacific island electricity cost, indicative US¢/kWh"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T04:49:25.616Z",
+    "label": "Diesel Islands & the Solar Crossover",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-05-pakistan-senate-n45-highway-contracts-cancelled": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT TIED AID IS",
+        "body": "A loan that requires the borrower to spend the money on contractors from the lender's country. The borrower gets infrastructure; the lender's firms get guaranteed work. The OECD has tried for decades to phase tied aid out — Korea, Japan, and China remain the largest holdouts.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **tied aid credit** — distinct from grants and from untied concessional loans. The OECD's *Helsinki Package* (1991) banned tying for commercially viable projects, but enforcement is voluntary."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ONE BID IS THE TELL",
+        "body": "Competitive procurement assumes 3+ qualified bidders driving prices toward cost. When the funding source restricts the bidder pool to a single country's firms, the auction collapses — the lone bidder prices to the ceiling of what the borrower can absorb, not to the cost of the work.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In competitive public procurement, what is generally considered the minimum number of qualifying bids for a price to be defensible?",
+            "options": [
+              "1",
+              "2",
+              "3 or more",
+              "It doesn't matter, lowest wins"
+            ],
+            "correct": 2,
+            "explanation": "Most procurement codes — including Pakistan's PPRA rules — treat fewer than three qualifying bids as a red flag requiring re-tender or special justification."
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO-ENVELOPE METHOD",
+        "body": "Bidders submit technical and financial proposals in separate sealed envelopes. Only the financial envelope of bidders who clear the technical bar is opened. It blocks the common manipulation of writing technical specs that only one firm can meet, then accepting that firm's inflated price.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Pakistan's *Public Procurement Regulatory Authority* mandated two-envelope evaluation in its 2004 rules; enforcement has been the persistent gap, not the statute."
+          }
+        ]
+      },
+      {
+        "heading": "THE 224% MARKUP",
+        "body": "Bids that arrive at multiples of the engineer's estimate usually signal one of three things: the estimate was wrong, the scope changed, or the bidding pool was captured. When only one firm shows up to bid 3.24× the estimate, capture is the parsimonious explanation.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Engineer estimate",
+                "value": "Rs26bn",
+                "tone": "neutral",
+                "weight": 26
+              },
+              {
+                "label": "Sole Korean bid",
+                "value": "Rs84bn",
+                "tone": "unfavorable",
+                "weight": 84
+              }
+            ],
+            "label": "how the Chitral bid compares"
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "The Nowshera–Chitral road (N-45) climbs from the Peshawar valley into the Hindu Kush, ending near the Afghan border. It is Chitral's only year-round road link to the rest of Pakistan; the Lowari Tunnel underneath bypasses a pass that closes for months each winter.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF"
+            ],
+            "label": "the N-45 corridor",
+            "markers": [
+              {
+                "lat": 34.0151,
+                "lng": 71.9787,
+                "label": "Nowshera"
+              },
+              {
+                "lat": 35.7536,
+                "lng": 71.6822,
+                "label": "Lowari Tunnel"
+              },
+              {
+                "lat": 35.8511,
+                "lng": 71.7869,
+                "label": "Chitral"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE SENATE STEPPED IN",
+        "body": "Pakistan's National Highway Authority has historically had wide latitude on foreign-funded projects, with parliamentary scrutiny coming after disbursement. A Senate subcommittee voiding a bid pre-award is unusual — it signals the procurement guardrails are being moved upstream of the contractor selection, not just the audit."
+      }
+    ],
+    "generatedAt": "2026-05-05T04:49:56.219Z",
+    "label": "Tied Aid & Public Procurement",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-05-saudi-pif-brf-sadia-halal-2bn-jv": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY BRAZIL FEEDS THE UMMAH",
+        "body": "Brazil is the world's largest exporter of halal poultry, supplying roughly a third of global halal chicken trade. The country has no significant Muslim population — its dominance is industrial scale plus early certification investment, not cultural affinity.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Brazil",
+                "value": 35,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "USA",
+                "value": 12,
+                "tone": "neutral"
+              },
+              {
+                "label": "France",
+                "value": 9,
+                "tone": "neutral"
+              },
+              {
+                "label": "Thailand",
+                "value": 8,
+                "tone": "neutral"
+              },
+              {
+                "label": "Turkey",
+                "value": 6,
+                "tone": "favorable"
+              },
+              {
+                "label": "Ukraine",
+                "value": 5,
+                "tone": "favorable"
+              },
+              {
+                "label": "Others",
+                "value": 25,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global halal poultry exports, share"
+          }
+        ]
+      },
+      {
+        "heading": "THE CERTIFICATION PATCHWORK",
+        "body": "There is no single global halal standard. Malaysia's JAKIM, Indonesia's MUI/BPJPH, the GCC's GSO, and Turkey's HAK each maintain distinct rules — on stunning, on machine slaughter, on cross-contamination. A Brazilian abattoir typically holds five to fifteen separate certifications to access different markets.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Indonesia's 2024 mandate under **BPJPH** made halal certification compulsory for all food sold domestically — the first major market to do so, forcing exporters to recertify under Indonesian rules rather than rely on mutual recognition."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PIF BUYS THE FARM",
+        "body": "Saudi Arabia imports roughly 80% of its food. Vision 2030's food security pillar pushes PIF and SALIC (the Saudi Agricultural and Livestock Investment Company) to take equity stakes in upstream producers — Ukrainian grain, Australian feedlots, now Brazilian poultry — rather than rely on spot markets that politics can close.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              80,
+              88,
+              78,
+              77,
+              71,
+              73,
+              73,
+              74,
+              77,
+              73,
+              74,
+              80,
+              86,
+              93,
+              91,
+              91,
+              91
+            ],
+            "periods": [
+              "Apr 9",
+              "Apr 18",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 5"
+            ],
+            "label": "Trump visit China by May 31?",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "80%"
+              },
+              {
+                "atIndex": 16,
+                "label": "91%"
+              }
+            ],
+            "link": "https://polymarket.com/event/will-trump-visit-china-by",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHO SETS THE RULES",
+        "body": "Whoever certifies controls market access. Malaysia has spent forty years positioning JAKIM as the de-facto global benchmark; the GCC's Standardization Organization (GSO) is the Gulf counterweight. A Saudi-controlled supplier shifts certification gravity toward Riyadh — quietly, through procurement rules rather than treaties.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Malaysia",
+                "value": "JAKIM (1974)",
+                "cc": "MY",
+                "tone": "favorable"
+              },
+              {
+                "label": "Indonesia",
+                "value": "BPJPH (2014)",
+                "cc": "ID",
+                "tone": "neutral"
+              },
+              {
+                "label": "GCC",
+                "value": "GSO (2001)",
+                "cc": "SA",
+                "tone": "favorable"
+              },
+              {
+                "label": "Turkey",
+                "value": "HAK (2017)",
+                "cc": "TR",
+                "tone": "neutral"
+              },
+              {
+                "label": "UAE",
+                "value": "ESMA / Halal Mark",
+                "cc": "AE",
+                "tone": "neutral"
+              }
+            ],
+            "label": "major halal certification authorities"
+          }
+        ]
+      },
+      {
+        "heading": "THE PIF PLAYBOOK",
+        "body": "PIF's assets crossed $900bn in 2024, on a path to $2tn by 2030. Unlike Norway's Government Pension Fund, which is a passive index investor, PIF takes controlling or anchor stakes — Lucid, Newcastle United, LIV Golf, now BRF. The mandate is strategic positioning, not yield.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Sovereign wealth fund AUM",
+            "peers": [
+              {
+                "value": 1740,
+                "cc": "NO"
+              },
+              {
+                "value": 1350,
+                "cc": "CN"
+              },
+              {
+                "value": 1110,
+                "cc": "AE"
+              },
+              {
+                "value": 925,
+                "cc": "SA"
+              },
+              {
+                "value": 770,
+                "cc": "SG"
+              },
+              {
+                "value": 800,
+                "cc": "KW"
+              },
+              {
+                "value": 510,
+                "cc": "QA"
+              }
+            ],
+            "subjectCc": "SA",
+            "unit": "$bn"
+          }
+        ]
+      },
+      {
+        "heading": "A QUIZ",
+        "body": "Halal trade flows often surprise readers expecting Muslim-majority producers.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country is the largest exporter of halal poultry?",
+            "options": [
+              "Saudi Arabia",
+              "Turkey",
+              "Brazil",
+              "Indonesia"
+            ],
+            "correct": 2,
+            "explanation": "Brazil — non-Muslim majority — dominates global halal chicken exports through industrial scale and early investment in certification compliance."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-05"
+    ],
+    "generatedAt": "2026-05-05T04:50:32.018Z",
+    "label": "Halal Supply Chains & Sovereign Capital",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-05-trump-congo-m23-minerals-tshisekedi-third-term": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COBALT MONOPOLY",
+        "body": "The Democratic Republic of Congo produces roughly 70% of the world's cobalt — the metal that stabilizes lithium-ion battery cathodes. No substitute exists at scale, and the next-largest producer (Indonesia) is a distant second.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "DR Congo",
+                "value": 70,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Indonesia",
+                "value": 11,
+                "tone": "neutral"
+              },
+              {
+                "label": "Russia",
+                "value": 4,
+                "tone": "favorable"
+              },
+              {
+                "label": "Australia",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Philippines",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Cuba",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Canada",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Madagascar",
+                "value": 2,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global cobalt mine production share, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY DIGS IT",
+        "body": "Chinese firms own or operate roughly 15 of Congo's 19 industrial cobalt mines, including the Tenke Fungurume and Kisanfu complexes acquired from American Freeport-McMoRan in 2016 and 2020. Washington is trying to buy back relevance in a sector it walked away from a decade ago."
+      },
+      {
+        "heading": "THE M23 PATTERN",
+        "body": "M23 is the latest iteration of a Tutsi-led insurgency in eastern Congo that traces back to the spillover of the 1994 Rwandan genocide. The group went dormant after a 2013 defeat and re-emerged in 2021; UN experts and the US State Department have repeatedly documented Rwandan troops and materiel inside Congolese territory.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CD",
+              "RW",
+              "UG",
+              "BI",
+              "TZ"
+            ],
+            "label": "the Great Lakes theatre",
+            "markers": [
+              {
+                "lat": -1.6792,
+                "lng": 29.2228,
+                "label": "Goma (M23 frontline)"
+              },
+              {
+                "lat": -2.5083,
+                "lng": 28.8608,
+                "label": "Bukavu"
+              },
+              {
+                "lat": -10.7167,
+                "lng": 25.4667,
+                "label": "Kolwezi cobalt belt"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY RWANDA STAYS IN",
+        "body": "Eastern Congo's Kivu provinces hold coltan, gold, and tin that move across the Rwandan border and out through Kigali's airport — booked as Rwandan exports despite Rwanda having little of the geology. UN Group of Experts reports have tracked this pipeline since 2001; smuggled minerals are a load-bearing share of Rwandan foreign earnings.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "kivu",
+                "label": "Kivu mines"
+              },
+              {
+                "id": "m23",
+                "label": "M23 / armed groups"
+              },
+              {
+                "id": "rwa",
+                "label": "Rwanda re-export"
+              },
+              {
+                "id": "smelt",
+                "label": "Asian smelters"
+              },
+              {
+                "id": "oem",
+                "label": "Global electronics"
+              }
+            ],
+            "links": [
+              {
+                "source": "kivu",
+                "target": "m23",
+                "value": 60,
+                "label": "taxed at checkpoints"
+              },
+              {
+                "source": "m23",
+                "target": "rwa",
+                "value": 55,
+                "label": "cross-border"
+              },
+              {
+                "source": "kivu",
+                "target": "rwa",
+                "value": 30,
+                "label": "direct smuggling"
+              },
+              {
+                "source": "rwa",
+                "target": "smelt",
+                "value": 80,
+                "label": "\"Rwandan\" exports"
+              },
+              {
+                "source": "smelt",
+                "target": "oem",
+                "value": 80
+              }
+            ],
+            "label": "eastern Congo conflict-mineral flow"
+          }
+        ]
+      },
+      {
+        "heading": "THE KABILA DYNASTY",
+        "body": "Laurent-Désiré Kabila marched into Kinshasa in 1997 with Rwandan and Ugandan backing, ending Mobutu's 32-year rule. He was assassinated by a bodyguard in 2001 and his son Joseph took power at 29, ruling until 2019. Sanctioning a former Kabila now is Washington signaling that the family's residual networks — military, mining, intelligence — are the real lever inside Kinshasa."
+      },
+      {
+        "heading": "THE THIRD-TERM TEMPTATION",
+        "body": "Congo's constitution caps presidents at two terms. Tshisekedi, re-elected in 2023 amid disputed results, is now floating constitutional revision — the same path Museveni took in Uganda (2005), Kagame in Rwanda (2015), and Nkurunziza in Burundi (2015). Each revision was sold as stability; each entrenched a security state.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The regional pattern has a name in African constitutional law: ***tripatouillage*** — French for \"tinkering,\" the polite term for rewriting term limits to stay in power."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEVERAGE TRADE",
+        "body": "The December 2024 framework gives the US preferential offtake on Congolese cobalt and lithium in exchange for pressuring Rwanda over M23. It is a security-for-minerals barter — the same template the US is testing with Ukraine's rare earths and tried with Greenland.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of global cobalt mine supply comes from the DRC?",
+            "options": [
+              "About 30%",
+              "About 50%",
+              "About 70%",
+              "About 90%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 70% — a concentration unmatched by any other strategic mineral except possibly Chinese rare-earth processing."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T04:51:12.809Z",
+    "label": "Congo, Cobalt & the M23 War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-05-uk-modern-slavery-record-poverty-platforms": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL FRAME",
+        "body": "The Modern Slavery Act 2015 was the first national statute of its kind, consolidating trafficking, forced labour, and servitude into one offence with a life sentence ceiling. It also created the Independent Anti-Slavery Commissioner — the post Eleanor Lyons holds — and a corporate transparency clause requiring large firms to publish annual statements on their supply chains.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Section 54 — the **transparency in supply chains** clause — requires reporting but imposes no penalty for non-compliance. A 2024 review found roughly *40%* of in-scope firms either skip the statement or file a one-line placeholder."
+          }
+        ]
+      },
+      {
+        "heading": "THE NRM PIPELINE",
+        "body": "Suspected victims are referred into the National Referral Mechanism, where the Home Office decides whether trafficking indicators are met. Referrals have risen every year since the Act passed; the proportion involving British nationals has climbed alongside, overtaking foreign cohorts that historically dominated the caseload.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United Kingdom",
+                "value": "largest share",
+                "cc": "GB",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Albania",
+                "value": "long-time #1",
+                "cc": "AL",
+                "tone": "neutral"
+              },
+              {
+                "label": "Vietnam",
+                "value": "cannabis farms",
+                "cc": "VN",
+                "tone": "neutral"
+              },
+              {
+                "label": "Eritrea",
+                "value": "asylum-route",
+                "cc": "ER",
+                "tone": "neutral"
+              },
+              {
+                "label": "Sudan",
+                "value": "smuggling-linked",
+                "cc": "SD",
+                "tone": "neutral"
+              }
+            ],
+            "label": "top NRM referral nationalities (recent years)"
+          }
+        ]
+      },
+      {
+        "heading": "COUNTY LINES",
+        "body": "The dominant domestic exploitation pattern is county lines — urban drug networks coercing children and vulnerable adults to ferry heroin and crack to provincial towns via dedicated mobile numbers. Recruitment increasingly happens on Snapchat, Telegram, and gaming platforms, where 'easy money' offers reach teenagers before social services do.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does the term 'county lines' actually refer to?",
+            "options": [
+              "The county borders where police jurisdictions change",
+              "The dedicated mobile phone lines used to take drug orders",
+              "The rail lines connecting cities to coastal towns",
+              "The county-level court system handling trafficking"
+            ],
+            "correct": 1,
+            "explanation": "Each network runs a branded phone line — the 'line' is the asset; couriers and stash houses are replaceable around it."
+          }
+        ]
+      },
+      {
+        "heading": "THE DEBT-BONDAGE MECHANIC",
+        "body": "Modern domestic trafficking rarely involves chains. It runs on debt: fabricated rent arrears, drug 'taxes' for lost packages, advances against future earnings that compound faster than they can be repaid. The coercion is financial, which is why rising household debt and benefit gaps feed the supply of victims directly."
+      },
+      {
+        "heading": "WHY ENFORCEMENT LAGS",
+        "body": "Modern slavery cases require months of evidence-building across police, immigration, and labour-standards bodies that don't share databases. Convictions under the 2015 Act run in the low hundreds annually against tens of thousands of NRM referrals — a prosecution rate well below 5%. Lyons' call for specialist units echoes a 2019 independent review that recommended the same and was largely shelved."
+      },
+      {
+        "heading": "THE CITADELLE ECHO",
+        "body": "Britain abolished the slave trade in 1807 and slavery itself in 1833, paying compensation to slaveowners — a debt the Treasury only finished servicing in 2015, the same year the Modern Slavery Act passed. The historical irony is sharp: the statute marking Britain's modern stance arrived as the bondholders of the old one were finally paid off.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1807",
+                "label": "Slave Trade Act"
+              },
+              {
+                "year": "1833",
+                "label": "Slavery Abolition Act",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1835",
+                "label": "£20m compensation to slaveowners issued as gilts"
+              },
+              {
+                "year": "2015",
+                "label": "Treasury finishes paying off the loan"
+              },
+              {
+                "year": "2015",
+                "label": "Modern Slavery Act"
+              }
+            ],
+            "label": "Britain & slavery, the long arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-05T04:51:50.521Z",
+    "label": "Modern Slavery in the UK",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-05-us-helicopters-sink-six-iranian-boats-cargo-ship-deaths": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY MINES AND BOATS, NOT JETS",
+        "body": "Iran's naval doctrine is asymmetric by necessity. Its conventional navy is outmatched by a single US carrier strike group, so it leans on swarms of small fast-attack craft, mines, and shore-launched anti-ship missiles. The boats are cheap; the response is expensive.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The IRGC Navy operates separately from the regular **Artesh** navy — the Revolutionary Guard runs the *Boghammar* speedboats and the asymmetric playbook, while the regular navy handles blue-water deployments."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "The strait sits between Iran and Oman, not Iran and any Arab Gulf state. Iran's coastline runs along the entire northern edge. The deepest shipping channel hugs the Iranian side, which is why Iranian naval positioning matters disproportionately.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 26.1833,
+                "lng": 56.25,
+                "label": "Khasab (Oman)"
+              },
+              {
+                "lat": 27.1833,
+                "lng": 56.2667,
+                "label": "Bandar Abbas (Iran)"
+              },
+              {
+                "lat": 25.2867,
+                "lng": 51.5333,
+                "label": "Doha"
+              },
+              {
+                "lat": 25.2769,
+                "lng": 55.2962,
+                "label": "Dubai"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. The US escort operation — Earnest Will — reflagged Kuwaiti tankers under American flags to give the Navy legal cover to defend them. Operation Praying Mantis in April 1988 was the largest US naval surface engagement since WWII; the US sank half of Iran's operational fleet in a single day.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Iran-Iraq tanker attacks begin"
+              },
+              {
+                "year": "1987-07",
+                "label": "Operation Earnest Will: US escorts Kuwaiti tankers"
+              },
+              {
+                "year": "1987-10",
+                "label": "Iran mines USS Samuel B. Roberts route"
+              },
+              {
+                "year": "1988-04",
+                "label": "Operation Praying Mantis",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1988-07",
+                "label": "USS Vincennes downs Iran Air 655"
+              },
+              {
+                "year": "1988-08",
+                "label": "Iran-Iraq ceasefire"
+              }
+            ],
+            "label": "the Tanker War arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ESCORTS ARE SO EXPENSIVE",
+        "body": "Project Freedom's reported scale — 100 aircraft, 15,000 troops — reflects the math of defending a slow-moving convoy against fast-attack swarms and cruise missiles. Each tanker needs layered defense: airborne early warning, helicopter screen, surface combatants, and minesweepers. The convoy moves at 12 knots; the threat closes at Mach 0.8."
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Lloyd's of London war-risk premiums — not the missiles themselves — are what close a shipping lane. Once underwriters quote a Joint War Committee listed-area surcharge, premiums can jump from 0.05% of hull value to 1% or more per voyage. Commercial vessels reroute or stop sailing regardless of how many boats remain afloat.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              14,
+              9,
+              7,
+              5,
+              8,
+              3,
+              3
+            ],
+            "periods": [
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 5"
+            ],
+            "label": "Donald Trump announce that the United…",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "14%"
+              },
+              {
+                "atIndex": 6,
+                "label": "3%"
+              }
+            ],
+            "link": "https://polymarket.com/event/trump-announces-us-blockade-of-hormuz-lifted-by",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL REGIME",
+        "body": "Under UNCLOS Article 38, ships have a right of transit passage through international straits — coastal states cannot suspend passage or impose conditions. Iran signed UNCLOS in 1982 but never ratified it, and argues Hormuz is governed by its own domestic law. The US is not a UNCLOS party either but invokes its rules as customary international law.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country is closest to the deepest shipping lane through the Strait of Hormuz?",
+            "options": [
+              "Saudi Arabia",
+              "UAE",
+              "Iran",
+              "Oman"
+            ],
+            "correct": 2,
+            "explanation": "The deepwater channel hugs the Iranian coast — which is why Iranian shore batteries and small-boat positioning dominate the threat picture."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-05"
+    ],
+    "generatedAt": "2026-05-05T04:52:25.702Z",
+    "label": "Hormuz & the Tanker War Pattern",
+    "category": "politics",
+    "articleCount": 1
   }
 }
