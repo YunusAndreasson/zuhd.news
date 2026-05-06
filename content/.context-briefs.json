@@ -125924,5 +125924,1474 @@
     "label": "Dravidian Politics & the Cinema Pipeline",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-06-canary-islands-hantavirus-cruise-ship-port-denial": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PATHOGEN",
+        "body": "Hantaviruses are rodent-borne RNA viruses spread primarily through aerosolized urine, droppings, and saliva — not person-to-person in most strains. The Old World variants (Hantaan, Seoul, Puumala) cause hemorrhagic fever with renal syndrome; New World variants (Sin Nombre, Andes) cause pulmonary syndrome with case-fatality rates near 35-40%.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **Andes virus**, identified in Patagonia in 1995, is the only hantavirus with documented *person-to-person* transmission — which is why a cluster aboard a sealed cruise ship triggers acute alarm."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A SHIP IS THE WORST VENUE",
+        "body": "Cruise ships concentrate shared HVAC, communal dining, and rodent-friendly cargo holds. Once a hantavirus reservoir establishes onboard — typically in galley or storage areas — passengers and crew share air with the source for the duration of the voyage. The 1918 flu, norovirus, and COVID all demonstrated how maritime confinement amplifies respiratory and fecal-oral transmission.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How is hantavirus most commonly transmitted to humans?",
+            "options": [
+              "Mosquito bites",
+              "Aerosolized rodent excreta",
+              "Contaminated drinking water",
+              "Person-to-person respiratory droplets"
+            ],
+            "correct": 1,
+            "explanation": "Most hantavirus strains spread when humans inhale dust contaminated with infected rodent urine or droppings — not from other humans."
+          }
+        ]
+      },
+      {
+        "heading": "THE SOVEREIGN'S RIGHT TO REFUSE",
+        "body": "Under customary maritime law and the WHO International Health Regulations (2005), a coastal state may deny port entry to a vessel posing a public health risk — even one flying a friendly flag, even one carrying its own nationals. The duty to render humanitarian assistance (food, water, medical evacuation) survives; the duty to admit does not.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ES",
+              "PT",
+              "MA",
+              "CV",
+              "MR"
+            ],
+            "label": "the Atlantic refusal corridor",
+            "markers": [
+              {
+                "lat": 28.1235,
+                "lng": -15.4363,
+                "label": "Las Palmas"
+              },
+              {
+                "lat": 14.9177,
+                "lng": -23.5092,
+                "label": "Praia, Cape Verde"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE CANARIAN AUTONOMY",
+        "body": "Spain's 1978 constitution devolved substantial authority to its 17 autonomous communities. The Canary Islands hold a Special Economic and Fiscal Regime (REF) and exercise their own health competencies — meaning regional president Clavijo can override Madrid's port-clearance decision on health grounds.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why the standoff is between **Clavijo and Sánchez**, not Brussels and Madrid: the islands have *constitutional* health competence, not delegated authority."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1892 PRECEDENT",
+        "body": "Modern quarantine law was forged in the cholera pandemics of the 19th century, when ships from the Black Sea were held offshore at Hamburg, Marseille, and New York. The International Sanitary Conferences (1851 onward) eventually produced today's WHO framework — but the principle is older: Venice's 'quaranta giorni' (forty days) gave us the word in the 14th century, when ships from plague ports were held in the lagoon before crew could disembark."
+      },
+      {
+        "heading": "THE STRANDED-PASSENGER PROBLEM",
+        "body": "Once a ship is refused, every coastal state along its route faces the same calculus. The 2020 Zaandam and Diamond Princess cases showed how quickly a denied vessel becomes a diplomatic football — passengers' home countries pressure for repatriation while host states resist hosting the outbreak. Resolution typically requires one state to accept controlled disembarkation under negotiated isolation protocols.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1892",
+                "label": "Hamburg cholera ships held offshore"
+              },
+              {
+                "year": "1939",
+                "label": "MS St. Louis turned away by Cuba, US, Canada"
+              },
+              {
+                "year": "2020-02",
+                "label": "Diamond Princess quarantined at Yokohama",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020-03",
+                "label": "Zaandam refused by multiple S. American ports"
+              },
+              {
+                "year": "2026-05",
+                "label": "MV Hondius refused at Las Palmas"
+              }
+            ],
+            "label": "refused-ship precedents"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T17:42:44.607Z",
+    "label": "Hantaviruses & Quarantine Authority",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-06-coinbase-x402-ai-agents-ad-economy-micropayments": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FORGOTTEN STATUS CODE",
+        "body": "HTTP was specified in 1989 with a status code reserved for paid content: 402 Payment Required. It was never implemented. The web's founders expected micropayments would emerge; instead, advertising filled the vacuum and 402 sat unused for thirty-five years.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The original spec literally read *\"this code is reserved for future use\"* — a placeholder that outlived the assumptions behind it."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MICROPAYMENTS FAILED",
+        "body": "Every attempt at web micropayments — Millicent (1995), DigiCash, Flooz, Beenz — collapsed on the same wall: card networks charge ~30¢ minimum per transaction, making sub-dollar payments structurally unprofitable. Stablecoins on L2 rails settle for fractions of a cent, removing the floor that killed every prior attempt."
+      },
+      {
+        "heading": "THE GRAND BARGAIN",
+        "body": "The modern web runs on an implicit deal: publishers serve content free, users tolerate ads and tracking, advertisers pay publishers via Google and Meta. Roughly $700bn flows through this loop annually. AI agents break it by reading the content and skipping the ads — the consideration the publisher was paid for never gets delivered.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Google",
+                "value": "~$265bn",
+                "weight": 265
+              },
+              {
+                "label": "Meta",
+                "value": "~$160bn",
+                "weight": 160
+              },
+              {
+                "label": "Amazon",
+                "value": "~$50bn",
+                "weight": 50
+              },
+              {
+                "label": "ByteDance",
+                "value": "~$40bn",
+                "weight": 40
+              },
+              {
+                "label": "All others",
+                "value": "~$185bn",
+                "weight": 185
+              }
+            ],
+            "label": "global digital ad spend, 2024 (rough)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY STABLECOINS, NOT CARDS",
+        "body": "A stablecoin is a token pegged 1:1 to the dollar, redeemable against reserves of Treasuries and bank deposits. Settlement is final in seconds, fees are denominated in cents on L2s, and there is no chargeback layer — exactly the properties a machine-to-machine payment needs and exactly what card networks cannot offer."
+      },
+      {
+        "heading": "THE AGENT ECONOMICS PROBLEM",
+        "body": "An AI agent answering a question may hit fifty pages to compose one reply. At card-network economics that is impossible. At x402 economics — say a tenth of a cent per fetch — it is a rounding error for the agent and a real revenue stream for the publisher. The unit economics flip from impossible to obvious.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why couldn't credit cards solve web micropayments?",
+            "options": [
+              "Card networks have minimum fees (~30¢) that exceed the value of a micropayment",
+              "Cards are not accepted online",
+              "Regulators banned sub-dollar payments",
+              "Banks refuse to settle in dollars"
+            ],
+            "correct": 0,
+            "explanation": "Interchange fees plus per-transaction processing make sub-dollar payments structurally unprofitable — the floor stablecoins remove."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT THAT WORKED",
+        "body": "The one micropayment system that ever scaled was the iTunes Store: 99¢ songs, paid via card, only viable because Apple aggregated thousands of transactions before settling with the network. x402 inverts that — instead of aggregating to fit the rails, it changes the rails so each request can settle on its own."
+      }
+    ],
+    "generatedAt": "2026-05-06T17:43:16.139Z",
+    "label": "HTTP 402 & Agent Payments",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-06-fda-vaccine-studies-censored-rfk-hhs-suppression": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FIREWALL",
+        "body": "Since the 1962 Kefauver-Harris amendments — passed after thalidomide caused thousands of birth defects in Europe — FDA scientific review has operated under a norm of insulation from political appointees. Career reviewers evaluate evidence; the secretary sets policy. Crossing that line is rare and historically scandalous.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The post-thalidomide settlement gave FDA the authority to demand **proof of efficacy**, not just safety — and crucially, vested that judgment in **career scientists**, not political appointees."
+          }
+        ]
+      },
+      {
+        "heading": "PEER REVIEW IS NOT PUBLICATION",
+        "body": "When a journal 'accepts' a paper, peer reviewers and editors have already judged it methodologically sound. Withdrawing an accepted paper is not a scientific act — it is an administrative one. The science has been vetted; what is being suppressed is publication, not validity."
+      },
+      {
+        "heading": "THE TUSKEGEE PRECEDENT",
+        "body": "American public health has a documented history of suppressing data for political reasons — the Tuskegee syphilis study ran for 40 years until a whistleblower leaked it in 1972. The reforms that followed (IRBs, informed consent, the Belmont Report) were built on the principle that data suppression in public health is itself a public health harm."
+      },
+      {
+        "heading": "WHY VACCINE DATA IS DIFFERENT",
+        "body": "Vaccine efficacy and safety signals depend on continuous post-market surveillance — VAERS, the Vaccine Safety Datalink, hospitalization registries. Pulling a hospitalization analysis is not like shelving a single trial; it removes a data point from the time series clinicians and other regulators rely on globally.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "FDA CBER",
+                "role": "licenses vaccines, monitors safety",
+                "cc": "US"
+              },
+              {
+                "name": "CDC ACIP",
+                "role": "sets vaccine recommendations",
+                "cc": "US"
+              },
+              {
+                "name": "VAERS",
+                "role": "passive adverse-event reporting",
+                "cc": "US"
+              },
+              {
+                "name": "VSD",
+                "role": "active surveillance via health systems",
+                "cc": "US"
+              }
+            ],
+            "label": "the surveillance architecture"
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSPARENCY PARADOX",
+        "body": "'Radical transparency' as a slogan typically means releasing more data, not withdrawing analyses. When transparency rhetoric accompanies suppression, the linguistic inversion is itself the signal — a pattern political scientists have documented from Lysenkoism to the Soviet suppression of demographic data in the 1930s.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did the 1962 Kefauver-Harris amendments add to FDA's mandate?",
+            "options": [
+              "Authority to require proof of efficacy, not just safety",
+              "Authority to ban tobacco advertising",
+              "Authority to regulate medical devices",
+              "Authority to approve generic drugs"
+            ],
+            "correct": 0,
+            "explanation": "After thalidomide, Congress required drugs to be proven effective — a standard administered by career scientific reviewers, not political appointees."
+          }
+        ]
+      },
+      {
+        "heading": "THE GLOBAL FEEDBACK LOOP",
+        "body": "FDA decisions cascade. The EMA, MHRA, Health Canada, and WHO prequalification all weight FDA reviews heavily; many low-income countries adopt FDA-approved vaccines without independent review. Suppressing an FDA analysis removes evidence from regulatory ecosystems on every continent."
+      }
+    ],
+    "generatedAt": "2026-05-06T17:43:44.641Z",
+    "label": "Scientific Independence at FDA",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-06-google-gemma-4-speculative-decoding-edge-ai-3x-faster": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Large language models generate one token at a time, and each token requires a full forward pass through every layer of the network. On a 70-billion-parameter model, that pass is memory-bandwidth-bound — the GPU spends most of its time loading weights from HBM, not computing. Latency scales with output length, not prompt length.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The constraint is **memory bandwidth**, not FLOPs. A modern GPU can do far more arithmetic than its memory subsystem can feed it — which is why a single-token decode leaves most of the silicon idle."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRICK",
+        "body": "Speculative decoding runs a small, fast draft model that proposes several tokens ahead. The large model then verifies all of them in a single forward pass — the same pass that would otherwise produce just one token. Accepted drafts are kept; the first rejection is corrected and decoding continues from there.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "draft",
+                "label": "Draft model"
+              },
+              {
+                "id": "propose",
+                "label": "5 proposed tokens"
+              },
+              {
+                "id": "verify",
+                "label": "Target verifies in parallel"
+              },
+              {
+                "id": "accept",
+                "label": "Accepted tokens"
+              },
+              {
+                "id": "reject",
+                "label": "Rejected → resample"
+              }
+            ],
+            "links": [
+              {
+                "source": "draft",
+                "target": "propose",
+                "value": 5
+              },
+              {
+                "source": "propose",
+                "target": "verify",
+                "value": 5
+              },
+              {
+                "source": "verify",
+                "target": "accept",
+                "value": 4
+              },
+              {
+                "source": "verify",
+                "target": "reject",
+                "value": 1
+              }
+            ],
+            "label": "one decode step"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT'S LOSSLESS",
+        "body": "The verification step uses rejection sampling — a statistical technique that guarantees the final output distribution exactly matches what the large model would have produced on its own. Speculative decoding is not an approximation or a quality tradeoff; the published math (Leviathan et al., Google 2022) proves output equivalence."
+      },
+      {
+        "heading": "THE ACCEPTANCE RATE",
+        "body": "Speedup depends on how often the draft model guesses what the target model would say. On easy tokens — common words, predictable syntax — acceptance rates exceed 80%. On hard tokens — proper nouns, novel reasoning — they fall sharply. Real-world workloads average 2–4x, with code generation benefiting most because of its repetitive structure."
+      },
+      {
+        "heading": "WHY EDGE MATTERS",
+        "body": "Apache 2.0 means the weights can be embedded in commercial products without licensing fees or usage telemetry — the same license that made Linux and Android the substrates of modern computing. Open weights plus 3x decoding makes on-device inference economically viable: no per-token API cost, no round trip to a datacenter, no prompt leaving the user's machine.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Gemma",
+                "value": "Apache 2.0",
+                "cc": "US",
+                "tone": "favorable"
+              },
+              {
+                "label": "Llama",
+                "value": "Custom (commercial OK)",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "Qwen",
+                "value": "Apache 2.0",
+                "cc": "CN",
+                "tone": "favorable"
+              },
+              {
+                "label": "DeepSeek",
+                "value": "MIT",
+                "cc": "CN",
+                "tone": "favorable"
+              },
+              {
+                "label": "Mistral",
+                "value": "Apache 2.0 / commercial",
+                "cc": "FR",
+                "tone": "neutral"
+              }
+            ],
+            "label": "open-weights frontier models"
+          }
+        ]
+      },
+      {
+        "heading": "QUICK CHECK",
+        "body": "Speculative decoding speeds up inference without changing what the model outputs.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why doesn't speculative decoding reduce output quality?",
+            "options": [
+              "The draft model is trained on the same data as the target",
+              "Rejection sampling guarantees the output distribution matches the target model exactly",
+              "The target model overrides any draft tokens it disagrees with",
+              "The draft only proposes high-confidence tokens"
+            ],
+            "correct": 1,
+            "explanation": "Rejection sampling is the mathematical mechanism — it provably yields the same distribution the target model would produce alone, so the speedup is free."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T17:44:14.502Z",
+    "label": "Speculative Decoding",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-06-hungary-returns-oschadbank-gold-ukraine-bank-assets": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEVERAGE PLAY",
+        "body": "Sovereign asset seizures between non-belligerent states are vanishingly rare in peacetime — they shred the trust that lets foreign banks operate at all. When they happen, the stated reason (money laundering) is almost never the operative one; the operative one is whatever the seizing state wants the other to do.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Hungary's framing was *anti-money-laundering*; Kyiv read it as a hostage-taking over the **Druzhba** crude flow. Both can be true — the legal pretext and the geopolitical lever rarely contradict each other."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DRUZHBA IS THE LEVER",
+        "body": "Hungary's Százhalombatta refinery and Slovakia's Slovnaft were engineered around Russian Urals crude piped through Druzhba's southern branch. They are landlocked, calibrated to a specific blend, and have no maritime alternative that would not require months of retooling. This physical dependency is why Budapest extracted EU sanctions exemptions others didn't get.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "BY",
+              "UA",
+              "HU",
+              "SK",
+              "CZ"
+            ],
+            "label": "Druzhba southern branch",
+            "caption": "landlocked refineries, no maritime substitute"
+          }
+        ]
+      },
+      {
+        "heading": "THE ORBÁN SYSTEM",
+        "body": "Viktor Orbán's Fidesz won a two-thirds supermajority in 2010 and used it to rewrite the constitution, capture the judiciary, consolidate media, and build a transactional foreign policy that monetized vetoes inside the EU and NATO. The system survived four elections by combining gerrymandered districts, captured state media, and a rural base mobilized on cultural issues.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2010",
+                "label": "Fidesz wins 2/3 supermajority",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011",
+                "label": "new constitution"
+              },
+              {
+                "year": "2015",
+                "label": "border fence, migration pivot"
+              },
+              {
+                "year": "2021",
+                "label": "'child protection' law"
+              },
+              {
+                "year": "2022",
+                "label": "4th consecutive win"
+              },
+              {
+                "year": "2024",
+                "label": "Magyar splits from Fidesz"
+              },
+              {
+                "year": "2026-04",
+                "label": "Tisza wins election"
+              }
+            ],
+            "label": "Fidesz in power"
+          }
+        ]
+      },
+      {
+        "heading": "THE DEFECTOR FROM WITHIN",
+        "body": "Hungary's traditional opposition — socialists, greens, liberals — failed against Fidesz for fifteen years because their voters had already rejected them. Peter Magyar is a former Fidesz insider whose ex-wife served in Orbán's government. His Tisza party let voters reject Orbán without voting for parties they had already buried. The defector succeeded where external opposition could not.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did Peter Magyar succeed against Orbán where the established opposition had failed for 15 years?",
+            "options": [
+              "Tisza ran further left than the socialists on economics",
+              "Magyar came from inside Fidesz, so center-right voters could defect without crossing party lines",
+              "The EU directly funded the Tisza campaign",
+              "Orbán retired and endorsed Magyar"
+            ],
+            "correct": 1,
+            "explanation": "Hungary's opposition had been rejected repeatedly; only a defector from Fidesz itself could absorb disaffected center-right voters."
+          }
+        ]
+      },
+      {
+        "heading": "THE FROZEN EU FUNDS",
+        "body": "Brussels has withheld roughly €20bn in cohesion and recovery funds from Hungary over rule-of-law violations — judicial independence, anti-corruption, academic freedom, LGBTQ rights. Orbán traded vetoes on Ukraine aid and Russia sanctions partly to negotiate the release of these funds. A Tisza government that meets the conditions unfreezes the money — and removes the leverage Orbán used to extract it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The asset seizure now reads as a *legacy maneuver* — converting one last lever into cash before the system that built the leverage hands over the keys."
+          }
+        ]
+      },
+      {
+        "heading": "THE NORMALIZATION TEST",
+        "body": "Returning the gold is the cheapest possible signal Magyar can send Kyiv and Brussels: it costs Budapest nothing it was entitled to, settles a grievance with a neighbor at war, and demonstrates that the transactional foreign policy ends with Orbán. The harder tests — Druzhba dependence, sanctions alignment, the Russian-built Paks II nuclear plant — remain."
+      }
+    ],
+    "generatedAt": "2026-05-06T17:44:51.659Z",
+    "label": "Hungary, Ukraine & the Orbán Endgame",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-06-lebanon-data-security-war-civilian-targeting-smex": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PATTERN ISN'T NEW",
+        "body": "Modern militaries have fused signals intelligence with kill chains since the Vietnam-era Igloo White program seeded the Ho Chi Minh trail with acoustic and seismic sensors. What changed is that civilian databases — utilities, telecoms, vehicle registries — now provide richer pattern-of-life data than purpose-built sensor networks ever did.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **pattern-of-life analysis**: cross-referencing where a SIM pings, when an electricity meter spikes, and which car is registered to whom — until a name on a target list resolves to a single building at a single hour."
+          }
+        ]
+      },
+      {
+        "heading": "WHY LEBANON IS A SOFT TARGET",
+        "body": "Lebanon's state apparatus has been hollowed out by a six-year financial collapse. Ministries run on donated laptops, electricity is rationed, and most platforms predate any serious cybersecurity doctrine. The Israeli intelligence advantage isn't sophistication — it's that the defender has no functioning IT department.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL",
+              "SY",
+              "CY"
+            ],
+            "label": "the eastern Mediterranean theatre",
+            "markers": [
+              {
+                "lat": 33.8938,
+                "lng": 35.5018,
+                "label": "Beirut"
+              },
+              {
+                "lat": 33.1206,
+                "lng": 35.2033,
+                "label": "Bint Jbeil"
+              },
+              {
+                "lat": 33.2705,
+                "lng": 35.2038,
+                "label": "Litani river line"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 2006 LESSON ISRAEL DREW",
+        "body": "After the 2006 Lebanon War, Israel concluded that Hezbollah's command-and-control was distributed and survivable against kinetic strikes. The pivot was toward signals collection — drones loitering over Lebanon for years, intercepting cellular and microwave traffic to map who talks to whom, when, from where."
+      },
+      {
+        "heading": "THE UNIT 8200 MODEL",
+        "body": "Israel's Unit 8200 is the largest unit in the IDF and the country's NSA equivalent. Its alumni founded much of the Israeli cybersecurity industry — NSO Group, Check Point, Palo Alto Networks' early team. The same talent pipeline that builds commercial spyware also builds state targeting infrastructure.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The blurring is structural: a former 8200 operator can sell a *lawful intercept* product to a Gulf monarchy on Monday and consult on a targeting database on Tuesday. The skills, and often the codebases, are the same."
+          }
+        ]
+      },
+      {
+        "heading": "WHY UTILITIES ARE THE KEY",
+        "body": "Telecom data tells you who someone calls. Electricity-meter data tells you whether they are home. Vehicle registries tell you what they drive. Combining all three across a city resolves ambiguity that any one dataset leaves — and turns a name into a coordinate.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which dataset is most valuable for confirming whether a target is physically present at a location?",
+            "options": [
+              "Telecom call records",
+              "Electricity meter consumption",
+              "Vehicle registration database",
+              "Health insurance records"
+            ],
+            "correct": 1,
+            "explanation": "Smart-meter data shows real-time presence — appliance usage spikes when someone is home — while phones can be left behind and cars can be parked elsewhere."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL VOID",
+        "body": "International humanitarian law requires distinction between combatants and civilians, but says little about how targeting intelligence is gathered. A database leaked from a civilian ministry sits in a grey zone — the data itself is civilian, the use is military, and no treaty maps cleanly onto the hybrid."
+      }
+    ],
+    "generatedAt": "2026-05-06T17:45:30.162Z",
+    "label": "Data as Targeting Input",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-06-lightning-physics-gamma-ray-storm-cloud-mystery": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FIELD PROBLEM",
+        "body": "Lab measurements show air breaks down — ionizes into a conducting plasma — at about 3 million volts per meter. The strongest fields ever measured inside thunderclouds are roughly ten times weaker. By textbook physics, lightning should not start at all.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This gap between the **breakdown threshold** and the **observed cloud field** is the central unsolved problem of atmospheric electricity — open since Benjamin Franklin's kite."
+          }
+        ]
+      },
+      {
+        "heading": "THE STANDARD MODEL",
+        "body": "Ice crystals and soft hail collide in updrafts. Lighter ice carries positive charge to the cloud top; heavier graupel carries negative charge to the middle. The separation builds the field. The mechanism is real — it just doesn't build a field strong enough to ignite a strike."
+      },
+      {
+        "heading": "RUNAWAY ELECTRONS",
+        "body": "In 1992, physicist Alex Gurevich proposed that cosmic rays striking the atmosphere knock loose high-energy electrons. In a strong-enough field, these electrons accelerate faster than air can slow them, ionizing more atoms in a cascade. This 'relativistic runaway' may be the seed lightning needs."
+      },
+      {
+        "heading": "DARK LIGHTNING",
+        "body": "When that cascade fires, the decelerating electrons emit gamma rays — the same radiation produced by nuclear decay. Satellites have detected these terrestrial gamma-ray flashes since 1994; they last under a millisecond and carry energies rivaling medical X-ray machines. A passenger plane flying through one would receive a measurable radiation dose.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What do thunderstorms emit that was first detected from orbit, not from the ground?",
+            "options": [
+              "Infrared heat plumes",
+              "Gamma-ray flashes",
+              "Radio static",
+              "Ultraviolet halos"
+            ],
+            "correct": 1,
+            "explanation": "NASA's Compton Gamma Ray Observatory, designed to study distant astrophysical sources, accidentally discovered terrestrial gamma-ray flashes coming from Earth's own atmosphere in 1994."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BALLOONS AND DRONES",
+        "body": "Satellites see gamma flashes from above; ground sensors catch the strike's aftermath. Neither can measure the field inside the cloud at the moment of breakdown. Sending instrumented balloons and drones into active thunderstorms is the only way to sample the volume where the physics actually happens — and the reason the field has progressed slowly for a century."
+      },
+      {
+        "heading": "WHY IT MATTERS BEYOND METEOROLOGY",
+        "body": "Lightning is the only natural particle accelerator inside the atmosphere. Understanding it informs aircraft shielding, the radiation environment of high-altitude flight, and models of how early Earth's atmosphere generated the organic molecules that preceded life."
+      }
+    ],
+    "generatedAt": "2026-05-06T17:45:56.723Z",
+    "label": "Lightning & Gamma-Ray Flashes",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-06-mali-bamako-jnim-offensive-defense-minister-russians-flee": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COUP BELT",
+        "body": "Since 2020, a contiguous belt of Sahel states — Mali, Burkina Faso, Niger, Guinea, Chad — has fallen to military juntas. Each coup followed the same script: jihadist violence the elected government couldn't contain, soldiers seizing power promising security, then signing on Russian mercenaries after expelling French troops.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ML",
+              "BF",
+              "NE",
+              "TD",
+              "GN",
+              "SN",
+              "MR"
+            ],
+            "label": "the Sahel coup belt",
+            "caption": "five military takeovers, 2020–2023"
+          }
+        ]
+      },
+      {
+        "heading": "WHO IS JNIM",
+        "body": "Jama'at Nusrat al-Islam wal-Muslimin — the Group for the Support of Islam and Muslims — formed in 2017 by merging four Sahelian jihadist factions under Iyad Ag Ghaly, a Tuareg notable who fought in Gaddafi's Islamic Legion. It pledges allegiance to al-Qaeda, not Islamic State, and has steadily out-competed its IS-Sahel rival across rural Mali and Burkina Faso.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The faction's name matters: **Nusrat al-Islam wal-Muslimin** translates as *support of Islam and Muslims* — a deliberate framing as defenders of local communities, not a transnational caliphate project."
+          }
+        ]
+      },
+      {
+        "heading": "THE TUAREG QUESTION",
+        "body": "Northern Mali's Tuareg population launched four major rebellions since independence (1962, 1990, 2006, 2012), each ending in a peace accord the central government later abandoned. The 2012 rebellion briefly carved out the state of Azawad before jihadist groups absorbed the secular Tuareg movement — the same fusion now pressing on Bamako.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1960",
+                "label": "Independence from France"
+              },
+              {
+                "year": "2012",
+                "label": "Tuareg rebellion; Azawad declared",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2013",
+                "label": "French Operation Serval"
+              },
+              {
+                "year": "2017",
+                "label": "JNIM formed"
+              },
+              {
+                "year": "2020",
+                "label": "First Mali coup"
+              },
+              {
+                "year": "2021",
+                "label": "Second Mali coup; Wagner arrives"
+              },
+              {
+                "year": "2022",
+                "label": "French troops expelled"
+              },
+              {
+                "year": "2023",
+                "label": "UN MINUSMA withdrawn"
+              }
+            ],
+            "spans": [
+              {
+                "from": "2013",
+                "to": "2022",
+                "label": "French military presence",
+                "tone": "neutral"
+              },
+              {
+                "from": "2021",
+                "to": "2026",
+                "label": "Russian Wagner/Africa Corps presence",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Mali's unraveling"
+          }
+        ]
+      },
+      {
+        "heading": "WAGNER, THEN AFRICA CORPS",
+        "body": "After Prigozhin's 2023 death, the Kremlin folded Wagner's African operations into the GRU-controlled Africa Corps. The model stayed the same: regime protection in exchange for gold concessions and basing rights. Mali's Yatela and Sadiola gold mines became the de facto pay packet — a colonial extraction model with Russian flags instead of French ones.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Mali",
+                "value": "~1,500 personnel",
+                "cc": "ML",
+                "weight": 1500
+              },
+              {
+                "label": "CAR",
+                "value": "~2,000",
+                "cc": "CF",
+                "weight": 2000
+              },
+              {
+                "label": "Libya",
+                "value": "~1,800",
+                "cc": "LY",
+                "weight": 1800
+              },
+              {
+                "label": "Burkina Faso",
+                "value": "~300",
+                "cc": "BF",
+                "weight": 300
+              },
+              {
+                "label": "Niger",
+                "value": "~100",
+                "cc": "NE",
+                "weight": 100
+              }
+            ],
+            "label": "Russian mercenary footprint in Africa, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BAMAKO MATTERS",
+        "body": "Sahel capitals have fallen to insurgencies before — Mogadishu in 1991, Monrovia in 1990 — but never to a jihadist coalition with territorial ambitions. A Bamako collapse would put a Salafist-Tuareg alliance in control of a 1.2 million km² country bordering seven states, including the Atlantic-facing Senegal and Côte d'Ivoire that have so far escaped the coup belt.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which group does JNIM pledge allegiance to?",
+            "options": [
+              "Islamic State",
+              "Al-Qaeda",
+              "The Muslim Brotherhood",
+              "No external group"
+            ],
+            "correct": 1,
+            "explanation": "JNIM is al-Qaeda's Sahel franchise; its rival ISGS/IS-Sahel pledges to Islamic State, and the two factions fight each other as well as government forces."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T17:46:33.120Z",
+    "label": "JNIM & the Sahel Collapse",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-06-pakistan-power-tariff-rs1-75-unit-capacity-charges-relief": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A CAPACITY CHARGE IS",
+        "body": "Pakistan's power purchase contracts pay independent producers a fixed monthly fee just for being available — whether the grid dispatches them or not. The fee covers the plant's debt service and equity return, denominated largely in dollars. Consumers pay it through tariffs even when the plant sits idle.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The contracts split payments into two legs: a **capacity payment** (fixed, dollar-indexed, owed regardless of output) and an **energy payment** (variable, fuel-pass-through). The first leg is the trap."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE FLEET SITS IDLE",
+        "body": "Pakistan built roughly 45 GW of generation capacity against a peak demand near 30 GW. The surplus arrived just as tariff hikes and rooftop solar pushed grid consumers off-system. Plants that cost billions to build now run at low utilization while their capacity payments keep accruing.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "consumers",
+                "label": "Consumers"
+              },
+              {
+                "id": "discos",
+                "label": "DISCOs"
+              },
+              {
+                "id": "ipps",
+                "label": "IPPs (idle & active)"
+              },
+              {
+                "id": "fuel",
+                "label": "Fuel suppliers"
+              },
+              {
+                "id": "budget",
+                "label": "Federal budget"
+              }
+            ],
+            "links": [
+              {
+                "source": "consumers",
+                "target": "discos",
+                "value": 2400,
+                "label": "tariff"
+              },
+              {
+                "source": "discos",
+                "target": "ipps",
+                "value": 1800,
+                "label": "capacity + energy"
+              },
+              {
+                "source": "ipps",
+                "target": "fuel",
+                "value": 1100,
+                "label": "imports"
+              },
+              {
+                "source": "discos",
+                "target": "budget",
+                "value": 600,
+                "label": "shortfall"
+              },
+              {
+                "source": "budget",
+                "target": "discos",
+                "value": 600,
+                "label": "subsidies"
+              }
+            ],
+            "label": "the circular debt loop"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1994 ORIGIN",
+        "body": "The IPP framework was crafted under Benazir Bhutto's 1994 power policy to break chronic blackouts. To attract foreign capital fast, the state guaranteed dollar-indexed returns and take-or-pay offtake. It worked — capacity arrived. The bill came due decades later, when the rupee collapsed and demand growth stalled.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1994",
+                "label": "Bhutto's IPP policy",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2002",
+                "label": "Musharraf 2002 power policy expands IPPs"
+              },
+              {
+                "year": "2015",
+                "label": "CPEC coal/LNG plants signed"
+              },
+              {
+                "year": "2022",
+                "label": "Rupee collapse balloons capacity bill"
+              },
+              {
+                "year": "2024",
+                "label": "IMF conditions force IPP renegotiation"
+              }
+            ],
+            "label": "how the bill compounded"
+          }
+        ]
+      },
+      {
+        "heading": "THE RUPEE TRANSMISSION",
+        "body": "Capacity payments are largely dollar-denominated. Every 10% rupee depreciation raises the capacity bill in rupee terms by roughly the same amount, even if not a single new megawatt was added.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019
+            ],
+            "periods": [
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHO NEPRA IS",
+        "body": "The National Electric Power Regulatory Authority sets tariffs through quarterly adjustments and an annual base review. It is technically independent but operates inside a triangle of pressures: IMF program targets, the Power Division's political demands, and consumer affordability. The Rs1.75 relief is the rare moment when the math points in the consumer's favor.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Pakistan's installed generation capacity sits unused at peak demand?",
+            "options": [
+              "About 5%",
+              "About 15%",
+              "About 30%",
+              "About 50%"
+            ],
+            "correct": 2,
+            "explanation": "Pakistan has roughly 45 GW installed against ~30 GW peak demand — about a third of the fleet is surplus, but capacity payments still accrue on it."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-06"
+    ],
+    "generatedAt": "2026-05-06T17:47:04.914Z",
+    "label": "Capacity Charges & Pakistan's Power Sector",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-06-plutino-2002-xv93-atmosphere-kuiper-belt-discovery": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE KUIPER BELT IS",
+        "body": "A doughnut of icy bodies beyond Neptune, stretching from about 30 to 50 astronomical units from the Sun. Predicted by Gerard Kuiper in 1951, first object confirmed in 1992. It is the source region for short-period comets and the leftover construction debris of the outer solar system.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The belt holds an estimated **100,000+ objects** larger than 100 km — more mass in small bodies than the entire asteroid belt, but still only about a tenth of Earth's mass total."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A PLUTINO IS",
+        "body": "A Kuiper Belt object locked in a 2:3 orbital resonance with Neptune — for every two Neptune orbits, the plutino completes three. Pluto is the prototype, hence the name. The resonance is what protects these bodies from being scattered by Neptune's gravity over billions of years."
+      },
+      {
+        "heading": "WHY ATMOSPHERES ARE HARD OUT THERE",
+        "body": "Holding an atmosphere requires enough gravity to overcome the thermal velocity of gas molecules. Small, cold bodies normally lose volatiles to space — except when surface ices sublimate fast enough to maintain a transient atmosphere. Pluto manages this only near its perihelion; when it recedes, its nitrogen atmosphere partially freezes back onto the surface."
+      },
+      {
+        "heading": "THE CLASSIFICATION FIGHT",
+        "body": "The IAU's 2006 definition demoted Pluto by adding a third criterion: a planet must clear its orbital neighborhood. Pluto shares its zone with thousands of plutinos, so it became a dwarf planet. Critics argued the criterion was geocentric — applied strictly, even Earth fails it (it shares space with near-Earth asteroids).",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What new criterion did the IAU's 2006 definition add to demote Pluto?",
+            "options": [
+              "Must be spherical",
+              "Must orbit the Sun directly",
+              "Must have cleared its orbital neighborhood",
+              "Must have at least one moon"
+            ],
+            "correct": 2,
+            "explanation": "The 'cleared the neighborhood' criterion is what disqualifies Pluto — it shares its orbital zone with thousands of other Kuiper Belt objects."
+          }
+        ]
+      },
+      {
+        "heading": "THE NEW HORIZONS BASELINE",
+        "body": "Until NASA's New Horizons flew past Pluto in July 2015, almost everything known about the outer solar system was inferred from telescopes. The flyby revealed nitrogen glaciers, a haze layer extending 200 km up, and active resurfacing — overturning the prior consensus that small icy worlds were geologically dead.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US"
+            ],
+            "label": "ground-based plutino observatories",
+            "markers": [
+              {
+                "lat": 19.8207,
+                "lng": -155.4681,
+                "label": "Mauna Kea (Keck, Subaru)"
+              },
+              {
+                "lat": 32.7807,
+                "lng": -105.8203,
+                "label": "Apache Point (Pluto recovery)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE VOLATILE-RETENTION RULE",
+        "body": "Schaller and Brown's 2007 framework predicts which trans-Neptunian objects can retain volatiles based on size and temperature. Methane, nitrogen, and carbon monoxide each have different escape velocities; bodies below specific mass thresholds should lose them within the age of the solar system. 2002 XV93 sits below the line and shouldn't have what it has."
+      }
+    ],
+    "generatedAt": "2026-05-06T17:47:34.124Z",
+    "label": "Plutinos & the Kuiper Belt",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-06-sanofi-teplizumab-fda-voucher-political-override": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT TEPLIZUMAB ACTUALLY DOES",
+        "body": "Teplizumab is a monoclonal antibody that binds CD3 on T cells, blunting the autoimmune attack that destroys insulin-producing beta cells. In stage-2 type 1 diabetes patients, a single 14-day course delays clinical onset by a median of about two years — the first disease-modifying therapy ever approved for T1D, cleared by the FDA in 2022.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The drug doesn't *prevent* diabetes — it buys time before insulin dependence. For a child diagnosed at autoantibody stage, two years without daily injections is a meaningful window."
+          }
+        ]
+      },
+      {
+        "heading": "HOW FDA REVIEW NORMALLY WORKS",
+        "body": "A new drug application lands at the Center for Drug Evaluation and Research, where a multi-disciplinary team — medical officers, statisticians, pharmacologists, toxicologists — writes independent reviews. The division director signs off on the consensus. Center directors and the Commissioner almost never touch individual drug decisions; their job is policy, not adjudication."
+      },
+      {
+        "heading": "THE BUMPERS DOCTRINE",
+        "body": "FDA's institutional credibility rests on a 1962 statutory bargain: the agency, not Congress or the White House, decides whether a drug is safe and effective. The Kefauver-Harris Amendments — passed after thalidomide caused thousands of birth defects in Europe — gave career scientists insulating authority precisely so political pressure could not move approvals.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1906",
+                "label": "Pure Food and Drug Act"
+              },
+              {
+                "year": "1938",
+                "label": "Sulfanilamide deaths → FDCA"
+              },
+              {
+                "year": "1962",
+                "label": "Thalidomide → Kefauver-Harris",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1992",
+                "label": "PDUFA user fees"
+              },
+              {
+                "year": "2012",
+                "label": "Breakthrough designation"
+              }
+            ],
+            "label": "FDA's authority, expanded in crisis"
+          }
+        ]
+      },
+      {
+        "heading": "PRIORITY REVIEW VOUCHERS",
+        "body": "FDA grants tradable vouchers — for rare pediatric, tropical, or material-threat drugs — that compress review time from ~10 months to ~6 months. Sponsors sell unused vouchers; recent transactions have cleared in the $100M range. Makary's expanded voucher program tied eligibility to broader policy goals, which is why pulling out is a costly signal."
+      },
+      {
+        "heading": "WHY OVERRIDES ARE STRUCTURALLY RARE",
+        "body": "When a political appointee overrules career staff, the next sponsor reads the signal: review outcomes are negotiable upward of the science. That degrades the value of every future approval — pharma's willingness to invest billions in trials depends on the rules being legible. Makary's own past warning about overrides is the textbook formulation of that risk.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What 1960s event gave FDA its modern authority to require proof of efficacy before approval?",
+            "options": [
+              "The thalidomide birth-defect crisis",
+              "The polio vaccine contamination scandal",
+              "The Tuskegee syphilis study revelations",
+              "The Watergate hearings"
+            ],
+            "correct": 0,
+            "explanation": "Thalidomide caused thousands of severe birth defects in Europe; FDA reviewer Frances Kelsey blocked it in the US, and Congress passed Kefauver-Harris in 1962 to require efficacy proof."
+          }
+        ]
+      },
+      {
+        "heading": "THE EXIT AS LEVERAGE",
+        "body": "A sponsor walking away from a flagship FDA program is unusual — drugmakers normally absorb friction quietly to preserve relationships. Sanofi's public exit converts a single-drug dispute into a credibility test for the voucher program itself, raising the cost of the override beyond this one decision."
+      }
+    ],
+    "generatedAt": "2026-05-06T17:48:08.165Z",
+    "label": "FDA Review & Political Override",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-06-syria-egypt-relations-rekindled-cairo-damascus-trade": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO POLES OF ARAB POLITICS",
+        "body": "Cairo and Damascus have been the two organizing capitals of Arab political life since independence — Egypt the demographic and cultural center, Syria the ideological frontline against Israel. When they align, regional blocs form; when they break, the Arab order fragments.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Arab League itself was founded in **Cairo in 1945**; its headquarters moved briefly to *Tunis* (1979–1990) after Egypt was expelled for the Camp David accords, then returned. The geography of Arab institutional gravity has always been Cairo."
+          }
+        ]
+      },
+      {
+        "heading": "THE UAR EXPERIMENT",
+        "body": "In 1958 Egypt and Syria merged into a single state — the United Arab Republic — under Nasser. Damascus dissolved its parliament, banned its parties, and accepted Cairo's ministers. Syrian officers staged a coup three years later and seceded; the wound to pan-Arab nationalism never fully healed.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1958",
+                "label": "United Arab Republic formed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1961",
+                "label": "Syria secedes after coup"
+              },
+              {
+                "year": "1973",
+                "label": "Joint October War vs Israel"
+              },
+              {
+                "year": "1979",
+                "label": "Egypt expelled from Arab League (Camp David)"
+              },
+              {
+                "year": "2011",
+                "label": "Egypt cuts ties as Syrian war begins"
+              },
+              {
+                "year": "2023",
+                "label": "Assad readmitted to Arab League"
+              },
+              {
+                "year": "2024",
+                "label": "Assad falls; Sharaa takes Damascus"
+              }
+            ],
+            "label": "Cairo–Damascus, seven decades"
+          }
+        ]
+      },
+      {
+        "heading": "WHY LABOR MARKETS",
+        "body": "Egypt has roughly 110 million people and chronic youth unemployment; Syria after 14 years of war needs reconstruction labor and remittance flows reversed. The economic logic of Egyptian workers rebuilding Aleppo mirrors the Gulf labor model that has funded Egyptian households for fifty years.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              54.6838,
+              53.2548,
+              53.0913,
+              53.108563,
+              53.108563,
+              53.3639,
+              53.1356,
+              52.4198,
+              51.9627,
+              51.7698,
+              51.884157,
+              51.884157,
+              51.884157,
+              51.970698,
+              51.9993,
+              51.7463,
+              52.6215,
+              52.619542,
+              52.572404,
+              52.572404,
+              52.6099,
+              52.5498,
+              52.8295,
+              53.0206,
+              53.623047,
+              53.639736,
+              53.639736,
+              53.5567,
+              53.5362,
+              53.6199
+            ],
+            "periods": [
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6"
+            ],
+            "label": "Egyptian pound",
+            "unit": "EGP / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE RECOGNITION QUESTION",
+        "body": "Ahmed al-Sharaa — formerly Abu Mohammad al-Jolani of Hayat Tahrir al-Sham — leads a government that emerged from a US-designated terrorist organization. Every Arab capital that exchanges ambassadors with Damascus is making a sovereign judgment that the designation no longer governs their foreign policy. The ambassadorial seat is the test, not the trade deals.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "EG",
+              "SY",
+              "SA",
+              "AE",
+              "JO",
+              "TR",
+              "IQ"
+            ],
+            "label": "the regional cast watching this opening"
+          }
+        ]
+      },
+      {
+        "heading": "THE AMBASSADOR AS SIGNAL",
+        "body": "In Arab diplomatic practice, exchanging chargés d'affaires is a low-commitment gesture; naming an ambassador requires the host's agrément and is a public acceptance of the sending government's legitimacy. Egypt holding the seat empty while permitting security and trade talks is a calibrated half-measure — engagement without endorsement.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does it mean diplomatically when a country accepts another's ambassador (grants agrément)?",
+            "options": [
+              "It formally recognizes that government as legitimate",
+              "It creates a binding defense pact",
+              "It waives diplomatic immunity for that envoy",
+              "It is required by UN membership"
+            ],
+            "correct": 0,
+            "explanation": "Granting agrément is the host state's formal acceptance of both the individual envoy and, implicitly, the legitimacy of the sending government — which is why Cairo's withholding it is meaningful."
+          }
+        ]
+      },
+      {
+        "heading": "THE SISI CALCULUS",
+        "body": "Sisi came to power in 2013 by removing a Muslim Brotherhood government; Sharaa's roots are in Sunni Islamist insurgency. Cairo's caution reflects an ideological allergy as much as a strategic one — normalizing with a former jihadist administration cuts against the regime's founding narrative.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Abdel Fattah al-Sisi",
+                "role": "Egyptian President",
+                "years": "2014–",
+                "cc": "EG"
+              },
+              {
+                "name": "Ahmed al-Sharaa",
+                "role": "Syrian transitional President",
+                "years": "2024–",
+                "cc": "SY"
+              }
+            ],
+            "label": "the two presidencies"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-06"
+    ],
+    "generatedAt": "2026-05-06T17:48:42.851Z",
+    "label": "Cairo–Damascus, the long thaw",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-06-zuckerberg-meta-llama-copyright-infringement-lawsuit-piracy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LIBGEN PROBLEM",
+        "body": "Library Genesis is a shadow library hosting millions of pirated books and academic papers, originally seeded from Russian academic networks in the 2000s. It is the de facto training corpus for text models — comprehensive, well-formatted, and unambiguously infringing at the source.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term for what Meta allegedly did is *seeding* — when you torrent, your client by default re-uploads chunks to other peers. Downloading is reproduction; **seeding is distribution**, which carries far higher statutory damages."
+          }
+        ]
+      },
+      {
+        "heading": "FAIR USE AND THE FOUR FACTORS",
+        "body": "US courts evaluate fair use through four factors from the 1976 Copyright Act: purpose of the use, nature of the work, amount taken, and effect on the market. Transformative purpose — turning books into model weights rather than reselling books — has carried recent AI rulings. But fair use analyzes the use, not the acquisition.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "the fair use of a copyrighted work … is not an infringement of copyright",
+            "speaker": "US Copyright Act, §107",
+            "year": "1976"
+          }
+        ]
+      },
+      {
+        "heading": "THE ACQUISITION QUESTION",
+        "body": "The 2025 Bartz v. Anthropic ruling found training itself was fair use but separated out the acquisition: Anthropic's use of pirated copies was not protected, and the company settled the piracy claim while winning the training claim. Meta's case sharpens the same split — fair-use training does not launder infringing acquisition."
+      },
+      {
+        "heading": "WHY METADATA STRIPPING MATTERS",
+        "body": "Section 1202 of the DMCA makes it a separate violation to remove copyright management information — author, ISBN, rightsholder — when you know it will conceal infringement. Stripping metadata is independently actionable, separate from the underlying copying, with its own statutory damages of $2,500 to $25,000 per work.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the *Section 1202* trap: even if training on the books were fully fair use, deliberately scrubbing the **CMI** to make the books look unattributed is a standalone tort with its own damages clock."
+          }
+        ]
+      },
+      {
+        "heading": "THE CEO LIABILITY DOCTRINE",
+        "body": "Corporate officers who personally direct or approve infringement can be held individually liable — the doctrine traces to the 1916 Dangler case and was reaffirmed for copyright in the Napster era. Documented instructions from a named executive convert a corporate suit into a personal one, with no shield from the corporate veil."
+      },
+      {
+        "heading": "THE STATUTORY DAMAGES MATH",
+        "body": "US copyright law provides $750 to $30,000 per work in statutory damages, rising to $150,000 per work for willful infringement. Across millions of books, the theoretical maximum exceeds any settlement in copyright history — which is why these cases almost always settle, and why the willfulness finding is the entire fight.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the maximum statutory damages per work for willful copyright infringement under US law?",
+            "options": [
+              "$30,000",
+              "$150,000",
+              "$1 million",
+              "unlimited actual damages only"
+            ],
+            "correct": 1,
+            "explanation": "17 USC §504(c)(2) caps willful infringement at $150,000 per work — the multiplier that turns mass piracy claims into existential numbers."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T17:49:15.876Z",
+    "label": "AI Training & Copyright",
+    "category": "tech",
+    "articleCount": 1
   }
 }
