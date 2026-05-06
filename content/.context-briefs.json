@@ -122701,5 +122701,1576 @@
     "label": "Peshawar & the Frontier",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-04-trump-border-wall-borderlands-tohono-oodham-construction": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "A NATION SPLIT BY A LINE",
+        "body": "The Tohono O'odham Nation's traditional territory was bisected by the 1853 Gadsden Purchase, which moved the US-Mexico border south and left roughly 2,000 tribal members on the Mexican side. The community predates both nations by centuries.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "MX"
+            ],
+            "label": "Tohono O'odham lands across the border",
+            "markers": [
+              {
+                "lat": 31.9176,
+                "lng": -111.8807,
+                "label": "Sells (tribal capital)"
+              },
+              {
+                "lat": 31.3333,
+                "lng": -111.0833,
+                "label": "San Miguel Gate"
+              },
+              {
+                "lat": 31.8667,
+                "lng": -112.8167,
+                "label": "Quitobaquito Springs"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE WAIVER MECHANISM",
+        "body": "The 2005 REAL ID Act gave the DHS Secretary unilateral authority to waive any law — environmental, cultural, religious — that would impede border barrier construction. It is the most expansive waiver power Congress has ever granted a cabinet official, and courts have consistently declined to review it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The waiver has been invoked over **80 times** since 2005, suspending statutes including the Endangered Species Act, the Clean Water Act, the Native American Graves Protection and Repatriation Act, and the *American Indian Religious Freedom Act*."
+          }
+        ]
+      },
+      {
+        "heading": "THE WATER QUESTION",
+        "body": "Border construction has drained Quitobaquito Springs — a sacred site to the O'odham and one of the only year-round water sources in the Sonoran Desert — by tapping the same aquifer for concrete mixing. The springs sustained desert pupfish and human settlement for over 16,000 years.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Congress shall make no law respecting an establishment of religion, or prohibiting the free exercise thereof.",
+            "speaker": "US Constitution, First Amendment"
+          }
+        ]
+      },
+      {
+        "heading": "THE WILDLIFE CORRIDOR",
+        "body": "The borderlands host the last US populations of jaguar, ocelot, and Sonoran pronghorn — species that range across the Sierra Madre into Arizona. A continuous 30-foot steel barrier severs gene flow that evolved over millennia; pronghorn cannot jump and will not crawl.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Sonoran pronghorn",
+                "value": "~200 in US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Jaguar",
+                "value": "<10 in US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Ocelot",
+                "value": "~80 in US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Mexican gray wolf",
+                "value": "~250 in US",
+                "tone": "neutral"
+              }
+            ],
+            "label": "borderlands species cut off by barrier"
+          }
+        ]
+      },
+      {
+        "heading": "WHO COUNTS AS SOVEREIGN",
+        "body": "Federally recognized tribes hold a government-to-government relationship with Washington, but tribal sovereignty has historically yielded to federal plenary power whenever Congress chooses to assert it. The Marshall Trilogy (1823-1832) established tribes as 'domestic dependent nations' — a phrase that has shielded and constrained tribes ever since.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1823",
+                "label": "Johnson v. McIntosh: discovery doctrine"
+              },
+              {
+                "year": "1831",
+                "label": "'domestic dependent nations'",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1853",
+                "label": "Gadsden Purchase splits O'odham"
+              },
+              {
+                "year": "1887",
+                "label": "Dawes Act allotment"
+              },
+              {
+                "year": "1934",
+                "label": "Indian Reorganization Act"
+              },
+              {
+                "year": "2005",
+                "label": "REAL ID waiver authority"
+              }
+            ],
+            "label": "sovereignty doctrine, two centuries"
+          }
+        ]
+      },
+      {
+        "heading": "THE FISCAL SCALE",
+        "body": "The $46.55 billion appropriation dwarfs prior border construction budgets — Trump's first-term wall spent roughly $15 billion across four years. At current rates, this is enough to barrier nearly the entire 1,954-mile southern border at the $25-30M per-mile cost typical of recent builds.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what fraction of the Tohono O'odham reservation's border with Mexico has barrier construction crossed?",
+            "options": [
+              "About 10%",
+              "About a third",
+              "Nearly all of its 62 miles",
+              "None — tribal land is exempt"
+            ],
+            "correct": 2,
+            "explanation": "Despite tribal opposition, waivers under the REAL ID Act allowed barrier construction across nearly the entire 62-mile reservation border — sovereignty did not block construction."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T08:51:14.772Z",
+    "label": "The Tohono O'odham & the Border",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-05-ai-human-autonomy-design-governance-refusal-rights": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NUDGE PROBLEM",
+        "body": "Behavioral economics established by the 2000s that defaults dominate choice. When a system pre-selects an option, most users accept it — not from agreement, but from friction. AI recommendations are defaults at industrial scale.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Thaler and Sunstein called this **choice architecture**: the person who designs the menu shapes the decision more than the person choosing from it."
+          }
+        ]
+      },
+      {
+        "heading": "DISCLOSURE'S LIMITS",
+        "body": "Decades of consent research show that telling users a system is automated does not meaningfully change behavior. Cookie banners, terms of service, and algorithmic disclosure labels all exhibit the same pattern: acknowledgment without comprehension, comprehension without action."
+      },
+      {
+        "heading": "WHAT REFUSAL RIGHTS MEAN",
+        "body": "A refusal right is a procedural guarantee that a human alternative exists, is reachable without penalty, and produces the same outcome speed. Without all three, refusal is theoretical — the AI path is the only viable path.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which condition is NOT required for a meaningful refusal right?",
+            "options": [
+              "A human alternative exists",
+              "Choosing it carries no time penalty",
+              "The user is informed the system is AI",
+              "The human path produces comparable outcomes"
+            ],
+            "correct": 2,
+            "explanation": "Disclosure alone is not refusal. Without a reachable, non-penalizing human alternative, knowing the system is AI changes nothing about the user's actual options."
+          }
+        ]
+      },
+      {
+        "heading": "THE GDPR PRECEDENT",
+        "body": "Article 22 of the EU's GDPR (2018) gives individuals the right not to be subject to decisions based solely on automated processing where they produce legal or similarly significant effects. It is the closest existing analog to a refusal right — and enforcement has been thin because 'solely' is easily defeated by inserting a human rubber-stamp."
+      },
+      {
+        "heading": "PROCUREMENT AS LEVERAGE",
+        "body": "Government procurement rules shape vendor behavior more than direct regulation. The US federal government spends roughly $700 billion annually on contracts; EU public procurement is around 14% of GDP. When buyers mandate a feature, vendors build it. When buyers ask for disclosure only, that is what gets built.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "EU average",
+                "value": "~14%",
+                "weight": 14
+              },
+              {
+                "label": "United States",
+                "value": "~10%",
+                "weight": 10
+              },
+              {
+                "label": "OECD average",
+                "value": "~12%",
+                "weight": 12
+              }
+            ],
+            "label": "public procurement as share of GDP"
+          }
+        ]
+      },
+      {
+        "heading": "THE AUTONOMY TRADITION",
+        "body": "Kant grounded autonomy in the capacity to act on self-given reasons; later liberal theory (Berlin, Raz) distinguished negative liberty — absence of interference — from positive autonomy, which requires actual conditions for self-direction. The argument here is Razian: autonomy is built, not assumed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Joseph Raz's *The Morality of Freedom* (1986) argued autonomy requires an **adequate range of options** — not just the formal absence of coercion."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T08:51:42.429Z",
+    "label": "Refusal Rights & AI Autonomy",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-05-iran-uae-attacks-ceasefire-ten-strikes-us-forces": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE UAE IS A TARGET",
+        "body": "The UAE hosts the largest concentration of US power-projection assets between the Mediterranean and Diego Garcia. Al Dhafra Air Base outside Abu Dhabi rotates F-22s, F-35s, and the tanker fleet that refuels every CENTCOM sortie. Jebel Ali is the busiest US Navy port of call outside the United States. Striking the UAE is striking those bases by proxy.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AE",
+              "IR",
+              "OM",
+              "QA",
+              "BH",
+              "SA"
+            ],
+            "label": "US footprint in the Gulf",
+            "markers": [
+              {
+                "lat": 24.248,
+                "lng": 54.547,
+                "label": "Al Dhafra Air Base"
+              },
+              {
+                "lat": 25.013,
+                "lng": 55.061,
+                "label": "Jebel Ali (US Navy)"
+              },
+              {
+                "lat": 25.117,
+                "lng": 51.315,
+                "label": "Al Udeid (CENTCOM fwd HQ)"
+              },
+              {
+                "lat": 26.209,
+                "lng": 50.583,
+                "label": "NSA Bahrain (5th Fleet)"
+              },
+              {
+                "lat": 26.566,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "TWO MILITARIES, ONE STATE",
+        "body": "Iran fields two parallel armed forces. The Artesh is the conventional inheritance of the Shah's army. The IRGC — the Islamic Revolutionary Guard Corps — was created in 1979 to defend the revolution itself, reports directly to the Supreme Leader, and runs the missile, drone, and naval-asymmetric forces. When Tehran strikes ships or US bases, the IRGC, not the Artesh, is the actor.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: the **IRGC** answers to Khamenei, runs the **Quds Force** abroad, and operates its own navy in the Gulf parallel to the regular Iranian Navy. A presidential election does not change who controls the missiles."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "This is not the Gulf's first attritional ceasefire test. From 1984 to 1988 Iran and Iraq attacked each other's oil traffic; the US reflagged Kuwaiti tankers, and a single mine strike on the USS Samuel B. Roberts triggered the largest American naval engagement since World War II.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Tanker War phase opens"
+              },
+              {
+                "year": "1987-05",
+                "label": "USS Stark hit by Iraqi Exocet"
+              },
+              {
+                "year": "1987-07",
+                "label": "US reflags Kuwaiti tankers"
+              },
+              {
+                "year": "1988-04",
+                "label": "Operation Praying Mantis",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1988-07",
+                "label": "USS Vincennes downs Iran Air 655"
+              },
+              {
+                "year": "1988-08",
+                "label": "Iran–Iraq ceasefire"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1984",
+                "to": "1988",
+                "label": "attacks on Gulf shipping",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "the Tanker War, 1984–1988"
+          }
+        ]
+      },
+      {
+        "heading": "THE THRESHOLD PROBLEM",
+        "body": "Modern ceasefires rarely specify what breaks them. Each side probes — a strike here, a drone there — calibrating to stay below whatever invisible line the other will treat as collapse. The pattern, sometimes called salami slicing, is why ceasefires erode rather than shatter, and why Gen. Caine's confirmation of ten strikes during the truce matters more than any single one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of the world's seaborne oil moves through the Strait of Hormuz?",
+            "options": [
+              "About 5%",
+              "About 10%",
+              "About 20%",
+              "About 40%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 21 million barrels per day transit Hormuz — about a fifth of global consumption. There is no comparable alternative route."
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ LEVER",
+        "body": "Iran's strongest non-nuclear card is not its missiles but its geography. The IRGC Navy operates from islands inside the strait; small-boat swarms, mines, and shore-launched anti-ship missiles can close the lane faster than any clearance operation can reopen it. Markets price this risk continuously, and prediction markets are now doing the same in real time.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              39,
+              35,
+              22,
+              20,
+              14,
+              11,
+              16,
+              11,
+              11,
+              11
+            ],
+            "periods": [
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 6"
+            ],
+            "label": "Donald Trump announce that the United…",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "39%"
+              },
+              {
+                "atIndex": 9,
+                "label": "11%"
+              }
+            ],
+            "link": "https://polymarket.com/event/trump-announces-us-blockade-of-hormuz-lifted-by",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-06"
+    ],
+    "generatedAt": "2026-05-06T08:52:42.507Z",
+    "label": "Iran, the Gulf & ceasefire mechanics",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-05-nepal-fuel-prices-south-asia-iran-war-pump": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LANDLOCKED TAX",
+        "body": "Every litre Nepal burns crosses one border. The country has no refinery, no port, no strategic reserve worth the name — fuel arrives by tanker truck or through a single pipeline from India. Geography is the price.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NP",
+              "IN",
+              "CN",
+              "BD",
+              "PK"
+            ],
+            "label": "Nepal's fuel lifeline",
+            "caption": "One pipeline. One supplier. One direction.",
+            "markers": [
+              {
+                "lat": 26.7271,
+                "lng": 84.8567,
+                "label": "Motihari–Amlekhgunj pipeline"
+              },
+              {
+                "lat": 27.7172,
+                "lng": 85.324,
+                "label": "Kathmandu"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 2015 LESSON",
+        "body": "When India imposed an unofficial blockade in late 2015 over Nepal's new constitution, fuel ran out in Kathmandu within weeks. Hospitals rationed oxygen, schools closed, and Nepal signed its first fuel-import deal with China — symbolic, since no road could carry meaningful volume across the Himalayas.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The blockade lasted roughly **five months**. It ended Nepal's illusion that *single-supplier dependency* was a commercial choice rather than a strategic one."
+          }
+        ]
+      },
+      {
+        "heading": "THE PIPELINE THAT EXISTS",
+        "body": "The Motihari–Amlekhgunj pipeline opened in 2019 — South Asia's first cross-border petroleum pipeline, 69km from Bihar to southern Nepal. It cut transit costs and tanker queues, but it also hardened the dependency: India is now both Nepal's only practical supplier and the operator of the infrastructure delivering the fuel."
+      },
+      {
+        "heading": "WHY HORMUZ REACHES KATHMANDU",
+        "body": "India imports roughly 85% of its crude, much of it through the Strait of Hormuz. When Gulf shipping insurance spikes, Indian refiners pass costs to the Nepal Oil Corporation at import parity. Nepal's pump price tracks a chokepoint 4,000km away with a lag of weeks.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              39,
+              35,
+              22,
+              20,
+              14,
+              11,
+              16,
+              11,
+              11,
+              11
+            ],
+            "periods": [
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 6"
+            ],
+            "label": "Donald Trump announce that the United…",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "39%"
+              },
+              {
+                "atIndex": 9,
+                "label": "11%"
+              }
+            ],
+            "link": "https://polymarket.com/event/trump-announces-us-blockade-of-hormuz-lifted-by",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE NOC MONOPOLY",
+        "body": "Nepal Oil Corporation is a state-owned monopsony — the sole importer, distributor, and price-setter. It has run structural losses for years because political pressure caps retail prices below import cost during shocks, then forces sharp catch-up hikes once arrears mount. April's four increases are that catch-up.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Nepal",
+                "value": "$1.62",
+                "cc": "NP",
+                "tone": "unfavorable",
+                "weight": 162
+              },
+              {
+                "label": "Pakistan",
+                "value": "$1.00",
+                "cc": "PK",
+                "weight": 100
+              },
+              {
+                "label": "Bangladesh",
+                "value": "$1.10",
+                "cc": "BD",
+                "weight": 110
+              },
+              {
+                "label": "India",
+                "value": "$1.15",
+                "cc": "IN",
+                "weight": 115
+              },
+              {
+                "label": "Sri Lanka",
+                "value": "$1.20",
+                "cc": "LK",
+                "weight": 120
+              }
+            ],
+            "label": "Petrol price, May 2026 (USD/litre, approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE HYDRO PARADOX",
+        "body": "Nepal exports surplus hydroelectricity to India in the wet season — a genuine energy resource. But cooking, transport, and industry still run on imported fossil fuels because electrification of the vehicle fleet and kitchen has barely begun. The country is energy-rich on paper and energy-poor at the pump.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Nepal's total final energy consumption still comes from imported fossil fuels and traditional biomass combined?",
+            "options": [
+              "Around 30%",
+              "Around 55%",
+              "Over 80%",
+              "Under 20%"
+            ],
+            "correct": 2,
+            "explanation": "Despite hydro abundance, electricity is under 5% of final energy use; biomass and imported petroleum dominate cooking, transport, and industry."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-06"
+    ],
+    "generatedAt": "2026-05-06T08:53:14.386Z",
+    "label": "Nepal's Fuel Vulnerability",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-06-appalachia-black-lung-silica-dust-rule-coal-miners": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISEASE",
+        "body": "Black lung — coal workers' pneumoconiosis — is caused by inhaled dust scarring the alveoli until they can no longer transfer oxygen. It is irreversible, progressive, and untreatable except by lung transplant. The miner suffocates over years, not minutes.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The clinical name is *coal workers' pneumoconiosis*; the severe form is **progressive massive fibrosis**, where small nodules merge into masses that destroy lung architecture."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT CAME BACK",
+        "body": "Black lung rates fell after the 1969 Coal Mine Health and Safety Act set dust limits and created the Black Lung Benefits program. Then they reversed. By the 2010s, NIOSH was finding PMF rates in central Appalachia higher than at any point since modern surveillance began."
+      },
+      {
+        "heading": "THE SILICA TWIST",
+        "body": "As accessible coal seams thinned, miners began cutting through more sandstone rock to reach thin coal. Sandstone is mostly quartz — crystalline silica. Silica dust is roughly 20 times more toxic to lung tissue than coal dust, which is why young miners now get severe disease in a decade rather than thirty years."
+      },
+      {
+        "heading": "THE RULE",
+        "body": "MSHA's silica rule, finalized in April 2024, would cut the permissible exposure limit from 100 to 50 micrograms per cubic meter — matching the OSHA limit other industries have followed since 2016. Industry litigation and stays have kept it from taking effect.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "OSHA (general industry)",
+                "value": "50 µg/m³",
+                "tone": "favorable",
+                "weight": 50
+              },
+              {
+                "label": "MSHA proposed",
+                "value": "50 µg/m³",
+                "tone": "favorable",
+                "weight": 50
+              },
+              {
+                "label": "MSHA current",
+                "value": "100 µg/m³",
+                "tone": "unfavorable",
+                "weight": 100
+              },
+              {
+                "label": "NIOSH recommended",
+                "value": "50 µg/m³",
+                "tone": "favorable",
+                "weight": 50
+              }
+            ],
+            "label": "silica exposure limits"
+          }
+        ]
+      },
+      {
+        "heading": "WHO PAYS WHEN MINERS GET SICK",
+        "body": "The Black Lung Disability Trust Fund pays benefits when the responsible operator is bankrupt or unidentified. It is funded by an excise tax on coal sales — a tax Congress has repeatedly let lapse and lower. The fund has been billions of dollars in deficit for years; taxpayers ultimately backstop the shortfall.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why has black lung gotten worse in younger Appalachian miners specifically?",
+            "options": [
+              "Weaker enforcement of coal dust limits",
+              "Cutting through sandstone exposes them to silica, which is far more toxic than coal dust",
+              "Longer shifts under modern union contracts",
+              "Genetic susceptibility in Appalachian populations"
+            ],
+            "correct": 1,
+            "explanation": "Thin remaining seams force miners to cut surrounding rock; the resulting silica dust causes severe disease far faster than coal dust alone."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "The resurgence is concentrated in central Appalachia — southern West Virginia, eastern Kentucky, southwestern Virginia — where seams are thinnest and rock-cutting is heaviest. NIOSH black lung clinics in these counties report PMF rates not seen since the 1950s.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US"
+            ],
+            "label": "central Appalachia black lung cluster",
+            "markers": [
+              {
+                "lat": 37.7782,
+                "lng": -81.1882,
+                "label": "Southern WV coalfields"
+              },
+              {
+                "lat": 37.1209,
+                "lng": -82.5135,
+                "label": "Eastern KY coalfields"
+              },
+              {
+                "lat": 36.9685,
+                "lng": -82.5876,
+                "label": "SW Virginia coalfields"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T08:53:44.519Z",
+    "label": "Black Lung & Silica Dust",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-06-equity-perpetual-futures-crypto-tradfi-convergence": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INVENTION",
+        "body": "Perpetual futures were proposed by economist Robert Shiller in 1993 as a way to trade real estate without expiry dates. Nobody used them. In 2016, BitMEX adapted the concept for Bitcoin — and created the most traded instrument in crypto history."
+      },
+      {
+        "heading": "HOW THEY NEVER EXPIRE",
+        "body": "Traditional futures converge to spot price at expiry because the contract settles. Perps have no expiry, so they use a funding rate: every eight hours, longs pay shorts (or vice versa) based on the gap between perp price and spot. This tether replaces the calendar.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is elegant — when perps trade *above* spot, longs pay shorts, pulling the price back down. When perps trade *below* spot, shorts pay longs. The **funding rate** is the entire tether to reality."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THEY DOMINATE CRYPTO",
+        "body": "Perp volume on crypto exchanges routinely runs 5-10x spot volume. Traders prefer them because there is no roll cost, no expiry management, and leverage up to 100x. The result is that perps — not spot markets — are where crypto prices are actually discovered.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Traditional futures",
+                "value": "quarterly roll",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Options",
+                "value": "decay + greeks",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Perpetuals",
+                "value": "funding only",
+                "tone": "favorable"
+              }
+            ],
+            "label": "why perps beat traditional futures for retail"
+          }
+        ]
+      },
+      {
+        "heading": "THE US REGULATORY WALL",
+        "body": "The SEC ties each equity derivative to spot ETF approval for the same asset. Bitcoin spot ETFs were approved in January 2024 after a decade of rejections; Ethereum followed in mid-2024. The same gating logic now governs whether equity perpetuals can launch on US-regulated venues.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1993",
+                "label": "Shiller proposes perpetuals"
+              },
+              {
+                "year": "2016",
+                "label": "BitMEX launches BTC perp",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020",
+                "label": "Binance perps overtake spot"
+              },
+              {
+                "year": "2024-01",
+                "label": "US spot BTC ETFs approved"
+              },
+              {
+                "year": "2024-07",
+                "label": "US spot ETH ETFs approved"
+              }
+            ],
+            "label": "the perp adoption arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE 24/7 PROBLEM",
+        "body": "US equity markets close at 4pm ET and stay shut on weekends — roughly 76 hours of every 168 are dark. Crypto trades continuously. When equity perps go live on always-on infrastructure, price discovery for Apple and Tesla shifts to venues that operate when NYSE specialists are asleep, eroding the exchange's monopoly on the closing auction."
+      },
+      {
+        "heading": "THE LIQUIDATION CASCADE",
+        "body": "High leverage plus continuous trading means small price moves trigger forced liquidations, which move price further, triggering more liquidations. Crypto sees this routinely — a 5% spot move can wipe out billions in perp positions within minutes. Equities have circuit breakers; 24/7 perp markets do not.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of global crypto trading volume runs through perpetual futures?",
+            "options": [
+              "About 30%",
+              "About 50%",
+              "Over 70%",
+              "Over 90%"
+            ],
+            "correct": 2,
+            "explanation": "Perps account for over 70% of crypto volume — they are the dominant instrument, not spot markets, which is why funding rates often lead spot price moves."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T08:54:14.917Z",
+    "label": "Perpetual Futures",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-06-large-dna-fragment-assembly-microbe-cell-factories": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OLD BOTTLENECK",
+        "body": "For decades, genetic engineering meant moving one gene at a time. A useful metabolic pathway needs ten or twenty enzymes working in sequence — assembling that much DNA reliably was the limit. Modern fragment assembly (Gibson, Golden Gate, yeast homologous recombination) lets researchers stitch entire pathways in a single step.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shift is from **gene editing** (one locus, one change) to **genome writing** (kilobase- to megabase-scale construction). The 2010 *Mycoplasma* synthesis by the Venter Institute proved the ceiling; cost curves since then made it routine."
+          }
+        ]
+      },
+      {
+        "heading": "WHY YEAST AND E. COLI",
+        "body": "Saccharomyces cerevisiae and Escherichia coli are the workhorses because they grow fast, tolerate foreign DNA, and have a century of fermentation engineering behind them. Brewing infrastructure scales directly: a microbe that makes insulin uses the same stainless-steel tanks that make beer."
+      },
+      {
+        "heading": "THE LANDMARK CASE",
+        "body": "Artemisinin, the frontline malaria drug, is extracted from sweet wormwood — supply was volatile and prices swung wildly. Jay Keasling's lab spent over a decade engineering yeast to produce artemisinic acid; Sanofi industrialized it in 2013. It remains the canonical proof that a plant-derived medicine can be moved into a fermenter.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Insulin",
+                "value": "E. coli, since 1982"
+              },
+              {
+                "label": "Artemisinin",
+                "value": "yeast, since 2013"
+              },
+              {
+                "label": "Heme (Impossible)",
+                "value": "yeast, since 2016"
+              },
+              {
+                "label": "Cannabinoids",
+                "value": "yeast, multiple firms"
+              },
+              {
+                "label": "Spider silk",
+                "value": "E. coli, bacteria"
+              }
+            ],
+            "label": "products now made by engineered microbes"
+          }
+        ]
+      },
+      {
+        "heading": "THE METABOLIC TAX",
+        "body": "Every gram of product the cell makes is a gram it doesn't use to grow. Engineered microbes are tuned to divert carbon flux from biomass into the target molecule — too aggressive and the cells die; too gentle and yields don't pay. This balancing is why most pathways take years to optimize even after assembly is solved."
+      },
+      {
+        "heading": "THE REGULATORY FRONTIER",
+        "body": "Contained fermentation is well-regulated globally — FDA, EMA, and equivalents have decades of precedent for microbially-produced drugs. The harder questions arrive with environmental release: engineered microbes designed to fix nitrogen in soil, degrade plastic in oceans, or modify gut microbiomes. No country has a settled framework for these.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was the first commercial product made by a genetically engineered microbe?",
+            "options": [
+              "Human insulin",
+              "Artemisinin",
+              "Rennet for cheese",
+              "Recombinant growth hormone"
+            ],
+            "correct": 0,
+            "explanation": "Genentech's recombinant human insulin, licensed to Eli Lilly as Humulin, reached market in 1982 — the founding product of the biotech industry."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T08:54:43.413Z",
+    "label": "Synthetic Biology & Cell Factories",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-06-nigeria-us-ditwg-defence-cooperation-insecurity-worsens": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE THEATER",
+        "body": "Boko Haram emerged in Maiduguri in 2002, splintered in 2016, and the breakaway Islamic State West Africa Province (ISWAP) now controls swathes of the Lake Chad basin where Nigeria, Niger, Cameroon, and Chad meet. The insurgency is regional, not Nigerian — which is why border-state cooperation matters more than bilateral US-Nigeria deals.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "NE",
+              "TD",
+              "CM",
+              "BF",
+              "ML"
+            ],
+            "label": "the Lake Chad theater",
+            "markers": [
+              {
+                "lat": 11.8311,
+                "lng": 13.151,
+                "label": "Maiduguri (Boko Haram origin)"
+              },
+              {
+                "lat": 13.45,
+                "lng": 14,
+                "label": "Lake Chad basin"
+              },
+              {
+                "lat": 9.0765,
+                "lng": 7.3986,
+                "label": "Abuja"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE REAPER",
+        "body": "The MQ-9 Reaper loiters for 27+ hours at altitudes commercial radar struggles to track, carries Hellfire missiles and 500-lb bombs, and costs roughly $30M per airframe. Its value in the Sahel is persistence — it watches a target compound across days, not minutes — but persistence requires a basing footprint, which is why the 2024 US eviction from Niger's Air Base 201 reshaped the entire regional posture.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The lost base mattered: **Air Base 201** in Agadez was a $110M purpose-built drone hub. When Niger's 2023 junta expelled US forces, Washington had to relocate ISR coverage — Nigeria became the obvious fallback."
+          }
+        ]
+      },
+      {
+        "heading": "THE COUP BELT",
+        "body": "Since 2020, military juntas have taken power in Mali (2020, 2021), Guinea (2021), Burkina Faso (2022, twice), Niger (2023), and Gabon (2023). All but Gabon expelled French forces; Mali, Burkina Faso, and Niger formed the Alliance of Sahel States and pivoted toward Russia's Africa Corps (formerly Wagner). Nigeria is now the southern anchor of remaining Western influence in the region.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2020-08",
+                "label": "Mali coup"
+              },
+              {
+                "year": "2021-09",
+                "label": "Guinea coup"
+              },
+              {
+                "year": "2022-01",
+                "label": "Burkina Faso coup"
+              },
+              {
+                "year": "2023-07",
+                "label": "Niger coup",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-08",
+                "label": "Gabon coup"
+              },
+              {
+                "year": "2024-04",
+                "label": "US expelled from Niger"
+              }
+            ],
+            "label": "Sahel coup belt"
+          }
+        ]
+      },
+      {
+        "heading": "WHY METRICS GO MISSING",
+        "body": "Security cooperation agreements without benchmarks are a feature, not a bug. Both governments avoid them: the host state doesn't want a public failure metric tied to attack counts, and the donor doesn't want to be locked into a tripwire that forces escalation or withdrawal. The result is open-ended commitment that survives bad years.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many US troops are deployed in Nigeria under the new defence cooperation framework?",
+            "options": [
+              "About 200",
+              "About 1,500",
+              "About 5,000",
+              "About 12,000"
+            ],
+            "correct": 0,
+            "explanation": "The footprint is small and ISR-focused — roughly 200 personnel supporting drones and training, not a combat brigade. Compare to ~3,500 once stationed across Niger before the 2024 expulsion."
+          }
+        ]
+      },
+      {
+        "heading": "THE FUNDING ENGINE",
+        "body": "ISWAP and Boko Haram run on cattle rustling, road taxation, kidnapping ransoms, and zakat extracted under threat. SBM Intelligence estimated Nigerian kidnap ransoms exceeded $18M in early 2023 alone. Drones can hit commanders; they cannot drain a tax base that runs through every village market in the northeast.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why pure ISR-and-strike campaigns plateau: you can kill the *amir* but not the *jizya*. Counterinsurgency doctrine since Galula has held that armed groups financed locally outlast their leadership; the cash flow is the center of gravity, not the commander."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T08:55:20.022Z",
+    "label": "US Counterterror in the Sahel",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-06-pakistan-karachi-hyderabad-education-board-chairmen-resign": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY EXAM BOARDS MATTER",
+        "body": "In Pakistan, the matric (Class 10) and intermediate (Class 12) certificates issued by provincial boards are the gatekeepers to every public university seat, civil-service exam, and overseas student visa. Whoever controls the boards controls who advances — making the chairmanship one of the most politically valuable appointments in provincial government.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The boards are colonial inheritances: the **Board of Secondary Education Karachi** dates to 1950, modeled on the Cambridge syndicate system the British left behind. The structure — external examiners, sealed papers, centralized marking — was designed for a small civil-service elite, not the millions of students it now processes."
+          }
+        ]
+      },
+      {
+        "heading": "THE CENTRE ECONOMY",
+        "body": "Each examination centre is a school designated to host candidates from other schools. Centre allocation is the single most lucrative lever a chairman holds: a 'soft' centre — lax invigilation, friendly staff, photocopies passed in — can be sold to coaching academies and private schools for millions of rupees per session. Altering 170 centres mid-cycle is not administrative housekeeping; it is the market clearing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is mid-cycle centre reassignment in a Pakistani exam board a red flag?",
+            "options": [
+              "It violates a UNESCO testing standard",
+              "Centre selection is the main lever for selling exam access, so changing it mid-cycle moves money",
+              "It delays results past the university admission window",
+              "It requires re-printing all answer sheets"
+            ],
+            "correct": 1,
+            "explanation": "Centre allocation determines invigilation strictness; reassigning mid-matric is how access to 'soft' centres gets monetized after the official allocation closes."
+          }
+        ]
+      },
+      {
+        "heading": "THE SINDH PATRONAGE MACHINE",
+        "body": "Sindh has been governed continuously by the Pakistan Peoples Party since 2008 — the longest single-party provincial run in Pakistan's history. Education board chairmanships, like district police postings and irrigation department slots, function as currency in the PPP's internal patronage system rather than as merit appointments. Six chairmen in thirty months at Hyderabad reflects faction-rotation, not reform."
+      },
+      {
+        "heading": "WHY HYDERABAD KEEPS CHURNING",
+        "body": "Hyderabad sits at the fault line between PPP's rural Sindhi base and the MQM's urban Mohajir constituency. The board's chairmanship is contested between factions whose patrons want their own networks placed before each exam season — producing the rotation pattern the probe documented.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK"
+            ],
+            "label": "Sindh's three secondary boards",
+            "caption": "Karachi, Hyderabad, Sukkur — each a separate political fiefdom",
+            "markers": [
+              {
+                "lat": 24.8607,
+                "lng": 67.0011,
+                "label": "Karachi board"
+              },
+              {
+                "lat": 25.396,
+                "lng": 68.3578,
+                "label": "Hyderabad board"
+              },
+              {
+                "lat": 27.7,
+                "lng": 68.86,
+                "label": "Sukkur board"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LEAKED-PAPER MARKET",
+        "body": "Question papers in Sindh have leaked so reliably for so long that a parallel market prices them by subject the night before each paper. Mathematics and English carry the highest premiums; Islamiat the lowest. The leak is upstream of the centre — printing presses, courier routes, and board secretariats — which is why centre-level reform alone never closes it."
+      },
+      {
+        "heading": "THE STRUCTURAL FIX NOBODY WANTS",
+        "body": "Punjab moved its matric to a centralised digital question bank with randomised paper assembly in 2022; leak rates fell sharply. Sindh has resisted the same reform because randomisation eliminates the centre economy that funds the patronage above it. The probe names individuals; the system that produced them is the unmentioned variable."
+      }
+    ],
+    "generatedAt": "2026-05-06T08:55:58.077Z",
+    "label": "Sindh's Exam Board Economy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-06-pakistan-solar-rooftop-revolution-grid-defection": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEATH SPIRAL",
+        "body": "When customers leave a grid, fixed costs — transmission lines, idle plants, capacity payments — get spread across fewer payers. Tariffs rise, more customers leave, tariffs rise again. Utility economists named this the death spiral in the 1980s; Pakistan is the largest country actually living it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **stranded cost recovery**: the bill for plants already built and contractually owed payment, regardless of whether anyone buys their electricity."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PAKISTAN, WHY NOW",
+        "body": "Three forces converged: Chinese panel prices collapsed roughly 80% from 2022 to 2024, Pakistani grid tariffs jumped 155% under IMF-mandated subsidy cuts, and the rupee's slide made dollar-priced grid fuel imports brutal while one-time panel imports became a hedge.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019
+            ],
+            "periods": [
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE CAPACITY PAYMENT TRAP",
+        "body": "Pakistan signed dollar-indexed take-or-pay contracts with Independent Power Producers in the 1990s and 2000s. The state owes these plants payment whether power is dispatched or not. As demand drops, the per-unit cost of those payments climbs — the bill is fixed, the denominator shrinks."
+      },
+      {
+        "heading": "NET METERING, EXPLAINED",
+        "body": "Net metering credits rooftop solar owners at the retail tariff for power exported to the grid. Critics call it a regressive subsidy: the credit reflects what utilities charge, not what the power is worth wholesale, with the gap socialized across non-solar customers — typically poorer households.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do utilities argue net metering at retail rates is regressive?",
+            "options": [
+              "Solar panels emit more carbon than coal at night",
+              "The retail rate includes grid maintenance costs that solar exporters then avoid paying",
+              "Rooftop solar damages transformers",
+              "Wealthy households pay higher tax rates on the credits"
+            ],
+            "correct": 1,
+            "explanation": "Retail tariffs bundle the cost of wires, billing, and capacity contracts. Crediting exports at that rate lets solar owners shed those fixed costs onto everyone else."
+          }
+        ]
+      },
+      {
+        "heading": "THE BATTERY PIVOT",
+        "body": "Once net metering is cut, the economics flip from export-to-grid to store-and-self-consume. Lithium-iron-phosphate batteries — cheaper and safer than the nickel chemistries used in cars — have made full grid defection viable for middle-class urban households for the first time in any large developing economy."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Hawaii hit this wall in 2015 when rooftop solar saturation forced the utility to end net metering. South Australia followed. Pakistan is the first low-income country to reach the tipping point — and the first where the grid being abandoned was already in financial collapse before solar arrived.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hawaii",
+                "value": "2015 cap",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "South Australia",
+                "value": "2017 reforms",
+                "cc": "AU",
+                "tone": "neutral"
+              },
+              {
+                "label": "California",
+                "value": "2023 NEM 3.0",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "Pakistan",
+                "value": "2025 onset",
+                "cc": "PK",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Grid defection precedents"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-06"
+    ],
+    "generatedAt": "2026-05-06T08:56:31.078Z",
+    "label": "Grid Defection & Death Spirals",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-06-south-africa-stitch-bnpl-shopify-woocommerce-fintech": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CARD PENETRATION GAP",
+        "body": "South Africa has roughly 80% bank account penetration but credit card penetration sits closer to 10%. Most consumers hold debit or prepaid cards that can't carry a revolving balance — meaning installment credit at checkout has no incumbent rail to compete with.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "USA",
+                "value": "~67%",
+                "cc": "US",
+                "weight": 67
+              },
+              {
+                "label": "UK",
+                "value": "~65%",
+                "cc": "GB",
+                "weight": 65
+              },
+              {
+                "label": "Brazil",
+                "value": "~40%",
+                "cc": "BR",
+                "weight": 40
+              },
+              {
+                "label": "South Africa",
+                "value": "~10%",
+                "cc": "ZA",
+                "weight": 10,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Nigeria",
+                "value": "~3%",
+                "cc": "NG",
+                "weight": 3
+              },
+              {
+                "label": "Kenya",
+                "value": "~6%",
+                "cc": "KE",
+                "weight": 6
+              }
+            ],
+            "label": "credit card penetration (% adults)"
+          }
+        ]
+      },
+      {
+        "heading": "HOW BNPL ACTUALLY WORKS",
+        "body": "The merchant gets paid in full immediately; the BNPL provider takes a 4–6% fee and assumes the credit risk on the consumer's installment plan. The provider's economics depend on cheap capital to fund receivables and on default rates staying under ~3%.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "consumer",
+                "label": "Consumer"
+              },
+              {
+                "id": "merchant",
+                "label": "Merchant"
+              },
+              {
+                "id": "bnpl",
+                "label": "BNPL provider"
+              },
+              {
+                "id": "capital",
+                "label": "Wholesale funding"
+              }
+            ],
+            "links": [
+              {
+                "source": "consumer",
+                "target": "bnpl",
+                "value": 100,
+                "label": "4 installments"
+              },
+              {
+                "source": "bnpl",
+                "target": "merchant",
+                "value": 95,
+                "label": "upfront, less fee"
+              },
+              {
+                "source": "capital",
+                "target": "bnpl",
+                "value": 95,
+                "label": "funds receivable"
+              },
+              {
+                "source": "bnpl",
+                "target": "capital",
+                "value": 100,
+                "label": "repays + spread"
+              }
+            ],
+            "label": "BNPL transaction flow"
+          }
+        ]
+      },
+      {
+        "heading": "THE KLARNA PRECEDENT",
+        "body": "Klarna pioneered the model in Sweden in 2005, expanded across Europe, then crashed valuation from $46bn to $6.7bn in 2022 when rates rose. *Cheap capital* is the entire substrate of the BNPL business — when funding costs spike, the unit economics invert overnight.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "BNPL is fundamentally a **carry trade** on consumer credit: borrow cheap from wholesale markets, lend short to shoppers, pocket the spread. It looks like a tech product but reads on the balance sheet like a small bank."
+          }
+        ]
+      },
+      {
+        "heading": "WHY EMBEDDED PAYMENTS WIN",
+        "body": "Shopify and WooCommerce together power roughly 30% of global e-commerce stores. A payments provider that ships as a one-click plugin reaches thousands of merchants without any sales force — the platform is the distribution channel. This is why Stripe spent a decade building plugin-grade developer experience and why Stitch is racing to do the same in Africa."
+      },
+      {
+        "heading": "THE REGULATORY GAP",
+        "body": "South Africa's National Credit Act regulates lenders, but BNPL products structured as four-installment, zero-interest plans often fall outside its definition of credit. The UK began closing this loophole in 2024; South Africa has not. The grey zone is what makes the unit economics work.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does most BNPL escape consumer credit regulation in many jurisdictions?",
+            "options": [
+              "The loans are too small to register",
+              "Four-or-fewer installments at zero interest are exempt from credit definitions",
+              "Merchants, not consumers, are the legal borrower",
+              "BNPL providers hold banking licenses that pre-empt credit law"
+            ],
+            "correct": 1,
+            "explanation": "Credit statutes typically define regulated credit as interest-bearing or extended over many payments. The 'pay-in-4, no interest' structure was designed specifically to fall outside those triggers."
+          }
+        ]
+      },
+      {
+        "heading": "THE FX EXPOSURE",
+        "body": "Stitch's wholesale funding is mostly rand-denominated, but the merchants it serves increasingly sell to cross-border shoppers. Every move in ZAR/USD reprices both the cost of capital and the real value of receivables.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              16.457476,
+              16.4261,
+              16.38864,
+              16.3875,
+              16.41806,
+              16.59285,
+              16.3955,
+              16.33375,
+              16.362705,
+              16.410661,
+              16.3162,
+              16.3162,
+              16.3162,
+              16.3754,
+              16.384099,
+              16.4976,
+              16.637866,
+              16.508621,
+              16.53436,
+              16.53436,
+              16.495858,
+              16.542735,
+              16.55256,
+              16.868635,
+              16.677723,
+              16.665525,
+              16.7113,
+              16.585522,
+              16.813,
+              16.549357
+            ],
+            "periods": [
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6"
+            ],
+            "label": "South African rand",
+            "unit": "ZAR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-06"
+    ],
+    "generatedAt": "2026-05-06T08:57:06.011Z",
+    "label": "BNPL in Low-Card Markets",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-06-uganda-urban-refugees-makindye-economy-kampala": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OPEN-DOOR POLICY",
+        "body": "Uganda's 2006 Refugees Act gives refugees the right to work, move freely, and own businesses — rights most refugee-hosting states deny. The country hosts the largest refugee population in Africa, drawn primarily from the DRC, South Sudan, and Burundi.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The framework rests on the 1995 constitution and the **Refugees Act 2006**, which formalized what had been informal practice since Idi Amin's expulsion of Asians in 1972 left Uganda itself a producer of refugees."
+          }
+        ]
+      },
+      {
+        "heading": "THE SETTLEMENT MODEL",
+        "body": "Most refugees in Uganda are placed in rural settlements — Bidi Bidi, Nakivale, Kyangwali — where they receive a plot of land to farm. The model assumes refugees are agricultural and temporary. Urban refugees fit neither assumption, which is why the accounting fails to see them.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UG",
+              "CD",
+              "SS",
+              "BI",
+              "RW",
+              "KE"
+            ],
+            "label": "Uganda's refugee geography",
+            "markers": [
+              {
+                "lat": 3.0344,
+                "lng": 31.4128,
+                "label": "Bidi Bidi settlement"
+              },
+              {
+                "lat": -0.7256,
+                "lng": 30.8231,
+                "label": "Nakivale settlement"
+              },
+              {
+                "lat": 0.3476,
+                "lng": 32.5825,
+                "label": "Kampala"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHO IS WHERE",
+        "body": "The origins of Uganda's refugees track the conflicts on its borders — South Sudan's civil war drives the largest flow, followed by eastern Congo's perpetual instability and Burundi's political crises.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "South Sudan",
+                "value": "~57%",
+                "cc": "SS",
+                "weight": 57
+              },
+              {
+                "label": "DR Congo",
+                "value": "~32%",
+                "cc": "CD",
+                "weight": 32
+              },
+              {
+                "label": "Burundi",
+                "value": "~5%",
+                "cc": "BI",
+                "weight": 5
+              },
+              {
+                "label": "Somalia",
+                "value": "~3%",
+                "cc": "SO",
+                "weight": 3
+              },
+              {
+                "label": "Other",
+                "value": "~3%",
+                "weight": 3
+              }
+            ],
+            "label": "Uganda's refugee population by origin (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE FUNDING ARITHMETIC",
+        "body": "UNHCR's Uganda operation is chronically underfunded — typically below half of appeal targets. Per-refugee monthly food rations have been cut repeatedly since 2020. The shortfall is part of why urban self-settlement looks attractive to refugees with capital or skills: the city is where you go when the camp ration stops covering survival."
+      },
+      {
+        "heading": "THE INVISIBLE TAX BASE",
+        "body": "Kampala City Council Authority collects market dues, trading licenses, and property rates from Makindye and other refugee-dense neighborhoods. None of this revenue is attributed to refugees in either Ugandan fiscal data or international aid frameworks. The contribution exists; the category does not.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of Uganda's refugees live in Kampala rather than rural settlements?",
+            "options": [
+              "Under 1%",
+              "About 9%",
+              "About 25%",
+              "Over 40%"
+            ],
+            "correct": 1,
+            "explanation": "The Office of the Prime Minister counts ~9% in the capital — a substantial urban population that the camp-centric aid model was never designed to track."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "The 1972 expulsion of roughly 80,000 Ugandan Asians by Idi Amin destroyed the country's commercial middle class overnight. The economic collapse that followed shaped the post-Museveni doctrine that refugees with capital and trade networks should be welcomed, not warehoused — a lesson written into how Kampala receives Congolese traders today."
+      }
+    ],
+    "generatedAt": "2026-05-06T08:57:35.750Z",
+    "label": "Uganda's Refugee Model",
+    "category": "politics",
+    "articleCount": 1
   }
 }
