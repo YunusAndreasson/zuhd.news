@@ -124272,5 +124272,1657 @@
     "label": "Uganda's Refugee Model",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-04-eu-battery-regulation-removable-smartphone-2027": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BRUSSELS EFFECT",
+        "body": "The EU is the world's largest single market by GDP and writes tech rules that propagate globally because manufacturers find it cheaper to build one compliant product than two SKUs. USB-C charging, GDPR cookie banners, and removable batteries all started as EU mandates and became de facto global defaults.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Coined by legal scholar Anu Bradford in 2012, the **Brussels Effect** describes how EU regulation exports itself without treaty negotiation — the market size alone is the lever."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PHONES GOT SEALED",
+        "body": "Removable batteries were standard until roughly 2014. Sealed designs let manufacturers shave 1-2mm of thickness, achieve IP68 water resistance, and improve structural rigidity for larger glass displays. The tradeoff: a battery whose capacity drops below 80% after ~500 cycles became the device's effective expiration date."
+      },
+      {
+        "heading": "PLANNED OBSOLESCENCE, AS LAW",
+        "body": "The Battery Regulation (EU 2023/1542) is the first major law to target hardware obsolescence directly. It requires that portable batteries in consumer electronics be removable and replaceable by the end user using commonly available tools — meaning no proprietary screws, no heated adhesive removal, no factory-only procedures.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2014",
+                "label": "Ecodesign Directive begins covering electronics"
+              },
+              {
+                "year": "2019",
+                "label": "Right-to-repair rules for appliances"
+              },
+              {
+                "year": "2022",
+                "label": "USB-C common charger mandate"
+              },
+              {
+                "year": "2023",
+                "label": "Battery Regulation passes",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Right-to-Repair Directive adopted"
+              },
+              {
+                "year": "2027",
+                "label": "Removable-battery rule takes effect"
+              }
+            ],
+            "label": "EU's right-to-repair arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE FIVE-YEAR PARTS RULE",
+        "body": "Mandating 5 years of spare-parts availability changes the manufacturer's accounting. Spare cells must be stocked, distributed, and priced reasonably — not sold at a markup designed to nudge customers toward a new phone. Apple's iPhone battery replacement currently costs roughly $99; the regulation pushes that figure toward parts cost."
+      },
+      {
+        "heading": "WHO COMPLIES FIRST",
+        "body": "Fairphone, a small Dutch maker, has shipped user-replaceable batteries since 2013 — proving the engineering is solvable. The question for Apple and Samsung is whether to ship a Europe-only SKU or redesign their global flagship line. History says they redesign globally.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Fairphone 5",
+                "value": "user-swap, 30s",
+                "tone": "favorable"
+              },
+              {
+                "label": "Nokia G22",
+                "value": "user-swap, tools",
+                "tone": "favorable"
+              },
+              {
+                "label": "Google Pixel 9",
+                "value": "glued, shop only",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Samsung S25",
+                "value": "glued, shop only",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "iPhone 16",
+                "value": "glued, shop only",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "current battery replaceability (2026 flagships)"
+          }
+        ]
+      },
+      {
+        "heading": "THE E-WASTE STAKES",
+        "body": "The EU generates roughly 5 million tonnes of e-waste per year, of which small electronics like phones are a disproportionate share by toxicity. A phone whose battery can be swapped lasts 5-7 years instead of 2-3. The regulation's stated goal is halving lifecycle emissions per device.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of a smartphone's lifetime carbon footprint comes from manufacturing rather than use?",
+            "options": [
+              "About 20%",
+              "About 50%",
+              "About 80%",
+              "About 95%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 80% of a phone's lifetime emissions are locked in at manufacture — which is why extending device lifespan, not just recycling, is the dominant lever."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T12:43:08.935Z",
+    "label": "Right to Repair & EU Tech Rules",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-04-saudi-sah-sukuk-may-yield-islamic-finance-retail": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY IT'S NOT A BOND",
+        "body": "A bondholder lends money and earns interest. A sukuk holder owns a fractional share of a real asset and earns the income it generates. The distinction is the entire point: riba (interest on money lent) is forbidden in Islamic law, but profit from ownership is not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Arabic *sah* means 'correct' or 'sound' — chosen to signal Sharia-compliance to retail savers who would otherwise hold cash."
+          }
+        ]
+      },
+      {
+        "heading": "THE IJARAH STRUCTURE",
+        "body": "Under an ijarah sukuk, the government sells investors a share in a real asset — typically a building, road, or revenue-generating facility — then leases it back. The 'yield' is rent, not interest. When the sukuk matures, the government repurchases the asset at par."
+      },
+      {
+        "heading": "THE SCHOLARLY GATE",
+        "body": "Every sukuk issuance must be approved by a Sharia board — usually scholars from AAOIFI (the Bahrain-based standards body that governs ~$3tn of Islamic finance assets). In 2008, AAOIFI's chairman Sheikh Taqi Usmani ruled that 85% of existing sukuk were not actually Sharia-compliant, collapsing issuance for two years until structures were reformed."
+      },
+      {
+        "heading": "WHY RETAIL ACCESS IS NEW",
+        "body": "Sukuk markets historically served sovereigns and institutions — minimum tickets ran $200k+. Sah, launched in 2024, drops the minimum to 1,000 riyals (~$270) and distributes through Saudi banking apps. It is the kingdom's first true retail Sharia savings product, aimed at the roughly 70% of Saudis who hold no investment account.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Malaysia",
+                "value": "~$420bn",
+                "cc": "MY",
+                "weight": 420
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~$280bn",
+                "cc": "SA",
+                "weight": 280
+              },
+              {
+                "label": "Indonesia",
+                "value": "~$130bn",
+                "cc": "ID",
+                "weight": 130
+              },
+              {
+                "label": "UAE",
+                "value": "~$100bn",
+                "cc": "AE",
+                "weight": 100
+              },
+              {
+                "label": "Turkey",
+                "value": "~$45bn",
+                "cc": "TR",
+                "weight": 45
+              }
+            ],
+            "label": "global sukuk market by issuer (2024 outstanding, $bn)"
+          }
+        ]
+      },
+      {
+        "heading": "VISION 2030 AND THE FUNDING GAP",
+        "body": "NEOM, the Red Sea projects, and Public Investment Fund commitments require capital well beyond oil revenue. Saudi Arabia ran a fiscal deficit every year from 2014 except 2022. Retail sukuk widen the domestic funding base — pulling household savings into sovereign debt without violating the religious constraints that keep many Saudis out of conventional bonds."
+      },
+      {
+        "heading": "THE QUIET TEST",
+        "body": "If retail Saudis embrace Sah at scale, it proves Islamic-compliant savings products can compete with conventional deposits on yield and accessibility. That has implications well beyond Riyadh — Pakistan, Indonesia, Egypt, and Nigeria all have large Muslim populations whose savings sit in cash because the formal banking sector is seen as religiously suspect.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes a sukuk Sharia-compliant where a conventional bond is not?",
+            "options": [
+              "The investor owns a share of a real asset rather than lending money at interest",
+              "The yield is paid in gold rather than fiat currency",
+              "The issuer must be a Muslim-majority government",
+              "The maturity must be less than one year"
+            ],
+            "correct": 0,
+            "explanation": "Riba (interest on money lent) is forbidden, but profit from owning a productive asset is permitted. Sukuk are structured around ownership, not lending."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T12:43:39.680Z",
+    "label": "Sukuk & Retail Islamic Finance",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-05-pakistan-sez-investment-jobs-cpec-fdi-shortfall": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT CPEC ACTUALLY IS",
+        "body": "CPEC is the flagship corridor of China's Belt and Road Initiative, launched in 2015 with $46bn in pledged Chinese financing for power plants, highways, and the Gwadar port. It was sold to Pakistan as industrialisation; sold to Beijing as a land route to the Arabian Sea that bypasses the Malacca Strait.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "PK"
+            ],
+            "label": "the corridor — Kashgar to Gwadar",
+            "markers": [
+              {
+                "lat": 25.1264,
+                "lng": 62.3225,
+                "label": "Gwadar port"
+              },
+              {
+                "lat": 33.6844,
+                "lng": 73.0479,
+                "label": "Islamabad"
+              },
+              {
+                "lat": 39.4704,
+                "lng": 75.9898,
+                "label": "Khunjerab Pass"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT AN SEZ IS SUPPOSED TO DO",
+        "body": "A Special Economic Zone is a fenced-off enclave with relaxed tariffs, tax holidays, and streamlined customs — designed to lure manufacturers who would not invest under the country's normal regulatory regime. The model is Shenzhen (1980), which Deng Xiaoping turned from fishing village to factory of the world by exempting it from most of China's planned-economy rules.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The implicit promise is *enclave development* — that a zone with first-world rules can exist inside a country with third-world rules, and that the productivity will eventually leak out into the broader economy."
+          }
+        ]
+      },
+      {
+        "heading": "THE PHASE I PROBLEM",
+        "body": "CPEC's first phase poured roughly two-thirds of the money into power plants — coal, hydro, solar — that solved Pakistan's load-shedding crisis but generated capacity payments rather than exports. The zones, which were supposed to convert that electricity into manufactured goods, were sequenced last and remain mostly empty land with perimeter fencing.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Rashakai",
+                "value": "Operational",
+                "tone": "favorable"
+              },
+              {
+                "label": "Allama Iqbal",
+                "value": "Partial",
+                "tone": "neutral"
+              },
+              {
+                "label": "Dhabeji",
+                "value": "Pre-construction",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Bostan",
+                "value": "Pre-construction",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "M-9 Karachi",
+                "value": "Stalled",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "CPEC SEZs — status (selected)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY FACTORIES DON'T RELOCATE",
+        "body": "Chinese manufacturers chose Vietnam, Bangladesh, and Mexico over Pakistan despite cheaper Pakistani labour. The deciding factors were not wages but security (attacks on Chinese engineers in Balochistan and Khyber-Pakhtunkhwa), power tariffs (among the world's highest after the Phase I IPP contracts), and the rupee's serial devaluation, which makes any PKR-denominated revenue stream a depreciating asset.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019
+            ],
+            "periods": [
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE TRADE GAP",
+        "body": "The $20bn-in / $3bn-out asymmetry the minister cited is not unique to Pakistan — it is the structural shape of trade with China for nearly every developing economy. Belt and Road was pitched partly as a fix: Chinese capital builds the infrastructure that lets the partner country export back. In practice, the infrastructure gets built; the export capacity rarely follows.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country's SEZ model did CPEC's planners explicitly try to replicate?",
+            "options": [
+              "Singapore's free port",
+              "China's own Shenzhen",
+              "Dubai's Jebel Ali",
+              "South Korea's Masan"
+            ],
+            "correct": 1,
+            "explanation": "Shenzhen is the canonical SEZ — a Chinese export of the Chinese development model — and CPEC documents repeatedly cite it as the template."
+          }
+        ]
+      },
+      {
+        "heading": "THE DEBT QUESTION",
+        "body": "Pakistan owes China roughly $30bn — about a quarter of its external debt — much of it tied to CPEC power projects on commercial rather than concessional terms. Each IMF programme since 2019 has required Pakistan to seek rollovers from Beijing, giving China a veto on Islamabad's fiscal direction that no bilateral creditor has held since the IMF era began."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-06"
+    ],
+    "generatedAt": "2026-05-06T12:44:13.375Z",
+    "label": "CPEC & Special Economic Zones",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-06-bmw-q1-profit-plunge-china-tariffs-german-auto": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PREMIUM TRAP",
+        "body": "German automakers built their margin model on selling premium ICE vehicles to Chinese buyers willing to pay a brand premium. That premium has collapsed: domestic brands like BYD and Nio match the build quality at 60-70% of the price, and the software-defined cabin is now where status is read.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "BMW, Mercedes, and Audi together once captured roughly **80%** of China's premium segment. By 2024 their combined share had fallen below **60%**, with most of the loss going to *NEV-native* domestic brands."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHINA MATTERS DISPROPORTIONATELY",
+        "body": "China is not just BMW's largest market — it has historically been its highest-margin one. A 7-Series sold in Shanghai earned more profit than the same car sold in Munich because Chinese buyers paid for options at higher attach rates. When that volume collapses, the hit to earnings is non-linear.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~715k",
+                "cc": "CN",
+                "weight": 715
+              },
+              {
+                "label": "Europe",
+                "value": "~1.07mn",
+                "cc": "EU",
+                "weight": 1070
+              },
+              {
+                "label": "USA",
+                "value": "~371k",
+                "cc": "US",
+                "weight": 371
+              },
+              {
+                "label": "Rest of world",
+                "value": "~295k",
+                "weight": 295
+              }
+            ],
+            "label": "BMW Group deliveries by region, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE TARIFF STACK",
+        "body": "BMW pays tariffs in both directions: cars built in Spartanburg, South Carolina and exported to China face Chinese retaliatory duties; cars built in Germany and shipped to the US face Trump-era auto tariffs. Spartanburg is BMW's largest plant globally — built precisely to hedge currency risk, now exposed to tariff risk.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "DE",
+              "US",
+              "CN",
+              "MX"
+            ],
+            "label": "BMW's tariff-exposed footprint",
+            "markers": [
+              {
+                "lat": 48.1351,
+                "lng": 11.582,
+                "label": "Munich HQ"
+              },
+              {
+                "lat": 34.8526,
+                "lng": -82.394,
+                "label": "Spartanburg plant"
+              },
+              {
+                "lat": 31.2304,
+                "lng": 121.4737,
+                "label": "Shanghai (BBA JV)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE EU RETALIATION DOCTRINE",
+        "body": "Brussels has historically calibrated retaliation to hit politically sensitive US exports — Harleys, bourbon, denim — rather than match tariff-for-tariff. The doctrine assumes Washington fears swing-state pain more than aggregate trade losses. It worked against the 2018 steel tariffs; whether it works against a 25% blanket auto tariff is untested.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which US export did the EU target in its 2018 retaliation against Trump's steel tariffs?",
+            "options": [
+              "Soybeans from Iowa",
+              "Harley-Davidson motorcycles from Wisconsin",
+              "Boeing aircraft from Washington",
+              "Tesla vehicles from California"
+            ],
+            "correct": 1,
+            "explanation": "The EU targeted Harleys (Paul Ryan's home state) and bourbon (Mitch McConnell's Kentucky) — politically symbolic exports tied to GOP leadership rather than the largest dollar values."
+          }
+        ]
+      },
+      {
+        "heading": "THE STRUCTURAL SHIFT",
+        "body": "German auto employs roughly 780,000 people directly and underpins another 1.8 million in suppliers. The sector is 5% of German GDP. When Volkswagen announced its first-ever German plant closures in 2024, it broke a 87-year postwar compact between management, labor, and the state.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The German auto model rests on *Mitbestimmung* — codetermination — which gives workers half the seats on supervisory boards. This is why German plant closures take years of negotiation while American ones take weeks."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T12:44:44.991Z",
+    "label": "German Auto & the China Squeeze",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-06-chinese-ev-software-standard-us-ban-global-isolation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY SOFTWARE IS THE STANDARD",
+        "body": "Modern EVs are defined less by the battery than by the software stack: the battery management system, over-the-air update channels, charging protocols, and the infotainment OS. Whoever sets these standards captures the long tail of vehicle revenue — subscriptions, diagnostics, fleet telemetry — for a decade after the sale.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The car is now a **rolling endpoint**: more lines of code than a commercial airliner, with a vendor relationship that outlives the warranty."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHARGING PROTOCOL FORK",
+        "body": "Three connector standards compete globally: China's GB/T, Europe's CCS2, and Tesla's NACS (now adopted across North America). GB/T dominates by sheer volume — China sold more EVs in 2024 than the rest of the world combined — and most emerging markets default to whichever standard their imported fleet uses.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~11.0M",
+                "cc": "CN",
+                "weight": 11,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Europe",
+                "value": "~3.0M",
+                "cc": "EU",
+                "weight": 3,
+                "tone": "neutral"
+              },
+              {
+                "label": "USA",
+                "value": "~1.4M",
+                "cc": "US",
+                "weight": 1.4,
+                "tone": "favorable"
+              },
+              {
+                "label": "Rest of world",
+                "value": "~2.0M",
+                "weight": 2,
+                "tone": "neutral"
+              }
+            ],
+            "label": "EV sales by market, 2024 (millions)"
+          }
+        ]
+      },
+      {
+        "heading": "THE GALAPAGOS RISK",
+        "body": "Japan's mobile industry coined the term garakei — galapagos phone — for handsets that were technically excellent but built to domestic standards no one else used. When the iPhone arrived, Japanese makers had no export market to retreat to. Standard-setting is a winner-take-most game; the loser does not get a smaller share, they get an island."
+      },
+      {
+        "heading": "WHAT THE MARCH 17 RULE ACTUALLY BANS",
+        "body": "The Commerce Department's final rule prohibits import or sale of connected vehicles with Chinese-developed Vehicle Connectivity Systems (the cellular/Bluetooth/Wi-Fi stack) from model year 2027, and Automated Driving Systems from model year 2030. It applies regardless of where the car is assembled — a Volvo built in Sweden with Chinese telematics is covered.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does the US rule on Chinese vehicle software actually prohibit?",
+            "options": [
+              "Import of any car manufactured in China",
+              "Use of Chinese-developed connectivity and autonomy software in cars sold in the US",
+              "Chinese investment in US EV startups",
+              "Tariffs on Chinese EV batteries"
+            ],
+            "correct": 1,
+            "explanation": "The rule targets the software stack — connectivity systems and automated driving systems — regardless of where the vehicle is physically assembled."
+          }
+        ]
+      },
+      {
+        "heading": "THE EXPORT-MARKET SPLIT",
+        "body": "Automakers that build to one standard cannot easily sell into the other. A vehicle certified for the Chinese stack — GB/T charging, Chinese map data, Chinese OTA servers — needs a parallel hardware and software variant for the US. Volume economics punish the smaller market, and the US is now the smaller market for EVs.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "BR",
+              "TH",
+              "ID",
+              "ZA",
+              "AE",
+              "PK",
+              "ET",
+              "NG"
+            ],
+            "label": "markets aligning to the Chinese EV stack",
+            "caption": "BYD, Geely, and Chery are now the volume leaders across most of the Global South"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "The US made a similar bet on Huawei in 2019, banning its 5G equipment and pressuring allies to follow. Europe partially complied; most of the developing world did not. Huawei lost its premium-market handset business but kept its global infrastructure footprint. The EV ban replays the same wager on a much larger industrial base."
+      }
+    ],
+    "generatedAt": "2026-05-06T12:45:20.099Z",
+    "label": "EV Software Standards",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-06-iran-araghchi-china-wang-yi-beijing-war-diplomacy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 90% NUMBER",
+        "body": "China buys roughly 90% of Iran's oil exports — almost all of it shipped through ship-to-ship transfers off Malaysia and relabeled as Malaysian or Omani crude before discharge at independent Chinese refineries known as teapots. The trade settles in yuan and barter, not dollars, which is what makes it sanction-resistant.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The buyers aren't Sinopec or PetroChina — they're small **teapot refineries** in Shandong province that operate below the threshold where US secondary sanctions bite hard. Beijing tolerates them because they absorb cheap discounted crude and keep state majors clean."
+          }
+        ]
+      },
+      {
+        "heading": "THE 25-YEAR PACT",
+        "body": "In March 2021, Iran and China signed a 25-year cooperation agreement covering oil, infrastructure, banking, and military cooperation, reportedly worth up to $400bn in Chinese investment. Implementation has lagged the headlines — Chinese banks still fear US secondary sanctions — but the political signal was that Iran's eastward pivot is structural, not tactical.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Islamic Revolution; US break"
+              },
+              {
+                "year": "2015",
+                "label": "JCPOA signed"
+              },
+              {
+                "year": "2018",
+                "label": "US withdraws from JCPOA",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "Iran–China 25-year pact"
+              },
+              {
+                "year": "2023",
+                "label": "Saudi–Iran detente brokered by Beijing"
+              },
+              {
+                "year": "2024",
+                "label": "Iran joins BRICS"
+              }
+            ],
+            "label": "the pivot east"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BEIJING NEEDS HORMUZ CALM",
+        "body": "Roughly half of China's crude imports transit the Strait of Hormuz — Saudi, Iraqi, Emirati, Kuwaiti, and Iranian barrels all funnel through the same 33km gap. A closure hurts Beijing more than it hurts Washington, which is why China consistently pressures Tehran against escalation it might publicly endorse.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "KW",
+              "IQ"
+            ],
+            "label": "the chokepoint Beijing depends on",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 29.0697,
+                "lng": 50.3206,
+                "label": "Kharg Island terminal"
+              },
+              {
+                "lat": 25.1167,
+                "lng": 56.3411,
+                "label": "Fujairah (UAE bypass)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SNAPBACK CLOCK",
+        "body": "The JCPOA's UN Security Council resolution (2231) contains a snapback mechanism — any original participant can unilaterally restore the pre-2015 sanctions regime, and no veto can stop it. The provision sunsets in October 2025. After that, restoring UN sanctions on Iran requires a fresh resolution, which China or Russia will veto. This is the calendar Tehran is racing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't China veto a JCPOA snapback at the UN Security Council?",
+            "options": [
+              "The snapback procedure inverts the normal veto — a veto blocks continuation of sanctions relief, not restoration of sanctions",
+              "China gave up its veto on Iran-related resolutions in 2015",
+              "Snapback only applies to non-permanent council members",
+              "The US holds a special procedural override on nonproliferation matters"
+            ],
+            "correct": 0,
+            "explanation": "Resolution 2231 was drafted so that any participant complaining of non-performance triggers reimposition automatically unless the council votes to continue relief — flipping which side the veto helps."
+          }
+        ]
+      },
+      {
+        "heading": "THE LIMIT OF CHINESE COVER",
+        "body": "Beijing's diplomatic support for Tehran has consistently stopped short of military commitment. China brokered the 2023 Saudi–Iran rapprochement precisely because it did not want to choose between Gulf customers. If forced between Iran and Saudi Arabia — its top crude supplier — China's revealed preference is the Saudis.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "~1.6 mbd",
+                "cc": "SA",
+                "weight": 1.6
+              },
+              {
+                "label": "Russia",
+                "value": "~2.1 mbd",
+                "cc": "RU",
+                "weight": 2.1
+              },
+              {
+                "label": "Iraq",
+                "value": "~1.2 mbd",
+                "cc": "IQ",
+                "weight": 1.2
+              },
+              {
+                "label": "Iran",
+                "value": "~1.4 mbd",
+                "cc": "IR",
+                "weight": 1.4
+              },
+              {
+                "label": "UAE",
+                "value": "~1.0 mbd",
+                "cc": "AE",
+                "weight": 1
+              }
+            ],
+            "label": "China's top crude suppliers, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE YUAN HEDGE",
+        "body": "Iran prices a growing share of its oil sales to China in yuan, deposited in Chinese banks and used to import Chinese goods. This is currency the US Treasury cannot freeze — but it is also currency Iran cannot easily convert into dollars, euros, or anything Tehran's elites actually want to hold abroad. The arrangement keeps Iran solvent in yuan-denominated trade and starved of hard currency simultaneously.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              6.8574,
+              6.8301,
+              6.8319,
+              6.828,
+              6.828,
+              6.828,
+              6.8304,
+              6.81605,
+              6.8183,
+              6.8214,
+              6.8177,
+              6.8177,
+              6.8177,
+              6.8192,
+              6.8157,
+              6.8235,
+              6.8265,
+              6.8363,
+              6.8363,
+              6.8363,
+              6.8284,
+              6.8289,
+              6.836,
+              6.8391,
+              6.8282,
+              6.82825,
+              6.82825,
+              6.8283,
+              6.8303,
+              6.8193
+            ],
+            "periods": [
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6"
+            ],
+            "label": "Chinese yuan",
+            "unit": "CNY / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-06"
+    ],
+    "generatedAt": "2026-05-06T12:45:58.803Z",
+    "label": "China–Iran Energy & Diplomatic Axis",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-06-iran-war-gulf-migration-indian-workers-remittances": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE KAFALA SYSTEM",
+        "body": "Gulf labor migration runs through kafala — a sponsorship regime where a citizen employer holds the worker's visa, and often their passport. The worker cannot change jobs or leave the country without the sponsor's permission. When crisis hits, departures depend not on the worker's choice but on whether sponsors release them.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Arabic word *kafala* means *sponsorship* or *guardianship* — the same root used for orphan care in Islamic law, repurposed into a labor contract that critics call structurally indenturing."
+          }
+        ]
+      },
+      {
+        "heading": "WHY INDIA, WHY THE GULF",
+        "body": "Indians are the largest expatriate group in every GCC state except Saudi Arabia, where they are second to Pakistanis. The pipeline runs through Kerala, Tamil Nadu, Andhra Pradesh, and Uttar Pradesh — states where a Gulf job has been the default ladder out of agricultural poverty for two generations.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "AE",
+              "SA",
+              "KW",
+              "QA",
+              "OM",
+              "BH"
+            ],
+            "label": "the Gulf-India migration corridor"
+          }
+        ]
+      },
+      {
+        "heading": "THE REMITTANCE STACK",
+        "body": "India is the world's largest remittance recipient. The Gulf share is concentrated, but the US and UK have overtaken it as the single-largest source corridor since 2020 — Gulf flows are still the lifeline for southern Indian states, while tech-worker remittances from the US dominate the national total.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India",
+                "value": "~$135bn",
+                "cc": "IN",
+                "weight": 135
+              },
+              {
+                "label": "Mexico",
+                "value": "~$67bn",
+                "cc": "MX",
+                "weight": 67
+              },
+              {
+                "label": "China",
+                "value": "~$50bn",
+                "cc": "CN",
+                "weight": 50
+              },
+              {
+                "label": "Philippines",
+                "value": "~$40bn",
+                "cc": "PH",
+                "weight": 40
+              },
+              {
+                "label": "Pakistan",
+                "value": "~$33bn",
+                "cc": "PK",
+                "weight": 33
+              },
+              {
+                "label": "Egypt",
+                "value": "~$22bn",
+                "cc": "EG",
+                "weight": 22
+              }
+            ],
+            "label": "Top remittance recipients, 2024 ($bn)"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1990 PRECEDENT",
+        "body": "When Iraq invaded Kuwait in August 1990, India airlifted 170,000 of its citizens out of Kuwait and Iraq in 59 days — the largest civilian evacuation in history at the time. Remittances collapsed for two years; Kerala's economy contracted sharply; the 1991 balance-of-payments crisis that forced India's liberalization was triggered partly by this shock.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1990-08",
+                "label": "Iraq invades Kuwait",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1990-10",
+                "label": "Air India evacuates 170,000"
+              },
+              {
+                "year": "1991",
+                "label": "India BoP crisis, IMF bailout"
+              },
+              {
+                "year": "2011",
+                "label": "Libya evacuation: 18,000 Indians"
+              },
+              {
+                "year": "2015",
+                "label": "Yemen evacuation: 5,600"
+              },
+              {
+                "year": "2020",
+                "label": "Vande Bharat: 6m+ during COVID"
+              },
+              {
+                "year": "2026",
+                "label": "Iran war exodus begins"
+              }
+            ],
+            "label": "the Gulf-India shock cycles"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ABSORBS THE LOSS",
+        "body": "Kerala alone receives roughly a fifth of all Gulf remittances flowing to India. Real estate prices in Kochi and Kozhikode, private school enrollments, and small-business credit in the Malabar coast all run on this drip. The macroeconomic shock is national; the social shock is regional.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Indian state has the highest dependence on Gulf remittances as a share of state GDP?",
+            "options": [
+              "Tamil Nadu",
+              "Kerala",
+              "Punjab",
+              "Uttar Pradesh"
+            ],
+            "correct": 1,
+            "explanation": "Kerala receives roughly 30% of Gulf remittances to India and they constitute about a fifth of state GDP — the highest dependency of any Indian state."
+          }
+        ]
+      },
+      {
+        "heading": "THE FX TRANSMISSION",
+        "body": "Remittances are India's largest stable inflow of foreign exchange — bigger than FDI, bigger than IT services net of imports. A sustained 20% drop would force the RBI to choose between defending the rupee with reserves or letting it slide and importing inflation through a higher oil bill.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              92.86045,
+              92.283354,
+              92.47006,
+              93.10605,
+              93.10525,
+              94.508943,
+              94.94696,
+              93.165649,
+              93.387156,
+              93.048145,
+              92.602452,
+              92.60245,
+              92.60245,
+              92.782407,
+              93.348804,
+              93.775164,
+              94.11314,
+              94.143557,
+              94.0666,
+              94.0666,
+              94.257338,
+              94.420855,
+              94.762974,
+              95.171392,
+              94.951559,
+              94.89165,
+              94.910513,
+              94.951346,
+              95.361112,
+              95.029174
+            ],
+            "periods": [
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-06"
+    ],
+    "generatedAt": "2026-05-06T12:46:35.812Z",
+    "label": "Gulf Migration & Remittances",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-06-johannesburg-brixton-reservoir-water-leaks-infrastructure": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "NON-REVENUE WATER",
+        "body": "The industry term for water a utility treats but never bills is non-revenue water — a mix of physical leaks, metering errors, and unbilled use. Well-run systems hold this below 15%; Johannesburg's 48.7% means nearly half the energy and chemicals spent on treatment is wasted before a tap turns.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The split matters: **physical losses** (pipe leaks, burst mains, reservoir seepage) require capital; **commercial losses** (broken meters, illegal connections, billing errors) require enforcement. Joburg's 26.3% physical share points to infrastructure decay, not just theft."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PIPES FAIL ON A SCHEDULE",
+        "body": "Cast iron mains laid in the early 20th century have a 80–120 year design life; asbestos cement from the 1950s–70s lasts 50–70 years. Every major city built on a wave of pipe-laying inherits a wave of pipe-failures decades later. Johannesburg's reservoir stock dates largely to the apartheid-era buildout of the 1960s–80s, now arriving at end-of-life simultaneously."
+      },
+      {
+        "heading": "THE PRESSURE PARADOX",
+        "body": "Higher water pressure means more leakage — flow through a crack scales with the square root of pressure. Utilities with chronic leaks often deliberately reduce pressure at night, accepting weaker showers in exchange for less loss. Johannesburg's hilly topography forces high pressures in low-lying suburbs, accelerating failures there.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ZA"
+            ],
+            "label": "Gauteng water system",
+            "caption": "Brixton sits on the high ridge that feeds gravity-fed suburbs below",
+            "markers": [
+              {
+                "lat": -26.1875,
+                "lng": 28.0103,
+                "label": "Brixton Reservoir"
+              },
+              {
+                "lat": -26.2041,
+                "lng": 28.0473,
+                "label": "Johannesburg CBD"
+              },
+              {
+                "lat": -25.7479,
+                "lng": 28.2293,
+                "label": "Pretoria"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE REPLACEMENT MATH",
+        "body": "Johannesburg Water can fund 15 of 43 reservoir replacements next year — roughly a third. At that pace, today's backlog takes three years to clear, while the rest of the 1960s-era stock keeps aging into the queue. This is the structural pattern of infrastructure deficit: the repair rate is slower than the decay rate."
+      },
+      {
+        "heading": "WHO LOSES WATER LAST",
+        "body": "When a utility cannot supply everyone, it sheds load by geography. Wealthy suburbs with backup tanks, boreholes, and political voice are cut last; townships with no storage are cut first. South Africa's 'Day Zero' planning in Cape Town (2018) made this hierarchy explicit. Johannesburg's leak crisis follows the same logic — the same neighborhoods that lost water during 2024's outages will lose it again.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Johannesburg's treated water never reaches a paying customer?",
+            "options": [
+              "About 15% — close to global best practice",
+              "About 30% — typical for an aging system",
+              "About 49% — among the worst of any major city",
+              "About 70% — collapse-level losses"
+            ],
+            "correct": 2,
+            "explanation": "At 48.7%, Joburg loses nearly half its treated water — well above the 30% threshold the World Bank treats as a sign of severe infrastructure distress."
+          }
+        ]
+      },
+      {
+        "heading": "THE FISCAL TRAP",
+        "body": "A utility that loses half its water collects revenue on only half — but pays full cost to treat all of it. The shortfall is filled by tariff hikes on paying customers, which incentivizes them to install boreholes and exit the system, which shrinks the revenue base further. Detroit's water utility entered this spiral in the 2000s; Johannesburg's tariff trajectory follows the same curve.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              16.457476,
+              16.4261,
+              16.38864,
+              16.3875,
+              16.41806,
+              16.59285,
+              16.3955,
+              16.33375,
+              16.362705,
+              16.410661,
+              16.3162,
+              16.3162,
+              16.3162,
+              16.3754,
+              16.384099,
+              16.4976,
+              16.637866,
+              16.508621,
+              16.53436,
+              16.53436,
+              16.495858,
+              16.542735,
+              16.55256,
+              16.868635,
+              16.677723,
+              16.665525,
+              16.7113,
+              16.585522,
+              16.813,
+              16.549357
+            ],
+            "periods": [
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6"
+            ],
+            "label": "South African rand",
+            "unit": "ZAR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-06"
+    ],
+    "generatedAt": "2026-05-06T12:47:09.286Z",
+    "label": "Non-Revenue Water",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-06-lufthansa-refueling-stops-hormuz-siege-jet-fuel": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY JET FUEL IS DIFFERENT",
+        "body": "Jet A is kerosene with tight specs — flash point, freeze point, sulfur content. Refiners cannot simply pivot a diesel unit to make more of it. The crack spread between crude and jet widens fastest in a crisis because substitution is slow.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Refineries produce jet fuel from the same *middle distillate* cut as diesel. When diesel demand is strong, jet supply tightens even before crude moves — the two products compete for the same molecules."
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ EXPOSURE",
+        "body": "Roughly a fifth of global oil and a quarter of refined products pass through Hormuz. Gulf refineries — Ruwais, Ras Tanura, Jebel Ali — are major jet fuel exporters to Europe and Asia. A sustained closure removes supply faster than Atlantic basin refiners can replace it.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "KW",
+              "BH"
+            ],
+            "label": "Gulf refining complex",
+            "markers": [
+              {
+                "lat": 24.1,
+                "lng": 52.73,
+                "label": "Ruwais refinery"
+              },
+              {
+                "lat": 26.65,
+                "lng": 50.16,
+                "label": "Ras Tanura"
+              },
+              {
+                "lat": 25.01,
+                "lng": 55.13,
+                "label": "Jebel Ali"
+              },
+              {
+                "lat": 26.57,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "HOW AIRLINES HEDGE",
+        "body": "Most European carriers hedge 40-60% of fuel exposure rolling 6-12 months out. Lufthansa runs shorter — typically 1-2 quarters — which keeps margins close to spot when prices fall but exposes the airline when a shock outlasts the hedge book. Ryanair, by contrast, has hedged up to 90% two years forward and rides through spikes the network carriers cannot."
+      },
+      {
+        "heading": "TANKERING — AND WHY IT'S BANNED",
+        "body": "Tankering means loading extra fuel at a cheap airport to avoid buying expensive fuel at the destination. The extra weight burns more fuel in flight, raising emissions. The EU restricted the practice in 2022 on climate grounds. Lufthansa is now asking for an exemption — a tacit admission the climate framework was built for normal markets.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does carrying extra fuel make a flight burn more fuel?",
+            "options": [
+              "The extra weight requires more thrust to lift and cruise",
+              "Jet engines are less efficient with full tanks",
+              "Air traffic control routes heavier planes longer",
+              "Extra fuel evaporates at altitude"
+            ],
+            "correct": 0,
+            "explanation": "Every kilogram carried costs roughly 2-4% of itself in extra fuel burn over a long-haul flight — the heavier the plane, the more lift drag the engines must overcome."
+          }
+        ]
+      },
+      {
+        "heading": "THE SLOT REGIME",
+        "body": "EU airport slots follow 'use it or lose it' — carriers must operate 80% of allocated slots or forfeit them to competitors. The rule was suspended during COVID. Lufthansa wants the same suspension now, because canceling Asia routes to ration fuel would otherwise hand prized Frankfurt slots to rivals.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Lufthansa",
+                "value": "~28%",
+                "cc": "DE",
+                "weight": 28
+              },
+              {
+                "label": "Ryanair",
+                "value": "~38%",
+                "cc": "IE",
+                "weight": 38
+              },
+              {
+                "label": "Emirates",
+                "value": "~32%",
+                "cc": "AE",
+                "weight": 32
+              },
+              {
+                "label": "Delta",
+                "value": "~24%",
+                "cc": "US",
+                "weight": 24
+              }
+            ],
+            "label": "jet fuel cost as share of airline operating cost"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1990 PRECEDENT",
+        "body": "During the Gulf War buildup, jet fuel spiked 130% in four months. Pan Am, already weak, could not pass the cost through and entered Chapter 11 the following year. The lesson European carriers absorbed: fuel shocks do not kill airlines on impact — they kill the ones already running thin balance sheets when the shock arrives."
+      }
+    ],
+    "generatedAt": "2026-05-06T12:47:43.804Z",
+    "label": "Jet Fuel & the Hormuz Squeeze",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-06-quantum-computing-cosmic-ray-error-superconducting-qubit": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SUBSTRATE PROBLEM",
+        "body": "Superconducting qubits sit on a silicon chip cooled to roughly 10 millikelvin — colder than deep space. The chip itself is a target: any high-energy particle that strikes it dumps energy into the lattice that the cryostat cannot remove fast enough.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The operating temperature is around **10 mK** — about *100× colder* than the cosmic microwave background. At that scale, even a single muon strike is a catastrophic thermal event."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT QUASIPARTICLES ARE",
+        "body": "In a superconductor, electrons pair up (Cooper pairs) and flow without resistance. A particle strike breaks pairs into single electrons — quasiparticles — which tunnel into the qubit's Josephson junction and corrupt its state. One strike can flip dozens of qubits at once."
+      },
+      {
+        "heading": "WHY ERROR CORRECTION FAILS HERE",
+        "body": "Surface codes assume errors are independent and local — one qubit goes wrong, neighbors vote to fix it. A cosmic ray creates a correlated burst across a wide patch of the chip simultaneously. The voting collapses because too many neighbors are also wrong.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does standard quantum error correction struggle against cosmic-ray strikes?",
+            "options": [
+              "The errors happen too fast for the correction cycle",
+              "The errors are correlated across many qubits at once",
+              "Cryogenic systems can't detect the strikes",
+              "Silicon substrates block the syndrome measurements"
+            ],
+            "correct": 1,
+            "explanation": "Surface codes assume errors are independent and local; a single ray flipping dozens of neighboring qubits violates that assumption and overwhelms the majority-vote correction."
+          }
+        ]
+      },
+      {
+        "heading": "THE FLUX AT SEA LEVEL",
+        "body": "At Earth's surface, roughly one muon per square centimeter strikes every minute, alongside background gamma rays from concrete, granite, and trace radioisotopes in the chip packaging itself. A 1 cm² processor is hit dozens of times per hour."
+      },
+      {
+        "heading": "THE UNDERGROUND PRECEDENT",
+        "body": "Particle physics solved this problem decades ago by going deep. Italy's Gran Sasso lab sits under 1.4 km of rock; Japan's Kamioka mine is under 1 km. Muon flux drops by a factor of a million. Quantum hardware is now eyeing the same playbook — Google and others have run test chips in mine shafts.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Sea level",
+                "value": "1×",
+                "weight": 1000000
+              },
+              {
+                "label": "Subway tunnel (~30m)",
+                "value": "~1/10",
+                "weight": 100000
+              },
+              {
+                "label": "Deep mine (~1km)",
+                "value": "~1/100,000",
+                "weight": 10
+              },
+              {
+                "label": "Gran Sasso (~1.4km)",
+                "value": "~1/1,000,000",
+                "weight": 1
+              }
+            ],
+            "label": "muon flux vs depth"
+          }
+        ]
+      },
+      {
+        "heading": "THE TIMELINE COST",
+        "body": "Roadmaps to fault-tolerant quantum computing assumed error rates would fall with better gates and more qubits. Cosmic rays impose a floor that scaling alone cannot cross — meaning practical machines may need shielded vaults or underground siting, which adds years and capital to every deployment."
+      }
+    ],
+    "generatedAt": "2026-05-06T12:48:11.802Z",
+    "label": "Cosmic Rays & Quantum Chips",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-06-smex-link-trackers-utm-attribution-privacy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT UTM ACTUALLY IS",
+        "body": "UTM stands for Urchin Tracking Module — named after Urchin Software, which Google acquired in 2005 to build Google Analytics. The five parameters (source, medium, campaign, term, content) became a de facto web standard despite never being formally standardized.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The parameters are appended to URLs as query strings — everything after the `?`. They are *not* part of the page address; they are metadata the browser sends along that the server reads and logs."
+          }
+        ]
+      },
+      {
+        "heading": "THE CLICK ID FAMILY",
+        "body": "Beyond UTM, platforms inject their own click identifiers: fbclid (Facebook), gclid (Google Ads), msclkid (Microsoft), ttclid (TikTok), igshid (Instagram). These are unique per click and let the platform reconcile a server-side conversion back to a specific ad impression — bypassing cookie blockers entirely.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Facebook/Meta",
+                "value": "fbclid",
+                "cc": "US"
+              },
+              {
+                "label": "Google Ads",
+                "value": "gclid",
+                "cc": "US"
+              },
+              {
+                "label": "Microsoft",
+                "value": "msclkid",
+                "cc": "US"
+              },
+              {
+                "label": "TikTok",
+                "value": "ttclid",
+                "cc": "CN"
+              },
+              {
+                "label": "Instagram",
+                "value": "igshid",
+                "cc": "US"
+              }
+            ],
+            "label": "who owns which click ID"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE FORWARDING LEAK MATTERS",
+        "body": "When you copy a link from a newsletter and paste it into a private chat, the click ID encoded for you travels with it. The recipient's click is then attributed to your identity — the platform thinks you visited twice, or worse, learns the social graph between sender and recipient."
+      },
+      {
+        "heading": "THE REFERER HEADER",
+        "body": "Separate from URL parameters, browsers send a Referer header (misspelled in the original 1996 HTTP spec, never corrected) telling the destination which page sent you. Modern browsers truncate this to the origin by default, but URL parameters are a workaround that survives the privacy hardening."
+      },
+      {
+        "heading": "WHY STRIPPING WORKS CLIENT-SIDE",
+        "body": "ClearURLs and similar extensions intercept the request before it leaves the browser, removing known tracking parameters using a maintained ruleset. The server never sees them — unlike cookie blocking, there is no fingerprint of the strip itself, because the request looks identical to a clean link.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which of these URL parameters is NOT a tracking identifier?",
+            "options": [
+              "fbclid",
+              "utm_source",
+              "page",
+              "gclid"
+            ],
+            "correct": 2,
+            "explanation": "`page` is a functional parameter telling the server which page of results to load. The others all encode advertising attribution data."
+          }
+        ]
+      },
+      {
+        "heading": "THE SMEX CONTEXT",
+        "body": "SMEX is a Beirut-based digital rights organization that has documented surveillance and data exploitation across the Arab world since 2008. Their guidance reflects a region where forwarded links carry political risk — a leaked attribution chain can map dissident networks for state security services."
+      }
+    ],
+    "generatedAt": "2026-05-06T12:48:38.483Z",
+    "label": "URL Tracking Parameters",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-06-vijay-tvk-tamil-nadu-government-congress-dravidian-collapse": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DRAVIDIAN MOVEMENT",
+        "body": "Tamil Nadu's politics were forged by the Self-Respect Movement of E.V. Ramasamy ('Periyar') in the 1920s — anti-caste, anti-Brahmin, anti-Hindi, and skeptical of the Congress-led national project. Every ruling party in the state since 1967 has descended from this lineage.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The defining slogan was *'Thamizhan endru sol'* — 'say you are Tamil' — making linguistic identity, not religion or caste, the organizing axis of state politics."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1967 RUPTURE",
+        "body": "The 1965 anti-Hindi agitations — students self-immolating against Delhi's plan to make Hindi the sole official language — broke Congress in Tamil Nadu. The DMK swept 1967 and Congress has not won the state since. No national party has governed Tamil Nadu in nearly six decades.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1949",
+                "label": "DMK founded by Annadurai"
+              },
+              {
+                "year": "1965",
+                "label": "Anti-Hindi agitations",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1967",
+                "label": "DMK ousts Congress"
+              },
+              {
+                "year": "1972",
+                "label": "AIADMK splits from DMK (MGR)"
+              },
+              {
+                "year": "1977",
+                "label": "AIADMK wins under MGR"
+              },
+              {
+                "year": "2016",
+                "label": "Jayalalithaa dies"
+              },
+              {
+                "year": "2018",
+                "label": "Karunanidhi dies"
+              },
+              {
+                "year": "2024",
+                "label": "Vijay launches TVK"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1967",
+                "to": "2026",
+                "label": "DMK / AIADMK duopoly",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Dravidian rule, unbroken since 1967"
+          }
+        ]
+      },
+      {
+        "heading": "THE CINEMA PIPELINE",
+        "body": "Tamil cinema is the state's most efficient political-recruitment machine. Screenwriters like Karunanidhi wrote DMK ideology directly into film dialogue; matinee idols like MGR and Jayalalithaa converted on-screen heroism into ballot-box dominance. Vijay is the latest in a 70-year sequence.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "M. Karunanidhi",
+                "role": "Screenwriter, 5x Chief Minister",
+                "years": "1969–2011",
+                "cc": "IN"
+              },
+              {
+                "name": "M.G. Ramachandran",
+                "role": "Matinee idol, AIADMK founder",
+                "years": "1977–1987",
+                "cc": "IN"
+              },
+              {
+                "name": "J. Jayalalithaa",
+                "role": "Actress, 6x Chief Minister",
+                "years": "1991–2016",
+                "cc": "IN"
+              },
+              {
+                "name": "Vijay",
+                "role": "Actor, TVK founder",
+                "years": "2024–",
+                "cc": "IN"
+              }
+            ],
+            "label": "actor-politicians who governed Tamil Nadu"
+          }
+        ]
+      },
+      {
+        "heading": "WHY NATIONAL PARTIES FAIL HERE",
+        "body": "The BJP's Hindi-Hindu-Hindutva package is structurally incompatible with the Dravidian frame, and Congress's brand never recovered from the Hindi imposition fight. National parties typically run as junior partners to a Dravidian major, not as principals — a pattern unique to Tamil Nadu among large Indian states."
+      },
+      {
+        "heading": "COALITION MATH",
+        "body": "In a 234-seat assembly, 118 is the majority. TVK's 108 is a plurality, not a mandate. The governor — a centrally appointed BJP figure — chooses who to invite first, and that invitation often determines who can assemble defectors before a floor test. Edappadi Palaniswami's AIADMK bloc is the kingmaker.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does the governor's appointment order matter so much in Indian state coalition fights?",
+            "options": [
+              "The first invited party gets extra seats",
+              "The first invited party has time to negotiate defections before the floor test",
+              "Only the first invited party can call a confidence vote",
+              "The governor's choice is binding and cannot be challenged"
+            ],
+            "correct": 1,
+            "explanation": "Whoever is sworn in first controls the assembly's schedule and can poach legislators with ministerial offers before being forced to prove a majority on the floor."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T12:49:17.388Z",
+    "label": "Dravidian Politics & the Cinema Pipeline",
+    "category": "politics",
+    "articleCount": 1
   }
 }
