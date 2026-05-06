@@ -786,5 +786,21 @@
     "guardrailFailures": [
       "category science below floor 2 (got 1)"
     ]
+  },
+  {
+    "ts": "2026-05-06T08:59:30.915Z",
+    "cycleId": "2026-05-06T08-59",
+    "cycleHour": "08",
+    "rvs": 68.96,
+    "clusters": {
+      "picking": null,
+      "writing": 91.67,
+      "briefing": 74.5,
+      "sourcing": 23.33,
+      "coverage": 76.95
+    },
+    "articleCount": 12,
+    "briefCount": 12,
+    "guardrailFailures": []
   }
 ]
