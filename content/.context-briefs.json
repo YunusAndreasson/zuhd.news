@@ -121311,5 +121311,1395 @@
     "label": "Heart Regeneration & the Immune First Responders",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-05-06-anthraquinone-cathode-organic-battery-cobalt-free-arctic": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY CATHODES MATTER",
+        "body": "A lithium-ion cell's cathode determines its energy density, voltage, and — crucially — its supply chain. The anode is usually graphite; the electrolyte is a solvent. The cathode is where cobalt, nickel, and lithium concentrate, and where roughly two-thirds of a battery's material cost lives.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why cathode chemistry names — **NMC**, **LFP**, **NCA** — double as geopolitical labels. Each implies a different mine map."
+          }
+        ]
+      },
+      {
+        "heading": "THE COBALT PROBLEM",
+        "body": "Roughly 70% of global cobalt comes from the Democratic Republic of Congo, and a meaningful share of that from artisanal mines using child labor. Every major automaker has spent a decade trying to engineer cobalt out of their cells — Tesla moved to LFP for standard-range cars, CATL pushed sodium-ion — because the reputational and supply risks compound.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "DRC",
+                "value": 70,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Indonesia",
+                "value": 10,
+                "tone": "neutral"
+              },
+              {
+                "label": "Russia",
+                "value": 4,
+                "tone": "neutral"
+              },
+              {
+                "label": "Australia",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Philippines",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Canada",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Cuba",
+                "value": 2,
+                "tone": "neutral"
+              },
+              {
+                "label": "Other",
+                "value": 5,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global mined cobalt, 2024 (share)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ORGANIC CATHODES KEEP FAILING",
+        "body": "Organic molecules can store charge by accepting and releasing electrons reversibly — quinones have been studied for this since the 1960s. The killer has always been dissolution: the cathode molecule slowly leaches into the electrolyte, capacity fades within hundreds of cycles, and the cell dies. Anchoring the active group to a polymer backbone is the standard fix, and the standard failure point."
+      },
+      {
+        "heading": "THE SODIUM ALTERNATIVE",
+        "body": "Sodium sits directly below lithium on the periodic table and behaves similarly in a battery, but it's roughly 1000× more abundant and extracted from seawater or salt deposits — not concentrated in a few salars. The catch: sodium ions are larger, which historically made them incompatible with the layered oxide cathodes optimized for lithium. A cathode that works in both chemistries removes that constraint.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Crustal abundance",
+                "value": "Na ~1000× Li",
+                "tone": "favorable"
+              },
+              {
+                "label": "Producers",
+                "value": "Li: 4 countries",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Producers",
+                "value": "Na: ~everywhere",
+                "tone": "favorable"
+              },
+              {
+                "label": "Energy density",
+                "value": "Li > Na ~30%",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "lithium vs sodium: the resource case"
+          }
+        ]
+      },
+      {
+        "heading": "THE LITHIUM TRIANGLE",
+        "body": "More than half the world's lithium reserves sit under the salt flats where Chile, Argentina, and Bolivia meet. Australia leads in mined output (hard-rock spodumene), but the brine economics of the Triangle are unmatched. Countries without access — most of Africa, South Asia, and Southeast Asia — have spent the 2020s watching the EV transition pass them by.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CL",
+              "AR",
+              "BO",
+              "AU",
+              "CN"
+            ],
+            "label": "the lithium triangle + top producers",
+            "caption": "~55% of global lithium reserves sit in three salt flats",
+            "markers": [
+              {
+                "lat": -23.5,
+                "lng": -68.2,
+                "label": "Salar de Atacama"
+              },
+              {
+                "lat": -21.5,
+                "lng": -67.7,
+                "label": "Salar de Uyuni"
+              },
+              {
+                "lat": -26.5,
+                "lng": -66.7,
+                "label": "Salar del Hombre Muerto"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE COLD PROBLEM",
+        "body": "Conventional lithium cells lose 20-40% of their capacity below -20°C as the electrolyte thickens and ion movement slows. This is why Arctic shipping, Russian rail, Canadian mining, and high-altitude military operations still run on diesel. A cathode that holds charge at -40°C reframes which geographies can electrify at all.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do conventional lithium-ion batteries fail in extreme cold?",
+            "options": [
+              "The lithium itself freezes solid",
+              "The electrolyte thickens, slowing ion movement",
+              "The cathode cracks from thermal contraction",
+              "The casing warps and breaks the seal"
+            ],
+            "correct": 1,
+            "explanation": "Lithium ions need a liquid electrolyte to shuttle between electrodes; below -20°C the solvent becomes viscous and ion mobility collapses, even though no component literally freezes."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T04:46:47.000Z",
+    "label": "Organic Cathodes & Battery Geopolitics",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-06-australia-fuel-reserve-iran-war-supply-shock": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 90-DAY OBLIGATION",
+        "body": "IEA member countries are required to hold petroleum stocks equivalent to 90 days of net imports. Australia has been in breach of this obligation continuously since 2012 — the only IEA member to fail the test for over a decade.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "USA",
+                "value": "~140 days",
+                "cc": "US",
+                "weight": 140,
+                "tone": "favorable"
+              },
+              {
+                "label": "Japan",
+                "value": "~130 days",
+                "cc": "JP",
+                "weight": 130,
+                "tone": "favorable"
+              },
+              {
+                "label": "Germany",
+                "value": "~95 days",
+                "cc": "DE",
+                "weight": 95,
+                "tone": "favorable"
+              },
+              {
+                "label": "South Korea",
+                "value": "~100 days",
+                "cc": "KR",
+                "weight": 100,
+                "tone": "favorable"
+              },
+              {
+                "label": "Australia",
+                "value": "~30 days",
+                "cc": "AU",
+                "weight": 30,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "days of net import cover, IEA members (2024)"
+          }
+        ]
+      },
+      {
+        "heading": "THE REFINING COLLAPSE",
+        "body": "Australia had eight refineries in 2000; by 2021 only two remained — Geelong and Lytton. Domestic refining margins could not compete with megascale Singaporean and Korean refineries, so Australia became dependent on finished-product imports rather than crude.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This makes Australia uniquely vulnerable: most oil-importing nations stockpile **crude** they can refine themselves, but Australia must stockpile **finished petrol and diesel** — a more expensive proposition with shorter shelf life."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1973 ORIGIN",
+        "body": "The strategic petroleum reserve concept was invented after the OPEC oil embargo of 1973-74, when Arab producers cut exports to nations supporting Israel in the Yom Kippur War. The IEA was founded in 1974 specifically to coordinate emergency stocks; the US Strategic Petroleum Reserve was authorized in 1975.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1973",
+                "label": "OPEC embargo",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1974",
+                "label": "IEA founded"
+              },
+              {
+                "year": "1975",
+                "label": "US SPR authorized"
+              },
+              {
+                "year": "1991",
+                "label": "Gulf War release"
+              },
+              {
+                "year": "2011",
+                "label": "Libya release"
+              },
+              {
+                "year": "2022",
+                "label": "Ukraine war release"
+              }
+            ],
+            "label": "the SPR era"
+          }
+        ]
+      },
+      {
+        "heading": "THE TICKETS WORKAROUND",
+        "body": "Rather than building physical storage, Australia spent years buying 'oil tickets' — contractual rights to draw from US and Dutch reserves during emergencies. Critics called this an accounting trick: the oil sits 15,000 km away in Louisiana salt caverns, requiring weeks of tanker transit to reach an actual fuel crisis."
+      },
+      {
+        "heading": "WHY HORMUZ MATTERS TO CANBERRA",
+        "body": "Roughly 90% of Australia's refined fuel imports transit through or originate near maritime chokepoints — primarily Singapore, which itself depends on Persian Gulf crude. A Hormuz disruption ripples through Singaporean refineries within weeks, and Australia's tanker queue stretches halfway across the Indian Ocean.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AU",
+              "SG",
+              "KR",
+              "JP",
+              "AE",
+              "SA",
+              "IR"
+            ],
+            "label": "Australia's fuel lifeline",
+            "markers": [
+              {
+                "lat": 1.2655,
+                "lng": 103.8186,
+                "label": "Singapore refining hub"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE QUIZ",
+        "body": "Strategic reserves only work if they can be drawn down faster than the crisis unfolds. Most national reserves can release at rates of roughly 1-4 million barrels per day — meaningful for a 90-day shock, useless for an instant cutoff.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the IEA's required minimum petroleum stock for member countries?",
+            "options": [
+              "30 days of net imports",
+              "60 days of net imports",
+              "90 days of net imports",
+              "180 days of net imports"
+            ],
+            "correct": 2,
+            "explanation": "The 90-day obligation, set in 1974, assumes a major supply disruption can be politically resolved within roughly three months — the historical pattern since the 1973 embargo."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T04:47:18.165Z",
+    "label": "Strategic Petroleum Reserves",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-06-india-semicon-mission-phase-one-gujarat-20-billion": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY INDIA STARTED LATE",
+        "body": "India produces roughly 20% of the world's chip design engineers but fabricated almost no silicon domestically until 2024. Design is weightless — emailed to Taiwan. Fabrication requires billions per fab, ultra-pure water, uninterrupted power, and a vendor ecosystem India never built during the 1990s liberalization window.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mission's branded vehicle is the **India Semiconductor Mission (ISM)**, launched 2021 under MeitY with a ₹76,000 crore corpus that phase one nearly exhausted."
+          }
+        ]
+      },
+      {
+        "heading": "PACKAGING FIRST, FABS LATER",
+        "body": "Eleven of the twelve approved units are assembly, test, and packaging (ATMP) plants — not leading-edge fabs. This is the standard playbook: packaging needs less capital, less process know-how, and trains a workforce before the country attempts sub-10nm lithography. Micron's Sanand plant in Gujarat is the flagship.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN"
+            ],
+            "label": "Gujarat's chip cluster",
+            "markers": [
+              {
+                "lat": 22.9897,
+                "lng": 72.3814,
+                "label": "Micron ATMP, Sanand"
+              },
+              {
+                "lat": 23.5223,
+                "lng": 72.9636,
+                "label": "Tata-PSMC fab, Dholera"
+              },
+              {
+                "lat": 24.5854,
+                "lng": 73.7125,
+                "label": "Kaynes ATMP, Sanand"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SUBSIDY MATH",
+        "body": "India covers 50% of project capex for approved fabs and packaging plants, with states adding another 20-25%. A $2.75bn Micron plant lands roughly $1.5bn in central money plus state incentives. No country has built a domestic semiconductor industry without subsidies on this scale — Taiwan, Korea, China, and the US CHIPS Act all follow the same template."
+      },
+      {
+        "heading": "THE PEER RACE",
+        "body": "India is one of several countries pouring state money into chips after the 2021 supply shock revealed Taiwan as a single point of failure. The absolute commitments are not comparable to TSMC or Samsung's annual capex, but the strategic intent is.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "USA",
+                "value": "$52bn",
+                "cc": "US",
+                "weight": 52
+              },
+              {
+                "label": "EU",
+                "value": "$47bn",
+                "cc": "EU",
+                "weight": 47
+              },
+              {
+                "label": "China",
+                "value": "$45bn+",
+                "cc": "CN",
+                "weight": 45,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "South Korea",
+                "value": "$19bn",
+                "cc": "KR",
+                "weight": 19
+              },
+              {
+                "label": "Japan",
+                "value": "$13bn",
+                "cc": "JP",
+                "weight": 13
+              },
+              {
+                "label": "India",
+                "value": "$10bn",
+                "cc": "IN",
+                "weight": 10,
+                "tone": "favorable"
+              }
+            ],
+            "label": "national chip programs (announced state support)"
+          }
+        ]
+      },
+      {
+        "heading": "THE NODE GAP",
+        "body": "India's first true fab — Tata-PSMC at Dholera — will produce 28nm and 40nm chips. TSMC is shipping 3nm in volume and ramping 2nm. The 28nm node is a generation behind 2011, but it covers automotive, industrial, and power-management chips that account for the bulk of unit volume even if not value.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What process node will India's first fab (Tata-PSMC, Dholera) produce?",
+            "options": [
+              "2nm — leading edge",
+              "7nm — one generation behind",
+              "28nm — mature node",
+              "90nm — legacy node"
+            ],
+            "correct": 2,
+            "explanation": "28nm is mature but commercially essential — automotive, industrial controllers, and power chips dominate this node even today."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GUJARAT",
+        "body": "Three of the major projects landed in Gujarat — Micron, Tata-PSMC, and Kaynes — for one structural reason: the state offers fast land acquisition, dedicated industrial water from the Narmada canal, and a single-window clearance system that Tamil Nadu and Karnataka have struggled to match. Gujarat's chief minister also chairs the state's semiconductor task force directly."
+      }
+    ],
+    "generatedAt": "2026-05-06T04:47:51.432Z",
+    "label": "India's Semiconductor Mission",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-06-insight-crime-us-drug-boat-strikes-map-extrajudicial": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL THRESHOLD",
+        "body": "Drug interdiction at sea has always been a law-enforcement matter — board, search, arrest, prosecute. The 1988 Vienna Convention and US Coast Guard practice both require boarding before force. Killing suspected smugglers without arrest is not interdiction; it is targeted killing under armed-conflict rules.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pivot turns on one word: **hostis**. Calling cartels *hostes humani generis* — enemies of mankind, the old pirate doctrine — is the legal scaffolding that lets a navy shoot rather than a coast guard arrest."
+          }
+        ]
+      },
+      {
+        "heading": "WHO SOUTHCOM IS",
+        "body": "US Southern Command is one of eleven unified combatant commands, headquartered in Doral, Florida, with responsibility for Latin America and the Caribbean south of Mexico. Historically it ran counter-narcotics support, hurricane response, and SOUTHCOM-CIA coordination during the Cold War — Iran-Contra ran through its area of responsibility.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "MX",
+              "CO",
+              "VE",
+              "PA",
+              "EC",
+              "DO",
+              "HT"
+            ],
+            "label": "Southcom's area of responsibility",
+            "markers": [
+              {
+                "lat": 25.8198,
+                "lng": -80.3331,
+                "label": "Southcom HQ, Doral FL"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE POSSE COMITATUS WORKAROUND",
+        "body": "The 1878 Posse Comitatus Act bars the US military from domestic law enforcement. International waters are the workaround: Title 10 forces can do what Title 14 Coast Guard does, without the warrant requirements that would apply within US jurisdiction. Moving the kill zone offshore is the entire point."
+      },
+      {
+        "heading": "THE EVIDENTIARY VOID",
+        "body": "Traditional interdictions produced bales of cocaine, arrest records, and prosecutions — the evidence existed because the boats and crews were captured. Strikes destroy the evidence with the target. Without bodies, cargo manifests, or survivors, the claim that a vessel carried drugs is unfalsifiable.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the 1988 UN Convention against narcotic trafficking at sea, what must a state do before using force on a suspected smuggling vessel?",
+            "options": [
+              "Request boarding consent from the flag state",
+              "Notify the destination port",
+              "Issue a 24-hour public warning",
+              "Nothing — force is permitted on suspicion alone"
+            ],
+            "correct": 0,
+            "explanation": "Article 17 requires the intercepting state to seek authorization from the vessel's flag state before boarding, searching, or taking action — the framework assumes arrest, not destruction."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT PROBLEM",
+        "body": "The Reagan-era 'war on drugs' framing was rhetorical; the legal architecture stayed civilian. Treating drug vessels as combatants collapses the wall between criminal suspects and enemy fighters. Once that wall falls for cartels, the same logic extends to any group a president designates as a terrorist organization — the 2001 AUMF's elasticity is the cautionary tale."
+      },
+      {
+        "heading": "WHAT MONITORING GROUPS DO",
+        "body": "InSight Crime, Airwars, and the Bureau of Investigative Journalism reconstruct strikes from open-source signals — ship-tracking AIS data, local press, satellite imagery, social-media posts from coastal communities. They exist because the executing state will not release locations, names, or evidence; the monitoring fills the void that classification creates.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Airwars",
+                "value": "US/UK strikes, MENA"
+              },
+              {
+                "label": "Bureau Investigative",
+                "value": "drone strikes, global"
+              },
+              {
+                "label": "InSight Crime",
+                "value": "organized crime, Latin America"
+              },
+              {
+                "label": "ACLED",
+                "value": "political violence, global"
+              }
+            ],
+            "label": "open-source strike monitors"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T04:48:23.150Z",
+    "label": "Extrajudicial Strikes at Sea",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-06-motorola-india-dynamic-injunction-platform-speech-prior-restraint": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A DYNAMIC INJUNCTION IS",
+        "body": "A standard injunction names specific URLs to take down. A dynamic injunction binds platforms to remove future content matching a pattern — same defendant, same subject matter — without going back to court. The judicial order, once granted, runs forward in time.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism collapses two distinct legal acts — *adjudication* (was this post defamatory?) and *enforcement* (take it down) — into a single standing order. Future posts are presumed unlawful before anyone reads them."
+          }
+        ]
+      },
+      {
+        "heading": "THE DELHI HIGH COURT ORIGIN",
+        "body": "India's dynamic injunction was invented in UTV Software v. 1337X (2019), a copyright case targeting piracy mirror sites. The court reasoned that whack-a-mole takedowns were ineffective when blocked sites simply reappeared at new domains. The doctrine has since migrated from copyright into defamation, trademark, and personality-rights cases."
+      },
+      {
+        "heading": "PRIOR RESTRAINT, THE OLD DOCTRINE",
+        "body": "Anglo-American free-speech law has treated prior restraint — banning speech before it occurs — as the most disfavored form of censorship since Blackstone in the 1760s. Post-publication liability lets the speaker speak and face consequences; prior restraint silences speech that may never have been unlawful at all.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The liberty of the press is indeed essential to the nature of a free state; but this consists in laying no previous restraints upon publications, and not in freedom from censure for criminal matter when published.",
+            "speaker": "Blackstone, Commentaries on the Laws of England",
+            "year": "1769"
+          }
+        ]
+      },
+      {
+        "heading": "INTERMEDIARY LIABILITY, THE INDIAN VERSION",
+        "body": "India's IT Rules 2021 require platforms to remove flagged content within 36 hours or lose safe-harbor protection under Section 79 of the IT Act. Combined with dynamic injunctions, the structure pushes platforms toward over-removal: the cost of leaving content up is unlimited liability; the cost of taking it down is near zero.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "Section 230",
+                "cc": "US",
+                "tone": "favorable"
+              },
+              {
+                "label": "EU",
+                "value": "DSA, notice-and-action",
+                "cc": "EU",
+                "tone": "neutral"
+              },
+              {
+                "label": "India",
+                "value": "IT Rules, 36-hr",
+                "cc": "IN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Singapore",
+                "value": "POFMA, ministerial",
+                "cc": "SG",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "intermediary safe-harbor regimes"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SOUTH ASIA MATTERS",
+        "body": "Indian High Court jurisprudence is influential across common-law jurisdictions in the region — Pakistan, Bangladesh, Sri Lanka, Malaysia, Singapore — whose courts cite Indian precedent on internet regulation. A doctrine that hardens in Delhi often appears in Dhaka or Kuala Lumpur within a few years.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "PK",
+              "BD",
+              "LK",
+              "MY",
+              "SG"
+            ],
+            "label": "common-law jurisdictions citing Indian internet precedent"
+          }
+        ]
+      },
+      {
+        "heading": "THE CORPORATE PLAINTIFF SHIFT",
+        "body": "Defamation law evolved to protect individuals from reputational ruin. Corporations using the same tools to suppress product reviews and consumer criticism is a relatively recent extension — and one most jurisdictions limit through anti-SLAPP statutes. India has no anti-SLAPP law.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does an anti-SLAPP statute do?",
+            "options": [
+              "Lets defendants quickly dismiss lawsuits filed to silence public criticism",
+              "Caps damages in defamation cases",
+              "Requires plaintiffs to post a bond before filing",
+              "Bans corporations from suing individuals"
+            ],
+            "correct": 0,
+            "explanation": "Anti-SLAPP laws (Strategic Lawsuit Against Public Participation) provide an early-stage motion to dismiss meritless suits aimed at chilling speech, often with fee-shifting to the defendant."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T04:48:56.010Z",
+    "label": "Dynamic Injunctions & Prior Restraint",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-06-north-korea-apt37-birdcall-android-malware-ethnic-koreans-china": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO APT37 ACTUALLY IS",
+        "body": "APT37 — also called ScarCruft, Reaper, or Group123 — is attributed to North Korea's Ministry of State Security, distinct from the Lazarus Group run by the Reconnaissance General Bureau. Lazarus chases hard currency through crypto theft; APT37 chases people through espionage.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The split matters: **Lazarus** funds the regime, **APT37** protects it. Different bureaucracies, different targets, different tradecraft."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ETHNIC KOREANS IN CHINA",
+        "body": "Roughly 1.7 million ethnic Koreans live in China, concentrated in the Yanbian Korean Autonomous Prefecture along the Tumen River — the porous border most North Korean defectors cross first. Surveilling this diaspora means surveilling the defection pipeline, the smuggling routes, and the families left behind who fund both.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KP",
+              "CN",
+              "KR",
+              "RU"
+            ],
+            "label": "the defection corridor",
+            "markers": [
+              {
+                "lat": 42.8868,
+                "lng": 129.5089,
+                "label": "Yanbian (Korean prefecture)"
+              },
+              {
+                "lat": 42,
+                "lng": 129.7,
+                "label": "Tumen River crossing"
+              },
+              {
+                "lat": 39.0392,
+                "lng": 125.7625,
+                "label": "Pyongyang"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SUPPLY-CHAIN VECTOR",
+        "body": "BirdCall did not exploit a zero-day. It rode inside legitimate-looking card games published through a real developer account, Sqgame, distributed via channels ethnic Korean users already trusted. This is the standard APT37 pattern — compromise the watering hole, let the target install the malware themselves."
+      },
+      {
+        "heading": "WHY ANDROID, WHY CHINA",
+        "body": "Google Play does not operate in mainland China. Android users sideload from a fragmented ecosystem of third-party stores — Tencent's MyApp, Huawei AppGallery, Xiaomi GetApps — each with its own review standards. A malicious app that would be flagged on Play can live for months on a regional Chinese store with a Korean-language interface."
+      },
+      {
+        "heading": "THE TRADECRAFT EVOLUTION",
+        "body": "APT37 was first publicly named in 2017 and was then a Flash-exploit shop targeting South Korean think tanks. The pivot to Android, to Chinese app stores, to diaspora targets reflects where the surveillance gap actually is — defectors and their networks operate on phones, in China, beyond Seoul's reach.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2012",
+                "label": "Earliest APT37 activity observed"
+              },
+              {
+                "year": "2017",
+                "label": "Publicly named by FireEye",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2018",
+                "label": "Flash zero-day vs. South Korean targets"
+              },
+              {
+                "year": "2022",
+                "label": "Dolphin backdoor — cloud exfiltration"
+              },
+              {
+                "year": "2024",
+                "label": "Android malware vs. diaspora"
+              }
+            ],
+            "label": "APT37's target drift"
+          }
+        ]
+      },
+      {
+        "heading": "WHO HUNTS WHOM",
+        "body": "ESET, the Slovak firm that flagged BirdCall, sits alongside Kaspersky, Mandiant, and Citizen Lab in a small pool of researchers who track state-sponsored mobile malware against diasporas and dissidents. Attribution to a North Korean unit from a European lab — using samples pulled from Chinese app stores — is itself a small geopolitical artifact.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which North Korean unit is APT37 attributed to?",
+            "options": [
+              "Reconnaissance General Bureau (same as Lazarus)",
+              "Ministry of State Security",
+              "Korean People's Army Strategic Force",
+              "Workers' Party United Front Department"
+            ],
+            "correct": 1,
+            "explanation": "APT37 is attributed to the MSS — the regime's internal-security service — which is why its targets are people (defectors, dissidents) rather than banks or crypto exchanges."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T04:49:32.645Z",
+    "label": "APT37 & the Diaspora Surveillance Playbook",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-06-pakistan-trade-deficit-32-billion-fpcci-industrial-strategy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STRUCTURAL GAP",
+        "body": "Pakistan has run a trade deficit every year since 2003. Imports double exports because the export base never diversified beyond textiles, rice, and leather — roughly 60% of exports are still low-value cotton goods, while imports are dominated by energy, machinery, and edible oil.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The textile concentration is the legacy of **import-substitution industrialization** in the 1960s — a strategy that built domestic capacity for one sector and never moved up the value chain."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE DEFICIT IS A DOLLAR PROBLEM",
+        "body": "A trade deficit must be financed in foreign currency. Pakistan covers the gap through remittances from workers in the Gulf, IMF tranches, and rollovers of bilateral debt from China, Saudi Arabia, and the UAE. When any of these three streams stutters, the rupee falls and reserves drain within weeks."
+      },
+      {
+        "heading": "THE ENERGY IMPORT TRAP",
+        "body": "Roughly a third of Pakistan's import bill is energy — crude, refined products, and LNG. Domestic gas fields peaked in the late 2000s, and every megawatt of new generation since has been imported-fuel dependent. Industry's demand for cheaper tariffs runs into this physics: the input cost is dollar-denominated.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Energy",
+                "value": "~30%",
+                "tone": "unfavorable",
+                "weight": 30
+              },
+              {
+                "label": "Machinery",
+                "value": "~18%",
+                "tone": "neutral",
+                "weight": 18
+              },
+              {
+                "label": "Chemicals",
+                "value": "~12%",
+                "tone": "neutral",
+                "weight": 12
+              },
+              {
+                "label": "Food (palm oil, pulses)",
+                "value": "~10%",
+                "tone": "neutral",
+                "weight": 10
+              },
+              {
+                "label": "Other",
+                "value": "~30%",
+                "weight": 30
+              }
+            ],
+            "label": "Pakistan FY2026 import composition (rough share)"
+          }
+        ]
+      },
+      {
+        "heading": "THE POLICY RATE TRADEOFF",
+        "body": "FPCCI wants the State Bank to cut rates to revive industry. But high rates are what defend the rupee — they make rupee deposits attractive and slow import demand. Cutting rates would lift output but widen the deficit further, the same trap Pakistan hit in 2018 and 2022.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              280.32183,
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019
+            ],
+            "periods": [
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE PEER POSITION",
+        "body": "Pakistan's export-to-GDP ratio is among the lowest of any large emerging market — roughly 10%, against 20%+ for Bangladesh, Vietnam, and India. Smaller, poorer Bangladesh now exports more in absolute dollar terms than Pakistan despite having half the GDP a decade ago.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Exports as share of GDP, 2024",
+            "peers": [
+              {
+                "value": 87,
+                "cc": "VN"
+              },
+              {
+                "value": 58,
+                "cc": "TH"
+              },
+              {
+                "value": 13,
+                "cc": "BD"
+              },
+              {
+                "value": 22,
+                "cc": "IN"
+              },
+              {
+                "value": 10,
+                "cc": "PK"
+              },
+              {
+                "value": 18,
+                "cc": "EG"
+              },
+              {
+                "value": 35,
+                "cc": "TR"
+              }
+            ],
+            "subjectCc": "PK",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "THE REMITTANCE LIFELINE",
+        "body": "Roughly 9 million Pakistanis work abroad, mostly in the Gulf. Their remittances — about $30bn annually — nearly cover the trade deficit on their own. This is why every Pakistani government cultivates Gulf monarchies: the labor flow is the financing flow.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which single source covers most of Pakistan's trade deficit?",
+            "options": [
+              "IMF program disbursements",
+              "Worker remittances from the Gulf",
+              "Chinese CPEC loans",
+              "Foreign direct investment"
+            ],
+            "correct": 1,
+            "explanation": "Remittances run ~$30bn a year — close to the entire trade gap. IMF and Chinese flows fill the residual, not the bulk."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-06"
+    ],
+    "generatedAt": "2026-05-06T04:50:03.469Z",
+    "label": "Pakistan's Trade Deficit",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-06-samsung-trillion-valuation-ai-memory-chip-bottleneck": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OLIGOPOLY",
+        "body": "Samsung, SK Hynix, and Micron produce roughly 95% of the world's DRAM. Four decades of sub-10nm lithography investment and multibillion-dollar fab costs eliminated every other competitor, leaving three companies to allocate global memory supply.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Samsung",
+                "value": 42,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "SK Hynix",
+                "value": 34,
+                "tone": "neutral"
+              },
+              {
+                "label": "Micron",
+                "value": 22,
+                "tone": "favorable"
+              },
+              {
+                "label": "Others",
+                "value": 2
+              }
+            ],
+            "label": "global DRAM market share, 2024 (%)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY HBM IS DIFFERENT",
+        "body": "High-bandwidth memory stacks DRAM dies vertically and bonds them with through-silicon vias, sitting millimeters from the GPU on a shared interposer. An Nvidia H100 ships with 80GB of HBM3; a B200 ships with 192GB. Memory is now a larger share of an AI accelerator's bill of materials than the logic die itself.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is *capex-light* for logic designers like Nvidia and *capex-heavy* for the **HBM** suppliers — Nvidia captures most of the margin, but Samsung and SK Hynix capture most of the volume."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRODUCT IS THE PROCESS",
+        "body": "A CPU design can be ported between foundries. DRAM cannot — each company's memory cells are inseparable from their proprietary fabrication steps. There is no TSMC-for-DRAM that newcomers can outsource to, which is why the oligopoly has been stable since the 1990s shakeout."
+      },
+      {
+        "heading": "THE CYCLE THAT WASN'T",
+        "body": "DRAM has historically been viciously cyclical: oversupply crashes prices every 2-3 years, forcing one player to take a quarter of losses before the cycle resets. AI demand has compressed that cycle — Samsung's guidance that 2027 will be tighter than 2026 implies the bust phase has been deferred, possibly structurally."
+      },
+      {
+        "heading": "THE SAMSUNG–HYNIX GAP",
+        "body": "SK Hynix shipped HBM3E to Nvidia first and held a roughly one-generation lead through 2024. Samsung has been qualifying its HBM3E with Nvidia for over a year — the trillion-dollar valuation depends partly on that qualification finally clearing for HBM4.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Lee Jae-yong",
+                "role": "Samsung Electronics chairman",
+                "years": "2022–",
+                "cc": "KR"
+              },
+              {
+                "name": "Kwak Noh-jung",
+                "role": "SK Hynix CEO",
+                "years": "2024–",
+                "cc": "KR"
+              },
+              {
+                "name": "Sanjay Mehrotra",
+                "role": "Micron CEO",
+                "years": "2017–",
+                "cc": "US"
+              }
+            ],
+            "label": "the three memory makers"
+          }
+        ]
+      },
+      {
+        "heading": "WHY KOREA",
+        "body": "South Korea's chaebol model — vertically integrated conglomerates with patient capital and state-backed financing — was purpose-built for the memory business. Samsung Electronics alone accounts for roughly 20% of Korea's exports and a fifth of the KOSPI's market cap. The country's macro story moves with one company's HBM yields.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of South Korea's total exports does Samsung Electronics alone account for?",
+            "options": [
+              "About 5%",
+              "About 10%",
+              "About 20%",
+              "About 35%"
+            ],
+            "correct": 2,
+            "explanation": "Samsung Electronics is roughly 20% of Korean exports — a single-company concentration unmatched in any other major economy."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T04:50:34.922Z",
+    "label": "DRAM & the AI Memory Squeeze",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-06-trump-pauses-hormuz-escort-iran-blockade-failure": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, with shipping lanes only 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil pass through daily, about 21% of global consumption.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the Persian Gulf chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 29.0667,
+                "lng": 50.3333,
+                "label": "Kharg Island"
+              },
+              {
+                "lat": 25.1167,
+                "lng": 56.3333,
+                "label": "Fujairah (UAE bypass)"
+              },
+              {
+                "lat": 26.4333,
+                "lng": 50.1,
+                "label": "Ras Tanura (Saudi)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY ESCORTS ARE HARD",
+        "body": "Convoy operations require a warship per few tankers, continuous air cover, and minesweepers ahead. The 1987–88 Operation Earnest Will reflagged Kuwaiti tankers under US flag — the largest naval escort since WWII — and still lost the USS Samuel B. Roberts to a single Iranian mine."
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Lloyd's of London war-risk premiums — not the mines or missiles themselves — are what close a shipping lane. Once Joint War Committee adds a region to its listed areas, premiums spike from fractions of a percent to multiples; commercial vessels reroute regardless of military presence.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The financial chokepoint is tighter than the physical one. A single underwriter decision in **London** moves more tonnage than a carrier strike group in the **Gulf**."
+          }
+        ]
+      },
+      {
+        "heading": "THE BYPASS LIMITS",
+        "body": "Saudi Arabia's East-West Pipeline (5 mn bbl/day) and the UAE's Habshan-Fujairah line (1.5 mn bbl/day) reroute exports to the Red Sea and Indian Ocean. Together they handle maybe a third of Gulf flows. The rest — Iranian, Iraqi, Kuwaiti, and Qatari LNG — has no alternative.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hormuz daily flow",
+                "value": "~21 mn bbl/day",
+                "tone": "unfavorable",
+                "weight": 21
+              },
+              {
+                "label": "Saudi East-West",
+                "value": "5 mn bbl/day",
+                "tone": "favorable",
+                "cc": "SA",
+                "weight": 5
+              },
+              {
+                "label": "UAE Habshan-Fujairah",
+                "value": "1.5 mn bbl/day",
+                "tone": "favorable",
+                "cc": "AE",
+                "weight": 1.5
+              },
+              {
+                "label": "Iran Goreh-Jask",
+                "value": "~0.3 mn bbl/day",
+                "tone": "neutral",
+                "cc": "IR",
+                "weight": 0.3
+              }
+            ],
+            "label": "Hormuz bypass capacity vs total flow"
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged, escorted, and insured at higher premiums. The lesson planners took: disruption is easier to threaten than to sustain. A two-month full closure has no modern precedent.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Tanker War begins"
+              },
+              {
+                "year": "1987",
+                "label": "Operation Earnest Will reflagging",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1988",
+                "label": "USS Vincennes / Iran Air 655"
+              },
+              {
+                "year": "2019",
+                "label": "Gulf of Oman tanker attacks"
+              },
+              {
+                "year": "2024",
+                "label": "MSC Aries seized by IRGC"
+              },
+              {
+                "year": "2026",
+                "label": "Iran seals strait, 2-month closure"
+              }
+            ],
+            "label": "Hormuz disruption history"
+          }
+        ]
+      },
+      {
+        "heading": "WHO LOSES MOST",
+        "body": "Asia takes ~80% of Hormuz oil. China, India, Japan, and South Korea import the bulk; Europe and the US are marginal customers since the shale revolution. A closure is a tax on Asian growth, not Western consumption.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which region imports the largest share of oil that transits the Strait of Hormuz?",
+            "options": [
+              "Europe",
+              "North America",
+              "Asia",
+              "Africa"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 80% of Hormuz crude flows to Asia — China, India, Japan, and South Korea are the dominant buyers. US shale and European diversification cut their Gulf dependence over the past decade."
+          }
+        ]
+      },
+      {
+        "heading": "THE ODDS MARKET",
+        "body": "Prediction markets price the geopolitical tail. A Hormuz announcement contract aggregates every trader's read on whether Trump escalates, negotiates, or accepts the closure as a fait accompli.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              39,
+              35,
+              22,
+              20,
+              14,
+              11,
+              16,
+              11,
+              11,
+              10
+            ],
+            "periods": [
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 6"
+            ],
+            "label": "Donald Trump announce that the United…",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "39%"
+              },
+              {
+                "atIndex": 9,
+                "label": "10%"
+              }
+            ],
+            "link": "https://polymarket.com/event/trump-announces-us-blockade-of-hormuz-lifted-by",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-06"
+    ],
+    "generatedAt": "2026-05-06T04:51:12.125Z",
+    "label": "Hormuz Closure & Escort Operations",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-06-us-peshawar-consulate-closure-pakistan-security": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FRONTIER CITY",
+        "body": "Peshawar sits at the eastern mouth of the Khyber Pass, the historic gateway between the Indian subcontinent and Central Asia. Every empire that moved between the two — Mughals, Sikhs, British, Soviets-via-proxy — fought for or through this pass. The city is older than Islam itself; its name appears in Sanskrit texts as Purushapura.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF",
+              "IR",
+              "TJ",
+              "UZ"
+            ],
+            "label": "the Khyber corridor",
+            "markers": [
+              {
+                "lat": 34.0151,
+                "lng": 71.5249,
+                "label": "Peshawar"
+              },
+              {
+                "lat": 34.0833,
+                "lng": 71.1,
+                "label": "Khyber Pass"
+              },
+              {
+                "lat": 34.5553,
+                "lng": 69.2075,
+                "label": "Kabul"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DURAND LINE",
+        "body": "The 2,640-km border between Pakistan and Afghanistan was drawn by British diplomat Mortimer Durand in 1893, cutting the Pashtun nation in half. Afghanistan has never formally recognized it. Roughly 30 million Pashtuns live in Pakistan; another 15 million in Afghanistan — the largest tribal society on Earth, split by a colonial line.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Pashtun code of *Pashtunwali* — *melmastia* (hospitality), *nanawatai* (sanctuary for the fugitive), *badal* (revenge) — predates and outranks state law in much of the frontier. It is why bin Laden could be sheltered for years in Abbottabad and why the TTP recovers each time it is declared defeated."
+          }
+        ]
+      },
+      {
+        "heading": "WHY KHYBER PAKHTUNKHWA IS VOLATILE",
+        "body": "The province absorbs spillover from Afghanistan: refugees, weapons, and militants. The Pakistani Taliban (TTP) — distinct from the Afghan Taliban but ideologically aligned — bases in the former tribal areas and conducts regular attacks on security forces, polio workers, and Western targets. Drone strikes here defined the early War on Terror.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1893",
+                "label": "Durand Line drawn"
+              },
+              {
+                "year": "1979",
+                "label": "Soviet invasion of Afghanistan",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2001",
+                "label": "US invasion; militants flee east"
+              },
+              {
+                "year": "2007",
+                "label": "TTP founded"
+              },
+              {
+                "year": "2014",
+                "label": "Peshawar school massacre (149 killed)"
+              },
+              {
+                "year": "2021",
+                "label": "Taliban retake Kabul; TTP regrouped"
+              }
+            ],
+            "label": "the frontier in conflict"
+          }
+        ]
+      },
+      {
+        "heading": "THE CONSULATE NETWORK",
+        "body": "The US maintains an embassy in Islamabad and consulates in Karachi, Lahore, and (until now) Peshawar. Each handles a region: Karachi covers the south, Lahore the Punjab heartland, Peshawar the Pashtun belt and Afghan refugee corridor. Closing one means visa applicants and dual nationals from a region of ~40 million now travel hundreds of kilometers to Islamabad.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does the closure of the Peshawar consulate primarily signal?",
+            "options": [
+              "A formal downgrade of US-Pakistan diplomatic relations",
+              "An assessment that on-the-ground threats exceed mitigation capacity",
+              "A budget cut at the State Department",
+              "Pakistani government request for closure"
+            ],
+            "correct": 1,
+            "explanation": "Consulate closures citing diplomat safety reflect a threat-level judgment by Diplomatic Security — embassies and consulates are closed when in-country protection cannot reduce risk to acceptable levels."
+          }
+        ]
+      },
+      {
+        "heading": "THE MEDIATOR PARADOX",
+        "body": "Pakistan is simultaneously a US security partner (mediating US-Iran talks, hosting CENTCOM liaison) and a country where Washington cannot keep its diplomats safe outside the capital. This duality has defined the relationship since 2001 — Islamabad takes American aid and intelligence cooperation while sovereignty over the frontier remains contested."
+      }
+    ],
+    "generatedAt": "2026-05-06T04:51:44.589Z",
+    "label": "Peshawar & the Frontier",
+    "category": "politics",
+    "articleCount": 1
   }
 }
