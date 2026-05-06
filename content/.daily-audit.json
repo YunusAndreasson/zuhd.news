@@ -1,27 +1,27 @@
 {
-  "date": "2026-05-05",
+  "date": "2026-05-06",
   "metrics": {
-    "articles": { "value": 61, "detail": "5 cycles, avg ~12/cycle" },
-    "freshness": { "median": 0.2, "p90": 0.8, "max": 0.8, "target": 1.0, "met": true },
-    "categories": { "politics": 18, "economy": 15, "science": 12, "tech": 16 },
+    "articles": { "value": 51, "detail": "5 cycles, avg ~10/cycle" },
+    "freshness": { "median": 0.3, "p90": 1.6, "max": 1.6, "target": 1.0, "met": true },
+    "categories": { "politics": 18, "economy": 12, "science": 11, "tech": 10 },
     "multiSource": { "value": 12, "target": 4, "met": true },
-    "regions": { "count": 7, "target": 4, "met": true, "breakdown": { "EU": 16, "AM": 17, "AS": 7, "OC": 3, "ME": 13, "AF": 4, "GL": 1 } },
-    "sciTech": { "ratio": 46, "target": 25, "met": true },
-    "topSourceShare": { "source": "Nature / CoinDesk / Al Jazeera / MoneyControl / The Diplomat (tied)", "pct": 7, "target": 20, "met": true },
-    "uniqueSources": 55,
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 14, "ME": 13, "AS": 9, "EU": 8, "AF": 6, "OC": 1 } },
+    "sciTech": { "ratio": 41, "target": 25, "met": true },
+    "topSourceShare": { "source": "Hindustan Times", "pct": 10, "target": 20, "met": true },
+    "uniqueSources": 50,
     "duplicates": 0,
-    "avgCycleDuration": 2252
+    "avgCycleDuration": 2495
   },
-  "experiment": "Skipped — pause gate active until 2026-05-12 (post 2026-05-02 model-lineup change). Two active experiments still pre-evaluation: title-echo (eval 2026-05-08) and OIC-regional-source-floor (eval 2026-05-19, confounded window extended).",
-  "weakestArea": "Asia coverage at 7 articles is the lowest non-tiny region today despite being the highest-population bloc — yesterday it sat at 16. Likely a feed-mix artifact of a heavy Europe/Americas news day rather than a selector bias, but worth watching if it persists into 2026-05-06.",
+  "experiment": "Skipped — pause gate active until 2026-05-12 (model-lineup baseline). Active experiments title-echo (eval 2026-05-08) and OIC-regional (eval 2026-05-19) continue uninterrupted.",
+  "weakestArea": "Throughput dipped to 51 from 67 yesterday (-24%) and avg cycle duration climbed to 2495s (vs ~1300s typical), driven by writer stage averaging 1213s. Still well above the 8/cycle floor, but worth watching if the trend persists.",
   "watching": [
-    "Title-echo experiment evaluates 2026-05-08 — quality-trend snapshot needs to be ready for the keep/revert decision.",
-    "Asia regional count dropped 16 → 7 day-over-day; check if the Diplomat/Straits Times/Dawn supply softened or if selector deprioritized.",
-    "Cycle duration averaged 2252s today vs typical ~22 min — writer at 1024s and editor at 723s are both elevated; not failing but slower."
+    "Title-echo self-check experiment evaluates 2026-05-08 — quality-trend snapshot needed for keep/revert decision.",
+    "Oceania coverage at 1 article — recurring thinness; not a target miss but the floor-of-floors region.",
+    "Cycle duration ~2500s is ~90% above historical ~1300s baseline; check whether Opus-4.7 effort bumps on 05-02 are still settling or whether the writer stage has regressed."
   ],
   "coverageGaps": [
-    "Africa at 4 articles (down from 5 yesterday) — sub-Saharan beyond Vanguard/Daily Maverick stayed thin.",
-    "Latin America specifically hard to read from AM=17 (mixes US + LatAm); no dedicated LatAm regional outlet appeared in today's source list."
+    "Latin America under-represented within the AM bucket — most AM articles are US-anchored.",
+    "Central Asia (post-Soviet -stans) absent today despite OIC carry-through experiment being live."
   ],
-  "context": "Five clean cycles, zero duplicates, freshness median 0.2 days, sciTech ratio 46% — a strong day across every tracked target. Two active experiments remain (title-echo on writer, OIC carry-through on selector); both are isolated and continue to accrue data. The 2026-05-12 pause gate prevents introducing a third variable while the post-2026-05-02 model-lineup change (Opus tune/reflect, GDACS narrator, editorial memo consumption by selector) is still re-baselining."
+  "context": "Pause gate runs through 2026-05-12 to let the 2026-05-02 model-lineup change (reflect→Opus high, tune→Opus medium, editorial-memo consumption by selector) baseline cleanly. Two clean active experiments remain on writer + selector. No action required from this audit beyond logging."
 }
