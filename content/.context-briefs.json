@@ -127393,5 +127393,1524 @@
     "label": "AI Training & Copyright",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-05-05-anthropic-mythos-ai-cybersecurity-gap-global-south": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OFFENSE-DEFENSE GAP",
+        "body": "Cybersecurity has always favored attackers — they need one working exploit; defenders must close every door. AI compresses this asymmetry further: a model that finds bugs faster than humans helps whichever side gets it first.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The classical formulation is **Schneier's law**: anyone can design a security system they themselves cannot break. AI auditing tools change *who* counts as 'anyone'."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT FUZZING ACTUALLY DOES",
+        "body": "Traditional vulnerability discovery uses fuzzers — programs that throw malformed inputs at software until something crashes. Google's OSS-Fuzz has found over 10,000 bugs since 2016 this way. LLM-based tools go further: they read code semantically and reason about logic flaws fuzzers cannot reach.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shift is from *random input generation* to *semantic code review at machine scale* — finding the bug a human reviewer would catch on careful reading, but across millions of lines."
+          }
+        ]
+      },
+      {
+        "heading": "THE EXPORT CONTROL REGIME",
+        "body": "The Wassenaar Arrangement (1996) coordinates dual-use export controls across 42 states. In 2013 it was expanded to cover 'intrusion software' — a category that swept up legitimate security research alongside offensive tools. The US has progressively layered AI-specific controls on top, most recently the October 2023 advanced computing rules.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "United States",
+                "role": "primary control authority",
+                "cc": "US"
+              },
+              {
+                "name": "European Union",
+                "role": "harmonized dual-use rules",
+                "cc": "EU"
+              },
+              {
+                "name": "Japan",
+                "role": "Wassenaar member",
+                "cc": "JP"
+              },
+              {
+                "name": "South Korea",
+                "role": "Wassenaar member",
+                "cc": "KR"
+              }
+            ],
+            "label": "who sits inside the regime"
+          }
+        ]
+      },
+      {
+        "heading": "WHO IS LEFT OUTSIDE",
+        "body": "Most of the Global South sits outside Wassenaar entirely. African states, most of Southeast Asia, the Arab world beyond a few exceptions, and Latin America — none are members. Defensive tools shared among 40 mostly-Western institutions reproduce the same map.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "GB",
+              "DE",
+              "FR",
+              "JP",
+              "KR",
+              "AU",
+              "CA",
+              "IL"
+            ],
+            "label": "Wassenaar core (selected) — defensive AI flows here",
+            "caption": "Most of Asia, Africa, and Latin America sit outside the regime"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Cryptography export controls in the 1990s told the same story: strong encryption was classified as a munition until 2000. The result was a decade in which most of the world ran weaker security than the US itself, until the controls became unenforceable and were relaxed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Until what year did the US classify strong cryptography as a munition under export control?",
+            "options": [
+              "1987",
+              "1996",
+              "2000",
+              "2008"
+            ],
+            "correct": 2,
+            "explanation": "The Bernstein cases and industry pressure forced the Clinton administration to relax cryptographic export controls in 2000 — but the decade of restriction left lasting gaps in non-US software."
+          }
+        ]
+      },
+      {
+        "heading": "THE DUAL-USE CORE",
+        "body": "A tool that finds vulnerabilities to patch them is the same tool that finds vulnerabilities to exploit them. This is why export controls treat defensive AI as offensive AI — the regulator cannot tell from the binary which side will run it."
+      }
+    ],
+    "generatedAt": "2026-05-06T22:41:20.273Z",
+    "label": "AI & the Defensive Asymmetry",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-05-dnssec-de-domains-tld-outage-validation-failure": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY DNS NEEDED SIGNING",
+        "body": "The original DNS, designed in 1983, had no authentication. Any resolver in the path could lie about which IP an address pointed to. Dan Kaminsky's 2008 cache-poisoning disclosure showed the entire web could be silently redirected — and forced the long-stalled DNSSEC rollout from theory into deployment.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "DNSSEC adds *signatures*, not encryption. The query and response are still in plaintext — what's verified is that the answer was signed by the zone's key, not that anyone else couldn't read it."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHAIN OF TRUST",
+        "body": "Every DNSSEC zone signs its records with a key, and the parent zone signs a hash of that key. The root zone (.) signs .de's key; .de signs example.de's key. A resolver walks this chain from root downward — break any link and every name below it becomes invalid, not just unreachable.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "root",
+                "label": "Root zone (.)"
+              },
+              {
+                "id": "de",
+                "label": ".de (DENIC)"
+              },
+              {
+                "id": "domain",
+                "label": "example.de"
+              },
+              {
+                "id": "resolver",
+                "label": "Resolver"
+              },
+              {
+                "id": "user",
+                "label": "User"
+              }
+            ],
+            "links": [
+              {
+                "source": "root",
+                "target": "de",
+                "value": 1,
+                "label": "signs DS record"
+              },
+              {
+                "source": "de",
+                "target": "domain",
+                "value": 1,
+                "label": "signs zone"
+              },
+              {
+                "source": "domain",
+                "target": "resolver",
+                "value": 1,
+                "label": "signed answer"
+              },
+              {
+                "source": "resolver",
+                "target": "user",
+                "value": 1,
+                "label": "validated IP"
+              }
+            ],
+            "label": "how a .de query validates"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ROLLBACK IS THE ONLY FIX",
+        "body": "When validation fails, resolvers don't fall back to insecure mode — they return SERVFAIL. This is by design: silently degrading would defeat the purpose of signing. The operator's only safe move is to republish the previous valid zone and wait for caches to expire."
+      },
+      {
+        "heading": "THE KEY ROLLOVER PROBLEM",
+        "body": "Cryptographic hygiene requires rotating signing keys periodically. But a botched rollover — publishing a new key before the parent's DS record updates, or letting an old signature expire — takes the entire TLD offline. ICANN's 2018 root key rollover was delayed by a year because operators couldn't agree it was safe."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Sweden's .se went dark for over an hour in 2009 from a missing trailing dot in a zone file. New Zealand's .nz had a similar DNSSEC outage in 2017. The pattern repeats because the tooling treats a TLD's zone file like any other config — but a typo here cuts off millions of domains at once.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When DNSSEC validation fails for a domain, what does a validating resolver return?",
+            "options": [
+              "The unsigned answer, with a warning",
+              "SERVFAIL — no answer at all",
+              "The cached answer from before the failure",
+              "NXDOMAIN, as if the name didn't exist"
+            ],
+            "correct": 1,
+            "explanation": "DNSSEC is fail-closed by design. Resolvers return SERVFAIL rather than degrade to insecure answers — which is why a signing error looks indistinguishable from the TLD being down."
+          }
+        ]
+      },
+      {
+        "heading": "THE SCALE OF .DE",
+        "body": "DENIC operates roughly 17 million .de domains — the second-largest country-code TLD after China's .cn. A .de outage doesn't just break German websites; it breaks every email server, API endpoint, and software update channel that resolves through a .de name."
+      }
+    ],
+    "generatedAt": "2026-05-06T22:41:48.511Z",
+    "label": "DNSSEC & the Chain of Trust",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-06-anthropic-80x-growth-spacex-datacenter-compute-crunch": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK IS ELECTRICITY",
+        "body": "Frontier AI training is no longer GPU-limited — it is power-limited. A single H100 GPU draws ~700 watts; a 100,000-GPU cluster needs ~70 megawatts continuous, plus near-equal cooling load. The constraint that decides who trains the next model is which company can secure firm power on a multi-year horizon.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry shorthand has shifted from *FLOPs* to **gigawatts**. A 1 GW campus — what hyperscalers now plan — equals the output of a mid-size nuclear reactor, dedicated to a single tenant."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MEMPHIS",
+        "body": "The Tennessee Valley Authority operates one of the cheapest, most reliable grids in North America, with surplus baseload from coal and nuclear plants built for industries that have since shrunk. Memphis specifically sits near a TVA substation network rated for hundreds of megawatts — rare in a country where most new data-center sites wait 4–7 years for grid interconnection.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US"
+            ],
+            "label": "the Memphis cluster",
+            "markers": [
+              {
+                "lat": 35.1495,
+                "lng": -90.049,
+                "label": "Memphis (xAI Colossus)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE INTERCONNECTION QUEUE",
+        "body": "PJM, the largest US grid operator, has roughly 250 GW of projects waiting for grid connection — more capacity than the entire installed base of many countries. Average wait is now over five years. Buying an existing site with live power, as SpaceX did in Memphis, skips the queue entirely. This is why data-center M&A increasingly trades on megawatts-available, not square footage.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is buying an existing powered site now more valuable than building a new one?",
+            "options": [
+              "Construction costs are higher",
+              "Grid interconnection queues run 4–7 years",
+              "Zoning rules block new builds",
+              "Cooling tech only works in retrofits"
+            ],
+            "correct": 1,
+            "explanation": "The bottleneck is not steel or chips — it is the years-long wait to connect to the grid. Sites with existing power capacity command a premium that did not exist five years ago."
+          }
+        ]
+      },
+      {
+        "heading": "THE HYPERSCALER RANK",
+        "body": "Frontier AI compute is concentrating in a handful of campuses. Microsoft, Google, Amazon, Meta, and now xAI/SpaceX and Anthropic-aligned facilities are racing for gigawatt-scale sites. Compute capacity has become the new oil reserve — a strategic asset disclosed in earnings calls.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Microsoft",
+                "value": "~5 GW",
+                "weight": 5
+              },
+              {
+                "label": "Google",
+                "value": "~4 GW",
+                "weight": 4
+              },
+              {
+                "label": "Amazon",
+                "value": "~4 GW",
+                "weight": 4
+              },
+              {
+                "label": "Meta",
+                "value": "~3 GW",
+                "weight": 3
+              },
+              {
+                "label": "xAI",
+                "value": "~1.2 GW",
+                "weight": 1.2
+              },
+              {
+                "label": "Anthropic",
+                "value": "~1 GW",
+                "weight": 1
+              }
+            ],
+            "label": "announced AI campus capacity (rough, GW by 2027)"
+          }
+        ]
+      },
+      {
+        "heading": "SPACE-BASED COMPUTE",
+        "body": "Orbital data centers solve two problems at once: continuous solar power without atmospheric attenuation, and radiative cooling into the 3-kelvin background of space. The constraint is launch cost — historically prohibitive, but Starship's projected cost-per-kilogram makes the math plausible for the first time. The thermal engineering remains unsolved at gigawatt scale.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Earth's atmosphere blocks about **30%** of incoming solar energy; orbit gets the full **1,361 W/m²** solar constant, around the clock for sun-synchronous orbits. The physics favors space — only the *economics* have ever blocked it."
+          }
+        ]
+      },
+      {
+        "heading": "THE VALUATION ARC",
+        "body": "Anthropic's reported $900B raise would put it ahead of every public company except a handful of mega-caps, despite negative cash flow and revenue still measured in single-digit billions. The bet investors are making is not on current earnings but on compute access — capital today buys power contracts and chip allocations that competitors cannot replicate later.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2021",
+                "label": "Founded by ex-OpenAI researchers"
+              },
+              {
+                "year": "2023",
+                "label": "$4B from Amazon"
+              },
+              {
+                "year": "2024",
+                "label": "$40B valuation"
+              },
+              {
+                "year": "2025",
+                "label": "$183B raise"
+              },
+              {
+                "year": "2026",
+                "label": "$900B reported",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "Anthropic valuation arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T22:42:24.008Z",
+    "label": "AI Compute & the Power Wall",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-06-gut-microbiome-reverse-ecology-evolutionary-lineages-disease": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RESOLUTION PROBLEM",
+        "body": "Microbiome studies have long stopped at the species level — \"this person has more Bacteroides fragilis.\" But a single bacterial species can contain lineages as genetically distinct from each other as humans are from chimpanzees. Treating them as one entity averages away the signal.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Two strains of *E. coli* can share as little as **60%** of their genes. Calling them \"the same species\" is a taxonomic convenience inherited from the pre-genomic era, not a biological fact."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT REVERSE ECOLOGY DOES",
+        "body": "Classical ecology observes organisms in their environment and infers function. Reverse ecology starts from the genome — which metabolic pathways are present, which are missing — and infers what environment the organism evolved in. For gut bacteria, the \"environment\" is the human host's diet, immune state, and disease status."
+      },
+      {
+        "heading": "THE 16S BLIND SPOT",
+        "body": "Most microbiome surveys sequence the 16S rRNA gene — a single conserved marker that resolves bacteria to genus or species. It cannot distinguish lineages within a species. The field built a decade of disease-association studies on a method that was, by design, blind to the level where the signal actually lives.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why has 16S rRNA been the dominant microbiome sequencing method despite its limits?",
+            "options": [
+              "It's the only gene present in all bacteria",
+              "It's cheap, conserved enough to align across species, and variable enough to classify them",
+              "It was mandated by the NIH Human Microbiome Project",
+              "It captures the full bacterial genome at low cost"
+            ],
+            "correct": 1,
+            "explanation": "16S sits in a sweet spot — universal enough to amplify from any bacterium, variable enough to tell them apart at genus level. Cheap and fast, but resolution stops at species."
+          }
+        ]
+      },
+      {
+        "heading": "WHY LINEAGES DIVERGE INSIDE A GUT",
+        "body": "A bacterial species in the human gut isn't one population — it's many sub-populations under different selective pressures. Bile tolerance, oxygen exposure near the mucosa, antibiotic history, and diet each carve out niches. Lineages that look identical by 16S can have completely different metabolic outputs."
+      },
+      {
+        "heading": "THE DISEASE FOUR",
+        "body": "IBD, colorectal cancer, type 2 diabetes, and ageing are the workhorse phenotypes of microbiome research — large cohorts, well-characterized stool samples, decades of contradictory findings. That the same lineage-level signal appears across all four suggests a shared mechanism: not which species are present, but which evolutionary variants of them.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Type 2 diabetes",
+                "value": "~530M cases",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Colorectal cancer",
+                "value": "~1.9M cases",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "IBD",
+                "value": "~7M cases",
+                "tone": "neutral"
+              },
+              {
+                "label": "Ageing-linked",
+                "value": "all adults",
+                "tone": "neutral"
+              }
+            ],
+            "label": "global disease burden, annual"
+          }
+        ]
+      },
+      {
+        "heading": "THE BIOMARKER STAKES",
+        "body": "If lineages — not species — track with disease, every existing microbiome diagnostic built on 16S is under-resolved. The path forward is shotgun metagenomics: sequencing all DNA in a sample, then reconstructing strain-level genomes. Ten times the cost, but the only method that sees what the Vienna team saw."
+      }
+    ],
+    "generatedAt": "2026-05-06T22:42:52.601Z",
+    "label": "Reverse Ecology & the Microbiome",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-06-impact-of-artificial-intelligence-on-cardiovascular-workflow": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY CARDIOLOGY FIRST",
+        "body": "Cardiology generates more structured digital data than almost any other specialty — ECGs, echocardiograms, continuous telemetry, lab panels. Pattern-recognition models thrive on dense numerical streams, which is why cardiac AI has crossed clinical thresholds years before fields like psychiatry or rheumatology.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The same statistical machinery that powers **convolutional neural networks** for images turns a 12-lead ECG — a small grid of voltages over time — into a near-ideal training substrate."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT META-ANALYSIS ACTUALLY DOES",
+        "body": "Pooling 32 trials does not just add sample size — it averages out the idiosyncrasies of any single hospital, protocol, or patient mix. A 16% mortality signal that survives meta-analysis is structurally stronger than the same number from one large trial, because it has already been stress-tested across heterogeneous settings."
+      },
+      {
+        "heading": "THE ADHERENCE PROBLEM",
+        "body": "Roughly half of patients prescribed cardiac medications stop taking them within a year. This is the largest single source of preventable cardiac death in the developed world — bigger than surgical error, bigger than misdiagnosis. A 59% adherence improvement, if it holds in deployment, would matter more than most new drugs.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of patients prescribed long-term cardiac medications stop taking them within one year?",
+            "options": [
+              "About 10%",
+              "About 25%",
+              "About 50%",
+              "About 80%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly half discontinue within a year — non-adherence is the single largest driver of preventable cardiac death in wealthy countries."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 120 SECONDS MATTERS",
+        "body": "In acute coronary syndrome, the doctrine is 'time is muscle' — every minute of delayed reperfusion kills heart tissue that does not regrow. Door-to-balloon time targets are measured in single-digit minutes. Two minutes shaved off triage diagnostics is not a workflow nicety; it is salvaged myocardium."
+      },
+      {
+        "heading": "THE FRAMINGHAM INHERITANCE",
+        "body": "Modern cardiac risk scoring descends from the Framingham Heart Study, started in 1948 — the longest continuous cohort study in medicine. AI risk models are trained on its descendants (UK Biobank, MESA, ARIC). The algorithms are new; the underlying epidemiological scaffolding is three generations old."
+      },
+      {
+        "heading": "THE REGULATORY GAP",
+        "body": "The FDA has cleared over 700 AI/ML-enabled medical devices, the majority in radiology and cardiology. But almost all are cleared via the 510(k) pathway — demonstrating 'substantial equivalence' to a predicate device, not running a randomized trial. The 32-trial body of evidence here is unusual precisely because most deployed cardiac AI never went through anything like it."
+      }
+    ],
+    "generatedAt": "2026-05-06T22:43:19.253Z",
+    "label": "AI in Cardiology Trials",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-06-india-vietnam-strategic-partnership-critical-minerals-25b": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY VIETNAM HAS LEVERAGE",
+        "body": "Vietnam holds the world's second-largest rare earth reserves after China — roughly 22 million tonnes, concentrated in the northwest near the Chinese border. The deposits have been known for decades but barely mined; Hanoi kept them as a strategic reserve while China captured the global processing chain.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "China",
+                "value": 44,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Vietnam",
+                "value": 22,
+                "tone": "neutral"
+              },
+              {
+                "label": "Brazil",
+                "value": 21,
+                "tone": "neutral"
+              },
+              {
+                "label": "Russia",
+                "value": 10,
+                "tone": "favorable"
+              },
+              {
+                "label": "India",
+                "value": 7,
+                "tone": "favorable"
+              },
+              {
+                "label": "Australia",
+                "value": 5.7,
+                "tone": "favorable"
+              },
+              {
+                "label": "USA",
+                "value": 2.3,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global rare earth reserves (mn tonnes)"
+          }
+        ]
+      },
+      {
+        "heading": "THE PROCESSING CHOKEPOINT",
+        "body": "Reserves are not the bottleneck — refining is. China processes roughly 90% of the world's rare earths regardless of where they come from. Australian and American ore is routinely shipped to Chinese separators because no one else has the capacity at scale. Breaking that monopoly is the real prize India and Vietnam are chasing.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The chokepoint isn't the *mine* — it's the **separation plant**. Splitting 17 chemically near-identical rare earth elements requires hundreds of solvent-extraction stages, and China has spent 30 years perfecting the engineering."
+          }
+        ]
+      },
+      {
+        "heading": "THE BRAHMOS LOGIC",
+        "body": "BrahMos is a supersonic cruise missile co-developed by India and Russia. Vietnam became the first export customer in 2022 with a $375M deal; the talks now extend that arsenal. Hanoi sees BrahMos as a deterrent against Chinese coast guard pressure in the South China Sea — the missile's 290km range covers the disputed Paracels from Vietnamese soil.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "VN",
+              "CN",
+              "PH",
+              "MY",
+              "IN"
+            ],
+            "label": "the South China Sea theatre",
+            "markers": [
+              {
+                "lat": 16.5,
+                "lng": 111.6,
+                "label": "Paracel Islands"
+              },
+              {
+                "lat": 10.7,
+                "lng": 114.3,
+                "label": "Spratly Islands"
+              },
+              {
+                "lat": 21.0285,
+                "lng": 105.8542,
+                "label": "Hanoi"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "VIETNAM'S BAMBOO DIPLOMACY",
+        "body": "Hanoi calls its foreign policy *ngoại giao cây tre* — bamboo diplomacy: rooted but flexible. Vietnam holds 'comprehensive strategic partnerships' with the US, China, Russia, India, Japan, South Korea, and Australia simultaneously. Adding India to that list is not alignment; it is hedging across every major axis at once.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Narendra Modi",
+                "role": "Indian Prime Minister",
+                "years": "2014–",
+                "cc": "IN"
+              },
+              {
+                "name": "Tô Lâm",
+                "role": "Vietnamese Communist Party General Secretary",
+                "years": "2024–",
+                "cc": "VN"
+              }
+            ],
+            "label": "who signed at New Delhi"
+          }
+        ]
+      },
+      {
+        "heading": "THE UPI EXPORT",
+        "body": "India's Unified Payments Interface processes more transactions than Visa and Mastercard combined inside India — over 18 billion a month. Linking UPI to Vietnam's payment rails is a soft-power play modeled on what India already did with Singapore, UAE, and France: every linked country reduces Visa/Mastercard rents and routes remittances through Indian infrastructure.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country was the first to link its domestic payment system to India's UPI?",
+            "options": [
+              "Singapore",
+              "UAE",
+              "Bhutan",
+              "France"
+            ],
+            "correct": 2,
+            "explanation": "Bhutan integrated UPI in 2021, becoming the first foreign country to adopt it. Singapore (PayNow) followed in 2023; UAE and France came later."
+          }
+        ]
+      },
+      {
+        "heading": "THE LONGER ARC",
+        "body": "India and Vietnam fought parallel anti-colonial wars and both refused Cold War alignment — Nehru's non-alignment and Hanoi's defiance of both Washington and Beijing. The 2007 strategic partnership was upgraded to 'comprehensive' in 2016. The current $25B trade target reflects how far the relationship has moved from symbolic solidarity to material interdependence."
+      }
+    ],
+    "generatedAt": "2026-05-06T22:43:53.496Z",
+    "label": "India–Vietnam & Critical Minerals",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-06-israel-strikes-beirut-dahieh-ceasefire-broken-radwan": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT DAHIEH IS",
+        "body": "Dahieh is the dense southern suburb of Beirut where Hezbollah's political and security infrastructure is concentrated. It is not a base — it is neighborhoods, schools, hospitals, apartment blocks. Targeting inside Dahieh has always been the line that distinguishes a contained skirmish from a war on Lebanon itself.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL",
+              "SY"
+            ],
+            "label": "Beirut and the southern front",
+            "markers": [
+              {
+                "lat": 33.8547,
+                "lng": 35.5006,
+                "label": "Dahieh (S. Beirut)"
+              },
+              {
+                "lat": 33.1167,
+                "lng": 35.3667,
+                "label": "Bint Jbeil"
+              },
+              {
+                "lat": 33.2733,
+                "lng": 35.2033,
+                "label": "Naqoura (UNIFIL HQ)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DAHIEH DOCTRINE",
+        "body": "Named after the suburb itself, the Dahieh doctrine was articulated by IDF Northern Command general Gadi Eizenkot in 2008: in the next war, civilian areas from which fire is launched will be treated as military targets and struck with disproportionate force. The 2006 Lebanon war's flattening of these blocks was the prototype, not a deviation.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Eizenkot's framing was explicit — *\"disproportionate\"* force, *\"not a suggestion\"*. The doctrine substitutes deterrence-by-devastation for the law-of-armed-conflict principle of proportionality."
+          }
+        ]
+      },
+      {
+        "heading": "WHO RADWAN ARE",
+        "body": "The Radwan Force is Hezbollah's elite ground unit — light infantry trained for cross-border raids into northern Israel, modeled loosely on Iranian Quds Force special operations. Israel's stated 2024 war aim was to push Radwan back from the Litani River; killing a named Radwan commander signals the war aim never closed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was Hezbollah's Radwan Force originally built to do?",
+            "options": [
+              "Defend Dahieh from airstrikes",
+              "Conduct cross-border ground raids into northern Israel",
+              "Operate Hezbollah's drone fleet",
+              "Provide bodyguards for the political leadership"
+            ],
+            "correct": 1,
+            "explanation": "Radwan is a light-infantry raid force — its purpose is the offensive ground capability that 1701 was meant to push north of the Litani."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 1701 SAID",
+        "body": "UN Security Council Resolution 1701 ended the 2006 war by requiring Hezbollah's withdrawal north of the Litani River and Israeli withdrawal from Lebanese territory, with UNIFIL and the Lebanese Armed Forces filling the gap. It worked partially for 18 years; the 2024 war was fought to enforce what the resolution had nominally already imposed.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1982",
+                "label": "Israeli invasion; Hezbollah forms"
+              },
+              {
+                "year": "2000",
+                "label": "Israeli withdrawal from south Lebanon"
+              },
+              {
+                "year": "2006",
+                "label": "33-day war; UNSCR 1701",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024-09",
+                "label": "Pager attacks; ground invasion"
+              },
+              {
+                "year": "2024-11",
+                "label": "Ceasefire (60-day → indefinite)"
+              },
+              {
+                "year": "2026-05",
+                "label": "Dahieh strike, ceasefire broken"
+              }
+            ],
+            "label": "the Lebanon arc"
+          }
+        ]
+      },
+      {
+        "heading": "CEASEFIRES WITHOUT ENFORCEMENT",
+        "body": "The November 2024 ceasefire created no neutral observer regime with the authority to stop strikes. UNIFIL is a witness, not an enforcer; the US is a co-author, not an arbiter. When the more powerful party decides the deal no longer serves it, there is no mechanism that resists — only diplomatic disapproval, which is not a mechanism at all."
+      },
+      {
+        "heading": "THE TRUMP REQUEST",
+        "body": "Trump's reported personal ask for restraint mattered because Washington holds the only leverage that ever moves Israeli operational decisions — supply of munitions, intelligence cooperation, diplomatic cover at the UN. Going ahead anyway is itself information: either the request was withdrawn, or Netanyahu calculated the cost of defying it was lower than the cost of waiting.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Benjamin Netanyahu",
+                "role": "Israeli Prime Minister",
+                "years": "2022–",
+                "cc": "IL"
+              },
+              {
+                "name": "Israel Katz",
+                "role": "Israeli Defense Minister",
+                "years": "2024–",
+                "cc": "IL"
+              },
+              {
+                "name": "Naim Qassem",
+                "role": "Hezbollah Secretary-General",
+                "years": "2024–",
+                "cc": "LB"
+              },
+              {
+                "name": "Donald Trump",
+                "role": "US President",
+                "years": "2025–",
+                "cc": "US"
+              }
+            ],
+            "label": "the cast"
+          }
+        ]
+      },
+      {
+        "heading": "THE LIRA AS BAROMETER",
+        "body": "Lebanon's currency has been in free-collapse since 2019, trading at a small fraction of its old peg. Every escalation cycle compounds the underlying fiscal crisis — remittances slow, the diaspora delays transfers, importers front-load dollar demand. The lira does not move on the strike itself but on the expectation of how long the next phase lasts.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              89196.1685,
+              89515.636511,
+              89273.651314,
+              89550,
+              89412.594799,
+              89440.07584,
+              89550,
+              89541.400333,
+              89555.635708,
+              89725.230619,
+              89479.178514,
+              89714.210369,
+              89714.210369,
+              89848.110329,
+              89471.453014,
+              89501.323014,
+              89558.210208,
+              89527.619636,
+              89404.207128,
+              89404.207128,
+              89433.365702,
+              89323.19805,
+              89553.511635,
+              89549.093885,
+              89550,
+              89550,
+              89550,
+              89550,
+              89432.68024,
+              89537.3852
+            ],
+            "periods": [
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6"
+            ],
+            "label": "Lebanese pound",
+            "unit": "LBP / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-06"
+    ],
+    "generatedAt": "2026-05-06T22:44:33.987Z",
+    "label": "Dahieh, Radwan & the Lebanon Ceasefire",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-06-lutnick-epstein-island-oversight-testimony": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STATUTE",
+        "body": "18 U.S.C. § 1001 makes it a felony to knowingly make a materially false statement to any branch of the federal government. The maximum penalty is five years; perjury under § 1621 — which requires a sworn oath — carries the same. Most congressional witnesses are charged under § 1001, not perjury, because committee testimony is often unsworn but still covered.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The key word is ***materially*** — the lie must be capable of influencing the body's decision-making, not merely embarrassing."
+          }
+        ]
+      },
+      {
+        "heading": "THE 'I DON'T RECALL' DEFENSE",
+        "body": "Claiming faulty memory is the standard shield because prosecutors must prove the witness knew the statement was false when made. Bronx v. United States (1973) established that an answer literally true under one interpretation cannot sustain perjury — the burden of precise questioning falls on the examiner. This is why oversight transcripts are dense with leading specifics."
+      },
+      {
+        "heading": "THE REFERRAL PATH",
+        "body": "Congress cannot prosecute. A committee votes to refer a perjury case to DOJ, which then decides whether to charge. Referrals are common; indictments are rare. Of the roughly two dozen referrals in the past decade, fewer than a handful produced charges — Roger Stone and Michael Cohen are the recent exceptions.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Roger Stone",
+                "role": "Trump adviser, convicted 2019",
+                "years": "2017 testimony",
+                "cc": "US"
+              },
+              {
+                "name": "Michael Cohen",
+                "role": "Trump lawyer, pleaded guilty",
+                "years": "2017 testimony",
+                "cc": "US"
+              },
+              {
+                "name": "Roger Clemens",
+                "role": "MLB pitcher, acquitted",
+                "years": "2008 testimony",
+                "cc": "US"
+              },
+              {
+                "name": "Eric Holder",
+                "role": "AG, contempt only",
+                "years": "2012 referral",
+                "cc": "US"
+              }
+            ],
+            "label": "recent congressional perjury cases"
+          }
+        ]
+      },
+      {
+        "heading": "WHO EPSTEIN WAS IN 2012",
+        "body": "By 2012, Epstein had already served his 13-month Florida sentence (2008-2009) on state prostitution charges under a non-prosecution agreement that shielded him from federal charges. The deal, brokered by then-US Attorney Alex Acosta, was sealed from victims in violation of the Crime Victims' Rights Act — a fact only ruled on in 2019. To New York's financial elite, the conviction was treated as resolved; the island remained an active social venue until 2019."
+      },
+      {
+        "heading": "LITTLE ST. JAMES",
+        "body": "Epstein bought the 70-acre Caribbean island in 1998 for $7.95 million. It sits in the US Virgin Islands, three miles east of St. Thomas — US territory, but with its own attorney general who eventually sued Epstein's estate. Flight logs from the island's airstrip and pilot Larry Visoski's testimony became the central evidentiary record of who visited.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "VI",
+              "PR",
+              "DO"
+            ],
+            "label": "Little St. James, USVI",
+            "markers": [
+              {
+                "lat": 18.3057,
+                "lng": -64.8267,
+                "label": "Little St. James"
+              },
+              {
+                "lat": 18.3419,
+                "lng": -64.9307,
+                "label": "St. Thomas (USVI)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE OVERSIGHT COMMITTEE",
+        "body": "House Oversight is the chamber's main investigative body, with subpoena power over the entire executive branch. Unlike judiciary committees that focus on legislation, Oversight's mandate is institutional — it can compel testimony from any federal official without a pending bill. The cost of stonewalling is reputational more than legal; contempt referrals to DOJ rarely produce prosecution when the executive declines to charge its own.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What must prosecutors prove to convict someone of lying to Congress under 18 U.S.C. § 1001?",
+            "options": [
+              "The statement was made under oath",
+              "The statement was knowingly false and materially relevant",
+              "The witness refused to answer questions",
+              "The committee voted unanimously to refer"
+            ],
+            "correct": 1,
+            "explanation": "§ 1001 covers any false statement to the federal government — sworn or unsworn — but only if knowingly false and capable of influencing the body's work."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T22:45:06.743Z",
+    "label": "Lying to Congress",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-06-meta-bangladesh-archivists-copyright-takedown-uprising": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MECHANISM",
+        "body": "The DMCA's notice-and-takedown system (1998) makes platforms liable unless they remove content quickly upon a copyright complaint. The asymmetry is structural: takedowns are processed in hours, counter-notices in weeks, and platforms face no penalty for over-removal — only for under-removal.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal term is **safe harbor** — platforms are shielded from liability *only if* they remove on notice. Caution always favors removal."
+          }
+        ]
+      },
+      {
+        "heading": "THE PERJURY LOOPHOLE",
+        "body": "DMCA notices require a sworn statement under penalty of perjury that the filer owns the copyright. In practice, no DMCA filer has ever been criminally prosecuted for perjury. The deterrent is theoretical; the takedown is real."
+      },
+      {
+        "heading": "WHY ARCHIVES ARE FRAGILE",
+        "body": "Social platforms became the default repository for protest evidence — phone-recorded, uploaded in real time, geotagged. Unlike a newspaper morgue or a court archive, this evidence lives on private infrastructure subject to private moderation, with no preservation obligation when accounts are deleted."
+      },
+      {
+        "heading": "THE BANGLADESH UPRISING",
+        "body": "The July 2024 protests began over civil-service quotas reserving 30% of government jobs for descendants of 1971 liberation fighters — a system widely seen as patronage for the ruling Awami League. Police and Chhatra League cadres killed an estimated 1,400 people before Sheikh Hasina fled to India on 5 August 2024.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2024-06",
+                "label": "High Court reinstates job quota"
+              },
+              {
+                "year": "2024-07-15",
+                "label": "Chhatra League attacks Dhaka University"
+              },
+              {
+                "year": "2024-07-19",
+                "label": "Internet shutdown, mass killings",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024-08-05",
+                "label": "Hasina flees to India"
+              },
+              {
+                "year": "2024-08-08",
+                "label": "Yunus heads interim government"
+              }
+            ],
+            "label": "the July uprising"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Syria's civil war was the first conflict where YouTube became evidence. The Syrian Archive estimates over 200,000 videos documenting war crimes were removed by YouTube's automated systems between 2017-2019, classified as 'extremist content.' Bellingcat and human rights groups now mirror evidence to independent servers — because they learned that platform = not archive.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of evidentiary Syrian war videos did YouTube remove via automated takedowns (2017-19)?",
+            "options": [
+              "A few thousand",
+              "Around 50,000",
+              "Over 200,000",
+              "Effectively all of them"
+            ],
+            "correct": 2,
+            "explanation": "YouTube's terrorism-content classifiers swept up evidentiary footage at scale, prompting the creation of independent mirrors like the Syrian Archive."
+          }
+        ]
+      },
+      {
+        "heading": "THE JURISDICTIONAL TRAP",
+        "body": "Counter-notices under DMCA require the filer to consent to suit in a US federal district court. For a Bangladeshi student archivist, this means hiring US counsel, accepting US jurisdiction, and risking statutory damages of up to $150,000 per work if the original claim is upheld. The procedure is technically open and practically closed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is *forum non conveniens* working in reverse — the platform is global, but the remedy is local to **California**."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T22:45:35.023Z",
+    "label": "DMCA Takedowns as Censorship",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-06-pakistan-airstrikes-afghan-schools-civilians-scorched-earth": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DURAND LINE",
+        "body": "The 2,640-km border was drawn in 1893 by British colonial agent Sir Mortimer Durand and Afghan Emir Abdur Rahman Khan. It cut the Pashtun homeland in half — roughly 15 million Pashtuns now live on the Pakistani side, 15 million on the Afghan. No Afghan government, including the Taliban, has ever formally recognized it as an international border.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AF",
+              "PK"
+            ],
+            "label": "the Durand Line frontier",
+            "markers": [
+              {
+                "lat": 34.8709,
+                "lng": 71.1497,
+                "label": "Asadabad (Kunar)"
+              },
+              {
+                "lat": 33.6844,
+                "lng": 73.0479,
+                "label": "Islamabad"
+              },
+              {
+                "lat": 34.5553,
+                "lng": 69.2075,
+                "label": "Kabul"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TTP PROBLEM",
+        "body": "Tehrik-i-Taliban Pakistan (TTP) is distinct from the Afghan Taliban — same ideological lineage, separate command. After the Afghan Taliban retook Kabul in 2021, TTP fighters who had sheltered in Afghan border provinces grew bolder. Pakistan's strike campaign is an attempt to do what it accuses Kabul of refusing — eliminate TTP sanctuaries by force.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Islamabad helped midwife the **Afghan Taliban** through the 1990s and again sheltered its leadership through the 2001–2021 war. The **TTP** turned the same playbook against the Pakistani state — a blowback the ISI did not anticipate."
+          }
+        ]
+      },
+      {
+        "heading": "THE STRATEGIC DEPTH DOCTRINE",
+        "body": "For decades Pakistan's military pursued 'strategic depth' — a friendly Afghanistan as a fallback against India. The 2021 Taliban victory was meant to vindicate this doctrine. Instead, the Afghan Taliban has refused to act against TTP, hosted Indian diplomatic openings, and disputed the Durand Line — inverting every assumption the doctrine rested on."
+      },
+      {
+        "heading": "THE PRECEDENT OF AERIAL STRIKES",
+        "body": "Pakistan launched its first acknowledged airstrikes inside Afghanistan in April 2022, hitting Khost and Kunar. The pattern has escalated: drone strikes in 2024, broader campaigns in 2025–26. Each round has produced civilian casualties at religious schools, madaris, and homes — the same pattern the US drone campaign produced in Pakistan's tribal areas a decade earlier.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1893",
+                "label": "Durand Line drawn"
+              },
+              {
+                "year": "2007",
+                "label": "TTP founded"
+              },
+              {
+                "year": "2021",
+                "label": "Afghan Taliban retake Kabul",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-04",
+                "label": "First acknowledged PAF strikes in Afghanistan"
+              },
+              {
+                "year": "2024-03",
+                "label": "Drone strike campaign expands"
+              },
+              {
+                "year": "2026-04",
+                "label": "Urumqi talks (China-mediated)"
+              }
+            ],
+            "label": "the cross-border campaign"
+          }
+        ]
+      },
+      {
+        "heading": "THE URUMQI TRACK",
+        "body": "China hosted Pakistan and Afghan Taliban officials in Urumqi in April. Beijing's interest is concrete: the China-Pakistan Economic Corridor (CPEC) runs through Khyber Pakhtunkhwa, and CPEC engineers have been TTP targets. China wants the war to end on terms that protect its workers — neither side has given it that.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does China mediate between Pakistan and the Afghan Taliban?",
+            "options": [
+              "To counter Indian influence in Kabul",
+              "To protect CPEC infrastructure and Chinese workers from TTP attacks",
+              "To secure rare-earth mining rights in Afghanistan",
+              "To replace US influence in South Asia"
+            ],
+            "correct": 1,
+            "explanation": "Chinese engineers on CPEC projects have been repeatedly targeted by TTP; Beijing's mediation is driven by physical security of its corridor, not grand strategy."
+          }
+        ]
+      },
+      {
+        "heading": "WHO LIVES IN KUNAR",
+        "body": "Kunar is a Pashtun-majority province of forested valleys along the Pakistani border. It hosted some of the heaviest fighting of the Soviet war and the US war that followed. The terrain — narrow valleys, dense villages, mosque-and-madrasa social structure — means airstrikes hitting 'militant compounds' routinely hit civilian gatherings. The pattern is structural, not incidental."
+      }
+    ],
+    "generatedAt": "2026-05-06T22:46:08.738Z",
+    "label": "The Durand Line & Cross-Border Strikes",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-06-south-korea-equity-114-percent-samsung-hbm-index-illusion": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT HBM ACTUALLY IS",
+        "body": "High-bandwidth memory stacks DRAM dies vertically and connects them with through-silicon vias — copper wires drilled straight through the silicon. The result: roughly 10× the bandwidth of standard DRAM, which is what AI training chips need to keep their tensor cores fed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Every Nvidia **H100** and **B200** ships with HBM glued to the same package as the GPU die. Without HBM, the GPU starves — compute waits on memory, and the chip's headline FLOPS go unused."
+          }
+        ]
+      },
+      {
+        "heading": "THE OLIGOPOLY",
+        "body": "Three companies make all of the world's HBM. SK Hynix took an early lead with HBM3, Samsung is racing to qualify HBM3E with Nvidia, and Micron is the distant third. The barrier is not design — it is yield on stacks where a single defective die ruins the whole package.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "SK Hynix",
+                "value": "~52%",
+                "cc": "KR",
+                "weight": 52,
+                "tone": "favorable"
+              },
+              {
+                "label": "Samsung",
+                "value": "~42%",
+                "cc": "KR",
+                "weight": 42,
+                "tone": "neutral"
+              },
+              {
+                "label": "Micron",
+                "value": "~6%",
+                "cc": "US",
+                "weight": 6,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "HBM market share, 2024 est."
+          }
+        ]
+      },
+      {
+        "heading": "THE INDEX ILLUSION",
+        "body": "Cap-weighted indices reward concentration. When two stocks are 60% of an index, the index is no longer a country bet — it is a leveraged bet on those two stocks. Korea's Kospi, Taiwan's Taiex (TSMC), and the Nasdaq-100 (Mag 7) all share this trait."
+      },
+      {
+        "heading": "THE HYPERSCALER CYCLE",
+        "body": "Memory is the most violently cyclical part of semiconductors. Capex commitments by four buyers — Microsoft, Google, Meta, Amazon — set demand for an entire industry. When their capex slows, DRAM and HBM prices have historically halved within two quarters.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1996",
+                "label": "PC-era glut, prices collapse 80%"
+              },
+              {
+                "year": "2008",
+                "label": "Financial crisis trough"
+              },
+              {
+                "year": "2018",
+                "label": "Crypto + cloud peak"
+              },
+              {
+                "year": "2019",
+                "label": "Capex pause, prices halve",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "Generative AI boom begins"
+              },
+              {
+                "year": "2024",
+                "label": "HBM-led recovery"
+              }
+            ],
+            "label": "DRAM price cycles"
+          }
+        ]
+      },
+      {
+        "heading": "THE KOREA DISCOUNT",
+        "body": "Korean equities have historically traded at a structural discount to global peers — a function of chaebol governance, cross-shareholdings, and limited shareholder rights. The current rally is partly a re-rating, partly a bet that this time the cycle won't crack."
+      },
+      {
+        "heading": "WHY HYPERSCALER CAPEX MATTERS",
+        "body": "AI training capex is concentrated in a handful of buyers, and their announcements move memory prices more than any macro indicator. Watch their guidance, not the Federal Reserve.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of the MSCI Korea index do Samsung and SK Hynix together represent?",
+            "options": [
+              "About 25%",
+              "About 40%",
+              "About 60%",
+              "About 80%"
+            ],
+            "correct": 2,
+            "explanation": "The two memory makers weigh roughly 60% of MSCI Korea, meaning the index is functionally a leveraged HBM bet rather than a diversified country exposure."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T22:46:37.105Z",
+    "label": "HBM & Index Concentration",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-06-un-sumud-flotilla-activists-israel-detention-international-waters": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LAW OF THE SEA",
+        "body": "Under UNCLOS, the high seas — beyond 200 nautical miles from any coast — are governed by flag-state jurisdiction. A warship may board a foreign vessel only with consent, or under narrow exceptions: piracy, slave trade, unauthorized broadcasting, or stateless ships. Political activism is not on the list.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The flotilla was intercepted *500 miles* from Gaza — well outside Israel's **12-nautical-mile** territorial waters and outside even the most expansive reading of a maritime exclusion zone."
+          }
+        ]
+      },
+      {
+        "heading": "THE BLOCKADE DOCTRINE",
+        "body": "Israel justifies high-seas interceptions under San Remo Manual rules on naval blockade — a body of customary law allowing belligerents to enforce a declared blockade against neutral shipping bound for enemy ports. The doctrine requires the blockade itself be lawful: publicly declared, effectively maintained, and not designed to starve the civilian population.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under San Remo rules, what makes a naval blockade unlawful regardless of how it is enforced?",
+            "options": [
+              "If it is enforced beyond 12 nautical miles from shore",
+              "If its purpose or effect is to starve the civilian population",
+              "If neutral states formally object to it",
+              "If it intercepts vessels flagged to non-belligerents"
+            ],
+            "correct": 1,
+            "explanation": "The San Remo Manual (1994) codifies that a blockade designed to starve civilians or denying objects essential to survival is prohibited — the test the Gaza blockade has been litigated against for fifteen years."
+          }
+        ]
+      },
+      {
+        "heading": "THE MAVI MARMARA PRECEDENT",
+        "body": "In May 2010, Israeli commandos boarded the Turkish-flagged Mavi Marmara — part of a six-ship Gaza flotilla — in international waters. Nine activists were killed in the raid; a tenth died later. Turkey expelled the Israeli ambassador, and a UN panel later found the blockade itself lawful but the use of force excessive.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2008",
+                "label": "Free Gaza Movement first sails reach Gaza"
+              },
+              {
+                "year": "2010-05",
+                "label": "Mavi Marmara raid kills 9",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011-09",
+                "label": "UN Palmer Report"
+              },
+              {
+                "year": "2016-06",
+                "label": "Turkey-Israel reconciliation deal"
+              },
+              {
+                "year": "2018",
+                "label": "'Freedom Flotilla' boats intercepted"
+              },
+              {
+                "year": "2025-06",
+                "label": "Madleen intercepted, Thunberg detained"
+              },
+              {
+                "year": "2026-04",
+                "label": "Sumud flotilla boarded 500mi out"
+              }
+            ],
+            "label": "Gaza flotilla interceptions"
+          }
+        ]
+      },
+      {
+        "heading": "FLAG-STATE STANDING",
+        "body": "When a foreign warship boards your vessel on the high seas, the legal injury runs to the flag state, not the passengers. This is why the nationality of each ship in a flotilla matters: a Spanish-flagged or Norwegian-flagged hull triggers a state-to-state diplomatic protest in a way that a stateless or convenience-flagged hull does not.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "PS",
+              "TR",
+              "ES",
+              "NO",
+              "IE"
+            ],
+            "label": "the cast around a flotilla interception",
+            "markers": [
+              {
+                "lat": 31.5,
+                "lng": 34.45,
+                "label": "Gaza coast"
+              },
+              {
+                "lat": 32.08,
+                "lng": 34.78,
+                "label": "Ashdod (tow-in port)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DETENTION CLOCK",
+        "body": "Israel's Entry into Israel Law allows holding a person brought ashore from an interception for up to 96 hours before judicial review, extendable for security cases. Activists who refuse voluntary deportation are processed under immigration detention; those charged criminally — as the two Sumud organizers were — face the same military and civilian courts that prosecute West Bank cases."
+      },
+      {
+        "heading": "WHY IT KEEPS HAPPENING",
+        "body": "Flotillas are theatre with a legal payload: every interception forces a flag-state to either protest formally or accept that its ships can be boarded with impunity. The activists do not expect to dock in Gaza. They expect the boarding itself to generate the diplomatic friction the blockade's critics could not generate any other way.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Any blockade applied to prevent the passage of neutral vessels with humanitarian cargo must allow free passage subject to the right to prescribe technical arrangements.",
+            "speaker": "San Remo Manual on International Law Applicable to Armed Conflicts at Sea, §104",
+            "year": "1994"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T22:47:13.334Z",
+    "label": "Boarding in International Waters",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-06-us-super-hornet-mt-hasna-hormuz-blockade-cannon": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A BLOCKADE LEGALLY IS",
+        "body": "Under customary international law, a blockade is an act of war. The 1909 London Declaration and the 1994 San Remo Manual codified the rules: it must be declared, notified to neutrals, applied impartially, and effective. Calling an interdiction campaign anything other than a blockade is usually a deliberate legal hedge — naming it triggers belligerent rights and obligations on both sides.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The US has historically preferred terms like *quarantine* (Cuba 1962) or *maritime interdiction* — semantic choices that preserve the option to escalate without conceding the laws-of-war framework that a declared blockade activates."
+          }
+        ]
+      },
+      {
+        "heading": "THE 20MM CHOICE",
+        "body": "An F/A-18's M61 Vulcan fires 20mm rounds at 6,000 per minute. Used against a tanker hull, it's a disabling weapon — designed to puncture engineering spaces and steering gear without sinking the ship or igniting cargo. The choice signals enforcement, not destruction; a missile would have been the opposite signal."
+      },
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "The Gulf of Oman sits outside the Strait of Hormuz, in international waters where the US Fifth Fleet operates routinely. Interdicting here — rather than inside the Strait — keeps the action in waters where transit-passage law is uncontested and avoids triggering Iran's claim that Hormuz is governed by Iranian domestic law.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "PK",
+              "SA"
+            ],
+            "label": "where the line is being drawn",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 24.5,
+                "lng": 58.5,
+                "label": "Gulf of Oman intercept zone"
+              },
+              {
+                "lat": 29.0667,
+                "lng": 50.6833,
+                "label": "Kharg Island terminal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 450 commercial ships in the Gulf. The US response — Operation Earnest Will — reflagged Kuwaiti tankers under the American flag and escorted them. The current pattern inverts that posture: the US is now the interdictor, not the protector, and Iranian-flagged hulls are the targets rather than the threat."
+      },
+      {
+        "heading": "WHY OIL DIDN'T BREAK",
+        "body": "Brent's muted reaction to interdictions tells you the market reads this as enforcement against specific cargoes, not closure of the lane. Closure prices in within hours; selective interdiction prices in over weeks via insurance premiums at Lloyd's, not the spot benchmark.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hormuz daily transit",
+                "value": "~20 mn bpd",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Global seaborne oil",
+                "value": "~42 mn bpd",
+                "tone": "neutral"
+              },
+              {
+                "label": "US SPR capacity",
+                "value": "~700 mn bbl",
+                "tone": "favorable"
+              },
+              {
+                "label": "Saudi spare capacity",
+                "value": "~3 mn bpd",
+                "tone": "favorable"
+              }
+            ],
+            "label": "Hormuz oil flows in context"
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Lloyd's of London war-risk premiums — not the kinetic events themselves — close shipping lanes. A single interdiction adds basis points; a pattern of them adds percentage points to hull value per voyage. At a certain premium, owners reroute regardless of whether any ship has actually been hit.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What typically closes a contested shipping lane to commercial traffic first?",
+            "options": [
+              "A government order banning passage",
+              "A Lloyd's war-risk premium spike that makes voyages uneconomic",
+              "A naval blockade physically blocking the channel",
+              "Loss of GPS or navigation aids"
+            ],
+            "correct": 1,
+            "explanation": "Insurers price risk faster than states declare war. Once war-risk premiums spike, commercial owners reroute on their own — the financial chokepoint binds before the physical one."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-06T22:47:49.023Z",
+    "label": "Naval Blockade & Visit-Board-Search",
+    "category": "economy",
+    "articleCount": 1
   }
 }
