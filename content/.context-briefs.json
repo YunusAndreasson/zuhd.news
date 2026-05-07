@@ -128912,5 +128912,1252 @@
     "label": "Naval Blockade & Visit-Board-Search",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-05-06-genai-student-writing-voice-homogenisation-canada-study": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT VOICE ACTUALLY IS",
+        "body": "Linguists call it idiolect — the fingerprint of word choice, sentence rhythm, and syntactic habit unique to each writer. Forensic linguists have used idiolect to identify Unabomber Ted Kaczynski from his manifesto and to attribute disputed Federalist Papers to Madison versus Hamilton.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Your **idiolect** is shaped by every book you've read, every dialect you've heard, every teacher who corrected you. It is closer to a gait than a skill — hard to describe, hard to fake, easy to recognize."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRAINING-DATA REGRESSION",
+        "body": "Large language models are trained to predict the most probable next token across billions of documents. Their output gravitates toward the statistical center of human prose — the median sentence, the unsurprising adjective. Students who edit with these models are pulled toward that same center."
+      },
+      {
+        "heading": "THE FLYNN EFFECT, INVERTED",
+        "body": "For most of the 20th century, measured cognitive scores rose generation-on-generation — the Flynn effect. Since roughly 2010, several countries have recorded reversals in verbal reasoning and reading. The mechanism is contested but screen-mediated language exposure is a leading suspect; LLM-mediated writing is a new vector on the same axis."
+      },
+      {
+        "heading": "WHY SCHOOLS MISS IT",
+        "body": "Plagiarism detectors compare text against a corpus of existing documents. AI-generated prose is novel by construction — it isn't copied from anywhere — so it passes. The detection problem and the homogenisation problem are different problems; tools built for the first are blind to the second.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do traditional plagiarism detectors fail to catch AI-written essays?",
+            "options": [
+              "The essays are too short to fingerprint",
+              "AI output is statistically novel, not copied from any existing source",
+              "Schools have not updated their detection databases",
+              "AI tools deliberately scramble outputs to evade detection"
+            ],
+            "correct": 1,
+            "explanation": "Tools like Turnitin match against a corpus of existing text. LLM output is generated token-by-token and rarely reproduces any source verbatim, so it slips through."
+          }
+        ]
+      },
+      {
+        "heading": "THE OLDER PRECEDENT",
+        "body": "Every literacy technology has reshaped cognition. Plato's Phaedrus warned that writing itself would weaken memory; the printing press standardized spelling and killed regional orthographies; spell-check eroded the felt difference between affect and effect. The pattern is offload, then atrophy — the question is what is being offloaded this time.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Socrates' complaint in the *Phaedrus* was that writing produces *the appearance of wisdom, not its reality* — students who read would seem knowledgeable without truly knowing. The structure of the worry is identical to the one now raised against generative AI."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT GETS LOST",
+        "body": "Voice is not ornament — it is the trace of a thinker working through a problem in real time. When prose converges to a median, what disappears is not style but evidence of thought: the false start, the hedge, the unexpected metaphor that signals a mind reaching past its training."
+      }
+    ],
+    "generatedAt": "2026-05-07T04:42:57.309Z",
+    "label": "AI & the Homogenisation of Voice",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-06-sindoor-anniversary-india-pakistan-nuclear-restraint-eroded": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BROKEN TABOO",
+        "body": "From 1971 to 2019, neither India nor Pakistan struck across the international border with manned aircraft. Balakot in 2019 cracked that line; Sindoor in 2025 erased it. What was once unthinkable is now the new floor of crisis behavior.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1947",
+                "label": "Partition; first Kashmir war"
+              },
+              {
+                "year": "1971",
+                "label": "Bangladesh war; last full conventional war"
+              },
+              {
+                "year": "1974",
+                "label": "India's 'Smiling Buddha' nuclear test"
+              },
+              {
+                "year": "1998",
+                "label": "Both states declare nuclear weapons",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1999",
+                "label": "Kargil — first nuclear-era war"
+              },
+              {
+                "year": "2008",
+                "label": "Mumbai attacks; restraint holds"
+              },
+              {
+                "year": "2019",
+                "label": "Balakot airstrike inside Pakistan"
+              },
+              {
+                "year": "2025",
+                "label": "Operation Sindoor"
+              }
+            ],
+            "label": "the firebreak, eroding"
+          }
+        ]
+      },
+      {
+        "heading": "THE DOCTRINES DON'T MATCH",
+        "body": "India officially holds No First Use, paired with massive retaliation. Pakistan rejects NFU and developed tactical nuclear weapons — the Nasr missile — explicitly to halt an Indian armored thrust on Pakistani soil. The asymmetry means each side's red line sits at a different rung of the escalation ladder.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India",
+                "value": "No First Use",
+                "cc": "IN",
+                "tone": "neutral"
+              },
+              {
+                "label": "Pakistan",
+                "value": "First-use, tactical",
+                "cc": "PK",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "China",
+                "value": "No First Use",
+                "cc": "CN",
+                "tone": "neutral"
+              },
+              {
+                "label": "USA",
+                "value": "Calculated ambiguity",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "Russia",
+                "value": "First-use, escalate-to-deescalate",
+                "cc": "RU",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "declared nuclear posture"
+          }
+        ]
+      },
+      {
+        "heading": "THE STOCKPILES",
+        "body": "Both arsenals have grown roughly fivefold since 1998 and now exceed the UK's. Pakistan is the world's fastest-growing nuclear program; India is shifting from a Pakistan-focused posture to one sized against China, which pulls Pakistani planners toward shorter-range, faster-launching systems.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Estimated nuclear warheads",
+            "peers": [
+              {
+                "value": 5580,
+                "cc": "RU"
+              },
+              {
+                "value": 5044,
+                "cc": "US"
+              },
+              {
+                "value": 600,
+                "cc": "CN"
+              },
+              {
+                "value": 290,
+                "cc": "FR"
+              },
+              {
+                "value": 225,
+                "cc": "GB"
+              },
+              {
+                "value": 172,
+                "cc": "IN"
+              },
+              {
+                "value": 170,
+                "cc": "PK"
+              },
+              {
+                "value": 90,
+                "cc": "IL"
+              },
+              {
+                "value": 50,
+                "cc": "KP"
+              }
+            ],
+            "subjectCc": "PK",
+            "unit": "warheads"
+          }
+        ]
+      },
+      {
+        "heading": "WHO USED TO PICK UP THE PHONE",
+        "body": "In every prior crisis — Kargil 1999, the 2001 Parliament attack, Mumbai 2008, Pulwama 2019 — Washington was the de facto crisis manager, leaning on both capitals and offering each side a face-saving exit. Riyadh and Abu Dhabi played the same role on the Pakistani end. Sindoor played out with that scaffolding visibly thinner.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The textbook name for what Washington provided is **extended deterrence by mediation** — not a treaty commitment, but a credible expectation that a great power will intervene before either side miscalculates. Remove the mediator and the *stability–instability paradox* sharpens: nuclear weapons keep the top rung safe, and the rungs below get more crowded."
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPRESSION PROBLEM",
+        "body": "Indian and Pakistani capitals are 690 km apart. Ballistic missile flight time between them is under five minutes. Cruise-missile and drone strikes — the weapons Sindoor relied on — give decision-makers minutes, not hours, to read intent. Misreading a conventional strike as a decapitation attempt is the textbook path to a nuclear answer."
+      },
+      {
+        "heading": "THE INDUS LEVER",
+        "body": "The 1960 Indus Waters Treaty, brokered by the World Bank, has survived three wars. India's 2025 suspension of treaty cooperation is unprecedented — Pakistan draws ~80% of its irrigation from the Indus system, and Islamabad has stated that weaponizing water flows would be treated as an act of war.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "PK",
+              "AF",
+              "CN"
+            ],
+            "label": "the Indus basin",
+            "markers": [
+              {
+                "lat": 33.7294,
+                "lng": 73.0931,
+                "label": "Mangla Dam"
+              },
+              {
+                "lat": 34.15,
+                "lng": 73.2167,
+                "label": "Tarbela Dam"
+              },
+              {
+                "lat": 32.5167,
+                "lng": 75.5833,
+                "label": "Baglihar (IN)"
+              },
+              {
+                "lat": 28.6139,
+                "lng": 77.209,
+                "label": "Delhi"
+              },
+              {
+                "lat": 33.6844,
+                "lng": 73.0479,
+                "label": "Islamabad"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "TEST YOURSELF",
+        "body": "The doctrinal asymmetry is the most underappreciated risk in South Asia.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the stated purpose of Pakistan's Nasr (Hatf-IX) tactical nuclear missile?",
+            "options": [
+              "To strike Indian cities in retaliation for a first nuclear use",
+              "To halt an Indian conventional armored advance on Pakistani soil",
+              "To deter Chinese pressure along the Karakoram",
+              "To target US naval forces in the Arabian Sea"
+            ],
+            "correct": 1,
+            "explanation": "Nasr is a battlefield nuclear weapon designed to stop India's 'Cold Start' doctrine — fast armored thrusts — by lowering the nuclear threshold to the tactical level."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-07T04:43:40.694Z",
+    "label": "South Asia's Eroding Nuclear Firebreak",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-06-tsmc-30yr-wind-ppa-taiwan-ai-chip-grid-crunch": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "ONE COMPANY, A QUARTER OF THE GRID",
+        "body": "TSMC already consumes around 8% of Taiwan's electricity. S&P's 25% projection by 2030 reflects the energy intensity of leading-edge nodes — each shrink (7nm → 5nm → 3nm → 2nm) raises power per wafer because EUV lithography and ever-deeper transistor stacks demand more energy per operation, not less.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A single **EUV scanner** draws roughly **1 MW** at full tilt — the same as a small town. A modern fab runs dozens in parallel."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A 30-YEAR PPA",
+        "body": "Offshore wind farms cost $3-5 billion upfront and earn nothing until they spin. Banks lend against guaranteed revenue, not spot-market hope. A 30-year corporate power purchase agreement from a AAA-rated buyer like TSMC is what makes the project financeable — the developer can show lenders three decades of contracted cashflow before driving the first monopile."
+      },
+      {
+        "heading": "TAIWAN'S ENERGY TRAP",
+        "body": "Taiwan imports roughly 97% of its energy. It has no pipelines — every molecule of gas arrives by LNG tanker, mostly through the same waters China's navy patrols. The island holds about 8 days of LNG storage. A blockade doesn't need to fire a shot; it just needs to last two weeks.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "LNG / gas",
+                "value": "~42%",
+                "segments": [
+                  {
+                    "value": 42,
+                    "tone": "unfavorable",
+                    "label": "imported gas"
+                  }
+                ]
+              },
+              {
+                "label": "Coal",
+                "value": "~32%",
+                "segments": [
+                  {
+                    "value": 32,
+                    "tone": "unfavorable",
+                    "label": "imported coal"
+                  }
+                ]
+              },
+              {
+                "label": "Nuclear",
+                "value": "~6%",
+                "segments": [
+                  {
+                    "value": 6,
+                    "tone": "neutral",
+                    "label": "phase-out"
+                  }
+                ]
+              },
+              {
+                "label": "Renewables",
+                "value": "~12%",
+                "segments": [
+                  {
+                    "value": 12,
+                    "tone": "favorable",
+                    "label": "wind+solar"
+                  }
+                ]
+              },
+              {
+                "label": "Other",
+                "value": "~8%",
+                "segments": [
+                  {
+                    "value": 8,
+                    "tone": "neutral"
+                  }
+                ]
+              }
+            ],
+            "label": "Taiwan electricity mix, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE NUCLEAR REVERSAL",
+        "body": "The DPP campaigned for a nuclear-free homeland and shut Taiwan's last reactor in 2025. Within months, AI-driven demand and gas-supply scares reopened the debate; a 2025 referendum tilted toward restart. The pivot is happening in real time — the same party that closed the plants is now considering whether to bring them back."
+      },
+      {
+        "heading": "THE STRAIT IS THE CHOKEPOINT",
+        "body": "Most of Taiwan's offshore wind sits in the Taiwan Strait — the same stretch of water China claims and routinely transits with naval exercises. Wind turbines, undersea cables, and LNG terminals share the same vulnerable geometry. Diversifying away from gas toward wind doesn't escape the geography; it just changes which infrastructure is exposed.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TW",
+              "CN",
+              "PH",
+              "JP"
+            ],
+            "label": "Taiwan's exposed energy geometry",
+            "markers": [
+              {
+                "lat": 24.5,
+                "lng": 120.3,
+                "label": "Changhua wind zone"
+              },
+              {
+                "lat": 24.8,
+                "lng": 120.95,
+                "label": "TSMC Hsinchu"
+              },
+              {
+                "lat": 24.18,
+                "lng": 120.43,
+                "label": "Taichung LNG"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY AI CHIPS ARE DIFFERENT",
+        "body": "A Hopper or Blackwell-class GPU draws 700-1200W under load. A single training run for a frontier model now uses tens of megawatt-hours. The fabs that print these chips need clean, firm, 24/7 power — exactly what intermittent wind alone cannot provide, which is why the wind deal sits alongside the unresolved nuclear question, not in place of it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't TSMC simply run its fabs on offshore wind alone?",
+            "options": [
+              "Wind is too expensive at scale",
+              "Fab processes need uninterrupted firm power; wind is intermittent",
+              "Offshore turbines can't generate enough total energy",
+              "Taiwanese law forbids 100% renewable industrial sites"
+            ],
+            "correct": 1,
+            "explanation": "A momentary power dip can ruin a wafer mid-lithography — fabs need firm baseload (nuclear, gas, or storage), not just clean energy."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-07T04:44:17.619Z",
+    "label": "TSMC, Taiwan's Grid & Offshore Wind",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-07-australia-gas-reservation-20pct-domestic-supply-shakeup": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LINKAGE PROBLEM",
+        "body": "Before LNG export terminals open, domestic gas trades at the cost of local production. After they open, domestic prices converge to the export netback — global LNG price minus shipping and liquefaction. Australia learned this the hard way: east-coast wholesale gas roughly tripled within years of the Gladstone terminals firing up in 2015.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is called **export parity pricing**. A producer with a tanker berth will never sell domestically below what the next ship to Tokyo would pay — minus liquefaction and freight. The domestic market becomes a price-taker on a global benchmark."
+          }
+        ]
+      },
+      {
+        "heading": "THE QUEENSLAND TERMINALS",
+        "body": "Three coal-seam gas export plants on Curtis Island near Gladstone — APLNG, GLNG, QCLNG — turned Australia into the world's largest LNG exporter by 2020. They were sanctioned on the assumption that CSG fields would supply both export contracts and domestic demand. The fields underdelivered; exports were prioritized; the southern states (Victoria, NSW) ran short.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AU"
+            ],
+            "label": "east-coast gas geography",
+            "markers": [
+              {
+                "lat": -23.7626,
+                "lng": 151.2536,
+                "label": "Curtis Island LNG"
+              },
+              {
+                "lat": -37.8136,
+                "lng": 144.9631,
+                "label": "Melbourne (demand)"
+              },
+              {
+                "lat": -33.8688,
+                "lng": 151.2093,
+                "label": "Sydney (demand)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE WA PRECEDENT",
+        "body": "Western Australia has had a 15% domestic gas reservation since 2006 — a condition Premier Alan Carpenter imposed on every new LNG project after watching Queensland-style price shocks loom. Two decades on, WA wholesale gas trades at a fraction of east-coast prices. The east-coast reservation now copies a policy the west has run continuously for nearly twenty years."
+      },
+      {
+        "heading": "WHO PAYS",
+        "body": "A reservation transfers value from LNG joint-venture partners — Shell, ConocoPhillips, Sinopec, Origin, Santos — to Australian manufacturers and households. The lost export margin is the producers' loss; the avoided global-parity price is the domestic users' gain. Sovereign-rights and stability-clause arguments in the original project agreements are why this took a decade of price pain to legislate.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "APLNG",
+                "value": "Origin / ConocoPhillips / Sinopec",
+                "cc": "AU"
+              },
+              {
+                "label": "GLNG",
+                "value": "Santos / Petronas / Total / Kogas",
+                "cc": "AU"
+              },
+              {
+                "label": "QCLNG",
+                "value": "Shell (BG legacy) / CNOOC",
+                "cc": "AU"
+              }
+            ],
+            "label": "east-coast LNG export consortia (Curtis Is.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TAX ALTERNATIVE",
+        "body": "A 25% export tax — the parliamentary option tabled Thursday — captures the same value differently: the government takes the wedge between domestic and export price as revenue, then chooses whether to rebate it. A reservation lowers the domestic price directly; a tax raises the export price and sends the spread to Treasury. Norway's petroleum tax regime collects ~78% on offshore production this way; Australia's existing PRRT collects almost nothing from LNG because of accelerated-deduction rules drafted in the 1980s."
+      },
+      {
+        "heading": "THE RESOURCE-CURSE INVERSION",
+        "body": "Most resource-curse stories are about poor countries failing to capture rents from foreign extractors. Australia is the rare wealthy democracy that exported its commodity boom so cleanly that domestic users became the casualty. The reservation debate is whether sovereign discretion over a domestic resource survives once the export contracts are signed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When did Western Australia first impose a domestic gas reservation on new LNG projects?",
+            "options": [
+              "1986, after the North West Shelf came online",
+              "2006, under Premier Alan Carpenter",
+              "2015, after Gladstone exports began",
+              "2022, with the federal price cap"
+            ],
+            "correct": 1,
+            "explanation": "WA's 15% reservation policy dates to 2006 — nearly a decade before the east-coast price shock the federal policy is now responding to."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-07T04:44:57.358Z",
+    "label": "Gas Reservation & the Export-Linkage Trap",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-07-extensive-antagonistic-variants-across-the-human-genome-natu": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CORE IDEA",
+        "body": "Antagonistic pleiotropy is when a single gene variant helps with one trait and hurts another. Evolution can't optimize both at once, so the population settles on a tradeoff frequency rather than fixing one allele.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The term was coined by **George C. Williams** in 1957 to explain why aging exists at all — variants favored in youth could be tolerated even if they harm late-life fitness, because selection pressure decays after reproduction."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DIVERSITY PERSISTS",
+        "body": "Most beneficial mutations sweep to fixation; most harmful ones disappear. Antagonistic variants do neither. Because each allele is good in one context and bad in another, selection holds them at intermediate frequencies — a mechanism called balancing selection."
+      },
+      {
+        "heading": "THE CLASSIC EXAMPLE",
+        "body": "The sickle-cell allele protects against malaria when carried in one copy but causes sickle-cell disease in two. In malarial regions of West Africa, the harmful allele stabilizes around 10–15% frequency — too costly to fix, too useful to lose."
+      },
+      {
+        "heading": "WHY 11% IS LARGE",
+        "body": "Until recently, antagonistic pleiotropy was treated as a rare curiosity — a handful of textbook cases. Finding it across more than a tenth of the human genome reframes it as a structural feature of the genome, not an exception.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What signature in allele-frequency data indicates balancing selection rather than a neutral or sweeping variant?",
+            "options": [
+              "Frequency near 0% or 100%",
+              "Intermediate frequency held across populations",
+              "Frequency that drifts randomly each generation",
+              "Complete absence outside one ethnic group"
+            ],
+            "correct": 1,
+            "explanation": "Balancing selection holds variants at intermediate frequencies because both alleles confer fitness in different contexts — neither can sweep to fixation."
+          }
+        ]
+      },
+      {
+        "heading": "GWAS AND THE LINKAGE BLOCK",
+        "body": "Genome-wide association studies scan millions of variants for trait correlations. Because nearby DNA is inherited together in linkage blocks, a single hit usually implicates a region of dozens of genes — which is why this paper counts 219 blocks rather than 219 single variants."
+      },
+      {
+        "heading": "THE MEDICAL IMPLICATION",
+        "body": "If a variant raises one disease risk while lowering another, gene-editing it away creates a new problem. Polygenic risk scores that target a single trait may be optimizing in a direction the genome has already weighed and rejected."
+      }
+    ],
+    "generatedAt": "2026-05-07T04:45:21.864Z",
+    "label": "Antagonistic Pleiotropy",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-07-russia-sovereign-runet-youtube-telegram-tspu-splinternet": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL ARCHITECTURE",
+        "body": "Russia's 2019 Sovereign Internet Law required all traffic to flow through state-controlled exchange points and mandated that ISPs install deep-packet inspection equipment called TSPU. The law's stated purpose was resilience against foreign cutoff; its actual function was giving Roskomnadzor a centralized kill switch over any protocol, domain, or platform.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**TSPU** (*Tekhnicheskie Sredstva Protivodeystviya Ugrozam* — 'technical means to counter threats') boxes sit physically inside every major Russian ISP, controlled remotely by Roskomnadzor without the ISP's involvement."
+          }
+        ]
+      },
+      {
+        "heading": "HOW DPI BLOCKING WORKS",
+        "body": "Deep-packet inspection reads not just the destination of a packet but its contents and metadata signatures. Modern DPI can fingerprint VPN protocols, Tor handshakes, and even obfuscated tunnels by their statistical traffic patterns — which is why simply running a VPN is no longer enough in jurisdictions that have invested in this hardware."
+      },
+      {
+        "heading": "THE GREAT FIREWALL TEMPLATE",
+        "body": "China's Great Firewall, built since 1998, is the working model every authoritarian regime studies. It combines DNS poisoning, IP blocking, DPI, and TLS fingerprinting — and crucially, the domestic platform stack (WeChat, Weibo, Baidu) that gives users a functional alternative. Russia copied the filtering architecture but never built the alternative stack at scale.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "GFW since 1998",
+                "cc": "CN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Iran",
+                "value": "NIN, since 2005",
+                "cc": "IR",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Russia",
+                "value": "RuNet, 2019",
+                "cc": "RU",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "N. Korea",
+                "value": "Kwangmyong intranet",
+                "cc": "KP",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "national filtering regimes"
+          }
+        ]
+      },
+      {
+        "heading": "THE SUBMARINE-CABLE LAYER",
+        "body": "99% of intercontinental data moves through undersea fiber-optic cables, not satellites. Russia is unusual: most of its international bandwidth runs overland through fiber crossing into Finland, the Baltics, and via terrestrial links to Frankfurt and Stockholm. Cutting 'the internet' for Russia is closer to closing border crossings than severing cables."
+      },
+      {
+        "heading": "WHY THE VPN ARMS RACE NEVER ENDS",
+        "body": "Each side iterates: censors learn to fingerprint a protocol, developers ship an obfuscation layer, censors fingerprint the obfuscation. Tools like V2Ray, Shadowsocks, and Cloudflare's WARP each had windows of effectiveness in China and Iran measured in months, not years. The asymmetry favors the state because it controls the chokepoint and can afford to block aggressively, accepting collateral damage to legitimate traffic.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of intercontinental internet traffic moves through undersea cables rather than satellites?",
+            "options": [
+              "About 50%",
+              "About 75%",
+              "About 99%",
+              "About 30%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 99% of intercontinental data moves through undersea fiber-optic cables. Satellite constellations like Starlink are still a rounding error on this scale."
+          }
+        ]
+      },
+      {
+        "heading": "THE SPLINTERNET",
+        "body": "The term describes the gradual fracturing of one global internet into national or bloc-level networks with different rules, content, and protocols. Russia, China, and Iran are the most advanced examples; the EU's data-localization rules and US export controls on chips and cloud services pull in the same direction from the other end. The 1990s vision of a single open internet is closing.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "CN",
+              "IR",
+              "KP",
+              "BY"
+            ],
+            "label": "the heaviest filtering regimes"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-07T04:45:54.657Z",
+    "label": "Sovereign Internet & the Splinternet",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-07-solar-evaporation-multiphase-flow-water-scarcity-nature": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ENERGY FLOOR",
+        "body": "Evaporating one liter of water requires roughly 2,260 kJ — the latent heat of vaporization. Sunlight at peak delivers about 1 kW per square meter. Physics sets a hard ceiling on how much fresh water a passive solar still can produce per square meter per day.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "That ceiling is why apparent efficiencies above **100%** are not violations of thermodynamics — they reflect *recovered* latent heat as vapor recondenses, releasing energy that drives a second evaporation cycle."
+          }
+        ]
+      },
+      {
+        "heading": "THE SALT REJECTION PROBLEM",
+        "body": "As water evaporates, salt concentrates in whatever's left. Crystals form on wicks and surfaces, blocking capillary flow and reflecting sunlight. Every passive desalination design lives or dies on whether brine can be flushed continuously without external pumps."
+      },
+      {
+        "heading": "WHY REEDS",
+        "body": "Juncus effusus — the soft rush — evolved hollow stem channels that move water and air between roots and atmosphere. The same multiphase plumbing that lets a wetland plant breathe through saturated mud is what synchronizes liquid intake and vapor escape in a still."
+      },
+      {
+        "heading": "THE GULF CONTRAST",
+        "body": "The Persian Gulf is already among the saltiest seas on Earth, and Gulf states meet most of their water demand through industrial multi-stage flash and reverse osmosis plants — gigawatts of fossil-fueled capacity. A passive solar still trades throughput for zero operating energy, which is the right tradeoff only off-grid.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "~50% desal",
+                "cc": "SA",
+                "weight": 50
+              },
+              {
+                "label": "UAE",
+                "value": "~42%",
+                "cc": "AE",
+                "weight": 42
+              },
+              {
+                "label": "Qatar",
+                "value": "~60%",
+                "cc": "QA",
+                "weight": 60
+              },
+              {
+                "label": "Kuwait",
+                "value": "~90%",
+                "cc": "KW",
+                "weight": 90
+              },
+              {
+                "label": "Bahrain",
+                "value": "~60%",
+                "cc": "BH",
+                "weight": 60
+              }
+            ],
+            "label": "how the Gulf gets its water"
+          }
+        ]
+      },
+      {
+        "heading": "WHO NEEDS THIS",
+        "body": "Roughly 2 billion people lack reliably safe drinking water. The bottleneck is rarely absolute scarcity — it's grid access, fuel cost, and capital for centralized plants. A device that runs on sunlight, tolerates brackish input, and rejects its own salt collapses three of those constraints at once.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What sets the theoretical ceiling on a passive solar still's freshwater output?",
+            "options": [
+              "Available sunlight per square meter and water's latent heat of vaporization",
+              "The salinity of the input water",
+              "The membrane's pore size",
+              "Ambient air temperature"
+            ],
+            "correct": 0,
+            "explanation": "Evaporation needs ~2,260 kJ per liter; peak sunlight delivers ~1 kW/m². The ratio bounds output — efficiencies above 100% come from recapturing latent heat during condensation."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-07T04:46:20.476Z",
+    "label": "Solar Stills & Passive Desalination",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-07-tibet-mandarin-preschool-mother-tongue-erasure": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MECHANISM",
+        "body": "Language death in modernity rarely happens by decree alone. It happens when the language of school, work, and bureaucracy diverges from the language of the home — and one generation stops transmitting the mother tongue because fluency in it no longer pays.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Linguists call this **intergenerational transmission failure** — the single best predictor of whether a language will survive the century. UNESCO's endangerment scale rates a language *moribund* the moment children stop learning it natively, regardless of how many adults still speak it."
+          }
+        ]
+      },
+      {
+        "heading": "THE BOARDING-SCHOOL ARCHITECTURE",
+        "body": "Roughly a million Tibetan children — about three-quarters of school-age Tibetans — attend state-run residential schools, often hundreds of kilometers from home. Children return to families a few weeks a year. The setup mirrors the US and Canadian Indian boarding schools of the 19th and 20th centuries, whose explicit purpose Richard Pratt summarized as 'kill the Indian, save the man.'",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "IN",
+              "NP",
+              "BT"
+            ],
+            "label": "the Tibetan Plateau",
+            "markers": [
+              {
+                "lat": 29.652,
+                "lng": 91.1721,
+                "label": "Lhasa"
+              },
+              {
+                "lat": 31.2304,
+                "lng": 97.1816,
+                "label": "Chamdo"
+              },
+              {
+                "lat": 36.6228,
+                "lng": 101.78,
+                "label": "Xining (Amdo)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 1984 LAW BEIJING IS BREAKING",
+        "body": "China's own Regional Ethnic Autonomy Law guarantees minority-language education in autonomous regions, and Article 4 of the constitution affirms the right of every nationality to use and develop its own language. The 2021 mandate inverted this — formally on grounds of 'national common language promotion,' practically by making Mandarin the medium for every subject from kindergarten onward."
+      },
+      {
+        "heading": "THE PEER PATTERN",
+        "body": "This is the same template Beijing applied in Xinjiang from 2017 and in Inner Mongolia from 2020 — Mandarin-medium instruction, residential schooling, restrictions on supplemental mother-tongue classes. The sequence is not coincidence; it is policy diffusion.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Xinjiang",
+                "value": "2017 →",
+                "cc": "CN"
+              },
+              {
+                "label": "Inner Mongolia",
+                "value": "2020 →",
+                "cc": "CN"
+              },
+              {
+                "label": "Tibet (TAR)",
+                "value": "2021 →",
+                "cc": "CN"
+              },
+              {
+                "label": "Qinghai (Amdo)",
+                "value": "2021 →",
+                "cc": "CN"
+              }
+            ],
+            "label": "Beijing's language-medium shift, by region"
+          }
+        ]
+      },
+      {
+        "heading": "WHY TIBETAN IS HARDER TO REPLACE THAN MOST",
+        "body": "Tibetan is a liturgical language. Buddhist scripture, ritual, and centuries of philosophical commentary exist in classical Tibetan; monasteries are the institutional memory. Severing children from the spoken language also severs them from the religious tradition — which, from Beijing's vantage, is the point, not a side effect.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The script itself was commissioned in the 7th century by King Songtsen Gampo specifically to translate Buddhist texts from Sanskrit — making Tibetan, like Arabic for Islam or Pali for Theravada Buddhism, a *sacred-purpose* language whose erosion carries theological weight, not just cultural."
+          }
+        ]
+      },
+      {
+        "heading": "THE RETRIEVAL TEST",
+        "body": "Language policy outcomes show up a generation later, in census data on home-language use. The damage is invisible until it is irreversible.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the strongest predictor that a language will go extinct within a century?",
+            "options": [
+              "Fewer than 10,000 living speakers",
+              "Children stop learning it as a first language",
+              "No written script or literary tradition",
+              "Government refuses to recognize it officially"
+            ],
+            "correct": 1,
+            "explanation": "UNESCO and field linguists agree: once intergenerational transmission breaks, adult-speaker counts only mark how long the funeral takes."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-07T04:46:55.179Z",
+    "label": "Language & Assimilation in Tibet",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-07-trump-hormuz-escort-reversal-mbs-saudi-airspace-veto": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BASIC RULE",
+        "body": "The Chicago Convention of 1944 established that every state has complete and exclusive sovereignty over the airspace above its territory. Unlike territorial waters, there is no right of innocent passage — military aircraft need explicit permission for every overflight, and that permission can be withdrawn at any time.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why a Saudi *no* is structurally different from a diplomatic protest: it is a **legal veto**, not a complaint."
+          }
+        ]
+      },
+      {
+        "heading": "THE TURKEY PRECEDENT",
+        "body": "When Ankara denied US overflight rights for the 2003 Iraq invasion, the 4th Infantry Division had to reroute through the Suez and arrived weeks late. Single-country denials reshape entire campaigns; the host's leverage over a coalition is often greater than the coalition's leverage over the host.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The complete and exclusive sovereignty of every State over the airspace above its territory.",
+            "speaker": "Chicago Convention, Article 1",
+            "year": "1944"
+          }
+        ]
+      },
+      {
+        "heading": "PRINCE SULTAN AIR BASE",
+        "body": "PSAB at al-Kharj is the forward command hub for US Central Command air operations on the Arabian Peninsula — home to the Combined Air Operations Center that coordinated strikes from Afghanistan to Iraq to Yemen. Saudi Arabia evicted CENTCOM from PSAB in 2003, then quietly invited it back in 2019. Access is a bilateral privilege, not a permanent footprint.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SA",
+              "KW",
+              "IR",
+              "BH",
+              "QA",
+              "AE",
+              "OM"
+            ],
+            "label": "US basing around the Gulf",
+            "markers": [
+              {
+                "lat": 24.0625,
+                "lng": 47.5805,
+                "label": "Prince Sultan Air Base"
+              },
+              {
+                "lat": 29.2461,
+                "lng": 47.9774,
+                "label": "Ali Al Salem AB (Kuwait)"
+              },
+              {
+                "lat": 25.1117,
+                "lng": 51.3158,
+                "label": "Al Udeid AB (Qatar)"
+              },
+              {
+                "lat": 26.2358,
+                "lng": 50.65,
+                "label": "NSA Bahrain (5th Fleet)"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE STRAIT NEEDS LAND",
+        "body": "Hormuz is 33 km wide; the shipping lanes are 3 km each. Naval escort is a maritime mission, but the air cover, ISR, and refueling tankers it depends on launch from land bases on the Arabian side. Without Saudi or Kuwaiti airspace, fighters from carriers must fly longer arcs through Omani or international airspace — burning fuel, lengthening response times, and concentrating risk on the carrier itself.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "PSAB + airspace",
+                "cc": "SA",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Kuwait",
+                "value": "Ali Al Salem AB",
+                "cc": "KW",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Qatar",
+                "value": "Al Udeid (CENTCOM fwd HQ)",
+                "cc": "QA",
+                "tone": "favorable"
+              },
+              {
+                "label": "Bahrain",
+                "value": "5th Fleet HQ",
+                "cc": "BH",
+                "tone": "favorable"
+              },
+              {
+                "label": "UAE",
+                "value": "Al Dhafra AB",
+                "cc": "AE",
+                "tone": "neutral"
+              },
+              {
+                "label": "Oman",
+                "value": "Masirah, Thumrait",
+                "cc": "OM",
+                "tone": "neutral"
+              }
+            ],
+            "label": "who controls what around Hormuz"
+          }
+        ]
+      },
+      {
+        "heading": "THE SAUDI HEDGE",
+        "body": "Riyadh restored relations with Tehran via Beijing's mediation in March 2023, ending a seven-year rupture. MBS has since refused to take sides in US-Iran flashpoints — declining to condemn Houthi attacks, hosting Iranian officials, and reportedly telling Washington that Saudi territory will not be a launchpad against Iran. The 2019 Abqaiq strike, which the US did not retaliate for, taught Riyadh that American security guarantees have limits.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2016",
+                "label": "Riyadh cuts ties after Nimr execution"
+              },
+              {
+                "year": "2019-09",
+                "label": "Abqaiq strike; no US retaliation",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-03",
+                "label": "Beijing-brokered restoration"
+              },
+              {
+                "year": "2024",
+                "label": "MBS hosts Iranian FM in Riyadh"
+              },
+              {
+                "year": "2026-05",
+                "label": "Hormuz airspace denial"
+              }
+            ],
+            "label": "the Saudi-Iran arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE PAKISTAN CHANNEL",
+        "body": "Pakistan has mediated Iran-US backchannels since the 1990s — Islamabad keeps embassies in both Tehran and Washington and shares a 900 km border with Iran. The channel was used during the 2019 tanker crisis and again after the 2020 Soleimani strike. Pakistani mediation signals that the message is meant to be received quietly, not staged for cameras.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country has historically served as the primary backchannel between Tehran and Washington?",
+            "options": [
+              "Switzerland",
+              "Oman",
+              "Pakistan",
+              "Qatar"
+            ],
+            "correct": 1,
+            "explanation": "Oman has been the main quiet channel since the 1970s — it brokered the secret talks that led to the 2015 nuclear deal. Pakistan and Switzerland are secondary channels; Qatar is newer."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-07T04:47:35.066Z",
+    "label": "Airspace Sovereignty & the Hormuz Veto",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-07-yango-pakistan-corporate-rides-russian-yandex-b2b-fleet": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO YANDEX IS",
+        "body": "Yandex is Russia's dominant search engine and tech conglomerate — often called 'Russia's Google' — with ride-hail, food delivery, autonomous driving, and cloud arms. Yango is its international ride-hail brand, kept legally separate from the Russian parent so it can operate in markets where Russian-headquartered firms face friction.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The brand split is deliberate: **Yandex** for the Russian-facing business, **Yango** for everywhere else — a corporate firewall that lets the international arm sign deals without sanctions exposure following it across the border."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2024 SPLIT",
+        "body": "After the invasion of Ukraine, Yandex restructured: a Dutch-listed holding company sold the Russian assets to a Kremlin-friendly consortium for roughly half their pre-war value, while the international units (Yango, Nebius cloud, autonomous driving R&D) were spun out under new ownership. The Pakistan launch sits inside that international perimeter.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1997",
+                "label": "Yandex search launched in Russia"
+              },
+              {
+                "year": "2011",
+                "label": "NASDAQ IPO, $1.3bn raised"
+              },
+              {
+                "year": "2018",
+                "label": "Yango international brand launched"
+              },
+              {
+                "year": "2022",
+                "label": "Invasion of Ukraine; sanctions pressure",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Russian assets sold; international arm spun off"
+              }
+            ],
+            "label": "the corporate split"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PAKISTAN, WHY NOW",
+        "body": "Uber sold its Pakistan operations to Careem in 2020 and Careem itself wound down ride-hail in Pakistan in 2024, leaving the market thinner than its 240m population warrants. Yango entered the consumer side in 2022 and is now climbing the value chain into corporate fleets, where margins are higher and customer churn is lower.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Yango",
+                "value": "active, expanding",
+                "tone": "favorable"
+              },
+              {
+                "label": "inDrive",
+                "value": "active",
+                "tone": "neutral"
+              },
+              {
+                "label": "Bykea (bikes)",
+                "value": "active",
+                "tone": "neutral"
+              },
+              {
+                "label": "Careem",
+                "value": "exited 2024",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Uber",
+                "value": "exited 2020",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "ride-hail in Pakistan, 2026"
+          }
+        ]
+      },
+      {
+        "heading": "THE B2B PIVOT",
+        "body": "Consumer ride-hail is a brutal margin business — drivers, riders, and platforms each take a thin slice and switching cost is zero. Corporate fleets reverse the economics: a single contract with a multinational locks in thousands of monthly rides, billing is consolidated, and the company — not the rider — is the customer. Uber for Business and Careem Business followed the same playbook globally."
+      },
+      {
+        "heading": "THE RUPEE CONTEXT",
+        "body": "Pakistan's currency has lost more than half its dollar value in the past five years. For a foreign operator pricing in dollars and paying drivers in rupees, the math gets harder every quarter — but for corporate clients trying to control transport costs against rising fuel and wage inflation, a fleet contract priced predictably in PKR is exactly what finance departments want.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.882933,
+              278.756598,
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176
+            ],
+            "periods": [
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE QUIET FOOTPRINT",
+        "body": "Russian tech, Russian capital, and Russian know-how continue to flow into the Global South through brand-laundered vehicles — Yango in transport, Kaspersky in cybersecurity, Rosatom in nuclear EPC. Western sanctions targeted the Russian state and its banks; the consumer-facing tech layer largely routed around them.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Yango operate under a different name than its parent Yandex?",
+            "options": [
+              "Yandex never expanded internationally",
+              "To insulate the international business from Russia-linked sanctions and reputational risk",
+              "Yango is owned by a competitor",
+              "Russian law forbids using Yandex abroad"
+            ],
+            "correct": 1,
+            "explanation": "The brand and corporate split lets the international arm sign deals in markets where being headquartered in Russia would be a dealbreaker."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-07"
+    ],
+    "generatedAt": "2026-05-07T04:48:09.353Z",
+    "label": "Yandex, Yango & Russian Tech Abroad",
+    "category": "economy",
+    "articleCount": 1
   }
 }
