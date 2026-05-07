@@ -1,27 +1,27 @@
 {
-  "date": "2026-05-06",
+  "date": "2026-05-07",
   "metrics": {
-    "articles": { "value": 51, "detail": "5 cycles, avg ~10/cycle" },
-    "freshness": { "median": 0.3, "p90": 1.6, "max": 1.6, "target": 1.0, "met": true },
-    "categories": { "politics": 18, "economy": 12, "science": 11, "tech": 10 },
-    "multiSource": { "value": 12, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 14, "ME": 13, "AS": 9, "EU": 8, "AF": 6, "OC": 1 } },
-    "sciTech": { "ratio": 41, "target": 25, "met": true },
-    "topSourceShare": { "source": "Hindustan Times", "pct": 10, "target": 20, "met": true },
-    "uniqueSources": 50,
+    "articles": { "value": 20, "detail": "2 of 5 cycles complete at audit time, avg ~10/cycle so far" },
+    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
+    "categories": { "politics": 7, "economy": 4, "science": 4, "tech": 5 },
+    "multiSource": { "value": 5, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "EU": 6, "AS": 5, "AM": 5, "ME": 2, "OC": 1, "AF": 1 } },
+    "sciTech": { "ratio": 45, "target": 25, "met": true },
+    "topSourceShare": { "source": "The Guardian / Nature (tied)", "pct": 15, "target": 20, "met": true },
+    "uniqueSources": 27,
     "duplicates": 0,
-    "avgCycleDuration": 2495
+    "avgCycleDuration": 740
   },
-  "experiment": "Skipped — pause gate active until 2026-05-12 (model-lineup baseline). Active experiments title-echo (eval 2026-05-08) and OIC-regional (eval 2026-05-19) continue uninterrupted.",
-  "weakestArea": "Throughput dipped to 51 from 67 yesterday (-24%) and avg cycle duration climbed to 2495s (vs ~1300s typical), driven by writer stage averaging 1213s. Still well above the 8/cycle floor, but worth watching if the trend persists.",
+  "experiment": "Skipped — noNewExperimentsUntil gate active through 2026-05-12 (post-2026-05-02 model lineup change baseline). Two active experiments still running: OIC regional-source floor (evaluateAfter 2026-05-19, confounded) and title-echo self-check (evaluates tomorrow 2026-05-08).",
+  "weakestArea": "Africa coverage thin again — 1 article today (yesterday: 6). With AF at floor and OIC carry-through experiment in flight, watch whether the regional-source rule recovers AF representation once feed thinness lifts. No metric is missing target.",
   "watching": [
-    "Title-echo self-check experiment evaluates 2026-05-08 — quality-trend snapshot needed for keep/revert decision.",
-    "Oceania coverage at 1 article — recurring thinness; not a target miss but the floor-of-floors region.",
-    "Cycle duration ~2500s is ~90% above historical ~1300s baseline; check whether Opus-4.7 effort bumps on 05-02 are still settling or whether the writer stage has regressed."
+    "Title-echo self-check experiment evaluates tomorrow (2026-05-08) — first metric snapshot from .quality-trend.json will determine keep/revert.",
+    "Cycle duration averaging 740s today vs ~1033s recent baseline — selector at 273s is faster than typical 540s; check whether model is short-cutting on a thin feed or genuinely efficient.",
+    "Yesterday's 54-article output is the high-water mark for the week (counter to the recent ~41/day trend post-standalone-cap-22); science 11 + tech 11 carried it."
   ],
   "coverageGaps": [
-    "Latin America under-represented within the AM bucket — most AM articles are US-anchored.",
-    "Central Asia (post-Soviet -stans) absent today despite OIC carry-through experiment being live."
+    "AF region at 1 today (rolling weekly trend has been AF 4–6/day) — partial-day artifact, not yet a sustained gap.",
+    "OC region historically thin (1/day typical) — structural feed limitation, not addressable via parameter tuning."
   ],
-  "context": "Pause gate runs through 2026-05-12 to let the 2026-05-02 model-lineup change (reflect→Opus high, tune→Opus medium, editorial-memo consumption by selector) baseline cleanly. Two clean active experiments remain on writer + selector. No action required from this audit beyond logging."
+  "context": "Today is a partial-day audit — only 2 of 5 cycles complete at audit run. Yesterday's full-day numbers (54 articles, multi-source 12, sci-tech 41%, freshness median 0.3, top source 9.3%) cleanly hit every target. The post-2026-05-02 model uplift (Opus high reflect, Opus medium tune, editorial memo flowing into selector) is still inside its baseline-stabilization window; resist the urge to read short-term variance as signal until the gate lifts on 2026-05-12."
 }
