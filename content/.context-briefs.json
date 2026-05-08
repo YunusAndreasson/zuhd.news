@@ -133202,5 +133202,1480 @@
     "label": "Bengal & the BJP Frontier",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-08-aging-scientific-workforce-ai-fabricated-citations": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SCALE PROBLEM",
+        "body": "Top journals and conferences receive submissions far faster than human reviewers can keep up. Peer review runs on unpaid academics volunteering hours per paper — the entire system is held together by professional norms, not contracts.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A reviewer typically spends **3–8 hours** on a paper. Multiply by *three reviewers* per submission and the volunteer hour budget collapses fast under modern submission volumes."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CITATIONS ARE THE WEAK POINT",
+        "body": "Reviewers check arguments and methods; they rarely click every reference. A plausible-looking citation — correct journal name, plausible authors, plausible year — almost never gets verified unless the claim it supports is contested.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of cited references do peer reviewers typically verify directly?",
+            "options": [
+              "Nearly all of them",
+              "Around half",
+              "Only a small fraction",
+              "None — verification is the editor's job"
+            ],
+            "correct": 2,
+            "explanation": "Reviewers focus on logic and methods. Reference verification has historically fallen to copy editors and, increasingly, volunteer librarians."
+          }
+        ]
+      },
+      {
+        "heading": "WHY LLMS HALLUCINATE CITATIONS",
+        "body": "Language models generate text token by token based on statistical likelihood. A reference that looks like a real reference — author names that pattern-match the field, a journal that publishes on the topic, a plausible year and page range — is exactly what the model is optimized to produce, whether or not the paper exists."
+      },
+      {
+        "heading": "THE RETRACTION PIPELINE",
+        "body": "Retraction Watch and PubPeer became the de facto immune system of science over the past decade, run largely by volunteers and a handful of dogged librarians. Formal journal processes can take 18+ months from flag to retraction; the informal infrastructure flags within days.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The asymmetry is structural: fabrication is *cheap and fast*, while verification is **slow, manual, and unpaid**."
+          }
+        ]
+      },
+      {
+        "heading": "THE INCENTIVE STRUCTURE",
+        "body": "Academic careers run on publication count and citation count. Both metrics reward volume, neither penalizes citation quality directly. Paper mills — businesses that sell authorship slots on fabricated papers — have operated for years; LLMs simply lowered the production cost toward zero."
+      },
+      {
+        "heading": "WHY MEDICAL JOURNALS MATTER MOST",
+        "body": "A fabricated citation in a literature review can propagate into clinical guidelines, meta-analyses, and ultimately treatment decisions. Unlike most fields, the downstream cost of a polluted evidence base is measured in patient outcomes, not just wasted research time."
+      }
+    ],
+    "generatedAt": "2026-05-08T12:53:42.168Z",
+    "label": "Fake Citations & Peer Review",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-08-bottleneck-strait-hormuz-simulation-no-win-game": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil pass through daily, about 21% of global consumption.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the chokepoint and its bypasses",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 29.0667,
+                "lng": 50.3,
+                "label": "Kharg Island terminal"
+              },
+              {
+                "lat": 25.1167,
+                "lng": 56.35,
+                "label": "Fujairah (UAE bypass)"
+              },
+              {
+                "lat": 22.4833,
+                "lng": 59.5333,
+                "label": "Sur (Oman, outside strait)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT CAN'T BE BYPASSED",
+        "body": "Saudi Arabia built the East-West Pipeline (5 million bbl/day capacity) partly as a Hormuz hedge, and the UAE built the Habshan-Fujairah pipeline. Together they could reroute maybe a third of Gulf exports. The rest has no alternative route.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Qatar's entire **LNG** output — roughly a fifth of global supply — has *zero* pipeline alternative. Every cargo sails through Hormuz or stays home."
+          }
+        ]
+      },
+      {
+        "heading": "THE FERTILIZER LINK TO FAMINE",
+        "body": "The Gulf produces roughly a fifth of global urea and ammonia exports. When Hormuz closes, the first downstream casualty isn't a Western driver at the pump — it's the next planting season in import-dependent grain economies. Fertilizer shortages translate to yield collapses six to nine months later.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India",
+                "value": "~7m tonnes/yr",
+                "cc": "IN",
+                "weight": 7
+              },
+              {
+                "label": "Brazil",
+                "value": "~6m tonnes/yr",
+                "cc": "BR",
+                "weight": 6
+              },
+              {
+                "label": "USA",
+                "value": "~5m tonnes/yr",
+                "cc": "US",
+                "weight": 5
+              },
+              {
+                "label": "Ethiopia",
+                "value": "~1m tonnes/yr",
+                "cc": "ET",
+                "weight": 1,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Bangladesh",
+                "value": "~0.8m tonnes/yr",
+                "cc": "BD",
+                "weight": 0.8,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "top urea importers vulnerable to Gulf disruption"
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson planners took: disruption is easier to threaten than to sustain.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Tanker War begins",
+                "emphasis": "start"
+              },
+              {
+                "year": "1987",
+                "label": "Operation Earnest Will (US reflagging)"
+              },
+              {
+                "year": "1988",
+                "label": "USS Vincennes downs Iran Air 655",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Limpet mines on Gulf of Oman tankers"
+              },
+              {
+                "year": "2024",
+                "label": "MSC Aries seizure by IRGC"
+              }
+            ],
+            "label": "Hormuz under stress"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE SIMULATION ALWAYS LOSES",
+        "body": "Pre-crisis Hormuz handles ~130 transits a day. Restoring even half that under wartime insurance premiums and mine-clearance constraints takes months. The math of the simulation is the math of the real strait: capacity destroyed in hours rebuilds in seasons.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4704.69,
+              4746.97,
+              4736.29,
+              4735.2,
+              4650.83,
+              4743.12,
+              4831.44,
+              4813,
+              4779.06,
+              4821.21,
+              4777.22,
+              4736.06,
+              4807.83,
+              4729.84,
+              4714.79,
+              4689.13,
+              4697.32,
+              4693.28,
+              4674.15,
+              4683.94,
+              4584.13,
+              4551.29,
+              4619.17,
+              4603.98,
+              4597.48,
+              4606.7,
+              4515.48,
+              4580.98,
+              4684.25,
+              4695.85,
+              4714.08
+            ],
+            "periods": [
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 8"
+            ],
+            "label": "Gold (PAX Gold)",
+            "unit": "$/oz",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHAT MOVES FIRST",
+        "body": "Lloyd's of London war-risk premiums — not the mines themselves — are what close a shipping lane. Once premiums spike, commercial vessels reroute regardless of how many mines remain. The financial chokepoint is tighter than the physical one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What typically halts commercial traffic through a contested strait first?",
+            "options": [
+              "Naval blockade by a foreign power",
+              "Spike in war-risk insurance premiums",
+              "UN Security Council resolution",
+              "Physical mining of the shipping lanes"
+            ],
+            "correct": 1,
+            "explanation": "Insurance markets reprice within hours of a credible threat; ships can't sail uninsured, so commercial traffic stops well before the lane is physically closed."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · PAXG (gold-backed) · as of 2026-05-08"
+    ],
+    "generatedAt": "2026-05-08T12:54:21.462Z",
+    "label": "Hormuz: the no-win chokepoint",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-08-buea-cameroon-lahar-floods-mount-cameroon": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A LAHAR IS",
+        "body": "A lahar is a volcanic mudflow — a slurry of ash, rock, and water moving with the consistency of wet concrete. It can travel 60 km/h down a valley and entomb everything in its path. The word is Javanese; Indonesian volcanologists named the phenomenon long before Western geology had a term for it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A lahar does not need an eruption. *Loose volcanic debris* on a slope plus *water* is enough — which is why the deadliest lahars often strike during peaceful periods between eruptions."
+          }
+        ]
+      },
+      {
+        "heading": "THE ARMERO PRECEDENT",
+        "body": "In 1985, a small eruption of Colombia's Nevado del Ruiz melted summit ice and sent lahars down sleeping valleys. The town of Armero — 50 km away, untouched by lava or ash — was buried in mud. 23,000 people died. It remains the textbook case for why volcanic risk extends far beyond the visible cone."
+      },
+      {
+        "heading": "MOUNT FAKO",
+        "body": "Mount Cameroon, called Mount Fako locally, is West Africa's most active volcano — eruptions roughly every 20 years through the 20th century. At 4,040 m it rises directly from the Atlantic coast, with Buea sitting on its southeastern flank at around 1,000 m elevation. The slope above the city is steep, deforested, and loaded with ash from the 1999 and 2000 eruptions.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CM",
+              "NG",
+              "GQ",
+              "GA",
+              "CF",
+              "TD"
+            ],
+            "label": "Mount Cameroon & the Anglophone Southwest",
+            "markers": [
+              {
+                "lat": 4.2031,
+                "lng": 9.1706,
+                "label": "Buea"
+              },
+              {
+                "lat": 4.2167,
+                "lng": 9.17,
+                "label": "Mount Cameroon (Fako) summit"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE ANGLOPHONE QUESTION",
+        "body": "Cameroon's Northwest and Southwest regions were British-administered after WWI; the rest of the country was French. At independence the Anglophone south voted to join the Francophone republic in 1961. Marginalization of English-speakers in courts and schools triggered a separatist insurgency — Ambazonia — that has run since 2017, displacing roughly a million people and gutting local administration.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1919",
+                "label": "League of Nations splits Kamerun: British & French mandates"
+              },
+              {
+                "year": "1961",
+                "label": "Southern Cameroons joins Cameroon",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1972",
+                "label": "Federal system abolished; unitary state"
+              },
+              {
+                "year": "1996",
+                "label": "English & French declared co-official"
+              },
+              {
+                "year": "2016",
+                "label": "Lawyer & teacher strikes in Bamenda, Buea"
+              },
+              {
+                "year": "2017",
+                "label": "Ambazonia declared; armed conflict begins"
+              }
+            ],
+            "label": "from mandate to insurgency"
+          }
+        ]
+      },
+      {
+        "heading": "WHY GOVERNANCE MATTERS FOR LAHARS",
+        "body": "Lahar mitigation is mundane civil engineering: drainage channels, debris basins, slope monitoring, evacuation sirens, building codes that keep settlements out of obvious runout paths. All of it requires a functioning local authority. A region whose schools have been closed for years and whose civil servants commute under militia checkpoints does not run a flood-management agency."
+      },
+      {
+        "heading": "THE DRY-SEASON PARADOX",
+        "body": "Buea's lahars do not strike at peak rainfall. They strike when prolonged dry spells bake loose ash into a brittle crust, then a sudden downpour mobilizes it all at once. Climate change is lengthening dry periods and intensifying single-day rainfall — the exact two ingredients lahar formation needs.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which volcanic disaster killed more people without an eruption reaching the victims?",
+            "options": [
+              "Mount St. Helens, 1980",
+              "Nevado del Ruiz / Armero, 1985",
+              "Pinatubo, 1991",
+              "Mount Pelée, 1902"
+            ],
+            "correct": 1,
+            "explanation": "Armero was 50 km from the volcano and untouched by lava or ash — a lahar from melted summit ice buried the town and killed ~23,000."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-08T12:54:58.207Z",
+    "label": "Lahars & Mount Cameroon",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-08-casp16-ai-protein-binder-conformational-prediction": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OLD PARADIGM",
+        "body": "For sixty years structural biology treated proteins as having one shape — the crystal structure. AlphaFold2's 2020 breakthrough predicted that single shape with near-experimental accuracy, and the field briefly declared the protein folding problem solved.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "AlphaFold solved the *static* problem. The **dynamic** problem — which shapes a protein actually visits — was barely touched."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ONE SHAPE ISN'T ENOUGH",
+        "body": "Real proteins breathe. They flex between conformations on timescales from picoseconds to seconds, and biological function lives in those transitions — an ion channel opening, a receptor binding, an enzyme catalyzing. The crystal structure captures the most stable pose; biology happens at the others."
+      },
+      {
+        "heading": "THE SIMULATION COST",
+        "body": "Molecular dynamics simulates atoms one femtosecond at a time. Capturing a millisecond of protein motion — the timescale of most conformational changes — requires roughly a trillion steps. A single such trajectory on conventional hardware can consume months of GPU time.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Classical MD",
+                "value": "~100k GPU-hr",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Enhanced sampling",
+                "value": "~10k GPU-hr",
+                "tone": "neutral"
+              },
+              {
+                "label": "BioEmu (generative)",
+                "value": "minutes",
+                "tone": "favorable"
+              }
+            ],
+            "label": "sampling one millisecond of protein motion"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT BIOEMU DOES DIFFERENTLY",
+        "body": "Instead of stepping through time, BioEmu is a generative model trained on simulation data — it samples conformations directly from the equilibrium distribution, weighted by stability. The reader gets a population of states with their probabilities, not a single trajectory."
+      },
+      {
+        "heading": "WHY CASP MATTERS",
+        "body": "CASP — the Critical Assessment of Structure Prediction — has run every two years since 1994. It blinds prediction teams to experimental results during the contest, then reveals them. CASP14 in 2020 was where AlphaFold2 stunned the field; adding ensemble tracks in CASP16 signals the field has moved past static structures as the frontier.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1994",
+                "label": "First CASP held"
+              },
+              {
+                "year": "2018",
+                "label": "AlphaFold1 wins CASP13"
+              },
+              {
+                "year": "2020",
+                "label": "AlphaFold2 — static problem solved",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "CASP16 adds ensemble tracks"
+              }
+            ],
+            "label": "CASP and the structure-prediction arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE DRUG DESIGN PAYOFF",
+        "body": "Roughly a third of approved drugs target G-protein-coupled receptors, which switch between active and inactive shapes. A binder that locks the inactive state can be a blockbuster; one that locks the active state can be a poison. Predicting the full landscape — not just the dominant pose — is the difference between rational design and screening millions of compounds.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does a static crystal structure mislead drug designers targeting a GPCR?",
+            "options": [
+              "Crystals damage the protein's active site",
+              "The receptor switches between active and inactive shapes; one structure shows only one",
+              "Drug molecules don't bind crystallized proteins",
+              "Crystals form only at non-physiological pH"
+            ],
+            "correct": 1,
+            "explanation": "GPCR function depends on shape-switching; locking the wrong state can flip a drug from therapeutic to toxic."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-08T12:55:31.956Z",
+    "label": "Protein Conformational Ensembles",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-08-chernobyl-exclusion-zone-fire-drone-crash-radionuclides": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ZONE",
+        "body": "After the April 1986 reactor No. 4 explosion, Soviet authorities evacuated a 30-km radius around the plant — roughly 2,600 km² spanning Ukraine and Belarus. Forty years later it remains one of the most contaminated landscapes on Earth, and one of Europe's largest involuntary nature reserves.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "BY",
+              "RU",
+              "PL"
+            ],
+            "label": "the exclusion zone",
+            "markers": [
+              {
+                "lat": 51.3892,
+                "lng": 30.0997,
+                "label": "Chernobyl NPP"
+              },
+              {
+                "lat": 51.4053,
+                "lng": 30.0567,
+                "label": "Pripyat (evacuated)"
+              },
+              {
+                "lat": 51.2764,
+                "lng": 30.2219,
+                "label": "Red Forest"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY FIRE IS THE PROBLEM",
+        "body": "Cesium-137 and strontium-90 from the 1986 fallout were absorbed by trees, leaf litter, and topsoil. Burning that biomass re-aerosolizes the radionuclides — a wildfire effectively re-releases a fraction of the original accident as smoke, distributing it on the wind.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The dominant isotopes are **cesium-137** (half-life 30 years) and **strontium-90** (half-life 29 years). Both are still at roughly *half* their 1986 inventory."
+          }
+        ]
+      },
+      {
+        "heading": "THE RED FOREST",
+        "body": "The pine stand directly downwind of reactor No. 4 absorbed the heaviest fallout and turned rust-red as the trees died. Soviet workers bulldozed and buried much of it in 1986, but the remaining forest floor is the single most radioactive open-air area in the zone — and the most flammable."
+      },
+      {
+        "heading": "THE 2020 PRECEDENT",
+        "body": "In April 2020, fires burned roughly 11,500 hectares inside the zone — the worst on record at the time. Monitoring stations in Kyiv, 100 km south, registered elevated cesium-137 in the air column for days. The plume was tracked as far as Scandinavia before dispersing below detection thresholds."
+      },
+      {
+        "heading": "THE MINEFIELD COMPLICATION",
+        "body": "Russian forces occupied the plant and zone from February to March 2022, digging trenches in the Red Forest's contaminated soil and laying mines along withdrawal routes. Ukrainian firefighters now face a layered hazard — radiation, unexploded ordnance, and active drone activity — that no fire service is equipped to handle as a routine response.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1986-04",
+                "label": "Reactor No. 4 explosion",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1986",
+                "label": "30-km exclusion zone established"
+              },
+              {
+                "year": "2000",
+                "label": "Last operating reactor shut down"
+              },
+              {
+                "year": "2016",
+                "label": "New Safe Confinement sealed"
+              },
+              {
+                "year": "2020-04",
+                "label": "11,500 ha wildfire in zone"
+              },
+              {
+                "year": "2022-02",
+                "label": "Russian forces seize plant"
+              },
+              {
+                "year": "2022-03",
+                "label": "Russian withdrawal, mines left behind"
+              }
+            ],
+            "label": "Chernobyl, the long arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE QUIZ",
+        "body": "The contamination half-lives drive how long the zone stays dangerous, but the headline isotopes have a quirk worth knowing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is cesium-137 the dominant long-term contaminant at Chernobyl, rather than the more radioactive iodine-131 released in 1986?",
+            "options": [
+              "Iodine-131 has a half-life of 8 days and decayed within months",
+              "Iodine-131 was contained inside the sarcophagus",
+              "Iodine-131 binds to soil and stays underground",
+              "Iodine-131 was never released in significant quantities"
+            ],
+            "correct": 0,
+            "explanation": "Iodine-131 caused the acute thyroid-cancer wave but decayed quickly. Cesium-137 (30-year half-life) is what makes the zone a multi-decade problem."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-08T12:56:08.158Z",
+    "label": "Chernobyl Exclusion Zone",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-08-coinbase-aws-outage-layoffs-hyperscaler-concentration": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE THREE-FIRM MARKET",
+        "body": "AWS, Microsoft Azure, and Google Cloud control roughly two-thirds of global cloud infrastructure. The next tier — Alibaba, Oracle, IBM — splits most of the rest. A market that was supposed to commoditize compute consolidated into an oligopoly tighter than the airline industry.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "AWS",
+                "value": 31,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Azure",
+                "value": 24,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Google Cloud",
+                "value": 11,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Alibaba",
+                "value": 4,
+                "tone": "neutral"
+              },
+              {
+                "label": "Oracle",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "IBM",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Other",
+                "value": 25,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global cloud infrastructure share, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "WHY US-EAST-1 KEEPS BREAKING",
+        "body": "AWS's Northern Virginia region is the oldest, largest, and most heavily loaded. It hosts default endpoints for global control-plane services — IAM, Route 53, billing — meaning even customers who think they're multi-region quietly depend on it. When us-east-1 sneezes, the internet catches a cold."
+      },
+      {
+        "heading": "THE AVAILABILITY ZONE PROMISE",
+        "body": "Each AWS region is sliced into multiple availability zones — physically separate data centers with independent power and cooling — so workloads spread across zones survive any one failure. The promise breaks when a shared control-plane dependency or a network fabric issue takes multiple zones down at once. This is the failure mode that hit Thursday.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term for this is a *correlated failure* — engineers design for **independent** zone failures, but the math falls apart when the zones share an upstream dependency."
+          }
+        ]
+      },
+      {
+        "heading": "THE CONCENTRATION OF FAILURE",
+        "body": "When one provider hosts a third of the internet, an outage isn't a vendor problem — it's systemic. The 2017 S3 outage took down Slack, Trello, Quora, and parts of the SEC's filing system simultaneously. Regulators in the EU and UK have begun classifying hyperscalers as critical infrastructure for exactly this reason.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011-04",
+                "label": "EBS failure, Reddit + Quora down 4 days"
+              },
+              {
+                "year": "2017-02",
+                "label": "S3 us-east-1 typo, ~4 hour outage",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020-11",
+                "label": "Kinesis cascade in us-east-1"
+              },
+              {
+                "year": "2021-12",
+                "label": "us-east-1 network fabric, Disney+ down"
+              },
+              {
+                "year": "2023-06",
+                "label": "us-east-1 Lambda + API Gateway"
+              },
+              {
+                "year": "2026-05",
+                "label": "us-east-1 multi-AZ, Coinbase down"
+              }
+            ],
+            "label": "major AWS outages"
+          }
+        ]
+      },
+      {
+        "heading": "WHY EXCHANGES PICK ONE REGION",
+        "body": "Crypto exchanges co-locate matching engines in a single region to minimize latency between order book, risk engine, and database. Replicating across regions adds milliseconds that arbitrageurs exploit. The same logic that makes a single region fast makes it a single point of failure — the tradeoff every exchange makes and most users never see."
+      },
+      {
+        "heading": "THE LAYOFF SIGNAL",
+        "body": "Coinbase's 14% cut before the outage fits a pattern: workforce reductions in cloud-native firms often hit site reliability and platform teams hardest because their work is invisible until it isn't. The 2022 Twitter cuts and the 2023 Meta layoffs both correlated with subsequent infrastructure incidents the firms had previously avoided.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of global cloud infrastructure does AWS hold?",
+            "options": [
+              "About 10%",
+              "About 30%",
+              "About 50%",
+              "About 70%"
+            ],
+            "correct": 1,
+            "explanation": "AWS holds roughly 30% of global cloud infrastructure — the largest single share, but Azure and Google Cloud combined match it."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-08T12:56:39.524Z",
+    "label": "Hyperscaler Concentration & Single-Region Risk",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-08-german-bank-hostage-sinzig-cash-transport": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE HANDOFF",
+        "body": "Cash-in-transit robberies cluster at the moment of transfer — the seconds when money leaves the armored vehicle and enters the building. Once cash is in a hardened vault or moving inside the truck, it is effectively unreachable; the curb is the only soft point in the chain.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Industry term of art: the **handoff window**. Insurers price CIT routes around it — premiums spike for stops with long sidewalks, multiple doors, or no drive-in bay."
+          }
+        ]
+      },
+      {
+        "heading": "THE GERMAN CASH ANOMALY",
+        "body": "Germany remains one of Europe's most cash-intensive economies. Roughly half of point-of-sale transactions are still settled in physical euros — far above the Nordic countries, where the share is in the low single digits. More cash in circulation means more armored runs, more vault stops, and more attack surface.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Germany",
+                "value": "~50%",
+                "cc": "DE",
+                "weight": 50,
+                "tone": "neutral"
+              },
+              {
+                "label": "Italy",
+                "value": "~40%",
+                "cc": "IT",
+                "weight": 40,
+                "tone": "neutral"
+              },
+              {
+                "label": "France",
+                "value": "~25%",
+                "cc": "FR",
+                "weight": 25,
+                "tone": "neutral"
+              },
+              {
+                "label": "Netherlands",
+                "value": "~20%",
+                "cc": "NL",
+                "weight": 20,
+                "tone": "neutral"
+              },
+              {
+                "label": "Sweden",
+                "value": "~8%",
+                "cc": "SE",
+                "weight": 8,
+                "tone": "neutral"
+              }
+            ],
+            "label": "share of POS transactions in cash, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "WHY HOSTAGE-TAKING IS A LOSING POSITION",
+        "body": "Modern bank vaults run on time-locks: once shut, no employee — under any duress — can open them until the clock expires, often hours later. The taker discovers mid-siege that the person they have leverage over has no power to deliver the cash. The standoff becomes about escape, not money."
+      },
+      {
+        "heading": "THE GERMAN POLICE DOCTRINE",
+        "body": "Germany's hostage protocol was rewritten after the 1972 Munich Olympics massacre and the 1988 Gladbeck hostage crisis, where a botched live-televised pursuit ended with three deaths. Today's standard is containment-and-wait: seal the perimeter, let SEK (Spezialeinsatzkommando) negotiators run the clock, and refuse media-mediated demands.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1972",
+                "label": "Munich Olympics massacre",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1988",
+                "label": "Gladbeck hostage crisis"
+              },
+              {
+                "year": "1999",
+                "label": "SEK doctrine codified nationally"
+              }
+            ],
+            "label": "doctrine-shaping incidents"
+          }
+        ]
+      },
+      {
+        "heading": "THE DECLINING TREND",
+        "body": "Bank robbery is collapsing across Europe. Germany recorded over 1,600 bank holdups in 1993; by the early 2020s the annual figure was below 150. Card payments, cashless branches, and dye-pack and GPS tracking inside cassettes have made physical heists structurally unprofitable.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What broke the bank-robbery business model in Europe?",
+            "options": [
+              "Stricter prison sentences",
+              "Tracking dye and GPS inside cash cassettes",
+              "Police helicopter coverage",
+              "Mandatory armed guards in branches"
+            ],
+            "correct": 1,
+            "explanation": "Intelligent banknote neutralisation systems stain cash unusable seconds after a vault breach, making stolen notes near-worthless even before the getaway."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-08T12:57:15.678Z",
+    "label": "Cash-in-Transit & Hostage Sieges",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-08-mali-sahel-collapse-russia-wagner-retreat": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COUP BELT",
+        "body": "Since 2020, military juntas have seized power in Mali, Burkina Faso, Guinea, Niger, and Chad — a contiguous band across the Sahel. Each new junta expelled French forces and invited Russian ones. By 2024, the three core states (Mali, Burkina Faso, Niger) had formally left ECOWAS and formed the Alliance of Sahel States.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ML",
+              "BF",
+              "NE",
+              "TD",
+              "GN",
+              "SN",
+              "DZ",
+              "LY"
+            ],
+            "label": "the Sahel coup belt",
+            "markers": [
+              {
+                "lat": 18.4411,
+                "lng": 1.4078,
+                "label": "Kidal"
+              },
+              {
+                "lat": 12.6392,
+                "lng": -8.0029,
+                "label": "Bamako"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY KIDAL MATTERS",
+        "body": "Kidal is the Tuareg heartland in Mali's far north — a town the Malian state has barely controlled since independence. The MNLA seized it in 2012, sparking the war that drew in France, the UN, and eventually Russia. Whoever holds Kidal holds the question of whether Mali is one country or two.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1963",
+                "label": "First Tuareg rebellion crushed"
+              },
+              {
+                "year": "1990",
+                "label": "Second Tuareg uprising"
+              },
+              {
+                "year": "2012",
+                "label": "MNLA seizes Kidal, declares Azawad",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2013",
+                "label": "French Operation Serval"
+              },
+              {
+                "year": "2015",
+                "label": "Algiers Accord signed"
+              },
+              {
+                "year": "2023",
+                "label": "Malian army + Wagner retake Kidal"
+              },
+              {
+                "year": "2026",
+                "label": "Russia abandons Kidal"
+              }
+            ],
+            "label": "forty years of the Kidal question"
+          }
+        ]
+      },
+      {
+        "heading": "WAGNER'S AFRICA MODEL",
+        "body": "Wagner — rebranded as Africa Corps after Prigozhin's 2023 death — offered juntas a package: regime protection, counter-insurgency, and information warfare in exchange for gold and uranium concessions. The model worked in Central African Republic and Sudan; in the Sahel, where insurgents have desert mobility and Algerian sanctuary, it has not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The arrangement was always less *military alliance* than **resource-for-regime-survival barter** — Russian fighters paid in Malian gold, Sudanese gold, Central African diamonds. When the fighters lose, the regime loses its insurance."
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO-FRONT PROBLEM",
+        "body": "Russia's Ukraine commitment consumes manpower, drones, and air-defense systems that Africa Corps would otherwise deploy south. Africa Corps in the Sahel reportedly numbers only in the low thousands — adequate for garrison work, inadequate against a coordinated JNIM-Tuareg offensive across terrain larger than Western Europe."
+      },
+      {
+        "heading": "THE INSURGENT MERGER",
+        "body": "JNIM (al-Qaeda's Sahel affiliate) and the Tuareg CSP-PSD fought each other for a decade — jihadists vs separatists, Islamist vs ethno-nationalist. Their tactical coordination against Bamako is the most dangerous development of the war: the state now faces one front where it used to play two enemies against each other.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What changed in 2026 that makes the Sahel insurgency more dangerous than in 2012?",
+            "options": [
+              "JNIM acquired heavy armor from Libya",
+              "Tuareg separatists and jihadist groups began coordinating operations",
+              "Algeria opened its border to insurgent supply",
+              "Mauritania joined the insurgency"
+            ],
+            "correct": 1,
+            "explanation": "For a decade Bamako exploited the split between secular Tuareg separatists and jihadist JNIM. Their merger removes that lever."
+          }
+        ]
+      },
+      {
+        "heading": "THE COLONIAL BORDER",
+        "body": "Mali's northern border was drawn by French administrators who grouped Tuareg, Songhai, and Bambara peoples into a single colony despite centuries of distinct political organization. The Tuareg confederations of the Sahara — Kel Adagh, Iwellemmedan — predate Mali by centuries and have rebelled in every decade since 1916. Independence in 1960 inherited the border; it never inherited consent."
+      }
+    ],
+    "generatedAt": "2026-05-08T12:57:51.353Z",
+    "label": "The Sahel After France",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-08-molecular-memristor-emergent-inductance-neuromorphic": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FOURTH ELEMENT",
+        "body": "Resistors, capacitors, and inductors link voltage, current, charge, and flux in pairs. In 1971, Leon Chua proved mathematically that a fourth passive element must exist — one linking charge to flux. He called it the memristor. HP Labs built the first confirmed one in 2008.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Chua's 1971 paper sat dormant for *37 years* before HP's titanium-dioxide device validated it. The molecular version arrived another 18 years later — proving the principle scales down to **single molecules**."
+          }
+        ]
+      },
+      {
+        "heading": "WHY COILS EXIST",
+        "body": "Classical inductance comes from geometry — current flowing through a coil generates a magnetic field that resists changes in current. A 145-kilohenry coil at audio frequencies would weigh kilograms and span meters. Geometry is the constraint chip designers cannot escape.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Spiral on-chip coil",
+                "value": "~10 nH",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Wound RF inductor",
+                "value": "~1 µH",
+                "tone": "neutral"
+              },
+              {
+                "label": "Audio choke",
+                "value": "~1 H",
+                "tone": "neutral"
+              },
+              {
+                "label": "NiBr molecule",
+                "value": "145 kH",
+                "tone": "favorable"
+              }
+            ],
+            "label": "inductance density at chip scale"
+          }
+        ]
+      },
+      {
+        "heading": "EMERGENT, NOT MAGNETIC",
+        "body": "The molecule generates no magnetic field. Its inductance is emergent — pinched-hysteresis dynamics make current lag voltage in the same mathematical way a coil does. The behavior is inductive even though the physics is not."
+      },
+      {
+        "heading": "WHY BRAINS CARE",
+        "body": "A biological synapse strengthens when it fires repeatedly. A memristor strengthens when current flows repeatedly. Adding emergent inductance into the same device means a single molecule can store memory and shape signal dynamics — the two operations a neuron actually performs.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes the molecule's 145 kH inductance possible without a coil?",
+            "options": [
+              "A nanoscale magnetic field generated by the nickel atom",
+              "Pinched-hysteresis dynamics that mathematically mimic inductance",
+              "Quantum tunneling between bromide ligands",
+              "Superconductivity at room temperature"
+            ],
+            "correct": 1,
+            "explanation": "The inductance is emergent from memristive current-voltage hysteresis — no magnetic field is involved, which is why it scales to molecular size."
+          }
+        ]
+      },
+      {
+        "heading": "THE GENERALIZATION",
+        "body": "The paper's deeper claim: any device with pinched hysteresis — the signature loop that defines memristors — exhibits emergent inductance and capacitance under the right drive. If true, every memristor ever built is also a hidden inductor, and chip designers gain a passive component library they never knew existed."
+      }
+    ],
+    "generatedAt": "2026-05-08T12:58:17.614Z",
+    "label": "Molecular Memristors & Emergent Inductance",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-08-stellantis-leapmotor-zaragoza-china-ev-manufacturing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TARIFF WORKAROUND",
+        "body": "The EU imposed countervailing duties on Chinese-built EVs in late 2024 — up to 35% on top of the standard 10% car tariff. Assembling inside the EU sidesteps the duty entirely. A joint venture with a European incumbent on European soil is the cleanest legal path in.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is called *tariff jumping* — the same playbook Japanese automakers used in the 1980s when Reagan-era quotas pushed Toyota and Honda to build plants in Kentucky and Ohio."
+          }
+        ]
+      },
+      {
+        "heading": "WHY STELLANTIS NEEDED A PARTNER",
+        "body": "Western legacy automakers spent a decade behind on battery cost curves. CATL and BYD drove pack costs below $100/kWh years before VW or Stellantis got there. Buying into Leapmotor for $1.6bn in 2023 was cheaper than catching up alone.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "CATL (China)",
+                "value": "~$95",
+                "tone": "favorable",
+                "cc": "CN"
+              },
+              {
+                "label": "BYD (China)",
+                "value": "~$90",
+                "tone": "favorable",
+                "cc": "CN"
+              },
+              {
+                "label": "LG (Korea)",
+                "value": "~$120",
+                "tone": "neutral",
+                "cc": "KR"
+              },
+              {
+                "label": "Western avg",
+                "value": "~$140",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "EV battery pack cost, 2024 ($/kWh)"
+          }
+        ]
+      },
+      {
+        "heading": "THE ZARAGOZA CHOICE",
+        "body": "Stellantis' Zaragoza plant has built Opel Corsas since 1982 and sits 300km from Barcelona's port. Spain's industrial electricity prices run roughly half of Germany's, and labor costs are about 60% of the German auto-sector average — which is why Volkswagen also picked Sagunto for its $10bn battery gigafactory.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ES",
+              "FR",
+              "DE",
+              "IT",
+              "PT"
+            ],
+            "label": "Spain's auto cluster",
+            "markers": [
+              {
+                "lat": 41.6488,
+                "lng": -0.8891,
+                "label": "Zaragoza plant"
+              },
+              {
+                "lat": 39.6766,
+                "lng": -0.2691,
+                "label": "VW Sagunto gigafactory"
+              },
+              {
+                "lat": 40.3492,
+                "lng": -3.6981,
+                "label": "Madrid Villaverde plant"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE MAJORITY-STAKE TWIST",
+        "body": "Stellantis holds 51% of Leapmotor International — not Leapmotor itself, but the joint venture that owns rights outside Greater China. The structure means a Chinese brand sells Chinese-engineered cars built in Europe with Western majority control. Beijing approved it because export-platform JVs help its automakers scale globally without being treated as state actors."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "China spent 30 years requiring foreign automakers to enter via 50/50 JVs with SAIC, FAW, or Dongfeng — that's how VW, GM, and Toyota built their China businesses. The Leapmotor deal inverts that template: now the Chinese partner brings the technology and the Western partner brings market access.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which arrangement does the Leapmotor-Stellantis JV most closely mirror?",
+            "options": [
+              "China's 1980s rule forcing foreign automakers into 50/50 JVs with local partners",
+              "Japan's voluntary export restraints to the US in the 1980s",
+              "The 1965 US-Canada Auto Pact",
+              "Korea's chaebol export-financing model"
+            ],
+            "correct": 0,
+            "explanation": "For decades China required foreign brands to share technology and profits with a local partner. The Leapmotor deal is the same template running in reverse — Chinese tech, Western market access."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-08T12:58:48.178Z",
+    "label": "China's EV Supply Chain Goes West",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-08-tata-consumer-q4-india-fmcg-iran-war-decoupling": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT FMCG MEANS",
+        "body": "Fast-moving consumer goods are low-margin, high-volume staples — tea, salt, soap, biscuits — bought weekly and consumed quickly. The category lives or dies by distribution depth, not product innovation.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "India's FMCG sector reaches roughly **9 million** retail outlets — the densest small-shop network on Earth. The supply chain that gets a packet of *Tata Namak* to a village kirana is the actual moat, not the brand."
+          }
+        ]
+      },
+      {
+        "heading": "THE SALT MONOPOLY ORIGIN",
+        "body": "Tata Salt launched in 1983 as India's first national branded salt. Before that, salt was sold loose from sacks. Branding a commodity that Gandhi had marched to the sea to liberate from British tax was a sharp commercial bet — and it worked, capturing the largest share of the packaged salt market within a decade."
+      },
+      {
+        "heading": "THE TATA STRUCTURE",
+        "body": "Tata Consumer is one node in a sprawling group held together by Tata Sons, the unlisted holding company. Tata Sons is itself ~66% owned by charitable trusts — a structure unique among major global conglomerates that routes a large share of group profits to philanthropy rather than family wealth.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Jamsetji Tata",
+                "role": "Founder",
+                "years": "1839–1904",
+                "cc": "IN"
+              },
+              {
+                "name": "JRD Tata",
+                "role": "Chairman, Tata Sons",
+                "years": "1938–1991",
+                "cc": "IN"
+              },
+              {
+                "name": "Ratan Tata",
+                "role": "Chairman emeritus",
+                "years": "1991–2012",
+                "cc": "IN"
+              },
+              {
+                "name": "N. Chandrasekaran",
+                "role": "Chairman, Tata Sons",
+                "years": "2017–",
+                "cc": "IN"
+              }
+            ],
+            "label": "the group's anchors"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PRICING POWER MATTERS NOW",
+        "body": "Indian household budgets are squeezed between food inflation and stagnant rural wages. A staples company that can raise prices 5-7% without losing volume is signaling brand strength most discretionary categories don't have.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              92.47006,
+              93.10605,
+              93.10525,
+              94.508943,
+              94.94696,
+              93.165649,
+              93.387156,
+              93.048145,
+              92.602452,
+              92.60245,
+              92.60245,
+              92.782407,
+              93.348804,
+              93.775164,
+              94.11314,
+              94.143557,
+              94.0666,
+              94.0666,
+              94.257338,
+              94.420855,
+              94.762974,
+              95.171392,
+              94.951559,
+              94.89165,
+              94.910513,
+              94.951346,
+              95.361112,
+              95.029174,
+              94.729612,
+              94.62293
+            ],
+            "periods": [
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE TEA HERITAGE",
+        "body": "Tata acquired Tetley in 2000 — at the time the largest cross-border acquisition by an Indian company. It made Tata the world's second-largest tea company overnight and presaged the group's later moves on Corus Steel and Jaguar Land Rover: Indian capital buying iconic British brands a half-century after independence."
+      },
+      {
+        "heading": "THE COMPETITIVE FIELD",
+        "body": "India's packaged-staples market is an oligopoly across categories. Tata, Hindustan Unilever, ITC, Nestlé India, and Britannia divide most of the shelf — each dominant in different segments, each protected by distribution rather than patents.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hindustan Unilever",
+                "value": "₹62,000cr",
+                "cc": "IN",
+                "weight": 62
+              },
+              {
+                "label": "ITC (FMCG ex-cigs)",
+                "value": "₹21,000cr",
+                "cc": "IN",
+                "weight": 21
+              },
+              {
+                "label": "Nestlé India",
+                "value": "₹19,000cr",
+                "cc": "CH",
+                "weight": 19
+              },
+              {
+                "label": "Tata Consumer",
+                "value": "₹15,200cr",
+                "cc": "IN",
+                "weight": 15
+              },
+              {
+                "label": "Britannia",
+                "value": "₹16,300cr",
+                "cc": "IN",
+                "weight": 16
+              }
+            ],
+            "label": "India FMCG majors by FY24 revenue"
+          }
+        ]
+      },
+      {
+        "heading": "TEST YOURSELF",
+        "body": "A quick check on the group's unusual ownership.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What entity holds the controlling stake in Tata Sons, the group's holding company?",
+            "options": [
+              "The Tata family directly",
+              "A consortium of Indian banks",
+              "Charitable trusts (Tata Trusts)",
+              "The Government of India"
+            ],
+            "correct": 2,
+            "explanation": "Tata Trusts hold ~66% of Tata Sons, routing the bulk of group dividends to philanthropy — a structure with no real parallel among global conglomerates."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-08"
+    ],
+    "generatedAt": "2026-05-08T12:59:22.576Z",
+    "label": "India FMCG & the Tata Group",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-08-vibe-coding-agentic-engineering-review-discipline": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IRONY OF AUTOMATION",
+        "body": "Lisanne Bainbridge named this in 1983: the more reliable an automated system becomes, the rustier the human supervisor gets — and the supervisor is only kept in the loop precisely for the cases the automation cannot handle. Reliability erodes the very vigilance it depends on.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Bainbridge called the result the **ironies of automation** — the operator is reduced to monitoring a system they can no longer match in skill, then asked to take over at the moment it fails."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENTS",
+        "body": "Air France 447 (2009) and the Boeing 737 MAX MCAS crashes are the canonical industrial cases — pilots out of practice on stick-and-rudder flying when autopilot disengaged. Tesla Autopilot inattention crashes are the consumer version. Each followed the same pattern: high reliability, dulled supervision, edge-case failure.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1983",
+                "label": "Bainbridge: 'Ironies of Automation'",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2009",
+                "label": "Air France 447 stalls in manual"
+              },
+              {
+                "year": "2016",
+                "label": "First fatal Tesla Autopilot crash"
+              },
+              {
+                "year": "2018",
+                "label": "Lion Air 610 (MCAS)"
+              },
+              {
+                "year": "2019",
+                "label": "Ethiopian 302 (MCAS)"
+              },
+              {
+                "year": "2022",
+                "label": "GitHub Copilot GA"
+              },
+              {
+                "year": "2024",
+                "label": "Agentic coding tools mainstream"
+              }
+            ],
+            "label": "automation-complacency landmarks"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT CODE REVIEW IS FOR",
+        "body": "Review catches two distinct things: defects and drift. Defects are bugs an author missed; drift is code that works but violates an invariant the codebase depends on — a security boundary, a concurrency assumption, a data contract. Agents are getting good at the first; the second still requires a reader who holds the system in their head."
+      },
+      {
+        "heading": "THE SKILL ATROPHY LOOP",
+        "body": "Reading code closely is how engineers build the mental model that lets them review well in the first place. Skip the reading because the agent is usually right, and the model degrades. Six months in, the reviewer cannot tell good output from plausible output — the exact failure mode Willison is naming.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does Bainbridge's 'ironies of automation' predict about highly reliable AI coding agents?",
+            "options": [
+              "Reviewers will catch more bugs because they have time to focus",
+              "Reviewer skill atrophies precisely as agents handle more cases — leaving humans worst-prepared for the edge cases only they can catch",
+              "Agents will eventually replace reviewers entirely with no transition cost",
+              "Reliability is bounded by the slowest reviewer in the loop"
+            ],
+            "correct": 1,
+            "explanation": "Reliability shifts the work from 'doing' to 'monitoring' — and monitoring without practice is the skill humans are worst at."
+          }
+        ]
+      },
+      {
+        "heading": "WHO BEARS THE LIABILITY",
+        "body": "Legally and contractually, the human who approved the merge owns the defect — not the model vendor. EULAs for coding assistants disclaim warranty on output; SOC 2 and ISO 27001 audits trace accountability to the committer. 'The agent wrote it' is not a defense in a postmortem or a courtroom.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why every major coding-assistant license includes a *you are responsible for the output* clause — the legal architecture assumes a human in the loop, even when the practical workflow no longer has one."
+          }
+        ]
+      },
+      {
+        "heading": "THE INCIDENT SHIFT",
+        "body": "Early LLM coding incidents were hallucinated APIs and obviously wrong logic — the kind a reviewer catches in seconds. The newer class is subtler: plausible code that passes tests but encodes a wrong assumption about a rate limit, a permission model, or a race condition. The bug is in what the agent didn't know to ask, and the reviewer didn't think to check."
+      }
+    ],
+    "generatedAt": "2026-05-08T12:59:57.920Z",
+    "label": "Automation Complacency in Code Review",
+    "category": "tech",
+    "articleCount": 1
   }
 }
