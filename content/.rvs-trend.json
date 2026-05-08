@@ -918,5 +918,23 @@
     "articleCount": 12,
     "briefCount": 12,
     "guardrailFailures": []
+  },
+  {
+    "ts": "2026-05-08T17:29:03.665Z",
+    "cycleId": "2026-05-08T17-29",
+    "cycleHour": "17",
+    "rvs": 75.3,
+    "clusters": {
+      "picking": null,
+      "writing": 96.88,
+      "briefing": 73.72,
+      "sourcing": 54.5,
+      "coverage": 69.46
+    },
+    "articleCount": 8,
+    "briefCount": 8,
+    "guardrailFailures": [
+      "category science below floor 2 (got 0)"
+    ]
   }
 ]
