@@ -1,82 +1,5 @@
 [
   {
-    "timestamp": "2026-04-17T08:24:22.360Z",
-    "candidateCount": 8,
-    "candidates": [
-      {
-        "slug": "2026-04-17-india-delimitation-bill-pok-seats",
-        "title": "India Claims Kashmir Seats",
-        "category": "politics",
-        "eventCoverage": 117,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-17-pemex-gulf-oil-spill-pipeline-admission",
-        "title": "Pemex Admits Gulf Spill Cover-Up",
-        "category": "economy",
-        "eventCoverage": 70,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-17-adani-overtakes-ambani-iran-war-refining",
-        "title": "Iran War Crowns Adani Over Ambani",
-        "category": "economy",
-        "eventCoverage": 33,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-17-bolivia-mapaya-colombian-espartanos-expansion",
-        "title": "Bolivia Catches Colombian Gang Leader",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-17-indonesia-platform-governance-third-model",
-        "title": "Indonesia Orders Meta Compliance",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-17-house-fisa-702-ten-day-extension",
-        "title": "Republicans Block Surveillance Renewal",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-17-uk-banks-anthropic-mythos-capability-gating",
-        "title": "Anthropic Restricts Mythos to Banks",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-17-mayhem-10-modular-swarming-drone",
-        "title": "One Drone, Five Missions",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-04-17-india-delimitation-bill-pok-seats",
-      "title": "India Claims Kashmir Seats",
-      "category": "politics",
-      "body": "India allocated 24 seats to Pakistan-administered Kashmir. The bill formally"
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "India parliament passes bill claiming 24 seats in Pakistan-held Kashmir, opposition objects",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 13
-    }
-  },
-  {
     "timestamp": "2026-04-17T12:18:58.933Z",
     "candidateCount": 6,
     "candidates": [
@@ -9034,6 +8957,113 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "AI demand doubles memory chip prices, squeezing Sony and Nintendo profits",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 20
+    }
+  },
+  {
+    "timestamp": "2026-05-08T22:42:53.246Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-05-08-virginia-court-strikes-democrat-redistricting",
+        "title": "Virginia Court Voids Democrat Map",
+        "category": "politics",
+        "eventCoverage": 319,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-08-sudan-ethiopia-rsf-drones-darfur-front",
+        "title": "Sudan Accuses Ethiopia, UAE of Drones",
+        "category": "politics",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-08-pentagon-jet-fuel-leak-joint-base-andrews",
+        "title": "Pentagon Hid Andrews Fuel Spill",
+        "category": "politics",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-08-turkey-icbm-strategic-autonomy",
+        "title": "Turkey Unveils Ballistic Missile",
+        "category": "politics",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-08-agri-stats-meat-antitrust-settlement",
+        "title": "Agri Stats Fined for Cartel Data",
+        "category": "economy",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-08-sec-onchain-ai-rulemaking-atkins",
+        "title": "SEC Drops Crypto Enforcement Era",
+        "category": "economy",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-08-poland-enters-g20-economy",
+        "title": "Poland Joins Top-20 Economies",
+        "category": "economy",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-08-hantavirus-cruise-ship-mv-hondius",
+        "title": "3 Dead in Cruise Hantavirus",
+        "category": "science",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-08-apophis-ramses-esa-jaxa-mission",
+        "title": "ESA, JAXA Target Apophis Flyby",
+        "category": "science",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-08-cloudflare-twenty-percent-layoffs",
+        "title": "Cloudflare Cuts 20% of Staff",
+        "category": "tech",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-08-gm-california-driver-data-ccpa-fine",
+        "title": "GM Pays for Driver Data Sales",
+        "category": "tech",
+        "eventCoverage": 268,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-08-google-ai-overviews-more-links",
+        "title": "Google Restores AI Search Links",
+        "category": "tech",
+        "eventCoverage": 268,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-05-08-virginia-court-strikes-democrat-redistricting",
+      "title": "Virginia Court Voids Democrat Map",
+      "category": "politics",
+      "body": "4 Democratic House gains voided Friday. Virginia's Supreme Court ruled the",
+      "eventCoverage": 319,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Virginia Supreme Court strikes down Democratic redistricting map, restoring Republican-drawn lines",
     "response": {
       "pushed": 1,
       "skipped": 0,
