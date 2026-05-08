@@ -134677,5 +134677,952 @@
     "label": "Automation Complacency in Code Review",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-05-08-ai-slop-online-communities-moderator-burnout": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ASYMMETRY",
+        "body": "Generating a plausible forum post with an LLM costs fractions of a cent and takes seconds. Reading it carefully, checking sources, and deciding whether to remove it takes a human moderator minutes. The cost ratio between producing slop and filtering it has never been this lopsided.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term moderators use is **asymmetric moderation cost** — the gap between the attacker's per-unit cost and the defender's per-unit cost. When that ratio exceeds roughly 1000:1, volunteer moderation collapses regardless of headcount."
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY MODERATES",
+        "body": "Reddit, Stack Overflow, Wikipedia, and most large open-source forums run on unpaid volunteers. Reddit's 2023 IPO filing acknowledged the platform depends on roughly 60,000 unpaid moderators; Wikipedia's English edition runs on a few hundred active administrators. The labor that keeps these sites usable is invisible in their revenue.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Reddit",
+                "value": "~60k mods",
+                "weight": 60
+              },
+              {
+                "label": "Wikipedia EN",
+                "value": "~850 admins",
+                "weight": 1
+              },
+              {
+                "label": "Stack Overflow",
+                "value": "~4k mods",
+                "weight": 4
+              },
+              {
+                "label": "Hacker News",
+                "value": "~2 mods",
+                "weight": 0.1
+              }
+            ],
+            "label": "volunteer-run platforms by scale"
+          }
+        ]
+      },
+      {
+        "heading": "THE EVAPORATIVE COOLING EFFECT",
+        "body": "Communities decay through a pattern Eliezer Yudkowsky named in 2009: when quality drops, the highest-contributing members leave first because they have the most options elsewhere. Each departure lowers the average further, accelerating the next departure. AI slop triggers this loop directly — experts leave before novices notice anything is wrong."
+      },
+      {
+        "heading": "THE STACK OVERFLOW PRECEDENT",
+        "body": "Stack Overflow banned ChatGPT-generated answers in December 2022, six days after the model's release. Question volume still fell roughly 50% over the following two years. The site demonstrated that even successful detection cannot restore a community once contributors lose confidence the audience is human.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did Stack Overflow's traffic keep falling even after it banned AI-generated answers?",
+            "options": [
+              "The ban was unenforceable in practice",
+              "Human askers also migrated to ChatGPT for direct answers",
+              "Moderators quit in protest of the ban",
+              "Google deranked the site algorithmically"
+            ],
+            "correct": 1,
+            "explanation": "Q&A sites lose both sides of the market to LLMs — askers go straight to the chatbot, so even perfect slop-detection cannot rebuild the question flow."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DETECTION DOESN'T SCALE",
+        "body": "Statistical AI-text detectors achieve roughly 80% accuracy on long passages and degrade sharply on short ones. At forum scale — millions of posts — even a 5% false-positive rate flags more legitimate users than a volunteer team can appeal-review. The math forces moderators toward heuristics (account age, posting cadence) that the next generation of bots routes around.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "OpenAI shut down its own *AI Text Classifier* in July 2023, citing **low rate of accuracy**. If the model's maker cannot reliably detect its own output, downstream forums cannot either."
+          }
+        ]
+      },
+      {
+        "heading": "THE COMMONS PROBLEM",
+        "body": "Open-source forums, Wikipedia, and technical Q&A sites are digital commons — non-excludable resources maintained by a small share of users for everyone's benefit. Garrett Hardin's 1968 framing predicted such commons collapse under unrestricted extraction. LLM training scraped these commons for free, and the resulting models now flood them with low-effort output, completing the cycle Hardin described."
+      }
+    ],
+    "generatedAt": "2026-05-08T17:23:14.691Z",
+    "label": "AI Slop & Volunteer Moderation",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-08-data-center-water-discrimination-lawsuit-michigan": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE THIRST",
+        "body": "A hyperscale data center can consume 1-5 million gallons of water per day for evaporative cooling — comparable to a town of 10,000-50,000 people. The 200,000 gallons/day figure here is modest by industry standards, which is itself the warning: this is what entry-level looks like.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is **WUE** — *water usage effectiveness*, liters per kilowatt-hour. Hyperscalers publish it the way carmakers publish fuel economy, and for the same reason: the number keeps getting worse as chips get hotter."
+          }
+        ]
+      },
+      {
+        "heading": "WHY EVAPORATIVE COOLING WINS",
+        "body": "Air cooling is cheap but caps out around 20kW per rack. Modern AI training racks dissipate 50-130kW. Evaporative cooling — running water through cooling towers and letting it boil off — is the only economical way to remove that much heat at scale. The water is not recycled; it leaves as vapor."
+      },
+      {
+        "heading": "THE PEER PROBLEM",
+        "body": "Data center campuses cluster around cheap power, but cheap power often means dry climates — Arizona, Nevada, west Texas, inland Spain. Michigan looks wet by comparison, which is exactly why operators are moving north. The Great Lakes basin holds 21% of the world's surface freshwater.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Google Dalles, OR",
+                "value": "~355M gal/yr",
+                "cc": "US"
+              },
+              {
+                "label": "Microsoft Goodyear, AZ",
+                "value": "~56M gal/yr",
+                "cc": "US"
+              },
+              {
+                "label": "Meta Mesa, AZ",
+                "value": "~80M gal/yr",
+                "cc": "US"
+              },
+              {
+                "label": "Ypsilanti (proposed)",
+                "value": "~73M gal/yr",
+                "cc": "US"
+              }
+            ],
+            "label": "daily water use, selected hyperscale campuses"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL ASYMMETRY",
+        "body": "US water utilities operate under a duty-to-serve doctrine — they generally cannot refuse a connection to a customer who pays the tariff. The exceptions are capacity, infrastructure, and public-health grounds. A blanket moratorium for sustainability study sits in legally untested territory; the discrimination claim hinges on whether other large customers were treated the same.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the typical US duty-to-serve doctrine, on what basis can a public water utility refuse a new connection?",
+            "options": [
+              "Environmental sustainability concerns",
+              "Insufficient infrastructure capacity",
+              "Disagreement with the customer's business model",
+              "Preference for residential over industrial users"
+            ],
+            "correct": 1,
+            "explanation": "Duty-to-serve allows refusal for capacity or infrastructure limits — but not for policy preferences about who 'deserves' water."
+          }
+        ]
+      },
+      {
+        "heading": "THE GREAT LAKES COMPACT",
+        "body": "The 2008 Great Lakes-St. Lawrence River Basin Compact — ratified by all eight basin states and Congress — bans most water diversions out of the watershed. Inside the basin, large withdrawals (over 100,000 gal/day averaged monthly) require state review. Michigan's threshold catches this project; the Compact gives municipalities a veto lever they did not have before 2008.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "CA"
+            ],
+            "label": "Great Lakes basin",
+            "markers": [
+              {
+                "lat": 42.2411,
+                "lng": -83.613,
+                "label": "Ypsilanti, MI"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PUBLIC-PRIVATE FRICTION",
+        "body": "The University of Michigan is a public institution, but the data center is a commercial-scale facility intended in part for AI compute leased to private partners. The discrimination framing — a university suing a municipal utility — obscures that the underlying customer profile looks identical to a Meta or Google build. Calling the moratorium discriminatory only works if the utility welcomed comparable industrial draws elsewhere."
+      }
+    ],
+    "generatedAt": "2026-05-08T17:23:47.869Z",
+    "label": "Data Center Water Demand",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-08-ecb-lagarde-digital-euro-stablecoin-dollarisation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT DOLLARISATION ACTUALLY MEANS",
+        "body": "When a foreign currency displaces the local one for everyday transactions and savings, the central bank loses its main policy lever. It can no longer set interest rates that bite, no longer print to fight a downturn, no longer earn seigniorage on the money in circulation. Ecuador, El Salvador, and Zimbabwe learned this the hard way — once dollars are entrenched, the local monetary authority becomes ceremonial.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call the income a state earns from issuing its own currency *seigniorage* — the gap between a banknote's face value and its production cost. Lose the currency, lose the revenue."
+          }
+        ]
+      },
+      {
+        "heading": "WHY STABLECOINS ARE A NEW VECTOR",
+        "body": "Historic dollarisation required physical dollars or dollar bank accounts — both gated by US banks. A dollar stablecoin sits on a public blockchain, transfers in seconds, and reaches anyone with a phone. The friction that protected non-dollar economies from currency substitution has effectively collapsed."
+      },
+      {
+        "heading": "THE TWO-FIRM PROBLEM",
+        "body": "Tether (USDT) and Circle (USDC) issue the overwhelming majority of dollar stablecoins in circulation. Their reserves are mostly short-dated US Treasuries — making the duo, in aggregate, one of the larger holders of US government debt globally. The market is not decentralised; it is a duopoly with a sovereign-debt feedback loop.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Tether (USDT)",
+                "value": "~$150bn",
+                "weight": 150,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Circle (USDC)",
+                "value": "~$60bn",
+                "weight": 60,
+                "tone": "neutral"
+              },
+              {
+                "label": "All others",
+                "value": "~$30bn",
+                "weight": 30,
+                "tone": "favorable"
+              }
+            ],
+            "label": "dollar stablecoin market share"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A CBDC ACTUALLY IS",
+        "body": "A central bank digital currency is a direct liability of the central bank — like a banknote, but digital. It bypasses commercial banks for the final settlement step, which is why banks across Europe have lobbied hard against the digital euro: it threatens deposits, the cheap funding that keeps lending profitable."
+      },
+      {
+        "heading": "THE EURO'S RESERVE-CURRENCY GAP",
+        "body": "The dollar accounts for roughly 58% of global FX reserves; the euro sits near 20%. That gap has barely moved in two decades despite the eurozone matching the US in economic size. Network effects in payments are extraordinarily sticky — once invoicing, debt issuance, and oil pricing settle on a currency, displacing it requires a generational shock.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "US dollar",
+                "value": 58,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Euro",
+                "value": 20,
+                "tone": "neutral"
+              },
+              {
+                "label": "Yen",
+                "value": 6,
+                "tone": "favorable"
+              },
+              {
+                "label": "Pound",
+                "value": 5,
+                "tone": "favorable"
+              },
+              {
+                "label": "Yuan",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Other",
+                "value": 9,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global FX reserves by currency, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2029 DEADLINE",
+        "body": "The ECB has been studying a digital euro since 2020. A 2029 launch would put it years behind China's e-CNY, which has been in pilot since 2020 and processed hundreds of billions of yuan in transactions. The lag is not technical — it is political: privacy, bank disintermediation, and offline functionality are all unresolved.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which major economy already has a central bank digital currency in active retail pilot?",
+            "options": [
+              "United States",
+              "China",
+              "United Kingdom",
+              "Japan"
+            ],
+            "correct": 1,
+            "explanation": "China's e-CNY has been piloted in dozens of cities since 2020. The Fed has only published research; the BoE and BoJ remain in design phase."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-08T17:24:18.741Z",
+    "label": "Digital Dollarisation & the Euro",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-08-pakistan-senate-violence-women-five-percent-conviction": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL ARCHITECTURE",
+        "body": "Pakistan passed the Anti-Honour Killings Law in 2016, removing the loophole that let families forgive the killer when the killer was also a relative. On paper, honour killings became non-compoundable — the state prosecutes regardless of family wishes. In practice, courts still treat most cases as ordinary murder, where forgiveness (qisas and diyat) remains available.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2016 reform turned on one Arabic legal term: ***fasad-fil-arz*** — 'mischief on earth' — which judges must declare to block a family pardon. Without that finding, the older *qisas and diyat* framework reasserts itself and the killer walks."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 5% IS THE CEILING, NOT THE FLOOR",
+        "body": "Most cases collapse before verdict. Police register the killing as a private family matter; the only witnesses are relatives who become the legal heirs of the victim and thus hold the right to pardon; forensic evidence is rarely collected. By the time a case reaches court, there is often no complainant left to pursue it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Pakistan's 2016 law against honour killings still produce such low conviction rates?",
+            "options": [
+              "Judges refuse to apply the law",
+              "The victim's family heirs are usually the killer's family too, and can effectively withdraw",
+              "Sentences were never written into the statute",
+              "The Supreme Court struck down enforcement provisions"
+            ],
+            "correct": 1,
+            "explanation": "In honour killings within a household, the heirs entitled to pursue or forgive the case are often the perpetrator's own relatives — collapsing prosecution from inside."
+          }
+        ]
+      },
+      {
+        "heading": "THE SINDH CONTEXT",
+        "body": "Sindh has the country's highest reported rate of karo-kari — the regional term for honour killings, literally 'black male, black female' — driven by tribal jirga councils that adjudicate disputes outside the state legal system. The Pakistan People's Party governs Sindh and has been in power there for most of the post-2008 period; Sherry Rehman is one of its senior senators.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF",
+              "IR",
+              "IN"
+            ],
+            "label": "Sindh sits at Pakistan's southern edge",
+            "markers": [
+              {
+                "lat": 25.396,
+                "lng": 68.3578,
+                "label": "Sindh province"
+              },
+              {
+                "lat": 24.8607,
+                "lng": 67.0011,
+                "label": "Karachi"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE JIRGA SHADOW SYSTEM",
+        "body": "Parallel justice runs through informal councils — jirgas in Pashtun areas, panchayats in Punjab, faislo in Sindh. The Supreme Court ruled jirgas unconstitutional in 2019, but they continue to issue rulings on women's marriages, killings, and compensation. Their authority comes from being faster, cheaper, and culturally legitimate where state courts are none of those things.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Reported cases",
+                "value": "~63,000/yr",
+                "tone": "neutral",
+                "weight": 63000
+              },
+              {
+                "label": "Cases reaching trial",
+                "value": "~10,000",
+                "tone": "unfavorable",
+                "weight": 10000
+              },
+              {
+                "label": "Convictions",
+                "value": "~3,000",
+                "tone": "unfavorable",
+                "weight": 3000
+              }
+            ],
+            "label": "Reported violence-against-women cases vs convictions, recent years"
+          }
+        ]
+      },
+      {
+        "heading": "THE QANDEEL PRECEDENT",
+        "body": "Social-media star Qandeel Baloch was strangled by her brother in 2016. The case catalyzed the anti-honour-killings law that year — and her brother was convicted in 2019. But in 2022 a Lahore court acquitted him after their parents, as legal heirs, formally pardoned him. The Supreme Court reinstated the conviction in 2023. The seven-year arc from killing to final verdict shows what working through the system looks like, even in a high-profile case."
+      }
+    ],
+    "generatedAt": "2026-05-08T17:24:53.398Z",
+    "label": "Honour Killings & the Conviction Gap",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-08-sbi-q4-profit-india-npa-decline": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT AN NPA IS",
+        "body": "A non-performing asset is a loan where the borrower has missed payments for 90 days or more. Indian banks classify these in tiers — substandard, doubtful, loss — each requiring progressively larger provisions set aside against the loan's face value.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 90-day threshold became standard after RBI's 2004 alignment with Basel norms. Before that, Indian banks used a *180-day* rule, which masked the true scale of stress on bank balance sheets."
+          }
+        ]
+      },
+      {
+        "heading": "THE TWIN BALANCE SHEET CRISIS",
+        "body": "From 2013 to 2018, Indian banks — especially public-sector ones — were buried under bad loans from infrastructure and steel projects approved during the 2003-2008 boom. Gross NPAs across the system peaked above 11% in 2018. SBI alone carried over ₹2 lakh crore in stressed assets at the peak.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2008",
+                "label": "Global crisis; restructuring relief begins"
+              },
+              {
+                "year": "2015",
+                "label": "RBI Asset Quality Review forces recognition",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2016",
+                "label": "Insolvency and Bankruptcy Code enacted"
+              },
+              {
+                "year": "2018",
+                "label": "System gross NPAs peak above 11%"
+              },
+              {
+                "year": "2021",
+                "label": "Bad Bank (NARCL) launched"
+              },
+              {
+                "year": "2025",
+                "label": "SBI gross NPAs at 1.49%"
+              }
+            ],
+            "label": "India's NPA cycle"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE STATE OWNS THE BANKS",
+        "body": "Indira Gandhi nationalised 14 major private banks in 1969 and six more in 1980, arguing private banks had ignored agriculture, small industry, and the poor. SBI itself traces back to the Bank of Calcutta (1806) — nationalised in 1955 as the chosen instrument of state-led development. Today public-sector banks still hold roughly 60% of all deposits.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "State Bank of India",
+                "value": "₹61 lakh cr",
+                "cc": "IN",
+                "weight": 61,
+                "tone": "neutral"
+              },
+              {
+                "label": "HDFC Bank",
+                "value": "₹36 lakh cr",
+                "cc": "IN",
+                "weight": 36,
+                "tone": "favorable"
+              },
+              {
+                "label": "ICICI Bank",
+                "value": "₹23 lakh cr",
+                "cc": "IN",
+                "weight": 23,
+                "tone": "favorable"
+              },
+              {
+                "label": "Punjab National Bank",
+                "value": "₹15 lakh cr",
+                "cc": "IN",
+                "weight": 15,
+                "tone": "neutral"
+              },
+              {
+                "label": "Bank of Baroda",
+                "value": "₹14 lakh cr",
+                "cc": "IN",
+                "weight": 14,
+                "tone": "neutral"
+              }
+            ],
+            "label": "India's largest banks by assets, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE IBC REVOLUTION",
+        "body": "India had no functional bankruptcy law until 2016. Defaulting promoters could stall recovery for a decade. The Insolvency and Bankruptcy Code imposed a 330-day resolution deadline and — crucially — barred defaulting owners from buying back their own assets at a discount. This is the single biggest reason NPAs have fallen.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Before the 2016 Insolvency and Bankruptcy Code, roughly how long did it take to resolve a corporate default in India?",
+            "options": [
+              "Under 1 year",
+              "About 2 years",
+              "Around 4-5 years",
+              "Over a decade in many cases"
+            ],
+            "correct": 3,
+            "explanation": "World Bank data put India's average insolvency resolution at around 4.3 years, but high-profile cases routinely dragged on 10+ years through stays and appeals."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SHARES FELL ON GOOD NEWS",
+        "body": "Indian bank stocks have run up sharply on the asset-quality recovery story. With NPAs already near multi-decade lows, the upside from further cleanup shrinks — the next leg of earnings has to come from credit growth and net interest margins, both of which compress when the RBI cuts rates. Beating on profit while missing on margins is a textbook 'good but not good enough' print."
+      }
+    ],
+    "generatedAt": "2026-05-08T17:25:24.925Z",
+    "label": "Indian Banking & NPAs",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-08-sony-ps5-memory-price-ai-supply-crunch": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "DRAM VS HBM",
+        "body": "Standard DRAM is the commodity memory in PCs and consoles. HBM — high-bandwidth memory — stacks DRAM dies vertically with through-silicon vias, delivering 10× the bandwidth at several times the price. AI accelerators need HBM; consoles use DRAM. They share the same fabs.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "An Nvidia H100 carries **80GB of HBM3**. A PS5 ships with **16GB of GDDR6**. Both come off wafers from the same three suppliers."
+          }
+        ]
+      },
+      {
+        "heading": "THE OLIGOPOLY",
+        "body": "Three companies make virtually all the world's DRAM: Samsung, SK Hynix, and Micron. When AI buyers bid up HBM, the same fabs reallocate capacity away from commodity DRAM, tightening supply for everything downstream — phones, PCs, consoles.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Samsung",
+                "value": "~43%",
+                "cc": "KR",
+                "weight": 43
+              },
+              {
+                "label": "SK Hynix",
+                "value": "~34%",
+                "cc": "KR",
+                "weight": 34
+              },
+              {
+                "label": "Micron",
+                "value": "~22%",
+                "cc": "US",
+                "weight": 22
+              },
+              {
+                "label": "Others",
+                "value": "~1%",
+                "weight": 1
+              }
+            ],
+            "label": "global DRAM market share, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "WHY FABS TAKE A YEAR",
+        "body": "A leading-edge memory fab costs $15-20bn and takes 18-24 months from groundbreaking to first wafer. Even adding a new line in an existing fab requires extreme-ultraviolet lithography tools with multi-year lead times — ASML in the Netherlands ships maybe 50 EUV machines a year worldwide."
+      },
+      {
+        "heading": "THE CONSOLE BUSINESS MODEL",
+        "body": "Consoles are sold near or below cost; the profit comes from game royalties (typically 30% of every sale) and subscriptions. When BOM costs spike, manufacturers can't pass the full hit to consumers without crushing the install base that funds the software economy. Sony eats the margin; Nintendo just raised the price.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do console makers historically sell hardware at or below cost?",
+            "options": [
+              "Antitrust regulators force low prices",
+              "Profit comes from a 30% cut of every game sold",
+              "Manufacturing scale makes margins irrelevant",
+              "Subsidies from chip suppliers"
+            ],
+            "correct": 1,
+            "explanation": "The razor-and-blades model: subsidize the console to grow the install base, then take a royalty on every game and subscription that runs on it."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2017 PRECEDENT",
+        "body": "DRAM prices doubled in 2016-17 as smartphone demand outran supply. Samsung, SK Hynix, and Micron later paid hundreds of millions to settle US and Chinese antitrust claims of coordinated under-investment. The pattern — three suppliers, lagging capacity, sudden demand shock, price spike — is the structural feature of the industry, not a bug."
+      }
+    ],
+    "generatedAt": "2026-05-08T17:25:52.465Z",
+    "label": "Memory Chips & the AI Crunch",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-08-uk-five-party-politics-reform-labour-rout": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO-PARTY LOCK",
+        "body": "Britain's first-past-the-post system has historically crushed third parties. A party can win 15% of the national vote and zero seats if its support is evenly spread. This is why UK politics produced two dominant parties for nearly a century while continental Europe fragmented under proportional representation.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is called *Duverger's Law* — single-member plurality districts converge on **two viable parties** because voters strategically abandon third options to avoid wasting their ballot."
+          }
+        ]
+      },
+      {
+        "heading": "WHEN THE LOCK BREAKS",
+        "body": "Two-party dominance fails when a third force concentrates support geographically or when both legacy parties simultaneously alienate their bases. The SDP-Liberal Alliance got 25% in 1983 and 23 seats; UKIP got 12.6% in 2015 and 1 seat. Reform's threat is different — its support clusters in post-industrial Labour seats and Tory shires alike.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1981",
+                "label": "SDP splits from Labour"
+              },
+              {
+                "year": "1983",
+                "label": "Alliance: 25% vote, 23 seats"
+              },
+              {
+                "year": "2010",
+                "label": "Lib Dem coalition with Cameron",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2015",
+                "label": "UKIP: 12.6% vote, 1 seat"
+              },
+              {
+                "year": "2016",
+                "label": "Brexit referendum"
+              },
+              {
+                "year": "2024",
+                "label": "Reform: 14% vote, 5 seats"
+              },
+              {
+                "year": "2026",
+                "label": "Reform local sweep"
+              }
+            ],
+            "label": "third-party surges in postwar Britain"
+          }
+        ]
+      },
+      {
+        "heading": "THE FARAGE PROJECT",
+        "body": "Nigel Farage has now founded or led four insurgent vehicles — UKIP, the Brexit Party, Reform UK, and his current iteration — each one designed to discipline the Conservative Party from its right flank. The strategy is not to govern but to make the Tories ungovernable without his voters.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Keir Starmer",
+                "role": "Labour PM",
+                "years": "2024–",
+                "cc": "GB"
+              },
+              {
+                "name": "Kemi Badenoch",
+                "role": "Conservative leader",
+                "years": "2024–",
+                "cc": "GB"
+              },
+              {
+                "name": "Nigel Farage",
+                "role": "Reform UK leader",
+                "years": "2024–",
+                "cc": "GB"
+              },
+              {
+                "name": "Ed Davey",
+                "role": "Lib Dem leader",
+                "years": "2020–",
+                "cc": "GB"
+              },
+              {
+                "name": "Carla Denyer",
+                "role": "Greens co-leader",
+                "years": "2021–",
+                "cc": "GB"
+              }
+            ],
+            "label": "the five-party cast"
+          }
+        ]
+      },
+      {
+        "heading": "THE RED WALL MECHANIC",
+        "body": "Labour's traditional northern English seats — the 'Red Wall' — voted Brexit in 2016, swung Tory in 2019, swung back to Labour in 2024, and are now bleeding to Reform. These voters are not ideologically conservative; they are economically left and culturally traditional, a combination neither legacy party comfortably represents."
+      },
+      {
+        "heading": "WHY LEADERSHIP CHALLENGES MATTER NOW",
+        "body": "Labour's rules require 20% of MPs to nominate a challenger. Starmer's vulnerability is structural: his 2024 landslide was built on just 33.7% of the vote — the lowest winning share in modern UK history. A small swing erases the majority. Union leaders calling for change are reading the same arithmetic.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of the popular vote did Labour win in its 2024 landslide?",
+            "options": [
+              "33.7%",
+              "43.2%",
+              "52.1%",
+              "48.5%"
+            ],
+            "correct": 0,
+            "explanation": "Labour won 411 seats on just 33.7% of the vote — the most disproportionate result in UK electoral history, and the source of its current fragility."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-08T17:26:23.162Z",
+    "label": "UK Five-Party Politics",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-08-us-iran-interim-deal-response-hormuz-day-70": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHOKEPOINT",
+        "body": "Hormuz is 33 km wide at its narrowest, with shipping lanes just 3 km each. Roughly 21 million barrels of oil pass through daily — about a fifth of global consumption. The deepest channel hugs the Iranian side, which is why Iranian naval positioning matters disproportionately.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the Persian Gulf chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 27.1865,
+                "lng": 56.2808,
+                "label": "Bandar Abbas (Iran naval HQ)"
+              },
+              {
+                "lat": 25.4052,
+                "lng": 55.5136,
+                "label": "Fujairah (UAE bypass terminal)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT CAN'T BE BYPASSED",
+        "body": "Saudi Arabia's East-West Pipeline and the UAE's Habshan-Fujairah line could reroute maybe a third of Gulf exports between them. The rest has no alternative route — including most Qatari LNG and nearly all Kuwaiti and Iraqi crude.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "~5 mbd bypass",
+                "cc": "SA",
+                "tone": "favorable"
+              },
+              {
+                "label": "UAE",
+                "value": "~1.5 mbd bypass",
+                "cc": "AE",
+                "tone": "favorable"
+              },
+              {
+                "label": "Qatar",
+                "value": "no bypass",
+                "cc": "QA",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Kuwait",
+                "value": "no bypass",
+                "cc": "KW",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Iraq",
+                "value": "no bypass",
+                "cc": "IQ",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Gulf export bypass capacity vs. dependence"
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson planners took: disruption is easier to threaten than to sustain. A 70-day full closure has no historical parallel.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Tanker War begins"
+              },
+              {
+                "year": "1987",
+                "label": "Operation Earnest Will (US escorts)"
+              },
+              {
+                "year": "1988",
+                "label": "USS Vincennes shoots down Iran Air 655"
+              },
+              {
+                "year": "2019",
+                "label": "Limpet mine attacks on tankers"
+              },
+              {
+                "year": "2026",
+                "label": "Full closure, day 70",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "Hormuz disruptions"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PAKISTAN CARRIES THE NOTE",
+        "body": "Pakistan and Iran share an 900-km border and a long history of backchannel diplomacy. Islamabad maintains diplomatic relations with both Washington and Tehran — unlike most US allies in the region — and has a Shia minority that gives it sectarian cover Saudi or Emirati intermediaries lack. Oman traditionally played this role; that Pakistan is now carrying the memo signals how compromised the Gulf channels have become.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Pakistan's role echoes its 1971 mediation between Washington and Beijing — the **Kissinger channel** ran through Islamabad precisely because no one watched it."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL REGIME",
+        "body": "Under UNCLOS Article 38, ships have a right of transit passage through international straits — coastal states cannot suspend passage. Iran ratified UNCLOS in 1982 but has long argued Hormuz is governed by its domestic law, not the convention. The US never ratified UNCLOS at all, but enforces its transit-passage clause as customary international law.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country has NOT ratified the UN Convention on the Law of the Sea (UNCLOS)?",
+            "options": [
+              "Iran",
+              "United States",
+              "China",
+              "Russia"
+            ],
+            "correct": 1,
+            "explanation": "The US signed UNCLOS in 1994 but the Senate has never ratified it. Washington enforces transit-passage rules as customary law while remaining outside the treaty."
+          }
+        ]
+      },
+      {
+        "heading": "THE MARKET'S READ",
+        "body": "Prediction markets price the odds of a permanent US-Iran peace deal and the risk of US military escalation. The gap between them is where the diplomacy actually lives — a partial deal that defers the harder questions.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              37,
+              52,
+              43,
+              31,
+              36,
+              31,
+              30,
+              28,
+              30,
+              25,
+              19,
+              23,
+              18,
+              23,
+              14,
+              19,
+              28,
+              34,
+              34
+            ],
+            "periods": [
+              "Apr 9",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 8"
+            ],
+            "label": "US x Iran permanent peace deal by May…",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "37%"
+              },
+              {
+                "atIndex": 18,
+                "label": "34%"
+              }
+            ],
+            "link": "https://polymarket.com/event/us-x-iran-permanent-peace-deal-by",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-08"
+    ],
+    "generatedAt": "2026-05-08T17:27:00.457Z",
+    "label": "Hormuz Closure & US-Iran Diplomacy",
+    "category": "politics",
+    "articleCount": 1
   }
 }
