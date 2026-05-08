@@ -131534,5 +131534,1673 @@
     "label": "US-EU Trade & Tariff Authority",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-08-canvas-instructure-breach-275m-shinyhunters-schools": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONCENTRATION",
+        "body": "Canvas is the dominant learning management system across North American higher education, with Instructure as the single vendor holding identity, gradebook, assignment, and message data for tens of millions of students at any one time. One vendor breach exposes a sector.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Canvas",
+                "value": "~40%",
+                "tone": "unfavorable",
+                "weight": 40
+              },
+              {
+                "label": "Blackboard",
+                "value": "~22%",
+                "tone": "neutral",
+                "weight": 22
+              },
+              {
+                "label": "D2L Brightspace",
+                "value": "~17%",
+                "tone": "neutral",
+                "weight": 17
+              },
+              {
+                "label": "Moodle",
+                "value": "~14%",
+                "tone": "favorable",
+                "weight": 14
+              },
+              {
+                "label": "Other",
+                "value": "~7%",
+                "tone": "favorable",
+                "weight": 7
+              }
+            ],
+            "label": "North American higher-ed LMS market share"
+          }
+        ]
+      },
+      {
+        "heading": "WHO SHINYHUNTERS ARE",
+        "body": "ShinyHunters surfaced in 2020 selling stolen databases on cybercrime forums — Tokopedia, Wattpad, AT&T, Microsoft GitHub repos. Their model is data theft and extortion, not ransomware encryption. They steal, set a deadline, and leak if no payment arrives.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shift from *encrypt-and-decrypt* to **steal-and-leak** changed the math: backups don't save you when the threat is publication, not loss of access."
+          }
+        ]
+      },
+      {
+        "heading": "WHY STUDENT DATA",
+        "body": "A student record is uniquely durable: name, date of birth, government ID, parent contact, home address, and academic history all tied to a person who will be identifiable for the next 70 years. Unlike a credit card, a student identity cannot be reissued.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is breached student data more valuable to criminals than breached credit card data?",
+            "options": [
+              "Student records contain payment information",
+              "Identity data is permanent; cards can be reissued in days",
+              "Schools pay higher ransoms than banks",
+              "Student records are easier to monetize on darknet markets"
+            ],
+            "correct": 1,
+            "explanation": "A stolen card is dead within a week of detection. A stolen identity — name, DOB, SSN, address — works for decades because the underlying facts cannot be changed."
+          }
+        ]
+      },
+      {
+        "heading": "FERPA'S TOOTHLESSNESS",
+        "body": "The Family Educational Rights and Privacy Act of 1974 governs student record privacy in the US, but it has no breach-notification mandate and no private right of action. The only enforcement mechanism is loss of federal funding — a penalty so severe the Department of Education has never imposed it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "FERPA's penalty is **all-or-nothing**: pull federal funding or do nothing. Regulators have always chosen nothing, which is why edtech vendors face weaker pressure than banks under GLBA or hospitals under HIPAA."
+          }
+        ]
+      },
+      {
+        "heading": "THE EXTORTION CLOCK",
+        "body": "Setting a public deadline is a pricing mechanism. The shorter the window, the less time defenders have to verify the breach scope, brief executives, and coordinate with law enforcement — and the more likely the victim pays before thinking clearly. May 12 is the squeeze, not the verdict."
+      },
+      {
+        "heading": "THE SUPPLY-CHAIN PATTERN",
+        "body": "The 2023 MOVEit breach hit 2,700+ organizations through a single file-transfer vendor. The 2024 Snowflake campaign — also linked to ShinyHunters-adjacent actors — compromised AT&T, Ticketmaster, and Santander through one cloud data warehouse. Canvas fits the pattern: attack the vendor, harvest the customers."
+      }
+    ],
+    "generatedAt": "2026-05-08T08:26:26.393Z",
+    "label": "EdTech Concentration Risk",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-08-fish-psilocybin-aggression-study-psychedelics": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THIS FISH",
+        "body": "The mangrove rivulus is the only known vertebrate that reproduces by self-fertilization, producing genetically identical offspring. That means behavioral differences between dosed and undosed fish cannot be blamed on genetic variation — a confound that haunts every other animal study.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The species' Latin name is *Kryptolebias marmoratus*. Its hermaphroditic reproduction makes each lineage effectively a **clonal line**, the vertebrate equivalent of a lab mouse strain — but without the decades of inbreeding required to produce one."
+          }
+        ]
+      },
+      {
+        "heading": "THE RECEPTOR",
+        "body": "Psilocybin itself is inert. The body strips a phosphate group to produce psilocin, which binds the 5-HT2A serotonin receptor. That receptor is evolutionarily ancient — present in fish, reptiles, birds, and mammals — which is why psychedelics work across vertebrate lineages at all."
+      },
+      {
+        "heading": "AGGRESSION AS A READOUT",
+        "body": "Researchers cannot ask a fish about its mood. They measure proxies: latency to attack a mirror image, bite frequency, fin display duration. These behaviors are stereotyped enough across individuals that small pharmacological shifts show up cleanly in the data."
+      },
+      {
+        "heading": "THE BASEL LINEAGE",
+        "body": "Psychedelic science traces back to Albert Hofmann's 1938 LSD synthesis at Sandoz in Basel, and his accidental discovery of its effects in 1943. Psilocybin came next — Hofmann isolated it from Mexican mushrooms in 1958. The molecules sat in regulatory limbo for fifty years before clinical research resumed.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1938",
+                "label": "Hofmann synthesizes LSD"
+              },
+              {
+                "year": "1943",
+                "label": "LSD effects discovered"
+              },
+              {
+                "year": "1958",
+                "label": "Psilocybin isolated"
+              },
+              {
+                "year": "1970",
+                "label": "US Schedule I",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2018",
+                "label": "FDA breakthrough designation"
+              },
+              {
+                "year": "2024",
+                "label": "Australia approves clinical use"
+              }
+            ],
+            "label": "psychedelic science arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ANIMAL MODELS MATTER",
+        "body": "Human psychedelic trials cannot be blinded — patients always know whether they got the drug. Animal models bypass the placebo problem entirely, isolating the pharmacology from expectation effects that confound every human study.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is the mangrove rivulus uniquely useful for psychedelic research?",
+            "options": [
+              "It has a brain structure similar to humans",
+              "It reproduces as self-fertilizing clones, eliminating genetic variation",
+              "It naturally consumes psilocybin in the wild",
+              "It has unusually large 5-HT2A receptors"
+            ],
+            "correct": 1,
+            "explanation": "Genetic identity across subjects means behavioral differences trace to the drug, not to inherited variation."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-08T08:26:53.644Z",
+    "label": "Psilocybin & Animal Models",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-08-government-ai-hallucinations-south-africa-deloitte": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A HALLUCINATION ACTUALLY IS",
+        "body": "Large language models do not retrieve facts; they predict the next token based on statistical patterns in training data. A citation that looks plausible — correct author surnames, realistic journal titles, valid-format DOIs — is generated the same way a real one would be. The model has no internal flag distinguishing the two.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **confabulation** — the model fills gaps with statistically likely text, the way a patient with certain brain injuries invents coherent but false memories without knowing they're doing it."
+          }
+        ]
+      },
+      {
+        "heading": "WHY LEGAL AND POLICY TEXT IS THE WORST CASE",
+        "body": "Citations follow rigid formats — *Smith v. Jones*, 2019, paragraph 47 — which LLMs reproduce flawlessly in form while inventing in substance. The genre's surface regularity is exactly what makes fabrications hard to spot without checking each reference against a real database."
+      },
+      {
+        "heading": "THE MATA PRECEDENT",
+        "body": "In 2023, two New York lawyers were sanctioned after filing a brief in *Mata v. Avianca* citing six entirely fictitious cases generated by ChatGPT. The judge's order became the canonical warning that has since been cited in courts, regulatory filings, and now government policy reviews worldwide.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did the lawyers in Mata v. Avianca do when the judge first questioned the cited cases?",
+            "options": [
+              "Immediately admitted the cases were AI-generated",
+              "Asked ChatGPT to confirm the cases were real and submitted its assurances",
+              "Withdrew the brief and refiled",
+              "Claimed a paralegal had made the error"
+            ],
+            "correct": 1,
+            "explanation": "They asked ChatGPT whether the cases were real; it said yes and even produced fake excerpts. The lawyers submitted those assurances to the court — compounding the sanction."
+          }
+        ]
+      },
+      {
+        "heading": "THE DELOITTE PATTERN",
+        "body": "In 2025 Deloitte was forced to partially refund a A$440,000 report to the Australian government after fabricated academic citations and a made-up federal court quote were found in the deliverable. Consultancies and ministries are running into the same failure mode independently: AI-drafted text passing through review processes designed for human-written documents.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Australia",
+                "value": "Deloitte welfare report",
+                "cc": "AU",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "South Africa",
+                "value": "Draft National AI Policy",
+                "cc": "ZA",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "USA",
+                "value": "MAHA health report (2025)",
+                "cc": "US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Sweden",
+                "value": "PM speech-prep brief",
+                "cc": "SE",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "recent government / consulting documents found to contain fabricated AI citations"
+          }
+        ]
+      },
+      {
+        "heading": "WHY REVIEW PROCESSES MISS IT",
+        "body": "Editors check whether a citation supports the claim it's attached to, not whether the cited paper exists. A reviewer who recognizes the journal name and finds the surrounding argument coherent will sign off. The verification step — searching each reference in a real database — was historically unnecessary because no honest author would invent sources. That assumption no longer holds."
+      },
+      {
+        "heading": "THE RETRIEVAL FIX",
+        "body": "Retrieval-augmented generation (RAG) constrains the model to cite only documents it has actually been shown, with quotations grounded in the retrieved text. It dramatically reduces hallucinations but is harder to deploy than a chat box, which is why most government and consulting use of LLMs still runs on the unconstrained version.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shorthand: **generation alone hallucinates; retrieval-then-generation cites**. The gap between the two workflows is roughly the gap between a draft that needs verifying and a draft that has verified itself."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-08T08:27:28.117Z",
+    "label": "AI Hallucinations in Government",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-08-iag-british-airways-iran-war-fuel-1-7bn-hit": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY AIRLINES HEDGE",
+        "body": "Fuel is 25-30% of an airline's operating cost — the single largest variable expense. Airlines buy futures and swaps to lock in prices months ahead, trading upside for predictability. When hedges expire mid-crisis, the airline becomes a price-taker overnight.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is **fuel hedging ratio** — the share of next year's consumption locked in. IAG typically runs at *60-70%* covered; the uncovered tail is what gets repriced when oil spikes."
+          }
+        ]
+      },
+      {
+        "heading": "THE CRACK SPREAD",
+        "body": "Jet fuel is not crude. Refiners buy crude and sell distillates — diesel, jet fuel, gasoline — and the margin between them is the crack spread. Jet fuel typically trades $15-25 above Brent per barrel; in supply shocks the spread widens faster than crude itself, because jet is harder to substitute than gasoline."
+      },
+      {
+        "heading": "THE SINGAPORE BENCHMARK",
+        "body": "Asian jet fuel pricing centers on the Singapore kerosene benchmark, not a Western index. Roughly 40% of global jet fuel trades through Singapore's storage and blending complex. A Hormuz disruption hits Asian supply first; European carriers like BA pay the spillover when arbitrage flows reverse.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SG",
+              "AE",
+              "SA",
+              "IN",
+              "KR",
+              "JP"
+            ],
+            "label": "the jet fuel arbitrage corridor",
+            "markers": [
+              {
+                "lat": 1.2655,
+                "lng": 103.8186,
+                "label": "Singapore storage hub"
+              },
+              {
+                "lat": 25.1213,
+                "lng": 56.3265,
+                "label": "Fujairah bunkering"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 1990 PRECEDENT",
+        "body": "During Iraq's invasion of Kuwait, jet fuel rose 130% in eight weeks. Pan Am, already weakened, never recovered and filed for Chapter 11 in January 1991. Eastern Air Lines collapsed the same month. Fuel shocks don't kill healthy airlines — they kill the marginal ones, and reshape the industry around the survivors."
+      },
+      {
+        "heading": "WHY GULF DISRUPTION HITS LONDON",
+        "body": "About a fifth of global jet fuel either originates in or transits the Persian Gulf. Heathrow's long-haul fleet — A380s, 777s, 787s — burns the most fuel per departure of any aviation segment. Premium long-haul, BA's profit center, is also its largest fuel exposure.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of an airline's operating cost is typically fuel?",
+            "options": [
+              "About 5%",
+              "About 15%",
+              "About 25-30%",
+              "About 50%"
+            ],
+            "correct": 2,
+            "explanation": "Fuel is the single largest variable cost for most airlines, typically 25-30% — which is why even partial hedging is existential."
+          }
+        ]
+      },
+      {
+        "heading": "THE HEDGE CLIFF",
+        "body": "Hedges are dated contracts. When summer 2026 hedges expire, IAG rolls into whatever the forward curve looks like that day. If Brent is still elevated, the new hedges lock in pain for another year — the cost shock arrives not at the moment of crisis but at the next rollover.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4704.69,
+              4746.97,
+              4736.29,
+              4735.2,
+              4650.83,
+              4743.12,
+              4831.44,
+              4813,
+              4779.06,
+              4821.21,
+              4777.22,
+              4736.06,
+              4807.83,
+              4729.84,
+              4714.79,
+              4689.13,
+              4697.32,
+              4693.28,
+              4674.15,
+              4683.94,
+              4584.13,
+              4551.29,
+              4619.17,
+              4603.98,
+              4597.48,
+              4606.7,
+              4515.48,
+              4580.98,
+              4684.25,
+              4695.85,
+              4708.05
+            ],
+            "periods": [
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 8"
+            ],
+            "label": "Gold (PAX Gold)",
+            "unit": "$/oz",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · PAXG (gold-backed) · as of 2026-05-08"
+    ],
+    "generatedAt": "2026-05-08T08:27:58.748Z",
+    "label": "Jet Fuel & Airline Hedging",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-08-indonesia-mount-dukono-eruption-halmahera-hikers": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PERSISTENT ERUPTOR",
+        "body": "Dukono has been in continuous eruption since 1933 — over nine decades of near-daily activity. It is one of only a handful of volcanoes worldwide in this 'persistently active' category, alongside Stromboli in Italy and Yasur in Vanuatu.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Volcanologists call this **Strombolian** activity — small, regular explosions driven by gas bubbles bursting through a magma column, rather than the catastrophic pressure-buildup eruptions that define stratovolcanoes like Krakatoa."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HALMAHERA",
+        "body": "Halmahera sits at one of the most complex tectonic intersections on Earth — the Molucca Sea Plate is being subducted in two opposite directions simultaneously, beneath both the Philippine Sea Plate to the east and the Sunda Plate to the west. Nowhere else on the planet does a plate get consumed from both sides at once.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ID",
+              "PH",
+              "TL",
+              "MY",
+              "PG"
+            ],
+            "label": "Halmahera & the Molucca collision",
+            "caption": "the only double subduction zone on Earth",
+            "markers": [
+              {
+                "lat": 1.6929,
+                "lng": 127.8939,
+                "label": "Mt Dukono"
+              },
+              {
+                "lat": 1.7299,
+                "lng": 128.0009,
+                "label": "Tobelo"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE RING OF FIRE",
+        "body": "Indonesia hosts 127 active volcanoes — roughly 13% of the world's total — more than any other country. The archipelago sits along the western arc of the Pacific Ring of Fire, where 90% of Earth's earthquakes and 75% of its volcanoes occur."
+      },
+      {
+        "heading": "WHY HIKERS DIE EVEN ON 'SMALL' ERUPTIONS",
+        "body": "Most volcano fatalities are not from lava. Pyroclastic density currents — superheated gas and ash moving at 100+ km/h — and ballistic ejecta (rocks thrown kilometers from the vent) kill faster than any escape is possible. A persistently active volcano with 200 eruptions in two months is firing these projectiles continuously.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What kills most people in volcanic eruptions worldwide?",
+            "options": [
+              "Lava flows",
+              "Pyroclastic flows and ash",
+              "Lightning from ash clouds",
+              "Toxic gas alone"
+            ],
+            "correct": 1,
+            "explanation": "Pyroclastic density currents — fast-moving clouds of superheated gas, ash, and rock — account for the majority of volcanic deaths. Lava typically moves slowly enough to outrun."
+          }
+        ]
+      },
+      {
+        "heading": "THE VEI SCALE",
+        "body": "The Volcanic Explosivity Index runs 0 to 8, logarithmic — each step is roughly 10× more ejecta than the last. Dukono's persistent activity registers VEI 1-2; Krakatoa 1883 was a 6; Tambora 1815, also Indonesian, was a 7 and triggered the 'Year Without a Summer' that caused famines from New England to Yunnan."
+      },
+      {
+        "heading": "THE WARNING SYSTEM",
+        "body": "Indonesia's PVMBG (Center for Volcanology and Geological Hazard Mitigation) maintains a four-level alert system — Normal, Advisory, Watch, Warning. Dukono has sat at Level II (Advisory) for years, with a 3 km exclusion zone. The closure since April 17 reflects elevated activity, but persistent eruptors blur the line between baseline and crisis.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Indonesian terms — *Normal*, *Waspada*, *Siaga*, *Awas* — appear on every park sign and trailhead. *Awas* is the highest, triggering mandatory evacuation; *Siaga* is what closed Dukono."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-08T08:28:30.840Z",
+    "label": "Dukono & the Ring of Fire",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-08-iran-muddywater-chaos-ransomware-cover-rapid7": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO MUDDYWATER IS",
+        "body": "MuddyWater is the public name for a hacking team operated by Iran's Ministry of Intelligence and Security — the civilian intelligence agency, distinct from the IRGC's separate cyber units. Active since at least 2017, it has historically targeted telecoms, governments, and oil firms across the Middle East, Turkey, and South Asia.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The MOIS sits under the elected government; the **IRGC Intelligence Organization** answers to the Supreme Leader. Both run cyber operations — and they sometimes target each other's domestic rivals."
+          }
+        ]
+      },
+      {
+        "heading": "FALSE FLAGS, OLD TRADECRAFT",
+        "body": "Disguising state intrusions as crime is decades older than ransomware. Russia's Sandworm hid the 2017 NotPetya wiper inside fake ransomware demanding bitcoin nobody could pay. North Korea's Lazarus group has alternated between espionage and bank heists for years. The criminal mask is a deniability layer, not a goal.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2014",
+                "label": "Lazarus / Sony Pictures hack"
+              },
+              {
+                "year": "2017",
+                "label": "NotPetya wiper as fake ransomware",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2018",
+                "label": "Olympic Destroyer false-flagged on N. Korea"
+              },
+              {
+                "year": "2022",
+                "label": "HermeticRansom wipes Ukrainian targets"
+              },
+              {
+                "year": "2025",
+                "label": "MuddyWater chaos-kit operation"
+              }
+            ],
+            "label": "state actors masquerading as criminals"
+          }
+        ]
+      },
+      {
+        "heading": "WHY COMMODITY MALWARE",
+        "body": "Buying or pirating an off-the-shelf ransomware kit collapses the attribution signal. Custom code carries fingerprints — compiler quirks, language artifacts, infrastructure reuse — that researchers track across years. A leaked builder used by a thousand criminals strips that signal and forces analysts to argue from behavior alone."
+      },
+      {
+        "heading": "THE ATTRIBUTION PROBLEM",
+        "body": "Threat researchers attribute by triangulating infrastructure overlap, victim selection, working hours, and code lineage. When the malware is generic and the victims look financially motivated, the case rests on softer signals — and any government can plausibly deny what cannot be conclusively proven.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which signal is hardest for a state actor to disguise when masquerading as a criminal group?",
+            "options": [
+              "The malware family used",
+              "The cryptocurrency wallet for ransom",
+              "The selection of victims targeted",
+              "The ransom note language"
+            ],
+            "correct": 2,
+            "explanation": "Tooling, wallets, and notes are easily swapped; victim selection reveals strategic intent that crime-for-profit cannot mimic."
+          }
+        ]
+      },
+      {
+        "heading": "THE SANCTIONS ANGLE",
+        "body": "Iran is cut off from most Western financial rails, so a ransomware payment to a wallet the regime controls is one of the few ways to extract dollars from a Western victim while complying with no sanctions process. The CIA and Treasury have warned since 2020 that paying Iranian ransomware actors may itself be an OFAC violation.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Iran (MOIS)",
+                "value": "MuddyWater",
+                "cc": "IR",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "N. Korea",
+                "value": "Lazarus",
+                "cc": "KP",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Russia (GRU)",
+                "value": "Sandworm",
+                "cc": "RU",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "China (MSS)",
+                "value": "APT41",
+                "cc": "CN",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "state-linked cyber actors and their cover"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-08T08:29:01.290Z",
+    "label": "State Hackers Hiding in Crime",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-08-iran-war-30-universities-strikes-brain-drain": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY UNIVERSITIES ARE TARGETS",
+        "body": "Iran's nuclear program was built inside its university system. Sharif University of Technology and Amirkabir trained the engineers; Shahid Beheshti hosts physics research with dual-use applications. Striking universities is not striking civilians in the legal frame the Pentagon uses — it is striking the human-capital pipeline of the program itself.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine has a name: ***decapitation by attrition***. Killing the program means killing the people who can rebuild it, not just the centrifuges they built."
+          }
+        ]
+      },
+      {
+        "heading": "THE IRAQI PRECEDENT",
+        "body": "Between 2003 and 2012, an estimated 500 Iraqi academics were assassinated and tens of thousands fled. Iraq's universities — once the strongest in the Arab world — never recovered. A generation of physicians, engineers, and physicists was lost not to bombs but to one-way flights to Amman, Damascus, and London.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2003",
+                "label": "US invasion; looting of universities",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2006",
+                "label": "Peak assassination wave"
+              },
+              {
+                "year": "2012",
+                "label": "~500 academics killed, tens of thousands fled"
+              },
+              {
+                "year": "2014",
+                "label": "ISIS captures Mosul University"
+              }
+            ],
+            "label": "Iraq's academic collapse"
+          }
+        ]
+      },
+      {
+        "heading": "BRAIN DRAIN AS A WEAPON",
+        "body": "Iran already had one of the world's highest emigration rates among PhD holders before the war — IMF estimates put annual losses at 150,000 educated professionals, costing roughly $50 billion a year. Strikes on universities accelerate a flow that was already structural: sanctions had hollowed out lab budgets, and the diaspora networks in Toronto, Los Angeles, and Berlin make exit logistically easy.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "~500k",
+                "cc": "US",
+                "weight": 500
+              },
+              {
+                "label": "Canada",
+                "value": "~210k",
+                "cc": "CA",
+                "weight": 210
+              },
+              {
+                "label": "Germany",
+                "value": "~150k",
+                "cc": "DE",
+                "weight": 150
+              },
+              {
+                "label": "UK",
+                "value": "~80k",
+                "cc": "GB",
+                "weight": 80
+              },
+              {
+                "label": "UAE",
+                "value": "~60k",
+                "cc": "AE",
+                "weight": 60
+              }
+            ],
+            "label": "Iranian diaspora — PhD-holder destinations"
+          }
+        ]
+      },
+      {
+        "heading": "THE ISFAHAN LINEAGE",
+        "body": "Iran's scientific tradition is not a Pahlavi-era import. Isfahan and Nishapur were centers of mathematics and astronomy when European universities were teaching scholasticism. Al-Khwarizmi gave the world algebra; Omar Khayyam solved cubic equations geometrically in the 11th century at Nishapur; Nasir al-Din al-Tusi ran the Maragheh observatory whose models reached Copernicus. The scholarly substrate being struck is a thousand years deep."
+      },
+      {
+        "heading": "WHY RECONSTRUCTION IS HARDER THAN BUILDINGS",
+        "body": "A destroyed lab can be rebuilt in two years; a destroyed research culture takes a generation. Tacit knowledge — how to align a beamline, how to coax a finicky reactor, which graduate student to assign which problem — lives in people, not equipment. Once the people leave, even fully restored facilities sit idle.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did post-war West German physics most struggle to rebuild after 1945?",
+            "options": [
+              "Lab equipment destroyed in bombing",
+              "Funding from the new federal government",
+              "The senior researchers who emigrated in the 1930s",
+              "Access to scientific journals"
+            ],
+            "correct": 2,
+            "explanation": "Equipment and money returned within a decade; the émigrés who left for the US and UK mostly never came back, and German physics ceded global leadership permanently."
+          }
+        ]
+      },
+      {
+        "heading": "THE ESCHATOLOGICAL FRAME",
+        "body": "Several authenticated hadith describe tribulations preceding the end times centered in lands Muslims would recognize as the eastern frontier — Khorasan, the historical region encompassing eastern Iran and Central Asia. Classical commentators including Ibn Kathir treat these traditions as describing real geopolitical convulsions, not metaphor. Iranian scholars, both Sunni and Shia, have long noted that their soil sits within this prophetic geography."
+      }
+    ],
+    "generatedAt": "2026-05-08T08:29:36.423Z",
+    "label": "Brain Drain & War on Universities",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-08-pakistan-torwali-swat-river-hydropower-resistance": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO THE TORWALI ARE",
+        "body": "The Torwali are an indigenous Dardic people of the upper Swat valley, numbering roughly 110,000. Their language, Torwali, is unrelated to Pashto — it descends from the ancient Dardic branch of Indo-Aryan, spoken in these mountains since before the Pashtun migrations. UNESCO classifies it as endangered.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Dardic languages — *Torwali*, *Kalasha*, *Khowar*, *Shina* — are linguistic fossils of pre-Islamic Hindu Kush, surviving in valleys remote enough that successive conquests passed through without absorbing them."
+          }
+        ]
+      },
+      {
+        "heading": "THE SWAT THAT WAS",
+        "body": "Swat was a princely state until 1969, ruled by the Wali of Swat, then merged into Pakistan. In 2007-2009, the Pakistani Taliban took control of the valley; the army's Operation Rah-e-Rast displaced over two million people before recapturing it. The valley has been rebuilding civilian governance ever since.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1969",
+                "label": "Princely state merged into Pakistan"
+              },
+              {
+                "year": "2007",
+                "label": "TTP takes control of valley",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2009",
+                "label": "Operation Rah-e-Rast"
+              },
+              {
+                "year": "2018",
+                "label": "FATA merger into KP"
+              },
+              {
+                "year": "2026",
+                "label": "Madyan dam cancelled"
+              }
+            ],
+            "label": "Swat's modern arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY HYDROPOWER, WHY HERE",
+        "body": "Khyber Pakhtunkhwa hosts most of Pakistan's hydropower potential — the rivers fall fast from the Hindu Kush and Karakoram. The province generates power that feeds the national grid but receives a fraction of the royalties owed under the constitution. Dam siting decisions are made in Islamabad and Peshawar; the affected valleys rarely have a vote.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF",
+              "CN",
+              "IN"
+            ],
+            "label": "Pakistan's hydro corridor",
+            "markers": [
+              {
+                "lat": 35.55,
+                "lng": 72.5667,
+                "label": "Madyan (cancelled site)"
+              },
+              {
+                "lat": 34.7717,
+                "lng": 72.3608,
+                "label": "Mingora, Swat"
+              },
+              {
+                "lat": 33.9391,
+                "lng": 72.2317,
+                "label": "Tarbela Dam"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE WORLD BANK & DAMS",
+        "body": "The World Bank has financed dams in Pakistan since the 1960 Indus Waters Treaty, which the Bank itself brokered. Tarbela, the world's largest earth-filled dam, was built with Bank money. But after the Narmada controversy in India in the 1990s — where Bank-funded dams displaced hundreds of thousands — the institution adopted indigenous-consultation safeguards that now give communities like the Torwali a procedural veto."
+      },
+      {
+        "heading": "FREE, PRIOR & INFORMED CONSENT",
+        "body": "FPIC is the international standard, codified in the UN Declaration on the Rights of Indigenous Peoples (2007), that indigenous communities must consent to projects on their lands before approval — not after. Pakistan voted for the declaration but has no domestic FPIC law. The Torwali campaign succeeded by escalating to the World Bank's accountability mechanism, which does enforce FPIC on Bank-funded projects.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does FPIC require for projects on indigenous lands?",
+            "options": [
+              "Consultation after the project is approved",
+              "Consent obtained freely and before approval",
+              "A majority vote in the affected province",
+              "Compensation equal to lost income"
+            ],
+            "correct": 1,
+            "explanation": "FPIC's core innovation is timing — consent must come before commitments are made, when refusal can still stop the project."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-08T08:30:08.367Z",
+    "label": "Torwali & the Swat Valley",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-08-saudi-kuwait-suspend-us-base-access-hormuz-strikes": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY GULF BASES EXIST",
+        "body": "After Saddam invaded Kuwait in 1990, the Gulf monarchies traded sovereignty concerns for security guarantees. US Central Command's forward headquarters moved to Qatar; the Fifth Fleet anchored in Bahrain; Prince Sultan Air Base in Saudi Arabia became the air-operations hub. The arrangement was always conditional — host-nation approval is required for every combat sortie launched from their soil.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SA",
+              "KW",
+              "QA",
+              "BH",
+              "AE",
+              "OM",
+              "IR"
+            ],
+            "label": "the Gulf basing footprint",
+            "markers": [
+              {
+                "lat": 24.0628,
+                "lng": 52.6011,
+                "label": "Al Dhafra AB (UAE)"
+              },
+              {
+                "lat": 25.1175,
+                "lng": 51.3158,
+                "label": "Al Udeid AB (Qatar)"
+              },
+              {
+                "lat": 26.2144,
+                "lng": 50.6361,
+                "label": "NSA Bahrain (5th Fleet)"
+              },
+              {
+                "lat": 24.0719,
+                "lng": 47.5806,
+                "label": "Prince Sultan AB (Saudi)"
+              },
+              {
+                "lat": 29.2467,
+                "lng": 47.5208,
+                "label": "Ali Al Salem AB (Kuwait)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE CONDITIONAL CLAUSE",
+        "body": "Every Status of Forces Agreement in the Gulf carries language reserving the host's right to deny use for specific operations. Saudi Arabia invoked it in 2003 to deny ground-invasion launch from its soil — forcing CENTCOM to relocate the air operations center to Qatar mid-war. Suspension is not novel; it is the lever monarchies pull when their domestic legitimacy outweighs the alliance.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The relevant doctrine inside CENTCOM is **basing access risk** — the assumption that any single host can revoke permission within hours, which is why redundancy across Qatar, Bahrain, UAE, Kuwait, and Saudi Arabia exists in the first place."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1987 PRECEDENT",
+        "body": "During the Tanker War, Kuwait asked Moscow to charter Soviet tankers when Washington hesitated to escort its ships. The threat of Soviet protection forced the Reagan administration into Operation Earnest Will — reflagging Kuwaiti tankers under the US flag. The lesson the Gulf monarchies learned: leverage runs both ways, and basing access is a card that can be played."
+      },
+      {
+        "heading": "WHY THE STRAIT MOVE MATTERS",
+        "body": "Iran has long argued that Hormuz transit is governed by its domestic law, not UNCLOS Article 38's transit-passage regime — which Tehran signed but never ratified. Formalizing a maritime authority is a legal claim, not just an administrative one: it asserts the right to inspect, license, and deny passage in waters the rest of the world treats as an international strait.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under UNCLOS, what right do foreign ships have through international straits like Hormuz?",
+            "options": [
+              "Innocent passage — coastal state may suspend it",
+              "Transit passage — cannot be suspended or conditioned",
+              "Free transit only with prior notification",
+              "No automatic right; bilateral treaty required"
+            ],
+            "correct": 1,
+            "explanation": "Article 38 grants transit passage through straits used for international navigation — a stronger right than innocent passage, which coastal states can suspend."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE MARKET PRICES",
+        "body": "Spare oil capacity globally sits almost entirely in Saudi Arabia and the UAE — the same states whose basing access just contracted. When the security architecture protecting the chokepoint and the production buffer offsetting disruption are run by the same governments, a political shift compresses both insurance pillars at once.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4704.69,
+              4746.97,
+              4736.29,
+              4735.2,
+              4650.83,
+              4743.12,
+              4831.44,
+              4813,
+              4779.06,
+              4821.21,
+              4777.22,
+              4736.06,
+              4807.83,
+              4729.84,
+              4714.79,
+              4689.13,
+              4697.32,
+              4693.28,
+              4674.15,
+              4683.94,
+              4584.13,
+              4551.29,
+              4619.17,
+              4603.98,
+              4597.48,
+              4606.7,
+              4515.48,
+              4580.98,
+              4684.25,
+              4695.85,
+              4708.05
+            ],
+            "periods": [
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 8"
+            ],
+            "label": "Gold (PAX Gold)",
+            "unit": "$/oz",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE DOMESTIC PRESSURE",
+        "body": "Gulf monarchies survived the Arab Spring partly by demonstrating that they were not American clients. Hosting strikes on a fellow Muslim-majority state — particularly one with Shia populations linked to Saudi Arabia's Eastern Province and Kuwait's own Shia minority — generates sectarian risk the rulers cannot absorb indefinitely. Suspension is a domestic-legitimacy maneuver before it is a geopolitical one.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Iran",
+                "value": "~90%",
+                "cc": "IR",
+                "weight": 90
+              },
+              {
+                "label": "Iraq",
+                "value": "~65%",
+                "cc": "IQ",
+                "weight": 65
+              },
+              {
+                "label": "Bahrain",
+                "value": "~65%",
+                "cc": "BH",
+                "weight": 65
+              },
+              {
+                "label": "Kuwait",
+                "value": "~30%",
+                "cc": "KW",
+                "weight": 30
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~12%",
+                "cc": "SA",
+                "weight": 12
+              }
+            ],
+            "label": "Shia share of population"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · PAXG (gold-backed) · as of 2026-05-08"
+    ],
+    "generatedAt": "2026-05-08T08:30:46.910Z",
+    "label": "Gulf Basing & Hormuz",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-08-toyota-profit-cut-iran-war-supply-shock": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY ¥670bn IS THE NUMBER",
+        "body": "Toyota's profit warning quantifies what economists call a 'shipping shock' — every extra day at sea is working capital tied up in floating inventory, plus war-risk insurance premia, plus rerouting fuel costs. For a just-in-time manufacturer shipping 10+ million vehicles a year, even a few hundred dollars of added cost per unit compounds into hundreds of billions of yen.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Toyota pioneered ***kanban*** and ***just-in-time*** production — the system depends on predictable transit windows, not redundant inventory."
+          }
+        ]
+      },
+      {
+        "heading": "THE CAPE OF GOOD HOPE DETOUR",
+        "body": "Houthi attacks and Iran-linked Red Sea threats forced container traffic around southern Africa instead of through the Suez Canal. The Asia-Europe route stretches from roughly 26 days to 36 days — a 40% increase in steaming time, fuel burn, and capital tied up in cargo afloat.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "JP",
+              "CN",
+              "SG",
+              "EG",
+              "SA",
+              "YE",
+              "ZA",
+              "NL",
+              "DE"
+            ],
+            "label": "the long way around",
+            "markers": [
+              {
+                "lat": 12.5,
+                "lng": 43.3,
+                "label": "Bab el-Mandeb"
+              },
+              {
+                "lat": 30,
+                "lng": 32.55,
+                "label": "Suez Canal"
+              },
+              {
+                "lat": -34.36,
+                "lng": 18.47,
+                "label": "Cape of Good Hope"
+              },
+              {
+                "lat": 26.6,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY JAPAN IS UNIQUELY EXPOSED",
+        "body": "Japan imports nearly 90% of its crude oil from the Persian Gulf — a higher dependency than any other major economy. The same tankers that fuel the country pass through Hormuz; the same container ships that carry Toyotas to Europe transit the Red Sea. Both chokepoints are now contested simultaneously.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Japan",
+                "value": "~90%",
+                "cc": "JP",
+                "weight": 90,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "South Korea",
+                "value": "~70%",
+                "cc": "KR",
+                "weight": 70,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": "~55%",
+                "cc": "IN",
+                "weight": 55,
+                "tone": "neutral"
+              },
+              {
+                "label": "China",
+                "value": "~45%",
+                "cc": "CN",
+                "weight": 45,
+                "tone": "neutral"
+              },
+              {
+                "label": "Europe",
+                "value": "~10%",
+                "cc": "EU",
+                "weight": 10,
+                "tone": "favorable"
+              },
+              {
+                "label": "USA",
+                "value": "~10%",
+                "cc": "US",
+                "weight": 10,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Persian Gulf oil dependency, share of crude imports"
+          }
+        ]
+      },
+      {
+        "heading": "THE YEN AS SHOCK ABSORBER",
+        "body": "A weaker yen normally cushions Japanese exporters — every dollar of US revenue translates to more yen. But when the shock is on the import side (oil, shipping, parts), the weak yen amplifies the pain instead of absorbing it. Toyota is caught on the wrong side of the trade.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              159.09083333,
+              159.24505122,
+              159.24505122,
+              159.681625,
+              159.2235,
+              158.80333333,
+              158.8185,
+              159.2075,
+              158.64504456,
+              158.73055866,
+              158.63,
+              158.8855,
+              158.9865,
+              159.3964,
+              159.76253049,
+              159.3556875,
+              159.36496265,
+              159.375,
+              159.22516667,
+              159.0765,
+              159.6181,
+              160.4253125,
+              157.18971875,
+              157.07501212,
+              157.073,
+              156.20242308,
+              157.2685625,
+              157.7777619,
+              156.4195,
+              156.8352
+            ],
+            "periods": [
+              "Apr 9",
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8"
+            ],
+            "label": "Japanese yen",
+            "unit": "JPY / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE TARIFF DOUBLE-HIT",
+        "body": "Toyota also flagged US tariffs as a separate drag. The combination — supply chain stretched at one end, market access taxed at the other — is the structural vise Japanese carmakers have not faced simultaneously since the 1980s Plaza Accord era, when both fuel costs and US trade pressure squeezed margins at the same time."
+      },
+      {
+        "heading": "WHY 'NO TIMELINE TO OFFSET' MATTERS",
+        "body": "Toyota's planning horizon is famously long — production lines and supplier contracts lock in years ahead. Saying there is no timeline to recover means the company sees these as structural, not cyclical. That language is rarer than the headline number suggests.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of Japan's crude oil imports come from the Persian Gulf?",
+            "options": [
+              "About 30%",
+              "About 60%",
+              "About 90%",
+              "About 50%"
+            ],
+            "correct": 2,
+            "explanation": "Japan's Gulf dependency is near 90% — the highest of any major economy, which is why Hormuz disruptions hit Japan harder than they hit Europe or the US."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-08"
+    ],
+    "generatedAt": "2026-05-08T08:31:18.999Z",
+    "label": "Japan's Auto Export Engine",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-08-uk-house-prices-halved-iran-war-halifax": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY UK MORTGAGES MOVE FAST",
+        "body": "Unlike the US 30-year fixed, most UK mortgages reset every 2-5 years. Roughly 1.6 million households roll onto new rates each year, so a swap-rate move in March hits monthly budgets within weeks, not decades.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The benchmark is the **2-year swap rate** — what banks pay to hedge fixed-rate lending. When swaps move, mortgage offers reprice within days."
+          }
+        ]
+      },
+      {
+        "heading": "THE ENERGY-TO-MORTGAGE PIPELINE",
+        "body": "An oil shock raises headline inflation; the Bank of England responds by holding rates higher for longer; gilt yields rise; swap rates rise; mortgage offers reprice. The chain runs from a tanker in Hormuz to a kitchen-table affordability calculation in Manchester.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "oil",
+                "label": "Brent crude"
+              },
+              {
+                "id": "cpi",
+                "label": "UK CPI"
+              },
+              {
+                "id": "boe",
+                "label": "BoE rate path"
+              },
+              {
+                "id": "gilts",
+                "label": "Gilt yields"
+              },
+              {
+                "id": "swaps",
+                "label": "2y swap rate"
+              },
+              {
+                "id": "mortgage",
+                "label": "Mortgage offer"
+              }
+            ],
+            "links": [
+              {
+                "source": "oil",
+                "target": "cpi",
+                "value": 10
+              },
+              {
+                "source": "cpi",
+                "target": "boe",
+                "value": 10
+              },
+              {
+                "source": "boe",
+                "target": "gilts",
+                "value": 10
+              },
+              {
+                "source": "gilts",
+                "target": "swaps",
+                "value": 10
+              },
+              {
+                "source": "swaps",
+                "target": "mortgage",
+                "value": 10
+              }
+            ],
+            "label": "how a Gulf shock reaches a UK mortgage"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2022 PRECEDENT",
+        "body": "The Truss mini-budget in September 2022 spiked 2-year swaps by ~150 bps in a fortnight. Mortgage offers were withdrawn overnight; transaction volumes collapsed for two quarters before stabilising. The lesson: housing freezes on rate velocity, not rate level.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2008-09",
+                "label": "Lehman collapse — BoE cuts to 0.5%"
+              },
+              {
+                "year": "2022-09",
+                "label": "Truss mini-budget",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-11",
+                "label": "Sunak restores credibility"
+              },
+              {
+                "year": "2024",
+                "label": "BoE cutting cycle begins"
+              },
+              {
+                "year": "2026-03",
+                "label": "Iran shock reverses cuts"
+              }
+            ],
+            "label": "UK mortgage rate shocks"
+          }
+        ]
+      },
+      {
+        "heading": "WHY HALIFAX MATTERS",
+        "body": "Halifax is the mortgage arm of Lloyds Banking Group, the UK's largest lender by mortgage book. Its monthly house price index draws from its own approval data — making the forecast revision a statement about what the bank itself is willing to lend against.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Lloyds (Halifax)",
+                "value": "~19%",
+                "cc": "GB",
+                "weight": 19
+              },
+              {
+                "label": "Nationwide",
+                "value": "~12%",
+                "cc": "GB",
+                "weight": 12
+              },
+              {
+                "label": "NatWest",
+                "value": "~10%",
+                "cc": "GB",
+                "weight": 10
+              },
+              {
+                "label": "Santander UK",
+                "value": "~10%",
+                "cc": "GB",
+                "weight": 10
+              },
+              {
+                "label": "Barclays",
+                "value": "~9%",
+                "cc": "GB",
+                "weight": 9
+              },
+              {
+                "label": "HSBC UK",
+                "value": "~8%",
+                "cc": "GB",
+                "weight": 8
+              }
+            ],
+            "label": "UK mortgage market share, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1973 ECHO",
+        "body": "The OPEC oil embargo of 1973 ended Britain's postwar housing boom. House prices fell in real terms for nearly a decade as inflation, rate hikes, and the secondary banking crisis of 1973-75 compounded. Energy shocks have always been housing shocks in the UK — the transmission mechanism is the same now as then.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does an oil shock hit UK house prices faster than US house prices?",
+            "options": [
+              "UK households spend more of their income on housing",
+              "Most UK mortgages reset every 2-5 years, vs 30-year fixed in the US",
+              "UK banks are more leveraged than US banks",
+              "The pound is more sensitive to oil than the dollar"
+            ],
+            "correct": 1,
+            "explanation": "Short fixation periods mean UK rate shocks pass through to monthly payments within months; the US 30-year fixed insulates most homeowners entirely."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-08T08:31:51.492Z",
+    "label": "UK Mortgages & Energy Shocks",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-08-uk-wind-solar-1-7bn-gas-imports-saved-iran-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY GAS SETS THE PRICE",
+        "body": "Most electricity markets use marginal pricing: every generator on the grid gets paid the price bid by the most expensive plant needed to meet demand. In Britain, that marginal plant is almost always a gas turbine — so when gas spikes, the entire wholesale market spikes, even the cheap wind power.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the **merit order**: cheapest plants (wind, solar, nuclear) dispatch first, gas fills the gap, and gas's bid sets the price for *everyone*."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRICE-SETTER STATISTIC",
+        "body": "In 2022, gas set the British wholesale electricity price roughly 98% of the time. By spring 2026, that share had fallen meaningfully as wind and solar capacity grew large enough to meet demand without gas during many hours. Each hour gas does not set the price is an hour the grid is insulated from Hormuz risk."
+      },
+      {
+        "heading": "THE NORTH SEA TRANSITION",
+        "body": "Britain was a net gas exporter until 2004. North Sea fields are now in terminal decline — production has fallen by roughly two-thirds from its 2000 peak. The UK now imports about half its gas, mostly via Norwegian pipelines and LNG terminals at Milford Haven and the Isle of Grain.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GB",
+              "NO",
+              "QA",
+              "US",
+              "NL",
+              "BE"
+            ],
+            "label": "where UK gas comes from",
+            "markers": [
+              {
+                "lat": 51.7128,
+                "lng": -5.0341,
+                "label": "Milford Haven LNG"
+              },
+              {
+                "lat": 51.45,
+                "lng": 0.7,
+                "label": "Isle of Grain LNG"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TTF BENCHMARK",
+        "body": "European gas prices key off the Dutch TTF hub — the Brent of natural gas. TTF spiked from about €20/MWh pre-2021 to over €300/MWh at the 2022 peak, then settled in the €30-50 range. Any Hormuz disruption pushes Qatari LNG cargoes off the Asian-bound flow and into European competition, lifting TTF and dragging UK power prices with it."
+      },
+      {
+        "heading": "WHY WIND IS A SECURITY ASSET",
+        "body": "A wind turbine's fuel cost is zero and its supply chain is domestic once built. Every gigawatt-hour of wind generation is a gigawatt-hour the grid does not need to buy from a gas market priced by Gulf geopolitics. Energy security and decarbonization, often framed as competing goals, point the same direction in a gas-importing economy.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of UK electricity did wind and solar combined provide in 2024?",
+            "options": [
+              "About 10%",
+              "About 20%",
+              "About 35%",
+              "About 60%"
+            ],
+            "correct": 2,
+            "explanation": "Wind and solar together supplied roughly a third of UK electricity in 2024 — wind alone is now the single largest source, ahead of gas."
+          }
+        ]
+      },
+      {
+        "heading": "THE INTERMITTENCY HEDGE",
+        "body": "Critics note wind and solar do not generate on calm nights — true, but irrelevant to the savings figure. The £1.7bn is realized during the hours renewables do generate. As long as those hours displace gas at the margin, the hedge pays out, even if the grid still needs gas backup for windless evenings."
+      }
+    ],
+    "generatedAt": "2026-05-08T08:32:23.665Z",
+    "label": "Marginal Pricing & the Gas Hedge",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-08-west-bengal-bjp-government-oath-modi-brigade-parade": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WALL THAT FELL",
+        "body": "Bengal was governed by the Communist Party (Marxist) for 34 consecutive years — 1977 to 2011 — the longest democratically elected communist government in history. Mamata Banerjee's Trinamool broke that streak in 2011 and held the state for the next 15 years. Until now, the BJP had never won Bengal.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1977",
+                "label": "CPI(M)-led Left Front takes power"
+              },
+              {
+                "year": "2007",
+                "label": "Nandigram killings under Left rule",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011",
+                "label": "Mamata's Trinamool ends 34-year Left rule"
+              },
+              {
+                "year": "2021",
+                "label": "Trinamool repels BJP surge"
+              },
+              {
+                "year": "2026",
+                "label": "BJP wins Bengal for the first time"
+              }
+            ],
+            "label": "Bengal's three regimes"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BENGAL WAS THE LAST FRONTIER",
+        "body": "Bengal at 27% Muslim population has the highest Muslim share of any non-Muslim-majority Indian state outside Assam. Its political culture — Tagore, the bhadralok intelligentsia, decades of Left organizing — produced a durable resistance to Hindutva politics that stalled BJP advances even when the party swept the Hindi belt.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The BJP's 2021 Bengal campaign poured in resources and still lost; the party took **77 of 294** seats. The 2026 result represents a structural break, not an incremental gain."
+          }
+        ]
+      },
+      {
+        "heading": "THE DEFECTOR-IN-CHIEF",
+        "body": "Suvendu Adhikari was Mamata Banerjee's protégé and Trinamool's strongman in East Midnapore — the very district where the 2007 Nandigram land-acquisition killings made Mamata's career. He defected to the BJP weeks before the 2021 election and beat Mamata in Nandigram by under 2,000 votes. Five years later he has unseated her in her own Bhabanipur stronghold.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Suvendu Adhikari",
+                "role": "BJP CM-designate",
+                "years": "2020– (BJP)",
+                "cc": "IN"
+              },
+              {
+                "name": "Mamata Banerjee",
+                "role": "Trinamool chief, outgoing CM",
+                "years": "2011–2026",
+                "cc": "IN"
+              },
+              {
+                "name": "Narendra Modi",
+                "role": "Prime Minister",
+                "years": "2014–",
+                "cc": "IN"
+              },
+              {
+                "name": "Amit Shah",
+                "role": "Home Minister, BJP strategist",
+                "years": "2019–",
+                "cc": "IN"
+              }
+            ],
+            "label": "the cast"
+          }
+        ]
+      },
+      {
+        "heading": "BRIGADE PARADE GROUND",
+        "body": "The 26-hectare maidan in central Kolkata has hosted every major political rally in modern Bengali history — from Subhas Chandra Bose's pre-Independence speeches to the Left Front's million-strong May Day gatherings to Mamata's 2011 victory rally. Choosing it for the swearing-in is itself the message: the BJP is staking a claim to Bengal's political iconography, not just its assembly.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "BD",
+              "NP",
+              "BT"
+            ],
+            "caption": "Bengal sits on the Bangladesh frontier — demographically and politically distinct from the Hindi belt",
+            "markers": [
+              {
+                "lat": 22.5675,
+                "lng": 88.3433,
+                "label": "Brigade Parade Ground"
+              },
+              {
+                "lat": 21.9497,
+                "lng": 87.9947,
+                "label": "Nandigram"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 207 SEATS BUYS",
+        "body": "Bengal's assembly has 294 seats; 148 is a majority. A 207-seat haul is not a coalition win, it is a mandate. It gives the new government room to push the citizenship register, the Uniform Civil Code, and central-scheme rebranding that Trinamool blocked for a decade — each of which lands hardest in Bengal's Muslim-majority districts.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which party governed West Bengal for 34 consecutive years before Mamata Banerjee?",
+            "options": [
+              "Indian National Congress",
+              "Communist Party of India (Marxist)",
+              "Trinamool Congress",
+              "Bharatiya Janata Party"
+            ],
+            "correct": 1,
+            "explanation": "The CPI(M)-led Left Front held Bengal from 1977 to 2011 — the longest democratically elected communist government anywhere in the world."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-08T08:32:59.990Z",
+    "label": "Bengal & the BJP Frontier",
+    "category": "politics",
+    "articleCount": 1
   }
 }
