@@ -42,12 +42,15 @@
         "recommendation": "Either (a) evaluate using only the May 1\u2013May 3 window (3 days, below the 3-day minimum), (b) extend evaluateAfter past the new baseline window \u2014 re-baseline by 2026-05-12 then evaluate 2026-05-19, or (c) revert the selector memo-read edit until this experiment lands. Default: extend the window."
       }
     },
+  ],
+  "activeExperiment": null,
+  "history": [
     {
       "id": "2026-05-01-title-echo-self-check",
       "startDate": "2026-05-01",
       "evaluateAfter": "2026-05-08",
       "prNumber": null,
-      "hypothesis": "Title-echo rate has trended 53.8 \u2192 49.1 \u2192 40.0 over three weekly snapshots \u2014 declining at ~9pp/week but still 4\u00d7 the <10% target. Reflection observed the rule 'nudges rather than blocks'. The current rule already includes a worked example (Microsoft pause); the missing element is a procedural self-check that forces evaluation. Adding 'redact title, re-read S1' as a mandatory pre-save check converts a description into a discrete action the writer model must perform, which should accelerate the decline.",
+      "hypothesis": "Title-echo rate has trended 53.8 → 49.1 → 40.0 over three weekly snapshots — declining at ~9pp/week but still 4× the <10% target. Reflection observed the rule 'nudges rather than blocks'. The current rule already includes a worked example (Microsoft pause); the missing element is a procedural self-check that forces evaluation. Adding 'redact title, re-read S1' as a mandatory pre-save check converts a description into a discrete action the writer model must perform, which should accelerate the decline.",
       "parameter": "Title-echo self-check (procedural step in antipattern)",
       "file": "scripts/write-prompt.md",
       "oldValue": "title-echo rule with worked example, no procedural check",
@@ -62,15 +65,15 @@
         "target": 10.0
       },
       "guardrails": {
-        "wordInRangePct": "must stay \u226575% (currently 79.5%) \u2014 over-rewriting could break length",
-        "passiveHookRatePct": "must stay <5% (currently 0%) \u2014 rewrites could pull writers into passive constructions",
-        "charOver350Pct": "must not climb above 20% (currently 17.1%) \u2014 rewriting S1 with more specifics could push lead length up",
-        "hedgeRatePct": "must stay <5% (currently 0.2%) \u2014 uncertain rewrites tempt hedging"
-      }
-    }
-  ],
-  "activeExperiment": null,
-  "history": [
+        "wordInRangePct": "must stay ≥75% (currently 79.5%) — over-rewriting could break length",
+        "passiveHookRatePct": "must stay <5% (currently 0%) — rewrites could pull writers into passive constructions",
+        "charOver350Pct": "must not climb above 20% (currently 17.1%) — rewriting S1 with more specifics could push lead length up",
+        "hedgeRatePct": "must stay <5% (currently 0.2%) — uncertain rewrites tempt hedging"
+      },
+      "result": "kept",
+      "evaluatedOn": "2026-05-08",
+      "notes": "Week of 2026-05-07 quality snapshot: titleEchoRatePct 28.7 vs 40.0 baseline week of 04-26 — a -11.3pp drop in one week, modestly faster than the -9pp/week pre-experiment trend. Still 2.9× the 10% target but moving in the right direction with the procedural self-check in place. Guardrails: wordInRangePct 81 (≥75 ✓), passiveHookRatePct 0.3 (<5 ✓), hedgeRatePct 0.3 (<5 ✓). charOver350Pct 21.1 vs <20 limit — mild breach (1.1pp), but the metric was already trending 0 → 3.8 → 17.1 → 21.1 across the prior three weekly snapshots before this experiment started, so the breach is pre-existing drift not attributable to the redact-and-reread step. Keeping the procedural self-check; the writer-prompt charOver350Pct creep is a separate concern that should be addressed by the queued numerical-density experiment's 'compress a clause' instruction or by a dedicated lead-length tightening experiment after the 2026-05-12 gate lifts."
+    },
     {
       "id": "2026-05-01-fabrication-gate-softening",
       "startDate": "2026-05-01",

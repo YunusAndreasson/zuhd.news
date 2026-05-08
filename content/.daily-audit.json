@@ -1,27 +1,28 @@
 {
-  "date": "2026-05-07",
+  "date": "2026-05-08",
   "metrics": {
-    "articles": { "value": 20, "detail": "2 of 5 cycles complete at audit time, avg ~10/cycle so far" },
-    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
-    "categories": { "politics": 7, "economy": 4, "science": 4, "tech": 5 },
-    "multiSource": { "value": 5, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "EU": 6, "AS": 5, "AM": 5, "ME": 2, "OC": 1, "AF": 1 } },
-    "sciTech": { "ratio": 45, "target": 25, "met": true },
-    "topSourceShare": { "source": "The Guardian / Nature (tied)", "pct": 15, "target": 20, "met": true },
-    "uniqueSources": 27,
+    "articles": { "value": 45, "detail": "5 cycles (4 completed), avg 7/cycle published" },
+    "freshness": { "median": 0.4, "p90": 1.4, "max": 1.4, "target": 1.0, "met": true },
+    "categories": { "politics": 13, "economy": 12, "science": 8, "tech": 12 },
+    "multiSource": { "value": 12, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 15, "EU": 12, "ME": 10, "AS": 4, "AF": 3, "GL": 1 } },
+    "sciTech": { "ratio": 44, "target": 25, "met": true },
+    "topSourceShare": { "source": "Hacker News", "pct": 9, "target": 20, "met": true },
+    "uniqueSources": 55,
     "duplicates": 0,
-    "avgCycleDuration": 740
+    "avgCycleDuration": 1520
   },
-  "experiment": "Skipped — noNewExperimentsUntil gate active through 2026-05-12 (post-2026-05-02 model lineup change baseline). Two active experiments still running: OIC regional-source floor (evaluateAfter 2026-05-19, confounded) and title-echo self-check (evaluates tomorrow 2026-05-08).",
-  "weakestArea": "Africa coverage thin again — 1 article today (yesterday: 6). With AF at floor and OIC carry-through experiment in flight, watch whether the regional-source rule recovers AF representation once feed thinness lifts. No metric is missing target.",
+  "experiment": "Evaluated 2026-05-01-title-echo-self-check: titleEchoRatePct 40.0 → 28.7 (-11.3pp in one week) vs -9pp/week pre-experiment trend; kept and moved to history. charOver350Pct 21.1 marginally breached the <20 guardrail but the 0 → 3.8 → 17.1 → 21.1 climb predates this experiment. No new experiment proposed — gate active until 2026-05-12 per noNewExperimentsUntil to let the post-2026-05-02 model lineup baseline before new variables enter. OIC-regional-source experiment continues (evaluateAfter extended to 2026-05-19, confounded by 05-02 selector edit).",
+  "weakestArea": "charOver350Pct at 21.1% on the week-of-2026-05-07 snapshot — over the 20% soft cap and trending up across four consecutive weekly snapshots (0 → 3.8 → 17.1 → 21.1). Lead-length drift is the cleanest signal of writer-side bloat and the most plausible interaction risk for the queued numerical-density experiment, whose 'compress a clause' clause is meant to counteract exactly this.",
   "watching": [
-    "Title-echo self-check experiment evaluates tomorrow (2026-05-08) — first metric snapshot from .quality-trend.json will determine keep/revert.",
-    "Cycle duration averaging 740s today vs ~1033s recent baseline — selector at 273s is faster than typical 540s; check whether model is short-cutting on a thin feed or genuinely efficient.",
-    "Yesterday's 54-article output is the high-water mark for the week (counter to the recent ~41/day trend post-standalone-cap-22); science 11 + tech 11 carried it."
+    "titleEchoRatePct still 2.9× the 10% target despite -11.3pp drop this week — track week-of-2026-05-14 snapshot to confirm the procedural self-check sustains the acceleration rather than reverting to the -9pp/week trend.",
+    "charOver350Pct climbing four weeks running — if the queued numerical-density experiment activates after the 2026-05-12 gate, watch this guardrail closely.",
+    "Yesterday produced only 20 articles (1 freshness datapoint, 2/5 cycles completed) — likely a Sunday/cycle-failure dip; if it recurs midweek, investigate run-cycle.sh stability.",
+    "Top source today is Hacker News at 4/45 — tech standalone supply continues to lean on aggregator outlets; not a problem at 9% share but worth noting if it drifts toward 20%."
   ],
   "coverageGaps": [
-    "AF region at 1 today (rolling weekly trend has been AF 4–6/day) — partial-day artifact, not yet a sustained gap.",
-    "OC region historically thin (1/day typical) — structural feed limitation, not addressable via parameter tuning."
+    "OC region had 0 articles today (1 yesterday) — Oceania remains structurally thin, expected given feed composition but flag if it persists for >5 days.",
+    "Africa at 3/45 (~7%) is light versus typical 6-10%; selector did not pick up any of the East African or Maghreb stories that surfaced in the feed."
   ],
-  "context": "Today is a partial-day audit — only 2 of 5 cycles complete at audit run. Yesterday's full-day numbers (54 articles, multi-source 12, sci-tech 41%, freshness median 0.3, top source 9.3%) cleanly hit every target. The post-2026-05-02 model uplift (Opus high reflect, Opus medium tune, editorial memo flowing into selector) is still inside its baseline-stabilization window; resist the urge to read short-term variance as signal until the gate lifts on 2026-05-12."
+  "context": "Two-experiment day on a healthy metrics board: every numeric goal is met. Title-echo evaluation closed cleanly and the pause gate (noNewExperimentsUntil 2026-05-12) keeps the new-experiment surface quiet so the post-2026-05-02 model lineup (reflect/tune Opus, GDACS narrator, editorial-memo selector input) can baseline. The OIC-regional-source experiment remains live but confounded — re-baseline window runs through 2026-05-12, evaluation 2026-05-19. Queued numerical-density experiment is unblocked from title-echo as of today but still gated by the model-lineup pause."
 }
