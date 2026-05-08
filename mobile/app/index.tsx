@@ -108,10 +108,7 @@ export default function HomeScreen() {
   const { byId: indicatorsById } = useTrendsSnapshot();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
-  const briefingPlayer = useBriefingPlayer(
-    briefing?.available ? briefing.date : undefined,
-    briefing?.duration,
-  );
+  const briefingPlayer = useBriefingPlayer(briefing?.date, briefing?.duration);
 
   // Active article tracking (for bottom action bar). Kept in a ref — the
   // selected article only feeds callbacks (share, context), never JSX, so
@@ -134,7 +131,10 @@ export default function HomeScreen() {
   const {
     brief: contextBrief,
     loading: contextLoading,
+    error: contextError,
     fetchBrief: fetchContext,
+    retry: retryContext,
+    reset: resetContext,
   } = useContextBrief();
   const [contextThreadLabel, setContextThreadLabel] = useState<string | undefined>();
 
@@ -436,13 +436,7 @@ export default function HomeScreen() {
     if (!loading) SplashScreen.hideAsync();
   }, [loading]);
 
-  usePendingNotification(
-    loading,
-    grouped,
-    handleSelectArticle,
-    briefingPlayer.toggle,
-    !!(briefing?.available && briefing.date),
-  );
+  usePendingNotification(loading, grouped, handleSelectArticle, briefingPlayer.toggle);
 
   if (loading) return null;
 
@@ -509,7 +503,6 @@ export default function HomeScreen() {
       {!(briefingPlayer.playing || briefingPlayer.elapsed > 0) && (
         <BottomActionBar
           bottomInset={insets.bottom}
-          showBriefing={!!(briefing?.available && briefing.date)}
           zoomLabel={currentZoom.label}
           onBriefingPress={briefingPlayer.toggle}
           onZoomPress={handleZoomToggle}
@@ -519,19 +512,17 @@ export default function HomeScreen() {
       )}
 
       {/* Briefing player — shown while playing or paused mid-listen */}
-      {briefing?.available &&
-        briefing.date &&
-        (briefingPlayer.playing || briefingPlayer.elapsed > 0) && (
-          <BriefingBar
-            playing={briefingPlayer.playing}
-            elapsed={briefingPlayer.elapsed}
-            duration={briefingPlayer.duration}
-            date={briefing.date}
-            onToggle={briefingPlayer.toggle}
-            onSeek={briefingPlayer.seek}
-            onClose={briefingPlayer.close}
-          />
-        )}
+      {(briefingPlayer.playing || briefingPlayer.elapsed > 0) && (
+        <BriefingBar
+          playing={briefingPlayer.playing}
+          elapsed={briefingPlayer.elapsed}
+          duration={briefingPlayer.duration}
+          date={briefingPlayer.date}
+          onToggle={briefingPlayer.toggle}
+          onSeek={briefingPlayer.seek}
+          onClose={briefingPlayer.close}
+        />
+      )}
 
       <MenuSheet
         sheetRef={menuSheetRef}
@@ -655,12 +646,15 @@ export default function HomeScreen() {
         sheetRef={contextSheetRef}
         brief={contextBrief}
         loading={contextLoading}
+        error={contextError}
         threadLabel={contextThreadLabel}
         bottomInset={insets.bottom}
         renderBackdrop={renderBackdrop}
         onDismiss={() => {
           setContextThreadLabel(undefined);
+          resetContext();
         }}
+        onRetry={retryContext}
         onCountryPress={({ countryName, data }) => {
           setCountrySheet({
             countryName,

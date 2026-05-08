@@ -26,6 +26,7 @@ interface BriefingPlayer {
   playing: boolean;
   elapsed: number;
   duration: number;
+  date: string;
   toggle: () => void;
   seek: (seconds: number) => void;
   close: () => void;
@@ -41,7 +42,15 @@ function safeCreatePlayer(url: string): AudioPlayer | null {
   }
 }
 
+/** Today's UTC date as YYYY-MM-DD — fallback when the feed hasn't surfaced
+ *  a fresher briefing date. Briefings are generated on UTC cycles, so the
+ *  audio file at this URL is the one a "play latest" tap should hit. */
+function todayUtc(): string {
+  return new Date().toISOString().slice(0, 10);
+}
+
 export function useBriefingPlayer(date: string | undefined, feedDuration?: number): BriefingPlayer {
+  const effectiveDate = date ?? todayUtc();
   const [playing, setPlaying] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const playerRef = useRef<AudioPlayer | null>(null);
@@ -109,17 +118,16 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     return () => sub.remove();
   }, []);
 
-  // Preload audio as soon as we know the briefing date
+  // Preload audio for the latest briefing date
   useEffect(() => {
-    if (!date) return;
-    const url = `${API_BASE}/audio/briefing-${date}.mp3`;
+    const url = `${API_BASE}/audio/briefing-${effectiveDate}.mp3`;
     if (preloadedUrl.current !== url) {
       try {
         preload(url, { preferredForwardBufferDuration: 30 });
       } catch {}
       preloadedUrl.current = url;
     }
-  }, [date]);
+  }, [effectiveDate]);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: cleanup-only effect — runs on unmount, refs capture current values
   useEffect(() => {
@@ -171,8 +179,6 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   }, []);
 
   const toggle = useCallback(async () => {
-    if (!date) return;
-
     hapticImpact();
     userToggleAt.current = Date.now();
     closedRef.current = false;
@@ -233,7 +239,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
         await setIsAudioActiveAsync(true);
       } catch {} // May fail in Expo Go
 
-      const player = safeCreatePlayer(`${API_BASE}/audio/briefing-${date}.mp3`);
+      const player = safeCreatePlayer(`${API_BASE}/audio/briefing-${effectiveDate}.mp3`);
       if (!player) {
         // Native module unavailable (Expo Go) — fake expand for UI preview
         if (__DEV__) {
@@ -295,7 +301,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
             getItemAsync(POSITION_KEY),
             getItemAsync(DATE_KEY),
           ]);
-          if (savedDateStr === date && savedPos) {
+          if (savedDateStr === effectiveDate && savedPos) {
             const pos = parseInt(savedPos, 10);
             if (pos > 0) {
               player.seekTo(pos);
@@ -305,7 +311,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
         } catch {}
       }
 
-      savedDate.current = date;
+      savedDate.current = effectiveDate;
       playerRef.current = player;
       subRef.current = eventSub;
 
@@ -350,7 +356,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       playerRef.current?.remove();
       playerRef.current = null;
     }
-  }, [date, savePosition, writeLockScreenInfo]);
+  }, [effectiveDate, savePosition, writeLockScreenInfo]);
 
   const lastHapticSecRef = useRef(-1);
   const seek = useCallback((seconds: number) => {
@@ -404,5 +410,13 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   const effectiveDuration =
     feedDuration || (__DEV__ && !playerRef.current && elapsed > 0 ? 720 : 0);
 
-  return { playing, elapsed, duration: effectiveDuration, toggle, seek, close };
+  return {
+    playing,
+    elapsed,
+    duration: effectiveDuration,
+    date: effectiveDate,
+    toggle,
+    seek,
+    close,
+  };
 }

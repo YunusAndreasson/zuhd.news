@@ -9,7 +9,6 @@ const PILL_HIT_SLOP = 16;
 
 interface BottomActionBarProps {
   bottomInset: number;
-  showBriefing: boolean;
   zoomLabel: string;
   onBriefingPress: () => void;
   onZoomPress: () => void;
@@ -49,7 +48,6 @@ function ActionPill({
 
 export function BottomActionBar({
   bottomInset,
-  showBriefing,
   zoomLabel,
   onBriefingPress,
   onZoomPress,
@@ -61,14 +59,12 @@ export function BottomActionBar({
       style={[styles.bottomBar, { paddingBottom: Math.max(bottomInset, SPACING.sm) }]}
       pointerEvents="box-none"
     >
-      {showBriefing && (
-        <ActionPill
-          label="listen"
-          onPress={onBriefingPress}
-          accessibilityLabel="Daily briefing"
-          accessibilityHint="Plays today's audio briefing"
-        />
-      )}
+      <ActionPill
+        label="listen"
+        onPress={onBriefingPress}
+        accessibilityLabel="Daily briefing"
+        accessibilityHint="Plays today's audio briefing"
+      />
 
       <View style={styles.bottomSpacer} />
 

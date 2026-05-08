@@ -31,24 +31,31 @@ const MAX_CACHE = 50;
 interface ContextBriefState {
   brief: ContextBrief | null;
   loading: boolean;
+  error: boolean;
   fetchBrief: (threadId: string) => Promise<void>;
+  retry: () => Promise<void>;
+  reset: () => void;
 }
 
 export function useContextBrief(): ContextBriefState {
   const [brief, setBrief] = useState<ContextBrief | null>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const inflightRef = useRef<AbortController | null>(null);
+  const lastThreadIdRef = useRef<string | null>(null);
 
   useEffect(() => () => inflightRef.current?.abort(), []);
 
   const fetchBrief = useCallback(async (threadId: string) => {
     // Cancel any in-flight request — its response must not overwrite this one
     inflightRef.current?.abort();
+    lastThreadIdRef.current = threadId;
 
     const cached = cache.get(threadId);
     if (cached) {
       setBrief(cached);
       setLoading(false);
+      setError(false);
       return;
     }
 
@@ -56,6 +63,7 @@ export function useContextBrief(): ContextBriefState {
     inflightRef.current = controller;
     setBrief(null);
     setLoading(true);
+    setError(false);
 
     try {
       const raw = await fetchJson(`${API_BASE}/api/context/${threadId}.json`, isContextBrief, {
@@ -72,9 +80,22 @@ export function useContextBrief(): ContextBriefState {
         setLoading(false);
       }
     } catch {
-      if (!controller.signal.aborted) setLoading(false);
+      if (!controller.signal.aborted) {
+        setLoading(false);
+        setError(true);
+      }
     }
   }, []);
 
-  return { brief, loading, fetchBrief };
+  const retry = useCallback(async () => {
+    if (lastThreadIdRef.current) await fetchBrief(lastThreadIdRef.current);
+  }, [fetchBrief]);
+
+  const reset = useCallback(() => {
+    setBrief(null);
+    setError(false);
+    setLoading(false);
+  }, []);
+
+  return { brief, loading, error, fetchBrief, retry, reset };
 }

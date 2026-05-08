@@ -21,7 +21,6 @@ export function usePendingNotification(
   grouped: GroupedArticles,
   onSelectArticle: (slug: string, category: Category) => void,
   onPlayBriefing?: () => void,
-  briefingAvailable?: boolean,
 ): void {
   useEffect(() => {
     if (loading) return;
@@ -45,9 +44,9 @@ export function usePendingNotification(
       }
       if (category) onSelectArticle(slug, category);
     }
-    if (getPendingBriefing() && briefingAvailable && onPlayBriefing) {
+    if (getPendingBriefing() && onPlayBriefing) {
       clearPendingBriefing();
       onPlayBriefing();
     }
-  }, [loading, grouped, onSelectArticle, onPlayBriefing, briefingAvailable]);
+  }, [loading, grouped, onSelectArticle, onPlayBriefing]);
 }

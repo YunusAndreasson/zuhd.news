@@ -3,32 +3,34 @@ import {
   type BottomSheetModal,
   BottomSheetScrollView,
 } from '@gorhom/bottom-sheet';
+import type { CountryData } from '@shared/countries/country-data';
+import type { ContextBrief, TimelineEntry } from '@shared/types';
 import { memo, useEffect, useMemo, useRef } from 'react';
 import { AccessibilityInfo, ActivityIndicator, StyleSheet, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
-import { ANIMATION, SPACING, staggerDelay } from '../constants/theme';
-
-const TIMELINE_DOT = 7;
-const TIMELINE_LINE = 1.5;
-
-import type { CountryData } from '@shared/countries/country-data';
-import type { ContextBrief, TimelineEntry } from '@shared/types';
+import { ANIMATION, RADIUS, SPACING, staggerDelay } from '../constants/theme';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
+import { hapticImpact } from '../lib/haptics';
 import { makeMarkdownStyles } from '../lib/markdown';
 import { useOpenLink } from '../lib/open-link';
 import { renderBlocks } from './blocks';
-import { Markdown, Text } from './primitives';
+import { Markdown, Pressable, Stack, Text } from './primitives';
 import { SheetLayout } from './SheetLayout';
+
+const TIMELINE_DOT = 7;
+const TIMELINE_LINE = 1.5;
 
 interface ContextSheetProps {
   sheetRef: React.RefObject<BottomSheetModal | null>;
   brief: ContextBrief | null;
   loading: boolean;
+  error: boolean;
   threadLabel?: string;
   bottomInset: number;
   renderBackdrop: React.FC<BottomSheetBackdropProps>;
   onDismiss: () => void;
+  onRetry: () => void;
   onCountryPress?: (payload: { countryName: string; data: CountryData | null }) => void;
 }
 
@@ -36,10 +38,12 @@ export const ContextSheet = memo(function ContextSheet({
   sheetRef,
   brief,
   loading,
+  error,
   threadLabel,
   bottomInset,
   renderBackdrop,
   onDismiss,
+  onRetry,
   onCountryPress,
 }: ContextSheetProps) {
   const { colors, font, typography, sheetStyles } = useTheme();
@@ -62,7 +66,7 @@ export const ContextSheet = memo(function ContextSheet({
 
   const spanningBlocks = brief?.blocks ?? [];
   const hasSpanning = spanningBlocks.length > 0;
-  const hasContent = brief != null || hasSpanning;
+  const hasContent = brief != null || hasSpanning || error;
 
   const wasLoading = useRef(false);
   useEffect(() => {
@@ -183,8 +187,27 @@ export const ContextSheet = memo(function ContextSheet({
           </>
         )}
 
-        {loading && !brief && hasThread && (
-          <ActivityIndicator color={colors.accent} style={styles.loader} />
+        {loading && !brief && <ActivityIndicator color={colors.accent} style={styles.loader} />}
+
+        {!loading && !brief && error && (
+          <Stack align="center" gap="item" style={styles.errorBlock}>
+            <Text variant="body" style={styles.errorText}>
+              Couldn't load context.
+            </Text>
+            <Pressable
+              onPress={() => {
+                hapticImpact();
+                onRetry();
+              }}
+              accessibilityRole="button"
+              accessibilityLabel="Try again"
+              style={[styles.retryPill, { backgroundColor: colors.pillBg }]}
+            >
+              <Text variant="labelXs" tone="emphasis">
+                try again
+              </Text>
+            </Pressable>
+          </Stack>
         )}
 
         {hasSpanning &&
@@ -238,6 +261,17 @@ const styles = StyleSheet.create({
   },
   loader: {
     marginTop: SPACING.lg,
+  },
+  errorBlock: {
+    marginTop: SPACING.xl,
+  },
+  errorText: {
+    textAlign: 'center',
+  },
+  retryPill: {
+    paddingVertical: SPACING.sm,
+    paddingHorizontal: SPACING.md,
+    borderRadius: RADIUS.floating,
   },
   entry: {
     flexDirection: 'row',

@@ -2410,9 +2410,19 @@ export const MiniGlobe = memo(function MiniGlobe({
       {/* Permanent ice sheets — Antarctica + Greenland. Scientifically the two
           land masses covered in year-round ice; rendered as a bright fill over
           `landPath` so the globe reads climatologically correct. Opacity kept
-          modest so Greenland doesn't punch through the article backdrop. */}
+          modest so Greenland doesn't punch through the article backdrop.
+          Ice is the one globe layer whose semantic color shouldn't flip with
+          mode — snow is white in both. `colors.text` flips polarity (light
+          on dark / dark on light), so reusing it here painted Greenland and
+          Antarctica *darker* than the surrounding land in light mode (alpha-
+          composited ~#9A over ~#CE land — climatologically inverted). Hard-
+          coding white in light mode keeps ice brighter than land in both. */}
       {state.icePath && (
-        <Path path={state.icePath} color={colors.text} opacity={light ? 0.32 : 0.16} />
+        <Path
+          path={state.icePath}
+          color={light ? '#ffffff' : colors.text}
+          opacity={light ? 0.32 : 0.16}
+        />
       )}
 
       {/* Neighbouring country borders — visible when scroll is at rest */}
@@ -2422,6 +2432,7 @@ export const MiniGlobe = memo(function MiniGlobe({
           color={colors.accent}
           style="stroke"
           strokeWidth={0.7}
+          strokeJoin="round"
           opacity={light ? 0.3 : 0.3}
         />
       )}
@@ -2647,6 +2658,8 @@ export const MiniGlobe = memo(function MiniGlobe({
             color={colors.bg}
             style="stroke"
             strokeWidth={2.5}
+            strokeJoin="round"
+            strokeCap="round"
             opacity={(light ? 0.8 : 0.65) * state.riversOpacity}
           />
           <Path
@@ -2654,6 +2667,8 @@ export const MiniGlobe = memo(function MiniGlobe({
             color={colors.textEmphasis}
             style="stroke"
             strokeWidth={1.2}
+            strokeJoin="round"
+            strokeCap="round"
             opacity={(light ? 0.85 : 0.55) * state.riversOpacity}
           />
         </>

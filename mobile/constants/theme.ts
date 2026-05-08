@@ -448,12 +448,18 @@ export function makeTextVariants(colors: ColorPalette, font: FontSet, typography
       fontVariant: ['oldstyle-nums'] as TextStyle['fontVariant'],
       color: colors.accent,
     } as TextStyle,
-    /** Paragraph text with oldstyle nums */
+    /** Paragraph text with oldstyle nums.
+     *  letterSpacing: Source Sans 3 Regular is on the thin side; SF compensates
+     *  for halation on dark backgrounds via per-size optical tracking, custom
+     *  fonts don't. +0.1 opens the prose enough to remove the smear without
+     *  changing rhythm. Applied to all three body variants so emphasis and
+     *  italic stay metrically consistent with regular. */
     body: {
       ...font.regular,
       ...ANDROID_TEXT_BASE,
       fontSize: typography.sizeBase,
       lineHeight: typography.sizeBase * typography.leadingBody,
+      letterSpacing: 0.1,
       fontVariant: ['oldstyle-nums'] as TextStyle['fontVariant'],
       color: colors.text,
     } as TextStyle,
@@ -463,6 +469,7 @@ export function makeTextVariants(colors: ColorPalette, font: FontSet, typography
       ...ANDROID_TEXT_BASE,
       fontSize: typography.sizeBase,
       lineHeight: typography.sizeBase * typography.leadingBody,
+      letterSpacing: 0.1,
       fontVariant: ['oldstyle-nums'] as TextStyle['fontVariant'],
       color: colors.textEmphasis,
     } as TextStyle,
@@ -472,6 +479,7 @@ export function makeTextVariants(colors: ColorPalette, font: FontSet, typography
       ...ANDROID_TEXT_BASE,
       fontSize: typography.sizeBase,
       lineHeight: typography.sizeBase * typography.leadingBody,
+      letterSpacing: 0.1,
       fontVariant: ['oldstyle-nums'] as TextStyle['fontVariant'],
       color: colors.text,
     } as TextStyle,

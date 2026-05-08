@@ -20,8 +20,16 @@ describe('smartTypography', () => {
   });
 
   it('converts triple dash to em dash before double dash to en dash', () => {
-    // Order matters: --- must be replaced before -- to avoid partial matches
-    expect(smartTypography('a---b--c')).toBe('a\u2014b\u2013c');
+    // Order matters: --- must be replaced before -- to avoid partial matches.
+    // ZWSP (\u200b) inserted after each dash that's adjacent to a non-space
+    // char gives RN's line-breaker a soft-break opportunity so unspaced
+    // `EU--Russia`-style tokens don't bleed past the column.
+    expect(smartTypography('a---b--c')).toBe('a\u2014\u200bb\u2013\u200bc');
+  });
+
+  it('does not insert ZWSP when dash is followed by whitespace', () => {
+    // `word -- word` (already breakable) stays unchanged after the en dash.
+    expect(smartTypography('word -- word')).toBe('word \u2013 word');
   });
 
   it('converts three dots to ellipsis', () => {

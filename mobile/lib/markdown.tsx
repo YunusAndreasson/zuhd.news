@@ -27,19 +27,28 @@ const defaultOpenLink: LinkOpener = (url) => {
 };
 
 export function smartTypography(s: string): string {
-  return s
-    .replace(/(\s|^)"(\S)/g, '$1\u201c$2') // opening double quote
-    .replace(/"/g, '\u201d') // closing double quote
-    .replace(/(\s|^)'(\S)/g, '$1\u2018$2') // opening single quote
-    .replace(/'/g, '\u2019') // closing single quote / apostrophe
-    .replace(/---/g, '\u2014') // em dash
-    .replace(/--/g, '\u2013') // en dash
-    .replace(/\.\.\./g, '\u2026') // ellipsis
-    .replace(/\b1\/4\b/g, '\u00BC') // ¼
-    .replace(/\b1\/2\b/g, '\u00BD') // ½
-    .replace(/\b3\/4\b/g, '\u00BE') // ¾
-    .replace(/\b1\/3\b/g, '\u2153') // ⅓
-    .replace(/\b2\/3\b/g, '\u2154'); // ⅔
+  return (
+    s
+      .replace(/(\s|^)"(\S)/g, '$1\u201c$2') // opening double quote
+      .replace(/"/g, '\u201d') // closing double quote
+      .replace(/(\s|^)'(\S)/g, '$1\u2018$2') // opening single quote
+      .replace(/'/g, '\u2019') // closing single quote / apostrophe
+      .replace(/---/g, '\u2014') // em dash
+      .replace(/--/g, '\u2013') // en dash
+      .replace(/\.\.\./g, '\u2026') // ellipsis
+      // Break opportunity after en/em dashes that aren't already surrounded
+      // by whitespace (e.g. `EU\u2013Russia`, `mid\u20131990s`). RN's line-breaker
+      // doesn't treat \u2013/\u2014 as soft breaks, so without this an unspaced
+      // dash glues both sides into a single unbreakable token and the tail
+      // bleeds past the column at narrow widths. ZWSP is invisible and only
+      // acts when the word would otherwise overflow.
+      .replace(/([\u2013\u2014])(\S)/g, '$1\u200b$2')
+      .replace(/\b1\/4\b/g, '\u00BC') // ¼
+      .replace(/\b1\/2\b/g, '\u00BD') // ½
+      .replace(/\b3\/4\b/g, '\u00BE') // ¾
+      .replace(/\b1\/3\b/g, '\u2153') // ⅓
+      .replace(/\b2\/3\b/g, '\u2154')
+  ); // ⅔
 }
 
 /** Strip any unpaired markdown emphasis markers from a literal text run.
@@ -202,18 +211,37 @@ export function makeMarkdownStyles(
       ...ANDROID_TEXT_BASE,
       fontSize: typography.sizeBase,
       lineHeight: typography.sizeBase * typography.leadingBody,
+      // Mirrors the `body` variant tracking — Source Sans 3 Regular reads
+      // tight on dark; +0.1 opens prose without changing rhythm.
+      letterSpacing: 0.1,
+      // iOS measures line widths from glyph advances and ignores the kern
+      // trail letterSpacing adds after the rightmost glyph. With the article
+      // container's overflow:hidden, that ~1pt overhang clips the trailing
+      // edge of the last character on each line — most visible on glyphs
+      // with a vertical right side (closing curly quote, comma, semicolon).
+      // 2pt of paddingRight gives the trail room without changing wrap or
+      // column rhythm.
+      paddingRight: 2,
       color: colors.text,
       marginBottom: typography.sizeBase * 0.5,
       fontVariant: ['oldstyle-nums'],
     },
+    // Re-declare `fontVariant` on each emphasis style. RN drops fontVariant
+    // across a font-family switch on Android (same gotcha noted on `dateline`
+    // below), so without it a bolded "$106" inside body prose silently flips
+    // to lining figures and breaks column alignment with surrounding oldstyle
+    // digits.
     bold: {
       ...font.bold,
+      fontVariant: ['oldstyle-nums'],
     },
     italic: {
       ...font.italic,
+      fontVariant: ['oldstyle-nums'],
     },
     boldItalic: {
       ...font.boldItalic,
+      fontVariant: ['oldstyle-nums'],
     },
     link: {
       color: colors.accent,
