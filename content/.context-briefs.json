@@ -135624,5 +135624,1438 @@
     "label": "Hormuz Closure & US-Iran Diplomacy",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-08-agri-stats-meat-antitrust-settlement": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL DISTINCTION",
+        "body": "Explicit collusion — competitors agreeing in a smoke-filled room to fix prices — is a per se Sherman Act violation, criminal since 1890. Tacit collusion through shared information is a gray zone: nobody agreed to anything, but everyone knows what everyone else is doing. Antitrust law has spent a century trying to draw the line.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine is *conscious parallelism* — firms moving in lockstep without communicating. Courts have ruled this alone is **not illegal**; the plus factor is what data exchange provides."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DATA AGGREGATORS WORK",
+        "body": "Agri Stats collected granular weekly data — plant-level production, kill weights, margins — from competing meatpackers, anonymized it, and sold it back. In a concentrated market, even anonymized peer data tells each player exactly what its rivals are doing. The aggregator becomes the coordination mechanism without anyone signing a price-fixing agreement."
+      },
+      {
+        "heading": "THE PACKERS AND STOCKYARDS ACT",
+        "body": "Congress passed the Packers and Stockyards Act in 1921 after Teddy Roosevelt's trustbusters broke the original 'Beef Trust' — Swift, Armour, Cudahy, Morris, Wilson — which then controlled the same share of US meat that the Big Four control today. The law was supposed to prevent reconcentration. It didn't.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1905",
+                "label": "Beef Trust antitrust case (Swift v. US)"
+              },
+              {
+                "year": "1921",
+                "label": "Packers and Stockyards Act",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1980",
+                "label": "Reagan-era merger doctrine relaxes enforcement"
+              },
+              {
+                "year": "2008",
+                "label": "JBS-Smithfield acquisitions reshape sector"
+              },
+              {
+                "year": "2020",
+                "label": "Tyson, JBS, Cargill, National Beef = 85% of beef"
+              },
+              {
+                "year": "2025",
+                "label": "DOJ opens beef investigation"
+              }
+            ],
+            "label": "a century of beef concentration"
+          }
+        ]
+      },
+      {
+        "heading": "THE BIG FOUR",
+        "body": "Four firms — Tyson, JBS, Cargill, and National Beef — slaughter roughly 85% of US fed cattle. Concentration this extreme means a rancher selling cattle has effectively four buyers nationwide; a small move by any one of them ripples through farmgate prices.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Tyson",
+                "value": "~24%",
+                "cc": "US",
+                "weight": 24,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "JBS",
+                "value": "~22%",
+                "cc": "BR",
+                "weight": 22,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Cargill",
+                "value": "~22%",
+                "cc": "US",
+                "weight": 22,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "National Beef",
+                "value": "~17%",
+                "cc": "US",
+                "weight": 17,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "All others",
+                "value": "~15%",
+                "weight": 15,
+                "tone": "neutral"
+              }
+            ],
+            "label": "US beef packer market share"
+          }
+        ]
+      },
+      {
+        "heading": "WHY $350,000 IS SYMBOLIC",
+        "body": "The fine is roughly what a single mid-tier executive earns in a year. The leverage is not the dollar amount — it is the consent decree that follows: Agri Stats now operates under DOJ supervision, with restrictions on what data it can collect, aggregate, and resell. The information pipeline itself is what gets dismantled."
+      },
+      {
+        "heading": "WHO PAYS",
+        "body": "Cattle ranchers receive a smaller share of the retail beef dollar today than at any point since USDA records began in 1970 — roughly 37 cents on the dollar versus over 60 cents in the 1970s. The gap, the spread between farmgate and retail, is where concentration extracts its rent.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of the US retail beef dollar reaches the cattle rancher today?",
+            "options": [
+              "About 37 cents",
+              "About 55 cents",
+              "About 70 cents",
+              "About 85 cents"
+            ],
+            "correct": 0,
+            "explanation": "USDA data show ranchers' share has fallen from over 60 cents in the 1970s to around 37 cents today — the spread accrues to the four packers in between."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-08T22:34:22.016Z",
+    "label": "Information Exchange & Tacit Collusion",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-08-apophis-ramses-esa-jaxa-mission": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 2029 ENCOUNTER",
+        "body": "Apophis is a 340-meter near-Earth asteroid that will pass within 32,000 km of Earth's surface on April 13, 2029 — closer than geostationary satellites orbit. It will be visible to the naked eye over Europe and Africa, the first time in recorded history a major asteroid passes that close to a populated planet.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "At ~32,000 km, Apophis crosses *inside* the geostationary belt at **35,786 km** — the orbit where weather, TV, and military comms satellites sit."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE NAME",
+        "body": "Discovered in 2004 and initially given a 2.7% chance of striking Earth in 2029 — the highest impact probability ever assigned — astronomers named it after the Egyptian god of chaos and destruction. Refined orbital data later ruled out impact for both 2029 and 2036."
+      },
+      {
+        "heading": "WHAT TIDAL FORCES DO",
+        "body": "When a rubble-pile asteroid passes close to a planet, the gravitational gradient across its body — stronger pull on the near side than the far side — can stretch, crack, and resurface it. Apophis is the first chance to watch this happen to a kilometer-scale object in real time.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes Apophis a 'rubble pile' rather than a solid rock?",
+            "options": [
+              "It is held together by gravity, not material strength",
+              "It is composed primarily of ice",
+              "It is a fragment of a larger broken planet",
+              "It contains hollow cavities filled with gas"
+            ],
+            "correct": 0,
+            "explanation": "Most asteroids over ~200m are loose aggregates of boulders bound by mutual gravity — which is why tidal forces can reshape them."
+          }
+        ]
+      },
+      {
+        "heading": "THE DART PRECEDENT",
+        "body": "NASA's DART mission slammed a probe into the asteroid Dimorphos in 2022, shortening its orbit by 32 minutes — the first demonstration that humans can deflect an asteroid. Ramses is the observation half of that doctrine: you cannot deflect what you cannot characterize.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "NASA (DART, 2022)",
+                "role": "Kinetic impactor demo",
+                "cc": "US"
+              },
+              {
+                "name": "ESA (Hera, 2024)",
+                "role": "DART aftermath survey",
+                "cc": "EU"
+              },
+              {
+                "name": "ESA + JAXA (Ramses)",
+                "role": "Apophis rendezvous",
+                "cc": "EU"
+              },
+              {
+                "name": "China CNSA (2030s)",
+                "role": "Planned 2025 PHA test",
+                "cc": "CN"
+              }
+            ],
+            "label": "the planetary defense cast"
+          }
+        ]
+      },
+      {
+        "heading": "WHY RENDEZVOUS, NOT FLYBY",
+        "body": "A flyby gives minutes of data; a rendezvous gives months. Ramses arrives before the close approach and stays through it, measuring the asteroid's spin, shape, and internal structure as Earth's gravity squeezes it. The science is in the *change*, not the snapshot."
+      },
+      {
+        "heading": "THE FREQUENCY",
+        "body": "Asteroids of Apophis's size pass this close to Earth roughly once every 7,500 years on average. Missing the 2029 window means waiting for a target that, in human terms, will not come again."
+      }
+    ],
+    "generatedAt": "2026-05-08T22:34:51.029Z",
+    "label": "Apophis & Planetary Defense",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-08-cloudflare-twenty-percent-layoffs": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT CLOUDFLARE ACTUALLY DOES",
+        "body": "Cloudflare sits between the public internet and the origin servers of millions of websites. It absorbs DDoS attacks, caches static content close to users, and terminates TLS connections — meaning it sees the unencrypted traffic of a meaningful share of the web before re-encrypting it onward.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Cloudflare is a *reverse proxy* at planetary scale: requests hit Cloudflare's edge first, then Cloudflare hits the origin. The customer's server never speaks directly to the user."
+          }
+        ]
+      },
+      {
+        "heading": "THE EDGE NETWORK",
+        "body": "Cloudflare runs points of presence in over 330 cities. Every PoP can serve every customer because configuration is pushed globally within seconds. This anycast architecture is why a small site gets the same DDoS protection as a Fortune 500 — the same hardware handles both.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Cloudflare",
+                "value": "330+ cities",
+                "weight": 330
+              },
+              {
+                "label": "Akamai",
+                "value": "~700 cities",
+                "weight": 700
+              },
+              {
+                "label": "Fastly",
+                "value": "~80 PoPs",
+                "weight": 80
+              },
+              {
+                "label": "AWS CloudFront",
+                "value": "~600 PoPs",
+                "weight": 600
+              }
+            ],
+            "label": "CDN / edge network footprint (PoPs)"
+          }
+        ]
+      },
+      {
+        "heading": "THE CONCENTRATION PROBLEM",
+        "body": "When Cloudflare has an outage, large parts of the visible web go dark simultaneously — Discord, Shopify storefronts, news sites, government portals. Roughly one-fifth of all websites depend on it. The internet was designed to be decentralized; the economics of edge infrastructure have re-centralized it into a handful of providers."
+      },
+      {
+        "heading": "THE BUSINESS MODEL",
+        "body": "Cloudflare's free tier is the loss leader: it onboards millions of small sites, which generates the traffic data and threat intelligence that makes the paid enterprise tier valuable. The same DDoS attack hitting a free blog teaches the network how to defend a bank.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Cloudflare offer industrial-grade DDoS protection on its free tier?",
+            "options": [
+              "Regulatory requirement for internet infrastructure",
+              "The threat data from free customers improves enterprise defenses",
+              "Marketing — most free users eventually upgrade",
+              "Antitrust settlement with the FTC"
+            ],
+            "correct": 1,
+            "explanation": "Every attack absorbed anywhere on the network feeds the rule sets that protect every other customer. Free users are sensors as much as customers."
+          }
+        ]
+      },
+      {
+        "heading": "THE TECH LAYOFF ARC",
+        "body": "The 2022–2026 layoff cycle at large tech firms followed a pattern: hiring overshoot during the zero-rate pandemic boom, then sharp cuts as interest rates rose and AI capex displaced headcount budgets. Cloudflare's cut joins Meta, Google, Microsoft, and Amazon — each having shed five-figure headcounts since 2022.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2022-11",
+                "label": "Meta cuts 11,000"
+              },
+              {
+                "year": "2023-01",
+                "label": "Google cuts 12,000",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-03",
+                "label": "Meta cuts another 10,000"
+              },
+              {
+                "year": "2024-01",
+                "label": "Microsoft cuts gaming 1,900"
+              },
+              {
+                "year": "2025",
+                "label": "AI capex displaces headcount"
+              },
+              {
+                "year": "2026-05",
+                "label": "Cloudflare cuts 1,100"
+              }
+            ],
+            "label": "the post-ZIRP tech layoff cycle"
+          }
+        ]
+      },
+      {
+        "heading": "THE TLS VANTAGE POINT",
+        "body": "Because Cloudflare terminates encryption for its customers, it is one of a small number of private entities with visibility into a meaningful slice of the world's web traffic in plaintext. This is a governance question more than a technical one — the company's policies on law enforcement requests and content moderation effectively set norms for a fifth of the web."
+      }
+    ],
+    "generatedAt": "2026-05-08T22:35:23.219Z",
+    "label": "Cloudflare & Internet Infrastructure",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-08-gm-california-driver-data-ccpa-fine": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT TELEMATICS ACTUALLY CAPTURES",
+        "body": "Modern cars stream hundreds of signals over cellular modems: GPS coordinates every few seconds, hard-braking events, acceleration curves, seatbelt status, even steering inputs. The vehicle is no longer a product the buyer owns outright — it is a sensor platform with a SIM card.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is **OEM telematics** — data flowing from the automaker's embedded modem, distinct from aftermarket dongles. Owners typically consent in a 40-page click-through bundled with the infotainment activation."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEXISNEXIS PIPELINE",
+        "body": "GM, Honda, Hyundai, and others routed driving data through LexisNexis Risk Solutions and Verisk — the same data brokers that compile insurance risk reports. Insurers then quoted higher premiums to drivers flagged for hard braking, without the drivers knowing their car had been the source.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "General Motors",
+                "role": "telematics collector",
+                "cc": "US"
+              },
+              {
+                "name": "LexisNexis Risk",
+                "role": "data broker / aggregator",
+                "cc": "US"
+              },
+              {
+                "name": "Verisk Analytics",
+                "role": "insurance analytics broker",
+                "cc": "US"
+              },
+              {
+                "name": "Auto insurers",
+                "role": "premium pricers",
+                "cc": "US"
+              }
+            ],
+            "label": "the data pipeline"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CALIFORNIA, NOT WASHINGTON",
+        "body": "The US has no federal data privacy law. The CCPA (2018, expanded by CPRA in 2020) gives California residents rights to know, delete, and opt out of sale of personal data — and gives the state Attorney General authority to fine violators. Without it, this enforcement action would not exist.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "California",
+                "value": "CCPA/CPRA + agency",
+                "cc": "US",
+                "tone": "favorable"
+              },
+              {
+                "label": "Colorado",
+                "value": "CPA, AG enforced",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "Virginia",
+                "value": "VCDPA, AG only",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "Texas",
+                "value": "TDPSA, narrow",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "Most states",
+                "value": "no law",
+                "cc": "US",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "US state privacy regimes"
+          }
+        ]
+      },
+      {
+        "heading": "THE EU CONTRAST",
+        "body": "Under the GDPR, this arrangement would have been illegal from day one — selling location and behavioral data without explicit, granular, revocable consent triggers fines up to 4% of global revenue. For GM, that ceiling would be roughly $7 billion, not $12 million.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "GDPR's *purpose limitation* principle says data collected for one reason (running the car) cannot be repurposed (sold to insurers) without fresh consent. US law has no equivalent default."
+          }
+        ]
+      },
+      {
+        "heading": "THE THIRD-PARTY DOCTRINE",
+        "body": "US Fourth Amendment law since Smith v. Maryland (1979) holds that information voluntarily shared with a third party — phone company, bank, automaker — loses constitutional protection. Your car's location pings to GM's servers are, under current doctrine, not yours to protect.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which 1979 Supreme Court case established that data shared with a third party loses Fourth Amendment protection?",
+            "options": [
+              "Katz v. United States",
+              "Smith v. Maryland",
+              "Carpenter v. United States",
+              "United States v. Jones"
+            ],
+            "correct": 1,
+            "explanation": "Smith v. Maryland (1979) ruled that phone numbers dialed — shared with the phone company — had no reasonable expectation of privacy. The doctrine now covers most digital exhaust."
+          }
+        ]
+      },
+      {
+        "heading": "THE ENFORCEMENT GAP",
+        "body": "$12 million is roughly four hours of GM's 2024 revenue. The fine's deterrent value is symbolic, not financial. Real privacy enforcement in the US comes from class action settlements (the Illinois BIPA biometric law has produced billion-dollar payouts) — not regulatory penalties."
+      }
+    ],
+    "generatedAt": "2026-05-08T22:35:59.274Z",
+    "label": "Telematics & Privacy Law",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-08-google-ai-overviews-more-links": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GRAND BARGAIN",
+        "body": "The open web ran on an implicit deal: search engines crawl your content for free, and in exchange they send you traffic you can monetize. Publishers tolerated indexing because the referral was the payment. AI Overviews break the bargain by answering the query without forwarding the click.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The economic term is **disintermediation** — the search engine inserts itself between question and source, and keeps the attention that used to flow downstream."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 90% IS THE NUMBER THAT MATTERS",
+        "body": "Digital ad revenue scales linearly with pageviews. A 90% referral collapse is not a haircut — it is a business-model extinction event for any publisher whose costs (reporters, editors, hosting) were calibrated to the pre-AI traffic baseline. Most newsrooms cannot survive a 50% cut, let alone 90%."
+      },
+      {
+        "heading": "THE GATEKEEPER DESIGNATION",
+        "body": "The EU's Digital Markets Act took effect in 2023 and designated six 'gatekeepers' — Alphabet, Amazon, Apple, ByteDance, Meta, Microsoft — based on user count, market cap, and entrenched market position. Gatekeepers face obligations the rest of the market does not, including bans on self-preferencing in search results.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Alphabet",
+                "role": "Search, Android, YouTube",
+                "cc": "US"
+              },
+              {
+                "name": "Amazon",
+                "role": "Marketplace, advertising",
+                "cc": "US"
+              },
+              {
+                "name": "Apple",
+                "role": "App Store, iOS",
+                "cc": "US"
+              },
+              {
+                "name": "ByteDance",
+                "role": "TikTok",
+                "cc": "CN"
+              },
+              {
+                "name": "Meta",
+                "role": "Facebook, Instagram, WhatsApp",
+                "cc": "US"
+              },
+              {
+                "name": "Microsoft",
+                "role": "Windows, LinkedIn",
+                "cc": "US"
+              }
+            ],
+            "label": "the six DMA gatekeepers"
+          }
+        ]
+      },
+      {
+        "heading": "THE ROBOTS.TXT TRAP",
+        "body": "Publishers who block Google's AI crawler risk being deindexed from regular search too — the bots share infrastructure and the opt-outs are entangled. This is the leverage: the same company that takes your content for AI training is the one whose referral traffic you cannot afford to lose.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't most publishers simply block Google's AI from training on their content?",
+            "options": [
+              "Robots.txt is legally binding only against AI crawlers",
+              "Blocking the AI crawler risks deindexing from regular Google search too",
+              "The DMA forbids publishers from blocking gatekeeper crawlers",
+              "Google pays publishers more if they allow AI training"
+            ],
+            "correct": 1,
+            "explanation": "Google's crawlers are entangled — opting out of AI training has historically risked broader search visibility, which most publishers cannot afford to lose."
+          }
+        ]
+      },
+      {
+        "heading": "THE SUBSCRIPTION API PIVOT",
+        "body": "A licensing API reframes the relationship: instead of crawling for free and sending traffic, Google would pay (or charge readers) for structured access to publisher content. This mirrors what OpenAI has done with the AP, News Corp, and Axel Springer — bilateral deals that bypass the open-web compact entirely. The losers are publishers too small to negotiate individually."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Australia's 2021 News Media Bargaining Code forced Google and Meta to pay Australian publishers for news links. Google briefly threatened to pull search from Australia; both companies ultimately signed deals worth a few hundred million dollars annually. Canada passed a similar law in 2023; Meta blocked news entirely on Facebook and Instagram in Canada in response."
+      }
+    ],
+    "generatedAt": "2026-05-08T22:36:31.690Z",
+    "label": "AI Overviews & the Referral Economy",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-08-hantavirus-cruise-ship-mv-hondius": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PATHOGEN",
+        "body": "Hantaviruses are rodent-borne RNA viruses in the Bunyavirales order. Most strains infect humans only through inhaled aerosols of dried rodent urine or droppings — a dead-end zoonosis. Andes orthohantavirus is the documented exception: it transmits person-to-person.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Named for the *Andes* region of Patagonia where it was first isolated in 1995, **ANDV** is carried by the long-tailed pygmy rice rat (*Oligoryzomys longicaudatus*)."
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO SYNDROMES",
+        "body": "Old World hantaviruses (Hantaan, Seoul, Puumala) cause hemorrhagic fever with renal syndrome — kidneys fail, mortality 1–15%. New World hantaviruses (Sin Nombre, Andes) cause hantavirus pulmonary syndrome — lungs flood with fluid, mortality 30–50%. Same family, different organ targets."
+      },
+      {
+        "heading": "THE PRODROME TRAP",
+        "body": "The first 3–7 days look like flu: fever, muscle ache, fatigue. Then within hours, capillaries in the lungs leak and patients drown in their own plasma. By the time HPS is recognizable as HPS, the cardiopulmonary phase is already underway and ICU admission is the only intervention that helps.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes Andes hantavirus uniquely dangerous among hantaviruses?",
+            "options": [
+              "It is airborne over long distances",
+              "It transmits person-to-person",
+              "It infects domesticated cattle",
+              "It survives freezing for years"
+            ],
+            "correct": 1,
+            "explanation": "Andes is the only hantavirus with documented human-to-human transmission, confirmed in Argentine and Chilean outbreaks since 1996."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1993 DISCOVERY",
+        "body": "Hantavirus pulmonary syndrome was unknown to medicine until a cluster of healthy young Navajo adults died of acute respiratory failure in the Four Corners region of the US Southwest in 1993. CDC traced it to deer mice whose populations had exploded after an unusually wet El Niño year. The disease had probably been killing people for centuries; nobody had connected the cases."
+      },
+      {
+        "heading": "WHY A SHIP IS THE WORST VENUE",
+        "body": "Cruise ships combine three amplifiers: shared ventilation that recirculates aerosols, dense passenger contact, and a closed population that can't disperse during the 3–6 week incubation. The 2020 Diamond Princess COVID outbreak demonstrated the architecture; Andes' person-to-person transmission makes it a closer fit than any prior hantavirus event.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CV",
+              "AR",
+              "CL"
+            ],
+            "label": "Andes hantavirus: endemic range vs current outbreak",
+            "caption": "ANDV is endemic to southern Argentina and Chile; Cape Verde is ~10,000 km outside its reservoir range.",
+            "markers": [
+              {
+                "lat": 16.5388,
+                "lng": -23.0418,
+                "label": "Cape Verde — MV Hondius"
+              },
+              {
+                "lat": -41.1335,
+                "lng": -71.3103,
+                "label": "Bariloche — 1996 ANDV cluster"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "NO VACCINE, NO ANTIVIRAL",
+        "body": "Ribavirin works against Old World hantaviruses if given early; trials against HPS strains have failed. There is no licensed vaccine for any hantavirus outside South Korea (where Hantavax targets Hantaan virus for military use). Treatment is supportive: ECMO, mechanical ventilation, and fluid management threading the needle between pulmonary edema and circulatory collapse."
+      }
+    ],
+    "generatedAt": "2026-05-08T22:37:06.119Z",
+    "label": "Andes Hantavirus",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-08-pentagon-jet-fuel-leak-joint-base-andrews": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SOVEREIGN IMMUNITY PROBLEM",
+        "body": "Federal facilities are shielded from most state environmental enforcement by sovereign immunity. The 1992 Federal Facility Compliance Act partially waived this for hazardous waste, but reporting timelines and penalties still get filtered through inter-agency negotiation rather than direct state authority.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine: a state cannot fine the federal government without the federal government's *consent*. Maryland can demand answers from Andrews; it cannot subpoena them the way it could a private refinery."
+          }
+        ]
+      },
+      {
+        "heading": "WHY JET FUEL IS DIFFERENT",
+        "body": "JP-8, the military's standard kerosene, contains benzene, toluene, and naphthalene — all carcinogens that dissolve readily in groundwater. Unlike crude, jet fuel has additives (icing inhibitors, corrosion preventives) that resist biodegradation, so contamination plumes persist for decades."
+      },
+      {
+        "heading": "THE PISCATAWAY PATH",
+        "body": "Piscataway Creek drains directly into the tidal Potomac roughly 15 miles south of DC, then into Chesapeake Bay — the largest estuary in the United States and a federally protected fishery. A spill at Andrews is not a local creek problem; it enters one of the most regulated watersheds in the country.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US"
+            ],
+            "label": "the watershed",
+            "markers": [
+              {
+                "lat": 38.8108,
+                "lng": -76.8669,
+                "label": "Joint Base Andrews"
+              },
+              {
+                "lat": 38.7,
+                "lng": -77.05,
+                "label": "Piscataway Creek mouth"
+              },
+              {
+                "lat": 38.9,
+                "lng": -77.04,
+                "label": "Washington DC"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "The Pentagon's reporting record is poor. Camp Lejeune contaminated drinking water with benzene and TCE for over thirty years (1953–1987); the Marine Corps knew by the early 1980s but only acknowledged it publicly in 1999. Congress eventually passed a 2012 act granting affected families care — the disclosure gap was measured in decades, not months."
+      },
+      {
+        "heading": "PFAS AND THE BIGGER LIABILITY",
+        "body": "Andrews, like every major US airbase, used aqueous film-forming foam (AFFF) for fire training — the source of the PFAS \"forever chemicals\" contamination found at 700+ DoD sites. The Pentagon's estimated environmental cleanup liability across all bases now exceeds $40 billion. A 32,000-gallon fuel spill is, in this context, a routine entry on a very long ledger.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many US military sites have confirmed PFAS contamination from firefighting foam?",
+            "options": [
+              "Around 50",
+              "Around 200",
+              "Over 700",
+              "Over 2,000"
+            ],
+            "correct": 2,
+            "explanation": "DoD's own 2023 inventory lists 700+ installations with confirmed or suspected PFAS contamination, mostly from decades of AFFF training burns."
+          }
+        ]
+      },
+      {
+        "heading": "WHO ENFORCES",
+        "body": "The EPA, not the state, is the lead regulator on federal facilities under CERCLA (Superfund). Maryland's Department of the Environment can investigate and publicize, but binding cleanup orders flow through a Federal Facility Agreement negotiated between EPA and DoD — a process that typically takes years, not weeks."
+      }
+    ],
+    "generatedAt": "2026-05-08T22:37:38.278Z",
+    "label": "Military Bases & Environmental Law",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-08-poland-enters-g20-economy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BALCEROWICZ SHOCK",
+        "body": "In January 1990, Finance Minister Leszek Balcerowicz launched the most aggressive post-communist transition in Europe: prices freed overnight, subsidies cut, the zloty made convertible, state firms exposed to import competition. Output collapsed for two years, then began the longest growth run in modern European history.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The package was nicknamed *shock therapy* — a deliberate contrast with the gradualism Hungary and Czechoslovakia chose. Poland's bet was that the pain compresses if you take it all at once."
+          }
+        ]
+      },
+      {
+        "heading": "THE GROWTH STREAK",
+        "body": "Poland is the only EU economy that did not register a single year of recession between 1992 and 2019 — through the dot-com bust, the 2008 financial crisis, and the eurozone debt crisis. Joining the EU in 2004 unlocked the single market and structural funds; staying out of the euro preserved monetary flexibility through 2008.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1989",
+                "label": "Round Table talks end communism"
+              },
+              {
+                "year": "1990",
+                "label": "Balcerowicz Plan",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1999",
+                "label": "NATO accession"
+              },
+              {
+                "year": "2004",
+                "label": "EU accession"
+              },
+              {
+                "year": "2008",
+                "label": "Survives GFC without recession"
+              },
+              {
+                "year": "2025",
+                "label": "Overtakes Switzerland"
+              }
+            ],
+            "label": "the convergence arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY NOT THE EURO",
+        "body": "Poland's 2003 referendum committed it to eventual euro adoption, but no government has set a date. The złoty's float let the central bank cut rates and devalue 30% in 2008-09 — a release valve eurozone members like Greece and Spain didn't have.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Poland",
+                "value": "+2.8%",
+                "cc": "PL",
+                "tone": "favorable"
+              },
+              {
+                "label": "Germany",
+                "value": "−5.7%",
+                "cc": "DE",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Greece",
+                "value": "−4.3%",
+                "cc": "GR",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Spain",
+                "value": "−3.8%",
+                "cc": "ES",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Italy",
+                "value": "−5.5%",
+                "cc": "IT",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "GFC outcome by monetary regime, 2009 GDP"
+          }
+        ]
+      },
+      {
+        "heading": "THE CONVERGENCE MACHINE",
+        "body": "EU structural and cohesion funds transferred over €200 billion to Poland between 2004 and 2024 — roads, rail, water, broadband. The country became the largest net recipient in EU history. The infrastructure dividend compounds: lower logistics costs attract manufacturing, which attracts supply chains, which attract more investment.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Cumulative EU cohesion funds received, 2004–2024",
+            "peers": [
+              {
+                "value": 215,
+                "cc": "PL"
+              },
+              {
+                "value": 160,
+                "cc": "ES"
+              },
+              {
+                "value": 120,
+                "cc": "IT"
+              },
+              {
+                "value": 85,
+                "cc": "GR"
+              },
+              {
+                "value": 78,
+                "cc": "PT"
+              },
+              {
+                "value": 70,
+                "cc": "HU"
+              },
+              {
+                "value": 68,
+                "cc": "RO"
+              },
+              {
+                "value": 55,
+                "cc": "CZ"
+              }
+            ],
+            "subjectCc": "PL",
+            "unit": "€bn"
+          }
+        ]
+      },
+      {
+        "heading": "THE G20 INVITATION TRAP",
+        "body": "The G20 was conceived in 1999 as a forum for systemically important economies. Its membership has not changed since founding — no country has been added or removed. Guest invitations (Spain has attended every summit since 2008 without becoming a member) are a way for hosts to flatter without setting precedent.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country has attended every G20 summit as a permanent guest without ever becoming a full member?",
+            "options": [
+              "Norway",
+              "Spain",
+              "Switzerland",
+              "Singapore"
+            ],
+            "correct": 1,
+            "explanation": "Spain has been a standing guest since the G20's first leaders' summit in 2008 — invited every year, never promoted, the template for what Poland is being offered."
+          }
+        ]
+      },
+      {
+        "heading": "THE PER CAPITA STORY",
+        "body": "Poland's headline GDP rank flatters its prosperity: 38 million people produce a top-20 economy, but per-capita income still trails Western Europe. In 1990 a Pole earned roughly a fifth of a German; today, about two-thirds. Convergence is real but incomplete.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call this the **middle-income transition** — the hardest stretch is not getting from poor to middling, but from middling to rich. Poland is now in the zone where Korea succeeded and Argentina, Brazil, and Malaysia stalled."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-08T22:38:13.417Z",
+    "label": "Poland's economic ascent",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-08-sec-onchain-ai-rulemaking-atkins": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE THREE-FUNCTION PROBLEM",
+        "body": "US securities law was built around a separation of powers: brokers take orders, exchanges match them, clearinghouses settle them. Each function has different capital, custody, and conflict-of-interest rules. A blockchain protocol does all three in a single smart contract — there is no legal category for that.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 1934 Securities Exchange Act assumes a **broker** is separate from an **exchange** is separate from a **clearinghouse**. Vertical integration of these roles was historically prohibited precisely because it concentrates conflicts."
+          }
+        ]
+      },
+      {
+        "heading": "RULEMAKING VS ENFORCEMENT",
+        "body": "A regulator has two tools: write rules in advance (rulemaking) or sue firms after the fact and let courts define the law (enforcement). Gensler's SEC chose enforcement — dozens of cases against Coinbase, Binance, Ripple, Kraken — arguing existing law was clear. Atkins is pivoting to rulemaking, conceding that it wasn't.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does industry generally prefer rulemaking to enforcement-driven regulation?",
+            "options": [
+              "Rules are written in advance, so firms know what's legal before they build",
+              "Rulemaking has no public comment period",
+              "Enforcement actions are confidential",
+              "Rules can't be challenged in court"
+            ],
+            "correct": 0,
+            "explanation": "Rulemaking goes through notice-and-comment under the Administrative Procedure Act; firms see the rule before it binds them. Enforcement defines the law case-by-case, after firms have already built."
+          }
+        ]
+      },
+      {
+        "heading": "THE HOWEY TEST",
+        "body": "Whether a token is a security has turned on Howey v. SEC (1946) — an investment of money in a common enterprise with profits expected from others' efforts. The test was designed for orange grove leases in Florida. Applying its four prongs to a permissionless protocol with no central promoter is the legal contortion enforcement created.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "An investment contract... means a contract, transaction or scheme whereby a person invests his money in a common enterprise and is led to expect profits solely from the efforts of the promoter or a third party.",
+            "speaker": "SEC v. W.J. Howey Co., 328 U.S. 293",
+            "year": "1946"
+          }
+        ]
+      },
+      {
+        "heading": "THE CLARITY ACT",
+        "body": "The pending bill divides jurisdiction by token type: the SEC keeps tokens that look like securities, the CFTC takes commodity-like tokens (including most of what trades on spot exchanges). The split matters because the CFTC has roughly a tenth of the SEC's budget and a far lighter regulatory touch.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "SEC",
+                "value": "~$2.4bn budget",
+                "tone": "neutral",
+                "cc": "US"
+              },
+              {
+                "label": "CFTC",
+                "value": "~$365mn budget",
+                "tone": "favorable",
+                "cc": "US"
+              }
+            ],
+            "label": "SEC vs CFTC, FY2024"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THIS PIVOT NOW",
+        "body": "Atkins, confirmed in April 2025, was a Republican SEC commissioner from 2002–2008 known for opposing the agency's expansion of enforcement reach. His appointment under Trump signaled a deliberate reversal — not a refinement — of the prior chair's posture. The crypto industry spent over $130mn on the 2024 elections to make this happen.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Gary Gensler",
+                "role": "SEC Chair, enforcement era",
+                "years": "2021–2025",
+                "cc": "US"
+              },
+              {
+                "name": "Paul Atkins",
+                "role": "SEC Chair, rulemaking pivot",
+                "years": "2025–",
+                "cc": "US"
+              }
+            ],
+            "label": "the SEC chairs"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "The last time the SEC faced a technology that broke its categories was the rise of electronic communication networks in the 1990s. Reg ATS (1998) created a new lighter-touch category for venues that matched orders without becoming full exchanges. That same template — a tailored rule rather than forced fit — is what onchain rulemaking would replicate."
+      }
+    ],
+    "generatedAt": "2026-05-08T22:38:47.659Z",
+    "label": "SEC Rulemaking & Crypto",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-08-sudan-ethiopia-rsf-drones-darfur-front": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO ARMIES",
+        "body": "Sudan's war is between two generals who once partnered to overthrow a civilian government. The SAF (regular army) under Burhan and the RSF (paramilitary) under Hemedti jointly crushed the 2019 democracy movement, then turned the shared military infrastructure against each other when a power-sharing deal collapsed in April 2023.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Abdel Fattah al-Burhan",
+                "role": "SAF chief, de facto head of state",
+                "years": "2019–",
+                "cc": "SD"
+              },
+              {
+                "name": "Mohamed Hamdan 'Hemedti' Dagalo",
+                "role": "RSF commander",
+                "years": "2013–",
+                "cc": "SD"
+              },
+              {
+                "name": "Omar al-Bashir",
+                "role": "former president, armed Janjaweed",
+                "years": "1989–2019",
+                "cc": "SD"
+              }
+            ],
+            "label": "the cast"
+          }
+        ]
+      },
+      {
+        "heading": "THE JANJAWEED LINEAGE",
+        "body": "The RSF evolved from the Janjaweed militias the Bashir regime armed to crush non-Arab rebels in Darfur beginning in 2003. Formalized as the RSF in 2013, it became a private army loyal to Hemedti — a former camel trader from Darfur — not the Sudanese state. The same fighters who carried out the Darfur genocide now control most of the country's gold."
+      },
+      {
+        "heading": "THE GOLD-FOR-DRONES PIPELINE",
+        "body": "Sudan's gold mines — concentrated in RSF-held territory — are the financial spine of the war. The Dagalo family company *Al Junaid* exports through Dubai, where multiple UN panels have documented gold flows feeding RSF arms purchases. The drones over Khartoum are paid for in bullion that left the ground in Darfur.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "darfur",
+                "label": "Darfur mines"
+              },
+              {
+                "id": "junaid",
+                "label": "Al Junaid / dealers"
+              },
+              {
+                "id": "dubai",
+                "label": "Dubai gold market"
+              },
+              {
+                "id": "arms",
+                "label": "Arms suppliers"
+              },
+              {
+                "id": "rsf",
+                "label": "RSF battlefield"
+              }
+            ],
+            "links": [
+              {
+                "source": "darfur",
+                "target": "junaid",
+                "value": 100,
+                "label": "raw gold"
+              },
+              {
+                "source": "junaid",
+                "target": "dubai",
+                "value": 95,
+                "label": "exports"
+              },
+              {
+                "source": "dubai",
+                "target": "arms",
+                "value": 70,
+                "label": "dollar revenue"
+              },
+              {
+                "source": "arms",
+                "target": "rsf",
+                "value": 70,
+                "label": "drones, vehicles"
+              }
+            ],
+            "label": "RSF revenue cycle (illustrative flow)"
+          }
+        ]
+      },
+      {
+        "heading": "THE BORDER TRIANGLE",
+        "body": "The Sudan-Libya-Egypt corner is where eastern Libya's Haftar-controlled territory meets RSF supply lines. Cargo flights into Libyan airfields (Kufra, Maaten al-Sarra) shuttle materiel south by truck across an unpoliced desert frontier. Egypt — historically aligned with the SAF — sees an RSF push there as a direct national-security threat.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "LY",
+              "EG",
+              "TD",
+              "AE",
+              "ET"
+            ],
+            "label": "the supply geography",
+            "markers": [
+              {
+                "lat": 15.5007,
+                "lng": 32.5599,
+                "label": "Khartoum"
+              },
+              {
+                "lat": 24.1828,
+                "lng": 23.2936,
+                "label": "Kufra airbase"
+              },
+              {
+                "lat": 13.6262,
+                "lng": 25.3486,
+                "label": "Nyala (RSF hub)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DRONE TIER",
+        "body": "The strike profile — long loiter, precision against a single residence — points to medium-altitude UCAVs, not commercial quadcopters. The UAE has been documented operating Chinese **Wing Loong II** airframes from Emirati bases; the SAF flies Iranian **Mohajer-6** and Turkish **Bayraktar TB2**. Sudan has become a proxy showroom for the global drone export market.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The same airframe class that decided the **Tigray war** in 2021 and rebalanced **Nagorno-Karabakh** in 2020 is now the dominant weapon over Khartoum — drones have collapsed the cost of air power for any actor with a friendly Gulf bank account."
+          }
+        ]
+      },
+      {
+        "heading": "THE FORGOTTEN WAR",
+        "body": "Sudan's war has displaced over 12 million people — the largest displacement crisis on Earth — and pushed Darfur and Kordofan into famine. It receives a fraction of the attention and funding directed at Ukraine or Gaza, which is why diplomatic moves like recalling an ambassador are also bids for global notice.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "People displaced by active conflict (2024 est.)",
+            "peers": [
+              {
+                "value": 12,
+                "cc": "SD"
+              },
+              {
+                "value": 7.2,
+                "cc": "SY"
+              },
+              {
+                "value": 6.5,
+                "cc": "UA"
+              },
+              {
+                "value": 6.4,
+                "cc": "CD"
+              },
+              {
+                "value": 3.3,
+                "cc": "MM"
+              },
+              {
+                "value": 4.5,
+                "cc": "YE"
+              },
+              {
+                "value": 1.9,
+                "cc": "PS"
+              }
+            ],
+            "subjectCc": "SD",
+            "unit": "millions"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ETHIOPIA NOW",
+        "body": "Addis Ababa and Khartoum already feud over the **Grand Ethiopian Renaissance Dam** on the Blue Nile and the disputed **al-Fashaga** farmland on their shared border. An Ethiopian role in arming the RSF — if substantiated — would convert a water-and-border quarrel into an active proxy war on Sudan's eastern flank, opening a second supply corridor to complement the Libya route.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which dam, near completion on the Blue Nile, is the long-running flashpoint between Sudan, Ethiopia, and Egypt?",
+            "options": [
+              "Aswan High Dam",
+              "Merowe Dam",
+              "Grand Ethiopian Renaissance Dam (GERD)",
+              "Roseires Dam"
+            ],
+            "correct": 2,
+            "explanation": "The GERD on the Blue Nile threatens downstream water security for Sudan and Egypt, both of which depend on Nile flow regulated upstream by Ethiopia."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-08T22:39:36.533Z",
+    "label": "Sudan's Drone War & Foreign Backers",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-08-turkey-icbm-strategic-autonomy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RANGE THRESHOLD",
+        "body": "6,000 km is the conventional floor for an ICBM — far enough to reach across continents. From Anatolia, that arc covers all of Europe, most of Africa, and stretches to Beijing and the western United States. Turkey's previous longest missile topped out at 300 km; this is a twentyfold leap.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The international convention divides ranges into **SRBM** (<1,000 km), **MRBM** (1,000–3,000 km), **IRBM** (3,000–5,500 km), and **ICBM** (>5,500 km). The 5,500 km line is where the **INF Treaty** drew its lid before the US withdrew in 2019."
+          }
+        ]
+      },
+      {
+        "heading": "WHY LIQUID, WHY MOBILE",
+        "body": "Liquid-fueled missiles deliver more thrust per kilogram than solid fuel, which is why early Soviet and US ICBMs were liquid. The drawback is fueling time — hours, not minutes — making fixed silos vulnerable to first strike. Road-mobile launchers solve survivability by hiding in geography rather than concrete.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "solid",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "Russia",
+                "value": "both",
+                "cc": "RU",
+                "tone": "neutral"
+              },
+              {
+                "label": "China",
+                "value": "solid (mostly)",
+                "cc": "CN",
+                "tone": "neutral"
+              },
+              {
+                "label": "North Korea",
+                "value": "both",
+                "cc": "KP",
+                "tone": "neutral"
+              },
+              {
+                "label": "Iran",
+                "value": "both",
+                "cc": "IR",
+                "tone": "neutral"
+              },
+              {
+                "label": "Turkey (Yildirimhan)",
+                "value": "liquid",
+                "cc": "TR",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "ICBM fuel choice across nuclear powers"
+          }
+        ]
+      },
+      {
+        "heading": "THE INCIRLIK ARRANGEMENT",
+        "body": "Turkey hosts roughly 50 US B61 tactical nuclear gravity bombs at Incirlik air base under NATO's nuclear sharing arrangement. The warheads are American property; the delivery aircraft would be Turkish or allied F-16s in wartime. Ankara has had latent nuclear infrastructure on its soil since 1959 — without ever building its own warhead.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TR",
+              "US",
+              "DE",
+              "NL",
+              "BE",
+              "IT"
+            ],
+            "label": "NATO nuclear sharing hosts",
+            "caption": "Five NATO states host US B61 bombs",
+            "markers": [
+              {
+                "lat": 37.0017,
+                "lng": 35.4258,
+                "label": "Incirlik AB"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE NEIGHBOURHOOD",
+        "body": "Turkey sits inside the missile range of every major regional rival and has watched Iran, Israel, and Pakistan field longer-range systems for decades. Erdogan said publicly in 2019 that it was unacceptable for Turkey to be barred from nuclear weapons while neighbors possessed them — a posture the missile programme materializes without yet crossing the warhead threshold.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Longest fielded ballistic missile, by range",
+            "peers": [
+              {
+                "value": 11000,
+                "cc": "RU"
+              },
+              {
+                "value": 6500,
+                "cc": "IL"
+              },
+              {
+                "value": 6000,
+                "cc": "TR"
+              },
+              {
+                "value": 2000,
+                "cc": "IR"
+              },
+              {
+                "value": 2750,
+                "cc": "PK"
+              },
+              {
+                "value": 2650,
+                "cc": "SA"
+              },
+              {
+                "value": 5000,
+                "cc": "IN"
+              }
+            ],
+            "subjectCc": "TR",
+            "unit": "km"
+          }
+        ]
+      },
+      {
+        "heading": "THE STRATEGIC AUTONOMY DOCTRINE",
+        "body": "Since the failed 2016 coup, Ankara has pursued what its defense ministry calls strategic autonomy — domestic production of every weapon class the alliance might withhold. The S-400 purchase from Russia, the Bayraktar drone export business, and the TF-X fighter all share this logic. A 6,000-km missile is the apex of the same doctrine.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2002",
+                "label": "AKP wins first election"
+              },
+              {
+                "year": "2016",
+                "label": "Failed coup attempt",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2017",
+                "label": "S-400 deal signed with Russia"
+              },
+              {
+                "year": "2019",
+                "label": "Removed from F-35 programme"
+              },
+              {
+                "year": "2020",
+                "label": "Bayraktar TB2 used in Nagorno-Karabakh"
+              },
+              {
+                "year": "2023",
+                "label": "KAAN/TF-X first flight"
+              },
+              {
+                "year": "2026",
+                "label": "Yildirimhan unveiled"
+              }
+            ],
+            "label": "Turkey's autonomy push"
+          }
+        ]
+      },
+      {
+        "heading": "THE MTCR LINE",
+        "body": "The Missile Technology Control Regime is a voluntary 35-country pact restricting transfers of missile systems above 300 km range and 500 kg payload. Turkey is a member. The regime has no enforcement teeth — it governs what members will sell, not what they can build. Building one's own beyond the threshold is allowed; selling one is not.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does the MTCR actually restrict?",
+            "options": [
+              "The development of missiles above 300 km range",
+              "The export and transfer of missile technology between member states",
+              "The deployment of nuclear-capable missiles in NATO countries",
+              "The testing of missiles over international waters"
+            ],
+            "correct": 1,
+            "explanation": "MTCR is a non-binding export-control regime — it limits what members will sell across borders, not what they can develop or deploy domestically."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-08T22:40:14.484Z",
+    "label": "Turkey's Strategic Autonomy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-08-virginia-court-strikes-democrat-redistricting": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONSTITUTIONAL HACK",
+        "body": "Virginia's 2020 amendment moved redistricting from the legislature to a 16-member bipartisan commission, ratified by referendum. When a state constitution assigns a power to a specific body, the legislature cannot reclaim it by ordinary statute — that is the structural rule the court enforced.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The vote was decisive: **65.7%** approved Amendment 1 in November 2020, well above the simple majority required. Democrats, then in the minority, largely *opposed* it — fearing exactly the situation they later found themselves in when they took the trifecta."
+          }
+        ]
+      },
+      {
+        "heading": "WHY COMMISSIONS EXIST",
+        "body": "Gerrymandering — the practice of drawing district lines to entrench the party in power — is named for Massachusetts Governor Elbridge Gerry, who in 1812 signed a map with a district shaped like a salamander. Independent commissions are the structural answer: take the pen out of the hand that benefits."
+      },
+      {
+        "heading": "THE STATE-COURT ROUTE",
+        "body": "In Rucho v. Common Cause (2019), the US Supreme Court ruled federal courts cannot police partisan gerrymandering — it is a 'political question.' That decision pushed every challenge into state courts interpreting state constitutions. Virginia's ruling is the latest in a chain that runs through Pennsylvania (2018), North Carolina (2022, then reversed 2023), and New York (2022)."
+      },
+      {
+        "heading": "THE MID-DECADE ARMS RACE",
+        "body": "Maps are normally redrawn once per decade after the census. Texas, Ohio, and now multiple Republican states are redrawing mid-decade — a tactic Democrats matched in California and tried in Virginia. The 2020s have collapsed the once-a-decade norm into a permanent map war.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "VA",
+              "AL",
+              "LA",
+              "TN",
+              "TX",
+              "OH",
+              "CA"
+            ],
+            "label": "states with active mid-decade redraw fights",
+            "caption": "red and blue states both pushing the map midstream"
+          }
+        ]
+      },
+      {
+        "heading": "THE MATH OF FOUR SEATS",
+        "body": "The US House currently sits on a margin of single seats. A four-seat swing in one state's map is the difference between a working majority and a hung chamber — which is why a state-level court ruling lands as national news.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "After Rucho v. Common Cause (2019), where can partisan gerrymandering claims be heard?",
+            "options": [
+              "US Supreme Court only",
+              "Federal district courts",
+              "State courts under state constitutions",
+              "The Department of Justice"
+            ],
+            "correct": 2,
+            "explanation": "Rucho closed the federal courthouse door on partisan-gerrymandering claims, leaving state constitutions and state supreme courts as the only judicial check."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-08T22:40:40.505Z",
+    "label": "Redistricting & the Commission Workaround",
+    "category": "politics",
+    "articleCount": 1
   }
 }
