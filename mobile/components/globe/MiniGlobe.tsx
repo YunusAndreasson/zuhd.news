@@ -51,11 +51,18 @@ import {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { BLACK } from '../../constants/theme';
+import { BLACK, WHITE } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { eventAgeDays } from '../../lib/conflict';
 import { alertAgeDays } from '../../lib/gdacs';
 import { displayCountryName, displayLocation, wrapCountryLabel } from '../../lib/place-names';
+import {
+  CITY_LIGHT_COORDS,
+  CITY_LIGHT_COUNT,
+  CITY_LIGHT_DEEP_NIGHT_DOT,
+  CITY_LIGHT_RADIUS,
+  CITY_LIGHT_UNITS,
+} from './city-lights';
 import {
   getLakeLabels,
   getMajorRiverFeatureCollection,
@@ -405,6 +412,13 @@ interface GlobeState {
    *  lines stack below at LINE_HEIGHT spacing. */
   countryLabel: { lines: string[]; x: number; y: number } | null;
   makkah: { x: number; y: number } | null;
+  /** Subsolar point — projected position of `[sunLng, sunLat]` (the spot
+   *  where the sun sits directly overhead). Null when the subsolar point
+   *  is on the far side of the globe. Drives the day-side ocean specular
+   *  highlight: a small bright disc that gives the lit hemisphere a sense
+   *  of material reflectance. Land paints on top, so the spot only shows
+   *  where it falls on water. */
+  subsolar: { x: number; y: number } | null;
   hotspotGlows: {
     x: number;
     y: number;
@@ -481,6 +495,17 @@ interface GlobeState {
   /** Opacity for riversPath — folds the zoom-band fade factor so rivers
    *  emerge smoothly as the camera tightens. */
   riversOpacity: number;
+  /** Night-side city pinpricks, deep-night tier (sun depressed past civil
+   *  twilight). Painted brightest. Null when no cities qualify on the
+   *  visible hemisphere — first paint and globe-noon framings are common
+   *  cases. The ~190-entry input loop is two dot products per entry plus
+   *  an optional proj() — fits comfortably alongside the existing GDACS /
+   *  conflict / hotspot loops. */
+  cityLightsNightPath: ReturnType<typeof Skia.Path.Make> | null;
+  /** Civil-twilight tier — same path family, painted at half opacity. The
+   *  two-tier render gives the terminator a soft lighting-up gradient
+   *  instead of a hard on/off seam. */
+  cityLightsTwilightPath: ReturnType<typeof Skia.Path.Make> | null;
 }
 
 /** Memoized moon — skips React reconciliation during scroll since all props are stable. */
@@ -596,6 +621,7 @@ const EMPTY_GLOBE: GlobeState = {
   dotLabel: null,
   countryLabel: null,
   makkah: null,
+  subsolar: null,
   hotspotGlows: [],
   chokepoints: [],
   gdacsMarks: [],
@@ -604,7 +630,56 @@ const EMPTY_GLOBE: GlobeState = {
   waterLabels: [],
   riversPath: null,
   riversOpacity: 0,
+  cityLightsNightPath: null,
+  cityLightsTwilightPath: null,
 };
+
+/** City-light pass — fills `nightPath` and `twilightPath` with small circles
+ *  at every city visible on the camera's clip cone whose local sun position
+ *  is at or below the horizon. Two paths split civil twilight from deep
+ *  night so each tier can paint at its own opacity, giving the terminator a
+ *  soft lighting-up gradient instead of a hard on/off seam. Mutates the
+ *  paths (does not rewind) — caller is responsible for rewind/Make. */
+function collectCityLights(
+  proj: (point: [number, number]) => [number, number] | null,
+  sunUnitX: number,
+  sunUnitY: number,
+  sunUnitZ: number,
+  camUnitX: number,
+  camUnitY: number,
+  camUnitZ: number,
+  clipCos: number,
+  nightPath: ReturnType<typeof Skia.Path.Make>,
+  twilightPath: ReturnType<typeof Skia.Path.Make>,
+): { hasNight: boolean; hasTwilight: boolean } {
+  let hasNight = false;
+  let hasTwilight = false;
+  const tmp: [number, number] = [0, 0];
+  for (let i = 0; i < CITY_LIGHT_COUNT; i++) {
+    const i3 = i * 3;
+    const ux = CITY_LIGHT_UNITS[i3] as number;
+    const uy = CITY_LIGHT_UNITS[i3 + 1] as number;
+    const uz = CITY_LIGHT_UNITS[i3 + 2] as number;
+    // Hemisphere + clip-cone cull (precomputed cartesian dot, no trig).
+    if (ux * camUnitX + uy * camUnitY + uz * camUnitZ <= clipCos) continue;
+    // Sun-overhead dot: > 0 = day side, ≤ 0 = night side.
+    const sunDot = ux * sunUnitX + uy * sunUnitY + uz * sunUnitZ;
+    if (sunDot > 0) continue;
+    const i2 = i * 2;
+    tmp[0] = CITY_LIGHT_COORDS[i2] as number;
+    tmp[1] = CITY_LIGHT_COORDS[i2 + 1] as number;
+    const pt = proj(tmp);
+    if (!pt) continue;
+    if (sunDot < CITY_LIGHT_DEEP_NIGHT_DOT) {
+      nightPath.addCircle(pt[0], pt[1], CITY_LIGHT_RADIUS);
+      hasNight = true;
+    } else {
+      twilightPath.addCircle(pt[0], pt[1], CITY_LIGHT_RADIUS);
+      hasTwilight = true;
+    }
+  }
+  return { hasNight, hasTwilight };
+}
 
 /** Pure projection — creates fresh Skia paths, no shared mutable state. */
 function projectInitial(
@@ -685,6 +760,46 @@ function projectInitial(
     if (mp) makkah = { x: mp[0], y: mp[1] };
   }
 
+  // Subsolar point — projected position of [sunLng, sunLat]
+  let subsolar: GlobeState['subsolar'] = null;
+  if (geoDistance([sunLng, sunLat], [geo.lng, geo.lat]) < HALF_PI) {
+    const sp = proj([sunLng, sunLat]);
+    if (sp) subsolar = { x: sp[0], y: sp[1] };
+  }
+
+  // City lights — first-paint pass. The reaction tick (~32 ms later) will
+  // rebuild these into ref'd paths, but computing them here too means the
+  // very first frame after mount already shows the night-side glow rather
+  // than popping in on next tick.
+  const DEG2RAD = Math.PI / 180;
+  const sunLatR0 = sunLat * DEG2RAD;
+  const sunLngR0 = sunLng * DEG2RAD;
+  const sunCosLat0 = Math.cos(sunLatR0);
+  const sunUnitX0 = sunCosLat0 * Math.cos(sunLngR0);
+  const sunUnitY0 = sunCosLat0 * Math.sin(sunLngR0);
+  const sunUnitZ0 = Math.sin(sunLatR0);
+  const camLatR0 = geo.lat * DEG2RAD;
+  const camLngR0 = geo.lng * DEG2RAD;
+  const camCosLat0 = Math.cos(camLatR0);
+  const camUnitX0 = camCosLat0 * Math.cos(camLngR0);
+  const camUnitY0 = camCosLat0 * Math.sin(camLngR0);
+  const camUnitZ0 = Math.sin(camLatR0);
+  const clipCos0 = Math.cos((clipAngle * Math.PI) / 180);
+  const cityNight0 = Skia.Path.Make();
+  const cityTwilight0 = Skia.Path.Make();
+  const cityRes0 = collectCityLights(
+    proj,
+    sunUnitX0,
+    sunUnitY0,
+    sunUnitZ0,
+    camUnitX0,
+    camUnitY0,
+    camUnitZ0,
+    clipCos0,
+    cityNight0,
+    cityTwilight0,
+  );
+
   // Qibla arc — great circle from story location to Makkah
   let qp: ReturnType<typeof Skia.Path.Make> | null = null;
   if (geoDistance([geo.lng, geo.lat], MAKKAH.coords) > 0.02) {
@@ -723,6 +838,7 @@ function projectInitial(
     dotLabel: null,
     countryLabel: null,
     makkah,
+    subsolar,
     hotspotGlows: [],
     chokepoints: [],
     gdacsMarks: [],
@@ -731,6 +847,8 @@ function projectInitial(
     waterLabels: [],
     riversPath: null,
     riversOpacity: 0,
+    cityLightsNightPath: cityRes0.hasNight ? cityNight0 : null,
+    cityLightsTwilightPath: cityRes0.hasTwilight ? cityTwilight0 : null,
   };
 }
 
@@ -777,7 +895,7 @@ export const MiniGlobe = memo(function MiniGlobe({
   const labelFont = useFont(require('../../assets/fonts/SourceSans3-SemiBold.ttf'), 14);
   const subFont = useFont(require('../../assets/fonts/SourceSans3-SemiBold.ttf'), 11);
   const countryFont = useFont(require('../../assets/fonts/SourceSans3SC-SemiBold.ttf'), 12);
-  const neighborFont = useFont(require('../../assets/fonts/SourceSans3SC-SemiBold.ttf'), 11);
+  const neighborFont = useFont(require('../../assets/fonts/SourceSans3SC-SemiBold.ttf'), 11.5);
   const waterFont = useFont(require('../../assets/fonts/SourceSans3-Italic.ttf'), 11);
   // Dynamic-text rendering polish for every map label. Skia's defaults
   // (integer-snapped positioning, outline hinting, plain anti-alias) are
@@ -972,6 +1090,11 @@ export const MiniGlobe = memo(function MiniGlobe({
   const qiblaPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
   const sourceArcsRef = useRef(Skia.Path.Make().setIsVolatile(true));
   const riversPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
+  // City-light tier paths — rewound each frame, populated by collectCityLights.
+  // Two paths (deep night vs civil twilight) so each tier paints at its own
+  // opacity in the JSX without needing per-instance Atlas alpha.
+  const cityLightsNightPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
+  const cityLightsTwilightPathRef = useRef(Skia.Path.Make().setIsVolatile(true));
 
   // Keep closure dependencies in refs so the reproject callback stays stable
   const articlesRef = useRef(articles);
@@ -1306,6 +1429,17 @@ export const MiniGlobe = memo(function MiniGlobe({
         if (pt) makkah = { x: pt[0], y: pt[1] };
       }
 
+      // Subsolar point — drives the day-side ocean specular highlight.
+      // The night layer above already computes (sunLng, sunLat); the
+      // subsolar point is just the antipode of nightCenter, i.e. the
+      // direct sunLng/sunLat. Projection returns null on the far side,
+      // which is what we want — the highlight is a day-side feature.
+      let subsolar: { x: number; y: number } | null = null;
+      if (geoDistance([sunLng, sunLat], [geoLng, geoLat]) < HALF_PI) {
+        const pt = proj([sunLng, sunLat]);
+        if (pt) subsolar = { x: pt[0], y: pt[1] };
+      }
+
       // Equator + polar circles — projected every frame; cost is small
       // (~650 verts) and the layer is barely visible at α 0.08 anyway.
       const gp = graticulePathRef.current;
@@ -1448,6 +1582,39 @@ export const MiniGlobe = memo(function MiniGlobe({
       const camUnitY = camCosLat * Math.sin(camLngR);
       const camUnitZ = Math.sin(camLatR);
 
+      // Sun unit vector — computed alongside the camera vector so the city-
+      // light pass below can score sun-overhead-ness with a dot product.
+      // Cached sun position only changes once per minute, but the unit
+      // vector is cheap and avoids a dependency on cache hits.
+      const sunLatR = sunLat * DEG2RAD;
+      const sunLngR = sunLng * DEG2RAD;
+      const sunCosLat = Math.cos(sunLatR);
+      const sunUnitX = sunCosLat * Math.cos(sunLngR);
+      const sunUnitY = sunCosLat * Math.sin(sunLngR);
+      const sunUnitZ = Math.sin(sunLatR);
+
+      // City lights — refresh both tier paths. Two dot products + one
+      // optional proj() per entry × ~190 entries; the dot products handle
+      // the hemisphere/clip cull and the day-side cull before any
+      // projection runs, so worst case is the visible-night-hemisphere
+      // count of proj() calls (typically 50–80).
+      const cityNightPath = cityLightsNightPathRef.current;
+      cityNightPath.rewind();
+      const cityTwilightPath = cityLightsTwilightPathRef.current;
+      cityTwilightPath.rewind();
+      const cityRes = collectCityLights(
+        (p) => proj(p),
+        sunUnitX,
+        sunUnitY,
+        sunUnitZ,
+        camUnitX,
+        camUnitY,
+        camUnitZ,
+        clipCos,
+        cityNightPath,
+        cityTwilightPath,
+      );
+
       // Chokepoints — always projected (unlike hotspots). The set is small
       // (≤11) and the markers are geographic reference, not cosmetic detail,
       // so they shouldn't blink out during a fast scroll.
@@ -1530,126 +1697,121 @@ export const MiniGlobe = memo(function MiniGlobe({
         : 0;
       const settledName = cachedCountryRef.current?.properties?.name as string | undefined;
 
-      // Neighbour + water layers are all nearSettled-gated — labels are
-      // illegible during fast rotation anyway, and at the small-country
-      // 1× clip angle where PLACES_APPEAR_CLIP fires (~25°), projecting
-      // + rendering ~60 country centroids + ~100 water labels every
-      // scroll frame was the dominant 1× cost. Labels + river path
-      // return together on settle so the visual contract stays intact.
-      if (nearSettled) {
-        // Country centroids — hemisphere cull uses a precomputed cartesian
-        // dot product against the camera axis (~900 trig ops saved per
-        // frame vs. geoDistance haversine). Two passes so anchors win
-        // collisions in the greedy packer below: pass 1 collects anchors
-        // (always), pass 2 collects non-anchors (only when zoomed past
-        // PLACES_APPEAR_CLIP). Iteration is over the parallel arrays
-        // (names/points/units) populated in shared.ts.
-        const anchorBuf: GlobeState['neighborLabels'] = [];
-        const otherBuf: GlobeState['neighborLabels'] = [];
-        for (let i = 0; i < countryCentroidNames.length; i++) {
-          const name = countryCentroidNames[i];
-          if (!name || name === settledName) continue;
-          // Anchors come from two pools: spherical-area giants
-          // (`ANCHOR_COUNTRY_AREA`) and a curated recognition-tier list
-          // (`ANCHOR_NAMES_EXTRA`). The latter rebalances Europe and Asia,
-          // which are underweighted by area alone — see projection.ts.
-          const isAnchor =
-            (countryAreas[name] ?? 0) >= ANCHOR_COUNTRY_AREA || ANCHOR_NAMES_EXTRA.has(name);
-          if (!placesActive && !isAnchor) continue;
-          const unit = countryCentroidUnits[i];
-          if (!unit) continue;
-          if (unit[0] * camUnitX + unit[1] * camUnitY + unit[2] * camUnitZ <= clipCos) continue;
-          const coords = countryCentroidPoints[i];
-          if (!coords) continue;
-          const pt = proj(coords);
+      // Country centroids — hemisphere cull uses a precomputed cartesian
+      // dot product against the camera axis (~900 trig ops saved per
+      // frame vs. geoDistance haversine). Two passes so anchors win
+      // collisions in the greedy packer below: pass 1 collects anchors
+      // (always), pass 2 collects non-anchors (only when zoomed past
+      // PLACES_APPEAR_CLIP). Iteration is over the parallel arrays
+      // (names/points/units) populated in shared.ts. Projects every
+      // frame — the gate that used to hide labels mid-swipe was
+      // perceptually worse than the cost it saved (anchors visibly
+      // popped out and back in during slow scrolls).
+      const anchorBuf: GlobeState['neighborLabels'] = [];
+      const otherBuf: GlobeState['neighborLabels'] = [];
+      for (let i = 0; i < countryCentroidNames.length; i++) {
+        const name = countryCentroidNames[i];
+        if (!name || name === settledName) continue;
+        // Anchors come from two pools: spherical-area giants
+        // (`ANCHOR_COUNTRY_AREA`) and a curated recognition-tier list
+        // (`ANCHOR_NAMES_EXTRA`). The latter rebalances Europe and Asia,
+        // which are underweighted by area alone — see projection.ts.
+        const isAnchor =
+          (countryAreas[name] ?? 0) >= ANCHOR_COUNTRY_AREA || ANCHOR_NAMES_EXTRA.has(name);
+        if (!placesActive && !isAnchor) continue;
+        const unit = countryCentroidUnits[i];
+        if (!unit) continue;
+        if (unit[0] * camUnitX + unit[1] * camUnitY + unit[2] * camUnitZ <= clipCos) continue;
+        const coords = countryCentroidPoints[i];
+        if (!coords) continue;
+        const pt = proj(coords);
+        if (!pt) continue;
+        // Display-name normalization (e.g. "United States of America" →
+        // "United States") so labels match the focused country label and
+        // read like a real atlas. Single-line for perf — the collision
+        // packer drops long ones rather than wrapping them.
+        const display = displayCountryName(name) ?? name;
+        // Anchor labels never dim below their ambient floor as zoom
+        // increases — the larger of (floor, zoom-band ramp) wins, so a
+        // continuous strengthening replaces the prior all-or-nothing gate.
+        const opacity = isAnchor ? Math.max(ANCHOR_LABEL_OPACITY, labelOpacity) : labelOpacity;
+        (isAnchor ? anchorBuf : otherBuf).push({
+          name: display,
+          x: pt[0],
+          y: pt[1],
+          opacity,
+        });
+      }
+      for (const a of anchorBuf) neighborLabels.push(a);
+      for (const o of otherBuf) neighborLabels.push(o);
+
+      if (placesActive) {
+        // Lakes — filter to visually-significant size at globe scale
+        // (~8000 km² floor = Lake Tanganyika scale). Keeps labels to the
+        // ~20-30 giants worldwide; anything smaller is invisible through
+        // the 110m coastline anyway.
+        const LAKE_MIN_AREA = 2e-4; // steradians; ≈ 8000 km²
+        for (const lake of getLakeLabels()) {
+          if (lake.area < LAKE_MIN_AREA) continue;
+          const lu = lake.unit;
+          if (lu[0] * camUnitX + lu[1] * camUnitY + lu[2] * camUnitZ <= clipCos) continue;
+          const pt = proj(lake.coords);
           if (!pt) continue;
-          // Display-name normalization (e.g. "United States of America" →
-          // "United States") so labels match the focused country label and
-          // read like a real atlas. Single-line for perf — the collision
-          // packer drops long ones rather than wrapping them.
-          const display = displayCountryName(name) ?? name;
-          // Anchor labels never dim below their ambient floor as zoom
-          // increases — the larger of (floor, zoom-band ramp) wins, so a
-          // continuous strengthening replaces the prior all-or-nothing gate.
-          const opacity = isAnchor ? Math.max(ANCHOR_LABEL_OPACITY, labelOpacity) : labelOpacity;
-          (isAnchor ? anchorBuf : otherBuf).push({
-            name: display,
+          waterLabels.push({
+            name: lake.name,
             x: pt[0],
             y: pt[1],
-            opacity,
+            opacity: labelOpacity,
+            kind: 'lake',
           });
         }
-        for (const a of anchorBuf) neighborLabels.push(a);
-        for (const o of otherBuf) neighborLabels.push(o);
 
-        if (placesActive) {
-          // Lakes — filter to visually-significant size at globe scale
-          // (~8000 km² floor = Lake Tanganyika scale). Keeps labels to the
-          // ~20-30 giants worldwide; anything smaller is invisible through
-          // the 110m coastline anyway.
-          const LAKE_MIN_AREA = 2e-4; // steradians; ≈ 8000 km²
-          for (const lake of getLakeLabels()) {
-            if (lake.area < LAKE_MIN_AREA) continue;
-            const lu = lake.unit;
-            if (lu[0] * camUnitX + lu[1] * camUnitY + lu[2] * camUnitZ <= clipCos) continue;
-            const pt = proj(lake.coords);
-            if (!pt) continue;
-            waterLabels.push({
-              name: lake.name,
-              x: pt[0],
-              y: pt[1],
-              opacity: labelOpacity,
-              kind: 'lake',
-            });
-          }
+        // Rivers — rank ≤ 3 filter already applied at precompute time.
+        for (const river of getRiverLabels()) {
+          const ru = river.unit;
+          if (ru[0] * camUnitX + ru[1] * camUnitY + ru[2] * camUnitZ <= clipCos) continue;
+          const pt = proj(river.coords);
+          if (!pt) continue;
+          waterLabels.push({
+            name: river.name,
+            x: pt[0],
+            y: pt[1],
+            opacity: labelOpacity,
+            kind: 'river',
+          });
+        }
 
-          // Rivers — rank ≤ 3 filter already applied at precompute time.
-          for (const river of getRiverLabels()) {
-            const ru = river.unit;
-            if (ru[0] * camUnitX + ru[1] * camUnitY + ru[2] * camUnitZ <= clipCos) continue;
-            const pt = proj(river.coords);
-            if (!pt) continue;
-            waterLabels.push({
-              name: river.name,
-              x: pt[0],
-              y: pt[1],
-              opacity: labelOpacity,
-              kind: 'river',
-            });
-          }
+        // Seas / bays / gulfs — 54 entries, all relevant at globe scale.
+        for (const sea of getSeas()) {
+          const su = sea.unit;
+          if (su[0] * camUnitX + su[1] * camUnitY + su[2] * camUnitZ <= clipCos) continue;
+          const pt = proj([sea.lng, sea.lat]);
+          if (!pt) continue;
+          waterLabels.push({
+            name: sea.name,
+            x: pt[0],
+            y: pt[1],
+            opacity: labelOpacity,
+            kind: 'sea',
+          });
+        }
 
-          // Seas / bays / gulfs — 54 entries, all relevant at globe scale.
-          for (const sea of getSeas()) {
-            const su = sea.unit;
-            if (su[0] * camUnitX + su[1] * camUnitY + su[2] * camUnitZ <= clipCos) continue;
-            const pt = proj([sea.lng, sea.lat]);
-            if (!pt) continue;
-            waterLabels.push({
-              name: sea.name,
-              x: pt[0],
-              y: pt[1],
-              opacity: labelOpacity,
-              kind: 'sea',
-            });
-          }
-
-          // Major river lines — the single heaviest per-frame projection
-          // (~9k vertices). Gated on a tighter threshold than the cheap
-          // layers above so that small-country 1× framings (clip ≈ 25°)
-          // get the whisper of neighbour labels + water names without
-          // triggering the river-path settle-frame spike. Path is rewound
-          // (not reset) so the underlying buffer stays allocated between
-          // frames. Opacity uses its own fade band so rivers ease in
-          // independently as the reader zooms past 22°.
-          if (clipAngle < RIVERS_APPEAR_CLIP) {
-            const rp = riversPathRef.current;
-            rp.rewind();
-            skiaCtx.setPath(rp);
-            pg.context(skiaCtx)(getMajorRiverFeatureCollection() as never);
-            riversPath = rp;
-            const riverSpan = RIVERS_APPEAR_CLIP - PLACES_FULL_CLIP;
-            riversOpacity = Math.min(1, Math.max(0, (RIVERS_APPEAR_CLIP - clipAngle) / riverSpan));
-          }
+        // Major river lines — the single heaviest per-frame projection
+        // (~9k vertices). Gated on a tighter threshold than the cheap
+        // layers above so that small-country 1× framings (clip ≈ 25°)
+        // get the whisper of neighbour labels + water names without
+        // triggering the river-path settle-frame spike. Path is rewound
+        // (not reset) so the underlying buffer stays allocated between
+        // frames. Opacity uses its own fade band so rivers ease in
+        // independently as the reader zooms past 22°.
+        if (clipAngle < RIVERS_APPEAR_CLIP) {
+          const rp = riversPathRef.current;
+          rp.rewind();
+          skiaCtx.setPath(rp);
+          pg.context(skiaCtx)(getMajorRiverFeatureCollection() as never);
+          riversPath = rp;
+          const riverSpan = RIVERS_APPEAR_CLIP - PLACES_FULL_CLIP;
+          riversOpacity = Math.min(1, Math.max(0, (RIVERS_APPEAR_CLIP - clipAngle) / riverSpan));
         }
       }
 
@@ -1802,6 +1964,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         dotLabel,
         countryLabel,
         makkah,
+        subsolar,
         hotspotGlows,
         chokepoints: chokepointMarks,
         gdacsMarks,
@@ -1810,6 +1973,8 @@ export const MiniGlobe = memo(function MiniGlobe({
         waterLabels: keptWaters,
         riversPath,
         riversOpacity,
+        cityLightsNightPath: cityRes.hasNight ? cityNightPath : null,
+        cityLightsTwilightPath: cityRes.hasTwilight ? cityTwilightPath : null,
       });
     },
     [],
@@ -2352,6 +2517,37 @@ export const MiniGlobe = memo(function MiniGlobe({
     return [`${atm}${light ? '14' : '0A'}`, `${atm}${light ? '29' : '19'}`];
   }, [colors.atmosphere, light]);
 
+  // Day-side ocean specular highlight stops. Soft additive lift centered on
+  // the projected subsolar point — reads as the sun glint a real lit sphere
+  // shows from orbit. WHITE is the right primitive here: the phenomenon is
+  // brighter-than-ambient in *both* modes, and the bg-inverting text/bg
+  // tokens reverse polarity in light mode (would draw a dark spot). Light
+  // mode runs at lower alpha because the cream ocean tone leaves less
+  // contrast headroom; the highlight is still perceptible as a subtle
+  // warming of the disk near the sun.
+  const specularColors = useMemo(
+    () => [`${WHITE}${light ? '14' : '24'}`, `${WHITE}${light ? '08' : '10'}`, `${WHITE}00`],
+    [light],
+  );
+
+  // Inner-limb atmospheric glaze. The outer rim renders atmosphere *outside*
+  // the disk; this complementary inner ring catches grazing-angle refraction
+  // along the curved limb so the disk reads as a sphere with volume rather
+  // than a flat circle with a halo. Stops cluster at 92–99% of the radius:
+  // transparent core, brightest just inside the limb, fading to zero at the
+  // edge so it composites cleanly against the outer rim. Single declarative
+  // gradient — no per-frame work.
+  const limbGlazeColors = useMemo(() => {
+    const atm = colors.atmosphere;
+    return [
+      `${atm}00`,
+      `${atm}00`,
+      `${atm}${light ? '20' : '18'}`,
+      `${atm}${light ? '38' : '28'}`,
+      `${atm}00`,
+    ];
+  }, [colors.atmosphere, light]);
+
   // Per-glow Atlas inputs. Single-instance glows pass a one-element array.
   const ghostAtlas = useMemo(() => glowAtlas(GHOST_GLOW, state.ghostDots), [state.ghostDots]);
   // Conflict markers ride the SAME baked texture as ghost dots, just
@@ -2402,6 +2598,24 @@ export const MiniGlobe = memo(function MiniGlobe({
         <RadialGradient c={vec(cx, cy)} r={globeRadius} colors={oceanColors} positions={[0, 1]} />
       </Circle>
 
+      {/* Subsolar specular highlight — additive WHITE radial gradient at the
+          projected sun-overhead point. Land draws on top, so the spot is
+          only visible where it falls on water (which is the physically
+          correct behaviour: ocean reflects, land doesn't). Hidden when the
+          subsolar point is on the far side of the globe. Radius scales with
+          the globe so the spot reads at the same proportion across screen
+          sizes. Single Skia draw, no per-frame allocation. */}
+      {state.subsolar && (
+        <Circle cx={state.subsolar.x} cy={state.subsolar.y} r={globeRadius * 0.55}>
+          <RadialGradient
+            c={vec(state.subsolar.x, state.subsolar.y)}
+            r={globeRadius * 0.55}
+            colors={specularColors}
+            positions={[0, 0.45, 1]}
+          />
+        </Circle>
+      )}
+
       {/* Land silhouette */}
       {state.landPath && (
         <Path path={state.landPath} color={colors.accent} opacity={light ? 0.25 : 0.1} />
@@ -2448,11 +2662,30 @@ export const MiniGlobe = memo(function MiniGlobe({
         />
       )}
 
-      {/* Low-sun band — faint gradient where sun is near the horizon */}
-      {state.twilightPath && <Path path={state.twilightPath} color={BLACK} opacity={0.06} />}
+      {/* Low-sun band — faint gradient where sun is near the horizon (0–6°
+          below). Dark-mode bump mirrors the night-shadow rationale below:
+          BLACK at 0.06 over the dark-mode ocean composite (~rgb(16,17,20))
+          is only a ~1 unit per-channel step — invisible — so the dawn/dusk
+          annulus disappeared and the day/night seam read as a hard edge.
+          0.12 lifts it to ~2 units (perceptible) while staying well under
+          the 0.28 night opacity so the ladder twilight < night still reads.
+          Light mode at 0.06 already gives ~15 units against the cream bg
+          — leave it. */}
+      {state.twilightPath && (
+        <Path path={state.twilightPath} color={BLACK} opacity={light ? 0.06 : 0.12} />
+      )}
 
-      {/* Night shadow — darker overlay on the unlit hemisphere */}
-      {state.nightPath && <Path path={state.nightPath} color={BLACK} opacity={0.15} />}
+      {/* Night shadow — darker overlay on the unlit hemisphere.
+          Dark mode needs a heavier hand: dark-mode ocean composites to
+          ~rgb(16,17,20), so BLACK at 0.15 produced only a 2–3 unit per-
+          channel step — below perceptual threshold, leaving day and night
+          visually identical on water. 0.28 lifts the differential to ~5–6
+          units (clearly readable) while keeping the night limb close
+          enough to the bg that the rim glow still silhouettes the globe.
+          Light mode already had ~36 units of contrast at 0.15 — leave it. */}
+      {state.nightPath && (
+        <Path path={state.nightPath} color={BLACK} opacity={light ? 0.15 : 0.28} />
+      )}
 
       {/* Terminator — thin stroke at the day/night boundary */}
       {state.nightPath && (
@@ -2464,6 +2697,49 @@ export const MiniGlobe = memo(function MiniGlobe({
           opacity={0.12}
         />
       )}
+
+      {/* Night-side city lights — drawn AFTER the night veil so the dim of
+          the unlit hemisphere darkens land but not the lights themselves.
+          Two tiers: civil-twilight cities sit at half opacity for a soft
+          gradient across the terminator, deep-night cities render brighter.
+          `textEmphasis` inverts with mode (white-on-dark vs dark-on-light)
+          so the dots have contrast against the night-side land tint in
+          both palettes — a single hardcoded white would vanish on the
+          light-mode cream-and-gray composite. The story dot still owns the
+          night side visually: city pinpricks are 0.9-px hard pixels with
+          no glow, while the editorial dot is a multi-layer baked Atlas
+          glow at ~14 px — different visual register entirely. */}
+      {state.cityLightsTwilightPath && (
+        <Path
+          path={state.cityLightsTwilightPath}
+          color={colors.textEmphasis}
+          opacity={light ? 0.22 : 0.32}
+        />
+      )}
+      {state.cityLightsNightPath && (
+        <Path
+          path={state.cityLightsNightPath}
+          color={colors.textEmphasis}
+          opacity={light ? 0.42 : 0.6}
+        />
+      )}
+
+      {/* Inner-limb atmospheric glaze — companion to the outer rim. Reads
+          as the slice of atmosphere refracting light around the curved
+          limb (the "Earthrise" wisp). Stops sit in the last 8% of the
+          radius, brightest just inside the edge, fading to zero at the
+          silhouette so it composites cleanly against the outer-rim halo
+          without a doubled-line seam. Drawn AFTER the night veil so
+          atmosphere reads as a continuous wrap across both hemispheres
+          and BEFORE editorial markers so dots and labels paint on top. */}
+      <Circle cx={cx} cy={cy} r={globeRadius}>
+        <RadialGradient
+          c={vec(cx, cy)}
+          r={globeRadius}
+          colors={limbGlazeColors}
+          positions={[0, 0.9, 0.97, 0.995, 1]}
+        />
+      </Circle>
 
       {/* Coverage hotspots — RadialGradient halo + sharp core dot.
           Gradient shader gives smoother falloff than stacked BlurMask circles
@@ -2782,7 +3058,7 @@ export const MiniGlobe = memo(function MiniGlobe({
               // + halo) while making neighbours legible without re-adding
               // the per-frame halo passes that the comment above warns off.
               color={colors.text}
-              opacity={(light ? 0.95 : 0.85) * n.opacity}
+              opacity={(light ? 0.95 : 0.92) * n.opacity}
             />
           );
         })}

@@ -54,6 +54,13 @@ export const baseFontSize = (size: FontSize): number => fs(17, FONT_SIZE_SCALE[s
  * chrome that must remain pure black in both appearance modes. */
 export const BLACK = '#000000';
 
+/** Pure white. Theme-invariant — used for additive highlight overlays where
+ *  the visual phenomenon (sun glint, snow, specular lift) must read as
+ *  brighter-than-ambient in both modes, and the bg-inverting `text`/`bg`
+ *  tokens have the wrong polarity. Used sparingly: ice fills already inline
+ *  this, and the day-side ocean specular gradient on the globe needs it. */
+export const WHITE = '#ffffff';
+
 // ---------------------------------------------------------------------------
 // Color palettes
 // ---------------------------------------------------------------------------

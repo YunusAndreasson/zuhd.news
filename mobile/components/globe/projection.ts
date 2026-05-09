@@ -57,18 +57,35 @@ export const ANCHOR_COUNTRY_AREA = 0.018;
  *  or GDP — easy to argue at the margin, but the set is intentionally
  *  conservative (additions invite a follow-on debate; subtractions don't). */
 export const ANCHOR_NAMES_EXTRA: ReadonlySet<string> = new Set([
-  // Europe
+  // Europe — additions chosen for centroid isolation, not just recognition;
+  // densely-packed Central/Eastern members get culled by the collision
+  // packer at globe scale, so listing them here adds work without payoff.
   'France',
   'Spain',
+  'Portugal',
   'Germany',
   'Italy',
-  'Poland',
+  'Netherlands',
+  'Switzerland',
+  'Ireland',
   'United Kingdom',
-  'Ukraine',
+  'Poland',
+  'Greece',
   'Sweden',
   'Norway',
   'Finland',
-  // Asia
+  'Denmark',
+  'Ukraine',
+  // Africa — Maghreb completion (Algeria/Libya/Egypt anchor by area),
+  // Gulf of Guinea coast (Nigeria is the only nearby anchor), East Africa
+  // recognition anchor (Kenya), and the Mozambique-Channel isolate.
+  'Morocco',
+  'Tunisia',
+  "Côte d'Ivoire",
+  'Ghana',
+  'Kenya',
+  'Madagascar',
+  // Asia / Middle East
   'Japan',
   'Vietnam',
   'Thailand',
@@ -76,10 +93,18 @@ export const ANCHOR_NAMES_EXTRA: ReadonlySet<string> = new Set([
   'Malaysia',
   'Iraq',
   'Yemen',
+  'Syria',
+  'Lebanon',
+  'Bangladesh',
   'South Korea',
+  'North Korea',
+  'Taiwan',
   // Pacific / Caribbean — geographic isolates that benefit from the label
   'New Zealand',
   'Cuba',
+  'Papua New Guinea',
+  'Sri Lanka',
+  'Iceland',
 ]);
 
 /** Heavy rivers-path projection fade range — gated tighter than the cheap
