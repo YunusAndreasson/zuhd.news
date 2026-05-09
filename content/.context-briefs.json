@@ -137057,5 +137057,1479 @@
     "label": "Redistricting & the Commission Workaround",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-08-australia-us-rare-earth-deal-malaysia-backlash": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THEY'RE CALLED RARE",
+        "body": "Rare earths are not geologically scarce — cerium is more abundant than copper. They are 'rare' because they almost never concentrate into mineable veins; separating the seventeen chemically near-identical elements requires hundreds of solvent-extraction stages. The bottleneck is metallurgy, not geology.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The processing chain runs ore → mixed concentrate → *separated oxides* → metals → magnets. China dominates not the mines but the **separation and magnet** stages — the dirty, capital-heavy middle of the chain."
+          }
+        ]
+      },
+      {
+        "heading": "CHINA'S CHOKEHOLD",
+        "body": "China mines roughly 70% of the world's rare earths and refines closer to 90%. The dominance was built deliberately from the 1980s under Deng Xiaoping's directive that 'the Middle East has oil, China has rare earths' — decades of subsidized refining capacity that Western producers could not match on cost or environmental tolerance.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "China",
+                "value": 88,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Malaysia (Lynas)",
+                "value": 6,
+                "tone": "neutral"
+              },
+              {
+                "label": "Estonia",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "USA (MP Materials)",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Other",
+                "value": 2,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global rare-earth refining share, 2024 est. (%)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PAHANG",
+        "body": "Lynas mines ore at Mount Weld in Western Australia and ships concentrate to its Lynas Advanced Materials Plant in Gebeng, Pahang — the only large-scale rare-earth separation facility outside China. The site was chosen in 2008 for tax incentives, cheap industrial land, and a regulatory environment more permissive than Australia's on low-level radioactive residues.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MY",
+              "AU",
+              "CN",
+              "US"
+            ],
+            "label": "the Pahang routing",
+            "markers": [
+              {
+                "lat": 3.9686,
+                "lng": 103.3833,
+                "label": "Lynas plant, Gebeng"
+              },
+              {
+                "lat": -28.86,
+                "lng": 122.45,
+                "label": "Mt Weld mine"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE THORIUM PROBLEM",
+        "body": "Rare-earth ores are bound up with thorium and uranium. Separation produces water leach purification residue — mildly radioactive sludge that accumulates at roughly a tonne per tonne of finished oxide. Lynas has stockpiled hundreds of thousands of tonnes at Gebeng; permanent disposal has been politically unresolved since the plant opened in 2012."
+      },
+      {
+        "heading": "THE 2012 PROTESTS",
+        "body": "The Himpunan Hijau ('Green Rally') movement put tens of thousands on the streets of Kuantan and Kuala Lumpur opposing the plant's licence. Anwar Ibrahim, then opposition leader, campaigned against it; his government now hosts the AUKUS-adjacent supply deal. The reversal is the local political fault line the article describes."
+      },
+      {
+        "heading": "QUIZ",
+        "body": "Test the substrate.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does China dominate rare earths?",
+            "options": [
+              "It holds the only major deposits",
+              "It controls the separation and refining stages",
+              "It owns the patents on extraction chemistry",
+              "Other countries banned mining for environmental reasons"
+            ],
+            "correct": 1,
+            "explanation": "Deposits exist on every continent. China's lock is on the messy refining and magnet-making stages built up over forty years of subsidized capacity."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-09T08:43:54.708Z",
+    "label": "Rare Earths & the Lynas Footprint",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-08-brazil-influencer-money-laundering-mechanism": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE THREE STAGES",
+        "body": "Every laundering scheme has the same architecture: placement (getting cash into the system), layering (obscuring its origin through transactions), and integration (returning it as apparently clean wealth). Online raffles compress all three into a single consumer-facing product.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The classic typology — *placement*, *layering*, *integration* — was codified by FATF in 1990 and remains the framework every financial-crime unit uses today."
+          }
+        ]
+      },
+      {
+        "heading": "WHY RAFFLES WORK",
+        "body": "A raffle generates plausible small-ticket revenue from thousands of unverifiable buyers. The organizer can claim the cash inflow came from real participants while quietly seeding the pot with drug proceeds. The 'winners' are often pre-arranged, completing the loop."
+      },
+      {
+        "heading": "THE INFLUENCER LAYER",
+        "body": "Sponsorship invoices are the perfect cover: a brand pays a creator for 'promotional services,' an intangible deliverable with no auditable inventory. The price has no market reference, so a $50,000 post and a $500,000 post look equally legitimate on paper.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are influencer sponsorship invoices attractive to launderers?",
+            "options": [
+              "Tax authorities exempt them from scrutiny",
+              "The service has no objective market price, so inflated invoices look normal",
+              "Banks cannot freeze creator accounts",
+              "They settle in cryptocurrency by default"
+            ],
+            "correct": 1,
+            "explanation": "Promotional services have no inventory or benchmark price — a $500K invoice is as defensible as a $5K one, which is what makes them ideal for layering."
+          }
+        ]
+      },
+      {
+        "heading": "WHO THE PCC IS",
+        "body": "The Primeiro Comando da Capital was founded in 1993 inside a São Paulo prison after the Carandiru massacre. It now controls most of Brazil's cocaine export logistics and operates across Paraguay, Bolivia, and into West African transshipment routes. Its discipline — not its violence — is what made it dominant.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Unlike the older **Comando Vermelho** in Rio, the PCC built a written *estatuto* (statute) and a flat command structure — closer to a corporation than a cartel."
+          }
+        ]
+      },
+      {
+        "heading": "THE COCAINE CORRIDOR",
+        "body": "Brazil itself does not grow coca; it sits between the Andean producers and the Atlantic. Product moves from Bolivia and Peru across the porous border into Mato Grosso do Sul, then through São Paulo's logistics hubs to the port of Santos — Latin America's busiest container port and Europe's primary cocaine entry point.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BR",
+              "BO",
+              "PE",
+              "CO",
+              "PY"
+            ],
+            "label": "the Andes-to-Atlantic corridor",
+            "markers": [
+              {
+                "lat": -23.9608,
+                "lng": -46.3336,
+                "label": "Port of Santos"
+              },
+              {
+                "lat": -25.5163,
+                "lng": -54.5854,
+                "label": "Foz do Iguaçu border"
+              },
+              {
+                "lat": -23.5505,
+                "lng": -46.6333,
+                "label": "São Paulo"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY MEXICO AND COLOMBIA CARE",
+        "body": "Cartel finance has globalized faster than enforcement. The Sinaloa Cartel and Colombia's Clan del Golfo use the same influencer-and-shell-company playbook, often through the same diaspora networks. A single laundering ring's clients are rarely confined to one organization.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Sinaloa Cartel",
+                "value": "~$11bn",
+                "cc": "MX",
+                "weight": 11,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "CJNG",
+                "value": "~$8bn",
+                "cc": "MX",
+                "weight": 8,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "PCC",
+                "value": "~$6bn",
+                "cc": "BR",
+                "weight": 6,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Clan del Golfo",
+                "value": "~$3bn",
+                "cc": "CO",
+                "weight": 3,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "estimated annual cocaine revenue, regional groups"
+          }
+        ]
+      },
+      {
+        "heading": "THE ENFORCEMENT GAP",
+        "body": "Brazil's Council for Financial Activities Control (COAF) flags suspicious transactions, but creator-economy payments often route through payment processors and offshore platforms outside its reach. The 2019 reform that strengthened COAF was itself nearly gutted in a political fight — financial-crime enforcement remains a contested institution, not a settled one."
+      }
+    ],
+    "generatedAt": "2026-05-09T08:44:32.769Z",
+    "label": "Money Laundering & the PCC",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-08-china-cyber-ops-governments-dissidents-unified": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FUSION DOCTRINE",
+        "body": "Western intelligence services traditionally separate foreign espionage from domestic surveillance — different agencies, different legal authorities, different targets. China's Ministry of State Security fuses both: the same operator who steals defense secrets in Manila may also be tasked with monitoring a Uyghur activist in Berlin.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The MSS combines functions that in the US would be split between the **CIA** (foreign intelligence), **FBI** (counterintelligence), and elements of **DHS**. One agency, one chain of command, one target list."
+          }
+        ]
+      },
+      {
+        "heading": "THE CONTRACTOR ECOSYSTEM",
+        "body": "Most Chinese cyber operations are not run by uniformed officers. The MSS and PLA contract out to private firms — the i-Soon leak in 2024 exposed a Shanghai-based contractor whose price list quoted $55,000 to access an email account at a foreign ministry and $278,000 for a year of social-media surveillance on a target."
+      },
+      {
+        "heading": "THE DIASPORA TARGETS",
+        "body": "Tibetan, Uyghur, and Hong Kong communities abroad are surveilled because Beijing treats them as continuations of domestic dissent, not foreign actors. The legal fiction is that all ethnic Chinese remain subjects of the state regardless of citizenship — a doctrine the FBI has called transnational repression.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "HK",
+              "TW",
+              "DE",
+              "GB",
+              "CA",
+              "US",
+              "AU",
+              "TR"
+            ],
+            "label": "diaspora hubs Beijing tracks",
+            "caption": "Uyghur, Tibetan, and Hong Kong exile communities"
+          }
+        ]
+      },
+      {
+        "heading": "THE APT NUMBERING",
+        "body": "Mandiant began numbering Chinese intrusion sets as APT1, APT3, APT10 in the 2010s — each tied to a specific MSS bureau or PLA unit. APT1 was traced to PLA Unit 61398 in a Shanghai office tower; the 2014 indictments named five officers by face and rank, the first time Washington publicly identified serving Chinese officers as hackers.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "PLA Unit 61398",
+                "role": "Shanghai signals intelligence",
+                "years": "exposed 2013",
+                "cc": "CN"
+              },
+              {
+                "name": "APT10 / MSS Tianjin",
+                "role": "managed-service-provider campaigns",
+                "years": "indicted 2018",
+                "cc": "CN"
+              },
+              {
+                "name": "APT41",
+                "role": "dual espionage + criminal ops",
+                "years": "indicted 2020",
+                "cc": "CN"
+              },
+              {
+                "name": "i-Soon (Anxun)",
+                "role": "private MSS contractor",
+                "years": "leaked 2024",
+                "cc": "CN"
+              }
+            ],
+            "label": "named Chinese cyber units"
+          }
+        ]
+      },
+      {
+        "heading": "THE COORDINATED-SANCTIONS PATTERN",
+        "body": "Western capitals increasingly publish attributions on the same day. The Five Eyes plus EU partners coordinate timing because a single-country sanction is easy for Beijing to dismiss as bilateral friction; a synchronized announcement frames the conduct as a violation of international norms."
+      },
+      {
+        "heading": "WHAT GETS STOLEN",
+        "body": "The 2015 OPM breach exfiltrated 21.5 million US security clearance files — every applicant's fingerprints, foreign contacts, and psychological evaluations. Chinese services now hold a counterintelligence database deep enough to identify likely undercover American officers a generation forward.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many US security-clearance records did Chinese hackers exfiltrate in the 2015 OPM breach?",
+            "options": [
+              "About 500,000",
+              "About 4 million",
+              "About 21.5 million",
+              "About 100 million"
+            ],
+            "correct": 2,
+            "explanation": "The OPM breach compromised 21.5 million records — fingerprints, SF-86 forms, and foreign contacts of nearly every US security clearance holder."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-09T08:45:10.119Z",
+    "label": "China's Unified Cyber Apparatus",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-08-epstein-treasury-crypto-iran-sanctions": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY CRYPTO BREAKS SANCTIONS",
+        "body": "Traditional sanctions work because nearly every bank touches the dollar system and must obey OFAC's Specially Designated Nationals list. Crypto exchanges that operate outside US jurisdiction — and peer-to-peer transfers that touch no exchange at all — sever that chokehold.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "OFAC's enforcement reach is built on **correspondent banking** — the network of dollar-clearing relationships that funnels nearly every cross-border payment through New York. A transaction settled on-chain never enters that network."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRAVEL RULE GAP",
+        "body": "FATF's Travel Rule requires exchanges to share sender and recipient identity for transfers above $1,000 — the crypto equivalent of SWIFT messaging. Adoption is uneven: Western exchanges comply, while exchanges based in jurisdictions like Russia, the UAE, and parts of Southeast Asia often do not, creating arbitrage routes that sanctioned actors exploit."
+      },
+      {
+        "heading": "STABLECOINS AS THE RAIL",
+        "body": "Most sanctions-evasion flows do not move in Bitcoin — they move in dollar-pegged stablecoins, primarily USDT (Tether). Tether settles on multiple chains, has minimal KYC at the protocol level, and offers dollar exposure without touching a US bank. Chainalysis estimates a majority of illicit on-chain volume is now stablecoin-denominated.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "USDT (Tether)",
+                "value": "~60%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "USDC",
+                "value": "~20%",
+                "tone": "neutral"
+              },
+              {
+                "label": "Bitcoin",
+                "value": "~10%",
+                "tone": "neutral"
+              },
+              {
+                "label": "Ether & other",
+                "value": "~10%",
+                "tone": "favorable"
+              }
+            ],
+            "label": "on-chain volume by asset, 2024 (rough share)"
+          }
+        ]
+      },
+      {
+        "heading": "HOW IRAN'S ARCHITECTURE WORKS",
+        "body": "Iran was cut from SWIFT in 2012 and again in 2018. The workaround layered on three rails: barter with friendly states, gold and oil sales priced in non-dollar currencies, and — increasingly — crypto exchanges in Turkey, the UAE, and Russia that convert oil revenue into stablecoins and back into local fiat at the destination.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "TR",
+              "AE",
+              "RU",
+              "CN"
+            ],
+            "label": "Iran's sanctions-workaround corridor"
+          }
+        ]
+      },
+      {
+        "heading": "THE CONFLICT-OF-INTEREST PROBLEM",
+        "body": "US Treasury officials are bound by Office of Government Ethics rules requiring divestment from holdings affected by their work. The rules apply to employees, not to outside advisors who brief them — a long-standing gap that has surfaced in financial-crisis advisory roles since at least the 2008 TARP designations.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which body cut Iran off from the global interbank messaging network in 2012 and 2018?",
+            "options": [
+              "The IMF",
+              "SWIFT (under EU and US pressure)",
+              "The UN Security Council",
+              "The World Bank"
+            ],
+            "correct": 1,
+            "explanation": "SWIFT, a Belgian cooperative, disconnected sanctioned Iranian banks under EU regulation backed by US Treasury pressure — the first time it had ever de-platformed a country's banks."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "In 2023 OFAC sanctioned the Tornado Cash mixer, a piece of open-source code, arguing that smart contracts themselves could be designated entities. A federal court partially overturned the designation in 2024, exposing the unsettled legal terrain where sanctions law meets autonomous code.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Tornado Cash case raised a constitutional question Treasury had never had to answer: can the government sanction *software* — code with no owner, no off-switch, no jurisdiction — the same way it sanctions a person or a bank?"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-09T08:45:43.019Z",
+    "label": "Sanctions & Crypto Evasion",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-08-imo-green-shipping-deal-on-course": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY SHIPPING IS HARD TO DECARBONIZE",
+        "body": "Ships burn the dirtiest legal fuel on the planet — heavy fuel oil, the tar-like residue left after refining. It's cheap, energy-dense, and uniquely suited to massive two-stroke marine engines. No drop-in clean substitute exists at scale.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "International shipping moves roughly **80% of global trade by volume** and emits about **3% of global CO2** — comparable to Germany's entire economy."
+          }
+        ]
+      },
+      {
+        "heading": "THE JURISDICTION GAP",
+        "body": "A ship registered in Panama, owned by a Greek family, crewed by Filipinos, carrying Chinese goods to Rotterdam burns fuel in international waters. No single country can tax those emissions. This is why the IMO — a UN agency — is the only body that can price shipping carbon globally.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Panama",
+                "value": "~16% of fleet",
+                "cc": "PA",
+                "weight": 16
+              },
+              {
+                "label": "Liberia",
+                "value": "~14%",
+                "cc": "LR",
+                "weight": 14
+              },
+              {
+                "label": "Marshall Islands",
+                "value": "~13%",
+                "cc": "MH",
+                "weight": 13
+              },
+              {
+                "label": "Hong Kong",
+                "value": "~7%",
+                "cc": "HK",
+                "weight": 7
+              },
+              {
+                "label": "Singapore",
+                "value": "~6%",
+                "cc": "SG",
+                "weight": 6
+              }
+            ],
+            "label": "top flag-of-convenience registries"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT $380 A TONNE MEANS",
+        "body": "That's roughly triple the EU's carbon price and far above any prior shipping levy proposal. Applied to the ~1 billion tonnes of CO2 the sector emits annually, even partial coverage generates tens of billions a year — enough to actually fund alternative-fuel infrastructure rather than just signal intent."
+      },
+      {
+        "heading": "THE FUEL ALTERNATIVES",
+        "body": "Green ammonia and methanol are the two leading candidates. Ammonia carries no carbon at all but is toxic and requires new engines. Methanol burns in modified existing engines but its climate benefit depends entirely on whether the feedstock is green hydrogen or natural gas.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is ammonia (NH3) attractive as a marine fuel despite being toxic?",
+            "options": [
+              "It's cheaper than diesel today",
+              "It contains no carbon, so combustion produces no CO2",
+              "It can be produced from seawater",
+              "It's already widely used in cars"
+            ],
+            "correct": 1,
+            "explanation": "Ammonia's molecule has no carbon — burning it yields nitrogen and water, with zero CO2. That's why it's a serious decarbonization candidate despite the handling risks."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE US AND SAUDI ARABIA RESIST",
+        "body": "The opposition splits along predictable lines. Oil exporters lose a large captive market for bunker fuel — the Persian Gulf alone supplies a meaningful share of global ship fuel. The US under the current administration treats any UN-administered carbon revenue mechanism as a sovereignty concession.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "SA",
+              "AE",
+              "IR",
+              "OM",
+              "QA",
+              "KW"
+            ],
+            "label": "the bunker-fuel coast",
+            "caption": "Persian Gulf refineries feed a major slice of global marine fuel demand"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "The IMO has set global rules before — the 2020 sulfur cap forced ships to switch from 3.5% sulfur fuel to 0.5%, the largest fuel-quality shift in maritime history. Compliance was nearly universal within months. The carbon framework borrows that enforcement architecture: port-state inspection, with non-compliant ships denied entry.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1997",
+                "label": "MARPOL Annex VI adopted (air pollution)"
+              },
+              {
+                "year": "2011",
+                "label": "EEDI: efficiency standards for new ships"
+              },
+              {
+                "year": "2020",
+                "label": "Global sulfur cap takes effect",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "Net-zero strategy adopted"
+              },
+              {
+                "year": "2026-11",
+                "label": "Carbon-price framework vote"
+              }
+            ],
+            "label": "IMO climate rule-making"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-09T08:46:13.961Z",
+    "label": "Shipping's Carbon Price",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-08-kenya-data-center-boom-enclave-economy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT AN ENCLAVE ECONOMY IS",
+        "body": "An enclave economy is a foreign-capital sector that operates inside a country but barely connects to it. Inputs imported, outputs exported, profits repatriated, taxes minimized through holidays. The host gets wages and a footprint; the value chain happens elsewhere.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The classic 20th-century cases were *banana republics* and copper belts — modern versions wear the language of **special economic zones**, **export processing zones**, and **strategic investment incentives**."
+          }
+        ]
+      },
+      {
+        "heading": "THE ROSE PRECEDENT",
+        "body": "Kenya became the EU's largest cut-flower supplier in the 2000s by offering tax holidays, water rights, and EPZ status around Lake Naivasha. Two decades later, the lake has shrunk, surrounding aquifers are stressed, and farm wages cluster near the legal minimum — while flowers are airfreighted to Amsterdam auction within 24 hours of cutting.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KE",
+              "UG",
+              "TZ",
+              "ET",
+              "RW"
+            ],
+            "label": "the Naivasha corridor",
+            "markers": [
+              {
+                "lat": -0.7172,
+                "lng": 36.4319,
+                "label": "Lake Naivasha"
+              },
+              {
+                "lat": -1.2921,
+                "lng": 36.8219,
+                "label": "Nairobi"
+              },
+              {
+                "lat": -4.0435,
+                "lng": 39.6682,
+                "label": "Mombasa cable landing"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY DATA CENTERS RHYME",
+        "body": "A hyperscale data center is capital-heavy and labor-light: a $1B build employs a few hundred at steady state, mostly security and HVAC technicians. The valuable work — model training, inference revenue, IP — accrues to the cloud provider's home jurisdiction. The host country provides land, power, water, and tax forbearance.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Host country",
+                "value": "land, power, water, tax holidays",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Hyperscaler",
+                "value": "capex, IP, revenue, jobs abroad",
+                "tone": "favorable"
+              }
+            ],
+            "label": "what each side brings to a hyperscale build"
+          }
+        ]
+      },
+      {
+        "heading": "THE WATER PROBLEM",
+        "body": "Large data centers cool through evaporative systems that consume hundreds of thousands of liters per megawatt per year. Lake Naivasha is already a closed-basin lake — water in roughly equals water out via evaporation — and supports both the flower industry and Maasai pastoralists downstream.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Microsoft globally reported **water consumption of ~7.8 billion liters** in FY2024 — the equivalent of *3,100 Olympic pools*, growing fastest in arid regions where land is cheap and grids are underused."
+          }
+        ]
+      },
+      {
+        "heading": "THE G42 FOOTPRINT",
+        "body": "G42 is an Abu Dhabi AI firm chaired by UAE national security adviser Sheikh Tahnoun. Its Kenya partnership follows a pattern: Gulf sovereign capital pairs with US hyperscalers (Microsoft invested $1.5B in G42 in 2024) to place compute in jurisdictions with cheap land, geothermal or solar baseload, and weak data-localization rules.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Sheikh Tahnoun bin Zayed",
+                "role": "UAE National Security Adviser, G42 chair",
+                "cc": "AE"
+              },
+              {
+                "name": "Peng Xiao",
+                "role": "G42 Group CEO",
+                "cc": "AE"
+              },
+              {
+                "name": "Brad Smith",
+                "role": "Microsoft Vice Chair",
+                "cc": "US"
+              },
+              {
+                "name": "William Ruto",
+                "role": "Kenyan President",
+                "years": "2022–",
+                "cc": "KE"
+              }
+            ],
+            "label": "who's at the table"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE HOST COULD CAPTURE",
+        "body": "Enclaves don't have to stay enclaves. Costa Rica turned Intel's 1997 chip plant into a domestic semiconductor cluster by tying incentives to local supplier development and engineering training. Ireland's data-center boom funds the state through corporate tax — but only because Ireland insisted on booking the IP onshore. The leverage exists at contract signing, not afterward.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What turns a foreign-investment enclave into a domestic industry?",
+            "options": [
+              "Lower wages to attract more investment",
+              "Tying incentives to local supplier development and skill transfer",
+              "Letting the market sort linkages over time",
+              "Banning profit repatriation"
+            ],
+            "correct": 1,
+            "explanation": "Costa Rica and Ireland both used incentive conditionality at the contract stage — local content requirements, training mandates, IP onshoring — to convert enclaves into industries. Post-hoc bans rarely work."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-09T08:46:51.729Z",
+    "label": "Enclave Economies & the Naivasha Pattern",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-09-aave-dprk-eth-judgment-defi-precedent": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LAZARUS PIPELINE",
+        "body": "North Korea's state hacking units, grouped under the umbrella name Lazarus, have shifted from bank-wire heists to crypto exploits since around 2017. UN panel reports estimate the regime has stolen several billion dollars in digital assets, funding roughly half of its missile and weapons program by some Treasury estimates.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The crews behind the thefts — **Lazarus**, **APT38**, **TraderTraitor** — sit inside the **Reconnaissance General Bureau**, the same intelligence directorate that runs Pyongyang's foreign espionage."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE ETH SAT IN AAVE",
+        "body": "Aave is a lending protocol: depositors supply ETH or stablecoins, borrowers post collateral and draw against it. Stolen funds are often laundered by depositing them as collateral, borrowing other assets, and abandoning the position — leaving the original tokens stuck in the pool when prices move and liquidations trigger.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Ronin Bridge '22",
+                "value": 625
+              },
+              {
+                "label": "DMM Bitcoin '24",
+                "value": 305
+              },
+              {
+                "label": "WazirX '24",
+                "value": 235
+              },
+              {
+                "label": "Atomic Wallet '23",
+                "value": 100
+              },
+              {
+                "label": "Harmony Bridge '22",
+                "value": 100
+              },
+              {
+                "label": "CoinEx '23",
+                "value": 54
+              },
+              {
+                "label": "Stake.com '23",
+                "value": 41
+              }
+            ],
+            "label": "selected Lazarus crypto heists ($mn, est.)"
+          }
+        ]
+      },
+      {
+        "heading": "HOW TERRORISM JUDGMENTS WORK",
+        "body": "The Anti-Terrorism Act and the Justice Against Sponsors of Terrorism Act let US victims sue states designated as sponsors of terrorism. North Korea has been on the list since 2017 (and earlier, 1988-2008). Pyongyang never appears in court, so plaintiffs collect default judgments — paper victories worth nothing until assets are found inside US jurisdiction."
+      },
+      {
+        "heading": "THE PSEUDONYMITY MYTH",
+        "body": "Every Ethereum transaction is public and permanent. Firms like Chainalysis and TRM Labs cluster wallets by behavior, then tag them when one address touches a known exchange KYC account. Tornado Cash, the mixer OFAC sanctioned in 2022, was the main industrial-scale tool for breaking this trail — and even its deposits are partially de-anonymizable through timing analysis.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2017",
+                "label": "DPRK relisted as state sponsor of terrorism"
+              },
+              {
+                "year": "2022-03",
+                "label": "Ronin Bridge hack: $625M stolen",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-08",
+                "label": "OFAC sanctions Tornado Cash addresses"
+              },
+              {
+                "year": "2023-09",
+                "label": "Roman Storm (Tornado dev) indicted"
+              },
+              {
+                "year": "2024",
+                "label": "DOJ seizes USDT linked to Lazarus on-chain"
+              },
+              {
+                "year": "2026-05",
+                "label": "Aave $71M ETH seizure cleared"
+              }
+            ],
+            "label": "DeFi as a sanctions surface"
+          }
+        ]
+      },
+      {
+        "heading": "THE DAO AS DEFENDANT",
+        "body": "Aave has no CEO, no headquarters, no custody of user funds — the protocol is autonomous code, governed by token-holder votes. Treating the DAO as a party that can be ordered to move funds is the novel move: the court is reaching past the smart contract to the humans who hold the governance keys.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does an Aave governance vote actually control?",
+            "options": [
+              "Individual users' wallet balances directly",
+              "Protocol parameters and treasury actions, executed by smart contracts",
+              "A board of directors who then sign transactions",
+              "Validator selection on the Ethereum network"
+            ],
+            "correct": 1,
+            "explanation": "AAVE token holders vote on proposals; a passing vote authorizes a smart contract to execute parameter changes or treasury transfers — there is no human signatory in the middle."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-09T08:47:37.443Z",
+    "label": "DeFi Seizure & the Lazarus Pipeline",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-09-bengal-first-bjp-chief-minister-adhikari-sworn-in": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY BENGAL RESISTED",
+        "body": "Bengal was the last major state where the BJP's Hindi-belt formula failed. The state's politics were shaped by Partition refugees, a 34-year Communist rule (1977–2011), and a regional-language identity that treated Hindutva as a North Indian import.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1947",
+                "label": "Partition splits Bengal"
+              },
+              {
+                "year": "1977",
+                "label": "CPI(M) takes power"
+              },
+              {
+                "year": "2011",
+                "label": "Mamata ends Left rule",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "BJP surges to 77 seats"
+              },
+              {
+                "year": "2026",
+                "label": "BJP wins majority"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1977",
+                "to": "2011",
+                "label": "Left Front rule",
+                "tone": "neutral"
+              },
+              {
+                "from": "2011",
+                "to": "2026",
+                "label": "Trinamool rule",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Bengal's political eras"
+          }
+        ]
+      },
+      {
+        "heading": "THE DEFECTOR",
+        "body": "Suvendu Adhikari was Mamata Banerjee's protégé and transport minister until December 2020, when he crossed to the BJP weeks before the 2021 election. His defection brought Medinipur's organizational machinery — the cadres who had delivered Trinamool's 2011 breakthrough — to the opposition.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Adhikari's family controls **Kanthi** in East Medinipur — a stronghold built during the **Nandigram** land protests of 2007, the movement that propelled Mamata to power. The same network now anchors the BJP."
+          }
+        ]
+      },
+      {
+        "heading": "THE DEMOGRAPHIC FAULT LINE",
+        "body": "Bengal is roughly 27% Muslim — the highest share of any major Indian state — concentrated in border districts adjacent to Bangladesh. The BJP's campaign emphasized infiltration and the National Register of Citizens; Trinamool's coalition depended on consolidating the Muslim vote against a fragmented Hindu vote.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "BD"
+            ],
+            "label": "Bengal & the Bangladesh border",
+            "markers": [
+              {
+                "lat": 22.5726,
+                "lng": 88.3639,
+                "label": "Kolkata"
+              },
+              {
+                "lat": 24.8333,
+                "lng": 88.1167,
+                "label": "Murshidabad"
+              },
+              {
+                "lat": 22.3199,
+                "lng": 87.3105,
+                "label": "Nandigram"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 294 ARITHMETIC",
+        "body": "Bengal's assembly has 294 seats; 148 is a majority. The BJP's 209 is a two-thirds supermajority — enough to amend the state constitution and unilaterally reorganize local bodies. Trinamool's 2021 tally was 215; the swing is roughly the same magnitude in reverse.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "2011 (TMC wave)",
+                "value": "TMC 184",
+                "weight": 184
+              },
+              {
+                "label": "2016",
+                "value": "TMC 211",
+                "weight": 211
+              },
+              {
+                "label": "2021",
+                "value": "TMC 215",
+                "weight": 215
+              },
+              {
+                "label": "2026",
+                "value": "BJP 209",
+                "weight": 209,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Bengal assembly, last four elections"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A STATE CM CAN DO",
+        "body": "Indian chief ministers control state police, land records, education boards, and local-government appointments. They cannot set foreign policy or income tax, but they decide who gets contracts, transfers, and prosecutions — the daily texture of state power. Bengal's bureaucracy will reshuffle within weeks.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many of India's 28 states had a BJP or BJP-allied chief minister before this Bengal result?",
+            "options": [
+              "About 6",
+              "About 12",
+              "About 18",
+              "All 28"
+            ],
+            "correct": 2,
+            "explanation": "The BJP and its NDA allies governed roughly 18 states heading into 2026; Bengal was among the largest holdouts, alongside Tamil Nadu and Kerala."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-09T08:48:10.011Z",
+    "label": "Bengal & the BJP Breakthrough",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-09-china-russia-trade-19-percent-yuan-settlement": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PIVOT EAST",
+        "body": "Before 2022, Europe was Russia's largest trading partner and bought roughly half its oil exports. Sanctions and the Druzhba pipeline freeze redirected those flows; China is now Russia's single largest customer, taking the volumes Europe refused.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2014",
+                "label": "Crimea sanctions begin"
+              },
+              {
+                "year": "2019",
+                "label": "Power of Siberia gas pipeline opens"
+              },
+              {
+                "year": "2022",
+                "label": "Full invasion; EU embargo",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "Yuan overtakes dollar in Russian trade"
+              },
+              {
+                "year": "2024",
+                "label": "Bilateral trade hits $244bn record"
+              }
+            ],
+            "label": "the redirect"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE SURPLUS STAYS FLAT",
+        "body": "Russia sells commodities (oil, gas, coal, timber) priced in falling global benchmarks. China sells finished goods (cars, electronics, machinery) at stable margins. Even as volume grows, Russia's terms of trade erode — more barrels for the same yuan.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Russia → China",
+                "value": "commodities",
+                "tone": "unfavorable",
+                "cc": "RU",
+                "segments": [
+                  {
+                    "value": 60,
+                    "tone": "unfavorable",
+                    "label": "oil & gas"
+                  },
+                  {
+                    "value": 20,
+                    "tone": "neutral",
+                    "label": "coal & metals"
+                  },
+                  {
+                    "value": 20,
+                    "tone": "favorable",
+                    "label": "other"
+                  }
+                ]
+              },
+              {
+                "label": "China → Russia",
+                "value": "finished goods",
+                "tone": "favorable",
+                "cc": "CN",
+                "segments": [
+                  {
+                    "value": 35,
+                    "tone": "unfavorable",
+                    "label": "machinery"
+                  },
+                  {
+                    "value": 30,
+                    "tone": "neutral",
+                    "label": "vehicles"
+                  },
+                  {
+                    "value": 35,
+                    "tone": "favorable",
+                    "label": "electronics & other"
+                  }
+                ]
+              }
+            ],
+            "label": "the asymmetric basket"
+          }
+        ]
+      },
+      {
+        "heading": "THE YUAN SETTLEMENT SHIFT",
+        "body": "By 2024, more than 90% of Russia-China trade settled in rubles and yuan, up from under 20% before 2022. This was forced, not chosen — secondary US sanctions on Chinese banks handling dollar-denominated Russian transactions made the dollar route unworkable.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is **CIPS** — China's Cross-Border Interbank Payment System, the yuan analog to **SWIFT**. CIPS clears yuan transactions without touching the dollar correspondent-banking network that the US Treasury can lean on."
+          }
+        ]
+      },
+      {
+        "heading": "THE STUCK YUAN PROBLEM",
+        "body": "Russian exporters earn yuan in Shanghai but cannot freely convert them. China maintains capital controls that cap how much yuan can leave; Russia ends up holding yuan balances it cannot easily spend on non-Chinese imports. The currency is convertible in name, captive in practice.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              6.828,
+              6.828,
+              6.828,
+              6.8304,
+              6.81605,
+              6.8183,
+              6.8214,
+              6.8177,
+              6.8177,
+              6.8177,
+              6.8192,
+              6.8157,
+              6.8235,
+              6.8265,
+              6.8363,
+              6.8363,
+              6.8363,
+              6.8284,
+              6.8289,
+              6.836,
+              6.8391,
+              6.8282,
+              6.82825,
+              6.82825,
+              6.8283,
+              6.8303,
+              6.8193,
+              6.8059,
+              6.8037,
+              6.8008
+            ],
+            "periods": [
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9"
+            ],
+            "label": "Chinese yuan",
+            "unit": "CNY / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE ASYMMETRY",
+        "body": "China is Russia's largest partner; Russia is not China's. Russian trade is roughly 4% of China's total — meaningful but replaceable. Beijing sets the price, the currency, and the pace; Moscow accepts the terms because the alternative is no buyer at all.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of China's total foreign trade does Russia account for?",
+            "options": [
+              "About 4%",
+              "About 12%",
+              "About 20%",
+              "About 30%"
+            ],
+            "correct": 0,
+            "explanation": "Russia is a top-tier partner for China only in energy. In total trade volume, the EU, ASEAN, and the US each dwarf Russia — giving Beijing structural leverage in the relationship."
+          }
+        ]
+      },
+      {
+        "heading": "THE 'NO LIMITS' CEILING",
+        "body": "Xi and Putin declared a 'no limits' partnership weeks before the 2022 invasion. The limits showed up quickly: China has not recognized Russian annexations, has not supplied lethal weapons, and Chinese banks routinely freeze transactions that risk US secondary sanctions. The partnership is deep where it is cheap for Beijing, shallow where it is costly."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-09"
+    ],
+    "generatedAt": "2026-05-09T08:48:43.611Z",
+    "label": "Russia-China Trade & Yuan Settlement",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-09-nigeria-sickle-cell-screening-genotype-gap": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "ONE LETTER, TWO DISEASES",
+        "body": "Sickle cell is caused by a single point mutation in the beta-globin gene — adenine to thymine, glutamic acid to valine at position 6. Inherit one copy (AS) and you carry the trait, mostly asymptomatic. Inherit two (SS) and red cells deform under low oxygen, blocking capillaries and causing pain crises, organ damage, and shortened lifespan.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The variant cell is rigid and crescent-shaped instead of pliable and round — hence *sickle*. The clinical name is **HbSS** for homozygotes; **HbAS** is the carrier state."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE GENE PERSISTS",
+        "body": "The sickle allele should have been purged by natural selection — homozygotes die young. It survived because heterozygotes resist falciparum malaria. The parasite cannot replicate efficiently in cells that sickle when stressed. The geographic overlap of sickle cell prevalence and historical malaria endemicity is one of the cleanest examples of balancing selection in human biology."
+      },
+      {
+        "heading": "THE NIGERIAN BURDEN",
+        "body": "Roughly a quarter of Nigerians carry at least one sickle allele. About 150,000 babies are born with SS disease in Nigeria each year — more than any other country. Without newborn screening and early penicillin prophylaxis, half die before age five from infections that a functioning spleen would clear.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Annual SCD births (selected high-burden countries)",
+            "peers": [
+              {
+                "value": 150,
+                "cc": "NG"
+              },
+              {
+                "value": 40,
+                "cc": "CD"
+              },
+              {
+                "value": 42,
+                "cc": "IN"
+              },
+              {
+                "value": 11,
+                "cc": "TZ"
+              },
+              {
+                "value": 7,
+                "cc": "GH"
+              },
+              {
+                "value": 10,
+                "cc": "UG"
+              },
+              {
+                "value": 2,
+                "cc": "US"
+              }
+            ],
+            "subjectCc": "NG",
+            "unit": "thousands"
+          }
+        ]
+      },
+      {
+        "heading": "SC AND AC, THE FORGOTTEN GENOTYPES",
+        "body": "Hemoglobin C is a separate beta-globin mutation common in West Africa. SC compound heterozygotes get a milder but real form of the disease — vaso-occlusive crises, retinopathy, avascular necrosis. AC carriers paired with AS partners can produce SC children. Counselling that only screens for AS misses this entire branch of risk.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "AA",
+                "value": "no risk",
+                "tone": "favorable"
+              },
+              {
+                "label": "AS",
+                "value": "carrier (trait)",
+                "tone": "neutral"
+              },
+              {
+                "label": "AC",
+                "value": "carrier (HbC)",
+                "tone": "neutral"
+              },
+              {
+                "label": "SS",
+                "value": "full disease",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "SC",
+                "value": "milder disease",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "what each genotype means"
+          }
+        ]
+      },
+      {
+        "heading": "WHY COUNSELLING IS THE BOTTLENECK",
+        "body": "Knowing your genotype is information; knowing what it means for your children is action. AS × AS partners have a 1-in-4 chance of an SS child each pregnancy — independent of how many healthy children came before. The 2020 study's gap (94% knew their type, 10% understood the risk) is the gap between a lab result and a life decision."
+      },
+      {
+        "heading": "THE TEST QUALITY PROBLEM",
+        "body": "The gold standard is hemoglobin electrophoresis or HPLC, which separates HbA, HbS, and HbC distinctly. Cheaper solubility tests detect HbS but miss HbC entirely — so an AC person reads as AA. In settings where solubility tests are sold as 'genotype screening,' the SC branch becomes invisible by design.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Two parents both test AS. What is the chance of an SS child in any single pregnancy?",
+            "options": [
+              "1 in 2",
+              "1 in 4",
+              "1 in 8",
+              "depends on prior children"
+            ],
+            "correct": 1,
+            "explanation": "Each pregnancy is independent: 25% AA, 50% AS, 25% SS. Past births don't change the next draw."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-09T08:49:21.238Z",
+    "label": "Sickle Cell & the Heterozygote",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-09-pakpattan-canal-breach-villages-flooded": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LARGEST IRRIGATION SYSTEM ON EARTH",
+        "body": "Pakistan's Indus Basin Irrigation System is the largest contiguous canal network in the world — three major rivers feeding link canals feeding distributaries feeding watercourses, irrigating roughly 18 million hectares. Most of it was engineered by British colonial administrators between 1859 and 1947 to turn the Punjab into an export breadbasket.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IN",
+              "AF",
+              "CN"
+            ],
+            "label": "the Indus Basin",
+            "markers": [
+              {
+                "lat": 30.3411,
+                "lng": 73.3856,
+                "label": "Pakpattan"
+              },
+              {
+                "lat": 31.1704,
+                "lng": 72.7097,
+                "label": "Sutlej river"
+              },
+              {
+                "lat": 33.7294,
+                "lng": 73.0931,
+                "label": "Tarbela dam"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TREATY THAT SHAPED THE GRID",
+        "body": "The 1960 Indus Waters Treaty, brokered by the World Bank, gave India the three eastern rivers (Ravi, Beas, Sutlej) and Pakistan the three western rivers (Indus, Jhelum, Chenab). Pakpattan sits on a Sutlej-fed canal — meaning its water depends on releases negotiated under a treaty India suspended in 2025.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The treaty survived three wars between India and Pakistan before this — the *only* major bilateral agreement to do so."
+          }
+        ]
+      },
+      {
+        "heading": "WHY EARTHEN CANALS FAIL",
+        "body": "Most distributary canals are unlined earthen embankments. Water seeps through the bank, saturates it, and a single weak point — a rodent burrow, a buffalo crossing, an over-irrigated field — becomes the failure nucleus. Once flow concentrates at the breach, the bank erodes in minutes; this is called piping failure."
+      },
+      {
+        "heading": "THE COLONIAL PROCUREMENT LOGIC",
+        "body": "The British-era irrigation department was designed to maintain canals, not to respond to emergencies. Heavy equipment was never part of the establishment because canal failures were meant to be prevented through inspection, not patched after the fact. That assumption ossified into a procurement model where every excavator must be rented from a private contractor.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Pakistan's irrigation department rent rather than own heavy machinery?",
+            "options": [
+              "Budget constraints from IMF austerity",
+              "The colonial-era department was designed for inspection, not emergency response",
+              "Equipment was sold off in 1990s privatization",
+              "Provincial vs federal jurisdictional disputes"
+            ],
+            "correct": 1,
+            "explanation": "The Punjab Irrigation Department's establishment dates to the 1873 Canal & Drainage Act — written when prevention through inspection was the entire doctrine."
+          }
+        ]
+      },
+      {
+        "heading": "THE WATERLOGGING PARADOX",
+        "body": "A century of unlined canals has raised water tables across Punjab so high that roughly a quarter of irrigated land suffers from waterlogging or salinity — the same canals that grow the crops slowly poison the soil. A breach floods downstream villages, but the chronic seepage from intact canals is the larger long-run threat.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.95,
+              278.505896,
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606
+            ],
+            "periods": [
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHO BEARS THE LOSS",
+        "body": "Pakistani crop insurance covers a tiny fraction of smallholders. When 24 villages flood, the loss is absorbed by the farmers themselves, by informal credit networks, and eventually by provincial relief payments that arrive months later at a fraction of the damage. The rupee's slide compounds it — every imported input for replanting costs more in PKR terms each year."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-09"
+    ],
+    "generatedAt": "2026-05-09T08:49:52.263Z",
+    "label": "Pakistan's Canal System",
+    "category": "science",
+    "articleCount": 1
   }
 }
