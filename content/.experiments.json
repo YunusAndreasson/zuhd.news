@@ -41,10 +41,35 @@
         "reason": "select-prompt.md was edited on 2026-05-02 to add editorial-memo reading. Once the first memo lands (Sunday 2026-05-03 22:30 UTC), selector behavior is no longer attributable solely to the OIC carry-through rule. The OIC metric movement after 2026-05-03 cannot be used to keep/revert this experiment cleanly.",
         "recommendation": "Either (a) evaluate using only the May 1\u2013May 3 window (3 days, below the 3-day minimum), (b) extend evaluateAfter past the new baseline window \u2014 re-baseline by 2026-05-12 then evaluate 2026-05-19, or (c) revert the selector memo-read edit until this experiment lands. Default: extend the window."
       }
-    },
+    }
   ],
   "activeExperiment": null,
   "history": [
+    {
+      "id": "2026-05-02-recap-dedup-retro",
+      "startDate": "2026-05-02",
+      "evaluateAfter": "2026-05-09",
+      "prNumber": null,
+      "hypothesis": "Audit on 2026-05-02 found 31 niche-only articles shipped over 6 weeks that recapped events major outlets had broken 2-10 days earlier. Slug-fuzzy was missing them because niche outlets reword headlines and slug truncation drops endings. Adding a layer-4 recap rule (title-word overlap ≥3 words, ≥0.55 ratio, niche-only stories only, 14-day lookback against article titles + ledger labels) should catch the bulk of these without raising fabrication or dropping legitimate breaking news.",
+      "parameter": "Layer-4 recap dedup (niche-only, title-word overlap)",
+      "file": "scripts/lib/dedup.js",
+      "oldValue": "3 layers: exact slug, eventUri, fuzzy slug",
+      "newValue": "+ layer 4: recap (niche-only, titleWords overlap ≥0.55 / ≥3 words, 14d lookback)",
+      "targetMetric": "niche-source recap articles caught per week",
+      "targetDirection": "increase",
+      "baseline": {
+        "auditWindowStart": "2026-03-21",
+        "auditWindowEnd": "2026-05-01",
+        "auditNicheRecapsCounted": 31,
+        "auditWeeks": 6,
+        "testFixturePins": 14,
+        "testCounterExamples": 5,
+        "diagnosticScript": "scripts/lib/dedup.test.js"
+      },
+      "result": "kept",
+      "evaluatedOn": "2026-05-09",
+      "notes": "Retroactive backtest via scripts/autoresearch/replay-recap-dedup.js (mode=published) over the 2026-03-21 → 2026-05-01 pre-launch window: 22 niche-only articles deterministically caught by the recap rule across 742 niche-only publishes (~3.7/week). Source concentration is heavy: Drop Site News 9 (40%), New Lines 3, Salaam Gateway 2, The Record 2 — top 4 outlets cover 73% of value. ~14 of 22 are clean recaps (Disney/OpenAI, Tadamon arrest, Drift exploit, Australia ban, Bint Jbeil, etc.); ~7 are conflict-cluster matches (Israel-Lebanon recurring strikes treated as recaps — explicitly pinned in test fixture as KNOWN_RECAPS, intentional aggressiveness); ~1 borderline false-positive (Salaam Gateway Iran/Gulf tourism vs Iran-UAE aluminium strike). 7 of the 14 KNOWN_RECAPS pins fall inside this window and were all caught. Post-launch (2026-05-02 → 2026-05-09): 106 niche-only publishes, 1 clear false negative (Phys.org Venter recap of 2026-04-30 break). Cost: zero — deterministic, no LLM. Trade-off: rule is intentionally aggressive on conflict-cluster recaps; if that becomes problematic the threshold can be tightened from 0.55 → 0.65 or a co-mention guard added. Implication: rule's value is concentrated in Drop Site News — flag for any future proposal to drop niche RSS sources for fetch-time savings."
+    },
     {
       "id": "2026-05-01-title-echo-self-check",
       "startDate": "2026-05-01",

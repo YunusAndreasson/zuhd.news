@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Merges API feed (/tmp/zuhd-feed-api.json) and RSS feed (/tmp/zuhd-feed-rss.json)
 // into a single /tmp/zuhd-feed.json. Deduplicates by title fingerprint.
-import { readFileSync, writeFileSync, existsSync } from 'fs'
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs'
 import { fingerprint } from './lib/utils.js'
 
 function loadFeed(path) {
@@ -74,5 +74,17 @@ const slimOutput = {
   nicheStories: stripBodies(nicheStories),
 }
 writeFileSync('/tmp/zuhd-feed-slim.json', JSON.stringify(slimOutput, null, 2))
+
+// Archive merged (post-RSS-merge, pre-prefilter) snapshot for replay/backtest.
+// fetch-news-api.js already snapshots its output, but that one is API-only —
+// the niche-RSS sources that the layer-4 recap rule targets only enter here.
+try {
+  const SNAP_DIR = 'content/.feed-snapshots-merged'
+  mkdirSync(SNAP_DIR, { recursive: true })
+  const ts = output.fetchedAt.replace(/:/g, '-').replace(/\..+/, '').replace('T', 'T').slice(0, 16)
+  writeFileSync(`${SNAP_DIR}/${ts}.json`, JSON.stringify(slimOutput, null, 2))
+} catch (err) {
+  console.error(`merged-snapshot write failed: ${err.message}`)
+}
 
 console.log(`${multiSourceStories.length} multi + ${nicheStories.length} niche (${dropped} headline-only, ${stale} stale >48h dropped)`)
