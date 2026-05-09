@@ -2,7 +2,7 @@
   "expo": {
     "name": "zuhd.news",
     "slug": "zuhd-news",
-    "version": "1447.11.16",
+    "version": "1447.11.17",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -15,7 +15,7 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "zuhd.news",
-      "buildNumber": "247",
+      "buildNumber": "249",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
         "UIBackgroundModes": [
@@ -33,7 +33,7 @@
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
-      "versionCode": 247,
+      "versionCode": 249,
       "permissions": [
         "android.permission.FOREGROUND_SERVICE",
         "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK",
@@ -69,8 +69,12 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#0F0F11",
-          "image": "./assets/splash-icon.png"
+          "backgroundColor": "#f5f2ed",
+          "image": "./assets/splash-icon-light.png",
+          "dark": {
+            "backgroundColor": "#0F0F11",
+            "image": "./assets/splash-icon.png"
+          }
         }
       ],
       "expo-asset",
