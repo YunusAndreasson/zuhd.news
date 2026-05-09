@@ -8,8 +8,15 @@ import { useAppResume } from './useAppResume';
 
 const heatmapCache = createJsonCache<HeatmapResponse>('zuhd-heatmap.json', isHeatmapResponse);
 
-export function useHeatmap(feedGenerated: string | null): HeatmapPoint[] {
+interface HeatmapResult {
+  points: HeatmapPoint[];
+  /** True after the first cache or network attempt has completed. Splash gate. */
+  ready: boolean;
+}
+
+export function useHeatmap(feedGenerated: string | null): HeatmapResult {
   const [points, setPoints] = useState<HeatmapPoint[]>([]);
+  const [ready, setReady] = useState(false);
   const lastGenRef = useRef<string | null>(null);
 
   const fetchHeatmap = useCallback(async () => {
@@ -36,8 +43,13 @@ export function useHeatmap(feedGenerated: string | null): HeatmapPoint[] {
       if (cached) {
         lastGenRef.current = cached.generated;
         setPoints(cached.points);
+        setReady(true);
+        // Background refresh — don't await, don't gate splash on it
+        fetchHeatmap();
+        return;
       }
       await fetchHeatmap();
+      setReady(true);
     })();
   }, [fetchHeatmap]);
 
@@ -54,5 +66,5 @@ export function useHeatmap(feedGenerated: string | null): HeatmapPoint[] {
   // Foreground resume
   useAppResume(fetchHeatmap, STALE_THRESHOLD);
 
-  return points;
+  return { points, ready };
 }

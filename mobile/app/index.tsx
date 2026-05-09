@@ -97,11 +97,10 @@ export default function HomeScreen() {
     refresh,
     retry,
     tick,
-    resetKey,
     generated,
     injectArticle,
   } = useArticles();
-  const heatmapPoints = useHeatmap(generated);
+  const { points: heatmapPoints, ready: heatmapReady } = useHeatmap(generated);
   const { chokepoints } = useChokepoints();
   const { alerts: gdacsAlerts, details: gdacsDetails } = useGdacsAlerts();
   const { events: conflictEvents } = useConflictEvents();
@@ -432,9 +431,14 @@ export default function HomeScreen() {
     }
   }, [refresh]);
 
+  // Hold the splash until we have something for *every* visible layer:
+  // article cache loaded AND heatmap (the largest globe canvas) ready.
+  // The mount-only globe layers (chokepoints, GDACS, conflicts, trends)
+  // each cache locally, so they typically resolve before heatmap on warm
+  // launches. The 8s fallback in _layout.tsx covers any stall.
   useEffect(() => {
-    if (!loading) SplashScreen.hideAsync();
-  }, [loading]);
+    if (!loading && heatmapReady) SplashScreen.hideAsync();
+  }, [loading, heatmapReady]);
 
   usePendingNotification(loading, grouped, handleSelectArticle, briefingPlayer.toggle);
 
@@ -491,7 +495,6 @@ export default function HomeScreen() {
                 progressesSV={categoryProgresses}
                 zoomClipOverride={currentZoom.clip}
                 tick={tick}
-                resetKey={resetKey}
               />
             )}
           </View>

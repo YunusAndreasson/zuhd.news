@@ -34,7 +34,6 @@ interface ArticlesState {
   refresh: () => Promise<number>;
   retry: () => Promise<void>;
   tick: number;
-  resetKey: number;
   generated: string | null;
   injectArticle: (article: Article, category: Category) => void;
 }
@@ -49,15 +48,18 @@ export function useArticles(): ArticlesState {
   const [generated, setGenerated] = useState<string | null>(null);
   const lastGeneratedRef = useRef<string | null>(null);
   const refreshingRef = useRef(false);
-  const [resetKey, setResetKey] = useState(0);
 
   // Load lastSeenAt from storage on mount
   useEffect(() => {
     getLastSeenAt().then(setLastSeenAt);
   }, []);
 
-  // Track foreground returns to refresh time labels
+  // Track foreground returns to refresh time labels. Bumped at most once per
+  // minute (formatTimeAgo's finest granularity) so resumes within a minute
+  // don't spuriously re-render every visible cell.
   const [tick, setTick] = useState(0);
+  const lastTickAtRef = useRef(0);
+  const TICK_GRANULARITY_MS = 60_000;
 
   const applyFeed = useEffectEvent((data: FeedResponse, seedSlugs = false): number => {
     lastGeneratedRef.current = data.generated;
@@ -115,14 +117,12 @@ export function useArticles(): ArticlesState {
       if (cached) {
         applyFeed(cached, true);
         setLoading(false);
-        // Silent background check for fresher content
+        // Silent background check for fresher content. applyFeed updates
+        // grouped data in place; the FlatList reconciles by slug without
+        // remounting, so the user keeps their scroll position.
         try {
           const changed = await hasNewContent();
-          if (changed) {
-            await fetchFeed();
-            // No resetKey bump — user is already at scroll position 0 on fresh launch,
-            // and applyFeed already updated grouped data so FlatList re-renders in place.
-          }
+          if (changed) await fetchFeed();
         } catch {
           // cached data is fine; no UI surface for background refresh errors
         }
@@ -139,17 +139,21 @@ export function useArticles(): ArticlesState {
     })();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps — applyFeed/fetchFeed/hasNewContent are stable useEffectEvent refs
 
-  // Foreground resume: refresh if away > 5 min
+  // Foreground resume: refresh if away > 5 min. Tick is bumped only when
+  // a real minute has elapsed since the last bump, so quick app-switches
+  // don't force a full re-render of every visible cell. Feed updates
+  // apply silently — no FlatList remount, no scroll reset.
   const handleResume = useEffectEvent(async () => {
-    setTick((t) => t + 1);
+    const now = Date.now();
+    if (now - lastTickAtRef.current >= TICK_GRANULARITY_MS) {
+      lastTickAtRef.current = now;
+      setTick((t) => t + 1);
+    }
     if (!refreshingRef.current) {
       refreshingRef.current = true;
       try {
         const changed = await hasNewContent();
-        if (changed) {
-          await fetchFeed();
-          setResetKey((k) => k + 1);
-        }
+        if (changed) await fetchFeed();
       } catch {
         // silent — existing content is fine
       } finally {
@@ -208,7 +212,6 @@ export function useArticles(): ArticlesState {
     refresh,
     retry,
     tick,
-    resetKey,
     generated,
     injectArticle,
   };

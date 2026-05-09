@@ -13,6 +13,7 @@ import {
   useEffect,
   useEffectEvent,
   useImperativeHandle,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -76,7 +77,6 @@ interface ArticleListProps {
   progressesSV: SharedValue<number[]>;
   zoomClipOverride?: number | null;
   tick?: number;
-  resetKey?: number;
   ref?: React.Ref<ArticleListRef>;
 }
 
@@ -101,7 +101,6 @@ export const ArticleList = memo(function ArticleList({
   progressesSV,
   zoomClipOverride,
   tick,
-  resetKey,
   ref,
 }: ArticleListProps) {
   const { colors, bgAlpha } = useTheme();
@@ -148,7 +147,7 @@ export const ArticleList = memo(function ArticleList({
     overscrollFired,
     caughtUpFired,
     overscrollTimer,
-  } = useScrollState(resetKey, catIndex, progressesSV);
+  } = useScrollState();
   const currentIndexRef = useRef(currentIndex);
   currentIndexRef.current = currentIndex;
   const listRef = useAnimatedRef<Animated.FlatList<Article>>();
@@ -181,6 +180,27 @@ export const ArticleList = memo(function ArticleList({
     const article = sortedArticles[currentIndex];
     if (article) onArticleChange?.(article, catIndex);
   }, [currentIndex, sortedArticles, catIndex, onArticleChange]);
+
+  // When the data array changes (resume refresh, prepended new articles, sort
+  // re-bucketing), keep the user on the same slug. Without this, prepended
+  // items shift the offset and the user's reading position silently changes
+  // — which is what felt "jumpy" before. Runs in useLayoutEffect so the
+  // scroll adjustment lands before paint with the new data.
+  const prevSlugsRef = useRef<string[]>([]);
+  useLayoutEffect(() => {
+    const newSlugs = sortedArticles.map((a) => a.slug);
+    const prevSlugs = prevSlugsRef.current;
+    prevSlugsRef.current = newSlugs;
+    if (prevSlugs.length === 0 || newSlugs.length === 0) return;
+    const idx = currentIndexRef.current;
+    if (idx <= 0) return; // user at top — let new content sit there
+    const currentSlug = prevSlugs[idx];
+    if (!currentSlug) return;
+    const newIdx = newSlugs.indexOf(currentSlug);
+    if (newIdx < 0 || newIdx === idx) return;
+    listRef.current?.scrollToOffset({ offset: newIdx * itemHeight, animated: false });
+    setCurrentIndex(newIdx);
+  }, [sortedArticles, itemHeight, listRef, setCurrentIndex]);
 
   useImperativeHandle(ref, () => ({
     scrollToTop: () => {
@@ -328,7 +348,6 @@ export const ArticleList = memo(function ArticleList({
         pointerEvents="none"
       />
       <Animated.FlatList
-        key={resetKey}
         entering={FadeIn.duration(ANIMATION.normal)}
         ref={listRef}
         data={sortedArticles}

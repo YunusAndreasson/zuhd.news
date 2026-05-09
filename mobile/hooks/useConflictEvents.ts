@@ -24,17 +24,20 @@ function filterToLastDay(events: ConflictEvent[]): ConflictEvent[] {
 /** Fetches the pre-built UCDP conflict snapshot from /api/conflict.json.
  *  The pipeline pulls + filters UCDP candidate GED once per cycle (stage
  *  3.4c2) so every install reads one Cloudflare-cached blob instead of
- *  hitting ucdp.uu.se on launch. Graceful degrade: any failure leaves
- *  the conflict layer empty.
+ *  hitting ucdp.uu.se on launch. Cache-first + resume refresh. Graceful
+ *  degrade: any failure leaves the conflict layer empty.
  *
  *  Server feeds a 7-day window for other potential consumers; mobile
  *  narrows to the most-recent calendar day to keep marker density
  *  readable at globe scale (~40 markers vs ~250). The filter runs once
  *  per snapshot reference change, not per render. */
-export function useConflictEvents(): { events: ConflictEvent[] } {
-  const snapshot = useFetchJson(`${API_BASE}/api/conflict.json`, isConflictSnapshot);
+export function useConflictEvents(): { events: ConflictEvent[]; ready: boolean } {
+  const { data, ready } = useFetchJson(`${API_BASE}/api/conflict.json`, isConflictSnapshot, {
+    cacheFilename: 'zuhd-conflict.json',
+    refreshOnResume: true,
+  });
   return useMemo(
-    () => ({ events: snapshot ? filterToLastDay(snapshot.events) : EMPTY_EVENTS }),
-    [snapshot],
+    () => ({ events: data ? filterToLastDay(data.events) : EMPTY_EVENTS, ready }),
+    [data, ready],
   );
 }
