@@ -169,12 +169,21 @@ for (const f of countries.features) {
 // of `geoDistance` haversine (~5 trig ops). Across 177 countries this moves
 // ~900 trig calls per frame off the JS thread during zoomed scroll.
 // Parallel array to centroid names so callers can iterate in index order.
+//
+// Iteration order is spherical-area DESC. The MiniGlobe label packer is
+// greedy AABB sweep (first-pushed wins collisions), so iterating large-
+// first means a busy cluster (Central Europe at 1×, the Levant at 2×)
+// surfaces the geographically/visually-dominant member rather than the
+// arbitrary topology winner. Free at module load, zero per-frame cost.
 export const countryCentroidNames: string[] = [];
 export const countryCentroidPoints: [number, number][] = [];
 export const countryCentroidUnits: [number, number, number][] = [];
 {
   const DEG = Math.PI / 180;
-  for (const name in countryCentroids) {
+  const sortedNames = Object.keys(countryCentroids).sort(
+    (a, b) => (countryAreas[b] ?? 0) - (countryAreas[a] ?? 0),
+  );
+  for (const name of sortedNames) {
     const c = countryCentroids[name];
     if (!c) continue;
     const latR = c[1] * DEG;

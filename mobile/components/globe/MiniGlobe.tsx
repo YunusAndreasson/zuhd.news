@@ -1859,12 +1859,17 @@ export const MiniGlobe = memo(function MiniGlobe({
 
       // Label packing — drop neighbour / water labels that overlap a
       // higher-priority label or an already-placed peer. Greedy AABB
-      // sweep, seeded with the country + dot labels (always shown). Runs
-      // only when zoomed in enough for neighbours / waters to populate;
-      // arrays are empty at 1× so the loops skip. Priority ladder:
-      //   dotLabel ≻ countryLabel ≻ neighbours ≻ waters
-      // Inside waters the input order (lakes → rivers → seas) acts as
-      // sub-priority. N² on ≤ ~100 rects stays sub-ms on the JS thread.
+      // sweep, seeded with the country + dot labels (always shown).
+      // Anchors populate `neighborLabels` even at 1× (water arrays are
+      // still empty until clip < PLACES_APPEAR_CLIP), so the loop runs
+      // at every zoom. Priority ladder:
+      //   dotLabel ≻ countryLabel ≻ anchor neighbours ≻ non-anchor
+      //   neighbours ≻ waters
+      // Within each tier, input order is area-DESC (centroid arrays in
+      // shared.ts are pre-sorted), so the larger / more visually dominant
+      // member of a collision survives. Inside waters the input order
+      // (lakes → rivers → seas) acts as sub-priority. N² on ≤ ~100 rects
+      // stays sub-ms on the JS thread.
       let keptNeighbours = neighborLabels;
       let keptWaters = waterLabels;
       if (neighborLabels.length > 0 || waterLabels.length > 0) {
