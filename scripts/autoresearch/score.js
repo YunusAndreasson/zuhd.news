@@ -114,6 +114,8 @@ function loadArticles(worktree, fileList) {
       title: yget(yaml, 'title') || '',
       category: yget(yaml, 'category') || '',
       location: yget(yaml, 'location') || '',
+      lat: ynum(yaml, 'lat'),
+      lng: ynum(yaml, 'lng'),
       sourceNames: [...yaml.matchAll(/^\s+- name:\s*"([^"]+)"/gm)].map((m) => m[1]),
       sourceCountries: [...yaml.matchAll(/^\s+country:\s*"?(null|[A-Z]{2})"?/gm)].map((m) => m[1]),
       sourceUrls: [...yaml.matchAll(/^\s+url:\s*"([^"]+)"/gm)].map((m) => m[1]),
@@ -128,6 +130,11 @@ function loadArticles(worktree, fileList) {
 function yget(yaml, key) {
   const m = yaml.match(new RegExp(`^${key}:\\s*"([^"]+)"`, 'm'))
   return m ? m[1] : null
+}
+
+function ynum(yaml, key) {
+  const m = yaml.match(new RegExp(`^${key}:\\s*(-?\\d+(?:\\.\\d+)?)`, 'm'))
+  return m ? Number(m[1]) : null
 }
 
 function loadBriefsForArticles(worktree, slugs) {
@@ -242,7 +249,7 @@ function scoreCoverage(articles) {
     const pub = Date.parse(a.pubDate)
     const ageDays = !isNaN(src) && !isNaN(pub) ? Math.max(0, (pub - src) / 86400_000) : null
     if (ageDays !== null) ages.push(ageDays)
-    const region = locationToRegion(a.location, a.sourceCountries)
+    const region = locationToRegion(a)
     perArticle[a.slug] = { ageDays, region, freshness: ageDays !== null ? 1 / (1 + ageDays) : null }
   }
   ages.sort((a, b) => a - b)
@@ -496,7 +503,7 @@ function shannon(types) {
 function regionMix(articles) {
   const obs = {}
   for (const a of articles) {
-    const r = locationToRegion(a.location, a.sourceCountries)
+    const r = locationToRegion(a)
     obs[r] = (obs[r] || 0) + 1
   }
   const n = articles.length
@@ -512,12 +519,31 @@ const REGION_MAP = {
   AM: ['AR', 'BO', 'BR', 'CA', 'CL', 'CO', 'CR', 'CU', 'DO', 'EC', 'SV', 'GT', 'GY', 'HT', 'HN', 'JM', 'MX', 'NI', 'PA', 'PY', 'PE', 'SR', 'TT', 'US', 'UY', 'VE', 'BS'],
   OC: ['AU', 'NZ', 'FJ', 'PG', 'SB', 'VU', 'WS', 'TO'],
 }
-function locationToRegion(loc, sourceCcs) {
-  // Heuristic: prefer first non-null source country code (these are the
-  // outlet's country, not the story's, but they're a decent fallback).
-  const cc = sourceCcs.find((c) => c && c !== 'null')
-  for (const [region, codes] of Object.entries(REGION_MAP)) {
-    if (cc && codes.includes(cc)) return region
+// Bbox match used by production compute-metrics.js — story-location signal.
+function coordsToRegion(lat, lng) {
+  if (lat === null || lng === null || isNaN(lat) || isNaN(lng)) return null
+  if (lat > 15 && lat < 45 && lng > 25 && lng < 75) return 'ME'
+  if (lat > -10 && lat < 55 && lng > 60 && lng < 150) return 'AS'
+  if (lat > -40 && lat < 40 && lng > -20 && lng < 55) return 'AF'
+  if (lat > 35 && lat < 72 && lng > -25 && lng < 60) return 'EU'
+  if (lat > -60 && lat < 75 && lng > -170 && lng < -30) return 'AM'
+  if (lat > -50 && lat < -10 && lng > 110 && lng < 180) return 'OC'
+  return 'GL'
+}
+
+// Region attribution prefers the article's lat/lng (what the story is
+// about) over the source's country (where the outlet is HQ'd). Falls back
+// to source-CC when coordinates are missing — covers older articles only;
+// the writer pipeline has emitted lat/lng since long before this scorer
+// landed.
+function locationToRegion(article) {
+  const r = coordsToRegion(article.lat, article.lng)
+  if (r) return r
+  const cc = (article.sourceCountries || []).find((c) => c && c !== 'null')
+  if (cc) {
+    for (const [region, codes] of Object.entries(REGION_MAP)) {
+      if (codes.includes(cc)) return region
+    }
   }
   return 'GL'
 }
