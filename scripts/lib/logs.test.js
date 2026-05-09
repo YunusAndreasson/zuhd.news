@@ -33,6 +33,7 @@ test('no new silent stage failures', () => {
     'cycle-2026-04-17_1703.log: Edu context exit=1', // 301s — ran then failed, empty stderr
     'cycle-2026-04-24_2204.log: Editor exit=124',    // editor timeout (1800s); cycle still published via run-cycle.sh
     'cycle-2026-04-23_1800.log: Selector exit=1',    // Claude API usage limit hit ("You've hit your limit · resets 9pm"); 4s — no retry path because the rate limit is per-account
+    'cycle-2026-05-08_0404.log: Selector exit=1',    // Anthropic 5xx ("API Error: Internal server error") at 417s — transient upstream failure, no retry wired in run-cycle.sh; missed the 04:00 audio briefing as a side effect
   ])
   const failures = []
   const stages = ['Selector', 'Writer', 'Editor', 'Edu context', 'Build', 'Deploy', 'Briefing']

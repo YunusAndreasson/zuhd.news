@@ -184,5 +184,67 @@
         "economy": 117
       }
     }
+  },
+  {
+    "week": "2026-05-07",
+    "windowDays": 7,
+    "articleCount": 289,
+    "metrics": {
+      "charLengthAvg": 327,
+      "charOver350Pct": 21.1,
+      "wordCountAvg": 46,
+      "wordInRangePct": 81,
+      "titleEchoRatePct": 28.7,
+      "passiveHookRatePct": 0.3,
+      "causalClaimHits": 0,
+      "pressEraHits": 1,
+      "hedgeRatePct": 0.3,
+      "acronymViolations": 343,
+      "topAcronymViolators": [
+        [
+          "IR",
+          28
+        ],
+        [
+          "IN",
+          26
+        ],
+        [
+          "PK",
+          26
+        ],
+        [
+          "CN",
+          17
+        ],
+        [
+          "RU",
+          14
+        ]
+      ],
+      "countryNullCount": 0,
+      "topOutletSharePct": 14.2,
+      "top3Outlets": [
+        {
+          "name": "Dawn",
+          "count": 21
+        },
+        {
+          "name": "Al Jazeera Online",
+          "count": 20
+        },
+        {
+          "name": "Nature",
+          "count": 20
+        }
+      ],
+      "multiSourceRatePct": 21.5,
+      "categoryBalance": {
+        "tech": 63,
+        "politics": 98,
+        "science": 54,
+        "economy": 74
+      }
+    }
   }
 ]
