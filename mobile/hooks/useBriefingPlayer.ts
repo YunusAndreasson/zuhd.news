@@ -19,8 +19,29 @@ import { hapticImpact } from '../lib/haptics';
 const POSITION_KEY = 'zuhd_briefing_pos';
 const DATE_KEY = 'zuhd_briefing_date';
 const PLAYBACK_STATUS_UPDATE = 'playbackStatusUpdate';
+// Hard cap on how long we'll wait for an AVPlayer to report `isLoaded: true`
+// after a play() request before giving up and tearing it down. Replaces the
+// older 100ms x 15 polling loop and the 300ms verify-after-resume timer
+// with a single status-driven path.
+const PLAY_GIVE_UP_MS = 10_000;
 
 const icon = require('../assets/icon.png');
+
+// Module-scoped artwork resolution. The icon never changes during a session,
+// and Asset.loadAsync runs an async I/O probe — caching the URI once
+// eliminates the per-write redundancy when we activate the lock-screen card,
+// refresh metadata after duration is known, or recreate the player.
+let cachedArtworkUrl: string | undefined;
+async function getArtworkUrl(): Promise<string | undefined> {
+  if (cachedArtworkUrl !== undefined) return cachedArtworkUrl;
+  try {
+    const assets = await Asset.loadAsync(icon);
+    cachedArtworkUrl = assets[0]?.localUri ?? assets[0]?.uri;
+  } catch {
+    cachedArtworkUrl = undefined;
+  }
+  return cachedArtworkUrl;
+}
 
 interface BriefingPlayer {
   playing: boolean;
@@ -62,7 +83,15 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   // Suppress listener-driven setPlaying briefly after user taps toggle
   const userToggleAt = useRef(0);
   const backgroundAt = useRef<number>(0);
-  const verifyTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Single timer reused by the status-driven start. Holds the give-up
+  // deadline for a play() that hasn't taken yet — when status reports
+  // `playing:true` we clear it; if the deadline fires, we tear down.
+  const giveUpTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Set when a play() has been issued but `status.playing` hasn't reported
+  // true yet. The status listener uses this to retry play() once `isLoaded`
+  // flips to true (covers cold AVPlayer that silently no-ops the first call
+  // while it's still buffering).
+  const wantsToPlayRef = useRef(false);
   const closedRef = useRef(false);
   // One-shot guard consumed by the next toggle(): suppresses position restore
   // after the user dismisses the player with X. Synchronous so it beats the
@@ -70,10 +99,12 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
   const skipRestoreRef = useRef(false);
   const devMockActive = useRef(false);
 
-  // Tear down stale player when app returns from extended background.
-  // iOS reclaims native audio resources after ~30s of suspension — the JS
-  // playerRef stays non-null but play() silently does nothing.
-  // By releasing here, the next toggle() hits the fresh-creation path.
+  // On app resume, save the last-known position and re-sync UI to the
+  // player's actual state. We don't pre-emptively tear down stale players —
+  // if iOS reclaimed native audio resources during the suspension, the
+  // status-driven start in toggle() will detect it (no isLoaded → give-up
+  // timeout) and tear down lazily. That removes the 30s wall-clock guess
+  // and avoids dropping a perfectly healthy paused player.
   useEffect(() => {
     const sub = AppState.addEventListener('change', async (state: AppStateStatus) => {
       if (state !== 'active') {
@@ -82,38 +113,23 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       }
       if (!playerRef.current) return;
 
-      const bgDuration = Date.now() - backgroundAt.current;
-
-      // Short background — player is likely still alive, just re-sync
-      if (bgDuration < 30_000) {
-        if (playerRef.current.playing) {
-          try {
-            await setIsAudioActiveAsync(true);
-          } catch {}
-        }
-        setPlaying(playerRef.current.playing);
-        return;
-      }
-
-      // Extended background or player was paused — save position, tear down
-      // so next toggle creates a fresh player with working native resources.
+      // Save position for any cold-start that might happen next
       try {
         const pos = playerRef.current.currentTime;
         if (pos > 0 && savedDate.current) {
-          await setItemAsync(POSITION_KEY, String(Math.floor(pos)));
-          await setItemAsync(DATE_KEY, savedDate.current);
+          await Promise.all([
+            setItemAsync(POSITION_KEY, String(Math.floor(pos))),
+            setItemAsync(DATE_KEY, savedDate.current),
+          ]);
         }
       } catch {}
-      subRef.current?.remove();
-      try {
-        playerRef.current.clearLockScreenControls();
-      } catch {}
-      playerRef.current.remove();
-      playerRef.current = null;
-      subRef.current = null;
-      lockScreenActive.current = false;
-      lockScreenDurationKnown.current = false;
-      setPlaying(false);
+
+      if (playerRef.current.playing) {
+        try {
+          await setIsAudioActiveAsync(true);
+        } catch {}
+      }
+      setPlaying(playerRef.current.playing);
     });
     return () => sub.remove();
   }, []);
@@ -129,22 +145,23 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     }
   }, [effectiveDate]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: cleanup-only effect — runs on unmount, refs capture current values
-  useEffect(() => {
-    return () => {
-      if (verifyTimer.current) clearTimeout(verifyTimer.current);
-      savePosition();
-      subRef.current?.remove();
+  const teardownPlayer = useCallback(() => {
+    if (giveUpTimer.current) {
+      clearTimeout(giveUpTimer.current);
+      giveUpTimer.current = null;
+    }
+    wantsToPlayRef.current = false;
+    subRef.current?.remove();
+    if (playerRef.current) {
       try {
-        playerRef.current?.clearLockScreenControls();
+        playerRef.current.clearLockScreenControls();
       } catch {}
-      playerRef.current?.remove();
-      playerRef.current = null;
-      subRef.current = null;
-      lockScreenActive.current = false;
-      lockScreenDurationKnown.current = false;
-      setIsAudioActiveAsync(false);
-    };
+      playerRef.current.remove();
+    }
+    playerRef.current = null;
+    subRef.current = null;
+    lockScreenActive.current = false;
+    lockScreenDurationKnown.current = false;
   }, []);
 
   const savePosition = useCallback(() => {
@@ -158,12 +175,21 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     } catch {}
   }, []);
 
-  // Writes NowPlayingInfo. Safe to call more than once — re-calling after the
-  // AVPlayer knows its duration makes iOS refresh the lock-screen scrubber.
-  const writeLockScreenInfo = useCallback(async (player: AudioPlayer) => {
+  // biome-ignore lint/correctness/useExhaustiveDependencies: cleanup-only effect — runs on unmount, refs capture current values
+  useEffect(() => {
+    return () => {
+      savePosition();
+      teardownPlayer();
+      setIsAudioActiveAsync(false);
+    };
+  }, []);
+
+  // First-time activation of the lock-screen card. iOS won't have a duration
+  // yet, so the scrubber will be empty — refreshLockScreenMetadata picks
+  // that up later via the cheaper updateLockScreenMetadata path.
+  const activateLockScreen = useCallback(async (player: AudioPlayer) => {
     try {
-      const assets = await Asset.loadAsync(icon);
-      const artworkUrl = assets[0]?.localUri ?? assets[0]?.uri;
+      const artworkUrl = await getArtworkUrl();
       player.setActiveForLockScreen(
         true,
         {
@@ -178,14 +204,40 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     } catch {}
   }, []);
 
+  // Refresh the metadata on an already-active lock-screen card — used once
+  // duration is known so the scrubber populates, and again if the system's
+  // media services reset (the card may have been dropped during the crash).
+  // updateLockScreenMetadata is a no-op on inactive players, so it's safe.
+  const refreshLockScreenMetadata = useCallback(async (player: AudioPlayer) => {
+    try {
+      const artworkUrl = await getArtworkUrl();
+      player.updateLockScreenMetadata({
+        title: 'Daily Briefing',
+        artist: 'zuhd.news',
+        albumTitle: savedDate.current ?? undefined,
+        ...(artworkUrl ? { artworkUrl } : {}),
+      });
+    } catch {}
+  }, []);
+
+  // Arms (or re-arms) the give-up timer that detects a play() request that
+  // never took — fired once `isLoaded` never becomes true within the budget.
+  const armGiveUp = useCallback(() => {
+    if (giveUpTimer.current) clearTimeout(giveUpTimer.current);
+    giveUpTimer.current = setTimeout(() => {
+      giveUpTimer.current = null;
+      if (!wantsToPlayRef.current) return;
+      // Player never started — assume native resources are dead. Teardown
+      // so the next toggle creates a fresh player.
+      teardownPlayer();
+      setPlaying(false);
+    }, PLAY_GIVE_UP_MS);
+  }, [teardownPlayer]);
+
   const toggle = useCallback(async () => {
     hapticImpact();
     userToggleAt.current = Date.now();
     closedRef.current = false;
-    if (verifyTimer.current) {
-      clearTimeout(verifyTimer.current);
-      verifyTimer.current = null;
-    }
 
     try {
       // Dev mock — no native player, just toggle UI state
@@ -199,6 +251,11 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       // Resume/pause existing player
       if (playerRef.current) {
         if (playerRef.current.playing) {
+          if (giveUpTimer.current) {
+            clearTimeout(giveUpTimer.current);
+            giveUpTimer.current = null;
+          }
+          wantsToPlayRef.current = false;
           savePosition();
           playerRef.current.pause();
           setPlaying(false);
@@ -206,25 +263,10 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
           try {
             await setIsAudioActiveAsync(true);
           } catch {}
+          wantsToPlayRef.current = true;
           playerRef.current.play();
           setPlaying(true);
-          // Verify the player actually started — if native resources
-          // were reclaimed, playing will still be false after a tick.
-          verifyTimer.current = setTimeout(() => {
-            if (playerRef.current && !playerRef.current.playing) {
-              // Native player is dead — tear down so next tap recreates
-              subRef.current?.remove();
-              try {
-                playerRef.current.clearLockScreenControls();
-              } catch {}
-              playerRef.current.remove();
-              playerRef.current = null;
-              subRef.current = null;
-              lockScreenActive.current = false;
-              lockScreenDurationKnown.current = false;
-              setPlaying(false);
-            }
-          }, 300);
+          armGiveUp();
         }
         return;
       }
@@ -250,20 +292,45 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
         return;
       }
 
-      // Sync play/pause state + elapsed from player events
-      // This handles lock screen controls, headphone controls, interruptions
+      // Sync play/pause state + elapsed from player events. This is also
+      // the path that drives the cold-start retry: when `isLoaded` flips
+      // true after a play() that hadn't taken yet, we re-issue play().
       const eventSub = player.addListener(PLAYBACK_STATUS_UPDATE, (status: AudioStatus) => {
         // Ignore status updates after user closed the player — the paused
         // player still fires events that would flicker state back to visible.
         if (closedRef.current) return;
+
+        // iOS media services crash → SDK auto-recovers the player itself
+        // but the lock-screen card may have been dropped. Re-write the
+        // metadata so NowPlayingInfo reappears.
+        if (status.mediaServicesDidReset && lockScreenActive.current) {
+          refreshLockScreenMetadata(player);
+        }
+
         // Refresh NowPlayingInfo once the AVPlayer knows its duration so
-        // iOS lock-screen gets a real timing scrubber. The initial
-        // activation below fires before duration is loaded; this second
-        // write updates it.
+        // iOS lock-screen gets a real timing scrubber. updateLockScreenMetadata
+        // is the lighter path — no re-activation, no artwork reload.
         if (!lockScreenDurationKnown.current && status.duration > 0) {
           lockScreenDurationKnown.current = true;
-          writeLockScreenInfo(player);
+          refreshLockScreenMetadata(player);
         }
+
+        // Cold-start retry: AVPlayer silently no-ops the first play() while
+        // it's still buffering. Once isLoaded flips true, call play() again
+        // to make sure it actually starts.
+        if (wantsToPlayRef.current && status.isLoaded && !status.playing) {
+          try {
+            player.play();
+          } catch {}
+        }
+        if (wantsToPlayRef.current && status.playing) {
+          wantsToPlayRef.current = false;
+          if (giveUpTimer.current) {
+            clearTimeout(giveUpTimer.current);
+            giveUpTimer.current = null;
+          }
+        }
+
         // Skip transient playing states shortly after user tap to avoid icon flash
         const sinceToggle = Date.now() - userToggleAt.current;
         if (sinceToggle < 500 && !status.didJustFinish) {
@@ -276,13 +343,18 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
           setElapsed(Math.floor(status.currentTime));
         }
         if (status.didJustFinish) {
+          wantsToPlayRef.current = false;
+          if (giveUpTimer.current) {
+            clearTimeout(giveUpTimer.current);
+            giveUpTimer.current = null;
+          }
           setPlaying(false);
           setElapsed(0);
           setItemAsync(POSITION_KEY, '0');
           // Seek back to start so the player is ready for replay —
           // don't destroy it or deactivate the audio session, as iOS
           // can refuse to reactivate, requiring a force-kill.
-          player.seekTo(0);
+          player.seekTo(0).catch(() => {});
           try {
             player.clearLockScreenControls();
           } catch {}
@@ -304,7 +376,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
           if (savedDateStr === effectiveDate && savedPos) {
             const pos = parseInt(savedPos, 10);
             if (pos > 0) {
-              player.seekTo(pos);
+              player.seekTo(pos).catch(() => {});
               setElapsed(pos);
             }
           }
@@ -315,54 +387,33 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       playerRef.current = player;
       subRef.current = eventSub;
 
+      wantsToPlayRef.current = true;
       player.play();
       setPlaying(true);
-
-      // A freshly-created AVPlayer isn't necessarily ready to play on the
-      // first play() call — for the first-ever toggle of a session the
-      // preload registry warms it up, but on a second open (after close
-      // tore the player down and consumed the registry entry), play() on a
-      // cold AVPlayer silently no-ops while it's still buffering. Poll and
-      // retry play() until it actually starts, so the user never has to tap
-      // LISTEN a second time. Give up after ~1.5s to avoid a hot loop.
-      let attempts = 0;
-      const retryPlay = () => {
-        if (!playerRef.current || playerRef.current !== player) return;
-        if (player.playing) {
-          verifyTimer.current = null;
-          return;
-        }
-        attempts += 1;
-        if (attempts >= 15) {
-          verifyTimer.current = null;
-          return;
-        }
-        try {
-          player.play();
-        } catch {}
-        verifyTimer.current = setTimeout(retryPlay, 100);
-      };
-      verifyTimer.current = setTimeout(retryPlay, 100);
+      armGiveUp();
 
       // Activate lock-screen controls right after play so iOS registers
       // NowPlayingInfo while the audio session is hot. The status listener
-      // will refresh this entry once duration is known, populating the
-      // lock-screen scrubber.
-      writeLockScreenInfo(player);
+      // will refresh this entry once duration is known.
+      activateLockScreen(player);
     } catch {
       // Clean up partially-created player on failure
-      subRef.current?.remove();
-      subRef.current = null;
-      playerRef.current?.remove();
-      playerRef.current = null;
+      teardownPlayer();
     }
-  }, [effectiveDate, savePosition, writeLockScreenInfo]);
+  }, [
+    effectiveDate,
+    savePosition,
+    activateLockScreen,
+    refreshLockScreenMetadata,
+    armGiveUp,
+    teardownPlayer,
+  ]);
 
   const lastHapticSecRef = useRef(-1);
   const seek = useCallback((seconds: number) => {
     if (!playerRef.current) return;
     const clamped = Math.max(0, Math.min(seconds, playerRef.current.duration || Infinity));
-    playerRef.current.seekTo(clamped);
+    playerRef.current.seekTo(clamped).catch(() => {});
     const sec = Math.floor(clamped);
     setElapsed(sec);
     // Discrete tick per scrubbed-second boundary. hapticImpact (not Tick) —
@@ -380,31 +431,20 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     // We can't rely on the async SecureStore writes below landing before
     // the user taps LISTEN again — this ref closes the race.
     skipRestoreRef.current = true;
-    if (verifyTimer.current) {
-      clearTimeout(verifyTimer.current);
-      verifyTimer.current = null;
-    }
     // Close = stop & forget. Clear both persisted keys so even after the
     // in-memory guard resets, a cold start won't resurrect an old position.
     deleteItemAsync(POSITION_KEY).catch(() => {});
     deleteItemAsync(DATE_KEY).catch(() => {});
-    // Fully tear down the player and its lock-screen card.
     if (playerRef.current) {
-      subRef.current?.remove();
       try {
         playerRef.current.pause();
-        playerRef.current.clearLockScreenControls();
       } catch {}
-      playerRef.current.remove();
-      playerRef.current = null;
-      subRef.current = null;
-      lockScreenActive.current = false;
-      lockScreenDurationKnown.current = false;
     }
+    teardownPlayer();
     setPlaying(false);
     setElapsed(0);
     hapticImpact();
-  }, []);
+  }, [teardownPlayer]);
 
   // In dev without a native player, provide a mock duration so the bar renders properly
   const effectiveDuration =
