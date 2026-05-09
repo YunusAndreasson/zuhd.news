@@ -266,7 +266,7 @@ export const CountrySheet = memo(function CountrySheet({
                  *  (e.g. Bosnia and Herzegovina) ellipsize before pushing the
                  *  meta off the right edge. */}
                 {name && (
-                  <Text variant="title" numberOfLines={1} style={styles.handleName}>
+                  <Text variant="title" tone="emphasis" numberOfLines={1} style={styles.handleName}>
                     {name}
                   </Text>
                 )}
@@ -353,14 +353,7 @@ export const CountrySheet = memo(function CountrySheet({
             </Animated.View>
           )}
           {country?.data && (
-            <Animated.View
-              entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(1))}
-              // No border-top here — the carousel above already provides the
-              // bottom hairline that separates story (carousel) from
-              // appendix (metric rows). Doubling them would read as a
-              // gutter.
-              style={styles.moreList}
-            >
+            <Animated.View entering={FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(1))}>
               {rankedRows.map((r) => (
                 <MoreRow
                   key={r.key}
@@ -425,9 +418,6 @@ const styles = StyleSheet.create({
   handleMeta: {
     flexShrink: 0,
     textAlign: 'right',
-  },
-  moreList: {
-    borderTopWidth: StyleSheet.hairlineWidth,
   },
   moreRow: {
     flexDirection: 'row',
