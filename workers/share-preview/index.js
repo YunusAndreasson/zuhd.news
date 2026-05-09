@@ -40,7 +40,7 @@ export default {
   <title>${title} — zuhd.news</title>
   <meta property="og:title" content="${title}">
   <meta property="og:description" content="${body}">
-  <meta property="og:image" content="${SITE}/og-image.png">
+  <meta property="og:image" content="${SITE}/api/og/${slug}.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:url" content="${SITE}/a/${slug}">
@@ -49,6 +49,7 @@ export default {
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${title}">
   <meta name="twitter:description" content="${body}">
+  <meta name="twitter:image" content="${SITE}/api/og/${slug}.png">
   <meta name="description" content="${body}">
   <meta name="author" content="${source}">
   <script>location.replace("${SITE}/#${slug}")</script>
