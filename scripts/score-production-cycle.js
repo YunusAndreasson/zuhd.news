@@ -57,6 +57,14 @@ async function main() {
   // remaining clusters carry signal; renormalize their weights to sum to 1.
   const rvs = rvsWithoutPicking(score.clusters)
 
+  // Pipeline-degenerate cycles produce malformed RVS records that distort
+  // distribution stats — e.g., 2026-04-30T22-14 shipped 1 article + 0 briefs
+  // (writer stage degraded mid-batch) and shifted std by 24% over 55 cycles.
+  // Flag prospectively so downstream analysis can filter without recomputing.
+  const degenerate =
+    score.articleCount < 4 ||
+    (score.articleCount > 0 && score.briefCount === 0)
+
   const record = {
     ts: now.toISOString(),
     cycleId,
@@ -72,6 +80,7 @@ async function main() {
     articleCount: score.articleCount,
     briefCount: score.briefCount,
     guardrailFailures: score.guardrailFailures,
+    degenerate,
   }
 
   let trend = []
