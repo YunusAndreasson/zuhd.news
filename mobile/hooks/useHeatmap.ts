@@ -18,13 +18,20 @@ export function useHeatmap(feedGenerated: string | null): HeatmapResult {
   const [points, setPoints] = useState<HeatmapPoint[]>([]);
   const [ready, setReady] = useState(false);
   const lastGenRef = useRef<string | null>(null);
+  const inflightRef = useRef<AbortController | null>(null);
 
   const fetchHeatmap = useCallback(async () => {
+    // Cancel any in-flight request so a slow response can't overwrite a fresher one
+    inflightRef.current?.abort();
+    const controller = new AbortController();
+    inflightRef.current = controller;
     try {
       const raw = await fetchJson(`${API_BASE}/api/heatmap.json`, isHeatmapResponse, {
         timeoutMs: 8000,
         cache: 'no-store',
+        signal: controller.signal,
       });
+      if (controller.signal.aborted) return;
       lastGenRef.current = raw.generated;
       setPoints(raw.points);
       try {
@@ -32,6 +39,8 @@ export function useHeatmap(feedGenerated: string | null): HeatmapResult {
       } catch {}
     } catch {}
   }, []);
+
+  useEffect(() => () => inflightRef.current?.abort(), []);
 
   // Cache-first initial load
   const didInitialFetch = useRef(false);

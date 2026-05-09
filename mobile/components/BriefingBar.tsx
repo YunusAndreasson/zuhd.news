@@ -236,9 +236,12 @@ export const BriefingBar = memo(function BriefingBar({
               </Text>
             </View>
 
-            <Text variant="tabular" tone="emphasis">
+            {/* 13/11 = match `sizeSm` so the readout sits at the same optical
+                size as the `briefing · {date}` label and reads as a peer of the
+                lg icons rather than a tiny caption. */}
+            <Text variant="tabular" tone="emphasis" scale={13 / 11}>
               {formatTime(elapsed)}
-              <Text variant="tabular" tone="secondary">
+              <Text variant="tabular" tone="secondary" scale={13 / 11}>
                 {' / '}
                 {formatTime(duration)}
               </Text>
@@ -251,8 +254,11 @@ export const BriefingBar = memo(function BriefingBar({
               <Icon name={playing ? 'pause' : 'play'} tone="emphasis" size="lg" />
             </IconButton>
 
+            {/* Same size as play/pause; visual hierarchy comes from `tone`,
+                not a smaller box — `close-sharp` glyph is already thin so a
+                size step down made the X read meaningfully smaller. */}
             <IconButton onPress={onClose} accessibilityLabel="Close briefing player">
-              <Icon name="close-sharp" tone="secondary" />
+              <Icon name="close-sharp" tone="secondary" size="lg" />
             </IconButton>
           </View>
 
