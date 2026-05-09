@@ -140060,5 +140060,1354 @@
     "label": "Hormuz & Coalition Escorts",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-05-08-norovirus-caribbean-princess-115-sick-cdc": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY NOROVIRUS, SPECIFICALLY",
+        "body": "Norovirus needs only 18 viral particles to infect — among the lowest infectious doses known. It survives on surfaces for two weeks, resists alcohol-based sanitizers, and tolerates chlorine levels that kill most bacteria. Soap and water work; hand gel does not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pathogen's resilience is why outbreaks recur on the *same ship* across consecutive voyages — residual contamination on **handrails, buffet tongs, and cabin surfaces** survives standard turnaround cleaning."
+          }
+        ]
+      },
+      {
+        "heading": "THE VESSEL SANITATION PROGRAM",
+        "body": "The CDC's Vessel Sanitation Program, created in 1975 after a string of shipboard gastroenteritis outbreaks, inspects every cruise ship calling at US ports twice yearly. Ships are scored 0–100; below 85 fails. The program is funded entirely by inspection fees the cruise lines pay — a rare case of an industry financing its own regulator."
+      },
+      {
+        "heading": "WHY SHIPS ARE AMPLIFIERS",
+        "body": "A cruise ship is a closed environment where 3,000–6,000 people share buffet lines, hot tubs, elevator buttons, and recirculated HVAC for a week. Once norovirus enters via a single passenger, the basic reproduction number on board can exceed 14 — roughly seven times measles in a typical population.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "2023",
+                "value": "13 outbreaks",
+                "weight": 13
+              },
+              {
+                "label": "2024",
+                "value": "18 outbreaks",
+                "weight": 18,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "2025 YTD",
+                "value": "12+",
+                "weight": 12
+              },
+              {
+                "label": "pre-2020 avg",
+                "value": "~10/yr",
+                "weight": 10
+              }
+            ],
+            "label": "reported norovirus outbreaks on US-inspected ships"
+          }
+        ]
+      },
+      {
+        "heading": "THE REPORTING THRESHOLD",
+        "body": "Cruise lines must notify the CDC when 3% or more of passengers or crew report gastrointestinal illness. The threshold creates a perverse incentive: ships sometimes underreport early cases to stay below the line, which delays containment and turns small clusters into large outbreaks."
+      },
+      {
+        "heading": "THE ECONOMIC LOGIC",
+        "body": "A full sanitation turnaround costs a ship roughly $3–5 million in lost revenue plus crew overtime. An outbreak costs more — refunds, medical evacuations, regulatory scrutiny, brand damage. Yet ships routinely sail with sub-optimal cleaning protocols because the expected-value math favors running hot until an outbreak forces the reset.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the minimum infectious dose of norovirus?",
+            "options": [
+              "About 18 viral particles",
+              "About 1,000 viral particles",
+              "About 100,000 viral particles",
+              "About 1 million viral particles"
+            ],
+            "correct": 0,
+            "explanation": "Norovirus is one of the most infectious pathogens known — fewer than 20 particles can cause illness, which is why it spreads so readily through shared surfaces."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-09T22:55:27.172Z",
+    "label": "Norovirus & Cruise Ships",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-08-recaptcha-play-integrity-degoogled-android-lockout": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT ATTESTATION ACTUALLY DOES",
+        "body": "Remote attestation lets a remote server verify what software is running on your device. A hardware key, burned into the phone at the factory, signs a statement: 'this is a Pixel running stock Android, bootloader locked.' The server trusts the chip, not the user.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is called a **hardware root of trust** — the signing key lives in a tamper-resistant element (Titan M2 on Pixel, StrongBox elsewhere) that even the device owner cannot extract."
+          }
+        ]
+      },
+      {
+        "heading": "THE ROOT-OF-TRUST PROBLEM",
+        "body": "Attestation answers 'is this device unmodified?' — but the only authority that can answer is the manufacturer. Google signs Pixels, Apple signs iPhones, Samsung signs Galaxies. A user who compiles their own OS has no signing authority anyone trusts, regardless of whether the build is more secure than stock."
+      },
+      {
+        "heading": "WHY GRAPHENEOS LOSES",
+        "body": "GrapheneOS is widely regarded as the most hardened Android variant — verified boot, hardened memory allocator, network permission toggles. None of it matters for attestation. The Play Integrity API checks for one specific signing key (Google's), and a self-signed build fails by definition, even when measurably more secure.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Claims",
+                "value": "device integrity",
+                "tone": "neutral"
+              },
+              {
+                "label": "Actually checks",
+                "value": "Google signature",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Ignores",
+                "value": "actual hardening",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "what attestation checks vs. what it claims to check"
+          }
+        ]
+      },
+      {
+        "heading": "THE CAPTCHA PIVOT",
+        "body": "reCAPTCHA started in 2007 as image puzzles, pivoted to behavioral analysis (mouse movements, browser fingerprints) around 2014, and is now moving to device attestation. Each generation traded user friction for deeper system access. The endpoint is a web that asks not 'are you human' but 'is your device approved.'"
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Web Environment Integrity — Google's 2023 proposal to bring Play Integrity-style attestation to all browsers — was withdrawn after public backlash. Apple shipped Private Access Tokens, a similar mechanism, in iOS 16 with almost no objection. The reCAPTCHA change implements the same idea on Android without a standards process at all.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2007",
+                "label": "reCAPTCHA: image puzzles"
+              },
+              {
+                "year": "2014",
+                "label": "behavioral analysis (no-CAPTCHA)"
+              },
+              {
+                "year": "2017",
+                "label": "SafetyNet Attestation (Android)"
+              },
+              {
+                "year": "2022",
+                "label": "Private Access Tokens (iOS 16)"
+              },
+              {
+                "year": "2023",
+                "label": "Web Environment Integrity withdrawn",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Play Integrity replaces SafetyNet"
+              },
+              {
+                "year": "2026",
+                "label": "reCAPTCHA requires Play Integrity"
+              }
+            ],
+            "label": "the attestation creep"
+          }
+        ]
+      },
+      {
+        "heading": "THE BANKING TRAP",
+        "body": "Once a bank, government portal, or healthcare site adopts attestation-gated login, users on unattested devices have no recourse — the failure is silent and looks like a network error. The user cannot 'try harder' or solve a puzzle. The lockout is structural, and the alternative is buying a different phone.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't a GrapheneOS user just 'pass' a Play Integrity check by being more secure?",
+            "options": [
+              "The check measures actual security posture and GrapheneOS scores lower",
+              "The check verifies a Google signing key, not security properties",
+              "GrapheneOS lacks the hardware required for attestation",
+              "The check requires an active Google account"
+            ],
+            "correct": 1,
+            "explanation": "Attestation verifies the OS was signed by Google, not whether the OS is secure — a hardened self-signed build fails by definition."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-09T22:55:59.903Z",
+    "label": "Remote Attestation & the Closed Web",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-09-bannu-suicide-attack-fateh-khel-police-ttp-kp": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO IS THE TTP",
+        "body": "Tehrik-i-Taliban Pakistan formed in 2007 as an umbrella of Pashtun militant factions in the tribal belt. Distinct from the Afghan Taliban but ideologically aligned, it seeks to overthrow the Pakistani state and impose its reading of sharia. Police, not soldiers, are its preferred target — they are the most exposed face of the state.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The group's full name — *Tehrik-i-Taliban Pakistan*, the **Pakistani Taliban Movement** — signals the distinction. Sharing the Deobandi-Pashtun lineage of the Afghan Taliban, but with Islamabad, not Kabul, as its enemy."
+          }
+        ]
+      },
+      {
+        "heading": "WHY KHYBER PAKHTUNKHWA",
+        "body": "KP runs along the Afghan border and was, until 2018, fused with the semi-autonomous Federally Administered Tribal Areas (FATA). The merger brought the tribal districts under provincial law but left the security vacuum largely intact — police stations in districts like Bannu, North Waziristan, and Dera Ismail Khan are now front-line outposts in territory the state has never fully governed.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF"
+            ],
+            "label": "the KP–Afghan border belt",
+            "markers": [
+              {
+                "lat": 32.9889,
+                "lng": 70.6053,
+                "label": "Bannu"
+              },
+              {
+                "lat": 32.9208,
+                "lng": 69.5739,
+                "label": "Miranshah (N. Waziristan)"
+              },
+              {
+                "lat": 33.6938,
+                "lng": 73.0652,
+                "label": "Islamabad"
+              },
+              {
+                "lat": 34.5553,
+                "lng": 69.2075,
+                "label": "Kabul"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 2021 INFLECTION",
+        "body": "When the Afghan Taliban retook Kabul in August 2021, the TTP gained sanctuary, freed prisoners, and captured weapons left behind by departing forces. A November 2022 ceasefire with Islamabad collapsed within weeks. Attacks on Pakistani security forces have since climbed back to levels not seen since the early 2010s.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2007",
+                "label": "TTP formed under Baitullah Mehsud"
+              },
+              {
+                "year": "2009",
+                "label": "Army's Swat / South Waziristan operations"
+              },
+              {
+                "year": "2014",
+                "label": "APS Peshawar school massacre (149 dead)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2014",
+                "label": "Operation Zarb-e-Azb pushes TTP into Afghanistan"
+              },
+              {
+                "year": "2021",
+                "label": "Afghan Taliban retake Kabul; TTP regains sanctuary"
+              },
+              {
+                "year": "2022",
+                "label": "Ceasefire with Islamabad collapses"
+              }
+            ],
+            "label": "the TTP arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY POLICE STATIONS",
+        "body": "Police stations are softer than army cantonments, manned by locally recruited officers, and politically symbolic — they represent the writ of the state in towns where that writ is contested. A vehicle-borne bomb against a thana also produces high casualties cheaply, which is the asymmetric logic behind the tactic."
+      },
+      {
+        "heading": "THE DURAND LINE PROBLEM",
+        "body": "The 2,640-km Pakistan–Afghanistan border was drawn in 1893 by a British colonial administrator. No Afghan government — Taliban or otherwise — has ever formally recognized it. Pashtun tribes straddle the line, families and militant networks alike. Pakistan's recent border fencing has hardened the frontier physically without resolving the underlying dispute.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why has no Afghan government ever recognized the Durand Line as the legal Pakistan–Afghanistan border?",
+            "options": [
+              "It was drawn by a British colonial administrator in 1893 and splits the Pashtun ethnic homeland",
+              "It was drawn by Pakistan unilaterally after 1947 partition",
+              "It was drawn by the UN in 1947 without Afghan input",
+              "Afghanistan claims the line is too far west of the historical Pashtun frontier"
+            ],
+            "correct": 0,
+            "explanation": "The 1893 Durand Agreement, signed under colonial pressure, cut the Pashtun heartland in half. Every Afghan regime since has treated it as imposed, not negotiated."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-09T22:56:34.707Z",
+    "label": "TTP & the KP Insurgency",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-09-cop30-climate-governance-ocean-omission-unfccc": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHERE THE HEAT GOES",
+        "body": "The ocean has absorbed roughly 90% of the excess heat trapped by greenhouse gases since 1970. The atmosphere gets the headlines, but it holds barely 1% of the imbalance — water has a thousand times the heat capacity of air per unit volume.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why surface air temperature is a *lagging* indicator: the ocean buffers the system. Stop emissions tomorrow and the **deep ocean** keeps warming for centuries as heat already absorbed at the surface mixes downward."
+          }
+        ]
+      },
+      {
+        "heading": "HOW WE KNOW",
+        "body": "Two independent measurement systems converge on the same number: CERES satellites measure the radiation imbalance at the top of the atmosphere, and the Argo float array — about 4,000 autonomous probes — measures ocean heat content from below. When both agree, confidence is high."
+      },
+      {
+        "heading": "THE UNFCCC ARCHITECTURE",
+        "body": "The 1992 Framework Convention built reporting around national emissions inventories: each state tallies its CO2, methane, and land-use fluxes. Ocean heat content, marine heatwave days, and sea-level rise sit outside this accounting because they aren't national — they belong to a shared fluid that ignores borders.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1992",
+                "label": "UNFCCC adopted at Rio"
+              },
+              {
+                "year": "1997",
+                "label": "Kyoto Protocol — binding emissions targets"
+              },
+              {
+                "year": "2015",
+                "label": "Paris Agreement — NDCs replace top-down targets",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "First Global Stocktake (Dubai)"
+              },
+              {
+                "year": "2025",
+                "label": "COP30 Belém — ocean omission flagged"
+              }
+            ],
+            "label": "the climate-governance arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE GLOBAL STOCKTAKE",
+        "body": "Paris replaced binding targets with a five-yearly Global Stocktake — a collective audit of whether national pledges add up to 1.5°C. The Stocktake's inputs are the metrics states report. Anything not in the reporting template is invisible to the audit by design."
+      },
+      {
+        "heading": "WHY OCEANS GOT LEFT OUT",
+        "body": "At Rio in 1992, ocean science was thinner: Argo didn't deploy until 2000, and marine heatwaves weren't formally defined as a category until 2016. The UNFCCC architecture froze around the metrics that existed at signing — adding new ones requires consensus from 198 parties, which is why structural gaps persist for decades."
+      },
+      {
+        "heading": "WHAT MARINE HEATWAVES DO",
+        "body": "A marine heatwave is five or more consecutive days above the 90th percentile of local sea-surface temperature. The 2013-16 'Blob' in the northeast Pacific killed a million seabirds, collapsed cod stocks, and shut down Dungeness crab fisheries. These events are doubling in frequency per decade.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of the excess heat from greenhouse warming has the ocean absorbed since 1970?",
+            "options": [
+              "About 50%",
+              "About 70%",
+              "About 90%",
+              "About 99%"
+            ],
+            "correct": 2,
+            "explanation": "The ocean has absorbed about 90% of the excess heat — which is why surface air temperature understates the true energy imbalance of the climate system."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-09T22:57:02.093Z",
+    "label": "Ocean & Climate Governance",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-09-darpa-containerized-drone-swarms-pre-positioned-ports": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONTAINER AS LAUNCHER",
+        "body": "The intermodal shipping container is the most ubiquitous object in global trade — roughly 250 million in circulation, indistinguishable from one another, moving through ports with minimal inspection. A weapon system that fits inside one inherits this anonymity for free.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Less than **2%** of containers entering major ports are physically inspected. The rest are cleared by manifest and risk-scoring algorithms — a paperwork filter, not a physical one."
+          }
+        ]
+      },
+      {
+        "heading": "THE SWARM LOGIC",
+        "body": "A 500-drone swarm is not 500 individual targets. It is a single distributed system where losing any one node degrades performance gracefully. Air defenses optimized for a few high-value missiles run out of interceptors before they run out of incoming drones — and each interceptor costs orders of magnitude more than each drone.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Shahed-136 drone",
+                "value": "~$20k",
+                "tone": "favorable"
+              },
+              {
+                "label": "Switchblade 600",
+                "value": "~$80k",
+                "tone": "favorable"
+              },
+              {
+                "label": "NASAMS missile",
+                "value": "~$1m",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Patriot PAC-3",
+                "value": "~$4m",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "cost per kill, attacker vs defender"
+          }
+        ]
+      },
+      {
+        "heading": "THE RUSSIAN PRECEDENT",
+        "body": "In June 2025, Ukraine's Operation Spiderweb smuggled FPV drones inside trucks deep into Russia, then launched them from container-like wooden sheds against strategic bombers at four airbases. DARPA's program is the industrialized, naval-scale version of what Ukrainian intelligence proved with plywood.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "UA"
+            ],
+            "label": "Operation Spiderweb, Jun 2025",
+            "markers": [
+              {
+                "lat": 58.6047,
+                "lng": 49.4106,
+                "label": "Olenya airbase strike"
+              },
+              {
+                "lat": 52.3838,
+                "lng": 104.3417,
+                "label": "Belaya airbase, Irkutsk"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PROLIFERATION TRAP",
+        "body": "Every weapon system the US fields establishes a global norm. Once containerized swarms exist in US doctrine, the same architecture — drones, batteries, autonomy software — becomes available to any adversary willing to copy it. The asymmetry favors the side that doesn't run a global port network.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many shipping containers enter US ports each year?",
+            "options": [
+              "~2 million",
+              "~12 million",
+              "~25 million",
+              "~50 million"
+            ],
+            "correct": 2,
+            "explanation": "About 25 million TEU enter US ports annually. Even at a 5% inspection rate, that's over a million boxes physically opened — a logistical ceiling that pre-positioned swarms exploit."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PORTS",
+        "body": "Major ports sit beside dense civilian and military infrastructure: naval bases, refineries, power plants, undersea cable landings. A container at Long Beach is within drone range of Camp Pendleton and the Port of Los Angeles fuel terminals; a container at Rotterdam reaches NATO logistics hubs across the Low Countries.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Container throughput, 2024",
+            "peers": [
+              {
+                "value": 51.5,
+                "label": "Shanghai"
+              },
+              {
+                "value": 40.9,
+                "label": "Singapore"
+              },
+              {
+                "value": 39.3,
+                "label": "Ningbo"
+              },
+              {
+                "value": 33.4,
+                "label": "Shenzhen"
+              },
+              {
+                "value": 13.8,
+                "label": "Rotterdam"
+              },
+              {
+                "value": 10.3,
+                "label": "Los Angeles"
+              },
+              {
+                "value": 9.6,
+                "label": "Long Beach"
+              }
+            ],
+            "subjectLabel": "Los Angeles",
+            "unit": "M TEU"
+          }
+        ]
+      },
+      {
+        "heading": "THE INSPECTION REGIME",
+        "body": "The Container Security Initiative, launched in 2002 after 9/11, pushed US inspection to 58 foreign ports — screening boxes before they ship rather than after they arrive. It targets nuclear and radiological threats, not autonomous robotics. The whole detection stack is calibrated for the wrong threat."
+      }
+    ],
+    "generatedAt": "2026-05-09T22:57:35.089Z",
+    "label": "Containerized Drone Swarms",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-09-edna-river-chytrid-ireland-first-detection-surveillance": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT eDNA IS",
+        "body": "Every organism sheds DNA into its environment — skin cells, mucus, faeces, gametes. A water sample contains a molecular census of everything that has recently touched it. PCR amplification and sequencing turn that soup into a species list without ever seeing the animals themselves.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technique is called *environmental DNA* — eDNA — and one liter of river water can detect a species present at densities as low as **a single individual per hectare**."
+          }
+        ]
+      },
+      {
+        "heading": "THE FUNGUS",
+        "body": "Batrachochytrium dendrobatidis — Bd, or chytrid — infects amphibian skin, which they breathe and osmoregulate through. Infected frogs essentially suffocate. Discovered only in 1998, it is now linked to the decline of over 500 amphibian species and the outright extinction of at least 90 — the worst pathogen-driven biodiversity loss ever documented."
+      },
+      {
+        "heading": "THE GLOBAL PATHWAY",
+        "body": "Bd's spread tracks the global trade in amphibians: African clawed frogs (used in 20th-century pregnancy tests), American bullfrogs (farmed for food), and pet-trade salamanders carry the fungus asymptomatically. Wherever they were released or escaped, Bd followed.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IE",
+              "GB",
+              "FR",
+              "ES",
+              "PT",
+              "DE",
+              "NL"
+            ],
+            "label": "chytrid's western European footprint",
+            "caption": "Ireland was the last major Western European holdout until this detection."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IRELAND WAS LATE",
+        "body": "Ireland has only three native amphibian species — the common frog, smooth newt, and natterjack toad. Sparse fauna meant fewer surveys, fewer chances to catch the fungus, and a false sense of insular safety. Island geography slows arrival; it does not prevent it."
+      },
+      {
+        "heading": "THE SURVEILLANCE SHIFT",
+        "body": "Traditional amphibian disease monitoring requires catching frogs and swabbing them — slow, invasive, and biased toward visible populations. eDNA flips the economics: one technician with a sampling kit can survey a watershed in a day. Biosecurity moves from reactive to routine.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many amphibian species has the chytrid fungus driven to extinction since its 1998 discovery?",
+            "options": [
+              "Fewer than 10",
+              "Around 90",
+              "About 500",
+              "Over 2,000"
+            ],
+            "correct": 1,
+            "explanation": "At least 90 species are confirmed extinct and over 500 have declined — the worst pathogen-driven biodiversity loss on record."
+          }
+        ]
+      },
+      {
+        "heading": "THE HUMAN-WASTE TELL",
+        "body": "The same sample flagged human sewage markers alongside the fungus. eDNA does not discriminate — it captures the full molecular signature of a watershed, which means a single survey doubles as a pollution audit, an invasive-species screen, and a pathogen alert. The technology's power is also its political complication: you cannot un-see what the river reveals."
+      }
+    ],
+    "generatedAt": "2026-05-09T22:58:01.097Z",
+    "label": "eDNA & the Amphibian Plague",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-09-irgc-tanker-warning-us-bases-ceasefire-strain": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "TWO NAVIES, ONE COUNTRY",
+        "body": "Iran has two separate naval forces. The regular Artesh navy operates conventional frigates and submarines in the Gulf of Oman and beyond. The IRGC Navy operates inside the Persian Gulf with hundreds of small fast-attack craft, anti-ship missiles, and mines. They report to different chains of command and answer to different masters — the Artesh to the defence ministry, the IRGC directly to the Supreme Leader.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The split is doctrinal: the **Artesh** fights state-on-state; the **IRGC** is built for *asymmetric* harassment of a superior force inside narrow waters."
+          }
+        ]
+      },
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil pass through daily, about 21% of global consumption. The deepest channel hugs the Iranian side, which is why Iranian naval positioning matters disproportionately.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW",
+              "IQ"
+            ],
+            "label": "the chokepoint and the targets",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 26.2235,
+                "lng": 50.5876,
+                "label": "NSA Bahrain (5th Fleet HQ)"
+              },
+              {
+                "lat": 25.1175,
+                "lng": 51.4178,
+                "label": "Al Udeid AB, Qatar"
+              },
+              {
+                "lat": 27.1833,
+                "lng": 56.2667,
+                "label": "Bandar Abbas (IRGCN HQ)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US flags and escorted by warships in Operation Earnest Will. The episode ended with Operation Praying Mantis in April 1988, the largest US naval surface engagement since WWII, sinking or crippling roughly half the Iranian operational fleet in a single day.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Tanker War begins"
+              },
+              {
+                "year": "1987-07",
+                "label": "Operation Earnest Will reflagging"
+              },
+              {
+                "year": "1988-04",
+                "label": "Operation Praying Mantis",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1988-07",
+                "label": "USS Vincennes downs IR655"
+              },
+              {
+                "year": "2019-06",
+                "label": "Gulf of Oman tanker attacks"
+              },
+              {
+                "year": "2020-01",
+                "label": "Soleimani strike; Iran hits al-Asad"
+              },
+              {
+                "year": "2026-04",
+                "label": "Current Hormuz blockade"
+              }
+            ],
+            "label": "Iran–US naval clashes"
+          }
+        ]
+      },
+      {
+        "heading": "THE BASES IN RANGE",
+        "body": "The US 5th Fleet is headquartered at NSA Bahrain — 200 km from the Iranian coast. Al Udeid in Qatar, the largest US base in the region, sits 190 km away. CENTCOM forward HQ at Camp As Sayliyah, naval facilities at Fujairah and Jebel Ali, and the airbase at Al Dhafra all sit within range of Iranian medium-range ballistic missiles and the IRGC's Khalij Fars and Hormuz anti-ship variants.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "NSA Bahrain",
+                "value": "5th Fleet HQ",
+                "cc": "BH"
+              },
+              {
+                "label": "Al Udeid, Qatar",
+                "value": "CENTCOM fwd",
+                "cc": "QA"
+              },
+              {
+                "label": "Al Dhafra, UAE",
+                "value": "F-35s, tankers",
+                "cc": "AE"
+              },
+              {
+                "label": "Ali Al Salem, Kuwait",
+                "value": "Patriot, ISR",
+                "cc": "KW"
+              },
+              {
+                "label": "Al-Asad, Iraq",
+                "value": "hit Jan 2020",
+                "cc": "IQ"
+              }
+            ],
+            "label": "US bases within Iranian missile range"
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Lloyd's of London war-risk premiums — not the warships themselves — are what closes a shipping lane. Once underwriters classify the Gulf as a Joint War Committee listed area, premiums jump from a few thousand dollars per voyage to hundreds of thousands. Commercial vessels reroute regardless of how many ships are physically threatened. The financial chokepoint tightens before the physical one does.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4746.97,
+              4736.29,
+              4735.2,
+              4650.83,
+              4743.12,
+              4831.44,
+              4813,
+              4779.06,
+              4821.21,
+              4777.22,
+              4736.06,
+              4807.83,
+              4729.84,
+              4714.79,
+              4689.13,
+              4697.32,
+              4693.28,
+              4674.15,
+              4683.94,
+              4584.13,
+              4551.29,
+              4619.17,
+              4603.98,
+              4597.48,
+              4606.7,
+              4515.48,
+              4580.98,
+              4684.25,
+              4695.85,
+              4706.72,
+              4713.42
+            ],
+            "periods": [
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 9"
+            ],
+            "label": "Gold (PAX Gold)",
+            "unit": "$/oz",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "PAKISTAN AS BACK-CHANNEL",
+        "body": "Pakistan mediated the secret US-China opening in 1971; Kissinger flew to Beijing from Islamabad on a PIA aircraft with Pakistani diplomatic cover. Islamabad's geographic position — Sunni-majority, sharing a 900 km border with Iran, holding deep ties to both Riyadh and Washington — has made it a recurring broker between hostile powers for over fifty years.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country provided diplomatic cover for Kissinger's secret 1971 trip to Beijing?",
+            "options": [
+              "Romania",
+              "Pakistan",
+              "France",
+              "Switzerland"
+            ],
+            "correct": 1,
+            "explanation": "Kissinger flew to Beijing from Islamabad on a PIA plane; Pakistan's role as a US-China back-channel set the template Islamabad still uses with Tehran today."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ESCALATION CONTROL IS HARD",
+        "body": "Iran's deterrent doctrine is calibrated humiliation — a strike large enough to demonstrate capability but small enough to let the adversary absorb without responding. The 2020 al-Asad missile barrage after Soleimani's killing was the textbook case: dozens of missiles, over 100 US troops with traumatic brain injuries, zero deaths. The IRGC's threat against US bases is a deliberate echo of that template — but each iteration narrows the margin for miscalculation."
+      }
+    ],
+    "sources": [
+      "CoinGecko · PAXG (gold-backed) · as of 2026-05-09"
+    ],
+    "generatedAt": "2026-05-09T22:58:47.015Z",
+    "label": "IRGC Navy & the Hormuz Threat",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-09-israel-deport-gaza-flotilla-activists-international-waters": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL LINE",
+        "body": "Under UNCLOS, the high seas begin 12 nautical miles from a coast. Beyond that, no state has jurisdiction over a foreign-flagged vessel except in piracy, slavery, or unauthorized broadcasting. Boarding a civilian ship in international waters is a use of force against the flag state.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine is *freedom of the high seas* — codified in **UNCLOS Article 87** and traceable to Hugo Grotius's *Mare Liberum* (1609), written to break Portuguese claims over the Indian Ocean."
+          }
+        ]
+      },
+      {
+        "heading": "THE MAVI MARMARA PRECEDENT",
+        "body": "In May 2010, Israeli commandos boarded the Turkish-flagged Mavi Marmara 130 km off Gaza, killing 10 activists. A UN Human Rights Council panel called the boarding unlawful; a separate UN Palmer Report called the blockade itself legal but the force excessive. Turkey severed military ties with Israel for six years.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2007",
+                "label": "Israel imposes Gaza blockade"
+              },
+              {
+                "year": "2010-05",
+                "label": "Mavi Marmara raid kills 10",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011",
+                "label": "UN Palmer Report"
+              },
+              {
+                "year": "2016",
+                "label": "Israel-Turkey reconciliation"
+              },
+              {
+                "year": "2024",
+                "label": "Handala intercepted"
+              },
+              {
+                "year": "2025",
+                "label": "Madleen, Conscience intercepted"
+              },
+              {
+                "year": "2026-05",
+                "label": "170-person flotilla intercepted"
+              }
+            ],
+            "label": "Gaza flotilla arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DEPORT, NOT CHARGE",
+        "body": "Charging foreign activists creates discoverable trial records — radio logs, boarding orders, command emails — that surface in a public courtroom. Deportation closes the file in days with no judicial review. The 168-vs-2 split signals selective treatment of organisers without the evidentiary cost of a prosecution."
+      },
+      {
+        "heading": "THE CAST OBJECTING",
+        "body": "Spain and Brazil are not random. Both have foreign ministers who have publicly compared Gaza to genocide; Spain recognised Palestine in May 2024, Brazil recalled its ambassador to Israel in 2024. Summoning an envoy is the second-strongest diplomatic protest short of expulsion.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "PS",
+              "GR",
+              "ES",
+              "BR"
+            ],
+            "label": "flotilla geography",
+            "markers": [
+              {
+                "lat": 31.5204,
+                "lng": 34.4667,
+                "label": "Gaza"
+              },
+              {
+                "lat": 31.6688,
+                "lng": 34.5715,
+                "label": "Ashkelon (detention)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "ADALAH",
+        "body": "Adalah — Arabic for 'justice' — is the legal centre representing Palestinian citizens of Israel and detainees since 1996. It is the primary domestic litigant against Israeli detention practices, operating inside the Israeli court system rather than international forums, which gives it standing the ICRC and UN bodies lack.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The name *Adalah* (**عدالة**) means **justice** — the same root as the Quranic command in Surah al-Nahl to *'act justly and do good'*."
+          }
+        ]
+      },
+      {
+        "heading": "BLOCKADES UNDER LAW",
+        "body": "The San Remo Manual (1994) — the customary law on naval warfare — permits blockades only in armed conflict, requires public declaration, and forbids starvation of civilians as the sole purpose. The Palmer Report applied this to Gaza; UN Special Rapporteurs have since argued conditions on the ground breach the starvation clause.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under UNCLOS, how far from a coast do international waters begin?",
+            "options": [
+              "3 nautical miles",
+              "12 nautical miles",
+              "24 nautical miles",
+              "200 nautical miles"
+            ],
+            "correct": 1,
+            "explanation": "12 nm marks the edge of the territorial sea; beyond that lies the contiguous zone (to 24nm) and high seas. The 200nm line is the EEZ, an economic — not sovereignty — boundary."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-09T22:59:20.163Z",
+    "label": "Flotillas & International Waters",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-09-pakistan-us-lobbying-1-2m-fara-defence-critical-minerals": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT FARA ACTUALLY DOES",
+        "body": "The Foreign Agents Registration Act of 1938 was passed to expose Nazi propaganda networks operating in the US. It does not ban foreign lobbying — it requires disclosure. Agents must register, file contracts, and label distributed material as foreign-origin. Enforcement was nearly dormant for 50 years; the Mueller probe revived it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "FARA targets *influence*, not espionage — that's the **Espionage Act**. The distinction is whether you're shaping policy openly on a foreign client's behalf, or covertly serving a foreign intelligence service."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRICE OF ACCESS",
+        "body": "$50,000 a month is mid-tier in Washington. Saudi Arabia spends roughly $30M/year across multiple firms; the UAE comparable. Qatar surged spending after the 2017 GCC blockade. Pakistan's $1.2M annual commitment buys meeting introductions and message coordination — not outcomes.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "~$30M/yr",
+                "cc": "SA",
+                "weight": 30,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "UAE",
+                "value": "~$25M/yr",
+                "cc": "AE",
+                "weight": 25,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Qatar",
+                "value": "~$20M/yr",
+                "cc": "QA",
+                "weight": 20,
+                "tone": "neutral"
+              },
+              {
+                "label": "India",
+                "value": "~$5M/yr",
+                "cc": "IN",
+                "weight": 5,
+                "tone": "neutral"
+              },
+              {
+                "label": "Pakistan",
+                "value": "$1.2M/yr",
+                "cc": "PK",
+                "weight": 1.2,
+                "tone": "favorable"
+              }
+            ],
+            "label": "annual FARA spending, recent years (rough)"
+          }
+        ]
+      },
+      {
+        "heading": "THE INDIA NETWORK",
+        "body": "India's Washington presence runs deeper than firm registrations suggest. The US-India Business Council, the diaspora-funded Hindu American Foundation, and tech-sector ties mean Delhi rarely needs to buy access — it has structural channels. Islamabad faces the inverse problem: episodic, transactional, and reactive to crises like Pahalgam."
+      },
+      {
+        "heading": "WHY CRITICAL MINERALS",
+        "body": "Pakistan's Reko Diq copper-gold deposit in Balochistan is among the world's largest undeveloped reserves; lithium and rare earth surveys are early-stage. Washington's 2022 Inflation Reduction Act ties EV subsidies to non-China mineral sourcing, making any country with reserves a courtship target.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF",
+              "IR",
+              "CN",
+              "IN"
+            ],
+            "label": "Pakistan's mineral geography",
+            "markers": [
+              {
+                "lat": 29,
+                "lng": 66.75,
+                "label": "Reko Diq (Cu-Au)"
+              },
+              {
+                "lat": 33.6844,
+                "lng": 73.0479,
+                "label": "Islamabad"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 1971 PRECEDENT",
+        "body": "Pakistan mediated the secret US-China opening in 1971 — Kissinger flew to Beijing from Islamabad on a PIA plane under Pakistani diplomatic cover. Islamabad's geographic position between hostile powers has made it a back-channel asset for fifty years; lobbying spend rises and falls with whether Washington currently needs that asset."
+      },
+      {
+        "heading": "WHAT $50K/MONTH BUYS",
+        "body": "FARA filings are public; the deliverables are not contracts for outcomes but for activity — meetings arranged, talking points circulated, op-eds placed, congressional staffers briefed. Success is measured in narrative shift over months, not votes.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does FARA require of foreign agents operating in the US?",
+            "options": [
+              "A ban on lobbying for foreign governments",
+              "Public disclosure of contracts and labeling of materials",
+              "Approval from the State Department before any activity",
+              "Registration only if the client is a sanctioned country"
+            ],
+            "correct": 1,
+            "explanation": "FARA is a disclosure regime, not a prohibition. Foreign lobbying is legal; hiding it is the crime."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-09T22:59:51.736Z",
+    "label": "FARA & Foreign Lobbying",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-09-spirit-airlines-chapter-7-liquidation-slots-creditors": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY CHAPTER 7, NOT 11",
+        "body": "Chapter 11 reorganizes a company so it keeps flying; Chapter 7 liquidates it. Airlines almost never go straight to 7 — they restructure first. Spirit skipped restructuring because its core asset, the ultra-low-cost model, stopped working when fuel costs broke its margin math entirely.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: **Chapter 11** preserves jobs and routes; **Chapter 7** turns the airline into a pile of parts to sell. Eastern (1991), Pan Am (1991), and TWA (2001) all ended this way."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A SLOT ACTUALLY IS",
+        "body": "At slot-controlled airports — LaGuardia, JFK, Reagan National, Heathrow — the FAA (or equivalent) limits the number of takeoffs and landings per hour. A slot is the legal right to one operation in one time window. It's not a physical thing; it's a regulatory permission that trades like a property right."
+      },
+      {
+        "heading": "WHY SLOTS ARE WORTH BILLIONS",
+        "body": "There is no way to make more slots without building a runway. At LaGuardia, a single peak-hour slot pair has sold for $40-60 million in past transactions. When an airline liquidates, slots are typically the most valuable asset on the balance sheet — worth more than the planes."
+      },
+      {
+        "heading": "THE USE-IT-OR-LOSE-IT RULE",
+        "body": "FAA Order 7210.3 requires slots to be used at least 80% of the time, or they revert to the agency for reallocation. This is why airlines fly empty 'ghost flights' during downturns — protecting the slot is worth more than the fuel cost of the flight.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do airlines sometimes fly nearly empty planes at slot-controlled airports?",
+            "options": [
+              "To train pilots cheaply",
+              "To preserve slot rights under the 80% use rule",
+              "To qualify for federal fuel subsidies",
+              "To depreciate aircraft faster for tax purposes"
+            ],
+            "correct": 1,
+            "explanation": "Under the 80/20 rule, a slot used less than 80% of the time reverts to the FAA. The fuel cost of an empty flight is trivial compared to losing a slot worth tens of millions."
+          }
+        ]
+      },
+      {
+        "heading": "WHO BUYS THE PIECES",
+        "body": "In airline liquidations, the legacy carriers — Delta, United, American — typically swallow the slots; lessors and parts brokers take the planes. Consolidation is the predictable second-order effect. Each Spirit liquidation event over the last 40 years has narrowed the US ultra-low-cost segment.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1978",
+                "label": "Airline Deregulation Act",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1991",
+                "label": "Eastern Airlines liquidated"
+              },
+              {
+                "year": "1991",
+                "label": "Pan Am liquidated"
+              },
+              {
+                "year": "2001",
+                "label": "TWA absorbed by American"
+              },
+              {
+                "year": "2005",
+                "label": "Independence Air liquidated"
+              },
+              {
+                "year": "2019",
+                "label": "WOW Air liquidated"
+              },
+              {
+                "year": "2026",
+                "label": "Spirit Chapter 7"
+              }
+            ],
+            "label": "US airline liquidations & the consolidation pattern"
+          }
+        ]
+      },
+      {
+        "heading": "THE FUEL-PRICE TRAP",
+        "body": "Ultra-low-cost carriers run on margins of a few dollars per seat. Fuel is typically 25-35% of operating costs. A sustained jet-fuel spike — like the one triggered by a Persian Gulf supply scare — vaporizes the margin instantly, and ULCC fare structures cannot pass the cost to leisure travelers who would simply not fly.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Spirit (ULCC)",
+                "value": "~33%",
+                "tone": "unfavorable",
+                "weight": 33
+              },
+              {
+                "label": "Southwest",
+                "value": "~28%",
+                "tone": "neutral",
+                "weight": 28
+              },
+              {
+                "label": "Delta",
+                "value": "~22%",
+                "tone": "neutral",
+                "weight": 22
+              },
+              {
+                "label": "Emirates",
+                "value": "~30%",
+                "tone": "neutral",
+                "weight": 30
+              }
+            ],
+            "label": "jet fuel as share of airline operating cost"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-09T23:00:24.283Z",
+    "label": "Aviation Slot Economics & Airline Liquidation",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-09-starmer-stalking-horse-labour-leadership-rules": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 20% THRESHOLD",
+        "body": "Labour's rulebook requires nominations from 20% of the parliamentary party to force a leadership contest while in government. With 404 Labour MPs, that's 81 signatures — high enough to deter casual challenges, low enough that a determined faction can clear it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Conservatives use a different mechanism — a **1922 Committee** confidence vote triggered by 15% of MPs writing to the chair. Labour's process is **nomination-based**, not letter-based: it's public from the first signature, which raises the cost of joining and explains why Labour challenges are rarer."
+          },
+          {
+            "type": "quiz",
+            "question": "How many Labour MPs are needed to trigger a leadership challenge against a sitting PM?",
+            "options": [
+              "A simple majority of the cabinet",
+              "20% of the parliamentary party — currently 81",
+              "15% writing to the 1922 Committee chair",
+              "A two-thirds vote of the National Executive"
+            ],
+            "correct": 1,
+            "explanation": "Labour's rule is 20% of MPs by nomination. The 15% letter mechanism is the Conservative 1922 Committee process — a common confusion."
+          }
+        ]
+      },
+      {
+        "heading": "THE STALKING HORSE",
+        "body": "A stalking horse is a low-profile MP who runs not to win but to expose how much support the leader has lost. Once the leader is wounded, a serious contender enters. The classic case: Sir Anthony Meyer's 1989 challenge against Thatcher drew 60 votes, signaling vulnerability — Heseltine struck the following year and she was gone within days.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Anthony Meyer",
+                "role": "Stalking horse vs Thatcher",
+                "years": "1989",
+                "cc": "GB"
+              },
+              {
+                "name": "Michael Heseltine",
+                "role": "Real challenger, forced exit",
+                "years": "1990",
+                "cc": "GB"
+              },
+              {
+                "name": "John Redwood",
+                "role": "Stalking horse vs Major",
+                "years": "1995",
+                "cc": "GB"
+              },
+              {
+                "name": "Catherine West",
+                "role": "Former junior minister, current pressure point",
+                "years": "2026–",
+                "cc": "GB"
+              }
+            ],
+            "label": "the stalking horse playbook"
+          }
+        ]
+      },
+      {
+        "heading": "THE LOCAL ELECTION SIGNAL",
+        "body": "British local elections function as a referendum on the sitting government. A loss of 1,000+ seats has historically marked the beginning of the end: the Conservatives lost over 1,300 in May 2024 and Sunak called the general election within weeks. The number 1,492 places this rout among the worst postwar showings for a governing party.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Major (Tory)",
+                "value": "−2,000 (1995)",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Brown (Labour)",
+                "value": "−500 (2008)",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "May (Tory)",
+                "value": "−1,330 (2019)",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Sunak (Tory)",
+                "value": "−1,316 (2024)",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Starmer (Labour)",
+                "value": "−1,492 (2026)",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Local-election seat losses → leadership consequence"
+          }
+        ]
+      },
+      {
+        "heading": "HOW UK PMS ACTUALLY FALL",
+        "body": "British prime ministers are rarely defeated at the ballot box mid-term — they're removed by their own party. Thatcher, Blair, May, Johnson, and Truss all left through internal pressure, not elections. The cabinet resignation cascade is the proximate weapon: when ministers walk, the position becomes untenable within days.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1990",
+                "label": "Thatcher resigns after Heseltine challenge",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2007",
+                "label": "Blair forced out by Brownite cabinet pressure"
+              },
+              {
+                "year": "2019",
+                "label": "May resigns after Brexit votes collapse"
+              },
+              {
+                "year": "2022-07",
+                "label": "Johnson falls — 60 ministers resign in 48hrs"
+              },
+              {
+                "year": "2022-10",
+                "label": "Truss falls after 49 days"
+              },
+              {
+                "year": "2024-07",
+                "label": "Sunak loses general election"
+              }
+            ],
+            "label": "modern UK PM defenestrations"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE CABINET MATTERS MOST",
+        "body": "Streeting not ruling out a challenge is the actual signal. A backbench rebellion can be contained; a cabinet minister positioning for the succession cannot. In every internal removal since Thatcher, the trigger was a senior figure breaking ranks — Geoffrey Howe's resignation speech, the Brownite ultimatums, Sajid Javid and Rishi Sunak's joint resignation against Johnson."
+      }
+    ],
+    "generatedAt": "2026-05-09T23:01:06.100Z",
+    "label": "Labour Leadership Mechanics",
+    "category": "politics",
+    "articleCount": 1
   }
 }
