@@ -76,6 +76,17 @@ export const ANCHOR_NAMES_EXTRA: ReadonlySet<string> = new Set([
   'Finland',
   'Denmark',
   'Ukraine',
+  // Central/Eastern Europe — completes the band so the continent doesn't read
+  // as France→Poland with a void. The collision packer culls the densely-
+  // packed members at 1× scale; surplus candidates surface as the zoom pill
+  // tightens the clip.
+  'Austria',
+  'Czechia',
+  'Hungary',
+  'Romania',
+  'Serbia',
+  'Belarus',
+  'Bulgaria',
   // Africa — Maghreb completion (Algeria/Libya/Egypt anchor by area),
   // Gulf of Guinea coast (Nigeria is the only nearby anchor), East Africa
   // recognition anchor (Kenya), and the Mozambique-Channel isolate.
@@ -95,6 +106,8 @@ export const ANCHOR_NAMES_EXTRA: ReadonlySet<string> = new Set([
   'Yemen',
   'Syria',
   'Lebanon',
+  'Palestine',
+  'Jordan',
   'Bangladesh',
   'South Korea',
   'North Korea',
@@ -105,6 +118,10 @@ export const ANCHOR_NAMES_EXTRA: ReadonlySet<string> = new Set([
   'Papua New Guinea',
   'Sri Lanka',
   'Iceland',
+  // Latin America — fills the Pacific-coast gap between Colombia/Peru and
+  // adds a Southern Cone counterweight to Chile/Argentina.
+  'Ecuador',
+  'Uruguay',
 ]);
 
 /** Heavy rivers-path projection fade range — gated tighter than the cheap
