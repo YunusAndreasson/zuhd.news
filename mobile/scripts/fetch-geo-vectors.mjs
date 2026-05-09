@@ -8,8 +8,10 @@
 // Current output:
 //   data/lakes-50m.json     (~180 KB) — lakes + reservoirs with names; drawn
 //                                        as bg-coloured holes, named ones labeled
-//   data/rivers-50m.json    (~275 KB) — rivers + lake centerlines with names
-//                                        and scalerank; ranks ≤ 5 draw, ≤ 3 label
+//   data/rivers-50m.json    (~177 KB) — rivers + lake centerlines with names
+//                                        and scalerank; pre-filtered at build
+//                                        to scalerank ≤ 5 (ranks 6+ never
+//                                        rendered or labeled at any zoom)
 //   data/capitals-50m.json  (~11 KB)  — admin-0 capitals keyed by ISO-2, slim
 //                                        {name,lat,lng} lookup
 //   data/seas-50m.json      (~5 KB)   — regional seas/bays/gulfs (ranks ≤ 2,
@@ -52,6 +54,11 @@ const TOPOJSON_LAYERS = [
     shp: 'ne_50m_rivers_lake_centerlines.shp',
     layer: 'rivers',
     fields: 'name,scalerank',
+    // Drop ranks 6+ at build time. Both consumers (MiniGlobe via
+    // detail-geo, LocationsBlock) hard-filter to scalerank<=5 at render
+    // time, so high-rank tributaries are pure parse-and-discard cost.
+    // Filtering here cuts the file ~36% (275 KB → 177 KB).
+    filter: 'scalerank<=5',
   },
 ];
 
@@ -64,15 +71,16 @@ function prepTmp() {
   mkdirSync(TMP_DIR, { recursive: true });
 }
 
-function fetchTopojson({ out, url, shp, layer, fields }) {
+function fetchTopojson({ out, url, shp, layer, fields, filter }) {
   console.log(`\n→ ${out}`);
   prepTmp();
   const zipPath = join(TMP_DIR, 'src.zip');
   run(`curl -sSL -o "${zipPath}" "${url}"`);
   run(`unzip -o -q "${zipPath}" -d "${TMP_DIR}"`);
   const outPath = join(TMP_DIR, out);
+  const filterArg = filter ? `-filter '${filter}' ` : '';
   run(
-    `npx --yes mapshaper "${join(TMP_DIR, shp)}" -filter-fields ${fields} -rename-layers ${layer} -o format=topojson quantization=1e5 "${outPath}"`,
+    `npx --yes mapshaper "${join(TMP_DIR, shp)}" ${filterArg}-filter-fields ${fields} -rename-layers ${layer} -o format=topojson quantization=1e5 "${outPath}"`,
   );
   renameSync(outPath, join(DATA_DIR, out));
   console.log(`  ✓ wrote data/${out}`);
