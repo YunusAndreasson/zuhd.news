@@ -225,19 +225,33 @@ function getOpenTags(ssmlFragment) {
   return stack
 }
 
-// Chunk a section into ≤MAX_BYTES pieces, each wrapped in <speak>
+// Chunk a section into ≤MAX_BYTES pieces, each wrapped in <speak>.
+// Primary split is on <break> boundaries; if a single inter-break segment is
+// still oversized (e.g. a long category with no inter-story breaks) we
+// sub-split on </s> sentence boundaries so a runaway segment can't bypass the
+// limit and trigger a TTS rejection.
 function chunkSection(sectionSsml) {
   const segs = sectionSsml.split(/(?=<break\s[^>]*\/>)/)
   const result = []
   let current = ''
+
+  const flushCurrent = () => {
+    const openTags = getOpenTags(current)
+    const closeTags = openTags.reverse().map(t => `</${t.match(/<(\w+)/)[1]}>`)
+    result.push(`<speak>${current}${closeTags.join('')}</speak>`)
+    current = openTags.reverse().join('')
+  }
+
   for (const seg of segs) {
-    if (Buffer.byteLength(`<speak>${current}${seg}</speak>`, 'utf-8') > MAX_BYTES && current) {
-      const openTags = getOpenTags(current)
-      const closeTags = openTags.reverse().map(t => `</${t.match(/<(\w+)/)[1]}>`)
-      result.push(`<speak>${current}${closeTags.join('')}</speak>`)
-      current = openTags.reverse().join('') + seg
-    } else {
-      current += seg
+    // If this segment alone busts the budget, sub-split on sentence boundaries.
+    const subSegs = Buffer.byteLength(`<speak>${seg}</speak>`, 'utf-8') > MAX_BYTES
+      ? seg.split(/(?<=<\/s>)/).filter(Boolean)
+      : [seg]
+    for (const sub of subSegs) {
+      if (Buffer.byteLength(`<speak>${current}${sub}</speak>`, 'utf-8') > MAX_BYTES && current) {
+        flushCurrent()
+      }
+      current += sub
     }
   }
   if (current) result.push(`<speak>${current}</speak>`)
@@ -264,16 +278,19 @@ for (let si = 0; si < ssmlSections.length; si++) {
   const chunks = chunkSection(section.ssml)
   for (let ci = 0; ci < chunks.length; ci++) {
     console.log(`  Synthesizing ${section.type} ${si + 1}/${ssmlSections.length}, chunk ${ci + 1}/${chunks.length} (${Buffer.byteLength(chunks[ci], 'utf-8')} bytes)`)
+    // Request LINEAR16 (uncompressed PCM, returned as a RIFF/WAV blob) instead
+    // of MP3. This eliminates the lossy decode→re-encode generation that would
+    // otherwise compound when we mux the chunks together at the end.
     const [response] = await client.synthesizeSpeech({
       input: { ssml: chunks[ci] },
       voice: { languageCode: 'en-US', name: VOICE_NAME },
       audioConfig: {
-        audioEncoding: 'MP3',
+        audioEncoding: 'LINEAR16',
         sampleRateHertz: 24000,
         effectsProfileId: ['headphone-class-device']
       }
     })
-    const chunkPath = join(tmpDir, `chunk-${chunkIdx++}.mp3`)
+    const chunkPath = join(tmpDir, `chunk-${chunkIdx++}.wav`)
     writeFileSync(chunkPath, Buffer.from(response.audioContent))
     audioParts.push(chunkPath)
   }
@@ -283,48 +300,68 @@ const MUSIC_FILES = new Set([TRANSITION_MP3, OUTRO_MP3])
 const musicCount = audioParts.filter(p => MUSIC_FILES.has(p)).length
 console.log(`Total parts: ${audioParts.length} (${audioParts.length - musicCount} TTS, ${musicCount} music)`)
 
-// Crossfade last TTS chunk into outro: voice fades out, outro fades in
+// Append outro for the crossfade-friendly path (single ffmpeg pass below
+// folds the crossfade into the same filter graph as the concat — no
+// intermediate MP3, so the only lossy encode is the final libmp3lame pass).
 const CROSSFADE_SEC = 2
-if (hasOutro && audioParts.length > 0) {
-  const lastIdx = audioParts.length - 1
-  if (!MUSIC_FILES.has(audioParts[lastIdx])) {
-    audioParts.push(OUTRO_MP3)
-    const crossfadePath = join(tmpDir, 'crossfade-outro.mp3')
-    const cf = spawnSync('ffmpeg', [
-      '-y', '-i', audioParts[lastIdx], '-i', OUTRO_MP3,
-      '-filter_complex', `acrossfade=d=${CROSSFADE_SEC}:c1=tri:c2=tri`,
-      '-ar', '24000', '-ac', '1', '-b:a', '64k', crossfadePath
-    ], { encoding: 'utf-8', timeout: 15000 })
-    if (cf.status === 0) {
-      console.log(`Crossfaded last TTS section with outro (${CROSSFADE_SEC}s overlap)`)
-      try { unlinkSync(audioParts[lastIdx]) } catch {}
-      audioParts.splice(lastIdx, 2, crossfadePath)
-    } else {
-      console.warn('Outro crossfade failed, falling back to simple concat:', cf.stderr?.slice(0, 150))
-    }
+const willCrossfadeOutro = hasOutro
+  && audioParts.length > 0
+  && !MUSIC_FILES.has(audioParts[audioParts.length - 1])
+if (willCrossfadeOutro) audioParts.push(OUTRO_MP3)
+
+// One-shot ffmpeg: decodes WAV TTS chunks + MP3 music, optionally crossfades
+// the last two inputs (last TTS ↔ outro), encodes the whole result to MP3
+// once. All inputs are 24 kHz mono so the concat filter joins them without
+// implicit resampling.
+const mp3Path = join(AUDIO_DIR, `briefing-${today}.mp3`)
+const ffArgs = ['-y']
+for (const p of audioParts) ffArgs.push('-i', p)
+
+const N = audioParts.length
+let filterComplex
+if (willCrossfadeOutro && N >= 2) {
+  // [head]: concat first N-2 inputs (everything before the last TTS chunk).
+  // [tail]: acrossfade between last TTS chunk and outro.
+  // [out]:  concat [head] + [tail].
+  const headCount = N - 2
+  if (headCount > 0) {
+    const headLabels = Array.from({ length: headCount }, (_, i) => `[${i}:a]`).join('')
+    filterComplex =
+      `${headLabels}concat=n=${headCount}:v=0:a=1[head];` +
+      `[${N - 2}:a][${N - 1}:a]acrossfade=d=${CROSSFADE_SEC}:c1=tri:c2=tri[tail];` +
+      `[head][tail]concat=n=2:v=0:a=1[out]`
+  } else {
+    filterComplex = `[0:a][1:a]acrossfade=d=${CROSSFADE_SEC}:c1=tri:c2=tri[out]`
   }
+} else {
+  const labels = Array.from({ length: N }, (_, i) => `[${i}:a]`).join('')
+  filterComplex = N > 1
+    ? `${labels}concat=n=${N}:v=0:a=1[out]`
+    : `[0:a]anull[out]`
 }
 
-// Merge all parts into a single clean MP3 via ffmpeg
-const mp3Path = join(AUDIO_DIR, `briefing-${today}.mp3`)
-const concatList = join(tmpDir, 'concat.txt')
-writeFileSync(concatList, audioParts.map(p => `file '${p}'`).join('\n'))
-const ff = spawnSync('ffmpeg', [
-  '-y', '-f', 'concat', '-safe', '0', '-i', concatList,
-  '-c', 'copy', mp3Path
-], { encoding: 'utf-8', timeout: 30000 })
+ffArgs.push(
+  '-filter_complex', filterComplex,
+  '-map', '[out]',
+  '-c:a', 'libmp3lame', '-b:a', '64k',
+  '-ar', '24000', '-ac', '1',
+  '-write_xing', '1',
+  mp3Path
+)
+
+const ff = spawnSync('ffmpeg', ffArgs, { encoding: 'utf-8', timeout: 120000 })
 if (ff.status !== 0) {
-  console.error('ffmpeg merge failed:', ff.stderr?.slice(0, 200))
-  // Fallback: concat only TTS chunks without music
-  const ttsPaths = audioParts.filter(p => !MUSIC_FILES.has(p))
-  writeFileSync(mp3Path, Buffer.concat(ttsPaths.map(p => readFileSync(p))))
+  // Fail fast — the previous fallback (raw Buffer.concat of MP3 bytes) shipped a
+  // worse-corrupted file than the failure it caught. Better to log loudly and
+  // skip publishing audio for the day than to deploy a broken MP3.
+  console.error('ffmpeg merge failed:', ff.stderr?.slice(0, 500))
+  process.exit(1)
 }
 
 // Clean up temp TTS chunks
 for (const p of audioParts) {
   if (!MUSIC_FILES.has(p)) try { unlinkSync(p) } catch {}
 }
-try { unlinkSync(concatList) } catch {}
 try { rmdirSync(tmpDir) } catch {}
 console.log(`Audio saved: ${mp3Path}`)
 

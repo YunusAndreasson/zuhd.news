@@ -36,7 +36,7 @@ If `editorialContext.topStories` is present:
 </selection>
 
 <structure>
-1. **INTRO** — one beat. A musical intro jingle plays before your first words, so the listener already knows which show this is.
+1. **INTRO** — one beat.
    - "This is your briefing for [Gregorian date, spoken naturally]." If `isFriday` is true, say "this is your Jumu'ah briefing" instead.
 
 2. **LEAD STORY** — immediately after the intro, before any category heading. Three sentences, 60–80 words. Use `<prosody rate="95%">` to slow the lead slightly — it carries the most weight and the listener needs a moment to settle in.
