@@ -1024,5 +1024,24 @@
     "briefCount": 11,
     "guardrailFailures": [],
     "degenerate": false
+  },
+  {
+    "ts": "2026-05-09T17:39:20.101Z",
+    "cycleId": "2026-05-09T17-39",
+    "cycleHour": "17",
+    "rvs": 81,
+    "clusters": {
+      "picking": null,
+      "writing": 100,
+      "briefing": 78.27,
+      "sourcing": 44.6,
+      "coverage": 95.69
+    },
+    "articleCount": 11,
+    "briefCount": 11,
+    "guardrailFailures": [
+      "category tech below floor 2 (got 1)"
+    ],
+    "degenerate": false
   }
 ]
