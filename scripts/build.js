@@ -636,13 +636,16 @@ for (const [cat, catArticles] of Object.entries(apiCategories)) {
   console.log(`  Built: api/articles/${cat}.json (${catArticles.length} articles)`)
 }
 
-// Briefing availability for meta
+// Briefing availability for meta. Expose the latest briefing whenever its
+// mp3 still exists on disk — generate-briefing.js cleans up files older
+// than 7 days, so the file-existence check is itself the freshness window.
+// Older approach (36h time gate) hid playable mp3s for up to 5 days.
 const apiBriefingMetaPath = join(ROOT, 'content', 'audio', 'briefing-meta.json')
 let briefingInfo = null
 if (existsSync(apiBriefingMetaPath)) {
   const bm = JSON.parse(readFileSync(apiBriefingMetaPath, 'utf-8'))
-  const age = Date.now() - new Date(bm.generated).getTime()
-  if (age < 36 * 60 * 60 * 1000) {
+  const mp3Path = join(ROOT, 'content', 'audio', `briefing-${bm.date}.mp3`)
+  if (existsSync(mp3Path)) {
     briefingInfo = { date: bm.date, available: true, duration: bm.duration ?? 0 }
   }
 }

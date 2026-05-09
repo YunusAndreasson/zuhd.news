@@ -48,6 +48,11 @@ interface BriefingPlayer {
   elapsed: number;
   duration: number;
   date: string;
+  /** False when the feed didn't surface a briefing date — typically because
+   *  the latest mp3 has aged out of the 7-day server retention window or
+   *  generation has been broken longer than that. Consumers should toast
+   *  rather than calling toggle, since toggle() is a no-op in this state. */
+  available: boolean;
   toggle: () => void;
   seek: (seconds: number) => void;
   close: () => void;
@@ -63,15 +68,14 @@ function safeCreatePlayer(url: string): AudioPlayer | null {
   }
 }
 
-/** Today's UTC date as YYYY-MM-DD — fallback when the feed hasn't surfaced
- *  a fresher briefing date. Briefings are generated on UTC cycles, so the
- *  audio file at this URL is the one a "play latest" tap should hit. */
-function todayUtc(): string {
-  return new Date().toISOString().slice(0, 10);
-}
-
 export function useBriefingPlayer(date: string | undefined, feedDuration?: number): BriefingPlayer {
-  const effectiveDate = date ?? todayUtc();
+  // No synthetic fallback to today's UTC date — that path produced a
+  // guaranteed 404 whenever the latest briefing was >36h old. The feed
+  // exposes the date of the most recent mp3 still on disk; if that's
+  // missing entirely we surface `available: false` instead of attempting
+  // playback we know will fail.
+  const effectiveDate = date ?? '';
+  const available = !!date;
   const [playing, setPlaying] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const playerRef = useRef<AudioPlayer | null>(null);
@@ -134,8 +138,11 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     return () => sub.remove();
   }, []);
 
-  // Preload audio for the latest briefing date
+  // Preload audio for the latest briefing date — only when the feed has
+  // surfaced one. Preloading a URL we know doesn't exist would just queue
+  // a 404 round-trip on every launch.
   useEffect(() => {
+    if (!effectiveDate) return;
     const url = `${API_BASE}/audio/briefing-${effectiveDate}.mp3`;
     if (preloadedUrl.current !== url) {
       try {
@@ -238,6 +245,13 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     hapticImpact();
     userToggleAt.current = Date.now();
     closedRef.current = false;
+
+    // No briefing available — refuse to attempt playback rather than fall
+    // through to a 404. Consumers should also gate on `available` to show
+    // a toast; this is the defensive layer.
+    if (!effectiveDate && !playerRef.current && !devMockActive.current) {
+      return;
+    }
 
     try {
       // Dev mock — no native player, just toggle UI state
@@ -455,6 +469,7 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
     elapsed,
     duration: effectiveDuration,
     date: effectiveDate,
+    available,
     toggle,
     seek,
     close,

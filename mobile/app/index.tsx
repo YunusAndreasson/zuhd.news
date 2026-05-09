@@ -177,6 +177,18 @@ export default function HomeScreen() {
     menuSheetRef.current?.present();
   }, []);
 
+  const handleBriefingPress = useCallback(() => {
+    if (!briefingPlayer.available) {
+      // No briefing surfaced by the feed (mp3 cleaned up after 7 days, or
+      // the pipeline has been broken longer). Don't attempt playback —
+      // the URL would 404 and the give-up timer would stall the UI.
+      hapticTick();
+      toastRef.current?.show('No briefing available', undefined, 'top');
+      return;
+    }
+    briefingPlayer.toggle();
+  }, [briefingPlayer.available, briefingPlayer.toggle]);
+
   const handleDeeperPress = useCallback(() => {
     const active = activeArticleRef.current;
     if (!active) return;
@@ -507,7 +519,7 @@ export default function HomeScreen() {
         <BottomActionBar
           bottomInset={insets.bottom}
           zoomLabel={currentZoom.label}
-          onBriefingPress={briefingPlayer.toggle}
+          onBriefingPress={handleBriefingPress}
           onZoomPress={handleZoomToggle}
           onSharePress={handleBottomShare}
           onContextPress={handleDeeperPress}
