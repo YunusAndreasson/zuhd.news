@@ -66,7 +66,6 @@ export const ContextSheet = memo(function ContextSheet({
 
   const spanningBlocks = brief?.blocks ?? [];
   const hasSpanning = spanningBlocks.length > 0;
-  const hasContent = brief != null || hasSpanning || error;
 
   const wasLoading = useRef(false);
   useEffect(() => {
@@ -78,8 +77,6 @@ export const ContextSheet = memo(function ContextSheet({
     }
     wasLoading.current = loading;
   }, [loading, brief]);
-
-  const loadingSnap = useMemo(() => ['40%'], []);
 
   const briefSources = brief?.sources;
   const renderTimelineEntry = (entry: TimelineEntry, i: number, arr: TimelineEntry[]) => {
@@ -101,7 +98,7 @@ export const ContextSheet = memo(function ContextSheet({
       return (
         <View key={i} style={styles.eduEntry}>
           {entry.heading && (
-            <Text variant="labelSm" style={styles.eduHeading}>
+            <Text selectable variant="labelSm" style={styles.eduHeading}>
               {entry.heading}
             </Text>
           )}
@@ -162,7 +159,7 @@ export const ContextSheet = memo(function ContextSheet({
   return (
     <SheetLayout
       sheetRef={sheetRef}
-      {...(hasContent ? snapProps : { snapPoints: loadingSnap, enableDynamicSizing: false })}
+      {...snapProps}
       renderBackdrop={renderBackdrop}
       onDismiss={onDismiss}
     >
@@ -187,7 +184,11 @@ export const ContextSheet = memo(function ContextSheet({
           </>
         )}
 
-        {loading && !brief && <ActivityIndicator color={colors.accent} style={styles.loader} />}
+        {loading && !brief && (
+          <View style={styles.loaderWrap}>
+            <ActivityIndicator color={colors.accent} />
+          </View>
+        )}
 
         {!loading && !brief && error && (
           <Stack align="center" gap="item" style={styles.errorBlock}>
@@ -259,8 +260,15 @@ const styles = StyleSheet.create({
     // similar to the centered three-dot section break in long-form essays.
     marginHorizontal: SPACING.lg,
   },
-  loader: {
-    marginTop: SPACING.lg,
+  loaderWrap: {
+    // Min-height anchors the sheet's dynamic sizing so a loading state
+    // doesn't snap to a tiny ~50pt strip and then jump up when content
+    // arrives. ~30% of a typical phone height — enough that the user
+    // visually registers "something is being prepared here," matching the
+    // size budget the loaded brief will land near.
+    minHeight: 220,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   errorBlock: {
     marginTop: SPACING.xl,
@@ -269,7 +277,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   retryPill: {
-    paddingVertical: SPACING.sm,
+    // Vertical padding lifted from sm→md so the pill clears the 44pt iOS
+    // tap-target floor. labelXs at sizeXs (11pt) × leadingBody is ~15pt
+    // of glyph height; sm (8) padding put the pill at ~31pt which fails
+    // Fitts's Law for the only interactive element in the error state.
+    paddingVertical: SPACING.md,
     paddingHorizontal: SPACING.md,
     borderRadius: RADIUS.floating,
   },
