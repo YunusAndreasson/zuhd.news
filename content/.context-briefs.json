@@ -143971,5 +143971,1504 @@
     "label": "Green Methanol & CO2 Catalysis",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-05-10-agentic-commerce-crypto-rails-paypal-google-stablecoin": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE KYC WALL",
+        "body": "Every bank account in the developed world requires Know Your Customer verification — a government ID, a face, a residential address. The Bank Secrecy Act (1970) and FATF's 40 Recommendations built this regime to fight money laundering. An AI agent has none of these attributes, which is why no regulated bank can legally onboard one as an account holder.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The relevant US statute is the **Bank Secrecy Act of 1970**, extended by the **USA PATRIOT Act §326** (2001), which mandates a *Customer Identification Program* — name, date of birth, address, ID number — for every account holder."
+          }
+        ]
+      },
+      {
+        "heading": "WHY STABLECOINS FIT",
+        "body": "A stablecoin wallet is just a cryptographic keypair. No identity, no jurisdiction, no business hours. An agent can generate one in milliseconds, hold dollar-pegged value, and settle a payment in seconds for fractions of a cent. The same properties that worry regulators — permissionless creation, instant finality — are exactly what machine-to-machine commerce requires."
+      },
+      {
+        "heading": "THE STABLECOIN MARKET",
+        "body": "Two issuers dominate. Tether (USDT) and Circle (USDC) together hold roughly 90% of the stablecoin float, backed mostly by US Treasury bills. The total supply has grown from near-zero in 2018 to over $200bn — Tether alone is now among the top 20 holders of US government debt, larger than Germany.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Tether (USDT)",
+                "value": "~$150bn",
+                "weight": 150,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Circle (USDC)",
+                "value": "~$60bn",
+                "weight": 60,
+                "tone": "neutral"
+              },
+              {
+                "label": "PayPal (PYUSD)",
+                "value": "~$2bn",
+                "weight": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "others",
+                "value": "~$8bn",
+                "weight": 8,
+                "tone": "favorable"
+              }
+            ],
+            "label": "stablecoin supply, May 2026 (approx)"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT FIDO ACTUALLY IS",
+        "body": "The FIDO Alliance is the industry consortium behind passkeys — the cryptographic replacement for passwords now built into every major browser and operating system. Its standards are royalty-free and developed openly. Donating a protocol to FIDO is the standard move when a single company wants its spec adopted as neutral infrastructure rather than a proprietary moat.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "FIDO stands for *Fast IDentity Online*. The alliance was founded in 2013 by PayPal, Lenovo, and Nok Nok Labs; **WebAuthn**, the W3C standard underlying passkeys, came out of FIDO's specs."
+          }
+        ]
+      },
+      {
+        "heading": "THE AGENT AUTHORIZATION PROBLEM",
+        "body": "If an agent can spend, who is liable when it spends wrongly? Existing card networks resolve this with chargebacks — the consumer disputes, the merchant eats the loss, the bank arbitrates. Stablecoin transactions are final on settlement; there is no chargeback. Agentic commerce protocols must encode authorization scope (what, how much, for how long) into the payment itself, because the rails offer no recourse after the fact."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Machine-readable payments are not new. SWIFT (1973) standardized interbank messaging. ISO 20022 standardized payment data. EDI standardized supplier invoicing in the 1980s. Each replaced human-mediated workflows with deterministic rails. The pattern: when a new class of actor needs to transact at scale, the rail gets rebuilt around the actor's constraints, not retrofitted onto the old one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't an AI agent simply use a corporate credit card issued to its operator?",
+            "options": [
+              "Card networks ban automated transactions",
+              "Per-transaction authorization, liability, and chargeback rules assume a human cardholder",
+              "Credit cards are too slow for AI workloads",
+              "Agents cannot read card numbers"
+            ],
+            "correct": 1,
+            "explanation": "The legal and dispute architecture of card networks — Regulation E in the US, PSD2 in the EU — assumes a human consumer who can authorize and dispute charges. An agent operating autonomously breaks the chain of authorization the rules were written around."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-10T17:33:34.465Z",
+    "label": "Agentic Commerce & Payment Rails",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-10-atef-najib-syria-trial-daraa-torture-accountability": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GRAFFITI THAT STARTED A WAR",
+        "body": "In March 2011, fifteen schoolboys in Daraa spray-painted 'the people want the fall of the regime' on a wall — copying slogans from Tunisia and Egypt. Atef Najib, Bashar al-Assad's cousin and the city's political security chief, had them detained and tortured. When parents came to plead for their release, he reportedly told them to forget their children and 'make new ones.' The protests that followed became the Syrian revolution.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Najib's reported line to the parents — *go home and make new children, or send us your wives and we'll do it for you* — became one of the most quoted moments of the early uprising. It crystallized a regime posture the rest of the war confirmed."
+          }
+        ]
+      },
+      {
+        "heading": "THE MUKHABARAT ARCHITECTURE",
+        "body": "Assad's Syria ran four parallel intelligence services — Political Security, General Intelligence, Military Intelligence, and Air Force Intelligence — each reporting separately to the presidency. The redundancy was the point: agencies watched each other as much as the population. Daraa's branch under Najib was Political Security, the Interior Ministry's arm.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Bashar al-Assad",
+                "role": "President",
+                "years": "2000–2024",
+                "cc": "SY"
+              },
+              {
+                "name": "Atef Najib",
+                "role": "Political Security, Daraa",
+                "years": "~2011",
+                "cc": "SY"
+              },
+              {
+                "name": "Maher al-Assad",
+                "role": "4th Armored Division commander",
+                "years": "2000–2024",
+                "cc": "SY"
+              },
+              {
+                "name": "Ali Mamlouk",
+                "role": "National Security Bureau chief",
+                "years": "2012–2024",
+                "cc": "SY"
+              }
+            ],
+            "label": "the Daraa cast, March 2011"
+          }
+        ]
+      },
+      {
+        "heading": "THE BLESSED LAND",
+        "body": "Daraa sits in Hawran, the southern plain of historic al-Sham — Greater Syria. In Islamic tradition, multiple hadiths in Sahih al-Bukhari and Sahih Muslim describe al-Sham as a land under particular divine attention, and classical scholars including Ibn Kathir treated its fate as load-bearing for end-times geography. That a revolution against tyranny ignited there, and that accountability now begins there, registers in a register most Western coverage misses."
+      },
+      {
+        "heading": "WHY IN ABSENTIA MATTERS",
+        "body": "Civil-law systems (France, Germany, Syria's own code) permit trials without the defendant present; common-law systems (US, UK) generally do not. In absentia verdicts cannot compel custody but they create a documentary record, freeze assets in cooperating jurisdictions, and trigger Interpol Red Notices. Slobodan Milošević and Charles Taylor were eventually delivered; Idi Amin died comfortably in Jeddah. Russian extradition of Assad would require either a regime change in Moscow or a deal — neither is on offer.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which of these former heads of state was eventually transferred to face trial after fleeing into exile?",
+            "options": [
+              "Idi Amin (Uganda → Saudi Arabia)",
+              "Charles Taylor (Liberia → Nigeria)",
+              "Jean-Claude Duvalier (Haiti → France)",
+              "Alberto Fujimori (Peru → Japan)"
+            ],
+            "correct": 1,
+            "explanation": "Nigeria handed Taylor to the Special Court for Sierra Leone in 2006. Amin died in Jeddah in 2003; Duvalier returned to Haiti voluntarily; Fujimori was extradited from Chile, not Japan."
+          }
+        ]
+      },
+      {
+        "heading": "THE CAESAR ARCHIVE",
+        "body": "A Syrian military photographer code-named 'Caesar' defected in 2013 with 53,000 images of detainees tortured to death in regime custody — bodies tagged with branch numbers identifying which intelligence service killed them. The photographs underpinned the 2019 US Caesar Act sanctions and German universal-jurisdiction convictions in Koblenz. Najib's prosecution inside Syria draws on the same evidentiary base, but for the first time in a Syrian courtroom.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011-03",
+                "label": "Daraa schoolboys detained",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011-03",
+                "label": "protests spread; civil war begins"
+              },
+              {
+                "year": "2013",
+                "label": "Caesar smuggles out 53,000 photos"
+              },
+              {
+                "year": "2019",
+                "label": "US Caesar Act sanctions enacted"
+              },
+              {
+                "year": "2022",
+                "label": "Koblenz: Anwar Raslan convicted in Germany"
+              },
+              {
+                "year": "2024-12",
+                "label": "Assad regime falls; flees to Moscow"
+              },
+              {
+                "year": "2026-05",
+                "label": "Najib tried in Damascus"
+              }
+            ],
+            "label": "the road from graffiti to courtroom"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ELSE FACES JUSTICE",
+        "body": "Syrian accountability has, until now, run through European universal-jurisdiction courts. Anwar Raslan — a former Branch 251 colonel — was convicted of crimes against humanity in Koblenz, Germany in 2022 and sentenced to life. France issued an arrest warrant for Assad himself in 2023 over the 2013 Ghouta chemical attack. The novelty in Damascus is jurisdiction: a Syrian court trying a Syrian official for crimes against Syrians.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SY",
+              "DE",
+              "FR",
+              "NL",
+              "RU",
+              "JO"
+            ],
+            "label": "where Syrian accountability cases sit",
+            "caption": "Damascus joins a docket previously held abroad."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-10T17:34:17.814Z",
+    "label": "Daraa & Syrian Accountability",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-10-iran-us-ceasefire-response-pakistan-mediator": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY NOT OMAN",
+        "body": "Oman has brokered nearly every quiet US-Iran channel since the 1970s — the Algiers Accords backchannel, the secret talks that produced the JCPOA, prisoner swaps, the 2023 unfrozen-funds deal. Muscat's value was its neutrality: a small monarchy with no ideological stake. Iran picking Islamabad over Muscat signals Tehran wants a mediator with weight, not just discretion.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Sultan Qaboos",
+                "role": "Oman ruler, JCPOA backchannel",
+                "years": "1970–2020",
+                "cc": "OM"
+              },
+              {
+                "name": "Sultan Haitham",
+                "role": "Oman ruler, 2023 swap",
+                "years": "2020–",
+                "cc": "OM"
+              },
+              {
+                "name": "Sheikh Tamim",
+                "role": "Qatar emir, Hamas channel",
+                "years": "2013–",
+                "cc": "QA"
+              },
+              {
+                "name": "Shehbaz Sharif",
+                "role": "Pakistan PM, current channel",
+                "years": "2024–",
+                "cc": "PK"
+              }
+            ],
+            "label": "recent US–Iran intermediaries"
+          }
+        ]
+      },
+      {
+        "heading": "THE PAKISTAN–IRAN BORDER",
+        "body": "Pakistan and Iran share an 909-km border across Balochistan — restless on both sides, with Baloch separatist groups operating across it. In January 2024 the two countries traded missile strikes inside each other's territory over militant sanctuaries, then de-escalated within 72 hours. The episode proved Tehran and Islamabad can talk to each other under fire.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "PK",
+              "AF",
+              "OM",
+              "AE",
+              "QA"
+            ],
+            "label": "the mediator field",
+            "markers": [
+              {
+                "lat": 25.2854,
+                "lng": 51.531,
+                "label": "Doha"
+              },
+              {
+                "lat": 23.588,
+                "lng": 58.3829,
+                "label": "Muscat"
+              },
+              {
+                "lat": 33.6844,
+                "lng": 73.0479,
+                "label": "Islamabad"
+              },
+              {
+                "lat": 35.6892,
+                "lng": 51.389,
+                "label": "Tehran"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SAUDI THAW",
+        "body": "China brokered the Saudi-Iran normalization in March 2023, ending seven years of severed relations. That deal removed the most acute regional reason Riyadh would have blocked a Pakistani role — Pakistan's deep defence ties to Saudi Arabia previously made Tehran wary of Islamabad as an honest broker.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Pakistan–Saudi defence relationship runs deeper than treaty text — Pakistani officers have commanded Saudi units, and Riyadh is widely believed to have *pre-financed* Pakistan's nuclear program in exchange for an implicit guarantee. The 2023 thaw with Iran is what makes the **Islamabad channel** thinkable."
+          }
+        ]
+      },
+      {
+        "heading": "THE NUCLEAR ASYMMETRY",
+        "body": "Pakistan is the only Muslim-majority nuclear-weapons state. Iran is the country the US, Israel, and the Gulf states have spent two decades trying to keep non-nuclear. A Pakistani mediator brings something Oman and Qatar cannot: lived experience of crossing the threshold and surviving the international response.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which of these countries is NOT a declared nuclear-weapons state?",
+            "options": [
+              "Pakistan",
+              "India",
+              "Iran",
+              "North Korea"
+            ],
+            "correct": 2,
+            "explanation": "Iran has enriched uranium to near-weapons grade but has not tested a device or declared a weapon. Pakistan tested in 1998, India in 1974/1998, North Korea in 2006."
+          }
+        ]
+      },
+      {
+        "heading": "THE OIC FACTOR",
+        "body": "Pakistan has chaired the Organisation of Islamic Cooperation's standing committees on Palestine and Kashmir and hosted the OIC's largest emergency sessions on Gaza. Tehran routing through Islamabad lets Iran frame any concession as legitimated by the broader Muslim world, not as bilateral capitulation to Washington."
+      }
+    ],
+    "generatedAt": "2026-05-10T17:34:49.460Z",
+    "label": "Pakistan as Mediator",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-10-macron-ruto-kenya-france-africa-summit-pivot": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "FRANÇAFRIQUE",
+        "body": "For six decades after independence, France maintained a tight web of military, monetary, and political control over its former African colonies — bases, currency pegs, intelligence ties, and personal relationships between presidents. The system had a name in Paris: Françafrique. It was assumed permanent.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The arrangement rested on three pillars: the **CFA franc** (a currency France guaranteed and partly controlled), permanent **military bases** across the Sahel and Gulf of Guinea, and *réseaux* — informal networks of businessmen, intelligence officers, and politicians who moved fluidly between Paris and African capitals."
+          }
+        ]
+      },
+      {
+        "heading": "THE SAHEL EXPULSIONS",
+        "body": "Between 2022 and 2024, military juntas in Mali, Burkina Faso, and Niger ordered French forces out — ending Operation Barkhane, France's largest overseas military deployment. Chad followed in late 2024. In under three years, France lost the entire counterterrorism architecture it had spent a decade building.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2013",
+                "label": "Operation Serval begins in Mali"
+              },
+              {
+                "year": "2014",
+                "label": "Barkhane launched, 5,000 troops deployed"
+              },
+              {
+                "year": "2022-08",
+                "label": "France exits Mali after coup",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-01",
+                "label": "Burkina Faso ends French military pact"
+              },
+              {
+                "year": "2023-09",
+                "label": "Niger junta orders French troops out"
+              },
+              {
+                "year": "2024-11",
+                "label": "Chad terminates defence cooperation"
+              }
+            ],
+            "spans": [
+              {
+                "from": "2013",
+                "to": "2024",
+                "label": "French military presence in Sahel",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "the unwinding"
+          }
+        ]
+      },
+      {
+        "heading": "WHY KENYA",
+        "body": "Kenya is anglophone, never colonized by France, and runs the most capable military in East Africa. Nairobi hosts the largest UN office outside New York and Geneva, anchors regional diplomacy on Sudan and DRC, and President Ruto has positioned himself as a continental spokesman. For Paris, partnering with Nairobi signals that French Africa policy is no longer about France's former empire.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "FR",
+              "KE",
+              "ML",
+              "BF",
+              "NE",
+              "TD",
+              "CI",
+              "SN"
+            ],
+            "label": "from the Sahel exit to the Nairobi pivot",
+            "markers": [
+              {
+                "lat": -1.2921,
+                "lng": 36.8219,
+                "label": "Nairobi summit"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE CFA QUESTION",
+        "body": "Fourteen African countries still use the CFA franc, pegged to the euro and historically requiring deposits at the French Treasury. Reforms announced in 2019 renamed the West African version 'eco' and ended the deposit requirement, but the peg remains. Anglophone Africa watches the arrangement with suspicion; for Kenya, a French partnership carries none of this monetary baggage."
+      },
+      {
+        "heading": "THE COMPETITION",
+        "body": "France is not pivoting into an empty field. Russia (via Africa Corps, the Wagner successor), China (infrastructure and Belt-and-Road financing), Turkey (drones and construction), and the Gulf states (ports and agriculture) have all expanded African footprints as France contracted. Kenya itself hosts a major Chinese-built railway and a US counterterrorism base at Manda Bay.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "SGR railway, ~$5bn",
+                "cc": "CN"
+              },
+              {
+                "label": "United States",
+                "value": "Manda Bay base",
+                "cc": "US"
+              },
+              {
+                "label": "United Kingdom",
+                "value": "BATUK training unit",
+                "cc": "GB"
+              },
+              {
+                "label": "Turkey",
+                "value": "Bayraktar drone deal",
+                "cc": "TR"
+              },
+              {
+                "label": "France",
+                "value": "new strategic partner",
+                "cc": "FR"
+              }
+            ],
+            "label": "external partners active in Kenya"
+          }
+        ]
+      },
+      {
+        "heading": "THE TEST",
+        "body": "Summits produce communiqués; the question is whether Paris can offer Nairobi anything the others can't. France's traditional African toolkit — troops, currency, personal ties — does not transfer to anglophone partners. What replaces it is the unanswered question of the Macron Africa doctrine.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many African countries still use the CFA franc, pegged to the euro?",
+            "options": [
+              "6",
+              "14",
+              "22",
+              "All former French colonies"
+            ],
+            "correct": 1,
+            "explanation": "Fourteen countries across West and Central Africa still use the CFA franc; reforms in 2019 renamed the West African version but kept the euro peg."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-10T17:35:24.821Z",
+    "label": "Françafrique & the Anglophone Pivot",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-10-modi-india-fuel-gold-foreign-travel-hormuz-rationing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE THREE OUTFLOWS",
+        "body": "Crude oil, gold, and outbound tourism are India's three largest discretionary dollar drains. Together they account for the bulk of the current account deficit in any given year — which is why every Indian forex squeeze since 1991 has produced the same political ask.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Crude oil imports",
+                "value": 180,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Gold imports",
+                "value": 45,
+                "tone": "neutral"
+              },
+              {
+                "label": "Outbound tourism",
+                "value": 33,
+                "tone": "favorable"
+              },
+              {
+                "label": "Electronics",
+                "value": 28,
+                "tone": "favorable"
+              }
+            ],
+            "label": "India's major non-essential dollar outflows (rough $bn/yr)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY FUEL IS THE PERFECT TAX",
+        "body": "Fuel is inelastic — people buy roughly the same amount regardless of price. India deliberately kept petrol and diesel outside the GST system, which lets the centre and states stack taxes independently. At peak in 2020, taxes comprised 65% of petrol's retail price.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "India's fuel excise generated roughly **₹3.2 trillion** in FY2024 — about **12%** of central tax revenue. No other major economy taxes fuel this aggressively relative to base cost."
+          }
+        ]
+      },
+      {
+        "heading": "THE GOLD PARADOX",
+        "body": "Indian households hold an estimated 25,000 tonnes of gold — more than the combined official reserves of the US, Germany, IMF, and Italy. It is dead capital from a balance-of-payments view: bought with hard currency, locked in vaults and lockets, never circulating. Every wedding season is a quiet forex drain.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4736.29,
+              4735.2,
+              4650.83,
+              4743.12,
+              4831.44,
+              4813,
+              4779.06,
+              4821.21,
+              4777.22,
+              4736.06,
+              4807.83,
+              4729.84,
+              4714.79,
+              4689.13,
+              4697.32,
+              4693.28,
+              4674.15,
+              4683.94,
+              4584.13,
+              4551.29,
+              4619.17,
+              4603.98,
+              4597.48,
+              4606.7,
+              4515.48,
+              4580.98,
+              4684.25,
+              4695.85,
+              4706.72,
+              4711.53,
+              4718.94
+            ],
+            "periods": [
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 10"
+            ],
+            "label": "Gold (PAX Gold)",
+            "unit": "$/oz",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE 1991 PRECEDENT",
+        "body": "In July 1991, India airlifted 47 tonnes of central bank gold to the Bank of England as collateral for an emergency IMF loan. Reserves had collapsed to two weeks of import cover. The crisis forced the dismantling of the License Raj — Manmohan Singh's liberalisation. Modi's appeal echoes the rhetoric of that era without (yet) the underlying balance-of-payments emergency.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1966",
+                "label": "Rupee devaluation under Indira Gandhi"
+              },
+              {
+                "year": "1991",
+                "label": "Gold airlift to Bank of England",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2013",
+                "label": "Taper tantrum, RBI swap window"
+              },
+              {
+                "year": "2022",
+                "label": "Reserves drop $100bn defending rupee"
+              },
+              {
+                "year": "2026",
+                "label": "Modi's appeal"
+              }
+            ],
+            "label": "India's forex squeezes"
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ PASS-THROUGH",
+        "body": "India imports about 85% of its crude. Roughly two-thirds of that crude transits the Strait of Hormuz. Any pricing-in of closure risk hits Indian retail prices within weeks — and the subsidy bill compounds faster than tax revenue can absorb.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "IQ"
+            ],
+            "label": "India's crude lifeline",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 29.0667,
+                "lng": 50.3333,
+                "label": "Kharg Island terminal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY APPEALS TO RESTRAINT RARELY WORK",
+        "body": "Voluntary consumption cuts are the weakest tool a government has. The 1973 oil shock prompted similar appeals across the developing world; almost none reduced demand measurably. Price signals (duty hikes, rationing) and quantity signals (import quotas) are the levers that actually move forex.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What ended India's 1991 balance-of-payments crisis?",
+            "options": [
+              "A consumer appeal to cut imports",
+              "A 47-tonne gold pledge to the Bank of England for an IMF loan",
+              "A windfall tax on gold jewellers",
+              "Closing the Bombay Stock Exchange"
+            ],
+            "correct": 1,
+            "explanation": "India physically airlifted RBI gold to London as collateral. The crisis forced the liberalisation reforms that defined the next three decades."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · PAXG (gold-backed) · as of 2026-05-10"
+    ],
+    "generatedAt": "2026-05-10T17:35:58.149Z",
+    "label": "India's Forex Triad",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-10-mushroom-blotch-disease-17-bacteria-polymicrobial": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "KOCH'S POSTULATES",
+        "body": "Modern plant pathology was built on Robert Koch's 1884 rules: isolate one microbe from a sick host, grow it in pure culture, reinfect a healthy host, recover the same microbe. The framework assumes one disease, one pathogen — and it shaped a century of agricultural research.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine is called the **one-pathogen-one-disease** model. It works brilliantly for tuberculosis, anthrax, and wheat rust — and quietly fails for diseases caused by microbial *communities*."
+          }
+        ]
+      },
+      {
+        "heading": "THE BLOTCH HUNT",
+        "body": "Pseudomonas tolaasii was named the culprit in 1960 and held that title for sixty years. Growers sprayed for it; breeders selected against it; outbreaks kept happening. The pathogen kept being 'found' because researchers kept looking for one."
+      },
+      {
+        "heading": "WHY POLYMICROBIAL DISEASES HIDE",
+        "body": "Sequencing a single colony tells you what grew on the plate, not what was on the mushroom. 16S rRNA amplicon sequencing — reading the bacterial barcode gene directly from the lesion — reveals communities that culture-based methods miss entirely. The technology only became cheap in the 2010s."
+      },
+      {
+        "heading": "THE HUMAN PARALLEL",
+        "body": "Periodontitis, bacterial vaginosis, and cystic fibrosis lung infections are all polymicrobial. Antibiotics that kill the 'main' pathogen often fail because surviving community members reshape the niche and disease returns. Plant pathology is now hitting the same wall."
+      },
+      {
+        "heading": "THE ECONOMIC STAKES",
+        "body": "Cultivated mushrooms are a roughly $50bn global crop, with China producing the dominant share. Blotch downgrades fresh mushrooms from premium to processing grade — a price cut of 40-60% — and there is no resistant Agaricus bisporus cultivar because the species has almost no genetic diversity in commercial production.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "China",
+                "value": 40,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Japan",
+                "value": 0.5,
+                "tone": "neutral"
+              },
+              {
+                "label": "USA",
+                "value": 0.4,
+                "tone": "neutral"
+              },
+              {
+                "label": "Poland",
+                "value": 0.35,
+                "tone": "favorable"
+              },
+              {
+                "label": "Netherlands",
+                "value": 0.3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Spain",
+                "value": 0.18,
+                "tone": "favorable"
+              },
+              {
+                "label": "Ireland",
+                "value": 0.07,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global cultivated mushroom production (mn tonnes, approx)"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT MANAGEMENT LOOKS LIKE",
+        "body": "If no single strain causes the disease, no single bactericide can prevent it. Control shifts to community-level interventions: humidity and airflow that suppress the whole bacterial bloom, casing-soil microbiome management, and biocontrol consortia rather than monocultures.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did sixty years of targeting Pseudomonas tolaasii fail to control mushroom blotch?",
+            "options": [
+              "The bacterium evolved resistance to the sprays used",
+              "Blotch is caused by a community of 17 bacteria, not one strain",
+              "Mushroom growers stopped following spray protocols",
+              "P. tolaasii was misidentified and is harmless"
+            ],
+            "correct": 1,
+            "explanation": "Polymicrobial diseases don't yield to single-target treatments — surviving community members reshape the niche and disease returns."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-10T17:36:33.532Z",
+    "label": "Polymicrobial Plant Disease",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-10-nepal-medicinal-plants-indigenous-knowledge-archive-consent": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO THE THARU ARE",
+        "body": "The Tharu are an indigenous people of the Terai lowlands along Nepal's southern border with India, numbering roughly 1.7 million in Nepal. They are known for a historic genetic resistance to falciparum malaria — which is why they settled and farmed the malarial Terai when surrounding hill populations could not.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NP",
+              "IN"
+            ],
+            "label": "the Tharu Terai",
+            "markers": [
+              {
+                "lat": 26.6,
+                "lng": 86.7,
+                "label": "Saptari district"
+              },
+              {
+                "lat": 27.7172,
+                "lng": 85.324,
+                "label": "Kathmandu"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY ORAL KNOWLEDGE RESISTS PAPER",
+        "body": "Healer knowledge is not just a list of plants and doses. It is gesture, intonation, the precise way a leaf is crushed, the song sung while it steeps, the diagnostic conversation with the patient. Written ethnobotany strips all of this and keeps only the ingredient list — which is why pharmacological extractions from indigenous compendia so often fail to reproduce the original effect.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **tacit knowledge** — what philosopher Michael Polanyi called the things we know but cannot fully articulate. Audio-visual capture preserves what *codification* destroys."
+          }
+        ]
+      },
+      {
+        "heading": "THE BIOPIRACY PRECEDENT",
+        "body": "In 1995 the US Patent Office granted a patent on turmeric's wound-healing properties to two researchers at the University of Mississippi. India's CSIR challenged it by submitting Sanskrit and Urdu texts dating back centuries. The patent was revoked in 1997 — the first successful traditional-knowledge patent challenge — and triggered the creation of India's Traditional Knowledge Digital Library, now consulted by patent offices worldwide before granting plant-based claims."
+      },
+      {
+        "heading": "THE NAGOYA PROTOCOL",
+        "body": "The 2010 Nagoya Protocol to the UN Convention on Biological Diversity established that indigenous communities have the right to free, prior, and informed consent before their genetic resources or associated knowledge are used, and the right to share in any benefits. Nepal ratified in 2018. The protocol is why a modern healer-knowledge archive must address consent and benefit-sharing upfront — not bolt them on after publication.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does Nagoya Protocol consent require before traditional knowledge can be commercialized?",
+            "options": [
+              "Government approval from the country of origin",
+              "Free, prior, and informed consent from the community, plus benefit-sharing",
+              "Publication in a peer-reviewed journal",
+              "A patent application listing community members as co-inventors"
+            ],
+            "correct": 1,
+            "explanation": "FPIC plus benefit-sharing is the dual standard — consent without compensation, or compensation without consent, both fail the protocol."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT GETS LOST WHEN A HEALER DIES",
+        "body": "Ethnobotanists estimate that a single experienced healer carries working knowledge of 200-500 plant preparations. UNESCO's 2003 Intangible Cultural Heritage Convention exists because this knowledge disappears at the speed of a generation — once the last practitioner of a tradition dies without transmission, the loss is permanent and uncopyable. Two healers in Saptari is a small start against a steep curve.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1995",
+                "label": "US turmeric patent granted"
+              },
+              {
+                "year": "1997",
+                "label": "Turmeric patent revoked",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2001",
+                "label": "India launches Traditional Knowledge Digital Library"
+              },
+              {
+                "year": "2003",
+                "label": "UNESCO Intangible Cultural Heritage Convention"
+              },
+              {
+                "year": "2010",
+                "label": "Nagoya Protocol adopted"
+              },
+              {
+                "year": "2018",
+                "label": "Nepal ratifies Nagoya"
+              }
+            ],
+            "label": "the architecture of indigenous knowledge protection"
+          }
+        ]
+      },
+      {
+        "heading": "THE CONSENT ARCHITECTURE",
+        "body": "Wikimedia projects use Creative Commons licenses, which assume the contributor owns what they upload and can release it to the world. Indigenous knowledge complicates this — what one healer knows often belongs to a lineage, a clan, or a community, not an individual. The hardest design question for any healer archive is not the recording technology but the licensing layer above it."
+      }
+    ],
+    "generatedAt": "2026-05-10T17:37:10.279Z",
+    "label": "Indigenous Knowledge & the Archive",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-10-solar-pv-fault-detection-deep-learning-om": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY INSPECTION MATTERS",
+        "body": "A solar farm's output degrades silently. A cracked cell, a hotspot, a bypass-diode failure, or soiling can drop a module's output by 20-40% without any visible alarm at the inverter. Multiply across hundreds of thousands of panels and the unmeasured loss dwarfs the cost of finding it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is the **performance ratio** — actual output divided by theoretical output. A well-run plant holds ~80%; a neglected one drifts toward 70% within five years."
+          }
+        ]
+      },
+      {
+        "heading": "THE OLD METHOD",
+        "body": "Technicians walked the array with a handheld infrared camera, panel by panel, flagging hot spots for replacement. At utility scale — a 500MW farm has roughly 1.5 million panels — a full inspection took weeks and was usually done annually, if at all."
+      },
+      {
+        "heading": "THE NEW METHOD",
+        "body": "A drone flies a programmed grid at 60-80m altitude carrying a thermal and a visible-light camera. A convolutional neural network classifies each panel image into damage categories (cracks, delamination, hotspots, soiling, bird droppings). What took a crew weeks now takes hours.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**EfficientNet** is a 2019 Google architecture that scales depth, width, and resolution together rather than one at a time — it hits state-of-the-art accuracy with roughly an order of magnitude fewer parameters than older CNNs, which is why it runs on edge hardware mounted on a drone."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ACCURACY ON PHYSICAL DAMAGE MATTERS MOST",
+        "body": "Soiling washes off; a cracked cell does not. Models that hit 100% on physical damage but only 94% overall are tuned the right way — false negatives on a permanent fault cost real revenue, while a missed dust patch self-corrects with the next rain.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does it mean that the model scored 100% on physical damage but 94% overall?",
+            "options": [
+              "The model is overfit to the training data",
+              "Physical damage is a sharper visual signal than soiling or shading, which can mimic each other",
+              "The 6% gap is from random noise",
+              "Thermal cameras can't see soiling at all"
+            ],
+            "correct": 1,
+            "explanation": "Cracks and delamination produce distinctive thermal and visual patterns; soiling and partial shading look similar to each other and to mild bird-dropping coverage, where most misclassifications cluster."
+          }
+        ]
+      },
+      {
+        "heading": "WHY EGYPT, MOROCCO, INDIA",
+        "body": "These three sit in the global sun belt with the highest irradiance per square metre and the cheapest land. They are also where labor for manual inspection is being absorbed into faster-growing sectors — automating O&M arrives just as the manual workforce gets harder to scale.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MA",
+              "EG",
+              "IN"
+            ],
+            "label": "the new solar build-out belt"
+          }
+        ]
+      },
+      {
+        "heading": "THE LCOE GAME",
+        "body": "Solar's levelized cost of electricity (LCOE) is now below new-build coal in most markets. The remaining cost wedge is operations and maintenance — roughly $15-20 per kW per year. Cutting inspection costs by even a third moves LCOE measurably and changes which projects clear financing.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Solar PV",
+                "value": "$30-50",
+                "tone": "favorable",
+                "weight": 40
+              },
+              {
+                "label": "Onshore wind",
+                "value": "$30-55",
+                "tone": "favorable",
+                "weight": 42
+              },
+              {
+                "label": "Combined-cycle gas",
+                "value": "$45-75",
+                "tone": "neutral",
+                "weight": 60
+              },
+              {
+                "label": "New-build coal",
+                "value": "$65-150",
+                "tone": "unfavorable",
+                "weight": 105
+              },
+              {
+                "label": "New-build nuclear",
+                "value": "$130-200",
+                "tone": "unfavorable",
+                "weight": 165
+              }
+            ],
+            "label": "global LCOE, utility-scale, 2024 ($/MWh)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-10T17:37:42.249Z",
+    "label": "Solar PV Fault Detection",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-10-south-africa-agriculture-growth-land-concentration": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 1913 ORIGIN",
+        "body": "The Natives Land Act of 1913 restricted Black South Africans — roughly 80% of the population — to owning land in just 7% of the country, later expanded to 13%. Every land statistic today traces back to this single law. Modern commercial farms sit on the white-allocated 87%; the former 'homelands' remain crowded, eroded, and capital-starved.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The act forbade Black tenants from sharecropping or paying rent in cash on white-owned land — they could only stay as **labor tenants**, working the farm in exchange for residence. A generation of independent Black farmers was deliberately converted into a wage workforce."
+          }
+        ]
+      },
+      {
+        "heading": "THE POST-1994 DISMANTLING",
+        "body": "Apartheid-era agriculture ran on a dense web of state support — control boards that bought crops at fixed prices, subsidized credit through the Land Bank, and a national extension service of agronomists who visited farms. After 1994 the boards were abolished and extension was devolved to underfunded provinces. Large commercial farms had the capital to adapt; smallholders lost their only link to inputs, advice, and markets simultaneously.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1913",
+                "label": "Natives Land Act",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1936",
+                "label": "Native Trust Act expands reserves to 13%"
+              },
+              {
+                "year": "1994",
+                "label": "End of apartheid"
+              },
+              {
+                "year": "1996",
+                "label": "Marketing of Agricultural Products Act abolishes boards"
+              },
+              {
+                "year": "1997",
+                "label": "Land redistribution program begins"
+              },
+              {
+                "year": "2018",
+                "label": "Expropriation-without-compensation debate"
+              },
+              {
+                "year": "2024",
+                "label": "Expropriation Act signed"
+              }
+            ],
+            "label": "land & agriculture policy arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE REDISTRIBUTION SHORTFALL",
+        "body": "The ANC's 1994 target was to transfer 30% of commercial farmland to Black ownership within five years. Three decades later the figure sits near 25% by some counts, under 10% by stricter ones — and a large share of transferred farms collapsed into subsistence within a few seasons because the buyers received title but no operating capital, no equipment, and no extension support."
+      },
+      {
+        "heading": "REAL VS NOMINAL OUTPUT",
+        "body": "Saying agricultural output 'doubled' only means something in real terms — adjusted for inflation. South African food prices roughly tripled between 1994 and 2024, so nominal output rose far more than real output. The real doubling reflects genuine productivity gains: mechanization, irrigation, and yield-per-hectare improvements concentrated on large commercial farms.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              16.41806,
+              16.59285,
+              16.3955,
+              16.33375,
+              16.362705,
+              16.410661,
+              16.3162,
+              16.3162,
+              16.3162,
+              16.3754,
+              16.384099,
+              16.4976,
+              16.637866,
+              16.508621,
+              16.53436,
+              16.53436,
+              16.495858,
+              16.542735,
+              16.55256,
+              16.868635,
+              16.677723,
+              16.665525,
+              16.7113,
+              16.585522,
+              16.813,
+              16.549357,
+              16.3932,
+              16.456742,
+              16.38071,
+              16.38071
+            ],
+            "periods": [
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10"
+            ],
+            "label": "South African rand",
+            "unit": "ZAR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE CONCENTRATION",
+        "body": "Roughly 35,000 large commercial farms produce the overwhelming majority of South Africa's marketable output. An estimated 2 million Black smallholders produce mostly for household consumption. The gap is not skill — it is access to credit, irrigation, mechanization, and the cold-chain logistics that connect a farm to a supermarket or an export port.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Commercial farms",
+                "value": "~35,000",
+                "tone": "unfavorable",
+                "weight": 35
+              },
+              {
+                "label": "Black smallholders",
+                "value": "~2 million",
+                "tone": "neutral",
+                "weight": 2
+              },
+              {
+                "label": "Subsistence households",
+                "value": "~2.3 million",
+                "tone": "favorable",
+                "weight": 23
+              }
+            ],
+            "label": "South Africa farm structure"
+          }
+        ]
+      },
+      {
+        "heading": "WHY EXTENSION SERVICES MATTER",
+        "body": "An extension officer is a state-employed agronomist who visits farms with advice on seed varieties, pest management, soil testing, and market timing. Every agricultural success story — from postwar Japan to Brazilian soy to Indian wheat — ran on dense extension networks. South Africa had one of Africa's best, then let it decay. Rebuilding it is cheaper than land reform and faster than market liberalization, which is why researchers keep returning to it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country's agricultural transformation is most associated with extension-service density?",
+            "options": [
+              "Saudi Arabia's date sector",
+              "Brazil's cerrado soy expansion",
+              "Norway's salmon industry",
+              "Singapore's vertical farms"
+            ],
+            "correct": 1,
+            "explanation": "Embrapa, Brazil's state agricultural research and extension agency, is widely credited with turning the cerrado savanna into the world's largest soy belt from the 1970s onward."
+          }
+        ]
+      },
+      {
+        "heading": "THE LAND-AS-COLLATERAL TRAP",
+        "body": "A commercial farmer borrows against land title to buy seed, fertilizer, and equipment each season. A smallholder on communal or restituted land often holds use rights but not freehold title — banks won't lend against it. This is why pure land transfer without title reform produces farms that cannot mechanize or scale, regardless of the farmer's ability."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-10"
+    ],
+    "generatedAt": "2026-05-10T17:38:20.033Z",
+    "label": "South African Agriculture & Land",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-10-turkiye-belgium-queen-mathilde-defence-energy-mission": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY A QUEEN LEADS A TRADE MISSION",
+        "body": "Belgium institutionalized royal-led economic missions in 1962 — the monarch (or a senior royal) heads delegations of 200–500 executives abroad. The crown opens doors a minister cannot: state ceremony, palace dinners, and a guaranteed audience with the host head of state. It is one of the most distinctive instruments of small-state commercial diplomacy in Europe.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The format is called a *Belgian Economic Mission*, run jointly by federal and regional trade agencies. Companies pay to join; the **royal presence** is what unlocks the calendar."
+          }
+        ]
+      },
+      {
+        "heading": "THE 14-YEAR GAP",
+        "body": "The last royal-level Belgian mission to Türkiye was in 2012, before the rupture in EU–Türkiye relations after the 2016 coup attempt and the freezing of accession talks in 2018. A return in 2026 signals Brussels treats Ankara again as a commercial counterparty independent of the stalled membership track.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1963",
+                "label": "Ankara Agreement (association)"
+              },
+              {
+                "year": "1995",
+                "label": "Customs union enters force"
+              },
+              {
+                "year": "2005",
+                "label": "Accession talks open"
+              },
+              {
+                "year": "2016",
+                "label": "Coup attempt; purges",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2018",
+                "label": "Accession talks frozen"
+              },
+              {
+                "year": "2026",
+                "label": "Belgian royal mission returns"
+              }
+            ],
+            "label": "EU–Türkiye, the long arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE CUSTOMS UNION",
+        "body": "Türkiye and the EU have been in a customs union since 1995 — one of only three non-member states with this status (alongside Andorra and San Marino). Industrial goods move tariff-free in both directions, but services, agriculture, and public procurement are excluded. Bilateral trade runs above €200bn a year on this scaffolding.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Germany",
+                "value": "~€50bn",
+                "cc": "DE",
+                "weight": 50
+              },
+              {
+                "label": "Italy",
+                "value": "~€28bn",
+                "cc": "IT",
+                "weight": 28
+              },
+              {
+                "label": "France",
+                "value": "~€20bn",
+                "cc": "FR",
+                "weight": 20
+              },
+              {
+                "label": "Spain",
+                "value": "~€18bn",
+                "cc": "ES",
+                "weight": 18
+              },
+              {
+                "label": "Netherlands",
+                "value": "~€14bn",
+                "cc": "NL",
+                "weight": 14
+              },
+              {
+                "label": "Belgium",
+                "value": "~€8bn",
+                "cc": "BE",
+                "weight": 8
+              }
+            ],
+            "label": "Türkiye's top EU trade partners (2024, goods)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DEFENCE NOW",
+        "body": "Türkiye has emerged as a tier-one European arms exporter — Bayraktar drones, Altay tanks, MİLGEM corvettes — at exactly the moment EU states are rearming after Ukraine. Belgium hosts NATO HQ in Brussels and SHAPE in Mons; sourcing from a NATO ally outside the Franco-German duopoly is increasingly attractive politically.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BE",
+              "TR",
+              "DE",
+              "FR",
+              "NL"
+            ],
+            "label": "the NATO geometry",
+            "markers": [
+              {
+                "lat": 50.8798,
+                "lng": 4.4214,
+                "label": "NATO HQ, Brussels"
+              },
+              {
+                "lat": 50.4542,
+                "lng": 3.9522,
+                "label": "SHAPE, Mons"
+              },
+              {
+                "lat": 39.9334,
+                "lng": 32.8597,
+                "label": "Ankara"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE ENERGY ANGLE",
+        "body": "Türkiye sits at the junction of every major non-Russian gas route into Europe — TANAP from Azerbaijan, the Turkish Stream from Russia, prospective East Med flows. Belgium operates the Zeebrugge LNG terminal, one of northwest Europe's main re-gasification hubs. The gas-corridor conversation is structural, not seasonal.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which European country runs the Zeebrugge LNG terminal, a key entry point for non-Russian gas into northwest Europe?",
+            "options": [
+              "Netherlands",
+              "Belgium",
+              "Germany",
+              "France"
+            ],
+            "correct": 1,
+            "explanation": "Zeebrugge is on the Belgian North Sea coast and has been an LNG hub since 1987 — one of the oldest in Europe."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-10T17:38:51.714Z",
+    "label": "Belgium–Türkiye & Economic Diplomacy",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-10-ukraine-truce-broken-three-civilians-killed-trump": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY CEASEFIRES FAIL",
+        "body": "Most ceasefires collapse within weeks. The political scientist Virginia Page Fortna's data on post-1945 conflicts found that ceasefires without monitors, troop separation, or third-party enforcement fail at roughly twice the rate of those with all three. Trump's three-day pause has none of them.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The textbook label for this design is a *unilateral declared truce* — closer to a propaganda artifact than a binding agreement. Compare to a **monitored armistice** (Korea 1953) or a **chapter-VII enforced ceasefire** (Kuwait 1991), where third parties patrol the line."
+          }
+        ]
+      },
+      {
+        "heading": "THE LAST-SHOT INCENTIVE",
+        "body": "In the hours before a ceasefire, both sides typically escalate to grab terrain that will freeze on the new line. In the hours after, each side has incentive to test whether the other will respond — a probe, a shelling, a drone. If the response is weak, the line moves; if absent, the truce is already dead."
+      },
+      {
+        "heading": "THE KOREAN PRECEDENT",
+        "body": "The 1953 Korean armistice is the model of a durable ceasefire — and it took two years of negotiation, a 4 km demilitarized zone, a Military Armistice Commission with both sides represented, and 28,500 US troops still stationed in the South seventy years later. No formal peace treaty was ever signed; the war is technically still ongoing.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1950",
+                "label": "North invades South"
+              },
+              {
+                "year": "1951",
+                "label": "Truce talks open at Kaesong"
+              },
+              {
+                "year": "1953",
+                "label": "Armistice signed at Panmunjom",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1976",
+                "label": "Axe murder incident at DMZ"
+              },
+              {
+                "year": "2018",
+                "label": "Inter-Korean summit, no treaty"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1953",
+                "to": "2026",
+                "label": "DMZ + US garrison enforce truce",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Korean armistice arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT MINSK TAUGHT",
+        "body": "The Minsk I (2014) and Minsk II (2015) agreements both produced ceasefires in eastern Ukraine. Both collapsed within weeks of signing. Angela Merkel later admitted Minsk II was used to buy Ukraine time to rearm; Putin cited the same admission as justification for the 2022 invasion. The lesson on both sides: a ceasefire without enforcement is a pause for repositioning."
+      },
+      {
+        "heading": "THE DRONE ASYMMETRY",
+        "body": "Modern frontline drones cost a few hundred to a few thousand dollars and are operated by squad-level units, not chains of command. Even when generals order a halt, individual operators with grievances and ammunition can keep firing — and frequently do. Verifying who shot first across a 1,000 km front is effectively impossible.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how long is the active Russia-Ukraine front line that any ceasefire would need to monitor?",
+            "options": [
+              "~200 km",
+              "~500 km",
+              "~1,000 km",
+              "~2,500 km"
+            ],
+            "correct": 2,
+            "explanation": "The contact line runs roughly 1,000 km from Kharkiv oblast through Donbas to Zaporizhia and Kherson — longer than the entire US-Mexico border west of the Rio Grande."
+          }
+        ]
+      },
+      {
+        "heading": "WHO BENEFITS FROM A SHORT PAUSE",
+        "body": "A 72-hour halt favors the side that needs to rotate exhausted units, resupply forward depots, or reposition air defense. It disfavors the side trying to maintain offensive momentum. Russian forces have been on the offensive across most of the front since late 2024; a brief pause helps Ukraine's logistics more than Russia's tempo, which is why analysts read short truces as Ukrainian wins regardless of who proposed them.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU",
+              "BY",
+              "MD",
+              "PL",
+              "RO"
+            ],
+            "label": "the 1,000 km contact line",
+            "markers": [
+              {
+                "lat": 47.8388,
+                "lng": 35.1396,
+                "label": "Zaporizhia"
+              },
+              {
+                "lat": 48.0159,
+                "lng": 37.8028,
+                "label": "Donetsk"
+              },
+              {
+                "lat": 49.9935,
+                "lng": 36.2304,
+                "label": "Kharkiv"
+              },
+              {
+                "lat": 46.6354,
+                "lng": 32.6169,
+                "label": "Kherson"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-10T17:39:35.512Z",
+    "label": "Ceasefires & Their Failure Modes",
+    "category": "politics",
+    "articleCount": 1
   }
 }

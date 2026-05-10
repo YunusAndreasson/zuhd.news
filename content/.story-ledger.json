@@ -2,13 +2,258 @@
   "version": 1,
   "stories": [
     {
+      "id": "iran-us-ceasefire-response-pakistan-mediator",
+      "label": "Iran sends response to US proposal to end war via mediator Pakistan",
+      "firstSeen": "2026-05-10T17:10:34.020Z",
+      "lastCovered": "2026-05-10T17:10:34.020Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-10-iran-us-ceasefire-response-pakistan-mediator"
+      ],
+      "eventUri": "eng-11641778",
+      "summary": "Tehran routed its reply to Washington's ceasefire text through Islamabad — IRNA confirmed the Pakistani channel; Dawn separately picked it up from inside Pakistan. The angle: a nuclear-armed Muslim state is now the mediator of record between the US and Iran, a diplomatic role usually held by Oman or Qatar. Lead with what the choice of Pakistan signals about which capitals Tehran trusts and which Washington is willing to accept.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/Islamic_Republic_News_Agency",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Ceasefire",
+        "http://en.wikipedia.org/wiki/Israel"
+      ]
+    },
+    {
+      "id": "ukraine-truce-broken-three-civilians-killed-trump",
+      "label": "Russia kills three Ukrainians in 24 hours, accuses Kyiv of violating truce",
+      "firstSeen": "2026-05-10T17:10:34.020Z",
+      "lastCovered": "2026-05-10T17:10:34.020Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-10-ukraine-truce-broken-three-civilians-killed-trump"
+      ],
+      "eventUri": "eng-11641388",
+      "summary": "Three civilians dead in Zaporizhia, Dnipropetrovsk and Kherson within 24 hours of a Trump-brokered three-day ceasefire that began May 9. The angle: name the dead and the regions, then quantify the gap between the announcement and the reality. Both sides accusing each other of violation is a structural feature of US-imposed truces — the mechanism is no enforcement clause and no monitor.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Ceasefire",
+        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
+        "http://en.wikipedia.org/wiki/Artillery",
+        "http://en.wikipedia.org/wiki/Moscow",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Kyiv"
+      ]
+    },
+    {
+      "id": "atef-najib-syria-trial-daraa-torture-accountability",
+      "label": "Assad's cousin Atef Najib faces new trial session in Damascus",
+      "firstSeen": "2026-05-10T17:10:34.020Z",
+      "lastCovered": "2026-05-10T17:10:34.020Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-10-atef-najib-syria-trial-daraa-torture-accountability"
+      ],
+      "eventUri": "eng-11641748",
+      "summary": "Atef Najib — former head of political security in Daraa, the province where Syria's 2011 uprising began — faces 10 charges including murder, torture and responsibility for massacres in the second session of a landmark Damascus trial. Lead with what the courtroom heard (tortured children, missing fingernails, per The National). The angle: this is the first time an Assad-regime security chief is being tried inside Syria, and Najib personally ordered the torture that detonated the war. Accountability after 14 years.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Syria",
+        "http://en.wikipedia.org/wiki/Daraa",
+        "http://en.wikipedia.org/wiki/Damascus",
+        "http://en.wikipedia.org/wiki/Bashar_al-Assad",
+        "http://en.wikipedia.org/wiki/Torture",
+        "http://en.wikipedia.org/wiki/Atef_Najib",
+        "http://en.wikipedia.org/wiki/War_crime",
+        "http://en.wikipedia.org/wiki/Trial_in_absentia"
+      ]
+    },
+    {
+      "id": "macron-ruto-kenya-france-africa-summit-pivot",
+      "label": "Macron meets Ruto in Kenya ahead of Africa summit",
+      "firstSeen": "2026-05-10T17:10:34.020Z",
+      "lastCovered": "2026-05-10T17:10:34.020Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-10-macron-ruto-kenya-france-africa-summit-pivot"
+      ],
+      "eventUri": "eng-11641236",
+      "summary": "Macron co-hosts a France-Africa summit in Nairobi from Monday — first major French diplomatic push on the continent since the Sahel collapse stripped Paris of military bases in Mali, Burkina Faso, Niger and Senegal. The angle: France is now seeking partnership with anglophone East Africa because francophone West Africa has expelled it. Lead with the geographic shift; the structural why is that Ruto is positioning Kenya as the African counterparty Western leaders fly to when Pretoria is too independent and Lagos too distracted.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Emmanuel_Macron",
+        "http://en.wikipedia.org/wiki/Kenya",
+        "http://en.wikipedia.org/wiki/France",
+        "http://en.wikipedia.org/wiki/Africa",
+        "http://en.wikipedia.org/wiki/Nairobi",
+        "http://en.wikipedia.org/wiki/William_Ruto",
+        "http://en.wikipedia.org/wiki/President_of_France",
+        "http://en.wikipedia.org/wiki/Paris"
+      ]
+    },
+    {
+      "id": "modi-india-fuel-gold-foreign-travel-hormuz-rationing",
+      "label": "PM Modi urges citizens to cut fuel use, avoid foreign travel",
+      "firstSeen": "2026-05-10T17:10:34.020Z",
+      "lastCovered": "2026-05-10T17:10:34.020Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-10-modi-india-fuel-gold-foreign-travel-hormuz-rationing"
+      ],
+      "eventUri": "eng-11641946",
+      "summary": "Modi's Hyderabad rally asks 1.4 billion Indians to stop buying gold, cut petrol/diesel use and skip foreign travel — three of the largest forex outflows from the Indian economy. Lead with the three asks as a list, then explain the mechanism: each is the kind of behavioural lever a government pulls before raising fuel duties or import tariffs on gold, signalled here as 'patriotism' to soften the political cost. The angle: India is preparing for a long Hormuz disruption and is rationing demand without using the word.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Narendra_Modi",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Hyderabad",
+        "http://en.wikipedia.org/wiki/Supply_chain",
+        "http://en.wikipedia.org/wiki/Diesel_fuel",
+        "http://en.wikipedia.org/wiki/Gasoline",
+        "http://en.wikipedia.org/wiki/Patriotism",
+        "http://en.wikipedia.org/wiki/Public_transport"
+      ]
+    },
+    {
+      "id": "turkiye-belgium-queen-mathilde-defence-energy-mission",
+      "label": "Türkiye, Belgium eye new cooperation horizons in defence, energy sectors",
+      "firstSeen": "2026-05-10T17:10:34.020Z",
+      "lastCovered": "2026-05-10T17:10:34.020Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-10-turkiye-belgium-queen-mathilde-defence-energy-mission"
+      ],
+      "eventUri": "tur-1316229",
+      "summary": "Belgium's Queen Mathilde leads a five-day royal economic mission to Türkiye May 10-14 — defence and energy explicitly on the agenda. The angle: this is a NATO-internal hedge. Brussels is shopping for Turkish drones (Bayraktar lineage) and East Med gas routing while EU sanctions on Russian energy continue to bite Belgian industry. Lead with the dates and the mission's size; the structural why is that Türkiye is now the European arms supplier of choice for states that can't yet say so out loud.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Belgium",
+        "http://en.wikipedia.org/wiki/Turkey",
+        "http://en.wikipedia.org/wiki/Brussels",
+        "http://en.wikipedia.org/wiki/Queen_Mathilde_of_Belgium",
+        "http://en.wikipedia.org/wiki/Ankara",
+        "http://en.wikipedia.org/wiki/Theo_Francken",
+        "http://en.wikipedia.org/wiki/Istanbul",
+        "http://en.wikipedia.org/wiki/Matthias_Diependaele"
+      ]
+    },
+    {
+      "id": "south-africa-agriculture-growth-land-concentration",
+      "label": "SA's agriculture is growing, but is it working for everyone?",
+      "firstSeen": "2026-05-10T17:10:34.020Z",
+      "lastCovered": "2026-05-10T17:10:34.020Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-10-south-africa-agriculture-growth-land-concentration"
+      ],
+      "eventUri": "eng-11641440",
+      "summary": "South African agriculture has more than doubled in real terms over three decades and supplies Europe, Asia and the rest of Africa — yet land ownership, water rights and export profits remain concentrated. Lead with the doubling figure, then ask the accountability question Daily Maverick poses: who is the growth for? The structural angle: 30 years post-apartheid, Black smallholder access to commercial markets is still gated by capital, infrastructure and offtake contracts — the sector is globally competitive precisely because it never restructured.",
+      "conceptUris": []
+    },
+    {
+      "id": "mushroom-blotch-disease-17-bacteria-polymicrobial",
+      "label": "Under mushroom caps, 17-plus bacterial species help drive stubborn blotch disease",
+      "firstSeen": "2026-05-10T17:10:34.020Z",
+      "lastCovered": "2026-05-10T17:10:34.020Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-10-mushroom-blotch-disease-17-bacteria-polymicrobial"
+      ],
+      "eventUri": null,
+      "summary": "A century-old disease that has plagued the white button mushroom — the world's most cultivated fungus — turns out to be polymicrobial, with at least 17 bacterial species cooperating to drive blotch. Lead with the count and what it overturns: the field had hunted a single pathogen since the 1910s. The angle: agricultural plant pathology is shifting from monocausal models to community-level diagnostics, and that changes what 'a cure' even means.",
+      "conceptUris": []
+    },
+    {
+      "id": "nepal-medicinal-plants-indigenous-knowledge-archive-consent",
+      "label": "Archiving Nepal's medicinal plants and Indigenous knowledge for future generations",
+      "firstSeen": "2026-05-10T17:10:34.020Z",
+      "lastCovered": "2026-05-10T17:10:34.020Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-10-nepal-medicinal-plants-indigenous-knowledge-archive-consent"
+      ],
+      "eventUri": null,
+      "summary": "Sanjib Chaudhary is recording Nepali healers' plant knowledge in audio and video under explicit community consent — a counter-model to Western pharma's pattern of extracting traditional knowledge without compensation. Lead with the consent protocol, then the stakes: most healers documented are over 70 and have no apprentices. The angle: when a knowledge system is held by the elderly and the young have left for Gulf labour markets, archiving is not nostalgia — it is the last-chance encoding of pharmacology that took centuries to test.",
+      "conceptUris": []
+    },
+    {
+      "id": "solar-pv-fault-detection-deep-learning-om",
+      "label": "AI-based visual analysis of photovoltaic panels for fault detection and maintenance support",
+      "firstSeen": "2026-05-10T17:10:34.020Z",
+      "lastCovered": "2026-05-10T17:10:34.020Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-10-solar-pv-fault-detection-deep-learning-om"
+      ],
+      "eventUri": null,
+      "summary": "A deep-learning vision model in Nature Scientific Reports automates fault detection on utility-scale PV arrays, where manual inspection has been the bottleneck on solar O&M economics. Lead with what the model replaces: walk-the-array technicians at multi-megawatt plants. The structural angle: as the Global South builds out solar (Egypt's Benban, Morocco's Noor, India's Pavagada), the labour cost of inspection scales linearly with capacity — automating it changes the per-MWh economics in exactly the geographies installing fastest.",
+      "conceptUris": []
+    },
+    {
+      "id": "agentic-commerce-crypto-rails-paypal-google-stablecoin",
+      "label": "Agentic commerce will run on crypto rails, PayPal and Google reps tell Consensus Miami",
+      "firstSeen": "2026-05-10T17:10:34.020Z",
+      "lastCovered": "2026-05-10T17:10:34.020Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-10-agentic-commerce-crypto-rails-paypal-google-stablecoin"
+      ],
+      "eventUri": null,
+      "summary": "Google Cloud's Web3 lead and PayPal told Consensus Miami that AI agents structurally cannot hold traditional bank accounts — KYC, chargebacks and human-identity rails were never built for software principals — so agent-to-agent commerce will settle in stablecoins. Lead with the structural exclusion: it is not a preference, it is a regulatory mismatch. The angle: this is the strongest non-speculative use case the crypto industry has articulated in a decade, and it explains why PayPal launched PYUSD and why Google is wiring stablecoin rails into Cloud — before any AI-agent volume actually exists.",
+      "conceptUris": []
+    },
+    {
+      "id": "meta-ai-mandate-employee-morale-zuckerberg",
+      "label": "Meta's embrace of AI is making its employees miserable",
+      "firstSeen": "2026-05-10T17:10:34.020Z",
+      "lastCovered": "2026-05-10T17:10:34.020Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-10-meta-ai-mandate-employee-morale-zuckerberg"
+      ],
+      "eventUri": null,
+      "summary": "Meta engineers describe a workplace where Zuckerberg's AI mandate has overridden product judgement, performance reviews, and the basic professional autonomy that defined the company's earlier engineering culture. Lead with one or two specific scenes from the NYT reporting (forced AI-tooling adoption, output quotas tied to AI use). The angle: this is the first late-cycle case study of what happens inside a Big Tech firm when its CEO's AI bet outruns the actual product utility — and the cost is showing up first in the people who built the company.",
+      "conceptUris": []
+    },
+    {
       "id": "bulk-carrier-projectile-qatari-waters-ceasefire",
       "label": "Bulk carrier catches fire off Qatari coast",
       "firstSeen": "2026-05-10T12:11:15.474Z",
       "lastCovered": "2026-05-10T12:11:15.474Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-10-bulk-carrier-projectile-qatari-waters-ceasefire"
@@ -33,7 +278,7 @@
       "lastCovered": "2026-05-10T12:11:15.474Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-10-punjab-arora-ed-custody-pmla-100-crore"
@@ -56,7 +301,7 @@
       "lastCovered": "2026-05-10T12:11:15.474Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-10-bahrain-citizenship-stripping-clerics-shia"
@@ -78,7 +323,7 @@
       "lastCovered": "2026-05-10T12:11:15.474Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-10-ramaphosa-impeachment-concourt-anc-phala-phala"
@@ -100,7 +345,7 @@
       "lastCovered": "2026-05-10T12:11:15.474Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-10-pakistan-woman-journalist-peca-cybercrime-harassment"
@@ -116,7 +361,7 @@
       "lastCovered": "2026-05-10T12:11:15.474Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-10-iran-africa-trade-39-states-tpo-rerouting"
@@ -135,7 +380,7 @@
       "lastCovered": "2026-05-10T12:11:15.474Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-10-alaska-tracy-arm-glacial-landslide-500m-tsunami"
@@ -156,7 +401,7 @@
       "lastCovered": "2026-05-10T12:11:15.474Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-10-india-salt-pans-extreme-heat-workers-wet-bulb"
@@ -172,7 +417,7 @@
       "lastCovered": "2026-05-10T12:11:15.474Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-10-ethiopia-amhara-wind-siting-gis-ml-framework"
@@ -193,7 +438,7 @@
       "lastCovered": "2026-05-10T12:11:15.474Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-10-pakistan-ptcl-submarine-cable-fault-internet-throttle"
@@ -214,7 +459,7 @@
       "lastCovered": "2026-05-10T12:11:15.474Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-10-strontium-oxide-cu-zn-catalyst-green-methanol-co2"
@@ -236,7 +481,7 @@
       "lastCovered": "2026-05-10T08:06:40.083Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-10-modi-tvk-tamil-nadu-cabinet-dmk-congress-realignment"
@@ -261,7 +506,7 @@
       "lastCovered": "2026-05-10T08:06:40.083Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-10-taraba-nigeria-100-killed-98000-displaced-catholic-diocese"
@@ -277,7 +522,7 @@
       "lastCovered": "2026-05-10T08:06:40.083Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-10-three-democracies-china-transnational-repression-pushback"
@@ -293,7 +538,7 @@
       "lastCovered": "2026-05-10T08:06:40.083Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-10-saudi-aramco-q1-profit-east-west-pipeline-hormuz-bypass"
@@ -318,7 +563,7 @@
       "lastCovered": "2026-05-10T08:06:40.083Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-10-qatar-lng-first-hormuz-transit-since-iran-war"
@@ -343,7 +588,7 @@
       "lastCovered": "2026-05-10T08:06:40.083Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-10-hong-kong-100-ships-2300-seafarers-stranded-hormuz"
@@ -359,7 +604,7 @@
       "lastCovered": "2026-05-10T08:06:40.083Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-10-biodegradable-fruit-wash-pesticide-shelf-life-postharvest"
@@ -375,7 +620,7 @@
       "lastCovered": "2026-05-10T08:06:40.083Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-10-uk-ev-targets-factcheck-car-industry-zev-mandate"
@@ -391,7 +636,7 @@
       "lastCovered": "2026-05-10T08:06:40.083Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-10-gowers-chatgpt-5-5-pro-mathematics-failure-modes"
@@ -407,7 +652,7 @@
       "lastCovered": "2026-05-10T08:06:40.083Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-10-china-virtual-civil-society-platform-governance-noema"
@@ -423,7 +668,7 @@
       "lastCovered": "2026-05-10T08:06:40.083Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-10-404-media-storage-rss-indie-newsroom-economics"
@@ -439,7 +684,7 @@
       "lastCovered": "2026-05-09T22:07:53.059Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-09-israel-deport-gaza-flotilla-activists-international-waters"
@@ -462,7 +707,7 @@
       "lastCovered": "2026-05-09T22:07:53.059Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-09-starmer-stalking-horse-labour-leadership-rules"
@@ -484,7 +729,7 @@
       "lastCovered": "2026-05-09T22:07:53.059Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-09-bannu-suicide-attack-fateh-khel-police-ttp-kp"
@@ -500,7 +745,7 @@
       "lastCovered": "2026-05-09T22:07:53.059Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-09-pakistan-us-lobbying-1-2m-fara-defence-critical-minerals"
@@ -516,7 +761,7 @@
       "lastCovered": "2026-05-09T22:07:53.059Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-08-norovirus-caribbean-princess-115-sick-cdc"
@@ -538,7 +783,7 @@
       "lastCovered": "2026-05-09T22:07:53.059Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-09-spirit-airlines-chapter-7-liquidation-slots-creditors"
@@ -554,7 +799,7 @@
       "lastCovered": "2026-05-09T22:07:53.059Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-09-irgc-tanker-warning-us-bases-ceasefire-strain"
@@ -576,7 +821,7 @@
       "lastCovered": "2026-05-09T22:07:53.059Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-09-cop30-climate-governance-ocean-omission-unfccc"
@@ -592,7 +837,7 @@
       "lastCovered": "2026-05-09T22:07:53.059Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-09-edna-river-chytrid-ireland-first-detection-surveillance"
@@ -608,7 +853,7 @@
       "lastCovered": "2026-05-09T22:07:53.059Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-08-recaptcha-play-integrity-degoogled-android-lockout"
@@ -624,7 +869,7 @@
       "lastCovered": "2026-05-09T22:07:53.059Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-09-darpa-containerized-drone-swarms-pre-positioned-ports"
@@ -640,7 +885,7 @@
       "lastCovered": "2026-05-09T17:04:53.627Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-09-india-ed-raids-punjab-minister-arora-opposition-pattern"
@@ -665,7 +910,7 @@
       "lastCovered": "2026-05-09T17:04:53.627Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-09-erdogan-turkiye-iran-iraq-de-escalation-barzani"
@@ -688,7 +933,7 @@
       "lastCovered": "2026-05-09T17:04:53.627Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-09-nigeria-ndc-zones-2027-ticket-peter-obi-south"
@@ -709,7 +954,7 @@
       "lastCovered": "2026-05-09T17:04:53.627Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-09-doj-denaturalization-12-citizenship-stripping-push"
@@ -731,7 +976,7 @@
       "lastCovered": "2026-05-09T17:04:53.627Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-09-uk-warship-hormuz-shipping-protection-iran-war"
@@ -755,7 +1000,7 @@
       "lastCovered": "2026-05-09T17:04:53.627Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-09-pakistan-marka-i-haq-china-defence-procurement"
@@ -771,7 +1016,7 @@
       "lastCovered": "2026-05-09T17:04:53.627Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-09-emerging-market-crypto-banking-substitution-binance"
@@ -787,7 +1032,7 @@
       "lastCovered": "2026-05-09T17:04:53.627Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-09-pollinator-radar-species-identification-conservation"
@@ -803,7 +1048,7 @@
       "lastCovered": "2026-05-09T17:04:53.627Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-08-extreme-heat-summer-elections-democracy-redesign"
@@ -819,7 +1064,7 @@
       "lastCovered": "2026-05-09T17:04:53.627Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-09-ndrangheta-marriage-network-analysis-mafia"
@@ -835,7 +1080,7 @@
       "lastCovered": "2026-05-09T17:04:53.627Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-09-ai-agent-crypto-wallets-delegated-spending-architecture"
@@ -851,7 +1096,7 @@
       "lastCovered": "2026-05-09T08:09:11.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-09-bengal-first-bjp-chief-minister-adhikari-sworn-in"
@@ -876,7 +1121,7 @@
       "lastCovered": "2026-05-09T08:09:11.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-08-brazil-influencer-money-laundering-mechanism"
@@ -892,7 +1137,7 @@
       "lastCovered": "2026-05-09T08:09:11.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-08-australia-us-rare-earth-deal-malaysia-backlash"
@@ -908,7 +1153,7 @@
       "lastCovered": "2026-05-09T08:09:11.340Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-08-epstein-treasury-crypto-iran-sanctions"
@@ -924,7 +1169,7 @@
       "lastCovered": "2026-05-09T08:09:11.340Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-09-china-russia-trade-19-percent-yuan-settlement"
@@ -946,7 +1191,7 @@
       "lastCovered": "2026-05-09T08:09:11.340Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-08-kenya-data-center-boom-enclave-economy"
@@ -962,7 +1207,7 @@
       "lastCovered": "2026-05-09T08:09:11.340Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-09-nigeria-sickle-cell-screening-genotype-gap"
@@ -984,7 +1229,7 @@
       "lastCovered": "2026-05-09T08:09:11.340Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-08-imo-green-shipping-deal-on-course"
@@ -1000,7 +1245,7 @@
       "lastCovered": "2026-05-09T08:09:11.340Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-09-pakpattan-canal-breach-villages-flooded"
@@ -1022,7 +1267,7 @@
       "lastCovered": "2026-05-09T08:09:11.340Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-09-aave-dprk-eth-judgment-defi-precedent"
@@ -1044,7 +1289,7 @@
       "lastCovered": "2026-05-09T08:09:11.340Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-08-china-cyber-ops-governments-dissidents-unified"
@@ -1052,229 +1297,6 @@
       "eventUri": null,
       "summary": "Threat researchers attribute a single PRC-linked operator to twin campaigns — espionage against Asian government and defense networks, and surveillance/targeting of overseas dissidents (Tibetan, Uyghur, Hong Kong diaspora). Lead with the unification finding: state-espionage tooling and transnational-repression tooling were treated as the same toolkit by the same operator, which collapses the post-2015 Western framing that 'cyber espionage' and 'human-rights surveillance' are separate problems. The reader takeaway: defending dissidents and defending defense ministries now require the same operational playbook. Same-day, three democracies (US, Belgium, Canada) sanctioned/indicted PRC actors over transnational repression — note the cluster but anchor on the technical attribution.",
       "conceptUris": []
-    },
-    {
-      "id": "virginia-court-strikes-democrat-redistricting",
-      "label": "Virginia Supreme Court strikes down Democrats' redistricting plan in US",
-      "firstSeen": "2026-05-08T22:08:50.930Z",
-      "lastCovered": "2026-05-08T22:08:50.930Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-virginia-court-strikes-democrat-redistricting"
-      ],
-      "eventUri": "eng-11637890",
-      "summary": "A state supreme court tossed a map that would have flipped four GOP House seats — Democrats had drawn it without the constitutionally required referendum on the redistricting commission. Lead with the precedent, not the partisan score: Virginia's commission was created by referendum in 2020, and the legislature tried to bypass its own constitution. The reader takeaway is institutional — even when the political opportunity is huge, the procedural rules constrain. Set up the November midterm consequences: Republicans now defend four seats they expected to lose.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Democratic_Party_(United_States)",
-        "http://en.wikipedia.org/wiki/Virginia",
-        "http://en.wikipedia.org/wiki/Republican_Party_(United_States)",
-        "http://en.wikipedia.org/wiki/Redistricting",
-        "http://en.wikipedia.org/wiki/Supreme_Court_of_Virginia",
-        "http://en.wikipedia.org/wiki/Referendum",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/Supreme_Court_of_the_United_States"
-      ]
-    },
-    {
-      "id": "sudan-ethiopia-rsf-drones-darfur-front",
-      "label": "Sudan Nashra: Khartoum escalates against Ethiopia after RSF strikes traced to its territories",
-      "firstSeen": "2026-05-08T22:08:50.930Z",
-      "lastCovered": "2026-05-08T22:08:50.930Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-sudan-ethiopia-rsf-drones-darfur-front"
-      ],
-      "eventUri": null,
-      "summary": "Sudan recalled its Addis Ababa ambassador and presented \"documented evidence\" tying Ethiopia and the UAE to the Khartoum airport drone strike. Separately, 15 killed in a strike on a military-allied commander's home, and RSF is massing on the Sudan-Libya-Egypt border triangle to push toward Darfur. Lead with the geographic widening — this is no longer a Sudanese civil war but a regional supply contest with named foreign sponsors. Reader takeaway: the people of Darfur face a second front while Khartoum's diplomatic options narrow. Pull the named-actor accountability thread: who is arming whom, with what evidence.",
-      "conceptUris": []
-    },
-    {
-      "id": "pentagon-jet-fuel-leak-joint-base-andrews",
-      "label": "Military slow-rolled news of jet fuel leak at base near Washington",
-      "firstSeen": "2026-05-08T22:08:50.930Z",
-      "lastCovered": "2026-05-08T22:08:50.930Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-pentagon-jet-fuel-leak-joint-base-andrews"
-      ],
-      "eventUri": null,
-      "summary": "32,000 gallons of jet fuel leaked at Joint Base Andrews; Pentagon knew in December, told Maryland in late March only after locals saw oil in Piscataway Creek. Lead with the timeline gap and the dollar figure: ProPublica estimates $28B to clean up military toxic sites, while the administration cuts environmental remediation budgets and proposes a $500B Pentagon hike. Pair with the 2021 Red Hill precedent (19,000 gallons; 93,000 people's water poisoned; Navy publicly insisted water was safe without testing). The mechanism is the story: the Pentagon's standard pattern is delay disclosure until externally observed. Note: piece relies on NOTUS reporting and Maryland Department of Environment statements — facts are sourced; treat the framing skeptically but the disclosure timeline as solid.",
-      "conceptUris": []
-    },
-    {
-      "id": "turkey-icbm-strategic-autonomy",
-      "label": "What Is Behind Turkey's Pursuit Of An ICBM?",
-      "firstSeen": "2026-05-08T22:08:50.930Z",
-      "lastCovered": "2026-05-08T22:08:50.930Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-turkey-icbm-strategic-autonomy"
-      ],
-      "eventUri": null,
-      "summary": "Ankara unexpectedly displayed a previously unknown ICBM-class missile. Lead with the strategic question, not the engineering: Turkey is a NATO member that hosts US tactical nuclear weapons and has spent a decade building an autonomous defense industry. An ICBM signals it wants the option of an independent deterrent — the same trajectory South Korea, Saudi Arabia, and Japan are quietly mapping. For OIC readers, frame as: a Muslim-majority NATO member is preparing for a world where US nuclear umbrellas are negotiable. Show how the announcement intersects with the post-START arms control vacuum.",
-      "conceptUris": []
-    },
-    {
-      "id": "agri-stats-meat-antitrust-settlement",
-      "label": "Justice Dept. Settles Case Against Provider of Meat Industry Data",
-      "firstSeen": "2026-05-08T22:08:50.930Z",
-      "lastCovered": "2026-05-08T22:08:50.930Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-agri-stats-meat-antitrust-settlement"
-      ],
-      "eventUri": "eng-11637889",
-      "summary": "Agri Stats — the firm that aggregated pricing data for meatpackers like Smithfield and Tyson — settles antitrust suit by agreeing to broaden who can buy its data and pay a fine. Lead with the mechanism, not the legal outcome: a third-party data provider became the de facto coordination layer that let competitors price like a cartel without ever talking to each other. The settlement makes the data available to everyone, which neutralises the asymmetry. Reader takeaway: this is the template antitrust enforcement will use against algorithmic price coordination across other industries — rent setting, freight, airfare. Note continuing US grocery inflation as the consequence side.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Settlement_(litigation)",
-        "http://en.wikipedia.org/wiki/United_States_Department_of_Justice",
-        "http://en.wikipedia.org/wiki/Meat",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Smithfield_Foods"
-      ]
-    },
-    {
-      "id": "sec-onchain-ai-rulemaking-atkins",
-      "label": "SEC chair Paul Atkins signals rule changes for onchain markets and AI-driven finance",
-      "firstSeen": "2026-05-08T22:08:50.930Z",
-      "lastCovered": "2026-05-08T22:08:50.930Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-sec-onchain-ai-rulemaking-atkins"
-      ],
-      "eventUri": "eng-11631339",
-      "summary": "SEC's Atkins says the agency will write rules for blockchain-settlement and AI-driven trading rather than going case-by-case via enforcement. Lead with the structural shift: the post-Gensler SEC is choosing rulemaking — which gives traditional finance a roadmap to merge with crypto rails — over the prior strategy of suing into clarity. Spell out who wins (Coinbase, traditional broker-dealers building tokenised securities desks) and who loses (DeFi protocols whose business model depended on regulatory ambiguity). Pair with the Coinbase rebound and onchain trading volume context. Note this is the regulatory complement to the SEC chair's earlier crypto-friendly signals — direction is now confirmed, not speculative.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Paul_S._Atkins",
-        "http://en.wikipedia.org/wiki/Rulemaking",
-        "http://en.wikipedia.org/wiki/U.S._Securities_and_Exchange_Commission",
-        "http://en.wikipedia.org/wiki/Blockchain",
-        "http://en.wikipedia.org/wiki/Settlement_(litigation)"
-      ]
-    },
-    {
-      "id": "poland-enters-g20-economy",
-      "label": "Poland is now among the 20 largest economies",
-      "firstSeen": "2026-05-08T22:08:50.930Z",
-      "lastCovered": "2026-05-08T22:08:50.930Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-poland-enters-g20-economy"
-      ],
-      "eventUri": null,
-      "summary": "Poland enters the G20 by GDP — the first post-communist Central European state to do so. Lead with the structural mechanism, not the rank: 35 years of catch-up convergence with the EU single market, plus a wartime defense-industry boom (Poland is now one of NATO's biggest weapons buyers and arms producers), plus mass Ukrainian labour absorption have compounded into a top-20 economy faster than any forecast predicted. Frame against the loser: the UK and Italy are slipping in PPP terms while Warsaw rises. For Muslim-world readers, Poland's path is instructive — middle powers can change rank inside a generation when convergence, security spending, and demography align.",
-      "conceptUris": []
-    },
-    {
-      "id": "hantavirus-cruise-ship-mv-hondius",
-      "label": "Everything you need to know about the hantavirus cruise ship outbreak",
-      "firstSeen": "2026-05-08T22:08:50.930Z",
-      "lastCovered": "2026-05-08T22:08:50.930Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-hantavirus-cruise-ship-mv-hondius"
-      ],
-      "eventUri": "eng-11635418",
-      "summary": "8 cases, 3 dead aboard MV Hondius off West Africa; six US states now monitoring exposed disembarked passengers. Lead with the biology, not the cruise: hantaviruses are rodent-borne and don't person-to-person transmit, so the Hondius cluster implies a shared environmental exposure — most likely a shore excursion or a ship-side rodent infestation. Walk the reader through hantavirus pulmonary syndrome (~38% case fatality) and why CDC says US risk is low despite tracking exposed passengers across six states. Pair the Ars explainer with the AOL/CDC dispatch on the multi-state monitoring footprint.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Andes_orthohantavirus",
-        "http://en.wikipedia.org/wiki/Orthohantavirus",
-        "http://en.wikipedia.org/wiki/Prodrome",
-        "http://en.wikipedia.org/wiki/Cruise_ship",
-        "http://en.wikipedia.org/wiki/Rodent"
-      ]
-    },
-    {
-      "id": "apophis-ramses-esa-jaxa-mission",
-      "label": "Asteroid Apophis will skim past Earth in 2029, and a new joint mission plans to watch every change",
-      "firstSeen": "2026-05-08T22:08:50.930Z",
-      "lastCovered": "2026-05-08T22:08:50.930Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-apophis-ramses-esa-jaxa-mission"
-      ],
-      "eventUri": null,
-      "summary": "ESA and JAXA signed a Memorandum of Cooperation on planetary defense, anchored by the Ramses mission to rendezvous with Apophis during its 2029 close approach (32,000 km — closer than geostationary satellites). Lead with what Ramses is for, not the date: tidal forces from Earth's gravity will physically deform a 340-metre asteroid in real time, and we have one chance per generation to watch it. Frame the story as the European-Japanese answer to NASA budget retrenchment — planetary defense is becoming multipolar science. The reader takeaway: this is a measurable, dated experiment, not abstract space policy.",
-      "conceptUris": []
-    },
-    {
-      "id": "cloudflare-twenty-percent-layoffs",
-      "label": "Cloudflare to cut about 20% of its workforce",
-      "firstSeen": "2026-05-08T22:08:50.930Z",
-      "lastCovered": "2026-05-08T22:08:50.930Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-cloudflare-twenty-percent-layoffs"
-      ],
-      "eventUri": null,
-      "summary": "Cloudflare cuts ~1,100 jobs (20% of headcount) — the deepest cut at a hyperscaler-adjacent infrastructure firm this cycle. Lead with the systemic read: Cloudflare runs ~20% of all websites and is one of the few independent edges to the AWS/GCP/Azure trio. Layoffs at this layer mean fewer people on incident-response rotation for outages that affect millions of sites simultaneously, exactly as Coinbase's recent AWS-tied outage demonstrated. Pair with the Sony PS5 memory squeeze and Coinbase precedent — AI capex is now reshaping who has staff for non-AI work. Reader takeaway: \"infrastructure resilience\" and \"AI investment\" are now in active trade-off.",
-      "conceptUris": []
-    },
-    {
-      "id": "gm-california-driver-data-ccpa-fine",
-      "label": "GM to pay over $12 million in California privacy settlement involving driver data",
-      "firstSeen": "2026-05-08T22:08:50.930Z",
-      "lastCovered": "2026-05-08T22:08:50.930Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-gm-california-driver-data-ccpa-fine"
-      ],
-      "eventUri": null,
-      "summary": "Largest CCPA fine in the law's 5-year history. Lead with the mechanism: GM was selling driver telematics — geolocation, hard-braking events, mileage — to data brokers who sold it to insurers, who quietly raised premiums. The settlement matters not for the dollar amount but because it sets price on the under-prosecuted business of automaker data resale. Reader takeaway: every modern car is a sensor platform whose data quietly priced the driver's insurance — and this is the first regulator to charge for that. Frame against the GDPR comparison: California is now the de facto US privacy enforcer.",
-      "conceptUris": []
-    },
-    {
-      "id": "google-ai-overviews-more-links",
-      "label": "Google will put more links to websites in AI Overviews",
-      "firstSeen": "2026-05-08T22:08:50.930Z",
-      "lastCovered": "2026-05-08T22:08:50.930Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-google-ai-overviews-more-links"
-      ],
-      "eventUri": "eng-11631037",
-      "summary": "Google quietly walks back the AI Overview format that has gutted publisher referral traffic for two years. Lead with what changed and why: AI Overviews will now show more outbound links. The implicit admission is that the original design — answer-in-place, no clickthrough — created a doom loop where the open web stops producing the content the model is summarising. Pair with the reported referral-traffic data and EU antitrust pressure as enforcement context. Reader takeaway: this is the first concrete sign the AI search transition has structural feedback the platforms cannot ignore.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Artificial_intelligence",
-        "http://en.wikipedia.org/wiki/Google",
-        "http://en.wikipedia.org/wiki/Chatbot"
-      ]
     }
   ]
 }
