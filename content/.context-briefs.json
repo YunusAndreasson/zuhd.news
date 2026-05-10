@@ -141409,5 +141409,1048 @@
     "label": "Labour Leadership Mechanics",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-10-china-virtual-civil-society-platform-governance-noema": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GREAT FIREWALL",
+        "body": "China's internet censorship system, formally the Golden Shield Project, became operational in 2003. It blocks IP addresses, filters DNS requests, and inspects packets in real time. Domestic platforms like Weibo and WeChat are required to censor at the source — the Firewall handles foreign sites, the platforms handle Chinese speech.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The architecture has a name in Chinese — *fánghuǒ chángchéng*, literally **'Great Firewall'**, a deliberate echo of the Great Wall. The branding is the point: censorship as civilizational defense, not suppression."
+          }
+        ]
+      },
+      {
+        "heading": "THE 50 CENT ARMY",
+        "body": "Beyond blocking, the state shapes discourse positively. The Wumao Dang — paid commenters once rumored to earn 50 cents per pro-government post — flood platforms with distraction rather than rebuttal. A Harvard study found the regime fabricates roughly 448 million social media comments per year, mostly to redirect attention away from collective action, not to argue.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the primary purpose of China's state-aligned online commenters?",
+            "options": [
+              "Argue against critics of the government",
+              "Distract attention away from collective-action topics",
+              "Identify dissidents for arrest",
+              "Promote Chinese cultural exports abroad"
+            ],
+            "correct": 1,
+            "explanation": "King, Pan and Roberts (2017) showed the comments rarely engage critics — they pivot conversations toward cheerleading and trivia, defusing momentum before it organizes."
+          }
+        ]
+      },
+      {
+        "heading": "WHY VPNs PERSIST",
+        "body": "VPNs are technically illegal for individuals but tolerated for businesses, academics, and the affluent urban class that the Party needs productive. Periodic crackdowns target sellers and high-profile users, not the millions who quietly tunnel out. The ambiguity is the policy — universal access would threaten control, total enforcement would cripple the economy.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              31057,
+              28311,
+              32662,
+              31489,
+              27378,
+              26083,
+              22220,
+              23002,
+              20644,
+              21191,
+              21686,
+              24922,
+              23103,
+              20003,
+              18001,
+              16614,
+              16471,
+              18985,
+              16865,
+              16149,
+              15339,
+              15543,
+              13942,
+              14990,
+              17082,
+              16533,
+              17849,
+              14501,
+              16826,
+              13029
+            ],
+            "periods": [
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9"
+            ],
+            "label": "Iran — Wikipedia views",
+            "unit": "views/day",
+            "highlight": "max",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE A4 MOMENT",
+        "body": "In November 2022, protests against zero-COVID erupted across at least a dozen cities after a Urumqi apartment fire killed residents trapped by lockdown barriers. Demonstrators held blank A4 sheets — the censorship metaphor as protest sign. Teacher Li became the central node aggregating footage from inside China and broadcasting it back, since domestic platforms scrubbed everything within minutes."
+      },
+      {
+        "heading": "THE EXILE-NODE PATTERN",
+        "body": "Diaspora-run accounts hosting domestic dissent is an old pattern with a new medium. Khomeini's sermons reached Iran on cassette tapes from Paris in 1978. Solidarity's bulletins circulated via Radio Free Europe from Munich. The architecture changes — tapes, shortwave, X — but the structure repeats: when domestic speech is closed, an offshore relay carries it.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1978",
+                "label": "Khomeini cassettes from Paris to Iran"
+              },
+              {
+                "year": "1980",
+                "label": "Solidarity via Radio Free Europe"
+              },
+              {
+                "year": "1989",
+                "label": "Tiananmen footage smuggled via fax"
+              },
+              {
+                "year": "2011",
+                "label": "Arab Spring videos via YouTube"
+              },
+              {
+                "year": "2022",
+                "label": "Teacher Li relays A4 protests",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "offshore dissent relays"
+          }
+        ]
+      },
+      {
+        "heading": "PLATFORM AS CHOKEPOINT",
+        "body": "X (formerly Twitter) is blocked in China but central to Li's operation — most followers reach it via VPN. This makes a single Western platform's content moderation policies, ownership changes, and API decisions effectively part of Chinese civil society's infrastructure. A platform owner in California now sits in a chain that runs to a protester in Chengdu.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "US",
+              "IT",
+              "HK",
+              "TW"
+            ],
+            "label": "the relay topology",
+            "markers": [
+              {
+                "lat": 45.4642,
+                "lng": 9.19,
+                "label": "Li in Milan"
+              },
+              {
+                "lat": 39.9042,
+                "lng": 116.4074,
+                "label": "Beijing (blocked)"
+              },
+              {
+                "lat": 37.7749,
+                "lng": -122.4194,
+                "label": "X HQ, San Francisco"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Wikipedia pageviews · as of 2026-05-09"
+    ],
+    "generatedAt": "2026-05-10T08:21:36.567Z",
+    "label": "China's Virtual Civil Society",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-10-gowers-chatgpt-5-5-pro-mathematics-failure-modes": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY MATH IS THE HARDEST TEST",
+        "body": "Mathematics is the cleanest benchmark for machine reasoning because answers are verifiable and proofs leave no room for plausible-sounding nonsense. A model that bluffs its way through prose cannot bluff its way through a proof — every step either follows or it doesn't.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why mathematicians distinguish between **pattern-matching** (recognizing a problem looks like one you've seen) and **proof construction** (building a chain of inferences that survives adversarial scrutiny). LLMs were long thought to do only the first."
+          }
+        ]
+      },
+      {
+        "heading": "THE GOWERS STANDARD",
+        "body": "Tim Gowers won the Fields Medal in 1998 for work on functional analysis and combinatorics. His judgment that an output reaches PhD-level research is not casual — he has spent decades evaluating exactly this threshold in graduate students and postdocs.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Timothy Gowers",
+                "role": "Fields Medalist, Cambridge",
+                "years": "1998–",
+                "cc": "GB"
+              },
+              {
+                "name": "Terence Tao",
+                "role": "Fields Medalist, UCLA",
+                "years": "2006–",
+                "cc": "US"
+              },
+              {
+                "name": "Melvyn Nathanson",
+                "role": "Number theorist, CUNY",
+                "years": "1971–",
+                "cc": "US"
+              }
+            ],
+            "label": "voices in the LLM-math debate"
+          }
+        ]
+      },
+      {
+        "heading": "THE SCALING HYPOTHESIS",
+        "body": "The dominant theory at frontier labs holds that capability emerges from scale alone — more parameters, more compute, more data. Critics argued mathematics would be the wall: symbolic reasoning, they said, requires architectural innovation, not just bigger models. The Gowers result is evidence the scaling camp may be right.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did skeptics predict LLMs would never do without architectural changes?",
+            "options": [
+              "Write fluent prose in multiple languages",
+              "Construct novel mathematical proofs",
+              "Pass standardized reading tests",
+              "Generate working code from descriptions"
+            ],
+            "correct": 1,
+            "explanation": "Symbolic reasoning and proof construction were long held up as the limits of pattern-matching architectures. Math was the goalpost; scaling appears to be moving past it."
+          }
+        ]
+      },
+      {
+        "heading": "THE BENCHMARK TREADMILL",
+        "body": "AI capability benchmarks have a short half-life. GSM8K (grade-school math) was state-of-the-art in 2021 and saturated by 2023. MATH (competition problems) followed. FrontierMath, designed in 2024 to be unsolvable, is already being chipped away. Each benchmark falls faster than the one before it."
+      },
+      {
+        "heading": "WHAT JUNIOR RESEARCH ACTUALLY MEANS",
+        "body": "A PhD thesis in pure mathematics typically takes four to six years and produces one to three publishable results. If a model can produce comparable output in under an hour, the economics of mathematical research — postdoc positions, grant cycles, journal review — face the same disruption that hit translation and copywriting earlier."
+      },
+      {
+        "heading": "THE VERIFICATION PROBLEM",
+        "body": "LLM math output still requires expert verification because models occasionally produce confident proofs that contain subtle errors. The bottleneck is shifting from generating proofs to checking them — which is why formal proof assistants like Lean are seeing renewed investment as the auditing layer."
+      }
+    ],
+    "generatedAt": "2026-05-10T08:22:05.169Z",
+    "label": "LLMs & Mathematical Reasoning",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-10-hong-kong-100-ships-2300-seafarers-stranded-hormuz": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil pass through daily, about 21% of global consumption.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA"
+            ],
+            "label": "the chokepoint and its bypasses",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.3548,
+                "lng": 51.1839,
+                "label": "Doha (Qatar LNG)"
+              },
+              {
+                "lat": 26.6927,
+                "lng": 50.0279,
+                "label": "Ras Tanura"
+              },
+              {
+                "lat": 25.1164,
+                "lng": 56.3414,
+                "label": "Fujairah (UAE bypass terminal)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY SEAFARERS CAN'T JUST LEAVE",
+        "body": "A merchant ship at anchor inside a contested waterway is in a worse position than one at sea. Moving makes it a target; staying makes it a hostage to time. International maritime law gives the master authority to refuse a voyage into unsafe waters, but once inside, that authority shrinks — the insurance, the charterer, and the flag state all want different outcomes.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal term is *in extremis* — a shipmaster's right to deviate from charter instructions to preserve life. Invoking it triggers immediate disputes over **war-risk insurance** liability that can outlast the crisis itself."
+          }
+        ]
+      },
+      {
+        "heading": "THE FLAG-OF-CONVENIENCE PROBLEM",
+        "body": "Most of those 2,300 seafarers are Filipino, Indian, Bangladeshi, or Indonesian — crewing ships flagged in Panama, Liberia, or the Marshall Islands, owned in Hong Kong or Greece, chartered by oil majors. When something goes wrong, no single state has clear responsibility for evacuation. The system optimizes for tax efficiency, not crisis response.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Panama",
+                "value": "~16% of fleet",
+                "cc": "PA",
+                "weight": 16
+              },
+              {
+                "label": "Liberia",
+                "value": "~15%",
+                "cc": "LR",
+                "weight": 15
+              },
+              {
+                "label": "Marshall Is.",
+                "value": "~13%",
+                "cc": "MH",
+                "weight": 13
+              },
+              {
+                "label": "Hong Kong",
+                "value": "~7%",
+                "cc": "HK",
+                "weight": 7
+              },
+              {
+                "label": "Singapore",
+                "value": "~6%",
+                "cc": "SG",
+                "weight": 6
+              }
+            ],
+            "label": "top ship registries by tonnage (2024)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Tankers were eventually reflagged under US and Kuwaiti flags and escorted by warships in Operation Earnest Will. The lesson: disruption is easier to threaten than to sustain, but seafarers pay the cost of every month it takes states to organize a response.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Iran-Iraq tanker war begins",
+                "emphasis": "start"
+              },
+              {
+                "year": "1987",
+                "label": "Operation Earnest Will reflagging"
+              },
+              {
+                "year": "1988",
+                "label": "USS Vincennes downs IR655",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Limpet mine attacks on tankers"
+              },
+              {
+                "year": "2026",
+                "label": "Current closure"
+              }
+            ],
+            "label": "Hormuz under fire"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHINA CARES",
+        "body": "China imports roughly half its crude oil through Hormuz — a higher dependency than the US ever had at peak. Beijing has spent two decades building pipeline alternatives (the China-Myanmar pipeline, the Kazakhstan and Russia ESPO links) precisely to reduce this exposure, but the math still doesn't close. A prolonged Hormuz closure forces China into the same Gulf diplomacy it has tried to avoid.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              51708,
+              37553,
+              64440,
+              72891,
+              50113,
+              33135,
+              24520,
+              38243,
+              53789,
+              41751,
+              30719,
+              22824,
+              22683,
+              20350,
+              15181,
+              11486,
+              9329,
+              10790,
+              11944,
+              10521,
+              10716,
+              9440,
+              8343,
+              9010,
+              20463,
+              20437,
+              15167,
+              13152,
+              10845,
+              7500
+            ],
+            "periods": [
+              "Apr 10",
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9"
+            ],
+            "label": "Strait of Hormuz — Wikipedia views",
+            "unit": "views/day",
+            "highlight": "max",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Lloyd's of London war-risk premiums — not the mines or missiles themselves — are what actually close a shipping lane. Once underwriters add a region to the Joint War Committee listed areas at high-risk rates, premiums can multiply tenfold within days. Commercial vessels reroute or refuse to enter regardless of the physical threat level.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What most directly determines whether commercial shipping continues through a contested strait?",
+            "options": [
+              "The number of mines or missiles deployed",
+              "Lloyd's war-risk insurance premiums",
+              "UN Security Council resolutions",
+              "The flag state of the vessels"
+            ],
+            "correct": 1,
+            "explanation": "Insurance economics close lanes before military force does — once war-risk premiums spike, commercial shipping reroutes regardless of how many threats remain physically active."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Wikipedia pageviews · as of 2026-05-09"
+    ],
+    "generatedAt": "2026-05-10T08:22:47.334Z",
+    "label": "Stranded Seafarers & the Hormuz Closure",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-10-modi-tvk-tamil-nadu-cabinet-dmk-congress-realignment": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DRAVIDIAN MOVEMENT",
+        "body": "Tamil Nadu politics has been dominated by Dravidian parties since 1967, when the DMK first ousted Congress. The movement grew from E.V. Ramasamy's Self-Respect Movement of the 1920s — anti-caste, anti-Brahmin, and skeptical of Hindi-North Indian cultural dominance. National parties have not formed a Tamil Nadu government in 58 years.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The two Dravidian giants — **DMK** (Dravida Munnetra Kazhagam) and **AIADMK** (All India Anna DMK) — split in 1972 over actor-politician *M.G. Ramachandran's* expulsion. Tamil cinema and Tamil politics have been the same institution ever since."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ACTORS WIN",
+        "body": "Tamil Nadu's chief ministers since 1967 have almost all come from cinema: M. Karunanidhi (screenwriter), MGR (lead actor), Jayalalithaa (lead actress), now potentially Vijay. Film fan clubs convert directly into political cadres — a distribution network no national party can replicate from Delhi."
+      },
+      {
+        "heading": "THE LANGUAGE FAULTLINE",
+        "body": "The 1965 anti-Hindi agitations — students self-immolating against Hindi as the sole official language — broke Congress in Tamil Nadu permanently. Every BJP push for Hindi imposition since revives the same defensive coalition. This is why Modi's Hindi-belt majority does not translate south of the Vindhyas.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "LK"
+            ],
+            "label": "Tamil Nadu and the Tamil diaspora",
+            "markers": [
+              {
+                "lat": 13.0827,
+                "lng": 80.2707,
+                "label": "Chennai"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE ALLIANCE MATH",
+        "body": "Congress has not won a Tamil Nadu Lok Sabha seat on its own strength in decades; it rides DMK coattails. Breaking with DMK means surrendering the state's 39 parliamentary seats unless TVK delivers — a gamble that Vijay's fan base converts to votes the way MGR's and Jayalalithaa's did.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "DMK + allies",
+                "value": "39 seats",
+                "tone": "favorable",
+                "weight": 39
+              },
+              {
+                "label": "AIADMK",
+                "value": "0 seats",
+                "tone": "unfavorable",
+                "weight": 1
+              },
+              {
+                "label": "BJP",
+                "value": "0 seats",
+                "tone": "unfavorable",
+                "weight": 1
+              }
+            ],
+            "label": "Tamil Nadu Lok Sabha seats (39 total), 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE BJP PROBLEM",
+        "body": "BJP's Hindu-nationalist platform sits awkwardly in a state where Periyar's rationalist anti-Brahmin legacy is mainstream and where temple worship coexists with deep skepticism of North Indian Sanskritic Hinduism. The party has poured resources into Tamil Nadu under Modi and won zero Lok Sabha seats there in 2024.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When did a non-Dravidian party last form a government in Tamil Nadu?",
+            "options": [
+              "1967",
+              "1980",
+              "1991",
+              "2014"
+            ],
+            "correct": 0,
+            "explanation": "Congress lost power in 1967 to the DMK and has not run the state since — Dravidian parties have alternated for 58 years."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2029 STAKES",
+        "body": "India's general election is 2029. If TVK consolidates anti-DMK votes that previously split between AIADMK and BJP, Congress gains a southern foothold without depending on a regional partner. If Vijay underperforms, Congress loses both the alliance and the seats — a high-variance bet on celebrity translating to governance."
+      }
+    ],
+    "generatedAt": "2026-05-10T08:23:18.167Z",
+    "label": "Tamil Nadu's Dravidian Politics",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-10-qatar-lng-first-hormuz-transit-since-iran-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SINGLE EXIT",
+        "body": "Qatar holds the world's third-largest gas reserves but has only one export route. Every LNG cargo from Ras Laffan must transit Hormuz — there is no pipeline alternative, no overland workaround, no Indian Ocean port. The peninsula's geography is its strategic flaw.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "QA",
+              "IR",
+              "OM",
+              "AE",
+              "SA"
+            ],
+            "label": "Qatar's only route out",
+            "markers": [
+              {
+                "lat": 25.9167,
+                "lng": 51.5667,
+                "label": "Ras Laffan LNG terminal"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY NO BYPASS EXISTS",
+        "body": "Saudi Arabia's East-West Pipeline and the UAE's Habshan-Fujairah pipeline can reroute roughly a third of Gulf crude around Hormuz. Neither carries gas. LNG requires cryogenic infrastructure — pipelines, liquefaction trains, export terminals — and Qatar's are all on the Persian Gulf side."
+      },
+      {
+        "heading": "THE SCALE",
+        "body": "Qatar exports about 77 million tonnes of LNG per year — roughly 20% of global LNG trade. A sustained Hormuz closure removes that volume from world markets within days, not weeks. There is no spare LNG capacity elsewhere to fill the gap; LNG infrastructure takes 4-6 years to build.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "USA",
+                "value": "~88 mn t",
+                "cc": "US",
+                "weight": 88
+              },
+              {
+                "label": "Qatar",
+                "value": "~77 mn t",
+                "cc": "QA",
+                "weight": 77,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Australia",
+                "value": "~80 mn t",
+                "cc": "AU",
+                "weight": 80
+              },
+              {
+                "label": "Russia",
+                "value": "~32 mn t",
+                "cc": "RU",
+                "weight": 32
+              },
+              {
+                "label": "Malaysia",
+                "value": "~27 mn t",
+                "cc": "MY",
+                "weight": 27
+              }
+            ],
+            "label": "top LNG exporters, 2024 (mn tonnes)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR LESSON",
+        "body": "During the 1984-88 Tanker War, Iran and Iraq attacked over 400 commercial vessels in the Gulf. Tankers kept sailing — reflagged under US and Kuwaiti colors, escorted by warships in Operation Earnest Will. The lesson navigators took: traffic resumes when insurance and escort arrangements are negotiated, not when threats end.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What ultimately reopened Gulf shipping during the 1984-88 Tanker War?",
+            "options": [
+              "Iran-Iraq ceasefire",
+              "US naval reflagging and escort of Kuwaiti tankers",
+              "UN Security Council resolution",
+              "Saudi mediation"
+            ],
+            "correct": 1,
+            "explanation": "Operation Earnest Will reflagged Kuwaiti tankers under US colors and provided naval escort — traffic resumed under military protection, not diplomatic resolution."
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE CHOKE",
+        "body": "Lloyd's of London war-risk premiums — not the mines or missiles themselves — are what closes a shipping lane. Once underwriters list a route as a war zone, premiums jump 10-50x and ship-owners reroute regardless of physical conditions. The single test transit signals to insurers, not just to Tehran."
+      },
+      {
+        "heading": "WHO BUYS QATARI GAS",
+        "body": "Roughly 70% of Qatar's LNG flows to Asia — *Japan*, *South Korea*, *China*, *India*. A prolonged outage hits East Asian power grids first; Europe gets the secondary shock as Asian buyers bid for Atlantic-basin cargoes that would otherwise reach Rotterdam.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Qatar's long-term contracts are mostly **destination-flexible** since 2021 — meaning a Tokyo-bound cargo can be diverted mid-voyage to Rotterdam if the price gap justifies it. This is why a Hormuz event ripples globally within hours, not months."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-10T08:23:49.128Z",
+    "label": "Qatar LNG & the Hormuz Trap",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-10-saudi-aramco-q1-profit-east-west-pipeline-hormuz-bypass": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, with shipping lanes just 3 km in each direction. Roughly 21 million barrels of oil pass through daily — about 21% of global consumption — and the deepest channel hugs the Iranian coast.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SA",
+              "IR",
+              "AE",
+              "OM",
+              "QA",
+              "KW",
+              "IQ"
+            ],
+            "label": "the bypass routes",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 24.0889,
+                "lng": 38.0617,
+                "label": "Yanbu terminal"
+              },
+              {
+                "lat": 26.6422,
+                "lng": 50.0417,
+                "label": "Abqaiq processing"
+              },
+              {
+                "lat": 25.1167,
+                "lng": 56.3333,
+                "label": "Fujairah terminal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PIPELINE'S ORIGINAL PURPOSE",
+        "body": "The East-West Pipeline — Petroline — was built in 1981 during the Iran-Iraq War, when Tehran threatened Gulf shipping. Saudi Arabia ran a 1,200 km line from Abqaiq to Yanbu on the Red Sea, designed for exactly the contingency that has now arrived.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1980",
+                "label": "Iran-Iraq war begins"
+              },
+              {
+                "year": "1981",
+                "label": "Petroline commissioned",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1987",
+                "label": "Tanker War peaks"
+              },
+              {
+                "year": "2009",
+                "label": "Capacity expanded to 5m bbl/day"
+              },
+              {
+                "year": "2019",
+                "label": "Houthi drone strike on pumping station"
+              },
+              {
+                "year": "2024",
+                "label": "Capacity raised toward 7m bbl/day"
+              }
+            ],
+            "label": "the bypass infrastructure"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ALTERNATIVES ARE LIMITED",
+        "body": "Saudi Arabia's East-West Pipeline and the UAE's Habshan-Fujairah line together can move roughly 6.5 million barrels a day around Hormuz — less than a third of normal flow. There is no pipeline solution at all for Qatari LNG, Kuwaiti crude, or Iraqi southern exports.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hormuz daily flow",
+                "value": "~21m bbl/d",
+                "tone": "unfavorable",
+                "weight": 21
+              },
+              {
+                "label": "Saudi East-West",
+                "value": "~5–7m bbl/d",
+                "cc": "SA",
+                "tone": "neutral",
+                "weight": 7
+              },
+              {
+                "label": "UAE Habshan-Fujairah",
+                "value": "~1.5m bbl/d",
+                "cc": "AE",
+                "tone": "neutral",
+                "weight": 1.5
+              },
+              {
+                "label": "Iraq via Ceyhan",
+                "value": "~0.5m bbl/d",
+                "cc": "IQ",
+                "tone": "neutral",
+                "weight": 0.5
+              },
+              {
+                "label": "Qatar LNG bypass",
+                "value": "none",
+                "cc": "QA",
+                "tone": "unfavorable",
+                "weight": 0.1
+              }
+            ],
+            "label": "Hormuz bypass capacity vs the flow"
+          }
+        ]
+      },
+      {
+        "heading": "THE SPARE CAPACITY MATH",
+        "body": "Saudi Arabia holds most of the world's spare capacity — the volume producers can bring online within 90 days. Cutting 2 million barrels a day in a crisis is not a sacrifice; it is the cushion vanishing. Once spare capacity drops below 2m bbl/day, any further disruption moves prices exponentially, not linearly.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Aramco's announcement reads as voluntary restraint, but mechanically the *bypass capacity is the cap*. Crude that cannot reach Yanbu cannot ship — the **2 million barrels** offline are the volume Petroline cannot absorb."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2019 PRECEDENT",
+        "body": "In May 2019, Houthi drones struck two Petroline pumping stations 320 km west of Riyadh. Months later, cruise missiles and drones hit Abqaiq — the processing complex that feeds the pipeline — knocking out 5.7 million barrels a day for weeks. The bypass infrastructure is itself a target.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of global oil consumption normally transits the Strait of Hormuz?",
+            "options": [
+              "About 5%",
+              "About 12%",
+              "About 21%",
+              "About 40%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 21 million barrels per day flow through Hormuz against ~100 million bbl/day global consumption — about one-fifth, with no full bypass available."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRICE FLOOR",
+        "body": "Aramco's $32.5 billion quarter signals what the producers gain when chokepoints close: scarcity rents flow to the seller with the only working route. Saudi Arabia is simultaneously the country most exposed to Hormuz disruption and the country with the most to gain from it staying disrupted just long enough."
+      }
+    ],
+    "generatedAt": "2026-05-10T08:24:23.379Z",
+    "label": "The Hormuz Bypass",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-10-taraba-nigeria-100-killed-98000-displaced-catholic-diocese": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MIDDLE BELT",
+        "body": "Nigeria's geography is a layered fault line: a Muslim-majority north, a Christian-majority south, and a transitional 'Middle Belt' where the two meet. Taraba sits inside this belt — the zone where most of Nigeria's communal violence has clustered for four decades.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "CM",
+              "TD",
+              "NE",
+              "BJ"
+            ],
+            "label": "Nigeria's Middle Belt",
+            "markers": [
+              {
+                "lat": 7.8511,
+                "lng": 9.779,
+                "label": "Wukari, Taraba"
+              },
+              {
+                "lat": 9.0765,
+                "lng": 7.3986,
+                "label": "Abuja"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "FARMERS AND HERDERS",
+        "body": "The structural conflict pits settled farmers — mostly Christian, ethnically Tiv, Jukun, Berom — against semi-nomadic Fulani herders moving south as the Sahel dries. What began as a resource dispute over grazing corridors has acquired religious and ethnic dimensions, with armed groups on both sides.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The southward herder migration is driven by **desertification**: Lake Chad has shrunk by roughly **90%** since the 1960s, pushing pastoralists into farmland they did not historically traverse."
+          }
+        ]
+      },
+      {
+        "heading": "THE COLONIAL INHERITANCE",
+        "body": "The British amalgamated Northern and Southern Nigeria in 1914 — a clerical decision uniting Muslim emirates with Christian and animist south under one administration. Lord Lugard's indirect rule preserved the emirate system in the north while the south integrated colonial institutions, embedding the asymmetry that still shapes federal politics."
+      },
+      {
+        "heading": "WHY THE DIOCESE COUNTS",
+        "body": "Nigeria's federal data on communal killings is unreliable; rural attacks are systematically undercounted. Catholic dioceses, with parish networks reaching villages the state does not, have become de facto casualty registrars — much as church bodies were in 1990s Rwanda and Sudan.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of Nigerians are Christian, the largest minority faith?",
+            "options": [
+              "About 25%",
+              "About 40%",
+              "About 50%",
+              "About 65%"
+            ],
+            "correct": 2,
+            "explanation": "Nigeria is roughly half Muslim and half Christian, one of the most evenly split countries on earth — which is why Middle Belt violence has national stakes.",
+            "source": 1
+          }
+        ]
+      },
+      {
+        "heading": "LAND IS THE PRIZE",
+        "body": "The diocese's note that armed groups have 'seized ancestral farmland' is the core of the conflict. Once displaced communities cannot return, occupation hardens into possession; under Nigeria's customary land tenure, abandoned land can be reassigned by traditional rulers. Displacement is not a side effect — it is the strategy."
+      },
+      {
+        "heading": "ABUJA'S DILEMMA",
+        "body": "The federal government is caught between a northern political base sensitive to anti-Fulani framing and a Christian south demanding protection. Successive presidents — Buhari, a Fulani himself, and now Tinubu — have been accused of slow responses to Middle Belt violence, fueling separatist sentiment in the south-east and south-south."
+      }
+    ],
+    "generatedAt": "2026-05-10T08:24:50.390Z",
+    "label": "Nigeria's Middle Belt",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-10-uk-ev-targets-factcheck-car-industry-zev-mandate": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE MANDATE DOES",
+        "body": "The Zero Emission Vehicle mandate, in force since January 2024, requires each carmaker to ensure a rising share of its UK new-car sales are battery-electric — 22% in 2024, climbing to 80% by 2030 and 100% by 2035. Miss the share and you owe £15,000 per non-compliant car.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The headline number — **22% in 2024** — is a *manufacturer obligation*, not a consumer forecast. The state regulates the seller, not the buyer."
+          }
+        ]
+      },
+      {
+        "heading": "THE FLEXIBILITIES",
+        "body": "Three escape valves dilute the headline target. Carmakers can borrow allowances from future years, bank surpluses from past years, and earn credits by cutting CO2 from their petrol and diesel fleet. After all three, real BEV sales were only ~19.6% — but reported compliance hit 24.5%."
+      },
+      {
+        "heading": "WHY THE INDUSTRY LOBBIES",
+        "body": "Every BEV sold below cost is a margin hit; every petrol car sold above the implicit cap is a £15,000 fine. Carmakers want the curve flattened or the 2030 phase-out delayed — the framing of weak demand is the lobbying vehicle, not the underlying complaint.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the per-vehicle fine for missing the UK ZEV mandate?",
+            "options": [
+              "£3,500",
+              "£15,000",
+              "£86,000",
+              "No fine — credits only"
+            ],
+            "correct": 1,
+            "explanation": "£15,000 per non-compliant car. The size of the fine is what gives the borrowing and credit-trading flexibilities their cash value."
+          }
+        ]
+      },
+      {
+        "heading": "THE EU PARALLEL",
+        "body": "The EU runs fleet-average CO2 limits rather than a BEV quota — same destination, different lever. Brussels softened its 2025 target in early 2025 after similar industry lobbying, allowing a three-year averaging window. London's mandate is now the stricter regime in Europe.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "UK",
+                "value": "2030",
+                "cc": "GB",
+                "tone": "favorable"
+              },
+              {
+                "label": "Norway",
+                "value": "2025",
+                "cc": "NO",
+                "tone": "favorable"
+              },
+              {
+                "label": "EU",
+                "value": "2035",
+                "cc": "EU",
+                "tone": "neutral"
+              },
+              {
+                "label": "California",
+                "value": "2035",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "China",
+                "value": "none",
+                "cc": "CN",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "2030 phase-out targets for new ICE car sales"
+          }
+        ]
+      },
+      {
+        "heading": "THE DEMAND QUESTION",
+        "body": "Private retail BEV demand in the UK is genuinely soft — most BEVs are sold to fleets and salary-sacrifice schemes that capture the tax break. The mandate works because it forces supply: discounts, lease deals, and model launches appear when carmakers need to shift the mix, not when consumers spontaneously ask."
+      }
+    ],
+    "generatedAt": "2026-05-10T08:25:15.963Z",
+    "label": "The UK ZEV Mandate",
+    "category": "science",
+    "articleCount": 1
   }
 }
