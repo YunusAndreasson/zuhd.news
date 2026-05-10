@@ -164,12 +164,9 @@ function AlertChip({
   onPress: (alert: GdacsAlert) => void;
 }) {
   const { colors } = useTheme();
-  const tint =
-    alert.alertlevel === 'Red'
-      ? colors.toneUnfavorable
-      : alert.alertlevel === 'Orange'
-        ? colors.alertOrange
-        : colors.alertLow;
+  // Red gets the foreground rose tint; lower tiers read in `text` —
+  // severity remains legible from the focal number on the chip itself.
+  const tint = alert.alertlevel === 'Red' ? colors.toneUnfavorableText : colors.text;
   const handlePress = useCallback(() => onPress(alert), [alert, onPress]);
   return (
     <Pressable

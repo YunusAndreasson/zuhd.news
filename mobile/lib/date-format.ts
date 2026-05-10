@@ -35,3 +35,30 @@ export function formatTickLabel(d: Date, ticks: Date[]): string {
   if (span >= 60 * DAY_MS) return fmtMonthYear(d).toUpperCase();
   return fmtMonthDay(d).toUpperCase();
 }
+
+/**
+ * Compact "time ago" string from an ISO timestamp. Buckets by the largest
+ * coarser-than-hour unit so glance reading lands instantly:
+ *   < 1h     → "just now"
+ *   < 24h    → "Nh ago"
+ *   < 7d     → "Nd ago"
+ *   < 30d    → "Nw ago"
+ *   < 365d   → "Nmo ago"
+ *   else     → "Ny ago"
+ *
+ * Returns `''` for unparseable input — callers can `&& relativeTime(...)`
+ * to drop the segment without a guard.
+ */
+export function relativeTime(iso: string, now: number = Date.now()): string {
+  const t = Date.parse(iso);
+  if (!Number.isFinite(t)) return '';
+  const diffMs = Math.abs(now - t);
+  const diffHours = Math.floor(diffMs / 3_600_000);
+  if (diffHours < 1) return 'just now';
+  if (diffHours < 24) return `${diffHours}h ago`;
+  const diffDays = Math.floor(diffHours / 24);
+  if (diffDays < 7) return `${diffDays}d ago`;
+  if (diffDays < 30) return `${Math.floor(diffDays / 7)}w ago`;
+  if (diffDays < 365) return `${Math.floor(diffDays / 30)}mo ago`;
+  return `${Math.floor(diffDays / 365)}y ago`;
+}

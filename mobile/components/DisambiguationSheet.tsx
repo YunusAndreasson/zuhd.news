@@ -264,16 +264,15 @@ function CandidateRow({
   onPress: (result: TapResult) => void;
 }) {
   const { colors } = useTheme();
+  // Red disasters and fatal-conflict rows take the foreground rose tint
+  // (the most editorially urgent signal). Lower-tier disasters read in
+  // `textSecondary` — severity is still legible from the focal numbers
+  // and labels in the row body.
   const tint =
-    row.alertlevel === 'Red'
-      ? colors.toneUnfavorable
-      : row.alertlevel === 'Orange'
-        ? colors.alertOrange
-        : row.alertlevel === 'Green'
-          ? colors.alertLow
-          : row.kind === 'conflict' && row.fatalities !== undefined && row.fatalities > 0
-            ? colors.toneUnfavorable
-            : colors.textSecondary;
+    row.alertlevel === 'Red' ||
+    (row.kind === 'conflict' && row.fatalities !== undefined && row.fatalities > 0)
+      ? colors.toneUnfavorableText
+      : colors.textSecondary;
   const handlePress = useCallback(() => onPress(row.result), [onPress, row.result]);
   return (
     <Animated.View entering={FadeInDown.duration(ANIMATION.fast).delay(staggerDelay(index))}>

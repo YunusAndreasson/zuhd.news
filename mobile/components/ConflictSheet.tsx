@@ -17,6 +17,7 @@ import {
   parseConflictHero,
   SUB_EVENT_LABEL,
 } from '../lib/conflict';
+import { relativeTime } from '../lib/date-format';
 import { useOpenLink } from '../lib/open-link';
 import { displayCountryName } from '../lib/place-names';
 import { Pressable, Text } from './primitives';
@@ -30,20 +31,6 @@ interface ConflictSheetProps {
   onDismiss: () => void;
   /** Tap on the country chip — opens the CountrySheet for that country. */
   onCountryPress?: (countryName: string) => void;
-}
-
-function relativeTime(iso: string, now: number = Date.now()): string {
-  const t = Date.parse(iso);
-  if (!Number.isFinite(t)) return '';
-  const diffMs = Math.abs(now - t);
-  const diffHours = Math.floor(diffMs / 3_600_000);
-  if (diffHours < 1) return 'just now';
-  if (diffHours < 24) return `${diffHours}h ago`;
-  const diffDays = Math.floor(diffHours / 24);
-  if (diffDays < 7) return `${diffDays}d ago`;
-  if (diffDays < 30) return `${Math.floor(diffDays / 7)}w ago`;
-  if (diffDays < 365) return `${Math.floor(diffDays / 30)}mo ago`;
-  return `${Math.floor(diffDays / 365)}y ago`;
 }
 
 function FlagChip({
@@ -110,7 +97,7 @@ export const ConflictSheet = memo(function ConflictSheet({
   // protest doesn't read as a casualty event. This is the only place
   // colour shifts based on event semantics — the globe glyph itself stays
   // monochrome per the "color carries meaning only" rule.
-  const tint = event && event.fatalities > 0 ? colors.toneUnfavorable : colors.textEmphasis;
+  const tint = event && event.fatalities > 0 ? colors.toneUnfavorableText : colors.textEmphasis;
   const hero = useMemo(() => (event ? parseConflictHero(event) : null), [event]);
   const flag = useMemo(() => {
     if (!event) return null;

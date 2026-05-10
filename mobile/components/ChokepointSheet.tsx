@@ -144,10 +144,11 @@ export const ChokepointSheet = memo(function ChokepointSheet({
             {/* Marine-weather hint — server-side from open-meteo. Renders
                 only when waves crossed the small-craft threshold (≥2.5 m
                 peak in past 24h). Disambiguates transit drops: storm =
-                weather explanation; calm + drop = real disruption. Severity
-                tier reuses existing tokens (rough = bronze alertOrange;
-                very_rough = the existing red toneUnfavorable) — no new
-                design tokens. */}
+                weather explanation; calm + drop = real disruption.
+                Critical-tier (`very_rough`) tints in the foreground rose
+                token; the lower (`rough`) tier reads in `textEmphasis` so
+                only the most consequential signal earns a hue — same rule
+                as the GDACS Red-only tint in DisasterSheet. */}
             {chokepoint.weather?.alert && (
               <Animated.View entering={enter()} style={styles.weatherRow}>
                 <Text
@@ -155,8 +156,8 @@ export const ChokepointSheet = memo(function ChokepointSheet({
                   style={{
                     color:
                       chokepoint.weather.alert === 'very_rough'
-                        ? colors.toneUnfavorable
-                        : colors.alertOrange,
+                        ? colors.toneUnfavorableText
+                        : colors.textEmphasis,
                   }}
                 >
                   {chokepoint.weather.alert === 'very_rough' ? 'very rough seas' : 'rough seas'}
