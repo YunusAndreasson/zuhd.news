@@ -13,7 +13,11 @@ import { ErrorBoundary } from '../components/ErrorBoundary';
 import { DARK_COLORS } from '../constants/theme';
 import { ThemeProvider, useTheme } from '../hooks/useTheme';
 import { registerBackgroundTask } from '../lib/background-fetch';
-import { enableNotifications, registerPushToken } from '../lib/notifications';
+import {
+  clearLegacyScheduledNotifications,
+  enableNotifications,
+  registerPushToken,
+} from '../lib/notifications';
 import {
   setBriefing as setPendingBriefing,
   set as setPendingSlug,
@@ -62,6 +66,7 @@ export default function RootLayout() {
 
   useEffect(() => {
     registerBackgroundTask();
+    clearLegacyScheduledNotifications();
     const stashResponse = (response: Notifications.NotificationResponse) => {
       const data = response.notification.request.content.data;
       // Daily-briefing pushes carry `kind: 'briefing'` — they have no article

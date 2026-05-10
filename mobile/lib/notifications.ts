@@ -45,6 +45,16 @@ export async function disableNotifications(): Promise<void> {
   await Notifications.cancelAllScheduledNotificationsAsync().catch(() => {});
 }
 
+// Pre-2026-04-15 builds scheduled a recurring DAILY local notification with a
+// hardcoded "Your morning news briefing is ready." body. Devices that enabled
+// notifications under that build still have the trigger registered with the OS
+// and fire it every morning regardless of whether the server pushed anything.
+// Call once on app startup to wipe leftovers; safe because the new system
+// never schedules local notifications.
+export async function clearLegacyScheduledNotifications(): Promise<void> {
+  await Notifications.cancelAllScheduledNotificationsAsync().catch(() => {});
+}
+
 // ---------------------------------------------------------------------------
 // Push token registration
 // ---------------------------------------------------------------------------
