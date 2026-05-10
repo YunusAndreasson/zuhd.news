@@ -1,28 +1,27 @@
 {
-  "date": "2026-05-08",
+  "date": "2026-05-10",
   "metrics": {
-    "articles": { "value": 45, "detail": "5 cycles (4 completed), avg 7/cycle published" },
-    "freshness": { "median": 0.4, "p90": 1.4, "max": 1.4, "target": 1.0, "met": true },
-    "categories": { "politics": 13, "economy": 12, "science": 8, "tech": 12 },
+    "articles": { "value": 39, "detail": "5 cycles, 4 completed, avg ~6/cycle" },
+    "freshness": { "median": 0.7, "p90": 1.4, "max": 1.4, "target": 1.0, "met": true },
+    "categories": { "politics": 14, "economy": 10, "science": 7, "tech": 8 },
     "multiSource": { "value": 12, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 15, "EU": 12, "ME": 10, "AS": 4, "AF": 3, "GL": 1 } },
-    "sciTech": { "ratio": 44, "target": 25, "met": true },
-    "topSourceShare": { "source": "Hacker News", "pct": 9, "target": 20, "met": true },
-    "uniqueSources": 55,
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "ME": 13, "AF": 8, "EU": 7, "AM": 5, "AS": 5, "OC": 1 } },
+    "sciTech": { "ratio": 38, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online / Daily Maverick", "pct": 13, "target": 20, "met": true },
+    "uniqueSources": 38,
     "duplicates": 0,
-    "avgCycleDuration": 1520
+    "avgCycleDuration": 1200
   },
-  "experiment": "Evaluated 2026-05-01-title-echo-self-check: titleEchoRatePct 40.0 → 28.7 (-11.3pp in one week) vs -9pp/week pre-experiment trend; kept and moved to history. charOver350Pct 21.1 marginally breached the <20 guardrail but the 0 → 3.8 → 17.1 → 21.1 climb predates this experiment. No new experiment proposed — gate active until 2026-05-12 per noNewExperimentsUntil to let the post-2026-05-02 model lineup baseline before new variables enter. OIC-regional-source experiment continues (evaluateAfter extended to 2026-05-19, confounded by 05-02 selector edit).",
-  "weakestArea": "charOver350Pct at 21.1% on the week-of-2026-05-07 snapshot — over the 20% soft cap and trending up across four consecutive weekly snapshots (0 → 3.8 → 17.1 → 21.1). Lead-length drift is the cleanest signal of writer-side bloat and the most plausible interaction risk for the queued numerical-density experiment, whose 'compress a clause' clause is meant to counteract exactly this.",
+  "experiment": "Active: 2026-05-09-multi-source-floor-3 (politics/economy multi-source floors raised 2→3). Evaluates 2026-05-16, do-not-touch window. No new proposal — noNewExperimentsUntil gate runs through 2026-05-12 to let the post-2026-05-02 model lineup baseline.",
+  "weakestArea": "All goal metrics met today; the metric closest to its target was freshness p90 at 1.4 (1.4× the 1.0-day target) — driven by a small daily article tail rather than a structural problem. Nothing actionable while the experiment gate holds.",
   "watching": [
-    "titleEchoRatePct still 2.9× the 10% target despite -11.3pp drop this week — track week-of-2026-05-14 snapshot to confirm the procedural self-check sustains the acceleration rather than reverting to the -9pp/week trend.",
-    "charOver350Pct climbing four weeks running — if the queued numerical-density experiment activates after the 2026-05-12 gate, watch this guardrail closely.",
-    "Yesterday produced only 20 articles (1 freshness datapoint, 2/5 cycles completed) — likely a Sunday/cycle-failure dip; if it recurs midweek, investigate run-cycle.sh stability.",
-    "Top source today is Hacker News at 4/45 — tech standalone supply continues to lean on aggregator outlets; not a problem at 9% share but worth noting if it drifts toward 20%."
+    "Active experiment's early multi-source signal: today's published multiSource=12 (~31% of 39) is consistent with the +28% lift the floor change is hypothesized to deliver, but a single day is not enough to attribute — wait for the 2026-05-16 weekly snapshot.",
+    "OC region is at 1 again today; matches yesterday — Pacific desk remains structurally thin but is not a goal-metric violation.",
+    "Top-source share has two outlets tied at 5/39 (Al Jazeera, Daily Maverick) — under the 20% cap but worth tracking if either concentrates further as the multi-source floor pulls more shared-cluster picks."
   ],
   "coverageGaps": [
-    "OC region had 0 articles today (1 yesterday) — Oceania remains structurally thin, expected given feed composition but flag if it persists for >5 days.",
-    "Africa at 3/45 (~7%) is light versus typical 6-10%; selector did not pick up any of the East African or Maghreb stories that surfaced in the feed."
+    "Latin America (AM) appears predominantly via US-headquartered outlets; no native LatAm regional outlet in today's source list.",
+    "Central Asia / former Soviet space: TASS (2) and Kyiv Independent (1) are the only proximate voices; no Kazakh / Uzbek / Caucasus regional outlet today."
   ],
-  "context": "Two-experiment day on a healthy metrics board: every numeric goal is met. Title-echo evaluation closed cleanly and the pause gate (noNewExperimentsUntil 2026-05-12) keeps the new-experiment surface quiet so the post-2026-05-02 model lineup (reflect/tune Opus, GDACS narrator, editorial-memo selector input) can baseline. The OIC-regional-source experiment remains live but confounded — re-baseline window runs through 2026-05-12, evaluation 2026-05-19. Queued numerical-density experiment is unblocked from title-echo as of today but still gated by the model-lineup pause."
+  "context": "Today is the second day of the politics+economy multi-source floor=3 experiment (started 2026-05-09, evaluates 2026-05-16). The noNewExperimentsUntil gate runs through 2026-05-12, so no new experiment is proposed; queued numerical-density experiment remains parked in queuedExperiments awaiting both gate lift and a pre-promotion n≥20 quality-score re-baseline. All four goal metrics (freshness, diversity, multi-source, educational value) are within target."
 }
