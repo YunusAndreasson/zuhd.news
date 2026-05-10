@@ -14,7 +14,7 @@ All design tokens live in one file. Components consume via `useTheme()`.
 
 | Token group       | Export                                          | What it is                                    |
 |-------------------|-------------------------------------------------|-----------------------------------------------|
-| Colors            | `DARK_COLORS`, `LIGHT_COLORS` (via theme hook)  | 15 semantic keys — never inline a hex         |
+| Colors            | `DARK_COLORS`, `LIGHT_COLORS` (via theme hook)  | Semantic keys — never inline a hex. Brand accent is `dome` (gold); `accent` is a soft text tier, not a brand color. |
 | Typography        | `makeTypography` → `sizeBase`, `sizeLg`, etc.   | Responsive scale + leading + `trackingCaps` / `trackingHeading` / `trackingWordmark` |
 | Variants          | `makeTextVariants` → 13 roles                   | The `<Text variant>` catalog (see below)      |
 | Variant caps      | `VARIANT_CAP`                                   | Dynamic Type ceiling per variant              |
@@ -37,6 +37,15 @@ All design tokens live in one file. Components consume via `useTheme()`.
 - **Never import `@expo/vector-icons` directly**. Go through `<Icon>`.
 - **Never set decorative `fontFamily`** (bold/semibold/italic) in a component for a role that exists as a variant. Font overrides via `font.X` are an escape hatch, documented with a comment when used.
 - `fontVariant: ['oldstyle-nums']` / `['tabular-nums']` as style overrides are allowed — they're orthogonal to typography size/weight and some variants need them situationally.
+
+### Sentiment / severity color
+
+The sentiment palette splits into background and foreground variants:
+
+- **`colors.toneFavorable / toneUnfavorable / toneNeutral`** — background fills only. Tuned for `BLACK` foreground text on the tone (CompareBlock pills, TimelineBlock spans, TreemapBlock cells). Do not use as foreground text on `bg`: in light mode the contrast is ~3.4:1 (AA-large only).
+- **`colors.toneFavorableText / toneUnfavorableText / toneNeutralText`** — foreground text variants. Hue-aligned with the bg-tones, but luminance-deepened in light mode to clear AA body (≥ 4.5:1) on cream `bg`. In dark mode the values are identical to the bg-tones (dark `bg` already has ample headroom). The `tone="favorable|unfavorable|neutral"` prop on `<Text>` resolves to these.
+
+**Severity** (GDACS / conflict / weather) is single-tier: only the most editorially urgent state — Red disaster, fatal conflict, very-rough seas — earns the `toneUnfavorableText` hue. Lower tiers read in monochrome (`text` / `textEmphasis` / `textSecondary`); severity remains legible from the focal number, eyebrow, and metadata. This is the "color carries meaning only" rule from `foundation.md` taken literally.
 
 ## Primitives — `components/primitives/`
 

@@ -203,12 +203,6 @@ export function isNear(x: number, y: number, px: number, py: number, r2: number)
   return dx * dx + dy * dy <= r2;
 }
 
-/** Append alpha channel to hex color. a ∈ [0, 1]. */
-export function withAlpha(hex: string, a: number): string {
-  const byte = Math.round(Math.min(1, Math.max(0, a)) * 255);
-  return `${hex}${byte.toString(16).padStart(2, '0')}`;
-}
-
 // ── Point-in-country lookup ────────────────────────────────────────────────
 
 /** Nudge offsets for coastal/border coordinate fallback. 0.1° ≈ 11 km. */

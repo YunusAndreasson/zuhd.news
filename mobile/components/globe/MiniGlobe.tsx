@@ -53,7 +53,7 @@ import {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import { BLACK, WHITE } from '../../constants/theme';
+import { BLACK, WHITE, withAlpha } from '../../constants/theme';
 import { useTheme } from '../../hooks/useTheme';
 import { eventAgeDays } from '../../lib/conflict';
 import { alertAgeDays } from '../../lib/gdacs';
@@ -92,7 +92,6 @@ import {
   PLACES_FULL_CLIP,
   RIVERS_APPEAR_CLIP,
   SOUTH_POLE,
-  withAlpha,
 } from './projection';
 import {
   bordersMesh,
@@ -2660,7 +2659,7 @@ export const MiniGlobe = memo(function MiniGlobe({
       {state.icePath && (
         <Path
           path={state.icePath}
-          color={light ? '#ffffff' : colors.text}
+          color={light ? WHITE : colors.text}
           opacity={light ? 0.32 : 0.16}
         />
       )}
@@ -2776,7 +2775,7 @@ export const MiniGlobe = memo(function MiniGlobe({
         const haloR = 18 + z.intensity * 16;
         const peak = withAlpha(colors.text, (0.1 + z.intensity * 0.13) * fade);
         const mid = withAlpha(colors.text, (0.04 + z.intensity * 0.06) * fade);
-        const edge = `${colors.text}00`;
+        const edge = withAlpha(colors.text, 0);
         const coreR = 0.9 + z.intensity * 0.7;
         // Key by lat,lng so reconciliation stays stable across heatmap
         // refetches (top-12 list reorders frequently — index keys would

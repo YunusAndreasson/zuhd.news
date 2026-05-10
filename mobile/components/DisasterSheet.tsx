@@ -12,6 +12,7 @@ import { ANIMATION, FLAG, SPACING, staggerDelay } from '../constants/theme';
 import { useGdacsDetail } from '../hooks/useGdacsDetail';
 import { useSheetSnaps } from '../hooks/useSheetSnaps';
 import { useTheme } from '../hooks/useTheme';
+import { relativeTime } from '../lib/date-format';
 import { displaySourceName, EVENT_TYPE_EYEBROW, parseSeverityHero } from '../lib/gdacs';
 import { useOpenLink } from '../lib/open-link';
 import { displayCountryName } from '../lib/place-names';
@@ -31,20 +32,6 @@ interface DisasterSheetProps {
   onDismiss: () => void;
   /** Tap on a country chip — opens the CountrySheet for that country. */
   onCountryPress?: (countryName: string) => void;
-}
-
-function relativeTime(iso: string, now: number = Date.now()): string {
-  const t = Date.parse(iso);
-  if (!Number.isFinite(t)) return '';
-  const diffMs = Math.abs(now - t);
-  const diffHours = Math.floor(diffMs / 3_600_000);
-  if (diffHours < 1) return 'just now';
-  if (diffHours < 24) return `${diffHours}h ago`;
-  const diffDays = Math.floor(diffHours / 24);
-  if (diffDays < 7) return `${diffDays}d ago`;
-  if (diffDays < 30) return `${Math.floor(diffDays / 7)}w ago`;
-  if (diffDays < 365) return `${Math.floor(diffDays / 30)}mo ago`;
-  return `${Math.floor(diffDays / 365)}y ago`;
 }
 
 function formatStarted(fromIso: string, now: number = Date.now()): string {
@@ -164,17 +151,13 @@ export const DisasterSheet = memo(function DisasterSheet({
       : (detail?.widerClause ?? '');
   const populationText = formatPopulation(populationCount);
 
-  // Severity tint moves from the (now-removed) glyph backdrop disc to the
-  // focal number itself — the magnitude / wind speed / burn area is
-  // *literally* coloured by severity tier, so the reader's eye picks up
-  // "how bad?" pre-attentively from a single tinted number rather than
-  // hunting for a coloured disc and a separate text caption.
-  const tint =
-    alert?.alertlevel === 'Red'
-      ? colors.toneUnfavorable
-      : alert?.alertlevel === 'Orange'
-        ? colors.alertOrange
-        : colors.alertLow;
+  // Severity tint reserved for Red — the most editorially urgent tier.
+  // Lower alert levels (Orange, Green) read in the default display color
+  // so the warm hue carries a single critical signal rather than a
+  // 3-tier ladder competing with the focal number's typographic weight.
+  // Severity is still legible from the metadata line and the focal
+  // number itself (magnitude, wind speed, burn area).
+  const tint = alert?.alertlevel === 'Red' ? colors.toneUnfavorableText : undefined;
 
   const hero = useMemo(() => (alert ? parseSeverityHero(alert) : null), [alert]);
 
@@ -224,7 +207,7 @@ export const DisasterSheet = memo(function DisasterSheet({
               </Text>
               <Text
                 variant="display"
-                style={[styles.focal, { color: tint }]}
+                style={tint ? [styles.focal, { color: tint }] : styles.focal}
                 numberOfLines={2}
                 selectable
               >

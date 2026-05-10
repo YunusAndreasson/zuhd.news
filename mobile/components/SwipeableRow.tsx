@@ -89,6 +89,12 @@ export const SwipeableRow = memo(function SwipeableRow({
     ),
   }));
 
+  // Elevation idiom: the row sits at `sheetBg` (matching its sheet
+  // container, so it appears flush, no card outline) and the action
+  // slot beneath uses `bg` to read as a deeper layer revealed by the
+  // swipe — a subtle Z-axis cue without a visible shadow. Only
+  // consumed inside sheets (SheetBookmarksPage), so the bg/sheetBg
+  // pairing is consistent with the surrounding chrome.
   return (
     <View style={styles.container}>
       <Animated.View

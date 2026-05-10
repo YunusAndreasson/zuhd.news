@@ -10,6 +10,10 @@ import { ANDROID_TEXT_BASE } from './platform';
 export type FontSize = 'small' | 'default' | 'large';
 export type FontFamily = 'source' | 'system';
 export type AppearanceMode = 'dark' | 'system' | 'light';
+/** Briefing audio variant. `en` = English only, `bi` = English then Arabic
+ *  per category section, `ar` = Arabic only. Selects which `briefing-{date}-{lang}.mp3`
+ *  the player fetches; the backend writes all three each cycle. */
+export type BriefingLanguage = 'en' | 'bi' | 'ar';
 
 export interface Preferences {
   fontSize: FontSize;
@@ -17,6 +21,7 @@ export interface Preferences {
   appearance: AppearanceMode;
   haptics: boolean;
   notifications: boolean;
+  briefingLanguage: BriefingLanguage;
 }
 
 export const DEFAULT_PREFS: Preferences = {
@@ -25,6 +30,7 @@ export const DEFAULT_PREFS: Preferences = {
   appearance: 'dark',
   haptics: true,
   notifications: false,
+  briefingLanguage: 'en',
 };
 
 // ---------------------------------------------------------------------------
@@ -69,10 +75,16 @@ export const DARK_COLORS = {
   bg: '#0F0F11',
   text: '#e8e8e8',
   textSecondary: '#999',
+  // `accent` is a soft text tier that sits between `text` and
+  // `textSecondary` in luminance — used by the `lead` and `sectionHeading`
+  // variants and as a structural fill in SVG blocks. Naming note: this is
+  // NOT the brand accent. The brand accent is `dome` (Dome of the Rock
+  // gold). The name is retained for legacy reasons; new code can read it
+  // as "soft text / second voice".
   accent: '#b3b3b3',
   rule: '#2e2e2e',
   textEmphasis: '#FAFAFA',
-  dome: '#c9a84c', // Dome of the Rock gold — the only color in the app
+  dome: '#c9a84c', // Dome of the Rock gold — the only chromatic accent in the app
   sheetBg: '#161619',
   // 0.88 alpha keeps `labelSm` text WCAG AA across the brightest composites
   // on the globe (over a `colors.dome` hotspot glow). The base luminance
@@ -97,25 +109,31 @@ export const DARK_COLORS = {
   // on tone-pill backgrounds in CompareBlock at 13pt: rose climbs from
   // 4.48 → 6.09 contrast (was failing AA), the others sit at 7+. Still
   // muted — saturation is unchanged, only luminance.
+  //
+  // ⚠️ Use these as BACKGROUND fills only (with BLACK foreground text).
+  // For foreground TEXT colored by sentiment, use the `*Text` siblings
+  // below — they're tuned for AA contrast against `bg`, not against BLACK.
   toneFavorable: '#82a98a',
   toneUnfavorable: '#a98080',
   toneNeutral: '#8298a9',
-  // Disaster-alert tints — three-tier severity ladder, all in the warm
-  // family so the gradient reads as one warning vocabulary (low amber →
-  // medium bronze → high rose). `alertLow` replaced an earlier muted-sage
-  // mapped to GDACS's "Green" tier, which read as "OK / good news" even
-  // though every tier is a warning. Ochre is desaturated and darker than
-  // `colors.dome` (#c9a84c) so the dome remains the *only* gold in the
-  // app per foundation.md. `alertOrange` keeps its bronze-copper. Red
-  // alerts reuse `toneUnfavorable` so the palette stays singular.
-  alertLow: '#a88840',
-  alertOrange: '#b07a4c',
+  // Tone-family text variants. Used when a sentiment hue must be applied
+  // to *foreground* text (sources sentiment label, country-card headline,
+  // chokepoint weather alert). In dark mode the bg-variant already has
+  // ample contrast on `bg` (~7.5:1), so the text-variants intentionally
+  // mirror the bg values — keeps a single visual identity. In light mode
+  // the values diverge (see LIGHT_COLORS) to clear AA body on cream.
+  toneFavorableText: '#82a98a',
+  toneUnfavorableText: '#a98080',
+  toneNeutralText: '#8298a9',
 } as const satisfies Record<string, string>;
 
 export const LIGHT_COLORS = {
   bg: '#f5f2ed',
   text: '#2a2a2a',
   textSecondary: '#666666',
+  // See DARK_COLORS.accent for the naming note (this is *not* the brand
+  // accent — `dome` is). Light-mode value sits between `text` and
+  // `textSecondary` in luminance the same way as dark.
   accent: '#5a5a5a',
   rule: '#d8d4ce',
   textEmphasis: '#1a1a1a',
@@ -134,19 +152,25 @@ export const LIGHT_COLORS = {
   // land (gray) reads as the warmer surface.
   water: '#d6d9da',
   toastBg: 'rgba(240,237,230,0.95)',
-  // Tones are intentionally identical between modes — they serve two roles
-  // and the requirements pull opposite directions: as pill backgrounds
-  // (CompareBlock) BLACK foreground needs them mid-luminance (current
-  // L≈0.25–0.35 gives BLACK 5.5–8:1); as decorative fills (TimelineBlock
-  // spans, TreemapBlock cells) they sit on bg/sheetBg with no foreground.
-  // Mid-luminance is the only set that satisfies both. The cream bg makes
-  // standalone fills subtler in light mode (~2.1–3.1:1), which is
+  // Background tones — paired with BLACK foreground in CompareBlock pills,
+  // used as decorative fills in TimelineBlock/TreemapBlock. Mid-luminance
+  // is mandatory for the BLACK-on-tone contrast (L≈0.25–0.35 gives BLACK
+  // 5.5–8:1). Standalone fills on cream sit at ~2.1–3.1:1, which is
   // acceptable for non-essential decorative UI.
+  //
+  // ⚠️ Do NOT use these as foreground TEXT on cream — contrast is ~3.4:1
+  // (AA-large only, fails AA body). Use the `*Text` siblings below.
   toneFavorable: '#82a98a',
   toneUnfavorable: '#a98080',
   toneNeutral: '#8298a9',
-  alertLow: '#786222',
-  alertOrange: '#945a2a',
+  // Foreground-text tone variants. Hue-aligned with the bg-tones above
+  // but luminance-deepened to clear WCAG AA body (≥ 4.5:1) on cream `bg`.
+  // Used by `tone="favorable|unfavorable|neutral"` on `<Text>` and by
+  // sites that color body/caption text by sentiment (SourceRow,
+  // ChokepointSheet weather, DisambiguationSheet rows, etc.).
+  toneFavorableText: '#3f6b48',
+  toneUnfavorableText: '#884d51',
+  toneNeutralText: '#475f70',
 } as const satisfies Record<string, string>;
 
 export type ColorPalette = { [K in keyof typeof DARK_COLORS]: string };
@@ -597,7 +621,11 @@ export const VARIANT_CAP: Record<TextVariant, number> = {
   wordmark: MAX_FONT_SCALE.chrome,
 };
 
-/** Tone override — maps a semantic tone name to a palette color. */
+/** Tone override — maps a semantic tone name to a palette color. The
+ *  sentiment tones (`favorable`, `unfavorable`, `neutral`) resolve to the
+ *  `*Text` palette variants tuned for foreground contrast on `bg` — the
+ *  bg-tones (`colors.toneFavorable` etc.) are background-only and won't
+ *  pass AA body in light mode as foreground text. */
 export type TextTone =
   | 'default'
   | 'secondary'
@@ -621,11 +649,11 @@ export function toneColor(tone: TextTone, colors: ColorPalette): string | undefi
     case 'dome':
       return colors.dome;
     case 'favorable':
-      return colors.toneFavorable;
+      return colors.toneFavorableText;
     case 'unfavorable':
-      return colors.toneUnfavorable;
+      return colors.toneUnfavorableText;
     case 'neutral':
-      return colors.toneNeutral;
+      return colors.toneNeutralText;
   }
 }
 
