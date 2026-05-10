@@ -13,13 +13,10 @@ import {
 import { deleteItemAsync, getItemAsync, setItemAsync } from 'expo-secure-store';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AppState, type AppStateStatus } from 'react-native';
-import { API_BASE, type BriefingLanguage } from '../constants/theme';
+import { API_BASE } from '../constants/theme';
 import { hapticImpact } from '../lib/haptics';
 
 const POSITION_KEY = 'zuhd_briefing_pos';
-// Stores `${date}-${language}` so a paused EN briefing doesn't restore its
-// position into an AR file when the user switches the briefing-language pref.
-// Cross-variant resumes start fresh at 0:00 — same-variant resumes still work.
 const DATE_KEY = 'zuhd_briefing_date';
 const PLAYBACK_STATUS_UPDATE = 'playbackStatusUpdate';
 // Hard cap on how long we'll wait for an AVPlayer to report `isLoaded: true`
@@ -104,22 +101,13 @@ function waitForLoaded(player: AudioPlayer, timeoutMs = 5000): Promise<void> {
   });
 }
 
-export function useBriefingPlayer(
-  date: string | undefined,
-  feedDuration?: number,
-  language: BriefingLanguage = 'en',
-): BriefingPlayer {
+export function useBriefingPlayer(date: string | undefined, feedDuration?: number): BriefingPlayer {
   // No synthetic fallback to today's UTC date — that path produced a
   // guaranteed 404 whenever the latest briefing was >36h old. The feed
   // exposes the date of the most recent mp3 still on disk; if that's
   // missing entirely we surface `available: false` instead of attempting
   // playback we know will fail.
   const effectiveDate = date ?? '';
-  // Combined identity key — same date + same language = the same audio file.
-  // Used everywhere we previously compared on `effectiveDate` alone, so
-  // changing the briefing-language pref tears down the old player and
-  // reloads the right URL.
-  const effectiveKey = effectiveDate ? `${effectiveDate}-${language}` : '';
   const available = !!date;
   const [playing, setPlaying] = useState(false);
   const [elapsed, setElapsed] = useState(0);
@@ -183,35 +171,19 @@ export function useBriefingPlayer(
     return () => sub.remove();
   }, []);
 
-  // Preload audio for the latest briefing date + language — only when the
-  // feed has surfaced one. Preloading a URL we know doesn't exist would just
-  // queue a 404 round-trip on every launch. Re-runs when the user switches
-  // the briefing-language preference so the next play is warm.
+  // Preload audio for the latest briefing date — only when the feed has
+  // surfaced one. Preloading a URL we know doesn't exist would just queue
+  // a 404 round-trip on every launch.
   useEffect(() => {
     if (!effectiveDate) return;
-    const url = `${API_BASE}/audio/briefing-${effectiveDate}-${language}.mp3`;
+    const url = `${API_BASE}/audio/briefing-${effectiveDate}.mp3`;
     if (preloadedUrl.current !== url) {
       try {
         preload(url, { preferredForwardBufferDuration: 30 });
       } catch {}
       preloadedUrl.current = url;
     }
-  }, [effectiveDate, language]);
-
-  // Tear down the active player when the (date, language) identity shifts.
-  // Without this, switching the briefing-language pref while a player is
-  // alive (paused or playing) would leave playerRef pointing at the old
-  // file — toggle() would resume the wrong language. We save the current
-  // position first so a same-language resume still works.
-  // biome-ignore lint/correctness/useExhaustiveDependencies: tear down ONLY when the audio identity changes; the helpers are stable refs we don't want to retrigger this on
-  useEffect(() => {
-    if (!playerRef.current) return;
-    if (savedDate.current === effectiveKey) return;
-    savePosition();
-    teardownPlayer();
-    setPlaying(false);
-    setElapsed(0);
-  }, [effectiveKey]);
+  }, [effectiveDate]);
 
   const teardownPlayer = useCallback(() => {
     if (giveUpTimer.current) {
@@ -356,9 +328,7 @@ export function useBriefingPlayer(
         await setIsAudioActiveAsync(true);
       } catch {} // May fail in Expo Go
 
-      const player = safeCreatePlayer(
-        `${API_BASE}/audio/briefing-${effectiveDate}-${language}.mp3`,
-      );
+      const player = safeCreatePlayer(`${API_BASE}/audio/briefing-${effectiveDate}.mp3`);
       if (!player) {
         // Native module unavailable (Expo Go) — fake expand for UI preview
         if (__DEV__) {
@@ -450,7 +420,7 @@ export function useBriefingPlayer(
             getItemAsync(POSITION_KEY),
             getItemAsync(DATE_KEY),
           ]);
-          if (savedDateStr === effectiveKey && savedPos) {
+          if (savedDateStr === effectiveDate && savedPos) {
             const pos = parseInt(savedPos, 10);
             if (pos > 0) {
               player.seekTo(pos).catch(() => {});
@@ -460,7 +430,7 @@ export function useBriefingPlayer(
         } catch {}
       }
 
-      savedDate.current = effectiveKey;
+      savedDate.current = effectiveDate;
       playerRef.current = player;
       subRef.current = eventSub;
 
@@ -494,8 +464,6 @@ export function useBriefingPlayer(
     }
   }, [
     effectiveDate,
-    effectiveKey,
-    language,
     savePosition,
     activateLockScreen,
     refreshLockScreenMetadata,

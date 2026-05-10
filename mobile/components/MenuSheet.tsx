@@ -23,7 +23,6 @@ import { IS_ANDROID } from '../constants/platform';
 import {
   ANIMATION,
   type AppearanceMode,
-  type BriefingLanguage,
   baseFontSize,
   FONT_SOURCE,
   FONT_SYSTEM,
@@ -109,13 +108,7 @@ const APPEARANCE_OPTIONS: { value: AppearanceMode; label: string }[] = [
   { value: 'dark', label: 'dark' },
 ];
 
-const BRIEFING_LANGUAGE_OPTIONS: { value: BriefingLanguage; label: string }[] = [
-  { value: 'en', label: 'english' },
-  { value: 'bi', label: 'english + arabic' },
-  { value: 'ar', label: 'arabic' },
-];
-
-type SettingKey = 'size' | 'font' | 'appearance' | 'briefingLanguage' | 'haptics' | 'notifications';
+type SettingKey = 'size' | 'font' | 'appearance' | 'haptics' | 'notifications';
 
 interface SettingEntry {
   key: SettingKey;
@@ -155,14 +148,6 @@ const SETTINGS: readonly SettingEntry[] = [
     options: APPEARANCE_OPTIONS,
     get: (p) => p.appearance,
     set: (api, v) => api.setAppearance(v as AppearanceMode),
-  },
-  {
-    key: 'briefingLanguage',
-    label: 'briefing audio',
-    hint: 'Daily briefing language',
-    options: BRIEFING_LANGUAGE_OPTIONS,
-    get: (p) => p.briefingLanguage,
-    set: (api, v) => api.setBriefingLanguage(v as BriefingLanguage),
   },
   {
     key: 'haptics',

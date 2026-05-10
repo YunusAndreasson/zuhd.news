@@ -10,10 +10,6 @@ import { ANDROID_TEXT_BASE } from './platform';
 export type FontSize = 'small' | 'default' | 'large';
 export type FontFamily = 'source' | 'system';
 export type AppearanceMode = 'dark' | 'system' | 'light';
-/** Briefing audio variant. `en` = English only, `bi` = English then Arabic
- *  per category section, `ar` = Arabic only. Selects which `briefing-{date}-{lang}.mp3`
- *  the player fetches; the backend writes all three each cycle. */
-export type BriefingLanguage = 'en' | 'bi' | 'ar';
 
 export interface Preferences {
   fontSize: FontSize;
@@ -21,7 +17,6 @@ export interface Preferences {
   appearance: AppearanceMode;
   haptics: boolean;
   notifications: boolean;
-  briefingLanguage: BriefingLanguage;
 }
 
 export const DEFAULT_PREFS: Preferences = {
@@ -30,7 +25,6 @@ export const DEFAULT_PREFS: Preferences = {
   appearance: 'dark',
   haptics: true,
   notifications: false,
-  briefingLanguage: 'en',
 };
 
 // ---------------------------------------------------------------------------

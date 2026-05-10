@@ -253,16 +253,7 @@ export interface FeedResponse {
   // Wire format may omit empty categories — post-merge consumers use
   // `GroupedArticles` (a full Record) where every key is guaranteed present.
   categories: Partial<Record<Category, Article[]>>;
-  briefing: {
-    date: string;
-    available: boolean;
-    /** EN duration. Kept at the top level for older mobile builds that don't
-     *  yet read `variants`. New code should prefer `variants[lang].duration`. */
-    duration?: number;
-    /** Per-language briefing duration, in seconds. AR/BI may be absent if the
-     *  Arabic translation pass failed for the cycle. */
-    variants?: Partial<Record<'en' | 'bi' | 'ar', { duration: number }>>;
-  } | null;
+  briefing: { date: string; available: boolean; duration?: number } | null;
   contexts?: Record<string, ContextIndexEntry>;
 }
 
