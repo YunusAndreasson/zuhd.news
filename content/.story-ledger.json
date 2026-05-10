@@ -2,13 +2,241 @@
   "version": 1,
   "stories": [
     {
+      "id": "bulk-carrier-projectile-qatari-waters-ceasefire",
+      "label": "Bulk carrier catches fire off Qatari coast",
+      "firstSeen": "2026-05-10T12:11:15.474Z",
+      "lastCovered": "2026-05-10T12:11:15.474Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-10-bulk-carrier-projectile-qatari-waters-ceasefire"
+      ],
+      "eventUri": "eng-11641220",
+      "summary": "A bulk carrier was struck by an unidentified projectile in Qatari waters Sunday morning; UKMTO logged the hit, the fire was extinguished, no casualties. Lead with the location — this is the first reported strike on commercial shipping inside Qatar's exclusive zone since Doha-brokered ceasefire talks resumed, and follows yesterday's first post-war LNG transit through Hormuz that we covered. The mechanism: ceasefires hold for tankers but not for bulk carriers, and an attacker that wants to keep deniability has just discovered which lane is permissive. Mehr (IR), MEE (cross-region), and TASS (RU) all carry it; Western wires lag — note the absence in the selection summary.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Qatar",
+        "http://en.wikipedia.org/wiki/United_Kingdom",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Doha",
+        "http://en.wikipedia.org/wiki/Ceasefire",
+        "http://en.wikipedia.org/wiki/Bulk_carrier",
+        "http://en.wikipedia.org/wiki/Cargo_ship",
+        "http://en.wikipedia.org/wiki/Persian_Gulf"
+      ]
+    },
+    {
+      "id": "punjab-arora-ed-custody-pmla-100-crore",
+      "label": "Punjab industries minister Sanjeev Arora sent to 7-day ED custody",
+      "firstSeen": "2026-05-10T12:11:15.474Z",
+      "lastCovered": "2026-05-10T12:11:15.474Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-10-punjab-arora-ed-custody-pmla-100-crore"
+      ],
+      "eventUri": "eng-11641305",
+      "summary": "A sitting AAP cabinet minister was remanded to 7-day Enforcement Directorate custody Sunday in a ₹100-crore PMLA money-laundering probe — the first sitting Punjab minister taken into ED custody under the Mann government. Lead with the precedent: the ED is now arresting cabinet members of state governments outside the BJP, and PMLA's bail bar makes pre-trial custody itself the punishment regardless of conviction. The mechanism: GST-linked refund frauds and the way central agencies time arrests around state legislative business. Reader takeaway is structural — federal investigative agencies are increasingly the primary check on state-level executives.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Enforcement_Directorate",
+        "http://en.wikipedia.org/wiki/Sanjeev_Arora",
+        "http://en.wikipedia.org/wiki/Indian_rupee",
+        "http://en.wikipedia.org/wiki/Crore",
+        "http://en.wikipedia.org/wiki/Punjab,_India",
+        "http://en.wikipedia.org/wiki/Money_laundering"
+      ]
+    },
+    {
+      "id": "bahrain-citizenship-stripping-clerics-shia",
+      "label": "Iran's rights body denounces Bahrain's citizenship annulment",
+      "firstSeen": "2026-05-10T12:11:15.474Z",
+      "lastCovered": "2026-05-10T12:11:15.474Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-10-bahrain-citizenship-stripping-clerics-shia"
+      ],
+      "eventUri": null,
+      "summary": "Bahrain has stripped citizenship from a fresh batch of clerics, eulogists, social activists and women — Iran's High Council for Human Rights named the practice 'unacceptable in any civilized legal system.' Lead with the categories of victim: Bahrain's denationalization tool is targeting the religious-cultural infrastructure of the Shia majority, not just political dissidents. The mechanism: citizenship-stripping is the Gulf's preferred low-visibility instrument for managing dissent because the deportee, not the state, becomes the diplomatic problem. Note the OIC-region absence — only Mehr carries it; no Bahraini, Saudi, or Qatari outlet picked it up in this feed window, which is itself the story for educated Muslim readers.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Citizenship",
+        "http://en.wikipedia.org/wiki/Bahrain",
+        "http://en.wikipedia.org/wiki/Clergy",
+        "http://en.wikipedia.org/wiki/Jurisdiction",
+        "http://en.wikipedia.org/wiki/Judiciary"
+      ]
+    },
+    {
+      "id": "ramaphosa-impeachment-concourt-anc-phala-phala",
+      "label": "It's in the ANC's interest for Ramaphosa to remain. But...",
+      "firstSeen": "2026-05-10T12:11:15.474Z",
+      "lastCovered": "2026-05-10T12:11:15.474Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-10-ramaphosa-impeachment-concourt-anc-phala-phala"
+      ],
+      "eventUri": null,
+      "summary": "South Africa's Constitutional Court ruled Friday that Parliament acted unconstitutionally by refusing to convene an impeachment committee against President Ramaphosa over the Phala Phala case — MPs are now legally compelled to weigh evidence they have spent two years dodging. Lead with the court's role: the bench is forcing a coalition Parliament to do the political work it has actively avoided. Mechanism: South Africa's separation-of-powers doctrine gives the judiciary authority to mandate procedure, not outcome — so the ruling guarantees a vote, not a removal. Reader takeaway: African constitutional courts have become the load-bearing wall of accountability when ruling parties lose appetite for self-policing.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/African_National_Congress",
+        "http://en.wikipedia.org/wiki/Cyril_Ramaphosa",
+        "http://en.wikipedia.org/wiki/Constitutional_Court_of_South_Africa",
+        "http://en.wikipedia.org/wiki/Impeachment",
+        "http://en.wikipedia.org/wiki/Parliament_of_South_Africa"
+      ]
+    },
+    {
+      "id": "pakistan-woman-journalist-peca-cybercrime-harassment",
+      "label": "Woman journalist victim in Pakistan takes action against online harassment",
+      "firstSeen": "2026-05-10T12:11:15.474Z",
+      "lastCovered": "2026-05-10T12:11:15.474Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-10-pakistan-woman-journalist-peca-cybercrime-harassment"
+      ],
+      "eventUri": null,
+      "summary": "A Pakistani woman journalist has filed a cybercrime complaint against an online harassment campaign — rare because PECA's enforcement gaps and family pressure normally absorb such cases before they reach a court. Lead with the filing as a precedent: this is the legal use of cybercrime law against gendered harassment rather than against journalists, the inversion the law was originally feared for. Mechanism: the same statute regulators wield against newsrooms is now being tested as a shield by the people newsrooms employ. Reader takeaway: enforcement asymmetry, not statutory wording, decides whose speech a digital-rights regime protects.",
+      "conceptUris": []
+    },
+    {
+      "id": "iran-africa-trade-39-states-tpo-rerouting",
+      "label": "Iran's trade with 39 African states on trajectory growth: TPO",
+      "firstSeen": "2026-05-10T12:11:15.474Z",
+      "lastCovered": "2026-05-10T12:11:15.474Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-10-iran-africa-trade-39-states-tpo-rerouting"
+      ],
+      "eventUri": null,
+      "summary": "Iran's Trade Promotion Organization says per-ton export value to 39 African states rose 25% to $554 — a modest absolute number but a deliberate signal of where Tehran is rerouting commerce after Hormuz. Lead with the per-ton metric, not totals: $554/ton means manufactured/processed goods, not raw commodities, which is what makes Africa attractive as a sanctioned trade partner. Mechanism: African import regimes have weaker secondary-sanctions exposure than Gulf or Asian routes, and Iranian exporters are migrating value-added categories there to keep margins intact. Reader takeaway: post-war Iranian economic strategy is going south, not east.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Africa"
+      ]
+    },
+    {
+      "id": "alaska-tracy-arm-glacial-landslide-500m-tsunami",
+      "label": "Huge landslide created a 500-meter-high tsunami in a major tourist area",
+      "firstSeen": "2026-05-10T12:11:15.474Z",
+      "lastCovered": "2026-05-10T12:11:15.474Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-10-alaska-tracy-arm-glacial-landslide-500m-tsunami"
+      ],
+      "eventUri": null,
+      "summary": "A 63.5-million-cubic-meter rock wedge detached above Alaska's Tracy Arm fjord on August 10, 2025; a published reconstruction now shows the impact generated a 500-meter run-up wave at the South Sawyer Glacier terminus — among the tallest tsunamis ever instrumented. Lead with the height: 500 meters is taller than every building on Earth, and the wave fit inside a single fjord. Mechanism: glacial retreat exposes oversteepened rock walls that have lost their ice buttress, and the failure mode is increasingly mass-wasting into deep water. Reader takeaway: warming-driven slope collapse plus narrow fjord geometry is producing tsunamis without earthquakes — a hazard category not on most coastal-risk maps.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Tracy_Arm",
+        "http://en.wikipedia.org/wiki/Fjord",
+        "http://en.wikipedia.org/wiki/Tsunami",
+        "http://en.wikipedia.org/wiki/Landslide"
+      ]
+    },
+    {
+      "id": "india-salt-pans-extreme-heat-workers-wet-bulb",
+      "label": "No trees, no fans: surviving extreme heat in India's salt pans",
+      "firstSeen": "2026-05-10T12:11:15.474Z",
+      "lastCovered": "2026-05-10T12:11:15.474Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-10-india-salt-pans-extreme-heat-workers-wet-bulb"
+      ],
+      "eventUri": null,
+      "summary": "In India's western desert salt pans, workers extract salt by hand in heat that frequently exceeds the wet-bulb survivability threshold, with no shade, no electricity, and no enforced labor protection. Lead with what 'survival' means physiologically — the body offloads heat by evaporative sweat, but at >35°C wet-bulb that mechanism fails and core temperature climbs regardless of effort. Mechanism: India's heat-action plans are mostly urban, while the most dangerous occupational heat exposure happens in rural extractive labor that is invisible to municipal data. Reader takeaway: climate adaptation literature talks about cities, but the people closest to the lethal threshold are agricultural and pre-industrial workers without any of the indoor or technological cushions city dwellers take for granted.",
+      "conceptUris": []
+    },
+    {
+      "id": "ethiopia-amhara-wind-siting-gis-ml-framework",
+      "label": "A data-driven GIS and machine-learning framework for strategic wind power plant siting",
+      "firstSeen": "2026-05-10T12:11:15.474Z",
+      "lastCovered": "2026-05-10T12:11:15.474Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-10-ethiopia-amhara-wind-siting-gis-ml-framework"
+      ],
+      "eventUri": null,
+      "summary": "An Ethiopian research team has published a wind-farm siting framework that combines GIS layers, analytic-hierarchy weighting, and ML prediction to score sites in Amhara Region — and identifies a different optimum than the government's standing wind-development plan. Lead with the disagreement: a domestically built model is contradicting a top-down siting policy in a country where most wind development is donor- or ministry-driven. Mechanism: AHP plus ML lets the model interpolate predicted wind resource between sparse meteorological stations rather than relying only on measured points, which biases conventional planning toward already-instrumented locations. Reader takeaway: African energy planning capacity is moving from importing siting decisions to producing them — slowly, but visibly in the literature.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Wind_farm",
+        "http://en.wikipedia.org/wiki/Geographic_information_system",
+        "http://en.wikipedia.org/wiki/Analytic_hierarchy_process",
+        "http://en.wikipedia.org/wiki/Ethiopia"
+      ]
+    },
+    {
+      "id": "pakistan-ptcl-submarine-cable-fault-internet-throttle",
+      "label": "PTCL users may face internet disruption during evening hours from May 11-18",
+      "firstSeen": "2026-05-10T12:11:15.474Z",
+      "lastCovered": "2026-05-10T12:11:15.474Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-10-pakistan-ptcl-submarine-cable-fault-internet-throttle"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan Telecommunication Company has announced an eight-day evening-hours throttle on internet capacity from May 11-18 to repair a fault on a single submarine cable. Lead with the asymmetry: a country of 240 million is taking a scheduled outage because one cable in the international consortium that owns the cable is broken. Mechanism: Pakistan's outbound internet rides on a small handful of submarine cables (SMW4, SMW5, AAE-1, PEACE, IMEWE) — fewer than India or the Gulf states — so any single repair window forces visible national-scale degradation. Reader takeaway: digital sovereignty conversations are usually about platforms and content; the hard floor is physical cable redundancy, and Pakistan's is thin.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/PTCL",
+        "http://en.wikipedia.org/wiki/Submarine_communications_cable",
+        "http://en.wikipedia.org/wiki/Internet",
+        "http://en.wikipedia.org/wiki/Pakistan"
+      ]
+    },
+    {
+      "id": "strontium-oxide-cu-zn-catalyst-green-methanol-co2",
+      "label": "Strontium oxide promoter on Cu-Zn/Cr2O3 catalysts for green methanol fuel production via CO2 hydrogenation",
+      "firstSeen": "2026-05-10T12:11:15.474Z",
+      "lastCovered": "2026-05-10T12:11:15.474Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-10-strontium-oxide-cu-zn-catalyst-green-methanol-co2"
+      ],
+      "eventUri": null,
+      "summary": "A Cu-Zn/Cr2O3 catalyst doped with strontium oxide raised CO2-to-methanol conversion enough that the authors argue the route is now cost-comparable with steam-reformed methanol if the CO2 feed is free. Lead with the dependency: green methanol economics live or die on whether you can pay nothing for the input CO2, which in practice means co-location with an emitter that needs to vent. Mechanism: SrO modulates surface basicity on the catalyst, which is what stabilises the methoxide intermediate that limits Cu-Zn yield. Reader takeaway: incremental catalyst chemistry is closing the gap on green fuels not via miracle materials but by making industrial-symbiosis pairings (cement plant + fuel plant) economically defensible.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Strontium_oxide",
+        "http://en.wikipedia.org/wiki/Catalysis",
+        "http://en.wikipedia.org/wiki/Carbon_dioxide",
+        "http://en.wikipedia.org/wiki/Methanol",
+        "http://en.wikipedia.org/wiki/Climate_change"
+      ]
+    },
+    {
       "id": "modi-tvk-tamil-nadu-cabinet-dmk-congress-realignment",
       "label": "'Congress Stabbed DMK In The Back': PM Modi Attacks TVK Alliance Politics In Tamil Nadu",
       "firstSeen": "2026-05-10T08:06:40.083Z",
       "lastCovered": "2026-05-10T08:06:40.083Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-10-modi-tvk-tamil-nadu-cabinet-dmk-congress-realignment"
@@ -33,7 +261,7 @@
       "lastCovered": "2026-05-10T08:06:40.083Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-10-taraba-nigeria-100-killed-98000-displaced-catholic-diocese"
@@ -49,7 +277,7 @@
       "lastCovered": "2026-05-10T08:06:40.083Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-10-three-democracies-china-transnational-repression-pushback"
@@ -65,7 +293,7 @@
       "lastCovered": "2026-05-10T08:06:40.083Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-10-saudi-aramco-q1-profit-east-west-pipeline-hormuz-bypass"
@@ -90,7 +318,7 @@
       "lastCovered": "2026-05-10T08:06:40.083Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-10-qatar-lng-first-hormuz-transit-since-iran-war"
@@ -115,7 +343,7 @@
       "lastCovered": "2026-05-10T08:06:40.083Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-10-hong-kong-100-ships-2300-seafarers-stranded-hormuz"
@@ -131,7 +359,7 @@
       "lastCovered": "2026-05-10T08:06:40.083Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-10-biodegradable-fruit-wash-pesticide-shelf-life-postharvest"
@@ -147,7 +375,7 @@
       "lastCovered": "2026-05-10T08:06:40.083Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-10-uk-ev-targets-factcheck-car-industry-zev-mandate"
@@ -163,7 +391,7 @@
       "lastCovered": "2026-05-10T08:06:40.083Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-10-gowers-chatgpt-5-5-pro-mathematics-failure-modes"
@@ -179,7 +407,7 @@
       "lastCovered": "2026-05-10T08:06:40.083Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-10-china-virtual-civil-society-platform-governance-noema"
@@ -195,7 +423,7 @@
       "lastCovered": "2026-05-10T08:06:40.083Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-10-404-media-storage-rss-indie-newsroom-economics"
@@ -211,7 +439,7 @@
       "lastCovered": "2026-05-09T22:07:53.059Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-09-israel-deport-gaza-flotilla-activists-international-waters"
@@ -234,7 +462,7 @@
       "lastCovered": "2026-05-09T22:07:53.059Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-09-starmer-stalking-horse-labour-leadership-rules"
@@ -256,7 +484,7 @@
       "lastCovered": "2026-05-09T22:07:53.059Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-09-bannu-suicide-attack-fateh-khel-police-ttp-kp"
@@ -272,7 +500,7 @@
       "lastCovered": "2026-05-09T22:07:53.059Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-09-pakistan-us-lobbying-1-2m-fara-defence-critical-minerals"
@@ -288,7 +516,7 @@
       "lastCovered": "2026-05-09T22:07:53.059Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-08-norovirus-caribbean-princess-115-sick-cdc"
@@ -310,7 +538,7 @@
       "lastCovered": "2026-05-09T22:07:53.059Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-09-spirit-airlines-chapter-7-liquidation-slots-creditors"
@@ -326,7 +554,7 @@
       "lastCovered": "2026-05-09T22:07:53.059Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-09-irgc-tanker-warning-us-bases-ceasefire-strain"
@@ -348,7 +576,7 @@
       "lastCovered": "2026-05-09T22:07:53.059Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-09-cop30-climate-governance-ocean-omission-unfccc"
@@ -364,7 +592,7 @@
       "lastCovered": "2026-05-09T22:07:53.059Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-09-edna-river-chytrid-ireland-first-detection-surveillance"
@@ -380,7 +608,7 @@
       "lastCovered": "2026-05-09T22:07:53.059Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-08-recaptcha-play-integrity-degoogled-android-lockout"
@@ -396,7 +624,7 @@
       "lastCovered": "2026-05-09T22:07:53.059Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-09-darpa-containerized-drone-swarms-pre-positioned-ports"
@@ -412,7 +640,7 @@
       "lastCovered": "2026-05-09T17:04:53.627Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-09-india-ed-raids-punjab-minister-arora-opposition-pattern"
@@ -437,7 +665,7 @@
       "lastCovered": "2026-05-09T17:04:53.627Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-09-erdogan-turkiye-iran-iraq-de-escalation-barzani"
@@ -460,7 +688,7 @@
       "lastCovered": "2026-05-09T17:04:53.627Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-09-nigeria-ndc-zones-2027-ticket-peter-obi-south"
@@ -481,7 +709,7 @@
       "lastCovered": "2026-05-09T17:04:53.627Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-09-doj-denaturalization-12-citizenship-stripping-push"
@@ -503,7 +731,7 @@
       "lastCovered": "2026-05-09T17:04:53.627Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-09-uk-warship-hormuz-shipping-protection-iran-war"
@@ -527,7 +755,7 @@
       "lastCovered": "2026-05-09T17:04:53.627Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-09-pakistan-marka-i-haq-china-defence-procurement"
@@ -543,7 +771,7 @@
       "lastCovered": "2026-05-09T17:04:53.627Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-09-emerging-market-crypto-banking-substitution-binance"
@@ -559,7 +787,7 @@
       "lastCovered": "2026-05-09T17:04:53.627Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-09-pollinator-radar-species-identification-conservation"
@@ -575,7 +803,7 @@
       "lastCovered": "2026-05-09T17:04:53.627Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-08-extreme-heat-summer-elections-democracy-redesign"
@@ -591,7 +819,7 @@
       "lastCovered": "2026-05-09T17:04:53.627Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-09-ndrangheta-marriage-network-analysis-mafia"
@@ -607,7 +835,7 @@
       "lastCovered": "2026-05-09T17:04:53.627Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-09-ai-agent-crypto-wallets-delegated-spending-architecture"
@@ -623,7 +851,7 @@
       "lastCovered": "2026-05-09T08:09:11.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-09-bengal-first-bjp-chief-minister-adhikari-sworn-in"
@@ -648,7 +876,7 @@
       "lastCovered": "2026-05-09T08:09:11.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-08-brazil-influencer-money-laundering-mechanism"
@@ -664,7 +892,7 @@
       "lastCovered": "2026-05-09T08:09:11.340Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-08-australia-us-rare-earth-deal-malaysia-backlash"
@@ -680,7 +908,7 @@
       "lastCovered": "2026-05-09T08:09:11.340Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-08-epstein-treasury-crypto-iran-sanctions"
@@ -696,7 +924,7 @@
       "lastCovered": "2026-05-09T08:09:11.340Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-09-china-russia-trade-19-percent-yuan-settlement"
@@ -718,7 +946,7 @@
       "lastCovered": "2026-05-09T08:09:11.340Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-08-kenya-data-center-boom-enclave-economy"
@@ -734,7 +962,7 @@
       "lastCovered": "2026-05-09T08:09:11.340Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-09-nigeria-sickle-cell-screening-genotype-gap"
@@ -756,7 +984,7 @@
       "lastCovered": "2026-05-09T08:09:11.340Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-08-imo-green-shipping-deal-on-course"
@@ -772,7 +1000,7 @@
       "lastCovered": "2026-05-09T08:09:11.340Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-09-pakpattan-canal-breach-villages-flooded"
@@ -794,7 +1022,7 @@
       "lastCovered": "2026-05-09T08:09:11.340Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-09-aave-dprk-eth-judgment-defi-precedent"
@@ -816,7 +1044,7 @@
       "lastCovered": "2026-05-09T08:09:11.340Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-08-china-cyber-ops-governments-dissidents-unified"
@@ -832,7 +1060,7 @@
       "lastCovered": "2026-05-08T22:08:50.930Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-08-virginia-court-strikes-democrat-redistricting"
@@ -857,7 +1085,7 @@
       "lastCovered": "2026-05-08T22:08:50.930Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-08-sudan-ethiopia-rsf-drones-darfur-front"
@@ -873,7 +1101,7 @@
       "lastCovered": "2026-05-08T22:08:50.930Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-08-pentagon-jet-fuel-leak-joint-base-andrews"
@@ -889,7 +1117,7 @@
       "lastCovered": "2026-05-08T22:08:50.930Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-08-turkey-icbm-strategic-autonomy"
@@ -905,7 +1133,7 @@
       "lastCovered": "2026-05-08T22:08:50.930Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-08-agri-stats-meat-antitrust-settlement"
@@ -927,7 +1155,7 @@
       "lastCovered": "2026-05-08T22:08:50.930Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-08-sec-onchain-ai-rulemaking-atkins"
@@ -949,7 +1177,7 @@
       "lastCovered": "2026-05-08T22:08:50.930Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-08-poland-enters-g20-economy"
@@ -965,7 +1193,7 @@
       "lastCovered": "2026-05-08T22:08:50.930Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-08-hantavirus-cruise-ship-mv-hondius"
@@ -987,7 +1215,7 @@
       "lastCovered": "2026-05-08T22:08:50.930Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-08-apophis-ramses-esa-jaxa-mission"
@@ -1003,7 +1231,7 @@
       "lastCovered": "2026-05-08T22:08:50.930Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-08-cloudflare-twenty-percent-layoffs"
@@ -1019,7 +1247,7 @@
       "lastCovered": "2026-05-08T22:08:50.930Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-08-gm-california-driver-data-ccpa-fine"
@@ -1035,7 +1263,7 @@
       "lastCovered": "2026-05-08T22:08:50.930Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-08-google-ai-overviews-more-links"
@@ -1047,221 +1275,6 @@
         "http://en.wikipedia.org/wiki/Google",
         "http://en.wikipedia.org/wiki/Chatbot"
       ]
-    },
-    {
-      "id": "uk-five-party-politics-reform-labour-rout",
-      "label": "Welcome to the era of five-party politics",
-      "firstSeen": "2026-05-08T17:07:21.022Z",
-      "lastCovered": "2026-05-08T17:07:21.022Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-uk-five-party-politics-reform-labour-rout"
-      ],
-      "eventUri": "eng-11637336",
-      "summary": "UK local-election results break the two-party post-war pattern: Reform takes hundreds of seats in Labour and Tory heartlands, Greens surge, Starmer vows to fight on. Lead with the structural shift — five-party politics, not the personality drama. The reader cares about why the British two-party machine cracked: cost-of-living, Iran-war energy shock spillover, and a left/right squeeze on Labour. Multi-source: Independent + Guardian/FT (UK), Al Jazeera (regional Muslim-world frame on Reform's anti-immigration platform).",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Labour_Party_(UK)",
-        "http://en.wikipedia.org/wiki/Keir_Starmer",
-        "http://en.wikipedia.org/wiki/Reform_UK",
-        "http://en.wikipedia.org/wiki/Conservative_Party_(UK)",
-        "http://en.wikipedia.org/wiki/Nigel_Farage",
-        "http://en.wikipedia.org/wiki/United_Kingdom"
-      ]
-    },
-    {
-      "id": "us-iran-interim-deal-response-hormuz-day-70",
-      "label": "US says it expects Iran's response on proposed deal 'today at some point'",
-      "firstSeen": "2026-05-08T17:07:21.022Z",
-      "lastCovered": "2026-05-08T17:07:21.022Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-us-iran-interim-deal-response-hormuz-day-70"
-      ],
-      "eventUri": "eng-11636330",
-      "summary": "Day-70 of the US–Iran war: Rubio says Washington awaits Tehran's reply on an interim deal even as F/A-18s bomb Iranian tankers in the Strait of Hormuz overnight. Lead with the parallel tracks — diplomacy and escalating attacks on shipping running simultaneously — and what an 'interim' deal would actually concede. Continues the Hormuz arc; this is the diplomatic counterpart to recent strike coverage. Carry Iranian regional source (Mehr).",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/Ceasefire",
-        "http://en.wikipedia.org/wiki/Tehran"
-      ]
-    },
-    {
-      "id": "pakistan-senate-violence-women-five-percent-conviction",
-      "label": "Senators alarmed by 'surge' in violence against women; 5pc conviction rate termed 'systemic failure'",
-      "firstSeen": "2026-05-08T17:07:21.022Z",
-      "lastCovered": "2026-05-08T17:07:21.022Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-pakistan-senate-violence-women-five-percent-conviction"
-      ],
-      "eventUri": null,
-      "summary": "Pakistan's Senate confronts a 5% conviction rate for crimes against women — the presiding officer calls it systemic failure. Lead with the number, then the mechanism: under-reporting, evidentiary law gaps, hostile policing. The reader is an educated Muslim who recognizes that protecting women is a Qur'anic duty; the story names the institutional gap between law on paper and law enforced. Dawn (PK) is the regional voice.",
-      "conceptUris": []
-    },
-    {
-      "id": "asean-summit-iran-war-fallout-southeast-asia",
-      "label": "As Summit Gets Underway, ASEAN Calls For Joint Response to Iran War Fallout",
-      "firstSeen": "2026-05-08T17:07:21.022Z",
-      "lastCovered": "2026-05-08T17:07:21.022Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-asean-summit-iran-war-fallout-southeast-asia"
-      ],
-      "eventUri": null,
-      "summary": "700 million Southeast Asians sit downstream of a Hormuz closure: ASEAN summit opens with calls for a joint regional response to fuel, food, and shipping shocks. Lead with the dependency — Indonesia, Malaysia, Vietnam are price-takers in a war they did not start — and the diplomatic ask. Counterweight to Western-framed Iran-war coverage; centers the Global South as actor, not bystander. Feed offered no ASEAN regional outlet on this story; flag for feed-side audit.",
-      "conceptUris": []
-    },
-    {
-      "id": "sony-ps5-memory-price-ai-supply-crunch",
-      "label": "Sony targets double-digit profit growth despite slowdown in PlayStation 5 sales amid memory price crunch",
-      "firstSeen": "2026-05-08T17:07:21.022Z",
-      "lastCovered": "2026-05-08T17:07:21.022Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-sony-ps5-memory-price-ai-supply-crunch"
-      ],
-      "eventUri": "eng-11636435",
-      "summary": "Sony pegs a ¥30bn ($191m) profit hit on memory-chip price hikes — the AI buildout is now bidding DRAM/NAND away from consumer electronics, pushing Nintendo and Sony into supply-chain triage. Lead with the mechanism: hyperscaler memory demand is creating real shortages for everyone else; gaming is the visible casualty. Multi-source covers Japan (Mainichi), India (ET), Singapore (CNA) — the spillover is global.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Sony",
-        "http://en.wikipedia.org/wiki/Nintendo",
-        "http://en.wikipedia.org/wiki/Japan",
-        "http://en.wikipedia.org/wiki/Random-access_memory"
-      ]
-    },
-    {
-      "id": "ecb-lagarde-digital-euro-stablecoin-dollarisation",
-      "label": "ECB's Lagarde's digital euro warning: Why Europe shouldn't just copy the U.S. stablecoin model",
-      "firstSeen": "2026-05-08T17:07:21.022Z",
-      "lastCovered": "2026-05-08T17:07:21.022Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-ecb-lagarde-digital-euro-stablecoin-dollarisation"
-      ],
-      "eventUri": "eng-11636770",
-      "summary": "Lagarde calls private US-issued stablecoins (Tether, Circle) a 'digital dollarisation' risk for Europe; ECB targets a public digital euro by 2029 against a parallel rival from European banks. Lead with the sovereignty frame — who controls the rails of European payments and what 'monetary autonomy' means when settlement runs through Tether. The reader cares about the structural shift from bank money to programmable money and who gets the seigniorage.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Christine_Lagarde",
-        "http://en.wikipedia.org/wiki/European_Central_Bank",
-        "http://en.wikipedia.org/wiki/Stablecoin",
-        "http://en.wikipedia.org/wiki/Euro"
-      ]
-    },
-    {
-      "id": "sbi-q4-profit-india-npa-decline",
-      "label": "SBI's Q4 Profit Jumps 6% to Rs 19,684 Crore as Bad Loans Decline",
-      "firstSeen": "2026-05-08T17:07:21.022Z",
-      "lastCovered": "2026-05-08T17:07:21.022Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-sbi-q4-profit-india-npa-decline"
-      ],
-      "eventUri": "eng-11637723",
-      "summary": "India's largest lender posts ₹19,684 crore Q4 profit with NPAs declining — a counterweight headline to the Iran-war shock narrative dominating Indian markets. Lead with what asset-quality improvement at SBI signals about retail/MSME credit health, then the wider context: India's banks are absorbing the rupee/oil shock without distress-signal numbers. Reclassify category from 'politics' (feed mistag) to 'economy'.",
-      "conceptUris": []
-    },
-    {
-      "id": "gentoo-penguin-four-species-conservation",
-      "label": "Scientists split gentoo penguins into four species, one totally new to science",
-      "firstSeen": "2026-05-08T17:07:21.022Z",
-      "lastCovered": "2026-05-08T17:07:21.022Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-gentoo-penguin-four-species-conservation"
-      ],
-      "eventUri": null,
-      "summary": "Genetic and morphological work splits the gentoo penguin into four species, including one new to science. Lead with the implication for conservation: each new species inherits its own range, population count, and IUCN risk class — what was 'one stable population of 774,000' is now four separate, smaller, more vulnerable populations. The reader gets the taxonomy and the policy consequence in one beat.",
-      "conceptUris": []
-    },
-    {
-      "id": "volcanic-eruption-forecasting-physics-gap",
-      "label": "Will We Ever Be Able To Forecast Volcanic Eruptions Like Weather?",
-      "firstSeen": "2026-05-08T17:07:21.022Z",
-      "lastCovered": "2026-05-08T17:07:21.022Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-volcanic-eruption-forecasting-physics-gap"
-      ],
-      "eventUri": null,
-      "summary": "Volcanology is decades behind meteorology because magma is opaque to the instruments we have — InSAR, seismometers, gas sensors give signals only hours-to-days ahead, not the week-out forecasts weather has. Lead with the physics gap (we can't see subsurface fluid flow), then the consequence: countries with active volcanoes (Indonesia, Philippines, DRC, Iceland) are still effectively running 1980s-era civil defence. Tie back to recent Halmahera/Mt Dukono eruption coverage.",
-      "conceptUris": []
-    },
-    {
-      "id": "data-center-water-discrimination-lawsuit-michigan",
-      "label": "University Claims Withholding Water From Nuclear Weapons Data Center Is 'Unlawfully Discriminatory' to Data Centers",
-      "firstSeen": "2026-05-08T17:07:21.022Z",
-      "lastCovered": "2026-05-08T17:07:21.022Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-data-center-water-discrimination-lawsuit-michigan"
-      ],
-      "eventUri": null,
-      "summary": "A university backing a nuclear-weapons-adjacent data center claims a small Michigan town is 'unlawfully discriminating' by refusing to pump water to it. Lead with the inversion — water is the constraint, and the data-center coalition is now arguing in court that local water rationing during shortages is a civil-rights-style discrimination claim. The systemic angle: as compute scales, hyperscalers and their academic partners are deploying legal theories that frame community refusal as illegal. Sets a precedent worth tracking.",
-      "conceptUris": []
-    },
-    {
-      "id": "taiwan-drone-supply-chain-non-china-math",
-      "label": "Some Taiwanese drone math ahead of the Xi-Trump visit",
-      "firstSeen": "2026-05-08T17:07:21.022Z",
-      "lastCovered": "2026-05-08T17:07:21.022Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-taiwan-drone-supply-chain-non-china-math"
-      ],
-      "eventUri": null,
-      "summary": "Taiwan's Thunder Tiger and peers are scaling 'non-China' drone supply for the US military — but the actual unit volumes show how far Taiwan is from replacing Shenzhen at price/scale. Lead with the math (units/year, BOM cost, how many factories), then the geopolitical implication: the 'decoupled drone supply chain' Washington wants requires 5-10x what Taipei can build today. The reader sees the gap between strategic rhetoric and industrial reality.",
-      "conceptUris": []
-    },
-    {
-      "id": "ai-slop-online-communities-moderator-burnout",
-      "label": "AI slop is killing online communities",
-      "firstSeen": "2026-05-08T17:07:21.022Z",
-      "lastCovered": "2026-05-08T17:07:21.022Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-08-ai-slop-online-communities-moderator-burnout"
-      ],
-      "eventUri": null,
-      "summary": "Long-running technical communities (open-source forums, niche Discords, mailing lists) are being overrun by low-effort LLM-generated 'help' that crowds out human signal. Lead with the mechanism: AI replies arrive instantly, look plausible, and exhaust moderator capacity to vet — the result is volunteer burnout and community shutdown. The reader is a developer who has watched specific communities fold; this names the load-bearing dynamic.",
-      "conceptUris": []
     }
   ]
 }
