@@ -55,7 +55,7 @@ import { useContextBrief } from '../hooks/useContextBrief';
 import { useGdacsAlerts } from '../hooks/useGdacsAlerts';
 import { useHeatmap } from '../hooks/useHeatmap';
 import { usePendingNotification } from '../hooks/usePendingNotification';
-import { useTheme } from '../hooks/useTheme';
+import { usePreferences, useTheme } from '../hooks/useTheme';
 import { useTrendsSnapshot } from '../hooks/useTrendsSnapshot';
 import { useZoomCycle } from '../hooks/useZoomCycle';
 import { formatExactTime } from '../lib/article-utils';
@@ -107,7 +107,19 @@ export default function HomeScreen() {
   const { byId: indicatorsById } = useTrendsSnapshot();
   const network = useNetworkState();
   const insets = useSafeAreaInsets();
-  const briefingPlayer = useBriefingPlayer(briefing?.date, briefing?.duration);
+  const { preferences } = usePreferences();
+  // Pick the per-variant duration when the feed surfaces it; fall back to
+  // the legacy top-level duration so older feed payloads still hydrate the
+  // scrub bar correctly. The pipeline only writes AR/BI when the AR Claude
+  // pass succeeds — if the user picked Arabic but only EN exists for this
+  // cycle, the player URL will 404; gating mirrors `available` from the feed.
+  const briefingDuration =
+    briefing?.variants?.[preferences.briefingLanguage]?.duration ?? briefing?.duration;
+  const briefingPlayer = useBriefingPlayer(
+    briefing?.date,
+    briefingDuration,
+    preferences.briefingLanguage,
+  );
 
   // Active article tracking (for bottom action bar). Kept in a ref — the
   // selected article only feeds callbacks (share, context), never JSX, so

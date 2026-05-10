@@ -22,7 +22,11 @@ const emptyGrouped: GroupedArticles = {
 interface BriefingInfo {
   date: string;
   available: boolean;
+  /** EN duration. Older feed payloads only carry this. */
   duration?: number;
+  /** Per-language briefing duration. Present when the backend wrote AR/BI
+   *  variants for the cycle (the AR translation pass succeeded). */
+  variants?: Partial<Record<'en' | 'bi' | 'ar', { duration: number }>>;
 }
 
 interface ArticlesState {

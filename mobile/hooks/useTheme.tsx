@@ -6,6 +6,7 @@ import { IS_ANDROID } from '../constants/platform';
 import {
   type AppearanceMode,
   BG_RGB,
+  type BriefingLanguage,
   type ColorPalette,
   DARK_COLORS,
   FONT_SIZE_SCALE,
@@ -56,6 +57,7 @@ export interface PreferencesApi {
   setHaptics: (v: boolean) => void;
   /** Resolves with `true` if the preference was applied, `false` if the OS permission request was denied. */
   setNotifications: (v: boolean) => Promise<boolean>;
+  setBriefingLanguage: (v: BriefingLanguage) => void;
 }
 
 const ThemeContext = createContext<Theme | null>(null);
@@ -136,6 +138,10 @@ export function ThemeProvider({
     },
     [prefs, persist],
   );
+  const setBriefingLanguage = useCallback(
+    (v: BriefingLanguage) => persist({ ...prefs, briefingLanguage: v }),
+    [prefs, persist],
+  );
 
   const resolvedAppearance: 'dark' | 'light' =
     prefs.appearance === 'system'
@@ -176,8 +182,17 @@ export function ThemeProvider({
       setAppearance,
       setHaptics,
       setNotifications,
+      setBriefingLanguage,
     }),
-    [prefs, setFontSize, setFontFamily, setAppearance, setHaptics, setNotifications],
+    [
+      prefs,
+      setFontSize,
+      setFontFamily,
+      setAppearance,
+      setHaptics,
+      setNotifications,
+      setBriefingLanguage,
+    ],
   );
 
   // Sync native system UI with theme. Android edge-to-edge (SDK 54+) makes the

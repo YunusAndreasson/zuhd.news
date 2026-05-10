@@ -640,13 +640,27 @@ for (const [cat, catArticles] of Object.entries(apiCategories)) {
 // mp3 still exists on disk — generate-briefing.js cleans up files older
 // than 7 days, so the file-existence check is itself the freshness window.
 // Older approach (36h time gate) hid playable mp3s for up to 5 days.
+//
+// New shape: `variants` carries per-language duration ({ en, ar, bi }). The
+// top-level `duration` field is preserved for older mobile clients that
+// don't yet read `variants`. Existence check uses the EN variant — pipeline
+// always produces it; AR/BI may be skipped if Claude AR pass failed.
 const apiBriefingMetaPath = join(ROOT, 'content', 'audio', 'briefing-meta.json')
 let briefingInfo = null
 if (existsSync(apiBriefingMetaPath)) {
   const bm = JSON.parse(readFileSync(apiBriefingMetaPath, 'utf-8'))
-  const mp3Path = join(ROOT, 'content', 'audio', `briefing-${bm.date}.mp3`)
-  if (existsSync(mp3Path)) {
-    briefingInfo = { date: bm.date, available: true, duration: bm.duration ?? 0 }
+  const enMp3 = join(ROOT, 'content', 'audio', `briefing-${bm.date}-en.mp3`)
+  const legacyMp3 = join(ROOT, 'content', 'audio', `briefing-${bm.date}.mp3`)
+  if (existsSync(enMp3) || existsSync(legacyMp3)) {
+    const variants = bm.variants && typeof bm.variants === 'object'
+      ? bm.variants
+      : { en: { duration: bm.duration ?? 0 } }
+    briefingInfo = {
+      date: bm.date,
+      available: true,
+      duration: variants.en?.duration ?? bm.duration ?? 0,
+      variants,
+    }
   }
 }
 

@@ -454,7 +454,8 @@ export const isPreferences = (v: unknown): v is Preferences => {
     (v.fontFamily === 'source' || v.fontFamily === 'system') &&
     (v.appearance === 'dark' || v.appearance === 'light' || v.appearance === 'system') &&
     typeof v.haptics === 'boolean' &&
-    typeof v.notifications === 'boolean'
+    typeof v.notifications === 'boolean' &&
+    (v.briefingLanguage === 'en' || v.briefingLanguage === 'bi' || v.briefingLanguage === 'ar')
   );
 };
 
