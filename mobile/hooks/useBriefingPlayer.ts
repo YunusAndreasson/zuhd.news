@@ -62,10 +62,43 @@ interface BriefingPlayer {
 // Wrap to return null instead of crashing.
 function safeCreatePlayer(url: string): AudioPlayer | null {
   try {
-    return createAudioPlayer(url, { updateInterval: 500 });
+    // keepAudioSessionActive: pause() in expo-audio otherwise calls
+    // deactivateSession() on iOS (AudioModule.swift line 244-249). After a
+    // few play/pause cycles, repeated activate→deactivate→activate churn
+    // on the shared AVAudioSession starts failing silently and the next
+    // play() no-ops with no recovery. Keeping the session alive across
+    // pause/resume is the documented escape hatch. The cleanup effect on
+    // unmount still calls setIsAudioActiveAsync(false) explicitly.
+    return createAudioPlayer(url, { updateInterval: 500, keepAudioSessionActive: true });
   } catch {
     return null;
   }
+}
+
+// Resolve once AVPlayer's currentItem has loaded enough metadata to know its
+// duration, or after `timeoutMs` regardless. Lock-screen activation must wait
+// for this — `setActiveForLockScreen` writes the first MPNowPlayingInfo entry
+// synchronously, and if `player.duration` is still 0 at that moment iOS pins
+// the empty-scrubber state for the lifetime of the card. Subsequent
+// `updateLockScreenMetadata` calls do not reliably reset it.
+function waitForLoaded(player: AudioPlayer, timeoutMs = 5000): Promise<void> {
+  if (player.isLoaded && player.duration > 0) return Promise.resolve();
+  return new Promise<void>((resolve) => {
+    let done = false;
+    const finish = () => {
+      if (done) return;
+      done = true;
+      clearTimeout(timer);
+      try {
+        sub.remove();
+      } catch {}
+      resolve();
+    };
+    const timer = setTimeout(finish, timeoutMs);
+    const sub = player.addListener(PLAYBACK_STATUS_UPDATE, (status: AudioStatus) => {
+      if (status.isLoaded && status.duration > 0) finish();
+    });
+  });
 }
 
 export function useBriefingPlayer(date: string | undefined, feedDuration?: number): BriefingPlayer {
@@ -401,15 +434,30 @@ export function useBriefingPlayer(date: string | undefined, feedDuration?: numbe
       playerRef.current = player;
       subRef.current = eventSub;
 
+      // Kick off playback immediately so the first tap is responsive. play()
+      // safely no-ops if AVPlayer is still buffering — the cold-start retry
+      // in the status listener re-issues it once isLoaded flips true.
       wantsToPlayRef.current = true;
       player.play();
       setPlaying(true);
       armGiveUp();
 
-      // Activate lock-screen controls right after play so iOS registers
-      // NowPlayingInfo while the audio session is hot. The status listener
-      // will refresh this entry once duration is known.
+      // Defer lock-screen activation until AVPlayer reports a real duration.
+      // The first MPNowPlayingInfo write must carry it — if duration is 0 at
+      // setActiveForLockScreen time, iOS pins the empty/wrong-duration
+      // scrubber state for the lifetime of the card and later
+      // updateLockScreenMetadata calls don't reliably reset it. play() above
+      // is safe to call before activation: AudioPlayer.play() only writes
+      // NowPlayingInfo when already active, so no duration=0 leaks through.
+      // 5s timeout falls back to activating with whatever duration AVPlayer
+      // has on a slow network, rather than withholding controls indefinitely.
+      await waitForLoaded(player, 5000);
+
+      // Bail if the user closed the player or swapped dates during the wait.
+      if (closedRef.current || playerRef.current !== player) return;
+
       activateLockScreen(player);
+      lockScreenDurationKnown.current = player.duration > 0;
     } catch {
       // Clean up partially-created player on failure
       teardownPlayer();

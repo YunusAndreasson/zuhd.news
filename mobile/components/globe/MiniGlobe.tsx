@@ -6,7 +6,9 @@ import {
   BlurMask,
   Canvas,
   Circle,
+  ColorMatrix,
   CubicSampling,
+  DashPathEffect,
   FontEdging,
   FontHinting,
   Group,
@@ -548,7 +550,13 @@ const Moon = memo(function Moon({
       {/* Moon texture — full disk. CubicSampling: <Image>'s default sampler
           is Nearest+Nearest, which pixelates the moon photo at our small
           render radius. Cubic gives a smooth downscale at negligible cost
-          for a single static image. */}
+          for a single static image.
+          ColorMatrix: pure-luminance desaturation (Rec. 709 weights) locks
+          the moon into the monochrome palette so the source PNG's warm cast
+          can never drift against the cool dark-mode atmosphere or fight the
+          accent-tinted halo. Single shader uniform — no per-pixel JS cost,
+          and it's a static image so the filter is baked once at first
+          composite. */}
       <Group clip={clip}>
         <BlurMask blur={r * 0.06} style="normal" />
         <Image
@@ -559,7 +567,17 @@ const Moon = memo(function Moon({
           height={r * 2}
           opacity={0.45}
           sampling={CubicSampling}
-        />
+        >
+          <ColorMatrix
+            // prettier-ignore
+            matrix={[
+              0.2126, 0.7152, 0.0722, 0, 0,
+              0.2126, 0.7152, 0.0722, 0, 0,
+              0.2126, 0.7152, 0.0722, 0, 0,
+              0,      0,      0,      1, 0,
+            ]}
+          />
+        </Image>
       </Group>
       {/* Gradient shadow — gradual terminator falloff */}
       <Group clip={clip}>
@@ -2229,9 +2247,12 @@ export const MiniGlobe = memo(function MiniGlobe({
     showPulse(x: number, y: number) {
       pulseX.value = x;
       pulseY.value = y;
-      pulseR.value = 3;
-      pulseOpacity.value = 0.35;
-      pulseR.value = withTiming(32, { duration: 400, easing: PULSE_EASING });
+      pulseR.value = 5;
+      // Stroked-ring pulse (vs. the prior blurred fill) shows much less ink
+      // per pixel — peak opacity bumped from 0.35 to 0.6 so the ring reads
+      // as a deliberate selection cartouche rather than a faint hairline.
+      pulseOpacity.value = 0.6;
+      pulseR.value = withTiming(34, { duration: 400, easing: PULSE_EASING });
       pulseOpacity.value = withTiming(0, { duration: 400, easing: PULSE_EASING });
     },
     hitTest(x: number, y: number): TapResult | null {
@@ -2955,7 +2976,13 @@ export const MiniGlobe = memo(function MiniGlobe({
         </>
       )}
 
-      {/* Source arcs — information flow lines from source HQs to story location */}
+      {/* Source arcs — information flow lines from source HQs to story
+          location. Dashed (long-short cadence) so the arcs read as movement /
+          flow rather than as solid borders — same color family as
+          bordersPath, but a different visual rhythm so the reader's eye
+          doesn't conflate "where info came from" with "country boundary".
+          Distinct cadence from the qibla arc (3-3) which uses an even
+          contemplative rhythm. Single GPU pass per frame. */}
       {state.sourceArcs && (
         <Path
           path={state.sourceArcs}
@@ -2963,18 +2990,37 @@ export const MiniGlobe = memo(function MiniGlobe({
           style="stroke"
           strokeWidth={0.5}
           opacity={(light ? 0.25 : 0.15) * state.arcOpacity}
-        />
+        >
+          <DashPathEffect intervals={[6, 3]} />
+        </Path>
       )}
 
-      {/* Qibla arc — great circle toward Makkah */}
+      {/* Qibla arc — great circle toward Makkah. Dashed so it reads as a
+          direction/intention rather than as a fact line — same monochrome
+          tone, different cadence from sourceArcs and bordersPath, which are
+          both solid strokes in the same color family. Path effects are GPU-
+          applied at draw time, no JS cost.
+          Visibility tuning: dashing halves the visible ink, so the prior
+          0.2/0.12 opacities (set when the arc was solid) made the dashed
+          version vanish. Compensated three ways:
+            • opacity ~1.7× (light 0.34, dark 0.2) — restores the perceived
+              ink density of the original solid arc
+            • intervals [4, 2] not [3, 3] — denser cadence, ~67% on instead
+              of 50%, still unambiguously dashed
+            • strokeWidth 1.2 + strokeCap round — round caps add ~1px of ink
+              per dash end so each segment reads as a deliberate token
+              instead of a thin sliver. */}
       {state.qiblaPath && (
         <Path
           path={state.qiblaPath}
           color={colors.dome}
           style="stroke"
-          strokeWidth={1.0}
-          opacity={(light ? 0.2 : 0.12) * state.arcOpacity}
-        />
+          strokeWidth={1.2}
+          strokeCap="round"
+          opacity={(light ? 0.34 : 0.2) * state.arcOpacity}
+        >
+          <DashPathEffect intervals={[4, 2]} />
+        </Path>
       )}
 
       {/* Makkah — golden qibla reference point, baked Atlas. */}
@@ -3003,10 +3049,22 @@ export const MiniGlobe = memo(function MiniGlobe({
         <Atlas image={dotTexture} sprites={dotAtlas.sprites} transforms={dotAtlas.transforms} />
       )}
 
-      {/* Tap pulse — expanding ring on globe tap */}
-      <Circle cx={pulseX} cy={pulseY} r={pulseR} color={colors.textEmphasis} opacity={pulseOpacity}>
-        <BlurMask blur={6} style="solid" />
-      </Circle>
+      {/* Tap pulse — stroked ring (selection cartouche) rather than a blurred
+          fill. The globe's vocabulary is *rings* (chokepoint arcs, earthquake
+          glyphs, hotspot halos, GDACS Red alarm ring); a soft-blur ripple
+          read as generic mobile-UI chrome borrowed from any other app. The
+          stroke now belongs to the same drawing family as everything else
+          on the canvas, so the gesture confirmation feels diegetic. No
+          BlurMask = one less filter pass per tap. */}
+      <Circle
+        cx={pulseX}
+        cy={pulseY}
+        r={pulseR}
+        color={colors.textEmphasis}
+        opacity={pulseOpacity}
+        style="stroke"
+        strokeWidth={1.4}
+      />
 
       {/* Water-feature labels — named lakes (major only), major rivers,
           seas/bays/gulfs. Italic per atlas convention (hydrography). Drawn

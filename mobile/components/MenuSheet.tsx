@@ -10,9 +10,11 @@ import { memo, useCallback, useEffect, useState } from 'react';
 import {
   AccessibilityInfo,
   BackHandler,
+  Linking,
   Text as RNText,
   StyleSheet,
   Switch,
+  type TextStyle,
   View,
 } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
@@ -22,6 +24,8 @@ import {
   ANIMATION,
   type AppearanceMode,
   baseFontSize,
+  FONT_SOURCE,
+  FONT_SYSTEM,
   type FontFamily,
   type FontSize,
   type Preferences,
@@ -99,9 +103,9 @@ const FONT_FAMILY_OPTIONS: { value: FontFamily; label: string }[] = [
 ];
 
 const APPEARANCE_OPTIONS: { value: AppearanceMode; label: string }[] = [
-  { value: 'dark', label: 'dark' },
   { value: 'system', label: 'system' },
   { value: 'light', label: 'light' },
+  { value: 'dark', label: 'dark' },
 ];
 
 type SettingKey = 'size' | 'font' | 'appearance' | 'haptics' | 'notifications';
@@ -114,6 +118,8 @@ interface SettingEntry {
   options?: readonly { value: string; label: string }[];
   /** Per-option absolute font size for the detail-page label — used for size previews. */
   labelFontSize?: (v: string) => number;
+  /** Per-option style override merged onto the option pill — used for font-family previews. */
+  labelStyle?: (v: string) => TextStyle;
   toggle?: boolean;
   hint?: string;
 }
@@ -133,6 +139,8 @@ const SETTINGS: readonly SettingEntry[] = [
     options: FONT_FAMILY_OPTIONS,
     get: (p) => p.fontFamily,
     set: (api, v) => api.setFontFamily(v as FontFamily),
+    // Render each option pill in its own family so the picker is WYSIWYG.
+    labelStyle: (v) => (v === 'source' ? FONT_SOURCE.semiBold : FONT_SYSTEM.semiBold),
   },
   {
     key: 'appearance',
@@ -230,9 +238,16 @@ function ToggleRow({
       accessible
       accessibilityRole="switch"
     >
-      <Text variant="label" tone="default">
-        {label}
-      </Text>
+      <View style={styles.rowText}>
+        <Text variant="label" tone="default">
+          {label}
+        </Text>
+        {hint && (
+          <Text variant="caption" style={styles.hint}>
+            {hint}
+          </Text>
+        )}
+      </View>
       <Switch
         value={value}
         onValueChange={handleChange}
@@ -248,18 +263,23 @@ function ToggleRow({
 /** Inline radiogroup — label + horizontal options on one settings row. */
 function InlineOptionRow<T extends string>({
   label,
+  hint,
   options,
   selected,
   onSelect,
   labelFontSize,
+  labelStyle,
   first,
 }: {
   label: string;
+  hint?: string;
   options: readonly { value: T; label: string }[];
   selected: T;
   onSelect: (v: T) => void;
   /** Per-option absolute font size — used for size previews. */
   labelFontSize?: (v: T) => number;
+  /** Per-option style override merged onto the option pill — used for font-family previews. */
+  labelStyle?: (v: T) => TextStyle;
   first?: boolean;
 }) {
   const { colors, typography } = useTheme();
@@ -271,10 +291,16 @@ function InlineOptionRow<T extends string>({
       ]}
       accessibilityRole="radiogroup"
       accessibilityLabel={label}
+      accessibilityHint={hint}
     >
       <Text variant="label" tone="default">
         {label}
       </Text>
+      {hint && (
+        <Text variant="caption" style={styles.hint}>
+          {hint}
+        </Text>
+      )}
       <View style={styles.inlineOptions}>
         {options.map((opt) => {
           const active = opt.value === selected;
@@ -282,6 +308,7 @@ function InlineOptionRow<T extends string>({
           // font size (live preview), so they need dynamic scaling not in a
           // fixed variant. All other option pills use the default caption size.
           const pillScale = labelFontSize ? labelFontSize(opt.value) / typography.sizeSm : 1;
+          const pillStyle = labelStyle ? labelStyle(opt.value) : undefined;
           return (
             <Pressable
               key={opt.value}
@@ -299,6 +326,7 @@ function InlineOptionRow<T extends string>({
                 variant="captionEmphasis"
                 tone={active ? 'emphasis' : 'secondary'}
                 scale={pillScale}
+                style={pillStyle}
               >
                 {opt.label}
               </Text>
@@ -515,43 +543,57 @@ export const MenuSheet = memo(function MenuSheet({
     }
 
     if (current === 'settings') {
-      return SETTINGS.map((s, i) => {
-        const currentValue = s.get(preferences);
-        const entering = reduceMotion
-          ? undefined
-          : FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(i));
-        const row = s.toggle ? (
-          <ToggleRow
-            first={i === 0}
-            label={s.label}
-            value={currentValue === 'on'}
-            hint={s.hint}
-            onChange={(v) => {
-              if (s.key === 'notifications' && v) {
-                prefsApi.setNotifications(true).then((granted) => {
-                  if (!granted) onToast?.('Enable notifications in Settings');
-                });
-              } else {
-                s.set(prefsApi, v ? 'on' : 'off');
-              }
-            }}
-          />
-        ) : s.options ? (
-          <InlineOptionRow
-            first={i === 0}
-            label={s.label}
-            options={s.options}
-            selected={currentValue}
-            onSelect={(v) => s.set(prefsApi, v)}
-            labelFontSize={s.labelFontSize}
-          />
-        ) : null;
-        return (
-          <Animated.View key={s.key} entering={entering}>
-            {row}
-          </Animated.View>
-        );
-      });
+      return (
+        <>
+          {SETTINGS.map((s, i) => {
+            const currentValue = s.get(preferences);
+            const entering = reduceMotion
+              ? undefined
+              : FadeInDown.duration(ANIMATION.normal).delay(staggerDelay(i));
+            const row = s.toggle ? (
+              <ToggleRow
+                first={i === 0}
+                label={s.label}
+                value={currentValue === 'on'}
+                hint={s.hint}
+                onChange={(v) => {
+                  if (s.key === 'notifications' && v) {
+                    prefsApi.setNotifications(true).then((granted) => {
+                      if (!granted) {
+                        onToast?.('Enable notifications in Settings');
+                        Linking.openSettings().catch(() => {});
+                      }
+                    });
+                  } else {
+                    s.set(prefsApi, v ? 'on' : 'off');
+                  }
+                }}
+              />
+            ) : s.options ? (
+              <InlineOptionRow
+                first={i === 0}
+                label={s.label}
+                hint={s.hint}
+                options={s.options}
+                selected={currentValue}
+                onSelect={(v) => s.set(prefsApi, v)}
+                labelFontSize={s.labelFontSize}
+                labelStyle={s.labelStyle}
+              />
+            ) : null;
+            return (
+              <Animated.View key={s.key} entering={entering}>
+                {row}
+              </Animated.View>
+            );
+          })}
+          {APP_VERSION ? (
+            <Text variant="caption" style={styles.versionFooter}>
+              {APP_VERSION}
+            </Text>
+          ) : null}
+        </>
+      );
     }
 
     if (current === 'saved') {
@@ -587,6 +629,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: SPACING.smPlus,
+    gap: SPACING.md,
+  },
+  rowText: {
+    flex: 1,
+  },
+  hint: {
+    marginTop: SPACING.xxs,
   },
   rowRight: {
     flexDirection: 'row',
@@ -616,5 +665,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: SPACING.smPlus,
+  },
+  versionFooter: {
+    marginTop: SPACING.lg,
+    textAlign: 'center',
   },
 });

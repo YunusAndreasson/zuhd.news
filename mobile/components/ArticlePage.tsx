@@ -285,7 +285,7 @@ export const ArticlePage = memo(function ArticlePage({
               accessibilityLabel="Caught up — earlier articles below"
             >
               <View style={[styles.earlierLine, { backgroundColor: colors.rule }]} />
-              <Text variant="labelXs" tone="secondary">
+              <Text variant="labelSm" tone="secondary">
                 {'caught up'}
               </Text>
               <View style={[styles.earlierLine, { backgroundColor: colors.rule }]} />
@@ -332,16 +332,24 @@ const styles = StyleSheet.create({
     // indicator — enough to feel deliberate, not enough to waste viewport.
     paddingBottom: SPACING.xxl,
   },
+  // The "caught up" divider is the only place the app surfaces its
+  // anti-doomscroll philosophy in pixels — the moment a reader hits the
+  // articles they've already seen. Visual weight reflects that:
+  //   • symmetric vertical breathing (was hugged to the title via a
+  //     negative marginTop) so the moment has its own room
+  //   • 1px rule (was hairlineWidth) so the line reads as a deliberate
+  //     section break rather than a hairline divider
+  //   • labelSm small caps (was labelXs) — one tier up so the milestone
+  //     label carries through at glance distance without shouting
   earlierDivider: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: SPACING.md,
-    marginBottom: SPACING.lg,
-    marginTop: -SPACING.sm,
+    marginVertical: SPACING.lg,
   },
   earlierLine: {
     flex: 1,
-    height: StyleSheet.hairlineWidth,
+    height: 1,
   },
   title: {
     marginBottom: SPACING.md,

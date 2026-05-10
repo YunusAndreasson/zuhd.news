@@ -74,12 +74,16 @@ export const DARK_COLORS = {
   textEmphasis: '#FAFAFA',
   dome: '#c9a84c', // Dome of the Rock gold — the only color in the app
   sheetBg: '#161619',
-  // 0.88 (was 0.7) keeps `labelSm` text WCAG AA across the brightest
-  // composites on the globe — over a `colors.dome` hotspot glow, pillBg(0.7)
-  // dropped to ~3.6:1 against `textSecondary`. Higher alpha trades a hint
-  // of globe peek-through for invariant legibility on `BottomActionBar` /
-  // `BriefingBar`; static callsites (sheets, blocks) shift imperceptibly.
-  pillBg: 'rgba(50,50,50,0.88)',
+  // 0.88 alpha keeps `labelSm` text WCAG AA across the brightest composites
+  // on the globe (over a `colors.dome` hotspot glow). The base luminance
+  // also matters: the previous rgb(50,50,50) at α=0.88 composited to ~46
+  // over bg=15 — a ~3× relative lift that read as iOS-chrome elevation
+  // and broke parity with the light-mode pill (which sits barely below bg).
+  // Dropping the base to 30 gives a calmer ~2× lift, and counter-intuitively
+  // *raises* contrast vs `textSecondary` because the chip is darker. Don't
+  // drop alpha below 0.88 — over the dome hotspot the contrast still bottoms
+  // out at ~AA-large only.
+  pillBg: 'rgba(30,30,32,0.88)',
   atmosphere: '#334455',
   // Editorial-map water tone — pre-composed `atmosphere` at 0.28 alpha
   // over `bg`. Used by LocationsBlock as an explicit ocean fill so water
