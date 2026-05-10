@@ -145470,5 +145470,1862 @@
     "label": "Ceasefires & Their Failure Modes",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-09-f-a-18-super-hornet-drops-bombs-down-smokestacks-of-iranian": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil pass through daily, about 21% of global consumption.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the Persian Gulf chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 27.1833,
+                "lng": 56.2667,
+                "label": "Bandar Abbas"
+              },
+              {
+                "lat": 25.2048,
+                "lng": 55.2708,
+                "label": "Dubai"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DISABLE-DON'T-SINK DOCTRINE",
+        "body": "Bombing a tanker's smokestack destroys the engine room and propulsion without breaching the hull below the waterline. The ship floats, the oil stays contained, no environmental catastrophe — but it cannot move. It is the naval equivalent of slashing tires rather than torching the car.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technique inverts the usual maritime calculus: a *mission kill* (disabled but afloat) rather than a *platform kill* (sunk). It also avoids triggering **MARPOL** liability and keeps the seabed clear for later salvage."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. The US reflagged Kuwaiti tankers under American colors and escorted them through Hormuz in Operation Earnest Will. The lesson then: disruption is easier to threaten than to sustain. The current operation inverts the roles — now the US is the one disabling tankers.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Islamic Revolution, embassy seizure",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1984",
+                "label": "Tanker War begins"
+              },
+              {
+                "year": "1987",
+                "label": "Operation Earnest Will reflagging"
+              },
+              {
+                "year": "1988",
+                "label": "USS Vincennes downs IR655"
+              },
+              {
+                "year": "1988-04",
+                "label": "Operation Praying Mantis"
+              },
+              {
+                "year": "2019",
+                "label": "Limpet mines on tankers near Fujairah"
+              },
+              {
+                "year": "2020",
+                "label": "Soleimani killed"
+              },
+              {
+                "year": "2026",
+                "label": "Tanker disabling campaign"
+              }
+            ],
+            "label": "US-Iran in the Gulf"
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Lloyd's of London war-risk premiums — not the physical attacks themselves — are what close a shipping lane. Once underwriters classify a route as Joint War Committee high-risk, premiums can jump from 0.05% to 1%+ of hull value per voyage. A $100M VLCC suddenly costs $1M more per transit. Commercial vessels reroute or wait."
+      },
+      {
+        "heading": "WHY THE UAE GETS HIT",
+        "body": "The UAE hosts Jebel Ali — the largest US naval port outside America — and the Al-Dhafra airbase. From Tehran's perspective, striking the UAE is striking American basing without striking America directly. It also pressures Abu Dhabi, which has spent two decades building itself as the Gulf's safe-harbor financial hub, to lean on Washington for de-escalation.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Ayatollah Khamenei",
+                "role": "Iran Supreme Leader",
+                "years": "1989–",
+                "cc": "IR"
+              },
+              {
+                "name": "Mohammed bin Zayed",
+                "role": "UAE President",
+                "years": "2022–",
+                "cc": "AE"
+              },
+              {
+                "name": "Donald Trump",
+                "role": "US President",
+                "years": "2025–",
+                "cc": "US"
+              }
+            ],
+            "label": "the cast"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT CLOSED HORMUZ MEANS",
+        "body": "Saudi Arabia's East-West Pipeline (5 mbd capacity) and the UAE's Habshan-Fujairah pipeline together could reroute maybe a third of Gulf exports. The other two-thirds have no alternative route. Qatar's LNG — 20% of global supply — has no bypass at all.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country has NO pipeline alternative to bypass the Strait of Hormuz?",
+            "options": [
+              "Saudi Arabia",
+              "UAE",
+              "Qatar",
+              "Iraq"
+            ],
+            "correct": 2,
+            "explanation": "Qatar's entire LNG export capacity — about 20% of global supply — depends on transiting Hormuz. Saudi and UAE have partial bypass pipelines; Qatar has none."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-10T22:38:17.810Z",
+    "label": "Naval Blockade & the Hormuz Chokepoint",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-09-i-returned-to-aws-and-was-reminded-why-i-left": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EGRESS ASYMMETRY",
+        "body": "Ingress is free; egress is metered. AWS charges roughly 9¢ per GB to move data out, while ingress costs nothing. This asymmetry is not a technical necessity — bandwidth is bidirectional — it is a deliberate exit tax that compounds with the size of your data estate.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "AWS",
+                "value": "~9¢",
+                "tone": "unfavorable",
+                "weight": 9
+              },
+              {
+                "label": "Google Cloud",
+                "value": "~8¢",
+                "tone": "unfavorable",
+                "weight": 8
+              },
+              {
+                "label": "Azure",
+                "value": "~8¢",
+                "tone": "unfavorable",
+                "weight": 8
+              },
+              {
+                "label": "Cloudflare R2",
+                "value": "0¢",
+                "tone": "favorable",
+                "weight": 0.1
+              },
+              {
+                "label": "Backblaze B2",
+                "value": "~1¢",
+                "tone": "favorable",
+                "weight": 1
+              }
+            ],
+            "label": "Egress pricing, first GB tier (¢/GB)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IAM GETS WORSE OVER TIME",
+        "body": "AWS IAM is policy-based: every service, resource, and principal has its own permission surface. Adding a service does not just add a feature — it adds a new permissions namespace that must be reconciled with every existing one. Complexity is combinatorial, not additive.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "AWS exposes over **200 services**, each with its own resource ARNs, condition keys, and trust policies. A mature account easily accumulates thousands of *least-privilege* policies that no single engineer fully understands."
+          }
+        ]
+      },
+      {
+        "heading": "THE LOCK-IN LADDER",
+        "body": "Lock-in is not one decision. It is a ladder: compute (easy to move), storage (egress-taxed), managed databases (proprietary engines like DynamoDB, Aurora), and finally identity and serverless glue (IAM, Lambda, EventBridge). Each rung is harder to unclimb than the last.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "bill",
+                "label": "Monthly bill"
+              },
+              {
+                "id": "compute",
+                "label": "EC2 / Lambda"
+              },
+              {
+                "id": "storage",
+                "label": "S3 / EBS"
+              },
+              {
+                "id": "db",
+                "label": "RDS / Dynamo"
+              },
+              {
+                "id": "egress",
+                "label": "Data transfer"
+              },
+              {
+                "id": "other",
+                "label": "Other services"
+              },
+              {
+                "id": "portable",
+                "label": "Portable"
+              },
+              {
+                "id": "sticky",
+                "label": "Sticky"
+              }
+            ],
+            "links": [
+              {
+                "source": "bill",
+                "target": "compute",
+                "value": 40
+              },
+              {
+                "source": "bill",
+                "target": "storage",
+                "value": 20
+              },
+              {
+                "source": "bill",
+                "target": "db",
+                "value": 20
+              },
+              {
+                "source": "bill",
+                "target": "egress",
+                "value": 10
+              },
+              {
+                "source": "bill",
+                "target": "other",
+                "value": 10
+              },
+              {
+                "source": "compute",
+                "target": "portable",
+                "value": 35
+              },
+              {
+                "source": "compute",
+                "target": "sticky",
+                "value": 5
+              },
+              {
+                "source": "storage",
+                "target": "portable",
+                "value": 15
+              },
+              {
+                "source": "storage",
+                "target": "sticky",
+                "value": 5
+              },
+              {
+                "source": "db",
+                "target": "sticky",
+                "value": 18
+              },
+              {
+                "source": "db",
+                "target": "portable",
+                "value": 2
+              },
+              {
+                "source": "egress",
+                "target": "sticky",
+                "value": 10
+              },
+              {
+                "source": "other",
+                "target": "sticky",
+                "value": 8
+              },
+              {
+                "source": "other",
+                "target": "portable",
+                "value": 2
+              }
+            ],
+            "label": "Where a typical AWS bill goes"
+          }
+        ]
+      },
+      {
+        "heading": "THE UNDISCLOSED NUMBER",
+        "body": "Cloud providers publish per-GB and per-hour rates but never publish the cost of leaving. There is no standard disclosure of total egress volume, no estimate of re-architecture effort, no portability score. The customer discovers the exit price only by trying to exit.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what does AWS charge to transfer 1 TB of data out to the public internet (first tier)?",
+            "options": [
+              "About $9",
+              "About $90",
+              "About $900",
+              "Egress is free above 100 GB"
+            ],
+            "correct": 1,
+            "explanation": "At ~9¢/GB, 1 TB of egress costs roughly $90 — and large estates routinely move petabytes, putting the exit bill in six or seven figures."
+          }
+        ]
+      },
+      {
+        "heading": "THE HYPERSCALER CONCENTRATION",
+        "body": "AWS, Azure, and Google Cloud together hold roughly two-thirds of global cloud infrastructure spend. This concentration means the pricing conventions of three companies — including the egress fee structure — effectively govern the cost of moving data on the internet.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "AWS",
+                "value": 31,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Azure",
+                "value": 24,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Google Cloud",
+                "value": 11,
+                "tone": "neutral"
+              },
+              {
+                "label": "Alibaba",
+                "value": 4
+              },
+              {
+                "label": "Oracle",
+                "value": 3
+              },
+              {
+                "label": "IBM",
+                "value": 2
+              },
+              {
+                "label": "Other",
+                "value": 25,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Global cloud infrastructure market share, 2024"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-10T22:38:42.253Z",
+    "label": "Cloud Lock-In Economics",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-09-russia-to-host-high-level-csto-meeting-amid-alliance-tension": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE CSTO IS",
+        "body": "The Collective Security Treaty Organization is Russia's NATO analogue — a six-member mutual-defense bloc built from the ashes of the Soviet Union. Article 4 mirrors NATO's Article 5: an attack on one is an attack on all. In practice, it has never been invoked to defend a member from external attack.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Russia",
+                "role": "founding member, dominant power",
+                "years": "1992–",
+                "cc": "RU"
+              },
+              {
+                "name": "Belarus",
+                "role": "closest Moscow ally",
+                "years": "1992–",
+                "cc": "BY"
+              },
+              {
+                "name": "Kazakhstan",
+                "role": "largest Central Asian member",
+                "years": "1992–",
+                "cc": "KZ"
+              },
+              {
+                "name": "Kyrgyzstan",
+                "role": "hosts Russian airbase at Kant",
+                "years": "1992–",
+                "cc": "KG"
+              },
+              {
+                "name": "Tajikistan",
+                "role": "hosts 201st Russian base",
+                "years": "1992–",
+                "cc": "TJ"
+              },
+              {
+                "name": "Armenia",
+                "role": "frozen participation 2024",
+                "years": "1992–",
+                "cc": "AM"
+              }
+            ],
+            "label": "the six members"
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO BETRAYALS",
+        "body": "In 2020, Azerbaijan retook most of Nagorno-Karabakh in a 44-day war while Russia stood aside. In September 2023, Baku's lightning offensive emptied Karabakh of its 120,000 ethnic Armenians in a week. CSTO did nothing both times. Yerevan concluded the treaty was a paper guarantee.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1992",
+                "label": "Armenia joins CSTO"
+              },
+              {
+                "year": "2020-09",
+                "label": "Second Karabakh War; CSTO silent",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-09",
+                "label": "Azerbaijan empties Karabakh"
+              },
+              {
+                "year": "2024-02",
+                "label": "Yerevan freezes CSTO participation"
+              },
+              {
+                "year": "2026-05",
+                "label": "€2.5B EU partnership signed"
+              }
+            ],
+            "label": "Armenia's exit arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY AZERBAIJAN WON",
+        "body": "Baku spent its post-2010 oil windfall on Israeli loitering munitions and Turkish Bayraktar TB2 drones. Armenia, dependent on Russian arms that Moscow couldn't spare after invading Ukraine, fought a 2020s war with 1990s equipment. The asymmetry was decided by procurement, not battlefield.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The lesson the South Caucasus took from 2020: a CSTO security guarantee is worth less than a *contract with Baykar*."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY PROBLEM",
+        "body": "Armenia is landlocked, bordered by hostile Turkey and Azerbaijan, friendly but isolated Iran, and Georgia — its only land route to anywhere. An EU pivot is geographically awkward: the nearest EU member is over 1,000 km away across the Black Sea or through Turkey.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AM",
+              "AZ",
+              "TR",
+              "IR",
+              "GE",
+              "RU"
+            ],
+            "label": "Armenia's neighborhood",
+            "markers": [
+              {
+                "lat": 40.1872,
+                "lng": 44.5152,
+                "label": "Yerevan"
+              },
+              {
+                "lat": 39.8203,
+                "lng": 46.7728,
+                "label": "Stepanakert (former)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE EU OFFER, PARSED",
+        "body": "The €2.5B package is a Partnership Agenda, not membership candidacy. It funds infrastructure, judicial reform, and visa liberalization — the same template offered to Georgia and Moldova. Full accession requires unanimous EU consent, which Hungary or Cyprus could block over Azerbaijan or Russia ties.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which post-Soviet state has actually joined the EU?",
+            "options": [
+              "Ukraine",
+              "Georgia",
+              "The Baltic states (Estonia, Latvia, Lithuania)",
+              "Moldova"
+            ],
+            "correct": 2,
+            "explanation": "Estonia, Latvia, and Lithuania joined in 2004. Ukraine, Georgia, and Moldova hold candidate status but face years to decades of accession talks."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-10T22:39:11.925Z",
+    "label": "CSTO & Armenia's Pivot",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-10-company-rescued-by-nelson-mandela-bay-now-r11m-behind-on-its": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY MUNICIPALITIES OWN THE GRID",
+        "body": "In South Africa, municipalities buy bulk electricity from Eskom and resell it to residents and businesses. The markup is one of the largest revenue lines on a metro's budget — often 25-40% of total income. When a metro can't collect, it can't pay Eskom, and the cascade begins.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the *distribution margin* — the spread between Eskom's wholesale tariff and the retail tariff set by **NERSA**. It funds roads, water, and salaries that have nothing to do with electricity."
+          }
+        ]
+      },
+      {
+        "heading": "THE ESKOM DEBT SPIRAL",
+        "body": "Municipalities collectively owe Eskom over R90 billion. Eskom owes its lenders. Lenders are guaranteed by the Treasury. Every unpaid municipal bill eventually lands on the sovereign balance sheet — which is why South Africa's debt-to-GDP has climbed from 26% in 2008 to over 75% today.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Municipal arrears to Eskom (R bn, 2024)",
+            "peers": [
+              {
+                "value": 8.2,
+                "label": "Maluti-a-Phofung"
+              },
+              {
+                "value": 6.5,
+                "label": "Matjhabeng"
+              },
+              {
+                "value": 5.8,
+                "label": "Emfuleni"
+              },
+              {
+                "value": 4.1,
+                "label": "Mangaung"
+              },
+              {
+                "value": 2.3,
+                "label": "Nelson Mandela Bay"
+              },
+              {
+                "value": 1.9,
+                "label": "Tshwane"
+              }
+            ],
+            "subjectLabel": "Nelson Mandela Bay",
+            "unit": "R bn"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BIG DEBTORS DON'T GET CUT",
+        "body": "Disconnecting a household takes minutes. Disconnecting a steel mill, a mine, or a hospital triggers job losses, supply-chain shocks, and political fallout. Utilities everywhere face the same asymmetry: small debtors are easy targets, large ones become permanent arrears.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of South Africa's electricity is consumed by industrial users (mines, smelters, mills)?",
+            "options": [
+              "About 15%",
+              "About 30%",
+              "About 60%",
+              "About 85%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 60% of Eskom's load goes to industrial customers — which is why losing a single smelter or steel mill reshapes a municipality's revenue base."
+          }
+        ]
+      },
+      {
+        "heading": "THE COEGA EXPERIMENT",
+        "body": "Coega is a state-backed industrial development zone east of Gqeberha, launched in 1999 to industrialise the Eastern Cape. Tax breaks, serviced land, and subsidised utilities were the bait. Two decades on, the IDZ model has produced jobs but also a culture in which favoured tenants expect rescue financing the metro cannot afford.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ZA"
+            ],
+            "label": "Nelson Mandela Bay metro",
+            "markers": [
+              {
+                "lat": -33.7745,
+                "lng": 25.6885,
+                "label": "Coega IDZ"
+              },
+              {
+                "lat": -33.9608,
+                "lng": 25.6022,
+                "label": "Gqeberha (Port Elizabeth)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL CHOKEPOINT",
+        "body": "South African municipal credit decisions can be challenged under the Municipal Finance Management Act, which forbids financial assistance to private firms outside narrow exceptions. A judicial review of the transformer lease asks whether the metro acted ultra vires — beyond its legal powers — when it underwrote a private smelter."
+      },
+      {
+        "heading": "THE RAND BACKDROP",
+        "body": "Every R1 the metro lends and doesn't recover is a R1 it borrows in a market where the rand has lost a third of its value against the dollar over a decade. Sub-sovereign borrowing costs in South Africa carry a premium over the sovereign yield, which itself sits well above developed-market peers.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              16.41806,
+              16.59285,
+              16.3955,
+              16.33375,
+              16.362705,
+              16.410661,
+              16.3162,
+              16.3162,
+              16.3162,
+              16.3754,
+              16.384099,
+              16.4976,
+              16.637866,
+              16.508621,
+              16.53436,
+              16.53436,
+              16.495858,
+              16.542735,
+              16.55256,
+              16.868635,
+              16.677723,
+              16.665525,
+              16.7113,
+              16.585522,
+              16.813,
+              16.549357,
+              16.3932,
+              16.456742,
+              16.38071,
+              16.38071
+            ],
+            "periods": [
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10"
+            ],
+            "label": "South African rand",
+            "unit": "ZAR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-10"
+    ],
+    "generatedAt": "2026-05-10T22:39:42.597Z",
+    "label": "Municipal Finance & Captured Utilities",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-10-data-centres-in-space-won-t-escape-conflict-on-earth": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY ORBIT IS TEMPTING",
+        "body": "Data centres consume ~2% of global electricity and generate enormous waste heat. In orbit, solar power is continuous, cooling is free via radiative heat dump to a 3 Kelvin sky, and there are no zoning boards or water permits to negotiate.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The constraint that bites hardest on Earth — **cooling water** — vanishes in vacuum, where heat radiates rather than convects. The constraint that replaces it is *mass-to-orbit*, currently around $1,500/kg on Falcon 9."
+          }
+        ]
+      },
+      {
+        "heading": "THE DUAL-USE PROBLEM",
+        "body": "A satellite carrying AI inference for a defence ministry is military infrastructure. The same hardware running commercial workloads the next hour is civilian. International humanitarian law requires distinguishing combatants from civilians — a distinction that collapses when a single chip serves both in alternating timeslices."
+      },
+      {
+        "heading": "THE OUTER SPACE TREATY GAP",
+        "body": "The 1967 Outer Space Treaty bans weapons of mass destruction in orbit and reserves the Moon for peaceful purposes. It says nothing about targeting conventional infrastructure, kinetic ASAT weapons, or cyber operations against satellites. The treaty was drafted before anyone imagined orbital compute.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1967",
+                "label": "Outer Space Treaty signed",
+                "emphasis": "start"
+              },
+              {
+                "year": "1972",
+                "label": "Liability Convention"
+              },
+              {
+                "year": "2007",
+                "label": "China ASAT test creates 3,000+ debris pieces",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "US Space Force established"
+              },
+              {
+                "year": "2021",
+                "label": "Russia ASAT test (Cosmos 1408)"
+              },
+              {
+                "year": "2024",
+                "label": "First commercial orbital data centre concepts"
+              }
+            ],
+            "label": "space law vs. space capability"
+          }
+        ]
+      },
+      {
+        "heading": "THE DRONE PRECEDENT",
+        "body": "From 2001 to roughly 2013, armed drones proliferated faster than the law governing them. The US conducted strikes in Pakistan, Yemen, and Somalia under legal theories its own allies disputed. By the time international consensus formed around proportionality and imminence, the practice was entrenched. Orbital compute is now in the same window."
+      },
+      {
+        "heading": "WHO IS RACING",
+        "body": "Beyond the US and China, Lonestar (US) plans lunar data centres, Axiom (US) is building commercial orbital modules, and China's Three-Body Computing Constellation aims for 2,800 satellites with on-orbit AI inference. The launch cadence is set by SpaceX and CASC, not by any treaty body.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "2,800 sats planned",
+                "cc": "CN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "USA",
+                "value": "multiple firms",
+                "cc": "US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "EU",
+                "value": "IRIS² (comms-first)",
+                "cc": "EU",
+                "tone": "neutral"
+              },
+              {
+                "label": "Russia",
+                "value": "limited",
+                "cc": "RU",
+                "tone": "favorable"
+              }
+            ],
+            "label": "announced orbital compute initiatives"
+          }
+        ]
+      },
+      {
+        "heading": "THE DEBRIS FEEDBACK",
+        "body": "Kessler syndrome describes a cascade where one collision generates debris that triggers more collisions, eventually rendering an orbital shell unusable for generations. A war that targeted orbital data centres in low Earth orbit could deny that altitude band to everyone — including the attacker's GPS, weather, and reconnaissance satellites.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the minimum time it takes for debris in low Earth orbit (~600 km) to deorbit naturally?",
+            "options": [
+              "Days to weeks",
+              "Months to a few years",
+              "Decades to centuries",
+              "It never deorbits without intervention"
+            ],
+            "correct": 2,
+            "explanation": "At 600 km, atmospheric drag is minimal — debris can persist for decades or longer, which is why ASAT tests at that altitude create lasting hazards."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-10T22:40:07.744Z",
+    "label": "Space Infrastructure & the Law of War",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-10-energy-secretary-says-trump-open-to-pausing-gas-tax-amid-cli": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TAX THAT NEVER MOVES",
+        "body": "The federal gasoline excise has been 18.4¢/gal since 1993. Congress has not raised it in over three decades, even as inflation has eroded its real value by more than half. It is one of the longest-frozen federal taxes in American history.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In 1993 dollars, today's **18.4¢** is worth roughly **9¢** — the tax has silently halved itself through inaction."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE MONEY GOES",
+        "body": "Gas tax revenue funds the Highway Trust Fund, which pays for federal road and bridge construction. Because the rate is fixed in cents-per-gallon rather than as a percentage, revenue has stagnated while construction costs and fuel efficiency have both risen. The fund has required general-revenue bailouts since 2008.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Netherlands",
+                "value": "~$3.50/gal",
+                "cc": "NL",
+                "weight": 350,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "UK",
+                "value": "~$2.80/gal",
+                "cc": "GB",
+                "weight": 280,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Germany",
+                "value": "~$2.60/gal",
+                "cc": "DE",
+                "weight": 260,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Japan",
+                "value": "~$2.00/gal",
+                "cc": "JP",
+                "weight": 200,
+                "tone": "neutral"
+              },
+              {
+                "label": "United States",
+                "value": "18.4¢/gal",
+                "cc": "US",
+                "weight": 18,
+                "tone": "favorable"
+              }
+            ],
+            "label": "federal gas tax, selected countries"
+          }
+        ]
+      },
+      {
+        "heading": "THE HOLIDAY PRECEDENT",
+        "body": "Biden suspended the federal gas tax for three months in mid-2022 when prices crossed $5/gal. Economists across the spectrum panned it: at most a few cents reached consumers, the rest was captured by refiners and retailers as margin. The political signal mattered more than the price relief.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "During the 2022 federal gas tax holiday proposal, how much of the 18.4¢ cut was estimated to actually reach consumers at the pump?",
+            "options": [
+              "Almost all of it",
+              "Roughly half",
+              "Only a few cents",
+              "None — prices rose instead"
+            ],
+            "correct": 2,
+            "explanation": "Tax holidays on inelastic goods get partially absorbed by the supply chain. Most studies put consumer pass-through at well under half."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GAS IS POLITICAL OXYGEN",
+        "body": "Americans see the price of gasoline on enormous lit signs every few miles — no other consumer good has this constant visibility. Sitting presidents' approval ratings track the pump price more tightly than they track the unemployment rate or the S&P 500. This is why every White House reaches for the tax when prices spike."
+      },
+      {
+        "heading": "THE HORMUZ TRANSMISSION",
+        "body": "Roughly a fifth of global oil moves through the Strait of Hormuz. When tensions there spike, Brent jumps within hours; US pump prices follow within two to three weeks as refiners reprice inventory. A federal tax pause cannot offset a sustained Brent move — the geopolitical signal upstream dominates the fiscal lever downstream.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA"
+            ],
+            "label": "the chokepoint upstream of US pump prices",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-10T22:40:29.515Z",
+    "label": "The Federal Gas Tax",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-10-iran-war-trump-rejects-proposal-to-end-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ENRICHMENT LADDER",
+        "body": "Natural uranium is 0.7% U-235. Reactor fuel needs 3-5%. Research reactors use ~20%. Weapons-grade is 90%+. The hard work is getting from natural to 20% — that's about 90% of the separative effort. From 20% to 90% is fast, which is why the 20% threshold is the diplomatic red line.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The metric is **SWU** — *separative work units*. Going 0.7% → 20% takes most of the SWUs; 20% → 90% takes the rest in weeks, not years."
+          }
+        ]
+      },
+      {
+        "heading": "THE JCPOA BASELINE",
+        "body": "The 2015 deal capped Iranian enrichment at 3.67% and stockpile at 300 kg. After US withdrawal in 2018, Iran progressively breached limits. By 2024 it was enriching at 60% — a level with no civilian justification, one technical step from weapons-grade.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2015",
+                "label": "JCPOA signed",
+                "emphasis": "start"
+              },
+              {
+                "year": "2018",
+                "label": "US withdraws",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Iran exceeds 3.67%"
+              },
+              {
+                "year": "2021",
+                "label": "60% enrichment begins"
+              },
+              {
+                "year": "2025",
+                "label": "IAEA cameras removed"
+              }
+            ],
+            "label": "the deal and its unraveling"
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ LEVERAGE",
+        "body": "About 21 million barrels per day — roughly a fifth of global oil — transit the Strait of Hormuz. Iran's coastline runs the entire northern edge. Bundling Hormuz management into a nuclear deal is asking the US to recognize Iranian sovereignty over a chokepoint Washington has spent 40 years treating as international water.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 26.2285,
+                "lng": 56.2509,
+                "label": "Bandar Abbas (IRGC navy)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY PAKISTAN MEDIATES",
+        "body": "Pakistan shares a 900km border with Iran, has Sunni-majority politics but a large Shi'a minority, and runs the only Muslim nuclear program. Islamabad has channeled messages between Tehran and Washington since the 1979 hostage crisis — a back channel built on the fact that Pakistan can talk to both without either side losing face."
+      },
+      {
+        "heading": "THE LEBANON LINK",
+        "body": "Hezbollah is Iran's most valuable forward asset — a deterrent on Israel's northern border maintained at low cost. Linking Lebanon to nuclear terms means Tehran wants any deal to lock in Hezbollah's survival, not just freeze centrifuges. For Washington, that turns a non-proliferation deal into a regional-order deal.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Hezbollah",
+                "role": "Lebanese Shi'a militia and party",
+                "years": "founded 1982",
+                "cc": "LB"
+              },
+              {
+                "name": "Houthis (Ansar Allah)",
+                "role": "Yemeni Zaydi movement",
+                "years": "emerged 1990s",
+                "cc": "YE"
+              },
+              {
+                "name": "Kata'ib Hezbollah",
+                "role": "Iraqi Shi'a militia",
+                "years": "founded 2007",
+                "cc": "IQ"
+              },
+              {
+                "name": "IRGC Quds Force",
+                "role": "Iran's external operations arm",
+                "years": "founded 1988",
+                "cc": "IR"
+              }
+            ],
+            "label": "Iran's regional network"
+          }
+        ]
+      },
+      {
+        "heading": "THE MARKET'S VIEW",
+        "body": "Prediction markets price the diplomatic posture in real time. A peace deal by mid-May reads as nearly impossible; outright US invasion is a tail risk traders take seriously enough to pay for.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              30,
+              33,
+              35,
+              30,
+              32,
+              31,
+              34,
+              36,
+              31,
+              28,
+              31,
+              33,
+              32,
+              34,
+              34,
+              34,
+              34,
+              33,
+              34,
+              31,
+              30,
+              30,
+              30,
+              28,
+              21,
+              24,
+              22,
+              22,
+              27
+            ],
+            "periods": [
+              "Apr 11",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 10"
+            ],
+            "label": "US invade Iran before 2027?",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "30%"
+              },
+              {
+                "atIndex": 28,
+                "label": "27%"
+              }
+            ],
+            "link": "https://polymarket.com/event/will-the-us-invade-iran-before-2027",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Libya gave up its nuclear program in 2003. Gaddafi was killed by NATO-backed rebels in 2011. Every Iranian negotiator cites this. The lesson Tehran took: weapons-adjacent capability is the only credible deterrent against regime change, which is why the 60% stockpile is bargaining capital, not a bargaining chip to be spent.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What enrichment level did the 2015 JCPOA cap Iran at?",
+            "options": [
+              "0.7% (natural uranium)",
+              "3.67% (reactor grade)",
+              "20% (research reactor)",
+              "60% (current level)"
+            ],
+            "correct": 1,
+            "explanation": "The JCPOA capped enrichment at 3.67% — standard light-water reactor fuel. Iran's current 60% has no civilian use case."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-10"
+    ],
+    "generatedAt": "2026-05-10T22:40:56.803Z",
+    "label": "Iran's Nuclear Bargaining",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-10-latvian-defense-minister-spruds-resigns-after-drone-incursio": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "Latvia shares a 214 km land border with Russia and a 173 km border with Belarus. From Riga to the Russian frontier is closer than London to Manchester. The country has no strategic depth — any incursion is, by definition, near the capital.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LV",
+              "LT",
+              "EE",
+              "RU",
+              "BY",
+              "PL"
+            ],
+            "label": "NATO's eastern edge",
+            "markers": [
+              {
+                "lat": 56.9496,
+                "lng": 24.1052,
+                "label": "Riga"
+              },
+              {
+                "lat": 54.352,
+                "lng": 22.74,
+                "label": "Suwałki Gap"
+              },
+              {
+                "lat": 54.7104,
+                "lng": 20.5105,
+                "label": "Kaliningrad"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SUWAŁKI GAP",
+        "body": "A 65 km corridor between Belarus and Russia's Kaliningrad exclave is the only land link between the Baltics and the rest of NATO. Close it and Latvia, Lithuania, and Estonia are cut off overland — the entire alliance's reinforcement plan runs through this single seam."
+      },
+      {
+        "heading": "WHY JAMMING WORKS",
+        "body": "Russia operates the densest electronic warfare complex in Europe from Kaliningrad and Pskov. GPS spoofing routinely pushes drones, civil aviation, and shipping off course across the Baltic — Finnish and Estonian airlines have suspended routes for the same reason. Attribution is trivial; deterrence is not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The relevant doctrine is **maskirovka** — Russian operational deception that treats electromagnetic interference as a peacetime weapon, calibrated to stay below the Article 5 threshold."
+          }
+        ]
+      },
+      {
+        "heading": "ARTICLE 4 vs ARTICLE 5",
+        "body": "NATO's famous mutual-defense clause (Article 5) has been invoked once — by the US after 9/11. Article 4 — consultation when a member feels threatened — has been invoked seven times, four of them by Poland and the Baltics since 2022. The drone incidents live in Article 4 territory, deliberately.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many times has NATO invoked Article 5 (collective defense) in its history?",
+            "options": [
+              "Never",
+              "Once, after 9/11",
+              "Three times",
+              "Seven times"
+            ],
+            "correct": 1,
+            "explanation": "Article 5 has been invoked exactly once — by the United States after the September 11 attacks. Article 4 (consultation) has been invoked far more often, especially by frontline states since 2022."
+          }
+        ]
+      },
+      {
+        "heading": "THE OCCUPATION MEMORY",
+        "body": "Latvia was annexed by the Soviet Union in 1940 under the secret Molotov-Ribbentrop protocol, occupied by Nazi Germany 1941–1944, then reabsorbed into the USSR until 1991. A quarter of the current population is ethnic Russian, mostly the descendants of Soviet-era settlers. Every security debate in Riga runs through this memory.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1918",
+                "label": "Independence from Russian Empire"
+              },
+              {
+                "year": "1940",
+                "label": "Soviet annexation",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1941",
+                "label": "Nazi occupation"
+              },
+              {
+                "year": "1944",
+                "label": "Soviet reoccupation"
+              },
+              {
+                "year": "1991",
+                "label": "Independence restored"
+              },
+              {
+                "year": "2004",
+                "label": "NATO and EU accession"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1940",
+                "to": "1991",
+                "label": "Soviet occupation",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Latvia's century"
+          }
+        ]
+      },
+      {
+        "heading": "THE SPENDING SHIFT",
+        "body": "Latvia raised defense spending from 1% of GDP in 2014 to over 3% by 2025 — one of the steepest increases in NATO. The Baltics now spend a larger share of GDP on defense than Germany, France, or the UK. Geography is destiny when your eastern border is the front line.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Poland",
+                "value": "4.7%",
+                "cc": "PL",
+                "weight": 4.7,
+                "tone": "favorable"
+              },
+              {
+                "label": "Estonia",
+                "value": "3.4%",
+                "cc": "EE",
+                "weight": 3.4,
+                "tone": "favorable"
+              },
+              {
+                "label": "Latvia",
+                "value": "3.2%",
+                "cc": "LV",
+                "weight": 3.2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Lithuania",
+                "value": "3.0%",
+                "cc": "LT",
+                "weight": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "UK",
+                "value": "2.3%",
+                "cc": "GB",
+                "weight": 2.3,
+                "tone": "neutral"
+              },
+              {
+                "label": "Germany",
+                "value": "2.1%",
+                "cc": "DE",
+                "weight": 2.1,
+                "tone": "neutral"
+              }
+            ],
+            "label": "defense spending, % of GDP (2025 est.)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-10T22:41:23.348Z",
+    "label": "Latvia & NATO's Eastern Edge",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-10-pakistan-car-bomb-attack-kills-15-police-officers": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DURAND LINE",
+        "body": "The 2,640 km border between Pakistan and Afghanistan was drawn in 1893 by a British colonial officer through Pashtun tribal lands. No Afghan government — monarchy, communist, mujahideen, or Taliban — has ever formally recognized it. This is the foundational fact of every cross-border insurgency since partition.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF"
+            ],
+            "label": "the unrecognized border",
+            "markers": [
+              {
+                "lat": 32.9889,
+                "lng": 70.6056,
+                "label": "Bannu"
+              },
+              {
+                "lat": 33.9971,
+                "lng": 71.4634,
+                "label": "Peshawar"
+              },
+              {
+                "lat": 34.5553,
+                "lng": 69.2075,
+                "label": "Kabul"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TTP COALITION",
+        "body": "Tehrik-i-Taliban Pakistan emerged in 2007 as an umbrella of Pashtun militant factions distinct from the Afghan Taliban — same ideology, different target. The Afghan Taliban fights to rule Kabul; the TTP fights to overthrow Islamabad and impose its reading of *sharia* across Pakistan's tribal belt.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The two are often conflated in Western press. They share *aqeeda* and historical sanctuary, but the **TTP is a Pakistani insurgency** waged by Pakistani citizens — not a foreign invasion."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2021 INFLECTION",
+        "body": "When the Afghan Taliban took Kabul in August 2021, thousands of TTP fighters held in Afghan prisons walked free. Cross-border attacks on Pakistani security forces nearly tripled within eighteen months. Islamabad's quiet support for the Taliban during the US war became a strategic liability the moment the war ended.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1893",
+                "label": "Durand Line drawn"
+              },
+              {
+                "year": "2007",
+                "label": "TTP founded"
+              },
+              {
+                "year": "2014",
+                "label": "Peshawar school massacre (149 killed)"
+              },
+              {
+                "year": "2021-08",
+                "label": "Taliban retakes Kabul",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "TTP ends ceasefire"
+              },
+              {
+                "year": "2025-04",
+                "label": "Ittehad-ul-Mujahideen formed"
+              }
+            ],
+            "label": "the western front"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DRONES NOW",
+        "body": "Commercial quadcopters — DJI-class hardware costing a few hundred dollars — were industrialized as weapons in Ukraine and Syria. The know-how diffused fast. A militant group that needed mortars five years ago now needs a hobbyist drone and a 3D-printed bomblet rack to ambush a relief column.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What changed most dramatically about militant tactics in Pakistan's tribal belt over the last three years?",
+            "options": [
+              "Adoption of commercial drones for follow-up strikes",
+              "Use of suicide bombers (a tactic dating to the 2000s)",
+              "Cross-border sanctuary in Afghanistan",
+              "Targeting of police rather than military"
+            ],
+            "correct": 0,
+            "explanation": "Suicide bombings, Afghan sanctuary, and police targeting all predate 2022. The drone layer — quadcopter strikes against responders — is the new variable, imported from Ukraine-era doctrine."
+          }
+        ]
+      },
+      {
+        "heading": "KHYBER PAKHTUNKHWA",
+        "body": "The province absorbing most attacks was called the North-West Frontier Province until 2010, when it was renamed to acknowledge its Pashtun majority. Bannu sits in its southern districts, on the Waziristan approach — historically the corridor through which every empire from the Mughals to the British failed to pacify the tribal agencies."
+      }
+    ],
+    "generatedAt": "2026-05-10T22:41:53.167Z",
+    "label": "The TTP & Pakistan's Western Front",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-10-police-generals-feroz-khan-and-ebrahim-kadwa-arrested-in-ill": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO APEX UNITS",
+        "body": "The Hawks (Directorate for Priority Crime Investigation) handle organized crime, corruption, and economic offences. Crime Intelligence runs covert surveillance and informant networks. Together they sit above the ordinary SAPS detective branch — and have been arresting each other's leadership for nearly two decades.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Hawks replaced the **Scorpions** (DSO) in 2009 after the ANC's Polokwane conference resolved to dissolve the unit that had been investigating Jacob Zuma. The new body was placed *inside* SAPS — removing its prosecutorial independence."
+          }
+        ]
+      },
+      {
+        "heading": "STATE CAPTURE'S LEGACY",
+        "body": "The Zondo Commission (2018–2022) documented how the Gupta network and allied politicians hollowed out law enforcement during the Zuma years. Crime Intelligence's secret services account — a slush fund with minimal oversight — became a vehicle for procurement fraud, fake informants, and political surveillance."
+      },
+      {
+        "heading": "THE COMMISSIONER REVOLVING DOOR",
+        "body": "Every National Police Commissioner since 2000 has left under a cloud: Jackie Selebi (convicted of corruption, 2010), Bheki Cele (fired over a lease scandal), Riah Phiyega (suspended after Marikana), Khomotso Phahlane (charged with corruption). Masemola's tender case continues the pattern.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Jackie Selebi",
+                "role": "Commissioner, convicted 2010",
+                "years": "2000–2009",
+                "cc": "ZA"
+              },
+              {
+                "name": "Bheki Cele",
+                "role": "Commissioner, fired",
+                "years": "2009–2012",
+                "cc": "ZA"
+              },
+              {
+                "name": "Riah Phiyega",
+                "role": "Commissioner, suspended",
+                "years": "2012–2017",
+                "cc": "ZA"
+              },
+              {
+                "name": "Fannie Masemola",
+                "role": "Commissioner, suspended",
+                "years": "2022–present",
+                "cc": "ZA"
+              }
+            ],
+            "label": "the commissioners"
+          }
+        ]
+      },
+      {
+        "heading": "THE ILLICIT GOLD ECONOMY",
+        "body": "South Africa loses an estimated R60 billion a year to illegal gold mining by zama-zamas — informal miners operating in abandoned shafts and licensed mines alike. The trade requires police complicity at scale: protection for refiners, blind eyes at border posts, intelligence on rival syndicates. Precious-metal cases routinely surface senior officers.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ZA",
+              "ZW",
+              "MZ",
+              "LS",
+              "SZ"
+            ],
+            "label": "the Witwatersrand basin",
+            "markers": [
+              {
+                "lat": -26.2041,
+                "lng": 28.0473,
+                "label": "Johannesburg"
+              },
+              {
+                "lat": -26.7145,
+                "lng": 27.8497,
+                "label": "West Rand goldfields"
+              },
+              {
+                "lat": -25.9991,
+                "lng": 28.2336,
+                "label": "Kempton Park court"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE RAND AS BAROMETER",
+        "body": "South Africa's institutional crises price in quickly. The rand is the most-traded emerging-market currency outside Asia, and offshore investors use it as a proxy for African political risk — capital exits the rand first when SAPS, Eskom, or the Treasury wobble.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              16.41806,
+              16.59285,
+              16.3955,
+              16.33375,
+              16.362705,
+              16.410661,
+              16.3162,
+              16.3162,
+              16.3162,
+              16.3754,
+              16.384099,
+              16.4976,
+              16.637866,
+              16.508621,
+              16.53436,
+              16.53436,
+              16.495858,
+              16.542735,
+              16.55256,
+              16.868635,
+              16.677723,
+              16.665525,
+              16.7113,
+              16.585522,
+              16.813,
+              16.549357,
+              16.3932,
+              16.456742,
+              16.38071,
+              16.38071
+            ],
+            "periods": [
+              "Apr 11",
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10"
+            ],
+            "label": "South African rand",
+            "unit": "ZAR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "QUICK CHECK",
+        "body": "Test the substrate.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which prosecutorial body did the Hawks replace in 2009?",
+            "options": [
+              "The Scorpions (DSO)",
+              "The Special Investigating Unit",
+              "The National Prosecuting Authority",
+              "The Public Protector"
+            ],
+            "correct": 0,
+            "explanation": "The Scorpions were dissolved after the ANC's Polokwane conference; the Hawks were placed inside SAPS, removing the prosecutorial independence the DSO had enjoyed."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-10"
+    ],
+    "generatedAt": "2026-05-10T22:42:17.962Z",
+    "label": "South Africa's Policing Architecture",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-10-signed-sealed-not-yet-delivered-sa-s-fmd-vaccination-scheme": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE VIRUS",
+        "body": "Foot-and-mouth disease is one of the most contagious animal viruses known — a single infected animal can shed enough virus to infect a herd kilometers downwind. It rarely kills adult livestock but causes weight loss, milk collapse, and lameness that destroys productivity.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "FMD is caused by an *aphthovirus* with **seven distinct serotypes** (O, A, C, SAT1, SAT2, SAT3, Asia1). Immunity to one gives no protection against the others — which is why vaccine matching is the entire game."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRADE CLIFF",
+        "body": "The World Organisation for Animal Health (WOAH) certifies countries as FMD-free, FMD-free with vaccination, or infected. The moment a country loses free status, beef and dairy export markets close overnight. Botswana lost EU access for years after a single 2002 outbreak.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Australia",
+                "value": "FMD-free",
+                "cc": "AU",
+                "tone": "favorable"
+              },
+              {
+                "label": "Brazil",
+                "value": "free w/ vax",
+                "cc": "BR",
+                "tone": "neutral"
+              },
+              {
+                "label": "Argentina",
+                "value": "free w/ vax",
+                "cc": "AR",
+                "tone": "neutral"
+              },
+              {
+                "label": "South Africa",
+                "value": "infected",
+                "cc": "ZA",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Botswana",
+                "value": "zoned",
+                "cc": "BW",
+                "tone": "neutral"
+              }
+            ],
+            "label": "FMD status of major beef exporters"
+          }
+        ]
+      },
+      {
+        "heading": "WHY VACCINATION IS POLITICAL",
+        "body": "Vaccinated animals test positive on standard antibody screens, indistinguishable from infected ones without specialized DIVA tests. Countries that vaccinate accept a permanent surveillance burden and a discount on export prices — which is why wealthy exporters prefer stamping-out (cull-and-burn) over vaccination.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do FMD-free countries like the UK cull entire herds instead of vaccinating during outbreaks?",
+            "options": [
+              "Vaccines don't work against FMD",
+              "Vaccinated animals can't be distinguished from infected ones in standard trade tests",
+              "Culling is cheaper than vaccination",
+              "Vaccines are unsafe for cattle"
+            ],
+            "correct": 1,
+            "explanation": "Standard serological tests can't tell vaccinated animals from recovered ones, so vaccinating costs a country its FMD-free status and its premium export markets."
+          }
+        ]
+      },
+      {
+        "heading": "THE COMMUNAL HERD PROBLEM",
+        "body": "South Africa's cattle population splits between commercial farms and communal herds grazed on shared land — roughly half the national herd by some counts. Communal herds are unfenced, unregistered, and move across district lines, which makes them both the highest transmission risk and the hardest to vaccinate systematically."
+      },
+      {
+        "heading": "THE BUFFALO RESERVOIR",
+        "body": "Kruger National Park hosts roughly 40,000 African buffalo, the natural reservoir for SAT serotypes of FMD. Buffalo carry the virus asymptomatically and can transmit at fence-lines for years. South Africa's FMD geography is shaped by this — the disease management zone around Kruger is permanent, not episodic.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ZA",
+              "ZW",
+              "BW",
+              "MZ",
+              "SZ"
+            ],
+            "label": "Southern African FMD geography",
+            "markers": [
+              {
+                "lat": -23.9884,
+                "lng": 31.5547,
+                "label": "Kruger NP buffalo reservoir"
+              },
+              {
+                "lat": -25.7479,
+                "lng": 28.2293,
+                "label": "Pretoria"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL MECHANIC",
+        "body": "Under South Africa's Animal Diseases Act (1984), the minister must gazette a vaccination scheme to make it legally enforceable — without gazettal, vaccinated farmers have no legal protection against movement restrictions and no claim on state-supplied vaccines. The High Court order forces an administrative act the minister had discretion to delay indefinitely."
+      }
+    ],
+    "generatedAt": "2026-05-10T22:42:42.849Z",
+    "label": "Foot-and-Mouth Disease & Herd Immunity",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-10-when-retailers-wait-to-reveal-prices-shoppers-fill-in-the-bl": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MECHANISM",
+        "body": "When a price is hidden behind a click, the brain doesn't wait — it anchors on whatever cue is available: the product image, a competitor's price, a prior expectation. By the time the real price appears, the shopper is comparing it to their own optimistic guess, not to the market.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is a textbook case of **anchoring bias** — the tendency, documented by Tversky and Kahneman in 1974, for any number (even a random one) to pull subsequent estimates toward it. Hidden-price designs exploit the absence of an anchor by letting the shopper *invent a favorable one*."
+          }
+        ]
+      },
+      {
+        "heading": "WHY RETAILERS DO IT",
+        "body": "Showing a high price upfront triggers an immediate exit on price-comparison sites and search-aggregator listings. A click-to-reveal flow defers that decision until after the shopper has invested attention — sunk cost in seconds, but real. Conversion rates rise even when the final price doesn't change."
+      },
+      {
+        "heading": "THE LEGAL VACUUM",
+        "body": "The FTC polices deceptive pricing — bait-and-switch, hidden fees at checkout, fake reference prices — but click-to-reveal sits in a gray zone because the real price *is* shown before purchase. The EU's 2024 Digital Services Act flags dark patterns more aggressively than US law, but enforcement is still nascent.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "EU (DSA)",
+                "value": "explicit ban",
+                "tone": "favorable",
+                "cc": "EU"
+              },
+              {
+                "label": "California",
+                "value": "CCPA covers some",
+                "tone": "neutral",
+                "cc": "US"
+              },
+              {
+                "label": "US federal",
+                "value": "FTC case-by-case",
+                "tone": "unfavorable",
+                "cc": "US"
+              },
+              {
+                "label": "UK (CMA)",
+                "value": "guidance only",
+                "tone": "neutral",
+                "cc": "GB"
+              }
+            ],
+            "label": "dark-pattern regulation, by jurisdiction"
+          }
+        ]
+      },
+      {
+        "heading": "THE BROADER PATTERN",
+        "body": "Click-to-reveal joins a family of attention-tax designs: drip pricing (fees added stage by stage), reference-price inflation (\"was $200, now $99\" when nothing was ever $200), and forced account creation before price disclosure. Each exploits a different cognitive shortcut; together they form what regulators now call dark patterns."
+      },
+      {
+        "heading": "WHAT THE STUDY ACTUALLY MEASURED",
+        "body": "Xu's work in the Journal of Consumer Research tested the effect across multiple product categories and retailers, isolating the timing of price disclosure as the causal variable. The replication across retailers matters — it rules out a single platform's UX as the explanation.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does hiding a price behind a click tend to lower a shopper's estimate of what it will be?",
+            "options": [
+              "Shoppers assume hidden prices are discounted",
+              "Anchoring on optimistic self-generated guesses replaces the missing number",
+              "Hidden prices trigger a legal disclosure requirement that caps them",
+              "Browser autofill imputes a default low value"
+            ],
+            "correct": 1,
+            "explanation": "With no number shown, the brain fills the gap with an estimate biased by the product image and prior expectations — almost always optimistic."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-10T22:43:04.396Z",
+    "label": "Click-to-Reveal Pricing",
+    "category": "science",
+    "articleCount": 1
   }
 }
