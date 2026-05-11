@@ -149653,5 +149653,1373 @@
     "label": "Biradari Politics & Rural Punjab",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-11-bellingcat-colombia-candidate-active-club-neo-nazi": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NETWORK",
+        "body": "Active Clubs are decentralized white-nationalist fitness cells founded around 2020 by Robert Rundo, a US extremist convicted for organizing political violence. The model fuses MMA training with neo-Nazi ideology — designed to recruit through gyms rather than rallies, making infiltration and prosecution harder than with formal chapters.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Rundo calls the doctrine **'White Nationalism 3.0'** — a deliberate pivot from uniformed marches (Charlottesville-era) to *autonomous*, leaderless cells that share aesthetics and tactics across borders without a chain of command."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "What began in California has metastasized across at least two dozen countries. Researchers have documented Active Club cells in Europe, the Americas, and Oceania — the Bogotá chapter is part of a Latin American expansion that includes Argentina, Chile, and Brazil.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "CA",
+              "DE",
+              "FR",
+              "PL",
+              "UA",
+              "AR",
+              "CL",
+              "BR",
+              "CO"
+            ],
+            "label": "documented Active Club presence",
+            "caption": "a decentralized network spanning the Americas and Europe"
+          }
+        ]
+      },
+      {
+        "heading": "WHY COLOMBIA",
+        "body": "Colombia's far-right has historically organized around anti-FARC paramilitarism rather than racial ideology — the AUC and its successors targeted leftist guerrillas, not ethnic minorities. Active Club represents something different: an imported, racially-framed extremism grafted onto a country whose political violence had different roots."
+      },
+      {
+        "heading": "THE TATTOO TRAIL",
+        "body": "Bellingcat's identification relied on matching distinctive tattoos across photographs — a technique pioneered in tracing Russian GRU officers and Syrian war criminals. Tattoos are permanent, unique, and visible in countless casual photos uploaded to social media; they are the open-source investigator's fingerprint.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technique is called **biometric correlation** — cross-referencing immutable physical features (tattoos, scars, ear shape) across image sets where the subject thought they were anonymous. Bellingcat used it to unmask the *Novichok* poisoners of Sergei Skripal in 2018."
+          }
+        ]
+      },
+      {
+        "heading": "THE INFILTRATION PROBLEM",
+        "body": "Democratic parties across the Americas and Europe face a recurring vetting failure: extremist movements deliberately encourage members to run under mainstream party banners. Centro Democrático, founded by Álvaro Uribe in 2013, is Colombia's principal right-wing party — being on its slate carries institutional legitimacy that an Active Club affiliation is designed to launder.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What's the strategic purpose of extremists running under mainstream party banners rather than founding their own?",
+            "options": [
+              "To access campaign financing unavailable to fringe parties",
+              "To launder institutional legitimacy and bypass voter skepticism of extremist labels",
+              "To comply with electoral laws that ban explicitly racist platforms",
+              "To split the vote and weaken centrist opponents"
+            ],
+            "correct": 1,
+            "explanation": "The mainstream label provides legitimacy a self-identified extremist party cannot earn at the ballot box — a strategy called 'entryism' that predates Active Clubs by a century."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-11T17:36:48.860Z",
+    "label": "Active Clubs & Transnational White Nationalism",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-11-brazil-cade-google-ai-overviews-journalism-investigation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ZERO-CLICK SHIFT",
+        "body": "For two decades, Google's bargain with publishers was implicit: we index your content, you get traffic. AI Overviews break that bargain by answering the query on the results page itself. Studies in 2024-2025 estimated zero-click sessions rose past 60% of all Google searches once Overviews rolled out.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is **zero-click search** — the user's question is answered without a single outbound link click. Publishers call it *cannibalization*; Google calls it *user satisfaction*."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT CADE IS",
+        "body": "Brazil's Administrative Council for Economic Defense (CADE) is one of the most aggressive competition authorities in the Global South. It has fined Google before — over Google Shopping in 2019 — and operates independently of the executive, which makes it less vulnerable to diplomatic pressure than agencies in smaller jurisdictions."
+      },
+      {
+        "heading": "THE SNIPPET DISTINCTION",
+        "body": "Traditional snippets quote a sentence and link to the source; the publisher still gets the click if the reader wants more. AI Overviews synthesize across multiple sources into a generated answer — the reader gets the substance without needing to visit anyone. This is the legal line CADE must draw, and no regulator has drawn it yet.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes AI Overviews legally distinct from traditional search snippets under competition law?",
+            "options": [
+              "They appear higher on the page",
+              "They synthesize across sources rather than quoting one",
+              "They use a different font",
+              "They require user login"
+            ],
+            "correct": 1,
+            "explanation": "Snippets quote and link; Overviews generate a new answer from multiple sources, removing the incentive to click through to any of them."
+          }
+        ]
+      },
+      {
+        "heading": "THE GLOBAL PATTERN",
+        "body": "Brazil joins a queue. The UK's CMA, Germany's Bundeskartellamt, the EU under the DMA, and Japan's JFTC have all opened investigations or designated Google as a gatekeeper. Each jurisdiction is drafting its own remedy — opt-out rights, must-carry rules, revenue-sharing — and Google is litigating each separately.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Brazil",
+                "value": "AI Overviews probe",
+                "cc": "BR",
+                "tone": "neutral"
+              },
+              {
+                "label": "EU",
+                "value": "DMA gatekeeper",
+                "cc": "EU",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "UK",
+                "value": "SMS designation",
+                "cc": "GB",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Germany",
+                "value": "§19a designation",
+                "cc": "DE",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Japan",
+                "value": "JFTC probe",
+                "cc": "JP",
+                "tone": "neutral"
+              },
+              {
+                "label": "USA",
+                "value": "DOJ remedy phase",
+                "cc": "US",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "competition probes into Google AI / search practices"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PUBLISHERS CAN'T OPT OUT",
+        "body": "Google offered publishers a switch to exclude their content from AI training — but using it also removes them from regular search results. The bundle is the leverage: to be visible in Search, you must let Search train on you. Antitrust authorities call this *tying*.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal term is **tying** — conditioning access to one product (search visibility) on acceptance of another (AI ingestion). It is the same doctrine that broke up *Microsoft's* Internet Explorer bundle in 2001."
+          }
+        ]
+      },
+      {
+        "heading": "THE BRAZILIAN PRESS CONTEXT",
+        "body": "Brazil's newspaper industry has lost roughly half its revenue base since 2010. Folha de S.Paulo, O Globo, and Estadão have all shrunk newsrooms. CADE's probe is partly economic doctrine and partly industrial policy — keeping a domestic press alive in a market where Google captures most of the digital ad spend."
+      }
+    ],
+    "generatedAt": "2026-05-11T17:37:15.432Z",
+    "label": "Zero-Click Search & Publisher Economics",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-11-china-africa-clean-tech-deployment-dialogue-earth": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OVERCAPACITY ENGINE",
+        "body": "China manufactures roughly 80% of the world's solar panels and has installed capacity that exceeds global demand. When US and EU tariffs closed Western markets, that surplus had to flow somewhere — Africa, with the world's worst electrification deficit, became the natural release valve.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "China",
+                "value": 80,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Vietnam",
+                "value": 6,
+                "tone": "neutral"
+              },
+              {
+                "label": "India",
+                "value": 4,
+                "tone": "neutral"
+              },
+              {
+                "label": "Malaysia",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "South Korea",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "USA",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Rest of world",
+                "value": 3,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global solar module production share, 2024 (%)"
+          }
+        ]
+      },
+      {
+        "heading": "THE ELECTRIFICATION GAP",
+        "body": "Roughly 600 million Africans — about half the continent — lack reliable grid electricity. Solar bypasses the most expensive part of conventional power: the transmission network. A panel on a roof in rural Kenya does not need a 1,000km high-voltage line from a coal plant.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *leapfrogging* — skipping the centralized-grid stage the way African telecom skipped landlines for mobile. The economics only work because **panel prices fell ~90%** in the past decade."
+          }
+        ]
+      },
+      {
+        "heading": "THE FINANCING BOTTLENECK",
+        "body": "The panels are cheap; the capital to buy them is not. African sovereign borrowing costs run 5-10x what European utilities pay. A solar farm that pencils out in Germany at 3% financing is uneconomic at 14% — which is why deployment lags manufacturing capacity even when the hardware is sitting in port.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Germany",
+                "value": "~2.4%",
+                "cc": "DE",
+                "weight": 2.4,
+                "tone": "favorable"
+              },
+              {
+                "label": "USA",
+                "value": "~4.3%",
+                "cc": "US",
+                "weight": 4.3,
+                "tone": "favorable"
+              },
+              {
+                "label": "South Africa",
+                "value": "~10%",
+                "cc": "ZA",
+                "weight": 10,
+                "tone": "neutral"
+              },
+              {
+                "label": "Kenya",
+                "value": "~14%",
+                "cc": "KE",
+                "weight": 14,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Nigeria",
+                "value": "~18%",
+                "cc": "NG",
+                "weight": 18,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Egypt",
+                "value": "~22%",
+                "cc": "EG",
+                "weight": 22,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "sovereign 10-year borrowing cost, 2024 (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE GRID PROBLEM",
+        "body": "Solar panels produce DC power that varies with cloud cover; grids need stable AC. Sub-Saharan grids are already fragile — Nigeria's collapsed nationally over a dozen times in 2024 alone. Adding intermittent generation without storage or grid upgrades can destabilize a network rather than strengthen it.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KE",
+              "NG",
+              "ZA",
+              "ET",
+              "EG",
+              "MA",
+              "TZ",
+              "GH"
+            ],
+            "label": "top African solar import destinations",
+            "caption": "China supplies the panels; local grids decide whether they generate"
+          }
+        ]
+      },
+      {
+        "heading": "THE BELT AND ROAD PIVOT",
+        "body": "China's overseas lending peaked around 2016 at over $75bn/year and has since collapsed by more than half. Beijing is shifting from financing coal plants and railways to exporting clean-tech hardware — lower risk, faster turnover, and aligned with its domestic manufacturing surplus.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of new electricity capacity added in Africa in 2024 came from solar?",
+            "options": [
+              "Under 5% — fossil fuels still dominate new build",
+              "About 20% — meaningful but not majority",
+              "Over 60% — solar is now the largest source of new capacity",
+              "Over 90% — fossil capacity is no longer being built"
+            ],
+            "correct": 1,
+            "explanation": "Solar accounts for roughly a fifth of new African capacity additions — significant growth, but gas and hydro still lead the new-build mix."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-11T17:37:41.733Z",
+    "label": "China's Solar Pivot to Africa",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-11-egypt-custody-bill-mada-masr-equality-in-injustice": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HANAFI INHERITANCE",
+        "body": "Egypt's family law descends from the Ottoman millet system, which left personal status — marriage, divorce, custody, inheritance — to religious courts. When Egypt codified civil law under Muhammad Ali and later Nasser, it kept personal status under religious jurisdiction even as it secularized commerce and criminal law.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *al-ahwal al-shakhsiyya* — personal status — and it remains the one domain where **secular Egyptian law explicitly defers to religious rulings**, applied separately for Muslims, Copts, and other recognized communities."
+          }
+        ]
+      },
+      {
+        "heading": "HADANA VS WILAYA",
+        "body": "Classical Islamic jurisprudence splits parental authority into two distinct rights: hadana (physical custody and day-to-day care, traditionally favoring the mother during early childhood) and wilaya (legal guardianship over property, education, and major decisions, held by the father). Egyptian law inherited this split; most Western legal systems do not have it."
+      },
+      {
+        "heading": "THE AGE-7 THRESHOLD",
+        "body": "In the Hanafi school — the madhhab that shaped Ottoman and Egyptian codification — a mother's hadana over a son traditionally ends around age 7 (some scholars say 9 for daughters), after which custody shifts to the father. Egypt extended this to 15 in 2005 reforms. The new bill's mixed-religion clause reverts to the older threshold for one specific class of mother."
+      },
+      {
+        "heading": "THE REMARRIAGE RULE",
+        "body": "The classical fiqh principle that a mother loses custody upon remarrying a non-relative dates to concerns about a stepfather's authority over another man's child. Applying the rule symmetrically to fathers is novel — it equalizes the penalty without removing it, which is what advocates mean by 'equality in injustice.'",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under classical Hanafi fiqh, why does a mother traditionally lose custody upon remarriage?",
+            "options": [
+              "The new husband is presumed hostile to another man's child",
+              "Islamic law forbids women from remarrying with children",
+              "The child must take the new husband's name",
+              "Custody automatically transfers to the state"
+            ],
+            "correct": 0,
+            "explanation": "The rule rests on a presumed conflict between the stepfather's authority and the biological father's continuing rights — not on any restriction on the mother herself."
+          }
+        ]
+      },
+      {
+        "heading": "JUDICIAL DISCRETION AS A FEATURE",
+        "body": "Egyptian personal status courts have historically been given wide latitude to weigh 'the child's interest' — a phrase that lets individual judges import their own social conservatism. Advocates flag this not as a bug to be fixed but as the mechanism by which laws written ambiguously become harsh in practice.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Egypt (pre-2025)",
+                "value": "Father 16th",
+                "cc": "EG"
+              },
+              {
+                "label": "Egypt (proposed)",
+                "value": "Father 2nd",
+                "cc": "EG",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Morocco",
+                "value": "Father 3rd",
+                "cc": "MA"
+              },
+              {
+                "label": "Tunisia",
+                "value": "Judge's discretion",
+                "cc": "TN"
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "Father default",
+                "cc": "SA"
+              }
+            ],
+            "label": "Custody preference order for Muslim children (selected jurisdictions)"
+          }
+        ]
+      },
+      {
+        "heading": "THE COPTIC DIMENSION",
+        "body": "Egypt's roughly 10% Coptic Christian minority falls under separate personal status rules administered through the Coptic Orthodox Church, which permits divorce only for adultery or conversion. Mixed-religion marriages — typically a Muslim father and Christian mother, since the reverse is legally restricted — fall through every jurisdictional crack the bill widens."
+      }
+    ],
+    "generatedAt": "2026-05-11T17:38:06.756Z",
+    "label": "Egypt's Personal Status Law",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-11-eu-sanctions-west-bank-settlers-three-named-four-orgs": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL STATUS",
+        "body": "Every Israeli settlement in the West Bank is illegal under international law. The Fourth Geneva Convention (1949) prohibits an occupying power from transferring its civilian population into occupied territory. The International Court of Justice reaffirmed this in its 2024 advisory opinion. The EU, UN, and ICJ are aligned on the law; enforcement is the open question.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The relevant clause is **Article 49(6)** of the Fourth Geneva Convention — the same article cited in the ICJ's July 2024 ruling that called Israel's occupation *unlawful in its entirety*."
+          }
+        ]
+      },
+      {
+        "heading": "THE NAKBA AS PRECEDENT",
+        "body": "In 1948, roughly 750,000 Palestinians were expelled or fled from their homes during the creation of Israel — the Nakba, or catastrophe. The West Bank and Gaza became refuges. Settler expansion since 1967 has been understood by Palestinians as a continuation of the same displacement pattern, not a separate phenomenon.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1948",
+                "label": "Nakba — 750,000 displaced",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1967",
+                "label": "Six-Day War, West Bank occupied"
+              },
+              {
+                "year": "1977",
+                "label": "First Likud government, settlement boom"
+              },
+              {
+                "year": "1993",
+                "label": "Oslo Accords"
+              },
+              {
+                "year": "2005",
+                "label": "Gaza disengagement"
+              },
+              {
+                "year": "2024",
+                "label": "ICJ rules occupation unlawful"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1967",
+                "to": "2026",
+                "label": "West Bank occupation",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "the long arc of displacement"
+          }
+        ]
+      },
+      {
+        "heading": "WHY HUNGARY VETOES",
+        "body": "EU sanctions on Israel require unanimity. Orbán's Fidesz government has positioned itself as Israel's strongest European ally — partly ideological alignment with the Israeli right, partly a domestic strategy of using Israel as a counterweight to Brussels. Hungary alone has blocked EU statements on Gaza, settlements, and ICJ rulings.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The EU Common Foreign and Security Policy operates by **unanimity** — any one of 27 member states can veto. This is why sanctions on individuals (which can be done by qualified majority on technical grounds) advance while broader measures stall."
+          }
+        ]
+      },
+      {
+        "heading": "THE SETTLER POPULATION",
+        "body": "Roughly 500,000 Israeli settlers live in the West Bank, plus another 230,000 in East Jerusalem. Settlements range from secular suburbs of Tel Aviv to ideological hilltop outposts. The violent fringe — the population EU sanctions target — is concentrated in the outposts, often armed and operating with IDF protection.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "PS",
+              "JO",
+              "LB",
+              "SY",
+              "EG"
+            ],
+            "label": "the West Bank in its neighborhood",
+            "markers": [
+              {
+                "lat": 31.7683,
+                "lng": 35.2137,
+                "label": "Jerusalem"
+              },
+              {
+                "lat": 32.2211,
+                "lng": 35.2544,
+                "label": "Nablus"
+              },
+              {
+                "lat": 31.5326,
+                "lng": 35.0998,
+                "label": "Hebron"
+              },
+              {
+                "lat": 31.9038,
+                "lng": 35.2034,
+                "label": "Ramallah"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE BOYCOTT FAILS",
+        "body": "Trade measures need a qualified majority — 55% of states representing 65% of EU population. Germany, with 19% of EU population, has consistently voted no on anything that could be framed as boycotting Israel, citing the historical responsibility doctrine (Staatsräson) that ties German foreign policy to Israel's security.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of EU population must back a measure for qualified-majority approval?",
+            "options": [
+              "A simple majority — 50%",
+              "55% of states and 65% of population",
+              "Two-thirds of both states and population",
+              "Unanimity always"
+            ],
+            "correct": 1,
+            "explanation": "The double majority — 55% of member states representing 65% of EU population — is the standard threshold; Germany alone holds 19% and can block when allied with one or two others."
+          }
+        ]
+      },
+      {
+        "heading": "THE BLESSED LAND",
+        "body": "The Quran refers to Palestine and the surrounding region as al-ard al-muqaddasa — the holy land — in Surah al-Ma'ida. Classical scholars including Ibn Kathir and al-Qurtubi situated the blessed land at the center of prophetic history, from Ibrahim to Isa. For the Muslim reader, settler expansion is not only a legal violation but an encroachment on geography the Quran itself names as sacred."
+      }
+    ],
+    "generatedAt": "2026-05-11T17:38:36.173Z",
+    "label": "EU Sanctions & Settler Violence",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-11-eu-syria-trade-uae-damascus-business-forum-reconstruction": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BLESSED LAND",
+        "body": "Syria sits at the heart of al-Sham — the region Islamic tradition treats with particular reverence. A hadith in Sahih al-Bukhari describes the people of al-Sham as being under divine protection, and classical scholars including Ibn Kathir identified Damascus and its surroundings as central to end-times events. For the Muslim reader, the reopening of Damascus to global commerce after fourteen years of isolation resonates with a geography that predates modern borders."
+      },
+      {
+        "heading": "WHY SANCTIONS BIT SO HARD",
+        "body": "Syria's pre-war economy ran on oil exports, tourism, and remittances — all three channels run through banking systems exposed to US and EU jurisdiction. The Caesar Act (2019) extended secondary sanctions to any non-US entity doing business with the Assad regime, which froze Gulf and European reconstruction interest even where local political will existed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism was *extraterritorial* — a French cement company building in Aleppo could lose its US dollar clearing access. The chilling effect reached far beyond signatories of the sanctions themselves."
+          }
+        ]
+      },
+      {
+        "heading": "THE RECONSTRUCTION ARITHMETIC",
+        "body": "The World Bank's $216bn estimate equals roughly four times Syria's pre-war GDP. Lebanon's post-civil-war reconstruction (1990s) cost around $20bn over a decade; Iraq's post-2003 reconstruction absorbed over $200bn with mixed results. Syria's bill sits at the upper end of any modern precedent.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Syria (est.)",
+                "value": "$216bn",
+                "cc": "SY",
+                "weight": 216,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Iraq post-2003",
+                "value": "~$200bn",
+                "cc": "IQ",
+                "weight": 200,
+                "tone": "neutral"
+              },
+              {
+                "label": "Ukraine (est.)",
+                "value": "~$486bn",
+                "cc": "UA",
+                "weight": 486,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Lebanon 1990s",
+                "value": "~$20bn",
+                "cc": "LB",
+                "weight": 20,
+                "tone": "favorable"
+              }
+            ],
+            "label": "reconstruction bills, comparable wars"
+          }
+        ]
+      },
+      {
+        "heading": "WHY UAE FIRST",
+        "body": "The UAE never fully severed Damascus — it reopened its embassy in 2018, years before the wider Arab League rapprochement in 2023. Abu Dhabi's posture toward Syria has been transactional: counter Iranian influence, position Emirati construction and logistics firms for reconstruction contracts, and route Gulf capital through a friendly intermediary rather than directly.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SY",
+              "AE",
+              "SA",
+              "JO",
+              "LB",
+              "IQ",
+              "TR"
+            ],
+            "label": "Syria's neighborhood",
+            "markers": [
+              {
+                "lat": 33.5138,
+                "lng": 36.2765,
+                "label": "Damascus"
+              },
+              {
+                "lat": 24.4539,
+                "lng": 54.3773,
+                "label": "Abu Dhabi"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A SOVEREIGN RATING UNLOCKS",
+        "body": "Without a credit rating, a country cannot issue international bonds — global pension funds and insurers are legally barred from holding unrated debt. A first-time rating, even a deeply sub-investment-grade one, is the gate to accessing the roughly $100tn global bond market. The number itself matters less than the existence of any number at all."
+      },
+      {
+        "heading": "THE EU's CALCULATION",
+        "body": "Europe absorbed the largest Syrian refugee population outside the region — over a million in Germany alone since 2015. Funding reconstruction is partly humanitarian and partly an investment in conditions that allow returns. Brussels has been explicit that aid is tied to a political transition; trade reopening is the carrot."
+      },
+      {
+        "heading": "WHO COMPETES FOR THE CONTRACTS",
+        "body": "Turkish construction firms dominated post-conflict rebuilds in Iraq and Libya. Chinese state-owned enterprises hold the Belt and Road playbook. Gulf sovereign wealth funds bring capital. The reconstruction market is not one tender — it is hundreds of overlapping contracts where the winning combination is usually local partner plus foreign capital plus a third-country contractor.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country hosts the largest Syrian refugee population?",
+            "options": [
+              "Germany",
+              "Lebanon",
+              "Turkey",
+              "Jordan"
+            ],
+            "correct": 2,
+            "explanation": "Turkey hosts roughly 3.5 million Syrian refugees — the largest in the world. Lebanon hosts the most per capita (about one in four residents)."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-11T17:39:09.009Z",
+    "label": "Syria's Reconstruction Economy",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-11-fcc-foreign-routers-drones-security-update-ban-2029": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MARKET REALITY",
+        "body": "TP-Link captures roughly 60% of the US consumer and small-business router market. DJI holds an even larger share of the global commercial drone market — north of 70%. A ban without a domestic alternative is a ban that cannot actually be enforced.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "TP-Link",
+                "value": "~60%",
+                "tone": "unfavorable",
+                "weight": 60
+              },
+              {
+                "label": "Netgear",
+                "value": "~15%",
+                "tone": "neutral",
+                "weight": 15
+              },
+              {
+                "label": "ASUS",
+                "value": "~10%",
+                "tone": "neutral",
+                "weight": 10
+              },
+              {
+                "label": "Other",
+                "value": "~15%",
+                "tone": "favorable",
+                "weight": 15
+              }
+            ],
+            "label": "US consumer router market share (est.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ROUTERS MATTER",
+        "body": "A router sits between every device in a home or office and the internet. Compromise the router and you see every unencrypted request, can redirect traffic, and can pivot into devices behind it. It is the most privileged box on a typical network and the least frequently patched.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The router is the **perimeter** — the one device that touches every packet. Unlike a phone or laptop, most users never log into it after setup, never update firmware, and discard it only when it dies. A vulnerability with a five-year shelf life is realistic."
+          }
+        ]
+      },
+      {
+        "heading": "THE VOLT TYPHOON PRECEDENT",
+        "body": "In 2023-24, US agencies attributed a campaign called Volt Typhoon to Chinese state actors. The group compromised hundreds of small-office routers — many of them end-of-life TP-Link and similar devices — and used them as staging infrastructure to hide attacks on US critical infrastructure. The routers themselves were not the target; they were the camouflage."
+      },
+      {
+        "heading": "THE PATCH GAP",
+        "body": "Most consumer routers receive security updates for 2-5 years after release, if at all. Enterprise gear from Cisco or Juniper gets 7-10 years of patches but costs 10-50x more. The economics of the consumer segment — thin margins, race-to-the-bottom pricing — make long support windows commercially unviable without subsidy or mandate.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how long does a typical consumer router receive security updates from its manufacturer?",
+            "options": [
+              "10+ years, similar to enterprise gear",
+              "2-5 years, often less",
+              "Indefinitely, as long as the device works",
+              "Only during the 1-year warranty period"
+            ],
+            "correct": 1,
+            "explanation": "Consumer router support windows are short — 2-5 years is typical, and many cheap models stop receiving updates within months of release."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'AT LEAST' 2029",
+        "body": "The phrase 'at least' is the tell. It signals that domestic manufacturing capacity for low-cost networking hardware does not exist on a buildable timeline. Almost all consumer routers — including those sold under American brand names — are designed and assembled in Shenzhen and Dongguan. Decoupling requires rebuilding an ecosystem that took China twenty years to construct.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "VN",
+              "TW",
+              "MY",
+              "TH"
+            ],
+            "label": "where consumer networking hardware is actually made",
+            "caption": "Shenzhen and Dongguan anchor the global router supply chain"
+          }
+        ]
+      },
+      {
+        "heading": "THE DJI DIMENSION",
+        "body": "DJI's dominance in commercial drones is not just market share — it is the only vendor whose airframes, flight controllers, cameras, and software stack are vertically integrated at consumer prices. US-made alternatives like Skydio exist but cost 3-5x more and ship in far smaller volumes. Public safety agencies, surveyors, and farmers have built their workflows around hardware Washington wants them to stop buying.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "DJI",
+                "value": "~70%+ global",
+                "cc": "CN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Autel",
+                "value": "~10%",
+                "cc": "CN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Skydio",
+                "value": "<5%, premium",
+                "cc": "US",
+                "tone": "favorable"
+              },
+              {
+                "label": "Parrot",
+                "value": "<5%",
+                "cc": "FR",
+                "tone": "neutral"
+              }
+            ],
+            "label": "commercial drone market positioning"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-11T17:39:36.284Z",
+    "label": "Supply Chain Security & Network Gear",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-11-google-gtig-ai-zero-day-mass-hack-spree": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A ZERO-DAY IS",
+        "body": "A zero-day is a vulnerability the vendor does not yet know about — meaning defenders have had zero days to patch it. The value is asymmetric: the attacker holds working code against every unpatched system on Earth until disclosure.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The term comes from warez scene piracy — software cracked on day **zero** of release. It migrated to security research in the 1990s to describe exploits used before any patch existed."
+          }
+        ]
+      },
+      {
+        "heading": "THE EXPLOIT PIPELINE",
+        "body": "Turning a bug into a working exploit traditionally requires four stages: vulnerability discovery, primitive construction, exploitation chaining, and weaponization. Each stage historically demanded a specialist; the bottleneck was human reverse-engineering time, not raw compute.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "source",
+                "label": "Source code / binary"
+              },
+              {
+                "id": "vuln",
+                "label": "Vulnerability"
+              },
+              {
+                "id": "prim",
+                "label": "Primitive (read/write)"
+              },
+              {
+                "id": "chain",
+                "label": "Exploit chain"
+              },
+              {
+                "id": "weapon",
+                "label": "Weaponized payload"
+              }
+            ],
+            "links": [
+              {
+                "source": "source",
+                "target": "vuln",
+                "value": 100,
+                "label": "fuzzing, audit"
+              },
+              {
+                "source": "vuln",
+                "target": "prim",
+                "value": 60,
+                "label": "crafting"
+              },
+              {
+                "source": "prim",
+                "target": "chain",
+                "value": 40,
+                "label": "bypass mitigations"
+              },
+              {
+                "source": "chain",
+                "target": "weapon",
+                "value": 30,
+                "label": "delivery"
+              }
+            ],
+            "label": "the traditional exploit pipeline"
+          }
+        ]
+      },
+      {
+        "heading": "WHY AUTH LOGIC FLAWS ARE DIFFERENT",
+        "body": "Memory-corruption bugs (buffer overflows, use-after-free) require deep low-level skill. Authentication logic flaws — a forgotten check, a misordered state transition — are reasoning bugs. They look like a code review puzzle, which is exactly the shape LLMs handle well."
+      },
+      {
+        "heading": "THE OFFENSE-DEFENSE ASYMMETRY",
+        "body": "Defenders must close every door; attackers need one. AI lowers the cost of finding the one door faster than it lowers the cost of auditing every door, because audit requires guaranteeing absence of bugs while attack only requires producing one. The asymmetry compounds.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does AI-assisted vulnerability research favor attackers more than defenders, at least initially?",
+            "options": [
+              "Defenders cannot legally use AI tools on their own code",
+              "Finding one exploitable bug is easier than proving none exist",
+              "AI models refuse to generate defensive patches",
+              "Attackers have more compute than defenders"
+            ],
+            "correct": 1,
+            "explanation": "The fundamental asymmetry: attack succeeds with one working bug; defense requires proving the absence of all bugs across the whole codebase."
+          }
+        ]
+      },
+      {
+        "heading": "THE MARKET",
+        "body": "Zero-days have a price list. Zerodium has publicly offered up to $2.5M for an Android remote chain and $2M for iOS. Commercial brokers like NSO Group resell to governments; the gap between bug-bounty payouts and grey-market prices is the structural incentive for the trade.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "iOS RCE chain",
+                "value": "$2.0M",
+                "weight": 2
+              },
+              {
+                "label": "Android RCE chain",
+                "value": "$2.5M",
+                "weight": 2.5
+              },
+              {
+                "label": "Chrome RCE+SBX",
+                "value": "$500k",
+                "weight": 0.5
+              },
+              {
+                "label": "WhatsApp 0-click",
+                "value": "$1.5M",
+                "weight": 1.5
+              },
+              {
+                "label": "Typical Google bug bounty",
+                "value": "$30k",
+                "weight": 0.03
+              }
+            ],
+            "label": "published bounty / broker prices for top-tier exploits"
+          }
+        ]
+      },
+      {
+        "heading": "THE PROJECT ZERO PRECEDENT",
+        "body": "Google's Project Zero, founded in 2014, established the 90-day disclosure norm: report a bug, give the vendor 90 days, then publish regardless. The norm exists because vendors historically sat on reports for years. AI-built exploits compress the entire timeline — discovery to weaponization may now run in days, not the months disclosure rules were designed around."
+      },
+      {
+        "heading": "HARVEST NOW, EXPLOIT LATER",
+        "body": "The deeper worry is not this one bug. It is that an LLM trained on every disclosed CVE, exploit writeup, and patch diff in history can interpolate to bugs that were never disclosed — finding patterns in patches that reveal vulnerabilities the vendor never publicly acknowledged.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the *patch-gapping* problem: a fix lands in open-source code before the corresponding advisory ships. An AI that diffs commits at scale sees the bug before the defender does."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-11T17:40:06.998Z",
+    "label": "AI & Zero-Day Exploits",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-11-schmidt-resigns-bosnia-high-representative-kallas-eu": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DAYTON ARCHITECTURE",
+        "body": "The 1995 Dayton Accords ended the Bosnian War by freezing the country into two entities: the Bosniak-Croat Federation and the Serb-majority Republika Srpska, bound together by a weak central state. The deal stopped the killing but institutionalized the ethnic divisions the war was fought over.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BA",
+              "RS",
+              "HR",
+              "ME"
+            ],
+            "label": "Dayton's frozen map",
+            "markers": [
+              {
+                "lat": 43.8563,
+                "lng": 18.4131,
+                "label": "Sarajevo"
+              },
+              {
+                "lat": 44.7722,
+                "lng": 17.191,
+                "label": "Banja Luka (RS capital)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BONN POWERS",
+        "body": "The High Representative is not a diplomat — they are a viceroy. The 1997 Bonn conference gave the office authority to impose laws, fire elected officials, and amend the constitution by decree. No other European post combines this much unilateral power with this little democratic accountability.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The office has used the **Bonn powers** to remove over 100 officials, including a sitting president of Republika Srpska in 1999. Critics call it *imperial trusteeship*; defenders call it the only thing holding Dayton together."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGITIMACY GAP",
+        "body": "Schmidt was appointed in 2021 without UN Security Council endorsement after Russia and China blocked the vote. Republika Srpska's leadership has refused to recognize him ever since, treating his decrees as void. The succession to Kallas inherits this unresolved standoff.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes the High Representative's authority in Bosnia unusual?",
+            "options": [
+              "It can impose laws and remove elected officials by decree",
+              "It commands NATO peacekeeping troops directly",
+              "It is elected by Bosnian citizens every four years",
+              "It reports to the European Parliament"
+            ],
+            "correct": 0,
+            "explanation": "The Bonn powers (1997) let the office legislate by decree and fire officials — viceroy-like authority unmatched elsewhere in Europe."
+          }
+        ]
+      },
+      {
+        "heading": "THE SECESSION THREAT",
+        "body": "Republika Srpska's Milorad Dodik has spent years pushing legislation to withdraw from Bosnian state institutions — courts, tax authority, armed forces. Each move tests whether the High Representative will use the Bonn powers to strike it down, and whether anyone will enforce the strike-down if he does.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Christian Schmidt",
+                "role": "Outgoing High Representative",
+                "years": "2021–2026",
+                "cc": "DE"
+              },
+              {
+                "name": "Kaja Kallas",
+                "role": "EU foreign policy chief",
+                "years": "2024–",
+                "cc": "EE"
+              },
+              {
+                "name": "Milorad Dodik",
+                "role": "Republika Srpska president",
+                "years": "2022–",
+                "cc": "BA"
+              }
+            ],
+            "label": "the cast"
+          }
+        ]
+      },
+      {
+        "heading": "THE MOSCOW SIGNAL",
+        "body": "Republika Srpska sending the only European delegation to Putin's May 9 Victory Day parade is not a courtesy — it is a deliberate alignment. Belgrade and Banja Luka have used Russian diplomatic cover at the UN to shield against Bonn-powers enforcement for over a decade.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1992",
+                "label": "Bosnian War begins"
+              },
+              {
+                "year": "1995",
+                "label": "Dayton Accords",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1997",
+                "label": "Bonn powers established"
+              },
+              {
+                "year": "2006",
+                "label": "Last constitutional reform attempt fails"
+              },
+              {
+                "year": "2021",
+                "label": "Schmidt appointed without UNSC vote"
+              },
+              {
+                "year": "2026",
+                "label": "Schmidt resigns; Kallas inherits"
+              }
+            ],
+            "label": "Bosnia's unfinished peace"
+          }
+        ]
+      },
+      {
+        "heading": "THE ATTENTION PROBLEM",
+        "body": "Kallas already runs EU foreign policy and Ukraine ceasefire diplomacy. Bosnia's file becomes one folder among many on a desk that does not have the bandwidth for daily viceroy work. The office's deterrent value depends on credible threat of intervention — a threat that fades when nobody is watching."
+      }
+    ],
+    "generatedAt": "2026-05-11T17:40:32.474Z",
+    "label": "The Office of the High Representative",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-11-ukraine-drone-exports-20-countries-four-deals-signed": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "FROM IMPORTER TO EXPORTER",
+        "body": "Before 2022, Ukraine bought drones from Turkey — the Bayraktar TB2 became a national symbol in the war's opening weeks. Three years of combat-iteration turned Ukraine into one of the world's largest drone producers, with domestic output now exceeding 4 million units a year across hundreds of small workshops.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shift is structural: Ukraine moved from buyer to seller of the *same weapons class* that defined its early survival — a transition most arms industries take decades to make."
+          }
+        ]
+      },
+      {
+        "heading": "WHY COMBAT ITERATION MATTERS",
+        "body": "A drone design that works in a lab survives roughly two weeks at the front before Russian electronic warfare counters it. Ukrainian manufacturers ship firmware updates weekly and hardware revisions monthly. No Western defense contractor operates on this cycle — and buyers know it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How long does a new Ukrainian drone design typically remain effective at the front before EW countermeasures force a revision?",
+            "options": [
+              "About two weeks",
+              "About three months",
+              "About one year",
+              "About two years"
+            ],
+            "correct": 0,
+            "explanation": "The Russia-Ukraine front has compressed the drone iteration cycle to ~2 weeks — faster than any peacetime procurement system can match."
+          }
+        ]
+      },
+      {
+        "heading": "THE FPV REVOLUTION",
+        "body": "First-person-view racing drones — originally a hobbyist market built around $400 quadcopters and goggles — became the dominant precision-strike weapon of the war. A $500 FPV can disable a $4 million tank. This is the most extreme cost-exchange ratio in modern warfare.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "FPV drone",
+                "value": "~$500",
+                "tone": "favorable",
+                "weight": 500
+              },
+              {
+                "label": "Anti-tank missile",
+                "value": "~$175,000",
+                "tone": "neutral",
+                "weight": 175000
+              },
+              {
+                "label": "Main battle tank",
+                "value": "~$4mn",
+                "tone": "unfavorable",
+                "weight": 4000000
+              }
+            ],
+            "label": "FPV cost-exchange (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE EXPORT POLITICS",
+        "body": "Ukraine banned drone exports for most of the war to keep production at the front. The 2026 reversal reflects a hard fiscal reality: Kyiv needs hard currency, and Western military aid is uncertain. Selling combat-proven systems to the UAE, Gulf states, and African buyers funds the war effort that produced them.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "AE",
+              "SA",
+              "TR",
+              "PL",
+              "DE"
+            ],
+            "label": "early buyer geography",
+            "caption": "Gulf and European customers lead the first wave of signed deals"
+          }
+        ]
+      },
+      {
+        "heading": "THE UAE CONNECTION",
+        "body": "The UAE has quietly become one of the most active drone-arms hubs outside the major powers — buying Turkish Bayraktars, Chinese Wing Loongs, and Israeli loitering munitions in parallel. Adding Ukrainian systems gives Abu Dhabi the most diverse drone portfolio of any non-aligned state.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Volodymyr Zelenskyy",
+                "role": "Ukrainian President",
+                "years": "2019–",
+                "cc": "UA"
+              },
+              {
+                "name": "Rustem Umerov",
+                "role": "Defense Minister",
+                "years": "2023–",
+                "cc": "UA"
+              },
+              {
+                "name": "Mykhailo Fedorov",
+                "role": "Digital transformation min., drone procurement lead",
+                "years": "2019–",
+                "cc": "UA"
+              }
+            ],
+            "label": "Ukraine's drone-export interlocutors"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT BUYERS ACTUALLY GET",
+        "body": "Not just hardware. The Ukrainian package typically includes operator training, battlefield-tested tactics, and counter-EW protocols developed against the most sophisticated Russian jammers. The training is the asset; the airframe is almost commoditized."
+      }
+    ],
+    "generatedAt": "2026-05-11T17:40:57.649Z",
+    "label": "Ukraine's Drone Industry",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-11-undecidable-math-cryptography-post-quantum-quanta": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HALTING PROBLEM",
+        "body": "In 1936, Alan Turing proved no algorithm can decide in general whether an arbitrary program will eventually halt or run forever. This was the first proven undecidable problem — a question no computer, however powerful, can answer in finite time.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Turing's proof predates the first working computer by a decade. The limit on computation was discovered before computation existed."
+          }
+        ]
+      },
+      {
+        "heading": "GÖDEL'S SHADOW",
+        "body": "Kurt Gödel's 1931 incompleteness theorems showed that any consistent formal system rich enough to express arithmetic contains true statements it cannot prove. Undecidability is the computational shadow of this result — some questions have no mechanical procedure to settle them.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Kurt Gödel",
+                "role": "logician, incompleteness theorems",
+                "years": "1906–1978",
+                "cc": "AT"
+              },
+              {
+                "name": "Alan Turing",
+                "role": "computability theory",
+                "years": "1912–1954",
+                "cc": "GB"
+              },
+              {
+                "name": "Alonzo Church",
+                "role": "lambda calculus, Entscheidungsproblem",
+                "years": "1903–1995",
+                "cc": "US"
+              },
+              {
+                "name": "Emil Post",
+                "role": "correspondence problem (undecidable)",
+                "years": "1897–1954",
+                "cc": "US"
+              }
+            ],
+            "label": "the foundations"
+          }
+        ]
+      },
+      {
+        "heading": "HARD VS IMPOSSIBLE",
+        "body": "RSA rests on factoring being slow; lattice schemes rest on shortest-vector problems being slow. Slow is not the same as impossible — a faster algorithm or a quantum computer can collapse the gap. Undecidability has no such gap to collapse.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "RSA",
+                "value": "factoring (hard)",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "ECC",
+                "value": "discrete log (hard)",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Lattice (NIST PQC)",
+                "value": "shortest vector (hard)",
+                "tone": "neutral"
+              },
+              {
+                "label": "Undecidable-based",
+                "value": "no algorithm exists",
+                "tone": "favorable"
+              }
+            ],
+            "label": "what each scheme leans on"
+          }
+        ]
+      },
+      {
+        "heading": "SHOR'S GUILLOTINE",
+        "body": "Shor's algorithm (1994) factors integers and computes discrete logarithms in polynomial time on a quantum computer. This is why intelligence agencies are presumed to be recording encrypted traffic today — harvest now, decrypt later — and why NIST spent a decade selecting quantum-resistant replacements.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1931",
+                "label": "Gödel: incompleteness"
+              },
+              {
+                "year": "1936",
+                "label": "Turing: halting problem undecidable",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1977",
+                "label": "RSA published"
+              },
+              {
+                "year": "1994",
+                "label": "Shor's algorithm breaks RSA (in theory)"
+              },
+              {
+                "year": "2016",
+                "label": "NIST PQC competition opens"
+              },
+              {
+                "year": "2024",
+                "label": "NIST finalizes lattice-based standards"
+              }
+            ],
+            "label": "the cryptographic foundations"
+          }
+        ]
+      },
+      {
+        "heading": "THE CATCH",
+        "body": "Cryptography needs two things from a hard problem: that the attacker cannot solve it, and that the legitimate user can. Undecidable problems block everyone — including the person trying to decrypt their own message. Building a usable scheme requires carving out a decidable trapdoor inside an undecidable structure, which is where the engineering bleeds.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why has undecidability not been used for cryptography until now?",
+            "options": [
+              "Quantum computers might solve undecidable problems",
+              "Legitimate users also cannot decrypt by definition, so the trapdoor design is the hard part",
+              "Undecidable problems were only discovered recently",
+              "Governments banned undecidable cryptography"
+            ],
+            "correct": 1,
+            "explanation": "An undecidable problem blocks attackers absolutely — but also blocks the recipient. The cryptographic art is engineering a decidable shortcut for the key-holder inside an otherwise undecidable structure."
+          }
+        ]
+      },
+      {
+        "heading": "AES SURVIVES",
+        "body": "Symmetric ciphers like AES-256 are not threatened by Shor. Grover's algorithm halves their effective key length, so AES-256 behaves like AES-128 under quantum attack — still secure. The quantum threat is to public-key cryptography, which is how two strangers establish a shared symmetric key in the first place.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The vulnerable layer is *key exchange*, not the bulk cipher. Break key exchange and the whole session falls — the AES underneath is fine, but you never got to use it privately."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-11T17:41:24.062Z",
+    "label": "Undecidability as Cryptography",
+    "category": "science",
+    "articleCount": 1
   }
 }
