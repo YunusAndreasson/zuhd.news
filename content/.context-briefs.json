@@ -147327,5 +147327,913 @@
     "label": "Click-to-Reveal Pricing",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-05-09-eu-eprs-vpn-loophole-age-verification-surveillance": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A VPN ACTUALLY DOES",
+        "body": "A VPN encrypts traffic between your device and a server elsewhere, then forwards it to the destination. The destination sees the VPN server's IP, not yours. The technology was built in the 1990s for corporate remote access — letting employees reach internal networks from home — not for evading geo-restrictions.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The core protocols — **IPsec** (1995) and **OpenVPN** (2001) — predate the consumer privacy market by a decade. The same tunneling that lets a bank employee read internal email from a hotel also lets a Briton appear to be browsing from Romania."
+          }
+        ]
+      },
+      {
+        "heading": "THE LOOPHOLE MECHANIC",
+        "body": "Age-verification laws bind sites to check users in a given jurisdiction. A VPN moves the apparent jurisdiction. The UK's Online Safety Act triggered a roughly 1,400% surge in VPN signups the week age checks went live — the law's enforcement perimeter is the IP address, and the IP address is exactly what a VPN changes."
+      },
+      {
+        "heading": "THE SECOND-ORDER PROBLEM",
+        "body": "Once regulators concede the loophole, the next move is to regulate the tool itself. Utah's SB 73 (2025) is the first US law to require age verification before installing or using a VPN. France's Arcom has explored similar measures. The pattern matches encryption debates of the 1990s — Clipper Chip, export controls — where the workaround eventually became the target.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which jurisdiction passed the first law requiring age verification before VPN access?",
+            "options": [
+              "United Kingdom",
+              "European Union",
+              "Utah (US state)",
+              "France"
+            ],
+            "correct": 2,
+            "explanation": "Utah's SB 73 (2025) is the first such law. The UK and EU regulate the sites VPNs are used to reach, not VPN access itself — yet."
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPLIANCE STACK",
+        "body": "Hard age verification means submitting a government ID, a face scan, or a credit card to a third-party provider. That creates a permanent record linking a real identity to whatever the user was trying to access. The privacy cost is not in the moment of the check — it is in the database the check populates.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The EU's proposed standard leans on *eIDAS* digital wallets; the UK approved providers including face-estimation vendors. A leaked age-check database is qualitatively different from a leaked password database — it pairs *identity* with *intent*."
+          }
+        ]
+      },
+      {
+        "heading": "THE GREAT FIREWALL PRECEDENT",
+        "body": "China has banned unauthorized VPNs since 2017, requiring providers to register with the state. Russia followed in 2017 and tightened enforcement in 2024. Iran blocks most commercial VPN protocols at the ISP level. In each case, the stated rationale started narrow — pornography, gambling, foreign extremism — and expanded to political speech once the infrastructure existed.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "RU",
+              "IR",
+              "TR",
+              "AE"
+            ],
+            "label": "states that restrict consumer VPN use",
+            "caption": "Each began with narrow content goals; each expanded once enforcement tooling existed."
+          }
+        ]
+      },
+      {
+        "heading": "THE FUNCTION-CREEP PATTERN",
+        "body": "Surveillance infrastructure is consistently deployed for a narrow, sympathetic purpose then expanded once it exists. License plate readers (stolen cars), DNA databases (violent crime), airport body scanners (explosives), and cell-site simulators (kidnapping) all followed this arc. The original justification sets the political precedent; the eventual use is limited only by what the technology permits.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "ALPR cameras",
+                "value": "stolen cars → mass tracking",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "DNA databases",
+                "value": "violent crime → familial search",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Body scanners",
+                "value": "bombs → routine screening",
+                "tone": "neutral"
+              },
+              {
+                "label": "Stingrays",
+                "value": "kidnapping → protest monitoring",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "surveillance tools by original vs current use"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-11T04:26:25.054Z",
+    "label": "VPNs & Age Verification",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-10-netanyahu-wean-israel-us-military-aid-gulf-pivot": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MOU MECHANISM",
+        "body": "US military aid to Israel runs through 10-year Memoranda of Understanding, not annual appropriations. The current MOU, signed by Obama in 2016, locks in $38bn over 2019-2028 — $3.3bn in Foreign Military Financing plus $500m yearly for missile defense. Congress cannot easily cut it mid-term without breaking a presidential commitment.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The MOU is a **floor, not a ceiling** — supplemental appropriations (like the $14bn after October 2023) sit on top of it."
+          }
+        ]
+      },
+      {
+        "heading": "THE BUY-AMERICAN RULE",
+        "body": "Roughly 74% of US aid to Israel must be spent on American defense contractors. The cash flows from Treasury to Lockheed, Boeing, Raytheon, and General Dynamics — not to the Israeli economy directly. Cutting the aid means cutting US factory orders as much as Israeli capability.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of US military aid to Israel must be spent on American defense contractors?",
+            "options": [
+              "About 25%",
+              "About 50%",
+              "About 74%",
+              "100%"
+            ],
+            "correct": 2,
+            "explanation": "The Obama-era MOU phased out Israel's previous right to spend ~26% domestically (the OSP carveout) — by 2028, 100% must be spent in the US."
+          }
+        ]
+      },
+      {
+        "heading": "THE OSP PHASE-OUT",
+        "body": "Until 2016, Israel uniquely could convert about a quarter of its FMF into shekels to spend on domestic defense industries — the Off-Shore Procurement carveout. The current MOU is phasing it out entirely by 2028. Israeli firms like Elbit and IAI have been preparing for this cliff for a decade.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Israel",
+                "value": "$3.3bn",
+                "cc": "IL",
+                "weight": 3.3,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Egypt",
+                "value": "$1.3bn",
+                "cc": "EG",
+                "weight": 1.3,
+                "tone": "neutral"
+              },
+              {
+                "label": "Jordan",
+                "value": "$425m",
+                "cc": "JO",
+                "weight": 0.425,
+                "tone": "neutral"
+              },
+              {
+                "label": "Iraq",
+                "value": "$250m",
+                "cc": "IQ",
+                "weight": 0.25,
+                "tone": "neutral"
+              },
+              {
+                "label": "Ukraine",
+                "value": "$300m",
+                "cc": "UA",
+                "weight": 0.3,
+                "tone": "neutral"
+              }
+            ],
+            "label": "top US military aid recipients (FY2024 FMF)"
+          }
+        ]
+      },
+      {
+        "heading": "THE QME DOCTRINE",
+        "body": "US law (since 2008) requires Washington to maintain Israel's Qualitative Military Edge — a guarantee that Israel can defeat any regional coalition. This is what gates F-35 sales to Gulf states: the UAE's 2020 deal stalled partly over QME review. Replacing US aid with Gulf money does not replace the QME guarantee, which only Washington can confer."
+      },
+      {
+        "heading": "THE GULF ARITHMETIC",
+        "body": "Saudi Arabia, the UAE, and Qatar combined spend roughly $110bn/year on defense — most of it on US hardware. Redirecting even a fraction toward Israel is politically impossible under current normalization terms; the Abraham Accords explicitly excluded direct military transfers.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "SA",
+              "AE",
+              "QA",
+              "BH",
+              "JO",
+              "EG"
+            ],
+            "label": "the potential aid-replacement axis",
+            "caption": "Abraham Accords signatories plus Riyadh"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT NETANYAHU CITES",
+        "body": "Israel's economic aid from Washington — once $1.2bn/year in the 1980s — was zeroed out in 2008 by mutual agreement after Israel's GDP per capita passed $30,000. Military aid was kept and increased. The argument now is to do the same with the military portion: graduate from dependency.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1948",
+                "label": "first US loans, mostly humanitarian"
+              },
+              {
+                "year": "1973",
+                "label": "Yom Kippur airlift, aid jumps",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1985",
+                "label": "aid converted from loans to grants"
+              },
+              {
+                "year": "2008",
+                "label": "economic aid phased out"
+              },
+              {
+                "year": "2016",
+                "label": "current $38bn MOU signed"
+              },
+              {
+                "year": "2028",
+                "label": "current MOU expires"
+              }
+            ],
+            "label": "US aid to Israel, the long arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-11T04:26:50.665Z",
+    "label": "US Aid to Israel & the MOU System",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-11-australia-chalmers-budget-iran-war-fuel-housing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT NEGATIVE GEARING ACTUALLY IS",
+        "body": "Australia lets property investors deduct rental losses — including mortgage interest — against their wage income, not just against rental income. Combined with a 50% capital gains tax discount introduced in 1999, it makes loss-making investment property a tax shelter for high earners. Roughly 2.2 million Australians use it; the top tax brackets capture most of the benefit.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 1999 *Howard-Costello* reform — halving CGT while preserving full deductibility of losses — is what turned ordinary negative gearing into a leveraged tax-arbitrage structure. Pre-1999 it existed; post-1999 it became a national obsession."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1985 PRECEDENT",
+        "body": "The Hawke-Keating Labor government abolished negative gearing in 1985. After landlord lobbying and (contested) claims of rent spikes in Sydney and Perth, it was reinstated in 1987. Every Labor leader since has been haunted by the episode — it is the standing reason given for not touching the policy.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1985",
+                "label": "Hawke-Keating quarantine negative gearing"
+              },
+              {
+                "year": "1987",
+                "label": "reinstated after landlord backlash",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1999",
+                "label": "Howard halves CGT — leverage gets supercharged"
+              },
+              {
+                "year": "2016",
+                "label": "Shorten Labor loses election campaigning to reform it"
+              },
+              {
+                "year": "2025",
+                "label": "Albanese pledges no changes"
+              },
+              {
+                "year": "2026",
+                "label": "Chalmers winds it back"
+              }
+            ],
+            "label": "the negative-gearing arc"
+          }
+        ]
+      },
+      {
+        "heading": "FUEL EXCISE AS POLITICAL LEVER",
+        "body": "Australia's fuel excise is roughly 50 cents per litre — about a quarter of pump prices. Cutting it is the fastest cost-of-living gesture a treasurer has, but it leaks: the discount accrues to whoever has a car, not to whoever needs the help most. Morrison's government did the same thing for six months in 2022 ahead of an election."
+      },
+      {
+        "heading": "WHY IRAN MOVES AUSTRALIAN FUEL",
+        "body": "Australia has no domestic refining capacity west of Queensland. Western Australia depends entirely on refined fuel shipped from Singapore and South Korea — feedstock that originates largely in the Persian Gulf. A Hormuz disruption hits Perth pumps before any national reserve mechanism can respond.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AU",
+              "SG",
+              "KR",
+              "IR",
+              "AE"
+            ],
+            "label": "Australia's fuel supply chain",
+            "markers": [
+              {
+                "lat": 1.2649,
+                "lng": 103.8201,
+                "label": "Singapore refining hub"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": -31.9523,
+                "lng": 115.8613,
+                "label": "Perth"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 90-DAY RULE AUSTRALIA BREAKS",
+        "body": "IEA members must hold 90 days of net oil imports in reserve. Australia has been non-compliant for years, holding closer to 50-60 days — and much of that is held as 'tickets' entitling Australia to draw from US strategic reserves physically located on the other side of the Pacific. In a Persian Gulf war, those tickets are worth what the shipping lanes are worth."
+      },
+      {
+        "heading": "THE PLEDGE PROBLEM",
+        "body": "Breaking a specific election promise carries an asymmetric political cost in Australia: Gillard's 2010 carbon tax reversal is still cited as a generational lesson in Labor circles. Chalmers is betting that war framing — 'circumstances have changed' — buys him cover that ordinary fiscal reasoning would not.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When was negative gearing last abolished in Australia?",
+            "options": [
+              "Never — it has always existed in current form",
+              "1985, by the Hawke-Keating Labor government",
+              "1999, alongside the Howard CGT reforms",
+              "2016, briefly under Turnbull"
+            ],
+            "correct": 1,
+            "explanation": "Hawke-Keating quarantined it in 1985; landlord backlash and rent-spike claims forced reinstatement in 1987 — the episode every Labor treasurer since has cited as a warning."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-11T04:27:34.920Z",
+    "label": "Negative Gearing & the Fuel Excise",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-11-cord-blood-il6-preterm-brain-injury-nonlinear-china": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CYTOKINE",
+        "body": "Interleukin-6 is a signaling protein the immune system releases during infection and inflammation. It crosses the placenta and the fetal blood-brain barrier, where it disrupts the developing white matter — the wiring that lets brain regions talk to each other.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "IL-6 is the same cytokine that drives the *cytokine storm* in severe COVID and the inflammatory cascade in rheumatoid arthritis — drugs like **tocilizumab** were built specifically to block its receptor."
+          }
+        ]
+      },
+      {
+        "heading": "CHORIOAMNIONITIS",
+        "body": "Infection of the membranes surrounding the fetus is the single largest driver of spontaneous preterm birth. It is often silent — the mother has no fever, no pain — but the fetus is bathed in inflammatory cytokines for days before delivery."
+      },
+      {
+        "heading": "WHY THE BRAIN IS VULNERABLE",
+        "body": "Before 32 weeks, the fetal brain is in a critical window of oligodendrocyte maturation — the cells that make myelin. These precursor cells are uniquely sensitive to inflammation; damage during this window causes periventricular leukomalacia, the lesion underlying most cases of cerebral palsy in preterm survivors."
+      },
+      {
+        "heading": "THE LINEAR ASSUMPTION",
+        "body": "Most clinical screening assumes a dose-response curve — twice the biomarker, roughly twice the risk. Linear regression is the default tool in epidemiology because it is simple, interpretable, and usually close enough. Biology disagrees more often than the literature admits: thresholds, plateaus, and inflection points are common, and a linear cutoff drawn through a nonlinear curve systematically misranks the extremes.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does a linear screening rule miss the highest-risk infants when the true relationship has an inflection point?",
+            "options": [
+              "It averages high-risk and low-risk cases into a single slope, flattening the spike at the top end",
+              "It requires more data points than nonlinear models",
+              "It cannot handle missing values in cord blood samples",
+              "Linear models are forbidden by FDA screening guidelines"
+            ],
+            "correct": 0,
+            "explanation": "A single slope pulls the cutoff toward the population mean; the steep risk acceleration above the inflection gets smoothed away."
+          }
+        ]
+      },
+      {
+        "heading": "THE REFERENCE-RANGE PROBLEM",
+        "body": "Clinical cutoffs are usually derived from the population the original study ran in — often white European or North American cohorts. Baseline inflammatory tone, infection burden, and genetic variants in cytokine signaling differ across populations, so a threshold calibrated in Boston can systematically misclassify infants in Shenyang, Lagos, or Karachi.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "NG",
+              "IN",
+              "PK",
+              "BD",
+              "ID",
+              "ET"
+            ],
+            "label": "where preterm birth volume is highest",
+            "caption": "These countries deliver the majority of the world's ~15 million annual preterm births."
+          }
+        ]
+      },
+      {
+        "heading": "THE BURDEN",
+        "body": "Roughly one in ten births globally is preterm, and preterm complications are the leading cause of death in children under five. Sub-Saharan Africa and South Asia carry the largest absolute share — the same regions where neonatal units are most likely to import Western screening protocols without local recalibration.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Bangladesh",
+                "value": "~19%",
+                "cc": "BD",
+                "tone": "unfavorable",
+                "weight": 19
+              },
+              {
+                "label": "Pakistan",
+                "value": "~14%",
+                "cc": "PK",
+                "tone": "unfavorable",
+                "weight": 14
+              },
+              {
+                "label": "Nigeria",
+                "value": "~12%",
+                "cc": "NG",
+                "tone": "unfavorable",
+                "weight": 12
+              },
+              {
+                "label": "India",
+                "value": "~13%",
+                "cc": "IN",
+                "tone": "unfavorable",
+                "weight": 13
+              },
+              {
+                "label": "United States",
+                "value": "~10%",
+                "cc": "US",
+                "tone": "neutral",
+                "weight": 10
+              },
+              {
+                "label": "China",
+                "value": "~7%",
+                "cc": "CN",
+                "tone": "favorable",
+                "weight": 7
+              },
+              {
+                "label": "Sweden",
+                "value": "~5%",
+                "cc": "SE",
+                "tone": "favorable",
+                "weight": 5
+              }
+            ],
+            "label": "preterm birth rate, selected countries"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-11T04:28:01.007Z",
+    "label": "IL-6 & the Preterm Brain",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-11-punjab-akar-land-lease-corporate-pakistan-smallholder": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COLONIAL TEMPLATE",
+        "body": "Punjab's land-allotment machinery is inherited from the British canal colonies of the 1880s-1900s, when the Raj built the Triple Canals and parceled out millions of newly-irrigated acres to favored military veterans, loyalist tribes, and revenue collaborators. The Board of Revenue's allotment files, the district-magistrate signature, the nominal lease rate — every administrative step in the current scheme has a direct ancestor in Lyallpur and Montgomery a century ago.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The colonial term was *abadkari* — settlement grants — and the same word still appears in modern Punjab land-revenue files."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHOLISTAN IS EMPTY",
+        "body": "The Cholistan is the Pakistani extension of the Thar Desert, a sand-dune belt south of the Sutlej. It is empty not because no one wanted it but because the Sutlej itself is empty — the 1960 Indus Waters Treaty assigned the Sutlej, Beas, and Ravi to India, which built dams that strangled downstream flow. Pakistan's eastern rivers are now seasonal trickles, and the canal system that would irrigate Cholistan was never finished.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IN"
+            ],
+            "label": "the Sutlej arc",
+            "markers": [
+              {
+                "lat": 28.5,
+                "lng": 71.5,
+                "label": "Cholistan Desert"
+              },
+              {
+                "lat": 31.4,
+                "lng": 73.1,
+                "label": "Faisalabad (canal colony)"
+              },
+              {
+                "lat": 31.3,
+                "lng": 75.5,
+                "label": "Bhakra Dam (India)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PEPPERCORN-RENT MECHANIC",
+        "body": "A nominal rent — Rs100 per acre against a market rate of Rs150,000 — is not an error; it is the mechanism. The gap between the official price and the real price is the patronage. Whoever receives the allotment captures that spread instantly, by subletting at market or by sitting on the land until a developer arrives. The same pattern shows up in housing-society land, mining licenses, and CPEC industrial-zone allocations across the country.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Official lease",
+                "value": "Rs100",
+                "weight": 100,
+                "tone": "neutral"
+              },
+              {
+                "label": "Open-market rent",
+                "value": "Rs150,000",
+                "weight": 150000,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Punjab allotment rent vs. market (per acre, Rs)"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY FARMS PAKISTAN",
+        "body": "Roughly 90% of Pakistan's farms are under 5 hectares; smallholders work the majority of cultivated land but own a shrinking share of it. The 1959 and 1972 land reforms set ceilings on holdings but were riddled with family-transfer loopholes, and the 1990 Qazalbash Waqf ruling by the Federal Shariat Court declared land ceilings un-Islamic — effectively ending redistribution as a political project."
+      },
+      {
+        "heading": "THE CORPORATE-FARMING TURN",
+        "body": "Since the 2009 Corporate Agriculture Farming Ordinance, Islamabad has actively courted Gulf sovereign capital — Saudi, Emirati, Qatari funds — to lease Pakistani farmland for food security at home. The Green Pakistan Initiative announced in 2023 placed Cholistan tracts under military-civilian joint management explicitly to attract these investors. The 83,000 dry acres are the visible edge of a much larger pipeline.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Maryam Nawaz",
+                "role": "Punjab Chief Minister",
+                "years": "2024–",
+                "cc": "PK"
+              },
+              {
+                "name": "Asim Munir",
+                "role": "Army Chief, GPI patron",
+                "years": "2022–",
+                "cc": "PK"
+              },
+              {
+                "name": "Anwaar ul Haq Kakar",
+                "role": "GPI architect, ex-PM",
+                "years": "2023–2024",
+                "cc": "PK"
+              }
+            ],
+            "label": "the corporate-farming stack"
+          }
+        ]
+      },
+      {
+        "heading": "THE WATER ARITHMETIC",
+        "body": "Pakistan is one of the most water-stressed countries on earth — roughly 1,000 cubic metres per capita per year, against a 1,700 scarcity threshold. Cotton and sugarcane, the crops most likely to be planted on new corporate tracts, are among the thirstiest. Allotting desert land without a water plan is not an oversight; it shifts the cost of finding the water onto whoever gets the lease, which in practice means deepening tubewells into an already-falling aquifer.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which treaty assigned the rivers that would have irrigated Cholistan to India rather than Pakistan?",
+            "options": [
+              "The 1947 Radcliffe Award",
+              "The 1960 Indus Waters Treaty",
+              "The 1972 Simla Agreement",
+              "The 1988 Salal Accord"
+            ],
+            "correct": 1,
+            "explanation": "The World Bank-brokered Indus Waters Treaty gave India the three eastern rivers — Ravi, Beas, Sutlej — leaving Pakistan dependent on the three western rivers for Punjab and Sindh."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-11T04:28:43.362Z",
+    "label": "Land Allotment & the Cholistan Frontier",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-11-thaksin-shinawatra-released-thailand-pheu-thai": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NETWORK MONARCHY",
+        "body": "Thai politics runs on an unwritten arrangement between the palace, the military, and the bureaucracy — what scholars call the network monarchy. Elected governments operate inside this network's tolerances; when they exceed them, the military removes them. Thaksin has been on the wrong side of this line since 2006.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The term *network monarchy* was coined by Duncan McCargo in 2005 to describe how informal palace-aligned networks, not formal constitutional powers, shape outcomes. The king rarely intervenes directly; the network polices the boundaries on his behalf."
+          }
+        ]
+      },
+      {
+        "heading": "THE COUP HABIT",
+        "body": "Thailand has had more successful military coups than any other country since WWII. The pattern is consistent: a populist wins rural votes, governs assertively, gets removed by tanks or courts, and a constitution is rewritten before the next election restarts the cycle.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2001",
+                "label": "Thaksin wins landslide"
+              },
+              {
+                "year": "2006",
+                "label": "Military coup ousts Thaksin",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2008",
+                "label": "Court dissolves Thaksin's party"
+              },
+              {
+                "year": "2011",
+                "label": "Sister Yingluck elected PM"
+              },
+              {
+                "year": "2014",
+                "label": "Prayuth coup ousts Yingluck"
+              },
+              {
+                "year": "2023",
+                "label": "Thaksin returns, jailed same day"
+              },
+              {
+                "year": "2024",
+                "label": "Daughter Paetongtarn becomes PM"
+              },
+              {
+                "year": "2024-08",
+                "label": "Court removes Paetongtarn"
+              }
+            ],
+            "label": "the Thaksin-era cycle"
+          }
+        ]
+      },
+      {
+        "heading": "THE LÈSE-MAJESTÉ LEVER",
+        "body": "Article 112 of the criminal code makes insulting the monarchy punishable by 3-15 years per count. Anyone can file a complaint, and prosecution is effectively mandatory. The law is the network's sharpest weapon — Thaksin's original return sentence stacked corruption and lèse-majesté charges before the royal commutation cut them to one year.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the maximum prison sentence per count under Thailand's lèse-majesté law (Article 112)?",
+            "options": [
+              "1 year",
+              "5 years",
+              "15 years",
+              "Life"
+            ],
+            "correct": 2,
+            "explanation": "Up to 15 years per count, and counts stack — defendants have received sentences exceeding 40 years for multiple Facebook posts."
+          }
+        ]
+      },
+      {
+        "heading": "THE RED-YELLOW DIVIDE",
+        "body": "Thaksin's base is the rural north and northeast (Isaan) — Red Shirts who benefited from his universal healthcare and rice subsidies. The opposing Yellow Shirts are Bangkok's urban middle class and royalists. This is not just left-right; it is a geographic and class cleavage that has structured every Thai election for 25 years.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TH",
+              "MM",
+              "LA",
+              "KH",
+              "MY"
+            ],
+            "label": "the Red-Yellow geography",
+            "markers": [
+              {
+                "lat": 13.7563,
+                "lng": 100.5018,
+                "label": "Bangkok (Yellow base)"
+              },
+              {
+                "lat": 16.4419,
+                "lng": 102.8359,
+                "label": "Khon Kaen (Red base)"
+              },
+              {
+                "lat": 18.7883,
+                "lng": 98.9853,
+                "label": "Chiang Mai (Thaksin's home)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY PHEU THAI COLLAPSED",
+        "body": "In 2023, Pheu Thai broke its own taboo: it formed a coalition with the military-aligned parties it had spent two decades fighting, to keep the genuinely reformist Move Forward party out of power. Rural voters read this as betrayal. The 2024 result was the party's worst ever — the Shinawatra brand survived exile and coups but not coalition with its old enemies."
+      },
+      {
+        "heading": "THE DEAL THAT BROUGHT HIM BACK",
+        "body": "Thaksin spent 15 years in self-imposed exile to avoid an 8-year corruption sentence. His 2023 return — flying in the same day Pheu Thai formed government — was the product of a tacit deal: the network accepts his return, he accepts that his party governs on the network's terms. The royal commutation to 1 year, served almost entirely in a police hospital VIP suite rather than prison, was the visible part of the bargain."
+      }
+    ],
+    "generatedAt": "2026-05-11T04:29:11.552Z",
+    "label": "Thaksin & the Thai Cycle",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-11-turkish-airlines-kathmandu-fire-nepal-runway": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TERRAIN PROBLEM",
+        "body": "Kathmandu sits in a bowl ringed by the Himalayas. Approaches require a curved visual descent through the Mahabharat range — there is no straight-in instrument approach from most directions. Pilots must be specifically certified for Tribhuvan, and weather minimums are unusually high.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The airport's single runway is **3,350 metres** at an elevation of **1,338 metres** — thin air reduces engine thrust and lift, so payload and fuel must be cut on hot days. This is called a **hot-and-high** airport, the same category as La Paz and Addis Ababa."
+          }
+        ]
+      },
+      {
+        "heading": "WHY NO SECOND RUNWAY",
+        "body": "The Kathmandu Valley is built out. Any parallel runway would require demolishing densely populated wards or cutting into protected heritage zones around Pashupatinath and Boudhanath. Nijgadh International — a greenfield replacement 175km south — has been planned since 1995 and blocked repeatedly by Supreme Court rulings over deforestation of 2.4 million trees.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NP",
+              "IN",
+              "CN",
+              "BT",
+              "BD"
+            ],
+            "label": "Nepal's airport geography",
+            "markers": [
+              {
+                "lat": 27.6966,
+                "lng": 85.3591,
+                "label": "Tribhuvan (Kathmandu)"
+              },
+              {
+                "lat": 27.1592,
+                "lng": 85.1217,
+                "label": "Nijgadh (proposed)"
+              },
+              {
+                "lat": 28.6017,
+                "lng": 83.9722,
+                "label": "Pokhara Intl (2023)"
+              },
+              {
+                "lat": 27.6781,
+                "lng": 84.3667,
+                "label": "Bharatpur"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TOURISM DEPENDENCY",
+        "body": "Tourism contributes roughly 7% of Nepal's GDP directly and supports over a million jobs in a workforce of 17 million. Almost all international arrivals — trekkers, mountaineers, pilgrims to Lumbini and Pashupatinath — pass through this one runway. A multi-day closure cascades into cancelled Everest expeditions, empty Thamel guesthouses, and lost remittance-adjacent income."
+      },
+      {
+        "heading": "THE LANDLOCKED CONSTRAINT",
+        "body": "Nepal is sandwiched between India and China with no sea access. All imports either come overland through Indian border posts or fly in. The 2015 Indian blockade — sparked by a Madhesi protest after Nepal's new constitution — cut fuel, medicine, and cooking gas for five months. The lesson Nepal took: never depend on a single chokepoint. The lesson it has not yet acted on: its airport is exactly that.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When Tribhuvan closes, what is Nepal's nearest international airport alternative for diversions?",
+            "options": [
+              "Pokhara International, opened 2023 inside Nepal",
+              "Lhasa, just over the Chinese border",
+              "Patna or Lucknow in northern India",
+              "Dhaka in Bangladesh"
+            ],
+            "correct": 2,
+            "explanation": "Pokhara opened in 2023 but lacks the runway length and customs capacity for most wide-bodies. Diversions typically go to Indian airports — Kolkata, Lucknow, or Patna — adding a layer of bilateral dependency."
+          }
+        ]
+      },
+      {
+        "heading": "THE POKHARA WHITE ELEPHANT",
+        "body": "Nepal's second international airport opened in Pokhara in January 2023, built with a $216 million loan from China's Exim Bank under the Belt and Road Initiative. Eighteen months later it had handled almost no international flights — India refused to grant overflight rights that would make routes commercially viable, citing security concerns. The runway exists; the airspace politics do not."
+      }
+    ],
+    "generatedAt": "2026-05-11T04:29:37.545Z",
+    "label": "Nepal's Single-Runway Economy",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-11-ziobro-poland-hungary-magyar-extradition-sanctuary": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PIS ERA PROSECUTOR",
+        "body": "Ziobro served as Justice Minister and Prosecutor General simultaneously from 2015 to 2023 — a fusion Poland's constitution had separated for a reason. The combined role gave one politician control over both who gets prosecuted and who decides the charge, dissolving the firewall between political and prosecutorial power.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The merger of *Minister Sprawiedliwości* and *Prokurator Generalny* was reversed by the Tusk government in **2024** — but only after eight years of cases shaped under the combined office."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT PEGASUS DID",
+        "body": "NSO Group's Pegasus is zero-click spyware: a target's phone is compromised without them tapping anything. Citizen Lab confirmed Polish authorities used it against opposition senator Krzysztof Brejza during the 2019 election campaign, extracting his texts and feeding doctored versions to state media."
+      },
+      {
+        "heading": "THE ORBÁN SANCTUARY MODEL",
+        "body": "For a decade, Budapest was the European refuge of choice for politicians fleeing prosecution by allied-turned-hostile governments. North Macedonia's Nikola Gruevski fled there in 2018 after a corruption conviction; Hungary granted him asylum within days despite an Interpol notice.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Nikola Gruevski",
+                "role": "ex-PM, corruption conviction",
+                "years": "fled 2018",
+                "cc": "MK"
+              },
+              {
+                "name": "Zbigniew Ziobro",
+                "role": "ex-Justice Minister, Pegasus abuse",
+                "years": "fled 2025",
+                "cc": "PL"
+              }
+            ],
+            "label": "who fled to Budapest"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE US, NOT EUROPE",
+        "body": "Within the EU, the European Arrest Warrant makes extradition near-automatic — a member state cannot shelter another member's fugitive without violating treaty obligations. Outside the EU, extradition runs on bilateral treaties with political-offense exceptions and slow court review. The US-Poland treaty exists but allows years of appeals; reaching Newark buys time even if it does not buy permanent safety."
+      },
+      {
+        "heading": "THE PASSPORT REVOCATION TRICK",
+        "body": "Revoking a fugitive's passport is a standard tool — it strips legal status in the host country and forces immigration authorities to act. But it only works if the host wants to cooperate. The US has historically been slow to deport politically charged figures, especially those who arrive before revocation completes; Ziobro likely entered on a valid document hours before Warsaw cancelled it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes the European Arrest Warrant different from traditional extradition?",
+            "options": [
+              "It eliminates the political-offense exception between EU members",
+              "It requires unanimous EU Council approval for each case",
+              "It only applies to terrorism and organized crime",
+              "It gives the fugitive the right to choose the trial country"
+            ],
+            "correct": 0,
+            "explanation": "The 2002 EAW framework removed the political-offense bar within the EU — a member state cannot refuse to surrender a wanted person on the grounds that the charge is politically motivated."
+          }
+        ]
+      },
+      {
+        "heading": "THE MAGYAR PIVOT",
+        "body": "Peter Magyar's Tisza party campaigned on dismantling Orbán's parallel-state infrastructure — captured media, captured prosecutors, captured asylum machinery. Refusing sanctuary to Ziobro on day one is a signal to Brussels (cohesion funds), to Warsaw (rule-of-law solidarity), and to the remaining Fidesz network that the doors are closed.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PL",
+              "HU",
+              "SK",
+              "CZ",
+              "AT"
+            ],
+            "label": "Central Europe after the Hungarian pivot"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-11T04:30:06.420Z",
+    "label": "Political Asylum & the Sanctuary Question",
+    "category": "politics",
+    "articleCount": 1
   }
 }
