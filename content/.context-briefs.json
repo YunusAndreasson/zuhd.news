@@ -148235,5 +148235,1423 @@
     "label": "Political Asylum & the Sanctuary Question",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-11-adani-cii-summit-india-sovereign-ai-energy-infrastructure": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT SOVEREIGN AI MEANS",
+        "body": "A sovereign AI stack means owning the full pipeline domestically: data centers, GPUs, foundation models, and the energy to run them. The opposite is renting compute from AWS, Azure, or Google Cloud — which means inference logs, model weights, and usage patterns sit on foreign servers under foreign jurisdiction.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phrase entered policy vocabulary after the **CHIPS Act** (2022) and France's **Mistral** push — every major economy now treats compute as critical infrastructure rather than a commodity to import."
+          }
+        ]
+      },
+      {
+        "heading": "THE ENERGY CONSTRAINT",
+        "body": "A single hyperscale AI campus draws 500 MW to 1 GW — roughly the output of a mid-sized nuclear reactor. India's per-capita electricity consumption is one-third the global average and one-tenth of the US; the grid was not built for this load. Whoever owns the generation owns the AI buildout.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Electricity consumption per capita, 2023",
+            "peers": [
+              {
+                "value": 12700,
+                "cc": "US"
+              },
+              {
+                "value": 6100,
+                "cc": "CN"
+              },
+              {
+                "value": 6300,
+                "cc": "DE"
+              },
+              {
+                "value": 2700,
+                "cc": "BR"
+              },
+              {
+                "value": 1300,
+                "cc": "IN"
+              },
+              {
+                "value": 140,
+                "cc": "NG"
+              }
+            ],
+            "subjectCc": "IN",
+            "unit": "kWh"
+          }
+        ]
+      },
+      {
+        "heading": "THE ADANI FOOTPRINT",
+        "body": "Adani Group spans ports (Mundra, the largest in India), power generation (~7% of national capacity), transmission lines, coal mining, solar manufacturing, and now data centers via AdaniConneX (a JV with EdgeConneX). Few conglomerates anywhere control this much of the input stack for an AI build-out simultaneously.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ports throughput",
+                "value": "~27% of India",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Power generation",
+                "value": "~7% of grid",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Transmission",
+                "value": "~20,000 km",
+                "tone": "neutral"
+              },
+              {
+                "label": "Solar mfg",
+                "value": "largest in IN",
+                "tone": "neutral"
+              },
+              {
+                "label": "Data center JV",
+                "value": "1 GW pipeline",
+                "tone": "favorable"
+              }
+            ],
+            "label": "Adani Group footprint, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE CII",
+        "body": "The Confederation of Indian Industry is the country's most influential business lobby — founded 1895, ~9,000 members. Its annual summit is where conglomerates announce capex pledges in front of the prime minister; the pledges function as political signaling as much as commercial commitments.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "India has two parallel industry bodies — **CII** (broader, more reform-oriented historically) and **FICCI** (older, traditionally closer to family-owned business houses). Which body a tycoon platforms at signals which establishment faction he sits with."
+          }
+        ]
+      },
+      {
+        "heading": "THE HINDENBURG SHADOW",
+        "body": "In January 2023, US short-seller Hindenburg Research accused Adani Group of stock manipulation and accounting fraud through offshore shell entities. The group's market cap fell roughly $150B in weeks before recovering. The episode reset how foreign investors model Adani's governance — and made every subsequent capex announcement double as a credibility signal.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did the 2023 Hindenburg report primarily accuse Adani Group of?",
+            "options": [
+              "Bribing Indian officials for port concessions",
+              "Stock manipulation and accounting fraud via offshore entities",
+              "Violating environmental regulations at Mundra port",
+              "Underpaying workers at coal mines"
+            ],
+            "correct": 1,
+            "explanation": "Hindenburg alleged a network of Mauritius and Caribbean shell companies was used to inflate share prices and obscure related-party debt."
+          }
+        ]
+      },
+      {
+        "heading": "THE RENTIER ARGUMENT",
+        "body": "Adani's framing — own the stack or rent intelligence — echoes the import-substitution doctrine that dominated Indian economic policy from independence until the 1991 liberalization. The argument is structurally identical: strategic sectors must not depend on foreign supply, even at higher cost. The 1991 reformers rejected it; the 2020s national-security frame is reviving it."
+      }
+    ],
+    "generatedAt": "2026-05-11T08:26:35.261Z",
+    "label": "Sovereign AI & India's Stack",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-11-auv-lpv-pitch-control-actuator-saturation-ocean-observation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PROBLEM",
+        "body": "Every real-world actuator — a fin, a thruster, a rocket nozzle — has a physical limit. A controller computing a command beyond that limit is talking to a wall: the fin is already at its stop, but the math keeps demanding more.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The gap between what the controller *asks for* and what the actuator *delivers* is called **actuator saturation**, and it is where most theoretical control laws meet reality."
+          }
+        ]
+      },
+      {
+        "heading": "WHY INTEGRATORS GO BAD",
+        "body": "Classical PID controllers carry an integral term that accumulates past error. When the actuator is saturated, error keeps accumulating but cannot be corrected — the integrator winds up to huge values. When the actuator finally has headroom again, the controller massively overshoots. This failure mode is called integrator windup."
+      },
+      {
+        "heading": "THE ANTI-WINDUP FIX",
+        "body": "Anti-windup schemes detect saturation and freeze or back-calculate the integrator so it cannot accumulate uncorrectable error. The controller stays sane through the saturation event and resumes precise control the instant the actuator is no longer pinned."
+      },
+      {
+        "heading": "WHY UNDERWATER IS HARDER",
+        "body": "An AUV pitching downward fights buoyancy, hydrodynamic drag that scales with velocity squared, and a center of gravity that shifts as ballast and battery mass move. The plant is nonlinear and changes with speed, depth, and payload — a single fixed-gain controller cannot cover the operating envelope.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does an underwater vehicle's pitch response change so much across its operating envelope?",
+            "options": [
+              "GPS signals don't penetrate seawater",
+              "Hydrodynamic forces scale nonlinearly with velocity and depth",
+              "Magnetic compasses fail near the seafloor",
+              "Sonar reflections confuse the IMU"
+            ],
+            "correct": 1,
+            "explanation": "Drag scales with the square of velocity, and buoyancy and trim shift with depth and payload — so the same fin deflection produces very different pitch responses at different speeds."
+          }
+        ]
+      },
+      {
+        "heading": "THE LPV TRICK",
+        "body": "A Linear Parameter-Varying model treats the system as locally linear at each operating point but lets the linearization slide along a scheduling variable — typically speed or depth. The controller smoothly interpolates gains across the envelope instead of switching abruptly between mode-specific controllers."
+      },
+      {
+        "heading": "FROM SPACECRAFT TO SUBMARINES",
+        "body": "Anti-windup and LPV control matured in aerospace — spacecraft attitude control under reaction-wheel saturation, fighter aircraft across the flight envelope. The underwater world inherits these techniques late because the sensors needed to close the loop (precise inertial measurement, doppler velocity logs) only recently became cheap enough for small AUVs."
+      }
+    ],
+    "generatedAt": "2026-05-11T08:26:56.214Z",
+    "label": "Actuator Saturation & Anti-Windup Control",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-11-bitcoin-mining-pools-stratum-v2-75-percent-hashrate-decentralisation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY POOLS EXIST",
+        "body": "Solo mining a Bitcoin block today is a lottery — even an industrial farm might wait years between wins. Pools aggregate hashrate so miners earn a steady proportional share of rewards instead of waiting for a jackpot. The tradeoff: the pool operator, not the miner, gets to assemble each candidate block.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pool operator's power is **template construction** — deciding which transactions go in the block and in what order. Miners contribute hashpower but historically had no say over what they were hashing."
+          }
+        ]
+      },
+      {
+        "heading": "THE CENSORSHIP SURFACE",
+        "body": "Because a handful of pools control most hashrate, whoever pressures those operators can effectively exclude transactions from Bitcoin. OFAC-flagged addresses, mixer outputs, and sanctioned wallets have all been quietly filtered by some pools — a centralization risk Satoshi's design did not anticipate.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Foundry USA",
+                "value": "~34%",
+                "weight": 34,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "AntPool",
+                "value": "~19%",
+                "weight": 19,
+                "tone": "neutral"
+              },
+              {
+                "label": "ViaBTC",
+                "value": "~13%",
+                "weight": 13,
+                "tone": "neutral"
+              },
+              {
+                "label": "F2Pool",
+                "value": "~10%",
+                "weight": 10,
+                "tone": "neutral"
+              },
+              {
+                "label": "Binance Pool",
+                "value": "~6%",
+                "weight": 6,
+                "tone": "neutral"
+              },
+              {
+                "label": "others",
+                "value": "~18%",
+                "weight": 18,
+                "tone": "favorable"
+              }
+            ],
+            "label": "top Bitcoin pools by hashrate share (2026 est.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT V1 LOOKED LIKE",
+        "body": "Stratum V1, introduced in 2012, became the de facto protocol pools use to dispatch work. It is unencrypted, unauthenticated, and gives the miner only a Merkle root — the miner cannot see, choose, or even know the transactions it is securing."
+      },
+      {
+        "heading": "WHAT V2 CHANGES",
+        "body": "Stratum V2 adds end-to-end encryption (preventing ISP-level hashrate hijacking) and introduces a Job Declarator role that lets the miner — not the pool — build the block template. The pool still distributes payouts, but transaction selection is pushed back to the edges of the network."
+      },
+      {
+        "heading": "WHY 75% MATTERS",
+        "body": "A protocol upgrade only changes behavior once the majority of hashpower runs it. At 75% adoption, censoring a transaction at the pool level no longer reliably keeps it out of a block — some miner in the pool can include it anyway. The threshold turns censorship from a phone call into a coordination problem.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under Stratum V2, who selects which transactions go into a Bitcoin block?",
+            "options": [
+              "The pool operator, as before",
+              "The individual miner running the hardware",
+              "A vote among all pool participants",
+              "Bitcoin Core developers"
+            ],
+            "correct": 1,
+            "explanation": "V2's Job Declarator role moves template construction from the pool to the miner, so payouts stay pooled but transaction choice is decentralized."
+          }
+        ]
+      },
+      {
+        "heading": "THE BROADER PATTERN",
+        "body": "Bitcoin's threats have shifted from cryptographic to organizational. The hash function is unbroken; the elliptic curve is unbroken. What erodes the network is concentration — of pools, of ASIC manufacturing, of fiat on-ramps. Stratum V2 is the first major protocol response aimed squarely at the organizational layer.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              73053.89,
+              70756.75,
+              74514.63,
+              74181.11,
+              74833.51,
+              75149.19,
+              77128.44,
+              75728.46,
+              73856.06,
+              75874.55,
+              76350.25,
+              78194.78,
+              78260.62,
+              77444.8,
+              77619.14,
+              78645.13,
+              77361.3,
+              76345.23,
+              75774.89,
+              76286.58,
+              78172.07,
+              78655.35,
+              78562.55,
+              79823.89,
+              80925.09,
+              81425,
+              80022.04,
+              80189.07,
+              80678.03,
+              82145.66,
+              80750.31
+            ],
+            "periods": [
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 11"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-11"
+    ],
+    "generatedAt": "2026-05-11T08:27:22.393Z",
+    "label": "Mining Pools & Stratum V2",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-11-china-low-carbon-pilot-cities-economic-resilience-diversification": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A PILOT CITY IS",
+        "body": "China's Low-Carbon City Pilot program, launched by the NDRC in 2010 and expanded in 2012 and 2017, designates specific prefectures to test emissions caps, carbon accounting, and green-finance schemes before national rollout. Pilot status brings central funding, regulatory flexibility, and political visibility for local cadres — which is why governors compete to be selected.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Chinese policy term is *shidian* (试点) — *test point*. Almost every major Chinese reform of the past forty years, from Special Economic Zones to carbon markets, began as a *shidian* in a handful of cities before going national. The pilot is the unit of Chinese policymaking."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DIFFERENCE-IN-DIFFERENCES",
+        "body": "DiD compares the change in outcomes for treated cities (pilots) against the change for untreated cities over the same period. The trick is that any nationwide shock — a stimulus, a pandemic, a property crash — affects both groups equally, so the difference between the differences isolates the policy effect. It only works when the two groups would have trended in parallel absent the treatment."
+      },
+      {
+        "heading": "THE RESOURCE CURSE, CITY-SCALE",
+        "body": "Economies that depend on a single extractive industry tend to underperform diversified ones — coal towns, oil emirates, mining provinces. Capital and talent crowd into the dominant sector, institutions calcify around it, and when the resource declines (or its price collapses), there is no second engine. The classic literature is national; this study finds the same pattern at the prefecture level.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Daqing",
+                "value": "oil",
+                "cc": "CN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Datong",
+                "value": "coal",
+                "cc": "CN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Karamay",
+                "value": "oil",
+                "cc": "CN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Panzhihua",
+                "value": "steel/iron",
+                "cc": "CN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Ordos",
+                "value": "coal/gas",
+                "cc": "CN",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "China's resource-dependent prefectures (illustrative)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DIVERSIFIED CITIES GAIN",
+        "body": "Green transition is a demand shock: it kills some industries (coal-fired power, cement, dirty chemicals) and creates others (batteries, solar, EV supply chains). Cities with broad industrial bases can absorb the loss and capture the gain. Cities with one industry can only lose. Innovation capacity and industrial agglomeration are the channels the study identifies — both are properties of already-diverse economies."
+      },
+      {
+        "heading": "THE POLITICAL ECONOMY",
+        "body": "Coal prefectures employ millions and remit profits to provincial coffers; their decline is a political problem before it is an economic one. Beijing's answer has been *just transition* funds and forced consolidation of small mines, but the study's finding — that pilot status alone makes things worse for resource-dependent cities — suggests these compensations are insufficient.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In China's Low-Carbon City Pilot program, which city type saw economic resilience FALL after designation?",
+            "options": [
+              "Diversified manufacturing hubs",
+              "Resource-dependent cities (coal, oil, ore)",
+              "Coastal port cities",
+              "High-tech innovation centers"
+            ],
+            "correct": 1,
+            "explanation": "The study found innovation and industrial agglomeration drive resilience gains — properties resource-dependent cities lack. For them, the transition is loss without offsetting gain."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-11T08:27:48.626Z",
+    "label": "Low-Carbon Pilots & Resource Curse",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-11-graphene-oxide-quartz-crystal-microbalance-lead-water-sensor": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PROBLEM",
+        "body": "Lead is toxic at parts-per-billion levels — the WHO action threshold for drinking water is 10 µg/L. Detecting that little metal in a glass of water reliably requires instruments most utilities, let alone households, cannot afford.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The WHO threshold is **10 µg/L** — roughly *one grain of salt dissolved in an Olympic swimming pool*. Lab-grade detection at that level traditionally needs ICP-MS spectrometers costing six figures."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GRAPHENE OXIDE",
+        "body": "Graphene oxide is a single layer of carbon decorated with oxygen-containing groups — hydroxyls, carboxyls, epoxides. Those groups are negatively charged and bind heavy-metal cations like lead with high selectivity. Plain graphene, which is pure carbon, does not."
+      },
+      {
+        "heading": "THE QCM TRICK",
+        "body": "A quartz crystal microbalance vibrates at a precise frequency when voltage is applied. Add mass to its surface — even nanograms — and the frequency drops in proportion. Coating the crystal with graphene oxide turns a frequency shift into a lead-ion count."
+      },
+      {
+        "heading": "THE LAB-TO-FIELD GAP",
+        "body": "Lab sensors run in controlled buffers at known pH and ionic strength. Real water carries calcium, iron, chlorine, organic matter — all of which compete for binding sites or foul the sensor. Bridging that gap is harder than building the sensor itself.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why doesn't plain graphene work as a lead sensor the way graphene oxide does?",
+            "options": [
+              "Graphene is too expensive to manufacture at scale",
+              "Graphene lacks the oxygen groups that bind metal ions",
+              "Graphene conducts too much electricity for QCM use",
+              "Graphene dissolves in water at neutral pH"
+            ],
+            "correct": 1,
+            "explanation": "The binding chemistry comes from oxygen-containing groups (hydroxyl, carboxyl, epoxide) — pure graphene is hydrophobic carbon with nothing for lead cations to grab."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE DATA GAP HURTS",
+        "body": "Childhood lead poisoning is concentrated in low- and middle-income countries with informal recycling, leaded paint legacies, and aging pipes. Without cheap field detection, the scale of exposure stays an estimate rather than a map.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "PK",
+              "IN",
+              "BD",
+              "ID",
+              "EG"
+            ],
+            "label": "high-burden, low-data lead exposure",
+            "caption": "Countries where lead exposure is estimated to affect a large share of children but surveillance is sparse."
+          }
+        ]
+      },
+      {
+        "heading": "THE FLINT REMINDER",
+        "body": "Flint, Michigan exposed tens of thousands of children to lead between 2014 and 2019 because corrosion control was dropped from the treatment process. Lead service lines that had been safe for decades suddenly leached — a reminder that lead in water is a plumbing problem, not a source-water problem."
+      }
+    ],
+    "generatedAt": "2026-05-11T08:28:11.401Z",
+    "label": "Graphene Oxide & Lead Sensing",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-11-india-bullet-train-vaishnaw-16-lakh-crore-aviation-substitute": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 500KM RULE",
+        "body": "High-speed rail beats aviation on city pairs roughly 150–800 km apart. Below that, cars win; above it, the speed advantage of flight overcomes airport friction. Mumbai-Pune at 150 km and Mumbai-Ahmedabad at 500 km sit squarely in the rail sweet spot.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The killer metric isn't cruising speed — it's **door-to-door time**. A 90-minute flight becomes 4 hours once you add airport transit, security, and boarding. A train station downtown removes most of that overhead."
+          }
+        ]
+      },
+      {
+        "heading": "THE SHINKANSEN PRECEDENT",
+        "body": "Japan's Tokaido Shinkansen opened in 1964 and within a decade collapsed the Tokyo-Osaka air market. By the 2000s, rail held over 80% of that corridor. Korea's KTX repeated the pattern on Seoul-Busan after 2004. The route economics, not the technology, did the work.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Tokyo–Osaka",
+                "value": "~85% rail",
+                "cc": "JP",
+                "tone": "favorable"
+              },
+              {
+                "label": "Seoul–Busan",
+                "value": "~70% rail",
+                "cc": "KR",
+                "tone": "favorable"
+              },
+              {
+                "label": "Paris–Lyon",
+                "value": "~90% rail",
+                "cc": "FR",
+                "tone": "favorable"
+              },
+              {
+                "label": "Madrid–Barcelona",
+                "value": "~65% rail",
+                "cc": "ES",
+                "tone": "favorable"
+              },
+              {
+                "label": "Beijing–Shanghai",
+                "value": "~75% rail",
+                "cc": "CN",
+                "tone": "favorable"
+              }
+            ],
+            "label": "rail share on flagship HSR corridors"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 16 LAKH CRORE BUYS",
+        "body": "Rs 16 lakh crore is roughly $190 billion — about 5% of India's annual GDP committed to rail infrastructure. The Mumbai-Ahmedabad line alone, built with Japanese yen-loan financing and Shinkansen technology, runs over Rs 1.08 lakh crore for 508 km of track."
+      },
+      {
+        "heading": "THE LAND ACQUISITION CHOKEPOINT",
+        "body": "India's HSR projects routinely slip years on land acquisition, not engineering. The Mumbai-Ahmedabad corridor was approved in 2015 with a 2023 target; Maharashtra parcels alone delayed it past 2028. Bullet trains need straight, level alignments — exactly the kind of land farmers and small businesses occupy in dense corridors."
+      },
+      {
+        "heading": "WHO LOSES",
+        "body": "IndiGo and Air India earn outsized margins on dense short-haul routes where business travelers pay walk-up fares. Mumbai-Pune, Delhi-Chandigarh, Bengaluru-Chennai are cash cows precisely because they're short, frequent, and price-inelastic. A rail substitute attacks the most profitable slice of Indian aviation first.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does high-speed rail typically destroy short-haul aviation on dense corridors below 800 km?",
+            "options": [
+              "Trains are cheaper to operate per passenger",
+              "Door-to-door time favors rail once airport overhead is included",
+              "Governments ban flights to protect rail investments",
+              "Trains are safer than regional aircraft"
+            ],
+            "correct": 1,
+            "explanation": "The decisive factor is total journey time, not ticket price — downtown stations and no security queues erase the cruising-speed advantage of aircraft."
+          }
+        ]
+      },
+      {
+        "heading": "THE CARBON ARITHMETIC",
+        "body": "A Shinkansen-class train emits roughly 1/8 the CO2 per passenger-km of a regional jet on the same route. For India — third-largest emitter, with aviation forecast to triple by 2040 — shifting the densest corridors to electrified rail is one of the few decarbonization moves that pays for itself in time savings."
+      }
+    ],
+    "generatedAt": "2026-05-11T08:28:36.459Z",
+    "label": "High-Speed Rail vs Short-Haul Aviation",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-11-iran-war-saffron-price-spike-london-persian-diaspora-supply": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY IRAN DOMINATES",
+        "body": "Saffron is the dried stigma of Crocus sativus — three threads per flower, harvested by hand at dawn over a two-week window. Khorasan province in northeast Iran has the exact altitude, soil pH, and dry continental climate the crocus needs. Roughly 150,000 flowers yield one kilogram.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Persian term is *za'faran* — the root of every European name for the spice, from Spanish *azafrán* to English **saffron**. The word traveled the trade route before the crop did."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRODUCTION MAP",
+        "body": "Iran produces roughly 90% of the world's saffron. Afghanistan, Spain, and Morocco split most of the remainder. The concentration is not accidental — Khorasan's terroir has no real substitute, and the labor cost of hand-harvesting prices out wealthier agricultural economies.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Iran",
+                "value": 90,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Afghanistan",
+                "value": 5,
+                "tone": "neutral"
+              },
+              {
+                "label": "Spain",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Morocco",
+                "value": 1,
+                "tone": "favorable"
+              },
+              {
+                "label": "India (Kashmir)",
+                "value": 1,
+                "tone": "favorable"
+              },
+              {
+                "label": "Greece",
+                "value": 1,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global saffron production share, 2024 est."
+          }
+        ]
+      },
+      {
+        "heading": "THE SANCTIONS WORKAROUND",
+        "body": "Even before the war, US and EU sanctions made direct Iranian saffron exports legally tricky. Most volume routed through the UAE, where it was repackaged as \"Emirati\" or \"Spanish\" saffron — a laundering of origin that kept European shelves stocked while letting buyers avoid OFAC paperwork. A Hormuz closure breaks that informal pipeline at its first node.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "AE",
+              "ES",
+              "GB",
+              "AF"
+            ],
+            "label": "the saffron pipeline",
+            "markers": [
+              {
+                "lat": 36.2972,
+                "lng": 59.6067,
+                "label": "Mashhad (Khorasan hub)"
+              },
+              {
+                "lat": 25.2697,
+                "lng": 55.3094,
+                "label": "Dubai re-export"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LONDON DIASPORA",
+        "body": "London hosts one of Europe's largest Persian communities — roughly 80,000 Iranians, concentrated in Kensington, Hammersmith, and Ealing. The \"Tehrangeles of Europe\" sustains dozens of restaurants where saffron is not a garnish but the structural ingredient of *chelo*, *tahchin*, and *zereshk polo*. A 67% input-cost spike is existential, not cosmetic."
+      },
+      {
+        "heading": "THE INELASTIC DEMAND",
+        "body": "Authentic Persian cuisine has no saffron substitute. Turmeric colors but doesn't flavor; safflower mimics the color but tastes of nothing. Restaurants face a binary: pay the spike, or remove signature dishes from the menu. This is the textbook condition for a commodity squeeze — concentrated supply, inelastic demand, geopolitical chokepoint.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't restaurants simply substitute another spice when saffron prices spike?",
+            "options": [
+              "Saffron has both a unique flavor and color that no other spice replicates",
+              "Health regulations require saffron in Persian dishes",
+              "Saffron is the cheapest ingredient by weight, so substitutes cost more",
+              "Customers can legally demand refunds if dishes lack saffron"
+            ],
+            "correct": 0,
+            "explanation": "Turmeric and safflower can approximate saffron's color but not its distinctive honey-hay flavor — the compound picrocrocin is unique to Crocus sativus."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHOKEPOINT LOGIC",
+        "body": "Saffron is light, dry, and high-value — exactly the cargo that should be air-freighted, not shipped through Hormuz. That it isn't reveals how dependent the trade has become on bulk container routes through Bandar Abbas, where consolidators aggregate Khorasan shipments with other Iranian goods to keep per-kilo logistics costs down. Air corridors exist; the supply chain just wasn't built to use them at scale."
+      }
+    ],
+    "generatedAt": "2026-05-11T08:29:09.453Z",
+    "label": "Saffron & the Iran Supply Chain",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-11-nigeria-heatwave-power-outages-grid-failure-public-health": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PARADOX",
+        "body": "Nigeria is Africa's largest oil producer and exports crude worth tens of billions annually, yet generates less electricity than a mid-sized European city. The country pumps roughly 1.4 million barrels per day while its 220 million people share a grid that delivers under 5 GW — less per capita than almost anywhere on Earth.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Nigeria's installed capacity is around **13 GW** on paper; actual delivered output rarely clears **5 GW**. South Africa, with a quarter of Nigeria's population, dispatches roughly **30 GW**."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE GRID COLLAPSES",
+        "body": "Nigeria's transmission network is a single radial system — one national grid with no regional islanding. When demand spikes or a single line trips, frequency drops across the whole country and the system cascades to black. The grid has collapsed dozens of times in the last decade; each restart takes hours to days.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "BJ",
+              "NE",
+              "TD",
+              "CM"
+            ],
+            "label": "Nigeria and its regional grid neighbors",
+            "caption": "Nigeria sells power to Benin, Niger, Togo — even while its own homes go dark"
+          }
+        ]
+      },
+      {
+        "heading": "THE GENERATOR ECONOMY",
+        "body": "With grid unreliable, Nigerians run an estimated 22 million private petrol and diesel generators — collectively producing more power than the national grid itself. The IMF estimates households and businesses spend roughly $14 billion annually on self-generation, more than the federal health and education budgets combined."
+      },
+      {
+        "heading": "WET-BULB AND THE BODY",
+        "body": "Human cooling depends on sweat evaporating. Above a wet-bulb temperature of 35°C, evaporation fails and core temperature rises even for a healthy adult resting in shade. Nigeria's humid coastal south combines moderate air temperatures with crushing humidity; the inland Sahel gets dry but extreme heat. Both stress the body, by different mechanisms.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Above what wet-bulb temperature can a healthy human no longer cool by sweating?",
+            "options": [
+              "28°C",
+              "35°C",
+              "42°C",
+              "50°C"
+            ],
+            "correct": 1,
+            "explanation": "At 35°C wet-bulb, ambient air is too humid for sweat to evaporate. Core temperature rises regardless of shade, hydration, or fitness."
+          }
+        ]
+      },
+      {
+        "heading": "THE SUBSIDY UNWIND",
+        "body": "Tinubu removed Nigeria's fuel subsidy in mid-2023 and floated the naira; petrol prices roughly tripled within a year. That made generator-based cooling unaffordable for tens of millions just as the grid's reliability worsened — turning a chronic infrastructure failure into an acute public-health one.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              1358.34,
+              1358.85,
+              1351.86,
+              1344.68,
+              1340.88,
+              1342.48,
+              1345.790676,
+              1345.790676,
+              1346.63,
+              1345.47,
+              1348.77,
+              1351.32,
+              1354.96,
+              1351.847873,
+              1351.847873,
+              1352.81,
+              1360.19,
+              1374.96,
+              1375.07,
+              1374.69,
+              1375.98,
+              1375.98,
+              1375.65,
+              1370.93,
+              1365.9,
+              1360.53,
+              1361.67,
+              1356.19465,
+              1356.19465,
+              1357.96
+            ],
+            "periods": [
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11"
+            ],
+            "label": "Nigerian naira",
+            "unit": "NGN / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHO BEARS THE COST",
+        "body": "When the state cannot deliver a public good, the cost privatizes. Wealthier Nigerians run inverters, solar, or large diesel sets; the poor go without. Heat mortality is invisible in Nigerian statistics — death certificates record cardiac arrest or stroke, not the 41°C bedroom that triggered it."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-11"
+    ],
+    "generatedAt": "2026-05-11T08:29:32.903Z",
+    "label": "Nigeria's Grid & the Heat Trap",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-11-pakistan-gwadar-port-tariff-cut-cpec-hormuz-bypass": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOGRAPHY OF LEVERAGE",
+        "body": "Gwadar sits on the Arabian Sea about 400 km east of the Strait of Hormuz, on Pakistan's Balochistan coast. Its pitch is simple: a deepwater port outside the chokepoint, with overland routes through the China-Pakistan Economic Corridor reaching western China.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IR",
+              "AE",
+              "OM",
+              "IN"
+            ],
+            "label": "the three rival ports",
+            "markers": [
+              {
+                "lat": 25.1264,
+                "lng": 62.3225,
+                "label": "Gwadar"
+              },
+              {
+                "lat": 25.2867,
+                "lng": 60.6431,
+                "label": "Chabahar"
+              },
+              {
+                "lat": 25.0118,
+                "lng": 55.1336,
+                "label": "Jebel Ali"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT TRANSSHIPMENT ACTUALLY MEANS",
+        "body": "A transshipment port doesn't serve local consumers — it's a swap point where containers move from a large ocean-going ship to smaller regional feeders, or vice versa. Jebel Ali handles roughly 14 million TEU a year, most of it transshipment. The business is won on three things: crane productivity, fee structure, and the density of shipping lines that already call there.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A **TEU** is a twenty-foot equivalent unit — one standard container. Modern container ships carry 20,000+ TEU; a transshipment hub needs deep water, fast cranes, and **liner network effects** — lines call where other lines call."
+          }
+        ]
+      },
+      {
+        "heading": "THE NETWORK EFFECT PROBLEM",
+        "body": "Ports are two-sided markets. Shipping lines call where cargo is, cargo flows where lines call. Jebel Ali spent forty years building that density — free zones, customs integration, hinterland connections. A 40% fee cut at Gwadar lowers the price but doesn't create the network. This is why four calls in a month is the relevant number, not the discount percentage."
+      },
+      {
+        "heading": "THE CHOKEPOINT BYPASS PITCH",
+        "body": "Every Hormuz scare revives the bypass conversation. Saudi Arabia built the East-West Pipeline. The UAE piped oil to Fujairah. Iran's Chabahar and Pakistan's Gwadar are the container-side equivalents — east of Hormuz, theoretically immune to a strait closure. The hard part is that container traffic follows trade flows, and most Gulf trade originates inside Hormuz."
+      },
+      {
+        "heading": "WHY GWADAR HASN'T SCALED",
+        "body": "Gwadar was inaugurated in 2007 and operated by China Overseas Ports Holding since 2013. Two structural drags: Balochistan's insurgency (BLA attacks on Chinese personnel and convoys have repeatedly disrupted operations), and the absence of a functioning road-rail network connecting it to Punjab's industrial base. The port works; the corridor behind it doesn't.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2002",
+                "label": "Construction begins, Chinese-funded"
+              },
+              {
+                "year": "2007",
+                "label": "Port inaugurated"
+              },
+              {
+                "year": "2013",
+                "label": "COPHC takes over operations",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2015",
+                "label": "CPEC framework agreement signed"
+              },
+              {
+                "year": "2018",
+                "label": "Free zone phase 1 opens"
+              },
+              {
+                "year": "2024",
+                "label": "Multiple BLA attacks on CPEC sites"
+              }
+            ],
+            "label": "Gwadar's long buildout"
+          }
+        ]
+      },
+      {
+        "heading": "THE RIVAL TO WATCH",
+        "body": "Chabahar — Iran's port 170 km west of Gwadar — is India-operated and was carved out of US sanctions specifically to give Afghanistan and Central Asia non-Pakistani access. India committed to a $370 million expansion in 2024. Gwadar and Chabahar were designed for the same hinterland; only one will dominate it.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Jebel Ali",
+                "value": "~14m TEU/yr",
+                "cc": "AE",
+                "weight": 14000
+              },
+              {
+                "label": "Chabahar",
+                "value": "~80k TEU/yr",
+                "cc": "IR",
+                "weight": 80
+              },
+              {
+                "label": "Gwadar",
+                "value": "4 calls (Apr)",
+                "cc": "PK",
+                "tone": "unfavorable",
+                "weight": 10
+              }
+            ],
+            "label": "the two rival deepwater ports"
+          }
+        ]
+      },
+      {
+        "heading": "QUICK CHECK",
+        "body": "Transshipment economics test.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do shipping lines cluster at a single transshipment hub like Jebel Ali rather than spreading calls across nearby ports?",
+            "options": [
+              "Fuel costs are lower at larger ports",
+              "Network effects: lines call where other lines call, so cargo can be swapped between vessels",
+              "Insurance premiums are mandated by IMO to be lowest at the largest port",
+              "Container ships physically cannot dock at smaller ports"
+            ],
+            "correct": 1,
+            "explanation": "Transshipment is a two-sided market — the value of a port to one liner depends on how many other liners call there, so density compounds and challengers struggle even at lower fees."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-11T08:30:02.737Z",
+    "label": "Gwadar & the Transshipment Game",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-11-pakistan-roshan-digital-account-inflows-doubled-overseas-forex": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT RDA ACTUALLY IS",
+        "body": "Launched in September 2020 by the State Bank of Pakistan, the Roshan Digital Account lets overseas Pakistanis open a foreign-currency bank account remotely — no in-person visit, no local tax filing, full repatriability of principal and profit. It collapses a process that used to take weeks of paperwork at a Karachi branch into a phone-based onboarding.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Roshan* means **bright** or **illuminated** in Urdu — the branding deliberately frames the diaspora as enlightening Pakistan's finances, not extracting from them."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE STATE NEEDED IT",
+        "body": "Pakistan's current account runs chronically negative because imports (oil, machinery) outpace exports. Remittances close the gap, but they flow into household consumption, not state coffers. RDA was designed to capture the same diaspora dollars and route a share into government bonds (Naya Pakistan Certificates) — turning consumption flows into sovereign financing."
+      },
+      {
+        "heading": "THE REMITTANCE BACKBONE",
+        "body": "Pakistan receives over $30 billion annually in remittances — mostly from Saudi Arabia, the UAE, the UK, and the US. This is wages earned abroad and sent home, rivalling or exceeding total export earnings. Unlike aid or IMF loans, remittances carry no conditionality and no repayment obligation, which is why they are the most politically valuable line on Pakistan's balance of payments.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Remittances",
+                "value": "~$30bn",
+                "weight": 30,
+                "tone": "favorable"
+              },
+              {
+                "label": "Exports",
+                "value": "~$31bn",
+                "weight": 31,
+                "tone": "favorable"
+              },
+              {
+                "label": "FDI",
+                "value": "~$2bn",
+                "weight": 2,
+                "tone": "neutral"
+              },
+              {
+                "label": "RDA cumulative",
+                "value": "~$12.75bn",
+                "weight": 12.75,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Pakistan FX inflows, FY2024 (approx)"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE DIASPORA LIVES",
+        "body": "The Gulf hosts the bulk of overseas Pakistani workers — labourers, drivers, nurses — who remit small amounts frequently. The UK and US hold a smaller but wealthier diaspora that supplies the deposit base RDA targets: professionals with savings, not subsistence remitters.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "SA",
+              "AE",
+              "GB",
+              "US",
+              "QA",
+              "KW",
+              "OM"
+            ],
+            "label": "Pakistani diaspora hubs",
+            "caption": "~9 million overseas Pakistanis across Gulf and Anglosphere"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE RUPEE MATTERS",
+        "body": "RDA inflows arrive as dollars, then 64% gets reinvested locally — meaning conversion into rupees at the prevailing rate. A weakening rupee makes Pakistan-denominated assets cheaper for diaspora dollars to buy, which is part of why inflows accelerated as the currency slid past 270 to the dollar.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.594717,
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885
+            ],
+            "periods": [
+              "Apr 12",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE 2026 EXPANSION",
+        "body": "The January 2026 widening to foreign nationals and institutional investors broke RDA's original frame. The programme was pitched as diaspora-only; opening it to non-Pakistani capital reclassifies it as a general non-resident investment vehicle — closer to India's FCNR scheme than a heritage-based product.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does the Roshan Digital Account primarily offer the Pakistani state that ordinary remittances do not?",
+            "options": [
+              "A higher exchange rate for the dollars sent",
+              "A channel that routes diaspora dollars into government bonds and bank deposits",
+              "Tax-free status for the recipient family",
+              "Faster delivery to rural villages"
+            ],
+            "correct": 1,
+            "explanation": "Remittances flow to households; RDA captures the same diaspora dollars and channels them into sovereign and bank balance sheets."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-11"
+    ],
+    "generatedAt": "2026-05-11T08:30:28.205Z",
+    "label": "Roshan Digital Accounts & Diaspora Finance",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-11-plateau-barkin-ladi-attack-police-officer-killed-middle-belt": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FAULT LINE",
+        "body": "Plateau sits on Nigeria's Middle Belt — the transition zone where the Muslim-majority north meets the Christian-majority south. The line is not just religious: it is also where Fulani pastoralists driven south by Sahel desertification meet Berom, Irigwe, and Mwaghavul farming communities defending ancestral land.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "NE",
+              "TD",
+              "CM",
+              "BJ"
+            ],
+            "label": "the Middle Belt",
+            "markers": [
+              {
+                "lat": 9.5378,
+                "lng": 8.9061,
+                "label": "Barkin Ladi"
+              },
+              {
+                "lat": 9.8965,
+                "lng": 8.8583,
+                "label": "Jos"
+              },
+              {
+                "lat": 9.0765,
+                "lng": 7.3986,
+                "label": "Abuja"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY PLATEAU",
+        "body": "Jos and the surrounding plateau sit at 1,200m elevation — cooler, tsetse-free, and arable. For a century this made it the destination for both seasonal Fulani grazing and permanent Berom farming. The same land that fed two livelihoods now hosts a zero-sum fight over it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The colloquial name for the conflict — the **farmer-herder crisis** — flattens what is really a collision of *climate migration*, *land tenure law*, and *ethno-religious identity*."
+          }
+        ]
+      },
+      {
+        "heading": "THE LAND USE ACT",
+        "body": "Nigeria's 1978 Land Use Act vested all land in state governors, abolishing the customary tenure that had kept grazing routes (burti) legally protected. Routes that Fulani families had used for generations became, overnight, somebody else's farmland. Sixty years of cases since have not resolved a single major one.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1804",
+                "label": "Sokoto Caliphate jihad reaches the plateau"
+              },
+              {
+                "year": "1903",
+                "label": "British conquer Northern Nigeria"
+              },
+              {
+                "year": "1978",
+                "label": "Land Use Act nationalizes land",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2001",
+                "label": "Jos riots (~1,000 dead)"
+              },
+              {
+                "year": "2010",
+                "label": "Dogo Nahawa massacre"
+              },
+              {
+                "year": "2018",
+                "label": "Benue anti-grazing law"
+              },
+              {
+                "year": "2024",
+                "label": "Christmas Eve plateau attacks (~200 dead)"
+              }
+            ],
+            "label": "the Middle Belt arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE SECURITY VACUUM",
+        "body": "Nigeria runs a single federal police force of roughly 370,000 officers for a country of 220 million — one of the world's lowest police-to-population ratios. Governors cannot command police in their own states. The Berom association's demand for a homeland security ministry is a demand for state policing, a constitutional change Abuja has resisted since 1999.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Police officers per 100,000 people",
+            "peers": [
+              {
+                "value": 170,
+                "cc": "NG"
+              },
+              {
+                "value": 152,
+                "cc": "IN"
+              },
+              {
+                "value": 233,
+                "cc": "BR"
+              },
+              {
+                "value": 256,
+                "cc": "ZA"
+              },
+              {
+                "value": 238,
+                "cc": "US"
+              },
+              {
+                "value": 300,
+                "cc": "DE"
+              },
+              {
+                "value": 326,
+                "cc": "FR"
+              }
+            ],
+            "subjectCc": "NG",
+            "unit": "per 100k"
+          }
+        ]
+      },
+      {
+        "heading": "THE DESERTIFICATION DRIVER",
+        "body": "Lake Chad has lost roughly 90% of its surface area since the 1960s. The pastoralists who once watered herds at its shores now push hundreds of kilometres south each dry season. Climate change is not a backdrop to Middle Belt violence — it is the forcing function moving the conflict zone southward year by year.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Lake Chad has shrunk by roughly what fraction since the 1960s?",
+            "options": [
+              "About 25%",
+              "About 50%",
+              "About 90%",
+              "It has actually grown"
+            ],
+            "correct": 2,
+            "explanation": "From ~25,000 km² in 1963 to under 2,500 km² today — the collapse displaced fishing and herding communities across four countries."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-11T08:30:55.898Z",
+    "label": "Nigeria's Middle Belt",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-11-toba-tek-singh-mpa-ayub-gadhi-attack-four-aides-killed-pml-n": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BIRADARI SYSTEM",
+        "body": "Rural Punjab politics runs on biradari — extended patrilineal kinship networks that function as voting blocs, dispute-resolution forums, and patronage channels. A Punjabi MPA is rarely elected as an individual; he is elected as the head of a biradari coalition that delivers turnout in exchange for jobs, police protection, and access to development funds.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The word *biradari* literally means *brotherhood* — but in electoral practice it operates closer to a **clan-based political machine**, with the sardar (head) trading bloc votes for state resources."
+          }
+        ]
+      },
+      {
+        "heading": "WHY FACTION FIGHTS TURN LETHAL",
+        "body": "When two biradaris compete for the same constituency, the loser does not simply fade — losing means losing access to police, land records, and the canal water bureaucracy. The state itself becomes a weapon one side can deploy against the other, so the stakes are existential. Ambushes on rivals' estates and aides are an old script in central Punjab going back to the colonial settlement era."
+      },
+      {
+        "heading": "THE PML-N HEARTLAND",
+        "body": "The Pakistan Muslim League (Nawaz) is fundamentally a central-Punjab party — Lahore, Faisalabad, Sialkot, Toba Tek Singh. Its parliamentary majorities have always been built on managing biradari rivalries within this belt rather than on ideology. When intra-party violence erupts here, it threatens the coalition arithmetic that keeps the Sharifs in power.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK"
+            ],
+            "label": "central Punjab — PML-N heartland",
+            "markers": [
+              {
+                "lat": 30.9709,
+                "lng": 72.4826,
+                "label": "Toba Tek Singh"
+              },
+              {
+                "lat": 31.4187,
+                "lng": 73.0791,
+                "label": "Faisalabad"
+              },
+              {
+                "lat": 31.5497,
+                "lng": 74.3436,
+                "label": "Lahore"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE COLONIAL INHERITANCE",
+        "body": "The canal colonies of central Punjab were engineered by the British in the 1880s-1890s, settling loyal military families on irrigated grants. The same families that received those land grants still dominate local politics six generations later. Toba Tek Singh district itself was carved out of the Lower Chenab Canal settlement."
+      },
+      {
+        "heading": "THE POLICE PROBLEM",
+        "body": "District police in rural Punjab are functionally subordinate to whichever biradari controls the MPA's office. Raids announced after an attack on a sitting legislator's estate are real, but the deeper question is whether the SHO answering the call took orders from the victim's faction or the attacker's — and arrests often stall on exactly that fault line.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are biradari-based factional attacks in rural Punjab so often unresolved by police?",
+            "options": [
+              "Pakistan lacks a functioning forensic system",
+              "District police are politically aligned with one biradari or the other",
+              "Federal law forbids local police from investigating MPAs",
+              "Attackers typically flee across the Indian border"
+            ],
+            "correct": 1,
+            "explanation": "District-level policing in Punjab is heavily shaped by the local MPA's patronage; investigations stall when the chain of command crosses faction lines."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-11T08:31:24.630Z",
+    "label": "Biradari Politics & Rural Punjab",
+    "category": "politics",
+    "articleCount": 1
   }
 }
