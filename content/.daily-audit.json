@@ -1,27 +1,27 @@
 {
-  "date": "2026-05-10",
+  "date": "2026-05-11",
   "metrics": {
-    "articles": { "value": 39, "detail": "5 cycles, 4 completed, avg ~6/cycle" },
-    "freshness": { "median": 0.7, "p90": 1.4, "max": 1.4, "target": 1.0, "met": true },
-    "categories": { "politics": 14, "economy": 10, "science": 7, "tech": 8 },
-    "multiSource": { "value": 12, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "ME": 13, "AF": 8, "EU": 7, "AM": 5, "AS": 5, "OC": 1 } },
-    "sciTech": { "ratio": 38, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online / Daily Maverick", "pct": 13, "target": 20, "met": true },
-    "uniqueSources": 38,
+    "articles": { "value": 40, "detail": "5 cycles, avg 8/cycle" },
+    "freshness": { "median": 0, "p90": 0, "max": 0, "target": 1.0, "met": true },
+    "categories": { "politics": 14, "economy": 10, "science": 7, "tech": 9 },
+    "multiSource": { "value": 11, "target": 4, "met": true },
+    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "AM": 12, "AS": 8, "ME": 7, "EU": 7, "AF": 5, "OC": 1 } },
+    "sciTech": { "ratio": 40, "target": 25, "met": true },
+    "topSourceShare": { "source": "Nature/Dawn (tied)", "pct": 13, "target": 20, "met": true },
+    "uniqueSources": 47,
     "duplicates": 0,
-    "avgCycleDuration": 1200
+    "avgCycleDuration": 1253
   },
-  "experiment": "Active: 2026-05-09-multi-source-floor-3 (politics/economy multi-source floors raised 2→3). Evaluates 2026-05-16, do-not-touch window. No new proposal — noNewExperimentsUntil gate runs through 2026-05-12 to let the post-2026-05-02 model lineup baseline.",
-  "weakestArea": "All goal metrics met today; the metric closest to its target was freshness p90 at 1.4 (1.4× the 1.0-day target) — driven by a small daily article tail rather than a structural problem. Nothing actionable while the experiment gate holds.",
+  "experiment": "Active: 2026-05-09-multi-source-floor-3 (politics+economy multi floors raised 2→3). Evaluates 2026-05-16. Today's multi-source count of 11 is meaningfully above the prior 7-9 norm and directionally consistent with the hypothesis, but too early to attribute. No new experiment — noNewExperimentsUntil 2026-05-12 gate still in force for one more day.",
+  "weakestArea": "Oceania at 1 article remains the structurally thinnest region; this is feed-supply limited (few wire events originate from OC) rather than a selector miss. Africa at 5 is also on the lower end vs the ME/EU/AS/AM cluster — worth watching if AF trends down further.",
   "watching": [
-    "Active experiment's early multi-source signal: today's published multiSource=12 (~31% of 39) is consistent with the +28% lift the floor change is hypothesized to deliver, but a single day is not enough to attribute — wait for the 2026-05-16 weekly snapshot.",
-    "OC region is at 1 again today; matches yesterday — Pacific desk remains structurally thin but is not a goal-metric violation.",
-    "Top-source share has two outlets tied at 5/39 (Al Jazeera, Daily Maverick) — under the 20% cap but worth tracking if either concentrates further as the multi-source floor pulls more shared-cluster picks."
+    "Multi-source count jumped to 11 today (vs 8-9 typical) — first full day under the new politics+economy ≥3 floors. Need 4-5 more days before the experiment window closes 2026-05-16.",
+    "Cycle duration crept to 1253s avg today vs ~1033s historical baseline — selector 235s is fine, writer 575s + editor 596s are both elevated. Monitor for sustained drift.",
+    "Top source share dispersed cleanly today (Nature 5, Dawn 5, both at 13%); the topOutletSharePct creep flagged in the active experiment baseline (12.4 → 14.2) did not worsen."
   ],
   "coverageGaps": [
-    "Latin America (AM) appears predominantly via US-headquartered outlets; no native LatAm regional outlet in today's source list.",
-    "Central Asia / former Soviet space: TASS (2) and Kyiv Independent (1) are the only proximate voices; no Kazakh / Uzbek / Caucasus regional outlet today."
+    "Oceania at 1 article — sole story. Single-source structural issue, not a same-day actionable gap.",
+    "Science source diversity narrow: only 4 distinct outlets (Nature, Dialogue Earth, Quanta, Premium Times) carry the 7 science articles, with Nature contributing 5 of 7. If Nature's feed thins, science floor risk is elevated."
   ],
-  "context": "Today is the second day of the politics+economy multi-source floor=3 experiment (started 2026-05-09, evaluates 2026-05-16). The noNewExperimentsUntil gate runs through 2026-05-12, so no new experiment is proposed; queued numerical-density experiment remains parked in queuedExperiments awaiting both gate lift and a pre-promotion n≥20 quality-score re-baseline. All four goal metrics (freshness, diversity, multi-source, educational value) are within target."
+  "context": "Day 3 of the new politics+economy ≥3 multi-source floors. All headline metrics healthy: freshness perfect (median 0), 40 articles across 6 regions, sci-tech 40%, zero dupes, no source above 13% share. The noNewExperimentsUntil pause expires tomorrow (2026-05-12); the queued numerical-density experiment is the likely next move once the multi-source floor experiment evaluates 2026-05-16, but only one write-prompt.md change at a time."
 }
