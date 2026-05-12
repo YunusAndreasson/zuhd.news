@@ -154151,5 +154151,1795 @@
     "label": "Continental Rifting & Mantle Helium",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-05-12-aave-arbitrum-71m-eth-north-korea-terrorism-judgment-dao": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STATUTE",
+        "body": "The 1996 Antiterrorism and Effective Death Penalty Act and the 2002 Terrorism Risk Insurance Act let US victims sue state sponsors of terrorism and attach the blocked assets of those states to satisfy judgments. North Korea has been on the state-sponsors list since 1988 (briefly removed 2008–2017, then relisted).",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The relevant lever is **TRIA §201**: any *blocked asset* of a terrorist party is attachable to satisfy a judgment — a near-automatic pierce of sovereign immunity once the asset is identified."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DPRK STEALS CRYPTO",
+        "body": "UN Panel of Experts reports estimate North Korea has stolen several billion dollars in crypto since 2017 — a meaningful share of the regime's hard-currency income. Sanctions cut Pyongyang out of correspondent banking; crypto is the workaround that funds the missile program.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Crypto theft",
+                "value": 35,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Coal & minerals exports",
+                "value": 25,
+                "tone": "neutral"
+              },
+              {
+                "label": "Overseas labor",
+                "value": 15,
+                "tone": "neutral"
+              },
+              {
+                "label": "Arms sales",
+                "value": 15,
+                "tone": "neutral"
+              },
+              {
+                "label": "Sanctions-evading trade",
+                "value": 10,
+                "tone": "favorable"
+              }
+            ],
+            "label": "estimated DPRK hard-currency income streams (rough share)"
+          }
+        ]
+      },
+      {
+        "heading": "THE LAZARUS PATTERN",
+        "body": "The Lazarus Group — DPRK's Reconnaissance General Bureau cyber unit — runs a now-routine playbook: phish a developer, drain a bridge or DeFi protocol, tumble through mixers, cash out through OTC desks in jurisdictions that don't enforce US sanctions.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "hack",
+                "label": "DeFi exploit"
+              },
+              {
+                "id": "bridge",
+                "label": "Cross-chain bridge"
+              },
+              {
+                "id": "mixer",
+                "label": "Tornado / mixers"
+              },
+              {
+                "id": "otc",
+                "label": "OTC desks"
+              },
+              {
+                "id": "dprk",
+                "label": "Pyongyang"
+              }
+            ],
+            "links": [
+              {
+                "source": "hack",
+                "target": "bridge",
+                "value": 100
+              },
+              {
+                "source": "bridge",
+                "target": "mixer",
+                "value": 85
+              },
+              {
+                "source": "mixer",
+                "target": "otc",
+                "value": 70
+              },
+              {
+                "source": "otc",
+                "target": "dprk",
+                "value": 60
+              }
+            ],
+            "label": "Lazarus laundering pipeline"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A DAO ACTUALLY IS",
+        "body": "A decentralized autonomous organization is a smart-contract treasury whose disbursements require on-chain votes by token-holders. There is no board, no registered entity in most cases, and no clear answer to whether a court order binds the contract itself or only the humans voting on it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the unresolved question of *crypto-as-property*: a court can enjoin a person, but a smart contract executes regardless of who is enjoined. Enforcement runs through the **validators** and **front-end operators**, not the code."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT BEING SET",
+        "body": "Courts have ordered crypto seizures before — Bitfinex, Colonial Pipeline ransom, Tornado Cash sanctions. What's new here is asserting that funds stolen by a sanctioned state remain that state's property even after laundering, and that a decentralized governance vote can be conditioned on judicial approval.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2016",
+                "label": "Bitfinex hack ($72M stolen)"
+              },
+              {
+                "year": "2022-02",
+                "label": "Bitfinex laundering arrests, $3.6B seized",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-08",
+                "label": "OFAC sanctions Tornado Cash"
+              },
+              {
+                "year": "2023-08",
+                "label": "Tornado developer arrested"
+              },
+              {
+                "year": "2025",
+                "label": "DPRK-linked DeFi exploits surge"
+              }
+            ],
+            "label": "crypto enforcement milestones"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ARE THE PLAINTIFFS",
+        "body": "Terrorism judgments against North Korea include families of the USS Pueblo crew (held 1968), the family of Otto Warmbier (died 2017 after DPRK detention), and victims of DPRK-linked terror financing. Their judgments together exceed $2 billion — most of it uncollectable until assets surface.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes terrorism judgments against state sponsors collectable when most foreign sovereign judgments are not?",
+            "options": [
+              "TRIA §201 strips immunity for blocked assets of designated terror sponsors",
+              "The UN Security Council enforces them",
+              "Insurance pools cover unpaid awards",
+              "Defendants must waive immunity to be sued"
+            ],
+            "correct": 0,
+            "explanation": "TRIA §201 (2002) created a narrow but powerful exception: any blocked asset of a state sponsor of terrorism is reachable to satisfy a terrorism judgment, bypassing the usual sovereign immunity wall."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-12T08:37:26.514Z",
+    "label": "Terrorism Judgments & Crypto Custody",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-12-bms-hengrui-china-pharma-discovery-licensing-deal": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OLD MODEL",
+        "body": "For decades, Big Pharma ran early discovery in-house — medicinal chemistry, target validation, lead optimization — then licensed Chinese and Indian generics for off-patent manufacturing. China's role was downstream: low-cost APIs, contract manufacturing, occasional clinical trial sites.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The discovery work — the *expensive*, *risky* part — stayed in Boston, Basel, and South San Francisco. China supplied **molecules**, not **medicines**."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT CHANGED",
+        "body": "Beginning around 2015, China overhauled its drug regulator and joined the ICH (International Council for Harmonisation), which standardizes clinical trial data so it's accepted by the FDA and EMA. Chinese biotechs could suddenly run trials whose results Western regulators would credit — collapsing the duplication tax that had kept discovery onshore.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2015",
+                "label": "CFDA reform: data-integrity crackdown"
+              },
+              {
+                "year": "2017",
+                "label": "China joins ICH",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2018",
+                "label": "Hong Kong allows pre-revenue biotech IPOs"
+              },
+              {
+                "year": "2020",
+                "label": "First China-discovered drug FDA-approved (zanubrutinib)"
+              },
+              {
+                "year": "2024",
+                "label": "Chinese-origin molecules ~30% of global licensing deals"
+              }
+            ],
+            "label": "China's pivot to discovery"
+          }
+        ]
+      },
+      {
+        "heading": "THE COST ASYMMETRY",
+        "body": "A medicinal chemist in Shanghai costs roughly a quarter of one in Cambridge, Massachusetts. A Phase I trial in China runs at a fraction of US cost and enrolls faster — large, treatment-naive patient populations and centralized hospital systems. Running a discovery program in China to a clinical proof-point and then licensing it West is now cheaper than running the same program in-house.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "US/EU",
+                "value": "~$50m to IND",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "China",
+                "value": "~$10-15m",
+                "tone": "favorable"
+              }
+            ],
+            "label": "early-stage drug development cost (rough)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BIG PHARMA NEEDS THIS",
+        "body": "The patent cliff is real: roughly $200bn of branded pharma revenue loses exclusivity between 2025 and 2030, including Keytruda, Eliquis, and several Bristol Myers blockbusters. In-house pipelines aren't replacing it fast enough. Buying validated Chinese assets is the cheapest way to refill the shelf before the cliff hits.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              6.8304,
+              6.81605,
+              6.8183,
+              6.8214,
+              6.8177,
+              6.8177,
+              6.8177,
+              6.8192,
+              6.8157,
+              6.8235,
+              6.8265,
+              6.8363,
+              6.8363,
+              6.8363,
+              6.8284,
+              6.8289,
+              6.836,
+              6.8391,
+              6.8282,
+              6.82825,
+              6.82825,
+              6.8283,
+              6.8303,
+              6.8193,
+              6.8059,
+              6.8037,
+              6.8008,
+              6.8008,
+              6.7964,
+              6.7935
+            ],
+            "periods": [
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12"
+            ],
+            "label": "Chinese yuan",
+            "unit": "CNY / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOPOLITICAL FRICTION",
+        "body": "The BIOSECURE Act, which passed the US House in 2024, would bar federal contracts with named Chinese biotech firms (notably WuXi AppTec and BGI) on national-security grounds — patient genetic data, supply-chain dependency. Discovery licensing deals like Bristol-Hengrui are structured to avoid the prohibited services (no patient data transfer, just molecule rights), but the political wind is against deepening this dependency.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does a Western pharma actually buy in a deal like Bristol-Hengrui?",
+            "options": [
+              "The right to manufacture an existing drug in Western markets",
+              "The molecule and clinical data, with rights to develop and sell it outside China",
+              "A stake in the Chinese company itself",
+              "Access to Chinese patient genomic databases"
+            ],
+            "correct": 1,
+            "explanation": "These are licensing deals for the asset — the compound plus its trial data. Hengrui keeps China rights; Bristol gets to develop and sell it everywhere else."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT HENGRUI KEPT",
+        "body": "Retaining domestic China rights on 4 of the 12 programs is the standard structure now: the Chinese originator keeps the world's second-largest pharma market for itself, monetizing the rest of the world via the Western partner's regulatory and commercial muscle. It's the inverse of the colonial pharma model — the Western firm becomes the distribution arm for an Asian discovery engine."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-12"
+    ],
+    "generatedAt": "2026-05-12T08:38:01.402Z",
+    "label": "China's Drug Discovery Pipeline",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-12-congo-coltan-rubaya-landslides-m23-bellingcat-supply": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT COLTAN IS",
+        "body": "Coltan is the ore for tantalum, the metal that makes capacitors small enough to fit in phones. No tantalum, no compact electronics — there is no industrial substitute that hits the same volumetric efficiency.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The name is short for **col**umbite-**tan**talite. Roughly **40%** of the world's tantalum supply originates in the eastern DRC, most of it from a small cluster of artisanal pits around Rubaya in North Kivu."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ARTISANAL",
+        "body": "Rubaya's deposits sit in weathered surface soil, not deep hard rock. That makes industrial machinery uneconomic but lets a man with a shovel earn a day's wage. Around 11,000 miners work the hillsides by hand — which is also why a single rain-saturated slope can bury hundreds at once."
+      },
+      {
+        "heading": "THE M23 TAX",
+        "body": "M23 doesn't run the mines; it taxes them. Armed groups across eastern Congo have for decades extracted rents at the pit, on the road, and at the border — a pattern UN panels have documented since the late 1990s. Whoever holds the checkpoints collects the rents.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CD",
+              "RW",
+              "UG",
+              "BI",
+              "TZ"
+            ],
+            "label": "the smuggling corridor",
+            "markers": [
+              {
+                "lat": -1.4427,
+                "lng": 29.0464,
+                "label": "Rubaya mines"
+              },
+              {
+                "lat": -1.6792,
+                "lng": 29.2228,
+                "label": "Goma"
+              },
+              {
+                "lat": -1.9706,
+                "lng": 30.1044,
+                "label": "Kigali"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE RWANDA LAUNDER",
+        "body": "Rwanda exports far more tantalum than its own geology can produce. UN Group of Experts reports have repeatedly traced Congolese coltan crossing the border by night, being repackaged as Rwandan-origin, and entering the legal supply chain cleansed of its conflict tag."
+      },
+      {
+        "heading": "WHY DODD-FRANK DIDN'T FIX IT",
+        "body": "Section 1502 of the 2010 Dodd-Frank Act required US-listed companies to audit their tin, tungsten, tantalum, and gold supply chains for Congolese conflict sources. Audits checked smelters, not pits — so coltan that entered a smelter labeled Rwandan was certified clean, and the rent to armed groups upstream kept flowing."
+      },
+      {
+        "heading": "THE VERIFICATION GAP",
+        "body": "M23 restricts journalist access to the territory it holds, so casualty figures from Rubaya are reconstructed from satellite imagery, displaced-miner interviews, and church-burial records. This is the same forensic stack Bellingcat and the UN Group of Experts now use for most eastern Congo reporting.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is tantalum specifically essential to modern smartphones?",
+            "options": [
+              "It conducts electricity better than copper",
+              "It enables capacitors small enough to fit in compact devices",
+              "It is the only metal that bonds with silicon at low temperature",
+              "It is radioactive and powers the battery"
+            ],
+            "correct": 1,
+            "explanation": "Tantalum capacitors store more charge per cubic millimeter than any alternative — the reason phones, hearing aids, and pacemakers all rely on it."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-12T08:38:26.987Z",
+    "label": "Coltan & the Rubaya Mines",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-12-himanta-sarma-assam-cm-second-term-land-identity-bjp": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A CHAR IS",
+        "body": "Chars are shifting river islands in the Brahmaputra — silt deposits that appear, disappear, and migrate with the monsoon. Roughly 2,500 of them exist across Assam, home to an estimated 2.5 million people, overwhelmingly Bengali-origin Muslims who farm the fertile silt between floods.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The land itself is **legally ambiguous** — chars are not in cadastral surveys, so residents often cannot produce the *patta* (land title) the state demands as proof of belonging."
+          }
+        ]
+      },
+      {
+        "heading": "THE PARTITION INHERITANCE",
+        "body": "Assam sat on the front line of the 1947 partition. The province lost Sylhet to East Pakistan by referendum but inherited a Bengali-Muslim population whose ancestors had been encouraged to migrate by the British in the early 1900s to cultivate the Brahmaputra floodplain — the same chars now framed as encroachment.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1905",
+                "label": "Bengal partition; Muslim migration encouraged"
+              },
+              {
+                "year": "1947",
+                "label": "Sylhet votes to join East Pakistan",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1979",
+                "label": "Assam Movement begins"
+              },
+              {
+                "year": "1985",
+                "label": "Assam Accord signed"
+              },
+              {
+                "year": "2019",
+                "label": "NRC excludes 1.9M residents"
+              },
+              {
+                "year": "2024",
+                "label": "CAA rules notified"
+              }
+            ],
+            "label": "Assam's identity arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1985 CUTOFF",
+        "body": "The Assam Accord, signed after a six-year nativist movement that killed over 800 people, set March 24, 1971 as the cutoff date: anyone who could not prove their family lived in Assam before that date is a foreigner. This is the only Indian state with its own citizenship cutoff, four decades earlier than the national 1948 line."
+      },
+      {
+        "heading": "THE NRC AND CAA TRAP",
+        "body": "The 2019 National Register of Citizens excluded 1.9 million Assam residents — many of them Hindu, not Muslim, which the BJP found politically inconvenient. The Citizenship Amendment Act then created a path back for non-Muslim excludees from Bangladesh, Pakistan, and Afghanistan, while leaving Muslims to detention tribunals.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was distinctive about Assam's NRC outcome that surprised the BJP?",
+            "options": [
+              "Most excluded were Bengali Hindus, not Muslims",
+              "All excluded were sent to Bangladesh",
+              "The courts struck down the register",
+              "Less than 100,000 were excluded"
+            ],
+            "correct": 0,
+            "explanation": "Roughly half of the 1.9M excluded were Bengali Hindus — the BJP's own voter base — which is why the CAA was rushed through to selectively re-enfranchise them."
+          }
+        ]
+      },
+      {
+        "heading": "THE EVICTION PLAYBOOK",
+        "body": "'Clearing' a char means demolishing homes, often without the notice or compensation Indian land law requires. Sarma's first term saw operations at Dholpur, Gorukhuti, and Sipajhar, with police firing at protesters in 2021. The cleared land is then reallocated as government farms or reserved for indigenous communities.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "BD",
+              "BT",
+              "NP"
+            ],
+            "label": "Assam in the eastern arc",
+            "caption": "the chars hug the Brahmaputra's middle reach",
+            "markers": [
+              {
+                "lat": 26.1445,
+                "lng": 91.7362,
+                "label": "Guwahati"
+              },
+              {
+                "lat": 26.6,
+                "lng": 92,
+                "label": "Dholpur evictions"
+              },
+              {
+                "lat": 26.55,
+                "lng": 92.15,
+                "label": "Gorukhuti site"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TEA WAGE",
+        "body": "Assam grows roughly half of India's tea on plantations whose labor system descends directly from British indenture — workers from Jharkhand and Odisha brought in the 1860s and never repatriated. Daily wages of ₹250 (now pledged to rise to ₹500) sit below the state's own minimum wage; the gap is litigated, ignored, and renegotiated every election."
+      }
+    ],
+    "generatedAt": "2026-05-12T08:38:57.791Z",
+    "label": "Assam, Chars & Citizenship",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-12-india-heat-deaths-undercounted-heatwatch-varshney-mortality": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WET-BULB LIMIT",
+        "body": "Wet-bulb temperature combines heat and humidity into a single number: the lowest temperature a wet surface can reach through evaporation. At 35°C wet-bulb, a healthy young adult in shade dies within roughly six hours because sweat can no longer cool the body. South Asian cities already approach 33-34°C wet-bulb during peak summer.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The threshold matters because it is *physiological*, not statistical — below 35°C wet-bulb, hydration and shade save you; above it, **nothing biological does**."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DEATH CERTIFICATES MISS HEAT",
+        "body": "Heat rarely kills directly. It triggers cardiac arrest, kidney failure, or stroke in someone already vulnerable. The certificate names the proximate cause — myocardial infarction, acute renal failure — and heat disappears from the record. Without an explicit reporting requirement, the signal is invisible by construction."
+      },
+      {
+        "heading": "THE EXCESS-DEATHS METHOD",
+        "body": "Epidemiologists work around the certificate problem by counting deaths above a seasonal baseline during heat events. France's 2003 heatwave was estimated this way at roughly 15,000 excess deaths — a figure no death certificate database produced. The method requires reliable baseline mortality data, which India's civil registration system does not consistently provide.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Excess deaths from major heat events (selected, estimates)",
+            "peers": [
+              {
+                "value": 70000,
+                "label": "Europe 2003"
+              },
+              {
+                "value": 56000,
+                "label": "Russia 2010"
+              },
+              {
+                "value": 62000,
+                "label": "Europe 2022"
+              },
+              {
+                "value": 2500,
+                "label": "India 2015"
+              },
+              {
+                "value": 2000,
+                "label": "Pakistan 2015"
+              },
+              {
+                "value": 739,
+                "label": "US 1995 (Chicago)"
+              }
+            ],
+            "subjectLabel": "India 2015",
+            "unit": "deaths"
+          }
+        ]
+      },
+      {
+        "heading": "WHO IS EXPOSED",
+        "body": "Heat mortality clusters among outdoor laborers, the elderly, and those without air conditioning. In India, roughly half the workforce is in agriculture or construction — outdoors during peak heat, paid by the day, with no practical option to stop working when the temperature rises.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "PK",
+              "BD",
+              "NP",
+              "LK"
+            ],
+            "label": "South Asia's heat-exposed labor belt",
+            "markers": [
+              {
+                "lat": 20.7333,
+                "lng": 77.0167,
+                "label": "Akola, Maharashtra"
+              },
+              {
+                "lat": 28.6139,
+                "lng": 77.209,
+                "label": "Delhi"
+              },
+              {
+                "lat": 24.8607,
+                "lng": 67.0011,
+                "label": "Karachi"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DATA GAP",
+        "body": "Two-thirds of all deaths worldwide — roughly 35 million per year — are never assigned a medical cause. Most occur in sub-Saharan Africa and South Asia, where civil registration exists on paper but lacks the doctors and infrastructure to function. Heat surveillance sits on top of that broken foundation."
+      },
+      {
+        "heading": "WHY THE NUMBER MATTERS",
+        "body": "A reportable cause of death drives budgets: cooling shelters, work-hour restrictions, hospital protocols, insurance payouts. Until heat appears on certificates at scale, the political pressure to fund adaptation stays weak — and the deaths keep registering as something else.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does France's 2003 heatwave death toll (~15,000) come from statistical estimation rather than death certificates?",
+            "options": [
+              "French certificates explicitly excluded heat as a cause",
+              "Heat usually triggers another acute condition that gets named instead",
+              "The deaths occurred before modern certification existed",
+              "Privacy law blocked the data"
+            ],
+            "correct": 1,
+            "explanation": "Heat is typically a trigger, not a proximate cause — certificates name the heart attack or kidney failure, so heat deaths are counted via excess-mortality methods instead."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-12T08:39:21.948Z",
+    "label": "Heat Mortality & the Counting Problem",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-12-kp-assembly-maulana-idrees-killing-jui-f-condemn": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO JUI-F IS",
+        "body": "Jamiat Ulema-e-Islam (Fazl) is Pakistan's largest Deobandi religious-political party, descended from the same scholarly tradition that produced Darul Uloom Deoband in colonial India. Led by Fazl-ur-Rehman since 1980, it has spent decades inside parliament — coalition partner, opposition, kingmaker — while maintaining a madrassa network across KP and Balochistan that no rival party can match.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "JUI-F sits in a peculiar slot: **Deobandi** in theology — the same school that shaped the **Afghan Taliban** — but committed to electoral politics rather than armed struggle. That distinction is exactly what makes its clerics targets."
+          }
+        ]
+      },
+      {
+        "heading": "THE PARADOX OF THE PEACE CLERIC",
+        "body": "JUI-F clerics in KP frequently broker tribal jirgas, mediate between the state and militant remnants, and preach against suicide bombing from Deobandi pulpits. This shared theological vocabulary makes them more dangerous to the TTP than any soldier — because they can deny militants the religious cover the group needs to recruit."
+      },
+      {
+        "heading": "THE TTP'S HIT LIST",
+        "body": "Tehrik-i-Taliban Pakistan has killed Deobandi scholars who publicly condemn its tactics for over a decade — Hassan Jan in 2007, Sarfraz Naeemi in 2009, Hamid-ul-Haq in 2025. The pattern is consistent: the louder a cleric denounces militant violence on theological grounds, the higher he moves on the list.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2007",
+                "label": "Hassan Jan — Peshawar"
+              },
+              {
+                "year": "2009",
+                "label": "Sarfraz Naeemi — Lahore"
+              },
+              {
+                "year": "2014",
+                "label": "Peshawar school massacre",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2025",
+                "label": "Hamid-ul-Haq — Akora Khattak"
+              },
+              {
+                "year": "2026",
+                "label": "Maulana Idrees — KP"
+              }
+            ],
+            "label": "Deobandi clerics killed for opposing militancy"
+          }
+        ]
+      },
+      {
+        "heading": "WHY KP",
+        "body": "Khyber Pakhtunkhwa borders Afghanistan along the Durand Line — the contested 1893 colonial boundary that splits Pashtun lands. After the 2021 Taliban return in Kabul, TTP fighters who had sheltered across the border returned to former tribal districts now merged into KP, and attacks on security forces, police, and political figures climbed back to mid-2010s levels.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF"
+            ],
+            "caption": "KP sits along the Durand Line — porous, Pashtun on both sides",
+            "markers": [
+              {
+                "lat": 32.9928,
+                "lng": 70.6045,
+                "label": "Bannu"
+              },
+              {
+                "lat": 34.0151,
+                "lng": 71.5249,
+                "label": "Peshawar"
+              },
+              {
+                "lat": 34.5553,
+                "lng": 69.2075,
+                "label": "Kabul"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE ASSEMBLY-FLOOR LEVER",
+        "body": "Threatening to halt proceedings is JUI-F's standard pressure tactic in provincial politics. It works because KP's coalition arithmetic is tight and the party's bench-strength is large enough that a walkout paralyzes business — a structural lever religious parties rarely have at the federal level.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which scholarly tradition does JUI-F belong to?",
+            "options": [
+              "Barelvi — the dominant Sunni tradition in Punjab",
+              "Deobandi — the school also shaping the Afghan Taliban",
+              "Shia — aligned with Iranian seminaries",
+              "Salafi — funded by Gulf donors"
+            ],
+            "correct": 1,
+            "explanation": "JUI-F is Deobandi — the same revivalist movement founded in 1866 at Darul Uloom Deoband. The Afghan Taliban emerged from the same school, which is why JUI-F's anti-militancy stance carries unusual theological weight."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-12T08:39:51.133Z",
+    "label": "JUI-F & KP's Targeted-Killing Pattern",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-12-malaysia-perak-migrant-boat-capsize-14-missing-fishermen": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CORRIDOR",
+        "body": "The Strait of Malacca is one of the world's busiest shipping lanes and also one of its busiest informal migration corridors. The Indonesia-to-Malaysia crossing is short — under 100 km at the narrowest points — which makes it cheaper, more frequent, and more deadly than the longer Mediterranean or Andaman routes.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ID",
+              "MY",
+              "SG",
+              "TH"
+            ],
+            "label": "the Malacca crossing",
+            "markers": [
+              {
+                "lat": 4.2167,
+                "lng": 100.55,
+                "label": "Pangkor Island"
+              },
+              {
+                "lat": 3.5667,
+                "lng": 98.6833,
+                "label": "Medan (origin region)"
+              },
+              {
+                "lat": 2.5,
+                "lng": 101.8,
+                "label": "Port Klang"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PULL",
+        "body": "Malaysia hosts roughly 2-3 million undocumented workers — plantations, construction, domestic work — paid in ringgit that converts to four or five times the equivalent wage in rural Sumatra or Java. The wage gap is the engine; enforcement is the friction."
+      },
+      {
+        "heading": "THE BOAT ECONOMICS",
+        "body": "Smuggler boats across Malacca are typically small wooden fishing craft (*pompong*) overloaded to 30-50 passengers at $300-800 a head. The economics reward overloading: one extra passenger is pure margin, but cuts freeboard — the distance from waterline to deck — past the point where a single wave swamps the vessel.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Malay term ***pompong*** describes the small wooden inboard-engine boats used for both legitimate fishing and informal crossings. A boat rated for 15 fishermen routinely carries 40+ migrants on a night run."
+          }
+        ]
+      },
+      {
+        "heading": "WHY FISHERMEN ARRIVE FIRST",
+        "body": "Coastal fishing fleets are already at sea before dawn, scattered across the exact waters where capsizes happen. Official SAR assets launch from a few fixed ports and arrive hours later. In nearly every Malacca capsize on record, the initial rescue is done by local fishermen — the state arrives to count.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In Malacca Strait migrant boat capsizes, who typically performs the initial rescue?",
+            "options": [
+              "The Malaysian Maritime Enforcement Agency",
+              "Indonesian Navy patrols",
+              "Local fishermen already at sea",
+              "UNHCR rescue vessels"
+            ],
+            "correct": 2,
+            "explanation": "Coastal fishing fleets are dispersed across the crossing zones at dawn; official SAR assets launch from fixed ports and arrive hours later."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL VOID",
+        "body": "Neither Malaysia nor Indonesia has signed the 1951 Refugee Convention. Survivors who reach Malaysian shore are classified as immigration offenders, not asylum seekers — detained, caned in some cases, and deported. There is no legal pathway, which is why every crossing happens by night in an overloaded *pompong*."
+      },
+      {
+        "heading": "THE SCALE",
+        "body": "The IOM's Missing Migrants Project records hundreds of deaths a year in Southeast Asian waters, almost certainly an undercount — bodies in the Malacca and Andaman are rarely recovered, and most capsizes are reported only when survivors surface. The Mediterranean dominates global migration-death coverage; the Malacca route kills quietly."
+      }
+    ],
+    "generatedAt": "2026-05-12T08:40:14.670Z",
+    "label": "The Malacca Migrant Route",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-12-pakistan-kabul-rehab-strike-269-dead-families-bbc": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BORDER KABUL HAS NEVER RECOGNIZED",
+        "body": "The 2,640 km frontier between Pakistan and Afghanistan was drawn in 1893 by British colonial administrator Mortimer Durand and the Afghan emir Abdur Rahman Khan. Every Afghan government since 1947 — monarchy, republic, communist, mujahideen, Taliban — has refused to accept it as an international border. Pakistan treats it as settled; Kabul treats it as an open question.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The disputed line bisects the **Pashtun belt** — the ethnic group that straddles both states and forms the Taliban's core constituency. Pakistan's military doctrine treats Pashtun nationalism as the deeper threat; the **TTP** insurgency is its symptom, not its root."
+          }
+        ]
+      },
+      {
+        "heading": "WHY KABUL HAS A STATE DRUG HOSPITAL",
+        "body": "For two decades Afghanistan produced roughly 80% of the world's opium. The domestic spillover was severe: by 2021 the UN estimated 3-4 million Afghan drug users in a population of 40 million — among the highest addiction rates on earth. The Taliban's 2022 opium ban cut cultivation by over 90%, but addicts remained, and the state Omid (\"hope\") clinic at Kabul became one of the few functioning rehab centers in the country.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Afghanistan",
+                "value": 82,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Myanmar",
+                "value": 7,
+                "tone": "neutral"
+              },
+              {
+                "label": "Mexico",
+                "value": 5,
+                "tone": "neutral"
+              },
+              {
+                "label": "Laos",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Colombia",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Other",
+                "value": 2,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Global opium production share, peak years (% of world supply)"
+          }
+        ]
+      },
+      {
+        "heading": "PROTECTED STATUS UNDER IHL",
+        "body": "Geneva Convention IV and Additional Protocol I designate medical facilities as specifically protected objects. Striking a hospital is permissible only if it is being used to commit \"acts harmful to the enemy\" outside its medical function — and only after a warning with reasonable time to comply. The burden of proof rests on the attacking party, not the facility."
+      },
+      {
+        "heading": "THE TTP PRETEXT",
+        "body": "Pakistan's cross-border strikes since 2022 share a stated rationale: that the Tehrik-i-Taliban Pakistan operates from Afghan soil with the Afghan Taliban's tolerance. The TTP and Afghan Taliban are ideologically aligned but organizationally distinct — Kabul denies hosting them; Islamabad insists the sanctuary is the cause of its own insurgency, which killed over 1,500 Pakistani soldiers in 2024 alone.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AF",
+              "PK"
+            ],
+            "label": "Pakistan's cross-border strikes since 2022",
+            "markers": [
+              {
+                "lat": 34.5553,
+                "lng": 69.2075,
+                "label": "Kabul (Omid clinic)"
+              },
+              {
+                "lat": 33.3338,
+                "lng": 69.9376,
+                "label": "Khost (2022 strike)"
+              },
+              {
+                "lat": 33.0731,
+                "lng": 69.6644,
+                "label": "Paktika (2024 strike)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DEPORTATION CONTEXT",
+        "body": "Since October 2023, Pakistan has expelled over 800,000 Afghans under its \"Illegal Foreigners Repatriation Plan,\" including families who had lived in Pakistan for forty years. The deportation campaign and the airstrikes operate as a single coercive package: Islamabad's message to Kabul is that the cost of harboring the TTP is borne by every Afghan inside Pakistan's borders.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2021-08",
+                "label": "Taliban retakes Kabul"
+              },
+              {
+                "year": "2022-04",
+                "label": "Pakistan airstrikes in Khost & Kunar"
+              },
+              {
+                "year": "2023-10",
+                "label": "Mass deportation order begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024-03",
+                "label": "Strikes on Paktika kill ~8"
+              },
+              {
+                "year": "2026-03",
+                "label": "Omid clinic strike: 269 dead"
+              }
+            ],
+            "label": "Pakistan-Afghanistan friction since the Taliban return"
+          }
+        ]
+      },
+      {
+        "heading": "THE WAR CRIMES THRESHOLD",
+        "body": "An international war crimes inquiry under the Rome Statute requires either the territorial state to refer the case, the UN Security Council to refer it, or the ICC prosecutor to open a proprio motu investigation. Afghanistan is not a Rome Statute party in any functional sense post-2021; Pakistan never ratified it. Without referral, the UN's death toll stands as the public record but triggers no automatic tribunal.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Afghan government has formally accepted the Durand Line as the international border with Pakistan?",
+            "options": [
+              "The monarchy under Zahir Shah (1933–1973)",
+              "The communist PDPA government (1978–1992)",
+              "The Islamic Republic under Karzai/Ghani (2001–2021)",
+              "None of them"
+            ],
+            "correct": 3,
+            "explanation": "Every Afghan government — monarchical, communist, republican, and Taliban — has refused to recognize the Durand Line, treating Pakistan's western frontier as an unresolved colonial imposition."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-12T08:40:50.607Z",
+    "label": "The Durand Line & Cross-Border Strikes",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-12-panama-canal-oil-shipments-74-percent-iran-hormuz-rerouting": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHOKEPOINT MAP",
+        "body": "Roughly a third of the world's seaborne oil moves through just four narrow passages: Hormuz, Malacca, Suez, and the Bab el-Mandeb. The Panama Canal is the fifth — smaller in oil volume but irreplaceable for Atlantic-to-Pacific flows. When one chokepoint closes, the others absorb the shock at premium rates.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PA",
+              "EG",
+              "IR",
+              "OM",
+              "YE",
+              "DJ",
+              "SG",
+              "MY",
+              "ID"
+            ],
+            "label": "the world's oil chokepoints",
+            "markers": [
+              {
+                "lat": 9.08,
+                "lng": -79.68,
+                "label": "Panama Canal"
+              },
+              {
+                "lat": 26.57,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 30.42,
+                "lng": 32.35,
+                "label": "Suez Canal"
+              },
+              {
+                "lat": 12.58,
+                "lng": 43.33,
+                "label": "Bab el-Mandeb"
+              },
+              {
+                "lat": 1.43,
+                "lng": 102.88,
+                "label": "Strait of Malacca"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LOCK CONSTRAINT",
+        "body": "Unlike Suez, which is a sea-level cut, Panama is a stepped waterway — ships are lifted 26 meters into Gatún Lake by freshwater locks, then lowered on the other side. Every transit consumes roughly 200 million liters of fresh water that flushes out to sea. Drought directly limits how many ships can pass.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2016 expansion added the **Neopanamax locks** — wide enough for vessels up to 366m long — but every Neopanamax transit still drains the same lake the country drinks from. Panama City and Colón compete with shipping for the same reservoir."
+          }
+        ]
+      },
+      {
+        "heading": "THE AUCTION SYSTEM",
+        "body": "Panama runs the only major chokepoint that prices itself dynamically. Regular slots are booked months ahead; anyone arriving without a reservation joins a queue or bids in auction for an unused slot. During the 2023-24 drought the top auction price hit $4 million for a single transit — more than the cargo's freight margin.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Panama (booked)",
+                "value": "~$500k",
+                "tone": "favorable"
+              },
+              {
+                "label": "Panama (auction)",
+                "value": "up to $4m",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Suez",
+                "value": "~$700k",
+                "tone": "neutral"
+              },
+              {
+                "label": "Cape of Good Hope",
+                "value": "free + 14 days fuel",
+                "tone": "neutral"
+              }
+            ],
+            "label": "transit cost per laden tanker (rough order of magnitude)"
+          }
+        ]
+      },
+      {
+        "heading": "THE CAPE ALTERNATIVE",
+        "body": "Before Suez opened in 1869, every cargo between Europe and Asia rounded the Cape of Good Hope. The route still exists — it adds roughly 10-14 days and 3,500 nautical miles versus Suez, but no tolls and no chokepoint risk. Every time a chokepoint tightens, supertanker charter rates spike and the Cape suddenly pencils out again."
+      },
+      {
+        "heading": "WHY ASIA REROUTES WEST",
+        "body": "Persian Gulf crude normally flows east — China, India, Japan, South Korea take roughly 80% of Hormuz exports. With Hormuz blocked, Asian refiners turn to Atlantic basin barrels: West African, Brazilian, US shale. Those barrels reach Asia via Panama or the Cape, which is why a Hormuz incident shows up as a Panama transit spike thousands of miles away.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "gulf",
+                "label": "Persian Gulf"
+              },
+              {
+                "id": "watl",
+                "label": "West Africa"
+              },
+              {
+                "id": "us",
+                "label": "US Gulf Coast"
+              },
+              {
+                "id": "br",
+                "label": "Brazil"
+              },
+              {
+                "id": "hormuz",
+                "label": "via Hormuz"
+              },
+              {
+                "id": "panama",
+                "label": "via Panama"
+              },
+              {
+                "id": "cape",
+                "label": "via Cape"
+              },
+              {
+                "id": "asia",
+                "label": "Asian refiners"
+              }
+            ],
+            "links": [
+              {
+                "source": "gulf",
+                "target": "hormuz",
+                "value": 100
+              },
+              {
+                "source": "watl",
+                "target": "cape",
+                "value": 35
+              },
+              {
+                "source": "us",
+                "target": "panama",
+                "value": 45
+              },
+              {
+                "source": "br",
+                "target": "cape",
+                "value": 20
+              },
+              {
+                "source": "hormuz",
+                "target": "asia",
+                "value": 100
+              },
+              {
+                "source": "panama",
+                "target": "asia",
+                "value": 45
+              },
+              {
+                "source": "cape",
+                "target": "asia",
+                "value": 55
+              }
+            ],
+            "label": "where Asian refiners source crude when Hormuz closes"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1977 HANDOVER",
+        "body": "The canal was built by the United States (1904-1914) and run as US sovereign territory until the Torrijos-Carter treaties of 1977 transferred control to Panama by 1999. The Panama Canal Authority is now a Panamanian state entity — the auction revenue funds roughly 6% of Panama's GDP.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When did the Panama Canal pass fully into Panamanian control?",
+            "options": [
+              "1914",
+              "1977",
+              "1989",
+              "1999"
+            ],
+            "correct": 3,
+            "explanation": "The 1977 Torrijos-Carter treaties set the transfer schedule; full Panamanian control took effect on December 31, 1999."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-12T08:41:21.197Z",
+    "label": "Panama Canal & Global Oil Chokepoints",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-12-ptsd-women-sexual-assault-transcriptomic-immune-metabolic": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DIAGNOSTIC GAP",
+        "body": "PTSD is diagnosed entirely by clinical interview against DSM-5 criteria — there is no blood test, no scan, no biomarker accepted by any regulator. A patient's diagnosis depends on whether they can articulate their symptoms to a clinician who believes them.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This matters legally: disability claims, asylum cases, and veterans' benefits all hinge on a diagnosis that rests on *self-report*. A blood marker would shift the burden of proof from the patient's testimony to a lab result."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT TRANSCRIPTOMICS MEASURES",
+        "body": "DNA is the blueprint; the transcriptome is which pages are actively being read at a given moment. RNA-sequencing counts the messenger RNA molecules in a sample, revealing which genes are switched on and how loudly. The same genome can produce wildly different transcriptomes depending on stress, infection, or trauma."
+      },
+      {
+        "heading": "THE INFLAMMATION HYPOTHESIS",
+        "body": "PTSD has been linked for two decades to chronic low-grade inflammation — elevated C-reactive protein, interleukin-6, and TNF-alpha in patients years after the trauma. The new finding is not that immunity is involved, but that the dysregulation is durable enough to read as a stable signature 12 months out."
+      },
+      {
+        "heading": "WHY WOMEN, WHY SEXUAL ASSAULT",
+        "body": "Women develop PTSD at roughly twice the rate of men after comparable trauma, and sexual assault carries the highest conditional risk of any trauma type — around half of survivors meet criteria. Studying this cohort maximizes statistical power: a real biological signal is most likely to show up where the disorder is most concentrated.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which trauma type carries the highest conditional risk of developing PTSD?",
+            "options": [
+              "Combat exposure",
+              "Serious motor vehicle accident",
+              "Sexual assault",
+              "Natural disaster"
+            ],
+            "correct": 2,
+            "explanation": "Roughly half of sexual assault survivors develop PTSD — the highest rate of any trauma category studied, and substantially above combat (around 20%)."
+          }
+        ]
+      },
+      {
+        "heading": "THE BIOMARKER BAR",
+        "body": "For a blood test to enter clinical use it must be sensitive (catches real cases), specific (does not flag depression or general inflammation), stable across labs, and validated in independent cohorts. Many PTSD biomarker candidates have cleared the first two and failed the last two. Replication is where the field has historically broken down."
+      },
+      {
+        "heading": "THE METABOLIC LAYER",
+        "body": "Beyond immunity, the study flags persistent metabolic dysregulation — the cellular machinery for converting glucose and lipids into energy runs differently in trauma-exposed women a year later. This mirrors findings in chronic stress research where the HPA axis (the brain's cortisol system) reshapes mitochondrial function long after the stressor ends."
+      }
+    ],
+    "generatedAt": "2026-05-12T08:41:42.093Z",
+    "label": "PTSD's Biological Signature",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-12-tren-de-aragua-chile-money-laundering-financial-sophistication": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE THREE STAGES",
+        "body": "Every laundering scheme runs the same arc: placement (getting cash into the financial system), layering (moving it through transactions to obscure origin), and integration (spending it as clean money). Shell companies and crypto compress layering from months into hours.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The FATF codified this **placement-layering-integration** framework in 1989. Every anti-money-laundering regulation since — bank secrecy reporting, KYC, suspicious transaction filings — targets one of these three stages."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SHELL COMPANIES WORK",
+        "body": "A shell company is a legal entity with no real operations. When drug cash enters as 'revenue' from a fictitious consulting contract, the bank sees a normal business deposit. Chile's relatively clean financial reputation makes its corporate registry especially valuable — a Chilean LLC raises fewer red flags than a Venezuelan one."
+      },
+      {
+        "heading": "THE CRYPTO LAYER",
+        "body": "Crypto's role in laundering is not anonymity — most chains are traceable — but speed and jurisdiction. Funds can hop across exchanges in minutes, crossing borders that wire transfers cannot. By the time investigators subpoena one exchange, the assets are three exchanges away.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which cryptocurrency is designed to make transaction tracing genuinely difficult?",
+            "options": [
+              "Bitcoin",
+              "Ethereum",
+              "Monero",
+              "Tether"
+            ],
+            "correct": 2,
+            "explanation": "Monero uses ring signatures and stealth addresses to obscure sender, receiver, and amount. Bitcoin and Ethereum transactions are pseudonymous but fully traceable on-chain."
+          }
+        ]
+      },
+      {
+        "heading": "WHO IS TREN DE ARAGUA",
+        "body": "Originated in Venezuela's Tocorón prison around 2014 under Héctor 'Niño' Guerrero, the gang expanded across Latin America as Venezuelans fled the economic collapse. It now operates in at least eight countries, distinguishing itself from older cartels by piggybacking on the migrant diaspora rather than fixed territorial control.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "VE",
+              "CO",
+              "CL",
+              "PE",
+              "EC",
+              "BR",
+              "BO"
+            ],
+            "label": "Tren de Aragua's regional footprint"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHILEAN ANOMALY",
+        "body": "Chile is the wealthiest country in South America per capita and has the region's most developed banking sector. That same sophistication — strong corporate registries, easy LLC formation, integration with global payment rails — makes it the region's most useful laundering jurisdiction. Compliance infrastructure cuts both ways."
+      },
+      {
+        "heading": "THE VENEZUELA ENDPOINT",
+        "body": "Funds returning to Venezuela exit the regulated system entirely. Under sanctions and hyperinflation, the bolivar is functionally abandoned for major transactions; dollars and crypto circulate informally. Once funds arrive, no domestic regulator has the capacity or incentive to trace them further.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              335.3,
+              346.7,
+              344.38,
+              345.99,
+              343.4,
+              348.24,
+              349.81,
+              347.8,
+              353.64,
+              385.07,
+              367.27,
+              378.91,
+              368.11,
+              372.84,
+              393.09,
+              379.87,
+              378.17,
+              376.32,
+              379.51,
+              379.15,
+              383.29,
+              391.73,
+              405.8,
+              411.56,
+              415.82,
+              399.74,
+              400.91,
+              410.2,
+              410.61,
+              415.65,
+              404.72
+            ],
+            "periods": [
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 12"
+            ],
+            "label": "Monero",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-12"
+    ],
+    "generatedAt": "2026-05-12T08:42:02.586Z",
+    "label": "Money Laundering Mechanics",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-12-ucf-students-boo-ai-commencement-speaker-industrial-revolution": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LUDDITE MISREADING",
+        "body": "The Luddites of 1811-1816 were skilled English textile workers — not technophobes. They smashed power looms because the machines let unskilled labor produce inferior cloth at lower wages, destroying a craft economy. They understood the technology fine; they objected to who captured its gains.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The modern slur *luddite* (meaning anti-technology) inverts the original meaning — the Luddites were **protesting the distribution of productivity gains**, not the productivity gains themselves."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE FIRST INDUSTRIAL REVOLUTION ACTUALLY DID",
+        "body": "Engels documented English textile towns in the 1840s: child mortality above 50% in Manchester, life expectancy of 17 in working-class districts, wages stagnant for roughly 50 years even as output multiplied. The aggregate gains were real; the human cost across two generations was the price.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1769",
+                "label": "Arkwright patents water frame",
+                "emphasis": "start"
+              },
+              {
+                "year": "1811",
+                "label": "Luddite uprisings begin"
+              },
+              {
+                "year": "1840",
+                "label": "Engels documents Manchester",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1870",
+                "label": "Real wages finally rise broadly"
+              },
+              {
+                "year": "1911",
+                "label": "National Insurance Act"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1780",
+                "to": "1840",
+                "label": "Engels' pause — output up, wages flat",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "the long wage gap"
+          }
+        ]
+      },
+      {
+        "heading": "WHY HUMANITIES STUDENTS",
+        "body": "Studies of generative AI exposure consistently rank writing, translation, legal analysis, journalism, and editorial work at the top of the displacement curve. Manual trades — plumbing, electrical, construction — sit at the bottom. The first wave of automation hits the credential class that historically assumed it was safe."
+      },
+      {
+        "heading": "THE COMMENCEMENT SPEAKER PATTERN",
+        "body": "American commencement speeches have always been ideological battlegrounds — Solzhenitsyn at Harvard in 1978, Steve Jobs at Stanford in 2005, the regular protests over Henry Kissinger. A booed speaker is the genre working as designed, not malfunctioning.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Stay hungry. Stay foolish.",
+            "speaker": "Steve Jobs, Stanford commencement",
+            "year": "2005"
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSITION PROBLEM",
+        "body": "Economists distinguish long-run gains (real, eventual) from transition costs (also real, borne by specific people in specific decades). When a speaker invokes the Industrial Revolution as inspiration, the humanities audience hears the 60-year wage stagnation, not the 1950s prosperity that came a century later.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how long did English real wages stagnate during early industrialization before broadly rising?",
+            "options": [
+              "About 10 years",
+              "About 30 years",
+              "About 60 years",
+              "Wages rose immediately"
+            ],
+            "correct": 2,
+            "explanation": "Economic historians call this the 'Engels pause' — output per worker rose sharply from ~1780, but real wages for the working class didn't broadly rise until the 1840s-1870s."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-12T08:42:24.450Z",
+    "label": "Humanities & Technological Displacement",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-12-xi-trump-beijing-summit-china-genuine-urgency-taiwan": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY CHINA HAS THE PHONE",
+        "body": "China buys roughly 90% of Iran's oil exports — almost entirely through 'teapot' independent refineries in Shandong that operate outside the dollar system. No other power can offer or withhold that volume of demand. Washington's leverage on Tehran is sanctions; Beijing's leverage is the bid.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Shandong **teapots** are small, privately-held refineries that emerged in the 2010s when Beijing handed out import quotas to break Sinopec's monopoly. They have become the world's most important sanctions-laundering infrastructure — not by design, but by accident of regulatory geography."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2023 PRECEDENT",
+        "body": "In March 2023, China brokered the Saudi-Iran restoration of diplomatic ties — a deal Washington had been unable to deliver after seven years of mediation efforts. Beijing learned that Middle East diplomacy is a low-cost, high-prestige arena where it can outperform the US without spending military capital."
+      },
+      {
+        "heading": "THE THREE ASKS",
+        "body": "China wants tariff relief on roughly $370bn of Section 301 goods, removal of export controls on advanced semiconductors and the equipment to make them, and a freeze or reduction in US arms sales to Taiwan. Each touches a different US bureaucracy — USTR, Commerce, State — which is part of why bundled deals are hard.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "US tariffs on China",
+                "value": "~$370bn",
+                "tone": "neutral"
+              },
+              {
+                "label": "Chip export controls",
+                "value": "EUV + HBM",
+                "tone": "neutral"
+              },
+              {
+                "label": "Taiwan arms sales",
+                "value": "~$26bn backlog",
+                "tone": "neutral"
+              },
+              {
+                "label": "China's Iran oil bid",
+                "value": "~1.4 mbd",
+                "tone": "neutral"
+              },
+              {
+                "label": "Rare earth exports",
+                "value": "~70% global",
+                "tone": "neutral"
+              }
+            ],
+            "label": "what each side controls at the table"
+          }
+        ]
+      },
+      {
+        "heading": "THE TAIWAN ARMS QUESTION",
+        "body": "The Taiwan Relations Act of 1979 obligates the US to provide Taiwan with 'arms of a defensive character' — but leaves the volume and type to executive discretion. Every administration since Carter has used arms sales as a dial that can be turned up or down. A summit-era pause would be legal; a permanent halt would require Congress.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The United States will make available to Taiwan such defense articles and defense services in such quantity as may be necessary to enable Taiwan to maintain a sufficient self-defense capability.",
+            "speaker": "Taiwan Relations Act, §3(a)",
+            "year": "1979"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IRAN MIGHT NOT LISTEN",
+        "body": "Iran's strategic doctrine treats independence from any single patron as foundational — Khomeini's 'neither East nor West' slogan still anchors policy. Beijing can squeeze the oil bid, but cannot dictate nuclear enrichment posture; the IRGC answers to the Supreme Leader, not the refining schedule.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              19,
+              55,
+              56,
+              65,
+              52,
+              54,
+              60,
+              50,
+              49,
+              38,
+              36,
+              32,
+              33,
+              26,
+              28,
+              28,
+              27,
+              26,
+              26,
+              28,
+              26,
+              26,
+              33,
+              37,
+              35,
+              30,
+              27,
+              28,
+              27
+            ],
+            "periods": [
+              "Apr 13",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 12"
+            ],
+            "label": "Iran agrees to end enrichment of uranium…",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "19%"
+              },
+              {
+                "atIndex": 28,
+                "label": "27%"
+              }
+            ],
+            "link": "https://polymarket.com/event/iran-agrees-to-end-enrichment-of-uranium-by-june-30",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE SUMMIT ARITHMETIC",
+        "body": "Xi has held three in-person summits with Trump across two presidencies. Each ended with handshake commitments — soybean purchases, fentanyl precursor controls, a phase-one trade deal — that partially unwound within a year. The question is whether tradable substance survives the photograph.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Trump-Xi summit produced the 'phase one' trade deal?",
+            "options": [
+              "Mar-a-Lago, 2017",
+              "Hamburg G20, 2017",
+              "Buenos Aires G20, 2018",
+              "Osaka G20, 2019"
+            ],
+            "correct": 2,
+            "explanation": "The Buenos Aires dinner in December 2018 launched the 90-day truce that culminated in the January 2020 phase-one agreement — the template both sides are now revisiting."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-12"
+    ],
+    "generatedAt": "2026-05-12T08:42:50.961Z",
+    "label": "China's Iran Leverage & the Summit Triangle",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-12-yoco-tap-to-pay-iphone-south-africa-merchants": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HARDWARE THAT WASN'T NEEDED",
+        "body": "A card terminal is just a secure element, an NFC antenna, and a screen. Every iPhone since the XS (2018) has all three. The terminal industry's moat was certification and distribution, not silicon — once Apple opened the NFC stack to payment apps, the dedicated device became redundant.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is the **Secure Element** — a tamper-resistant chip that stores cryptographic keys in isolation from iOS itself. PCI-DSS certification was built around devices that had one; phones quietly already did."
+          }
+        ]
+      },
+      {
+        "heading": "THE EU FORCED THE DOOR OPEN",
+        "body": "Apple restricted NFC access to Apple Pay for nearly a decade. The European Commission's 2022 antitrust case — and the binding commitments Apple accepted in 2024 — required opening the NFC interface to third-party apps. Tap to Pay on iPhone for merchants followed globally as the commercial response.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2014",
+                "label": "Apple Pay launches, NFC locked"
+              },
+              {
+                "year": "2020",
+                "label": "EU antitrust probe opens"
+              },
+              {
+                "year": "2022",
+                "label": "Tap to Pay on iPhone (US first)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "EU binding commitments accepted"
+              },
+              {
+                "year": "2025",
+                "label": "Tap to Pay reaches South Africa"
+              }
+            ],
+            "label": "how the NFC stack opened"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SOUTH AFRICA MATTERS HERE",
+        "body": "South Africa has one of the most cash-dependent retail economies among upper-middle-income countries, but also unusually high smartphone penetration. The bottleneck for card acceptance has never been consumer demand — it's been the R200–R400 monthly rental on a Yoco or iKhokha terminal that prices out spaza shops and informal traders.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ZA",
+              "NG",
+              "KE",
+              "EG",
+              "GH"
+            ],
+            "label": "Africa's payments frontier",
+            "caption": "Yoco, Flutterwave, M-Pesa, Fawry — each solving the terminal-cost problem differently"
+          }
+        ]
+      },
+      {
+        "heading": "THE INTERCHANGE ECONOMICS",
+        "body": "Card acceptance has two costs: the per-transaction interchange fee (paid to the issuing bank, ~1–2% in South Africa) and the terminal rental. Software-only acceptance kills the second cost entirely. For a trader doing R10,000/month in card volume, eliminating a R300 rental nearly doubles the margin on card payments versus cash.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Traditional POS",
+                "value": "~R450",
+                "tone": "unfavorable",
+                "weight": 450
+              },
+              {
+                "label": "Yoco hardware reader",
+                "value": "~R430",
+                "tone": "unfavorable",
+                "weight": 430
+              },
+              {
+                "label": "Tap to Pay on iPhone",
+                "value": "~R150",
+                "tone": "favorable",
+                "weight": 150
+              }
+            ],
+            "label": "merchant cost per R10,000 of card volume"
+          }
+        ]
+      },
+      {
+        "heading": "THE M-PESA SHADOW",
+        "body": "Kenya's M-Pesa proved that the cheapest payment rail wins informal commerce — even a feature phone and a USSD code beat a card terminal. Tap to Pay is the card networks' answer: keep the Visa/Mastercard rail, but collapse the hardware cost to zero. Whether it works depends on whether iPhone penetration among small merchants is high enough to matter.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of South African retail transactions are still settled in cash?",
+            "options": [
+              "About 20%",
+              "About 40%",
+              "About 55%",
+              "About 75%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 55% of South African retail value still moves in cash — high for an upper-middle-income economy, and the gap Tap to Pay is trying to close."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-12T08:43:16.276Z",
+    "label": "Tap to Pay & Merchant Acceptance",
+    "category": "tech",
+    "articleCount": 1
   }
 }
