@@ -152299,5 +152299,1857 @@
     "label": "Fuel Excise & the Highway Trust Fund",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-05-12-chinese-ai-researchers-silicon-valley-talent-dependency": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PIPELINE",
+        "body": "Chinese nationals earn roughly a third of US AI PhDs, and a majority stay after graduation. The MacroPolo talent tracker found that of top-tier AI researchers working in the US, about 38% did their undergraduate degree in China — more than the US-born share.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~38%",
+                "cc": "CN",
+                "weight": 38,
+                "tone": "neutral"
+              },
+              {
+                "label": "United States",
+                "value": "~37%",
+                "cc": "US",
+                "weight": 37,
+                "tone": "neutral"
+              },
+              {
+                "label": "India",
+                "value": "~8%",
+                "cc": "IN",
+                "weight": 8,
+                "tone": "neutral"
+              },
+              {
+                "label": "Europe",
+                "value": "~8%",
+                "cc": "EU",
+                "weight": 8,
+                "tone": "neutral"
+              },
+              {
+                "label": "Other",
+                "value": "~9%",
+                "weight": 9,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Top-tier AI researchers in the US, by undergrad country"
+          }
+        ]
+      },
+      {
+        "heading": "THE VISA CHOKEPOINT",
+        "body": "Most foreign researchers enter on F-1 student visas, transition to OPT (Optional Practical Training) for up to 3 years in STEM, then compete for H-1B work visas in an annual lottery capped at 85,000 slots. A PhD with a Google offer can still lose the lottery and be forced to leave — a structural fragility no other tech-leading country imposes on itself.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bottleneck is the **H-1B lottery**, not the talent — demand routinely runs 3–4× the cap, so even *exceptional* researchers face coin-flip odds."
+          }
+        ]
+      },
+      {
+        "heading": "THE PROXIMITY RULE",
+        "body": "Frontier AI research happens in a handful of clusters — the Bay Area, Seattle, a few labs in New York and Boston, and parallel hubs in Beijing, Shanghai, and Hangzhou. Tacit knowledge — what works, what doesn't, what the next bottleneck will be — moves at the speed of in-person conversation, not papers.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "CN",
+              "CA",
+              "GB",
+              "FR"
+            ],
+            "label": "the frontier AI clusters",
+            "markers": [
+              {
+                "lat": 37.7749,
+                "lng": -122.4194,
+                "label": "San Francisco"
+              },
+              {
+                "lat": 47.6062,
+                "lng": -122.3321,
+                "label": "Seattle"
+              },
+              {
+                "lat": 39.9042,
+                "lng": 116.4074,
+                "label": "Beijing"
+              },
+              {
+                "lat": 31.2304,
+                "lng": 121.4737,
+                "label": "Shanghai"
+              },
+              {
+                "lat": 30.2741,
+                "lng": 120.1551,
+                "label": "Hangzhou"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE CHINA INITIATIVE PRECEDENT",
+        "body": "The DOJ's 2018-2022 China Initiative prosecuted academics for grant-disclosure violations on China ties; most cases collapsed but the chilling effect was measurable. Surveys found a sharp rise in Chinese-born scientists in the US considering departure, and applications from China to US graduate programs softened for the first time in two decades.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2018",
+                "label": "DOJ China Initiative launched",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020",
+                "label": "Visa revocations for PLA-tied students"
+              },
+              {
+                "year": "2022",
+                "label": "China Initiative formally ended"
+              },
+              {
+                "year": "2022-10",
+                "label": "Advanced chip export controls"
+              },
+              {
+                "year": "2023",
+                "label": "Outbound AI investment screening"
+              },
+              {
+                "year": "2025",
+                "label": "AI diffusion rule tiers"
+              }
+            ],
+            "label": "US-China science friction"
+          }
+        ]
+      },
+      {
+        "heading": "THE EXPORT-CONTROL ASYMMETRY",
+        "body": "Washington restricts chips, software, and equipment leaving the US for China, but imposes no symmetric framework on talent flows. A researcher trained at a US frontier lab can return to a Chinese lab carrying methods that no export license would have permitted on a USB drive. The know-how walks out legally because it lives in a person, not a file.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Export controls govern *artifacts*; talent governs *tacit knowledge*. The two move on different legal tracks — which is why a chip-export regime without a talent-immigration counterpart is structurally incomplete."
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL RHYME",
+        "body": "The US absorbed German physicists in the 1930s and Soviet mathematicians in the 1990s, and each wave anchored a generation of dominance — Manhattan Project, then quant finance and early ML. Every prior tech-leadership era was built on talent the rival country failed to retain.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which immigration wave most directly seeded the early US machine learning research community?",
+            "options": [
+              "German physicists fleeing the Nazis",
+              "Soviet mathematicians after the USSR's collapse",
+              "Indian engineers in the 1990s H-1B expansion",
+              "Chinese students after Tiananmen"
+            ],
+            "correct": 1,
+            "explanation": "Soviet-trained mathematicians arriving in the early 1990s anchored US academic statistics, optimization, and early ML — the same fields that became deep learning's foundation."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-12T04:22:57.472Z",
+    "label": "AI Talent & Immigration",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-12-federated-learning-swarm-intelligence-medical-imaging-privacy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PRIVACY PROBLEM",
+        "body": "Medical AI needs millions of scans to learn, but patient images are the most regulated data class on earth. HIPAA in the US, GDPR in Europe, and equivalent regimes in most countries make pooling scans across hospitals legally and ethically prohibitive — even within the same country, even for research."
+      },
+      {
+        "heading": "THE TRICK",
+        "body": "Federated learning inverts the pipeline: instead of moving data to the model, you move the model to the data. Each hospital trains a local copy on its own scans, then sends only the updated weights — numerical adjustments, not images — to a central server that averages them into a global model.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The canonical algorithm is *FedAvg* (Google, 2017) — clients train for a few epochs locally, the server takes a **weighted average** of their gradients, and the cycle repeats. The patient scan never leaves the building."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT LEAKS ANYWAY",
+        "body": "Weights are not as private as they look. Gradient inversion attacks can reconstruct training images from the updates a client sends — sometimes pixel-accurate for small batches. This is why production federated systems layer on differential privacy or secure aggregation: the math has to hide the math."
+      },
+      {
+        "heading": "THE NON-IID PROBLEM",
+        "body": "Hospitals don't see the same patients. A Mumbai tertiary center scans different demographics, different disease prevalences, and different machine vendors than a rural clinic in Ohio. When local data distributions diverge, naive averaging produces a global model worse than any of its contributors — the central pathology of federated learning.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does federated learning often underperform centralized training on the same data?",
+            "options": [
+              "Network latency between clients and server",
+              "Client data distributions differ, so averaged weights pull in conflicting directions",
+              "Encryption overhead corrupts the gradient signal",
+              "Hospitals deliberately send noisy updates"
+            ],
+            "correct": 1,
+            "explanation": "Non-IID data — different patient mixes per hospital — means each client's gradient points somewhere different, and the average can land nowhere useful."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE SWARM INTELLIGENCE FITS",
+        "body": "Swarm algorithms — particle swarm optimization, ant colony, bee colony — are population-based searches inspired by flocking and foraging. They explore a loss landscape by having many candidate solutions communicate locally, rather than one model descending a gradient. Embedding them at both client and server levels turns the federated round itself into a swarm step, which is more robust to the non-IID divergence than a plain average."
+      },
+      {
+        "heading": "WHY THIS MATTERS BEYOND MEDICINE",
+        "body": "The same architecture underwrites Google's Gboard typing predictions, Apple's on-device Siri training, and emerging cross-bank fraud detection. Anywhere data is valuable, regulated, and siloed, federated learning is the only way to train at scale. Medical imaging is the hardest test case — get it right there, and the playbook generalizes."
+      }
+    ],
+    "generatedAt": "2026-05-12T04:23:19.048Z",
+    "label": "Federated Learning in Medicine",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-12-iran-enriched-uranium-seizure-operation-trump-netanyahu": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 'WEAPONS-GRADE' MEANS",
+        "body": "Natural uranium is 0.7% U-235. Reactor fuel is enriched to 3-5%. Iran's known stockpile reached 60% — a step short of the 90%+ conventionally called weapons-grade, but the centrifuge work to climb the last stretch is trivial compared to the work already done.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Roughly **42 kg** of 60% HEU is the IAEA's significant-quantity threshold for one implosion device. The hard part of enrichment is not the final 30 percentage points — it is the *separative work* already spent reaching 60%."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ISFAHAN",
+        "body": "Isfahan houses Iran's Uranium Conversion Facility — where yellowcake becomes UF6 gas for centrifuges, and where enriched UF6 is converted back to metal for fuel or weapons. Natanz and Fordow do the spinning; Isfahan does the chemistry on either end. A stockpile parked at Isfahan is in metal or oxide form, compact and movable.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "IL",
+              "IQ",
+              "SA",
+              "AE",
+              "TR"
+            ],
+            "label": "Iran's nuclear complex",
+            "markers": [
+              {
+                "lat": 32.6539,
+                "lng": 51.666,
+                "label": "Isfahan UCF"
+              },
+              {
+                "lat": 33.7248,
+                "lng": 51.7263,
+                "label": "Natanz"
+              },
+              {
+                "lat": 34.8845,
+                "lng": 50.9931,
+                "label": "Fordow"
+              },
+              {
+                "lat": 28.8294,
+                "lng": 50.8881,
+                "label": "Bushehr reactor"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE OSIRAQ PRECEDENT",
+        "body": "In 1981 Israeli F-16s destroyed Iraq's Osiraq reactor before it went critical. In 2007 Israel struck Syria's al-Kibar reactor under construction. Both targets were buildings. A dispersed stockpile of HEU metal is a different problem — you cannot bomb a few hundred kilograms of dense metal into uselessness; the material survives and must be physically removed.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1981",
+                "label": "Israel destroys Osiraq (Iraq)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2007",
+                "label": "Israel strikes al-Kibar (Syria)"
+              },
+              {
+                "year": "2010",
+                "label": "Stuxnet wrecks Natanz centrifuges"
+              },
+              {
+                "year": "2020",
+                "label": "Fakhrizadeh assassination"
+              },
+              {
+                "year": "2024",
+                "label": "Israeli strikes on Iranian air defenses"
+              },
+              {
+                "year": "2026",
+                "label": "Isfahan complex in ruins"
+              }
+            ],
+            "label": "strikes on Middle Eastern nuclear programs"
+          }
+        ]
+      },
+      {
+        "heading": "WHY GROUND EXTRACTION IS HARDER THAN BOMBING",
+        "body": "A raid to seize material requires holding terrain long enough to locate, package, and exfiltrate radioactive metal — under fire, in a country of 90 million, ~1,000 km from any friendly border. The 1980 Iran hostage rescue (Eagle Claw) failed at the staging stage; that operation needed to extract 52 people from one compound in Tehran, not tonnes of HEU from a hardened site."
+      },
+      {
+        "heading": "THE NPT FRAME",
+        "body": "Iran is a signatory to the Non-Proliferation Treaty; Israel is not. Under the NPT, Iran's enrichment to 60% is a safeguards violation but the material remains under nominal IAEA accounting. Forcible removal by a non-signatory nuclear state would be the first such seizure in the treaty's 56-year history — there is no legal template, only the precedent it would set.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which of these states is NOT a party to the Nuclear Non-Proliferation Treaty?",
+            "options": [
+              "Iran",
+              "Saudi Arabia",
+              "Israel",
+              "Egypt"
+            ],
+            "correct": 2,
+            "explanation": "Israel, India, Pakistan, and North Korea (which withdrew) are the four states outside the NPT. Iran has remained a party despite repeated safeguards disputes."
+          }
+        ]
+      },
+      {
+        "heading": "THE MARKET'S READ",
+        "body": "Prediction markets are pricing the diplomatic off-ramp as essentially closed and the kinetic escalation paths as live but not imminent. Traders watching the same intelligence as governments rarely converge to single digits unless the alternative is being actively foreclosed.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              19,
+              55,
+              56,
+              65,
+              52,
+              54,
+              60,
+              50,
+              49,
+              38,
+              36,
+              32,
+              33,
+              26,
+              28,
+              28,
+              27,
+              26,
+              26,
+              28,
+              26,
+              26,
+              33,
+              37,
+              35,
+              30,
+              27,
+              28,
+              28
+            ],
+            "periods": [
+              "Apr 13",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 12"
+            ],
+            "label": "Iran agrees to end enrichment of uranium…",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "19%"
+              },
+              {
+                "atIndex": 28,
+                "label": "28%"
+              }
+            ],
+            "link": "https://polymarket.com/event/iran-agrees-to-end-enrichment-of-uranium-by-june-30",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-12"
+    ],
+    "generatedAt": "2026-05-12T04:24:03.214Z",
+    "label": "HEU Stockpiles & Forced Extraction",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-12-jpmorgan-brent-100-hormuz-reopen-supply-chain-lag": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BULLWHIP",
+        "body": "Commodity shocks don't unwind when the cause does. A closed strait creates weeks of stranded cargoes, missed loading slots, and refineries running down crude stocks — all of which take months to renormalize even after ships move again.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call this the **bullwhip effect**: small disruptions upstream amplify into larger swings downstream as each link in the chain over-corrects."
+          }
+        ]
+      },
+      {
+        "heading": "WHY TANKERS BECOME THE BOTTLENECK",
+        "body": "The global VLCC fleet (Very Large Crude Carriers, ~2 million barrels each) is roughly 900 ships. When Hormuz closes, vessels reroute or wait — when it reopens, every loader wants a tanker simultaneously. Day rates spike from ~$40k to $200k+, and the shortage is physical, not financial."
+      },
+      {
+        "heading": "WHAT 100 MILLION BARRELS A WEEK MEANS",
+        "body": "Hormuz carries roughly 21 million barrels daily — about a fifth of global oil consumption. A week of full closure removes more crude from the market than Saudi Arabia's entire spare capacity, and the missing barrels don't reappear; they're consumed elsewhere by drawing down strategic and commercial inventories.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Strait of Hormuz",
+                "value": "~21 mbd",
+                "weight": 21,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Strait of Malacca",
+                "value": "~16 mbd",
+                "weight": 16,
+                "tone": "neutral"
+              },
+              {
+                "label": "Suez/SUMED",
+                "value": "~9 mbd",
+                "weight": 9,
+                "tone": "neutral"
+              },
+              {
+                "label": "Bab el-Mandeb",
+                "value": "~6 mbd",
+                "weight": 6,
+                "tone": "neutral"
+              },
+              {
+                "label": "Turkish Straits",
+                "value": "~3 mbd",
+                "weight": 3,
+                "tone": "favorable"
+              }
+            ],
+            "label": "daily oil flows through major chokepoints"
+          }
+        ]
+      },
+      {
+        "heading": "REFINERY RAMP IS NOT A SWITCH",
+        "body": "A refinery that ran reduced throughput during the disruption cannot return to full rates instantly. Catalysts need reconditioning, hydrocracker temperatures step up over days, and crude slate changes require recalibration. Each restart carries fire and pressure-vessel risk; operators move deliberately."
+      },
+      {
+        "heading": "THE SPARE CAPACITY MYTH",
+        "body": "OPEC's headline spare capacity (~4-5 mbd, mostly Saudi) sounds like a buffer, but bringing it online means producing from older fields with higher water cut and lower pressure. Sustained output above nameplate damages reservoirs — a constraint reservoir engineers respect even when politicians don't.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4650.83,
+              4743.12,
+              4831.44,
+              4813,
+              4779.06,
+              4821.21,
+              4777.22,
+              4736.06,
+              4807.83,
+              4729.84,
+              4714.79,
+              4689.13,
+              4697.32,
+              4693.28,
+              4674.15,
+              4683.94,
+              4584.13,
+              4551.29,
+              4619.17,
+              4603.98,
+              4597.48,
+              4606.7,
+              4515.48,
+              4580.98,
+              4684.25,
+              4695.85,
+              4706.72,
+              4711.53,
+              4692.03,
+              4753.28,
+              4714.79
+            ],
+            "periods": [
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 12"
+            ],
+            "label": "Gold (PAX Gold)",
+            "unit": "$/oz",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "BACKWARDATION VS CONTANGO",
+        "body": "Oil futures curves invert during supply scares: prompt barrels trade above future barrels (backwardation), incentivizing inventory drawdowns. The curve flips back to contango — future above prompt — only when physical tightness fully resolves, which lags spot price normalization by months.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When the oil futures curve is in steep backwardation, what behavior does it incentivize?",
+            "options": [
+              "Building inventories to sell later at higher prices",
+              "Drawing down inventories because future barrels are cheaper",
+              "Hedging future production at premium prices",
+              "Storing crude on idle tankers offshore"
+            ],
+            "correct": 1,
+            "explanation": "Backwardation means prompt barrels are more valuable than future ones, so holding inventory loses money — traders sell now and buy back cheaper later."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · PAXG (gold-backed) · as of 2026-05-12"
+    ],
+    "generatedAt": "2026-05-12T04:24:28.637Z",
+    "label": "Oil Price Lags & Logistics",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-12-pakistan-austerity-extended-june-13-iran-war-sharif": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IMPORT DEPENDENCY",
+        "body": "Pakistan imports roughly 85% of its crude oil and the bulk transits Hormuz before landing at Karachi's Keamari and Port Qasim terminals. There is no overland alternative — Iran-Pakistan pipeline construction has stalled under US sanctions pressure for a decade.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IR",
+              "OM",
+              "AE",
+              "SA"
+            ],
+            "label": "Pakistan's oil import lifeline",
+            "markers": [
+              {
+                "lat": 24.8138,
+                "lng": 66.975,
+                "label": "Port Qasim"
+              },
+              {
+                "lat": 24.85,
+                "lng": 67.01,
+                "label": "Keamari terminal"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE STRATEGIC RESERVE GAP",
+        "body": "IEA members hold 90 days of net oil imports as strategic reserve. Pakistan, not an IEA member, typically carries 20-25 days of commercial stocks split between refiners and oil marketing companies. A Hormuz disruption hits the fuel pump within weeks, not months.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shortfall is structural — building strategic reserves requires **dollar reserves** Pakistan does not have. The SBP held just ~$13bn in usable FX in early 2026, barely two months of imports."
+          }
+        ]
+      },
+      {
+        "heading": "THE BUDGET COLLISION",
+        "body": "Pakistan's federal budget runs July-to-June. The June 8 budget speech must price in war-shock oil — a single dollar per barrel adds roughly $200mn to the annual import bill. The IMF Extended Fund Facility targets agreed in pre-war negotiations assumed Brent in the $70s.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507
+            ],
+            "periods": [
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE FOUR-DAY WEEK PRECEDENT",
+        "body": "State-mandated short weeks during energy crises have a long history: the UK's three-day week during the 1974 miners' strike, Sri Lanka's fuel-rationing weeks in 2022, Egypt's rolling blackouts in 2023. Each signaled that the state had run out of cheaper levers — austerity by clock is what you do when the subsidy bill has already broken the budget.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1974",
+                "label": "UK three-day week (oil + coal)"
+              },
+              {
+                "year": "2022",
+                "label": "Sri Lanka fuel-rationing weeks",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "Egypt rolling blackouts"
+              },
+              {
+                "year": "2026",
+                "label": "Pakistan 4-day government week"
+              }
+            ],
+            "label": "state-mandated short weeks"
+          }
+        ]
+      },
+      {
+        "heading": "WHO BEARS THE SHOCK",
+        "body": "Pakistan's fuel subsidy is regressive — the top quintile consumes most subsidized petrol via private vehicles. But the political pain of cutting subsidies falls on urban commuters and transport unions, which is why governments prefer demand-side rationing (closed offices, grounded fleets) over price-side pass-through.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which previous Pakistani government fell most directly on the politics of fuel and bread prices?",
+            "options": [
+              "Bhutto (1977) — flour shortages preceded Zia's coup",
+              "Musharraf (2008) — fuel hikes triggered street protests",
+              "Imran Khan (2022) — fuel subsidy reversal eroded support",
+              "All of the above"
+            ],
+            "correct": 3,
+            "explanation": "Each of these governments lost ground on the same fault line: passing energy and staple-food costs through to consumers without a survivable alternative."
+          }
+        ]
+      },
+      {
+        "heading": "THE IRAN-PAKISTAN PARADOX",
+        "body": "Iran sits next door with the world's third-largest gas reserves, and Pakistan suffers chronic shortages. The Iran-Pakistan pipeline, agreed in 1995, would have solved this — but US secondary sanctions on any party transacting with Iran's energy sector froze Pakistan's side of construction. The blockade now squeezes a country that could have been pipeline-fed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Iran completed its 900km section to the border by 2011. Pakistan's 781km section remains unbuilt. The arbitration clause in the original deal exposes Islamabad to penalties exceeding **$18bn** — larger than the country's FX reserves."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-12"
+    ],
+    "generatedAt": "2026-05-12T04:24:58.177Z",
+    "label": "Pakistan's Fuel Austerity",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-12-pakistan-china-13bn-joint-ventures-cpec-batteries": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT AN MOU ACTUALLY IS",
+        "body": "A Memorandum of Understanding is a non-binding statement of intent. It commits no money, sets no deadlines, and creates no enforceable obligations. Pakistan and China have signed hundreds since CPEC launched in 2015; a fraction become projects, a smaller fraction become financed projects.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Hashmi's claim that **30%** converted is the news — the historical conversion rate on Pakistan-China MOUs has been closer to *single digits*."
+          }
+        ]
+      },
+      {
+        "heading": "CPEC 1.0 VS 2.0",
+        "body": "The first phase of the China-Pakistan Economic Corridor (2015-2020) was sovereign-to-sovereign: Chinese state banks lent to Islamabad, Chinese SOEs built power plants and the Gwadar port. CPEC 2.0 is being framed as corporate-to-corporate joint ventures — equity stakes, technology transfer, shared risk — because Pakistan can no longer absorb new sovereign dollar debt.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2015",
+                "label": "CPEC launched, $46bn pledged",
+                "emphasis": "start"
+              },
+              {
+                "year": "2017",
+                "label": "Gwadar port operational"
+              },
+              {
+                "year": "2018",
+                "label": "IMF flags Chinese debt burden",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "Power sector circular debt crisis"
+              },
+              {
+                "year": "2024",
+                "label": "CPEC 2.0 framing: JVs over loans"
+              },
+              {
+                "year": "2026",
+                "label": "$13bn / 300 deals tally"
+              }
+            ],
+            "label": "CPEC arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BATTERIES, WHY NOW",
+        "body": "China makes roughly three-quarters of the world's lithium-ion battery cells. CATL alone produces more than a third of global supply. Pakistan offers cheap labor, a 240-million-person domestic market for two- and three-wheelers, and tariff-free access to Gulf and African markets — exactly the kind of mid-cost manufacturing base Chinese battery firms need as US and EU tariffs close off direct exports.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "China",
+                "value": 75,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "South Korea",
+                "value": 10,
+                "tone": "neutral"
+              },
+              {
+                "label": "Japan",
+                "value": 6,
+                "tone": "neutral"
+              },
+              {
+                "label": "USA",
+                "value": 5,
+                "tone": "favorable"
+              },
+              {
+                "label": "Europe",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Rest of world",
+                "value": 1,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global lithium-ion battery cell production share (%)"
+          }
+        ]
+      },
+      {
+        "heading": "THE DOLLAR CONSTRAINT",
+        "body": "Pakistan sits inside a $7bn IMF programme that caps new external borrowing. Joint ventures bring Chinese dollars in as equity rather than debt, so they don't breach the programme's debt-sustainability ceiling. This is why the channel had to shift — the old model is mathematically closed.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              279,
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507
+            ],
+            "periods": [
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE TECHNOLOGY TRANSFER QUESTION",
+        "body": "China restricts export of advanced battery cathode and electrolyte manufacturing technology under a 2023 commerce ministry list. Joint ventures abroad typically receive the assembly stage and older cell chemistries — LFP, not the latest sodium-ion or solid-state work. The deal Pakistan signs determines whether Karachi gets a screwdriver plant or a real foothold in the value chain.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which battery chemistry is China most willing to license abroad through JVs?",
+            "options": [
+              "Solid-state lithium",
+              "Sodium-ion",
+              "Lithium iron phosphate (LFP)",
+              "Lithium-sulfur"
+            ],
+            "correct": 2,
+            "explanation": "LFP is the mature, lower-margin chemistry China is comfortable exporting; the frontier chemistries stay onshore under the 2023 export-control list."
+          }
+        ]
+      },
+      {
+        "heading": "THE BROADER CHINESE PIVOT",
+        "body": "Chinese outbound FDI is shifting from infrastructure megaprojects in BRI partner states to manufacturing JVs in tariff-friendly jurisdictions — Hungary, Morocco, Mexico, Indonesia, now Pakistan. The strategy is to retain Chinese ownership and technology while changing the country-of-origin stamp on the finished good.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "CN",
+              "HU",
+              "MA",
+              "MX",
+              "ID"
+            ],
+            "label": "Chinese battery & EV JV destinations",
+            "caption": "tariff-friendly manufacturing footholds"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-12"
+    ],
+    "generatedAt": "2026-05-12T04:25:25.641Z",
+    "label": "CPEC 2.0 & Battery JVs",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-12-pakistan-mango-export-drop-freight-border-iran-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE KING OF FRUITS",
+        "body": "Pakistan is the world's fourth or fifth largest mango producer, behind India, China, Thailand, and Indonesia. The Sindhri and Chaunsa varieties — both originating in Sindh and southern Punjab — command premium prices in Gulf and European markets that Indian mangoes cannot match on flavor profile.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "India",
+                "value": 25
+              },
+              {
+                "label": "China",
+                "value": 3.8
+              },
+              {
+                "label": "Thailand",
+                "value": 3.4
+              },
+              {
+                "label": "Indonesia",
+                "value": 3.1
+              },
+              {
+                "label": "Pakistan",
+                "value": 1.8
+              },
+              {
+                "label": "Mexico",
+                "value": 2.4
+              },
+              {
+                "label": "Brazil",
+                "value": 2.1
+              }
+            ],
+            "label": "global mango production, mn tonnes (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE COLD CHAIN PROBLEM",
+        "body": "A mango ripens on a clock. From tree to European shelf, the fruit has roughly 21 days before it spoils — and every day in transit is a day off the shelf. This is why air freight matters: sea shipping from Karachi to Hamburg takes 18-22 days, leaving almost no commercial window.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Pakistan ships premium mangoes by air as **belly cargo** — stowed in the holds of passenger aircraft, not dedicated freighters. When passenger flights reroute around closed airspace, cargo capacity vanishes with them."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HORMUZ AIRSPACE MATTERS",
+        "body": "The same chokepoint that throttles oil tankers throttles aviation. Most Pakistan-Europe flights cross Iranian airspace; closures or insurance spikes force longer routes via the Arabian Sea or Central Asia, burning more fuel and cutting payload — cargo gets bumped before passengers do.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IR",
+              "AF",
+              "AE",
+              "OM",
+              "SA"
+            ],
+            "label": "the air-cargo corridor west",
+            "markers": [
+              {
+                "lat": 24.9008,
+                "lng": 67.1681,
+                "label": "Karachi (export hub)"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE AFGHAN MARKET",
+        "body": "Afghanistan has historically absorbed Pakistan's lower-grade mango volume — fruit too ripe for sea freight, too cheap for air. The 2023 mass expulsion of Afghan refugees and recurring Torkham and Chaman border closures collapsed this trade; what was once a relief valve for surplus is now stranded inventory.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2021-08",
+                "label": "Taliban returns to Kabul"
+              },
+              {
+                "year": "2023-10",
+                "label": "Pakistan begins mass Afghan expulsions",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Torkham closures multiply"
+              },
+              {
+                "year": "2026",
+                "label": "Afghan demand near collapse"
+              }
+            ],
+            "label": "the Pakistan-Afghanistan trade squeeze"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRICE FLOOR THAT WON'T HOLD",
+        "body": "Perishable commodities don't follow standard supply-and-demand recovery. When a 300,000-tonne shortfall arrives 10 days late into a market with reduced demand, prices spike briefly then collapse — buyers have already substituted, and the unsold fruit must clear before it rots.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why don't mango prices recover after a supply shock the way oil or wheat prices do?",
+            "options": [
+              "Mango futures markets are too thin to set a benchmark price",
+              "The fruit spoils within weeks, so unsold inventory must clear at any price",
+              "Pakistan exports under fixed-price annual contracts",
+              "The EU caps mango import prices under its preferential trade scheme"
+            ],
+            "correct": 1,
+            "explanation": "Perishables cannot be stored to wait out a price trough. Unlike grain or crude, every day mangoes sit unsold pushes them closer to zero value, forcing distress sales that anchor the spot price downward."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-12T04:25:59.471Z",
+    "label": "Pakistan Mangoes & the Three Shocks",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-12-prediction-markets-slot-machine-design-polymarket-kalshi": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SCHEDULE",
+        "body": "B.F. Skinner discovered in the 1950s that pigeons pecked hardest when rewards arrived on a variable-ratio schedule — unpredictable timing, unpredictable size. Fixed rewards extinguish behavior; random ones make it compulsive. Every slot machine, lottery, and loot box runs on this principle.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Skinner called it the **variable-ratio schedule** — the single most addictive reinforcement pattern known to behavioral science."
+          }
+        ]
+      },
+      {
+        "heading": "THE MACHINE ZONE",
+        "body": "Natasha Dow Schüll's decade of fieldwork in Las Vegas documented what gamblers call 'the zone' — a dissociative state where time, money, and self dissolve into the screen. Modern slots are engineered to maximize time-on-device, not jackpot size. The win is incidental; the loop is the product.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "I'm not playing to win. I'm playing to stay in the zone.",
+            "speaker": "gambler interviewed in Addiction by Design",
+            "year": "2012"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT MIGRATED TO PHONES",
+        "body": "Robinhood's confetti animation, Coinbase's price tickers, sports-book parlay builders, and Polymarket's live odds bars borrow the same design vocabulary: near-misses, intermittent reinforcement, frictionless re-entry, and a running balance that updates in real time. The phone replaced the cabinet; the schedule stayed.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Polymarket",
+                "value": "live odds, instant re-bet"
+              },
+              {
+                "label": "Robinhood",
+                "value": "confetti, push alerts"
+              },
+              {
+                "label": "DraftKings",
+                "value": "parlay builder, cash-out"
+              },
+              {
+                "label": "Kalshi",
+                "value": "minute-by-minute resolution"
+              }
+            ],
+            "label": "design elements shared with slot machines"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL THRESHOLD",
+        "body": "US courts traditionally distinguished gambling (chance) from trading (skill or hedging). The CFTC's 2024 loss in Kalshi v. CFTC opened event contracts to anyone with a credit card, effectively classifying election and outcome bets as financial instruments rather than wagers — and routing them around state gambling regulators entirely.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1957",
+                "label": "Skinner publishes Schedules of Reinforcement"
+              },
+              {
+                "year": "1978",
+                "label": "Atlantic City legalizes casinos"
+              },
+              {
+                "year": "2012",
+                "label": "Schüll publishes Addiction by Design"
+              },
+              {
+                "year": "2018",
+                "label": "Murphy v. NCAA opens US sports betting",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Kalshi v. CFTC opens event contracts"
+              },
+              {
+                "year": "2025",
+                "label": "Polymarket re-enters US market"
+              }
+            ],
+            "label": "from casino floor to phone"
+          }
+        ]
+      },
+      {
+        "heading": "WHO LOSES",
+        "body": "Gambling-disorder research consistently finds that a small minority of users generate most of the revenue. Nevada studies put it near the 80/20 line; UK Gambling Commission data on online casinos finds the top 5% of accounts generate roughly 70% of losses. Prediction-market volume distributions look similar — the architecture rewards the same neural pathway.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of online gambling losses typically come from the top 5% of accounts?",
+            "options": [
+              "About 20%",
+              "About 40%",
+              "About 70%",
+              "About 95%"
+            ],
+            "correct": 2,
+            "explanation": "UK Gambling Commission data consistently shows the heaviest 5% of users generate roughly 70% of operator revenue — the long tail is the business model."
+          }
+        ]
+      },
+      {
+        "heading": "THE REGULATORY GAP",
+        "body": "Gambling regulators (state lotteries, the UK Gambling Commission, Nevada Gaming Control) have decades of frameworks for addiction design: deposit limits, self-exclusion registries, loss-chase warnings. Financial regulators (SEC, CFTC) have none — their consumer-protection vocabulary is suitability and disclosure, not compulsion. Prediction markets sit in the second category by court ruling, the first by mechanism."
+      }
+    ],
+    "generatedAt": "2026-05-12T04:26:25.905Z",
+    "label": "Variable-Ratio Reinforcement",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-12-russia-prosthetics-sector-ukraine-war-amputee-inequality": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SOVIET INHERITANCE",
+        "body": "Russia's prosthetics industry descends from the Tsentralny Institut Protezirovaniya, founded in 1919 to absorb WWI and Civil War amputees. The model — centralized state factories producing standardized devices — survived the USSR's collapse and still defines the sector. Volume over fit was the original design philosophy, not a wartime compromise.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The institutional acronym **TsNIIPP** (Central Scientific Research Institute of Prosthetics) still appears on devices issued today — a 100-year-old brand for a 100-year-old design language."
+          }
+        ]
+      },
+      {
+        "heading": "THE MYOELECTRIC GAP",
+        "body": "Modern upper-limb prosthetics read electrical signals from residual muscles and translate them into grip patterns — myoelectric control. The sensors, microcontrollers, and carbon-fiber sockets are dominated by a handful of Western firms: Ottobock (Germany), Össur (Iceland), Coapt (US). Sanctions cut off the supply chain at the component level, not just the finished-device level.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ottobock",
+                "value": "~30%",
+                "cc": "DE",
+                "weight": 30
+              },
+              {
+                "label": "Össur",
+                "value": "~20%",
+                "cc": "IS",
+                "weight": 20
+              },
+              {
+                "label": "Hanger/Coapt",
+                "value": "~15%",
+                "cc": "US",
+                "weight": 15
+              },
+              {
+                "label": "Blatchford",
+                "value": "~8%",
+                "cc": "GB",
+                "weight": 8
+              },
+              {
+                "label": "Others",
+                "value": "~27%",
+                "weight": 27
+              }
+            ],
+            "label": "global advanced prosthetics market share"
+          }
+        ]
+      },
+      {
+        "heading": "THE CASUALTY SCALE",
+        "body": "Western intelligence estimates put Russian killed and wounded in Ukraine above 700,000 by 2025, with amputation rates from drone and artillery wounds far exceeding any Russian conflict since WWII. Even Afghanistan (1979-89) produced roughly 50,000 wounded over a decade; Ukraine has surpassed that in months.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Soviet invasion of Afghanistan",
+                "emphasis": "start"
+              },
+              {
+                "year": "1989",
+                "label": "Soviet withdrawal — ~50k wounded total"
+              },
+              {
+                "year": "1994",
+                "label": "First Chechen war begins"
+              },
+              {
+                "year": "2008",
+                "label": "Georgia war (5 days)"
+              },
+              {
+                "year": "2022",
+                "label": "Ukraine invasion",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2025",
+                "label": "Estimated 700k+ Russian casualties"
+              }
+            ],
+            "label": "Russian/Soviet wounded by conflict"
+          }
+        ]
+      },
+      {
+        "heading": "WHO GETS THE GOOD DEVICE",
+        "body": "In every wartime prosthetics system since WWI, a two-tier outcome emerges: officers, elites, and the politically connected receive imported or custom-fit devices; conscripts and contract soldiers get the state-issue rod. The US faced the same critique after Vietnam; the UK after the Falklands. The pattern is structural, not Russian.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which 20th-century war first drove mass-production of standardized limb prosthetics in Europe?",
+            "options": [
+              "The Crimean War",
+              "World War I",
+              "World War II",
+              "The Russian Civil War"
+            ],
+            "correct": 1,
+            "explanation": "WWI produced ~1 million amputees across all combatants, forcing the first state-run prosthetics factories — the template Russia's TsNIIPP still follows."
+          }
+        ]
+      },
+      {
+        "heading": "THE APPEAL-TO-THE-TSAR REFLEX",
+        "body": "Direct appeals to the leader — bypassing the bureaucracy that failed you — are a deeply Russian political ritual, traceable to the Tsarist chelobitnaya (petition) and revived by Putin's annual Direct Line broadcasts. The reflex signals not loyalty but the absence of any other functioning channel; it is what citizens do when courts, ombudsmen, and ministries have all failed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Russian phrase is *dobit'sya pravdy* — literally 'to beat one's way to the truth.' It assumes the truth exists at the top and the obstacle is everyone in between."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-12T04:26:58.746Z",
+    "label": "Russia's Prosthetics State",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-12-trump-iran-combat-resumption-considered-hormuz-cnn": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MEDIATOR CHAIN",
+        "body": "Iran rarely negotiates with Washington directly. Messages route through third parties — Oman for decades, Qatar more recently, and Pakistan when the channel needs a Sunni-majority nuclear state as guarantor. Each mediator shapes the message; Trump's complaint that Pakistan softened Tehran's position is a structural feature, not a flaw.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Donald Trump",
+                "role": "US President",
+                "years": "2025–",
+                "cc": "US"
+              },
+              {
+                "name": "Masoud Pezeshkian",
+                "role": "Iranian President",
+                "years": "2024–",
+                "cc": "IR"
+              },
+              {
+                "name": "Shehbaz Sharif",
+                "role": "Pakistani PM, mediator",
+                "years": "2024–",
+                "cc": "PK"
+              },
+              {
+                "name": "Ali Khamenei",
+                "role": "Supreme Leader, final say",
+                "years": "1989–",
+                "cc": "IR"
+              }
+            ],
+            "label": "the back-channel cast"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ENRICHMENT IS THE LINE",
+        "body": "A nuclear weapons program needs uranium enriched to ~90% U-235. Civilian reactors need 3-5%. Iran has been enriching to 60% since 2021 — a level with no civilian use, weeks of further work from weapons-grade. Any deal that lets enrichment continue at all leaves the breakout option intact, which is why Washington hawks treat the zero-enrichment demand as non-negotiable.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical threshold matters: moving from **60% to 90%** enrichment requires far less centrifuge work than moving from natural uranium to 60%. Most of the separative work is already done."
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ LEVER",
+        "body": "If Washington strikes, Tehran's most credible retaliation is the strait. Roughly a fifth of seaborne oil transits a 33-km chokepoint where the deep shipping lanes hug the Iranian coast. Iran does not need to close the strait; raising Lloyd's war-risk premiums is enough to reroute commercial traffic.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the Hormuz chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 27.18,
+                "lng": 56.27,
+                "label": "Bandar Abbas naval base"
+              },
+              {
+                "lat": 25.36,
+                "lng": 56.36,
+                "label": "Fujairah (UAE bypass)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial vessels in the Gulf. Oil prices spiked then settled as tankers were reflagged under US and Kuwaiti colors and escorted by warships. The lesson planners on both sides took home: disruption is easier to threaten than to sustain — but the threat alone reprices global energy.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Hostage crisis begins"
+              },
+              {
+                "year": "1980",
+                "label": "Iran–Iraq war opens"
+              },
+              {
+                "year": "1988-04",
+                "label": "Operation Praying Mantis",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020-01",
+                "label": "Soleimani killed"
+              },
+              {
+                "year": "2024",
+                "label": "Direct Iran–Israel exchanges"
+              },
+              {
+                "year": "2025",
+                "label": "US strikes on Iranian sites"
+              }
+            ],
+            "label": "US–Iran kinetic episodes"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PAKISTAN MEDIATES",
+        "body": "Pakistan shares a 900-km border with Iran, depends on Saudi and Emirati financing, and holds the only Muslim-world nuclear arsenal. That trifecta makes Islamabad uniquely placed to carry messages neither Gulf monarchies nor Western capitals can — but also gives it incentives to dampen demands on Tehran that might destabilize its own western frontier.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of global seaborne oil transits the Strait of Hormuz?",
+            "options": [
+              "About 5%",
+              "About 20%",
+              "About 40%",
+              "About 60%"
+            ],
+            "correct": 1,
+            "explanation": "Roughly 21 million barrels per day pass Hormuz — about a fifth of global oil consumption and a quarter of seaborne crude."
+          }
+        ]
+      },
+      {
+        "heading": "THE MARKET'S READ",
+        "body": "Prediction markets are pricing the diplomatic path as nearly closed and the kinetic path as not-yet-open. A near-zero probability of a permanent peace deal in days, combined with a low-but-nonzero strike probability, is the market's way of saying: another round of brinkmanship, not a settlement.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              19,
+              55,
+              56,
+              65,
+              52,
+              54,
+              60,
+              50,
+              49,
+              38,
+              36,
+              32,
+              33,
+              26,
+              28,
+              28,
+              27,
+              26,
+              26,
+              28,
+              26,
+              26,
+              33,
+              37,
+              35,
+              30,
+              27,
+              28,
+              28
+            ],
+            "periods": [
+              "Apr 13",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 12"
+            ],
+            "label": "Iran agrees to end enrichment of uranium…",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "19%"
+              },
+              {
+                "atIndex": 28,
+                "label": "28%"
+              }
+            ],
+            "link": "https://polymarket.com/event/iran-agrees-to-end-enrichment-of-uranium-by-june-30",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-12"
+    ],
+    "generatedAt": "2026-05-12T04:27:27.917Z",
+    "label": "Iran Diplomacy & Hormuz Risk",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-12-uk-russia-shadow-fleet-200-vessels-sanctions-enforcement": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE SHADOW FLEET IS",
+        "body": "A loose network of aging tankers — typically 15-20 years old, near the end of their commercial life — bought up since 2022 to move Russian crude outside the G7 price cap. Ownership hides behind shell companies in Dubai, Hong Kong, and Mumbai; flags shift between Gabon, Cameroon, Panama, and the Cook Islands.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Estimates put the fleet at **600–1,400 vessels**, roughly **10% of the global tanker count** — assembled in under three years."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRICE CAP MECHANISM",
+        "body": "The G7 cap (initially $60/barrel for Russian crude) doesn't ban Russian oil — it bans Western insurers, shippers, and financiers from servicing cargoes priced above the cap. The shadow fleet exists to operate without that Western service stack: non-Western insurance, non-Western flags, non-Western buyers."
+      },
+      {
+        "heading": "THE INSURANCE GAP",
+        "body": "Roughly 90% of global tanker tonnage was traditionally covered by the International Group of P&I Clubs, all Western-based. Shadow tankers carry coverage from Russian state insurers or unknown providers — meaning if one runs aground in the Baltic or English Channel, the coastal state, not the insurer, eats the cleanup bill."
+      },
+      {
+        "heading": "WHY THE CHANNEL MATTERS",
+        "body": "Most shadow-fleet voyages from Russia's Baltic ports — Primorsk, Ust-Luga, Novorossiysk via Bosphorus — pass within miles of UK, Danish, and French coastlines. The English Channel is the chokepoint that any Baltic-loaded cargo bound for India or China must transit.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GB",
+              "FR",
+              "DK",
+              "NL",
+              "BE",
+              "NO"
+            ],
+            "label": "the route past UK waters",
+            "markers": [
+              {
+                "lat": 50.9,
+                "lng": 1.4,
+                "label": "Dover Strait"
+              },
+              {
+                "lat": 55.5,
+                "lng": 10.5,
+                "label": "Danish Straits"
+              },
+              {
+                "lat": 59.97,
+                "lng": 28.6,
+                "label": "Primorsk (loading)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE OIL GOES",
+        "body": "India and China absorb the bulk of shadow-fleet crude; Turkey takes refined products and re-exports some as 'non-Russian' diesel back to Europe. The cap was never designed to stop the oil moving — only to compress the price Russia receives. On that narrow metric it has partially worked; on volumes it has not.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India",
+                "value": "~1.7 mbd",
+                "cc": "IN",
+                "weight": 1.7
+              },
+              {
+                "label": "China",
+                "value": "~1.4 mbd",
+                "cc": "CN",
+                "weight": 1.4
+              },
+              {
+                "label": "Turkey",
+                "value": "~0.3 mbd",
+                "cc": "TR",
+                "weight": 0.3
+              },
+              {
+                "label": "EU (pre-ban legacy)",
+                "value": "~0.1 mbd",
+                "cc": "EU",
+                "weight": 0.1
+              }
+            ],
+            "label": "Russian seaborne crude buyers, 2025 est."
+          }
+        ]
+      },
+      {
+        "heading": "THE BOARDING QUESTION",
+        "body": "Under UNCLOS Article 17, foreign ships enjoy right of innocent passage through territorial waters. Boarding a sanctioned but otherwise law-abiding tanker is legally contested — flag state consent is normally required outside narrow exceptions (piracy, slavery, unflagged vessels). Starmer's March announcement implied the UK would push the envelope; the 238 unchallenged passages suggest the legal advice held it back.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under UNCLOS, when can a coastal state board a foreign-flagged ship in its territorial waters without flag-state consent?",
+            "options": [
+              "Whenever the ship is sanctioned by the coastal state",
+              "For piracy, slavery, unauthorized broadcasting, or stateless vessels",
+              "Any time the ship's cargo is suspected to violate the coastal state's laws",
+              "Only with UN Security Council authorization"
+            ],
+            "correct": 1,
+            "explanation": "UNCLOS lists narrow exceptions to flag-state jurisdiction; unilateral sanctions are not among them, which is why shadow-fleet boarding is legally fraught."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-12T04:27:55.204Z",
+    "label": "Russia's Shadow Fleet",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-12-zambia-rift-helium-isotopes-geothermal-tectonic-boundary": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY HELIUM-3 IS THE TELL",
+        "body": "Helium-3 is primordial — trapped in the deep mantle since Earth's formation and not replenished. Helium-4 is produced continuously by crustal uranium and thorium decay. A high ³He/⁴He ratio in a spring means the gas bypassed the crust's slow radioactive drip and came straight from below.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The standard reference is **R/Ra** — the sample ratio divided by the atmospheric ratio. Crustal gases sit near *0.02 Ra*; mid-ocean ridge basalts run *~8 Ra*; mantle plumes like Iceland exceed *30 Ra*."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A RIFT ACTUALLY IS",
+        "body": "A continental rift is the first stage of an ocean. The lithosphere stretches, thins, and cracks; magma rises into the gaps; over tens of millions of years the floor drops below sea level and water floods in. The Red Sea is a rift caught mid-process; the Atlantic is a rift that finished."
+      },
+      {
+        "heading": "THE EAST AFRICAN SYSTEM",
+        "body": "Africa is splitting along a 6,000 km fracture from the Afar triangle in Ethiopia down through Kenya, Tanzania, Malawi, and Mozambique. The Somali plate is pulling east from the Nubian plate at roughly 6–7 mm per year — fingernail-growth speed, but relentless.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ET",
+              "KE",
+              "UG",
+              "TZ",
+              "RW",
+              "BI",
+              "MW",
+              "MZ",
+              "ZM",
+              "CD"
+            ],
+            "label": "the East African Rift System",
+            "caption": "the fracture splitting the African plate in two"
+          }
+        ]
+      },
+      {
+        "heading": "THE WESTERN BRANCH",
+        "body": "The rift runs in two arms. The eastern branch through Kenya and Tanzania is volcanically loud — Kilimanjaro, Ol Doinyo Lengai, the Afar lava lakes. The western branch through the Albertine and Malawi grabens is quieter but seismically active, cradling Africa's deepest lakes. Zambia sits on the southwestern tail of this western arm, where the rift fades — until now."
+      },
+      {
+        "heading": "WHY GEOTHERMAL HERE",
+        "body": "Geothermal power needs heat close to the surface. Continental interiors are normally cold because thick old crust insulates the mantle from the surface. A rift inverts this: thinned crust brings the asthenosphere within reach, and faults provide the plumbing for water to circulate through hot rock and return as steam.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Kenya",
+                "value": "~950 MW",
+                "cc": "KE",
+                "weight": 950,
+                "tone": "favorable"
+              },
+              {
+                "label": "Ethiopia",
+                "value": "~7 MW",
+                "cc": "ET",
+                "weight": 7,
+                "tone": "neutral"
+              },
+              {
+                "label": "Tanzania",
+                "value": "pilot",
+                "cc": "TZ",
+                "weight": 2,
+                "tone": "neutral"
+              },
+              {
+                "label": "Zambia",
+                "value": "0 MW",
+                "cc": "ZM",
+                "weight": 1,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "geothermal capacity in East African Rift states (MW installed)"
+          }
+        ]
+      },
+      {
+        "heading": "THE WILSON CYCLE",
+        "body": "Tuzo Wilson's 1960s framework holds that ocean basins open and close on roughly 400-million-year cycles. Today's rifts are tomorrow's oceans; today's subduction zones are yesterday's oceans closing. The Atlantic is opening; the Pacific is closing. Africa, slowly, is following the Atlantic's playbook."
+      },
+      {
+        "heading": "TEST YOURSELF",
+        "body": "The helium isotope signature distinguishes mantle-sourced gas from crust-sourced gas.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does a high helium-3 to helium-4 ratio indicate a mantle source?",
+            "options": [
+              "Helium-3 is heavier and sinks to the mantle over time",
+              "Helium-3 is primordial and not produced by crustal decay, while helium-4 is continuously generated by uranium and thorium",
+              "Helium-3 only forms in volcanic eruptions",
+              "Helium-4 escapes to space faster than helium-3"
+            ],
+            "correct": 1,
+            "explanation": "Helium-3 was trapped at Earth's formation and isn't replenished, so its relative abundance in a gas sample fingerprints how much of that gas came from the deep mantle rather than crustal radioactive decay."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-12T04:28:20.593Z",
+    "label": "Continental Rifting & Mantle Helium",
+    "category": "science",
+    "articleCount": 1
   }
 }
