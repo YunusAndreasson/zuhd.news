@@ -1211,5 +1211,22 @@
       "category science below floor 2 (got 1)"
     ],
     "degenerate": false
+  },
+  {
+    "ts": "2026-05-12T08:45:26.902Z",
+    "cycleId": "2026-05-12T08-45",
+    "cycleHour": "08",
+    "rvs": 76.24,
+    "clusters": {
+      "picking": null,
+      "writing": 94.64,
+      "briefing": 75.7,
+      "sourcing": 39.68,
+      "coverage": 88.96
+    },
+    "articleCount": 14,
+    "briefCount": 14,
+    "guardrailFailures": [],
+    "degenerate": false
   }
 ]
