@@ -155941,5 +155941,1669 @@
     "label": "Tap to Pay & Merchant Acceptance",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-05-11-ai-prose-style-collapse-404-media": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MECHANISM",
+        "body": "Large language models are trained to predict the most probable next token. Averaged across billions of examples, the most probable choice is by definition the most common one. The model's natural attractor is the median of its training data — not the mean of human writing, but the mode.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Statisticians call this *regression to the mode*. In generative models it has a sharper name: **mode collapse** — the distribution of outputs narrows even when the training distribution is wide."
+          }
+        ]
+      },
+      {
+        "heading": "THE SHARED CORPUS",
+        "body": "The major frontier labs train on overlapping slices of the same internet — Common Crawl, Wikipedia, Reddit, Stack Exchange, books from the same shadow libraries. Different architectures fed the same diet converge on similar outputs. The 'house style' is the internet's center of gravity, not any one company's voice."
+      },
+      {
+        "heading": "RLHF NARROWS FURTHER",
+        "body": "After pretraining, models are tuned with reinforcement learning from human feedback. A few thousand contractors rate outputs; the model learns what those raters reward. Polite hedging, balanced both-sides framing, the em-dash transition, the 'It's not just X — it's Y' construction: these are not invented by the model, they are amplified by the rating pool's preferences."
+      },
+      {
+        "heading": "THE TELLS",
+        "body": "Audiences trained to spot AI now flag specific tics: em-dashes between independent clauses, tricolon openers, 'delve' and 'tapestry,' the antithesis pivot ('not merely X, but Y'), reflexive caveats. None of these are AI inventions — they are register markers of formal English the model overuses.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do different AI models produce such similar prose?",
+            "options": [
+              "They share code under the hood",
+              "They train on overlapping corpora and similar human-feedback pools",
+              "They copy each other's outputs at inference time",
+              "Regulators require standardized output formats"
+            ],
+            "correct": 1,
+            "explanation": "Convergence comes from shared training data and overlapping RLHF rater preferences, not shared architecture or runtime coordination."
+          }
+        ]
+      },
+      {
+        "heading": "THE FEEDBACK LOOP",
+        "body": "AI output is now a meaningful share of new text on the web. Next-generation models train on a corpus partly written by previous-generation models. Researchers call this model collapse — the variance of the training distribution shrinks with each cycle, and the median tightens around itself."
+      },
+      {
+        "heading": "THE HUMAN COST",
+        "body": "When a style becomes the AI style, humans who naturally write that way get accused of using AI. Non-native English writers, who learned formal register from textbooks, get flagged more often than native speakers writing casually. AI-detection tools have documented false-positive rates above 50% on non-native prose.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Latin term for this is *damnum absque injuria* — harm without legal wrong. The accuser is wrong, but the writer still pays the cost."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-12T12:34:54.938Z",
+    "label": "Mode Collapse in Generative Models",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-12-calbee-japan-monochrome-packaging-naphtha-hormuz": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT NAPHTHA IS",
+        "body": "Naphtha is a light hydrocarbon fraction distilled between gasoline and kerosene. Steam-crack it and you get ethylene and propylene — the molecular feedstocks for almost every plastic, solvent, and synthetic dye in modern manufacturing.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Printing inks rely on naphtha-derived **aromatics** — benzene, toluene, xylene — as solvents and pigment carriers. No naphtha, no colour ink at industrial scale."
+          }
+        ]
+      },
+      {
+        "heading": "WHY JAPAN IMPORTS IT",
+        "body": "Japan has no domestic crude and ran down its heavy-industry refining capacity in the 2000s. Naphtha is now imported directly as a finished feedstock, mostly from Middle Eastern crackers and Korean refiners — bypassing the domestic refining step entirely.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "JP",
+              "SA",
+              "AE",
+              "QA",
+              "KW",
+              "KR"
+            ],
+            "label": "Japan's naphtha supply arc",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 35.5,
+                "lng": 139.7,
+                "label": "Tokyo Bay crackers"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ DEPENDENCY",
+        "body": "About 80% of Japan's crude and naphtha imports transit the Strait of Hormuz. Unlike Europe, Japan has no pipeline alternatives — every barrel arrives by tanker, and the tanker route from the Gulf to Yokohama is fixed by geography.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Japan",
+                "value": "~80%",
+                "cc": "JP",
+                "weight": 80,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "South Korea",
+                "value": "~70%",
+                "cc": "KR",
+                "weight": 70,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "China",
+                "value": "~45%",
+                "cc": "CN",
+                "weight": 45,
+                "tone": "neutral"
+              },
+              {
+                "label": "India",
+                "value": "~40%",
+                "cc": "IN",
+                "weight": 40,
+                "tone": "neutral"
+              },
+              {
+                "label": "USA",
+                "value": "~5%",
+                "cc": "US",
+                "weight": 5,
+                "tone": "favorable"
+              }
+            ],
+            "label": "share of oil imports via Hormuz"
+          }
+        ]
+      },
+      {
+        "heading": "THE STOCKPILE LAW",
+        "body": "After the 1973 oil shock, Japan passed the Petroleum Stockpiling Act requiring private refiners to hold 70 days of supply and the state to hold another ~145 days of crude. Naphtha sits inside that envelope but turns over fast — three weeks of cover is the floor before downstream plastics plants ration."
+      },
+      {
+        "heading": "THE 1973 PRECEDENT",
+        "body": "OPEC's embargo cut Japan's oil by a quarter overnight. Toilet paper disappeared from shelves within days — not because paper needed oil, but because consumers hoarded on rumour. MITI's response was to build the stockpile, diversify suppliers, and pivot industry toward energy efficiency. Japan's energy intensity halved over the next two decades.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1973",
+                "label": "OPEC embargo",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1975",
+                "label": "Petroleum Stockpiling Act"
+              },
+              {
+                "year": "1978",
+                "label": "Second oil shock"
+              },
+              {
+                "year": "1986",
+                "label": "Naphtha import liberalisation"
+              },
+              {
+                "year": "2011",
+                "label": "Fukushima — LNG pivot"
+              },
+              {
+                "year": "2026",
+                "label": "Calbee monochrome"
+              }
+            ],
+            "label": "Japan's oil-shock arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY COLOUR INK FIRST",
+        "body": "In a feedstock crunch, manufacturers triage downstream: medical plastics and food packaging integrity rank above decorative print. Going monochrome saves the aromatic solvents in colour ink for higher-priority uses without halting production. It is rationing dressed as design.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does removing colour ink save more naphtha than switching to thinner film?",
+            "options": [
+              "Colour inks use aromatic solvents that come directly from naphtha cracking",
+              "Monochrome printing runs the press at lower temperature",
+              "Black ink is mostly carbon, sourced from coal not oil",
+              "Thinner film requires more plasticiser per square metre"
+            ],
+            "correct": 0,
+            "explanation": "Colour inks depend on benzene/toluene/xylene solvents — pure naphtha derivatives. Black ink is largely carbon black, which can be sourced from heavier petroleum fractions or even natural gas."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-12T12:35:23.994Z",
+    "label": "Naphtha & Japan's Petrochemical Chain",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-12-eu-social-media-age-delay-children-july-2026": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEFAULT FLIP",
+        "body": "Most online child-safety regimes since COPPA (US, 1998) put the burden on parents: opt your child out, configure the settings, monitor the use. Reversing the default — platforms must prove safety before children access — shifts the liability from households to companies with billion-euro legal budgets.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal term is **shifting the burden of proof**. It is the single most consequential lever in product regulation — the same move that turned tobacco, pharmaceuticals, and automotive safety from caveat-emptor markets into licensed ones."
+          }
+        ]
+      },
+      {
+        "heading": "THE AUSTRALIAN PRECEDENT",
+        "body": "Australia passed a world-first under-16 social media ban in late 2024, with enforcement landing in 2025. Platforms — not parents, not children — face fines up to AUD 50 million for failing to keep minors off. The EU is watching the rollout closely; France is moving in parallel with its own under-15 framework.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Australia",
+                "value": "under 16",
+                "cc": "AU",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "France (proposed)",
+                "value": "under 15",
+                "cc": "FR",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "EU (proposed)",
+                "value": "under 15 or 16",
+                "cc": "EU",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "US (COPPA)",
+                "value": "under 13",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "UK (OSA)",
+                "value": "age-appropriate",
+                "cc": "GB",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Age-gate regimes by minimum age"
+          }
+        ]
+      },
+      {
+        "heading": "THE AGE VERIFICATION PROBLEM",
+        "body": "Proving a user's age online is technically hard without sacrificing privacy. Options are credit-card checks (excludes the poor), government ID upload (surveillance risk), or AI face-estimation (error rates of 2-3 years, with worse accuracy on non-white faces). Every method trades one harm for another.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which age-verification method has been most widely deployed in practice on adult sites under recent state laws?",
+            "options": [
+              "Credit card check",
+              "Government ID upload via third-party verifier",
+              "AI facial age estimation",
+              "Self-declared date of birth"
+            ],
+            "correct": 1,
+            "explanation": "Louisiana, Texas, and similar state laws settled on third-party ID verifiers — pushing the privacy risk to a vendor rather than the platform, but creating new data-breach surfaces."
+          }
+        ]
+      },
+      {
+        "heading": "THE DSA SCAFFOLDING",
+        "body": "The EU's Digital Services Act, in force since 2024, already requires Very Large Online Platforms to assess systemic risks to minors. The new proposal would convert that risk-assessment duty into a hard prohibition — a much sharper legal instrument than the audit-and-disclose regime currently in force.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "DSA non-compliance fines can reach **6% of global turnover** — for Meta, that ceiling is over **$8 billion per violation**. The enforcement teeth already exist; what changes is what counts as a breach."
+          }
+        ]
+      },
+      {
+        "heading": "WHO THE RULE ACTUALLY HITS",
+        "body": "TikTok, Instagram, and Snapchat draw the political fire, but the rule extends to YouTube, gaming chat platforms (Discord, Roblox), and any service whose recommendation system pushes content to minors. The regulatory perimeter is wider than the headlines suggest.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "FR",
+              "DE",
+              "IT",
+              "ES",
+              "NL",
+              "BE",
+              "DK",
+              "SE"
+            ],
+            "label": "EU member states pushing hardest",
+            "caption": "France, Denmark, and the Nordics have led the under-15/16 push"
+          }
+        ]
+      },
+      {
+        "heading": "THE FREE-SPEECH COUNTERWEIGHT",
+        "body": "The US First Amendment has so far blocked similar federal laws — NetChoice v. Paxton and related cases ruled that requiring age verification burdens adults' speech rights. Europe operates under different doctrine: the European Court of Human Rights treats child protection as a compelling state interest that routinely overrides expression claims.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "In the implementation of any rules concerning children, the best interests of the child shall be a primary consideration.",
+            "speaker": "EU Charter of Fundamental Rights, Article 24",
+            "year": "2000"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-12T12:35:52.657Z",
+    "label": "Age Gates & Platform Liability",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-12-global-fire-outbreaks-record-2026-el-nino-imperial": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY EL NIÑO BURNS",
+        "body": "During El Niño, the Pacific trade winds weaken and warm water pools in the eastern Pacific. This shifts rainfall away from Indonesia, the Amazon, and southern Africa — the world's three great tropical forest basins — turning peat and leaf litter into kindling within months.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 1997–98 El Niño burned roughly **10 million hectares** of Indonesian peatland, releasing more CO₂ in months than the EU emits in a year. The 2015–16 event repeated it. Peat fires smoulder for *weeks* underground, immune to surface rain."
+          }
+        ]
+      },
+      {
+        "heading": "THE FIRE TRIANGLE",
+        "body": "Fire needs fuel, oxygen, and ignition. Climate sets the fuel state — dry biomass, low humidity, hot winds. Ignition is almost always human: cleared land, escaped agricultural burns, downed power lines. Lightning starts perhaps 10% of wildfires globally; people start the rest.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of global wildfires are ignited by humans rather than lightning?",
+            "options": [
+              "About 10%",
+              "About 50%",
+              "About 90%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 90% of wildfires are human-ignited. Climate determines whether a spark becomes a megafire; humans determine whether the spark happens at all."
+          }
+        ]
+      },
+      {
+        "heading": "AFRICA'S FIRE BELT",
+        "body": "Most of the world's annual burned area is in African savanna — not forest. The grasslands of Angola, Zambia, DRC, Mozambique, and South Sudan burn every dry season as a normal ecological cycle. What broke the record is intensity and timing, not the existence of fires.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AO",
+              "ZM",
+              "CD",
+              "MZ",
+              "SS",
+              "TZ",
+              "CF"
+            ],
+            "label": "Africa's annual fire belt"
+          }
+        ]
+      },
+      {
+        "heading": "THE CARBON FEEDBACK",
+        "body": "Forests and peat store carbon accumulated over centuries. When they burn, that carbon enters the atmosphere within hours. Boreal and tropical peat fires are especially dangerous because the soil itself is fuel — Indonesia's 2015 fires released more CO₂ per day than the entire US economy."
+      },
+      {
+        "heading": "ATTRIBUTION SCIENCE",
+        "body": "World Weather Attribution runs the same climate models twice — once with today's CO₂ levels, once with pre-industrial levels — and compares how often a given heatwave or drought occurs in each. The ratio quantifies how much climate change loaded the dice. The method only matured in the 2010s; before it, scientists could only say climate change made extremes 'more likely' in general.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technique is called *probabilistic event attribution*. Its founder, **Friederike Otto** at Imperial College, argued that scientific caution was costing lives — courts and policymakers needed numbers, not hedged generalities."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT EL NIÑO DOES TO HARVESTS",
+        "body": "Fire is the visible symptom; crop failure is the slower one. El Niño typically cuts rice yields in Southeast Asia, wheat in Australia, and maize in southern Africa, while pushing rainfall onto the Pacific coast of South America. The 12–18 month lag between event and food-price spike is the part markets routinely underprice."
+      }
+    ],
+    "generatedAt": "2026-05-12T12:36:16.344Z",
+    "label": "Fire, El Niño & the Carbon Cycle",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-12-india-sensex-4-day-3400-point-drop-rupee-fii-oil": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IMPORT DEPENDENCE",
+        "body": "India imports roughly 85% of its crude oil — the highest dependence among major economies. Every $10/barrel rise adds about $15 billion to the annual import bill, draining dollars from reserves and pressuring the rupee.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India",
+                "value": "~85%",
+                "cc": "IN",
+                "tone": "unfavorable",
+                "weight": 85
+              },
+              {
+                "label": "Japan",
+                "value": "~99%",
+                "cc": "JP",
+                "tone": "unfavorable",
+                "weight": 99
+              },
+              {
+                "label": "China",
+                "value": "~72%",
+                "cc": "CN",
+                "tone": "neutral",
+                "weight": 72
+              },
+              {
+                "label": "Germany",
+                "value": "~98%",
+                "cc": "DE",
+                "tone": "unfavorable",
+                "weight": 98
+              },
+              {
+                "label": "USA",
+                "value": "net exporter",
+                "cc": "US",
+                "tone": "favorable",
+                "weight": 5
+              }
+            ],
+            "label": "crude import dependence, major economies"
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSMISSION CHAIN",
+        "body": "Oil shock to equity rout follows a predictable path: dearer crude widens the current account deficit, weakens the rupee, scares foreign portfolio investors out of Indian equities, and forces the RBI to defend the currency by selling dollars or hiking rates.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "oil",
+                "label": "Oil price ↑"
+              },
+              {
+                "id": "cad",
+                "label": "Current account deficit"
+              },
+              {
+                "id": "inr",
+                "label": "Rupee weakens"
+              },
+              {
+                "id": "fii",
+                "label": "FII outflows"
+              },
+              {
+                "id": "eq",
+                "label": "Sensex falls"
+              },
+              {
+                "id": "rbi",
+                "label": "RBI defends"
+              }
+            ],
+            "links": [
+              {
+                "source": "oil",
+                "target": "cad",
+                "value": 100
+              },
+              {
+                "source": "cad",
+                "target": "inr",
+                "value": 80
+              },
+              {
+                "source": "inr",
+                "target": "fii",
+                "value": 70
+              },
+              {
+                "source": "fii",
+                "target": "eq",
+                "value": 70
+              },
+              {
+                "source": "inr",
+                "target": "rbi",
+                "value": 50
+              },
+              {
+                "source": "rbi",
+                "target": "inr",
+                "value": 40
+              }
+            ],
+            "label": "oil shock → equity rout"
+          }
+        ]
+      },
+      {
+        "heading": "THE FII REFLEX",
+        "body": "Foreign institutional investors hold roughly a fifth of Indian listed equities — far more than domestic mutual funds at the margin. When the rupee slips, their dollar returns shrink even if Sensex holds, so they sell first and ask questions later. This is why Indian equities track the rupee more tightly than fundamentals justify.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The asymmetry: *domestic* investors care about rupee returns; *foreign* investors care about **dollar** returns. A 3% rupee drop is a 3% headwind on every FII position before the underlying stock has moved."
+          }
+        ]
+      },
+      {
+        "heading": "THE RUPEE'S LONG SLIDE",
+        "body": "The rupee has depreciated against the dollar in nearly every year since liberalization in 1991, when it traded near 25. The RBI's stated policy is to smooth volatility, not defend a level — but in practice every crisis triggers heavy intervention from the country's ~$650bn reserves.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              94.94696,
+              93.165649,
+              93.387156,
+              93.048145,
+              92.602452,
+              92.60245,
+              92.60245,
+              92.782407,
+              93.348804,
+              93.775164,
+              94.11314,
+              94.143557,
+              94.0666,
+              94.0666,
+              94.257338,
+              94.420855,
+              94.762974,
+              95.171392,
+              94.951559,
+              94.89165,
+              94.910513,
+              94.951346,
+              95.361112,
+              95.029174,
+              94.729612,
+              94.62293,
+              94.425498,
+              94.425498,
+              94.8754,
+              95.576514
+            ],
+            "periods": [
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY RBI'S HANDS ARE TIED",
+        "body": "The RBI faces a classic trilemma: it cannot simultaneously hold the rupee stable, keep capital flowing freely, and run independent monetary policy. Hiking rates to defend the rupee chokes growth; cutting to support growth accelerates outflows. The April CPI print will tip which side dominates the next meeting.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the 'impossible trinity' in international macroeconomics?",
+            "options": [
+              "A country cannot simultaneously have a fixed exchange rate, free capital flows, and independent monetary policy",
+              "A country cannot simultaneously run a budget surplus, trade surplus, and capital surplus",
+              "A country cannot simultaneously target inflation, employment, and exchange rates"
+            ],
+            "correct": 0,
+            "explanation": "Formalized by Mundell and Fleming in the 1960s, the trilemma forces every open economy to pick two of three. India chose managed float + partial capital openness + domestic-inflation targeting."
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ MULTIPLIER",
+        "body": "India sources roughly 40% of its crude from the Persian Gulf, virtually all of it transiting the Strait of Hormuz. Unlike China, India lacks strategic petroleum reserves at meaningful scale — its SPR holds about 10 days of imports versus China's 90+. A prolonged closure would force rationing within weeks.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "IR",
+              "SA",
+              "AE",
+              "IQ",
+              "OM",
+              "KW"
+            ],
+            "label": "India's Gulf oil lifeline",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 19.076,
+                "lng": 72.8777,
+                "label": "Mumbai (JNPT)"
+              },
+              {
+                "lat": 22.4707,
+                "lng": 69.07,
+                "label": "Jamnagar refinery"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-12"
+    ],
+    "generatedAt": "2026-05-12T12:36:45.694Z",
+    "label": "India's Oil-Rupee-Equity Nexus",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-12-kuwait-pakistan-strategic-petroleum-storage-hormuz-bypass": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EXPORTER'S CHOKEPOINT",
+        "body": "Kuwait has no maritime export route that avoids Hormuz. Every barrel it sells leaves through the 33-km strait between Iran and Oman. For an importer the chokepoint is an oil-price problem; for Kuwait it is an existential one — closure means oil that cannot leave the wellhead.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KW",
+              "SA",
+              "IR",
+              "OM",
+              "AE",
+              "PK"
+            ],
+            "label": "the bypass geography",
+            "markers": [
+              {
+                "lat": 29.3375,
+                "lng": 47.6581,
+                "label": "Kuwait export terminals"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 24.8607,
+                "lng": 67.0011,
+                "label": "Karachi"
+              },
+              {
+                "lat": 25.1264,
+                "lng": 62.3225,
+                "label": "Gwadar"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A STRATEGIC RESERVE IS",
+        "body": "A strategic petroleum reserve is a government-controlled stockpile held against supply shocks — distinct from commercial inventory at refineries. IEA member countries must hold the equivalent of 90 days of net imports; the US Strategic Petroleum Reserve, established after the 1973 embargo, holds barrels in salt caverns along the Gulf Coast.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The reserve idea is post-1973: every modern stockpile traces back to the **Arab oil embargo**, when OPEC's October cutoff exposed how thin the buffer between *production* and *consumption* really was."
+          }
+        ]
+      },
+      {
+        "heading": "THE OVERSEAS-RESERVE PRECEDENT",
+        "body": "Gulf producers already lease storage abroad to pre-position barrels closer to buyers. Saudi Aramco has stored crude in Okinawa since 2019 under a contract with Japan; ADNOC stores in Kagoshima. The Pakistan proposal flips the logic — instead of staging near a buyer, Kuwait would stage outside its own chokepoint.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Aramco",
+                "value": "Okinawa, JP",
+                "cc": "SA"
+              },
+              {
+                "label": "ADNOC",
+                "value": "Kagoshima, JP",
+                "cc": "AE"
+              },
+              {
+                "label": "Saudi Aramco",
+                "value": "Sidi Kerir, EG",
+                "cc": "SA"
+              },
+              {
+                "label": "Kuwait (proposed)",
+                "value": "Pakistan",
+                "cc": "KW"
+              }
+            ],
+            "label": "Gulf producers' overseas crude storage"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PAKISTAN'S COAST",
+        "body": "Karachi and Gwadar sit east of Hormuz on the Arabian Sea. A tanker from Kuwait still transits the strait to reach them — but once the barrels are landed and tanked, they are inside the buyer's economy. From Karachi the diesel can move overland to Punjab or be re-exported east; from Gwadar it can in theory reach China via the CPEC corridor."
+      },
+      {
+        "heading": "THE 60% DEPENDENCE",
+        "body": "Pakistan State Oil's contract with Kuwait Petroleum Corporation, in force since the 1980s, is one of the oldest continuous fuel-supply agreements in the Gulf-South Asia trade. It locks roughly two-thirds of Pakistan's diesel imports to a single source — efficient in calm years, a single point of failure in a Hormuz event.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does an overseas strategic reserve in Pakistan still depend on Hormuz staying open?",
+            "options": [
+              "Because the barrels still have to transit Hormuz to reach Pakistan in the first place",
+              "Because Pakistan's ports cannot handle large crude tankers",
+              "Because Kuwait can only export through pipelines that pass under Hormuz",
+              "Because Pakistan refines the crude back through Gulf facilities"
+            ],
+            "correct": 0,
+            "explanation": "Pre-positioning hedges against a SHORT closure — once tanks are full, Pakistan can draw on them while Hormuz is shut. It does not hedge against a sustained blockade, which would eventually drain any finite stockpile."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER-WAR LESSON",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial vessels in the Gulf. Markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships in Operation Earnest Will. The lesson Gulf planners took: disruption is easier to threaten than to sustain, but the threat alone is enough to demand redundancy."
+      }
+    ],
+    "generatedAt": "2026-05-12T12:37:42.566Z",
+    "label": "Strategic Petroleum Reserves & the Hormuz Trap",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-12-philippines-bato-dela-rosa-icc-warrant-senate-barricade": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COURT WITHOUT A POLICE FORCE",
+        "body": "The ICC has no enforcement arm. Every arrest depends on a member state — or a cooperating non-member — physically detaining the suspect. This is why Omar al-Bashir traveled freely for years after his 2009 warrant, and why Putin's 2023 warrant has limited his itinerary but not produced an arrest.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Rome Statute creates **complementarity**: the ICC only acts when national courts are *unwilling or unable* to prosecute. The Philippines argued its own courts were handling drug-war cases — the prosecutor disagreed."
+          }
+        ]
+      },
+      {
+        "heading": "THE WITHDRAWAL THAT DIDN'T WORK",
+        "body": "Duterte withdrew the Philippines from the Rome Statute in March 2019, effective one year later. But the ICC retained jurisdiction over crimes committed while the country was still a member — September 2011 through March 2019. The withdrawal closed the door behind the killings, not in front of them.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011-11",
+                "label": "Philippines joins Rome Statute"
+              },
+              {
+                "year": "2016-06",
+                "label": "Duterte inaugurated, drug war begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2018-03",
+                "label": "Duterte announces withdrawal"
+              },
+              {
+                "year": "2019-03",
+                "label": "Withdrawal takes effect"
+              },
+              {
+                "year": "2021-09",
+                "label": "ICC opens formal investigation"
+              },
+              {
+                "year": "2025-03",
+                "label": "Duterte arrested, transferred to The Hague"
+              }
+            ],
+            "label": "Philippines & the ICC"
+          }
+        ]
+      },
+      {
+        "heading": "THE BODY COUNT DISPUTE",
+        "body": "Philippine police acknowledged about 6,000 killings in anti-drug operations. Human rights groups and the ICC prosecutor estimate the true toll at 20,000 to 30,000, including vigilante killings by masked gunmen that police logged as 'deaths under investigation' — a category that almost never produced an investigation.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "PNP official",
+                "value": "~6,200",
+                "tone": "neutral"
+              },
+              {
+                "label": "CHR (PH)",
+                "value": "~12,000",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "ICC prosecutor",
+                "value": "~20,000+",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "HRW estimate",
+                "value": "~30,000",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Drug-war killings, estimates"
+          }
+        ]
+      },
+      {
+        "heading": "BATO'S ROLE",
+        "body": "Ronald 'Bato' dela Rosa was Duterte's first PNP chief (2016–2018) and the operational architect of Oplan Tokhang — the door-to-door 'knock and plead' campaign that became the killing's bureaucratic engine. He was elected senator in 2019, which is the source of his current parliamentary-immunity argument.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Rodrigo Duterte",
+                "role": "President, gave the orders",
+                "years": "2016–2022",
+                "cc": "PH"
+              },
+              {
+                "name": "Ronald dela Rosa",
+                "role": "PNP chief, then senator",
+                "years": "2016–2018",
+                "cc": "PH"
+              },
+              {
+                "name": "Salvador Panelo",
+                "role": "Presidential spokesperson",
+                "years": "2017–2022",
+                "cc": "PH"
+              },
+              {
+                "name": "Ferdinand Marcos Jr.",
+                "role": "Current president, decides",
+                "years": "2022–",
+                "cc": "PH"
+              }
+            ],
+            "label": "the drug-war chain of command"
+          }
+        ]
+      },
+      {
+        "heading": "THE MARCOS–DUTERTE BREAK",
+        "body": "Marcos and Sara Duterte ran together in 2022 as the 'UniTeam' — a Marcos-Duterte alliance dynasties had spent decades engineering. By 2024 the alliance had collapsed, and Marcos quietly resumed ICC cooperation his predecessor had blocked. Bato's arrest, if executed, would mark how far that break has gone.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When does the ICC's jurisdiction over Philippine drug-war crimes end?",
+            "options": [
+              "September 2011 — when the Philippines joined",
+              "March 2019 — when withdrawal took effect",
+              "June 2022 — end of Duterte's term",
+              "It never ends — ICC jurisdiction is permanent"
+            ],
+            "correct": 1,
+            "explanation": "ICC jurisdiction covers crimes committed while a state was a member. Withdrawal ended prospective jurisdiction in March 2020, but crimes through March 2019 remain prosecutable."
+          }
+        ]
+      },
+      {
+        "heading": "THE IMMUNITY QUESTION",
+        "body": "The Philippine Constitution grants senators immunity from arrest only for offenses punishable by under six years' imprisonment, and only while Congress is in session. Crimes against humanity carry life sentences. The barricade is a political performance, not a legal shield — which is why the decision sits with Marcos, not the courts."
+      }
+    ],
+    "generatedAt": "2026-05-12T12:38:10.457Z",
+    "label": "The ICC & the Philippine Drug War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-12-south-africa-first-vigilante-clinic-school-checkpoints": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MOVEMENT'S NAME",
+        "body": "Operation Dudula — Zulu for \"push back\" or \"force out\" — emerged in Soweto in 2021 as a community patrol targeting foreign-owned spaza shops. By 2024 it had registered as a political party and shifted from market raids to gatekeeping at clinics, schools, and hospitals.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The verb *dudula* carries the connotation of physically shoving someone out of a space — the name itself encodes the tactic."
+          }
+        ]
+      },
+      {
+        "heading": "THE STRUCTURAL ROOTS",
+        "body": "Apartheid spatial planning concentrated Black South Africans in townships with deliberately under-resourced clinics and schools. Three decades later that infrastructure still serves the same populations — now joined by migrants from Zimbabwe, Mozambique, and Malawi competing for the same scarce slots.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ZA",
+              "ZW",
+              "MZ",
+              "MW",
+              "LS",
+              "SZ"
+            ],
+            "label": "southern Africa migration corridor",
+            "caption": "the source countries for most South African migrants"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2008 PRECEDENT",
+        "body": "In May 2008, anti-migrant violence killed 62 people across Gauteng townships in two weeks. The 2015 KwaZulu-Natal wave killed 7 and displaced thousands. Each surge follows a similar arc — economic stress, political scapegoating, then community-led raids that police arrive late to.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2008-05",
+                "label": "Gauteng pogroms (62 killed)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2015",
+                "label": "KZN attacks, Zulu king's speech"
+              },
+              {
+                "year": "2019",
+                "label": "Johannesburg CBD riots"
+              },
+              {
+                "year": "2021",
+                "label": "Operation Dudula founded"
+              },
+              {
+                "year": "2024",
+                "label": "Clinic & school gatekeeping begins"
+              }
+            ],
+            "label": "South Africa's xenophobic violence cycle"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL CONTRADICTION",
+        "body": "South Africa's Constitution guarantees healthcare and basic education to \"everyone\" — not just citizens — and the Refugees Act gives asylum seekers the same access. Vigilante ID checks are illegal on their face. The state's failure to enforce this is the policy, not an oversight."
+      },
+      {
+        "heading": "WHO MIGRATES AND WHY",
+        "body": "Zimbabwe's economic collapse drove an estimated 2-3 million Zimbabweans south after 2000. Mozambicans came earlier, fleeing the civil war that ended in 1992. South Africa hosts the largest migrant population on the continent — roughly 4 million people, about 7% of its population.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country is the largest source of migrants living in South Africa?",
+            "options": [
+              "Nigeria",
+              "Zimbabwe",
+              "Democratic Republic of Congo",
+              "Mozambique"
+            ],
+            "correct": 1,
+            "explanation": "Zimbabwe's post-2000 economic collapse drove 2-3 million people south, making it by far the largest source country."
+          }
+        ]
+      },
+      {
+        "heading": "FROM RIOTS TO GATEKEEPING",
+        "body": "The shift Xenowatch documents — from spasmodic violence to standing checkpoints at service points — is the more dangerous evolution. Riots end; institutional gatekeeping becomes routine. Once a clinic queue accepts ID checks at the gate, exclusion is no longer an event but a system."
+      }
+    ],
+    "generatedAt": "2026-05-12T12:38:38.876Z",
+    "label": "South Africa & Operation Dudula",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-12-spacex-starship-v3-stack-third-record-three-years": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THRUST IS THE GAME",
+        "body": "Getting to orbit is a tyranny of ratios: every kilogram of fuel needs thrust to lift not just the payload but the fuel beneath it. Doubling thrust doesn't double payload — it unlocks payloads that simply couldn't fly before. Starship V3's 18 million pounds of thrust is more than double the Saturn V's 7.5 million.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The governing equation is Tsiolkovsky's **rocket equation**: payload fraction shrinks *exponentially* with required velocity change. Brute thrust is one of two levers — the other is *specific impulse* (fuel efficiency)."
+          }
+        ]
+      },
+      {
+        "heading": "THE RAPTOR BET",
+        "body": "Most rockets burn kerosene (RP-1) or hydrogen. Raptor burns methane and liquid oxygen in a full-flow staged combustion cycle — a design that had never flown before Raptor. Methane is cleaner-burning (no coking), can theoretically be synthesized on Mars from atmospheric CO2, and packs better density-impulse than hydrogen."
+      },
+      {
+        "heading": "THE THRUST LEAGUE",
+        "body": "Starship V3's 33-engine first stage now sits at the top of every thrust ranking ever assembled — by a wide margin over the rockets that preceded it.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "First-stage thrust at liftoff",
+            "peers": [
+              {
+                "value": 18,
+                "label": "Starship V3"
+              },
+              {
+                "value": 16.7,
+                "label": "Starship V2"
+              },
+              {
+                "value": 8.8,
+                "label": "SLS Block 1"
+              },
+              {
+                "value": 7.5,
+                "label": "Saturn V"
+              },
+              {
+                "value": 7.8,
+                "label": "Energia"
+              },
+              {
+                "value": 5.1,
+                "label": "Falcon Heavy"
+              },
+              {
+                "value": 10.2,
+                "label": "N1 (Soviet)"
+              }
+            ],
+            "subjectLabel": "Starship V3",
+            "unit": "million lbf"
+          }
+        ]
+      },
+      {
+        "heading": "WHY REUSABILITY CHANGES ECONOMICS",
+        "body": "Saturn V cost roughly $1.5 billion per launch in today's dollars and was thrown away after each use. Starship is designed for both stages to return and re-fly. If cadence reaches even weekly, marginal launch cost approaches fuel + refurbishment — a regime where mass-to-orbit becomes cheaper by orders of magnitude.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What single factor most determines whether a reusable rocket beats an expendable one on cost per kg to orbit?",
+            "options": [
+              "Engine specific impulse",
+              "Launch cadence (flights per vehicle)",
+              "Payload fairing diameter",
+              "Choice of propellant"
+            ],
+            "correct": 1,
+            "explanation": "Reusability only pays off if the refurbishment cost is amortized across many flights — a vehicle that flies once a year never beats a cheap expendable."
+          }
+        ]
+      },
+      {
+        "heading": "THE LICENSE BOTTLENECK",
+        "body": "The FAA's Office of Commercial Space Transportation must license every US orbital launch under the 1984 Commercial Space Launch Act. Environmental reviews under NEPA can run for years; Starship's Boca Chica site sits beside a wildlife refuge, and each license amendment triggers fresh review. Engineering readiness no longer drives the schedule — paperwork does."
+      },
+      {
+        "heading": "THE MARS LOGIC",
+        "body": "Starship's design choices — methane fuel, full reusability, ~100-ton payload — only make sense if the destination is Mars, not the Moon. Methane can be made on Mars via the Sabatier reaction (CO2 + H2). No other architecture in development carries the same assumption.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1967",
+                "label": "Saturn V first flight"
+              },
+              {
+                "year": "1969",
+                "label": "Apollo 11 lands",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1973",
+                "label": "Saturn V retired"
+              },
+              {
+                "year": "1981",
+                "label": "Space Shuttle debut"
+              },
+              {
+                "year": "2011",
+                "label": "Shuttle retired"
+              },
+              {
+                "year": "2022",
+                "label": "SLS first flight"
+              },
+              {
+                "year": "2023",
+                "label": "Starship first integrated test"
+              },
+              {
+                "year": "2026",
+                "label": "Starship V3 stacked"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1973",
+                "to": "2022",
+                "label": "49-year heavy-lift gap",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "the heavy-lift arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-12T12:39:05.676Z",
+    "label": "Starship & the Thrust Frontier",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-12-syria-hairdresser-air-force-intelligence-torture-id": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY AIR FORCE INTELLIGENCE",
+        "body": "Of Syria's four main mukhabarat branches, Air Force Intelligence was the most feared — not because it ran the air force, but because Hafez al-Assad commanded the air force before seizing power in 1970 and kept its intelligence arm as his personal praetorian service. Its writ extended far beyond aviation: regime survival, dissident liquidation, and the worst of the detention archipelago.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Arabic term is *mukhabarat* — literally 'communications' or 'intelligence,' but in practice the umbrella word for the parallel state of secret police that every Ba'athist republic built."
+          }
+        ]
+      },
+      {
+        "heading": "THE FOUR BRANCHES",
+        "body": "The Assad security state ran on deliberate redundancy: four overlapping agencies that spied on each other as much as on citizens. No single chief could mount a coup because no single chief controlled the full apparatus. The system outlasted Hafez by 24 years and only collapsed when the army itself dissolved in December 2024.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Air Force Intelligence",
+                "role": "Regime-protection, worst torture sites",
+                "years": "1963–2024",
+                "cc": "SY"
+              },
+              {
+                "name": "Military Intelligence",
+                "role": "Army surveillance, foreign ops",
+                "years": "1969–2024",
+                "cc": "SY"
+              },
+              {
+                "name": "General Intelligence Directorate",
+                "role": "Civilian political policing",
+                "years": "1971–2024",
+                "cc": "SY"
+              },
+              {
+                "name": "Political Security Directorate",
+                "role": "Party loyalty, internal vetting",
+                "years": "1971–2024",
+                "cc": "SY"
+              }
+            ],
+            "label": "Syria's four security branches under Assad"
+          }
+        ]
+      },
+      {
+        "heading": "AL-MAZZEH AND THE CAESAR FILES",
+        "body": "The al-Mazzeh airbase in western Damascus housed one of the most notorious Air Force Intelligence detention facilities. In 2014 a defector codenamed Caesar smuggled out 53,000 photographs of detainees tortured to death in regime custody — emaciated bodies numbered like cattle. The images became the evidentiary spine of every Syria war crimes case since.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SY",
+              "LB",
+              "JO",
+              "TR",
+              "IQ"
+            ],
+            "label": "Damascus detention geography",
+            "markers": [
+              {
+                "lat": 33.471,
+                "lng": 36.222,
+                "label": "al-Mazzeh airbase"
+              },
+              {
+                "lat": 33.5138,
+                "lng": 36.2765,
+                "label": "Damascus"
+              },
+              {
+                "lat": 33.505,
+                "lng": 36.306,
+                "label": "Saydnaya prison"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY LOW-LEVEL GUARDS GET TRIED FIRST",
+        "body": "Transitional justice almost always begins at the bottom. Junior personnel are easier to identify, witnesses can name them by face, and the cases build evidentiary momentum that later supports prosecutions of commanders. Nuremberg started with camp guards; Rwanda's gacaca courts processed neighborhood-level perpetrators years before the ICTR reached the architects.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which transitional justice tribunal first reached top political leadership rather than starting with low-level perpetrators?",
+            "options": [
+              "Nuremberg (Nazi Germany)",
+              "ICTR (Rwanda)",
+              "Special Court for Sierra Leone",
+              "Argentina's Trial of the Juntas (1985)"
+            ],
+            "correct": 3,
+            "explanation": "Argentina's 1985 trial of the military junta members was the rare case that began at the top. Most tribunals — Nuremberg, ICTR, Sierra Leone — built upward from low-level perpetrators."
+          }
+        ]
+      },
+      {
+        "heading": "THE UNIVERSAL JURISDICTION ROUTE",
+        "body": "While Syrian courts now process domestic cases, European prosecutors have been building parallel files for a decade. Germany convicted former Syrian colonel Anwar Raslan to life in 2022 under universal jurisdiction — the principle that some crimes (torture, war crimes, genocide) can be tried anywhere, regardless of where they happened. Sweden, France, and the Netherlands have run similar cases."
+      },
+      {
+        "heading": "THE COMMANDER PROBLEM",
+        "body": "Identifying a guard who beat detainees with plastic pipes is one task. Reaching the colonel who set the quota, the general who signed the standing orders, and the president who ran the whole apparatus is another. The Assad family fled to Moscow in December 2024 under Russian protection, and Moscow has never extradited a protected asset.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1970",
+                "label": "Hafez al-Assad seizes power via Corrective Movement"
+              },
+              {
+                "year": "1982",
+                "label": "Hama massacre"
+              },
+              {
+                "year": "2011",
+                "label": "Uprising begins, mass detentions accelerate",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2014",
+                "label": "Caesar photos leak"
+              },
+              {
+                "year": "2022",
+                "label": "Anwar Raslan convicted in Koblenz, Germany"
+              },
+              {
+                "year": "2024-12",
+                "label": "Assad regime falls, flees to Moscow"
+              },
+              {
+                "year": "2026",
+                "label": "Domestic transitional justice courts begin work"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1970",
+                "to": "2024-12",
+                "label": "Assad family rule",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Syria's accountability arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-12T12:39:37.913Z",
+    "label": "Air Force Intelligence & Syrian Transitional Justice",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-12-taiwan-s-chips-power-the-global-economy-china-holds-the-leve": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONCENTRATION",
+        "body": "A single company, TSMC, fabricates the overwhelming majority of the world's leading-edge logic chips — the silicon inside iPhones, Nvidia GPUs, F-35 avionics, and the servers training every frontier AI model. No comparable single-point dependency exists in any other strategic industry.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "TSMC (Taiwan)",
+                "value": 90,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Samsung (Korea)",
+                "value": 8,
+                "tone": "neutral"
+              },
+              {
+                "label": "Intel (US)",
+                "value": 2,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global leading-edge (≤5nm) foundry capacity, 2024 share"
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "Taiwan's most advanced fabs cluster around Hsinchu and Tainan on the island's west coast — the side facing the mainland across the Taiwan Strait, which is roughly 130–180km wide at its narrowest. PLA Rocket Force ballistic missiles can range every fab in under ten minutes.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TW",
+              "CN",
+              "JP",
+              "PH"
+            ],
+            "label": "the silicon coast",
+            "markers": [
+              {
+                "lat": 24.7736,
+                "lng": 120.9897,
+                "label": "Hsinchu Science Park"
+              },
+              {
+                "lat": 22.9999,
+                "lng": 120.227,
+                "label": "TSMC Tainan (Fab 18)"
+              },
+              {
+                "lat": 25.033,
+                "lng": 121.5654,
+                "label": "Taipei"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT CAN'T BE COPIED FAST",
+        "body": "An EUV-equipped 3nm fab costs ~$20bn and takes 3–5 years to build, plus another year of yield ramp. Each ASML High-NA EUV machine costs $380m, weighs 150 tons, and ships in 13 freight containers. ASML produces only a few dozen a year, and TSMC takes most of them.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bottleneck isn't the fab — it's the **EUV lithography monopoly**. ASML, a single Dutch company, makes every machine on Earth capable of patterning sub-7nm chips. No second source exists."
+          }
+        ]
+      },
+      {
+        "heading": "THE SILICON SHIELD",
+        "body": "Taiwanese strategists have argued for two decades that TSMC itself deters invasion — destroying or capturing the fabs would crater the global economy the attacker depends on. Critics counter that the shield rusts as US-funded fabs in Arizona and Japan come online, diluting Taiwan's irreplaceability.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1987",
+                "label": "TSMC founded by Morris Chang"
+              },
+              {
+                "year": "2020",
+                "label": "US bans Huawei from TSMC",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "US CHIPS Act, $52bn subsidy"
+              },
+              {
+                "year": "2024",
+                "label": "TSMC Arizona Fab 1 begins production"
+              },
+              {
+                "year": "2025",
+                "label": "TSMC Kumamoto (Japan) ramps"
+              }
+            ],
+            "label": "the shield, building and eroding"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT CHINA STILL CAN'T MAKE",
+        "body": "SMIC, China's leading foundry, reached 7nm in 2023 using older DUV lithography — an impressive workaround, but yields are poor and the process can't scale to 5nm or below without EUV. The 2019 US-led ban on EUV exports to China is the single most consequential export control of the decade.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country's export controls prevent ASML from shipping EUV machines to China?",
+            "options": [
+              "The United States, unilaterally",
+              "The Netherlands, under US pressure",
+              "Taiwan, as the customer of record",
+              "Japan, which makes EUV components"
+            ],
+            "correct": 1,
+            "explanation": "ASML is Dutch; the Netherlands implements the export ban, coordinated with the US and Japan under the 2023 trilateral framework."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEVERAGE LADDER",
+        "body": "China's options short of invasion are graduated: customs inspections of Taiwan-flagged vessels, a quarantine of specific ports, a partial air-and-sea blockade, then full encirclement. Each rung disrupts chip exports more severely than the last — and each rung also raises the price the global economy pays to keep buying from Taiwan.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Share of national GDP exposed to a Taiwan supply shock (selected, est.)",
+            "peers": [
+              {
+                "value": 40,
+                "label": "Taiwan"
+              },
+              {
+                "value": 12,
+                "label": "South Korea"
+              },
+              {
+                "value": 8,
+                "label": "Japan"
+              },
+              {
+                "value": 6,
+                "label": "USA"
+              },
+              {
+                "value": 5,
+                "label": "Germany"
+              },
+              {
+                "value": 9,
+                "label": "China"
+              }
+            ],
+            "subjectLabel": "Taiwan",
+            "unit": "%"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-12T12:40:13.573Z",
+    "label": "Taiwan & the Silicon Chokepoint",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-12-trump-greenland-three-military-bases-denmark-talks": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 1951 TREATY",
+        "body": "The US has maintained military presence in Greenland since the 1941 Defense of Greenland Agreement, formalized in the 1951 US-Denmark defense treaty. Under it, the US can build bases on Greenland without Danish veto — Copenhagen consents in principle, then negotiates specifics.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The treaty rests on a simple bargain: Denmark cannot defend Greenland against a Soviet or now Russian assault, so it delegates that defense to the **United States** in exchange for sovereignty on paper."
+          }
+        ]
+      },
+      {
+        "heading": "THE GIUK GAP",
+        "body": "The Greenland-Iceland-UK gap is the chokepoint Russian submarines must cross to reach the Atlantic from their Murmansk bases. NATO has monitored it via undersea sonar arrays since the 1950s. Bases in southern Greenland sit directly on the northern edge of this gap.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GL",
+              "IS",
+              "GB",
+              "NO",
+              "FO"
+            ],
+            "label": "the GIUK gap",
+            "markers": [
+              {
+                "lat": 64.1836,
+                "lng": -51.7214,
+                "label": "Nuuk"
+              },
+              {
+                "lat": 76.5311,
+                "lng": -68.7032,
+                "label": "Pituffik (Thule) base"
+              },
+              {
+                "lat": 64.1466,
+                "lng": -21.9426,
+                "label": "Reykjavík"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "PITUFFIK ALREADY EXISTS",
+        "body": "The US already operates Pituffik Space Base (formerly Thule Air Base) in northwest Greenland — home to the Ballistic Missile Early Warning System radar that detects ICBMs flying over the Arctic toward North America. Three new southern bases would extend coverage south, not duplicate it."
+      },
+      {
+        "heading": "WHY THE ARCTIC NOW",
+        "body": "Sea ice extent has fallen roughly 40% since 1979. The Northern Sea Route along Russia's coast is now navigable for months each year; Russia has reopened or built over 50 Arctic military sites since 2014. The Arctic is becoming a contested ocean, not a frozen buffer.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              73,
+              72,
+              55,
+              69,
+              61,
+              64,
+              64,
+              66,
+              66,
+              68,
+              77,
+              87,
+              87,
+              83,
+              88,
+              90,
+              87,
+              91,
+              90,
+              92,
+              99,
+              99
+            ],
+            "periods": [
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 12"
+            ],
+            "label": "Trump visit China by May 15?",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "73%"
+              },
+              {
+                "atIndex": 21,
+                "label": "99%"
+              }
+            ],
+            "link": "https://polymarket.com/event/will-trump-visit-china-by",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE CARETAKER PROBLEM",
+        "body": "Denmark's caretaker government holds limited authority by constitutional convention — major foreign-policy commitments wait for a fully empowered cabinet. Greenland's premier knows this; the stall is procedural, not necessarily a rejection.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In Danish parliamentary practice, a *forretningsministerium* (caretaker cabinet) handles only running affairs — binding long-term basing agreements traditionally fall outside that mandate."
+          }
+        ]
+      },
+      {
+        "heading": "WHO DECIDES",
+        "body": "Under the 2009 Self-Government Act, Greenland controls most domestic affairs but foreign policy and defense remain with Copenhagen. Nuuk has a consultative voice on basing; the legal signature is Danish.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Who has final legal authority to approve a new US base in Greenland?",
+            "options": [
+              "Greenland's parliament in Nuuk",
+              "Denmark's government in Copenhagen",
+              "A joint US-Greenland commission",
+              "NATO's North Atlantic Council"
+            ],
+            "correct": 1,
+            "explanation": "The 2009 Self-Government Act devolved most powers to Nuuk but explicitly reserved foreign policy and defense to Denmark."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-12"
+    ],
+    "generatedAt": "2026-05-12T12:40:41.635Z",
+    "label": "Greenland & Arctic Strategy",
+    "category": "politics",
+    "articleCount": 1
   }
 }
