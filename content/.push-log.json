@@ -1,84 +1,5 @@
 [
   {
-    "timestamp": "2026-04-20T04:33:04.162Z",
-    "candidateCount": 10,
-    "candidates": [
-      {
-        "slug": "2026-04-20-south-africa-abb-kusile-immunity-deal-challenge",
-        "title": "ABB Buys Prosecution Immunity",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-20-iran-warns-us-significantly-greater-costs-ceasefire",
-        "title": "Iran Threatens to End Talks",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-20-uae-us-financial-lifeline-iran-war",
-        "title": "UAE Seeks Fed Currency Lifeline",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-20-kelp-defi-292-million-exploit-mechanism",
-        "title": "Kelp Bridge Bug Drains $292M",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-20-us-caribbean-drug-boat-strike-180-killed",
-        "title": "US Kills 180 at Sea",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-20-pakistan-kp-farmers-indus-water-wheat-crisis",
-        "title": "India Freezes Indus Waters Treaty",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-20-green-geopolymer-cement-slag-durability-study",
-        "title": "Geopolymer Cement Matches Portland Strength",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-20-merz-germany-eu-industrial-ai-regulation-rollback",
-        "title": "Merz Wants Industrial AI Exempt",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-20-vercel-breach-crypto-api-keys-web3",
-        "title": "Vercel Breach Exposes Crypto Keys",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-20-uk-pm-to-face-grilling-from-mps-today-over-mandelson-scandal",
-        "title": "Mandelson Vetting Failure Exposes Starmer",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": null,
-    "skipReason": "all 10 candidates below coverage threshold 1",
-    "sent": false
-  },
-  {
     "timestamp": "2026-04-20T08:35:15.075Z",
     "candidateCount": 10,
     "candidates": [
@@ -9356,6 +9277,113 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "EU proposes mandatory age delay blocking children from social media, von der Leyen says",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 21
+    }
+  },
+  {
+    "timestamp": "2026-05-13T04:48:32.387Z",
+    "candidateCount": 12,
+    "candidates": [
+      {
+        "slug": "2026-05-12-brics-delhi-no-joint-iran-statement-non-aligned-design",
+        "title": "BRICS Fails Iran Consensus",
+        "category": "politics",
+        "eventCoverage": 81,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-13-india-gold-duty-15-percent-rupee-defence-iran-war",
+        "title": "India Raises Gold Duty",
+        "category": "economy",
+        "eventCoverage": 31,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-13-india-modi-convoy-halved-iran-war-fuel-austerity",
+        "title": "Modi Halves Official Convoy",
+        "category": "politics",
+        "eventCoverage": 19,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-12-israel-record-west-bank-settlements-iran-war-cover",
+        "title": "Israel Approves Record Settlements",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-12-myanmar-exiled-journalists-five-years-junta-press",
+        "title": "Myanmar Press Five Years In",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-13-pakistan-fiscal-deficit-pdl-fuel-levy-30-year-low",
+        "title": "Fuel Tax Drives Pakistan Surplus",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-13-trump-tower-gold-coast-australia-15bn-scrapped-altus",
+        "title": "Trump Tower Australia Collapses",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-12-chile-ecmpo-indigenous-coastal-rollback-mapuche",
+        "title": "Chile Guts Indigenous Coast Zones",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-12-china-wind-mingyang-europe-security-screening-nsi-act",
+        "title": "UK Blocks Mingyang Wind Plant",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-12-foxconn-cyberattack-north-america-factories-supply-chain",
+        "title": "Foxconn Cyberattack Spans Borders",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-13-meta-employee-protest-mouse-tracking-bossware-surveillance",
+        "title": "Meta Tracks Employees Before Layoffs",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-12-rightscon-2026-zambia-postponed-civil-society-digital-rights",
+        "title": "China Kills Zambia Rights Summit",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-05-12-brics-delhi-no-joint-iran-statement-non-aligned-design",
+      "title": "BRICS Fails Iran Consensus",
+      "category": "politics",
+      "body": "Deputy talks on Iran broke down last month. [Russia](country:RU) and",
+      "eventCoverage": 81,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "BRICS foreign ministers fail to reach consensus on Iran ahead of Delhi summit",
     "response": {
       "pushed": 1,
       "skipped": 0,
