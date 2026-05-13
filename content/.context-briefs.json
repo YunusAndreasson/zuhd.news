@@ -160876,5 +160876,1481 @@
     "label": "Brand Licensing & Property Development",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-05-13-alzheimers-brain-aging-system-specific-default-mode-limbic-fmri": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BRAIN-AGE IDEA",
+        "body": "A 'brain age' is a number predicted from an MRI by a model trained to guess chronological age from anatomy. The gap between predicted and actual age — the brain-age delta — is treated as a biomarker of accelerated decline.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The whole-brain delta is a *single scalar* — it averages every voxel into one number, which is why heterogeneous decline disappears inside it."
+          }
+        ]
+      },
+      {
+        "heading": "THE DEFAULT MODE NETWORK",
+        "body": "The default mode network is the set of regions most active when the mind is at rest — medial prefrontal cortex, posterior cingulate, precuneus, hippocampal formation. It was identified in the late 1990s as the circuitry of mind-wandering, autobiographical memory, and self-reference.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "The default mode network is most active when a person is:",
+            "options": [
+              "Solving a math problem",
+              "Resting with no task",
+              "Watching a fast-moving film",
+              "Reacting to a loud noise"
+            ],
+            "correct": 1,
+            "explanation": "It was discovered as the network that lights up during rest and quiets down when attention turns to an external task — the opposite of what neuroscientists expected."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ALZHEIMER'S HITS HERE FIRST",
+        "body": "Amyloid plaques deposit earliest in exactly the hubs of the default mode network — the precuneus and posterior cingulate — years before symptoms. The limbic system, including the entorhinal cortex and hippocampus, is where tau tangles begin. Sensorimotor cortex is spared until very late."
+      },
+      {
+        "heading": "THE BRAAK STAGING",
+        "body": "Heiko Braak's 1991 post-mortem work showed Alzheimer's pathology spreads in a stereotyped sequence: transentorhinal cortex → hippocampus → limbic areas → association cortex → primary sensorimotor cortex last. The new fMRI finding is the in-vivo echo of a 35-year-old neuropathology map.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1991",
+                "label": "Braak & Braak staging published",
+                "emphasis": "pivot"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1991",
+                "to": "1995",
+                "label": "I–II: transentorhinal",
+                "tone": "favorable"
+              },
+              {
+                "from": "1995",
+                "to": "2000",
+                "label": "III–IV: limbic",
+                "tone": "neutral"
+              },
+              {
+                "from": "2000",
+                "to": "2005",
+                "label": "V–VI: neocortical",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Braak stages of tau spread"
+          }
+        ]
+      },
+      {
+        "heading": "WHY AGGREGATES MISLEAD",
+        "body": "If limbic regions age 10 years fast and sensorimotor regions age 5 years slow, a whole-brain average reports a normal delta. This is Simpson's paradox in imaging — the aggregate hides the subgroup signal that actually matters for early detection."
+      },
+      {
+        "heading": "THE SCREENING STAKES",
+        "body": "Anti-amyloid drugs like lecanemab only slow disease when given before significant neuronal loss. A screening test that misses pre-symptomatic divergence misses the only window where intervention works — which is why system-specific brain-age models are now a regulatory priority.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The clinical term for this window is *prodromal* Alzheimer's — pathology present, symptoms not yet — and it can last **10–20 years** before diagnosis."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T12:28:18.900Z",
+    "label": "Brain Age & the Default Mode Network",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-13-biomolecular-condensates-protein-degradation-fourth-modality": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE UNDRUGGABLE PROBLEM",
+        "body": "Roughly 85% of human proteins lack the deep, well-shaped binding pockets that small-molecule drugs need. KRAS — mutated in a quarter of all human cancers — was the canonical undruggable target for four decades. Its surface is smooth.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The first KRAS inhibitor (*sotorasib*) was only approved in **2021**, and it works on a single mutation (**G12C**) that creates a rare reactive cysteine. Most KRAS mutations still have nowhere for a drug to grip."
+          }
+        ]
+      },
+      {
+        "heading": "THE THREE EXISTING MODALITIES",
+        "body": "Drug discovery has historically had three shapes: small molecules (block an active site), biologics like antibodies (bind a surface, usually outside the cell), and gene/RNA therapies (stop the protein being made). Each fails on different terrain.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Small molecules",
+                "value": "need pocket",
+                "tone": "neutral"
+              },
+              {
+                "label": "Antibodies",
+                "value": "extracellular",
+                "tone": "neutral"
+              },
+              {
+                "label": "RNA/gene",
+                "value": "upstream only",
+                "tone": "neutral"
+              }
+            ],
+            "label": "the three classical modalities"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DEGRADATION CHANGES THE GAME",
+        "body": "A traditional inhibitor must occupy the active site continuously — one molecule per protein, around the clock. A degrader only needs to touch the target briefly to mark it for destruction, then moves on to the next. Catalytic, not stoichiometric. This is the core insight behind PROTACs and now condensates."
+      },
+      {
+        "heading": "WHAT A CONDENSATE IS",
+        "body": "Inside every cell, certain proteins spontaneously demix from the cytosol into liquid droplets — the way oil separates from vinegar. These biomolecular condensates concentrate specific molecules hundreds of times above the surrounding fluid without any membrane. The nucleolus is the textbook example; cells use them to run reactions that need crowding.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phenomenon is called *liquid-liquid phase separation* (**LLPS**) and was only recognized as a general principle of cell biology around **2009**. Most undergraduate textbooks still describe the cytosol as a uniform soup."
+          }
+        ]
+      },
+      {
+        "heading": "THE SELECTIVITY TRICK",
+        "body": "A single amino acid change between mutant and wild-type KRAS is enough for an antibody to discriminate. Loading that antibody into a condensate concentrates both the binder and its target in the same droplet — pulling mutant KRAS out of circulation while normal copies, never recruited, keep doing their jobs. The droplet acts as a programmable sorting compartment.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why has KRAS been called 'undruggable' for forty years despite being one of the most common cancer drivers?",
+            "options": [
+              "It sits inside the nucleus where drugs cannot reach",
+              "Its surface is too smooth for small molecules to grip",
+              "It mutates too fast for any drug to keep up",
+              "Humans share it with gut bacteria, causing toxicity"
+            ],
+            "correct": 1,
+            "explanation": "KRAS lacks the deep hydrophobic pockets that small molecules need to bind tightly — its surface is unusually flat, leaving nothing to grip."
+          }
+        ]
+      },
+      {
+        "heading": "THE FOURTH MODALITY",
+        "body": "If the platform generalizes, drug discovery gains an entire new shape: any intracellular protein with a selective binder becomes a potential target, regardless of pocket geometry. The bottleneck shifts from chemistry (finding a molecule that fits) to biology (finding a binder that discriminates) — a problem antibody engineering has been solving for decades."
+      }
+    ],
+    "generatedAt": "2026-05-13T12:28:49.716Z",
+    "label": "Condensates as a Fourth Modality",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-13-brazil-big-tech-platform-liability-lula-trump-legislative-split": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BARGAIN",
+        "body": "Search engines built a tacit deal with publishers: we index your content, you get traffic. For two decades, Google sent a meaningful share of its outbound clicks to news sites, which monetized them via ads. AI Overviews break the bargain by answering the query inside the results page.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is **zero-click search** — queries that resolve without the user ever leaving Google. Estimates suggest these now exceed half of all searches, up from roughly a third pre-Overviews."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BRAZIL FIRST",
+        "body": "Brazil has the most aggressive platform-liability regime outside the EU. Its Marco Civil da Internet (2014) and the 2024 STF ruling on Article 19 already make platforms liable for third-party content under certain conditions — a posture far closer to Brussels than to Washington.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BR",
+              "US",
+              "EU",
+              "AU",
+              "CA",
+              "GB"
+            ],
+            "label": "jurisdictions forcing platforms to pay publishers"
+          }
+        ]
+      },
+      {
+        "heading": "THE AUSTRALIAN PRECEDENT",
+        "body": "Australia's 2021 News Media Bargaining Code forced Google and Meta into payment deals with publishers. Google threatened to pull search; Meta briefly blocked news from Facebook. Both eventually paid. The template — designate platforms, mandate bargaining, arbitrate failures — has been studied and partly copied in Canada, the UK, and now Brazil.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2021",
+                "label": "Australia passes News Media Bargaining Code",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "Canada's Online News Act; Meta blocks news"
+              },
+              {
+                "year": "2024",
+                "label": "Brazil STF expands platform liability"
+              },
+              {
+                "year": "2025",
+                "label": "Google launches AI Overviews globally"
+              }
+            ],
+            "label": "the bargaining-code arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE TRUMP DOCTRINE",
+        "body": "The Trump administration has explicitly tied trade policy to foreign treatment of US tech firms. Section 301 investigations have historically targeted IP theft; the new posture treats digital services taxes and platform regulation as equivalent grievances. Brasília faces a calculation Canberra didn't.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "EU DMA fines",
+                "value": "€multi-bn",
+                "cc": "EU",
+                "tone": "neutral"
+              },
+              {
+                "label": "Canada news law",
+                "value": "CAD $100m+",
+                "cc": "CA",
+                "tone": "neutral"
+              },
+              {
+                "label": "Brazil probe",
+                "value": "opening",
+                "cc": "BR",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India IT rules",
+                "value": "compliance",
+                "cc": "IN",
+                "tone": "neutral"
+              }
+            ],
+            "label": "foreign actions against US tech, by retaliation risk"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL HOOK",
+        "body": "Antitrust law typically asks whether a dominant firm uses its position to harm competition in an adjacent market. Brazil's CADE will likely argue that Google leverages its search monopoly to extract publisher content without compensation — a self-preferencing theory the EU used against Google Shopping in 2017 (€2.4bn fine).",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the 'self-preferencing' theory used against dominant platforms?",
+            "options": [
+              "A platform charging different prices to different users",
+              "A platform using its market power to favor its own services over rivals",
+              "A platform refusing to do business with competitors",
+              "A platform colluding with rivals on pricing"
+            ],
+            "correct": 1,
+            "explanation": "Self-preferencing is when a gatekeeper uses dominance in one market (search) to advantage its own offerings in adjacent markets (shopping, news answers) over third parties."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T12:29:18.802Z",
+    "label": "Platform Liability & Search Economics",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-13-cryptography-undecidable-proofs-new-primitive-graduate-student": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO FAMILIES",
+        "body": "Modern public-key crypto rests on two hardness assumptions: integer factorization (RSA) and discrete logarithms (Diffie-Hellman, ECC). Both crumble under a sufficiently large quantum computer running Shor's algorithm — which is why every standards body is racing toward a third foundation.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Factoring/DLP",
+                "value": "RSA, ECC",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Lattices",
+                "value": "Kyber, Dilithium",
+                "tone": "neutral"
+              },
+              {
+                "label": "Codes",
+                "value": "McEliece",
+                "tone": "neutral"
+              },
+              {
+                "label": "Hashes",
+                "value": "SPHINCS+",
+                "tone": "neutral"
+              },
+              {
+                "label": "Isogenies",
+                "value": "SIKE (broken 2022)",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "cryptographic hardness families"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT GÖDEL PROVED",
+        "body": "In 1931 Kurt Gödel showed that any consistent formal system rich enough to express arithmetic contains statements that are true but unprovable within the system. Turing extended this in 1936: there exist problems no algorithm can ever decide, no matter how much time or memory it has.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The key distinction: *intractable* problems are merely **hard** (factoring a 2048-bit number takes longer than the age of the universe with classical hardware). *Undecidable* problems are **impossible** — no algorithm exists, period."
+          }
+        ]
+      },
+      {
+        "heading": "THE HALTING PROBLEM",
+        "body": "Turing's canonical example: given an arbitrary program, decide whether it eventually halts or runs forever. No general algorithm can answer this. Many undecidable problems reduce to halting — including word problems in group theory, Diophantine equations (Hilbert's 10th), and tiling questions."
+      },
+      {
+        "heading": "WHY THIS MATTERS FOR CRYPTO",
+        "body": "Conventional crypto assumes an attacker lacks enough computing power. An undecidability-rooted scheme assumes the attacker faces a mathematical wall no amount of computation — classical or quantum — can climb. Quantum speedups don't help: Shor's algorithm accelerates specific structured problems, not the general halting problem."
+      },
+      {
+        "heading": "THE CATCH",
+        "body": "Undecidability is a worst-case statement about the hardest instances. Cryptography needs average-case hardness — most instances must be hard, not just some. Translating an undecidable problem into a scheme where typical keys are unbreakable is the entire technical challenge, and where most past attempts have failed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why doesn't a quantum computer threaten an undecidability-based scheme?",
+            "options": [
+              "Quantum gates are too noisy at scale",
+              "Undecidable problems have no algorithm — quantum or classical",
+              "Quantum computers can't represent infinite tapes",
+              "Shor's algorithm only works on prime numbers"
+            ],
+            "correct": 1,
+            "explanation": "Undecidability is a statement about the non-existence of any algorithm. Quantum speedups accelerate existing algorithms; they cannot create one where none exists."
+          }
+        ]
+      },
+      {
+        "heading": "THE LINEAGE",
+        "body": "Cryptographers have flirted with undecidability since the 1980s — Wagner and Magyarik proposed a public-key system based on the word problem for groups in 1985. It was broken. Subsequent attempts using Post correspondence problems and Diophantine equations met similar fates. A durable construction would be a genuine third pillar.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1931",
+                "label": "Gödel's incompleteness theorems",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1936",
+                "label": "Turing: halting problem"
+              },
+              {
+                "year": "1970",
+                "label": "Matiyasevich: Hilbert's 10th undecidable"
+              },
+              {
+                "year": "1977",
+                "label": "RSA published"
+              },
+              {
+                "year": "1985",
+                "label": "Wagner-Magyarik group-theoretic crypto"
+              },
+              {
+                "year": "1994",
+                "label": "Shor's algorithm"
+              },
+              {
+                "year": "2024",
+                "label": "NIST post-quantum standards finalized"
+              }
+            ],
+            "label": "undecidability meets cryptography"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T12:29:47.812Z",
+    "label": "Undecidable Math & Cryptography",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-13-ebonyi-nwifuru-n20bn-loan-no-assembly-approval-fiscal-law": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FEDERAL ARCHITECTURE",
+        "body": "Nigeria has 36 states plus the Federal Capital Territory. Each state has its own governor, assembly, budget, and borrowing authority — a federal structure stitched together at independence in 1960 from regions the British had administered separately, and reshaped repeatedly under military rule before returning to civilian governance in 1999.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "States control roughly **half** of Nigeria's public spending but generate only a small fraction of their own revenue — most arrive from the *Federation Account*, the monthly oil-revenue share-out from Abuja."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GOVERNORS ARE SO POWERFUL",
+        "body": "A Nigerian state governor controls the security votes, the budget, and — through party machinery — who returns to the assembly. The constitutional separation of powers exists on paper; in practice, most state assemblies function as ratification bodies for the governor's office. Speakers who cross the executive are routinely impeached."
+      },
+      {
+        "heading": "THE FISCAL RESPONSIBILITY ACT",
+        "body": "After the oil-debt blowups of the 1980s and 90s, Nigeria passed the Fiscal Responsibility Act in 2007 — borrowing must be tied to capital projects, costed against benefits, and approved by the relevant legislature. States adopted parallel laws through the 2010s. Ebonyi's version requires assembly sign-off plus a published cost-benefit analysis before any loan is drawn."
+      },
+      {
+        "heading": "THE SUBNATIONAL DEBT PROBLEM",
+        "body": "Nigerian states collectively owe trillions of naira to domestic banks and foreign lenders. Many cannot pay salaries without the monthly federal allocation, yet keep borrowing against future allocations — a structure the IMF and World Bank have flagged repeatedly as the country's quietest fiscal risk.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Lagos",
+                "value": "~₦1,200bn",
+                "tone": "unfavorable",
+                "weight": 1200
+              },
+              {
+                "label": "Rivers",
+                "value": "~₦300bn",
+                "tone": "unfavorable",
+                "weight": 300
+              },
+              {
+                "label": "Kaduna",
+                "value": "~₦230bn",
+                "tone": "unfavorable",
+                "weight": 230
+              },
+              {
+                "label": "Ebonyi",
+                "value": "~₦70bn",
+                "tone": "neutral",
+                "weight": 70
+              }
+            ],
+            "label": "Selected Nigerian state debt stocks (₦ bn, approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "EBONYI ITSELF",
+        "body": "Carved out of Enugu State in 1996 by the Abacha military regime, Ebonyi is one of Nigeria's smaller, poorer states in the southeast — Igbo-majority, agricultural, rice-belt. It depends heavily on federal allocations and has limited internally generated revenue, which makes every loan a meaningful share of the state's annual fiscal capacity.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG"
+            ],
+            "label": "Ebonyi within Nigeria",
+            "markers": [
+              {
+                "lat": 6.3249,
+                "lng": 8.1137,
+                "label": "Abakaliki (capital)"
+              },
+              {
+                "lat": 9.0765,
+                "lng": 7.3986,
+                "label": "Abuja (federal)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY SILENCE IS THE TELL",
+        "body": "In Nigerian state politics, an assembly speaker who declines to comment on the executive bypassing his own chamber is signaling alignment, not neutrality. The Fiscal Responsibility Law is enforceable only if the legislature chooses to enforce it — and legislatures rarely choose to.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under Nigeria's federal system, who is the primary check on a state governor's borrowing?",
+            "options": [
+              "The federal Ministry of Finance in Abuja",
+              "The state House of Assembly",
+              "The Central Bank of Nigeria",
+              "The Supreme Court"
+            ],
+            "correct": 1,
+            "explanation": "State assemblies hold the statutory power to approve borrowing under each state's Fiscal Responsibility Law — which is why a silent speaker effectively removes the check."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T12:30:15.952Z",
+    "label": "Nigerian Subnational Borrowing",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-13-great-ormond-street-paediatric-cardiology-ml-patient-similarity": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RARE-DISEASE PROBLEM",
+        "body": "A senior clinician sees thousands of common cases and a handful of rare ones across a career. For a one-in-ten-thousand condition, even a teaching hospital may accumulate only a few dozen examples over decades — too few for any individual doctor to develop pattern recognition.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Medicine calls this the **n-of-one** problem: each rare case is statistically isolated, and the clinician's intuition — built on frequency — fails exactly where stakes are highest."
+          }
+        ]
+      },
+      {
+        "heading": "WHY RANDOM FORESTS, NOT DEEP LEARNING",
+        "body": "A random forest trains hundreds of decision trees on random subsets of the data and averages their votes. It works on small, tabular medical datasets where deep neural networks overfit. For 1,522 records with structured fields — age, weight, lab values, diagnostic codes — forests are the workhorse, not transformers."
+      },
+      {
+        "heading": "THE SIMILARITY APPROACH",
+        "body": "Rather than predict a diagnosis directly, the system retrieves the historical patients whose feature vectors sit closest to the new case. The clinician then reads those charts. This sidesteps the black-box problem — the model's output is a list of real prior patients, not an opaque probability."
+      },
+      {
+        "heading": "GREAT ORMOND STREET",
+        "body": "Founded in 1852, GOSH was Britain's first hospital dedicated entirely to children and remains one of the world's leading paediatric centres. Its case archive — deep, longitudinal, and specialised — is exactly the kind of dataset rare-disease ML needs, and exactly what most hospitals lack.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do rare-disease ML models tend to emerge from specialist children's hospitals rather than general ones?",
+            "options": [
+              "Children's hospitals have looser data-protection rules",
+              "Specialist centres concentrate rare cases that general hospitals see only once",
+              "Paediatric records are simpler to model than adult records",
+              "Regulators approve paediatric AI faster"
+            ],
+            "correct": 1,
+            "explanation": "Rare-disease ML is bottlenecked by case volume. Specialist referral centres see in a year what a general hospital sees in a decade — concentrating signal the model needs."
+          }
+        ]
+      },
+      {
+        "heading": "THE BENCHMARKING TRAP",
+        "body": "Beating clinicians on a retrospective dataset is not the same as helping them prospectively. The historical records carry the outcomes the clinicians eventually reached — the model is graded on a test where the answer key was written by the people it's being compared to. Real validation requires prospective trials where the model's recommendation changes a decision."
+      },
+      {
+        "heading": "LENGTH-OF-STAY AS A HIDDEN METRIC",
+        "body": "Predicting length of stay sounds operational, but it encodes diagnostic severity, complication risk, and case complexity in a single number hospitals already track. It's a useful proxy precisely because it's measured consistently — unlike 'diagnostic accuracy,' which depends on who's adjudicating."
+      }
+    ],
+    "generatedAt": "2026-05-13T12:30:42.143Z",
+    "label": "ML & Rare-Case Medicine",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-13-israel-october-7-tribunal-livestream-prisoner-exchange-ban": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY EXCHANGES MATTER",
+        "body": "Israel has freed roughly 7,000 Palestinian prisoners across major exchange deals since 1985, including 1,027 for one soldier (Gilad Shalit, 2011) and over 1,900 in the 2023-2025 Gaza ceasefire phases. Permanently barring a class of detainees from any future swap closes a lever every Israeli government has used.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1985",
+                "label": "Jibril deal: 1,150 freed for 3 IDF"
+              },
+              {
+                "year": "2004",
+                "label": "Tannenbaum deal: 435 freed"
+              },
+              {
+                "year": "2011",
+                "label": "Shalit deal: 1,027 for 1 soldier",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "Gaza ceasefire phase 1"
+              },
+              {
+                "year": "2025",
+                "label": "Final hostage-prisoner exchanges"
+              }
+            ],
+            "label": "Israel's major prisoner exchanges"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT ADMINISTRATIVE DETENTION IS",
+        "body": "Most Palestinians held by Israel are detained without charge or trial under military orders renewable indefinitely in six-month blocks. The practice dates to British Mandate emergency regulations of 1945, inherited by Israel in 1948 and never repealed. At the start of the October 7 war roughly 1,300 Palestinians were in administrative detention; that figure has since multiplied.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal instrument is the **1945 Defence (Emergency) Regulations** — the same colonial-era code Menachem Begin once called *worse than the Nazi laws* when used against Jewish militants under the British."
+          }
+        ]
+      },
+      {
+        "heading": "TWO LEGAL SYSTEMS, ONE TERRITORY",
+        "body": "Israelis in the West Bank are tried in civilian courts under Israeli law. Palestinians in the same territory are tried in military courts, which have historically delivered conviction rates above 99%. A separate tribunal for October 7 cases adds a third tier — designed for a specific class of defendant rather than a specific class of crime.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Israeli settlers",
+                "value": "Civilian courts",
+                "tone": "favorable"
+              },
+              {
+                "label": "Palestinians",
+                "value": "Military courts",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Oct 7 detainees",
+                "value": "Special tribunal",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Where defendants are tried in the West Bank"
+          }
+        ]
+      },
+      {
+        "heading": "THE DEATH PENALTY IN ISRAEL",
+        "body": "Israel has executed exactly two people in its history: Adolf Eichmann in 1962 and Meir Tobianski in 1948 (the latter posthumously exonerated). Capital punishment exists on the books for genocide, treason in wartime, and Nazi war crimes, but has not been applied to security offenses. The new tribunal would mark a categorical break.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many people has Israel executed since its founding in 1948?",
+            "options": [
+              "Zero — Israel abolished the death penalty",
+              "Two — Eichmann and one wartime case",
+              "Dozens, mostly security offenses",
+              "Hundreds across all categories"
+            ],
+            "correct": 1,
+            "explanation": "Adolf Eichmann (1962) for the Holocaust, and Meir Tobianski (1948) in a wartime field trial later overturned. No security executions since."
+          }
+        ]
+      },
+      {
+        "heading": "THE 93-0 SIGNAL",
+        "body": "A unanimous Knesset vote is rare on contested legislation. It means the opposition — including parties that have criticized Netanyahu's judicial overhaul — chose not to be on record opposing harsh measures against October 7 detainees. The political cost of voting no exceeded the cost of voting yes.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In the Knesset's *Basic Laws* framework, ordinary legislation needs only a simple majority of those present — a 93-0 tally reflects political consensus, not constitutional supermajority."
+          }
+        ]
+      },
+      {
+        "heading": "THE COURT THAT MIGHT STILL INTERVENE",
+        "body": "Israel's Supreme Court, sitting as the High Court of Justice, has historically reviewed security legislation against the Basic Laws — most notably striking down parts of the 2023 judicial reform. A constitutional challenge to the tribunal law would test whether that posture survives the post-October 7 political climate.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "PS",
+              "JO",
+              "LB",
+              "EG"
+            ],
+            "label": "the territory the law touches"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T12:31:12.695Z",
+    "label": "Prisoner Exchanges & the Politics of Detention",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-13-pakistan-remittances-33-8bn-iran-war-resilience-fy26": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BACKBONE",
+        "body": "Remittances are now Pakistan's single largest source of foreign exchange — exceeding exports and dwarfing FDI. Unlike loans or IMF tranches, they carry no conditionality, no repayment, and no interest. The diaspora is effectively Pakistan's external creditor.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In FY24, remittances of **~$30bn** outpaced goods exports of **~$31bn** by a hair — and by FY26 the gap has widened. The country runs on wages earned in other people's economies."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE WORKERS ARE",
+        "body": "Roughly 96% of Pakistan's overseas labor force is in the Gulf, with Saudi Arabia and the UAE alone absorbing more than half. These are construction crews, drivers, domestic workers, nurses — categories that GCC economies structurally cannot fill from their own populations.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "~2.6mn",
+                "cc": "SA",
+                "weight": 26
+              },
+              {
+                "label": "UAE",
+                "value": "~1.7mn",
+                "cc": "AE",
+                "weight": 17
+              },
+              {
+                "label": "UK",
+                "value": "~1.6mn",
+                "cc": "GB",
+                "weight": 16
+              },
+              {
+                "label": "USA",
+                "value": "~0.7mn",
+                "cc": "US",
+                "weight": 7
+              },
+              {
+                "label": "Oman",
+                "value": "~0.3mn",
+                "cc": "OM",
+                "weight": 3
+              },
+              {
+                "label": "Qatar",
+                "value": "~0.2mn",
+                "cc": "QA",
+                "weight": 2
+              }
+            ],
+            "label": "Pakistani diaspora by host country (workers, ~mn)"
+          },
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "SA",
+              "AE",
+              "OM",
+              "QA",
+              "KW",
+              "BH"
+            ],
+            "label": "the remittance corridor"
+          }
+        ]
+      },
+      {
+        "heading": "WHY WORKERS STAY THROUGH WARS",
+        "body": "Gulf labor is kafala-sponsored: a worker's visa is tied to a single employer, and leaving early often forfeits end-of-service gratuity that can equal a year of wages. Combined with the cost of a return ticket and the absence of jobs back home, the rational choice during a regional war is almost always to stay put."
+      },
+      {
+        "heading": "THE FX DEATH SPIRAL THIS PREVENTS",
+        "body": "Import-dependent countries hit a death spiral when energy prices spike: reserves drain, the currency falls, the next shipment costs more in local terms. Sri Lanka hit this in 2022; Pakistan brushed it in 2023. A steady remittance flow during a Gulf war is what keeps the spiral from starting.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222
+            ],
+            "periods": [
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE COSMETIC RESERVES",
+        "body": "Pakistan's headline reserves figure mixes real export earnings with short-term Gulf deposits — Saudi and UAE dollars parked at the State Bank of Pakistan that count as reserves but are 12-month liabilities. Remittances are the only line item that is genuinely Pakistan's to spend.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Each Gulf deposit rollover is a discretionary favour Riyadh or Abu Dhabi can withhold. Remittances are *unconditional*; bilateral deposits are *political*."
+          }
+        ]
+      },
+      {
+        "heading": "THE BAILOUT CYCLE",
+        "body": "This is Pakistan's 24th IMF program since 1958 — more than any other country. The pattern is identical each time: balance-of-payments crisis, IMF stabilization, subsidy cuts, brief recovery, fresh crisis. The $1.2bn tranche buys roughly two months of imports.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Pakistan's foreign exchange inflows now come from remittances vs. goods exports?",
+            "options": [
+              "Remittances are roughly half of exports",
+              "Remittances roughly equal exports",
+              "Remittances now exceed goods exports",
+              "Exports are roughly triple remittances"
+            ],
+            "correct": 2,
+            "explanation": "Pakistan's FY26 remittances of ~$33.9bn exceed goods exports of ~$32bn — the diaspora outearns the entire export sector."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-13"
+    ],
+    "generatedAt": "2026-05-13T12:31:40.964Z",
+    "label": "Pakistan's Remittance Lifeline",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-13-sudan-civil-war-drones-egypt-turkey-iran-uae-75-percent": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SAF–RSF SPLIT",
+        "body": "Sudan's war is not government versus rebels in the classic sense. The Sudanese Armed Forces under Burhan and the Rapid Support Forces under Hemedti were partners in the 2019 coup that toppled Bashir and the 2021 coup that ended the civilian transition. They split in April 2023 over the timeline for folding the RSF into the regular army.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Abdel Fattah al-Burhan",
+                "role": "SAF commander, de facto head of state",
+                "years": "2019–",
+                "cc": "SD"
+              },
+              {
+                "name": "Mohamed Hamdan Dagalo",
+                "role": "RSF commander ('Hemedti')",
+                "years": "2013–",
+                "cc": "SD"
+              }
+            ],
+            "label": "the two commanders"
+          }
+        ]
+      },
+      {
+        "heading": "THE JANJAWEED LINEAGE",
+        "body": "The RSF descends directly from the Janjaweed — the Arab tribal militias Khartoum armed in the early 2000s to crush the Darfur insurgency. Bashir formalized them as a paramilitary in 2013 to balance the regular army. The same fighters accused of genocide in Darfur two decades ago now command armored brigades and foreign drone fleets.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2003–2005 Darfur campaign killed an estimated 300,000 people and displaced 2.5 million. The ICC indicted Bashir for **genocide** in 2009 — a charge that named the *Janjaweed* as the instrument."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DRONES, WHY NOW",
+        "body": "Drones collapsed the cost of precision strike from millions of dollars to thousands. A Turkish Bayraktar TB2 sells for roughly $5M; a Chinese-design loitering munition costs a few thousand. For a war where neither side has air superiority, off-the-shelf drones replace the air force a poor state cannot afford.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Bayraktar TB2",
+                "value": "~$5M",
+                "cc": "TR",
+                "weight": 5000
+              },
+              {
+                "label": "Wing Loong II",
+                "value": "~$2M",
+                "cc": "CN",
+                "weight": 2000
+              },
+              {
+                "label": "Shahed-136",
+                "value": "~$50k",
+                "cc": "IR",
+                "weight": 50
+              },
+              {
+                "label": "FPV quadcopter",
+                "value": "~$1k",
+                "cc": "CN",
+                "weight": 1
+              }
+            ],
+            "label": "drone platforms in Sudan, rough unit cost"
+          }
+        ]
+      },
+      {
+        "heading": "THE PROXY MAP",
+        "body": "Cairo backs the SAF because a hostile Khartoum threatens the Blue Nile; Ankara sells drones to whoever buys; Abu Dhabi backs the RSF because Hemedti's gold flows through Dubai refineries and his fighters served in Yemen alongside Emirati forces. No single bloc commands the conflict — each capital is hedging its own file.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "EG",
+              "TR",
+              "AE",
+              "SA",
+              "TD",
+              "LY",
+              "ET"
+            ],
+            "label": "Sudan's external backers",
+            "markers": [
+              {
+                "lat": 15.5007,
+                "lng": 32.5599,
+                "label": "Khartoum"
+              },
+              {
+                "lat": 13.4534,
+                "lng": 22.4452,
+                "label": "El Fasher (RSF siege)"
+              },
+              {
+                "lat": 19.6158,
+                "lng": 37.2164,
+                "label": "Port Sudan (SAF capital)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE GOLD CIRCUIT",
+        "body": "Sudan is one of Africa's largest gold producers, and most of the output exits informally through Dubai. The RSF controls the Jebel Amer mines in Darfur; revenue funds the foreign weapons that prolong the war. Cutting the gold rail would do more than any UN resolution — but the Emirati refining hub absorbs the volume without questions.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "mines",
+                "label": "Darfur mines"
+              },
+              {
+                "id": "rsf",
+                "label": "RSF"
+              },
+              {
+                "id": "dubai",
+                "label": "Dubai refiners"
+              },
+              {
+                "id": "global",
+                "label": "global bullion market"
+              },
+              {
+                "id": "arms",
+                "label": "drones & arms"
+              }
+            ],
+            "links": [
+              {
+                "source": "mines",
+                "target": "rsf",
+                "value": 100,
+                "label": "control"
+              },
+              {
+                "source": "rsf",
+                "target": "dubai",
+                "value": 80,
+                "label": "smuggled gold"
+              },
+              {
+                "source": "dubai",
+                "target": "global",
+                "value": 80,
+                "label": "refined"
+              },
+              {
+                "source": "global",
+                "target": "rsf",
+                "value": 60,
+                "label": "hard currency"
+              },
+              {
+                "source": "rsf",
+                "target": "arms",
+                "value": 60,
+                "label": "procurement"
+              }
+            ],
+            "label": "Sudan gold → weapons (illustrative)"
+          }
+        ]
+      },
+      {
+        "heading": "THE FORGOTTEN SCALE",
+        "body": "Sudan now hosts the world's largest displacement crisis — larger than Ukraine, Gaza, and Syria combined. Famine has been declared in parts of Darfur and Kordofan. The war receives a fraction of the diplomatic attention of conflicts a tenth its size, in part because no Western power has direct stakes and no single proxy can be pressured to fold.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Sudan's war has produced the largest displacement crisis in the world today. Roughly how many people have been forced from their homes?",
+            "options": [
+              "~3 million",
+              "~6 million",
+              "~12 million",
+              "~20 million"
+            ],
+            "correct": 2,
+            "explanation": "By 2025, over 12 million Sudanese had been displaced internally or across borders — surpassing Ukraine, Syria, and Gaza combined."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T12:32:15.706Z",
+    "label": "Sudan's Drone War & the Proxy Map",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-13-trump-beijing-summit-nvidia-huang-chip-export": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONTROL REGIME",
+        "body": "Since October 2022, the US has restricted exports of advanced AI chips and the equipment to make them to China. The rule targets compute density — chips above specific performance-per-area thresholds need a license, which is presumed denied for Chinese buyers.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The regime works through the **Foreign Direct Product Rule** — any chip made anywhere using US technology falls under US jurisdiction. TSMC in Taiwan and SK Hynix in Korea must comply or lose access to American tools."
+          }
+        ]
+      },
+      {
+        "heading": "THE H200 AND ITS COUSINS",
+        "body": "Nvidia built a sequence of China-specific chips — H800, H20, H200 variants — each engineered to sit just below whatever performance ceiling Washington set. Each tightening of the rule triggered a new SKU. The cat-and-mouse is the entire commercial relationship.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "H100 (flagship)",
+                "value": "~1000 TF",
+                "weight": 1000,
+                "tone": "favorable"
+              },
+              {
+                "label": "H200 (export)",
+                "value": "~600 TF",
+                "weight": 600,
+                "tone": "neutral"
+              },
+              {
+                "label": "H20 (China)",
+                "value": "~150 TF",
+                "weight": 150,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Nvidia's China-tier vs flagship (training throughput, rough)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CEOS ON AIR FORCE ONE",
+        "body": "American presidents have flown executives to Beijing since Nixon — the practice signals that the visit is about commerce, not just diplomacy. Clinton took 24 CEOs in 1998; Obama brought a smaller cohort in 2009; Trump's 2017 visit produced $250bn in announced deals, most of which never materialized.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1972",
+                "label": "Nixon opens China",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1998",
+                "label": "Clinton: 24 CEOs"
+              },
+              {
+                "year": "2009",
+                "label": "Obama: first visit"
+              },
+              {
+                "year": "2017",
+                "label": "Trump: $250bn announced"
+              },
+              {
+                "year": "2026",
+                "label": "Trump returns with Huang"
+              }
+            ],
+            "label": "presidential China visits with business delegations"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT CHINA WANTS FROM NVIDIA",
+        "body": "Chinese AI labs — DeepSeek, Moonshot, Alibaba's Qwen team — train on whatever Nvidia silicon they can legally import, plus stockpiled H100s smuggled through third countries. Huawei's Ascend chips work but lag a generation behind, and the CUDA software ecosystem has no Chinese equivalent."
+      },
+      {
+        "heading": "THE SECURITY ARGUMENT VS THE REVENUE ARGUMENT",
+        "body": "The Pentagon view: every advanced chip sold to China shortens the timeline to military AI parity. The Treasury and Commerce view: cutting Nvidia off from a $50bn market hands that market to Huawei and accelerates Chinese self-sufficiency. The trade-off has no equilibrium — each side's argument gets stronger as the other side's policy succeeds.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Nvidia design China-specific chips rather than just sell the flagship H100 there?",
+            "options": [
+              "Chinese customers prefer cheaper, lower-spec hardware",
+              "US export rules cap performance above a defined threshold",
+              "Chinese data centers can't cool the H100",
+              "Nvidia's China subsidiary makes them locally"
+            ],
+            "correct": 1,
+            "explanation": "Each China SKU (H800, H20, H200 variant) is engineered to sit just below the current US performance ceiling — when the rule tightens, a new chip appears."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEVERAGE QUESTION",
+        "body": "Trump frames chip access as a bargaining chip — open Chinese markets to US firms or the export controls stay. But the controls were originally framed as national security, not trade. Trading them for market access concedes that the security rationale was negotiable all along.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the *fungibility problem* in sanctions theory: once a security tool gets traded for commercial concessions, every future security claim becomes a starting bid in a negotiation."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T12:32:45.704Z",
+    "label": "Chip Export Controls & Statecraft",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-13-turkey-armenia-direct-trade-azerbaijan-tourism-thaw": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE BORDER CLOSED",
+        "body": "Turkey sealed the frontier in 1993 in solidarity with Azerbaijan during the First Nagorno-Karabakh War, when Armenian forces seized the enclave and seven surrounding Azerbaijani districts. It was the longest closed border in Europe.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TR",
+              "AM",
+              "AZ",
+              "GE",
+              "IR"
+            ],
+            "label": "the South Caucasus knot",
+            "markers": [
+              {
+                "lat": 40.1431,
+                "lng": 43.6608,
+                "label": "Margara crossing"
+              },
+              {
+                "lat": 40.1872,
+                "lng": 44.5152,
+                "label": "Yerevan"
+              },
+              {
+                "lat": 39.9334,
+                "lng": 32.8597,
+                "label": "Ankara"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE GENOCIDE QUESTION",
+        "body": "The 1915 deportations and massacres of Ottoman Armenians — recognised as genocide by 30+ states including the US (2021) — sit beneath every Turkey-Armenia negotiation. Ankara rejects the term; Yerevan's constitution references it. Normalisation talks have repeatedly broken on whether the past is a precondition or a parallel track."
+      },
+      {
+        "heading": "THE 2009 PROTOCOLS",
+        "body": "Turkey and Armenia signed normalisation protocols in Zurich in 2009 to open the border and establish ties. Azerbaijan's furious response — threats to cut gas to Turkey — killed ratification within months. The lesson Ankara took: Baku holds a veto on the Armenia file.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1915",
+                "label": "Armenian genocide begins"
+              },
+              {
+                "year": "1991",
+                "label": "Armenia independence"
+              },
+              {
+                "year": "1993",
+                "label": "Turkey closes border",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2009",
+                "label": "Zurich Protocols (unratified)"
+              },
+              {
+                "year": "2020",
+                "label": "44-Day War, Azerbaijan retakes Karabakh"
+              },
+              {
+                "year": "2023",
+                "label": "Azerbaijan takes full Karabakh"
+              },
+              {
+                "year": "2026",
+                "label": "direct customs lane opens"
+              }
+            ],
+            "label": "the long thaw"
+          }
+        ]
+      },
+      {
+        "heading": "THE ZANGEZUR CORRIDOR",
+        "body": "Turkey's real prize is a transport corridor across Armenia's Syunik province linking mainland Azerbaijan to its Nakhchivan exclave — and onward to Turkey. It would give Ankara overland access to the Caspian and Central Asia, bypassing Iran and Russia entirely.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The corridor is sometimes called the **Middle Corridor** — the China-to-Europe overland route that crosses the Caspian instead of Russian territory. Every kilometre that bypasses sanctioned Russian rail is a kilometre Beijing and Brussels both want."
+          }
+        ]
+      },
+      {
+        "heading": "ARMENIA'S BLOCKADE ECONOMY",
+        "body": "Two of Armenia's four borders — with Turkey and Azerbaijan — have been closed since 1993. Trade has run through Georgia and Iran, adding cost to every import and export. Landlocked, with no Black Sea access of its own, Armenia has been priced out of regional supply chains for three decades.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Turkey",
+                "value": "311 km · closed",
+                "tone": "unfavorable",
+                "cc": "TR"
+              },
+              {
+                "label": "Azerbaijan",
+                "value": "996 km · closed",
+                "tone": "unfavorable",
+                "cc": "AZ"
+              },
+              {
+                "label": "Georgia",
+                "value": "219 km · open",
+                "tone": "favorable",
+                "cc": "GE"
+              },
+              {
+                "label": "Iran",
+                "value": "44 km · open",
+                "tone": "favorable",
+                "cc": "IR"
+              }
+            ],
+            "label": "Armenia's borders, 2026"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'DIRECT CUSTOMS LANE' MEANS",
+        "body": "This is not a border reopening — goods still cannot cross the physical frontier. It is a paperwork channel: Turkish and Armenian customs now process each other's goods directly, without a Georgian intermediary. Cheaper, faster, but contingent on an Armenia-Azerbaijan peace deal for the actual gates to open.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What still keeps the physical Turkey-Armenia border closed despite the new customs lane?",
+            "options": [
+              "Armenia's refusal to recognise Turkey",
+              "No formal Armenia-Azerbaijan peace deal yet",
+              "EU sanctions on Turkey",
+              "Russian military presence in Armenia"
+            ],
+            "correct": 1,
+            "explanation": "Turkey's foreign ministry tied a full reopening to Armenia signing a peace treaty with Azerbaijan — Baku still holds the veto it has held since 1993."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T12:33:15.714Z",
+    "label": "Turkey–Armenia: the closed border",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-13-uk-ico-government-ai-foi-chatgpt-public-records": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT FOI ACTUALLY IS",
+        "body": "The UK Freedom of Information Act 2000 gives anyone — citizen or not — the right to request recorded information held by public bodies. The test is whether the information is *recorded* and *held*, not whether it was meant to be kept.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The statutory phrase is **'information held'** — once it exists on a server, the default is disclosure unless a specific exemption applies."
+          }
+        ]
+      },
+      {
+        "heading": "THE RECORDED-INFORMATION TRIGGER",
+        "body": "FOI does not cover what officials think or say in person. The moment a thought is typed into a system that logs it — email, Slack, or a ChatGPT prompt — it becomes recorded information. AI chat logs are no different in law from a draft memo on a shared drive."
+      },
+      {
+        "heading": "WHY 'VEXATIOUS' WAS THE OLD SHIELD",
+        "body": "Section 14 of the Act lets public bodies refuse requests deemed vexatious — disproportionate, harassing, or lacking serious purpose. Departments leaned on this to deflect novel AI requests. The ICO's clarification removes that cover: a request for ministerial prompts is no more vexatious than one for ministerial emails."
+      },
+      {
+        "heading": "THE PRECEDENT THAT MATTERS",
+        "body": "In 2005, Tony Blair's government tried to exempt cabinet discussions; the Information Tribunal forced disclosure of Iraq war legal advice. FOI in Britain has consistently expanded outward — from formal minutes to informal email to WhatsApp messages (ruled disclosable in 2023). AI prompts are the next layer.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2000",
+                "label": "FOIA passed"
+              },
+              {
+                "year": "2005",
+                "label": "Act comes into force",
+                "emphasis": "start"
+              },
+              {
+                "year": "2009",
+                "label": "MPs' expenses scandal via FOI",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2016",
+                "label": "Government emails ruled disclosable"
+              },
+              {
+                "year": "2023",
+                "label": "Ministerial WhatsApps ruled disclosable"
+              },
+              {
+                "year": "2026",
+                "label": "AI prompts confirmed disclosable",
+                "emphasis": "end"
+              }
+            ],
+            "label": "FOI's expanding surface in the UK"
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPARATIVE LANDSCAPE",
+        "body": "Different democracies have drawn the AI-in-government line in very different places. The UK is now among the most disclosure-permissive; the US FOIA framework is still litigating whether prompts are 'agency records'; the EU AI Act focuses on risk classification rather than transparency.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "UK",
+                "value": "FOI-able",
+                "cc": "GB",
+                "tone": "favorable"
+              },
+              {
+                "label": "USA",
+                "value": "unsettled",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "EU",
+                "value": "risk-tier rules",
+                "cc": "EU",
+                "tone": "neutral"
+              },
+              {
+                "label": "China",
+                "value": "opaque",
+                "cc": "CN",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "How major jurisdictions treat government AI use"
+          }
+        ]
+      },
+      {
+        "heading": "THE BEHAVIORAL EFFECT",
+        "body": "FOI's deepest impact is not the disclosures themselves but the chilling effect on what gets written down. Officials shift to verbal briefings, ephemeral apps, or personal devices. The same shift will likely happen with AI — sensitive prompts will migrate to consumer accounts the state cannot subpoena.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the most common way public bodies adapt to broader FOI disclosure rules over time?",
+            "options": [
+              "They publish more proactively",
+              "They shift sensitive discussions off the record",
+              "They lobby to repeal the Act",
+              "They digitise more thoroughly"
+            ],
+            "correct": 1,
+            "explanation": "The well-documented response is *avoidance* — moving sensitive discussion to verbal or untracked channels rather than transparency-by-default."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T12:33:42.454Z",
+    "label": "FOI & AI in Government",
+    "category": "tech",
+    "articleCount": 1
   }
 }
