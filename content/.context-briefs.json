@@ -157605,5 +157605,3276 @@
     "label": "Greenland & Arctic Strategy",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-10-hardware-attestation-monopoly-grapheneos": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT ATTESTATION ACTUALLY IS",
+        "body": "Modern phones contain a dedicated security chip — Titan M on Pixels, Secure Enclave on iPhones — that holds a private key burned in at the factory. When an app asks 'is this a real phone running stock software?', the chip signs a statement Google can verify. The user cannot extract or forge the key.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The signed statement is called an **attestation**: hardware-rooted proof of the device's boot state, traceable to a manufacturer certificate the user never controls."
+          }
+        ]
+      },
+      {
+        "heading": "THE PLAY INTEGRITY API",
+        "body": "Google's Play Integrity API gives any app three verdicts about the device: MEETS_DEVICE_INTEGRITY (real hardware), MEETS_BASIC_INTEGRITY (passes weaker checks), and MEETS_STRONG_INTEGRITY (hardware-backed, certified OS). Banks increasingly require the strongest tier, which only stock Google-certified Android can produce."
+      },
+      {
+        "heading": "WHY GRAPHENEOS FAILS",
+        "body": "GrapheneOS is a security-hardened Android fork that runs on Pixel hardware — the same Titan M chip, the same boot verification. But because Google's certification list only includes manufacturer-signed OS builds, the attestation comes back unrecognized. The phone is more secure than stock; the API reports it as untrusted.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do banking apps reject GrapheneOS despite its stronger security model?",
+            "options": [
+              "The hardware security chip is missing",
+              "Google's certification list excludes non-manufacturer OS builds",
+              "GrapheneOS cannot perform cryptographic signing",
+              "The OS lacks fingerprint sensor support"
+            ],
+            "correct": 1,
+            "explanation": "Attestation isn't a measurement of security — it's a check against Google's signed list of approved OS builds. A more secure OS still fails if it isn't on the list."
+          }
+        ]
+      },
+      {
+        "heading": "THE TIVOIZATION PRECEDENT",
+        "body": "In 2006, TiVo shipped Linux-based DVRs that refused to run modified kernels — the source was open, but the hardware enforced signed binaries. Richard Stallman coined 'tivoization' for this pattern. GPLv3 was rewritten specifically to forbid it. Mobile attestation is tivoization at planetary scale: the OS may be open, but the chip won't vouch for your build.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2006",
+                "label": "TiVo signed-kernel lockdown"
+              },
+              {
+                "year": "2007",
+                "label": "GPLv3 published with anti-tivoization clause"
+              },
+              {
+                "year": "2013",
+                "label": "Android SafetyNet launched"
+              },
+              {
+                "year": "2017",
+                "label": "Hardware-backed attestation via Titan M",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "SafetyNet deprecated for Play Integrity"
+              },
+              {
+                "year": "2025",
+                "label": "Banks mandate STRONG_INTEGRITY tier"
+              }
+            ],
+            "label": "the long arc of locked hardware"
+          }
+        ]
+      },
+      {
+        "heading": "THE DUOPOLY CHOKEPOINT",
+        "body": "Globally, two companies — Google and Apple — control attestation for ~99% of smartphones. There is no third root of trust a bank can verify against. Once regulators or insurers mandate attested devices for financial access, the duopoly becomes the de facto licensing authority for participation in the digital economy.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Google (Android)",
+                "value": "~71% global",
+                "tone": "unfavorable",
+                "weight": 71
+              },
+              {
+                "label": "Apple (iOS)",
+                "value": "~28% global",
+                "tone": "unfavorable",
+                "weight": 28
+              },
+              {
+                "label": "Everyone else",
+                "value": "~1%",
+                "tone": "neutral",
+                "weight": 1
+              }
+            ],
+            "label": "who holds the attestation root"
+          }
+        ]
+      },
+      {
+        "heading": "THE SECURITY PARADOX",
+        "body": "Attestation was built to stop fraud — rooted phones running modified banking apps, malware intercepting OTPs. But the same mechanism punishes the most security-conscious users: those who run hardened forks, disable Google services, or audit their own software. The threat model that justified the lock excludes the people most capable of evaluating it."
+      }
+    ],
+    "generatedAt": "2026-05-13T04:35:41.132Z",
+    "label": "Hardware Attestation & App Gatekeeping",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-12-baltimore-key-bridge-synergy-marine-indictment": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FLAG-OF-CONVENIENCE SYSTEM",
+        "body": "A ship's flag determines which country's safety, labor, and tax laws apply — regardless of where the owner, crew, or cargo come from. Panama, Liberia, and the Marshall Islands together flag over 40% of global tonnage. The Dali was Singapore-flagged, owned by a Singaporean entity, operated by Synergy Marine, crewed by Indians, and chartered by Maersk. Each layer of separation diffuses liability.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Panama",
+                "value": "~16%",
+                "cc": "PA",
+                "weight": 16
+              },
+              {
+                "label": "Liberia",
+                "value": "~14%",
+                "cc": "LR",
+                "weight": 14
+              },
+              {
+                "label": "Marshall Islands",
+                "value": "~12%",
+                "cc": "MH",
+                "weight": 12
+              },
+              {
+                "label": "Hong Kong",
+                "value": "~8%",
+                "cc": "HK",
+                "weight": 8
+              },
+              {
+                "label": "Singapore",
+                "value": "~6%",
+                "cc": "SG",
+                "weight": 6
+              }
+            ],
+            "label": "top ship registries by gross tonnage"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CERTIFICATES MATTER",
+        "body": "Classification societies — private firms like Lloyd's Register, DNV, ClassNK — issue the certificates that say a ship is seaworthy. Insurers, ports, and charterers all rely on those papers. Forging them is not paperwork fraud; it is the single document that lets a vessel transit international waters and dock at a foreign port.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The class certificate is the maritime equivalent of an *airworthiness certificate*. Without it, the ship is legally a hazard — uninsurable, unchartabable, unloadable."
+          }
+        ]
+      },
+      {
+        "heading": "THE BLACKOUT CHAIN",
+        "body": "Modern container ships rely on electrically-driven steering and bow thrusters. When generators trip, the rudder freezes within seconds. The Dali lost power twice in four minutes approaching the bridge — long enough that the pilot had no hydraulic authority to turn, but too short for tugs to intercept. The NTSB later traced one trip to an unapproved flushing pump on the fuel system.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US"
+            ],
+            "label": "Patapsco River, Maryland",
+            "markers": [
+              {
+                "lat": 39.2167,
+                "lng": -76.5283,
+                "label": "Key Bridge collapse site"
+              },
+              {
+                "lat": 39.2667,
+                "lng": -76.5333,
+                "label": "Port of Baltimore"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LIMITATION OF LIABILITY ACT",
+        "body": "An 1851 US statute — written to encourage American shipping against British competition — lets a vessel's owner cap liability at the post-accident value of the ship and its freight. Synergy and Grace Ocean invoked it within weeks of the Dali strike, valuing the wrecked vessel at about $43 million against potential claims north of $4 billion.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What 19th-century US law lets shipowners cap their liability at the post-accident value of the vessel?",
+            "options": [
+              "The Jones Act (1920)",
+              "The Limitation of Liability Act (1851)",
+              "The Death on the High Seas Act (1920)",
+              "The Shipping Act (1916)"
+            ],
+            "correct": 1,
+            "explanation": "Passed to help American shipping compete with British carriers, the 1851 Act survives largely unchanged — and is invoked after nearly every major US maritime casualty."
+          }
+        ]
+      },
+      {
+        "heading": "THE EXTRADITION GAP",
+        "body": "India and the United States have an extradition treaty (1997), but Indian courts routinely block transfers in cases where the death penalty is possible or where political-offense exceptions can be argued. The supervisor named in the indictment, Karthik Nair, sits in a jurisdiction where the US must first file a formal request — and historically, fewer than half of US extradition requests to India result in transfer."
+      },
+      {
+        "heading": "THE CREW QUESTION",
+        "body": "Roughly a quarter of the world's 1.9 million seafarers are Indian or Filipino — the two countries that supply most of global commercial shipping. They work under contracts governed by the flag state, not their home country, and have limited recourse when an employer disputes wages or safety conditions. The six Latin American workers killed on the bridge were highway-maintenance crew filling potholes overnight; they were not on the ship at all.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Philippines",
+                "value": "~230k",
+                "cc": "PH",
+                "weight": 230
+              },
+              {
+                "label": "China",
+                "value": "~140k",
+                "cc": "CN",
+                "weight": 140
+              },
+              {
+                "label": "Indonesia",
+                "value": "~130k",
+                "cc": "ID",
+                "weight": 130
+              },
+              {
+                "label": "Russia",
+                "value": "~120k",
+                "cc": "RU",
+                "weight": 120
+              },
+              {
+                "label": "India",
+                "value": "~110k",
+                "cc": "IN",
+                "weight": 110
+              },
+              {
+                "label": "Ukraine",
+                "value": "~75k",
+                "cc": "UA",
+                "weight": 75
+              }
+            ],
+            "label": "top seafarer-supplying nations"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T04:36:08.719Z",
+    "label": "Flag-of-Convenience Shipping & Liability",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-12-bangladesh-barind-paddy-landless-climate-adaptation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRACT",
+        "body": "The Barind is a raised Pleistocene terrace of hard red clay covering parts of Rajshahi, Naogaon, and Chapai Nawabganj in northwest Bangladesh. Unlike the alluvial Ganges floodplain that defines most of the country, Barind soil drains poorly, holds little groundwater, and historically supported only a single rain-fed crop per year.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BD",
+              "IN"
+            ],
+            "label": "the Barind Tract",
+            "markers": [
+              {
+                "lat": 24.3745,
+                "lng": 88.6042,
+                "label": "Rajshahi"
+              },
+              {
+                "lat": 24.8,
+                "lng": 88.93,
+                "label": "Naogaon"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE GREEN REVOLUTION BARGAIN",
+        "body": "In the 1980s the Barind Multipurpose Development Authority sank thousands of deep tubewells, turning a one-crop region into a three-crop paddy zone. Yields tripled, the landless gained roughly 120 days a year of transplanting and harvest wages, and Bangladesh approached rice self-sufficiency. The water came from a fossil aquifer that no rainfall meaningfully recharges.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bargain was a *fossil-water subsidy*: present-tense employment paid for by drawing down a stock that took millennia to accumulate."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PADDY IS A WATER HOG",
+        "body": "Boro (dry-season) paddy needs roughly 3,000–5,000 litres of water per kilogram of rice — among the thirstiest staple crops on earth. Flooded fields suppress weeds and feed the plant, but most of the water evaporates or percolates past the root zone. In a fossil-aquifer region, every kilogram of boro rice is a withdrawal, not a transaction.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Beef",
+                "value": "~15,000 L",
+                "tone": "unfavorable",
+                "weight": 15000
+              },
+              {
+                "label": "Rice (paddy)",
+                "value": "~3,500 L",
+                "tone": "unfavorable",
+                "weight": 3500
+              },
+              {
+                "label": "Wheat",
+                "value": "~1,500 L",
+                "tone": "neutral",
+                "weight": 1500
+              },
+              {
+                "label": "Maize",
+                "value": "~1,200 L",
+                "tone": "neutral",
+                "weight": 1200
+              },
+              {
+                "label": "Potato",
+                "value": "~290 L",
+                "tone": "favorable",
+                "weight": 290
+              }
+            ],
+            "label": "litres of water per kg produced"
+          }
+        ]
+      },
+      {
+        "heading": "WHO OWNS THE LAND",
+        "body": "Bangladesh has one of South Asia's most skewed rural land distributions: the bottom half of rural households own under 5% of the land, while a thin top stratum owns most of it. When a landowner switches from labor-intensive paddy to capital-intensive orchards, the gain accrues to the deed-holder; the loss falls on the day-wage worker who has no claim on either.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of rural Bangladeshi households are functionally landless (own no farmland or only a homestead)?",
+            "options": [
+              "Around 15%",
+              "Around 30%",
+              "Around 55%",
+              "Around 75%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly half of rural households own no cultivable land — they survive on agricultural day-wages, which is precisely the income that disappears when paddy exits."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DRAGON FRUIT, NOT ANOTHER GRAIN",
+        "body": "Dragon fruit (pitaya), introduced to Bangladesh from Vietnam in the 2010s, fruits in the dry season, tolerates the Barind's thin soil, and sells at 5–10× the per-kg price of rice. But it needs trellises, drip lines, and three years before first harvest — capital and patience the landless cannot supply. The crop that fits the climate also fits the landowner's balance sheet, not the laborer's.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Climate adaptation is rarely class-neutral: the crops that survive a hotter, drier world tend to be **perennial, capital-intensive, and labor-light** — the opposite of the staples that built rural employment."
+          }
+        ]
+      },
+      {
+        "heading": "THE MIGRATION VALVE",
+        "body": "When rural wages collapse in Bangladesh, the safety valve has historically been Dhaka's garment factories and Gulf labor migration — Saudi Arabia, the UAE, and Malaysia together host millions of Bangladeshi workers whose remittances exceed garment export earnings. Climate displacement in the Barind doesn't end in the Barind; it ends in a Riyadh construction site or a Chattogram slum.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Personal remittances received, 2023",
+            "peers": [
+              {
+                "value": 125,
+                "cc": "IN"
+              },
+              {
+                "value": 66,
+                "cc": "MX"
+              },
+              {
+                "value": 50,
+                "cc": "CN"
+              },
+              {
+                "value": 39,
+                "cc": "PH"
+              },
+              {
+                "value": 27,
+                "cc": "PK"
+              },
+              {
+                "value": 24,
+                "cc": "EG"
+              },
+              {
+                "value": 22,
+                "cc": "BD"
+              },
+              {
+                "value": 20,
+                "cc": "NG"
+              }
+            ],
+            "subjectCc": "BD",
+            "unit": "$bn"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T04:36:46.547Z",
+    "label": "Barind Tract & Landless Labor",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-12-brics-delhi-no-joint-iran-statement-non-aligned-design": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DESIGN FLAW",
+        "body": "BRICS operates by consensus — every member holds a veto. The bloc was built to amplify Global South voices, but the same rule that prevents Western domination prevents internal coherence whenever members disagree.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Consensus is not a procedural quirk — it is the **founding compromise** that lets rivals like India and China sit in the same room. Remove it and the bloc collapses; keep it and the bloc cannot speak on hard questions."
+          }
+        ]
+      },
+      {
+        "heading": "THE CAST",
+        "body": "BRICS is no longer the original five. The 2024 expansion added the UAE, Egypt, Ethiopia, and Iran itself — meaning Iran is now a member of the bloc that cannot agree on how to defend it.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Sergey Lavrov",
+                "role": "Russian Foreign Minister",
+                "cc": "RU"
+              },
+              {
+                "name": "Wang Yi",
+                "role": "Chinese Foreign Minister",
+                "cc": "CN"
+              },
+              {
+                "name": "S. Jaishankar",
+                "role": "Indian External Affairs Minister",
+                "cc": "IN"
+              },
+              {
+                "name": "Abdullah bin Zayed",
+                "role": "UAE Foreign Minister",
+                "cc": "AE"
+              },
+              {
+                "name": "Abbas Araghchi",
+                "role": "Iranian Foreign Minister",
+                "cc": "IR"
+              }
+            ],
+            "label": "BRICS+ members on the Iran question"
+          }
+        ]
+      },
+      {
+        "heading": "INDIA'S NON-ALIGNED INHERITANCE",
+        "body": "India co-founded the Non-Aligned Movement in 1961 with Nasser, Tito, Nehru, and Sukarno. Neutrality is not a Modi-era invention; it is doctrine reaching back to independence, deployed in every Cold War crisis from Korea to Afghanistan.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1955",
+                "label": "Bandung Conference"
+              },
+              {
+                "year": "1961",
+                "label": "NAM founded in Belgrade",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1971",
+                "label": "Indo-Soviet treaty (tilt, not alliance)"
+              },
+              {
+                "year": "1998",
+                "label": "Nuclear tests — strategic autonomy"
+              },
+              {
+                "year": "2022",
+                "label": "Abstains on Ukraine at UNGA"
+              },
+              {
+                "year": "2024",
+                "label": "Joins BRICS Iran debate as neutral"
+              }
+            ],
+            "label": "India's non-alignment, the long arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE GULF SPLIT",
+        "body": "The UAE normalized with Israel via the 2020 Abraham Accords and views Iran as a direct regional threat. Russia and China see Iran as a sanctions-resistant energy partner and a wedge against US Gulf primacy. The same bloc now contains both postures.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "AE",
+              "SA",
+              "IN",
+              "CN",
+              "RU"
+            ],
+            "label": "the BRICS Iran fracture"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CONSENSUS BLOCS FRACTURE",
+        "body": "The Non-Aligned Movement, the OIC, the Arab League — every consensus bloc has hit the same wall when a member becomes a target. Solidarity is cheap when abstract; expensive when one member needs the others to absorb diplomatic cost.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which multilateral bloc has historically been MOST effective at producing binding joint statements on member crises?",
+            "options": [
+              "BRICS",
+              "The Arab League",
+              "The OIC (Organisation of Islamic Cooperation)",
+              "None — all consensus blocs struggle when members disagree"
+            ],
+            "correct": 3,
+            "explanation": "Consensus rules guarantee inclusivity but punish decisiveness. Every major bloc fractures along the same fault line when a member becomes the subject of the dispute."
+          }
+        ]
+      },
+      {
+        "heading": "THE COMMUNIQUÉ MECHANIC",
+        "body": "Summit communiqués are negotiated word-by-word by sherpas weeks ahead. Failure produces one of three outcomes: silence on the issue, vague language all sides can claim, or a chair's statement that explicitly notes the lack of consensus. Each option signals weakness differently."
+      }
+    ],
+    "generatedAt": "2026-05-13T04:37:11.090Z",
+    "label": "BRICS & the Consensus Trap",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-12-chile-ecmpo-indigenous-coastal-rollback-mapuche": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE LAW ACTUALLY DID",
+        "body": "Chile's 2008 Lafkenche Act created Espacios Costeros Marinos de Pueblos Originarios (ECMPO) — coastal marine spaces where Indigenous communities hold exclusive customary-use rights. It was the first statute in Latin America to recognize Indigenous tenure over the sea, not just the land.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Spanish acronym **ECMPO** translates roughly as *Indigenous Peoples' Coastal Marine Spaces* — a legal category that has no equivalent in neighboring countries."
+          }
+        ]
+      },
+      {
+        "heading": "WHO THE LAFKENCHE ARE",
+        "body": "Lafkenche means 'people of the sea' in Mapudungun — the coastal branch of the Mapuche, Chile's largest Indigenous group. They have fished, gathered shellfish, and harvested seaweed along the Araucanía and Los Lagos coasts for centuries. The Mapuche resisted Spanish conquest for over 300 years before being subjugated by the Chilean state in the 1880s 'Pacification of Araucanía.'"
+      },
+      {
+        "heading": "WHERE THE ZONES SIT",
+        "body": "ECMPO requests cluster along Chile's southern coast — Biobío, Araucanía, Los Ríos, Los Lagos, and the Chiloé archipelago — precisely where industrial salmon farming, port expansion, and seaweed extraction concessions have grown fastest since the 1990s.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CL",
+              "AR",
+              "PE",
+              "BO"
+            ],
+            "label": "the contested coast",
+            "markers": [
+              {
+                "lat": -41.4693,
+                "lng": -72.9424,
+                "label": "Puerto Montt"
+              },
+              {
+                "lat": -42.6,
+                "lng": -73.85,
+                "label": "Chiloé"
+              },
+              {
+                "lat": -38.7359,
+                "lng": -72.5904,
+                "label": "Temuco (Mapuche heartland)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE INDUSTRIAL CONFLICT",
+        "body": "Chile is the world's second-largest salmon producer after Norway. The industry exports roughly $6bn annually, almost all from waters overlapping ancestral Lafkenche fishing grounds. Each ECMPO grant freezes new aquaculture concessions in the requested area while the application is reviewed — a process that can take years.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Norway",
+                "value": "~1.5mn t",
+                "cc": "NO",
+                "weight": 1500,
+                "tone": "neutral"
+              },
+              {
+                "label": "Chile",
+                "value": "~0.75mn t",
+                "cc": "CL",
+                "weight": 750,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "UK",
+                "value": "~0.18mn t",
+                "cc": "GB",
+                "weight": 180,
+                "tone": "neutral"
+              },
+              {
+                "label": "Canada",
+                "value": "~0.13mn t",
+                "cc": "CA",
+                "weight": 130,
+                "tone": "neutral"
+              },
+              {
+                "label": "Faroe Is.",
+                "value": "~0.09mn t",
+                "cc": "FO",
+                "weight": 90,
+                "tone": "neutral"
+              }
+            ],
+            "label": "global farmed salmon production (2023, mn tonnes)"
+          }
+        ]
+      },
+      {
+        "heading": "ILO 169",
+        "body": "Chile ratified ILO Convention 169 in 2008 — the binding international standard on Indigenous rights. Article 6 requires 'free, prior and informed consent' before legislative or administrative measures affecting Indigenous peoples. Rolling back ECMPO without consultation would put Chile in direct conflict with a treaty it signed the same year Lafkenche became law.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does 'FPIC' (free, prior and informed consent) under ILO 169 require governments to do before measures affecting Indigenous lands?",
+            "options": [
+              "Notify affected communities after the decision is made",
+              "Consult communities in good faith before the decision, in a culturally appropriate manner",
+              "Hold a binding national referendum",
+              "Compensate communities financially for any loss"
+            ],
+            "correct": 1,
+            "explanation": "FPIC requires consultation before — not after — the measure, conducted in good faith and through the community's own representative institutions. It is procedural, not a veto."
+          }
+        ]
+      },
+      {
+        "heading": "THE PATTERN",
+        "body": "Latin American Indigenous land statutes have a recurring arc: a progressive government enacts the framework, a conservative successor narrows the criteria or speeds the approval of competing concessions. Brazil's demarcation freeze under Bolsonaro, Peru's prior-consultation rollbacks, and now Chile's ECMPO amendments follow the same template — the law survives on paper while its administrative spine is removed."
+      }
+    ],
+    "generatedAt": "2026-05-13T04:37:35.835Z",
+    "label": "The Lafkenche Act & Indigenous Marine Tenure",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-12-china-wind-mingyang-europe-security-screening-nsi-act": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NSI ACT",
+        "body": "The UK's National Security and Investment Act (2021) lets ministers block foreign deals across 17 sensitive sectors — including energy and critical infrastructure — even after they complete. It mirrors CFIUS in the US and shifted Britain from one of the most open investment regimes in Europe to one of the most interventionist.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The act's reach is **retroactive** — deals closed before notification can still be unwound, which is why advisers now file pre-emptively even when no formal trigger applies."
+          }
+        ]
+      },
+      {
+        "heading": "WHY TURBINES ARE DUAL-USE",
+        "body": "A modern 15-megawatt offshore turbine contains industrial control systems, satellite uplinks, and grid-synchronization software that communicate continuously with the manufacturer for maintenance. A single foreign vendor controlling thousands of turbines holds a remote off-switch over a meaningful share of national generation.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of UK electricity came from wind in 2024?",
+            "options": [
+              "About 10%",
+              "About 20%",
+              "About 30%",
+              "About 50%"
+            ],
+            "correct": 2,
+            "explanation": "Wind supplied roughly 30% of UK electricity in 2024, the largest single source — which is why turbine supply chains now sit inside the national-security perimeter."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHINESE SCALE",
+        "body": "China builds more than half the world's wind turbines. Mingyang, Goldwind, and Envision dominate domestic installations and have been pushing into Europe with prices 20-30% below Vestas and Siemens Gamesa. The cost gap is the entire commercial argument; the security concern is the entire political counter-argument.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Goldwind (CN)",
+                "value": 20,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Envision (CN)",
+                "value": 15,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Mingyang (CN)",
+                "value": 13,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Windey (CN)",
+                "value": 10,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Vestas (DK)",
+                "value": 13,
+                "tone": "favorable"
+              },
+              {
+                "label": "Siemens Gamesa (DE)",
+                "value": 7,
+                "tone": "favorable"
+              },
+              {
+                "label": "GE Vernova (US)",
+                "value": 5,
+                "tone": "neutral"
+              },
+              {
+                "label": "Nordex (DE)",
+                "value": 4,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global wind turbine manufacturers by 2024 installations (GW)"
+          }
+        ]
+      },
+      {
+        "heading": "THE DUOPOLY PROBLEM",
+        "body": "Outside China, the offshore wind market is essentially Vestas plus Siemens Gamesa. Both have lost money for years on offshore contracts as steel and copper costs rose. Excluding Chinese suppliers means projects pay whatever the duopoly charges — directly raising the levelized cost of European wind power."
+      },
+      {
+        "heading": "THE NORDSTREAM SHADOW",
+        "body": "European energy-security thinking changed after the 2022 Nord Stream pipeline sabotage demonstrated how vulnerable underwater infrastructure is. Offshore wind farms sit in the same waters with the same export cables; the precedent reshaped how regulators score supplier risk across the whole offshore stack.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GB",
+              "DK",
+              "DE",
+              "NL",
+              "NO"
+            ],
+            "label": "the North Sea wind corridor",
+            "markers": [
+              {
+                "lat": 56.4907,
+                "lng": -2.9707,
+                "label": "Scottish port (proposed site)"
+              },
+              {
+                "lat": 55.6761,
+                "lng": 12.5683,
+                "label": "Vestas HQ, Copenhagen"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Britain stripped Huawei from 5G networks in 2020 after pressure from Washington and the intelligence services. The same logic — that critical infrastructure cannot tolerate a vendor whose government can compel cooperation — now extends from telecoms to the power grid."
+      }
+    ],
+    "generatedAt": "2026-05-13T04:38:00.320Z",
+    "label": "Wind Turbines & Strategic Screening",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-12-colombia-amazon-coca-cattle-post-farc-deforestation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PARADOX",
+        "body": "Civil wars often protect forests. The FARC governed remote Amazon territories for decades and enforced strict logging limits — not from conservation ethics but to maintain canopy cover that hid camps from aerial surveillance. Peace removed the gunmen and the trees they were inadvertently protecting.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Researchers call this the **gunpoint conservation** effect: territory too dangerous for ranchers, loggers, or state agents stays forested by default. The 2016 accord was the moment that calculus flipped."
+          }
+        ]
+      },
+      {
+        "heading": "THE LAND TENURE VACUUM",
+        "body": "The accord demobilized roughly 13,000 FARC fighters but never resolved who owned the land they vacated. Colombia's formal cadastre covers less than 70% of rural territory, and Amazon departments are the worst-mapped. Into that vacuum stepped dissident factions, narco-financed land speculators, and absentee cattle barons — each claiming by occupation what the state could not adjudicate.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CO",
+              "VE",
+              "BR",
+              "EC",
+              "PE"
+            ],
+            "label": "the Colombian Amazon arc",
+            "markers": [
+              {
+                "lat": 1.6144,
+                "lng": -75.6062,
+                "label": "Caquetá (deforestation arc)"
+              },
+              {
+                "lat": 0.8569,
+                "lng": -73.7714,
+                "label": "Guaviare frontier"
+              },
+              {
+                "lat": -0.1854,
+                "lng": -70.0808,
+                "label": "Chiribiquete park edge"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY CATTLE",
+        "body": "Cattle are the cheapest way to launder a land claim. A rancher with cows on cleared ground can demonstrate productive use under Colombian law — a step toward formal title. The cows are often a financial afterthought; the real asset is the deed the pasture eventually produces. Agronomists call this *ganadería extensiva* — extensive ranching at densities of less than one head per hectare, economically marginal but legally productive."
+      },
+      {
+        "heading": "THE COCA ECONOMICS",
+        "body": "A hectare of coca yields roughly $1,500-2,000 in farmgate income per year; a hectare of cacao or coffee yields a fraction of that and requires three to five years to mature. Petro's crop substitution programmes offer subsidies during the transition, but enforcement of the offer depends on state presence the Amazon frontier still lacks.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Coca",
+                "value": "~$1,800",
+                "tone": "unfavorable",
+                "weight": 1800
+              },
+              {
+                "label": "Cattle pasture",
+                "value": "~$200",
+                "tone": "neutral",
+                "weight": 200
+              },
+              {
+                "label": "Cacao (mature)",
+                "value": "~$900",
+                "tone": "favorable",
+                "weight": 900
+              },
+              {
+                "label": "Açaí agroforestry",
+                "value": "~$1,200",
+                "tone": "favorable",
+                "weight": 1200
+              }
+            ],
+            "label": "farmgate income per hectare (USD/yr, rough)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TIPPING POINT",
+        "body": "Amazon scientists warn the basin is approaching a self-reinforcing dieback threshold — once roughly 20-25% of the forest is cleared, regional rainfall recycling collapses and the remaining forest converts to savanna on its own. The basin sits at about 17% cleared today. The Colombian arc is one of the fastest-deforesting fronts.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Amazon dieback become self-reinforcing past ~20% clearance?",
+            "options": [
+              "The soil loses fertility and trees cannot regrow",
+              "The forest itself generates roughly half its own rainfall via evapotranspiration",
+              "Cattle methane accelerates regional warming",
+              "Logging roads fragment the canopy beyond recovery"
+            ],
+            "correct": 1,
+            "explanation": "Amazon trees pump moisture into the atmosphere that falls as rain downwind — the 'flying rivers'. Cut enough trees and the rainfall they generated disappears, drying out the trees that remain."
+          }
+        ]
+      },
+      {
+        "heading": "TOTAL PEACE, PARTIAL CONTROL",
+        "body": "Petro's Paz Total doctrine treats every armed group — FARC dissidents, ELN, Clan del Golfo, urban gangs — as a negotiating partner rather than a military target. The strategy assumes Bogotá can trade legal status for territorial control. In the Amazon, dissident factions have used ceasefires to consolidate landholdings rather than relinquish them.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1964",
+                "label": "FARC founded"
+              },
+              {
+                "year": "2016",
+                "label": "Havana peace accord",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2017",
+                "label": "Deforestation spike begins"
+              },
+              {
+                "year": "2022",
+                "label": "Petro elected; Total Peace announced"
+              },
+              {
+                "year": "2024",
+                "label": "800k ha cumulative loss reported"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1964",
+                "to": "2016",
+                "label": "FARC territorial control",
+                "tone": "neutral"
+              },
+              {
+                "from": "2016",
+                "to": "2026",
+                "label": "post-accord deforestation surge",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Colombia's Amazon arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T04:38:32.682Z",
+    "label": "FARC Peace & Amazon Deforestation",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-12-costa-rica-first-narco-extraditions-us": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONSTITUTIONAL BAR",
+        "body": "Costa Rica's 1949 constitution barred extradition of nationals for over seven decades — a stance shared by most of Latin America, rooted in 19th-century sovereignty doctrine that a state owes its citizens trial at home. A 2024 reform carved out narcotics and terrorism, opening the door Gamboa just walked through.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Latin American resistance to extraditing nationals traces to the **Calvo Doctrine** (1868) — Argentine jurist Carlos Calvo's argument that foreigners on national soil get national courts, not their home country's protection. Inverted, it became: our citizens get our courts too."
+          }
+        ]
+      },
+      {
+        "heading": "NO ARMY, NEW PROBLEM",
+        "body": "Costa Rica abolished its military in 1948 and built its identity around being Central America's stable democracy — the country traffickers transited but did not corrupt. That model held for sixty years. It is now visibly breaking.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CO",
+              "PA",
+              "CR",
+              "NI",
+              "HN",
+              "GT",
+              "MX",
+              "US"
+            ],
+            "label": "the cocaine corridor",
+            "caption": "Pacific and Caribbean ports anchor the transit route",
+            "markers": [
+              {
+                "lat": 9.9778,
+                "lng": -84.8294,
+                "label": "Puerto Caldera"
+              },
+              {
+                "lat": 9.9847,
+                "lng": -83.0359,
+                "label": "Puerto Limón"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE HOMICIDE INFLECTION",
+        "body": "Costa Rica recorded 907 homicides in 2023 — a national record, roughly 17 per 100,000 people. A decade earlier the rate was 8. The country crossed from Central American outlier to regional norm in under ten years, almost entirely driven by turf wars over cocaine logistics.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Homicides per 100,000 (2023)",
+            "peers": [
+              {
+                "value": 31,
+                "cc": "HN"
+              },
+              {
+                "value": 25,
+                "cc": "MX"
+              },
+              {
+                "value": 25,
+                "cc": "CO"
+              },
+              {
+                "value": 17,
+                "cc": "GT"
+              },
+              {
+                "value": 17,
+                "cc": "CR"
+              },
+              {
+                "value": 11,
+                "cc": "PA"
+              },
+              {
+                "value": 7,
+                "cc": "NI"
+              },
+              {
+                "value": 6,
+                "cc": "US"
+              }
+            ],
+            "subjectCc": "CR",
+            "unit": "per 100k"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PORTS MATTER",
+        "body": "Cocaine moves north by container, not mule. Costa Rica's Pacific port at Caldera and Caribbean port at Limón each handle hundreds of thousands of containers a year, with inspection rates below 5%. A corrupted customs officer or stevedore is worth more to a cartel than a corrupted general."
+      },
+      {
+        "heading": "THE INFILTRATION PATTERN",
+        "body": "The progression — bribe a customs agent, then a prosecutor, then a judge, then a minister — is the same arc Colombia walked in the 1980s and Mexico in the 2000s. The 'narcotization' of institutions is gradual until it isn't; the threshold is usually when prosecutors stop being willing to indict their colleagues.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which institution typically falls first to cartel infiltration in transit states?",
+            "options": [
+              "The military",
+              "Customs and port authorities",
+              "The central bank",
+              "The foreign ministry"
+            ],
+            "correct": 1,
+            "explanation": "Ports are the physical chokepoint for container-borne cocaine; a single bribed customs inspector can clear millions in product per shipment."
+          }
+        ]
+      },
+      {
+        "heading": "THE US LEVERAGE",
+        "body": "Washington's drug-war toolkit has three tiers: certification (an annual list of cooperating states tied to aid), designation under the Kingpin Act (asset freezes), and extradition treaty enforcement. Costa Rica's pivot to extraditing nationals is the price of staying on the cooperative side of all three."
+      }
+    ],
+    "generatedAt": "2026-05-13T04:38:58.572Z",
+    "label": "Costa Rica & the Cocaine Corridor",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-12-eu-surveillance-tech-export-hrw-enforcement-gap": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT DUAL-USE MEANS",
+        "body": "Dual-use goods are items with both civilian and military applications — encryption, drones, chemical precursors, and increasingly, surveillance software. The category exists because the same code that lets a corporation monitor employees can let a state hunt dissidents.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal term of art is **dual-use** — distinct from pure *military* exports, which fall under a separate (and stricter) arms-control regime. Surveillance tech sits awkwardly between the two: sold as enterprise software, deployed as a weapon."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2021 REGULATION",
+        "body": "EU Regulation 2021/821 was the bloc's response to the Arab Spring revelations that European firms had sold mass-surveillance kit to Mubarak, Gaddafi, and Assad. It added a 'human security' clause empowering Brussels to restrict exports of intrusion software and IP monitoring tools — even when no individual member state objected."
+      },
+      {
+        "heading": "THE ENFORCEMENT GAP",
+        "body": "Authority sits with the Commission; licensing sits with national authorities. Italy licenses Hacking Team's successors, Germany licenses FinFisher's, France licenses Nexa. Each capital has commercial reasons to approve; no capital has reason to escalate to Brussels. The bloc-wide veto exists on paper and nowhere else.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Memento Labs",
+                "role": "successor to Hacking Team; spyware",
+                "cc": "IT"
+              },
+              {
+                "name": "FinFisher",
+                "role": "intrusion software (bankrupt 2022)",
+                "cc": "DE"
+              },
+              {
+                "name": "Nexa Technologies",
+                "role": "interception systems",
+                "cc": "FR"
+              },
+              {
+                "name": "Intellexa / Predator",
+                "role": "mercenary spyware consortium",
+                "cc": "GR"
+              }
+            ],
+            "label": "European surveillance vendors and their licensing states"
+          }
+        ]
+      },
+      {
+        "heading": "WHO BUYS",
+        "body": "Investigations by Citizen Lab and Amnesty have traced European-licensed spyware to Morocco, Egypt, the UAE, Saudi Arabia, Bahrain, Kazakhstan, and Azerbaijan — used against journalists, opposition figures, and exiled dissidents. The Pegasus revelations got the headlines; the European supply chain got the contracts.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MA",
+              "EG",
+              "AE",
+              "SA",
+              "BH",
+              "KZ",
+              "AZ"
+            ],
+            "label": "documented destinations of EU-origin spyware",
+            "caption": "sources: Citizen Lab, Amnesty Tech, EU Parliament PEGA committee"
+          }
+        ]
+      },
+      {
+        "heading": "THE WASSENAAR PRECEDENT",
+        "body": "The Wassenaar Arrangement added 'intrusion software' to its export-control list in 2013 — the first multilateral attempt to treat spyware as a controlled good. Forty-two states signed on. Enforcement was left entirely to national licensing authorities, and the same gap opened: the rule exists, the licenses still flow."
+      },
+      {
+        "heading": "WHY NON-ENFORCEMENT IS THE NORM",
+        "body": "Export-control regimes historically work for nuclear material and missile components — physical goods that cross customs borders and require specialized manufacturers. Software ships as a download under an enterprise license. Once the regulatory frame treats code like a centrifuge, the enforcement model breaks; nobody has yet built one that fits.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which EU body has the authority to block a member state's surveillance export license under the 2021 dual-use regulation?",
+            "options": [
+              "The European Court of Justice",
+              "The European Commission",
+              "The European Parliament",
+              "Only the exporting member state itself"
+            ],
+            "correct": 1,
+            "explanation": "The 2021 regulation gave the Commission a bloc-wide veto power over national licensing decisions on human-security grounds — a power it has not yet exercised."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T04:39:24.139Z",
+    "label": "EU Dual-Use Export Control",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-12-foxconn-cyberattack-north-america-factories-supply-chain": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HIDDEN GIANT",
+        "body": "Foxconn — formally Hon Hai Precision Industry — is the world's largest contract electronics manufacturer, assembling roughly 40% of all consumer electronics globally. Apple, Sony, Microsoft, Dell, Nintendo, and Amazon all rely on its plants, yet most consumers have never seen its logo on a finished product.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is **EMS** — *electronics manufacturing services*. The brand on the box is the design and marketing layer; Foxconn is the factory layer underneath it."
+          }
+        ]
+      },
+      {
+        "heading": "WHY NORTH AMERICA NOW",
+        "body": "Foxconn historically concentrated assembly in Shenzhen and Zhengzhou — the Zhengzhou plant alone, nicknamed 'iPhone City,' once housed 350,000 workers. Trump-era tariffs and COVID-era supply shocks pushed contract manufacturers to diversify into Mexico (under USMCA tariff-free rules) and US states offering subsidies.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "MX",
+              "CN",
+              "TW",
+              "VN",
+              "IN"
+            ],
+            "label": "Foxconn's manufacturing footprint",
+            "caption": "Taiwan HQ, China legacy capacity, North American and Indian buildout"
+          }
+        ]
+      },
+      {
+        "heading": "THE CONCENTRATION RISK",
+        "body": "When one supplier handles assembly for most of an industry, a single disruption cascades everywhere. The 2011 Thai floods knocked out 25% of global hard drive production for months. The 2021 Renesas chip plant fire in Japan stalled auto production worldwide. Cyberattacks now do what floods and fires used to.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011",
+                "label": "Thai floods halt hard drive production"
+              },
+              {
+                "year": "2017",
+                "label": "WannaCry hits TSMC fabs ($170M loss)"
+              },
+              {
+                "year": "2018",
+                "label": "TSMC virus halts iPhone chip production",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020",
+                "label": "Foxconn ransomware attack in Mexico"
+              },
+              {
+                "year": "2021",
+                "label": "Renesas fire stalls global auto industry"
+              },
+              {
+                "year": "2023",
+                "label": "MGM, Clorox, Boeing ransomware cascade"
+              }
+            ],
+            "label": "contract-manufacturing single-point-of-failure incidents"
+          }
+        ]
+      },
+      {
+        "heading": "RANSOMWARE'S FACTORY PIVOT",
+        "body": "Until roughly 2019, ransomware mostly hit hospitals, schools, and municipal governments — soft targets with weak defenses. Then operators discovered manufacturing: every hour of downtime costs millions, insurance pays out faster, and operational technology (the systems running the actual machines) often runs decades-old Windows versions that can't be patched without halting production.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The split is **IT vs OT** — *information technology* (email, ERP) is patchable; *operational technology* (the PLCs running the assembly line) often runs Windows XP because the vendor that wrote the controller software no longer exists."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ATTRIBUTION IS HARD",
+        "body": "Most industrial ransomware originates from Russian-speaking criminal groups operating from jurisdictions that don't extradite. Conti, LockBit, BlackCat, and their successors run as 'ransomware-as-a-service' — the core developers license the malware to affiliates worldwide, so the same payload may be deployed by dozens of unrelated actors."
+      },
+      {
+        "heading": "THE INSURANCE FEEDBACK LOOP",
+        "body": "Cyber insurance premiums for manufacturers rose 5-10x between 2020 and 2023. Insurers now require multi-factor authentication, network segmentation between IT and OT, and offline backups before underwriting — pushing the security baseline up, but also pricing smaller suppliers out of coverage entirely.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do factories make better ransomware targets than hospitals?",
+            "options": [
+              "Factories have weaker firewalls than hospitals",
+              "Every hour of downtime costs millions, so victims pay faster",
+              "Manufacturing data is more valuable on dark markets",
+              "Hospitals are now legally barred from paying ransoms"
+            ],
+            "correct": 1,
+            "explanation": "The economics drive the targeting: a stalled assembly line burns cash by the minute, which shortens the negotiation and raises the ransom ceiling."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T04:39:50.006Z",
+    "label": "Contract Manufacturing & Cyber Risk",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-12-ice-palantir-20-million-pocket-surveillance": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT PALANTIR ACTUALLY BUILDS",
+        "body": "Palantir's Gotham platform doesn't collect data — it fuses it. Government agencies feed in their own records (immigration files, license plate scans, phone logs, social media), and Gotham builds a unified graph where one person's records across agencies become a single profile.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The product name matters: **Gotham** for government, **Foundry** for commercial. Palantir's first major customer was the **CIA's In-Q-Tel** venture arm in 2005 — the company was built from inception for intelligence-grade entity resolution, not enterprise SaaS."
+          }
+        ]
+      },
+      {
+        "heading": "THE ICE CONTRACT HISTORY",
+        "body": "Palantir has held ICE contracts since 2014, originally for the Investigative Case Management system used by Homeland Security Investigations. The 2022 ImmigrationOS contract expanded this to deportation operations — tracking, scheduling, and prioritizing removals.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "US Army",
+                "value": "~$480M",
+                "weight": 480
+              },
+              {
+                "label": "ICE/DHS",
+                "value": "~$95M",
+                "weight": 95
+              },
+              {
+                "label": "HHS",
+                "value": "~$60M",
+                "weight": 60
+              },
+              {
+                "label": "IRS",
+                "value": "~$40M",
+                "weight": 40
+              },
+              {
+                "label": "FBI",
+                "value": "~$30M",
+                "weight": 30
+              }
+            ],
+            "label": "Palantir's top federal customers (annual contract value, 2024 est.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE THIRD-PARTY DOCTRINE",
+        "body": "Under Smith v. Maryland (1979), information you voluntarily share with a third party — your phone company, your bank, your ISP — loses Fourth Amendment protection. This is the legal foundation that lets agencies buy phone-location and identity data from commercial brokers without a warrant.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "This Court consistently has held that a person has no legitimate expectation of privacy in information he voluntarily turns over to third parties.",
+            "speaker": "Smith v. Maryland, 442 U.S. 735",
+            "year": "1979"
+          }
+        ]
+      },
+      {
+        "heading": "THE DATA BROKER ECOSYSTEM",
+        "body": "Companies like Venntel, LexisNexis, and Thomson Reuters CLEAR aggregate phone-location pings, utility records, DMV data, and social media into person-level dossiers. Federal agencies buy access for prices that would require a warrant if obtained directly from carriers.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US"
+            ],
+            "label": "the disclosure path",
+            "markers": [
+              {
+                "lat": 39.7392,
+                "lng": -104.9903,
+                "label": "Palantir Denver HQ"
+              },
+              {
+                "lat": 38.8951,
+                "lng": -77.0364,
+                "label": "ICE HQ, Washington DC"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SCALE PROBLEM",
+        "body": "The US has roughly 47 million foreign-born residents and about 11 million undocumented immigrants. A 20-million-person database is large enough to cover the entire enforcement target population plus a substantial overlay of citizens and legal residents whose data was swept in.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Supreme Court case established that information shared with third parties loses Fourth Amendment protection?",
+            "options": [
+              "Katz v. United States (1967)",
+              "Smith v. Maryland (1979)",
+              "Carpenter v. United States (2018)",
+              "Riley v. California (2014)"
+            ],
+            "correct": 1,
+            "explanation": "Smith v. Maryland created the third-party doctrine over pen-register data. Carpenter (2018) carved out an exception for cell-site location, but the broader doctrine still governs most commercial data purchases."
+          }
+        ]
+      },
+      {
+        "heading": "WHY TRADE SHOWS LEAK",
+        "body": "Vendor expos like the Border Security Expo and IACP are where contractors pitch capabilities to procurement officers. Officials speak freely because the audience is industry, not press — but trade journalists and FOIA-savvy researchers attend specifically to capture admissions that would never appear in sworn testimony."
+      }
+    ],
+    "generatedAt": "2026-05-13T04:40:14.067Z",
+    "label": "ICE & Palantir's Data Stack",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-12-israel-record-west-bank-settlements-iran-war-cover": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL STATUS",
+        "body": "The Fourth Geneva Convention (1949), Article 49, prohibits an occupying power from transferring its own civilian population into territory it occupies. Every UN Security Council resolution on the matter — most recently 2334 in 2016 — has affirmed that Israeli settlements in the West Bank constitute a flagrant violation of international law.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The Occupying Power shall not deport or transfer parts of its own civilian population into the territory it occupies.",
+            "speaker": "Fourth Geneva Convention, Article 49(6)",
+            "year": "1949"
+          }
+        ]
+      },
+      {
+        "heading": "THE NUMBERS",
+        "body": "Roughly 700,000 Israeli settlers now live in the West Bank and East Jerusalem — up from about 250,000 at the time of the 1993 Oslo Accords. The settler population has grown faster than Israel's overall population every year since.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "1972",
+                "value": "~1,500",
+                "weight": 1.5
+              },
+              {
+                "label": "1993 (Oslo)",
+                "value": "~250,000",
+                "weight": 250
+              },
+              {
+                "label": "2009",
+                "value": "~480,000",
+                "weight": 480
+              },
+              {
+                "label": "2024",
+                "value": "~700,000",
+                "weight": 700,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "settler population, key milestones"
+          }
+        ]
+      },
+      {
+        "heading": "OUTPOSTS VS SETTLEMENTS",
+        "body": "Under Israeli domestic law, a settlement requires government authorization; an outpost is built without it. The distinction collapses through retroactive legalization — outposts are erected illegally even by Israeli law, then later authorized through batch votes like this one. Connection to the national water and electricity grid is the irreversible step.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Hebrew term *hitnachalut* means 'taking possession' or 'inheritance' — drawn from the Book of Joshua. The vocabulary itself frames the project as restoration, not colonization."
+          }
+        ]
+      },
+      {
+        "heading": "AREA C",
+        "body": "The 1995 Oslo II Accord divided the West Bank into Areas A, B, and C. Area C — 60% of the territory — was placed under full Israeli civil and military control as a temporary arrangement to last five years. Thirty years later, it still does. Every settlement sits in Area C; Palestinian construction there is virtually never permitted.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "PS",
+              "JO",
+              "LB",
+              "SY",
+              "EG"
+            ],
+            "label": "the West Bank within the region",
+            "markers": [
+              {
+                "lat": 31.7683,
+                "lng": 35.2137,
+                "label": "Jerusalem"
+              },
+              {
+                "lat": 31.9038,
+                "lng": 35.2034,
+                "label": "Ramallah"
+              },
+              {
+                "lat": 31.5326,
+                "lng": 35.0998,
+                "label": "Hebron"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BLESSED LAND",
+        "body": "The Quran refers to Palestine as 'the land We have blessed' in Surah al-Isra, the same chapter that names al-Aqsa as the destination of the Prophet's night journey. Multiple hadith in collections including Sahih Muslim describe the people of al-Sham — Greater Syria, of which Palestine is the heart — as bearers of a particular trust until the end of time."
+      },
+      {
+        "heading": "THE NAKBA AS PROCESS",
+        "body": "Palestinians describe the dispossession not as a single 1948 event but as an ongoing nakba — the Arabic word for catastrophe. Each settlement approval, each home demolition, each grid connection is read inside that frame: the same project of displacement, continued by other means.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of the West Bank is under full Israeli civil and military control under the Oslo Accords?",
+            "options": [
+              "About 20% (Area A)",
+              "About 40% (Areas A+B)",
+              "About 60% (Area C)",
+              "100% — Oslo was never implemented"
+            ],
+            "correct": 2,
+            "explanation": "Area C — 60% of the West Bank — was placed under full Israeli control in 1995 as a five-year interim arrangement. It has remained so for three decades, and every settlement sits within it."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T04:40:44.982Z",
+    "label": "Settlements & International Law",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-12-kuwait-iran-bubiyan-irgc-incursion": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ISLAND'S GEOGRAPHY",
+        "body": "Bubiyan is a low, marshy Kuwaiti island at the head of the Persian Gulf, separating Iraq's Khor Abdullah waterway from open sea. Whoever controls Bubiyan controls Iraq's only direct maritime access — Umm Qasr, Iraq's main port, sits on the channel's northern bank.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KW",
+              "IQ",
+              "IR",
+              "SA"
+            ],
+            "label": "the head of the Gulf",
+            "markers": [
+              {
+                "lat": 29.7831,
+                "lng": 48.2667,
+                "label": "Bubiyan Island"
+              },
+              {
+                "lat": 30.0386,
+                "lng": 47.9311,
+                "label": "Umm Qasr port"
+              },
+              {
+                "lat": 29.3697,
+                "lng": 47.9783,
+                "label": "Kuwait City"
+              },
+              {
+                "lat": 30.4392,
+                "lng": 48.1733,
+                "label": "Khorramshahr (Iran)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY KHOR ABDULLAH MATTERS",
+        "body": "Iraq has 58 km of coastline — among the shortest of any oil exporter. Nearly all Iraqi maritime trade and a meaningful share of its oil exports route through Khor Abdullah and the deepwater terminals just south. The channel is narrow, shallow, and bordered on both sides by foreign sovereignty.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Iraq's land border with Kuwait was drawn by the **1932 boundary** and reaffirmed by **UN Security Council Resolution 833** after the 1991 Gulf War — placing the navigable channel firmly on the Kuwaiti side."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1990 PRECEDENT",
+        "body": "Saddam Hussein's stated casus belli for invading Kuwait in 1990 included disputed access to Bubiyan and Warbah islands. Iraq had pressed Kuwait for decades to lease the islands; the refusal was framed as strangulation of Iraqi sea access. The same geography produced the same grievance under different regimes."
+      },
+      {
+        "heading": "THE IRGC NAVY DOCTRINE",
+        "body": "Iran fields two parallel navies. The regular Artesh navy patrols the Gulf of Oman and beyond; the IRGC Navy operates inside the Persian Gulf with fast attack boats, mines, and amphibious raiding units. The IRGC's mandate is asymmetric harassment of shipping and littoral states — exactly the profile of a small-boat island incursion.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "IRGC Navy",
+                "value": "Persian Gulf",
+                "tone": "unfavorable",
+                "cc": "IR"
+              },
+              {
+                "label": "Artesh Navy",
+                "value": "Gulf of Oman+",
+                "tone": "neutral",
+                "cc": "IR"
+              }
+            ],
+            "label": "Iran's two navies"
+          }
+        ]
+      },
+      {
+        "heading": "KUWAIT'S POSTURE",
+        "body": "Kuwait sits between Saudi-led Gulf hawks and a long memory of being overrun. It hosts ~13,500 US troops at Camp Arifjan and Ali Al Salem airbase — the largest American footprint in the northern Gulf — yet maintains working diplomatic ties with Tehran. Quiet escalation, not public confrontation, is the doctrine.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is Bubiyan Island strategically valuable beyond its size?",
+            "options": [
+              "It contains Kuwait's largest oil field",
+              "It controls Iraq's only sea access to the Gulf",
+              "It hosts the main US naval base in Kuwait",
+              "It is the closest Gulf land to Iranian waters"
+            ],
+            "correct": 1,
+            "explanation": "Bubiyan flanks Khor Abdullah, the narrow channel that connects Iraq's port of Umm Qasr to the open Gulf — Iraq's sole maritime artery."
+          }
+        ]
+      },
+      {
+        "heading": "THE WIDER WAR",
+        "body": "Iran's confrontation with Israel has played out through air-defense exchanges, proxy fronts in Lebanon and Yemen, and shadow naval actions. A northern-Gulf island incursion opens a new vector — pressuring Iraq's access and the US logistical hub in Kuwait simultaneously, without firing across an international maritime boundary."
+      }
+    ],
+    "generatedAt": "2026-05-13T04:41:09.925Z",
+    "label": "Bubiyan & Khor Abdullah",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-12-myanmar-exiled-journalists-five-years-junta-press": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COUP CLOCK",
+        "body": "The Tatmadaw seized power on 1 February 2021, hours before a newly elected parliament was to be sworn in. Within weeks, broadcast licenses were revoked, the publishing law was rewritten, and the criminal code's Section 505A made 'causing fear' or 'spreading false news' punishable by three years. Independent journalism became a felony overnight.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1962",
+                "label": "Ne Win coup nationalizes the press"
+              },
+              {
+                "year": "1988",
+                "label": "8888 uprising; DVB founded in exile"
+              },
+              {
+                "year": "2011",
+                "label": "Pre-publication censorship abolished"
+              },
+              {
+                "year": "2012",
+                "label": "Daily private newspapers legalized"
+              },
+              {
+                "year": "2017",
+                "label": "Reuters reporters jailed over Rohingya story"
+              },
+              {
+                "year": "2021",
+                "label": "Military coup; licenses revoked",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Conscription law triggers new exodus"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1962",
+                "to": "2011",
+                "label": "Direct military censorship",
+                "tone": "unfavorable"
+              },
+              {
+                "from": "2011",
+                "to": "2021",
+                "label": "Press opening (Thein Sein era)",
+                "tone": "favorable"
+              },
+              {
+                "from": "2021",
+                "to": "2026",
+                "label": "Junta crackdown",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Myanmar press, the long arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE EXILE INFRASTRUCTURE",
+        "body": "Burmese exile media is older than the current crisis. Democratic Voice of Burma broadcast from Oslo starting 1992; Mizzima ran from New Delhi; The Irrawaddy from Chiang Mai. When the 2021 coup hit, the infrastructure already existed — reporters fled across the Thai border to organizations their parents had built after 1988.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Democratic Voice of Burma",
+                "role": "satellite & online newsroom",
+                "years": "1992–",
+                "cc": "NO"
+              },
+              {
+                "name": "The Irrawaddy",
+                "role": "English & Burmese magazine",
+                "years": "1993–",
+                "cc": "TH"
+              },
+              {
+                "name": "Mizzima",
+                "role": "multi-platform newsroom",
+                "years": "1998–",
+                "cc": "IN"
+              },
+              {
+                "name": "Myanmar Now",
+                "role": "investigative reporting",
+                "years": "2015–",
+                "cc": "TH"
+              }
+            ],
+            "label": "the exile outlets"
+          }
+        ]
+      },
+      {
+        "heading": "THE JAILER LEAGUE",
+        "body": "By CPJ's most recent prison census, Myanmar consistently ranks among the world's top three jailers of journalists, alongside China and Israel. For a country of 54 million, the per-capita rate is the highest on earth — a small press corps targeted at industrial scale.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Journalists imprisoned (CPJ census, recent years)",
+            "peers": [
+              {
+                "value": 50,
+                "cc": "CN"
+              },
+              {
+                "value": 40,
+                "cc": "IL"
+              },
+              {
+                "value": 35,
+                "cc": "MM"
+              },
+              {
+                "value": 30,
+                "cc": "BY"
+              },
+              {
+                "value": 25,
+                "cc": "RU"
+              },
+              {
+                "value": 20,
+                "cc": "IR"
+              },
+              {
+                "value": 15,
+                "cc": "VN"
+              },
+              {
+                "value": 12,
+                "cc": "EG"
+              }
+            ],
+            "subjectCc": "MM",
+            "unit": "reporters"
+          }
+        ]
+      },
+      {
+        "heading": "THE BORDER GEOGRAPHY",
+        "body": "Most exiled reporters operate from Mae Sot and Chiang Mai in Thailand, where Burmese-language printing presses and NGOs have clustered since the 1988 uprising. A smaller node sits in Mizoram, India, where ethnic Chin journalists cross a porous mountain border the junta cannot police.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MM",
+              "TH",
+              "IN",
+              "BD",
+              "CN"
+            ],
+            "label": "the exile corridor",
+            "markers": [
+              {
+                "lat": 16.6906,
+                "lng": 98.5731,
+                "label": "Mae Sot (TH)"
+              },
+              {
+                "lat": 18.7883,
+                "lng": 98.9853,
+                "label": "Chiang Mai (TH)"
+              },
+              {
+                "lat": 23.7271,
+                "lng": 92.7176,
+                "label": "Aizawl, Mizoram (IN)"
+              },
+              {
+                "lat": 21.4272,
+                "lng": 92.0058,
+                "label": "Cox's Bazar (BD)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE INTERNET KILL SWITCH",
+        "body": "Myanmar's military controls the country's three telecom licenses and ordered ISPs to block Facebook, Twitter, and VPN protocols within days of the coup. Township-level internet shutdowns in conflict zones routinely last months. Reporting from inside the country now means satellite phones, mesh networks, and physical drives carried across the border.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The junta's tool of choice is not the firewall but the **kill switch** — selective blackouts in *Sagaing*, *Magway*, and *Chin* state that coincide with military offensives, ensuring atrocities happen off-camera."
+          }
+        ]
+      },
+      {
+        "heading": "THE COLONIAL INHERITANCE",
+        "body": "The laws used to jail journalists are not new. The Official Secrets Act of 1923 — under which two Reuters reporters were convicted in 2018 for documenting the Rohingya massacres — is a verbatim British colonial statute. Independence in 1948 transferred the apparatus of press control intact from London to Rangoon.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which law was used to jail the two Reuters journalists who exposed the Inn Din massacre of Rohingya in 2017?",
+            "options": [
+              "A 2021 anti-fake-news decree",
+              "The Official Secrets Act of 1923",
+              "Myanmar's 2008 constitution",
+              "A military emergency order"
+            ],
+            "correct": 1,
+            "explanation": "The Official Secrets Act is a British colonial statute from 1923, carried into independent Burma in 1948 and still on the books — the legal scaffolding of press control predates the junta by a century."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T04:41:44.668Z",
+    "label": "Myanmar's Press in Exile",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-12-pakistan-health-donor-exit-2030": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT GRADUATION MEANS",
+        "body": "Donor graduation is the moment a country crosses an income or capacity threshold and is deemed ready to fund services that grants previously covered. The label is administrative — Gavi, the Global Fund, and the World Bank each set their own cutoffs — but the cash effect is real: programs built on external money must find domestic replacement or shrink.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The decisive cutoff is usually **GNI per capita** — for the World Bank's IDA window, roughly $1,335 in 2024. Pakistan sits just above several thresholds simultaneously, which is why *multiple* donors are exiting in the same window."
+          }
+        ]
+      },
+      {
+        "heading": "THE SPENDING GAP",
+        "body": "Pakistan's 0.9% of GDP on public health is roughly a quarter of the South Asian average and a fraction of the WHO's recommended 5% floor. The gap is not new — it has held for two decades across civilian and military governments alike.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Maldives",
+                "value": "~9%",
+                "cc": "MV",
+                "weight": 9
+              },
+              {
+                "label": "Afghanistan",
+                "value": "~4%",
+                "cc": "AF",
+                "weight": 4
+              },
+              {
+                "label": "Nepal",
+                "value": "~4%",
+                "cc": "NP",
+                "weight": 4
+              },
+              {
+                "label": "India",
+                "value": "~2%",
+                "cc": "IN",
+                "weight": 2,
+                "tone": "neutral"
+              },
+              {
+                "label": "Bangladesh",
+                "value": "~2%",
+                "cc": "BD",
+                "weight": 2,
+                "tone": "neutral"
+              },
+              {
+                "label": "Pakistan",
+                "value": "~0.9%",
+                "cc": "PK",
+                "weight": 0.9,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "public health spending, % of GDP"
+          }
+        ]
+      },
+      {
+        "heading": "WHY TB MATTERS HERE",
+        "body": "Pakistan has the world's fifth-highest tuberculosis burden — roughly half a million new cases per year. TB is curable with a $40 six-month antibiotic course, but only if diagnosis, drug supply, and follow-up hold together. The Global Fund's $27.2m cut hits exactly that scaffolding: GeneXpert cartridges, contact tracing, and second-line drugs for resistant strains.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Estimated annual TB cases",
+            "peers": [
+              {
+                "value": 2800,
+                "cc": "IN"
+              },
+              {
+                "value": 1060,
+                "cc": "ID"
+              },
+              {
+                "value": 748,
+                "cc": "CN"
+              },
+              {
+                "value": 740,
+                "cc": "PH"
+              },
+              {
+                "value": 510,
+                "cc": "PK"
+              },
+              {
+                "value": 467,
+                "cc": "NG"
+              },
+              {
+                "value": 379,
+                "cc": "BD"
+              },
+              {
+                "value": 318,
+                "cc": "CD"
+              }
+            ],
+            "subjectCc": "PK",
+            "unit": "thousands"
+          }
+        ]
+      },
+      {
+        "heading": "THE FISCAL CONSTRAINT",
+        "body": "Pakistan's federal budget routes roughly 50% of revenue to debt service and another large share to defence. Health competes for what remains alongside subsidies and provincial transfers. Under the 18th Amendment (2010), health is a provincial subject — but the provinces depend on federal transfers that shrink whenever the IMF arrives.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222
+            ],
+            "periods": [
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE DONOR GRADUATION PARADOX",
+        "body": "Countries graduate based on average income, not health system capacity. A country can cross the GNI threshold while still lacking the institutions — tax collection, supply chains, trained staff — to convert taxes into delivered care. Sri Lanka graduated from Gavi in 2003 and saw vaccination coverage gaps emerge within a decade.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Donor graduation is typically triggered by which threshold?",
+            "options": [
+              "Hitting a vaccination coverage target",
+              "Crossing a GNI-per-capita line",
+              "Reducing under-5 mortality below a set rate",
+              "Signing the WHO Framework Convention"
+            ],
+            "correct": 1,
+            "explanation": "Most major donors (Gavi, IDA, the Global Fund) tie eligibility to GNI per capita — an income measure — not to health system performance, which is why graduation can outpace readiness."
+          }
+        ]
+      },
+      {
+        "heading": "THE POLIO HOLDOUT",
+        "body": "Pakistan is one of only two countries — with Afghanistan — where wild poliovirus still circulates. The eradication program is roughly 80% donor-funded, with the Gates Foundation, Rotary International, and the GPEI carrying most costs. Domestic replacement of that pipeline would require a line item Pakistan has never funded.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF"
+            ],
+            "label": "the last wild-polio reservoirs"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-13"
+    ],
+    "generatedAt": "2026-05-13T04:42:09.980Z",
+    "label": "Donor Graduation & Pakistan Health",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-12-rightscon-2026-zambia-postponed-civil-society-digital-rights": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT RIGHTSCON IS",
+        "body": "RightsCon is the largest annual gathering on human rights in the digital age, convened by Access Now since 2011. It rotates across regions — Silicon Valley, Brussels, Tunis, Manila, Costa Rica, Taipei — deliberately placing itself in jurisdictions where activists from authoritarian states can obtain visas and meet counterparts they cannot meet at home.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2019 edition was held in **Tunis** — the first major digital-rights summit hosted in the Arab world after the regional uprisings — and the 2025 edition was in **Taipei**, which is precisely the precedent Beijing wanted erased before Lusaka."
+          }
+        ]
+      },
+      {
+        "heading": "THE ONE-CHINA POLICY",
+        "body": "Beijing's diplomatic doctrine requires every state with formal PRC ties to deny Taiwan official recognition, sovereign symbols, and high-level engagement. Most countries hedge — they trade with Taipei and host its representative offices — but the line Beijing enforces hardest is the symbolic one: no flag, no minister, no seat at a multilateral table.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many UN member states formally recognize Taiwan as a sovereign country in 2026?",
+            "options": [
+              "Around 50",
+              "Around 25",
+              "Around 12",
+              "Zero"
+            ],
+            "correct": 2,
+            "explanation": "Taiwan has formal diplomatic relations with roughly a dozen states — mostly small Pacific, Caribbean, and Central American nations. The number has shrunk steadily as Beijing buys recognition switches."
+          }
+        ]
+      },
+      {
+        "heading": "THE AFRICAN SWITCH",
+        "body": "Africa is where the recognition battle was won most decisively. In 1971, several African states recognized Taipei; today, only Eswatini does. Zambia switched to Beijing in 1964, the year it gained independence, and has since become one of China's largest African debt holders — a relationship that gives Beijing routine leverage over Lusaka's diplomatic calendar.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ZM",
+              "CN",
+              "TW",
+              "SZ"
+            ],
+            "label": "Zambia, Beijing, Taipei, and Africa's last holdout",
+            "caption": "Eswatini (SZ) is the only African state still recognizing Taiwan"
+          }
+        ]
+      },
+      {
+        "heading": "WHY VENUES MATTER",
+        "body": "Transnational civil-society convenings depend on a host willing to issue visas to activists their home governments would jail. Tunisia did this after 2011; Costa Rica has done it for Latin American defenders; Taiwan did it in 2025. When a host folds to pressure, the cost is not the cancelled conference — it is the message to every future host that the same pressure will work.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Hakainde Hichilema",
+                "role": "Zambian President",
+                "years": "2021–",
+                "cc": "ZM"
+              },
+              {
+                "name": "Brett Solomon",
+                "role": "Access Now co-founder",
+                "years": "2009–2024",
+                "cc": "US"
+              }
+            ],
+            "label": "who pressed whom"
+          }
+        ]
+      },
+      {
+        "heading": "THE TEMPLATE PROBLEM",
+        "body": "SMEX's warning is structural: if China can postpone a 3,700-person summit three weeks out by leaning on the host, any authoritarian patron — Russia in Central Asia, Saudi Arabia in the Maghreb, India in South Asia — now has a documented playbook. The chilling effect is on the next host, not this one."
+      }
+    ],
+    "generatedAt": "2026-05-13T04:42:32.233Z",
+    "label": "RightsCon & the One-China Policy",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-12-ukraine-pentagon-drone-export-testing-deal": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE REVERSAL",
+        "body": "For most of the post-Cold War era, the US exported military technology to allies and the flow ran one way. Ukraine is now the rare case where battlefield-tested hardware moves from a smaller partner to the Pentagon — because three years of attritional war taught Ukrainian firms what no peacetime lab can.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Pentagon calls the initiative ***Drone Dominance***, but the underlying admission is that the US industrial base has fallen behind on cheap, expendable airframes — the opposite of the *exquisite-platform* doctrine that produced the F-35."
+          }
+        ]
+      },
+      {
+        "heading": "THE COST INVERSION",
+        "body": "A Shahed-style one-way attack drone costs roughly $20,000-50,000. A Patriot interceptor that shoots it down costs $4 million. This asymmetry — defenders spending 100x more than attackers per engagement — is why Ukraine's war became the laboratory every defense ministry now studies.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "FPV drone",
+                "value": "~$500",
+                "tone": "favorable"
+              },
+              {
+                "label": "Shahed-136",
+                "value": "~$35k",
+                "tone": "favorable"
+              },
+              {
+                "label": "Stinger missile",
+                "value": "~$120k",
+                "tone": "neutral"
+              },
+              {
+                "label": "NASAMS round",
+                "value": "~$1m",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Patriot PAC-3",
+                "value": "~$4m",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "cost per shot, attacker vs defender"
+          }
+        ]
+      },
+      {
+        "heading": "WHY UKRAINE LEADS",
+        "body": "Ukraine produces more drones annually than any NATO state — by some estimates over 2 million units in 2024, mostly small FPV quadcopters assembled in dispersed workshops. The model is software-driven: open-source flight controllers, commodity motors, additive-manufactured frames, electronic warfare hardening iterated weekly against Russian jamming."
+      },
+      {
+        "heading": "THE PROCUREMENT MISMATCH",
+        "body": "Pentagon programs run on multi-year budget cycles, mil-spec certification, and prime contractors. Ukraine's drone firms iterate in days, change suppliers monthly, and ship without paperwork. Importing Ukrainian drones means importing — or accepting — a procurement culture the Pentagon has spent decades resisting.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How long does a typical Pentagon major-systems acquisition program take from requirement to fielded capability?",
+            "options": [
+              "2-3 years",
+              "5-7 years",
+              "10-15 years",
+              "20+ years"
+            ],
+            "correct": 2,
+            "explanation": "GAO studies put average major-program timelines at 10-15 years. Ukrainian drone units cycle through hardware generations in weeks, which is the gap this deal tries to bridge."
+          }
+        ]
+      },
+      {
+        "heading": "THE EXPORT-CONTROL TRAP",
+        "body": "US arms exports run through ITAR (International Traffic in Arms Regulations) and the State Department's foreign military sales process. Importing weapons into the US is the inverse path — rarely walked, lightly precedented. A non-binding statement of intent is the diplomatic placeholder while lawyers map a route that doesn't yet exist."
+      },
+      {
+        "heading": "THE $50BN PROPOSAL",
+        "body": "Zelenskyy's separate joint-production pitch would have US firms co-manufacture Ukrainian designs at scale, splitting revenue and sustaining Ukraine's defense industry past the war. It remains unsigned because the larger question — whether the US wants a permanent dependency on a partner whose security it underwrites — is unresolved.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "US",
+              "RU",
+              "PL",
+              "RO"
+            ],
+            "label": "the supply geography",
+            "caption": "Ukrainian production, US testing, Russian threat, Polish and Romanian transit"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T04:43:27.063Z",
+    "label": "Drone Warfare & Industrial Reversal",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-12-ursa-major-russia-dprk-nuclear-reactor-transfer": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PROHIBITION",
+        "body": "UN Security Council Resolution 1718 (2006) and successors ban all transfers of nuclear-related materials, technology, and dual-use components to North Korea. Submarine propulsion reactors sit squarely inside this prohibition — they are the canonical case the resolutions were drafted to prevent.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Resolution **1718** established the **1718 Committee** — the UN sanctions body that maintains the designated-vessel list and investigates suspected violations. Its Panel of Experts was disbanded in **2024** after Russia vetoed its renewal, weakening the enforcement architecture precisely when North Korea's transfer activity intensified."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A SUBMARINE REACTOR",
+        "body": "A nuclear-powered submarine can stay submerged for months; a diesel-electric boat surfaces every few days to recharge. For Pyongyang — whose conventional submarines are tracked by US and South Korean ASW within hours of leaving port — a nuclear reactor is the single component that would transform its sea-based deterrent from symbolic to credible."
+      },
+      {
+        "heading": "THE NORTH-RUSSIA AXIS",
+        "body": "Since the 2022 invasion of Ukraine, Moscow and Pyongyang have shifted from cool neighbors to active partners. North Korea ships artillery shells and short-range ballistic missiles to Russia; Russia reciprocates with food, fuel, and — Western intelligence agencies allege — sensitive military technology that Soviet-era treaties once forbade.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2022-02",
+                "label": "Russia invades Ukraine",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-09",
+                "label": "Kim-Putin summit at Vostochny"
+              },
+              {
+                "year": "2023-10",
+                "label": "First DPRK shells arrive in Russia"
+              },
+              {
+                "year": "2024-06",
+                "label": "Comprehensive Strategic Partnership signed"
+              },
+              {
+                "year": "2024-10",
+                "label": "DPRK troops deployed to Kursk"
+              },
+              {
+                "year": "2024-12",
+                "label": "Ursa Major sinks off Spain"
+              }
+            ],
+            "label": "the post-2022 realignment"
+          }
+        ]
+      },
+      {
+        "heading": "THE DARK FLEET",
+        "body": "Sanctioned cargo moves on ships that disable AIS transponders, repaint hulls at sea, fly flags of convenience, and ship-to-ship transfer in international waters. The Ursa Major was operated by Oboronlogistika, a logistics arm of Russia's defense ministry already under US Treasury sanctions since 2022.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "ES",
+              "CN",
+              "KP"
+            ],
+            "label": "the suspected route",
+            "caption": "Baltic origin, Mediterranean transit, Pacific endpoint",
+            "markers": [
+              {
+                "lat": 36.7,
+                "lng": -2.5,
+                "label": "Ursa Major sinking site"
+              },
+              {
+                "lat": 59.95,
+                "lng": 30.31,
+                "label": "St. Petersburg (origin)"
+              },
+              {
+                "lat": 39.03,
+                "lng": 127.43,
+                "label": "Wonsan (suspected destination)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHO COULD HAVE FIRED",
+        "body": "A torpedo strike implies a submarine — surface vessels rarely carry torpedoes anymore. The list of navies that operate submarines capable of conducting a covert strike in the western Mediterranean is short, and none have claimed responsibility. Naval interdictions of sanctioned cargo usually involve boarding, not sinking; an unclaimed torpedo strike would be unprecedented in the post-Cold War era.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In Cold War history, when has one nuclear power sunk another's vessel carrying nuclear material in peacetime?",
+            "options": [
+              "Never — it would have triggered immediate escalation",
+              "Twice — both incidents declassified in the 1990s",
+              "Once — the 1968 Scorpion incident",
+              "Several times — most remain classified"
+            ],
+            "correct": 0,
+            "explanation": "No confirmed peacetime sinking of a nuclear-cargo vessel by another nuclear power exists in the public record. The taboo is among the most durable norms of the nuclear era."
+          }
+        ]
+      },
+      {
+        "heading": "THE WRECK PROBLEM",
+        "body": "At 2,500 meters, the Ursa Major lies below the operational depth of nearly all civilian salvage equipment and most military submarines. Forensic recovery would require specialized deep-sea ROVs of the sort only the US, UK, France, Russia, and a few private operators field. Whoever controls the wreck controls the evidence."
+      }
+    ],
+    "generatedAt": "2026-05-13T04:43:54.664Z",
+    "label": "Sanctions Evasion at Sea",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-12-us-cpi-3-8-iran-war-energy-passthrough": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PASSTHROUGH",
+        "body": "Energy is roughly 7% of the US CPI basket, but its volatility makes it the dominant swing factor month to month. A sustained 20% jump in energy prices mechanically adds about 1.4 percentage points to headline inflation before any second-round effects through transport, food, and manufacturing.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists distinguish **headline** CPI (everything) from **core** CPI (excludes food and energy). The Fed targets core because energy shocks are volatile and supply-driven — but voters feel headline at the pump."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHOKEPOINT",
+        "body": "Roughly a fifth of global oil — about 20 million barrels per day — moves through the Strait of Hormuz, a 33 km channel between Iran and Oman. Saudi Arabia, the UAE, Kuwait, Qatar, Iraq, and Iran all ship through it. No other waterway concentrates this much of world supply.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "SA",
+              "AE",
+              "KW",
+              "QA",
+              "IQ",
+              "BH"
+            ],
+            "label": "the Hormuz dependents",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 29.0688,
+                "lng": 50.1014,
+                "label": "Ras Tanura terminal"
+              },
+              {
+                "lat": 29.0667,
+                "lng": 50.3333,
+                "label": "Kharg Island"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 1973 PRECEDENT",
+        "body": "The OPEC embargo following the Yom Kippur war quadrupled oil prices in five months. US CPI ran above 11% in 1974 and Fed Chair Arthur Burns kept rates too low for too long, anchoring inflation expectations for a decade. Volcker's 1979 rate hikes — to 20% — were the eventual price of that delay.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1973-10",
+                "label": "OPEC embargo begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1974",
+                "label": "CPI peaks at 12.3%"
+              },
+              {
+                "year": "1979",
+                "label": "Iranian Revolution, second shock"
+              },
+              {
+                "year": "1980",
+                "label": "Volcker hikes rate to 20%"
+              },
+              {
+                "year": "1990",
+                "label": "Iraq invades Kuwait"
+              },
+              {
+                "year": "2008",
+                "label": "Brent peaks at $147"
+              },
+              {
+                "year": "2022",
+                "label": "Russia invades Ukraine"
+              }
+            ],
+            "label": "oil shocks and the Fed"
+          }
+        ]
+      },
+      {
+        "heading": "WHY RATE CUTS DISAPPEAR",
+        "body": "The Fed cuts rates when inflation is falling toward 2% and the labor market softens. An energy-driven CPI spike does the opposite — it raises headline inflation and, if sustained, lifts inflation expectations. Cutting into that would signal the Fed has abandoned its mandate; hiking signals it has not.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does the Fed care about an oil-driven inflation spike, even though energy is excluded from core CPI?",
+            "options": [
+              "Energy feeds into transport, food, and manufacturing prices over time",
+              "The Fed's mandate technically targets headline CPI, not core",
+              "Inflation expectations get unanchored if voters see sustained price rises",
+              "All of the above"
+            ],
+            "correct": 3,
+            "explanation": "Second-round effects, the formal 2% target on headline PCE, and expectations all push the Fed to react — even if the initial shock is 'supply side'."
+          }
+        ]
+      },
+      {
+        "heading": "THE STAGFLATION TRAP",
+        "body": "An oil shock raises prices and lowers output at the same time — the worst combination for a central bank. Tight policy fights inflation but deepens the recession; loose policy supports growth but lets inflation entrench. The 1970s taught the Fed that anchoring expectations matters more than cushioning growth. That doctrine has held for 45 years.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "1974 (OPEC)",
+                "value": "12.3%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "1980 (Iran Rev)",
+                "value": "14.8%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "1990 (Kuwait)",
+                "value": "6.3%",
+                "tone": "neutral"
+              },
+              {
+                "label": "2008 (peak)",
+                "value": "5.6%",
+                "tone": "neutral"
+              },
+              {
+                "label": "2022 (Ukraine)",
+                "value": "9.1%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "2026 (now)",
+                "value": "3.8%",
+                "tone": "neutral"
+              }
+            ],
+            "label": "past oil-shock inflation peaks"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T04:44:18.789Z",
+    "label": "Oil Shocks & US Inflation",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-13-india-gold-duty-15-percent-rupee-defence-iran-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY GOLD IS A MACRO PROBLEM FOR INDIA",
+        "body": "India is the world's second-largest gold consumer after China, with annual demand around 700-800 tonnes. Almost none is mined domestically — nearly all is imported. After crude oil, gold is consistently India's second or third largest import line, which makes a gold-buying spree a direct hit on the current account.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bullion bill regularly tops **$40-50 billion a year** — large enough that a single festive season's buying can move the *rupee*."
+          }
+        ]
+      },
+      {
+        "heading": "THE CURRENT ACCOUNT MECHANIC",
+        "body": "When Indians buy imported gold, rupees are sold for dollars to pay foreign refiners. That widens the current account deficit, drains RBI reserves, and weakens the rupee. Raising the import duty makes gold more expensive, suppresses demand, and slows the dollar outflow — a classic FX defence tool dressed as a tax.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "buyer",
+                "label": "Indian buyer"
+              },
+              {
+                "id": "jeweller",
+                "label": "Jeweller"
+              },
+              {
+                "id": "importer",
+                "label": "Bullion importer"
+              },
+              {
+                "id": "refiner",
+                "label": "Foreign refiner"
+              },
+              {
+                "id": "rbi",
+                "label": "RBI reserves"
+              }
+            ],
+            "links": [
+              {
+                "source": "buyer",
+                "target": "jeweller",
+                "value": 100,
+                "label": "rupees"
+              },
+              {
+                "source": "jeweller",
+                "target": "importer",
+                "value": 95,
+                "label": "rupees"
+              },
+              {
+                "source": "importer",
+                "target": "rbi",
+                "value": 95,
+                "label": "INR→USD"
+              },
+              {
+                "source": "rbi",
+                "target": "refiner",
+                "value": 95,
+                "label": "dollars out"
+              }
+            ],
+            "label": "how a gold purchase drains FX reserves"
+          }
+        ]
+      },
+      {
+        "heading": "THE SMUGGLING ELASTICITY",
+        "body": "Every Indian gold duty hike since the 1960s has been followed by a smuggling boom. The 1962 Gold Control Act effectively banned private holdings and created the Dubai-to-Bombay dhow trade that funded Mumbai's underworld for three decades. The World Gold Council estimates unofficial inflows topped 200 tonnes a year when duties last hit 15% in 2013.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When India last raised gold import duty to roughly 15%, what happened to recorded imports the following year?",
+            "options": [
+              "They fell sharply while smuggling surged",
+              "They rose as buyers front-loaded purchases",
+              "They were unchanged — duty had no effect",
+              "They fell and smuggling also fell"
+            ],
+            "correct": 0,
+            "explanation": "In 2013-14, official gold imports halved after duty hit 15%, but trade-body estimates put smuggled inflows above 200 tonnes — the duty shifted the trade, it didn't kill it."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE OIL BILL FORCES THIS",
+        "body": "India imports roughly 85% of its crude. A war premium on Brent of $10-15 a barrel adds tens of billions to the annual import bill within months. With oil inelastic and dollar-priced, the only fast lever left to defend the rupee is to compress the other big dollar drains — and gold is the largest discretionary one.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Crude oil",
+                "value": "~$180bn",
+                "tone": "unfavorable",
+                "weight": 180
+              },
+              {
+                "label": "Gold",
+                "value": "~$45bn",
+                "tone": "unfavorable",
+                "weight": 45
+              },
+              {
+                "label": "Electronics",
+                "value": "~$90bn",
+                "tone": "neutral",
+                "weight": 90
+              },
+              {
+                "label": "Coal",
+                "value": "~$40bn",
+                "tone": "unfavorable",
+                "weight": 40
+              }
+            ],
+            "label": "India's top import lines (annual, rough)"
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ TRANSMISSION",
+        "body": "India sources roughly two-thirds of its crude from the Persian Gulf, almost all of it via the Strait of Hormuz. An Iran war doesn't need to close the strait to hurt India — insurance premiums, tanker rerouting, and a Brent spike are transmitted into Mumbai's FX market within days.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "IR",
+              "SA",
+              "AE",
+              "IQ",
+              "OM",
+              "KW"
+            ],
+            "label": "India's Gulf oil corridor",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 29.0667,
+                "lng": 50.7833,
+                "label": "Kharg Island terminal"
+              },
+              {
+                "lat": 19.076,
+                "lng": 72.8777,
+                "label": "Mumbai (JNPT)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE CULTURAL FLOOR",
+        "body": "Indian households hold an estimated 25,000 tonnes of gold — more than the official reserves of the US, Germany, Italy, France, and the IMF combined. Gold is dowry, savings, and inflation hedge in a country where most workers have no formal pension. Duty hikes shift behaviour at the margin; they cannot break the floor.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Gold holdings (tonnes)",
+            "peers": [
+              {
+                "value": 25000,
+                "label": "Indian households"
+              },
+              {
+                "value": 8133,
+                "label": "USA (official)"
+              },
+              {
+                "value": 3352,
+                "label": "Germany"
+              },
+              {
+                "value": 2452,
+                "label": "Italy"
+              },
+              {
+                "value": 2437,
+                "label": "France"
+              },
+              {
+                "value": 2333,
+                "label": "Russia"
+              },
+              {
+                "value": 2280,
+                "label": "China (official)"
+              },
+              {
+                "value": 2814,
+                "label": "IMF"
+              }
+            ],
+            "subjectLabel": "Indian households",
+            "unit": "t"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T04:44:52.171Z",
+    "label": "India's Gold Tax & the FX Defence",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-13-india-modi-convoy-halved-iran-war-fuel-austerity": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CURRENT ACCOUNT MECHANIC",
+        "body": "India imports more than 85% of its crude. Every $10/barrel rise in Brent widens the current account deficit by roughly $15 billion annually — pressuring the rupee, forcing the RBI to defend reserves, and feeding through to fuel and food prices within weeks.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The transmission runs **crude → import bill → rupee → CPI**. By the time pump prices move, the macro damage is already booked."
+          }
+        ]
+      },
+      {
+        "heading": "THE SPG SHIELD",
+        "body": "The Special Protection Group, created by Parliament in 1988 after Indira Gandhi's assassination, guards the sitting Prime Minister with a multi-vehicle armored convoy, jammers, and a trailing medical car. Halving it is symbolic theater — the security architecture is statutory, not discretionary."
+      },
+      {
+        "heading": "THE AUSTERITY PLAYBOOK",
+        "body": "Fuel-driven austerity signaling has a long Indian lineage. Lal Bahadur Shastri asked Indians to skip a meal a week during the 1965 wheat crisis. Manmohan Singh cut official car use during the 2008 oil spike. The gesture rarely moves the deficit — it manages the politics of asking citizens to absorb price pain.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1965",
+                "label": "Shastri's 'skip a meal' appeal"
+              },
+              {
+                "year": "1973",
+                "label": "OPEC embargo, Indira rationing"
+              },
+              {
+                "year": "2008",
+                "label": "Manmohan cuts official fuel use"
+              },
+              {
+                "year": "2022",
+                "label": "Excise cut after Ukraine spike"
+              },
+              {
+                "year": "2026",
+                "label": "Modi halves convoy",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "fuel-shock austerity gestures"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DIESEL MATTERS MORE",
+        "body": "India consumes three times more diesel than petrol. Diesel powers trucks, tractors, rail, and irrigation pumps — the backbone of food production and logistics. A diesel spike feeds directly into food inflation, which hits the poorest hardest and has historically unseated Indian governments."
+      },
+      {
+        "heading": "THE EV PIVOT",
+        "body": "India's FAME-II scheme and state-level EV policies aim to cut oil import dependence as much as carbon emissions. Government fleet electrification is the cheapest signaling tool: small absolute volumes, high visibility, and it nudges domestic manufacturers like Tata and Mahindra who already supply state procurement.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India",
+                "value": "~87%",
+                "cc": "IN",
+                "tone": "unfavorable",
+                "weight": 87
+              },
+              {
+                "label": "China",
+                "value": "~72%",
+                "cc": "CN",
+                "tone": "unfavorable",
+                "weight": 72
+              },
+              {
+                "label": "Japan",
+                "value": "~95%",
+                "cc": "JP",
+                "tone": "unfavorable",
+                "weight": 95
+              },
+              {
+                "label": "USA",
+                "value": "net exporter",
+                "cc": "US",
+                "tone": "favorable",
+                "weight": 5
+              },
+              {
+                "label": "Brazil",
+                "value": "net exporter",
+                "cc": "BR",
+                "tone": "favorable",
+                "weight": 10
+              }
+            ],
+            "label": "oil import dependence, selected economies"
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ EXPOSURE",
+        "body": "Roughly two-thirds of India's crude imports transit the Strait of Hormuz. An Iran war isn't an abstract geopolitical event for Delhi — it is a direct chokepoint risk on the single most important commodity flow into the country.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "IQ"
+            ],
+            "label": "India's oil lifeline",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 29.0667,
+                "lng": 50.3333,
+                "label": "Kharg Island"
+              },
+              {
+                "lat": 19.076,
+                "lng": 72.8777,
+                "label": "Mumbai (Jamnagar refinery hub)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE QUIZ",
+        "body": "Test the substrate.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of India's crude oil consumption is imported?",
+            "options": [
+              "About 50%",
+              "About 70%",
+              "About 85%",
+              "Nearly 100%"
+            ],
+            "correct": 2,
+            "explanation": "India imports roughly 85-87% of its crude — one of the highest dependency ratios among major economies, which is why every Brent move ripples through the fiscal and external accounts."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T04:45:16.522Z",
+    "label": "Fuel Shocks & Indian Statecraft",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-13-meta-employee-protest-mouse-tracking-bossware-surveillance": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT BOSSWARE ACTUALLY CAPTURES",
+        "body": "Modern employee monitoring software logs keystrokes, mouse movement, idle time, screenshots at intervals, application usage, and webcam frames. The data stream is granular enough to reconstruct what an employee did minute-by-minute across a workday.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The category has a name in HR-tech: **UAM** (User Activity Monitoring). Vendors like *Teramind*, *ActivTrak*, and *Hubstaff* market it as productivity analytics; workers experience it as continuous performance review."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRAINING-DATA REFRAME",
+        "body": "Framing surveillance as AI training data is new. Mouse paths and keystroke cadence are exactly the trajectory data needed to train computer-use agents — models that operate browsers and software the way humans do. The worker becomes the demonstrator, often without separate consent."
+      },
+      {
+        "heading": "WHY ONE WEEK BEFORE LAYOFFS MATTERS",
+        "body": "Performance-based terminations in the US generally need documented evidence to survive a discrimination claim. Activity logs collected immediately before a reduction-in-force create a defensible paper trail — even when the metric correlates poorly with actual output."
+      },
+      {
+        "heading": "THE UK–US LEGAL ASYMMETRY",
+        "body": "UK workers fall under GDPR and the Information Commissioner's 2023 guidance, which requires a documented Data Protection Impact Assessment before deploying monitoring and gives workers a right to access their own logs. US federal law imposes almost no such limit — the Electronic Communications Privacy Act (1986) explicitly exempts employer monitoring of company systems.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "UK",
+                "value": "DPIA required",
+                "cc": "GB",
+                "tone": "favorable"
+              },
+              {
+                "label": "EU",
+                "value": "GDPR Art. 88",
+                "tone": "favorable"
+              },
+              {
+                "label": "Germany",
+                "value": "works council veto",
+                "cc": "DE",
+                "tone": "favorable"
+              },
+              {
+                "label": "US (federal)",
+                "value": "ECPA exempts",
+                "cc": "US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "California",
+                "value": "notice only",
+                "cc": "US",
+                "tone": "neutral"
+              }
+            ],
+            "label": "worker monitoring regimes"
+          }
+        ]
+      },
+      {
+        "heading": "THE LABOR LAW SHIELD IN THE US",
+        "body": "Section 7 of the National Labor Relations Act (1935) protects 'concerted activity' — workers acting together over working conditions — even in non-unionized workplaces. Pamphlets in break rooms criticizing surveillance fall squarely inside this protection, which is why the Meta flyer authors cited it specifically. The NLRB has repeatedly ruled that disciplining workers for such activity is an unfair labor practice."
+      },
+      {
+        "heading": "WHY TECH UNIONIZATION IS RARE",
+        "body": "US tech has the lowest unionization rate of any major industry — under 2%, versus 10% nationally. The CWU drive at Meta UK matters because UK law gives unions statutory recognition rights once they hit 10% membership in a bargaining unit, with a path to a binding vote. No equivalent mechanism exists for Meta's US workforce.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which US law protects non-union workers who jointly criticize their employer's policies?",
+            "options": [
+              "The First Amendment",
+              "Section 7 of the NLRA",
+              "Title VII of the Civil Rights Act",
+              "The Fair Labor Standards Act"
+            ],
+            "correct": 1,
+            "explanation": "Section 7 of the National Labor Relations Act protects 'concerted activity' — collective action over working conditions — regardless of whether a union exists."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Amazon warehouses pioneered minute-level worker tracking via handheld scanners; the rate-based firing system became a template. The shift to white-collar surveillance — coders, designers, PMs — closes a gap the industry long assumed protected knowledge workers from blue-collar measurement regimes."
+      }
+    ],
+    "generatedAt": "2026-05-13T04:45:40.401Z",
+    "label": "Bossware & Worker Surveillance",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-13-pakistan-fiscal-deficit-pdl-fuel-levy-30-year-low": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PETROLEUM LEVY",
+        "body": "The Petroleum Development Levy (PDL) is a per-litre charge stacked on top of customs duty and sales tax. Because it sits outside the federal-provincial NFC revenue-sharing pool, every rupee collected stays with Islamabad — unlike income tax, where provinces claim 57.5%.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why the PDL is politically irresistible: it is the only major tax that does **not** trigger the *NFC Award* split. A rupee of PDL is worth more than two rupees of income tax to the federal budget."
+          }
+        ]
+      },
+      {
+        "heading": "WHY FUEL IS THE PERFECT TAX",
+        "body": "Fuel demand is inelastic — drivers, truckers, and farmers buy roughly the same volume regardless of price. Collection happens at a handful of refineries and import terminals, not millions of taxpayers. Evasion is near zero. Governments everywhere lean on fuel taxes; Pakistan has leaned harder than most."
+      },
+      {
+        "heading": "THE PRIMARY-SURPLUS GAME",
+        "body": "A primary surplus means revenue exceeds non-interest spending. Pakistan has hit this benchmark before — in 2003 and 2016 — but each time, interest payments on existing debt swamped the surplus, so total debt kept growing. The headline number signals fiscal effort; the debt stock signals whether the effort is enough.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Interest payments",
+                "value": "~46%",
+                "tone": "unfavorable",
+                "weight": 46
+              },
+              {
+                "label": "Defence",
+                "value": "~14%",
+                "tone": "neutral",
+                "weight": 14
+              },
+              {
+                "label": "Subsidies",
+                "value": "~8%",
+                "tone": "neutral",
+                "weight": 8
+              },
+              {
+                "label": "Development (PSDP)",
+                "value": "~7%",
+                "tone": "favorable",
+                "weight": 7
+              },
+              {
+                "label": "All other",
+                "value": "~25%",
+                "tone": "neutral",
+                "weight": 25
+              }
+            ],
+            "label": "FY2025 Pakistan budget composition (% of expenditure)"
+          }
+        ]
+      },
+      {
+        "heading": "THE IMF CONDITIONALITY",
+        "body": "The $7bn Extended Fund Facility signed in September 2024 explicitly required Pakistan to raise the PDL to PKR 60/litre and remove the cap from primary law. The current windfall is not a domestic policy choice — it is a Fund benchmark that Islamabad agreed to in exchange for tranche releases."
+      },
+      {
+        "heading": "THE WAR-PRICE DEPENDENCY",
+        "body": "PDL revenue is volume × rate. If global crude collapses, retail demand rises and revenue holds. If crude spikes further, the government must either pass through (inflation) or absorb the gap (deficit returns). The surplus is structurally exposed to the Brent strip — a hostage to Persian Gulf tensions Pakistan does not control.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.888234,
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222
+            ],
+            "periods": [
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHO PAYS",
+        "body": "Fuel taxes are regressive in absolute terms but progressive as a share of consumption in poor economies — wealthy households burn more litres per capita through cars and generators. The political backlash, though, comes from transporters whose strikes can paralyse Karachi port traffic within 48 hours.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Pakistan's federal government prefer raising the petroleum levy over raising income tax?",
+            "options": [
+              "Fuel taxes are easier to evade, so collection costs are lower",
+              "The PDL is excluded from federal-provincial revenue sharing, so 100% stays with Islamabad",
+              "Income tax requires parliamentary approval; the PDL does not",
+              "Fuel taxes are constitutionally capped at a higher rate"
+            ],
+            "correct": 1,
+            "explanation": "Income tax flows into the divisible pool and provinces take 57.5% under the NFC Award. PDL sits outside that pool — every rupee stays federal."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-13"
+    ],
+    "generatedAt": "2026-05-13T04:46:03.330Z",
+    "label": "Pakistan's Fuel-Tax Fiscal Trick",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-13-trump-tower-gold-coast-australia-15bn-scrapped-altus": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LICENSING MODEL",
+        "body": "The Trump Organization rarely builds or owns the towers bearing its name. It licenses the brand to local developers for fees that typically run 15-25% of unit sale premiums, plus management contracts. The risk sits with the developer; the brand collects regardless of whether the project finishes.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is **brand licensing**, not real estate development — closer to how Marriott or Hilton flag a hotel than how a developer builds one. The Trump Organization's exposure is its *name*, not its capital."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BRAND VALUE IS FRAGILE",
+        "body": "A licensed brand only works if the name commands a price premium. When the name becomes politically polarizing, the premium inverts: buyers discount rather than pay extra. Several Trump-branded buildings in New York, Toronto, and Panama have had the name stripped since 2016 after local sentiment turned.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Trump SoHo (NYC)",
+                "value": "2017",
+                "cc": "US"
+              },
+              {
+                "label": "Trump Intl Toronto",
+                "value": "2017",
+                "cc": "CA"
+              },
+              {
+                "label": "Trump Ocean Club Panama",
+                "value": "2018",
+                "cc": "PA"
+              },
+              {
+                "label": "Trump Place (NYC)",
+                "value": "2016",
+                "cc": "US"
+              }
+            ],
+            "label": "Trump-branded properties that removed the name"
+          }
+        ]
+      },
+      {
+        "heading": "THE GOLD COAST CONTEXT",
+        "body": "Queensland's Gold Coast is one of the most speculative property markets in the developed world — high-rise apartment towers funded by off-the-plan presales to offshore buyers, mostly from mainland China and Southeast Asia. A $1.5bn tower requires 60-70% of units sold before banks release construction finance. Brand toxicity kills the presale flow, which kills the project before a shovel hits dirt.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AU"
+            ],
+            "label": "the proposed site",
+            "markers": [
+              {
+                "lat": -28.0167,
+                "lng": 153.4,
+                "label": "Gold Coast, Queensland"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY AUSTRALIAN SENTIMENT MATTERS HERE",
+        "body": "Australia is among the most anti-Trump electorates in the developed world — Lowy Institute polling consistently shows confidence in the US president below 20% during both Trump terms, the lowest of any major US ally. When the Iran strikes landed, that sentiment hardened. For a developer pricing off-the-plan apartments to local and Asian buyers, the brand became a marketing liability rather than a premium.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does buyer sentiment kill a tower before construction begins?",
+            "options": [
+              "Banks require 60-70% of units pre-sold before releasing construction finance",
+              "Local councils require public approval polling",
+              "Insurance premiums spike with unpopular brands",
+              "Construction unions refuse to work on unpopular projects"
+            ],
+            "correct": 0,
+            "explanation": "Off-the-plan presales are the gate to bank finance; without presales, no debt; without debt, no tower."
+          }
+        ]
+      },
+      {
+        "heading": "THE NO-APPLICATION TELL",
+        "body": "Mayor Tate's confirmation that no development application was ever filed reveals the project never reached the regulatory stage where it would become real. In Queensland, major towers require a Material Change of Use application — typically 6-12 months of work. A three-month timeline with no DA means the deal collapsed at the term sheet stage, before architectural drawings were even commissioned."
+      }
+    ],
+    "generatedAt": "2026-05-13T04:46:26.444Z",
+    "label": "Brand Licensing & Property Development",
+    "category": "economy",
+    "articleCount": 1
   }
 }
