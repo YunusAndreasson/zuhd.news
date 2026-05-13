@@ -162352,5 +162352,1966 @@
     "label": "FOI & AI in Government",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-05-13-covid-post-exposure-prophylaxis-pill-nejm-immunocompromised": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONCEPT",
+        "body": "Post-exposure prophylaxis means taking a drug AFTER contact with a pathogen but BEFORE symptoms appear, racing to suppress replication during the incubation window. The strategy predates antivirals — rabies immunoglobulin after a dog bite is the classic case.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Latin root is *prophylaxis* — 'guarding in advance.' What makes **post-exposure** prophylaxis different from treatment is the target: you are killing a pathogen that has entered the body but not yet established widespread infection."
+          }
+        ]
+      },
+      {
+        "heading": "THE MECHANISM",
+        "body": "Ensitrelvir blocks the SARS-CoV-2 main protease (Mpro), an enzyme the virus needs to cut its own proteins into functional pieces. No cleavage, no replication. Pfizer's Paxlovid hits the same target — Mpro is the most druggable site on the coronavirus genome because human cells have no equivalent enzyme.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is the main protease (Mpro) such an attractive antiviral target?",
+            "options": [
+              "It is the most abundant protein the virus produces",
+              "Humans have no equivalent enzyme, so blocking it has few side effects",
+              "It sits on the virus's outer surface, easy to reach",
+              "It mutates more slowly than the spike protein"
+            ],
+            "correct": 1,
+            "explanation": "Mpro has no human analog, so drugs that inhibit it can be specific to the virus — a rare advantage in antiviral design."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PAXLOVID WASN'T ENOUGH",
+        "body": "Paxlovid contains ritonavir, a booster that blocks liver enzymes (CYP3A4) to keep the antiviral in the bloodstream longer. That same blockade interacts with dozens of common drugs — statins, blood thinners, transplant medications — making it unusable for many of the patients who need it most. Ensitrelvir is a single agent with no ritonavir, avoiding the interaction trap."
+      },
+      {
+        "heading": "THE NUMBERS",
+        "body": "A drop from 9% to 3% infection rate is a roughly 67% relative risk reduction. In trial language, the number-needed-to-treat is about 17 — treat 17 exposed contacts to prevent one infection. For comparison, oseltamivir (Tamiflu) post-exposure prophylaxis for influenza shows similar magnitudes.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Placebo",
+                "value": "9%",
+                "tone": "unfavorable",
+                "weight": 9
+              },
+              {
+                "label": "Ensitrelvir",
+                "value": "3%",
+                "tone": "favorable",
+                "weight": 3
+              }
+            ],
+            "label": "infection rate after household exposure"
+          }
+        ]
+      },
+      {
+        "heading": "THE 72-HOUR WINDOW",
+        "body": "Antiviral prophylaxis only works if started before viral load explodes. SARS-CoV-2 typically doubles every 6-8 hours in the early days; by day 4-5 post-exposure, peak shedding has begun and drug intervention shifts from prevention to damage control. This is why the trial's enrollment cutoff was 72 hours, not a week."
+      },
+      {
+        "heading": "THE REGULATORY DIVERGENCE",
+        "body": "Japan's PMDA approved ensitrelvir for treatment in November 2023 under an emergency pathway; the US FDA has been slower, requesting additional data through 2024. Different agencies weigh trial design choices differently — Japan accepted shorter symptom-resolution endpoints that the FDA viewed as insufficient. The prophylaxis indication now restarts that conversation.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "JP",
+              "US"
+            ],
+            "label": "approval timeline diverges"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T22:40:02.111Z",
+    "label": "Post-Exposure Prophylaxis",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-13-dream-market-admin-arrest-germany-andresen-us-indictment": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT TOR ACTUALLY DOES",
+        "body": "Tor routes traffic through three volunteer relays, each peeling one layer of encryption. The entry node sees you but not your destination; the exit node sees the destination but not you. Onion services skip the exit node entirely — both ends stay inside the network, which is why marketplaces use them.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The name comes from the layered routing: **The Onion Router**, originally built by the US Naval Research Laboratory in the mid-1990s to protect intelligence communications. The same anonymity tool the Pentagon funded for spies is what dark markets run on."
+          }
+        ]
+      },
+      {
+        "heading": "THE SILK ROAD PRECEDENT",
+        "body": "Ross Ulbricht launched Silk Road in 2011 and ran it until 2013, when the FBI seized the servers and arrested him in a San Francisco library mid-login — to preserve his unencrypted laptop session. He got two life sentences without parole. The case set the template: patient years of attribution work, then a physical arrest timed to catch the operator logged in."
+      },
+      {
+        "heading": "THE EXIT SCAM PATTERN",
+        "body": "Dark markets rarely get shut down cleanly. The dominant ending is the exit scam: admins freeze withdrawals, drain user escrow wallets, and vanish. Evolution (2015) walked off with ~$12m in bitcoin. AlphaBay's admin allegedly died in a Thai jail in 2017 after a coordinated takedown. Dream Market is unusual in that its admin was identified and arrested years after the site closed.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011",
+                "label": "Silk Road launches",
+                "emphasis": "start"
+              },
+              {
+                "year": "2013",
+                "label": "Silk Road seized; Dream Market opens"
+              },
+              {
+                "year": "2014",
+                "label": "Silk Road 2.0 seized (Operation Onymous)"
+              },
+              {
+                "year": "2015",
+                "label": "Evolution exit scam"
+              },
+              {
+                "year": "2017",
+                "label": "AlphaBay & Hansa takedown",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Dream Market shuts down"
+              },
+              {
+                "year": "2022",
+                "label": "Hydra (Russian) seized by Germany"
+              },
+              {
+                "year": "2026",
+                "label": "Andresen arrested"
+              }
+            ],
+            "label": "the major markets"
+          }
+        ]
+      },
+      {
+        "heading": "HOW ATTRIBUTION ACTUALLY WORKS",
+        "body": "Tor protects the network layer, not operational security. Admins are caught through reused usernames across forums, bitcoin transaction graph analysis (chain analysis firms cluster wallets by behavior), seized servers from co-conspirators, and basic mistakes — logging into the marketplace from a home IP, ordering pizza to a safe house. The crypto is rarely the weak link; the human is."
+      },
+      {
+        "heading": "WHY GERMANY",
+        "body": "Germany has become the operational hub for dark web takedowns. Frankfurt hosts major internet exchange points; the BKA's cybercrime unit runs joint operations with the FBI, DEA, and Dutch police. The 2017 Hansa takedown — German police ran the marketplace covertly for a month, harvesting buyer addresses — and the 2022 Hydra seizure were both German-led.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What made the 2017 Hansa operation unusual among dark-market takedowns?",
+            "options": [
+              "German police seized it and shut it down immediately",
+              "German police ran the marketplace covertly for a month before closing it",
+              "It was the first market to use Monero exclusively",
+              "It was taken down by ransomware, not police"
+            ],
+            "correct": 1,
+            "explanation": "Dutch and German police operated Hansa as a honeypot for ~30 days after seizing its servers, collecting user data while displaced AlphaBay refugees flocked in — one of the largest deanonymization operations in dark-web history."
+          }
+        ]
+      },
+      {
+        "heading": "THE MONERO PIVOT",
+        "body": "Bitcoin's public ledger is what burned most early admins — every transaction is permanently traceable, and firms like Chainalysis specialize in clustering wallets to real identities. Modern markets push users toward Monero, whose ring signatures and stealth addresses break the transaction graph. The 7-year gap between Dream Market's closure and this arrest is partly a bitcoin forensics story."
+      }
+    ],
+    "generatedAt": "2026-05-13T22:40:34.143Z",
+    "label": "Dark Web Marketplaces",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-13-egypt-bread-subsidy-in-kind-cash-transfer-fiscal-year": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OLDEST SUBSIDY",
+        "body": "Egypt's subsidized baladi bread dates to the 1940s and became universal under Nasser. For seven decades, every Egyptian — rich or poor — has been entitled to cheap loaves at a price set by the state, not the market. It is the most politically sensitive line item in the budget.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The loaf itself is called *baladi* — \"of the country\" — and at the subsidized price of roughly **5 piastres** (about $0.001), it is sold for less than 1% of its production cost. The state absorbs the rest."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1977 BREAD INTIFADA",
+        "body": "On January 18, 1977, Sadat's government cut subsidies on bread, sugar, and cooking oil under IMF pressure. Riots erupted in every major Egyptian city within hours; police stations burned, the army was deployed, and at least 79 died. Sadat reversed the cuts in 48 hours. Every Egyptian president since has treated bread as untouchable.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1941",
+                "label": "Wartime bread rationing introduced"
+              },
+              {
+                "year": "1977",
+                "label": "Bread Intifada — Sadat reverses cuts",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2008",
+                "label": "Global wheat spike, bread queues, deaths"
+              },
+              {
+                "year": "2011",
+                "label": "Tahrir Square — \"bread, freedom, social justice\""
+              },
+              {
+                "year": "2014",
+                "label": "Sisi introduces smart card quota system"
+              },
+              {
+                "year": "2024",
+                "label": "Loaf price raised 4x — first hike since 1989"
+              },
+              {
+                "year": "2026",
+                "label": "Cash card proposal floated"
+              }
+            ],
+            "label": "Egypt's bread politics"
+          }
+        ]
+      },
+      {
+        "heading": "THE WHEAT DEPENDENCY",
+        "body": "Egypt is the world's largest wheat importer. It buys roughly 10-12 million tonnes a year, historically split between Russia and Ukraine — meaning a war in the Black Sea is a direct threat to Egyptian bread supply. Domestic production covers less than half of consumption.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Wheat imports, 2024",
+            "peers": [
+              {
+                "value": 11.5,
+                "cc": "EG"
+              },
+              {
+                "value": 10.8,
+                "cc": "ID"
+              },
+              {
+                "value": 9.5,
+                "cc": "CN"
+              },
+              {
+                "value": 8.2,
+                "cc": "TR"
+              },
+              {
+                "value": 8,
+                "cc": "DZ"
+              },
+              {
+                "value": 6.8,
+                "cc": "BD"
+              },
+              {
+                "value": 6.5,
+                "cc": "BR"
+              }
+            ],
+            "subjectCc": "EG",
+            "unit": "mn tonnes"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IN-KIND BEATS CASH IN A CRISIS",
+        "body": "A bread quota guarantees calories regardless of price; a cash card guarantees pounds regardless of calories. When inflation runs hot — Egyptian CPI has averaged double digits for three years — a fixed cash transfer loses purchasing power monthly. The Chambers of Commerce warning is mathematical, not political: 50 pounds today is not 50 pounds next year.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              52.4198,
+              51.9627,
+              51.7698,
+              51.884157,
+              51.884157,
+              51.884157,
+              51.970698,
+              51.9993,
+              51.7463,
+              52.6215,
+              52.619542,
+              52.572404,
+              52.572404,
+              52.6099,
+              52.5498,
+              52.8295,
+              53.0206,
+              53.623047,
+              53.639736,
+              53.639736,
+              53.5567,
+              53.5362,
+              53.6199,
+              52.703434,
+              52.7193,
+              52.72,
+              52.74469,
+              52.7376,
+              52.8269,
+              52.9233
+            ],
+            "periods": [
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13"
+            ],
+            "label": "Egyptian pound",
+            "unit": "EGP / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE IMF TRAP",
+        "body": "Egypt has received four IMF programs since 2016, each requiring subsidy reform. Devaluation makes wheat imports costlier in pounds, which raises the subsidy bill, which forces more devaluation. Cash transfers are the IMF's preferred mechanism — they are visible, capped, and targetable — but they shift inflation risk from the state to the household.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does the IMF prefer cash transfers over in-kind subsidies?",
+            "options": [
+              "They cost less money overall",
+              "They are visible, capped, and targetable to the poor",
+              "They eliminate the need for currency reform",
+              "They guarantee a minimum calorie intake"
+            ],
+            "correct": 1,
+            "explanation": "In-kind subsidies have open-ended cost (you supply whatever's demanded at a fixed price); cash transfers are budgetable line items that can be means-tested."
+          }
+        ]
+      },
+      {
+        "heading": "WHO HOLDS A CARD",
+        "body": "About 60 million Egyptians — roughly 60% of the population — hold a tamween (subsidy) card entitling them to 5 loaves per person per day. The system covers far more than the poor; it is closer to a universal entitlement, which is precisely why narrowing it is so politically dangerous.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Arabic word *tamween* means **\"provisioning\"** — the same root as wartime supply. The card system was designed for scarcity, not poverty targeting, and the cultural memory of it is closer to a ration book than to welfare."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-13"
+    ],
+    "generatedAt": "2026-05-13T22:41:13.738Z",
+    "label": "Egypt's Bread Subsidy",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-13-fed-chair-warsh-confirmed-trump-rate-cuts-independence": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STRUCTURAL DESIGN",
+        "body": "The Federal Reserve was built in 1913 to be insulated from electoral politics: governors serve 14-year terms, the chair serves four, and the chair can only be removed 'for cause' — not policy disagreement. The design assumes the temptation to print money before elections is constant; the institutional firewall must outlast any one president.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 1951 **Treasury–Fed Accord** ended a wartime arrangement where the Fed pegged Treasury yields to finance government debt. That document is the practical birth of modern Fed independence — before it, the central bank was effectively the Treasury's financing arm."
+          }
+        ]
+      },
+      {
+        "heading": "THE VOLCKER PRECEDENT",
+        "body": "Paul Volcker took the chair in 1979 with inflation at 11% and pushed the federal funds rate above 19%. Unemployment hit 10.8%, farmers drove tractors to Washington to blockade the Eccles Building, and Reagan never publicly attacked him. The episode became the canonical case for why a chair must be willing to be hated.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The standard of living of the average American has to decline. I don't think you can escape that.",
+            "speaker": "Paul Volcker, to Congress",
+            "year": "1979"
+          }
+        ]
+      },
+      {
+        "heading": "THE DUAL MANDATE",
+        "body": "Unlike the ECB or Bundesbank, the Fed by law pursues both maximum employment and stable prices. When the two conflict — inflation high, labor market softening — the chair's judgment about which to prioritize is the most consequential discretionary call in global finance.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "US Fed",
+                "value": "dual: jobs + prices",
+                "tone": "neutral"
+              },
+              {
+                "label": "ECB",
+                "value": "price stability",
+                "tone": "favorable"
+              },
+              {
+                "label": "Bundesbank (pre-EU)",
+                "value": "price stability",
+                "tone": "favorable"
+              },
+              {
+                "label": "Bank of England",
+                "value": "2% target + growth",
+                "tone": "neutral"
+              },
+              {
+                "label": "Bank of Japan",
+                "value": "2% target",
+                "tone": "favorable"
+              },
+              {
+                "label": "PBoC",
+                "value": "multi: jobs, FX, growth",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "central bank mandates"
+          }
+        ]
+      },
+      {
+        "heading": "THE FOMC IS NOT THE CHAIR",
+        "body": "Rates are set by the Federal Open Market Committee — 12 voting members: 7 Board governors plus 5 rotating regional Fed presidents. The chair sets the agenda and steers consensus, but a determined dissent bloc can constrain action. Regional presidents are appointed by private member banks, not the White House — another layer of insulation.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many voting members sit on the FOMC at each rate-setting meeting?",
+            "options": [
+              "7 — the Board of Governors",
+              "12 — Board plus 5 regional presidents",
+              "19 — all governors and all regional presidents",
+              "9 — like the Supreme Court"
+            ],
+            "correct": 1,
+            "explanation": "The 7 Board governors always vote; 5 of 12 regional Fed presidents rotate in, except the New York Fed president who always votes."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE MARKET IS PRICING NO MOVE",
+        "body": "Fed funds futures trade on the CME and aggregate millions of bets into a daily probability of each rate outcome. A 97% no-change reading means traders expect Warsh to use his first meeting to signal continuity, not surprise — surprise moves are how a new chair loses the credibility his predecessors banked over decades.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4.09,
+              4.04,
+              4.05,
+              4.09,
+              4.08,
+              4.08,
+              4.03,
+              4.04,
+              4.05,
+              4.02,
+              3.97,
+              4.05,
+              4.06,
+              4.09,
+              4.13,
+              4.15,
+              4.12,
+              4.15,
+              4.21,
+              4.27,
+              4.28,
+              4.23,
+              4.2,
+              4.26,
+              4.25,
+              4.39,
+              4.34,
+              4.39,
+              4.33,
+              4.42,
+              4.44,
+              4.35,
+              4.3,
+              4.33,
+              4.31,
+              4.35,
+              4.34,
+              4.33,
+              4.29,
+              4.29,
+              4.31,
+              4.3,
+              4.26,
+              4.29,
+              4.32,
+              4.26,
+              4.26,
+              4.3,
+              4.3,
+              4.34,
+              4.31,
+              4.35,
+              4.36,
+              4.42,
+              4.4,
+              4.39,
+              4.45,
+              4.43,
+              4.36,
+              4.41,
+              4.38,
+              4.42,
+              4.46
+            ],
+            "periods": [
+              "Feb 12",
+              "Feb 13",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 11",
+              "May 12"
+            ],
+            "label": "US 10y Treasury",
+            "unit": "%",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE TURKISH COUNTER-EXAMPLE",
+        "body": "Erdogan fired three central bank chiefs between 2019 and 2021 for refusing to cut rates into rising inflation. The lira lost roughly 80% of its dollar value over the following years; inflation peaked above 85%. The episode is the modern textbook case of what political capture of monetary policy looks like in real time.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              44.736702,
+              44.732801,
+              44.853499,
+              44.844404,
+              44.8275,
+              44.844405,
+              44.870503,
+              44.889801,
+              44.914199,
+              44.980798,
+              45.025177,
+              45.015003,
+              45.015003,
+              45.029197,
+              45.034201,
+              45.065837,
+              45.183781,
+              45.1469,
+              45.167301,
+              45.142499,
+              45.190601,
+              45.216799,
+              45.231614,
+              45.233899,
+              45.364747,
+              45.347503,
+              45.347503,
+              45.380101,
+              45.395703,
+              45.413499
+            ],
+            "periods": [
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13"
+            ],
+            "label": "Turkish lira",
+            "unit": "TRY / USD",
+            "highlight": "last",
+            "source": 1
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · Board of Governors · as of 2026-05-12",
+      "Open Exchange Rates · as of 2026-05-13"
+    ],
+    "generatedAt": "2026-05-13T22:41:43.989Z",
+    "label": "Fed Independence & the Chair",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-13-fiber-optic-cable-shortage-ai-data-centers-drone-warfare": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT FIBER ACTUALLY IS",
+        "body": "An optical fiber is a hair-thin strand of ultra-pure glass that guides light by total internal reflection. The core is doped with germanium to bend light back into itself; impurities measured in parts per billion determine how far a signal travels before it needs amplification.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Modern long-haul fiber loses roughly **0.15 decibels per kilometer** — meaning a signal can travel 80–100 km before needing an *erbium-doped amplifier* to boost it. This is why a single transatlantic cable can carry hundreds of terabits."
+          }
+        ]
+      },
+      {
+        "heading": "THE PREFORM BOTTLENECK",
+        "body": "Every fiber starts as a glass cylinder called a preform, drawn down into kilometers of strand on a tower three stories tall. Preform manufacturing is dominated by a handful of firms — Corning, Sumitomo, Fujikura, Shin-Etsu, Prysmian, YOFC — because the vapor-deposition chemistry required took decades to perfect. New capacity takes 3–5 years to commission."
+      },
+      {
+        "heading": "THE PRODUCERS",
+        "body": "China makes more than half the world's optical fiber. The US produces a single-digit share. This matters when a Pentagon contract and a Meta hyperscaler datacenter bid for the same spool of glass.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "China",
+                "value": 55,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Japan",
+                "value": 12,
+                "tone": "neutral"
+              },
+              {
+                "label": "USA",
+                "value": 8,
+                "tone": "favorable"
+              },
+              {
+                "label": "India",
+                "value": 7,
+                "tone": "favorable"
+              },
+              {
+                "label": "South Korea",
+                "value": 5,
+                "tone": "favorable"
+              },
+              {
+                "label": "Europe",
+                "value": 8,
+                "tone": "favorable"
+              },
+              {
+                "label": "Others",
+                "value": 5,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global optical fiber production share, 2024 est."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DRONES NEED FIBER",
+        "body": "Ukraine and Russia both fly thousands of FPV drones whose radio links are jammed within seconds of takeoff. A fiber tether — a kilometers-long spool that unspools as the drone flies — restores an unjammable, unspoofable command channel. The tradeoff: range capped by the spool, no return trip.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU",
+              "PL",
+              "BY",
+              "MD",
+              "RO"
+            ],
+            "label": "the fiber-drone front",
+            "caption": "both sides field tethered FPVs along the eastern front"
+          }
+        ]
+      },
+      {
+        "heading": "WHY AI NEEDS FIBER",
+        "body": "A single hyperscaler datacenter campus interconnects tens of thousands of GPUs across multiple buildings; each GPU needs hundreds of gigabits of bandwidth to its neighbors. Meta's $6bn Corning deal is for the intra-campus and inter-campus fiber that makes a training cluster behave as one machine — not for connecting users to the internet."
+      },
+      {
+        "heading": "THE PRICE SIGNAL",
+        "body": "An eight-fold spike in spool prices is the market discovering that two structurally different buyers — armies and hyperscalers — are now bidding for output sized for the telecom upgrade cycle. Telecom carriers, the historic anchor customer, are getting outbid in their own supply chain.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is a fiber-tethered drone harder to defeat than a radio-controlled one?",
+            "options": [
+              "The fiber is bulletproof",
+              "Radio links can be jammed; a physical fiber cannot",
+              "Fiber drones fly higher than radar can see",
+              "Fiber carries more battery power to the drone"
+            ],
+            "correct": 1,
+            "explanation": "Electronic warfare can jam or spoof any RF link, but a physical glass strand carries an optical signal that no jammer can reach."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T22:42:12.909Z",
+    "label": "Fiber Optics: AI vs War",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-13-gaza-mladenov-board-of-peace-hamas-disarm-political-role": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PRECEDENT THAT HAUNTS HAMAS",
+        "body": "Yasser Arafat's PLO disarmed under the 1993 Oslo Accords in exchange for a political role and eventual statehood. Three decades later, there is no Palestinian state, settlements have tripled, and the Palestinian Authority polices the West Bank for Israel under Area A arrangements. Every armed faction in the region studies this outcome.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In the Arabic political lexicon this is called the **tatbi'** trap — *normalization* of a movement's status in exchange for promises that the stronger party retains the unilateral power to withdraw."
+          }
+        ]
+      },
+      {
+        "heading": "WHO IS MLADENOV",
+        "body": "Nickolay Mladenov is a Bulgarian diplomat who served as UN Special Coordinator for the Middle East Peace Process from 2015 to 2020. He negotiated Gaza ceasefires across multiple wars and is one of the few Western envoys Hamas's political bureau in Doha will receive directly.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Nickolay Mladenov",
+                "role": "US envoy, ex-UN coordinator",
+                "years": "2015–2020 UN role",
+                "cc": "BG"
+              },
+              {
+                "name": "Khalil al-Hayya",
+                "role": "Hamas chief negotiator",
+                "years": "since 2024",
+                "cc": "PS"
+              },
+              {
+                "name": "Benjamin Netanyahu",
+                "role": "Israeli Prime Minister",
+                "years": "2022–",
+                "cc": "IL"
+              },
+              {
+                "name": "Mohammed bin Salman",
+                "role": "Saudi Crown Prince",
+                "years": "2017–",
+                "cc": "SA"
+              }
+            ],
+            "label": "the cast around the offer"
+          }
+        ]
+      },
+      {
+        "heading": "THE DDR FRAMEWORK",
+        "body": "Disarmament, Demobilization, and Reintegration is the standard UN post-conflict template — used in Sierra Leone, Colombia, Northern Ireland, and Nepal. It works only when fighters trust the state that absorbs them and when a credible third party verifies compliance on both sides. Gaza has neither condition.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which armed movement successfully transitioned to politics WITHOUT first achieving its core territorial demand?",
+            "options": [
+              "The IRA (Good Friday, 1998)",
+              "Colombia's FARC (Havana, 2016)",
+              "South Africa's MK (1994)",
+              "None of the above"
+            ],
+            "correct": 3,
+            "explanation": "Each disarmed only after a political settlement met its central demand — power-sharing, land reform, majority rule. Disarming first and negotiating after has no modern success case."
+          }
+        ]
+      },
+      {
+        "heading": "WHO HOLDS WHAT GROUND",
+        "body": "Israel retains military control over roughly half of Gaza's territory under the current ceasefire architecture — a buffer along the perimeter, the Netzarim and Philadelphi corridors, and a strip along the eastern fence. Hamas's refusal to disarm while Israeli forces remain is structurally identical to the IRA's position before British troop drawdown in Northern Ireland.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "PS",
+              "EG",
+              "JO",
+              "LB"
+            ],
+            "label": "the ceasefire geography",
+            "markers": [
+              {
+                "lat": 31.3547,
+                "lng": 34.3088,
+                "label": "Netzarim Corridor"
+              },
+              {
+                "lat": 31.2367,
+                "lng": 34.2422,
+                "label": "Philadelphi Corridor"
+              },
+              {
+                "lat": 31.5,
+                "lng": 34.45,
+                "label": "Gaza City"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 850 NUMBER",
+        "body": "Hamas's health ministry reports 850 Palestinians killed since the October ceasefire took effect. Ceasefires in this conflict have never meant zero casualties — they mean a return to the pre-war baseline of targeted strikes, arrests, and perimeter shootings that Western coverage typically does not report as 'war.'"
+      },
+      {
+        "heading": "THE BOARD OF PEACE",
+        "body": "The current US framework proposes a transitional 'Board of Peace' — an internationally-supervised technocratic body to govern Gaza pending elections. The model echoes the 1995 Dayton Accords for Bosnia, where a High Representative held veto power over elected officials for nearly two decades. Sovereignty deferred indefinitely is a recurring feature, not a bug, of these arrangements."
+      }
+    ],
+    "generatedAt": "2026-05-13T22:42:42.173Z",
+    "label": "Disarmament & Political Transition",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-13-google-ai-chatbot-hallucinated-real-phone-numbers-no-recall": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY MODELS MEMORIZE",
+        "body": "Large language models are trained to predict the next token across billions of documents. Strings that appear even a few times — phone numbers, addresses, API keys — can be encoded directly into the weights as high-probability completions for nearby context. Memorization is not a bug; it is the same mechanism as learning.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Researchers call this *verbatim memorization* — distinct from the *generalization* that lets a model paraphrase. The same gradient descent produces both."
+          }
+        ]
+      },
+      {
+        "heading": "THE NO-RECALL PROBLEM",
+        "body": "Once a number is baked into the weights, it cannot be surgically removed. Weights are billions of floating-point numbers entangled across every concept the model knows. There is no index from 'this fact' to 'these parameters' — deletion would require retraining from a scrubbed corpus, which costs tens of millions of dollars per run."
+      },
+      {
+        "heading": "WHY HALLUCINATION FEELS REAL",
+        "body": "When asked for a business's phone number, the model retrieves the most statistically plausible 10-digit string that co-occurs with that business name in training data. If a real person's number appeared near the business name once — in a scraped forum, an old directory — that number becomes the confident answer. The model has no concept of 'mine' versus 'someone else's'.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't Google simply delete a leaked phone number from Gemini?",
+            "options": [
+              "The number is stored in a database Google refuses to edit",
+              "The number is encoded across billions of entangled weights with no per-fact index",
+              "EU law forbids modifying deployed models",
+              "The number is held by a third-party training vendor"
+            ],
+            "correct": 1,
+            "explanation": "Unlike a database row, a memorized string lives diffused across the model's parameters — there is no addressable location to delete."
+          }
+        ]
+      },
+      {
+        "heading": "THE GDPR COLLISION",
+        "body": "EU privacy law grants a 'right to erasure' — individuals can demand their personal data be deleted from any system that holds it. LLMs were not designed with this right in mind. Regulators in Italy, France, and Germany have opened cases asking whether training on personal data without a deletion mechanism is lawful at all.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IT",
+              "FR",
+              "DE",
+              "IE",
+              "GB",
+              "US"
+            ],
+            "label": "jurisdictions probing LLM data rights",
+            "caption": "Ireland's DPC leads EU-wide cases against US AI labs under GDPR's one-stop-shop rule"
+          }
+        ]
+      },
+      {
+        "heading": "THE SCRAPE-FIRST PRECEDENT",
+        "body": "The major foundation models — Gemini, GPT, Claude, Llama — were trained on web crawls that swept up phone numbers, home addresses, and private emails posted anywhere public. Consent was never asked. The industry's working assumption: if it was reachable by a crawler, it was fair game. This assumption is now being tested in courts on three continents.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The robots.txt file lets sites signal *do not crawl*, but compliance is voluntary and only forward-looking. Data scraped before a site updated its file is already in the training set — and the no-recall problem makes that scrape effectively permanent."
+          }
+        ]
+      },
+      {
+        "heading": "THE STRUCTURAL FIX",
+        "body": "Two approaches are being researched: differential privacy during training (adding noise so no single example can be reconstructed) and machine unlearning (algorithms that approximate the effect of removing data without full retraining). Neither is production-ready at frontier-model scale. For now, the harm runs faster than the remedy."
+      }
+    ],
+    "generatedAt": "2026-05-13T22:43:09.343Z",
+    "label": "LLM Memorization & the No-Recall Problem",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-13-homo-erectus-tooth-protein-denisovan-paleoproteomics": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY PROTEINS OUTLAST DNA",
+        "body": "DNA is a fragile double helix held by hydrogen bonds; it shatters into unreadable fragments after roughly 1 million years even in cold conditions, and far sooner in the tropics. Proteins are tougher — especially enamel proteins locked inside tooth crystal — and can survive 2 million years or more.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The oldest sequenced DNA is ~**1.2 million** years (a Siberian mammoth); the oldest sequenced *enamel proteins* now reach **2 million+** years (a Georgian Homo erectus). Proteomics roughly **doubles** the readable past."
+          }
+        ]
+      },
+      {
+        "heading": "HOW THE METHOD WORKS",
+        "body": "Enamel is 96% mineral, but the remaining sliver holds proteins like amelogenin and enameloid. A pinhead of tooth is dissolved, the peptides are sequenced by mass spectrometry, and single amino-acid substitutions are mapped back to genes — letting researchers infer the underlying DNA without ever recovering it."
+      },
+      {
+        "heading": "THE DENISOVAN PUZZLE",
+        "body": "Denisovans were identified in 2010 from a single finger bone in a Siberian cave. For a decade their fossil record was almost nothing — a few teeth, a jawbone from Tibet — yet their DNA lived on in modern humans across Asia and Oceania. Paleoproteomics is now filling in the bodies that go with the genome.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2010",
+                "label": "Denisova Cave finger bone sequenced",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Xiahe jawbone (Tibet) identified by proteins"
+              },
+              {
+                "year": "2022",
+                "label": "Laos molar attributed to a Denisovan"
+              },
+              {
+                "year": "2024",
+                "label": "Taiwan Penghu jaw confirmed as Denisovan"
+              },
+              {
+                "year": "2026",
+                "label": "Erectus tooth proteins link to Denisovan lineage"
+              }
+            ],
+            "label": "the Denisovan trail"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGACY IN LIVING GENOMES",
+        "body": "Denisovan DNA didn't vanish — it sits inside billions of people today, concentrated in the populations whose ancestors crossed paths with them in Sundaland and Sahul.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Denisovan ancestry in modern populations",
+            "peers": [
+              {
+                "value": 5,
+                "label": "Philippine Negritos (Ayta)"
+              },
+              {
+                "value": 4,
+                "label": "Papuans"
+              },
+              {
+                "value": 3.5,
+                "label": "Aboriginal Australians"
+              },
+              {
+                "value": 1,
+                "label": "Island SE Asians"
+              },
+              {
+                "value": 0.2,
+                "label": "East Asians (Han)"
+              },
+              {
+                "value": 0,
+                "label": "Europeans"
+              }
+            ],
+            "subjectLabel": "Philippine Negritos (Ayta)",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "THE EPO1 GENE",
+        "body": "The most famous Denisovan inheritance is EPAS1, a variant carried by ~80% of Tibetans that regulates hemoglobin response at altitude. It is the clearest case of an archaic gene being kept by natural selection because it solved a problem modern humans couldn't.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Tibetans live above **4,000 m** without the thickened blood that kills lowlanders at altitude. The variant came from a population that went extinct — a piece of *Denisovan physiology* still doing useful work after **40,000+** years."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THIS REWRITES THE TREE",
+        "body": "If Homo erectus — the species that left Africa 1.8 million years ago — interbred with Denisovans, then archaic gene flow runs deeper than the Neanderthal–sapiens crossings of 50,000 years ago. The human family tree is less a tree than a braided river.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "PH",
+              "ID",
+              "LA",
+              "TW",
+              "AU"
+            ],
+            "label": "where the Denisovan trail runs",
+            "markers": [
+              {
+                "lat": 51.4,
+                "lng": 84.68,
+                "label": "Denisova Cave"
+              },
+              {
+                "lat": 35.45,
+                "lng": 102.57,
+                "label": "Xiahe (Tibet) jaw"
+              },
+              {
+                "lat": 20.13,
+                "lng": 103.4,
+                "label": "Laos molar"
+              },
+              {
+                "lat": 23.55,
+                "lng": 119.58,
+                "label": "Penghu jaw"
+              }
+            ]
+          },
+          {
+            "type": "quiz",
+            "question": "Why can tooth proteins reveal ancestry that ancient DNA cannot?",
+            "options": [
+              "Proteins replicate faster than DNA",
+              "Enamel proteins survive far longer than DNA, especially in warm climates",
+              "Proteins carry more genetic information than DNA",
+              "Teeth are the only body part that contains proteins"
+            ],
+            "correct": 1,
+            "explanation": "DNA degrades within ~1 million years; enamel-locked proteins can survive 2+ million, opening eras and climates where DNA is gone."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T22:43:43.235Z",
+    "label": "Paleoproteomics & Deep Ancestry",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-13-iran-30-of-33-hormuz-missile-sites-restored-us-intel": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "The Strait of Hormuz sits between Iran and Oman, with Iran's coastline running the entire northern edge. The deepest shipping channels hug the Iranian side — which is why coastal missile batteries on Iranian soil can range every inbound and outbound tanker without leaving territorial waters.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "Iran's northern coastline",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 27.1833,
+                "lng": 56.2833,
+                "label": "Bandar Abbas naval base"
+              },
+              {
+                "lat": 26.5228,
+                "lng": 53.9714,
+                "label": "Qeshm Island"
+              },
+              {
+                "lat": 25.6,
+                "lng": 54.4833,
+                "label": "Abu Musa"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly a fifth of global oil consumption transits this corridor daily.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The chokepoint is geometric, not just political: a tanker cannot maneuver around a threatened lane the way it can around a *region*. There is no second route through Hormuz."
+          }
+        ]
+      },
+      {
+        "heading": "WHY UNDERGROUND MATTERS",
+        "body": "Iran has spent two decades burrowing missile launch infrastructure into mountains along its Gulf coast — tunnels deep enough to defeat conventional bunker-busters. Surface launchers can be destroyed in a single sortie; tunneled launchers must be sealed entry-by-entry, and the missiles emerge only to fire.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why a strike campaign can reduce **launch volume** without reducing **launcher inventory**. The 90% survival figure is about facilities, not warheads expended."
+          }
+        ]
+      },
+      {
+        "heading": "THE ANTI-SHIP ARSENAL",
+        "body": "Iran's coastal force is built around the Noor and Qader (Chinese C-802 derivatives) and the longer-range Ghadir, plus the Khalij Fars anti-ship ballistic missile. The mix matters: cruise missiles fly low and slow, ballistic missiles arrive in minutes from steep angles. Defending against both simultaneously is the hard problem for any carrier group.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are coastal anti-ship missiles considered an asymmetric weapon against navies?",
+            "options": [
+              "They are cheaper per unit than the ships they threaten, and tunneled launchers are hard to destroy",
+              "They have longer range than carrier-based aircraft",
+              "They cannot be intercepted by modern air defense systems",
+              "They are banned under international law, deterring use"
+            ],
+            "correct": 0,
+            "explanation": "A $1m missile threatening a $2bn warship inverts the cost calculus that has favored navies since the dreadnought era; tunneling adds survivability on top."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson planners took: disruption is easier to threaten than to sustain.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Tanker War begins",
+                "emphasis": "start"
+              },
+              {
+                "year": "1987",
+                "label": "USS Stark hit by Iraqi Exocet"
+              },
+              {
+                "year": "1988",
+                "label": "Operation Praying Mantis",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Tanker attacks at Fujairah"
+              },
+              {
+                "year": "2024",
+                "label": "Houthi Red Sea campaign"
+              },
+              {
+                "year": "2026",
+                "label": "Hormuz sites restored",
+                "emphasis": "end"
+              }
+            ],
+            "label": "Hormuz under fire"
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Lloyd's of London war-risk premiums — not the missiles themselves — are what close a shipping lane. Once underwriters reclassify a route as a war zone, premiums can rise tenfold within days; commercial vessels reroute regardless of how many missiles actually remain operational.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4743.12,
+              4831.44,
+              4813,
+              4779.06,
+              4821.21,
+              4777.22,
+              4736.06,
+              4807.83,
+              4729.84,
+              4714.79,
+              4689.13,
+              4697.32,
+              4693.28,
+              4674.15,
+              4683.94,
+              4584.13,
+              4551.29,
+              4619.17,
+              4603.98,
+              4597.48,
+              4606.7,
+              4515.48,
+              4580.98,
+              4684.25,
+              4695.85,
+              4706.72,
+              4711.53,
+              4692.03,
+              4753.28,
+              4711.77,
+              4687.43
+            ],
+            "periods": [
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 13"
+            ],
+            "label": "Gold (PAX Gold)",
+            "unit": "$/oz",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY BYPASS DOESN'T WORK",
+        "body": "Saudi Arabia's East-West Pipeline (5 million bbl/day) and the UAE's Habshan-Fujairah pipeline together could reroute maybe a third of Gulf exports. The remaining two-thirds — plus virtually all Qatari LNG — has no alternative route to global markets.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Qatar LNG",
+                "value": "~100%",
+                "cc": "QA",
+                "tone": "unfavorable",
+                "weight": 100
+              },
+              {
+                "label": "Kuwait crude",
+                "value": "~100%",
+                "cc": "KW",
+                "tone": "unfavorable",
+                "weight": 100
+              },
+              {
+                "label": "Iraq crude",
+                "value": "~95%",
+                "cc": "IQ",
+                "tone": "unfavorable",
+                "weight": 95
+              },
+              {
+                "label": "UAE crude",
+                "value": "~60%",
+                "cc": "AE",
+                "tone": "neutral",
+                "weight": 60
+              },
+              {
+                "label": "Saudi crude",
+                "value": "~55%",
+                "cc": "SA",
+                "tone": "neutral",
+                "weight": 55
+              }
+            ],
+            "label": "Hormuz dependency, 2024"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · PAXG (gold-backed) · as of 2026-05-13"
+    ],
+    "generatedAt": "2026-05-13T22:44:18.215Z",
+    "label": "Iran's Coastal Missile Posture",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-13-islamic-finance-growth-slowdown-5-10-percent-gcc-saturation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CORE PROHIBITION",
+        "body": "Islamic finance is built on the Quranic prohibition of riba — interest or usury — alongside bans on gharar (excessive uncertainty) and maysir (gambling). Every product in the industry is a workaround that delivers economic equivalence to conventional finance without violating these rules.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The classical jurists distinguished *riba al-fadl* (unequal exchange of like commodities) from *riba al-nasi'ah* (interest on deferred payment). Modern banking is built almost entirely on the second."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A SUKUK ACTUALLY IS",
+        "body": "A sukuk is not a bond. Bondholders lend money and receive interest; sukuk holders own a fractional share in a real underlying asset — a building, an aircraft fleet, a toll road — and receive rental or profit-share payments. The asset-backing is what makes the return halal."
+      },
+      {
+        "heading": "THE MALAYSIAN ORIGIN",
+        "body": "Modern sukuk was effectively invented in Malaysia. Shell MDS issued the first corporate sukuk in 1990; the Malaysian government issued the first sovereign sukuk in 2002. Kuala Lumpur, not Riyadh or Dubai, set the legal templates the entire global market still uses.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1975",
+                "label": "Islamic Development Bank founded, Jeddah"
+              },
+              {
+                "year": "1990",
+                "label": "Shell MDS issues first corporate sukuk"
+              },
+              {
+                "year": "2002",
+                "label": "Malaysia issues first sovereign sukuk",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2008",
+                "label": "AAOIFI ruling: 85% of sukuk non-compliant"
+              },
+              {
+                "year": "2014",
+                "label": "UK first non-Muslim sovereign sukuk"
+              },
+              {
+                "year": "2025",
+                "label": "GCC saturation, growth slows to 5-10%"
+              }
+            ],
+            "label": "the modern sukuk arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE MONEY ACTUALLY IS",
+        "body": "The industry is geographically lopsided. Gulf states and Malaysia together hold the overwhelming majority of global Islamic finance assets; the world's largest Muslim populations — Indonesia, Pakistan, Bangladesh, Egypt, Nigeria — punch far below their demographic weight. This is the saturation gap the report points at.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "GCC",
+                "value": 52,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Malaysia",
+                "value": 15,
+                "tone": "neutral"
+              },
+              {
+                "label": "Iran",
+                "value": 12,
+                "tone": "neutral"
+              },
+              {
+                "label": "S/SE Asia ex-MY",
+                "value": 8,
+                "tone": "favorable"
+              },
+              {
+                "label": "Turkey",
+                "value": 5,
+                "tone": "favorable"
+              },
+              {
+                "label": "Africa",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Other",
+                "value": 5,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global Islamic finance assets by region (approx. share)"
+          }
+        ]
+      },
+      {
+        "heading": "THE NEXT-GROWTH FRONTIER",
+        "body": "Pakistan, Egypt, and Nigeria together hold over 500 million Muslims and underbanked populations where conventional finance has shallow penetration. Each has launched sovereign sukuk programs in the past decade, but regulatory frameworks, sharia-board capacity, and currency volatility have kept the markets small.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "EG",
+              "NG"
+            ],
+            "label": "next-growth frontier",
+            "caption": "500M+ Muslims, shallow Islamic finance penetration"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2008 RECKONING",
+        "body": "In 2007, AAOIFI's sharia board chairman Sheikh Taqi Usmani ruled that about 85% of outstanding Gulf sukuk were not genuinely sharia-compliant — they replicated bond economics too closely, with guaranteed buy-backs that nullified the asset-ownership premise. Issuance collapsed for two years before structures were redesigned.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was the core objection in the 2007-08 AAOIFI sukuk ruling?",
+            "options": [
+              "The underlying assets weren't valuable enough",
+              "Guaranteed buy-back clauses made them economically identical to bonds",
+              "The profit rates were too high to be ethical",
+              "Non-Muslim investors were buying them"
+            ],
+            "correct": 1,
+            "explanation": "Sheikh Usmani argued the purchase undertaking at face value defeated the risk-sharing principle — investors bore no real asset risk, making the structure a disguised loan."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T22:44:50.807Z",
+    "label": "Islamic Finance & Sukuk",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-13-pakistan-balochistan-barkhan-major-killed-ispr-seven-militants": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LONGEST INSURGENCY",
+        "body": "Balochistan has seen five distinct insurgencies against Islamabad since 1948 — 1948, 1958, 1962, 1973-77, and the current wave that began in 2004. Each was triggered by a different grievance but rooted in the same structural complaint: the province holds most of Pakistan's mineral and gas wealth yet ranks last in human development indicators.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1948",
+                "label": "Khan of Kalat's accession revolt"
+              },
+              {
+                "year": "1958",
+                "label": "Nawab Nauroz Khan uprising"
+              },
+              {
+                "year": "1962",
+                "label": "Parari movement"
+              },
+              {
+                "year": "1973",
+                "label": "Bhutto dismisses provincial govt",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2004",
+                "label": "current insurgency begins"
+              },
+              {
+                "year": "2006",
+                "label": "Akbar Bugti killed in cave"
+              },
+              {
+                "year": "2024",
+                "label": "Jaffar Express attacks escalate"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1973",
+                "to": "1977",
+                "label": "Bhutto-era military operation",
+                "tone": "unfavorable"
+              },
+              {
+                "from": "2004",
+                "to": "2026",
+                "label": "current insurgency",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "five waves against Islamabad"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE GEOGRAPHY MATTERS",
+        "body": "Balochistan is 44% of Pakistan's landmass but holds under 6% of its population — a vast, sparsely populated frontier bordering Iran and Afghanistan. The Gwadar port and CPEC corridor run through it, making every attack a strategic message to Beijing as much as Islamabad.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IR",
+              "AF"
+            ],
+            "label": "Pakistan's strategic southwest",
+            "markers": [
+              {
+                "lat": 29.8989,
+                "lng": 69.5333,
+                "label": "Barkhan district"
+              },
+              {
+                "lat": 25.1264,
+                "lng": 62.3225,
+                "label": "Gwadar port"
+              },
+              {
+                "lat": 28.3838,
+                "lng": 65.7164,
+                "label": "Reko Diq mine"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BUGTI INFLECTION",
+        "body": "In August 2006, Pakistani forces killed Nawab Akbar Bugti — a tribal chief, former governor, and federal minister — in a cave-bombing operation ordered by Musharraf. The killing of a sitting parliamentarian transformed a manageable tribal dispute into a generational insurgency. The current BLA leadership is largely composed of Bugti's nephews, grandsons, and political heirs.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The operation that killed Bugti is what insurgents call the **Shaheed-e-Azam** moment — the martyrdom that converted local grievance into permanent rebellion. Every BLA communiqué since references it."
+          }
+        ]
+      },
+      {
+        "heading": "WHO IS ISPR",
+        "body": "Inter-Services Public Relations is the military's media wing — the sole authoritative voice on operations, casualties, and counter-terrorism. In a country where the army is the most powerful institution, ISPR press releases function as official record; Pakistani media typically reproduce them verbatim before independent verification.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does ISPR's casualty count typically represent in Pakistani reporting?",
+            "options": [
+              "An independently audited figure cross-checked by civilian agencies",
+              "The official military account, generally reproduced as authoritative before verification",
+              "A preliminary number revised by parliament within 48 hours",
+              "A figure jointly issued with provincial home departments"
+            ],
+            "correct": 1,
+            "explanation": "ISPR is the army's media wing; in Pakistan's information ecosystem its releases function as the authoritative first record, with independent verification arriving slowly if at all."
+          }
+        ]
+      },
+      {
+        "heading": "THE RESOURCE PARADOX",
+        "body": "Balochistan sits on the Sui gas field (which powered Pakistani industry for 60 years), the Reko Diq copper-gold deposit (one of the world's largest undeveloped), and Saindak's copper. Yet provincial royalties have historically been calculated on 1950s well-head prices, and the literacy rate trails the national average by roughly 20 percentage points.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Balochistan",
+                "value": "~6% pop, 44% land",
+                "cc": "PK",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Punjab",
+                "value": "~53% pop, 26% land",
+                "cc": "PK",
+                "tone": "favorable"
+              },
+              {
+                "label": "Sindh",
+                "value": "~23% pop, 18% land",
+                "cc": "PK",
+                "tone": "neutral"
+              },
+              {
+                "label": "KP",
+                "value": "~17% pop, 12% land",
+                "cc": "PK",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Balochistan vs Pakistan's other provinces"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T22:45:22.912Z",
+    "label": "Balochistan Insurgency",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-13-putin-belgorod-bryansk-general-governor-militarized-border": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FRONTIER OBLASTS",
+        "body": "Belgorod and Bryansk are Russia's two main border oblasts facing northeastern Ukraine. Belgorod sits 40km from Kharkiv; Bryansk borders both Ukraine and Belarus. Both have been hit by cross-border drone and artillery strikes since 2022, with Belgorod city becoming the most-shelled major settlement inside Russia proper.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "UA",
+              "BY"
+            ],
+            "label": "Russia's exposed northwestern flank",
+            "markers": [
+              {
+                "lat": 50.5953,
+                "lng": 36.587,
+                "label": "Belgorod city"
+              },
+              {
+                "lat": 53.2434,
+                "lng": 34.364,
+                "label": "Bryansk city"
+              },
+              {
+                "lat": 49.9935,
+                "lng": 36.2304,
+                "label": "Kharkiv"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TIME OF HEROES PROGRAM",
+        "body": "Launched in 2024, Vremya Geroev (Time of Heroes) channels veterans of the Ukraine war into Russian civil administration. It is modeled explicitly on Soviet-era cadre pipelines and Putin's own earlier Higher School of Public Administration. The pitch is meritocratic; the effect is to staff regional power with men whose loyalty was forged in his war.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The program's name — *Vremya Geroev* — frames combat service as the new path to political office, replacing the technocrat and the FSB officer as Putin's preferred governor archetype."
+          }
+        ]
+      },
+      {
+        "heading": "THE NOMENKLATURA LOGIC",
+        "body": "Soviet governance ran on the nomenklatura — a list of vetted personnel rotated between party, military, and economic posts. Putin's Russia revived this with a twist: the GRU and FSB became the dominant feeder pools in the 2000s, the State Council added technocrats in the 2010s, and now combat veterans form a third stream. Each wave reflects what the regime considers its existential threat."
+      },
+      {
+        "heading": "WHY GENERALS, WHY NOW",
+        "body": "Civilian governors of border oblasts faced an impossible job after 2022: explain Russian casualties and Ukrainian strikes to populations expecting to be safe. Vyacheslav Gladkov in Belgorod survived by treating it as a wartime posting. Replacing him with an actual combat officer formalizes what the role had already become — military governorship without the legal designation.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "1990s",
+                "value": "Regional bosses",
+                "tone": "neutral"
+              },
+              {
+                "label": "2000s",
+                "value": "FSB / siloviki",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "2010s",
+                "value": "Technocrats",
+                "tone": "neutral"
+              },
+              {
+                "label": "2020s",
+                "value": "Combat veterans",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Russian governor archetypes by era"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRAETORIAN RISK",
+        "body": "Every regime that staffs civil posts with combat officers eventually faces the question of whose loyalty those officers actually command — the leader, the institution, or their own military networks. Rome's praetorian guard, Pakistan's army-as-state, and post-1952 Egypt all began with the same instinct Putin is acting on now.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which of these states did NOT see military officers move from frontline command into civilian governorship before eventually overshadowing civilian authority?",
+            "options": [
+              "Egypt after the 1952 Free Officers coup",
+              "Pakistan under Ayub Khan",
+              "Switzerland after the Sonderbund War",
+              "Turkey under the 1960 junta"
+            ],
+            "correct": 2,
+            "explanation": "Switzerland is the outlier — its post-Sonderbund settlement deliberately kept the army decentralized and subordinate to civilian cantons, the opposite of the praetorian pattern."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T22:45:53.975Z",
+    "label": "Militarizing the Governorship",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-13-uae-cope-cages-energy-facilities-iran-drone-defense": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ORIGIN",
+        "body": "Cope cages — slat or mesh armor mounted above tank turrets — appeared on Russian T-72s and T-80s in 2022 as improvised defense against Ukrainian top-attack munitions. Western analysts initially mocked them; the design migrated to Western tanks within two years once loitering munitions became ubiquitous.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The nickname *cope cage* was Western mockery — the implication being Russian crews were 'coping' with NATO weapons they couldn't defeat. The name stuck even after every army adopted the technique."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE PHYSICS WORKS",
+        "body": "A shaped-charge warhead forms its penetrating jet at a precise standoff distance — typically 5 to 15 cm from the target. Detonate it earlier, against a cage a meter above the armor, and the jet dissipates before it reaches anything vital. The cage doesn't stop the drone; it just makes the drone explode in the wrong place.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does a metal cage suspended above armor defeat a shaped-charge drone?",
+            "options": [
+              "The cage deflects the drone away from the target",
+              "The drone detonates too far from the armor for its jet to penetrate",
+              "The cage absorbs the explosion's energy",
+              "The cage jams the drone's guidance signal"
+            ],
+            "correct": 1,
+            "explanation": "Shaped charges need a precise standoff distance to form their penetrating jet. Premature detonation dissipates the jet before it reaches the armor."
+          }
+        ]
+      },
+      {
+        "heading": "THE COST ASYMMETRY",
+        "body": "A Shahed-136 one-way attack drone costs Iran roughly $20,000–50,000 to produce. A Patriot interceptor costs $4 million. Steel cope cages cost a few thousand dollars per installation and require no operators, no radar, no magazine depth. For static infrastructure, passive armor is the only defense that scales.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Patriot intercept",
+                "value": "~$4M",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "THAAD intercept",
+                "value": "~$12M",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Iron Dome (Tamir)",
+                "value": "~$50k",
+                "tone": "neutral"
+              },
+              {
+                "label": "Cope cage",
+                "value": "~$5k",
+                "tone": "favorable"
+              }
+            ],
+            "label": "defending one fuel tank against a $30k drone"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT CAGES CAN'T STOP",
+        "body": "Cages defeat shaped-charge warheads and small fragmentation drones. They do nothing against ballistic missiles, which arrive at Mach 5+ and deliver kinetic energy that no standoff geometry can dissipate. Iran's medium-range ballistic arsenal — Shahab, Khorramshahr, Fattah — bypasses the cage problem entirely.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AE",
+              "IR",
+              "OM",
+              "SA",
+              "QA"
+            ],
+            "label": "UAE energy infrastructure within Iranian missile range",
+            "caption": "Iranian MRBM range covers the entire Gulf coast",
+            "markers": [
+              {
+                "lat": 25.2532,
+                "lng": 55.3657,
+                "label": "Dubai (DXB) fuel tanks"
+              },
+              {
+                "lat": 24.4667,
+                "lng": 54.3667,
+                "label": "ADNOC HQ, Abu Dhabi"
+              },
+              {
+                "lat": 25.1278,
+                "lng": 56.3264,
+                "label": "Fujairah oil terminal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 2022 PRECEDENT",
+        "body": "Houthi forces struck ADNOC fuel trucks near Abu Dhabi airport in January 2022 with cruise missiles and drones, killing three. The UAE responded with THAAD intercepts and accelerated procurement of Israeli air defense. The cage rollout is the third layer — cheap, passive, always-on — beneath those expensive interceptor systems."
+      },
+      {
+        "heading": "THE STRATEGIC LESSON",
+        "body": "Every Gulf monarchy now plans for the scenario where US extended deterrence wavers and Iran's drone-and-missile complex strikes oil infrastructure. Saudi Arabia, UAE, Qatar, and Kuwait are all hardening physical sites while quietly diversifying air-defense suppliers — Israeli, Korean, Chinese, French — to avoid single-source dependence on Washington.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Lockheed Martin",
+                "role": "THAAD, Patriot supplier",
+                "cc": "US"
+              },
+              {
+                "name": "Rafael / IAI",
+                "role": "Iron Dome, Barak MX",
+                "cc": "IL"
+              },
+              {
+                "name": "LIG Nex1",
+                "role": "KM-SAM Cheongung-II to UAE",
+                "cc": "KR"
+              },
+              {
+                "name": "MBDA",
+                "role": "Aster 30 to Qatar, Saudi",
+                "cc": "FR"
+              }
+            ],
+            "label": "Gulf air-defense supplier diversification"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-13T22:46:29.099Z",
+    "label": "Cope Cages & Drone Defense",
+    "category": "politics",
+    "articleCount": 1
   }
 }
