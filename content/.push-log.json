@@ -1,91 +1,5 @@
 [
   {
-    "timestamp": "2026-04-20T17:33:35.461Z",
-    "candidateCount": 9,
-    "candidates": [
-      {
-        "slug": "2026-04-20-elon-musk-summoned-by-french-prosecutors-amid-ongoing-x-prob",
-        "title": "France Summons Musk on X",
-        "category": "tech",
-        "eventCoverage": 342,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-20-fbi-director-patel-sues-atlantic-in-250-million-defamation-c",
-        "title": "Patel Sues Atlantic for $250M",
-        "category": "politics",
-        "eventCoverage": 184,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-20-ukrainian-drone-attack-on-russia-s-tuapse-port-kills-one",
-        "title": "Ukraine Hits Tuapse Refinery Twice",
-        "category": "economy",
-        "eventCoverage": 116,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-20-govt-forsees-economic-slowdown-during-current-next-fiscal-ye",
-        "title": "Pakistan Flags War Growth Drag",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-20-seven-eu-nations-call-for-european-sanctions-against-israel",
-        "title": "EU States Demand Israel Sanctions",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-20-court-fines-al-bawaba-news-owner-over-le3-mn-for-underpaying",
-        "title": "Egypt Court Fines Media Owner",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-20-mining-china-s-little-red-book-for-open-source-gold",
-        "title": "Bellingcat Maps Xiaohongshu for Journalists",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-20-forbes-prediction-market-gamefies-story-about-mass-shooting",
-        "title": "Forbes Gamifies Child Shooting Report",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-20-peter-thiel-is-building-a-parallel-justice-system-powered-by",
-        "title": "Thiel Launches AI Journalism Tribunal",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-04-20-elon-musk-summoned-by-french-prosecutors-amid-ongoing-x-prob",
-      "title": "France Summons Musk on X",
-      "category": "tech",
-      "body": "French prosecutors summoned Elon Musk for questioning Monday.",
-      "eventCoverage": 342,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "France summons Musk to face charges over child abuse material on X",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 14
-    }
-  },
-  {
     "timestamp": "2026-04-20T22:44:24.025Z",
     "candidateCount": 11,
     "candidates": [
@@ -9412,6 +9326,120 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Senate confirms Warsh as Fed chair 54-45, narrowest margin since 1977",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 22
+    }
+  },
+  {
+    "timestamp": "2026-05-14T04:47:58.231Z",
+    "candidateCount": 13,
+    "candidates": [
+      {
+        "slug": "2026-05-14-amul-mother-dairy-milk-hike-cooperative-procurement-pressure",
+        "title": "India Milk Prices Rise Rs 2",
+        "category": "economy",
+        "eventCoverage": 90,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-14-karnataka-bjp-austerity-metro-iran-fuel-import-signal",
+        "title": "Modi Austerity Call Reaches Karnataka",
+        "category": "economy",
+        "eventCoverage": 31,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-14-modi-uae-lpg-strategic-reserves-hormuz-hedge",
+        "title": "Modi Signs UAE Energy Pacts",
+        "category": "politics",
+        "eventCoverage": 16,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-14-lebanon-israel-ceasefire-extension-south-strikes-uncoupled",
+        "title": "Ceasefire Extends as Strikes Continue",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-14-somali-pirates-uae-tanker-egypt-pressure-ransom",
+        "title": "Somali Pirates Hold UAE Tanker",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-14-cbo-golden-dome-1-2-trillion-interceptor-ratio",
+        "title": "CBO Scores Golden Dome 7× Higher",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-14-mq-9-replacement-attritable-drone-procurement-inversion",
+        "title": "Air Force Ditches Exquisite Drones",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-14-hiv-injectable-prep-africa-stockout-licensing-throttle",
+        "title": "Africa HIV Injectable Runs Short",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-14-bird-retina-oxygen-independent-high-energy-tissue",
+        "title": "Bird Retinas Bypass Vascular Constraint",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-14-cuba-biodiversity-conservation-collapse-sanctions",
+        "title": "Cuba's Biodiversity Loses Its Scientists",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-14-sesame-deep-learning-weed-detection-canopy-occlusion",
+        "title": "AI Cracks Sesame Weed Detection",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-14-developers-ai-cognitive-offloading-skill-atrophy-survey",
+        "title": "AI Coding Erodes Developer Skills",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-14-pakistan-fbr-ai-tax-enforcement-regressive-risk",
+        "title": "Pakistan Builds AI Tax Enforcement",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-05-14-amul-mother-dairy-milk-hike-cooperative-procurement-pressure",
+      "title": "India Milk Prices Rise Rs 2",
+      "category": "economy",
+      "body": "A 3.7% farmgate rise preceded the Rs 2 retail hike. Both cooperatives cite",
+      "eventCoverage": 90,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Amul, Mother Dairy raise milk prices Rs 2 per litre across India",
     "response": {
       "pushed": 1,
       "skipped": 0,
