@@ -166212,5 +166212,1659 @@
     "label": "Somali Piracy & the Gulf of Aden",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-14-btc-etf-635m-outflow-correlation-break": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT AN ETF ACTUALLY DOES",
+        "body": "A spot Bitcoin ETF holds real bitcoin in custody and issues shares that trade on traditional stock exchanges. Authorized participants create and redeem shares in large blocks, arbitraging any gap between the share price and the underlying bitcoin price. The ETF wrapper lets pension funds, RIAs, and 401(k) accounts hold bitcoin exposure without touching a private key.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism that keeps the ETF price tethered to bitcoin is called the **creation/redemption** process — the same plumbing that makes SPY track the S&P 500."
+          }
+        ]
+      },
+      {
+        "heading": "THE JANUARY 2024 PIVOT",
+        "body": "The SEC approved spot Bitcoin ETFs in January 2024 after a decade of rejections, following a court ruling that called the agency's prior refusal arbitrary. Within a year, the ETFs accumulated more than $100 billion in assets, with BlackRock's IBIT becoming one of the fastest-growing ETFs in history.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2013",
+                "label": "Winklevoss file first spot ETF application"
+              },
+              {
+                "year": "2021-10",
+                "label": "First futures-based Bitcoin ETF (BITO)"
+              },
+              {
+                "year": "2023-08",
+                "label": "Grayscale wins court ruling vs SEC",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024-01",
+                "label": "11 spot Bitcoin ETFs approved"
+              },
+              {
+                "year": "2024-03",
+                "label": "IBIT crosses $10bn AUM"
+              }
+            ],
+            "label": "the path to spot approval"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CORRELATION MATTERS",
+        "body": "When ETF flows correlated tightly with price, the story was simple: institutional demand absorbed miner supply, and inflows drove the market. A correlation collapse from 0.68 to 0.16 means the price is moving for reasons other than fund flows — macro variables, leverage on offshore exchanges, or rotation between crypto assets are now louder than the marginal ETF buyer."
+      },
+      {
+        "heading": "THE MACRO REGIME",
+        "body": "Bitcoin's historical bull runs have all coincided with falling real interest rates: 2017, 2020-21, and the 2023-24 rally as markets priced in Fed cuts. When the 10-year real yield rises, the opportunity cost of holding a zero-yield asset becomes measurable, and capital rotates back to Treasuries.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              74181.11,
+              74833.51,
+              75149.19,
+              77128.44,
+              75728.46,
+              73856.06,
+              75874.55,
+              76350.25,
+              78194.78,
+              78260.62,
+              77444.8,
+              77619.14,
+              78645.13,
+              77361.3,
+              76345.23,
+              75774.89,
+              76286.58,
+              78172.07,
+              78655.35,
+              78562.55,
+              79823.89,
+              80925.09,
+              81425,
+              80022.04,
+              80189.07,
+              80678.03,
+              82145.66,
+              81725.21,
+              80480.89,
+              79277.8,
+              79814.82
+            ],
+            "periods": [
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 14"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE ABSORPTION RATIO",
+        "body": "Absorption ratio measures how much net new demand — primarily ETF inflows — absorbs the new bitcoin miners produce each day. Above 1x, demand exceeds new supply and price tends to rise. A $635 million outflow day means miners are selling into a market with negative net institutional demand, the opposite of the 2024 setup.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how much new bitcoin do miners produce per day after the 2024 halving?",
+            "options": [
+              "~150 BTC/day",
+              "~450 BTC/day",
+              "~900 BTC/day",
+              "~1,800 BTC/day"
+            ],
+            "correct": 0,
+            "explanation": "The April 2024 halving cut the block subsidy to 3.125 BTC. At 144 blocks per day, miners produce roughly 450 BTC pre-halving and ~450/2 ≈ 150-225 BTC post-halving in new supply."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THIS BREAK MATTERS",
+        "body": "For most of 2024, ETF flows were treated as the swing variable in bitcoin's price discovery — a clean, regulated signal of institutional appetite. If macro now dominates, bitcoin behaves more like a long-duration tech stock than a discrete asset class, and the diversification thesis that drew allocators in weakens."
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-14"
+    ],
+    "generatedAt": "2026-05-14T08:36:06.597Z",
+    "label": "Bitcoin ETFs & Macro Correlation",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-14-charsadda-kp-checkpost-constable-died-wounds": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "Charsadda sits in the Peshawar valley, an hour's drive from the Afghan border through the Mohmand corridor. The district has historically been a transit zone between the settled Pashtun belt and the former tribal agencies, which is why checkposts ring its approach roads.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF"
+            ],
+            "label": "the KP-Afghan frontier",
+            "markers": [
+              {
+                "lat": 34.1453,
+                "lng": 71.7308,
+                "label": "Charsadda"
+              },
+              {
+                "lat": 34.0151,
+                "lng": 71.5249,
+                "label": "Peshawar"
+              },
+              {
+                "lat": 34.5553,
+                "lng": 69.2075,
+                "label": "Kabul"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TTP",
+        "body": "Tehrik-i-Taliban Pakistan formed in 2007 from a coalition of Pashtun militant factions opposed to the Pakistani state. Distinct from the Afghan Taliban but ideologically aligned, it targets security forces, polio workers, and tribal elders who cooperate with Islamabad.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The TTP is sometimes called the **Pakistani Taliban**, but the two movements have separate leaderships and separate enemies — the Afghan Taliban now governs Kabul, while the TTP wages war on Islamabad from sanctuaries inside Afghan territory."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2021 INFLECTION",
+        "body": "Attacks on Pakistani security forces collapsed after the 2014 Zarb-e-Azb operation cleared North Waziristan. The Taliban's return to Kabul in August 2021 reversed that — TTP fighters released from Afghan prisons regrouped across the Durand Line, and fatality counts have climbed every year since.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2007",
+                "label": "TTP forms"
+              },
+              {
+                "year": "2014",
+                "label": "Zarb-e-Azb clears N. Waziristan"
+              },
+              {
+                "year": "2018",
+                "label": "FATA merged into KP"
+              },
+              {
+                "year": "2021-08",
+                "label": "Taliban returns to Kabul",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-11",
+                "label": "TTP ends ceasefire"
+              },
+              {
+                "year": "2025",
+                "label": "Fatalities hit 2,331"
+              }
+            ],
+            "label": "the KP security arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE DURAND LINE",
+        "body": "The 2,640-km Pakistan-Afghanistan border was drawn in 1893 by a British colonial official, Mortimer Durand, splitting Pashtun tribes between two states. No Afghan government — Taliban or otherwise — has ever formally recognized it, which is why TTP sanctuary on the Afghan side is a sovereignty dispute, not just a security one."
+      },
+      {
+        "heading": "THE CHECKPOST AS TARGET",
+        "body": "Police checkposts are the most exposed node in Pakistan's counter-militancy posture: static, lightly manned, often in line of sight from surrounding fields. They absorb the bulk of casualties because army cantonments are hardened and intelligence-led raids are episodic. Constables — provincial police, not federal paramilitary — bear most of the cost.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "2023",
+                "value": "~1,100",
+                "weight": 1100,
+                "tone": "neutral"
+              },
+              {
+                "label": "2024",
+                "value": "1,620",
+                "weight": 1620,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "2025",
+                "value": "2,331",
+                "weight": 2331,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "KP security fatalities, year-on-year"
+          }
+        ]
+      },
+      {
+        "heading": "MARTYR IN PAKISTANI USAGE",
+        "body": "Pakistani security statements describe fallen personnel as shaheed — martyr. The term draws on Islamic tradition where one who dies defending the community is granted a specific spiritual status; in state usage it also confers a pension framework and ceremonial honors distinct from ordinary line-of-duty death.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why has KP's security fatality count surged since 2022?",
+            "options": [
+              "A new wave of sectarian violence between Sunni and Shia groups",
+              "TTP regrouping across the Durand Line after the Taliban returned to Kabul",
+              "Indian-backed insurgency expanding from Kashmir into KP",
+              "Collapse of the 2018 FATA merger ending federal jurisdiction"
+            ],
+            "correct": 1,
+            "explanation": "The Afghan Taliban takeover in August 2021 freed imprisoned TTP cadres and restored cross-border sanctuary, ending the post-2014 lull in attacks on Pakistani forces."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-14T08:36:38.308Z",
+    "label": "KP's Militant Resurgence",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-14-claude-bitcoin-wallet-recovery-forensic-search-tool": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A WALLET ACTUALLY IS",
+        "body": "A Bitcoin wallet is not the coins — it is the private key that signs transactions spending them. Lose the key and the coins remain on the blockchain forever, visible but unspendable. Estimates suggest 3-4 million bitcoin are permanently lost this way, roughly 20% of all that will ever exist.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The key is typically stored in a **wallet.dat** file (Bitcoin Core) or as a **BIP39 seed phrase** — 12 or 24 words that deterministically regenerate every key in the wallet."
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO LAYERS OF DEFENSE",
+        "body": "A wallet file is itself encrypted with a user-chosen password. Recovery therefore has two distinct failure modes: lose the file, or lose the password. Cracking the password by brute force is what people imagine; finding the file (and a written-down password) is what usually works.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Lost wallet file",
+                "value": "~40%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Forgotten password",
+                "value": "~35%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Discarded hardware",
+                "value": "~15%",
+                "tone": "neutral"
+              },
+              {
+                "label": "Sent to wrong address",
+                "value": "~10%",
+                "tone": "neutral"
+              }
+            ],
+            "label": "why coins go missing"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE ENCRYPTION HELD",
+        "body": "Bitcoin Core encrypts wallet files with AES-256-CBC, with the key derived from the password via SHA-512 iterated tens of thousands of times. AES-256 is the same cipher the NSA approves for TOP SECRET material — no language model breaks it. The recovery here was filesystem archaeology, not cryptanalysis."
+      },
+      {
+        "heading": "WHAT LLMs ARE GOOD AT",
+        "body": "Searching a messy filesystem for files matching known wallet signatures, parsing old chat logs for password hints, correlating a notebook photograph with a backup timestamp — these are pattern tasks across heterogeneous data. The work a forensic analyst does in a week, an LLM with shell access does in minutes.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did Claude actually do to recover the 5 bitcoin?",
+            "options": [
+              "Brute-forced the wallet password",
+              "Located a backup file and matched it to a written password",
+              "Exploited a flaw in Bitcoin's encryption",
+              "Reconstructed the private key from blockchain data"
+            ],
+            "correct": 1,
+            "explanation": "The encryption was never broken. Claude found the wallet.dat file in an old backup and matched it to a password the user had written in a notebook."
+          }
+        ]
+      },
+      {
+        "heading": "THE CONSENT QUESTION",
+        "body": "The same capability — file discovery, password-hint correlation, automated decryption attempts — works identically whether the laptop is yours or stolen. US law (Computer Fraud and Abuse Act) and most jurisdictions criminalize unauthorized access regardless of the tool used. Anthropic's silence on misuse is conspicuous because the technique is trivially portable.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              74181.11,
+              74833.51,
+              75149.19,
+              77128.44,
+              75728.46,
+              73856.06,
+              75874.55,
+              76350.25,
+              78194.78,
+              78260.62,
+              77444.8,
+              77619.14,
+              78645.13,
+              77361.3,
+              76345.23,
+              75774.89,
+              76286.58,
+              78172.07,
+              78655.35,
+              78562.55,
+              79823.89,
+              80925.09,
+              81425,
+              80022.04,
+              80189.07,
+              80678.03,
+              82145.66,
+              81725.21,
+              80480.89,
+              79277.8,
+              79814.82
+            ],
+            "periods": [
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 14"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-14"
+    ],
+    "generatedAt": "2026-05-14T08:37:03.178Z",
+    "label": "Bitcoin Wallets & Forensic Search",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-14-dynamic-sparse-attention-multimodal-fusion-edge-devices": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE QUADRATIC PROBLEM",
+        "body": "Standard transformer attention compares every token to every other token. Double the input length, quadruple the compute and memory. On a phone with a fixed power budget, this scaling wall is what keeps large models in the cloud.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The cost grows as **O(n²)** in sequence length — the single line of math that defines what fits on an edge chip and what doesn't."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MULTIMODAL MAKES IT WORSE",
+        "body": "Fusing camera, microphone, and motion means concatenating tokens from each stream into one attention matrix. Three modalities at once can multiply the token count tenfold, and the quadratic cost turns a tractable model into an impossible one."
+      },
+      {
+        "heading": "WHAT SPARSE ATTENTION DOES",
+        "body": "Instead of computing all pairwise interactions, sparse attention computes only a chosen subset — a fixed pattern (local windows, strided), a learned mask, or a dynamic gate that decides per-input which pairs matter. The accuracy cost is often small; the compute savings can be order-of-magnitude.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Dense",
+                "value": "O(n²)",
+                "tone": "unfavorable",
+                "weight": 100
+              },
+              {
+                "label": "Sliding window",
+                "value": "O(n·w)",
+                "tone": "neutral",
+                "weight": 20
+              },
+              {
+                "label": "Dynamic sparse",
+                "value": "O(n·k)",
+                "tone": "favorable",
+                "weight": 10
+              },
+              {
+                "label": "Linear attention",
+                "value": "O(n)",
+                "tone": "favorable",
+                "weight": 5
+              }
+            ],
+            "label": "attention variants by cost in sequence length n"
+          }
+        ]
+      },
+      {
+        "heading": "WHY EDGE, NOT CLOUD",
+        "body": "Sending raw camera + mic + IMU streams to a server burns bandwidth, leaks privacy, and adds round-trip latency that breaks anything interactive. On-device fusion keeps the data local and lets the model react in milliseconds — the only viable architecture for always-on wake-word, gesture, and safety-monitoring use cases."
+      },
+      {
+        "heading": "THE MEMORY WALL",
+        "body": "Edge inference is usually memory-bound, not compute-bound. A modern phone NPU can do trillions of operations per second, but its on-chip SRAM is measured in megabytes. Cutting peak memory 45% often matters more than cutting FLOPs — it decides whether a model fits at all.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is peak memory often the binding constraint on edge AI, not raw compute?",
+            "options": [
+              "NPU chips can't do enough math per second",
+              "On-chip SRAM is tiny; spilling to DRAM is far slower and burns battery",
+              "Edge models are too small to use available compute",
+              "Sensor data arrives faster than memory can be allocated"
+            ],
+            "correct": 1,
+            "explanation": "NPUs have ample FLOPs but only megabytes of fast SRAM — once a model spills to DRAM, latency and power both jump sharply."
+          }
+        ]
+      },
+      {
+        "heading": "THE SENSOR FUSION PAYOFF",
+        "body": "A camera alone confuses a shadow for a person. A microphone alone confuses a TV for a conversation. An IMU alone can't tell falling from sitting down fast. Fusing them collapses each modality's failure modes — which is why the edge-fusion threshold is the gating step for reliable on-device perception."
+      }
+    ],
+    "generatedAt": "2026-05-14T08:37:29.002Z",
+    "label": "Sparse Attention on the Edge",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-14-kerala-cm-satheesan-venugopal-congress-legislator-vote": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO-FRONT SYSTEM",
+        "body": "Kerala has alternated power between two coalitions almost every election since 1980 — the Congress-led United Democratic Front (UDF) and the CPI(M)-led Left Democratic Front (LDF). No incumbent government has won re-election in over four decades; voters reliably swap the alliance in power.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This anti-incumbency pattern is so reliable Keralans call it the **paalu maattal** — the milk-change. The state is unusual: most Indian states reward incumbents."
+          }
+        ]
+      },
+      {
+        "heading": "THE MUSLIM LEAGUE'S ROLE",
+        "body": "The Indian Union Muslim League (IUML) is the UDF's second-largest partner and the most consequential surviving Muslim political party in India. Concentrated in Malappuram and the Malabar coast, it routinely delivers 15-20 assembly seats and holds an effective veto over UDF leadership choices.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN"
+            ],
+            "label": "Kerala's political geography",
+            "markers": [
+              {
+                "lat": 11.051,
+                "lng": 76.0711,
+                "label": "Malappuram — IUML stronghold"
+              },
+              {
+                "lat": 8.5241,
+                "lng": 76.9366,
+                "label": "Thiruvananthapuram"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "HIGH COMMAND VS STATE UNIT",
+        "body": "India's Congress party is structurally centralized — the Delhi 'high command' historically picks chief ministers, often parachuting in loyalists over state-grown leaders. Rajasthan, Punjab, and Karnataka have all seen recent intra-party revolts when the high command's nominee clashed with the legislature party's choice.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "K.C. Venugopal",
+                "role": "AICC general secretary, Delhi's pick",
+                "cc": "IN"
+              },
+              {
+                "name": "V.D. Satheesan",
+                "role": "Leader of Opposition, Kerala",
+                "cc": "IN"
+              },
+              {
+                "name": "Rahul Gandhi",
+                "role": "Congress MP, backed Venugopal",
+                "cc": "IN"
+              }
+            ],
+            "label": "the contest"
+          }
+        ]
+      },
+      {
+        "heading": "WHY KERALA RESISTS",
+        "body": "Kerala's Congress unit (KPCC) has the strongest internal democratic culture of any state Congress — a legacy of A.K. Antony and Oommen Chandy's decades-long 'A' and 'I' factional balance. Legislators here vote their preference more openly than counterparts in Hindi-belt states where the high command's word is final."
+      },
+      {
+        "heading": "THE COMMUNIST INCUMBENT",
+        "body": "The outgoing government is led by the CPI(M)'s Pinarayi Vijayan, only the second CM in Kerala history to win re-election (2021). His two-term run broke the paalu maattal pattern; the UDF's return restores it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which party has governed Kerala the longest in coalition since 1980?",
+            "options": [
+              "Indian National Congress (UDF)",
+              "CPI(M) (LDF)",
+              "Bharatiya Janata Party",
+              "Indian Union Muslim League"
+            ],
+            "correct": 1,
+            "explanation": "The Left Front has held power for slightly more total years, including Pinarayi Vijayan's unprecedented back-to-back terms from 2016-2026."
+          }
+        ]
+      },
+      {
+        "heading": "THE SWEARING-IN DEADLINE",
+        "body": "India's constitution requires a state assembly to meet at least once every six months; Kerala's current assembly term expires May 23. Missing the deadline would trigger President's Rule under Article 356 — direct administration from Delhi — which has been used over 130 times since independence, often controversially."
+      }
+    ],
+    "generatedAt": "2026-05-14T08:37:59.184Z",
+    "label": "Kerala's UDF & High-Command Politics",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-14-nickelate-la4ni3o10-density-wave-superconductivity-parent": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY PARENT STATES MATTER",
+        "body": "Superconductivity rarely emerges from a featureless metal. It almost always sits next to a competing ordered phase — magnetism, charge order, a density wave — that suppression unlocks. Identifying the parent state tells you what the electrons want to do instead of superconduct, which constrains the mechanism that lets them pair.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pattern is so consistent it has a name: the **superconducting dome**, where Tc peaks where the parent order vanishes."
+          }
+        ]
+      },
+      {
+        "heading": "THE CUPRATE PRECEDENT",
+        "body": "In 1986, Bednorz and Müller discovered superconductivity in a copper oxide above 30 K, shattering the 30 K ceiling that BCS theory had implied. The parent state turned out to be an antiferromagnetic Mott insulator — doping it with holes destroyed the magnetism and birthed the superconductor. Forty years later, the pairing mechanism is still debated.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1911",
+                "label": "Onnes discovers superconductivity in mercury"
+              },
+              {
+                "year": "1957",
+                "label": "BCS theory explains conventional superconductors"
+              },
+              {
+                "year": "1986",
+                "label": "Bednorz–Müller: cuprate breakthrough",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2008",
+                "label": "Iron pnictides discovered"
+              },
+              {
+                "year": "2019",
+                "label": "Infinite-layer nickelate superconductivity"
+              },
+              {
+                "year": "2023",
+                "label": "Bulk nickelate superconductivity under pressure"
+              }
+            ],
+            "label": "unconventional superconductors"
+          }
+        ]
+      },
+      {
+        "heading": "WHY NICKEL",
+        "body": "Nickel sits one column left of copper on the periodic table. Theorists have hunted for nickelate superconductors for thirty years on the bet that a nickel oxide engineered into the right electronic configuration would mimic cuprate physics. The 2019 discovery of superconductivity in infinite-layer nickelate thin films vindicated the hunt; La₄Ni₃O₁₀ extends it to bulk crystals."
+      },
+      {
+        "heading": "WHAT A DENSITY WAVE IS",
+        "body": "A density wave is a periodic modulation of electron density (charge density wave) or spin orientation (spin density wave) across the crystal lattice. Electrons crystallize into a standing pattern instead of flowing freely — it is an ordered state that competes with metallic conduction and, crucially, with superconductivity.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The new result is that charge order appears *first* on cooling, then spin order locks in — a **charge-then-spin** sequence, not the simultaneous onset cuprates show."
+          }
+        ]
+      },
+      {
+        "heading": "HOW NQR SEES IT",
+        "body": "Nuclear quadrupole resonance probes the electric field gradient at atomic nuclei without an external magnetic field. Because magnetic fields can themselves suppress density waves, NQR is one of the few tools that can image the parent state without disturbing it. The technique reads the local charge environment, nucleus by nucleus.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why use NQR instead of NMR to study a superconductor's parent state?",
+            "options": [
+              "NQR is faster than NMR",
+              "NQR doesn't require an external magnetic field that could suppress the order",
+              "NQR works at room temperature",
+              "NQR sees electrons directly, NMR sees only nuclei"
+            ],
+            "correct": 1,
+            "explanation": "Magnetic fields disturb density waves and superconductivity; NQR reads the electric field gradient at the nucleus with no applied field, leaving the fragile parent state intact."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PRESSURE",
+        "body": "Squeezing a crystal shortens atomic bonds and shifts the balance between competing electronic phases. In La₄Ni₃O₁₀, ambient pressure favors the density wave; a few gigapascals tip the balance toward superconductivity. Pressure is the cleanest experimental knob — no chemical substitution, no disorder — for walking a material across a quantum phase transition."
+      }
+    ],
+    "generatedAt": "2026-05-14T08:38:28.126Z",
+    "label": "Nickelates & Density Waves",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-14-pentagon-10k-cruise-12k-hypersonic-attritable-munitions": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MAGAZINE PROBLEM",
+        "body": "Modern wars consume precision munitions faster than peacetime factories can make them. The US fired more Tomahawks in the first weeks of the 2003 Iraq invasion than it produced in the following year. Every conflict since has restarted the same arithmetic: stockpile depth measured in days, replacement measured in years.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Pentagon's internal term for this gap is the **magazine problem** — how deep your magazine is when the shooting starts, and how fast it refills."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ATTRITABLE",
+        "body": "An attritable weapon is designed cheap enough to lose at scale. The doctrine inverts the post-Cold War logic of exquisite, billion-dollar platforms. A Tomahawk costs roughly $2M and takes 24+ months to build; the new generation aims for sub-$300K unit prices and weekly factory throughput. The point is not capability per round — it is rounds per month.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Tomahawk",
+                "value": "~$2.0M",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "JASSM-ER",
+                "value": "~$1.5M",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "LRASM",
+                "value": "~$3.0M",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Attritable cruise",
+                "value": "~$300K",
+                "tone": "favorable"
+              },
+              {
+                "label": "Switchblade 600",
+                "value": "~$100K",
+                "tone": "favorable"
+              }
+            ],
+            "label": "US standoff munitions, rough cost & lead time"
+          }
+        ]
+      },
+      {
+        "heading": "THE NEW PRIMES",
+        "body": "Anduril, Castelion, and Leidos are not Lockheed or Raytheon. The Pentagon is deliberately routing this contract around the legacy primes, betting that Silicon-Valley-style manufacturing — software-defined production lines, commercial supply chains, vertical integration — can hit volumes the traditional defense base cannot.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Anduril Industries",
+                "role": "autonomy & cruise missiles",
+                "years": "founded 2017",
+                "cc": "US"
+              },
+              {
+                "name": "Castelion",
+                "role": "low-cost hypersonics",
+                "years": "founded 2022",
+                "cc": "US"
+              },
+              {
+                "name": "Leidos",
+                "role": "prime integrator",
+                "years": "founded 1969",
+                "cc": "US"
+              }
+            ],
+            "label": "the awardees"
+          }
+        ]
+      },
+      {
+        "heading": "THE HYPERSONIC RACE",
+        "body": "Hypersonic weapons fly above Mach 5 with maneuvering trajectories that defeat ballistic-missile defenses designed for predictable arcs. Russia fielded Kinzhal and Avangard first; China fielded DF-17. The US lagged for a decade because it kept aiming at exquisite, single-mission designs — Castelion's pitch is the opposite: a hypersonic the Pentagon can buy by the thousand."
+      },
+      {
+        "heading": "THE 2029 BOTTLENECK",
+        "body": "Solid rocket motors, tungsten, rare earths, and skilled welders are the actual constraints — not contracts. Aerojet Rocketdyne (now L3Harris) is the sole US source for many large solid motors. China controls ~70% of refined rare earth processing. A 22,000-round order in 2026 collides with a supply chain that took thirty years to atrophy.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "re",
+                "label": "Rare earths (China ~70%)"
+              },
+              {
+                "id": "tungsten",
+                "label": "Tungsten (China ~80%)"
+              },
+              {
+                "id": "motors",
+                "label": "Solid rocket motors"
+              },
+              {
+                "id": "seekers",
+                "label": "Seekers & guidance"
+              },
+              {
+                "id": "airframes",
+                "label": "Airframes & assembly"
+              },
+              {
+                "id": "missile",
+                "label": "Finished munition"
+              }
+            ],
+            "links": [
+              {
+                "source": "re",
+                "target": "seekers",
+                "value": 40
+              },
+              {
+                "source": "re",
+                "target": "motors",
+                "value": 30
+              },
+              {
+                "source": "tungsten",
+                "target": "airframes",
+                "value": 50
+              },
+              {
+                "source": "motors",
+                "target": "missile",
+                "value": 70
+              },
+              {
+                "source": "seekers",
+                "target": "missile",
+                "value": 40
+              },
+              {
+                "source": "airframes",
+                "target": "missile",
+                "value": 50
+              }
+            ],
+            "label": "munition supply chain bottlenecks"
+          }
+        ]
+      },
+      {
+        "heading": "THE PACING THREAT",
+        "body": "Pentagon planning documents name China as the 'pacing threat' — the adversary against which force structure is sized. War games of a Taiwan contingency consistently show US long-range munitions exhausted in the first week. The 22,000-round order is sized against that scenario, not the campaign that just ended in Iran.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In CSIS Taiwan war games, roughly how many days of intense combat did US long-range anti-ship munition stocks last?",
+            "options": [
+              "About 1 week",
+              "About 1 month",
+              "About 3 months",
+              "About 6 months"
+            ],
+            "correct": 0,
+            "explanation": "CSIS's 2023 wargames found the US expended its inventory of long-range precision munitions, especially LRASMs, within the first week of a Taiwan conflict — the finding that drove the current attritable-munitions push."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-14T08:39:11.584Z",
+    "label": "Attritable Munitions & the Magazine Problem",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-14-philippines-april-massacre-us-silence-mdt-aid": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MUTUAL DEFENSE TREATY",
+        "body": "Signed in 1951, the US-Philippines Mutual Defense Treaty commits each party to respond to armed attacks on the other in the Pacific. It is the legal foundation for every US base, joint exercise, and aid package since — including the 2014 Enhanced Defense Cooperation Agreement that expanded US access to nine Philippine bases.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1898",
+                "label": "US annexation after Spanish-American War"
+              },
+              {
+                "year": "1946",
+                "label": "Philippine independence"
+              },
+              {
+                "year": "1951",
+                "label": "Mutual Defense Treaty signed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1991",
+                "label": "Senate evicts US from Subic, Clark"
+              },
+              {
+                "year": "2014",
+                "label": "EDCA expands base access"
+              },
+              {
+                "year": "2023",
+                "label": "EDCA expanded to 9 sites"
+              }
+            ],
+            "label": "US-Philippine security arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT RED-TAGGING IS",
+        "body": "Red-tagging is the public labeling of activists, journalists, lawyers, or clergy as communist front operatives — typically by state security officials. Once tagged, a person becomes a legitimate target in counterinsurgency operations. UN special rapporteurs have repeatedly warned the practice is a precursor to extrajudicial killing.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The official body coordinating the campaign is the **NTF-ELCAC** — the National Task Force to End Local Communist Armed Conflict — established by Duterte in 2018 and retained under Marcos Jr."
+          }
+        ]
+      },
+      {
+        "heading": "THE NPA INSURGENCY",
+        "body": "The New People's Army, armed wing of the Communist Party of the Philippines, has fought a rural insurgency since 1969 — one of Asia's longest-running. Its strength has collapsed from roughly 25,000 fighters in the 1980s to a few thousand today, but the counterinsurgency apparatus built around it remains enormous and increasingly targets unarmed civilians."
+      },
+      {
+        "heading": "THE LEAHY LAW",
+        "body": "US law prohibits military aid to foreign security units credibly implicated in gross human rights violations. In practice, the State Department vets units narrowly — battalion-by-battalion — and rarely cuts off entire forces. The Philippine military has had specific units flagged but the overall aid pipeline has continued through every administration since the 1990s.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does the Leahy Law require the US to do when a foreign military unit is credibly implicated in gross human rights abuses?",
+            "options": [
+              "Cut off all aid to the country",
+              "Withhold aid from the specific unit",
+              "Issue a public condemnation",
+              "Refer the unit to the ICC"
+            ],
+            "correct": 1,
+            "explanation": "Leahy vetting operates at the unit level, not the country level — which is why aid to Philippine forces continues even when specific battalions are flagged."
+          }
+        ]
+      },
+      {
+        "heading": "THE PIVOT TO CHINA CONTAINMENT",
+        "body": "Under Marcos Jr., Manila reversed Duterte's tilt toward Beijing and re-anchored to Washington. The Philippines is now the southern hinge of the US first-island-chain posture against China — which gives the Pentagon strong incentive to keep diplomatic friction with the Armed Forces of the Philippines to a minimum, human rights concerns included.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PH",
+              "TW",
+              "CN",
+              "VN",
+              "MY"
+            ],
+            "label": "first-island-chain anchor",
+            "caption": "EDCA sites face Taiwan Strait and South China Sea",
+            "markers": [
+              {
+                "lat": 20.4467,
+                "lng": 121.97,
+                "label": "Batanes (EDCA site)"
+              },
+              {
+                "lat": 18.181,
+                "lng": 120.587,
+                "label": "Cagayan (EDCA site)"
+              },
+              {
+                "lat": 9.7392,
+                "lng": 118.7353,
+                "label": "Palawan (faces Spratlys)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL PATTERN",
+        "body": "From the Hukbalahap suppression of the 1950s through Marcos Sr.'s martial law to Duterte's drug war, US security assistance to Manila has continued through cycles of mass killing. The pattern: strategic value in the Pacific outweighs the human rights cost in Washington's calculus, every time."
+      }
+    ],
+    "generatedAt": "2026-05-14T08:39:42.629Z",
+    "label": "US-Philippine Security Ties & Red-Tagging",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-14-red-fort-blast-nia-chargesheet-aguh-aqis-delhi": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FRANCHISE MODEL",
+        "body": "Al-Qaeda after 2011 stopped running operations from a central command and started licensing its brand to regional affiliates. Each franchise — AQAP in Yemen, AQIM in the Sahel, AQIS in South Asia — recruits locally, finances itself, and pledges bayah upward. The center provides legitimacy; the periphery provides bodies.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pledge of loyalty is called ***bayah*** — a classical Islamic concept of allegiance to a leader, repurposed by jihadist groups to bind franchises to a central emir without operational command."
+          }
+        ]
+      },
+      {
+        "heading": "AQIS, THE LATE ARRIVAL",
+        "body": "Al-Qaeda in the Indian Subcontinent was announced by Ayman al-Zawahiri in September 2014, explicitly framed as a response to ISIS's caliphate declaration three months earlier. It was a franchise built defensively — to keep South Asian recruits from defecting to Baghdadi — and has struggled to mount operations at the scale its name implies.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2001",
+                "label": "US invades Afghanistan; AQ scatters"
+              },
+              {
+                "year": "2011",
+                "label": "Bin Laden killed in Abbottabad",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2014-06",
+                "label": "ISIS declares caliphate"
+              },
+              {
+                "year": "2014-09",
+                "label": "Zawahiri announces AQIS"
+              },
+              {
+                "year": "2017",
+                "label": "AGuH founded in Kashmir"
+              },
+              {
+                "year": "2021",
+                "label": "Taliban retakes Kabul; AQ resurfaces"
+              }
+            ],
+            "label": "the AQIS arc"
+          }
+        ]
+      },
+      {
+        "heading": "ANSAR GHAZWAT-UL-HIND",
+        "body": "AGuH — \"Helpers of the Battle of India\" — was founded in 2017 by Zakir Musa, a former Hizbul Mujahideen commander who broke with the Kashmiri separatist mainstream because he rejected the nationalist framing. Musa's pitch was theological: Kashmir is not about self-determination, it is about establishing sharia. He was killed by Indian forces in 2019; the group has been near-dormant since."
+      },
+      {
+        "heading": "THE EDUCATED RECRUIT",
+        "body": "The naming of a medical doctor as bomb-maker is the headline detail because it cuts against the assumed profile. Studies of jihadist recruitment since the 1990s — Marc Sageman's work on the Hamburg cell, the LSE data on ISIS foreign fighters — consistently find that engineers, doctors, and IT professionals are overrepresented, not underrepresented, among operatives. Poverty is not the driver; ideological commitment among the educated middle class is.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Among studied jihadist operatives, which professional background is most overrepresented?",
+            "options": [
+              "Unemployed laborers",
+              "Engineers and technical professionals",
+              "Religious clerics",
+              "Military veterans"
+            ],
+            "correct": 1,
+            "explanation": "Diego Gambetta and Steffen Hertog's 2016 study found engineers are roughly 3-4x overrepresented among Islamist militants relative to their share of the population."
+          }
+        ]
+      },
+      {
+        "heading": "THE NIA AND CHARGESHEETS",
+        "body": "India's National Investigation Agency was created after the 2008 Mumbai attacks to centralize terrorism prosecutions that had previously been split across state police. A chargesheet under the Unlawful Activities Prevention Act allows pre-trial detention of up to 180 days and shifts the burden of proof on bail toward the accused — a regime closer to the US material support statutes than to ordinary Indian criminal procedure."
+      },
+      {
+        "heading": "THE CAR BOMB IN SOUTH ASIA",
+        "body": "Vehicle-borne IEDs are rare in India relative to Pakistan or Afghanistan, where they are a staple of TTP and Haqqani-network operations. The 2001 Indian Parliament attack used small arms; the 2008 Mumbai attack used small arms and grenades; the 2019 Pulwama bombing in Kashmir was the most significant VBIED attack on Indian soil — a CRPF convoy hit by a 300kg explosive in a car driven by a JeM operative.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "PK",
+              "AF",
+              "BD"
+            ],
+            "label": "AQIS's stated theater",
+            "markers": [
+              {
+                "lat": 28.6562,
+                "lng": 77.241,
+                "label": "Red Fort, Delhi"
+              },
+              {
+                "lat": 33.8744,
+                "lng": 74.9092,
+                "label": "Pulwama, 2019"
+              },
+              {
+                "lat": 18.9398,
+                "lng": 72.8355,
+                "label": "Mumbai, 2008"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-14T08:40:15.472Z",
+    "label": "AGuH, AQIS & the Delhi cell",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-14-trump-xi-tech-chip-export-ai-supply-chain-ev-stakes": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FOUNDRY CHOKEPOINT",
+        "body": "Advanced AI chips are designed in the US but fabricated almost entirely in Taiwan. TSMC produces roughly 90% of the world's leading-edge logic chips below 7nm. Every export-control fight ultimately routes through a single island 180 km off the Chinese coast.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The binding constraint isn't design — it's **EUV lithography**. ASML in the Netherlands is the sole supplier of the machines that print sub-7nm chips, and Washington has blocked their sale to China since 2019."
+          }
+        ]
+      },
+      {
+        "heading": "THE ENTITY LIST MECHANIC",
+        "body": "US export controls don't ban sales outright — they require a license, which is then denied. The Commerce Department's Entity List grew from a few hundred names in 2018 to over a thousand Chinese firms by 2024, covering Huawei, SMIC, YMTC, and most of China's AI hardware ecosystem.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2018",
+                "label": "ZTE near-collapse from US ban"
+              },
+              {
+                "year": "2019",
+                "label": "Huawei added to Entity List",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020",
+                "label": "Foreign Direct Product Rule extended"
+              },
+              {
+                "year": "2022",
+                "label": "Oct 7 advanced-chip rules"
+              },
+              {
+                "year": "2023",
+                "label": "H100/A100 sales to China blocked"
+              },
+              {
+                "year": "2024",
+                "label": "HBM memory controls added"
+              }
+            ],
+            "label": "the controls escalation"
+          }
+        ]
+      },
+      {
+        "heading": "THE EV INVERSION",
+        "body": "China went from importing cars to dominating global EV exports in under a decade. BYD overtook Tesla in quarterly sales in late 2023. The US 100% tariff on Chinese EVs (2024) and EU 35% tariff exist because at unsubsidized prices, BYD would undercut every Western automaker on its home market.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "BYD",
+                "value": "~3.0mn",
+                "cc": "CN",
+                "weight": 3,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Tesla",
+                "value": "~1.8mn",
+                "cc": "US",
+                "weight": 1.8,
+                "tone": "neutral"
+              },
+              {
+                "label": "Geely group",
+                "value": "~1.2mn",
+                "cc": "CN",
+                "weight": 1.2,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "VW group",
+                "value": "~0.7mn",
+                "cc": "DE",
+                "weight": 0.7
+              },
+              {
+                "label": "Hyundai-Kia",
+                "value": "~0.5mn",
+                "cc": "KR",
+                "weight": 0.5
+              }
+            ],
+            "label": "global EV producers, 2024 (approx units, mn)"
+          }
+        ]
+      },
+      {
+        "heading": "THE RARE EARTH LEVERAGE",
+        "body": "China refines roughly 90% of the world's rare earths and an even higher share of the heavy rare earths needed for EV motors, wind turbines, and precision-guided munitions. Mining happens in many countries; separation chemistry — toxic, capital-intensive, and politically unpopular — has consolidated in China since the 1990s.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "China",
+                "value": 90,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Malaysia",
+                "value": 4,
+                "tone": "neutral"
+              },
+              {
+                "label": "Estonia",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "USA",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Other",
+                "value": 2,
+                "tone": "favorable"
+              }
+            ],
+            "label": "rare earth refining share, 2024 (approx %)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY POST-IRAN SUPPLY CHAINS MATTER",
+        "body": "The 2025 Iran conflict revealed how thin the West's drone, missile, and electronics inventories had become. Reconstituting them requires components — gallium, germanium, neodymium, silicon carbide wafers — that China either dominates or restricts under its own export-control regime introduced in 2023.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which critical mineral did China place under export licensing in 2023, briefly tripling its price?",
+            "options": [
+              "Lithium",
+              "Gallium and germanium",
+              "Cobalt",
+              "Nickel"
+            ],
+            "correct": 1,
+            "explanation": "China controls ~98% of global gallium and ~60% of germanium refining; both are essential for semiconductors, radar, and night vision."
+          }
+        ]
+      },
+      {
+        "heading": "THE DECOUPLING ARITHMETIC",
+        "body": "US–China goods trade was roughly $660bn in 2018, the year tariffs began. By 2024 it had fallen below $580bn even in nominal terms — a real decline of around 25%. Mexico, not China, is now America's largest trading partner. The relationship is rewiring through Vietnam, Mexico, and Malaysia rather than ending.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              6.8183,
+              6.8214,
+              6.8177,
+              6.8177,
+              6.8177,
+              6.8192,
+              6.8157,
+              6.8235,
+              6.8265,
+              6.8363,
+              6.8363,
+              6.8363,
+              6.8284,
+              6.8289,
+              6.836,
+              6.8391,
+              6.8282,
+              6.82825,
+              6.82825,
+              6.8283,
+              6.8303,
+              6.8193,
+              6.8059,
+              6.8037,
+              6.8008,
+              6.8008,
+              6.7964,
+              6.7935,
+              6.7923,
+              6.7864
+            ],
+            "periods": [
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14"
+            ],
+            "label": "Chinese yuan",
+            "unit": "CNY / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-14"
+    ],
+    "generatedAt": "2026-05-14T08:40:45.714Z",
+    "label": "US–China Tech Decoupling",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-14-us-ethane-china-record-776k-iran-war-feedstock": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY ETHANE, NOT OIL",
+        "body": "Ethane is the second-lightest hydrocarbon — a gas at room temperature, separated from natural gas at processing plants. Crackers heat it to ~850°C to snap it into ethylene, the building block for polyethylene plastic. Ethane cracks more cleanly than naphtha (a liquid oil cut), yielding ~80% ethylene versus ~30%, with fewer byproducts to dispose of.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The economics flip on feedstock: a cracker built for **naphtha** can switch to **ethane** only with major retrofitting — different furnaces, different separation trains, different downstream chemistry."
+          }
+        ]
+      },
+      {
+        "heading": "THE SHALE DIVIDEND",
+        "body": "The US shale boom unlocked associated gas — methane and ethane that come up alongside oil. With domestic ethane supply exceeding what US crackers could absorb, the surplus had to be exported. Purpose-built Very Large Ethane Carriers (VLECs) — refrigerated to -89°C — emerged after 2016 to move it across oceans.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "CN",
+              "SA",
+              "QA",
+              "AE"
+            ],
+            "label": "the ethane corridor",
+            "markers": [
+              {
+                "lat": 29.7,
+                "lng": -94.97,
+                "label": "Morgan's Point ethane terminal"
+              },
+              {
+                "lat": 29.3,
+                "lng": -94.78,
+                "label": "Enterprise Houston terminal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHINA NEEDS IT",
+        "body": "China built a wave of ethane-only crackers on its east coast starting around 2020 — Satellite Chemical, Sanjiang — betting that imported US ethane would undercut domestic naphtha from refining oil. The bet paid off when US gas stayed cheap and Brent crude stayed expensive. China has no significant domestic ethane resource of its own.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "US ethane",
+                "value": "~$400",
+                "tone": "favorable",
+                "weight": 400
+              },
+              {
+                "label": "Mideast ethane",
+                "value": "~$450",
+                "tone": "favorable",
+                "weight": 450
+              },
+              {
+                "label": "Asian naphtha",
+                "value": "~$900",
+                "tone": "unfavorable",
+                "weight": 900
+              },
+              {
+                "label": "European naphtha",
+                "value": "~$1050",
+                "tone": "unfavorable",
+                "weight": 1050
+              }
+            ],
+            "label": "feedstock cost per tonne of ethylene, 2024 est."
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ CONNECTION",
+        "body": "Gulf naphtha — refined from oil that transits the Strait of Hormuz — was the alternative feedstock China was buying. When Iran-war risk pushed Hormuz insurance premiums up and tanker availability down, the cost gap widened further in favor of US ethane shipped from Houston via Panama or the Cape.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              50113,
+              33135,
+              24520,
+              38243,
+              53789,
+              41751,
+              30719,
+              22824,
+              22683,
+              20350,
+              15181,
+              11486,
+              9329,
+              10790,
+              11944,
+              10521,
+              10716,
+              9440,
+              8343,
+              9010,
+              20463,
+              20437,
+              15167,
+              13152,
+              10845,
+              7500,
+              7596,
+              9653,
+              8493,
+              7630
+            ],
+            "periods": [
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13"
+            ],
+            "label": "Strait of Hormuz — Wikipedia views",
+            "unit": "views/day",
+            "highlight": "max",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE STRATEGIC TRAP",
+        "body": "China now depends on US-flagged ethane for a growing share of its plastics industry. In a US-China confrontation, Washington could restrict ethane exports the same way it restricts advanced chips — and China cannot quickly retrofit its ethane-only crackers back to naphtha. The 2018 trade war already saw brief Chinese tariffs on US ethane; Beijing dropped them within months because no substitute existed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't China simply switch its new ethane crackers back to naphtha if US exports are cut?",
+            "options": [
+              "Naphtha is more expensive than ethane",
+              "The crackers are physically built for ethane chemistry and can't easily process heavier feedstocks",
+              "China has banned naphtha imports",
+              "Naphtha produces too much pollution under Chinese rules"
+            ],
+            "correct": 1,
+            "explanation": "Ethane and naphtha crackers use different furnace designs and separation trains; switching requires major capital retrofitting, not a flip of a switch."
+          }
+        ]
+      },
+      {
+        "heading": "THE PANAMA BOTTLENECK",
+        "body": "VLECs are too large for the old Panama Canal locks and rely on the 2016 expansion. Drought-driven Canal slot restrictions — recurring since 2023 — force ethane carriers onto longer routes via the Cape of Good Hope or Suez, adding two to three weeks per voyage and tying up fleet capacity that was already tight."
+      }
+    ],
+    "sources": [
+      "Wikipedia pageviews · as of 2026-05-13"
+    ],
+    "generatedAt": "2026-05-14T08:41:17.374Z",
+    "label": "Ethane & the Petrochemical Pivot",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-14-world-cup-2026-quarter-games-dangerous-heat-north-america": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WET-BULB THRESHOLD",
+        "body": "Heat danger for athletes is measured by wet-bulb globe temperature (WBGT), not air temperature alone. WBGT combines heat, humidity, wind, and solar radiation into a single number. Above 28°C WBGT, FIFA protocols mandate cooling breaks; above 32°C, outdoor endurance sport becomes medically dangerous regardless of fitness.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The critical metric is **WBGT**, not the thermometer reading — a 32°C day at 80% humidity is more dangerous than a 38°C day in dry desert air."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HUMIDITY KILLS",
+        "body": "The human body sheds heat primarily through sweat evaporation. When ambient humidity rises above roughly 75%, sweat stops evaporating efficiently — it just drips. Core temperature climbs even at rest. An athlete generating 1000 watts of metabolic heat in humid conditions can reach heatstroke territory within 30 minutes."
+      },
+      {
+        "heading": "THE 1994 PRECEDENT",
+        "body": "The last US-hosted World Cup played noon kickoffs in Dallas and Orlando to suit European TV schedules. Players described conditions as the worst they had encountered; the Italy-Norway match was played at WBGT levels that would breach modern protocols. FIFA learned little — 2026 group stage kickoffs are again scheduled for midday in the same southern cities.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "MX",
+              "CA"
+            ],
+            "label": "2026 host cities — southern cluster carries the heat risk",
+            "markers": [
+              {
+                "lat": 33.7553,
+                "lng": -84.4006,
+                "label": "Atlanta"
+              },
+              {
+                "lat": 29.6847,
+                "lng": -95.4107,
+                "label": "Houston"
+              },
+              {
+                "lat": 25.958,
+                "lng": -80.2389,
+                "label": "Miami"
+              },
+              {
+                "lat": 32.7473,
+                "lng": -97.0945,
+                "label": "Arlington (Dallas)"
+              },
+              {
+                "lat": 19.3029,
+                "lng": -99.1505,
+                "label": "Mexico City"
+              },
+              {
+                "lat": 43.6414,
+                "lng": -79.3894,
+                "label": "Toronto"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE STADIUM SOLUTION",
+        "body": "Five 2026 venues have roofs or air conditioning — Atlanta, Dallas, Houston, Vancouver, and Los Angeles (SoFi). The other 11 are open-air. Qatar 2022 solved heat with stadium-scale air conditioning powered by solar farms, but those venues were purpose-built; retrofitting NFL stadiums for World Cup heat is not on FIFA's agenda."
+      },
+      {
+        "heading": "WHAT ATHLETES ACTUALLY RISK",
+        "body": "Exertional heatstroke kills via multi-organ failure, not heat itself. Core temperature above 40°C for more than 30 minutes denatures proteins in the gut lining; bacteria leak into the bloodstream; sepsis follows. Survival depends on cold-water immersion within minutes — a treatment most football medical bags cannot deliver pitchside.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Above what core body temperature does exertional heatstroke become life-threatening within 30 minutes?",
+            "options": [
+              "38°C (100.4°F)",
+              "40°C (104°F)",
+              "42°C (107.6°F)",
+              "44°C (111.2°F)"
+            ],
+            "correct": 1,
+            "explanation": "40°C is the threshold where proteins begin denaturing in the gut lining. Above 42°C, death is near-certain without immediate cold-water immersion."
+          }
+        ]
+      },
+      {
+        "heading": "WHY FIFA WON'T MOVE GAMES",
+        "body": "World Cup broadcast contracts are signed years in advance with kickoff windows pinned to European prime time. A Dallas 3pm local kickoff is 10pm in Berlin — the value-maximizing slot. Moving games to evening kickoffs costs FIFA roughly $200m per round in renegotiated broadcast value. The athletes' risk does not appear on that ledger."
+      }
+    ],
+    "generatedAt": "2026-05-14T08:41:47.077Z",
+    "label": "Heat Stress & Athletic Performance",
+    "category": "science",
+    "articleCount": 1
   }
 }
