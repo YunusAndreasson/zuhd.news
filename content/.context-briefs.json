@@ -169619,5 +169619,1531 @@
     "label": "Electric Trucking & TCO",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-05-13-princeton-ends-133-year-unproctored-exam-honor-ai": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ORIGINAL BARGAIN",
+        "body": "Princeton's 1893 honor code traded faculty surveillance for student self-policing: students sign a pledge and are obligated to report peers. The system survived 133 years because cheating left visible traces — a wandering eye, a passed note, a whispered answer.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pledge was famously terse: *\"I pledge my honor that I have not violated the Honor Code during this examination.\"* Every blue book carried it; every student signed it."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PEER REPORTING WORKED",
+        "body": "Honor codes function as equilibrium games: they hold when most students believe most others comply. Once perceived cheating crosses a threshold, the cooperative norm collapses — non-cheaters feel like suckers and either start cheating or stop reporting. Game theorists call this a tipping model."
+      },
+      {
+        "heading": "WHAT AI BROKE",
+        "body": "Earlier cheating — crib sheets, copied answers, even contract essay mills — produced artifacts another student could see. A classmate using ChatGPT on a laptop or phone under the desk produces no observable signal. The peer-detection layer the honor code depended on no longer has anything to detect.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Princeton's 2025 senior survey found what share of students had cheated during their time at the university?",
+            "options": [
+              "About 10%",
+              "About 20%",
+              "About 30%",
+              "About 50%"
+            ],
+            "correct": 2,
+            "explanation": "30% — high enough that the peer-reporting equilibrium had already collapsed; the proctoring vote ratified a reality, not a hypothetical."
+          }
+        ]
+      },
+      {
+        "heading": "THE PEER GROUP",
+        "body": "Among elite US universities, true unproctored exams were always rare. Caltech and the US service academies maintain honor codes with broad take-home privileges; UVA's single-sanction code (expulsion for any violation) is the strictest; most of the Ivy League proctors normally.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Princeton",
+                "value": "unproctored → proctored 2026",
+                "tone": "unfavorable",
+                "cc": "US"
+              },
+              {
+                "label": "Caltech",
+                "value": "take-home exams standard",
+                "tone": "favorable",
+                "cc": "US"
+              },
+              {
+                "label": "UVA",
+                "value": "single-sanction expulsion",
+                "tone": "neutral",
+                "cc": "US"
+              },
+              {
+                "label": "US Military Academy",
+                "value": "non-toleration clause",
+                "tone": "neutral",
+                "cc": "US"
+              },
+              {
+                "label": "Harvard / Yale",
+                "value": "proctored, no code",
+                "tone": "neutral",
+                "cc": "US"
+              }
+            ],
+            "label": "honor code regimes at selective US universities"
+          }
+        ]
+      },
+      {
+        "heading": "THE DETECTION ARMS RACE",
+        "body": "AI-detection tools (Turnitin, GPTZero) report false-positive rates that make them legally unusable for discipline — a single wrongful expulsion invites litigation. Watermarking schemes proposed by OpenAI and Google have not shipped at scale. There is currently no reliable forensic method to prove a given essay was AI-generated, which is why universities are retreating to the one thing that works: watching students take the test in person."
+      },
+      {
+        "heading": "THE DEEPER SHIFT",
+        "body": "The proctoring vote is a small instance of a wider pattern: institutions that ran on trust-based verification — open-book exams, take-home finals, unsupervised remote work — are rebuilding surveillance layers they had spent decades dismantling. The cost is not just supervision but the signal that supervision sends about what students are presumed to be."
+      }
+    ],
+    "generatedAt": "2026-05-14T17:51:02.025Z",
+    "label": "Honor Codes & AI",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-14-404-media-ai-poop-app-150k-stool-images-data-sale": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT HIPAA ACTUALLY COVERS",
+        "body": "HIPAA, passed in 1996, regulates only 'covered entities' — health plans, healthcare providers who bill electronically, and clearinghouses — plus their business associates. A consumer app that collects medical-looking data but never bills insurance or treats patients sits entirely outside the law.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The acronym is *Health Insurance Portability and Accountability Act* — its core purpose was making insurance follow workers between jobs. Privacy was a **secondary** add-on, which is why the scope is tied to billing relationships, not to the sensitivity of the data."
+          }
+        ]
+      },
+      {
+        "heading": "THE CONSUMER-APP GAP",
+        "body": "Fitness trackers, period apps, mental-health chatbots, and symptom loggers collect data more intimate than most doctor visits — and none of it is protected health information under federal law. The FTC's Health Breach Notification Rule fills part of the gap by requiring breach disclosure, but it does not restrict what apps can sell.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hospital records",
+                "value": "HIPAA",
+                "tone": "favorable"
+              },
+              {
+                "label": "Insurance claims",
+                "value": "HIPAA",
+                "tone": "favorable"
+              },
+              {
+                "label": "Fitness apps",
+                "value": "FTC only",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Period trackers",
+                "value": "FTC only",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Symptom apps",
+                "value": "FTC only",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "who regulates your health data"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE IMAGES HAVE A PRICE",
+        "body": "AI training is the buyer. A labeled medical-image dataset of 150,000 samples would cost a startup hundreds of thousands of dollars to assemble through clinical partnerships and IRB review. Scraped consumer-app uploads bypass the consent, ethics review, and per-image labeling costs entirely."
+      },
+      {
+        "heading": "THE EUROPEAN CONTRAST",
+        "body": "Under the GDPR, health data is a 'special category' requiring explicit consent for each processing purpose — and sale to a third party would require a fresh consent, not a buried terms-of-service clause. California's CMIA and Washington's My Health My Data Act (2024) are the closest US analogues, but they apply only to residents of those states.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "DE",
+              "FR",
+              "GB",
+              "CA"
+            ],
+            "label": "who treats health-app data as 'special category'",
+            "caption": "EU/UK: explicit consent per purpose. US: patchwork by state."
+          }
+        ]
+      },
+      {
+        "heading": "THE BANKRUPTCY LOOPHOLE",
+        "body": "Even apps with strong privacy policies often carve out an exception for 'transfer of assets' in a sale or bankruptcy. When 23andMe filed for Chapter 11 in 2025, 15 million users' genetic profiles became assets the court could authorize a buyer to acquire — privacy promises do not survive a corporate death.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which of these health-adjacent apps falls under HIPAA?",
+            "options": [
+              "A period-tracking app on your phone",
+              "A hospital's patient portal",
+              "A consumer DNA testing service",
+              "An AI symptom-checker chatbot"
+            ],
+            "correct": 1,
+            "explanation": "Only the hospital portal involves a 'covered entity' billing insurance. The other three collect equally sensitive data but operate outside HIPAA's scope."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-14T17:51:28.138Z",
+    "label": "Health Data Outside HIPAA",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-14-barbados-fishery-climate-student-data-gap-caribbean-sids": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY COUNTS MATTER",
+        "body": "Fishery management depends on stock assessments — population counts that determine quotas. Without them, regulators fly blind: by the time a collapse is visible in catch volumes, the breeding population is usually already too depleted to recover quickly.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The classic case is the **Northern cod** off Newfoundland. Catches looked stable into the late 1980s; the 1992 collapse came suddenly, and the moratorium that followed has lasted *over three decades* with the stock still not fully recovered."
+          }
+        ]
+      },
+      {
+        "heading": "THE SARGASSUM BLOOM",
+        "body": "Since 2011, massive sargassum mats — the Great Atlantic Sargassum Belt — have stretched from West Africa to the Caribbean. The bloom is fed by Amazon-basin agricultural runoff and warming Atlantic waters. It rots on beaches, releasing hydrogen sulfide, and chokes harbours and reefs.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BB",
+              "JM",
+              "DO",
+              "HT",
+              "TT",
+              "LC",
+              "VC",
+              "GD",
+              "BS",
+              "MX"
+            ],
+            "label": "the Caribbean sargassum corridor",
+            "caption": "the belt reaches from West Africa to the Gulf of Mexico"
+          }
+        ]
+      },
+      {
+        "heading": "THE DOLPHINFISH PARADOX",
+        "body": "Adult dolphinfish (mahi-mahi) roam the open ocean, but juveniles shelter under floating debris — including sargassum mats. A bloom that suffocates a harbour can simultaneously concentrate the next generation of a commercial fish into a small, easily overfished area."
+      },
+      {
+        "heading": "THE SIDS PROBLEM",
+        "body": "Small Island Developing States contribute under 1% of global emissions but absorb a disproportionate share of climate damage. Their economies are too small to fund redundant monitoring infrastructure, so a single hurricane can knock out the institutions that generate the data needed to argue for climate finance.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Hurricane damage as share of GDP, single-event peak",
+            "peers": [
+              {
+                "value": 226,
+                "label": "Dominica (Maria, 2017)"
+              },
+              {
+                "value": 200,
+                "label": "Grenada (Ivan, 2004)"
+              },
+              {
+                "value": 25,
+                "label": "Bahamas (Dorian, 2019)"
+              },
+              {
+                "value": 4,
+                "label": "Barbados (Beryl, 2024)"
+              },
+              {
+                "value": 80,
+                "label": "Puerto Rico (Maria, 2017)"
+              },
+              {
+                "value": 32,
+                "label": "Haiti (Matthew, 2016)"
+              }
+            ],
+            "subjectLabel": "Barbados (Beryl, 2024)",
+            "unit": "% of GDP"
+          }
+        ]
+      },
+      {
+        "heading": "BERYL'S RECORD",
+        "body": "Hurricane Beryl (July 2024) became the earliest Category 5 Atlantic hurricane ever recorded, fueled by ocean temperatures more typical of September. The Atlantic hurricane season runs June to November; storms of that intensity historically arrived after August's peak heat.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What made Hurricane Beryl unprecedented when it formed in 2024?",
+            "options": [
+              "It was the earliest Category 5 Atlantic hurricane on record",
+              "It was the strongest hurricane ever measured",
+              "It was the first hurricane to hit Barbados directly",
+              "It was the longest-lasting Atlantic hurricane"
+            ],
+            "correct": 0,
+            "explanation": "Beryl reached Category 5 in early July — weeks before the Atlantic basin historically has the heat to sustain that intensity."
+          }
+        ]
+      },
+      {
+        "heading": "CITIZEN SCIENCE AS STOPGAP",
+        "body": "When state monitoring collapses, the alternative is distributed data collection — students, fishers, divers logging counts under researcher protocols. The data is noisier than agency surveys, but a noisy time series beats no time series when you are arguing for international funding."
+      }
+    ],
+    "generatedAt": "2026-05-14T17:51:59.616Z",
+    "label": "Fisheries Data & Small Island States",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-14-cme-nasdaq-crypto-index-futures-derivatives-80-percent": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY DERIVATIVES DOMINATE",
+        "body": "In every mature asset class, derivatives volume eventually dwarfs spot. Futures let traders take leveraged positions, hedge inventory, and short without borrowing the underlying — three things spot markets cannot do efficiently. Crypto's 80/20 derivatives-to-spot ratio is not an anomaly; it is the FX and commodity markets' steady state.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The ratio in **FX is roughly 90/10** derivatives-to-spot; in **oil it is closer to 95/5**. Crypto is simply catching up to how grown-up markets actually trade."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A BASKET FUTURE IS",
+        "body": "A basket future settles against a weighted index of multiple assets, not one. The buyer gets exposure to the whole basket in a single contract — cheaper than buying seven separate futures, and the index methodology smooths idiosyncratic moves in any one token."
+      },
+      {
+        "heading": "THE CME MOAT",
+        "body": "CME is the only US venue where regulated institutions — pension funds, insurers, bank prop desks — can take crypto exposure without touching an unregulated exchange. Mandates and risk committees forbid Binance or Bybit; CME's CFTC registration is the unlock.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Binance",
+                "value": "~45%",
+                "tone": "unfavorable",
+                "weight": 45
+              },
+              {
+                "label": "OKX",
+                "value": "~15%",
+                "tone": "neutral",
+                "weight": 15
+              },
+              {
+                "label": "Bybit",
+                "value": "~12%",
+                "tone": "neutral",
+                "weight": 12
+              },
+              {
+                "label": "CME",
+                "value": "~5%",
+                "tone": "favorable",
+                "weight": 5
+              },
+              {
+                "label": "Others",
+                "value": "~23%",
+                "tone": "neutral",
+                "weight": 23
+              }
+            ],
+            "label": "crypto derivatives venues by 2024 volume share"
+          }
+        ]
+      },
+      {
+        "heading": "NOTIONAL VS REAL MONEY",
+        "body": "Lifetime notional of $7.3 trillion sounds vast but counts the face value of every contract opened, not capital at risk. A trader with $100k margin can open $2m notional at 20× leverage; the notional figure inflates accordingly. Open interest and margin held are the honest measures."
+      },
+      {
+        "heading": "THE BITCOIN FUTURES PRECEDENT",
+        "body": "CME launched Bitcoin futures in December 2017 — within weeks of the price peak. Many academics later argued the launch itself enabled the crash, because shorting became possible for the first time at institutional scale. Price discovery flows where shorts can express conviction.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              74181.11,
+              74833.51,
+              75149.19,
+              77128.44,
+              75728.46,
+              73856.06,
+              75874.55,
+              76350.25,
+              78194.78,
+              78260.62,
+              77444.8,
+              77619.14,
+              78645.13,
+              77361.3,
+              76345.23,
+              75774.89,
+              76286.58,
+              78172.07,
+              78655.35,
+              78562.55,
+              79823.89,
+              80925.09,
+              81425,
+              80022.04,
+              80189.07,
+              80678.03,
+              82145.66,
+              81725.21,
+              80480.89,
+              79277.8,
+              81750.5
+            ],
+            "periods": [
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 14"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY JUNE 8",
+        "body": "CFTC self-certification for a new contract takes roughly 30 days from filing. Announcing a launch date a month out is the standard signal that filings are already in. The regulatory caveat in CME's statement is procedural ritual, not genuine uncertainty.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do regulated US institutions trade crypto through CME instead of Binance?",
+            "options": [
+              "CME has lower fees",
+              "CME is CFTC-registered, satisfying fiduciary mandates",
+              "CME offers more leverage",
+              "CME settles in Bitcoin"
+            ],
+            "correct": 1,
+            "explanation": "Pension funds and insurers have mandates that forbid trading on unregulated venues — CFTC registration is the gating requirement, not price or leverage."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-14"
+    ],
+    "generatedAt": "2026-05-14T17:52:26.181Z",
+    "label": "Crypto Derivatives & Basket Futures",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-14-egypt-omar-marei-filmmaker-forced-disappearance-syndicate": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TACTIC",
+        "body": "Forced disappearance is detention without acknowledgment — the state holds a person but denies any record of doing so. The legal vacuum is the point: without an admitted arrest, no lawyer can be appointed, no judge can be petitioned, no family can file a habeas claim. The disappeared exist outside the system that would normally protect them.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "International law treats *enforced disappearance* as a distinct crime under the **2006 UN Convention** — separate from torture or detention — precisely because the denial itself is what enables every other abuse."
+          }
+        ]
+      },
+      {
+        "heading": "THE SCALE UNDER SISI",
+        "body": "After the 2013 coup that brought Abdel Fattah el-Sisi to power, the Egyptian Commission for Rights and Freedoms began documenting hundreds of disappearances per year. The pattern is consistent: pre-dawn raid by National Security, weeks or months of incommunicado holding at undisclosed sites, then either release, transfer to a recognized prison, or — in some cases — appearance in a state-security court already charged.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011",
+                "label": "Tahrir revolution ousts Mubarak"
+              },
+              {
+                "year": "2012",
+                "label": "Morsi elected"
+              },
+              {
+                "year": "2013",
+                "label": "Sisi coup; Rabaa massacre",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2015",
+                "label": "Anti-terror law expands detention"
+              },
+              {
+                "year": "2017",
+                "label": "State of emergency declared"
+              },
+              {
+                "year": "2021",
+                "label": "Emergency lifted; emergency-style courts retained"
+              }
+            ],
+            "label": "Egypt's repression arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL ARCHITECTURE",
+        "body": "Egypt's 2015 counter-terrorism law allows National Security to hold detainees for up to 14 days without judicial review, renewable. A separate 'pretrial detention' regime — originally capped at two years — has been stretched through rotating case files: when the clock runs out on one charge, a new case is opened on the same person and the count restarts. Detentions of five-plus years without trial are routine."
+      },
+      {
+        "heading": "WHY FILMMAKERS",
+        "body": "Cultural figures are targeted disproportionately because their work travels. A novelist, screenwriter, or director shapes how Egyptians and the diaspora see the state; silencing them is cheaper than censoring every frame they might produce. The 2016 detention of photojournalist Shawkan, the 2019 arrest of activist-blogger Alaa Abd el-Fattah, and the 2020 case against poet Galal el-Behairy follow the same script as Marei's: home raid, no warrant disclosed, disappearance, then charges manufactured later."
+      },
+      {
+        "heading": "THE SYNDICATE'S LEVERAGE",
+        "body": "Egypt's professional syndicates — for doctors, journalists, lawyers, cinema workers — are a holdover from the Nasser-era corporatist state. They are legally empowered to represent their members before the government, which gives them rare standing to demand information the state would otherwise refuse. The Cinema Professions Syndicate pressing prosecutors is not symbolic; it is one of the few channels through which the disappearance can be forced onto the official record.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes Egypt's professional syndicates an unusual channel for human-rights advocacy?",
+            "options": [
+              "They are funded by foreign NGOs",
+              "They have legal standing to represent members before the state",
+              "They control the courts that try their members",
+              "They operate outside Egyptian law"
+            ],
+            "correct": 1,
+            "explanation": "Syndicates inherit corporatist-era authority to formally represent their professions to the government — giving them access most civil-society groups lack."
+          }
+        ]
+      },
+      {
+        "heading": "THE MEDICAL DIMENSION",
+        "body": "Denying medication to a detainee with thyroid disease is not incidental — untreated hypothyroidism progresses to cardiac and neurological damage within weeks. Human-rights monitors have documented dozens of deaths in Egyptian custody attributable to withheld treatment, including former president Mohamed Morsi, who collapsed in a courtroom cage in 2019 after years of inadequate diabetes care."
+      }
+    ],
+    "generatedAt": "2026-05-14T17:52:58.566Z",
+    "label": "Forced Disappearance in Egypt",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-14-kraken-chainlink-layerzero-bridge-292m-exploit-duopoly": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A BRIDGE ORACLE DOES",
+        "body": "A cross-chain bridge locks tokens on chain A and mints wrapped versions on chain B. The oracle is what tells chain B that the lock on chain A actually happened. If the oracle lies — or is tricked — chain B mints tokens backed by nothing.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The wrapped token is only as trustworthy as the **message** that authorized its mint. Bridges are not really moving assets; they are *vouching* that assets exist elsewhere."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BRIDGES KEEP GETTING DRAINED",
+        "body": "Each blockchain is a self-contained ledger that cannot natively read another. The trust layer that bridges this gap — multisigs, validator sets, oracle networks — is where nearly every major DeFi exploit since 2021 has occurred. The protocol is sound; the seam between protocols is not.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ronin",
+                "value": "$625m",
+                "tone": "unfavorable",
+                "weight": 625
+              },
+              {
+                "label": "Poly Network",
+                "value": "$611m",
+                "tone": "unfavorable",
+                "weight": 611
+              },
+              {
+                "label": "BNB Bridge",
+                "value": "$586m",
+                "tone": "unfavorable",
+                "weight": 586
+              },
+              {
+                "label": "Wormhole",
+                "value": "$320m",
+                "tone": "unfavorable",
+                "weight": 320
+              },
+              {
+                "label": "Nomad",
+                "value": "$190m",
+                "tone": "unfavorable",
+                "weight": 190
+              }
+            ],
+            "label": "major bridge exploits"
+          }
+        ]
+      },
+      {
+        "heading": "THE DUOPOLY PROBLEM",
+        "body": "Cryptography promised disintermediation; the operational reality has converged on a handful of trusted infrastructure providers. When two of the largest US exchanges route their wrapped-asset flows through the same oracle network, a single compromise — software bug, validator collusion, key theft — touches both at once.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is concentrating bridge oracles especially dangerous compared to concentrating, say, custody?",
+            "options": [
+              "Oracle networks can mint new tokens out of thin air if compromised; custodians can only steal what they hold",
+              "Oracles handle more transactions per second than custodians",
+              "Oracles are unregulated while custodians are regulated",
+              "Oracle keys cannot be rotated"
+            ],
+            "correct": 0,
+            "explanation": "A compromised custodian loses its deposits. A compromised mint authority can create unbacked tokens until the market notices — which is why bridge hacks routinely exceed exchange hacks in size."
+          }
+        ]
+      },
+      {
+        "heading": "THE MINT-VS-STEAL GAP",
+        "body": "Minting a billion dollars of wrapped tokens is trivial once you control the oracle — it is just a number in a contract. Extracting real value is harder: liquidity pools are shallow, prices crash on sale, exchanges freeze suspicious wallets. The gap between what attackers mint and what they actually withdraw measures how well DeFi's informal defenses work."
+      },
+      {
+        "heading": "WHY USERS FLED ANYWAY",
+        "body": "$3 billion exited LayerZero after a $292 million loss — roughly ten dollars of trust evaporated for every dollar stolen. Bridge users price tail risk asymmetrically: a protocol that has been exploited once is presumed exploitable again, regardless of the patch. Reputation in cross-chain infrastructure is a one-way ratchet."
+      }
+    ],
+    "generatedAt": "2026-05-14T17:53:31.840Z",
+    "label": "Bridge Oracles & Concentration Risk",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-14-nepal-digital-divide-rural-bandwidth-last-mile-gap": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COUNTING TRICK",
+        "body": "National internet penetration statistics typically count any active SIM with data capability as a connected user. A farmer with a 2G phone that loads a text message once a week is counted the same as a Kathmandu professional on fiber. The headline number flatters governments and misleads donors.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The ITU distinguishes between **subscriptions** and **meaningful connectivity** — the latter requires 4G, regular use, an appropriate device, and enough data. By that stricter measure, most of rural South Asia falls off the map."
+          }
+        ]
+      },
+      {
+        "heading": "THE LAST-MILE ECONOMICS",
+        "body": "Backbone fiber is cheap per kilometer across flat terrain; the cost explodes at the last mile, where each household requires its own connection. In mountainous Nepal, a single village may sit 20km from the nearest tower across terrain that needs helicopters to service, making per-user infrastructure cost 10-50x urban rates."
+      },
+      {
+        "heading": "THE TERRAIN PROBLEM",
+        "body": "Nepal compresses elevations from 60m to 8,848m across roughly 200km north-to-south. Radio signals need line-of-sight; mountains break it. Every ridge requires its own tower, every valley its own backhaul link. Geography that took millions of years to form is the binding constraint on what a telecom can deliver this decade.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NP",
+              "IN",
+              "CN",
+              "BT",
+              "BD"
+            ],
+            "label": "the Himalayan corridor",
+            "markers": [
+              {
+                "lat": 27.7172,
+                "lng": 85.324,
+                "label": "Kathmandu"
+              },
+              {
+                "lat": 27.9881,
+                "lng": 86.925,
+                "label": "Everest region"
+              },
+              {
+                "lat": 28.2096,
+                "lng": 83.9856,
+                "label": "Pokhara"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY SATELLITE ISN'T THE ANSWER YET",
+        "body": "Starlink and similar LEO constellations technically cover Nepal, but the terminal costs hundreds of dollars and monthly fees exceed median rural household income. Regulatory licensing has also stalled — Nepal's telecom authority has not granted Starlink an operating license, partly to protect incumbent operators Nepal Telecom and Ncell from competition."
+      },
+      {
+        "heading": "THE REMITTANCE PARADOX",
+        "body": "Remittances from Nepali workers abroad — Gulf states, Malaysia, India — equal roughly a quarter of GDP, the highest dependency ratio of any large economy. Families need internet to receive money transfers, video-call absent parents, and apply for foreign jobs. The households that most need connectivity are the ones whose breadwinners left precisely because the local economy couldn't sustain them.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Remittances as share of GDP, 2024",
+            "peers": [
+              {
+                "value": 48,
+                "label": "Tajikistan"
+              },
+              {
+                "value": 38,
+                "label": "Tonga"
+              },
+              {
+                "value": 28,
+                "label": "Lebanon"
+              },
+              {
+                "value": 25,
+                "label": "Nepal"
+              },
+              {
+                "value": 24,
+                "label": "Honduras"
+              },
+              {
+                "value": 22,
+                "label": "Nicaragua"
+              },
+              {
+                "value": 5,
+                "label": "Bangladesh"
+              },
+              {
+                "value": 8,
+                "label": "Pakistan"
+              }
+            ],
+            "subjectLabel": "Nepal",
+            "unit": "% GDP"
+          }
+        ]
+      },
+      {
+        "heading": "THE DIVIDE COMPOUNDS",
+        "body": "Once government services move online — tax filing, scholarship applications, land records, agricultural subsidy programs — being offline means being excluded from the state itself. The digital divide stops being about convenience and becomes a citizenship gap.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What fraction of Nepal's GDP comes from remittances sent home by workers abroad?",
+            "options": [
+              "About 5%",
+              "About 15%",
+              "About 25%",
+              "About 40%"
+            ],
+            "correct": 2,
+            "explanation": "At roughly 25% of GDP, Nepal has one of the world's highest remittance-dependency ratios — second only to a handful of small states like Tajikistan and Tonga."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-14T17:53:59.124Z",
+    "label": "Nepal's Digital Divide",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-14-pakistan-panda-bond-rmb-250m-china-debt-channel": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A PANDA BOND IS",
+        "body": "A panda bond is a renminbi-denominated bond issued in mainland China by a foreign entity. The category was created in 2005 to internationalize the yuan by letting non-Chinese borrowers tap onshore Chinese savings directly, rather than routing through Hong Kong's offshore market.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Panda bonds sit *onshore* (CNY, regulated by the PBoC and NAFMII); their offshore cousins are **dim sum bonds** issued in Hong Kong (CNH). The two markets price differently because capital controls keep the onshore and offshore yuan partially segmented."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PAKISTAN ISSUES IN YUAN",
+        "body": "Pakistan's dollar borrowing costs are punitive — recent Eurobonds priced in double digits, reflecting near-default risk. A 2.5% yuan coupon is a fraction of that. Beijing's onshore market lets a friendly sovereign borrow at rates Western capital markets would never extend."
+      },
+      {
+        "heading": "THE DENOMINATION TRADE",
+        "body": "Switching debt from dollars to yuan trades one currency mismatch for another. Pakistan earns most foreign revenue in dollars (remittances, textile exports) and only a sliver in yuan. If the rupee falls against the yuan, debt service still gets more expensive — just on a different axis.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.867142,
+              278.9,
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985
+            ],
+            "periods": [
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE OVERSUBSCRIPTION SIGNAL",
+        "body": "A 5× oversubscribed book at 2.5% means Chinese institutional investors — banks, insurers, state funds — are willing to hold Pakistani credit at near-policy-rate yields. This is less a market verdict than a political one: Chinese state capital is being directed into a CPEC partner's paper."
+      },
+      {
+        "heading": "CPEC AS COLLATERAL",
+        "body": "The China-Pakistan Economic Corridor, launched in 2015, layered roughly $25 billion of Chinese-financed infrastructure across Pakistan — Gwadar port, power plants, the Karakoram highway upgrade. The panda bond extends this relationship into Pakistan's sovereign funding stack itself, not just project finance.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "CN",
+              "AF",
+              "IR",
+              "IN"
+            ],
+            "label": "the CPEC corridor",
+            "markers": [
+              {
+                "lat": 25.1264,
+                "lng": 62.3225,
+                "label": "Gwadar port"
+              },
+              {
+                "lat": 33.6844,
+                "lng": 73.0479,
+                "label": "Islamabad"
+              },
+              {
+                "lat": 39.9042,
+                "lng": 116.4074,
+                "label": "Beijing"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "YUAN INTERNATIONALIZATION",
+        "body": "The yuan accounts for about 4% of global payments and roughly 2-3% of central bank reserves, despite China being the world's second-largest economy. Every panda bond, every yuan-settled oil contract, every swap line is a brick in Beijing's slow campaign to build an alternative to dollar hegemony.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of global central-bank reserves is held in renminbi?",
+            "options": [
+              "About 2-3%",
+              "About 10%",
+              "About 20%",
+              "About 30%"
+            ],
+            "correct": 0,
+            "explanation": "Despite a decade of internationalization efforts, the yuan remains a marginal reserve currency — the dollar still holds ~58% and the euro ~20%."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-14"
+    ],
+    "generatedAt": "2026-05-14T17:54:25.268Z",
+    "label": "Panda Bonds & Currency Diversification",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-14-pope-leo-ai-warfare-spiral-european-arms-betrayal": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PAPAL TRADITION",
+        "body": "Modern popes have condemned arms races since Pius XII denounced atomic weapons in 1948. Paul VI told the UN in 1965 'no more war, war never again,' and John XXIII's 1963 encyclical Pacem in Terris argued the nuclear age made just-war doctrine nearly inoperable. Leo's framing extends a 75-year through-line, not a personal stance.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1948",
+                "label": "Pius XII condemns atomic weapons"
+              },
+              {
+                "year": "1963",
+                "label": "Pacem in Terris (John XXIII)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1965",
+                "label": "Paul VI at UN: 'no more war'"
+              },
+              {
+                "year": "1982",
+                "label": "John Paul II at Hiroshima"
+              },
+              {
+                "year": "2017",
+                "label": "Francis: possession of nukes immoral"
+              },
+              {
+                "year": "2026",
+                "label": "Leo XIV on rearmament"
+              }
+            ],
+            "label": "papal interventions on arms"
+          }
+        ]
+      },
+      {
+        "heading": "THE 5% TARGET",
+        "body": "NATO's old benchmark was 2% of GDP, set in 2014 after Crimea. The new 5% target — 3.5% core defense plus 1.5% related infrastructure — would more than double allied military budgets. Only the United States and Poland currently approach it; for Germany or Italy, hitting 5% means reallocating sums comparable to their entire health budgets.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Poland",
+                "value": "~4.1%",
+                "cc": "PL",
+                "weight": 4.1,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "United States",
+                "value": "~3.4%",
+                "cc": "US",
+                "weight": 3.4,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "UK",
+                "value": "~2.3%",
+                "cc": "GB",
+                "weight": 2.3,
+                "tone": "neutral"
+              },
+              {
+                "label": "France",
+                "value": "~2.1%",
+                "cc": "FR",
+                "weight": 2.1,
+                "tone": "neutral"
+              },
+              {
+                "label": "Germany",
+                "value": "~2.1%",
+                "cc": "DE",
+                "weight": 2.1,
+                "tone": "neutral"
+              },
+              {
+                "label": "Italy",
+                "value": "~1.5%",
+                "cc": "IT",
+                "weight": 1.5,
+                "tone": "favorable"
+              },
+              {
+                "label": "Spain",
+                "value": "~1.3%",
+                "cc": "ES",
+                "weight": 1.3,
+                "tone": "favorable"
+              }
+            ],
+            "label": "2024 defense spending, % of GDP"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT AUTONOMOUS WEAPONS ACTUALLY ARE",
+        "body": "A *lethal autonomous weapon system* — LAWS in the UN jargon — selects and engages targets without human intervention at the firing decision. The distinction that matters is between *human-in-the-loop* (operator approves each strike), *human-on-the-loop* (operator can veto), and *human-out-of-the-loop* (machine fires unilaterally). The third category is what Vatican diplomacy has been pressing to ban since 2014.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Holy See's term of art is **'killer robots'** — adopted deliberately to bypass the technocratic *LAWS* acronym and make the moral question legible to non-specialists."
+          }
+        ]
+      },
+      {
+        "heading": "THE GENEVA STALEMATE",
+        "body": "Negotiations at the UN's Convention on Certain Conventional Weapons in Geneva have run since 2014 without binding text. Russia, the United States, India, the UK, and Israel — the states with the most advanced autonomous-weapons programs — have blocked a treaty. The Vatican is one of the most consistent voices for a binding ban; it has no army to constrain.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which body has been negotiating autonomous-weapons rules — without binding result — since 2014?",
+            "options": [
+              "UN Security Council",
+              "UN Convention on Certain Conventional Weapons (Geneva)",
+              "International Criminal Court",
+              "NATO Parliamentary Assembly"
+            ],
+            "correct": 1,
+            "explanation": "The CCW operates by consensus, so any one major military power can — and has — blocked binding text on autonomous weapons."
+          }
+        ]
+      },
+      {
+        "heading": "THE ENCYCLICAL AS INSTRUMENT",
+        "body": "An encyclical is the highest form of papal teaching short of a dogmatic definition — addressed to the whole Church and binding on Catholic moral conscience. Francis used Laudato Si' (2015) to reframe climate as a moral question; the document shifted episcopal politics in dozens of countries. An encyclical on AI and autonomous war would put 1.4 billion Catholics' bishops on record."
+      },
+      {
+        "heading": "WHY 'BETRAYAL' IS A LOADED WORD",
+        "body": "In Vatican diplomatic vocabulary, *tradimento* — betrayal — is reserved for the abandonment of a process, not a disagreement over policy. By using it for European rearmament, Leo is signalling that he views the diplomatic track on Ukraine as having been deliberately closed, not exhausted. The word travels further in Italian and Spanish ecclesial circles than the English translation conveys."
+      }
+    ],
+    "generatedAt": "2026-05-14T17:55:06.298Z",
+    "label": "The Vatican & the Arms Question",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-14-rsf-nyala-south-darfur-drone-four-day-bombardment": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO ARMIES",
+        "body": "Sudan's war is between two generals who once partnered to overthrow a civilian government. The SAF under Burhan and the RSF under Hemedti jointly crushed the 2019 democracy movement, then turned their shared military infrastructure against each other when a power-sharing deal collapsed in April 2023.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Abdel Fattah al-Burhan",
+                "role": "SAF commander, de facto head of state",
+                "years": "2019–",
+                "cc": "SD"
+              },
+              {
+                "name": "Mohamed Hamdan Dagalo",
+                "role": "RSF commander (Hemedti)",
+                "years": "2013–",
+                "cc": "SD"
+              }
+            ],
+            "label": "the two commanders"
+          }
+        ]
+      },
+      {
+        "heading": "THE RSF'S ORIGINS",
+        "body": "The RSF evolved from the Janjaweed militias that carried out the Darfur genocide beginning in 2003. Bashir armed Arab militias to fight non-Arab rebels, then formalized them as the Rapid Support Forces in 2013. Hemedti, a former camel trader from Darfur, rose from militia commander to the second most powerful man in Sudan — with troops loyal to him personally, not the state.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Nyala is the capital of **South Darfur** — the same region where the original Janjaweed campaigns were waged two decades ago. The RSF has held the city since late 2023, making it one of the largest population centers under paramilitary, not state, control."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DRONES, WHY NOW",
+        "body": "Sudan's army lost its air superiority advantage when the RSF captured most fixed bases in the west. Turkish Bayraktar TB2 and Akinci drones — bought through opaque channels after international pressure on Ankara — let the SAF strike RSF-held cities without basing aircraft in contested airspace. The RSF in turn flies smaller Iranian and Emirati-supplied drones, turning the war into a long-range exchange over civilian neighborhoods.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "TD",
+              "LY",
+              "EG",
+              "SS",
+              "CF",
+              "ER"
+            ],
+            "label": "Sudan's war geography",
+            "markers": [
+              {
+                "lat": 12.0489,
+                "lng": 24.8807,
+                "label": "Nyala (RSF-held)"
+              },
+              {
+                "lat": 15.5007,
+                "lng": 32.5599,
+                "label": "Khartoum"
+              },
+              {
+                "lat": 19.6158,
+                "lng": 37.2164,
+                "label": "Port Sudan (SAF capital)"
+              },
+              {
+                "lat": 13.4527,
+                "lng": 22.4452,
+                "label": "El Fasher (besieged)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 80% NUMBER",
+        "body": "When drones cause four-fifths of civilian deaths in a conflict, the war has crossed a threshold artillery and ground fire never reach. Drones can be flown from hundreds of kilometers away by operators with no visual on the target; the rules of distinction that international humanitarian law assumes — a soldier seeing what they shoot at — break down entirely."
+      },
+      {
+        "heading": "THE FORGOTTEN WAR",
+        "body": "By every measure of suffering, Sudan is the world's largest current humanitarian catastrophe — over 13 million displaced, famine declared in multiple regions, an economy contracting by double digits. Western coverage remains a fraction of what Gaza or Ukraine receive, in part because no major power has a direct interest in either side winning, and in part because the foreign sponsors — UAE backing the RSF, Egypt and Iran tilting toward the SAF — would be embarrassed by sustained attention.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country is the RSF's primary external arms supplier, according to multiple UN panels of experts?",
+            "options": [
+              "Russia",
+              "United Arab Emirates",
+              "Egypt",
+              "Saudi Arabia"
+            ],
+            "correct": 1,
+            "explanation": "The UAE has been repeatedly identified by UN expert panels as funneling weapons to the RSF via Chad, in exchange for gold from Hemedti's family mining operations in Darfur."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Drone bombardment of cities held by an opposing force is no longer exotic — it is now the default of mid-tier wars. Ethiopia used Bayraktars to break the Tigrayan advance in 2021; Russia and Ukraine fire thousands of one-way drones at each other monthly; Yemen's Houthis strike Saudi and Emirati territory. Sudan is the latest battlefield in a global shift: precision air power, once monopolized by superpowers, now belongs to anyone with $5 million and a Turkish export license."
+      }
+    ],
+    "generatedAt": "2026-05-14T17:55:40.978Z",
+    "label": "Sudan's Drone War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-14-thailand-sauropod-khok-kruat-naga-southeast-asia-titanosaur": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A TITANOSAURIFORM IS",
+        "body": "Titanosauriforms are the lineage of long-necked sauropods that includes the largest land animals ever to walk the Earth. They emerged in the Late Jurassic and dominated the Cretaceous, eventually producing 70-tonne giants like Argentinosaurus before vanishing with every other non-avian dinosaur 66 million years ago.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The clade name combines *Titanosauria* with the suffix *-formes* — meaning **\"shaped like a titanosaur\"** rather than necessarily belonging to the titanosaur crown group. It captures an evolutionary grade, not just a single branch."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE LOWER CRETACEOUS MATTERS",
+        "body": "Sauropod fossils are abundant from the Late Jurassic and the Late Cretaceous, but the ~40 million years between them — the Lower Cretaceous — is comparatively thin. Each new specimen from this gap helps reconstruct how the giants of the Jurassic gave rise to the titanosaurs that ruled the Late Cretaceous."
+      },
+      {
+        "heading": "THE KHORAT PLATEAU",
+        "body": "Northeastern Thailand sits on a sandstone plateau that was a vast river floodplain during the Cretaceous. The Khok Kruat Formation, deposited around 125 million years ago, has yielded fish, crocodyliforms, theropods, and now a second sauropod — a window into a Southeast Asian ecosystem that was geographically isolated from contemporaneous faunas in China and Australia.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TH",
+              "LA",
+              "KH",
+              "VN",
+              "MM"
+            ],
+            "label": "the Khorat Plateau region",
+            "markers": [
+              {
+                "lat": 15.8068,
+                "lng": 102.0309,
+                "label": "Chaiyaphum (find site)"
+              },
+              {
+                "lat": 16.4419,
+                "lng": 102.8359,
+                "label": "Khon Kaen (Phuwiangosaurus)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE NAGA",
+        "body": "In Thai and broader Southeast Asian tradition, the naga is a serpent deity associated with rivers, the Mekong, and protective power. Naming a fossil after local mythology — rather than defaulting to Greek or Latin roots — has become standard practice in modern paleontology, anchoring the specimen to the place and people who hold it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The genus name pairs *Naga* with the Greek *titan* (\"giant\") — a hybrid that mirrors how the bones themselves bridge **local geology** and a **globally distributed clade**."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ONLY TWO IN THIRTY YEARS",
+        "body": "Sauropod bones are massive but fragile, and complete skeletons are vanishingly rare anywhere on Earth. Tropical weathering, dense vegetation, and limited excavation funding compound the problem in Southeast Asia — most known specimens are partial vertebrae or limb fragments, and a single new genus can take a decade of preparation and comparative study to publish.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was the first sauropod described from Thailand, 30 years before Nagatitan?",
+            "options": [
+              "Siamotyrannus",
+              "Phuwiangosaurus",
+              "Isanosaurus",
+              "Ratchasimasaurus"
+            ],
+            "correct": 1,
+            "explanation": "Phuwiangosaurus sirindhornae, named in 1994 after the Phu Wiang area and Princess Sirindhorn, was Thailand's first formally described sauropod."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-14T17:56:16.774Z",
+    "label": "Sauropods & the Khorat Plateau",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-14-trump-xi-hormuz-readout-tanker-seized-uae-iran": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil pass through daily, about a fifth of global consumption.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the choke and its anchorages",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.1164,
+                "lng": 56.3414,
+                "label": "Fujairah anchorage"
+              },
+              {
+                "lat": 27.1833,
+                "lng": 56.2667,
+                "label": "Bandar Abbas (IRGCN base)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY OF LEVERAGE",
+        "body": "The strait sits between Iran and Oman, not Iran and any Arab Gulf state. Iran's coastline runs along the entire northern edge, and the deepest shipping channel hugs the Iranian side — which is why Iranian naval positioning matters disproportionately to anyone else's."
+      },
+      {
+        "heading": "THE LEGAL CLAIM",
+        "body": "Under UNCLOS Article 38, ships have a right of transit passage through international straits — coastal states cannot suspend passage or impose conditions. Iran signed UNCLOS in 1982 but never ratified it, and has long argued Hormuz is governed by its own domestic law. A 'Strait Authority' that vets transits is the operational expression of that doctrine.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: *innocent passage* (territorial seas) can be suspended; *transit passage* (international straits) cannot. Iran's framing collapses the two — treating the strait as **territorial water** rather than an international corridor."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson planners took then still holds: disruption is easier to threaten than to sustain.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Tanker War begins",
+                "emphasis": "start"
+              },
+              {
+                "year": "1987",
+                "label": "Operation Earnest Will (US reflagging)"
+              },
+              {
+                "year": "1988",
+                "label": "USS Vincennes downs Iran Air 655",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Limpet mines on Gulf of Oman tankers"
+              },
+              {
+                "year": "2023",
+                "label": "Iran seizes Advantage Sweet & Niovi"
+              },
+              {
+                "year": "2024",
+                "label": "MSC Aries seized at Hormuz"
+              }
+            ],
+            "label": "Hormuz pressure cycles"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT CAN'T BE BYPASSED",
+        "body": "Saudi Arabia's East-West Pipeline (5 million bbl/day) and the UAE's Habshan-Fujairah pipeline together could reroute maybe a third of Gulf exports. Fujairah — where this tanker was anchored — is itself the bypass terminal. Seizing a ship there is a deliberate signal that the workaround isn't a workaround.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hormuz transit",
+                "value": "~21 mbd",
+                "tone": "unfavorable",
+                "weight": 21
+              },
+              {
+                "label": "Saudi East-West",
+                "value": "5 mbd",
+                "tone": "neutral",
+                "weight": 5
+              },
+              {
+                "label": "UAE Habshan-Fujairah",
+                "value": "1.8 mbd",
+                "tone": "neutral",
+                "weight": 1.8
+              }
+            ],
+            "label": "Hormuz transit vs bypass capacity (mn bbl/day)"
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Lloyd's of London war-risk premiums — not the seizures themselves — are what actually close a shipping lane. Once premiums spike past a threshold, commercial vessels reroute or refuse charter regardless of how many ships are actually being taken. The financial chokepoint is tighter than the physical one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What historically closes a shipping lane during a Gulf crisis?",
+            "options": [
+              "The number of ships seized or attacked",
+              "A spike in Lloyd's war-risk insurance premiums",
+              "A formal UN Security Council resolution",
+              "The closure of the strait by the coastal state"
+            ],
+            "correct": 1,
+            "explanation": "Insurance markets reprice risk in hours. Once war-risk premiums cross a threshold, charterers refuse the route — the lane closes commercially long before it closes physically."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-14T17:56:45.693Z",
+    "label": "Hormuz: Seizure & Sovereignty",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-14-us-h200-clearance-china-bytedance-alibaba-import-ban": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE H200 ACTUALLY IS",
+        "body": "The H200 is Nvidia's Hopper-generation accelerator with 141GB of HBM3e memory — the part that matters for training large language models is not raw compute but memory bandwidth, which determines how fast parameters can be shuffled during training.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Nvidia's lineup splits along an export-control fence: the flagship **H100/H200/B200** for unrestricted markets, the cut-down **H20** engineered specifically to fall under the US performance ceiling for China. The H200 sits *above* that ceiling — which is why this license is the news."
+          }
+        ]
+      },
+      {
+        "heading": "THE OCTOBER 2022 REGIME",
+        "body": "The Biden administration's October 2022 export controls were the first time Washington restricted commercial semiconductors on national-security grounds since the Cold War. The rules targeted both compute performance and interconnect bandwidth — the latter because clusters matter more than individual chips for frontier AI."
+      },
+      {
+        "heading": "WHY 25% REVENUE IS UNPRECEDENTED",
+        "body": "Demanding a cut of chip sale revenue as a license condition has no clean precedent in export-control history. It blurs the line between security policy and industrial policy — closer to a tariff or a tribute than a non-proliferation measure, and it gives Beijing a clean propaganda line about extortion.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the standard tool the US has historically used to restrict dual-use technology exports?",
+            "options": [
+              "Revenue-sharing requirements on the exporter",
+              "The Export Administration Regulations entity list and license denials",
+              "Tariffs on the importing country",
+              "UN Security Council resolutions"
+            ],
+            "correct": 1,
+            "explanation": "The EAR and the Commerce Department's entity list have been the workhorse since the 1979 Export Administration Act — license denials, not revenue shares."
+          }
+        ]
+      },
+      {
+        "heading": "THE TAMPERING CLAIM",
+        "body": "Beijing's concern about hardware tampering is not paranoid posturing. Documented US intelligence operations have intercepted shipments to install implants — the 2014 Snowden disclosures revealed the NSA's TAO unit doing exactly this to Cisco routers bound for foreign customers. Once that precedent exists, every adversary assumes it for every shipment.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *interdiction* — diverting a shipment mid-transit to modify hardware before it reaches the buyer. After 2014, Chinese state buyers began requiring **domestic inspection and re-flashing** of imported networking gear; extending that posture to AI accelerators is the logical next step."
+          }
+        ]
+      },
+      {
+        "heading": "THE DOMESTIC SUBSTITUTE",
+        "body": "Huawei's Ascend 910C and the in-development 910D are Beijing's answer. They lag Nvidia on raw performance but ship without strings attached, and SMIC's 7nm process — achieved despite ASML EUV restrictions — has proven the supply chain can function under sanctions. Every month of delayed Nvidia imports widens Huawei's domestic market share.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Nvidia B200",
+                "value": "192GB HBM3e",
+                "cc": "US",
+                "tone": "favorable"
+              },
+              {
+                "label": "Nvidia H200",
+                "value": "141GB HBM3e",
+                "cc": "US",
+                "tone": "favorable"
+              },
+              {
+                "label": "Nvidia H20 (China SKU)",
+                "value": "96GB HBM3",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "Huawei Ascend 910C",
+                "value": "~128GB HBM",
+                "cc": "CN",
+                "tone": "neutral"
+              },
+              {
+                "label": "Huawei Ascend 910B",
+                "value": "64GB HBM2e",
+                "cc": "CN",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "frontier AI accelerators, rough training-relevant specs"
+          }
+        ]
+      },
+      {
+        "heading": "THE HYPERSCALER STACK",
+        "body": "The ten licensed buyers are not a random list — they are the firms whose training clusters define Chinese AI capacity. ByteDance trains Doubao on the largest known Chinese cluster; Alibaba's Qwen models are the open-weight benchmark leaders out of China; Tencent, Baidu, and the others backstop the rest of the application layer.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "ByteDance",
+                "role": "TikTok parent, Doubao LLM",
+                "cc": "CN"
+              },
+              {
+                "name": "Alibaba",
+                "role": "Qwen open-weight models",
+                "cc": "CN"
+              },
+              {
+                "name": "Tencent",
+                "role": "Hunyuan LLM, WeChat scale",
+                "cc": "CN"
+              },
+              {
+                "name": "Baidu",
+                "role": "Ernie LLM, search incumbent",
+                "cc": "CN"
+              }
+            ],
+            "label": "the named buyers"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEVERAGE QUESTION",
+        "body": "Export controls work only if the target cannot substitute. If Beijing can credibly threaten to never buy — and accelerate Huawei in the gap — Washington loses the leverage the licenses were meant to monetize. The standoff is a test of whether the 2022 regime has already aged out of usefulness."
+      }
+    ],
+    "generatedAt": "2026-05-14T17:57:19.085Z",
+    "label": "AI Chip Export Controls",
+    "category": "politics",
+    "articleCount": 1
   }
 }
