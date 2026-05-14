@@ -167866,5 +167866,1758 @@
     "label": "Heat Stress & Athletic Performance",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-05-13-regenxbio-duchenne-gene-therapy-micro-dystrophin-fda-biomarker": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISEASE",
+        "body": "Duchenne muscular dystrophy is caused by mutations in the dystrophin gene on the X chromosome — the largest gene in the human genome. Boys with DMD make little or no functional dystrophin, the protein that anchors muscle fibers during contraction. Without it, every heartbeat and every step damages the muscle that produced it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The dystrophin gene spans **2.4 million base pairs** — roughly **0.08% of the entire human genome** in a single gene. Its size is precisely why gene therapy for DMD is so hard: the full gene does not fit inside a viral delivery vector."
+          }
+        ]
+      },
+      {
+        "heading": "THE MICRO-DYSTROPHIN COMPROMISE",
+        "body": "AAV (adeno-associated virus) vectors — the standard gene-therapy delivery system — can only carry about 4.7 kilobases of DNA. The dystrophin gene is 14 kb of coding sequence. Researchers engineered a shortened version called micro-dystrophin that fits inside AAV but preserves the protein's most essential domains. It is a workaround, not a cure."
+      },
+      {
+        "heading": "BIOMARKER VS FUNCTIONAL ENDPOINTS",
+        "body": "A biomarker endpoint measures a molecular surrogate — how much protein the muscle now makes. A functional endpoint measures what the patient can actually do — climb stairs, stand from the floor, walk a hundred meters. Regulators have long debated whether protein expression reliably predicts the functional outcome that matters to families.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does the FDA hesitate to approve drugs on biomarker data alone?",
+            "options": [
+              "Biomarkers are expensive to measure in trials",
+              "A surrogate can move without the patient improving",
+              "Biomarker tests are not standardized across labs",
+              "Insurers refuse to cover biomarker-approved drugs"
+            ],
+            "correct": 1,
+            "explanation": "History is littered with drugs that hit surrogate endpoints but failed to deliver clinical benefit — most famously antiarrhythmics that suppressed PVCs but increased mortality (CAST trial, 1989)."
+          }
+        ]
+      },
+      {
+        "heading": "ACCELERATED APPROVAL",
+        "body": "The FDA's accelerated approval pathway, created in 1992 during the AIDS crisis, lets the agency approve drugs on surrogate endpoints if the disease is serious and the surrogate is 'reasonably likely' to predict benefit. Sponsors then owe confirmatory trials. The pathway has saved lives in oncology and HIV — and has also produced high-profile failures, including the 2021 Aduhelm approval for Alzheimer's that was later withdrawn."
+      },
+      {
+        "heading": "THE IMMUNE CEILING",
+        "body": "AAV gene therapies can typically only be given once per patient — the body produces neutralizing antibodies against the viral capsid that prevent any second dose from reaching cells. Liver toxicity, the failure mode that killed two Elevidys patients, comes from immune attack on transduced liver cells. Higher doses give more muscle protein, but the liver pays first.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Zolgensma",
+                "value": "$2.1M / dose",
+                "tone": "neutral"
+              },
+              {
+                "label": "Hemgenix",
+                "value": "$3.5M / dose",
+                "tone": "neutral"
+              },
+              {
+                "label": "Elevidys",
+                "value": "$3.2M / dose",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Casgevy",
+                "value": "$2.2M / dose",
+                "tone": "neutral"
+              }
+            ],
+            "label": "AAV gene therapies approved or filed"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DMD ATTRACTS THE CAPITAL",
+        "body": "DMD affects roughly 1 in 5,000 boys at birth — small enough to qualify as a rare disease (orphan drug incentives, seven-year market exclusivity, tax credits) yet large enough to support a commercial market at million-dollar pricing. Combined with a clear unmet need and a single well-characterized gene, it has become the most contested arena in pediatric gene therapy."
+      }
+    ],
+    "generatedAt": "2026-05-14T12:34:02.922Z",
+    "label": "Duchenne & the Biomarker Question",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-13-us-cancels-poland-armored-brigade-trump-europe-drawdown": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY POLAND, WHY NOW",
+        "body": "Poland sits on the Suwałki Gap — a 65km stretch of border between Belarus and the Russian exclave of Kaliningrad. If Russia closed it, the three Baltic states would be severed from the rest of NATO by land. Every rotating US brigade since 2014 has trained for exactly this scenario.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PL",
+              "LT",
+              "LV",
+              "EE",
+              "BY",
+              "RU"
+            ],
+            "label": "the Suwałki corridor",
+            "markers": [
+              {
+                "lat": 54.1,
+                "lng": 22.9,
+                "label": "Suwałki Gap"
+              },
+              {
+                "lat": 54.7,
+                "lng": 20.5,
+                "label": "Kaliningrad (RU exclave)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TRIPWIRE DOCTRINE",
+        "body": "US forces in Europe are not sized to win a war on their own — they are sized to die in one. A few thousand Americans killed in the first days of a Russian advance guarantees domestic political pressure for full-scale intervention. Withdrawal removes the tripwire and with it the deterrent.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The strategy is called **deterrence by entanglement** — distinct from *deterrence by denial* (enough force to repel) or *deterrence by punishment* (threat of retaliation). The tripwire works because it makes non-intervention politically impossible, not because it makes intervention militarily viable."
+          }
+        ]
+      },
+      {
+        "heading": "ATLANTIC RESOLVE",
+        "body": "Launched in 2014 after Russia annexed Crimea, the operation rotates a US armored brigade combat team through Poland and the Baltics on nine-month cycles. The rotational model was deliberate — permanent basing would have violated the 1997 NATO-Russia Founding Act, which Moscow now declares dead anyway.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1997",
+                "label": "NATO-Russia Founding Act signed"
+              },
+              {
+                "year": "1999",
+                "label": "Poland joins NATO"
+              },
+              {
+                "year": "2004",
+                "label": "Baltic states join NATO"
+              },
+              {
+                "year": "2014",
+                "label": "Crimea annexation; Atlantic Resolve begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2016",
+                "label": "Enhanced Forward Presence battlegroups deploy"
+              },
+              {
+                "year": "2022",
+                "label": "Russia invades Ukraine; US forces in Europe surge to 100k"
+              },
+              {
+                "year": "2026",
+                "label": "Poland rotation halted"
+              }
+            ],
+            "label": "the eastern flank, post-Cold War"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT POLAND SPENDS",
+        "body": "Poland already spends more on defense as a share of GDP than any other NATO member — roughly 4.7% in 2025, more than double the alliance's 2% floor. Warsaw bet on American protection and on funding it; the rotation halt tests whether the first half of that bet still holds.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Defense spending, % of GDP (NATO members, 2025 est.)",
+            "peers": [
+              {
+                "value": 4.7,
+                "cc": "PL"
+              },
+              {
+                "value": 3.4,
+                "cc": "US"
+              },
+              {
+                "value": 3.4,
+                "cc": "EE"
+              },
+              {
+                "value": 3.2,
+                "cc": "LV"
+              },
+              {
+                "value": 3,
+                "cc": "LT"
+              },
+              {
+                "value": 2.4,
+                "cc": "FI"
+              },
+              {
+                "value": 2.1,
+                "cc": "DE"
+              },
+              {
+                "value": 2.1,
+                "cc": "FR"
+              },
+              {
+                "value": 1.5,
+                "cc": "IT"
+              },
+              {
+                "value": 1.3,
+                "cc": "ES"
+              }
+            ],
+            "subjectCc": "PL",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "THE BUDGET MATH",
+        "body": "A $4–6 billion shortfall in a $850 billion Pentagon budget is rounding error in absolute terms — but it lands inside the Army's operations and maintenance line, which pays for rotations, fuel, and training. Capital programs (carriers, fighters, missiles) are protected by multi-year contracts; rotations are the cheapest cut because they reverse without canceling anything."
+      },
+      {
+        "heading": "WHAT THE EUROPEANS CAN'T REPLACE",
+        "body": "Europe collectively has more troops than the US has in Europe, but lacks the enablers — strategic airlift, satellite ISR, suppression of enemy air defenses, integrated air and missile defense. A European armored brigade can deploy; it cannot deploy itself across a continent under contested skies. That is the gap a US withdrawal exposes.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which capability gap most constrains European militaries from operating without US support?",
+            "options": [
+              "Combat infantry numbers",
+              "Strategic airlift and ISR enablers",
+              "Main battle tank inventory",
+              "Artillery shell production"
+            ],
+            "correct": 1,
+            "explanation": "Europe has the shooters; it lacks the eyes, the lift, and the air-defense suppression that turn shooters into a campaign. Filling those gaps would take a decade and hundreds of billions."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-14T12:34:38.265Z",
+    "label": "Atlantic Resolve & the Eastern Flank",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-13-washington-post-youtube-opinion-show-views-bezos-platform-flop": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PLATFORM PROBLEM",
+        "body": "YouTube rewards parasocial trust built over years of consistent uploads. A legacy brand parachuting in starts at zero — the algorithm doesn't care about a masthead. MrBeast spent a decade learning thumbnails before hitting scale; a newspaper opinion desk gets weeks before the budget meeting.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The platform's currency is the *channel*, not the institution behind it. Subscribers follow **faces**, not logos — which is why CNN+ collapsed in 30 days and why individual ex-anchors on Substack out-earn their former networks."
+          }
+        ]
+      },
+      {
+        "heading": "THE BEZOS PIVOT",
+        "body": "Bezos bought WaPo in 2013 for $250M. In early 2025 he announced opinion would refocus on 'personal liberties and free markets,' triggering the resignation of opinion editor David Shipley and a wave of subscriber cancellations. The YouTube show is one downstream bet of that repositioning."
+      },
+      {
+        "heading": "WHY $80K BUYS SO LITTLE",
+        "body": "Top YouTube political shows run lean — one host, one editor, a backdrop. The cost isn't production; it's the years of audience-building that no budget can shortcut. Spending $80K on a single show without a host who already commands a following is buying a stage with no ticket-holders.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Top indie pundit",
+                "value": "~$500k",
+                "tone": "favorable",
+                "weight": 500
+              },
+              {
+                "label": "Mid-tier news YT",
+                "value": "~$80k",
+                "tone": "neutral",
+                "weight": 80
+              },
+              {
+                "label": "WaPo show est.",
+                "value": "~$80k spend",
+                "tone": "unfavorable",
+                "weight": 80
+              },
+              {
+                "label": "Legacy newsroom seat",
+                "value": "~$15k cost",
+                "tone": "neutral",
+                "weight": 15
+              }
+            ],
+            "label": "creator economics, monthly"
+          }
+        ]
+      },
+      {
+        "heading": "THE CNN+ PRECEDENT",
+        "body": "CNN spent roughly $300M building a streaming service and shut it down 30 days after launch in April 2022. The lesson the industry repeatedly fails to absorb: distribution platforms aren't editorial problems, and editorial brands don't automatically translate across them.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2013",
+                "label": "Bezos buys WaPo for $250M"
+              },
+              {
+                "year": "2022-03",
+                "label": "CNN+ launches"
+              },
+              {
+                "year": "2022-04",
+                "label": "CNN+ shuts down",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2025-02",
+                "label": "Bezos opinion-pivot memo"
+              },
+              {
+                "year": "2026-05",
+                "label": "WaPo YouTube show flatlines"
+              }
+            ],
+            "label": "legacy-media platform bets"
+          }
+        ]
+      },
+      {
+        "heading": "THE ATTENTION ARITHMETIC",
+        "body": "YouTube serves over 2 billion logged-in users monthly. Drawing dozens of views from that pool is a statistical achievement — it requires the algorithm to actively suppress the content because nobody clicks, watches through, or returns. The metric isn't 'low reach,' it's 'negative signal.'",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many monthly logged-in users does YouTube have?",
+            "options": [
+              "~200 million",
+              "~800 million",
+              "~2 billion",
+              "~5 billion"
+            ],
+            "correct": 2,
+            "explanation": "YouTube reports 2.5B+ monthly logged-in users — drawing dozens of views from that pool requires the algorithm to actively bury the content."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-14T12:35:10.590Z",
+    "label": "Legacy Media on YouTube",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-14-cerebras-ipo-ai-semis-capital-rotation-crypto": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WAFER-SCALE, NOT CHIPLET",
+        "body": "Cerebras builds the largest chip ever made — a single silicon wafer the size of a dinner plate, holding ~900,000 cores. Nvidia stitches thousands of small GPUs together with networking; Cerebras keeps the whole computation on one piece of silicon, eliminating the network bottleneck entirely.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bet is that **interconnect bandwidth**, not raw FLOPs, is the binding constraint on training large models. Every cable between two chips is latency Cerebras doesn't pay."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE ROTATION MAKES SENSE",
+        "body": "Both bitcoin and AI semis are bets on compute scarcity, but they sit on opposite ends of the value chain. Bitcoin pays you for burning compute on a hash function with no economic output; AI semis sell the picks and shovels to a capex cycle producing measurable enterprise revenue. When risk capital sobers up, it tends to migrate from the speculative leg toward the cash-flowing one.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Intel",
+                "value": "+218%",
+                "tone": "favorable",
+                "weight": 218
+              },
+              {
+                "label": "Cerebras IPO",
+                "value": "5× markup",
+                "tone": "favorable",
+                "weight": 400
+              },
+              {
+                "label": "S&P 500",
+                "value": "index high",
+                "tone": "neutral",
+                "weight": 15
+              },
+              {
+                "label": "Bitcoin",
+                "value": "-9%",
+                "tone": "unfavorable",
+                "weight": 9
+              }
+            ],
+            "label": "YTD performance, risk-on assets"
+          }
+        ]
+      },
+      {
+        "heading": "THE IPO MARKUP",
+        "body": "Cerebras was last privately valued at $8.1bn in late 2024. Pricing at $40bn at IPO is a ~5× markup in eight months — a number that only clears when public-market AI demand is running well ahead of the private rounds that priced the company.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              24732.73,
+              24701.6,
+              24898.87,
+              24797.34,
+              25012.62,
+              24708.94,
+              24977.04,
+              25329.04,
+              25034.37,
+              24960.04,
+              24992.6,
+              24720.08,
+              25093.68,
+              25020.41,
+              24643.01,
+              24967.25,
+              24956.47,
+              24965.01,
+              24533.58,
+              24380.73,
+              24655.34,
+              24780.42,
+              24425.09,
+              24355.28,
+              23898.15,
+              24188.59,
+              24002.45,
+              24162.98,
+              23586.99,
+              23132.77,
+              22953.38,
+              23740.19,
+              24019.99,
+              24045.53,
+              24192.17,
+              24202.37,
+              24903.17,
+              25082.09,
+              25116.34,
+              25383.72,
+              25842,
+              26204.58,
+              26333,
+              26672.43,
+              26590.34,
+              26479.47,
+              26937.27,
+              26782.62,
+              27303.67,
+              27305.68,
+              27029.01,
+              27186.99,
+              27452.12,
+              27710.36,
+              27651.82,
+              28015.06,
+              28599.17,
+              28563.95,
+              29234.99,
+              29320.66,
+              29064.8,
+              29366.94
+            ],
+            "periods": [
+              "Feb 13",
+              "Feb 17",
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 11",
+              "May 12",
+              "May 13"
+            ],
+            "label": "NASDAQ-100",
+            "unit": "index",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE INTEL TURN",
+        "body": "Intel's 218% rally is the most surprising line in the table. The company missed the GPU wave entirely and lost CPU share to AMD and Arm for a decade. The bid is on its US foundry buildout — Washington wants leading-edge fabs on American soil, and Intel is the only domestic option.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The thesis is geopolitical, not product: a fab in Arizona is worth more to the US government than the same fab in Taiwan, regardless of yield. **CHIPS Act** subsidies and Pentagon contracts make the math work even if Intel's chips remain a generation behind TSMC."
+          }
+        ]
+      },
+      {
+        "heading": "THE LISTINGS QUEUE",
+        "body": "OpenAI and SpaceX are the two largest pre-IPO companies in the world by private valuation. Both have signaled public listings ahead. When the marquee names finally print, they soak up risk capital that would otherwise sit in liquid speculative assets — crypto first among them.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which of these is the largest privately held company by valuation as of 2026?",
+            "options": [
+              "Cerebras",
+              "SpaceX",
+              "Stripe",
+              "ByteDance"
+            ],
+            "correct": 1,
+            "explanation": "SpaceX has traded around $350bn in tender offers, well above ByteDance and an order of magnitude above Stripe or Cerebras."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "The 1999 dot-com peak was preceded by an identical rotation: capital flowed out of gold and emerging-market debt into Cisco, Sun, and JDS Uniphase — the picks-and-shovels of the internet buildout. Cisco peaked in March 2000 at $80; it took 25 years to retest that price. Picks-and-shovels stories are right about the buildout and wrong about the price you should pay for it."
+      }
+    ],
+    "sources": [
+      "FRED · NASDAQ · as of 2026-05-13"
+    ],
+    "generatedAt": "2026-05-14T12:35:47.353Z",
+    "label": "AI Capex & Capital Rotation",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-14-china-us-oil-hormuz-hedge-trump-xi-beijing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEPENDENCY",
+        "body": "Roughly half of China's crude imports transit the Strait of Hormuz — a single 33km-wide channel between Iran and Oman. No other major economy concentrates so much of its energy lifeline through one geographic chokepoint controlled by a power it doesn't command.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "CN"
+            ],
+            "label": "China's oil lifeline",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 29.0667,
+                "lng": 50.3333,
+                "label": "Kharg Island"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SPR ASYMMETRY",
+        "body": "The US holds the world's largest Strategic Petroleum Reserve — roughly 360 million barrels in salt caverns along the Gulf Coast — built after the 1973 oil shock. China has been quietly building its own since 2007 but does not publish levels. Analysts estimate it covers 90 days of imports; the IEA standard is also 90, but only members are bound.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "USA",
+                "value": "~360",
+                "cc": "US",
+                "weight": 360
+              },
+              {
+                "label": "China",
+                "value": "~900*",
+                "cc": "CN",
+                "weight": 900
+              },
+              {
+                "label": "Japan",
+                "value": "~500",
+                "cc": "JP",
+                "weight": 500
+              },
+              {
+                "label": "South Korea",
+                "value": "~100",
+                "cc": "KR",
+                "weight": 100
+              },
+              {
+                "label": "India",
+                "value": "~39",
+                "cc": "IN",
+                "weight": 39
+              }
+            ],
+            "label": "strategic petroleum reserves (mn bbl, est.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY US CRUDE",
+        "body": "The US became the world's largest crude producer around 2018, surpassing both Saudi Arabia and Russia, on the back of shale. WTI is light and sweet — easy for Chinese refineries configured for medium grades to blend. The geography is the point: a tanker from Houston to Qingdao crosses no chokepoint China's adversaries can close.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The crude grade matters: **WTI** is *light sweet* (low sulfur, high API gravity), refined cheaply into gasoline. **Brent** trades at a premium when Hormuz is stressed because Atlantic-basin supply doesn't cross the strait."
+          }
+        ]
+      },
+      {
+        "heading": "THE TARIFF LOGIC",
+        "body": "Energy commodities are unusual tariff targets — they raise costs for the importer without protecting a domestic industry, because oil is fungible globally. China's 20% tariff on US crude in 2025 was retaliatory signaling, not industrial policy. Removing it costs Beijing nothing economically; the cost is purely symbolic concession."
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Persian Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson Beijing's planners took: disruption is easier to threaten than to sustain, but the insurance premium spike alone reroutes trade for months.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "During the 1984–88 Tanker War, what ultimately reopened Gulf shipping lanes?",
+            "options": [
+              "Iranian-Iraqi ceasefire negotiations",
+              "US naval escorts and reflagging Kuwaiti tankers",
+              "Saudi pipeline bypass capacity",
+              "UN Security Council enforcement"
+            ],
+            "correct": 1,
+            "explanation": "Operation Earnest Will (1987) reflagged Kuwaiti tankers under US colors and escorted them with warships — the precedent for how a great power keeps a chokepoint open."
+          }
+        ]
+      },
+      {
+        "heading": "THE BIGGER HEDGE",
+        "body": "China's Hormuz hedge is multi-layered: Russian ESPO pipeline crude arriving via Kozmino on the Pacific, Central Asian pipelines from Kazakhstan and Turkmenistan, and the China-Pakistan Economic Corridor that would land Gulf oil at Gwadar and pipe it overland to Xinjiang. US crude is the newest piece of an old strategy.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "gulf",
+                "label": "Persian Gulf"
+              },
+              {
+                "id": "russia",
+                "label": "Russia"
+              },
+              {
+                "id": "centralasia",
+                "label": "Central Asia"
+              },
+              {
+                "id": "africa",
+                "label": "Africa/Americas"
+              },
+              {
+                "id": "hormuz",
+                "label": "via Hormuz"
+              },
+              {
+                "id": "pipeline",
+                "label": "via pipeline"
+              },
+              {
+                "id": "otherSea",
+                "label": "other sea routes"
+              },
+              {
+                "id": "china",
+                "label": "China"
+              }
+            ],
+            "links": [
+              {
+                "source": "gulf",
+                "target": "hormuz",
+                "value": 5.5
+              },
+              {
+                "source": "russia",
+                "target": "pipeline",
+                "value": 1
+              },
+              {
+                "source": "russia",
+                "target": "otherSea",
+                "value": 1.2
+              },
+              {
+                "source": "centralasia",
+                "target": "pipeline",
+                "value": 0.6
+              },
+              {
+                "source": "africa",
+                "target": "otherSea",
+                "value": 2.5
+              },
+              {
+                "source": "hormuz",
+                "target": "china",
+                "value": 5.5
+              },
+              {
+                "source": "pipeline",
+                "target": "china",
+                "value": 1.6
+              },
+              {
+                "source": "otherSea",
+                "target": "china",
+                "value": 3.7
+              }
+            ],
+            "label": "China's crude import routes (mn bbl/day, approx.)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-14T12:36:22.542Z",
+    "label": "China's Hormuz Hedge",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-14-data-center-targeting-civilian-harm-aws-bahrain-precedent-smex": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DUAL-USE PROBLEM",
+        "body": "International humanitarian law permits attacks on military objectives but forbids strikes on civilian objects. Hyperscale clouds host both — Pentagon JWCC workloads sit on the same physical racks as hospital records, banking systems, and grocery logistics. The targeting question becomes whether the building inherits the protection of its weakest tenant or the vulnerability of its strongest.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 1977 *Additional Protocol I* to the Geneva Conventions calls this the **principle of distinction** — the foundational rule that combatants must distinguish military from civilian objects at all times. Cloud computing is the first major infrastructure class designed from the ground up to make distinction physically impossible."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE GULF",
+        "body": "AWS, Microsoft, and Google built sovereign-cloud regions in Bahrain and the UAE through the late 2010s to serve Gulf governments that demanded data residency. The same regions now host US Central Command workloads under the Pentagon's JWCC contract. The geography that made the Gulf attractive for low-latency Pentagon access also placed the racks within Iranian missile range.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BH",
+              "AE",
+              "QA",
+              "SA",
+              "IR",
+              "OM"
+            ],
+            "label": "hyperscaler footprint, Gulf",
+            "markers": [
+              {
+                "lat": 26.0667,
+                "lng": 50.5577,
+                "label": "AWS Bahrain region"
+              },
+              {
+                "lat": 25.2048,
+                "lng": 55.2708,
+                "label": "AWS UAE region"
+              },
+              {
+                "lat": 24.4539,
+                "lng": 54.3773,
+                "label": "Microsoft Abu Dhabi"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE MARTENS CLAUSE",
+        "body": "When the law has no rule for a new weapon or target class, the 1899 Martens Clause fills the gap: civilians remain under the protection of 'principles of humanity' and 'dictates of public conscience.' SMEx's argument is that Iran's strikes generated the first state-practice data point for what those principles mean when the target is a cloud region.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "civilians and combatants remain under the protection and authority of the principles of international law derived from established custom, from the principles of humanity and from the dictates of public conscience",
+            "speaker": "Additional Protocol I, Article 1(2)",
+            "year": "1977"
+          }
+        ]
+      },
+      {
+        "heading": "THE TALLINN MANUAL GAP",
+        "body": "NATO's Tallinn Manual 2.0 (2017) is the closest thing to a rulebook for cyber operations under the laws of war — but it covers attacks on data, not attacks on the buildings that hold the data. Kinetic strikes on data centers fall back to the standard targeting framework: military advantage versus expected civilian harm. No one has applied that calculus to a hyperscaler before March."
+      },
+      {
+        "heading": "WHO LIVES IN A CLOUD REGION",
+        "body": "A single AWS region typically hosts tens of thousands of customers across every sector. The proportionality calculation an attacker must run before striking such a target is unprecedented in scale — the 'expected civilian harm' side of the ledger includes hospital systems mid-surgery, financial-settlement engines, and aviation traffic management.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "enterprise SaaS",
+                "value": "dominant",
+                "tone": "neutral"
+              },
+              {
+                "label": "financial services",
+                "value": "large",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "healthcare",
+                "value": "large",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "public sector",
+                "value": "moderate",
+                "tone": "neutral"
+              },
+              {
+                "label": "defense/intelligence",
+                "value": "small",
+                "tone": "favorable"
+              }
+            ],
+            "label": "typical hyperscale region tenancy mix"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT THAT STICKS",
+        "body": "International law evolves through state practice — what countries do, and what other countries treat as acceptable. Once a category of target has been hit and the response is condemnation rather than reprisal, the legal threshold has moved. The decisions Western capitals make in the next weeks will shape whether cloud regions become protected infrastructure or normalized targets.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the laws of war, what makes an object a lawful military target?",
+            "options": [
+              "It is owned by the state",
+              "Its destruction offers a definite military advantage and it makes an effective contribution to military action",
+              "It is located inside a war zone",
+              "It hosts any military data, regardless of scale"
+            ],
+            "correct": 1,
+            "explanation": "Additional Protocol I Article 52(2) requires both contribution to military action and definite military advantage from destruction — mere ownership or location is not enough."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-14T12:37:15.017Z",
+    "label": "Cloud Strikes & the Laws of War",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-14-indian-flagged-boat-sunk-oman-gulf-shipping-ceasefire": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A DHOW IS",
+        "body": "The dhow is a wooden lateen-rigged sailing vessel that has plied the Indian Ocean monsoon trade for over a thousand years, connecting the Swahili coast, Arabia, Persia, and Gujarat. Modern dhows run diesel engines but keep the hull shape — they remain the backbone of small-cargo trade across the Arabian Sea.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Arabic *sambuk* and *boom*, and the Indian *kotia*, are all dhow variants. The word **dhow** itself is Swahili — a reminder that the Indian Ocean trade was a single integrated system long before European charters arrived."
+          }
+        ]
+      },
+      {
+        "heading": "THE GUJARAT–GULF CORRIDOR",
+        "body": "Most Indian-flagged dhows sailing the Gulf are crewed by Gujarati Muslims out of Mandvi, Salaya, and Porbandar, running rice, sugar, and electronics to Dubai, Sharjah, Bandar Abbas, and the smaller Omani and Yemeni ports. The trade predates partition and survives because it undercuts container-line economics for sub-1000-ton loads.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "OM",
+              "AE",
+              "IR",
+              "YE",
+              "PK"
+            ],
+            "label": "the Arabian Sea dhow trade",
+            "markers": [
+              {
+                "lat": 22.8388,
+                "lng": 69.3469,
+                "label": "Mandvi (Gujarat)"
+              },
+              {
+                "lat": 25.2697,
+                "lng": 55.3094,
+                "label": "Dubai dhow wharf"
+              },
+              {
+                "lat": 23.6139,
+                "lng": 58.5922,
+                "label": "Muscat"
+              },
+              {
+                "lat": 27.1865,
+                "lng": 56.2808,
+                "label": "Bandar Abbas"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "FLAG STATE VS COASTAL STATE",
+        "body": "Under UNCLOS, an attack on an Indian-flagged vessel is an offense against India as the flag state, even in another country's waters. Oman is the coastal state and runs the investigation; India can press for prosecution but has no enforcement footprint in the Gulf of Oman. This split is why incidents drag on diplomatically without resolution.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under UNCLOS, who has jurisdiction when an Indian-flagged ship is attacked in Omani waters?",
+            "options": [
+              "Only India, as the flag state",
+              "Only Oman, as the coastal state",
+              "Both — flag state for the vessel, coastal state for the waters",
+              "Whichever country the crew holds passports from"
+            ],
+            "correct": 2,
+            "explanation": "Flag state and coastal state share concurrent jurisdiction under UNCLOS — which is precisely why these incidents rarely produce convictions."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf during the so-called Tanker War. Most strikes hit neutral-flagged vessels — Kuwaiti, Saudi, Liberian, Cypriot — because the warring parties used merchant traffic as a proxy battlefield. The lesson planners drew: a ceasefire on land does not mean a ceasefire at sea.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Tanker War begins"
+              },
+              {
+                "year": "1987",
+                "label": "US reflags Kuwaiti tankers"
+              },
+              {
+                "year": "1988-04",
+                "label": "Operation Praying Mantis",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1988-08",
+                "label": "Iran–Iraq ceasefire"
+              },
+              {
+                "year": "2019",
+                "label": "Fujairah tanker attacks"
+              },
+              {
+                "year": "2024",
+                "label": "Houthi Red Sea campaign"
+              }
+            ],
+            "label": "Gulf maritime conflict cycle"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE STRAIT STAYS OPEN",
+        "body": "Hormuz carries roughly 21 million barrels of oil a day — about a fifth of global consumption. Both Washington and Beijing depend on it: the US for allied refining throughput, China for direct imports (over 40% of Chinese crude transits Hormuz). Closure is one of the rare points where US-China interests are genuinely aligned, which is why even adversarial summits produce the same line.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~45%",
+                "cc": "CN",
+                "weight": 45,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": "~40%",
+                "cc": "IN",
+                "weight": 40,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Japan",
+                "value": "~80%",
+                "cc": "JP",
+                "weight": 80,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "South Korea",
+                "value": "~70%",
+                "cc": "KR",
+                "weight": 70,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "USA",
+                "value": "~5%",
+                "cc": "US",
+                "weight": 5,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Share of crude imports via Hormuz"
+          }
+        ]
+      },
+      {
+        "heading": "THE GREY-ZONE PATTERN",
+        "body": "No-claim attacks on small vessels are a recurring Gulf signature: limpet mines on tankers off Fujairah in 2019, drone strikes on Israeli-linked ships in 2021, and now an unclaimed sinking off Oman. The attribution gap is the point — it lets the attacker signal without triggering Article 51 self-defense responses that named state-on-state attacks would."
+      }
+    ],
+    "generatedAt": "2026-05-14T12:37:51.523Z",
+    "label": "Dhows & Gulf Shipping Law",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-14-india-tapentadol-west-africa-opioid-exports-crackdown-gap": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT TAPENTADOL IS",
+        "body": "Tapentadol is a synthetic opioid analgesic developed by Grünenthal in the 2000s, structurally distinct from tramadol but pharmacologically similar. It binds the mu-opioid receptor and inhibits norepinephrine reuptake — strong enough that the US DEA places it on Schedule II alongside oxycodone and fentanyl.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In West Africa it is sold under the street name **kush** — often blended with cannabis, formaldehyde, or synthetic cannabinoids. The pill itself is the Indian-manufactured original; the street product is the adulterated mix."
+          }
+        ]
+      },
+      {
+        "heading": "THE EXPORT LOOPHOLE",
+        "body": "India's Central Drugs Standard Control Organisation regulates domestic sales but delegates export oversight to the Directorate General of Foreign Trade. A drug banned for domestic sale can still leave Indian ports legally if the destination country has not scheduled it — and most West African states have not."
+      },
+      {
+        "heading": "WHY WEST AFRICA",
+        "body": "Tramadol and tapentadol are not under international scheduling by the UN's 1961 and 1971 conventions. That gap means exporters face no INCB quota system, unlike morphine or fentanyl. West African regulators inherited colonial-era pharmacy laws that never anticipated synthetic opioids, leaving customs officers with no schedule to enforce against.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SL",
+              "LR",
+              "GN",
+              "CI",
+              "GH",
+              "NG",
+              "TG",
+              "BJ"
+            ],
+            "label": "the kush corridor",
+            "caption": "countries with declared or documented tapentadol/kush emergencies"
+          }
+        ]
+      },
+      {
+        "heading": "THE TRAMADOL PRECEDENT",
+        "body": "This is the second wave. From roughly 2015 to 2018, Indian-manufactured tramadol at 225mg doses (well above any therapeutic prescription) flooded West Africa and the Sahel — Boko Haram fighters reportedly used it before operations. The WHO finally recommended international scheduling in 2022; manufacturers shifted to tapentadol, which had no such recommendation.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2008",
+                "label": "Tapentadol approved (US FDA)"
+              },
+              {
+                "year": "2015",
+                "label": "Tramadol crisis emerges in Sahel",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2018",
+                "label": "Nigeria bans tramadol >100mg"
+              },
+              {
+                "year": "2022",
+                "label": "WHO recommends tramadol scheduling"
+              },
+              {
+                "year": "2024",
+                "label": "Sierra Leone declares kush emergency"
+              },
+              {
+                "year": "2025",
+                "label": "India bans domestic tapentadol-carisoprodol combo"
+              }
+            ],
+            "label": "the synthetic opioid shift"
+          }
+        ]
+      },
+      {
+        "heading": "THE LABELING TRICK",
+        "body": "\"Harmless Medicines for Human Consumption\" is not a regulatory category — it is a freight-forwarder description on a customs declaration. Indian export rules require accurate pharmaceutical labeling for INN (international nonproprietary names), but enforcement depends on physical inspection at the port of exit, which covers a tiny fraction of shipments.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is tapentadol harder to control internationally than fentanyl?",
+            "options": [
+              "It is not scheduled under the UN 1961 or 1971 drug conventions",
+              "It is more potent than fentanyl",
+              "It cannot be detected by standard urine tests",
+              "It is produced only in unregulated jurisdictions"
+            ],
+            "correct": 0,
+            "explanation": "Fentanyl analogues were brought under UN scheduling in 2017–2018. Tapentadol remains unscheduled internationally, so exporters face no INCB quota and no treaty obligation on importing states."
+          }
+        ]
+      },
+      {
+        "heading": "WHO PAYS",
+        "body": "Sierra Leone's health system, already among the world's most under-resourced, now allocates emergency funds to kush rehabilitation it cannot afford. India captures the export revenue; the receiving state absorbs the addiction, the overdoses, and the political cost of an epidemic it did not manufacture.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India",
+                "value": "7.3",
+                "cc": "IN",
+                "weight": 73
+              },
+              {
+                "label": "Ghana",
+                "value": "1.4",
+                "cc": "GH",
+                "weight": 14
+              },
+              {
+                "label": "Nigeria",
+                "value": "3.8",
+                "cc": "NG",
+                "weight": 38
+              },
+              {
+                "label": "Liberia",
+                "value": "0.5",
+                "cc": "LR",
+                "weight": 5
+              },
+              {
+                "label": "Sierra Leone",
+                "value": "0.7",
+                "cc": "SL",
+                "weight": 7,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "physicians per 10,000 people"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-14T12:38:22.058Z",
+    "label": "Tapentadol & the Export Loophole",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-14-muscle-stem-cell-reboot-aging-sarcopenia-mice": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HIDDEN POPULATION",
+        "body": "Beneath every muscle fiber's outer membrane sits a quiet reserve of satellite cells, discovered by Alexander Mauro in 1961. They sleep until the fiber is damaged, then divide — one daughter rebuilds the muscle, the other returns to sleep. This asymmetric split is what lets the reserve last a lifetime.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *myosatellite cell*, but biologists usually just say **satellite cell** — named for their position tucked against the fiber like a moon."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MUSCLE WITHERS",
+        "body": "Sarcopenia is the age-related loss of muscle mass and strength. After age 30, adults lose roughly 3-8% of muscle per decade; after 60, the slope steepens. By 80, a typical person has shed nearly half the muscle they had at 30 — which is why falls become lethal, not just inconvenient."
+      },
+      {
+        "heading": "THE METABOLIC LOCK",
+        "body": "Aged satellite cells do not just divide more slowly — they lose the metabolic machinery to build new membrane. Glutaminase converts glutamine into the carbon skeletons cells use to synthesize fatty acids. Without enough of it, the cell cannot make the lipids a new muscle fiber's membrane requires."
+      },
+      {
+        "heading": "PALMITATE AND OLEATE",
+        "body": "These are the two most abundant fatty acids in mammalian cell membranes — palmitate is saturated (16 carbons), oleate is monounsaturated (18 carbons, one double bond). Together they set membrane fluidity. The Duke approach bypasses the broken glutaminase step by feeding the cells the end products directly.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did the researchers supply lipids to the stem cells outside the body rather than inject the lipids into aged mice?",
+            "options": [
+              "Lipids cannot cross cell membranes in living tissue",
+              "Aged satellite cells need the lipids during division, which only happens after activation",
+              "Palmitate is toxic when injected at therapeutic doses",
+              "The lipids must be radioactively labeled to work"
+            ],
+            "correct": 1,
+            "explanation": "Satellite cells only need the lipid surge during their proliferative phase. Ex-vivo treatment delivers the cargo at the moment the cell is dividing, before reimplantation."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSLATION PROBLEM",
+        "body": "Mouse muscle regenerates faster than human muscle at every age — a young mouse can rebuild a damaged tibialis in two weeks; a young human takes months. Many regeneration therapies that work spectacularly in mice deliver modest effects in human trials. The 45% figure is a starting point, not a forecast.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The species gap has a name in the field: ***mouse-to-clinic translation***. It is why most regenerative findings need a decade between the *Nature* paper and the first phase-III readout."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THIS MATTERS",
+        "body": "Sarcopenia is not cosmetic. Grip strength predicts all-cause mortality in adults over 60 better than blood pressure does. Muscle is also the body's largest glucose sink — losing it accelerates insulin resistance. A working sarcopenia therapy would be a metabolic intervention as much as a mobility one."
+      }
+    ],
+    "generatedAt": "2026-05-14T12:38:50.891Z",
+    "label": "Muscle Stem Cells & Sarcopenia",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-14-nigeria-nhrc-air-force-civilian-airstrike-casualties-accountability": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PATTERN, NOT THE INCIDENT",
+        "body": "Nigerian Air Force strikes have killed civilians repeatedly over the past decade — Rann camp in 2017 (over 100 dead at an IDP site), Tudun Biri in 2023 (around 85 villagers during Mawlid prayers), and a string of smaller incidents in between. Each time the military first claims only militants died; each time independent reporting forces a partial retraction.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2014",
+                "label": "Boko Haram surge; air campaign begins"
+              },
+              {
+                "year": "2017-01",
+                "label": "Rann IDP camp strike — ~100+ killed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021-09",
+                "label": "Yobe village strike — ~10 killed"
+              },
+              {
+                "year": "2022-01",
+                "label": "Niger State herders strike"
+              },
+              {
+                "year": "2023-12",
+                "label": "Tudun Biri — ~85 worshippers killed"
+              },
+              {
+                "year": "2025",
+                "label": "Sokoto and Zamfara strikes"
+              },
+              {
+                "year": "2026-05",
+                "label": "Niger/Zamfara strikes — 100+ reported"
+              }
+            ],
+            "label": "major Nigerian Air Force civilian-casualty incidents"
+          }
+        ]
+      },
+      {
+        "heading": "THE BANDIT THEATRE",
+        "body": "Northwest Nigeria — Zamfara, Katsina, Sokoto, Kaduna, Niger — is no longer a Boko Haram theatre. It is dominated by rural armed groups the state labels bandits: cattle-rustling networks turned kidnapping economies, embedded in Fulani herder communities, operating from forest reserves. Air power against a dispersed, civilian-adjacent enemy is exactly the geometry that produces wrong-target strikes.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "NE",
+              "BJ",
+              "CM",
+              "TD"
+            ],
+            "label": "the northwest banditry belt",
+            "markers": [
+              {
+                "lat": 11.1,
+                "lng": 6.66,
+                "label": "Zamfara"
+              },
+              {
+                "lat": 10,
+                "lng": 5.6,
+                "label": "Niger State"
+              },
+              {
+                "lat": 10.5,
+                "lng": 7.4,
+                "label": "Kaduna"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE NHRC ACTUALLY IS",
+        "body": "The National Human Rights Commission was established by the 1995 NHRC Act, amended in 2010 to give it quasi-judicial powers — it can summon officials, register awards, and its decisions are enforceable as High Court judgments. On paper it can compel the Air Force to testify. In practice, military respondents routinely ignore summonses, and no Nigerian government has used the police to enforce an NHRC ruling against the armed forces.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2010 amendment was modeled on the **Paris Principles** — the UN framework for national human-rights institutions — which require *operational independence* from the executive. Nigeria's NHRC clears that bar legally; the enforcement gap is political, not statutory."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DECONFLICTION FAILS",
+        "body": "Modern air forces avoid civilian strikes through deconfliction — a humanitarian-notification system where aid agencies and local authorities share coordinates of camps, markets, and Friday gatherings. The system requires reliable maps, trained targeting officers, and a culture that treats a no-strike list as binding. Nigerian Air Force ISR is thin, ground-truth intelligence flows from informants of unverified motive, and post-strike battle-damage assessment is done by the same unit that fired."
+      },
+      {
+        "heading": "THE LEGAL CEILING",
+        "body": "Under the Geneva Conventions' Additional Protocol II (which Nigeria ratified in 1988), parties to a non-international armed conflict must distinguish combatants from civilians and take all feasible precautions. The standard for a war crime is not perfection — it is reckless disregard. Pattern evidence across multiple incidents is what moves a case from operational error to potential criminal liability, which is why Amnesty's repeat-incident framing matters more than any single body count.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which legal instrument primarily governs civilian-protection obligations in Nigeria's non-international conflicts?",
+            "options": [
+              "Geneva Conventions Additional Protocol I",
+              "Geneva Conventions Additional Protocol II",
+              "Rome Statute Article 8 only",
+              "UN Charter Chapter VII"
+            ],
+            "correct": 1,
+            "explanation": "Protocol I covers international armed conflicts; Protocol II governs non-international conflicts like Nigeria's, requiring distinction and proportionality between combatants and civilians."
+          }
+        ]
+      },
+      {
+        "heading": "THE NAIRA BACKDROP",
+        "body": "The political cost of military accountability scales with how stretched the state already is. Naira depreciation since the 2023 float has compressed the security budget in real terms — fewer precision munitions, fewer training hours, more pressure to claim operational success.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              1344.68,
+              1340.88,
+              1342.48,
+              1345.790676,
+              1345.790676,
+              1346.63,
+              1345.47,
+              1348.77,
+              1351.32,
+              1354.96,
+              1351.847873,
+              1351.847873,
+              1352.81,
+              1360.19,
+              1374.96,
+              1375.07,
+              1374.69,
+              1375.98,
+              1375.98,
+              1375.65,
+              1370.93,
+              1365.9,
+              1360.53,
+              1361.67,
+              1356.19465,
+              1356.19465,
+              1357.96,
+              1363.47,
+              1370.1,
+              1370.5
+            ],
+            "periods": [
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14"
+            ],
+            "label": "Nigerian naira",
+            "unit": "NGN / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-14"
+    ],
+    "generatedAt": "2026-05-14T12:39:27.649Z",
+    "label": "Nigeria's Airstrike Accountability Gap",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-14-southern-lebanon-46-villages-demolished-yellow-line-ceasefire": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RAFAH MODEL",
+        "body": "In 2024 Israel demolished most of Rafah's built environment to create a depopulated buffer along the Egypt-Gaza border — the Philadelphi Corridor. Naming Rafah as the template for south Lebanon signals intent: not temporary occupation, but permanent terrain modification that makes return impossible.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine has a name in Israeli military planning: **scorched buffer**. The legal theory holds that a depopulated strip is not occupation if no civilians remain to occupy."
+          }
+        ]
+      },
+      {
+        "heading": "THE BLUE LINE",
+        "body": "The UN-demarcated Blue Line has separated Israeli and Lebanese forces since Israel's 2000 withdrawal. The Yellow Line is a newer, unilateral Israeli demarcation pushed north of it — a de facto border the Lebanese state never agreed to and UNIFIL cannot enforce.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL",
+              "SY"
+            ],
+            "label": "the south Lebanon buffer zone",
+            "markers": [
+              {
+                "lat": 33.0972,
+                "lng": 35.1453,
+                "label": "Naqoura (UNIFIL HQ)"
+              },
+              {
+                "lat": 33.2706,
+                "lng": 35.2033,
+                "label": "Tyre"
+              },
+              {
+                "lat": 33.5633,
+                "lng": 35.3717,
+                "label": "Sidon"
+              },
+              {
+                "lat": 33.2089,
+                "lng": 35.5694,
+                "label": "Bint Jbeil"
+              },
+              {
+                "lat": 33.2772,
+                "lng": 35.5717,
+                "label": "Maroun al-Ras"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LITANI LINE",
+        "body": "UN Security Council Resolution 1701, which ended the 2006 war, required Hezbollah to withdraw north of the Litani River — roughly 30 km from the border. Two decades later, the resolution has never been fully implemented; the demolitions are Israel's unilateral enforcement of a clause the international order failed to deliver."
+      },
+      {
+        "heading": "THE 1982 PRECEDENT",
+        "body": "Israel invaded Lebanon in 1982 and held a 'security zone' in the south for 18 years, administered through the proxy South Lebanon Army. The occupation ended in 2000 with a chaotic withdrawal as the SLA collapsed and Hezbollah took the ground. The current buffer attempt is the third Israeli effort since then to solve the same border problem.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1978",
+                "label": "Operation Litani — first invasion"
+              },
+              {
+                "year": "1982",
+                "label": "Full invasion, siege of Beirut",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2000",
+                "label": "Israeli withdrawal; SLA collapses"
+              },
+              {
+                "year": "2006",
+                "label": "34-day war ends with UNSCR 1701"
+              },
+              {
+                "year": "2024-09",
+                "label": "Pager attacks, Nasrallah killed"
+              },
+              {
+                "year": "2024-11",
+                "label": "Ceasefire signed"
+              },
+              {
+                "year": "2026-05",
+                "label": "46 of 54 buffer villages demolished"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1982",
+                "to": "2000",
+                "label": "Israeli occupation / security zone",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Israel in south Lebanon"
+          }
+        ]
+      },
+      {
+        "heading": "WHO LIVES THERE",
+        "body": "The villages of south Lebanon are overwhelmingly Shia, the demographic base from which Hezbollah recruits and on which it depends politically. Demolishing the villages does not just create a buffer — it dismantles the social geography that makes the movement possible. The Maronite north and Sunni coast are not affected."
+      },
+      {
+        "heading": "THE LEGAL FRAME",
+        "body": "The Fourth Geneva Convention's Article 53 prohibits destruction of property in occupied territory except where 'rendered absolutely necessary by military operations.' Systematic post-ceasefire demolition is the exact pattern the ICJ cited when ruling against Israel's Gaza conduct in 2024. The same legal arguments now apply north of the Blue Line.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which UN resolution required Hezbollah to withdraw north of the Litani River?",
+            "options": [
+              "UNSCR 242 (1967)",
+              "UNSCR 425 (1978)",
+              "UNSCR 1701 (2006)",
+              "UNSCR 2334 (2016)"
+            ],
+            "correct": 2,
+            "explanation": "1701 ended the 2006 war and mandated a Hezbollah pullback to the Litani; 425 had earlier called for Israel's 1978 withdrawal."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-14T12:39:59.349Z",
+    "label": "Southern Lebanon & the Buffer Doctrine",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-14-tesla-semi-electric-trucking-tco-diesel-crossover": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 8/35 ASYMMETRY",
+        "body": "Heavy-duty trucks are roughly 8% of vehicles on the road but produce around 35% of road transport CO2. The leverage is why regulators target trucking decarbonization first — one electric Class 8 displaces the emissions of dozens of sedans.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Heavy trucks",
+                "value": "~35%",
+                "tone": "unfavorable",
+                "weight": 35
+              },
+              {
+                "label": "Light trucks/SUVs",
+                "value": "~36%",
+                "tone": "neutral",
+                "weight": 36
+              },
+              {
+                "label": "Passenger cars",
+                "value": "~22%",
+                "tone": "favorable",
+                "weight": 22
+              },
+              {
+                "label": "Buses & other",
+                "value": "~7%",
+                "tone": "favorable",
+                "weight": 7
+              }
+            ],
+            "label": "share of US road CO2 by vehicle class"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DIESEL IS HARD TO BEAT",
+        "body": "Diesel packs about 45 megajoules per kilogram; lithium-ion cells deliver under 1 MJ/kg. A Class 8 hauling 80,000 lbs over 500 miles needs a battery pack that weighs several tons — every kilogram of battery is a kilogram of payload lost. The physics, not the price, is the constraint.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Tesla's Semi reportedly carries a **~900 kWh** pack — roughly 10× a Model S. That mass alone eats into the **80,000 lb** federal gross-weight limit, though the US has granted EV trucks a **2,000 lb** weight allowance to partially offset it."
+          }
+        ]
+      },
+      {
+        "heading": "THE TCO CROSSOVER",
+        "body": "Trucking is a thin-margin business run on Total Cost of Ownership: fuel, maintenance, driver, financing, depreciation. Diesel is 30-40% of TCO on long-haul; electricity at industrial rates is a fraction of that, and an electric drivetrain has perhaps a tenth the moving parts. The crossover happens when capex amortization beats the fuel savings — sensitive to electricity price, utilization, and charger access."
+      },
+      {
+        "heading": "THE CHARGING PROBLEM",
+        "body": "A Class 8 fast-charge from 20% to 80% draws over a megawatt — enough to power a small town. The bottleneck is not the truck but the grid interconnection: utilities can take 2-4 years to approve and build a substation upgrade. Megawatt Charging System (MCS) standards were only finalized in 2024.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What's the approximate peak power draw of a Class 8 truck megawatt charger?",
+            "options": [
+              "~150 kW, like a Tesla Supercharger",
+              "~350 kW, like CCS fast chargers",
+              "~1,200 kW (1.2 MW)",
+              "~5 MW"
+            ],
+            "correct": 2,
+            "explanation": "MCS targets up to ~3.75 MW theoretically, but production chargers today deliver around 1 MW — roughly 3× the fastest car DC fast chargers."
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPETITION",
+        "body": "Tesla is not alone or first. Daimler's Freightliner eCascadia, Volvo VNR Electric, and Kenworth/Peterbilt T680E have been in commercial use since 2022. The question is not whether electric trucks work — it's whether Tesla's range claims (500 miles loaded) hold up against incumbents that ship today.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Tesla Semi",
+                "role": "Serial production Apr 2026",
+                "cc": "US"
+              },
+              {
+                "name": "Freightliner eCascadia",
+                "role": "Daimler Truck, since 2022",
+                "cc": "US"
+              },
+              {
+                "name": "Volvo VNR Electric",
+                "role": "In fleet use since 2021",
+                "cc": "SE"
+              },
+              {
+                "name": "Kenworth T680E",
+                "role": "Paccar, since 2022",
+                "cc": "US"
+              },
+              {
+                "name": "BYD 8TT",
+                "role": "China's volume leader",
+                "cc": "CN"
+              }
+            ],
+            "label": "the Class 8 EV field"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CALIFORNIA FIRST",
+        "body": "WattEV is based in California, which has the Advanced Clean Fleets rule requiring drayage trucks at ports to be zero-emission by 2035, and the largest network of public truck charging in North America. Most early Semi deployments cluster around the LA/Long Beach port complex — the geography of regulation, not market demand.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US"
+            ],
+            "label": "early Semi deployment geography",
+            "markers": [
+              {
+                "lat": 33.7395,
+                "lng": -118.261,
+                "label": "Port of Long Beach"
+              },
+              {
+                "lat": 33.7395,
+                "lng": -118.275,
+                "label": "Port of LA"
+              },
+              {
+                "lat": 39.5296,
+                "lng": -119.8138,
+                "label": "Tesla Semi plant, Reno"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-14T12:40:33.381Z",
+    "label": "Electric Trucking & TCO",
+    "category": "tech",
+    "articleCount": 1
   }
 }
