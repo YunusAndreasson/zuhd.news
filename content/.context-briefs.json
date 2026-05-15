@@ -171145,5 +171145,1825 @@
     "label": "AI Chip Export Controls",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-14-egypt-military-companies-imf-review-privatization-stall": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PARALLEL ECONOMY",
+        "body": "Egypt's armed forces run a sprawling commercial empire: cement plants, pasta factories, gas stations, bottled water, steel, household appliances, even resort hotels. Estimates of its share of GDP range from 2% to over 40% — nobody knows because military firms are exempt from public audit, taxation, and customs duties.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The military's commercial arm operates through holdings like the **National Service Projects Organization (NSPO)** and the **Arab Organization for Industrialization (AOI)** — entities created under Nasser for defense self-sufficiency that quietly expanded into civilian markets."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE IMF CARES",
+        "body": "Military firms compete with private companies while paying no tax, using conscript labor, and accessing state land for free. The IMF treats this as a structural distortion — private investment cannot price-compete with a tax-exempt rival that wears a uniform. Removing the distortion is a condition of the loan, not a side request."
+      },
+      {
+        "heading": "THE LOAN AT STAKE",
+        "body": "The current $8 billion Extended Fund Facility, signed in March 2024, was Egypt's fourth IMF programme since 2016. Each prior programme attached privatization milestones; each saw them slip. The Fund's reviews release tranches only when targets are met — which is why a stalled sell-off is not a paperwork problem but a payment trigger.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              51.7698,
+              51.884157,
+              51.884157,
+              51.884157,
+              51.970698,
+              51.9993,
+              51.7463,
+              52.6215,
+              52.619542,
+              52.572404,
+              52.572404,
+              52.6099,
+              52.5498,
+              52.8295,
+              53.0206,
+              53.623047,
+              53.639736,
+              53.639736,
+              53.5567,
+              53.5362,
+              53.6199,
+              52.703434,
+              52.7193,
+              52.72,
+              52.74469,
+              52.7376,
+              52.8269,
+              52.9233,
+              52.9288,
+              52.897
+            ],
+            "periods": [
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15"
+            ],
+            "label": "Egyptian pound",
+            "unit": "EGP / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE LAND PROBLEM",
+        "body": "Many military-owned companies sit on land the army acquired by decree, never registered to a civilian-style title. A buyer cannot list shares on the EGX without clean title; the army cannot produce clean title without subordinating itself to civilian land courts. The stall is legal, but the resistance is institutional."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "When Sisi took power in 2013, the military's economic role expanded sharply — mega-projects (the new capital, Suez Canal extension, road network) routed through army contractors rather than open tender. Reversing that requires the institution that funds the regime's stability to surrender the assets that fund its autonomy.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Abdel Fattah el-Sisi",
+                "role": "President, former Defense Minister",
+                "years": "2014–",
+                "cc": "EG"
+              },
+              {
+                "name": "Mohamed Zaki",
+                "role": "Defense Minister",
+                "years": "2018–",
+                "cc": "EG"
+              },
+              {
+                "name": "Kamel al-Wazir",
+                "role": "PM-designate, ex-Engineering Authority chief",
+                "years": "2019–",
+                "cc": "EG"
+              }
+            ],
+            "label": "who controls the assets"
+          }
+        ]
+      },
+      {
+        "heading": "THE FISCAL CLIFF",
+        "body": "Egypt's external debt exceeds $160 billion. Servicing it consumes roughly half of state revenue. Without the IMF tranche, Cairo faces a choice between dollar shortages (which froze imports in 2022–23) and a fresh devaluation — the pound has already lost two-thirds of its value against the dollar since 2022.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are Egyptian military-owned firms a particular problem for private investors?",
+            "options": [
+              "They pay no tax, use conscript labor, and access state land for free",
+              "They are required to hire only Egyptian citizens",
+              "They cannot export their products",
+              "They must price their goods below cost"
+            ],
+            "correct": 0,
+            "explanation": "Military firms operate outside the tax, customs, and labor regimes that bind private competitors — a structural subsidy the IMF treats as a market distortion."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-15"
+    ],
+    "generatedAt": "2026-05-15T12:35:48.546Z",
+    "label": "Egypt's Military Economy & IMF Conditionality",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-14-openai-tanstack-npm-supply-chain-ai-packages-targeted": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRUST MODEL",
+        "body": "npm has no gatekeeper. Anyone can publish a package; anyone can publish an update. A project pulling in one direct dependency typically inherits hundreds of transitive ones, each maintained by a stranger with publish rights to your build.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A modern React app routinely ships with **1,000+ transitive dependencies**. The user audited *one* — `react` — and inherited the security posture of everyone else."
+          }
+        ]
+      },
+      {
+        "heading": "THE EVENT-STREAM PRECEDENT",
+        "body": "In 2018, a maintainer of the popular event-stream package handed control to a volunteer who'd offered help. Months later, the new owner shipped code that stole Bitcoin wallet keys from a specific downstream app. The package had ~2 million weekly downloads. Nobody noticed for weeks."
+      },
+      {
+        "heading": "WHY AI VENDORS ARE THE TARGET",
+        "body": "AI tooling pulls fresh dependencies aggressively — new SDKs, new model clients, new agent frameworks publish weekly. Developers update without reading diffs. The attack surface is wider and the review cadence is slower than mature ecosystems.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "react",
+                "value": "~30M",
+                "weight": 30
+              },
+              {
+                "label": "@tanstack/query",
+                "value": "~8M",
+                "weight": 8
+              },
+              {
+                "label": "openai",
+                "value": "~5M",
+                "weight": 5
+              },
+              {
+                "label": "langchain",
+                "value": "~2M",
+                "weight": 2
+              }
+            ],
+            "label": "npm weekly downloads (selected)"
+          }
+        ]
+      },
+      {
+        "heading": "TYPOSQUATTING VS HIJACK",
+        "body": "Two attack shapes dominate. Typosquatting publishes a malicious package with a near-identical name (`reqeusts` for `requests`) and waits for typos. Hijack compromises an existing trusted package via stolen credentials or social engineering — far rarer, far more dangerous.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which npm attack vector affects the most downstream users when successful?",
+            "options": [
+              "Typosquatting a popular package name",
+              "Hijacking the publish credentials of an existing trusted maintainer",
+              "Publishing a new malicious package and promoting it"
+            ],
+            "correct": 1,
+            "explanation": "Hijacks inherit the victim package's existing install base — millions of automatic updates ship the payload before anyone reviews the diff."
+          }
+        ]
+      },
+      {
+        "heading": "THE POSTINSTALL HOOK",
+        "body": "npm packages can run arbitrary code at install time via the postinstall script. This is how most supply-chain payloads execute — not when you import the package, but the moment you run `npm install`. CI runners, developer laptops, and production build servers all execute it with full user privileges."
+      },
+      {
+        "heading": "WHY MACOS SPECIFICALLY",
+        "body": "Developer machines are high-value targets — they hold SSH keys, cloud credentials, signing certificates, and source code for downstream products. macOS dominates the developer laptop market in San Francisco tech. A payload that profiles `~/.ssh`, `~/.aws`, and browser keychains on macOS hits the richest credential trove per compromised machine."
+      }
+    ],
+    "generatedAt": "2026-05-15T12:36:15.738Z",
+    "label": "npm Supply-Chain Attacks",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-14-usaid-dismantlement-africa-violence-study-causal-channels": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ORIGIN",
+        "body": "USAID was created by John F. Kennedy in 1961, consolidating Marshall Plan-era aid programs into one civilian agency. Its founding logic was Cold War: development assistance as a counter to Soviet influence in newly decolonized states. Conflict prevention was always a stated co-benefit of the spending, not just a humanitarian one.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 1961 Foreign Assistance Act explicitly framed aid as serving *both* humanitarian and **national security** ends — a doctrine every administration kept until 2025."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'HIGH-AID REGIONS' MEANS",
+        "body": "USAID spending in Africa concentrated in a handful of fragile states — South Sudan, Somalia, DRC, Ethiopia, Sudan. These places host the agency's largest food security, health, and stabilization programs, often running parallel to or substituting for state services in areas the central government cannot reach.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SS",
+              "SO",
+              "CD",
+              "ET",
+              "SD",
+              "NG"
+            ],
+            "label": "USAID's largest African footprints",
+            "caption": "concentrations in fragile and conflict-affected states"
+          }
+        ]
+      },
+      {
+        "heading": "THE CAUSAL CHANNELS",
+        "body": "Aid suppresses conflict through several documented mechanisms: food assistance reduces the recruitment pool for armed groups, health programs preserve state legitimacy in remote areas, and cash transfers raise the opportunity cost of joining an insurgency. Removing the inputs reverses each channel within months, not years.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "cut",
+                "label": "Aid cut"
+              },
+              {
+                "id": "food",
+                "label": "Food insecurity"
+              },
+              {
+                "id": "service",
+                "label": "Service collapse"
+              },
+              {
+                "id": "income",
+                "label": "Lost local income"
+              },
+              {
+                "id": "recruit",
+                "label": "Armed-group recruitment"
+              },
+              {
+                "id": "legit",
+                "label": "State legitimacy loss"
+              },
+              {
+                "id": "violence",
+                "label": "Conflict events"
+              }
+            ],
+            "links": [
+              {
+                "source": "cut",
+                "target": "food",
+                "value": 40
+              },
+              {
+                "source": "cut",
+                "target": "service",
+                "value": 35
+              },
+              {
+                "source": "cut",
+                "target": "income",
+                "value": 25
+              },
+              {
+                "source": "food",
+                "target": "recruit",
+                "value": 30
+              },
+              {
+                "source": "income",
+                "target": "recruit",
+                "value": 25
+              },
+              {
+                "source": "service",
+                "target": "legit",
+                "value": 35
+              },
+              {
+                "source": "recruit",
+                "target": "violence",
+                "value": 55
+              },
+              {
+                "source": "legit",
+                "target": "violence",
+                "value": 35
+              }
+            ],
+            "label": "how aid withdrawal feeds violence"
+          }
+        ]
+      },
+      {
+        "heading": "THE BUDGETARY SCALE",
+        "body": "Despite its political prominence, USAID's full budget was roughly $40 billion — under 1% of US federal spending and a rounding error against the Pentagon's $850 billion. The savings from abolition are small; the geopolitical and humanitarian footprint removed is not.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Defense",
+                "value": "$850bn",
+                "weight": 850,
+                "tone": "neutral"
+              },
+              {
+                "label": "Medicare",
+                "value": "$848bn",
+                "weight": 848,
+                "tone": "neutral"
+              },
+              {
+                "label": "Interest on debt",
+                "value": "$880bn",
+                "weight": 880,
+                "tone": "neutral"
+              },
+              {
+                "label": "USAID",
+                "value": "$40bn",
+                "weight": 40,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "USAID vs other federal lines, FY24 ($bn)"
+          }
+        ]
+      },
+      {
+        "heading": "THE PEPFAR PRECEDENT",
+        "body": "The largest single USAID-administered program is PEPFAR — the President's Emergency Plan for AIDS Relief — launched by George W. Bush in 2003. It is credited with averting roughly 25 million deaths in sub-Saharan Africa. Antiretroviral interruption causes viral rebound within weeks, which is why mortality projections from 2025 cuts compound so quickly."
+      },
+      {
+        "heading": "THE COUNTERFACTUAL QUESTION",
+        "body": "The 6.5% increase is a causal estimate, not a correlation — researchers use the abrupt January 2025 stop-work order as a natural experiment, comparing high-exposure districts to low-exposure ones in the same country. The design isolates the aid shock from broader trends like climate stress or commodity prices.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does an abrupt aid cutoff yield a cleaner causal estimate than a gradual one?",
+            "options": [
+              "Abrupt cutoffs are easier to fund as a study",
+              "It creates a sharp before/after break uncorrelated with local conditions",
+              "Gradual cuts don't affect conflict",
+              "It avoids ethical review requirements"
+            ],
+            "correct": 1,
+            "explanation": "A sudden, externally imposed stop creates a natural experiment: the timing isn't driven by local violence or politics, so post-cut changes can be attributed to the cut itself."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-15T12:36:51.213Z",
+    "label": "Foreign Aid & Conflict",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-15-apoe-e2-proteomic-signatures-alzheimer-upstream-mechanism": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE THREE ALLELES",
+        "body": "APOE comes in three flavors — ε2, ε3, ε4 — differing by just two amino acids. ε3 is the common variant (~78% of alleles). ε4 roughly triples Alzheimer's risk per copy; ε2 roughly halves it. One gene, three lifetimes of brain aging.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "ε2",
+                "value": "~0.5× risk",
+                "tone": "favorable",
+                "weight": 8
+              },
+              {
+                "label": "ε3",
+                "value": "baseline",
+                "tone": "neutral",
+                "weight": 78
+              },
+              {
+                "label": "ε4",
+                "value": "~3× per copy",
+                "tone": "unfavorable",
+                "weight": 14
+              }
+            ],
+            "label": "APOE allele frequency and Alzheimer's risk"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE PROTEIN DOES",
+        "body": "Apolipoprotein E is the brain's primary lipid shuttle. It packages cholesterol and phospholipids into particles that neurons need to build and repair membranes and synapses. Brain cells cannot import cholesterol from the bloodstream — the blood-brain barrier blocks it — so APOE is the local courier."
+      },
+      {
+        "heading": "THE AMYLOID HYPOTHESIS",
+        "body": "For three decades the dominant theory has been that amyloid-beta plaques drive Alzheimer's. Anti-amyloid antibodies (lecanemab, donanemab) do clear plaques but produce only modest clinical benefit. The field is increasingly asking what upstream of amyloid actually matters — which is the gap proteomic studies like this one are trying to fill.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shift from **amyloid-as-cause** to **amyloid-as-symptom** is the most consequential reframing in dementia research since the hypothesis was proposed in 1992."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PROTEOMICS",
+        "body": "Genomics tells you risk; proteomics tells you mechanism. A genome is fixed at conception, but the proteins it expresses shift across tissues, ages, and environments. Reading 7,000+ plasma proteins in thousands of people lets researchers find which molecules actually move between healthy and diseased states — the layer where drugs can intervene."
+      },
+      {
+        "heading": "THE EARLY-ADULTHOOD CLUE",
+        "body": "If ε2's protective proteins appear decades before any dementia onset, the protective mechanism is not a late-life response to damage — it is a lifelong shift in brain maintenance. The therapeutic implication is uncomfortable: meaningful prevention may need to start in the third decade of life, not the seventh.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When do the protective protein signatures of APOE ε2 carriers first appear?",
+            "options": [
+              "Around age 65, near typical Alzheimer's onset",
+              "In midlife, around age 45",
+              "In early adulthood, decades before any symptoms",
+              "Only after diagnosis, as a compensatory response"
+            ],
+            "correct": 2,
+            "explanation": "The study found upregulation of UNG, VPS29, and BIRC2 in early adulthood — meaning ε2's protection is a lifelong baseline, not a late-life rescue."
+          }
+        ]
+      },
+      {
+        "heading": "THE MEDIATION FRACTION",
+        "body": "54 of 192 proteins statistically mediate ε2's effect on Alzheimer's risk. Mediation analysis asks: if we held this protein constant, would the genetic effect disappear? A 28% mediation share means most of ε2's benefit flows through measurable, potentially druggable intermediaries rather than through unreachable genetic destiny."
+      }
+    ],
+    "generatedAt": "2026-05-15T12:37:17.569Z",
+    "label": "APOE & Alzheimer's Risk",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-15-bajaur-kp-army-camp-9-attackers-4-soldiers-fitna-al-khawarij": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO THE TTP IS",
+        "body": "The Tehreek-i-Taliban Pakistan formed in 2007 as an umbrella for Pashtun militant factions in the tribal belt. It is organizationally distinct from the Afghan Taliban but shares ideology, sanctuary, and personnel across the border.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Islamabad's current state line is *fitna al-Khawarij* — \"the sedition of the Kharijites\" — a deliberate theological framing that denies the TTP any claim to Islamic legitimacy by invoking the earliest sect classical scholars condemned as extremist."
+          }
+        ]
+      },
+      {
+        "heading": "THE DURAND LINE",
+        "body": "The 2,640 km border between Pakistan and Afghanistan was drawn by British diplomat Mortimer Durand in 1893, cutting through Pashtun tribal lands. No Afghan government — monarchy, communist, mujahideen, or Taliban — has ever recognized it. Militants treat it as a line on a map, not a border.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF"
+            ],
+            "label": "the tribal belt",
+            "markers": [
+              {
+                "lat": 34.6841,
+                "lng": 71.5249,
+                "label": "Bajaur"
+              },
+              {
+                "lat": 33.9911,
+                "lng": 71.4737,
+                "label": "Peshawar"
+              },
+              {
+                "lat": 34.5553,
+                "lng": 69.2075,
+                "label": "Kabul"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SANCTUARY PROBLEM",
+        "body": "After the 2021 Taliban takeover of Kabul, Pakistan expected its long-standing patronage of the Afghan Taliban to translate into pressure on the TTP. Instead, the Afghan Taliban released TTP prisoners and refused to expel its leadership. The strategic depth Pakistan cultivated for forty years now points back at it."
+      },
+      {
+        "heading": "THE FATA MERGER",
+        "body": "In 2018 Pakistan merged the Federally Administered Tribal Areas — governed since 1901 under the colonial Frontier Crimes Regulation — into Khyber Pakhtunkhwa province. The merger ended a century of legal exception but left the security vacuum it created unfilled. Bajaur is one of the seven former agencies absorbed in that reform."
+      },
+      {
+        "heading": "THE ESCALATING ARC",
+        "body": "Militant violence in Pakistan collapsed after the 2014 Zarb-e-Azb operation cleared North Waziristan. It bottomed out around 2019 and has climbed steadily since the Afghan Taliban's return. The current cycle is not a flare-up — it is the reversal of a decade of counterinsurgency gains.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2007",
+                "label": "TTP founded"
+              },
+              {
+                "year": "2009",
+                "label": "Swat operation"
+              },
+              {
+                "year": "2014",
+                "label": "Zarb-e-Azb clears N. Waziristan",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2018",
+                "label": "FATA merged into KP"
+              },
+              {
+                "year": "2021",
+                "label": "Afghan Taliban retakes Kabul"
+              },
+              {
+                "year": "2022",
+                "label": "TTP ends ceasefire"
+              },
+              {
+                "year": "2025",
+                "label": "KP fatalities hit 2,331"
+              }
+            ],
+            "label": "Pakistan's militant cycle"
+          }
+        ]
+      },
+      {
+        "heading": "WHY KP BEARS THE WEIGHT",
+        "body": "Khyber Pakhtunkhwa hosts the border, the Pashtun population, and the bulk of Afghan refugees. Provincial police are out-armed by militants who carry weapons left behind by NATO. Federal reinforcements are tied up on the eastern border with India — the structural reason no surge has been announced."
+      },
+      {
+        "heading": "WHAT THE READER SHOULD REMEMBER",
+        "body": "The TTP is not Al-Qaeda, not ISIS-K, and not the Afghan Taliban — though it overlaps with all three. It is a domestic Pakistani insurgency whose center of gravity sits on the Afghan side of a border the Afghan state refuses to recognize.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the Durand Line?",
+            "options": [
+              "A ceasefire line drawn after the 1971 war",
+              "The 1893 British-drawn Pakistan-Afghanistan border",
+              "The Kashmir Line of Control",
+              "A pipeline route through the tribal belt"
+            ],
+            "correct": 1,
+            "explanation": "Drawn by Mortimer Durand in 1893, the line cut through Pashtun tribal territory and has never been recognized by any Afghan government."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-15T12:37:50.508Z",
+    "label": "TTP & the Durand Line",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-15-cisco-israel-leaked-docs-gaza-genocide-security-contracts": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DUAL-USE PROBLEM",
+        "body": "Routers, switches, and servers are inherently dual-use: the same hardware that runs a hospital network can run a targeting cell. Export controls focus on weapons and chips; general-purpose IT gear flows on commercial terms even when the end user is a military command.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **dual-use**: items with civilian utility that also enable military capability. The **Wassenaar Arrangement** covers some categories but exempts most commercial networking hardware."
+          }
+        ]
+      },
+      {
+        "heading": "THE KILL CHAIN",
+        "body": "Modern air operations run on what doctrine calls F2T2EA — find, fix, track, target, engage, assess. Each stage is a data pipeline: sensor feeds, geolocation, identification, weapon assignment, strike, battle damage. Collapsing the cycle from hours to minutes is the entire point of networked warfare.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "sensors",
+                "label": "Sensors (drones, sat, SIGINT)"
+              },
+              {
+                "id": "fusion",
+                "label": "Fusion center"
+              },
+              {
+                "id": "target",
+                "label": "Targeting cell"
+              },
+              {
+                "id": "command",
+                "label": "Strike command"
+              },
+              {
+                "id": "asset",
+                "label": "Aircraft / artillery"
+              },
+              {
+                "id": "assess",
+                "label": "BDA review"
+              }
+            ],
+            "links": [
+              {
+                "source": "sensors",
+                "target": "fusion",
+                "value": 100,
+                "label": "raw feeds"
+              },
+              {
+                "source": "fusion",
+                "target": "target",
+                "value": 80,
+                "label": "identified objects"
+              },
+              {
+                "source": "target",
+                "target": "command",
+                "value": 60,
+                "label": "approved targets"
+              },
+              {
+                "source": "command",
+                "target": "asset",
+                "value": 60,
+                "label": "strike orders"
+              },
+              {
+                "source": "asset",
+                "target": "assess",
+                "value": 50,
+                "label": "post-strike data"
+              },
+              {
+                "source": "assess",
+                "target": "fusion",
+                "value": 40,
+                "label": "feedback loop"
+              }
+            ],
+            "label": "the targeting pipeline"
+          }
+        ]
+      },
+      {
+        "heading": "WHO BUILDS THE BACKBONE",
+        "body": "A handful of Western firms supply the global networking stack used by militaries — Cisco, Juniper, HPE/Aruba, Palo Alto, plus Israeli and increasingly Chinese alternatives. Switching costs are immense: a military that standardizes on one vendor's certificates, training, and management software is locked in for a decade or more.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Cisco",
+                "value": "~42%",
+                "cc": "US",
+                "weight": 42,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Huawei",
+                "value": "~12%",
+                "cc": "CN",
+                "weight": 12,
+                "tone": "neutral"
+              },
+              {
+                "label": "HPE/Aruba",
+                "value": "~10%",
+                "cc": "US",
+                "weight": 10,
+                "tone": "neutral"
+              },
+              {
+                "label": "Arista",
+                "value": "~8%",
+                "cc": "US",
+                "weight": 8,
+                "tone": "neutral"
+              },
+              {
+                "label": "Juniper",
+                "value": "~5%",
+                "cc": "US",
+                "weight": 5,
+                "tone": "neutral"
+              }
+            ],
+            "label": "global enterprise networking share, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE NUREMBERG PRINCIPLE",
+        "body": "International law since 1947 holds that industrialists can be criminally liable when their products knowingly enable atrocities. IG Farben executives were convicted for supplying Zyklon B; bankers were convicted for financing slave labor. The doctrine survives in the Rome Statute's aiding-and-abetting provisions for genocide and war crimes."
+      },
+      {
+        "heading": "THE ICJ FINDING",
+        "body": "In January 2024 the International Court of Justice ruled it plausible that Israel's conduct in Gaza violates the Genocide Convention. The ruling triggered legal obligations for third states under Article 1 of the Convention — including duties on companies operating under their jurisdiction — to prevent acts that could contribute to genocide.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did the ICJ rule in its January 2024 provisional measures order on South Africa v. Israel?",
+            "options": [
+              "That Israel was committing genocide",
+              "That it was plausible Israel's conduct violated the Genocide Convention",
+              "That South Africa lacked standing to bring the case",
+              "That Hamas had committed genocide on October 7"
+            ],
+            "correct": 1,
+            "explanation": "The provisional measures order did not make a final genocide finding — it found the claims plausible enough to impose binding interim obligations on Israel."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Tech-sector complicity claims are not new. IBM's German subsidiary supplied Hollerith punch-card machines that catalogued Holocaust victims; the company settled a survivor lawsuit in 2001 without admitting liability. Cisco itself faced a US lawsuit alleging its 'Golden Shield' technology helped China persecute Falun Gong practitioners — dismissed on jurisdictional grounds, not on the merits.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1947",
+                "label": "IG Farben trial at Nuremberg",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2001",
+                "label": "IBM Hollerith lawsuit settled"
+              },
+              {
+                "year": "2011",
+                "label": "Cisco 'Golden Shield' suit filed"
+              },
+              {
+                "year": "2014",
+                "label": "Cisco suit dismissed on jurisdiction"
+              },
+              {
+                "year": "2024",
+                "label": "ICJ plausibility finding on Gaza"
+              }
+            ],
+            "label": "corporate complicity claims"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-15T12:38:24.898Z",
+    "label": "Dual-Use Tech & Military Networks",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-15-ebola-ituri-drc-65-dead-17th-outbreak-cross-border": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE DRC KEEPS GETTING EBOLA",
+        "body": "Ebola's natural reservoir is fruit bats in Central African rainforests. The DRC sits at the geographic center of that reservoir — every outbreak begins with a spillover event when a hunter, forager, or villager handles infected bushmeat. The country has had 17 outbreaks since 1976 because the virus lives there, not because it travels there.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CD",
+              "SS",
+              "UG",
+              "RW",
+              "BI",
+              "CF"
+            ],
+            "label": "the Ebola reservoir belt",
+            "caption": "every named outbreak has started inside this forest zone",
+            "markers": [
+              {
+                "lat": 1.5601,
+                "lng": 30.2147,
+                "label": "Bunia (Ituri)"
+              },
+              {
+                "lat": 0.0144,
+                "lng": 17.8635,
+                "label": "Yambuku (1976 index)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE NAME COMES FROM A RIVER",
+        "body": "The 1976 index outbreak struck the village of Yambuku in northern Zaire. Researchers named the virus after the nearby *Ebola River* — a tributary of the Congo — to avoid stigmatizing the village itself. The naming convention was deliberate; it set the template for how WHO labels new pathogens to this day.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 1976 mortality rate was **88%** — 280 dead of 318 infected. Modern outbreaks with rVSV-ZEBOV vaccination and supportive care run closer to **40-50%**."
+          }
+        ]
+      },
+      {
+        "heading": "THE R0 PARADOX",
+        "body": "Ebola's basic reproduction number is roughly 1.5-2.5 — lower than measles (15+), lower than COVID (3-5), even lower than seasonal flu. It spreads through direct contact with bodily fluids, not aerosols. Outbreaks burn out when contact-tracing isolates cases faster than they transmit — which is exactly what conflict zones make impossible.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Measles",
+                "value": "~15",
+                "weight": 15,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "COVID-19",
+                "value": "~3",
+                "weight": 3,
+                "tone": "neutral"
+              },
+              {
+                "label": "Seasonal flu",
+                "value": "~1.3",
+                "weight": 1.3,
+                "tone": "neutral"
+              },
+              {
+                "label": "Ebola",
+                "value": "~2",
+                "weight": 2,
+                "tone": "neutral"
+              }
+            ],
+            "label": "basic reproduction number (R0), selected pathogens"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ITURI IS HARDER THAN OTHER PROVINCES",
+        "body": "Ituri has hosted active armed groups — CODECO, ADF, M23 spillovers — since the late 1990s. Vaccinators and contact tracers cannot enter villages controlled by militias. The 2018-2020 Ebola response in neighboring North Kivu saw health workers murdered on multiple occasions, including a WHO epidemiologist killed in Butembo in 2019. Conflict turns a containable virus into an endemic one."
+      },
+      {
+        "heading": "THE VACCINE THAT EXISTS",
+        "body": "rVSV-ZEBOV (brand name Ervebo) was approved by the FDA in 2019 — the first licensed Ebola vaccine in history. It uses a ring-vaccination strategy: when a case is confirmed, every contact and every contact-of-contact is vaccinated, building an immunological firewall. The strategy worked in West Africa in 2014-16 and again in Equateur Province in 2020. It requires knowing who the contacts are.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does \"ring vaccination\" mean in an Ebola response?",
+            "options": [
+              "Vaccinate everyone in the affected country",
+              "Vaccinate the case's contacts and their contacts",
+              "Vaccinate only frontline health workers",
+              "Vaccinate in concentric geographic rings around the index village"
+            ],
+            "correct": 1,
+            "explanation": "Ring vaccination targets the social network around a confirmed case — the people most likely to be exposed — rather than geography or whole populations. It only works if contact tracing functions."
+          }
+        ]
+      },
+      {
+        "heading": "THE CROSS-BORDER WORRY",
+        "body": "South Sudan shares a 600 km porous border with northeastern DRC. Cross-border trade, pastoralist movement, and refugee flows from both directions mean an outbreak in Ituri can become an outbreak in Juba's catchment within weeks. The 2000 Gulu outbreak in Uganda — 425 cases, 224 deaths — began with cross-border movement from southern Sudan.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1976",
+                "label": "Yambuku, Zaire — virus identified",
+                "emphasis": "start"
+              },
+              {
+                "year": "1995",
+                "label": "Kikwit, DRC — 315 cases"
+              },
+              {
+                "year": "2000",
+                "label": "Gulu, Uganda — cross-border from Sudan"
+              },
+              {
+                "year": "2014",
+                "label": "West Africa — 28,000 cases",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2018",
+                "label": "North Kivu — first conflict-zone response"
+              },
+              {
+                "year": "2019",
+                "label": "rVSV-ZEBOV licensed"
+              },
+              {
+                "year": "2026",
+                "label": "Ituri — 17th DRC outbreak",
+                "emphasis": "end"
+              }
+            ],
+            "label": "major Ebola outbreaks"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-15T12:39:03.351Z",
+    "label": "Ebola & the DRC",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-15-hana-bank-dunamu-upbit-670m-won-stablecoin-tokenized": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY A WON STABLECOIN NOW",
+        "body": "South Korea's crypto market trades enormous volumes but settles almost entirely in USD-pegged stablecoins like USDT and USDC. Every won-to-crypto trade routes through a dollar intermediary, exporting fees and float to American issuers. A won stablecoin keeps that flow domestic.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The structural pull is the same one driving **euro**, **yen**, and **dirham** stablecoin projects: the dollar's grip on on-chain settlement is a *monetary sovereignty* issue, not just a fintech one."
+          }
+        ]
+      },
+      {
+        "heading": "THE KIMCHI PREMIUM",
+        "body": "Korean crypto prices regularly trade 2-10% above global benchmarks — the so-called kimchi premium. Capital controls on outbound won transfers prevent arbitrageurs from closing the gap. Domestic exchanges like Upbit became closed pools where Korean demand sets its own price.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Upbit",
+                "value": "~80%",
+                "weight": 80,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Bithumb",
+                "value": "~15%",
+                "weight": 15,
+                "tone": "neutral"
+              },
+              {
+                "label": "Coinone",
+                "value": "~3%",
+                "weight": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Korbit",
+                "value": "~2%",
+                "weight": 2,
+                "tone": "favorable"
+              }
+            ],
+            "label": "South Korea crypto exchange market share"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BANKS WERE LOCKED OUT",
+        "body": "Since 2017, South Korea required crypto exchanges to partner with a single bank for real-name verified accounts — but banks were forbidden from owning exchanges or issuing crypto products themselves. The wall is now cracking: the Lee Jae-myung government signaled in 2025 that banks could issue won stablecoins under a new framework.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was required for South Koreans to legally trade crypto on a domestic exchange after 2017?",
+            "options": [
+              "A real-name bank account at the exchange's partner bank",
+              "A government-issued crypto trading license",
+              "A minimum deposit of ₩10 million",
+              "Approval from the Financial Services Commission"
+            ],
+            "correct": 0,
+            "explanation": "The real-name account rule tied every trader to one verified bank relationship — designed to block anonymous flows and tax evasion."
+          }
+        ]
+      },
+      {
+        "heading": "HOW STABLECOINS ACTUALLY WORK",
+        "body": "A stablecoin issuer holds reserve assets — typically short-term government bills and bank deposits — and mints one token per unit deposited. The token tracks the peg not by algorithm but by the verifiable promise that the reserve is there. Hana Bank's balance sheet would back the won token directly.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why a *bank-issued* stablecoin is structurally different from Tether or USDC: the reserve and the issuer are the same regulated entity, eliminating the **custody risk** that has haunted private stablecoin issuers."
+          }
+        ]
+      },
+      {
+        "heading": "TOKENIZED SECURITIES",
+        "body": "The deal also targets tokenized securities — stocks, bonds, and funds represented as blockchain tokens that settle in seconds rather than the T+2 standard. Korea's Financial Services Commission approved a tokenized securities framework in 2023; major banks have been waiting for infrastructure partners with crypto exchange experience.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KR",
+              "JP",
+              "SG",
+              "HK"
+            ],
+            "label": "East Asian tokenized securities hubs",
+            "caption": "Each jurisdiction is racing to set the regional standard before Hong Kong or Singapore lock it in."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-15T12:39:29.859Z",
+    "label": "Won Stablecoins & Korean Crypto",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-15-india-petrol-diesel-3-rupee-hike-hormuz-import-pass-through": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IMPORT DEPENDENCE",
+        "body": "India imports roughly 85% of its crude oil, the highest dependence of any major economy. There is no domestic cushion — every dollar move in Brent flows through to the pump within weeks.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Crude import dependence (selected major economies)",
+            "peers": [
+              {
+                "value": 85,
+                "cc": "IN"
+              },
+              {
+                "value": 94,
+                "cc": "JP"
+              },
+              {
+                "value": 92,
+                "cc": "KR"
+              },
+              {
+                "value": 72,
+                "cc": "CN"
+              },
+              {
+                "value": 98,
+                "cc": "DE"
+              },
+              {
+                "value": 0,
+                "cc": "US"
+              },
+              {
+                "value": 0,
+                "cc": "BR"
+              }
+            ],
+            "subjectCc": "IN",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ ROUTE",
+        "body": "The majority of India's crude comes from Gulf suppliers — Iraq, Saudi Arabia, UAE — and transits the Strait of Hormuz. Russia became the largest single supplier after 2022, but those barrels arrive via the Suez-Bab el-Mandeb route, which has its own chokepoint risks.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "IQ",
+              "KW"
+            ],
+            "label": "India's Gulf supply route",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 19.076,
+                "lng": 72.8777,
+                "label": "Mumbai (refinery hub)"
+              },
+              {
+                "lat": 22.4707,
+                "lng": 69.07,
+                "label": "Jamnagar refinery"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY FUEL IS THE PERFECT TAX",
+        "body": "Fuel demand is inelastic — people buy roughly the same amount regardless of price. Governments worldwide exploit this: fuel taxes are cheap to collect (a handful of refineries vs. millions of income earners) and nearly impossible to evade. India's fuel excise generated ₹3.2 trillion in FY2024, roughly 12% of central tax revenue."
+      },
+      {
+        "heading": "THE HIDDEN STRUCTURE",
+        "body": "India deliberately kept petrol and diesel outside the GST (goods and services tax) system. This lets the centre and states stack taxes independently — central excise plus state VAT. At peak in 2020, taxes comprised 65% of petrol's retail price. No other major economy taxes fuel this aggressively relative to base cost.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The split matters politically: when prices rise, the **centre** can blame **states** for VAT, and states can blame the centre for excise. Neither side has to cut."
+          }
+        ]
+      },
+      {
+        "heading": "THE PASS-THROUGH MECHANISM",
+        "body": "State-owned oil marketing companies (Indian Oil, BPCL, HPCL) set retail prices daily based on a 15-day rolling average of import costs plus the rupee-dollar rate. When the rupee weakens against the dollar while crude rises, the squeeze compounds — both sides of the import bill move against the consumer.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              93.048145,
+              92.602452,
+              92.60245,
+              92.60245,
+              92.782407,
+              93.348804,
+              93.775164,
+              94.11314,
+              94.143557,
+              94.0666,
+              94.0666,
+              94.257338,
+              94.420855,
+              94.762974,
+              95.171392,
+              94.951559,
+              94.89165,
+              94.910513,
+              94.951346,
+              95.361112,
+              95.029174,
+              94.729612,
+              94.62293,
+              94.425498,
+              94.425498,
+              94.8754,
+              95.576514,
+              95.55195,
+              95.719988,
+              95.829548
+            ],
+            "periods": [
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE 1973 PRECEDENT",
+        "body": "The first OPEC oil shock quadrupled crude prices and pushed India's import bill from 10% to 40% of export earnings within a year. Indira Gandhi's government responded with petrol rationing, Sunday driving bans, and the nationalization of foreign oil companies — the foundation of today's state-owned OMC system.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of India's crude oil consumption is met by imports?",
+            "options": [
+              "About 50%",
+              "About 70%",
+              "About 85%",
+              "Nearly 100%"
+            ],
+            "correct": 2,
+            "explanation": "India imports ~85% of its crude — among the highest dependence of any major economy, leaving the pump fully exposed to global price moves."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-15"
+    ],
+    "generatedAt": "2026-05-15T12:39:57.072Z",
+    "label": "India's Fuel Pricing & Hormuz Exposure",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-15-iren-3b-convertible-notes-bitcoin-miner-ai-data-center-pivot": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY MINERS PIVOT",
+        "body": "Bitcoin miners and AI data centers want the same scarce resource: cheap, abundant electricity at sites with grid connections and cooling. A miner that already owns 500MW of energized capacity can rip out ASICs and rack GPUs faster than a hyperscaler can permit a greenfield campus.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is *behind-the-meter* power — capacity contracted directly with a generator, bypassing retail tariffs. It's the moat miners actually built, not the **hashrate**."
+          }
+        ]
+      },
+      {
+        "heading": "THE HALVING SQUEEZE",
+        "body": "Bitcoin's block reward halves every four years by protocol design. The April 2024 halving cut miner revenue per block from 6.25 BTC to 3.125 BTC overnight. Unless price doubles to compensate, marginal miners are forced to find another use for their power contracts — or shut down.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              74833.51,
+              75149.19,
+              77128.44,
+              75728.46,
+              73856.06,
+              75874.55,
+              76350.25,
+              78194.78,
+              78260.62,
+              77444.8,
+              77619.14,
+              78645.13,
+              77361.3,
+              76345.23,
+              75774.89,
+              76286.58,
+              78172.07,
+              78655.35,
+              78562.55,
+              79823.89,
+              80925.09,
+              81425,
+              80022.04,
+              80189.07,
+              80678.03,
+              82145.66,
+              81725.21,
+              80480.89,
+              79277.8,
+              81051.98,
+              80512.91
+            ],
+            "periods": [
+              "Apr 16",
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 15"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE CONVERTIBLE NOTE TRICK",
+        "body": "A 1% coupon is roughly a third of the Treasury yield — lenders accept it because the note converts to equity if the stock rises past a strike price (here, a 32.5% premium). The issuer gets near-free cash now; existing shareholders eat the dilution if the bet works.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "IREN 1% convert",
+                "value": "~1% coupon",
+                "tone": "favorable"
+              },
+              {
+                "label": "5yr US Treasury",
+                "value": "~4.2%",
+                "tone": "neutral"
+              },
+              {
+                "label": "BB corporate",
+                "value": "~6.5%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "CCC corporate",
+                "value": "~11%",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "financing cost: convertible vs straight debt"
+          }
+        ]
+      },
+      {
+        "heading": "THE GPU SCARCITY ECONOMY",
+        "body": "Nvidia's H100 and successor Blackwell chips are allocated, not sold — the company decides who gets capacity. A multi-billion-dollar Dell purchase plus a direct Nvidia cloud agreement is less a transaction than a place in the queue.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bottleneck has moved up the stack: from **silicon** (TSMC fab capacity), to **packaging** (CoWoS advanced packaging at TSMC), to **memory** (HBM3e from SK Hynix). Any one of these gates the others."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Core Scientific, Hut 8, TeraWulf, and Applied Digital have all signed AI hosting deals since 2024. Core Scientific signed a $3.5B+ contract with CoreWeave. The pattern is consistent: the value of a miner is now its power contract, not its mining rig.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What asset class do former Bitcoin miners actually compete in once they pivot to AI hosting?",
+            "options": [
+              "Cloud software providers like AWS",
+              "Power developers and data center operators",
+              "Semiconductor manufacturers",
+              "Crypto exchanges"
+            ],
+            "correct": 1,
+            "explanation": "The pivot is enabled by energized power capacity and grid interconnects — the same business as traditional colocation operators, not software clouds."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-15"
+    ],
+    "generatedAt": "2026-05-15T12:40:24.608Z",
+    "label": "Bitcoin Miners Pivoting to AI",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-15-philippines-icc-warrant-dela-rosa-duterte-drug-war-accountability": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WITHDRAWAL THAT DIDN'T WORK",
+        "body": "Duterte withdrew the Philippines from the ICC's Rome Statute in March 2019, effective a year later. The court's jurisdiction nonetheless covers crimes committed while the state was a member — roughly 2011 through March 2019. Withdrawal stops future jurisdiction; it does not erase the past.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The principle is called ***ratione temporis*** — jurisdiction by time. A state cannot retroactively un-consent to crimes already prosecutable while it was a party."
+          }
+        ]
+      },
+      {
+        "heading": "THE OPERATION",
+        "body": "Dela Rosa, as national police chief from 2016, ran Oplan Tokhang — the door-to-door visitation campaign that police records logged as roughly 6,200 killings and human-rights monitors estimated at 20,000–30,000 once vigilante deaths are counted. The gap between the two numbers is the prosecution's case.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "PNP official",
+                "value": "~6,200",
+                "tone": "neutral",
+                "weight": 6200
+              },
+              {
+                "label": "HRW estimate",
+                "value": "~12,000",
+                "tone": "unfavorable",
+                "weight": 12000
+              },
+              {
+                "label": "Rights groups high",
+                "value": "~30,000",
+                "tone": "unfavorable",
+                "weight": 30000
+              }
+            ],
+            "label": "Death toll, drug war 2016–2022"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE COURT MOVED NOW",
+        "body": "The ICC operates on complementarity — it only acts when domestic courts are unwilling or unable to prosecute. After years of Philippine inaction, the Pre-Trial Chamber ruled in 2023 that the investigation could proceed because no genuine domestic process existed."
+      },
+      {
+        "heading": "THE MARCOS PIVOT",
+        "body": "Marcos Jr. won the 2022 presidency in alliance with Sara Duterte as VP. That alliance shattered by 2024 over impeachment moves and budget fights. Cooperating with the ICC against Duterte allies is now political subtraction of a rival faction, not just a legal obligation.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Rodrigo Duterte",
+                "role": "Former president, ICC accused",
+                "years": "2016–2022",
+                "cc": "PH"
+              },
+              {
+                "name": "Ferdinand Marcos Jr.",
+                "role": "Current president",
+                "years": "2022–",
+                "cc": "PH"
+              },
+              {
+                "name": "Sara Duterte",
+                "role": "VP, impeached 2025",
+                "years": "2022–",
+                "cc": "PH"
+              },
+              {
+                "name": "Ronald dela Rosa",
+                "role": "Senator, ex-PNP chief",
+                "years": "2016–2018 PNP",
+                "cc": "PH"
+              }
+            ],
+            "label": "the four-corner fight"
+          }
+        ]
+      },
+      {
+        "heading": "THE WARRANT MECHANIC",
+        "body": "ICC warrants have no police force behind them — the court depends on member-state cooperation under Article 89. Once Manila confirms service, the warrant becomes enforceable Philippine process. Flight to a non-cooperating state is the usual escape route; flight inside a cooperating one is just hiding.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How does the ICC actually arrest someone?",
+            "options": [
+              "ICC marshals fly in and detain the suspect",
+              "Interpol issues a binding red notice",
+              "The host state's own police execute the warrant",
+              "UN peacekeepers carry out the arrest"
+            ],
+            "correct": 2,
+            "explanation": "The ICC has no police. Every arrest depends on a member state choosing to execute the warrant with its own forces — which is why state cooperation is the whole game."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Duterte was transferred to The Hague in March 2025 — the first former Asian head of state in ICC custody. The dela Rosa warrant signals the court is pursuing the chain of command, not stopping at the principal."
+      }
+    ],
+    "generatedAt": "2026-05-15T12:40:57.677Z",
+    "label": "The ICC & the Duterte Drug War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-15-russia-ukraine-1000-pow-swap-first-phase-205-kyiv-strike": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GENEVA FRAMEWORK",
+        "body": "The Third Geneva Convention (1949) requires belligerents to repatriate prisoners of war without delay after active hostilities cease. In practice, swaps happen mid-war by mutual agreement — the Convention sets the floor, not the timing.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal term is **repatriation**; what Russia and Ukraine do mid-war is technically an *exchange* — soldiers return while the war continues, outside the Convention's post-hostilities trigger."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE GULF BROKERS",
+        "body": "The UAE has mediated more than 15 Russia-Ukraine prisoner exchanges since 2024, more than any other state. Abu Dhabi maintains working channels with both Moscow and Kyiv, hosts Russian capital that fled Western sanctions, and trades the role for diplomatic prestige unavailable through traditional Western alignment.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Mohammed bin Zayed",
+                "role": "UAE president",
+                "years": "2022–",
+                "cc": "AE"
+              },
+              {
+                "name": "Recep Tayyip Erdogan",
+                "role": "Turkish president, brokered Azovstal swap",
+                "years": "2014–",
+                "cc": "TR"
+              },
+              {
+                "name": "Mohammed bin Salman",
+                "role": "Saudi crown prince, 2022 Griner-adjacent deal",
+                "years": "2017–",
+                "cc": "SA"
+              }
+            ],
+            "label": "the mediators that worked"
+          }
+        ]
+      },
+      {
+        "heading": "THE NUMBERS GAME",
+        "body": "Russia holds an estimated 8,000+ Ukrainian POWs; Ukraine holds roughly 5,000-6,000 Russians. The asymmetry matters: Kyiv has at times exchanged on a 1-for-1 basis using civilian detainees and convicted collaborators to close the gap.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did Ukraine famously offer in the September 2022 Azovstal commanders exchange?",
+            "options": [
+              "A 1-for-1 soldier swap",
+              "Viktor Medvedchuk, a pro-Russian Ukrainian politician",
+              "A territorial concession in Kherson",
+              "Frozen Russian central bank assets"
+            ],
+            "correct": 1,
+            "explanation": "Kyiv handed over Medvedchuk — Putin's goddaughter's father and a former MP — in exchange for 215 Ukrainian fighters, including Azovstal commanders."
+          }
+        ]
+      },
+      {
+        "heading": "THE TARGETING PATTERN",
+        "body": "Russian strikes on Kyiv have followed a recurring rhythm: paired with diplomatic events, prisoner exchanges, or Western aid announcements. Military analysts read this as deliberate signaling — the message that humanitarian gestures do not pause the war.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU",
+              "BY",
+              "MD",
+              "RO",
+              "PL"
+            ],
+            "label": "the strike geography",
+            "markers": [
+              {
+                "lat": 50.4501,
+                "lng": 30.5234,
+                "label": "Kyiv"
+              },
+              {
+                "lat": 46.4825,
+                "lng": 30.7233,
+                "label": "Odesa"
+              },
+              {
+                "lat": 49.9935,
+                "lng": 36.2304,
+                "label": "Kharkiv"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LONG ARC",
+        "body": "Mid-war prisoner exchanges are older than the Geneva system. The American and Confederate armies ran the Dix-Hill Cartel during the Civil War; the Iran-Iraq war's final repatriations dragged on until 2003, fifteen years after the ceasefire.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1862",
+                "label": "Dix-Hill Cartel (US Civil War)"
+              },
+              {
+                "year": "1949",
+                "label": "Third Geneva Convention",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1953",
+                "label": "Korean War Operation Big Switch"
+              },
+              {
+                "year": "1988",
+                "label": "Iran-Iraq ceasefire"
+              },
+              {
+                "year": "2003",
+                "label": "final Iran-Iraq repatriations"
+              },
+              {
+                "year": "2022",
+                "label": "Azovstal commanders swap"
+              },
+              {
+                "year": "2025",
+                "label": "1,000-each phased exchange"
+              }
+            ],
+            "label": "prisoner repatriation, war by war"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-15T12:41:27.886Z",
+    "label": "POW Swaps & the Laws of War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-15-uae-adnoc-fujairah-second-pipeline-hormuz-bypass-doubled": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHOKEPOINT",
+        "body": "Roughly a fifth of the world's oil moves through the Strait of Hormuz, a 33 km channel between Iran and Oman. The shipping lanes hug the Iranian side, where the water is deepest — which is why Iranian naval positioning matters disproportionately to global energy markets.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AE",
+              "OM",
+              "IR",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the bypass geography",
+            "markers": [
+              {
+                "lat": 25.1288,
+                "lng": 56.3265,
+                "label": "Fujairah terminal"
+              },
+              {
+                "lat": 24.1814,
+                "lng": 53.3897,
+                "label": "Habshan field hub"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY BYPASSES EXIST",
+        "body": "After the 1980s Tanker War, Gulf producers learned that a single naval incident could close the strait for weeks. Saudi Arabia built the East-West Pipeline across the peninsula to the Red Sea. The UAE built Habshan-Fujairah to the Gulf of Oman. Both routes share one purpose: deliver oil to a tanker that never enters Hormuz.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1987",
+                "label": "Tanker War mining",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1988",
+                "label": "USS Samuel B. Roberts struck"
+              },
+              {
+                "year": "2012",
+                "label": "Habshan-Fujairah opens"
+              },
+              {
+                "year": "2019",
+                "label": "Fujairah tanker attacks"
+              },
+              {
+                "year": "2026",
+                "label": "second pipeline ordered",
+                "emphasis": "end"
+              }
+            ],
+            "label": "the bypass era"
+          }
+        ]
+      },
+      {
+        "heading": "THE CAPACITY MATH",
+        "body": "Gulf producers export roughly 17 million barrels per day through Hormuz. Existing bypass routes — the Saudi East-West line and Habshan-Fujairah — can divert about 7 million barrels per day combined. Most of the flow has no alternative, which is why a second UAE pipeline matters out of proportion to its volume.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi E-W line",
+                "value": "5.0 mn",
+                "cc": "SA",
+                "weight": 5,
+                "tone": "favorable"
+              },
+              {
+                "label": "UAE Habshan-Fujairah",
+                "value": "1.8 mn",
+                "cc": "AE",
+                "weight": 1.8,
+                "tone": "favorable"
+              },
+              {
+                "label": "UAE second line (2027)",
+                "value": "~1.8 mn",
+                "cc": "AE",
+                "weight": 1.8,
+                "tone": "neutral"
+              },
+              {
+                "label": "Iran Goreh-Jask",
+                "value": "0.3 mn",
+                "cc": "IR",
+                "weight": 0.3,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Hormuz bypass capacity, mn bbl/day"
+          }
+        ]
+      },
+      {
+        "heading": "THE FUJAIRAH ADVANTAGE",
+        "body": "Fujairah sits on the Gulf of Oman, outside Hormuz. It is also the world's second-largest bunkering port after Singapore, with storage capacity exceeding 14 million cubic meters. Oil arrives by pipeline, gets blended and stored, then leaves on tankers bound for Asia without ever entering Iranian-patrolled waters.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Fujairah is one of seven UAE emirates, but the only one with a coastline on the **Gulf of Oman** rather than the Persian Gulf — geography that turned a fishing port into a *strategic redundancy* for the entire federation."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT INSURANCE DECIDES",
+        "body": "Lloyd's of London war-risk premiums — not naval incidents themselves — are what actually close a shipping lane. Once premiums spike past a few percent of cargo value, commercial fleets reroute regardless of how many mines or missiles remain. A pipeline that lands oil at Fujairah lets cargoes load under peacetime premiums even when Hormuz is at war risk.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which is the largest existing Hormuz bypass route by capacity?",
+            "options": [
+              "UAE's Habshan-Fujairah pipeline",
+              "Saudi Arabia's East-West Pipeline",
+              "Iran's Goreh-Jask pipeline",
+              "Oman's Sohar terminal"
+            ],
+            "correct": 1,
+            "explanation": "The Saudi East-West Pipeline can move about 5 million barrels per day across the peninsula to the Red Sea — the largest single bypass of Hormuz in operation."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-15T12:42:00.470Z",
+    "label": "Hormuz Bypass Pipelines",
+    "category": "economy",
+    "articleCount": 1
   }
 }
