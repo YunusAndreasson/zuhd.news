@@ -172965,5 +172965,1430 @@
     "label": "Hormuz Bypass Pipelines",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-05-14-social-media-age-bans-id-verification-recommender-harm": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MISDIAGNOSIS",
+        "body": "Age is a proxy, not a mechanism. The documented harms — sleep loss, comparison spirals, compulsive use — trace to the recommendation engine's optimization for engagement, not to a user's birth year. A 14-year-old and a 40-year-old fed the same algorithmic loop exhibit similar behavioral patterns.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The internal Meta research disclosed by Frances Haugen in 2021 found Instagram made body-image issues worse for *one in three* teen girls — and the cited mechanism was **social comparison amplified by ranking**, not exposure to age-restricted content."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE ID MANDATE IS THE POINT",
+        "body": "To verify minors, platforms must verify everyone — adults cannot be presumed adult without proof. Every user uploads a passport, driver's license, or biometric scan. The age ban is, in implementation, a universal identity-verification regime sold under a child-safety frame."
+      },
+      {
+        "heading": "THE COUNTRIES MOVING FIRST",
+        "body": "Three jurisdictions have legislated under-16 bans with platform-side enforcement: Australia (passed late 2024, effective 2025), Norway (announced 2024), and Indonesia (drafted 2025). None has paired the ban with rules on how recommendation algorithms rank content for the users who remain.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AU",
+              "NO",
+              "ID"
+            ],
+            "label": "first movers on platform-enforced age bans"
+          }
+        ]
+      },
+      {
+        "heading": "THE EU PATH NOT TAKEN",
+        "body": "The Digital Services Act, in force since 2024, requires very large platforms to assess systemic risks from their recommender systems and offer users a non-profiling feed option. It is the only major regulation that targets the algorithm itself rather than the audience — and the only one industry lobbied hardest against."
+      },
+      {
+        "heading": "THE COPPA PRECEDENT",
+        "body": "The US Children's Online Privacy Protection Act (1998) restricted data collection on under-13s. Platforms responded not by building safer products for children but by setting their minimum age at 13 and looking away. Age gates produce age lies; they do not produce safety.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did COPPA's under-13 rule actually change about how platforms treat young users?",
+            "options": [
+              "Platforms built dedicated, safer experiences for under-13s",
+              "Platforms set a minimum age of 13 and stopped checking",
+              "Platforms verified age with government ID",
+              "Platforms banned under-13s and enforced it via biometrics"
+            ],
+            "correct": 1,
+            "explanation": "COPPA made under-13 data collection legally costly, so platforms set a 13+ minimum and accepted self-declared ages — the harm moved underground rather than away."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEVER NOBODY PULLS",
+        "body": "Three algorithmic changes have shown measurable harm reduction in internal experiments: chronological feeds, friction on infinite scroll, and downranking of engagement-bait. None requires knowing a user's age. None has been mandated by any national law."
+      }
+    ],
+    "generatedAt": "2026-05-16T08:43:05.918Z",
+    "label": "Age Bans & Algorithmic Harm",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-15-amazon-ai-usage-kpi-fabricated-tasks-goodhart": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LAW",
+        "body": "When a measure becomes a target, it ceases to be a good measure. Economist Charles Goodhart observed this in 1975 watching the Bank of England target money supply aggregates — the moment policymakers picked one, banks restructured around it and the aggregate stopped tracking what it used to track.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The sharper restatement comes from anthropologist Marilyn Strathern: *any measure used for control is unreliable*. The gaming is not a bug in human nature — it is the predictable response to being measured."
+          }
+        ]
+      },
+      {
+        "heading": "THE SOVIET PRECEDENT",
+        "body": "Soviet nail factories famously gamed output quotas: when measured by weight, they produced a few enormous nails; when measured by count, millions of tiny useless ones. The lesson is that workers optimize the proxy, not the underlying goal — and the proxy always diverges.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "When a measure becomes a target, it ceases to be a good measure.",
+            "speaker": "Marilyn Strathern's restatement of Goodhart's Law",
+            "year": "1997"
+          }
+        ]
+      },
+      {
+        "heading": "THE COBRA EFFECT",
+        "body": "British colonial Delhi paid a bounty per dead cobra. Residents began breeding cobras for the bounty. When officials cancelled the program, breeders released their now-worthless snakes, and the wild population exploded above its starting point. Every incentive scheme creates a shadow market in satisfying it."
+      },
+      {
+        "heading": "WHY AI ADOPTION IS ESPECIALLY GAMEABLE",
+        "body": "Most KPIs measure outputs that are hard to fabricate — units shipped, revenue booked, bugs closed. AI usage metrics typically measure prompt counts or session minutes, which cost nothing to manufacture. The marginal cost of feeding a copilot a fake task is roughly zero, so the equilibrium adoption rate under mandates approaches whatever the quota demands.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are AI usage quotas particularly vulnerable to Goodhart's Law compared to traditional productivity KPIs?",
+            "options": [
+              "AI tools are too new for managers to calibrate targets",
+              "The cost of fabricating a measured interaction is near zero",
+              "Employees resent being monitored by software",
+              "AI outputs are harder to audit than human work"
+            ],
+            "correct": 1,
+            "explanation": "Traditional KPIs measure costly outputs; prompt counts measure cheap inputs, so the marginal cost of gaming is negligible."
+          }
+        ]
+      },
+      {
+        "heading": "THE WELLS FARGO PARALLEL",
+        "body": "Wells Fargo's 2016 scandal — 3.5 million fake accounts opened to hit cross-sell targets — was Goodhart's Law at industrial scale. The bank measured accounts-per-customer because it correlated with profitability historically; once it became the target, employees opened accounts customers never asked for. The metric kept rising as the underlying relationship inverted.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Soviet nails",
+                "value": "weight quota → giant nails"
+              },
+              {
+                "label": "Delhi cobras",
+                "value": "bounty → cobra farms"
+              },
+              {
+                "label": "Wells Fargo",
+                "value": "cross-sell → 3.5M fakes"
+              },
+              {
+                "label": "Hanoi rats",
+                "value": "tail bounty → tailless rats"
+              },
+              {
+                "label": "VW emissions",
+                "value": "test cycle → defeat device"
+              }
+            ],
+            "label": "famous metric-gaming episodes"
+          }
+        ]
+      },
+      {
+        "heading": "THE MANAGEMENT FIX",
+        "body": "The literature is consistent: metric-driven mandates work only when the metric is expensive to fake, audited by an independent party, and paired with an outcome measure that catches divergence. AI adoption KPIs typically satisfy none of these. The honest path is measuring downstream productivity — code shipped, tickets resolved, time-to-decision — and letting tool usage emerge as a consequence."
+      }
+    ],
+    "generatedAt": "2026-05-16T08:43:36.482Z",
+    "label": "Goodhart's Law & Metric Gaming",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-15-kazakhstan-victory-day-de-russification-national-memory": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SOVIET FRAME",
+        "body": "Victory Day — May 9 — was the USSR's most sacred civic ritual: a Moscow-centered story in which all Soviet peoples were liberators under Russian leadership. The frame absorbed local histories into a single Russian-language narrative of the Great Patriotic War.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In Russian memory politics, *Pobeda* (Victory) is not a holiday — it is a **legitimizing myth** that binds post-Soviet states to Moscow's historical authority. To drop it is to drop the frame."
+          }
+        ]
+      },
+      {
+        "heading": "THE FAMINE THE FRAME ERASED",
+        "body": "Between 1930 and 1933, Soviet collectivization killed roughly 1.5 million Kazakhs — over a quarter of the ethnic Kazakh population. The Asharshylyk (the great hunger) ended the nomadic way of life and made Kazakhs a minority in their own republic until the 1990s. Soviet war memory left no room for it."
+      },
+      {
+        "heading": "THE DEMOGRAPHIC INVERSION",
+        "body": "At independence in 1991, ethnic Kazakhs were only ~40% of the population; ethnic Russians were ~38%. Three decades of out-migration, higher Kazakh birth rates, and returning oralman (diaspora Kazakhs) have flipped the ratio — Kazakhs are now ~70%, Russians under 15%. The cultural shift follows the demographic one.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "1989 census",
+                "value": "40% / 38%",
+                "segments": [
+                  {
+                    "value": 40,
+                    "tone": "favorable",
+                    "label": "Kazakh"
+                  },
+                  {
+                    "value": 38,
+                    "tone": "unfavorable",
+                    "label": "Russian"
+                  },
+                  {
+                    "value": 22,
+                    "tone": "neutral",
+                    "label": "other"
+                  }
+                ]
+              },
+              {
+                "label": "2021 census",
+                "value": "70% / 15%",
+                "segments": [
+                  {
+                    "value": 70,
+                    "tone": "favorable",
+                    "label": "Kazakh"
+                  },
+                  {
+                    "value": 15,
+                    "tone": "unfavorable",
+                    "label": "Russian"
+                  },
+                  {
+                    "value": 15,
+                    "tone": "neutral",
+                    "label": "other"
+                  }
+                ]
+              }
+            ],
+            "label": "ethnic composition of Kazakhstan"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2022 PIVOT",
+        "body": "Russia's invasion of Ukraine accelerated everything. Astana refused to recognize the annexed territories, declined to send troops, and watched Moscow's threats against \"Russian-speakers abroad\" land uncomfortably close to home — northern Kazakhstan has the country's largest Russian-speaking population.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KZ",
+              "RU",
+              "UA",
+              "CN",
+              "UZ",
+              "KG"
+            ],
+            "label": "Kazakhstan's neighborhood",
+            "caption": "7,600 km Russian border — the world's longest"
+          }
+        ]
+      },
+      {
+        "heading": "THE LATIN ALPHABET",
+        "body": "Kazakh was written in Arabic script until 1929, Latin from 1929–1940, then forcibly switched to Cyrillic under Stalin. Nazarbayev announced a return to Latin in 2017; the transition has been repeatedly delayed but remains official policy. Alphabet is infrastructure — it determines which civilizational orbit a language reads from."
+      },
+      {
+        "heading": "THE QUIET METHOD",
+        "body": "Kazakhstan's de-Russification is deliberately slow and unannounced — street renamings, curriculum tweaks, language quotas in broadcasting — never a single dramatic break. The model is the opposite of the Baltic states' confrontational approach, designed to avoid giving Moscow a pretext.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Central Asian capital was renamed three times in 30 years as part of post-Soviet identity politics?",
+            "options": [
+              "Tashkent",
+              "Astana (Akmola → Astana → Nur-Sultan → Astana)",
+              "Bishkek",
+              "Dushanbe"
+            ],
+            "correct": 1,
+            "explanation": "Akmola was renamed Astana in 1998, Nur-Sultan in 2019 to honor the outgoing president, then back to Astana in 2022 — a compressed history of Kazakh identity politics in a single city name."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-16T08:44:12.432Z",
+    "label": "De-Russification & Kazakh Memory",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-15-solomon-islands-wale-china-pact-pacific-path-dependence": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 2019 SWITCH",
+        "body": "Solomon Islands recognized Beijing over Taipei in September 2019, ending 36 years of ties with Taiwan. The switch was driven by then-PM Manasseh Sogavare and triggered riots in Honiara's Chinatown in 2021 — the unrest that, in turn, justified the 2022 security pact with China.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1983",
+                "label": "Recognized Taiwan"
+              },
+              {
+                "year": "2019",
+                "label": "Switched to Beijing",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "Honiara riots"
+              },
+              {
+                "year": "2022",
+                "label": "China security pact"
+              },
+              {
+                "year": "2026",
+                "label": "Wale elected PM"
+              }
+            ],
+            "label": "the pivot"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE PACT IS STICKY",
+        "body": "The 2022 security agreement permits Chinese police deployment and naval ship visits at Honiara's request. It has no sunset clause and no public termination mechanism — the leaked draft was never released in final form. An incoming PM inherits the treaty as state-to-state obligation, not party policy.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the core asymmetry: elections turn over every four years, **bilateral treaties do not**. A new government can decline to *deepen* the relationship, but unwinding signed commitments requires Beijing's consent — which is rarely volunteered."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY OF LEVERAGE",
+        "body": "Solomon Islands sits on the maritime approach between Australia and the US's Guam-Hawaii corridor. In WWII, Guadalcanal — now part of Solomons — was the pivot of the Pacific campaign precisely because whoever holds these islands controls the sea lanes Australia depends on for trade and reinforcement.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SB",
+              "AU",
+              "NZ",
+              "PG",
+              "FJ",
+              "VU",
+              "NC"
+            ],
+            "label": "the Coral Sea approaches",
+            "markers": [
+              {
+                "lat": -9.4456,
+                "lng": 159.9729,
+                "label": "Honiara"
+              },
+              {
+                "lat": -9.428,
+                "lng": 160.0289,
+                "label": "Guadalcanal (WWII)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT INFRASTRUCTURE BUYS",
+        "body": "China-built ports, stadiums, and roads create what economists call asset specificity — physical capital that only Chinese state firms know how to maintain, upgrade, and finance. Spare parts, software, and engineering crews all flow through Beijing-controlled supply chains. Replacing the relationship means replacing the assets.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is Chinese-built infrastructure hard to replace even after a political swing?",
+            "options": [
+              "The contracts include explicit non-termination clauses enforceable in Chinese courts",
+              "Maintenance, parts, and engineering crews are tied to Chinese state firms",
+              "Recipient countries are legally required to use Chinese contractors",
+              "The buildings physically cannot be modified without Beijing's approval"
+            ],
+            "correct": 1,
+            "explanation": "Asset specificity — the operational dependencies on Chinese supply chains and expertise — locks in the relationship more durably than any legal clause could."
+          }
+        ]
+      },
+      {
+        "heading": "THE PACIFIC PATTERN",
+        "body": "Sri Lanka's Hambantota port (leased to China for 99 years after default), Cambodia's Ream naval base, and the Solomons pact are variations on the same template: financing or security agreements with terms that survive multiple electoral cycles. Smaller states discover that the strategic relationship outlasts the government that signed it.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Sri Lanka",
+                "value": "99-yr port lease",
+                "cc": "LK",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Cambodia",
+                "value": "Ream base access",
+                "cc": "KH",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Djibouti",
+                "value": "PLA naval base",
+                "cc": "DJ",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Solomons",
+                "value": "2022 security pact",
+                "cc": "SB",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Pakistan",
+                "value": "Gwadar 40-yr lease",
+                "cc": "PK",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Chinese strategic footholds — terms outlast governments"
+          }
+        ]
+      },
+      {
+        "heading": "AUSTRALIA'S DILEMMA",
+        "body": "Canberra's Pacific Step-Up policy (launched 2018) and the AUKUS framework treat the Solomons as a security inner ring. But Australia cannot offer what China offers — concessional infrastructure with no governance conditions — without abandoning the transparency standards that distinguish Western aid from Belt and Road. The choice is structural, not tactical."
+      }
+    ],
+    "generatedAt": "2026-05-16T08:44:46.565Z",
+    "label": "Solomons & Path Dependence",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-15-warsaw-iimcb-rna-5prime-adenosine-innate-immunity": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SELF/NON-SELF PROBLEM",
+        "body": "Cells must distinguish their own RNA from viral RNA, even though both are made of the same four letters. Innate immunity solves this by reading chemical marks at the molecule's ends — not the sequence itself.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The key sentinel is **RIG-I**, a cytoplasmic sensor that scans RNA termini and triggers the *interferon* cascade when it sees something foreign."
+          }
+        ]
+      },
+      {
+        "heading": "THE 5' CAP",
+        "body": "Eukaryotic mRNA carries a modified guanosine cap at its 5' end, methylated in specific positions. Viruses either steal caps from host mRNA (cap-snatching, used by influenza) or synthesize their own mimics. Uncapped or wrongly-capped 5' ends are the smoking gun of viral origin."
+      },
+      {
+        "heading": "WHY THE FIRST LETTER MATTERS",
+        "body": "After the cap sits the first transcribed nucleotide. Whether that letter is adenosine or guanosine changes how tightly sensor proteins bind and how loudly the immune alarm fires. The cell's own transcription machinery has strong preferences here; viruses often don't match them."
+      },
+      {
+        "heading": "THE mRNA VACCINE CONNECTION",
+        "body": "COVID mRNA vaccines deliberately engineer the 5' cap to look maximally self — using cap analogs like CleanCap and pseudouridine substitutions — to avoid triggering the very innate response this Warsaw work characterizes. Too much immune activation degrades the mRNA before it can make protein.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do mRNA vaccines use modified nucleotides like pseudouridine?",
+            "options": [
+              "To make the mRNA more stable in the freezer",
+              "To dampen the innate immune response so the mRNA survives long enough to translate",
+              "To increase the protein yield per molecule by tenfold",
+              "To allow the mRNA to enter the cell nucleus"
+            ],
+            "correct": 1,
+            "explanation": "Unmodified mRNA triggers TLR and RIG-I sensors that destroy it within hours; pseudouridine masks it as self and lets translation proceed."
+          }
+        ]
+      },
+      {
+        "heading": "THE DESIGN PAYOFF",
+        "body": "For antiviral therapeutics that deliberately want to provoke immunity — cancer vaccines, adjuvants — you tune the 5' chemistry up. For protein-replacement therapies that want stealth, you tune it down. A binary switch at position one collapses what used to be a combinatorial search."
+      }
+    ],
+    "generatedAt": "2026-05-16T08:45:10.224Z",
+    "label": "RNA 5' Caps & Innate Immunity",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-16-india-tamil-nadu-governor-convoy-cut-fuel-conservation-fx": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STRUCTURAL DEPENDENCY",
+        "body": "India imports roughly 85% of the crude it consumes — the highest dependency ratio of any major economy. Domestic production has been flat or declining for two decades while demand has nearly doubled. Every dollar move in Brent translates almost directly into the import bill.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India",
+                "value": "~85%",
+                "cc": "IN",
+                "tone": "unfavorable",
+                "weight": 85
+              },
+              {
+                "label": "China",
+                "value": "~72%",
+                "cc": "CN",
+                "tone": "unfavorable",
+                "weight": 72
+              },
+              {
+                "label": "Japan",
+                "value": "~98%",
+                "cc": "JP",
+                "tone": "unfavorable",
+                "weight": 98
+              },
+              {
+                "label": "US",
+                "value": "net exporter",
+                "cc": "US",
+                "tone": "favorable",
+                "weight": 5
+              },
+              {
+                "label": "Brazil",
+                "value": "net exporter",
+                "cc": "BR",
+                "tone": "favorable",
+                "weight": 10
+              }
+            ],
+            "label": "crude import dependency, major economies"
+          }
+        ]
+      },
+      {
+        "heading": "THE CURRENT ACCOUNT MECHANISM",
+        "body": "Oil is India's single largest import category. When crude rises, the current account deficit widens, the rupee weakens, and the Reserve Bank of India must spend foreign exchange reserves to defend the currency. This is why oil price moves show up in Mumbai stock prices within hours — investors price the entire chain reaction.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              92.602452,
+              92.60245,
+              92.60245,
+              92.782407,
+              93.348804,
+              93.775164,
+              94.11314,
+              94.143557,
+              94.0666,
+              94.0666,
+              94.257338,
+              94.420855,
+              94.762974,
+              95.171392,
+              94.951559,
+              94.89165,
+              94.910513,
+              94.951346,
+              95.361112,
+              95.029174,
+              94.729612,
+              94.62293,
+              94.425498,
+              94.425498,
+              94.8754,
+              95.576514,
+              95.55195,
+              95.719988,
+              95.829548,
+              96.003
+            ],
+            "periods": [
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE 1973 PRECEDENT",
+        "body": "The first oil shock quadrupled crude prices and drained India's reserves within months. Indira Gandhi's government rationed petrol, banned weekend driving, and turned off neon advertising. The current appeal — voluntary carpooling, symbolic convoy cuts — echoes that playbook without the coercive backbone.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 1973 response leaned on *Emergency*-era state capacity Modi does not have; today's tools are **nudges**, not **rations**."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SYMBOLIC GESTURES",
+        "body": "Tamil Nadu's governor cutting a convoy from 10 vehicles to 4 saves perhaps a few hundred litres a week — negligible against India's 5 million barrels/day consumption. The point is signaling: elite sacrifice precedes any ask for public sacrifice. The pattern repeats from wartime Britain's royal ration books to Korea's 1998 gold-collection drive.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How much of India's crude oil consumption is met by imports?",
+            "options": [
+              "About 50%",
+              "About 70%",
+              "About 85%",
+              "Nearly 100%"
+            ],
+            "correct": 2,
+            "explanation": "India imports roughly 85% of its crude — among the highest dependency ratios of any major economy, leaving the rupee exposed to every Brent move."
+          }
+        ]
+      },
+      {
+        "heading": "THE STRAIT EXPOSURE",
+        "body": "Roughly two-thirds of India's crude imports transit the Strait of Hormuz from Gulf suppliers — Saudi Arabia, Iraq, the UAE. Russian discounted crude (now ~35% of imports) eases the dollar cost but not the chokepoint risk; the alternative routes through the Suez and Cape of Good Hope add weeks of transit.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "SA",
+              "IQ",
+              "AE",
+              "IR",
+              "OM"
+            ],
+            "label": "India's Gulf crude lifeline",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 19.076,
+                "lng": 72.8777,
+                "label": "Mumbai (refining hub)"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-16"
+    ],
+    "generatedAt": "2026-05-16T08:45:41.304Z",
+    "label": "India's Oil-FX Chokepoint",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-16-india-tata-trusts-board-halt-maharashtra-regulator-rbi-listing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PYRAMID",
+        "body": "Tata Sons is the unlisted holding company that owns controlling stakes in every listed Tata firm — TCS, Tata Motors, Tata Steel, Titan, Trent. Above Tata Sons sit the Tata Trusts, philanthropic endowments that own roughly two-thirds of it. Whoever controls the Trusts controls the entire group without ever holding a single listed share.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "trusts",
+                "label": "Tata Trusts"
+              },
+              {
+                "id": "shapoorji",
+                "label": "Shapoorji Pallonji"
+              },
+              {
+                "id": "other",
+                "label": "Other holders"
+              },
+              {
+                "id": "sons",
+                "label": "Tata Sons (unlisted)"
+              },
+              {
+                "id": "tcs",
+                "label": "TCS"
+              },
+              {
+                "id": "motors",
+                "label": "Tata Motors"
+              },
+              {
+                "id": "steel",
+                "label": "Tata Steel"
+              },
+              {
+                "id": "rest",
+                "label": "Titan, Trent, others"
+              }
+            ],
+            "links": [
+              {
+                "source": "trusts",
+                "target": "sons",
+                "value": 66,
+                "label": "~66%"
+              },
+              {
+                "source": "shapoorji",
+                "target": "sons",
+                "value": 18,
+                "label": "~18%"
+              },
+              {
+                "source": "other",
+                "target": "sons",
+                "value": 16,
+                "label": "~16%"
+              },
+              {
+                "source": "sons",
+                "target": "tcs",
+                "value": 72
+              },
+              {
+                "source": "sons",
+                "target": "motors",
+                "value": 42
+              },
+              {
+                "source": "sons",
+                "target": "steel",
+                "value": 33
+              },
+              {
+                "source": "sons",
+                "target": "rest",
+                "value": 50
+              }
+            ],
+            "label": "the Tata control pyramid"
+          }
+        ]
+      },
+      {
+        "heading": "JAMSETJI'S DESIGN",
+        "body": "Jamsetji Tata, a Parsi merchant from Navsari, built the original mills in the 1870s. His sons routed the family fortune into charitable trusts in 1892 — partly Zoroastrian tradition, partly tax design. The structure has been copied by almost no one else in India because the founder must permanently surrender personal ownership.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **Parsi** community — Zoroastrians who fled Iran for Gujarat in the 8th–10th centuries — produced a disproportionate share of India's early industrialists: Tata, Godrej, Wadia, Mistry. A community of roughly 50,000 in India today still controls firms worth a meaningful slice of the Nifty."
+          }
+        ]
+      },
+      {
+        "heading": "THE RBI HOOK",
+        "body": "In 2022 the Reserve Bank of India tagged Tata Sons as an Upper-Layer Non-Banking Financial Company, which under its 2021 scale-based regulations triggers a mandatory public listing within three years. Tata Sons has spent the years since trying to either restructure out of the NBFC-UL bucket or delay the listing — a public float would dilute the Trusts' grip and force quarterly disclosure of the group's internal cash flows."
+      },
+      {
+        "heading": "THE MISTRY WAR",
+        "body": "The Shapoorji Pallonji group — the Mistry family, the second-largest Tata Sons shareholder — was ejected from the chairmanship in 2016 when Cyrus Mistry was removed in a boardroom vote engineered by Ratan Tata through the Trusts. India's Supreme Court ultimately sided with the Tatas in 2021. The Mistrys have since pushed for a listing precisely because it would let them monetize a stake the unlisted structure has trapped for a century.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Ratan Tata",
+                "role": "Chairman emeritus, Tata Trusts",
+                "years": "1991–2024",
+                "cc": "IN"
+              },
+              {
+                "name": "Noel Tata",
+                "role": "Chairman, Tata Trusts",
+                "years": "2024–",
+                "cc": "IN"
+              },
+              {
+                "name": "N. Chandrasekaran",
+                "role": "Chairman, Tata Sons",
+                "years": "2017–",
+                "cc": "IN"
+              },
+              {
+                "name": "Cyrus Mistry",
+                "role": "Ousted Tata Sons chairman",
+                "years": "2012–2016",
+                "cc": "IN"
+              },
+              {
+                "name": "Shapoor Mistry",
+                "role": "Shapoorji Pallonji chairman",
+                "years": "2012–",
+                "cc": "IN"
+              }
+            ],
+            "label": "the principals"
+          }
+        ]
+      },
+      {
+        "heading": "WHY MAHARASHTRA MATTERS",
+        "body": "The Trusts are registered under the Bombay Public Trusts Act, 1950 — a state law, not a central one — and supervised by the Charity Commissioner of Maharashtra. The state can therefore reach into the group's governance in ways New Delhi cannot. Maharashtra's 2025 cap on permanent trustees is the lever; whoever sits in Mantralaya in Mumbai effectively has a vote on who controls India's largest conglomerate.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does Tata Sons own that makes the Tata Trusts' grip on it so consequential?",
+            "options": [
+              "Cash reserves larger than the Reserve Bank of India's",
+              "Controlling stakes in every listed Tata company",
+              "Direct ownership of Air India's aircraft fleet",
+              "A monopoly on Indian steel production"
+            ],
+            "correct": 1,
+            "explanation": "Tata Sons is the unlisted holding company that owns controlling stakes in TCS, Tata Motors, Tata Steel, and the rest — the listed firms are subsidiaries of an entity the public cannot buy into."
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPARISON",
+        "body": "Family-trust control of giant conglomerates is rare globally but not unique. The structure resembles the foundation-controlled groups of northern Europe more than the family-office model of Korean chaebols or the Gulf's royal holding companies.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Tata Sons",
+                "value": "Tata Trusts ~66%",
+                "cc": "IN",
+                "tone": "neutral"
+              },
+              {
+                "label": "IKEA / Ingka",
+                "value": "Stichting INGKA 100%",
+                "cc": "NL",
+                "tone": "neutral"
+              },
+              {
+                "label": "Bosch",
+                "value": "Robert Bosch Stiftung 94%",
+                "cc": "DE",
+                "tone": "neutral"
+              },
+              {
+                "label": "Carlsberg",
+                "value": "Carlsberg Foundation 30%+",
+                "cc": "DK",
+                "tone": "neutral"
+              },
+              {
+                "label": "Rolex",
+                "value": "Hans Wilsdorf Foundation 100%",
+                "cc": "CH",
+                "tone": "neutral"
+              }
+            ],
+            "label": "foundation- or trust-controlled global groups"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-16T08:46:23.736Z",
+    "label": "Tata Trusts & the Holding Structure",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-16-india-vadra-bail-ed-shikohpur-money-laundering-rouse-avenue": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE ED ACTUALLY IS",
+        "body": "The Enforcement Directorate is not a police force — it is a financial-crimes agency under the Ministry of Finance, with powers far broader than any equivalent in Western democracies. It enforces two laws: the Prevention of Money Laundering Act (PMLA) and the Foreign Exchange Management Act (FEMA).",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The agency reports to the **Department of Revenue**, not the Home Ministry — meaning it sits inside the same ministry that controls the **tax authority**. The combination is unusual: in most democracies, financial intelligence and tax enforcement are kept structurally separate."
+          }
+        ]
+      },
+      {
+        "heading": "THE PMLA INVERSION",
+        "body": "Under the Prevention of Money Laundering Act, the burden of proof is reversed: the accused must prove their innocence, not the state its case. Bail is presumed denied unless the court is satisfied of innocence at the bail stage itself — a standard that converts pretrial detention into the de facto punishment."
+      },
+      {
+        "heading": "THE CONVICTION GAP",
+        "body": "The ED has registered thousands of PMLA cases since 2014 but secured convictions in fewer than 2% of them. The process — raids, asset attachment, indefinite pretrial detention — is itself the punishment, regardless of whether a case ever reaches verdict.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of ED money-laundering cases since 2014 have ended in conviction?",
+            "options": [
+              "Under 2%",
+              "About 15%",
+              "About 40%",
+              "Over 60%"
+            ],
+            "correct": 0,
+            "explanation": "The ED's conviction rate hovers around 1-2%; the agency's leverage comes from the process itself — raids, attachment, and bail-resistant detention — rather than from courtroom outcomes."
+          }
+        ]
+      },
+      {
+        "heading": "THE OPPOSITION PATTERN",
+        "body": "A consistent observation across Indian political analysis: ED cases cluster heavily on opposition figures, with proceedings accelerating before elections and stalling after defections to the ruling party. The agency has investigated Congress, AAP, TMC, DMK, and regional opposition leaders at rates that vastly exceed its scrutiny of BJP-aligned figures.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Robert Vadra",
+                "role": "Congress, Gandhi family",
+                "cc": "IN"
+              },
+              {
+                "name": "Arvind Kejriwal",
+                "role": "AAP, former Delhi CM",
+                "cc": "IN"
+              },
+              {
+                "name": "Hemant Soren",
+                "role": "JMM, former Jharkhand CM",
+                "cc": "IN"
+              },
+              {
+                "name": "Sanjay Raut",
+                "role": "Shiv Sena (UBT)",
+                "cc": "IN"
+              },
+              {
+                "name": "K. Kavitha",
+                "role": "BRS, Telangana",
+                "cc": "IN"
+              }
+            ],
+            "label": "opposition figures under active ED proceedings"
+          }
+        ]
+      },
+      {
+        "heading": "THE SHIKOHPUR FILE",
+        "body": "The case dates to 2008: Vadra's company bought 3.5 acres in Shikohpur, Haryana for ₹7.5 crore, secured a land-use change from the Haryana government, and sold the parcel to DLF — India's largest real-estate developer — for ₹58 crore weeks later. The ED has run the investigation since 2015 without filing a chargesheet that has survived judicial scrutiny."
+      },
+      {
+        "heading": "THE GANDHI DYNASTY CONTEXT",
+        "body": "Robert Vadra married Priyanka Gandhi — daughter of Sonia Gandhi, granddaughter of Indira Gandhi, great-granddaughter of Jawaharlal Nehru — in 1997. Four generations of the family have led the Indian National Congress; Priyanka entered electoral politics in 2024. Cases against Vadra are read in Indian politics as proxy pressure on the dynasty itself, not as ordinary financial proceedings.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2008",
+                "label": "Vadra's company buys Shikohpur land",
+                "emphasis": "start"
+              },
+              {
+                "year": "2008",
+                "label": "Land-use change granted; sold to DLF"
+              },
+              {
+                "year": "2012",
+                "label": "Arvind Kejriwal goes public with allegations",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2014",
+                "label": "BJP wins national election"
+              },
+              {
+                "year": "2015",
+                "label": "ED opens investigation"
+              },
+              {
+                "year": "2019",
+                "label": "First ED summons to Vadra"
+              },
+              {
+                "year": "2025",
+                "label": "Trial court takes cognisance"
+              },
+              {
+                "year": "2026-05",
+                "label": "Bail granted"
+              }
+            ],
+            "label": "the Shikohpur case arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-16T08:46:53.661Z",
+    "label": "The Enforcement Directorate",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-16-iran-cyber-us-fuel-gas-station-atg-tank-gauge-exposure": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT AN ATG ACTUALLY IS",
+        "body": "An Automatic Tank Gauge is a probe inside an underground fuel tank that measures level, temperature, and water intrusion. It exists for environmental compliance — the EPA mandates leak detection on every US underground storage tank — not for cybersecurity. The device was designed to dial a pager when a tank leaked, not to defend against nation-state actors.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The dominant protocol is **Veeder-Root TLS-350**, a 1990s serial standard later wrapped in TCP/IP so operators could read tanks remotely. The wrapper added connectivity; it did not add authentication."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THEY'RE ON THE INTERNET",
+        "body": "Station owners wanted remote readings without paying for a VPN or a cellular gateway. The cheapest path was plugging the gauge's serial port into a $40 serial-to-Ethernet adapter and forwarding TCP port 10001 through the station's router. Tens of thousands of US stations did exactly this — and Shodan has been indexing them since 2014.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many internet-exposed ATGs did researchers first document on Shodan in 2015?",
+            "options": [
+              "A few hundred",
+              "About 5,800",
+              "Around 50,000",
+              "Over 200,000"
+            ],
+            "correct": 1,
+            "explanation": "Rapid7's 2015 scan found ~5,800 exposed US ATGs; subsequent scans have found similar or higher counts as the install base grew faster than operators patched."
+          }
+        ]
+      },
+      {
+        "heading": "DISPLAY VS RESERVOIR",
+        "body": "Officials emphasized attackers could change the readout, not the fuel itself — and that distinction is the whole story. The gauge is a sensor with a screen, not a valve. There is no command in the TLS-350 spec that opens a tank, starts a pump, or changes a dispenser price. The worst direct outcome is a false low-fuel alarm or a missed leak.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The real risk is *second-order*: a manipulated gauge can mask a genuine leak (environmental damage, fire risk) or trigger an unneeded emergency tanker run that disrupts local supply. The attack is *cheap signal*, not *kinetic damage*."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IRAN PROBES SOFT TARGETS",
+        "body": "Iran's offensive cyber doctrine since the 2010 Stuxnet attack on Natanz has favored asymmetric, low-cost intrusions against soft civilian infrastructure — water utilities, hospitals, gas stations — rather than hardened military networks. The 2023 CyberAv3ngers campaign against Unitronics PLCs at US water plants followed the same template: find devices with default credentials, deface or disrupt, claim credit through a Telegram channel.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2010",
+                "label": "Stuxnet hits Natanz centrifuges",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2012",
+                "label": "Shamoon wipes 30,000 Saudi Aramco PCs"
+              },
+              {
+                "year": "2013",
+                "label": "Bowman Dam (NY) SCADA probe"
+              },
+              {
+                "year": "2020",
+                "label": "Israeli water utility intrusions"
+              },
+              {
+                "year": "2023",
+                "label": "CyberAv3ngers vs Unitronics PLCs"
+              },
+              {
+                "year": "2024",
+                "label": "US water utility defacements"
+              }
+            ],
+            "label": "Iran-linked operations against US/allied civilian infrastructure"
+          }
+        ]
+      },
+      {
+        "heading": "THE DWELL-TIME ASYMMETRY",
+        "body": "Defenders measure intrusions by dwell time — days between compromise and detection. Critical-infrastructure intrusions by state actors routinely run hundreds of days because the operators stay still and exfiltrate quietly. A gauge-defacement campaign is the opposite posture: noisy, attributable, designed to be noticed. That choice tells you the goal is signaling, not preparation.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Volt Typhoon (China)",
+                "value": "~300+ days",
+                "tone": "unfavorable",
+                "weight": 300
+              },
+              {
+                "label": "APT29 (Russia)",
+                "value": "~150 days",
+                "tone": "unfavorable",
+                "weight": 150
+              },
+              {
+                "label": "Iran ATG ops",
+                "value": "hours–days",
+                "tone": "neutral",
+                "weight": 3
+              },
+              {
+                "label": "Industry median",
+                "value": "~10 days",
+                "tone": "favorable",
+                "weight": 10
+              }
+            ],
+            "label": "Cyber operation postures"
+          }
+        ]
+      },
+      {
+        "heading": "THE PATCH THAT NEVER LANDED",
+        "body": "CISA issued ICS advisories on exposed ATGs in 2015, 2018, 2020, and 2024. The fix is trivial — set a password, close port 10001, or put the gauge behind a VPN — but the install base is fragmented across ~150,000 US stations owned by tens of thousands of small operators with no IT staff. Mandates have never followed the advisories because no federal agency has clear jurisdiction over retail fuel cybersecurity.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "IR"
+            ],
+            "label": "the asymmetry — distributed retail targets vs centralized state actor"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-16T08:47:33.597Z",
+    "label": "ATG Exposure & Low-Stakes Cyber",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-16-ladakh-himalayan-wolf-dog-hybrid-khipshang-introgression": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "AN OLDER LINEAGE THAN THE GREY WOLF",
+        "body": "The Himalayan wolf diverged from other grey wolves roughly 700,000 years ago — before the Holarctic wolf radiation that produced every other grey wolf alive today. It is one of the most basal canid lineages on Earth, adapted to hypoxia at altitudes above 4,000 metres through a distinct haemoglobin variant.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Taxonomists now treat it as *Canis lupus chanco* — distinct enough that some argue for full species status as *Canis himalayensis*. The **HBB gene** carrying its high-altitude haemoglobin is not found in lowland wolves."
+          }
+        ]
+      },
+      {
+        "heading": "THE NUMERIC ASYMMETRY",
+        "body": "When one population vastly outnumbers another, hybridization runs only one direction. Every wolf that mates with a dog produces hybrids; every hybrid that mates with another dog dilutes the wolf genome further. The mathematics of introgression are unforgiving when the ratio runs 100-to-1.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Feral dogs",
+                "value": "~25,000",
+                "tone": "unfavorable",
+                "weight": 25000
+              },
+              {
+                "label": "Himalayan wolves",
+                "value": "a few hundred",
+                "tone": "favorable",
+                "weight": 300
+              }
+            ],
+            "label": "Ladakh canid populations"
+          }
+        ]
+      },
+      {
+        "heading": "THE GENETIC EXTINCTION PROBLEM",
+        "body": "A species can go extinct without a single individual dying. If every wolf in Ladakh breeds with dogs for enough generations, the lineage dissolves into a hybrid swarm — phenotypically wolf-like, genetically mongrelized. Conservation biologists call this genomic extinction; the Scottish wildcat and the red wolf are already most of the way there.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How does a species go genetically extinct without any individuals dying?",
+            "options": [
+              "Disease wipes out a critical age cohort",
+              "Continuous interbreeding with a related species dissolves the gene pool",
+              "Habitat fragmentation prevents reproduction",
+              "Climate shifts make territory unviable"
+            ],
+            "correct": 1,
+            "explanation": "Introgressive hybridization erases a lineage through dilution — the animals remain, but the distinct genome does not."
+          }
+        ]
+      },
+      {
+        "heading": "WHY FERAL DOGS PROLIFERATE",
+        "body": "Free-ranging dogs in South Asia are not strays in the Western sense — they are a self-sustaining commensal population that has lived alongside humans for millennia, surviving on food waste, butcher scraps, and tolerated provisioning. India hosts an estimated 60 million of them, the largest free-ranging dog population in the world."
+      },
+      {
+        "heading": "THE BUDDHIST CONSTRAINT",
+        "body": "Ladakhi Buddhism follows the Tibetan tradition's strict reading of ahimsa — non-harming extends to all sentient beings, and killing a dog accrues severe karmic weight. The Animal Birth Control rules under India's Prevention of Cruelty to Animals Act also forbid lethal control nationally; in Ladakh, religious sentiment makes even sterilisation politically fraught. The wolf's defenders and the dogs' defenders share the same moral framework.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "CN",
+              "PK",
+              "NP",
+              "BT"
+            ],
+            "label": "the Himalayan wolf's range",
+            "markers": [
+              {
+                "lat": 34.1526,
+                "lng": 77.5771,
+                "label": "Leh, Ladakh"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Eastern Europe's wolf populations carry detectable dog ancestry from centuries of overlap; Italy's wolves show 5-10% dog introgression in some regions. Once a small population's allele frequencies tip past a threshold, the original genome cannot be recovered — only managed. Ladakh's window to act is measured in wolf generations, which is to say a decade or two."
+      }
+    ],
+    "generatedAt": "2026-05-16T08:48:04.694Z",
+    "label": "Hybridization & the Himalayan Wolf",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-16-nigeria-tinubu-confirms-us-joint-strike-iswap-mainok-borno": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SPLIT",
+        "body": "Boko Haram fractured in 2016 when a faction pledged allegiance to the Islamic State's central leadership and rebranded as the Islamic State West Africa Province. The split was doctrinal — ISWAP rejected Boko Haram's indiscriminate killing of Muslim civilians in favor of governance-style insurgency, taxing fishermen and farmers in territory it controlled.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The two factions still fight each other in the Lake Chad basin. **ISWAP** is now the larger and better-organized of the two — and the one Washington treats as the priority target."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BORNO",
+        "body": "Borno State sits at the intersection of Nigeria, Niger, Chad, and Cameroon — a region where state authority thins to almost nothing. The Lake Chad basin provides water, fish, and seasonal farmland, making it possible to sustain a fighting force without external supply lines. Every counterinsurgency campaign has to operate across four national borders with four different militaries.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "NE",
+              "TD",
+              "CM"
+            ],
+            "label": "the four-border insurgency zone",
+            "markers": [
+              {
+                "lat": 11.8311,
+                "lng": 13.151,
+                "label": "Maiduguri (Borno capital)"
+              },
+              {
+                "lat": 12.8333,
+                "lng": 14.0833,
+                "label": "Lake Chad basin"
+              },
+              {
+                "lat": 11.7833,
+                "lng": 12.5,
+                "label": "Mainok"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE AFRICOM PATTERN",
+        "body": "US Africa Command has run drone and special operations strikes across the Sahel for over a decade — out of Niamey, Agadez, and Djibouti's Camp Lemonnier. Niger's 2023 coup forced AFRICOM to abandon Air Base 201, the $110M drone hub at Agadez, leaving a capability gap exactly when ISWAP and JNIM were expanding southward."
+      },
+      {
+        "heading": "WHY CO-BRANDING MATTERS",
+        "body": "Sahelian governments have historically resisted publicly acknowledging US strikes on their soil — the political cost of looking like a client state is high. Tinubu's open confirmation is a departure: it signals Abuja is willing to wear the partnership openly, which usually precedes a more formal status-of-forces framework.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did Niger's 2023 coup mean for US counterterrorism in the Sahel?",
+            "options": [
+              "Strengthened the US-Niger partnership",
+              "Forced the US to abandon its main regional drone base",
+              "Had no effect on US operations",
+              "Led to a joint French-US replacement base"
+            ],
+            "correct": 1,
+            "explanation": "The junta expelled US forces and ended operations at Air Base 201 in Agadez, the $110M drone hub built specifically for Sahel counterterrorism — leaving AFRICOM without a forward base in the region."
+          }
+        ]
+      },
+      {
+        "heading": "THE DECAPITATION DEBATE",
+        "body": "Killing senior jihadist leaders produces short-term operational disruption but rarely ends insurgencies. Abu Bakr al-Baghdadi was killed in 2019; the Islamic State survived and ISWAP grew. Abubakar Shekau died in 2021; Boko Haram persisted. The structural conditions — weak governance, ungoverned borderlands, demographic pressure — outlast any individual commander.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Osama bin Laden",
+                "role": "al-Qaeda founder",
+                "years": "killed 2011",
+                "cc": "PK"
+              },
+              {
+                "name": "Abu Bakr al-Baghdadi",
+                "role": "ISIS caliph",
+                "years": "killed 2019",
+                "cc": "SY"
+              },
+              {
+                "name": "Abubakar Shekau",
+                "role": "Boko Haram leader",
+                "years": "killed 2021",
+                "cc": "NG"
+              },
+              {
+                "name": "Ayman al-Zawahiri",
+                "role": "al-Qaeda emir",
+                "years": "killed 2022",
+                "cc": "AF"
+              }
+            ],
+            "label": "jihadist leaders killed, movements that survived"
+          }
+        ]
+      },
+      {
+        "heading": "THE TRUMP CONTEXT",
+        "body": "Trump designated Nigeria a 'country of particular concern' in late October 2025 over Christian persecution claims, then threatened military action if Abuja failed to protect Christians. The joint strike lets Tinubu demonstrate cooperation while reframing the issue from sectarian persecution to counterterrorism — a frame both governments find more politically manageable."
+      }
+    ],
+    "generatedAt": "2026-05-16T08:48:36.850Z",
+    "label": "ISWAP & US Strikes in the Sahel",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-16-uk-mrf-humanoid-robot-alpha-waste-sorting-labour": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY MRFS ARE BRUTAL",
+        "body": "Materials Recovery Facilities are among the most dangerous workplaces in the developed world. Sorters stand beside fast-moving conveyors pulling contaminants — needles, batteries, dead animals, broken glass — from a stream that never stops. UK regulations require 20-minute rotations because attention collapses past that point and injury rates spike.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The US Bureau of Labor Statistics ranks waste collection and recycling among the **top five most fatal occupations** — higher than construction, comparable to commercial fishing."
+          }
+        ]
+      },
+      {
+        "heading": "THE MORAVEC PARADOX",
+        "body": "Computers can beat grandmasters at chess but cannot reliably tell a yoghurt pot from a margarine tub on a moving belt. Hans Moravec observed in the 1980s that high-level reasoning takes little compute, while sensorimotor skills — the things a one-year-old does effortlessly — take enormous compute. Recycling is the paradox in physical form."
+      },
+      {
+        "heading": "WHY HUMANOID, NOT ARM",
+        "body": "Fixed robotic arms have sorted recycling since the 2010s — Finnish ZenRobotics shipped its first units in 2014. Humanoids matter because MRFs were designed around human bodies: walkways, picking stations, emergency stops at human heights. A humanoid drops into the existing facility; an arm requires the line to be rebuilt around it."
+      },
+      {
+        "heading": "THE TRAINING DATA PROBLEM",
+        "body": "A humanoid learning to sort waste needs thousands of hours of demonstrations — humans wearing motion capture suits, or teleoperating the robot through real shifts. Each new waste stream (a different council, a different season, a new packaging regulation) shifts the distribution and requires more data. This is why deployment timelines stretch into months, not weeks.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Unitree G1",
+                "value": "~$16k",
+                "cc": "CN"
+              },
+              {
+                "label": "Unitree H1",
+                "value": "~$90k",
+                "cc": "CN"
+              },
+              {
+                "label": "Figure 02",
+                "value": "~$150k+",
+                "cc": "US"
+              },
+              {
+                "label": "Tesla Optimus",
+                "value": "$20–30k target",
+                "cc": "US"
+              },
+              {
+                "label": "Agility Digit",
+                "value": "~$250k",
+                "cc": "US"
+              }
+            ],
+            "label": "humanoid robot makers, indicative unit cost"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHINA BUILDS THE HARDWARE",
+        "body": "China dominates the humanoid supply chain: rare-earth magnets for actuators, lithium cells, harmonic reducers, the precision machining of joint assemblies. Western humanoid startups buy Chinese components even when assembly happens elsewhere. A UK firm adapting a Chinese-built chassis is the default path, not the exception."
+      },
+      {
+        "heading": "THE LABOUR ARITHMETIC",
+        "body": "UK minimum wage rose to £12.21/hour in April 2025. A sorter on a two-shift line costs roughly £50,000/year fully loaded. A humanoid amortised over five years needs to clear that threshold while handling night shifts, hazardous picks, and the rotations a human cannot skip. The crossover arrives first for the worst jobs — exactly the ones humans least want.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are recycling sorters required to rotate off the line every 20 minutes?",
+            "options": [
+              "Union collective bargaining agreements mandate it",
+              "Attention collapses past 20 minutes, causing injury rates to spike",
+              "Conveyor belts overheat and need cooling pauses",
+              "Air quality regulations require ventilation breaks"
+            ],
+            "correct": 1,
+            "explanation": "Sustained visual attention on a fast-moving contaminated stream degrades rapidly past about 20 minutes — the rotation is a safety control, not a labour concession."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-16T08:49:09.864Z",
+    "label": "Humanoids & Waste Sorting",
+    "category": "tech",
+    "articleCount": 1
   }
 }
