@@ -1,6 +1,8 @@
 {
   "version": 1,
-  "activeExperiments": [
+  "activeExperiments": [],
+  "activeExperiment": null,
+  "history": [
     {
       "id": "2026-05-09-multi-source-floor-3",
       "startDate": "2026-05-09",
@@ -45,11 +47,11 @@
         "topOutletShare": "topOutletSharePct must stay <20% (currently 14.2%, has crept 12.4 → 14.2 across the four snapshots) — pulling more multi-source stories shouldn't concentrate further on Dawn/Reuters/Bloomberg.",
         "selectorTime": "selector stage time must not climb >25% from current ~660s baseline."
       },
-      "concurrentExperimentInteraction": "no other experiments active. OIC source-floor closed 2026-05-09 as kept-confounded; title-echo and fabrication-gate concluded earlier this week. Note: the noNewExperimentsUntil 2026-05-12 self-imposed gate (per .daily-audit.json 2026-05-08) was overridden deliberately by operator on 2026-05-09 — the rationale for the gate was to baseline the post-2026-05-02 model lineup, but the sourcing cluster's 27-point gap below writing is too large to leave unaddressed for 3 more days. If the post-05-02 model lineup independently moves multi-source rate, the lift over baseline will overstate this experiment's effect — note that risk in the eval but proceed."
-    }
-  ],
-  "activeExperiment": null,
-  "history": [
+      "concurrentExperimentInteraction": "no other experiments active. OIC source-floor closed 2026-05-09 as kept-confounded; title-echo and fabrication-gate concluded earlier this week. Note: the noNewExperimentsUntil 2026-05-12 self-imposed gate (per .daily-audit.json 2026-05-08) was overridden deliberately by operator on 2026-05-09 — the rationale for the gate was to baseline the post-2026-05-02 model lineup, but the sourcing cluster's 27-point gap below writing is too large to leave unaddressed for 3 more days. If the post-05-02 model lineup independently moves multi-source rate, the lift over baseline will overstate this experiment's effect — note that risk in the eval but proceed.",
+      "result": "reverted",
+      "evaluatedOn": "2026-05-16",
+      "notes": "Evaluated on the 7-day quality snapshot ending 2026-05-16 (313 articles, fully post-experiment). Target metric multiSourceRatePct: 21.5 (baseline week 2026-05-07) → 24.8 (intermediate snapshot 2026-05-10, only 1 day of post-experiment data) → 20.8 (week 2026-05-16, full window). The early bump faded and the rate settled at 20.8% — slightly below the 21.5 baseline and well short of the 28% target. Sourcing cluster did not improve as hypothesized. Guardrails: topOutletSharePct 14.3% (<20 ✓), throughput ~11/cycle (≥9 ✓). Reverted floors to politics ≥2, economy ≥2 in scripts/select-prompt.md. Learning: the feed's per-cycle multi-source supply (~9/cycle) caps the published multi-source rate near ~22% under current selector behavior — pushing floors higher does not unlock more genuine multi-source coverage; it just moves rejections around. Future sourcing-cluster experiments should target the upstream feed (Event Registry clustering coverage, regional outlet inclusion in events) rather than the selector floor lever, which appears tapped. Note: charOver350Pct continues to drift (17.1 → 21.1 → 23.5 → 25.6) — orthogonal to this experiment but worth a dedicated lead-length tightening experiment next."
+    },
     {
       "id": "2026-05-01-oic-regional-source-floor",
       "startDate": "2026-05-01",
