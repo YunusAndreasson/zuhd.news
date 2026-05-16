@@ -174390,5 +174390,1402 @@
     "label": "Humanoids & Waste Sorting",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-05-14-mit-kornbluth-nsf-nih-funding-f1-h1b-research-pipeline": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BUSH BARGAIN",
+        "body": "The modern US research university was built on Vannevar Bush's 1945 report Science, The Endless Frontier. The deal: federal agencies fund basic research at universities through peer-reviewed grants, universities train the next generation of scientists, and the public gets the long-tail returns. Radar, the internet, GPS, mRNA vaccines all trace to it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bargain is *peer review* over *political allocation* — money flows to the strongest proposals regardless of state, district, or congressional sponsor. Geography-based allocation breaks the founding axiom."
+          }
+        ]
+      },
+      {
+        "heading": "WHO PAYS FOR US RESEARCH",
+        "body": "Roughly 55% of US basic research is federally funded, dominated by NIH (~$47bn/yr) and NSF (~$9bn/yr). Universities perform the work but rarely fund it themselves — endowments cover buildings and scholarships, not principal investigators' salaries or lab equipment.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "DoD",
+                "value": 97,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "HHS / NIH",
+                "value": 52,
+                "tone": "neutral"
+              },
+              {
+                "label": "DOE",
+                "value": 24,
+                "tone": "favorable"
+              },
+              {
+                "label": "NASA",
+                "value": 17,
+                "tone": "favorable"
+              },
+              {
+                "label": "NSF",
+                "value": 11,
+                "tone": "favorable"
+              },
+              {
+                "label": "USDA",
+                "value": 4,
+                "tone": "favorable"
+              },
+              {
+                "label": "Commerce",
+                "value": 4,
+                "tone": "favorable"
+              }
+            ],
+            "label": "US federal R&D obligations by agency, 2024 (~$bn)"
+          }
+        ]
+      },
+      {
+        "heading": "THE F-1 / H-1B PIPELINE",
+        "body": "Roughly 40% of US STEM PhDs are awarded to international students on F-1 visas. After graduation, OPT and the H-1B lottery are the only legal bridges to staying. When consular processing slows or caps tighten, the pipeline narrows at both ends — fewer arrivals, fewer stayers — and PI labs that planned around five-year doctoral cohorts lose hands mid-project.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Electrical eng.",
+                "value": "~60%",
+                "weight": 60,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Computer sci.",
+                "value": "~57%",
+                "weight": 57,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Economics",
+                "value": "~55%",
+                "weight": 55,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Mathematics",
+                "value": "~52%",
+                "weight": 52,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Physics",
+                "value": "~43%",
+                "weight": 43,
+                "tone": "neutral"
+              },
+              {
+                "label": "Biology",
+                "value": "~28%",
+                "weight": 28,
+                "tone": "favorable"
+              }
+            ],
+            "label": "share of US STEM doctorates awarded to international students, 2022"
+          }
+        ]
+      },
+      {
+        "heading": "INDIRECT COST RECOVERY",
+        "body": "Every federal grant carries an indirect cost rate — overhead the university charges on top of direct research costs to cover facilities, administration, libraries, compliance. MIT's rate is around 59%; Harvard's is similar. A cut to grant volume hits twice: lost direct funding plus lost overhead that subsidizes the broader institution.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why a 20% drop in awards translates to more than a 20% squeeze on the university — the lost **indirect recovery** funds the dean's office, the IRB, the animal facility, the high-voltage shop. It's the hidden tax that built the modern research campus."
+          }
+        ]
+      },
+      {
+        "heading": "GEOGRAPHY VS MERIT",
+        "body": "NSF already runs EPSCoR, which earmarks ~$200m/yr for states that historically win few grants. Expanding geographic allocation across the broader portfolio would redirect billions from concentrated research hubs — Massachusetts, California, Maryland — toward states whose institutions place fewer competitive proposals. The political logic is congressional; the scientific cost is harder to model."
+      },
+      {
+        "heading": "THE BRAIN-DRAIN REVERSAL RISK",
+        "body": "For 70 years the US net-imported scientific talent. China's Thousand Talents Plan, Canada's Global Talent Stream, Germany's Excellence Strategy, and the UK's High Potential Individual visa are all explicit recruitment programs designed to capture researchers the US fails to retain.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of founders of US billion-dollar startups are immigrants or children of immigrants?",
+            "options": [
+              "About 15%",
+              "About 30%",
+              "About 55%",
+              "About 75%"
+            ],
+            "correct": 2,
+            "explanation": "NFAP studies consistently put it near 55% — the F-1-to-H-1B-to-green-card pipeline is the same pipeline that feeds Silicon Valley founder cohorts."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-16T12:32:18.247Z",
+    "label": "Federal Research Funding & the Visa Pipeline",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-15-malawi-mulanje-unesco-bauxite-mining-contradiction": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MOUNTAIN",
+        "body": "Mulanje is a granite massif rising abruptly from the Phalombe plain to over 3,000 metres — southern Africa's highest peak outside the Drakensberg. Its endemic cedar (Widdringtonia whytei) exists nowhere else on Earth, and its slopes feed the rivers that irrigate Malawi's tea districts and supply Blantyre's water.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MW",
+              "MZ",
+              "ZM",
+              "ZW",
+              "TZ"
+            ],
+            "label": "Mulanje in southern Malawi",
+            "markers": [
+              {
+                "lat": -15.9667,
+                "lng": 35.6333,
+                "label": "Mulanje Massif"
+              },
+              {
+                "lat": -15.7861,
+                "lng": 35.0058,
+                "label": "Blantyre"
+              },
+              {
+                "lat": -13.9626,
+                "lng": 33.7741,
+                "label": "Lilongwe"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "HOW UNESCO LISTING ACTUALLY WORKS",
+        "body": "A site is nominated by the state party, then evaluated by IUCN (for natural sites) before the World Heritage Committee votes. Listing creates no automatic legal protection — domestic law does that — but it triggers monitoring and a 'World Heritage in Danger' designation if a state permits extraction inside the boundary. That label is a reputational instrument, not a legal one.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The treaty mechanism is *moral suasion plus aid conditionality* — donors and tourism markets read the **In-Danger list** as a sovereign-risk signal, but the convention itself has no enforcement teeth."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT BAUXITE ACTUALLY IS",
+        "body": "Bauxite is a weathered laterite ore — aluminum hydroxide compounds formed when tropical rain leaches silica out of feldspar-rich rock over millions of years. Smelting it into aluminum metal is one of the most electricity-intensive industrial processes on Earth: roughly 14 megawatt-hours per tonne, which is why smelters cluster wherever power is cheap.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "China",
+                "value": 43,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": 4,
+                "tone": "neutral"
+              },
+              {
+                "label": "Russia",
+                "value": 4,
+                "tone": "neutral"
+              },
+              {
+                "label": "Canada",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "UAE",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Australia",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Bahrain",
+                "value": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Norway",
+                "value": 1,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global primary aluminum production, 2024 (mn tonnes, approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE MINISTRY SPLIT",
+        "body": "Resource states routinely run two parallel licensing regimes that do not consult each other — a mines ministry that issues exploration permits as a matter of routine, and an environment or culture ministry that signs international conventions. The contradiction is structural, not accidental: each ministry's budget and political constituency depend on doing the opposite thing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do governments commonly license extraction inside protected areas they themselves nominated?",
+            "options": [
+              "The two ministries report to different cabinet factions with separate revenue lines",
+              "International law requires extraction be permitted in protected zones",
+              "The mining licence automatically overrides the heritage designation",
+              "Heritage status only applies to cultural, not natural, sites"
+            ],
+            "correct": 0,
+            "explanation": "Mines and environment ministries are typically rival fiefdoms with separate budgets, donor relationships, and political patrons — coordination is the exception, not the rule."
+          }
+        ]
+      },
+      {
+        "heading": "MALAWI'S RESOURCE BIND",
+        "body": "Malawi is one of the world's poorest countries by per-capita GDP, landlocked, and chronically short of foreign exchange — its kwacha has been devalued repeatedly to satisfy IMF programs. A $820m project is roughly a tenth of annual GDP. In that fiscal context, the political pressure to permit extraction overwhelms heritage arguments that pay no immediate dividends.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "GDP per capita, 2024 (USD, approx.)",
+            "peers": [
+              {
+                "value": 260,
+                "cc": "BI"
+              },
+              {
+                "value": 480,
+                "cc": "MW"
+              },
+              {
+                "value": 650,
+                "cc": "MZ"
+              },
+              {
+                "value": 520,
+                "cc": "MG"
+              },
+              {
+                "value": 620,
+                "cc": "NE"
+              },
+              {
+                "value": 680,
+                "cc": "CD"
+              },
+              {
+                "value": 1450,
+                "cc": "ZM"
+              },
+              {
+                "value": 1230,
+                "cc": "TZ"
+              }
+            ],
+            "subjectCc": "MW",
+            "unit": "$"
+          }
+        ]
+      },
+      {
+        "heading": "THE WIDER PATTERN",
+        "body": "The same script has played out from Tanzania's Selous (uranium and a dam inside the site) to DR Congo's Virunga (oil blocks overlapping gorilla habitat) to Australia's Kakadu (uranium at Ranger). The mountain wins reprieves; the licence rarely disappears entirely. Extraction tends to be deferred by commodity-price cycles, not cancelled by treaties."
+      }
+    ],
+    "generatedAt": "2026-05-16T12:32:57.951Z",
+    "label": "Mulanje, Bauxite & the Ministry Split",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-15-nevada-lithium-thacker-pass-fpic-shoshone-paiute": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT FPIC MEANS",
+        "body": "Free, Prior, and Informed Consent is the standard codified in the 2007 UN Declaration on the Rights of Indigenous Peoples. Free of coercion, prior to any approval, informed by full disclosure — and crucially, requiring actual consent, not just consultation.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The US voted *against* UNDRIP in 2007 alongside Canada, Australia, and New Zealand — the four settler-colonial states with the most unresolved indigenous land claims. The Obama administration reversed the position in 2010, but as an *aspirational* document, not binding law."
+          }
+        ]
+      },
+      {
+        "heading": "CONSULTATION VS CONSENT",
+        "body": "US federal law requires agencies to consult tribes under Section 106 of the National Historic Preservation Act and Executive Order 13175. Consultation means notify and discuss. Consent means the tribe can say no. The gap between the two is where every modern extractive conflict sits."
+      },
+      {
+        "heading": "THE PAIUTE-SHOSHONE HOMELAND",
+        "body": "Thacker Pass — Peehee Mu'huh, 'rotten moon' — is the site of an 1865 US Cavalry massacre of Paiute people. The land was never ceded by treaty; it was taken by executive order after the killing. Modern federal land in northern Nevada sits atop unresolved aboriginal title that the courts have repeatedly declined to revisit.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US"
+            ],
+            "label": "northern Nevada lithium triangle",
+            "markers": [
+              {
+                "lat": 41.7167,
+                "lng": -118.05,
+                "label": "Thacker Pass (Peehee Mu'huh)"
+              },
+              {
+                "lat": 38.0167,
+                "lng": -117.9333,
+                "label": "Rhyolite Ridge"
+              },
+              {
+                "lat": 40.7392,
+                "lng": -119.0089,
+                "label": "Fort McDermitt Reservation"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY LITHIUM, WHY NOW",
+        "body": "The Inflation Reduction Act (2022) ties EV tax credits to domestic critical-mineral sourcing. China refines roughly two-thirds of the world's lithium. Nevada holds the largest known US lithium deposits — which turns every Paiute-Shoshone burial ground in the Great Basin into a national-security asset on paper.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~65%",
+                "cc": "CN",
+                "weight": 65,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Chile",
+                "value": "~13%",
+                "cc": "CL",
+                "weight": 13,
+                "tone": "neutral"
+              },
+              {
+                "label": "Argentina",
+                "value": "~6%",
+                "cc": "AR",
+                "weight": 6,
+                "tone": "neutral"
+              },
+              {
+                "label": "Australia",
+                "value": "~5%",
+                "cc": "AU",
+                "weight": 5,
+                "tone": "neutral"
+              },
+              {
+                "label": "USA",
+                "value": "~4%",
+                "cc": "US",
+                "weight": 4,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global lithium refining capacity, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE LOAN AS LEVERAGE",
+        "body": "The Energy Department's Loan Programs Office issued a $1bn conditional commitment to Rhyolite Ridge before any FPIC process. Once federal financing is staked, the political cost of pulling permits becomes prohibitive — the consent process runs after the decision has effectively been made."
+      },
+      {
+        "heading": "THE BERING STRAIT PRECEDENT",
+        "body": "In the Doctrine of Discovery (Johnson v. M'Intosh, 1823), Chief Justice Marshall ruled that European 'discovery' extinguished indigenous title to all but a right of occupancy. The Catholic Church formally repudiated the doctrine in 2023; US property law still rests on it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under current US law, what standard must federal agencies meet before permitting a mine on ancestral tribal land?",
+            "options": [
+              "Free, prior, and informed consent from affected tribes",
+              "Government-to-government consultation, but consent is not required",
+              "Majority approval from tribal council vote",
+              "Treaty renegotiation with the affected nation"
+            ],
+            "correct": 1,
+            "explanation": "Consultation requires notification and discussion; consent — the right to refuse — is the international FPIC standard the US has not adopted as binding domestic law."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-16T12:33:28.474Z",
+    "label": "FPIC & Tribal Consent",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-15-pakistan-trump-xi-summit-cpec-imf-two-track": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STRUCTURAL TRAP",
+        "body": "Pakistan's economy runs on two incompatible lifelines: IMF programs that demand fiscal austerity and transparency, and Chinese infrastructure loans that demand strategic alignment and opacity. Each creditor's conditions undermine the other's.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The IMF requires disclosure of all external debt to assess sustainability. Beijing's CPEC contracts contain **confidentiality clauses** that forbid exactly this — putting Islamabad in technical breach of one creditor whenever it satisfies the other."
+          }
+        ]
+      },
+      {
+        "heading": "THE 23 BAILOUTS",
+        "body": "Pakistan has entered IMF programs 23 times since 1958 — more than any other country. Every government, civilian or military, has eventually returned to Washington for emergency credit. The pattern is not policy failure but structural: import-dependent economy, narrow tax base, recurring balance-of-payments crises.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1958",
+                "label": "First IMF arrangement"
+              },
+              {
+                "year": "1988",
+                "label": "Structural adjustment era begins"
+              },
+              {
+                "year": "2008",
+                "label": "Post-Musharraf crisis bailout"
+              },
+              {
+                "year": "2013",
+                "label": "$6.6bn Extended Fund Facility"
+              },
+              {
+                "year": "2019",
+                "label": "$6bn EFF under Imran Khan"
+              },
+              {
+                "year": "2023",
+                "label": "Default narrowly averted",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "$7bn EFF — 23rd program"
+              }
+            ],
+            "label": "Pakistan's IMF arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT CPEC ACTUALLY IS",
+        "body": "The China-Pakistan Economic Corridor is a $62bn package of roads, power plants, and the Gwadar deepwater port — Beijing's overland alternative to the Malacca Strait chokepoint. For China, it's a strategic shortcut to the Arabian Sea; for Pakistan, it's the largest foreign investment in its history and the collateral on much of its external debt.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "CN",
+              "IN",
+              "IR",
+              "AF"
+            ],
+            "label": "the CPEC corridor",
+            "caption": "Kashgar to Gwadar — Beijing's overland route to the Arabian Sea",
+            "markers": [
+              {
+                "lat": 25.1264,
+                "lng": 62.3225,
+                "label": "Gwadar port"
+              },
+              {
+                "lat": 33.6844,
+                "lng": 73.0479,
+                "label": "Islamabad"
+              },
+              {
+                "lat": 39.4704,
+                "lng": 75.9989,
+                "label": "Khunjerab Pass"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE RUPEE UNDER PRESSURE",
+        "body": "Every IMF program in the last decade has required Islamabad to let the rupee find its market level. Each devaluation makes dollar-denominated CPEC debt service heavier in local currency — the two creditors' demands compound in the exchange rate itself.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625
+            ],
+            "periods": [
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE NON-ALIGNMENT MEMORY",
+        "body": "At Bandung in 1955, newly independent states tried to chart a path between Washington and Moscow. The Non-Aligned Movement was the formal expression; in practice, most members eventually picked a side. Pakistan joined SEATO and CENTO with the US in the 1950s, then deepened ties with China after the 1962 Sino-Indian war. The current two-track posture is the latest iteration of a 70-year balancing act.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Zulfikar Ali Bhutto called it *bilateralism* — refusing bloc membership while cultivating every major power individually. The doctrine survived him; the costs of maintaining it have compounded."
+          }
+        ]
+      },
+      {
+        "heading": "WHO PAKISTAN OWES",
+        "body": "Pakistan's external debt is split across three creditor classes with very different leverage. Chinese loans, often collateralized against specific assets like Gwadar, are the hardest to restructure; multilateral debt to the IMF and World Bank is technically senior; bilateral Paris Club debt has historically been the most flexible.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China (incl. CPEC)",
+                "value": "~$30bn",
+                "tone": "unfavorable",
+                "cc": "CN",
+                "weight": 30
+              },
+              {
+                "label": "Multilateral (IMF/WB/ADB)",
+                "value": "~$50bn",
+                "tone": "neutral",
+                "weight": 50
+              },
+              {
+                "label": "Paris Club bilateral",
+                "value": "~$11bn",
+                "tone": "favorable",
+                "weight": 11
+              },
+              {
+                "label": "Eurobonds/Sukuk",
+                "value": "~$8bn",
+                "tone": "neutral",
+                "weight": 8
+              },
+              {
+                "label": "Saudi/UAE deposits",
+                "value": "~$9bn",
+                "cc": "SA",
+                "tone": "neutral",
+                "weight": 9
+              }
+            ],
+            "label": "Pakistan external debt by creditor (approx, 2024)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TEST",
+        "body": "When the US pressures Islamabad on a strategic question — basing rights, Iran sanctions, Afghanistan policy — Beijing's leverage is the unstated counterweight. When Beijing pressures Islamabad on CPEC security or Uyghur-related extraditions, IMF conditionality is the unstated counterweight. The bind only works while both powers tolerate it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many IMF programs has Pakistan entered since independence?",
+            "options": [
+              "7",
+              "13",
+              "23",
+              "31"
+            ],
+            "correct": 2,
+            "explanation": "23 programs since 1958 — more than any other country. The pattern reflects structural import-dependence and a narrow tax base, not any one government's failure."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-16"
+    ],
+    "generatedAt": "2026-05-16T12:34:06.586Z",
+    "label": "Pakistan's Two-Power Bind",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-15-southeast-asia-counter-drone-asean-fragmentation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ASEAN WAY",
+        "body": "ASEAN's founding doctrine is non-interference and consensus. Every member holds an effective veto, so the bloc moves at the speed of its most cautious capital. This is by design — the alternative, in a region with five live territorial disputes among members, was thought to be war.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phrase **musyawarah-mufakat** — consultation toward consensus — is written into ASEAN's charter. It is why the bloc has no standing military command, no shared air-defense net, and no enforcement mechanism for its own declarations."
+          }
+        ]
+      },
+      {
+        "heading": "THE ARCHIPELAGIC GEOMETRY",
+        "body": "Indonesia alone spans 17,000 islands across 5,000 km of ocean. The Philippines adds another 7,000. Maritime boundaries between these states run through narrow straits where a commercial drone with a 30 km range can cross three jurisdictions in one flight.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ID",
+              "VN",
+              "MY",
+              "PH",
+              "SG",
+              "BN"
+            ],
+            "label": "the maritime seams",
+            "caption": "three chokepoints, four jurisdictions, no shared protocol",
+            "markers": [
+              {
+                "lat": 1.2897,
+                "lng": 103.8501,
+                "label": "Singapore Strait"
+              },
+              {
+                "lat": 3.139,
+                "lng": 101.6869,
+                "label": "Malacca Strait"
+              },
+              {
+                "lat": 6.0833,
+                "lng": 121,
+                "label": "Sulu Sea"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT UKRAINE TAUGHT",
+        "body": "Before 2022, counter-drone was a niche capability — jammers at airports, nets at prisons. The Ukraine war proved that a $500 FPV drone can disable a $5 million tank, and that defense requires layered detection (radar, RF, acoustic, optical) fused in real time. No Southeast Asian state has built that fusion layer; each runs siloed national systems."
+      },
+      {
+        "heading": "THE FIVE POWER PRECEDENT",
+        "body": "The 1971 Five Power Defence Arrangements — UK, Australia, New Zealand, Malaysia, Singapore — is the only standing multilateral air-defense framework in the region. It covers the Malay Peninsula and Singapore only. There is no equivalent for the maritime archipelago to the east, and no political appetite to build one that would include Vietnam or Indonesia.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "United Kingdom",
+                "role": "original guarantor",
+                "years": "1971–",
+                "cc": "GB"
+              },
+              {
+                "name": "Australia",
+                "role": "air policing lead",
+                "years": "1971–",
+                "cc": "AU"
+              },
+              {
+                "name": "New Zealand",
+                "role": "rotational forces",
+                "years": "1971–",
+                "cc": "NZ"
+              },
+              {
+                "name": "Malaysia",
+                "role": "host nation",
+                "years": "1971–",
+                "cc": "MY"
+              },
+              {
+                "name": "Singapore",
+                "role": "integrated air defence",
+                "years": "1971–",
+                "cc": "SG"
+              }
+            ],
+            "label": "the FPDA five"
+          }
+        ]
+      },
+      {
+        "heading": "THE SOUTH CHINA SEA OVERLAY",
+        "body": "Three of the four states named — Vietnam, Malaysia, the Philippines — have active disputes with China in the South China Sea. Indonesia's Natuna waters overlap China's nine-dash line. A shared counter-drone grid would by necessity track Chinese assets, which is exactly why none of these states wants to formalize one in a venue Beijing can object to.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Southeast Asian state's claim overlaps China's nine-dash line despite not being a formal South China Sea claimant?",
+            "options": [
+              "Indonesia (Natuna waters)",
+              "Thailand (Gulf of Thailand)",
+              "Singapore (Singapore Strait)",
+              "Cambodia (Koh Kong)"
+            ],
+            "correct": 0,
+            "explanation": "China's nine-dash line clips Indonesia's Natuna exclusive economic zone, forcing Jakarta into a confrontation it has spent decades trying to avoid."
+          }
+        ]
+      },
+      {
+        "heading": "WHY FRAGMENTATION PERSISTS",
+        "body": "Each state procures from a different vendor stack — Israel for Singapore and the Philippines, Turkey for Indonesia and Malaysia, Russia and increasingly indigenous Viettel systems for Vietnam. Interoperability would require sharing radar signatures and RF libraries that each military treats as classified. The technical problem is solvable; the trust problem is not."
+      }
+    ],
+    "generatedAt": "2026-05-16T12:34:40.840Z",
+    "label": "ASEAN & Counter-Drone Fragmentation",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-15-sudan-acute-hunger-19-million-rsf-saf-aid-collapse": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO ARMIES",
+        "body": "Sudan's war is not government vs rebels — it is two halves of the same security apparatus turning on each other. The Sudanese Armed Forces and the Rapid Support Forces jointly ousted Bashir in 2019, jointly seized power in 2021, then went to war in April 2023 over who would absorb whom.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Abdel Fattah al-Burhan",
+                "role": "SAF commander, de facto head of state",
+                "years": "2019–",
+                "cc": "SD"
+              },
+              {
+                "name": "Mohamed Hamdan Dagalo",
+                "role": "RSF commander, known as Hemedti",
+                "years": "2013–",
+                "cc": "SD"
+              }
+            ],
+            "label": "the two generals"
+          }
+        ]
+      },
+      {
+        "heading": "THE JANJAWEED LINEAGE",
+        "body": "The RSF descends directly from the Janjaweed — the camel-mounted Arab militias Khartoum armed in the early 2000s to crush Darfur's non-Arab rebellion. Bashir formalized them into a paramilitary in 2013 to balance the regular army. The force that the international community indicted for genocide in Darfur is now one of two sides claiming to govern Sudan."
+      },
+      {
+        "heading": "WHY DARFUR STARVES FIRST",
+        "body": "Darfur sits 1,000+ km from Port Sudan, the only functioning seaport. The RSF controls most of the region and the roads in; the SAF controls the port and the airspace. Aid convoys need clearance from both — neither grants it consistently. El Fasher has been under RSF siege since May 2024.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "TD",
+              "SS",
+              "EG",
+              "ER",
+              "ET",
+              "LY",
+              "CF"
+            ],
+            "label": "Sudan's war geography",
+            "markers": [
+              {
+                "lat": 15.5007,
+                "lng": 32.5599,
+                "label": "Khartoum"
+              },
+              {
+                "lat": 13.6306,
+                "lng": 25.35,
+                "label": "El Fasher (siege)"
+              },
+              {
+                "lat": 12.0489,
+                "lng": 24.8806,
+                "label": "Nyala"
+              },
+              {
+                "lat": 19.6158,
+                "lng": 37.2164,
+                "label": "Port Sudan"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE IPC SCALE",
+        "body": "The UN's Integrated Food Security Phase Classification has five levels. Phase 3 is *crisis*, Phase 4 is *emergency*, Phase 5 is *catastrophe/famine*. Famine is only declared when 20% of households face extreme food gaps, 30% of children are acutely malnourished, and 2 in 10,000 people are dying daily. The threshold is deliberately high — most mass-starvation events never get the label.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Sudan is the world's largest **hunger crisis** by absolute numbers — surpassing Yemen, Afghanistan, and Gaza combined on the IPC scale."
+          }
+        ]
+      },
+      {
+        "heading": "THE GULF PROXY WAR",
+        "body": "The UAE has been the RSF's principal external backer, routing weapons through Chad in exchange for Sudanese gold — Sudan was Africa's third-largest gold producer before the war, and RSF-controlled mines feed Dubai's refineries. Egypt, Saudi Arabia, and Turkey back the SAF. Iran has resumed arms shipments to Burhan after a decade-long freeze.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "UAE",
+                "value": "arms → RSF",
+                "tone": "unfavorable",
+                "cc": "AE"
+              },
+              {
+                "label": "Egypt",
+                "value": "airstrikes, training → SAF",
+                "tone": "neutral",
+                "cc": "EG"
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "diplomatic cover → SAF",
+                "tone": "neutral",
+                "cc": "SA"
+              },
+              {
+                "label": "Iran",
+                "value": "drones → SAF",
+                "tone": "unfavorable",
+                "cc": "IR"
+              },
+              {
+                "label": "Russia (Wagner)",
+                "value": "shifted RSF → SAF 2024",
+                "tone": "neutral",
+                "cc": "RU"
+              }
+            ],
+            "label": "foreign backers in Sudan's war"
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL ARC",
+        "body": "Sudan has been at war with itself for most of its post-colonial existence. The British administered north and south as separate territories, then stitched them together at independence in 1956. The result has been an almost continuous cycle of war, famine, and partition.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1956",
+                "label": "Independence; first civil war begins"
+              },
+              {
+                "year": "1983",
+                "label": "Second civil war; sharia imposed"
+              },
+              {
+                "year": "1989",
+                "label": "Bashir coup"
+              },
+              {
+                "year": "2003",
+                "label": "Darfur war begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011",
+                "label": "South Sudan secedes"
+              },
+              {
+                "year": "2019",
+                "label": "Bashir ousted"
+              },
+              {
+                "year": "2023",
+                "label": "SAF–RSF war begins"
+              }
+            ],
+            "label": "Sudan's long arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT FAMINE ACTUALLY KILLS",
+        "body": "Famine deaths are rarely from starvation itself. The collapse of immune function from chronic malnutrition makes ordinary infections — measles, cholera, diarrhea — fatal. In Sudan, cholera has spread through camps because the war destroyed water treatment in 14 states.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Most famine deaths historically come from which cause?",
+            "options": [
+              "Starvation itself",
+              "Infectious disease in malnourished bodies",
+              "Violence against those seeking food",
+              "Dehydration"
+            ],
+            "correct": 1,
+            "explanation": "Across modern famines — Bengal 1943, Ethiopia 1984, Somalia 2011 — disease has killed more than hunger directly. A malnourished immune system cannot fight measles, cholera, or pneumonia."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-16T12:35:20.841Z",
+    "label": "Sudan's War & Famine",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-16-bitcoin-78k-fed-pivot-inflation-iran-war-liquidations": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRANSMISSION CHAIN",
+        "body": "An oil shock raises headline inflation within weeks — fuel and shipping feed into nearly every consumer price. Rising inflation expectations push long-dated Treasury yields up, which raises the discount rate on every risk asset. Bitcoin, with no cash flows to discount, is purely a duration trade in this regime.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical name is **breakeven inflation** — the spread between nominal Treasuries and TIPS. When oil spikes, breakevens widen, real yields stay sticky, and the **nominal yield** has to rise to clear the market."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HORMUZ MOVES BRENT, NOT WTI",
+        "body": "Roughly a fifth of global oil consumption transits the Strait of Hormuz — almost all of it Persian Gulf crude that prices off the Brent benchmark. WTI is a landlocked Cushing, Oklahoma price; a Hormuz closure widens the Brent–WTI spread before it moves WTI in absolute terms.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "KW",
+              "BH"
+            ],
+            "label": "the chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 26.2285,
+                "lng": 50.586,
+                "label": "Ras Tanura terminal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY LEVERAGE CASCADES",
+        "body": "Perpetual futures auto-liquidate when collateral falls below maintenance margin. A move that would trigger a margin call on a stock broker triggers instant forced selling on a crypto exchange — and that selling hits the same thin order book that other liquidations are hitting. $552 million unwinds in minutes, not days."
+      },
+      {
+        "heading": "THE FED PUT, REVERSED",
+        "body": "For a decade, traders priced a 'Fed put' — that the central bank would cut rates whenever risk assets fell. An oil-driven inflation spike inverts the logic: the worse risk assets do, the less the Fed can ease, because the underlying shock is supply-side and rate cuts would feed it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't the Fed cut rates to rescue markets during a supply-driven oil shock?",
+            "options": [
+              "Lower rates would weaken the dollar and raise dollar-priced oil further",
+              "Cutting rates expands demand for a commodity already in short supply",
+              "Both — rate cuts worsen both the dollar channel and the demand channel",
+              "The Fed has no legal authority to cut rates during commodity shocks"
+            ],
+            "correct": 2,
+            "explanation": "Rate cuts weaken the dollar (raising oil priced in USD) and stimulate demand (raising consumption of the scarce commodity) — both channels make a supply shock worse."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1973 PRECEDENT",
+        "body": "The Arab oil embargo quadrupled crude prices in six months. The Fed under Burns cut rates anyway to support employment; inflation ran above 12% for years and was only broken when Volcker took rates to 20% in 1981. Every Fed chair since has studied that episode as the cautionary tale.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1973-10",
+                "label": "OPEC embargo begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1974",
+                "label": "Crude quadruples"
+              },
+              {
+                "year": "1979",
+                "label": "Iranian Revolution, second shock"
+              },
+              {
+                "year": "1980",
+                "label": "CPI peaks at 14.8%"
+              },
+              {
+                "year": "1981",
+                "label": "Volcker takes Fed funds to 20%"
+              }
+            ],
+            "label": "the long shadow"
+          }
+        ]
+      },
+      {
+        "heading": "THE CORRELATION FLIP",
+        "body": "Bitcoin spent 2020-2022 trading like a long-duration tech stock — high correlation to the Nasdaq, sharp moves on Fed meetings. The 'digital gold' thesis assumed it would decouple in inflation regimes. Friday's liquidation is one more data point that it hasn't yet: when real yields rise, both Nasdaq and BTC sell.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              75149.19,
+              77128.44,
+              75728.46,
+              73856.06,
+              75874.55,
+              76350.25,
+              78194.78,
+              78260.62,
+              77444.8,
+              77619.14,
+              78645.13,
+              77361.3,
+              76345.23,
+              75774.89,
+              76286.58,
+              78172.07,
+              78655.35,
+              78562.55,
+              79823.89,
+              80925.09,
+              81425,
+              80022.04,
+              80189.07,
+              80678.03,
+              82145.66,
+              81725.21,
+              80480.89,
+              79277.8,
+              81051.98,
+              79068.82,
+              77954.78
+            ],
+            "periods": [
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 16"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-16"
+    ],
+    "generatedAt": "2026-05-16T12:35:53.395Z",
+    "label": "Oil Shocks & the Risk-Asset Bid",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-16-clarity-act-senate-banking-xrp-sec-cftc-jurisdiction": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO-REGULATOR PROBLEM",
+        "body": "The SEC regulates securities — instruments whose value depends on someone else's effort. The CFTC regulates commodities — fungible things with intrinsic value. Crypto fits neither cleanly, so for a decade both agencies claimed jurisdiction and neither wrote rules. The Clarity Act assigns each token to one regulator by statute rather than litigation.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal test that dominated this gap is the **Howey test** — from a 1946 case about Florida orange groves. An asset is a security if buyers expect profit from the *efforts of others*. Almost every token launch fits."
+          }
+        ]
+      },
+      {
+        "heading": "THE BUDGET ASYMMETRY",
+        "body": "The CFTC operates on roughly a tenth of the SEC's budget with a fraction of the headcount. Moving most crypto under CFTC oversight is not a neutral reassignment — it is a deregulation by staffing. The agency that wins jurisdiction lacks the examiners to police it at SEC intensity.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "SEC",
+                "value": "~$2.4bn",
+                "weight": 2400,
+                "tone": "neutral"
+              },
+              {
+                "label": "CFTC",
+                "value": "~$365M",
+                "weight": 365,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Annual budget, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CUSTODY WAS BLOCKED",
+        "body": "Under SEC Staff Accounting Bulletin 121 (2022), any bank holding crypto for customers had to record the assets as a liability on its own balance sheet — making custody prohibitively expensive in capital terms. Without a clear non-security designation, no major US bank would offer institutional crypto custody. The Clarity Act removes that ambiguity by naming which tokens are commodities."
+      },
+      {
+        "heading": "THE RIPPLE PRECEDENT",
+        "body": "SEC v. Ripple Labs (filed 2020) became the bellwether case. A 2023 ruling held that XRP sold on public exchanges was not a security, but the same token sold directly to institutions was. This split outcome — same asset, different legal status based on the buyer — is exactly the incoherence the Clarity Act tries to legislate away.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did the SEC v. Ripple ruling split XRP's legal status by buyer?",
+            "options": [
+              "Institutional buyers signed contracts; retail buyers did not",
+              "Institutional sales met the Howey 'efforts of others' test; anonymous secondary-market sales did not",
+              "The SEC has jurisdiction only over accredited investors",
+              "Ripple Labs registered XRP as a security in 2020"
+            ],
+            "correct": 1,
+            "explanation": "Howey requires buyers to expect profit from the issuer's efforts. Institutional buyers dealt directly with Ripple; anonymous exchange buyers had no such relationship, breaking the test."
+          }
+        ]
+      },
+      {
+        "heading": "THE TOKENIZATION HORIZON",
+        "body": "Behind the headline fight is a larger one: tokenized Treasuries, money-market funds, and equities. BlackRock's BUIDL fund and Franklin Templeton's tokenized money market already exist on public chains. Whether these are securities (SEC) or commodities-with-securities-wrappers (CFTC + SEC split) determines whether they can trade 24/7 on the same rails as crypto.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is **RWA** — *real-world assets* on-chain. The US tokenized-Treasury market crossed **$5bn** in 2025, doubling year-over-year, almost entirely on Ethereum and its rollups."
+          }
+        ]
+      },
+      {
+        "heading": "THE RECONCILIATION TRAP",
+        "body": "Senate Banking and Senate Agriculture each claim oversight — Banking over the SEC, Agriculture over the CFTC. Two committees writing competing versions of the same bill, then reconciling before recess, is the structural pattern that has killed every prior crypto bill since 2018. Memorial Day deadlines exist because conference committees rarely survive a recess intact."
+      }
+    ],
+    "generatedAt": "2026-05-16T12:36:24.251Z",
+    "label": "The Clarity Act & US Crypto Jurisdiction",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-16-self-driving-labs-decision-bottleneck-npj-robotics": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A SELF-DRIVING LAB IS",
+        "body": "A self-driving lab couples robotic hardware (liquid handlers, synthesis stations, characterization tools) with a decision model that picks the next experiment from the last one's result. The loop runs without a human in it — propose, execute, measure, update, propose again.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The term of art is **closed-loop autonomous experimentation**: closed-loop because the model's next move depends on the previous measurement, not a pre-written plan."
+          }
+        ]
+      },
+      {
+        "heading": "THE EASY HALF",
+        "body": "Actuation — moving liquids, weighing solids, running an HPLC — is largely solved. Off-the-shelf robotic arms, peristaltic pumps, and OT-2 style liquid handlers reach sub-microliter precision. The mechanical layer is a commodity problem; vendors compete on price, not capability."
+      },
+      {
+        "heading": "THE HARD HALF",
+        "body": "Choosing WHICH experiment to run next is the bottleneck. Chemical space is combinatorially vast — a five-component reaction with ten levels each is 100,000 conditions. Bayesian optimization, active learning, and Gaussian processes all work in toy spaces but degrade when the response surface is non-smooth, multimodal, or sparse — which most real chemistry is.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Actuation",
+                "value": "largely solved",
+                "tone": "favorable"
+              },
+              {
+                "label": "Characterization",
+                "value": "largely solved",
+                "tone": "favorable"
+              },
+              {
+                "label": "Decision model",
+                "value": "open problem",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Cross-lab transfer",
+                "value": "open problem",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "the two halves of an autonomous lab"
+          }
+        ]
+      },
+      {
+        "heading": "WHY GENERALIZATION FAILS",
+        "body": "A model trained on one lab's data rarely transfers to another. Reagent lot, ambient humidity, stirrer geometry, even pipette tip brand shift outcomes enough that a successful campaign in Toronto fails to reproduce in Berlin. The robot is identical; the chemistry isn't."
+      },
+      {
+        "heading": "THE REPRODUCIBILITY AUDIT",
+        "body": "Self-driving labs were sold as a fix for chemistry's reproducibility crisis — same code, same hardware, same answer. But the audit trail an autonomous run produces is only as good as the metadata it logs, and most platforms log the moves they made, not the conditions they couldn't measure.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which step in a self-driving chemistry lab is currently the most active research bottleneck?",
+            "options": [
+              "Moving liquids between vials with sub-microliter precision",
+              "Running spectroscopy on the reaction product",
+              "Deciding which experiment to attempt next",
+              "Physically synthesizing the target molecule"
+            ],
+            "correct": 2,
+            "explanation": "Actuation and characterization are largely commoditized; the open problem is the closed-loop decision model that picks the next experiment from the last result."
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPARISON TO AI",
+        "body": "The arc mirrors self-driving cars: perception and actuation matured fast, but the planning layer — what to do in a novel situation — remains the unsolved core. In both fields, the demo is convincing on the trained distribution and brittle off it."
+      }
+    ],
+    "generatedAt": "2026-05-16T12:36:50.488Z",
+    "label": "Self-Driving Labs",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-16-ucla-autonomous-electroporation-96-384-plate-sdl": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MECHANISM",
+        "body": "Electroporation pulses cells with a high-voltage electric field (typically 1-2 kV/cm) for microseconds, transiently opening nanometer-scale pores in the lipid bilayer. DNA, RNA, or proteins diffuse through before the membrane reseals.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Discovered by **Eberhard Neumann** in 1982, electroporation replaced chemical transfection because it works on cells — primary T-cells, stem cells, bacteria — that refuse to take up DNA by any other route."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT'S THE BOTTLENECK",
+        "body": "Liquid handling, PCR, sequencing, and colony picking have all been automated for decades. Electroporation stayed manual because each well needs a cuvette swap, an electrode wash, and a pulse — a workflow that resisted standardization until microplate-format electrodes matured."
+      },
+      {
+        "heading": "THE 96 vs 384 JUMP",
+        "body": "A 384-well plate has the same footprint as a 96-well plate but four times the density (4.5mm well spacing instead of 9mm). Going from 96 to 384 quadruples throughput without quadrupling reagent cost — the volumes drop from ~100μL to ~25μL per well."
+      },
+      {
+        "heading": "THE SDL CONCEPT",
+        "body": "A self-driving lab (SDL) closes the loop: a robot runs the experiment, an algorithm reads the result, and the next experiment is designed without a human in the loop. The bottleneck is whichever step still needs hands — which is why automating the last manual step is disproportionately valuable.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes a 'self-driving lab' different from ordinary lab automation?",
+            "options": [
+              "The robots are physically larger",
+              "An algorithm designs the next experiment based on prior results, no human in the loop",
+              "It uses AI to write the final paper",
+              "The equipment is open-source"
+            ],
+            "correct": 1,
+            "explanation": "Conventional automation executes a fixed protocol. An SDL closes the design-execute-analyze loop so the machine chooses what to try next."
+          }
+        ]
+      },
+      {
+        "heading": "WHY UNDERGRADS",
+        "body": "Synthetic biology hardware has followed the same trajectory as personal computing: components that cost $100K in a pharma lab now exist as $500 open-source kits. The barrier to building a transfection rig is no longer capital — it is the engineering taste to know which step actually matters."
+      }
+    ],
+    "generatedAt": "2026-05-16T12:37:11.948Z",
+    "label": "Electroporation & Lab Automation",
+    "category": "science",
+    "articleCount": 1
   }
 }
