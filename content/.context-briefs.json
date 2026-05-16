@@ -175787,5 +175787,1892 @@
     "label": "Electroporation & Lab Automation",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-05-15-california-online-games-shutdown-bill-consumer-rights": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OWNERSHIP ILLUSION",
+        "body": "When you buy a digital game, you don't own it — you license it. The EULA grants a revocable right to access publisher-controlled software. This is why a publisher can disable a game you paid full price for, and why the legal default has always favored the seller.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term for this is the **license, not sale** doctrine — codified in cases like *Vernor v. Autodesk* (2010), which held that even perpetual licenses don't transfer ownership rights."
+          }
+        ]
+      },
+      {
+        "heading": "THE SERVER DEPENDENCY",
+        "body": "Modern games increasingly require server-side code even for single-player modes — authentication, anti-cheat, save state, DRM checks. When the publisher turns off the servers, the client binary on your drive becomes inert. The game isn't deleted; it's bricked."
+      },
+      {
+        "heading": "THE PRECEDENT THAT TRIGGERED THIS",
+        "body": "Ubisoft shut down The Crew in April 2024, revoking access from everyone who had bought it — including disc owners. The Stop Killing Games campaign that followed gathered over a million EU citizens' signatures, forcing a Commission response. California's bill is the first US legislative answer.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2010",
+                "label": "Vernor v. Autodesk: licenses ≠ ownership"
+              },
+              {
+                "year": "2014",
+                "label": "GameSpy shutdown kills 800+ titles"
+              },
+              {
+                "year": "2024-04",
+                "label": "Ubisoft revokes The Crew",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024-07",
+                "label": "Stop Killing Games EU petition launches"
+              },
+              {
+                "year": "2026-05",
+                "label": "California POGA passes committee"
+              }
+            ],
+            "label": "the preservation fight"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ESCROW IS THE KEY MECHANISM",
+        "body": "The bill's escrowed-server-keys provision borrows from software escrow agreements long used in B2B contracts — source code held by a third party, released to the customer if the vendor goes bankrupt. Applied to games, the publisher deposits server binaries; on shutdown, they're released so private servers can host the game.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **server emulation** — community-run reimplementations like *EverQuest*'s Project 1999 or *World of Warcraft* private servers. Legal under the bill; currently a DMCA gray zone."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRESERVATION GAP",
+        "body": "The Video Game History Foundation estimates 87% of classic video games released before 2010 are commercially unavailable — a higher loss rate than silent films. Unlike books, films, or music, games have no statutory deposit requirement at any major national library, and the Library of Congress can only preserve games it can physically run.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of pre-2010 commercially released video games are no longer commercially available?",
+            "options": [
+              "About 30%",
+              "About 55%",
+              "About 87%",
+              "About 95%"
+            ],
+            "correct": 2,
+            "explanation": "The Video Game History Foundation's 2023 study found 87% — a loss rate exceeding that of silent-era cinema, where roughly 75% of films are lost."
+          }
+        ]
+      },
+      {
+        "heading": "THE CALIFORNIA EFFECT",
+        "body": "California regulates one in eight Americans and hosts most major US publishers (Activision-Blizzard, EA, Riot, Blizzard). A compliance regime designed for California is cheaper to apply nationwide than to geo-fence — the same dynamic that made California's emissions and privacy rules de facto national standards."
+      }
+    ],
+    "generatedAt": "2026-05-16T17:41:59.225Z",
+    "label": "Game Preservation & End-of-Life Software",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-16-bannu-police-peace-committee-ttp-operation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A JIRGA IS",
+        "body": "A jirga is a council of elders that resolves disputes by consensus under Pashtunwali, the unwritten Pashtun code. It predates the Pakistani state by centuries and operates parallel to formal courts — a parallel legitimacy the state alternately suppresses and conscripts.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The binding force is *nanawatai* (sanctuary) and *badal* (reciprocity) — not statute. A jirga ruling carries weight because the community enforces it, not because Islamabad signs off."
+          }
+        ]
+      },
+      {
+        "heading": "BANNU'S GEOGRAPHY",
+        "body": "Bannu sits on the edge of the former FATA, a gateway between the settled districts of Khyber Pakhtunkhwa and the tribal belt running to the Afghan border. Every Pakistani counterinsurgency since 2004 has staged through here, and every militant network has used it as a fallback corridor.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF"
+            ],
+            "label": "the corridor",
+            "markers": [
+              {
+                "lat": 32.9889,
+                "lng": 70.6056,
+                "label": "Bannu"
+              },
+              {
+                "lat": 33.0024,
+                "lng": 70.0697,
+                "label": "Miranshah (N. Waziristan)"
+              },
+              {
+                "lat": 33.6844,
+                "lng": 73.0479,
+                "label": "Islamabad"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TTP",
+        "body": "Tehrik-i-Taliban Pakistan formed in 2007 as an umbrella of militant factions opposed to the Pakistani state — distinct from the Afghan Taliban despite shared ideology and porous personnel. After the 2021 Kabul takeover, TTP attacks inside Pakistan roughly tripled; the safe haven moved closer, not further."
+      },
+      {
+        "heading": "THE LASHKAR PRECEDENT",
+        "body": "Arming tribal militias to fight militants — lashkars — has been state policy since 2008. The results are mixed: lashkars cleared villages but their leaders were systematically assassinated, and weapons handed out for one fight tend to surface in the next.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2004",
+                "label": "Wana operation begins"
+              },
+              {
+                "year": "2007",
+                "label": "TTP founded",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2008",
+                "label": "State arms first anti-TTP lashkars"
+              },
+              {
+                "year": "2014",
+                "label": "Zarb-e-Azb (N. Waziristan)"
+              },
+              {
+                "year": "2017",
+                "label": "Radd-ul-Fasaad (nationwide)"
+              },
+              {
+                "year": "2018",
+                "label": "FATA merged into KP"
+              },
+              {
+                "year": "2021",
+                "label": "Afghan Taliban retake Kabul"
+              }
+            ],
+            "label": "the tribal-belt counterinsurgency"
+          }
+        ]
+      },
+      {
+        "heading": "WHY COMMITTEES, NOT TROOPS",
+        "body": "Formal military operations in KP require political cover the civilian government rarely has the appetite for — they displace populations, draw IMF scrutiny on costs, and expose the army to attritional losses. A jirga-backed police committee outsources the legitimacy and the casualties to the community itself.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.875,
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625
+            ],
+            "periods": [
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE SCREENING PROBLEM",
+        "body": "\"Screening suspected sympathizers\" is the hinge phrase. In a district where extended families straddle the militant–civilian line, screening by neighbors can mean justice or it can mean settling decades-old land and blood feuds under counterterrorism cover. Which one it becomes depends entirely on who sits on the committee.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When were Pakistan's Federally Administered Tribal Areas (FATA) formally merged into Khyber Pakhtunkhwa province?",
+            "options": [
+              "1947, at partition",
+              "1979, after the Soviet invasion",
+              "2018, by constitutional amendment",
+              "They remain a separate territory"
+            ],
+            "correct": 2,
+            "explanation": "The 25th Amendment dissolved FATA's special status in 2018, ending a colonial-era governance framework inherited from the British Frontier Crimes Regulation."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-16"
+    ],
+    "generatedAt": "2026-05-16T17:42:35.929Z",
+    "label": "Jirgas & Pakistan's Tribal Frontier",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-16-bushehr-unit-2-construction-resume-rosatom": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GERMAN ORIGIN",
+        "body": "Bushehr Unit 1 was begun in 1975 by Siemens subsidiary Kraftwerk Union under the Shah. The 1979 revolution and Iraqi airstrikes during the 1980-88 war left the half-built containment as a concrete shell for two decades before Russia took over the contract in 1995.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1975",
+                "label": "Siemens begins construction"
+              },
+              {
+                "year": "1979",
+                "label": "Revolution halts work",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1984",
+                "label": "Iraqi airstrikes hit site"
+              },
+              {
+                "year": "1995",
+                "label": "Russia takes over contract"
+              },
+              {
+                "year": "2011",
+                "label": "Unit 1 reaches criticality"
+              },
+              {
+                "year": "2019",
+                "label": "Unit 2 ground broken"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1980",
+                "to": "1988",
+                "label": "Iran-Iraq war damage",
+                "tone": "unfavorable"
+              },
+              {
+                "from": "1979",
+                "to": "1995",
+                "label": "abandoned site",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Bushehr's fifty-year arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE FUEL ARRANGEMENT",
+        "body": "Russia supplies the enriched uranium fuel for Bushehr and takes back the spent fuel — a deliberate non-proliferation structure that keeps plutonium-bearing spent rods out of Iranian hands. This is why Bushehr itself was never the proliferation worry; Natanz and Fordow, where Iran enriches its own uranium, are.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The civilian reactor at Bushehr runs on **3-5% enriched** uranium. Weapons-grade is **~90%**. Iran's domestic enrichment reached **60%** at Fordow — technically civilian, practically a short hop from a bomb."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ROSATOM KEEPS BUILDING",
+        "body": "Rosatom is the world's dominant exporter of nuclear reactors — roughly two-thirds of all reactors under construction abroad are Russian VVER designs. The Bushehr contracts (Units 2 and 3 added in 2014) lock Iran into a 60-year service relationship: Russian fuel, Russian parts, Russian technicians. Sanctions on Russia complicate financing but do not stop the build.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Reactors under construction abroad by vendor",
+            "peers": [
+              {
+                "value": 23,
+                "label": "Rosatom (Russia)"
+              },
+              {
+                "value": 7,
+                "label": "CNNC/CGN (China)"
+              },
+              {
+                "value": 4,
+                "label": "KHNP (S. Korea)"
+              },
+              {
+                "value": 2,
+                "label": "Westinghouse (US)"
+              },
+              {
+                "value": 2,
+                "label": "EDF (France)"
+              },
+              {
+                "value": 1,
+                "label": "AECL (Canada)"
+              }
+            ],
+            "subjectLabel": "Rosatom (Russia)",
+            "unit": "reactors"
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "Bushehr sits on the Persian Gulf coast, 1,200 km from Tehran and directly across the water from Kuwait, Bahrain, and Qatar. GCC states have long objected that an accident or strike on the plant would contaminate the Gulf — the same water their desalination plants draw from.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "KW",
+              "BH",
+              "QA",
+              "SA",
+              "AE",
+              "OM"
+            ],
+            "label": "Bushehr & the Gulf",
+            "markers": [
+              {
+                "lat": 28.8294,
+                "lng": 50.8867,
+                "label": "Bushehr NPP"
+              },
+              {
+                "lat": 29.3759,
+                "lng": 47.9774,
+                "label": "Kuwait City"
+              },
+              {
+                "lat": 26.2285,
+                "lng": 50.586,
+                "label": "Manama"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE STRIKE TABOO",
+        "body": "Israel has struck Iraqi (Osirak, 1981) and Syrian (al-Kibar, 2007) reactors before fuel loading. The international norm holds that once a reactor is fueled, striking it risks a radiological release that would cross borders. Bushehr Unit 1 went critical in 2011 — making it functionally untouchable. Whether that protection extends to Unit 2 during construction is exactly the question Rosatom's quiet resumption is testing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which fueled nuclear reactor has ever been deliberately struck during wartime?",
+            "options": [
+              "Osirak (Iraq, 1981)",
+              "Bushehr (Iran, 1988)",
+              "None — the post-fueling taboo has held",
+              "Zaporizhzhia (Ukraine, 2022)"
+            ],
+            "correct": 2,
+            "explanation": "All strikes on reactors (Osirak, al-Kibar, the Iraqi attacks on Bushehr's shell) hit them before fuel loading. Zaporizhzhia has been shelled but not deliberately targeted for destruction."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-16T17:43:19.212Z",
+    "label": "Bushehr & Iran's Civil Nuclear Program",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-16-defi-insurance-correlated-vulnerability-yield-vs-coverage": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COVERAGE GAP",
+        "body": "Less than 2% of value locked in DeFi carries any form of insurance. Traditional finance runs the opposite ratio — bank deposits, securities, and derivatives are nearly all backstopped by some combination of FDIC insurance, SIPC coverage, clearinghouse guarantees, or counterparty collateral.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mutual model dominates what little coverage exists. **Nexus Mutual**, founded 2019, pioneered the structure: members pool capital, vote on claims, and price premiums by protocol risk — closer to a 19th-century Lloyd's syndicate than a modern insurer."
+          }
+        ]
+      },
+      {
+        "heading": "THE CORRELATED RISK PROBLEM",
+        "body": "Insurance works when losses are uncorrelated — your house burning down does not make your neighbor's more likely. DeFi insurance inverts this. A bug in a widely-used token standard, an oracle failure, or a stablecoin depeg hits dozens of protocols simultaneously. The events insurers most need to cover are the ones that bankrupt the pool.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is correlated risk a structural problem for DeFi insurance pools?",
+            "options": [
+              "Premiums are too low to cover any payouts",
+              "A single systemic event can drain the entire pool at once",
+              "Smart contracts cannot process claims automatically",
+              "Regulators forbid cross-protocol coverage"
+            ],
+            "correct": 1,
+            "explanation": "Insurance economics require uncorrelated losses. When one exploit triggers payouts across many protocols simultaneously, the pool's diversification advantage collapses."
+          }
+        ]
+      },
+      {
+        "heading": "THE COLLATERAL PROBLEM",
+        "body": "Nexus Mutual and competitors hold most of their capital in ETH and stablecoins — the same assets that fluctuate hardest during the crises they insure against. When a major DeFi exploit hits, ETH typically falls, shrinking the pool's payout capacity at the exact moment claims spike.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              2348.7,
+              2421.01,
+              2350.94,
+              2264.81,
+              2315.02,
+              2327.51,
+              2377.93,
+              2330.83,
+              2315.51,
+              2319.15,
+              2369.74,
+              2299.77,
+              2288.04,
+              2253.46,
+              2255.98,
+              2294.66,
+              2316.33,
+              2324.13,
+              2346,
+              2361.09,
+              2350.48,
+              2291.18,
+              2306.83,
+              2326.46,
+              2368.84,
+              2339.6,
+              2274.64,
+              2257.62,
+              2281.5,
+              2223.59,
+              2178.37
+            ],
+            "periods": [
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 16"
+            ],
+            "label": "Ethereum",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE 2008 RHYME",
+        "body": "AIG sold credit default swaps on mortgage securities without holding offsetting capital. When housing fell, every contract paid out at once and AIG required a $182 billion federal rescue. DeFi insurers face the same structure without a lender of last resort — no central bank backstops a mutual pool.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "AIG... wrote credit default swaps without — without — without hedging.",
+            "speaker": "Ben Bernanke, House testimony",
+            "year": "2009"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT INSURANCE ACTUALLY COVERS",
+        "body": "Most DeFi cover policies pay only for smart-contract failure — code exploits, governance attacks, oracle manipulation. They typically exclude depegs, key compromises, phishing, and protocol-team malfeasance. The exclusions are where most actual user losses occur.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Smart-contract exploit",
+                "value": "covered",
+                "tone": "favorable"
+              },
+              {
+                "label": "Oracle manipulation",
+                "value": "sometimes",
+                "tone": "neutral"
+              },
+              {
+                "label": "Stablecoin depeg",
+                "value": "rarely",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Private-key theft",
+                "value": "excluded",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Phishing / user error",
+                "value": "excluded",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Rug pull / team exit",
+                "value": "excluded",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "common DeFi loss events vs. coverage"
+          }
+        ]
+      },
+      {
+        "heading": "THE LLOYD'S PRECEDENT",
+        "body": "Modern insurance emerged in 1688 at Edward Lloyd's London coffeehouse, where merchants and underwriters wrote names against shipping risks on slips of paper. The mutual-pool structure DeFi uses today is functionally the same — what Lloyd's spent three centuries learning about reinsurance, capital adequacy, and tail risk, the on-chain version is now rediscovering from scratch."
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-16"
+    ],
+    "generatedAt": "2026-05-16T17:43:51.113Z",
+    "label": "DeFi Insurance & Correlated Risk",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-16-gaza-death-toll-72757-palestinian-health-ministry": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE MINISTRY COUNTS",
+        "body": "Gaza's Health Ministry has run the territory's hospitals and morgues since 1994, predating Hamas's 2007 takeover. Its casualty methodology — names, ID numbers, hospital of death — has been validated by the WHO, the UN, and even Israeli military intelligence in past wars. The ministry counts what hospitals see; it does not distinguish combatant from civilian.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The figure of **72,757** is a *named* count — each entry tied to an ID number and hospital record — not an extrapolation. Bodies still under rubble (**771 recovered**, thousands estimated remaining) are tracked separately."
+          }
+        ]
+      },
+      {
+        "heading": "THE RUBBLE PROBLEM",
+        "body": "Roughly 60% of Gaza's buildings have been damaged or destroyed. Excavation equipment is restricted entry under Israel's dual-use list, so families dig with hand tools. The ministry's separate 'under rubble' tally exists because forensic recovery, not killing, is now the rate-limiting step on the count."
+      },
+      {
+        "heading": "WHAT A CEASEFIRE IS NOT",
+        "body": "Since the October 2025 ceasefire, the ministry has logged 870 additional deaths — roughly 4 per day. Ceasefires in this conflict have historically meant a shift from airstrikes to ground-fire incidents, demolition operations, and movement-restriction casualties, not a true cessation. The killing rate slows; it does not stop.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2023-10",
+                "label": "Oct 7 attacks; war begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-11",
+                "label": "first temporary truce"
+              },
+              {
+                "year": "2024-05",
+                "label": "Rafah ground operation"
+              },
+              {
+                "year": "2025-01",
+                "label": "Phase 1 ceasefire collapses"
+              },
+              {
+                "year": "2025-10",
+                "label": "second ceasefire holds"
+              },
+              {
+                "year": "2026-05",
+                "label": "toll passes 72,000"
+              }
+            ],
+            "spans": [
+              {
+                "from": "2023-10",
+                "to": "2025-10",
+                "label": "active war phase",
+                "tone": "unfavorable"
+              },
+              {
+                "from": "2025-10",
+                "to": "2026-05",
+                "label": "ceasefire (≈4 deaths/day)",
+                "tone": "neutral"
+              }
+            ],
+            "label": "the Gaza catastrophe"
+          }
+        ]
+      },
+      {
+        "heading": "THE NAKBA BASELINE",
+        "body": "In 1948, roughly 750,000 Palestinians were expelled or fled from their homes; estimates of those killed in the Nakba range from 13,000 to 15,000. The current Gaza toll exceeds that of the original catastrophe by roughly fivefold, on a population of similar size confined to a much smaller territory."
+      },
+      {
+        "heading": "THE LAND OF AL-SHAM",
+        "body": "Palestine sits within al-Sham — the Levant — described in multiple hadith as a blessed land and the site of significant end-times events. Ibn Kathir's tafsir treats Surah al-Isra's opening verse, which names al-Aqsa, as marking the sanctity of the surrounding territory. The scale of what happens here registers in Islamic consciousness on a different axis than geopolitics alone.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "PS",
+              "LB",
+              "SY",
+              "JO",
+              "EG"
+            ],
+            "label": "al-Sham and its borders",
+            "markers": [
+              {
+                "lat": 31.5017,
+                "lng": 34.4668,
+                "label": "Gaza City"
+              },
+              {
+                "lat": 31.2966,
+                "lng": 34.2402,
+                "label": "Rafah crossing"
+              },
+              {
+                "lat": 31.7767,
+                "lng": 35.2356,
+                "label": "Jerusalem / al-Aqsa"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE NUMBER WILL RISE",
+        "body": "Independent epidemiological work in The Lancet has consistently estimated that direct-violence death counts in modern conflicts undercount the true toll by a factor of 2–4× once disease, malnutrition, and collapsed maternal care are included. Gaza's water and sewage systems have largely failed; the indirect toll is still being written.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is the Gaza Health Ministry the sole source for the casualty count?",
+            "options": [
+              "Israel publishes its own count that disputes the ministry's",
+              "International observers and foreign journalists are largely barred from Gaza",
+              "The UN runs an independent census in parallel",
+              "Hamas controls the ministry and excludes other counters"
+            ],
+            "correct": 1,
+            "explanation": "Israel restricts foreign press and most independent observers from entering Gaza, leaving the ministry's hospital-based registry as the only continuous count — a methodology the WHO has long validated."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-16T17:44:24.776Z",
+    "label": "Counting the Dead in Gaza",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-16-india-silver-import-restriction-rupee-defense": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY SILVER, WHY NOW",
+        "body": "Indian households are among the largest private buyers of precious metals on Earth. When confidence in the rupee falls, families convert savings into gold and silver — and those imports must be paid in dollars, draining reserves at exactly the moment the central bank is trying to defend the currency.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Silver imports are not a luxury problem — they are a **dollar outflow** problem. Each tonne of imported bullion is a small but cumulative debit against the **RBI's** foreign exchange reserves."
+          }
+        ]
+      },
+      {
+        "heading": "THE LICENSE MECHANISM",
+        "body": "Moving an item from \"free\" to \"restricted\" on the import schedule means every shipment now needs a discretionary license from the Directorate General of Foreign Trade. The state does not need to ban anything outright — it simply controls the tap, slowing flows without the political cost of prohibition."
+      },
+      {
+        "heading": "THE 1991 GHOST",
+        "body": "India's last balance-of-payments crisis in 1991 forced it to airlift 47 tonnes of gold to the Bank of England as collateral for an IMF loan. Every modern Indian finance minister governs in the shadow of that humiliation; defending the rupee is not a technocratic preference, it is a political reflex.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1991",
+                "label": "Gold airlift to BoE",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2013",
+                "label": "Taper tantrum — gold import duty raised to 10%"
+              },
+              {
+                "year": "2022",
+                "label": "RBI burns $100bn defending rupee"
+              },
+              {
+                "year": "2026",
+                "label": "Silver reclassified, bond tax cuts proposed"
+              }
+            ],
+            "label": "India's currency-defense arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE TWIN LEVERS",
+        "body": "The same week New Delhi restricts silver, the RBI proposes cutting taxes on foreign bond investors. These are the two classic moves of a currency under stress: stem the outflow of dollars (restrict imports) and attract new ones (sweeten capital inflows). Doing both signals real pressure.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              92.602452,
+              92.60245,
+              92.60245,
+              92.782407,
+              93.348804,
+              93.775164,
+              94.11314,
+              94.143557,
+              94.0666,
+              94.0666,
+              94.257338,
+              94.420855,
+              94.762974,
+              95.171392,
+              94.951559,
+              94.89165,
+              94.910513,
+              94.951346,
+              95.361112,
+              95.029174,
+              94.729612,
+              94.62293,
+              94.425498,
+              94.425498,
+              94.8754,
+              95.576514,
+              95.55195,
+              95.719988,
+              95.829548,
+              96.003
+            ],
+            "periods": [
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE HOUSEHOLD HEDGE",
+        "body": "Indians hold an estimated 25,000+ tonnes of gold privately — more than the official reserves of the US, Germany, and IMF combined. Silver is the poor man's gold: when rural households cannot afford gold at record prices, they pivot to silver. Restricting silver hits a different demographic than restricting gold.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how much gold do Indian households hold privately?",
+            "options": [
+              "About 2,500 tonnes",
+              "About 25,000 tonnes",
+              "About 250,000 tonnes"
+            ],
+            "correct": 1,
+            "explanation": "Indian households hold ~25,000 tonnes — more than the official reserves of the US, Germany, and the IMF combined. It is the world's largest private gold stockpile."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRILEMMA",
+        "body": "The Mundell-Fleming impossible trinity says a country can have any two of: free capital flows, a fixed exchange rate, independent monetary policy. India is choosing monetary independence and a managed rupee — which means capital controls like silver licensing are the inevitable third side of the triangle."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-16"
+    ],
+    "generatedAt": "2026-05-16T17:44:51.949Z",
+    "label": "Silver, the Rupee & Capital Controls",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-16-iran-hormuz-toll-mechanism-designated-route-fees": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil pass through daily, about 21% of global consumption.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the world's tightest oil chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 29.0667,
+                "lng": 50.75,
+                "label": "Kharg Island terminal"
+              },
+              {
+                "lat": 25.1167,
+                "lng": 56.3333,
+                "label": "Fujairah (UAE bypass)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL REGIME",
+        "body": "Under UNCLOS Article 38, ships have a right of transit passage through international straits — meaning coastal states cannot suspend passage or impose conditions. Iran signed UNCLOS in 1982 but never ratified it, and has long argued Hormuz is governed by its own domestic law, not the convention. A toll regime is the practical expression of that position.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal distinction matters: *innocent passage* (territorial waters) can be regulated by the coastal state; *transit passage* (international straits) cannot. Iran's toll asserts the former where the rest of the world recognizes the latter."
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE LAYER",
+        "body": "Ships transiting conflict-adjacent waters need war-risk insurance, priced daily by Lloyd's. A toll regime adds a second cost layer. If combined premiums and tolls exceed the cost of routing around the Cape of Good Hope (adding 10-15 days), tankers reroute — which itself tightens supply."
+      },
+      {
+        "heading": "WHY IT CAN'T BE BYPASSED",
+        "body": "Saudi Arabia built the East-West Pipeline (5 million bbl/day capacity) partly as a Hormuz hedge, and the UAE built the Habshan-Fujairah pipeline. Together they could reroute maybe a third of Gulf exports. The rest — including nearly all of Qatari LNG, Kuwaiti and Iraqi crude — has no alternative route.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hormuz transit",
+                "value": "~21 mn bbl/d",
+                "tone": "unfavorable",
+                "weight": 21
+              },
+              {
+                "label": "Saudi E-W pipeline",
+                "value": "5 mn bbl/d",
+                "tone": "favorable",
+                "weight": 5
+              },
+              {
+                "label": "UAE Fujairah line",
+                "value": "~1.5 mn bbl/d",
+                "tone": "favorable",
+                "weight": 1.5
+              }
+            ],
+            "label": "Gulf export bypass capacity vs. Hormuz flow"
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson planners took: disruption is easier to threaten than to sustain. A toll is the monetized version of the same leverage.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which navy formally controls the Iranian side of the Strait of Hormuz?",
+            "options": [
+              "The regular Iranian Navy (Artesh)",
+              "The Revolutionary Guard navy (IRGC-N)",
+              "A joint command of both",
+              "Iran's Coast Guard"
+            ],
+            "correct": 1,
+            "explanation": "Since 2008, the IRGC navy has had primary responsibility for Persian Gulf operations — including the small-boat swarms and seizures Hormuz is famous for. The regular Artesh navy operates in the Gulf of Oman and beyond."
+          }
+        ]
+      },
+      {
+        "heading": "WHO PAYS, WHO COLLECTS",
+        "body": "A toll collected by the IRGC navy — not the Iranian state shipping authority — would route revenue through a sanctioned entity. European refiners face a compliance trilemma: pay and risk OFAC secondary sanctions, refuse and risk seizure, or reroute via the Cape and accept the cost.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              31,
+              34,
+              36,
+              31,
+              28,
+              31,
+              33,
+              32,
+              34,
+              34,
+              34,
+              34,
+              33,
+              34,
+              31,
+              30,
+              30,
+              30,
+              28,
+              21,
+              24,
+              22,
+              22,
+              28,
+              27,
+              28,
+              28,
+              28,
+              28,
+              31
+            ],
+            "periods": [
+              "Apr 17",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 16"
+            ],
+            "label": "US invade Iran before 2027?",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "31%"
+              },
+              {
+                "atIndex": 29,
+                "label": "31%"
+              }
+            ],
+            "link": "https://polymarket.com/event/will-the-us-invade-iran-before-2027",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-16"
+    ],
+    "generatedAt": "2026-05-16T17:45:23.256Z",
+    "label": "Hormuz Tolls & Transit Law",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-16-kelpdao-293m-hack-defi-institutional-shift": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY BRIDGES BLEED",
+        "body": "A cross-chain bridge is a smart contract that locks tokens on one chain and mints wrapped copies on another. That single contract ends up holding the entire pooled value of everyone who ever crossed — a honeypot whose security is only as strong as its weakest verification step.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Chainalysis has tracked more stolen crypto from **bridges** than from exchanges every year since 2021 — the attack surface is a single contract holding billions."
+          }
+        ]
+      },
+      {
+        "heading": "THE INHERITED-RISK STACK",
+        "body": "Modern DeFi protocols compose on top of each other: a liquid-restaking token wraps a staking token that wraps ETH, then gets bridged, then deposited as collateral. Each layer adds yield and inherits every bug in every layer beneath it. A flaw three layers down still drains the top.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "user",
+                "label": "User ETH"
+              },
+              {
+                "id": "lido",
+                "label": "Lido stETH"
+              },
+              {
+                "id": "eigen",
+                "label": "EigenLayer restake"
+              },
+              {
+                "id": "kelp",
+                "label": "KelpDAO rsETH"
+              },
+              {
+                "id": "bridge",
+                "label": "Cross-chain bridge"
+              },
+              {
+                "id": "defi",
+                "label": "DeFi collateral"
+              }
+            ],
+            "links": [
+              {
+                "source": "user",
+                "target": "lido",
+                "value": 100,
+                "label": "stake"
+              },
+              {
+                "source": "lido",
+                "target": "eigen",
+                "value": 100,
+                "label": "restake"
+              },
+              {
+                "source": "eigen",
+                "target": "kelp",
+                "value": 100,
+                "label": "wrap"
+              },
+              {
+                "source": "kelp",
+                "target": "bridge",
+                "value": 100,
+                "label": "bridge"
+              },
+              {
+                "source": "bridge",
+                "target": "defi",
+                "value": 100,
+                "label": "collateralize"
+              }
+            ],
+            "label": "how a restaking deposit accumulates risk"
+          }
+        ]
+      },
+      {
+        "heading": "THE BIGGEST BRIDGE LOSSES",
+        "body": "Bridge exploits have produced some of the largest single thefts in financial history — not just crypto history. The KelpDAO loss sits in the same league as nation-state-sized heists, which is why institutional capital is pulling back from composable yield structures.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ronin Bridge",
+                "value": "$625M",
+                "tone": "unfavorable",
+                "weight": 625
+              },
+              {
+                "label": "Poly Network",
+                "value": "$611M",
+                "tone": "unfavorable",
+                "weight": 611
+              },
+              {
+                "label": "BNB Bridge",
+                "value": "$586M",
+                "tone": "unfavorable",
+                "weight": 586
+              },
+              {
+                "label": "Wormhole",
+                "value": "$326M",
+                "tone": "unfavorable",
+                "weight": 326
+              },
+              {
+                "label": "KelpDAO",
+                "value": "$293M",
+                "tone": "unfavorable",
+                "weight": 293
+              },
+              {
+                "label": "Nomad",
+                "value": "$190M",
+                "tone": "unfavorable",
+                "weight": 190
+              }
+            ],
+            "label": "largest DeFi bridge & restaking exploits"
+          }
+        ]
+      },
+      {
+        "heading": "THE FLIGHT TO BORING",
+        "body": "When risk is repriced, capital rotates from high-yield composable structures toward simpler designs — single-collateral vaults, audited primitives, no bridges. The pattern echoes traditional finance after every credit crisis: complexity earned a premium until it didn't.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Lido and Spark's pivot mirrors what happened to **structured credit** after 2008 — investors discovered they were being paid yield to underwrite risks they could not actually model."
+          }
+        ]
+      },
+      {
+        "heading": "WHO HUNTS BRIDGES",
+        "body": "State-aligned actors — North Korea's Lazarus Group above all — specialize in bridge exploits because the attack surface is narrow, the payoff is concentrated, and the laundering path through mixers and stablecoins is well-mapped. Bridges are now a recognized national-security target, not just a fintech bug.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which group is most consistently attributed to large DeFi bridge thefts?",
+            "options": [
+              "Russian FSB-linked operators",
+              "North Korea's Lazarus Group",
+              "Iranian IRGC cyber units",
+              "Independent ransomware crews"
+            ],
+            "correct": 1,
+            "explanation": "Lazarus Group has a distinctive on-chain fingerprint — specific mixing services and stablecoin batch sizes — that makes attribution possible within hours of a major theft."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-16T17:45:51.758Z",
+    "label": "DeFi Bridge Risk & the Flight to Simplicity",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-16-latin-america-may-day-workers-precarity-protests": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MINIMUM WAGE TRICK",
+        "body": "Venezuela's government froze the official minimum wage at 130 bolívars (~$3) since March 2022, then layered on non-wage 'bonuses' paid in dollars. Bonuses don't count toward pensions, severance, vacation pay, or social security contributions — so labor costs stay flat on paper while workers lose every benefit indexed to base salary.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal term is *salario de hambre* — 'hunger wage' — and it has become the rallying phrase of Venezuelan public-sector unions."
+          }
+        ]
+      },
+      {
+        "heading": "THE INFORMAL MAJORITY",
+        "body": "Across Latin America, roughly half the workforce operates outside formal employment — no contract, no pension contributions, no enforceable minimum wage. The May Day marches represent the formal minority; the informal majority cannot strike because they have no employer to strike against.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Bolivia",
+                "value": "~80%",
+                "cc": "BO",
+                "weight": 80,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Peru",
+                "value": "~71%",
+                "cc": "PE",
+                "weight": 71,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Honduras",
+                "value": "~70%",
+                "cc": "HN",
+                "weight": 70,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Mexico",
+                "value": "~55%",
+                "cc": "MX",
+                "weight": 55,
+                "tone": "neutral"
+              },
+              {
+                "label": "Brazil",
+                "value": "~40%",
+                "cc": "BR",
+                "weight": 40,
+                "tone": "neutral"
+              },
+              {
+                "label": "Chile",
+                "value": "~27%",
+                "cc": "CL",
+                "weight": 27,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Informal employment share of workforce (ILO, 2024)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY MAY 1",
+        "body": "International Workers' Day commemorates the 1886 Haymarket affair in Chicago, when police fired on a rally for the eight-hour workday. Latin American labor movements adopted it earlier and more universally than the United States itself, which moved its labor holiday to September specifically to avoid the radical associations."
+      },
+      {
+        "heading": "THE DOLLARIZATION TRAP",
+        "body": "Venezuela informally dollarized after 2019 — most prices now quote in USD. But salaries paid in bolívars lose value continuously against the dollar prices workers face. A wage 'raise' announced in bolívars can be a pay cut by the next morning.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              51.884157,
+              51.884157,
+              51.884157,
+              51.970698,
+              51.9993,
+              51.7463,
+              52.6215,
+              52.619542,
+              52.572404,
+              52.572404,
+              52.6099,
+              52.5498,
+              52.8295,
+              53.0206,
+              53.623047,
+              53.639736,
+              53.639736,
+              53.5567,
+              53.5362,
+              53.6199,
+              52.703434,
+              52.7193,
+              52.72,
+              52.74469,
+              52.7376,
+              52.8269,
+              52.9233,
+              52.9288,
+              52.897,
+              52.8709
+            ],
+            "periods": [
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16"
+            ],
+            "label": "Egyptian pound",
+            "unit": "EGP / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE PENSION COLLAPSE",
+        "body": "Venezuelan retirees receive the minimum wage as their pension — currently around $3 monthly in bolívar terms. The food basket Venezuela's independent CENDA index tracks runs roughly $500-700. Pensioners survive on remittances from the estimated 7.7 million Venezuelans who have emigrated since 2015.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "VE",
+              "CO",
+              "PE",
+              "EC",
+              "CL",
+              "BR"
+            ],
+            "label": "Venezuelan diaspora — top host countries",
+            "caption": "Colombia hosts ~2.9M; Peru ~1.5M"
+          }
+        ]
+      },
+      {
+        "heading": "THE QUIZ",
+        "body": "Latin America's labor calendar reflects a tradition older than most of its constitutions.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does the United States celebrate Labor Day in September instead of May 1?",
+            "options": [
+              "May 1 conflicted with the spring planting season",
+              "To distance American labor from the radical socialist movements that adopted May 1",
+              "Congress wanted to honor a specific 1894 railroad strike",
+              "The date was already a federal holiday for another purpose"
+            ],
+            "correct": 1,
+            "explanation": "President Cleveland chose September in 1894 specifically to avoid commemorating Haymarket, which had become a global socialist holiday."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-16"
+    ],
+    "generatedAt": "2026-05-16T17:46:21.165Z",
+    "label": "Latin American Labor & the Informal Economy",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-16-nuclear-blast-clathrate-crystal-trinitite-forensics": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT TRINITITE IS",
+        "body": "When the Trinity device detonated on July 16, 1945, the fireball sucked desert sand up the stem, melted it at temperatures hotter than the sun's surface, and rained it back as a glassy green crust spread across the crater. That crust is trinitite — the first material ever made by humans inside a nuclear fireball.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The site is at the **Jornada del Muerto** desert in New Mexico — Spanish for *journey of the dead man*. Oppenheimer named the test after a John Donne sonnet that opens *Batter my heart, three-person'd God*."
+          }
+        ]
+      },
+      {
+        "heading": "WHY FORENSICS NEEDS SIGNATURES",
+        "body": "Every nuclear device leaves a fingerprint in its fallout: isotope ratios, trace contaminants from the bomb casing, glass formed from the local soil. Match the fingerprint to a known weapons program and you can attribute a detonation — the foundation of any credible deterrence against terrorist or rogue-state use.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "RU",
+              "GB",
+              "FR",
+              "CN",
+              "IN",
+              "PK",
+              "KP",
+              "IL"
+            ],
+            "label": "the nine nuclear states",
+            "caption": "Israel does not officially confirm; North Korea tested in 2006."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A CLATHRATE IS",
+        "body": "A clathrate is a crystal whose lattice forms a literal cage around guest atoms or molecules — the host structure traps the guest mechanically, not by chemical bonding. Methane hydrates on the seafloor are the most famous example: water ice cages around methane molecules. Finding a calcium-copper-silicon clathrate in detonation glass is novel because such cages were thought to require slow, controlled crystallization, not the millisecond cooling of a fireball.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What defines a clathrate crystal?",
+            "options": [
+              "Its host lattice forms a cage that mechanically traps guest atoms",
+              "It is radioactive by definition",
+              "It can only form under nuclear detonation conditions",
+              "It is a synonym for any glassy material"
+            ],
+            "correct": 0,
+            "explanation": "Clathrates are 'cage' crystals — the host lattice physically encloses guest atoms or molecules without chemically bonding to them."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE COPPER MATTERS",
+        "body": "The copper in the new clathrate almost certainly came from the bomb itself — Trinity's gadget used copper firing cables strung from the tower to the device. A signature that incorporates bomb-derived metals into the local-soil glass is exactly the kind of marker forensics wants: it links the fallout to the weapon's engineering, not just the geology of the site."
+      },
+      {
+        "heading": "THE COMPREHENSIVE TEST BAN",
+        "body": "Atmospheric nuclear testing was banned in 1963 (PTBT) and all testing in 1996 (CTBT, not yet in force). Forensic signatures matter most precisely because every state with a modern arsenal now develops weapons through simulation and subcritical experiments — meaning the bomb that goes off next will likely be the first time its specific design has ever produced fallout.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1945",
+                "label": "Trinity test",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1949",
+                "label": "Soviet first test"
+              },
+              {
+                "year": "1963",
+                "label": "Partial Test Ban Treaty"
+              },
+              {
+                "year": "1974",
+                "label": "India 'Smiling Buddha'"
+              },
+              {
+                "year": "1996",
+                "label": "CTBT opens for signature"
+              },
+              {
+                "year": "1998",
+                "label": "Pakistan first test"
+              },
+              {
+                "year": "2006",
+                "label": "North Korea first test"
+              }
+            ],
+            "label": "the test era and its limits"
+          }
+        ]
+      },
+      {
+        "heading": "THE ATTRIBUTION GAME",
+        "body": "After a detonation, debris is collected within hours and rushed to specialized labs — Lawrence Livermore in the US, AWE Aldermaston in the UK, similar facilities in Russia and France. The faster the attribution, the smaller the window for misidentified retaliation. New signature classes like this clathrate widen the library a lab can match against."
+      }
+    ],
+    "generatedAt": "2026-05-16T17:46:54.915Z",
+    "label": "Nuclear Forensics & Trinitite",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-16-putin-china-visit-beijing-post-trump-summit": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NO-LIMITS PARTNERSHIP",
+        "body": "Xi and Putin signed a joint declaration in February 2022 — three weeks before the invasion of Ukraine — describing the relationship as a friendship with 'no limits' and 'no forbidden areas of cooperation.' Every subsequent summit communique has built on that text, not retreated from it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phrase **'no limits'** is the Kremlin's preferred translation; Beijing's Chinese-language text is softer, closer to *'no restricted zones.'* The asymmetry is deliberate — Moscow needs the maximalist reading, Beijing keeps optionality."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRADE LIFELINE",
+        "body": "Bilateral trade hit roughly $240bn in 2024, more than double the pre-war level. China takes Russian crude at discounts to Brent, supplies dual-use electronics that end up in Russian drones, and settles a growing share in yuan — bypassing the dollar clearing system sanctions are designed to weaponize.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "$240bn",
+                "cc": "CN",
+                "weight": 240,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": "$70bn",
+                "cc": "IN",
+                "weight": 70
+              },
+              {
+                "label": "Turkey",
+                "value": "$55bn",
+                "cc": "TR",
+                "weight": 55
+              },
+              {
+                "label": "Belarus",
+                "value": "$50bn",
+                "cc": "BY",
+                "weight": 50
+              },
+              {
+                "label": "Germany",
+                "value": "$10bn",
+                "cc": "DE",
+                "weight": 10,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Russia's top trade partners, 2024 (goods, $bn)"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1969 INVERSION",
+        "body": "Russia and China fought a shooting war along the Ussuri River in 1969 — Soviet and Chinese troops exchanged fire over Zhenbao Island, and Moscow quietly sounded out Washington about a preemptive strike on Chinese nuclear facilities. Kissinger's opening to Beijing three years later exploited that split. Today's alignment is a fifty-year reversal of the geometry that defined the Cold War's second half.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1950",
+                "label": "Sino-Soviet Treaty signed"
+              },
+              {
+                "year": "1960",
+                "label": "Sino-Soviet split begins"
+              },
+              {
+                "year": "1969",
+                "label": "Ussuri River clashes",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1972",
+                "label": "Nixon visits Beijing"
+              },
+              {
+                "year": "1989",
+                "label": "Gorbachev normalizes ties"
+              },
+              {
+                "year": "2001",
+                "label": "Friendship treaty"
+              },
+              {
+                "year": "2022",
+                "label": "'No limits' declaration"
+              }
+            ],
+            "label": "the Sino-Russian arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE TRIANGULAR DIPLOMACY",
+        "body": "Trump's Beijing visit and Putin's arrival a day later is choreography, not coincidence. The Kremlin wants the visual that Xi receives Moscow with the same protocol he extended Washington — signaling to domestic audiences and to Europe that Russia is not isolated, and to Washington that any China deal must reckon with the Moscow axis.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "CN",
+              "US"
+            ],
+            "label": "the strategic triangle",
+            "caption": "Beijing as the pivot Washington and Moscow both court"
+          }
+        ]
+      },
+      {
+        "heading": "THE JUNIOR PARTNER QUESTION",
+        "body": "The trade and technology asymmetry runs entirely in Beijing's favor. Russia sells commodities and buys finished goods; the yuan share of Russian reserves climbed while the ruble's share of Chinese reserves did not. Analysts inside Moscow's own foreign policy establishment have begun describing the relationship in terms — *mladshiy partner*, junior partner — that the Kremlin publicly rejects.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of China's total foreign trade does Russia account for, roughly?",
+            "options": [
+              "About 4%",
+              "About 12%",
+              "About 20%",
+              "About 30%"
+            ],
+            "correct": 0,
+            "explanation": "Russia is China's 7th-largest trading partner at ~4% of total trade. China is Russia's #1 partner at ~30% — an asymmetry that defines the relationship's power balance."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-16T17:47:27.699Z",
+    "label": "The Sino-Russian Axis",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-16-subsidence-doubles-sea-level-rise-coastal-deltas": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HIDDEN HALF",
+        "body": "Global sea-level projections measure the ocean rising. They don't measure the land falling. In river deltas, the land is often falling faster than the ocean is rising — and the residents experience the sum of both.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *relative sea-level rise* — the rise **as the coastline experiences it**, not as a satellite measures it from orbit."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DELTAS SINK",
+        "body": "Deltas are built from sediment dropped by rivers over millennia. That sediment compacts naturally under its own weight. Healthy deltas offset this by receiving fresh sediment from upstream. Dam a river, and the resupply stops; the compaction continues.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "upstream",
+                "label": "Upstream erosion"
+              },
+              {
+                "id": "river",
+                "label": "River transport"
+              },
+              {
+                "id": "dams",
+                "label": "Trapped by dams"
+              },
+              {
+                "id": "delta",
+                "label": "Delta surface"
+              },
+              {
+                "id": "compact",
+                "label": "Compaction loss"
+              },
+              {
+                "id": "sea",
+                "label": "Lost to sea"
+              }
+            ],
+            "links": [
+              {
+                "source": "upstream",
+                "target": "river",
+                "value": 100
+              },
+              {
+                "source": "river",
+                "target": "dams",
+                "value": 70
+              },
+              {
+                "source": "river",
+                "target": "delta",
+                "value": 30
+              },
+              {
+                "source": "delta",
+                "target": "compact",
+                "value": 20
+              },
+              {
+                "source": "delta",
+                "target": "sea",
+                "value": 10
+              }
+            ],
+            "label": "the delta sediment budget"
+          }
+        ]
+      },
+      {
+        "heading": "THE GROUNDWATER ACCELERATOR",
+        "body": "Jakarta sinks because 13 million people pump water from aquifers beneath the city faster than rain refills them. As the water leaves, the clay layers collapse. North Jakarta has dropped more than 2.5 meters in 25 years — fast enough to see in a human lifetime.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ID",
+              "VN",
+              "BD",
+              "TH",
+              "MM",
+              "PH"
+            ],
+            "label": "sinking deltas of South & Southeast Asia",
+            "markers": [
+              {
+                "lat": -6.1745,
+                "lng": 106.8227,
+                "label": "Jakarta"
+              },
+              {
+                "lat": 10.0452,
+                "lng": 105.7469,
+                "label": "Mekong Delta"
+              },
+              {
+                "lat": 23.685,
+                "lng": 90.3563,
+                "label": "Bangladesh"
+              },
+              {
+                "lat": 13.7563,
+                "lng": 100.5018,
+                "label": "Bangkok"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE FASTEST SINKERS",
+        "body": "Jakarta is the headline case, but it's not alone. Several Asian megacities are sinking at rates that dwarf global sea-level rise, putting the question of climate adaptation downstream of a more local problem: groundwater policy.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Land subsidence rate (peak zones)",
+            "peers": [
+              {
+                "value": 25,
+                "label": "Jakarta"
+              },
+              {
+                "value": 8,
+                "label": "Ho Chi Minh"
+              },
+              {
+                "value": 3,
+                "label": "Bangkok"
+              },
+              {
+                "value": 10,
+                "label": "Manila"
+              },
+              {
+                "value": 2,
+                "label": "Dhaka"
+              },
+              {
+                "value": 1,
+                "label": "Shanghai"
+              }
+            ],
+            "subjectLabel": "Jakarta",
+            "unit": "cm/year"
+          }
+        ]
+      },
+      {
+        "heading": "THE INDONESIAN ANSWER",
+        "body": "Jakarta is sinking so fast that Indonesia is moving its capital. Nusantara, on Borneo, was announced in 2019 and is under construction. It is the first time in modern history that a major country has relocated its capital primarily because the old one is going underwater.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is Indonesia building a new capital on Borneo?",
+            "options": [
+              "To balance economic development outside Java",
+              "Because Jakarta is sinking and flooding",
+              "To move away from earthquake zones",
+              "To escape Jakarta's traffic congestion"
+            ],
+            "correct": 1,
+            "explanation": "All four are cited, but the sinking — up to 25cm/year in north Jakarta — is the structural driver. The other reasons are political framing."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PROJECTIONS UNDERSTATE RISK",
+        "body": "IPCC sea-level scenarios use a global average. But the people most exposed don't live at the average — they live in deltas, where subsidence can double or triple the local rate. A 50cm global rise by 2100 becomes a meter or more for the half-billion people in subsiding zones."
+      }
+    ],
+    "generatedAt": "2026-05-16T17:47:57.862Z",
+    "label": "Subsidence & Delta Risk",
+    "category": "science",
+    "articleCount": 1
   }
 }
