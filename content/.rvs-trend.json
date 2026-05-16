@@ -1438,5 +1438,22 @@
       "category economy below floor 3 (got 2)"
     ],
     "degenerate": false
+  },
+  {
+    "ts": "2026-05-16T17:49:55.347Z",
+    "cycleId": "2026-05-16T17-49",
+    "cycleHour": "17",
+    "rvs": 78.63,
+    "clusters": {
+      "picking": null,
+      "writing": 91.67,
+      "briefing": 81.22,
+      "sourcing": 44.47,
+      "coverage": 91.94
+    },
+    "articleCount": 12,
+    "briefCount": 12,
+    "guardrailFailures": [],
+    "degenerate": false
   }
 ]
