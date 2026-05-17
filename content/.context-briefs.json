@@ -180541,5 +180541,1298 @@
     "label": "Ebola & the PHEIC Mechanism",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-05-15-argentina-a4-skyhawk-retirement-f16-falklands-legacy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE AIRCRAFT",
+        "body": "The A-4 Skyhawk was designed by Ed Heinemann at Douglas in the early 1950s as a deliberate rebuke to the trend toward heavier jets — small, simple, and cheap enough that the Navy nicknamed it 'Heinemann's Hot Rod.' It first flew in 1954 and stayed in frontline service somewhere on Earth for over seventy years.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Skyhawk was so compact its wings did not need to fold for carrier stowage — a structural choice that saved weight and made it **the lightest jet attack aircraft ever fielded at scale**."
+          }
+        ]
+      },
+      {
+        "heading": "THE FALKLANDS RAID",
+        "body": "On 25 May 1982, Argentine A-4s flying at wave-top altitude to evade radar struck HMS Coventry and the supply ship Atlantic Conveyor in San Carlos Water. Many of the bombs they dropped failed to detonate because the low-altitude release left no time for the fuses to arm — a tactical accident of physics that saved several British ships from sinking.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AR",
+              "GB",
+              "CL",
+              "UY"
+            ],
+            "label": "the 1982 theatre",
+            "markers": [
+              {
+                "lat": -51.7,
+                "lng": -59,
+                "label": "Falkland Islands"
+              },
+              {
+                "lat": -51.5,
+                "lng": -59.05,
+                "label": "San Carlos Water"
+              },
+              {
+                "lat": -38,
+                "lng": -57.55,
+                "label": "Río Grande air base"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE EMBARGO MATTERED",
+        "body": "After the war, Britain led a multi-decade arms embargo blocking Argentina from acquiring modern Western fighters with British-made components — ejection seats, radars, avionics. Deals for Israeli Kfirs, Spanish Mirages, and Korean FA-50s collapsed when London vetoed the export licenses on subcomponents. The embargo did not formally end until the F-16 sale cleared in 2024."
+      },
+      {
+        "heading": "THE F-16 CHOICE",
+        "body": "Argentina bought 24 second-hand F-16AM/BM Block 15s from Denmark, which was retiring them as it upgraded to the F-35. Denmark's fleet had been kept to NATO standard through the Mid-Life Update — meaning Buenos Aires is inheriting jets with modernized radar and avionics rather than the airframe Lockheed first delivered in the 1980s.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "A-4AR",
+                "value": "Mach 0.88, 1960s avionics",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "F-16AM",
+                "value": "Mach 2.0, AESA-capable",
+                "tone": "favorable"
+              }
+            ],
+            "label": "Skyhawk vs Falcon, by the numbers"
+          }
+        ]
+      },
+      {
+        "heading": "THE REGIONAL CONTEXT",
+        "body": "South America has become a continent of light fighters and trainers — Brazil's Gripens, Chile's F-16s, Peru's Mirage 2000s. No regional state maintains a heavy air superiority fleet. The Skyhawk's retirement closes the last chapter of Cold War surplus combat aviation in the southern hemisphere.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Brazil",
+                "role": "Gripen E (new build)",
+                "cc": "BR"
+              },
+              {
+                "name": "Chile",
+                "role": "F-16 Block 50",
+                "cc": "CL"
+              },
+              {
+                "name": "Peru",
+                "role": "Mirage 2000P",
+                "cc": "PE"
+              },
+              {
+                "name": "Venezuela",
+                "role": "Su-30MK2",
+                "cc": "VE"
+              },
+              {
+                "name": "Argentina",
+                "role": "F-16AM (ex-Danish)",
+                "cc": "AR"
+              }
+            ],
+            "label": "South America's fighter fleets"
+          }
+        ]
+      },
+      {
+        "heading": "THE LONGEVITY",
+        "body": "The A-4 served in eight air forces and saw combat in five wars — Vietnam, Yom Kippur, Falklands, Lebanon, and the Gulf. Israel kept its Skyhawks flying into the 2010s as advanced trainers. Argentina's retirement leaves Brazil's small AF-1 fleet as the last operator anywhere.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In which conflict did A-4 Skyhawks first see major combat?",
+            "options": [
+              "The Vietnam War",
+              "The Yom Kippur War",
+              "The Falklands War",
+              "The Six-Day War"
+            ],
+            "correct": 0,
+            "explanation": "US Navy and Marine A-4s flew thousands of strike sorties over North Vietnam starting in 1964 — nearly two decades before Argentina sent them against the Royal Navy."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-17T08:24:28.323Z",
+    "label": "The A-4 & the Falklands Legacy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-15-everyone-else-owns-subsea-cables-why-doesnt-lebanon": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A LANDING STATION IS",
+        "body": "A subsea cable ends at a coastal facility where light pulses are converted to terrestrial fiber. Whoever owns that building controls who can splice in, who gets capacity, and which government can serve a warrant on the traffic. The cable is the pipe; the landing station is the valve.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters legally: traffic transiting a cable on the seabed is governed by the **UNCLOS** high-seas regime, but the moment it surfaces it falls under the *landing state's* domestic law — wiretap statutes, data-localization rules, lawful-intercept mandates all attach at the beach manhole."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 99% OF INTERNATIONAL TRAFFIC RUNS SUBSEA",
+        "body": "Satellites carry under 1% of intercontinental data. Around 550 active submarine cables move the rest — every cross-border video call, SWIFT message, and cloud sync. Starlink and successors have not changed this; latency and bulk-capacity economics still favor glass on the seabed by orders of magnitude."
+      },
+      {
+        "heading": "THE MEDUSA SYSTEM",
+        "body": "Medusa is a 7,100km Mediterranean ring backed largely by AFR-IX Telecom and EU recovery funds, designed to land in Portugal, Morocco, Algeria, Tunisia, France, Italy, Egypt, Greece, and Cyprus. Lebanon bought capacity but is not on the landing list — the cable passes nearby without surfacing.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PT",
+              "MA",
+              "DZ",
+              "TN",
+              "FR",
+              "IT",
+              "EG",
+              "GR",
+              "CY",
+              "LB"
+            ],
+            "label": "Medusa landings (and Lebanon, the exception)",
+            "caption": "Lebanon subscribes to Medusa capacity but has no shore terminal"
+          }
+        ]
+      },
+      {
+        "heading": "OGERO, THE CHOKEPOINT",
+        "body": "All of Lebanon's existing international cables — IMEWE, CADMOS, BERYTAR — land at facilities operated by Ogero, the state telecom whose budget collapsed with the 2019 currency crisis. The country's bandwidth ceiling is set less by physics than by Ogero's ability to pay for spare parts and diesel for the landing-station generators.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Israel",
+                "value": "Bezeq + private",
+                "cc": "IL"
+              },
+              {
+                "label": "Cyprus",
+                "value": "Cyta consortium",
+                "cc": "CY"
+              },
+              {
+                "label": "Egypt",
+                "value": "Telecom Egypt",
+                "cc": "EG"
+              },
+              {
+                "label": "Greece",
+                "value": "OTE + Lamda Hellix",
+                "cc": "GR"
+              },
+              {
+                "label": "Lebanon",
+                "value": "Ogero only",
+                "cc": "LB",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Eastern Med landing-station owners"
+          }
+        ]
+      },
+      {
+        "heading": "WHY EGYPT IS THE REAL HUB",
+        "body": "Roughly 17% of all global internet traffic crosses Egyptian soil — Telecom Egypt operates the terrestrial fiber crossing between Mediterranean and Red Sea cables, charging transit fees that fund a meaningful share of the state budget. A landing station is not just a building; for the right country it is a recurring revenue stream rivaling the Suez Canal."
+      },
+      {
+        "heading": "WHAT SUBSCRIBING BUYS",
+        "body": "An indefeasible right of use (IRU) gives Lebanon a guaranteed slice of Medusa's capacity, typically for 15–25 years. What it does not give: the ability to deny competitors access, host the splice for lawful intercept, or earn transit fees from neighbors. The country becomes a customer of its own connectivity rather than a node in the regional grid.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which of these does a landing station give a country that pure cable subscription does not?",
+            "options": [
+              "Faster download speeds for end users",
+              "Legal jurisdiction over the traffic at the splice point",
+              "A share of the cable's repair costs",
+              "Ownership of the seabed the cable rests on"
+            ],
+            "correct": 1,
+            "explanation": "Traffic on the seabed is governed by UNCLOS; the moment it surfaces at a landing station, it falls under the landing state's domestic surveillance and data laws."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-17T08:25:06.251Z",
+    "label": "Subsea Cables & Landing Sovereignty",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-16-china-hormuz-resolution-veto-open-toll-definition-parsi": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO HOLDS THE VETO",
+        "body": "The UN Security Council has five permanent members — the US, UK, France, Russia, and China — each with an absolute veto. Any one of them can kill a resolution regardless of how the other fourteen members vote. The structure was fixed in 1945 and has never been amended.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "United States",
+                "role": "permanent member, veto",
+                "years": "1945–",
+                "cc": "US"
+              },
+              {
+                "name": "United Kingdom",
+                "role": "permanent member, veto",
+                "years": "1945–",
+                "cc": "GB"
+              },
+              {
+                "name": "France",
+                "role": "permanent member, veto",
+                "years": "1945–",
+                "cc": "FR"
+              },
+              {
+                "name": "Russia",
+                "role": "permanent member, veto (USSR seat)",
+                "years": "1945–",
+                "cc": "RU"
+              },
+              {
+                "name": "China",
+                "role": "permanent member, veto (PRC seat 1971)",
+                "years": "1945–",
+                "cc": "CN"
+              }
+            ],
+            "label": "the P5"
+          }
+        ]
+      },
+      {
+        "heading": "THE DOUBLE VETO PATTERN",
+        "body": "Since 2011, Russia and China have coordinated vetoes on roughly two dozen resolutions — Syria chemical weapons, Venezuela elections, Myanmar sanctions, Korea panel renewals. Acting together raises the political cost on Washington of bringing the draft at all; acting alone exposes the vetoing capital to bilateral retaliation."
+      },
+      {
+        "heading": "THE VENEZUELA PRECEDENT",
+        "body": "After 2019 US secondary sanctions tightened on PDVSA, Venezuelan crude was rerouted to China at deep discounts — often $15-20/bbl below Brent — using ship-to-ship transfers and rebranded cargoes labeled as Malaysian or Singaporean origin. The flows survived as long as Maduro did; regime change in 2026 unwound them within months as new licensing favored Western majors.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "ve",
+                "label": "Venezuela"
+              },
+              {
+                "id": "sts",
+                "label": "STS transfers"
+              },
+              {
+                "id": "my",
+                "label": "\"Malaysian\" relabel"
+              },
+              {
+                "id": "cn",
+                "label": "China teapots"
+              },
+              {
+                "id": "us",
+                "label": "US Gulf refiners"
+              }
+            ],
+            "links": [
+              {
+                "source": "ve",
+                "target": "sts",
+                "value": 0.7,
+                "label": "pre-2025"
+              },
+              {
+                "source": "sts",
+                "target": "my",
+                "value": 0.6
+              },
+              {
+                "source": "my",
+                "target": "cn",
+                "value": 0.6,
+                "label": "discounted"
+              },
+              {
+                "source": "ve",
+                "target": "us",
+                "value": 0.05,
+                "label": "Chevron license"
+              },
+              {
+                "source": "ve",
+                "target": "us",
+                "value": 0.4,
+                "label": "post-2026"
+              }
+            ],
+            "label": "Venezuelan crude reroute, 2019-2025 (rough mn bpd)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IRAN IS THE NEXT VENEZUELA",
+        "body": "Chinese teapot refineries in Shandong absorb roughly 90% of Iran's sanctioned crude exports, paid through opaque yuan-denominated channels and Hong Kong intermediaries. A US-backed Hormuz regime that monitored every tanker would do to Iranian-Chinese flows what regime change did to Venezuelan-Chinese flows: collapse them within a quarter.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Russia (ESPO)",
+                "value": "~2.0 mn bpd",
+                "cc": "RU",
+                "weight": 2,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Iran",
+                "value": "~1.5 mn bpd",
+                "cc": "IR",
+                "weight": 1.5,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Venezuela",
+                "value": "~0.05 mn bpd",
+                "cc": "VE",
+                "weight": 0.05,
+                "tone": "neutral"
+              }
+            ],
+            "label": "China's discounted-crude sources (rough mn bpd, 2025)"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A HORMUZ TOLL WOULD MEAN",
+        "body": "A maritime tolling regime — even one framed as freedom-of-navigation enforcement — is functionally a chokepoint where every cargo gets identified, manifested, and either cleared or seized. The legal basis Washington would invoke is UNCLOS transit passage; the practical effect is that sanctioned flows become physically interceptable rather than just legally prohibited."
+      },
+      {
+        "heading": "THE STRAIT ITSELF",
+        "body": "The shipping lanes are 3 km wide each, hugging the Omani side; the deepwater channel passes within 12 nautical miles of Iran's coast. Any inspection regime mounted from Bahrain — where the US Fifth Fleet is headquartered — would operate within range of Iranian shore-based anti-ship missiles and IRGC fast-boat swarms.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "BH",
+              "QA",
+              "SA"
+            ],
+            "label": "the toll geography",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 26.2235,
+                "lng": 50.5876,
+                "label": "NSA Bahrain (5th Fleet)"
+              },
+              {
+                "lat": 28.9684,
+                "lng": 50.8385,
+                "label": "Kharg Island terminal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE RETENTION CHECK",
+        "body": "China's veto is not about Hormuz navigation — it is about who controls the inspection list. A regime that decides which tankers pass is a regime that decides which buyers get crude, which is the substance of sanctions enforcement dressed in maritime-safety language.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why would China veto a US-Bahraini Hormuz inspection resolution?",
+            "options": [
+              "China imports too little Gulf oil to care about the strait",
+              "An inspection regime would let Washington identify and block China's sanctioned Iranian crude imports",
+              "China and Iran have a formal mutual defense treaty",
+              "Russia would block the resolution first, sparing China the vote"
+            ],
+            "correct": 1,
+            "explanation": "Roughly 1.5 mn bpd of discounted Iranian crude flows to Chinese teapot refineries through opaque channels — a tolling regime at Hormuz would turn legal sanctions into physical interdiction."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-17T08:25:47.299Z",
+    "label": "The P5 Veto & Oil Sanctions",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-17-cnn-ensemble-diabetic-retinopathy-fundus-screening-low-resource": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISEASE",
+        "body": "Diabetic retinopathy is the leading cause of preventable blindness in working-age adults. High blood sugar damages the tiny vessels feeding the retina; they leak, scar, and eventually detach the light-sensing tissue. Caught early, laser photocoagulation and anti-VEGF injections stop progression. Caught late, the damage is irreversible.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The cruelty is that early-stage retinopathy is **asymptomatic** — by the time vision blurs, the macula is already scarred."
+          }
+        ]
+      },
+      {
+        "heading": "THE SCREENING GAP",
+        "body": "Screening requires a trained ophthalmologist examining a dilated retina, or a fundus camera plus a grader. Bangladesh has roughly one ophthalmologist per 100,000 people; the UK has about six times that. Diabetes prevalence is climbing fastest in exactly the countries with the thinnest specialist coverage.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Ophthalmologists per million people",
+            "peers": [
+              {
+                "value": 10,
+                "cc": "BD"
+              },
+              {
+                "value": 11,
+                "cc": "IN"
+              },
+              {
+                "value": 3,
+                "cc": "NG"
+              },
+              {
+                "value": 8,
+                "cc": "PK"
+              },
+              {
+                "value": 50,
+                "cc": "EG"
+              },
+              {
+                "value": 60,
+                "cc": "GB"
+              },
+              {
+                "value": 59,
+                "cc": "US"
+              },
+              {
+                "value": 110,
+                "cc": "JP"
+              }
+            ],
+            "subjectCc": "BD",
+            "unit": "per mn"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CNNS FIT RETINAS",
+        "body": "Convolutional neural networks learn spatial hierarchies — edges, then textures, then lesions — by sliding small filters across an image. Retinal pathology is exactly that: microaneurysms are dots, hemorrhages are blots, exudates are bright patches. The pattern vocabulary is finite and visual, which is why fundus reading was the first medical-imaging task to reach specialist-level AI performance, with Google's 2016 JAMA paper as the landmark."
+      },
+      {
+        "heading": "THE TRANSFER LEARNING TRICK",
+        "body": "Training a CNN from scratch needs millions of labeled images. Transfer learning starts from a network pre-trained on ImageNet's 14 million everyday photos, then fine-tunes the final layers on a few thousand retinal images. The early layers — which detect edges and curves — generalize across domains. This is how a Dhaka research team can match a Google-scale lab without Google-scale data."
+      },
+      {
+        "heading": "WHY ENSEMBLES",
+        "body": "Four different CNN architectures vote on each image. Each makes different mistakes; averaging the votes cancels the idiosyncratic errors and keeps the shared signal. The technique is older than deep learning — Netflix's 2009 prize was won by an ensemble — and it routinely buys 1-3 points of accuracy at the cost of compute.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does averaging predictions from several different CNNs usually beat the best single model?",
+            "options": [
+              "The models share training data, so errors reinforce",
+              "Different architectures make uncorrelated mistakes that cancel on average",
+              "Ensembles use more parameters than any single model",
+              "Voting eliminates the need for a validation set"
+            ],
+            "correct": 1,
+            "explanation": "Diverse models err in different places; averaging keeps the signal they agree on and washes out the noise they don't."
+          }
+        ]
+      },
+      {
+        "heading": "THE SINGLE-DATASET CAVEAT",
+        "body": "A model validated on one dataset has learned that dataset's camera, lighting, and patient demographics as much as the disease itself. The 2018 IDx-DR FDA approval — the first autonomous diagnostic AI cleared in the US — required validation across 10 sites and 900 patients before deployment. Generalization, not peak accuracy, is the gate between a paper and a clinic."
+      }
+    ],
+    "generatedAt": "2026-05-17T08:26:15.003Z",
+    "label": "AI Retinal Screening",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-17-grace-fo-hunan-groundwater-2024-flood-dongting-satellite-gravimetry": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW GRACE WEIGHS WATER",
+        "body": "GRACE-FO is a pair of satellites flying 220 km apart in identical orbit. When the lead satellite passes over a mass concentration — a mountain, an aquifer, an ice sheet — it accelerates slightly, changing the distance to its trailing twin. Microwave ranging measures that distance to within a micron. Water is the only mass on Earth's surface that shifts fast enough to show up month-to-month.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mission name is literal: **Gravity Recovery and Climate Experiment**. The first GRACE flew 2002–2017; **GRACE-FO** (Follow-On) launched in 2018 as a NASA–GFZ Potsdam partnership."
+          }
+        ]
+      },
+      {
+        "heading": "THE RESOLUTION PROBLEM",
+        "body": "GRACE's footprint has historically been ~300,000 km² — fine for continents, useless for provinces. Hunan covers ~210,000 km². Resolving groundwater at sub-basin scale required combining gravimetry with hydrological models and surface-water gauges, the methodological advance the Nature study reports."
+      },
+      {
+        "heading": "DONGTING'S ROLE",
+        "body": "Dongting Lake is China's second-largest freshwater lake and the natural overflow basin for the middle Yangtze. It expands from ~2,600 km² in dry season to over 20,000 km² at flood peak — a 7× swing that historically absorbed monsoon surges before they reached Wuhan and Shanghai downstream.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN"
+            ],
+            "label": "the middle Yangtze flood basin",
+            "markers": [
+              {
+                "lat": 29.3416,
+                "lng": 112.9518,
+                "label": "Dongting Lake"
+              },
+              {
+                "lat": 28.2282,
+                "lng": 112.9388,
+                "label": "Changsha"
+              },
+              {
+                "lat": 30.5928,
+                "lng": 114.3055,
+                "label": "Wuhan (downstream)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY GROUNDWATER MATTERS FOR FLOODS",
+        "body": "A saturated aquifer cannot absorb rainfall — it acts like a full sponge. When groundwater tables sit near the surface before the monsoon, even moderate rain produces runoff because the soil column has no storage left. The 44% figure means groundwater state, not rainfall intensity, was the dominant variable in 2024."
+      },
+      {
+        "heading": "THE FORECASTING SHIFT",
+        "body": "Traditional flood models start with rainfall forecasts and route water through river networks. Satellite gravimetry inverts the question: measure how full the basin already is, then forecast what any given rainfall will do. This is the same conceptual move that turned snowpack measurement into spring-runoff forecasting in the American West a century ago.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does GRACE-FO actually measure to track groundwater?",
+            "options": [
+              "Radar reflections off the water table",
+              "Tiny changes in distance between two satellites",
+              "Infrared temperature of soil moisture",
+              "Magnetic signatures of dissolved minerals"
+            ],
+            "correct": 1,
+            "explanation": "Water mass shifts pull the lead satellite forward; microwave ranging detects the micron-scale distance change to its twin."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-17T08:26:43.565Z",
+    "label": "Satellite Gravimetry & Groundwater",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-17-nigeria-obasa-apc-unopposed-agege-tinubu-lagos-machine": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TINUBU SYSTEM",
+        "body": "Lagos has been governed by a single political network since 1999 — Bola Tinubu's Alliance for Democracy, then Action Congress, then ACN, now APC. Every Lagos governor since the return to democracy has been a Tinubu ally; the state's revenue, appointments, and party tickets flow through one structure.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The arrangement has a name in Nigerian political vocabulary: **godfatherism** — where a single patron controls candidate selection, and the elected official owes loyalty upward rather than to voters."
+          }
+        ]
+      },
+      {
+        "heading": "WHY LAGOS MATTERS",
+        "body": "Lagos generates about a third of Nigeria's non-oil GDP and roughly two-thirds of its internally generated state revenue. A party that controls Lagos controls the country's largest tax base and its commercial capital — which is why the Tinubu network's hold on the state has been the foundation of his national rise.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Lagos",
+                "value": "₦815bn",
+                "weight": 815,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Rivers",
+                "value": "₦193bn",
+                "weight": 193,
+                "tone": "neutral"
+              },
+              {
+                "label": "FCT Abuja",
+                "value": "₦156bn",
+                "weight": 156,
+                "tone": "neutral"
+              },
+              {
+                "label": "Ogun",
+                "value": "₦147bn",
+                "weight": 147,
+                "tone": "neutral"
+              },
+              {
+                "label": "Delta",
+                "value": "₦115bn",
+                "weight": 115,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Lagos vs other Nigerian states (IGR, 2023)"
+          }
+        ]
+      },
+      {
+        "heading": "UNOPPOSED PRIMARIES",
+        "body": "An unopposed primary in a one-party state is the visible end of a private negotiation. In APC Lagos, candidate selection happens inside the Governance Advisory Council — the body of Tinubu loyalists that vets every ticket before the formal primary. By the time wards vote, the result has already been set."
+      },
+      {
+        "heading": "THE SPEAKER'S SEAT",
+        "body": "Mudashiru Obasa has held the Lagos State Assembly speakership since 2015 — the longest tenure of any Nigerian state speaker. A speaker controls committee assignments, the legislative calendar, and oversight over the governor's budget. In a machine-state, that position is second in power only to the governor himself.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Since 1999, how many political parties have controlled the Lagos State governorship?",
+            "options": [
+              "One continuous network (renamed several times)",
+              "Two — APC and PDP have alternated",
+              "Three different parties",
+              "Four, with regular alternation"
+            ],
+            "correct": 0,
+            "explanation": "AD → AC → ACN → APC is the same political machine under successive names; PDP has never won Lagos since the Fourth Republic began."
+          }
+        ]
+      },
+      {
+        "heading": "AGEGE AS A POWER BASE",
+        "body": "Agege is a dense mainland Lagos local government — Yoruba-majority, working-class, and one of the highest-turnout zones in the state. Controlling Agege's wards means controlling reliable vote blocks that travel to deliver margins in statewide races. It is the kind of constituency a machine cultivates, not contests."
+      },
+      {
+        "heading": "THE 2027 ARITHMETIC",
+        "body": "If Obasa moves to the federal House of Representatives in 2027, the Lagos Assembly speakership opens for the first time in over a decade. Whoever fills it inherits oversight over Tinubu's home state during his own potential re-election year — making the succession less about Agege and more about which faction sits closest to the presidency."
+      }
+    ],
+    "generatedAt": "2026-05-17T08:27:12.147Z",
+    "label": "Lagos & the APC Machine",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-17-nigeria-olympic-city-private-sports-infrastructure-privatisation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LAND-AS-CAPITAL PLAY",
+        "body": "Sports federations worldwide sit on government-granted urban land allocated decades ago when cities were smaller. As the metro grows around them, the land's market value dwarfs anything the federation could ever earn from its sport. Selling or leasing a fraction to developers funds everything the federation can't extract from gate receipts or sponsorships.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *land monetization* — converting a non-cash public asset into operating capital without an explicit budget appropriation. It lets the federation bypass the annual sports ministry allocation entirely."
+          }
+        ]
+      },
+      {
+        "heading": "WHY LAGOS LAND IS SO VALUABLE",
+        "body": "Lagos is projected to be one of the world's three largest cities by 2050, with a metro population already past 20 million. Land prices in serviced areas of the mainland have risen at double-digit rates for two decades. A 40% carve-out in the right location can fund a stadium twice over.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "BJ",
+              "GH",
+              "TG",
+              "CM"
+            ],
+            "label": "Lagos and its regional neighbors",
+            "markers": [
+              {
+                "lat": 6.5244,
+                "lng": 3.3792,
+                "label": "Lagos"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE NIGERIAN INFRASTRUCTURE PATTERN",
+        "body": "Nigeria's federal sports infrastructure — the National Stadium in Surulere, the Abuja stadium built for the 2003 All-Africa Games — became cautionary tales of state-built, state-neglected facilities. By the 2010s both required hundreds of millions of naira just to make pitches playable. The privatization pivot is a direct response to that maintenance failure."
+      },
+      {
+        "heading": "THE ACCESS ROAD TELL",
+        "body": "In Nigerian construction, the unpaved access road is a leading indicator. Projects that break ground before site logistics are settled — power, water, road, drainage — routinely slip 50-100% past their target. The 24-month timeline assumes the road, the grid connection, and the sand-filling all happen in parallel without dispute.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of large Nigerian public-infrastructure projects deliver within their announced timeline?",
+            "options": [
+              "Roughly 70%",
+              "Roughly 40%",
+              "Under 20%",
+              "Over 90%"
+            ],
+            "correct": 2,
+            "explanation": "BudgIT and World Bank audits consistently find fewer than one in five major federal projects complete on schedule; the modal slippage is 2-4 years."
+          }
+        ]
+      },
+      {
+        "heading": "THE OLYMPIC COMMITTEE MODEL",
+        "body": "National Olympic Committees are recognized by the IOC as non-governmental, but most receive land and seed funding from the state. The IOC's own Olympic Solidarity program disburses about $590m per quadrennium globally, but the bulk of any committee's revenue comes from sponsorships, broadcast shares, and — increasingly — real estate."
+      },
+      {
+        "heading": "WHO BENEFITS, WHO PAYS",
+        "body": "The athlete-facility upside is real but slow; the housing upside is immediate and captured by the developer and any officials who structured the deal. In Lagos's 2017 Tafawa Balewa Square redevelopment and the Abuja stadium concessions, opacity around valuation and equity splits became the lasting controversy long after the buildings opened.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phrase to watch in the contract is *consideration in kind* — when the developer's payment is the athlete facility itself rather than cash. It collapses the valuation question into a single negotiation with no market price to check against."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-17T08:27:45.951Z",
+    "label": "Sports Land & Self-Financing Federations",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-17-pakistan-kp-polio-drive-bannu-waziristan-militant-districts": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LAST RESERVOIRS",
+        "body": "Wild poliovirus type 1 is endemic in only two countries on Earth: Pakistan and Afghanistan. Every other nation has eliminated transmission. The virus survives in a corridor along the Durand Line where vaccination teams cannot operate freely.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF"
+            ],
+            "label": "the last endemic corridor",
+            "markers": [
+              {
+                "lat": 32.9817,
+                "lng": 70.6042,
+                "label": "Bannu"
+              },
+              {
+                "lat": 32.9928,
+                "lng": 69.9747,
+                "label": "North Waziristan"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY VACCINATORS ARE TARGETS",
+        "body": "In 2011 the CIA ran a fake hepatitis B vaccination drive in Abbottabad to collect DNA samples confirming Osama bin Laden's family was hiding there. The operation, exposed months later, weaponized the trust polio teams had spent decades building. The TTP issued formal bans on vaccination in tribal areas; over 100 polio workers and police escorts have been killed in Pakistan since.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shorthand inside WHO field reports is *the Shakil Afridi effect* — named for the Pakistani doctor the CIA recruited to run the sham drive. He remains imprisoned in Pakistan."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE ORAL VACCINE",
+        "body": "The oral polio vaccine costs about 15 cents per dose, requires no needle, and a community health worker can administer it in seconds at a doorstep. The injectable version is safer but costs 20 times more and needs trained staff. Eradication campaigns in poor, insecure terrain are only possible because of the oral vaccine's logistics.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Oral (OPV)",
+                "value": "~$0.15/dose",
+                "tone": "favorable"
+              },
+              {
+                "label": "Injectable (IPV)",
+                "value": "~$3/dose",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "oral vs injectable polio vaccine"
+          }
+        ]
+      },
+      {
+        "heading": "ENVIRONMENTAL SURVEILLANCE",
+        "body": "Most polio infections are silent — only about 1 in 200 cases produces paralysis. By the time a child shows symptoms, hundreds in the community are already infected. Sewage sampling for viral RNA is now the early-warning system; a positive environmental sample in Bannu or North Waziristan means transmission is active even before a paralysis case appears."
+      },
+      {
+        "heading": "THE TRIBAL BELT VACUUM",
+        "body": "The districts named in this campaign — North Waziristan, Bannu, and the merged FATA agencies — sit in the security vacuum where the Pakistani state's writ has historically been thinnest. The 2018 merger of FATA into Khyber Pakhtunkhwa brought courts and laws on paper. The TTP's resurgence since 2021 has rolled much of that back, which is why a vaccination drive now needs one soldier for roughly every two vaccinators.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Polio remains endemic in how many countries worldwide?",
+            "options": [
+              "Just Pakistan and Afghanistan",
+              "Pakistan, Afghanistan, and Nigeria",
+              "About a dozen across Africa and Asia",
+              "Only Pakistan"
+            ],
+            "correct": 0,
+            "explanation": "Nigeria was declared free of wild poliovirus in 2020. Only Pakistan and Afghanistan still report endemic transmission, both concentrated along the Durand Line."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-17T08:28:15.782Z",
+    "label": "Polio's Last Two Countries",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-17-russia-backs-china-hormuz-veto-ulyanov": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE VETO MECHANIC",
+        "body": "Any one of the five permanent Security Council members — US, UK, France, Russia, China — can kill any non-procedural resolution with a single negative vote. Abstentions don't count as vetoes; only an explicit 'no' from a P5 member blocks adoption, regardless of how the other 14 council members vote.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The veto was the price the **Soviet Union** demanded at Dumbarton Oaks in 1944 to join the UN at all. Without it, Moscow would have walked — and the institution would have failed before it began."
+          }
+        ]
+      },
+      {
+        "heading": "THE DOUBLE-VETO PATTERN",
+        "body": "Russia and China have voted together on roughly 80% of contested Security Council resolutions since 2011, when they jointly vetoed the first Syria resolution. The alignment is not formal alliance — it is shared interest in blocking Western-led intervention precedents that could one day be turned on Beijing or Moscow.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011",
+                "label": "Syria sanctions (1st joint veto)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2012",
+                "label": "Syria Chapter VII"
+              },
+              {
+                "year": "2014",
+                "label": "Syria ICC referral"
+              },
+              {
+                "year": "2017",
+                "label": "Syria chemical weapons"
+              },
+              {
+                "year": "2020",
+                "label": "Syria cross-border aid"
+              },
+              {
+                "year": "2022",
+                "label": "North Korea sanctions"
+              },
+              {
+                "year": "2024",
+                "label": "Gaza ceasefire"
+              }
+            ],
+            "label": "Russia-China joint vetoes"
+          }
+        ]
+      },
+      {
+        "heading": "WHY HORMUZ IS DIFFERENT",
+        "body": "The strait sits between Iran and Oman, not Iran and any Arab state. Iran's coastline runs along the entire northern edge, and the deepest shipping lane hugs the Iranian side. Closing it is geographically trivial for Tehran; reopening it requires either Iranian consent or sustained naval combat in waters Iran has spent forty years mining and fortifying.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the strait and the Gulf",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 26.2285,
+                "lng": 56.2667,
+                "label": "Bandar Abbas (IR navy)"
+              },
+              {
+                "lat": 25.2867,
+                "lng": 51.5333,
+                "label": "Doha"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSIT-PASSAGE QUESTION",
+        "body": "Under UNCLOS Article 38, ships have a right of transit passage through international straits — coastal states cannot suspend it. Iran signed UNCLOS in 1982 but never ratified, and has long argued Hormuz falls under its domestic law, not the convention. The legal ambiguity is the diplomatic opening Russia and China exploit at the Security Council.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "In straits used for international navigation... all ships and aircraft enjoy the right of transit passage, which shall not be impeded.",
+            "speaker": "UNCLOS, Article 38(1)",
+            "year": "1982"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT MOSCOW AND BEIJING GET",
+        "body": "Russia ships ~3 mn barrels/day from its own Baltic and Pacific ports — a Hormuz closure tightens global oil and lifts Urals crude prices, partially offsetting sanctions. China imports roughly half its crude from the Gulf and would seem to lose; but Beijing's calculation is strategic, not commercial — blocking a US-led resolution preserves the precedent that Washington cannot use the Council to legitimize Gulf military operations.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~5.4",
+                "cc": "CN",
+                "weight": 5.4,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": "~2.8",
+                "cc": "IN",
+                "weight": 2.8,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "South Korea",
+                "value": "~1.7",
+                "cc": "KR",
+                "weight": 1.7,
+                "tone": "neutral"
+              },
+              {
+                "label": "Japan",
+                "value": "~1.5",
+                "cc": "JP",
+                "weight": 1.5,
+                "tone": "neutral"
+              },
+              {
+                "label": "EU (combined)",
+                "value": "~0.6",
+                "cc": "EU",
+                "weight": 0.6,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Top buyers of Persian Gulf crude (2024, mn bpd)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR LESSON",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly, then markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. Disruption proved easier to threaten than to sustain, but the reflagging operation took 14 months to organize and cost the US Navy 37 sailors when the USS Stark was hit.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "During the 1980s Tanker War, what tactic finally allowed Gulf oil shipments to resume at scale?",
+            "options": [
+              "A UN-brokered ceasefire between Iran and Iraq",
+              "Reflagging Kuwaiti tankers under the US flag with naval escort",
+              "A Saudi pipeline bypass to the Red Sea",
+              "Soviet mediation through the Security Council"
+            ],
+            "correct": 1,
+            "explanation": "Operation Earnest Will (1987-88) reflagged 11 Kuwaiti tankers as American, giving the US Navy legal grounds to escort them — a workaround for diplomatic deadlock, not a solution to it."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-17T08:28:54.177Z",
+    "label": "The UNSC Veto & Hormuz",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-17-samsung-union-strike-talks-korea-pm-memory-supply-chain": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHAEBOL ANATOMY",
+        "body": "Samsung Electronics is the flagship of the Samsung Group, a family-controlled chaebol that accounts for roughly a fifth of South Korea's GDP and a similar share of its exports. A strike at one company is a macroeconomic event because the company is structurally inseparable from the national economy.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Korean term *chaebol* literally means *wealthy clan* — a hereditary conglomerate, not a public corporation in the Western sense. The top four (Samsung, SK, Hyundai, LG) account for more than half of the KOSPI's market capitalization."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MEMORY IS DIFFERENT",
+        "body": "Memory chips — DRAM and NAND flash — are commodities sold by the wafer. Unlike logic chips (CPUs, GPUs) where design differentiation rules, memory competes on yield, density, and price per bit. A few weeks of lost output from a top producer moves the spot price within the quarter.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Samsung",
+                "value": "~43%",
+                "cc": "KR",
+                "weight": 43,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "SK Hynix",
+                "value": "~34%",
+                "cc": "KR",
+                "weight": 34,
+                "tone": "neutral"
+              },
+              {
+                "label": "Micron",
+                "value": "~21%",
+                "cc": "US",
+                "weight": 21,
+                "tone": "favorable"
+              },
+              {
+                "label": "Others",
+                "value": "~2%",
+                "weight": 2
+              }
+            ],
+            "label": "Global DRAM market share, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE KOREAN DUOPOLY",
+        "body": "Samsung and SK Hynix together produce roughly three-quarters of the world's DRAM and over half its NAND. Both fab the bulk of that output inside a 100km corridor south of Seoul — Hwaseong, Pyeongtaek, Icheon. The geographic concentration is the single largest single-point-of-failure in global electronics."
+      },
+      {
+        "heading": "WHY UNIONS WERE LATE",
+        "body": "Samsung Electronics famously operated without a recognized union for nearly fifty years — a deliberate founder-era policy maintained through the 2010s. The National Samsung Electronics Union (NSEU) was only formed in 2019 and held the company's first-ever strike in mid-2024. Korean labor law gives unions the right to strike after mediation fails, but the cultural break is more recent than the legal one.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1938",
+                "label": "Samsung founded by Lee Byung-chul"
+              },
+              {
+                "year": "1969",
+                "label": "Samsung Electronics established"
+              },
+              {
+                "year": "2019",
+                "label": "NSEU formed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024-06",
+                "label": "First-ever strike"
+              },
+              {
+                "year": "2024-07",
+                "label": "Indefinite walkout escalation"
+              },
+              {
+                "year": "2026-05",
+                "label": "PM warns of 'havoc'"
+              }
+            ],
+            "label": "Samsung labor arc"
+          }
+        ]
+      },
+      {
+        "heading": "HBM AND THE AI BOTTLENECK",
+        "body": "High-Bandwidth Memory — DRAM dies stacked vertically and bonded with through-silicon vias — sits beside every AI accelerator Nvidia ships. SK Hynix leads HBM3E; Samsung has spent two years trying to qualify its own stacks into Nvidia's pipeline. A disruption that pulls Samsung further behind on HBM hands SK Hynix structural pricing power over the entire AI training market.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "HBM is sold at roughly *5×* the price per bit of standard DDR5 — the margins are why Samsung's qualification delays have been an investor obsession for two years."
+          }
+        ]
+      },
+      {
+        "heading": "THE PASS-THROUGH",
+        "body": "Memory is upstream of nearly every electronic device. A sustained price spike of even 10–15% raises the bill of materials for smartphones, servers, automotive ECUs, and data-center buildouts simultaneously. Hyperscalers buy on long contracts and absorb shocks; consumer electronics OEMs pass them through within a quarter.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of global DRAM output comes from South Korea?",
+            "options": [
+              "About a quarter",
+              "About half",
+              "About three-quarters",
+              "Nearly all"
+            ],
+            "correct": 2,
+            "explanation": "Samsung (~43%) and SK Hynix (~34%) together produce close to 77% of global DRAM — the highest single-country concentration of any strategic commodity outside oil."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-17T08:29:28.597Z",
+    "label": "Samsung & Memory Chip Supply",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-17-tredegar-labour-zero-delegates-senedd-plaid-cymru-bevan": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY TREDEGAR MATTERS",
+        "body": "Tredegar is a small ex-mining town in the Welsh valleys with a place in Labour mythology disproportionate to its size. Aneurin Bevan, the postwar health minister who founded the NHS, was born there in 1897 and represented neighbouring Ebbw Vale for 31 years. Losing Tredegar is not losing a marginal — it is losing the birthplace of the British welfare state.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GB",
+              "IE"
+            ],
+            "label": "the Welsh valleys",
+            "markers": [
+              {
+                "lat": 51.7754,
+                "lng": -3.2376,
+                "label": "Tredegar (Bevan's birthplace)"
+              },
+              {
+                "lat": 51.4816,
+                "lng": -3.1791,
+                "label": "Cardiff (Senedd)"
+              },
+              {
+                "lat": 53.4084,
+                "lng": -2.9916,
+                "label": "Liverpool"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TREDEGAR MODEL",
+        "body": "Before the NHS existed nationally, Tredegar had the Tredegar Medical Aid Society — a worker-funded scheme where miners paid a few pence per week for universal medical care for their families. Bevan explicitly said he took this town's model and 'Tredegar-ised' the whole country. The 1948 NHS is, in design, a Welsh mining valley scaled to 50 million people.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Bevan's line to the Commons: *\"All I am doing is extending to the entire population of Britain the benefits we had in Tredegar for a generation or more.\"*"
+          }
+        ]
+      },
+      {
+        "heading": "THE SENEDD'S NEW MATH",
+        "body": "The 2026 election was the first under the reformed Senedd: 96 seats (up from 60), elected by closed-list proportional representation in 16 six-member constituencies. The system was designed by a Labour-Plaid cooperation agreement — and produced a result that ended Labour's quarter-century grip on Welsh devolved government.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Plaid Cymru",
+                "value": "43 seats",
+                "tone": "favorable",
+                "weight": 43
+              },
+              {
+                "label": "Reform UK",
+                "value": "27 seats",
+                "tone": "neutral",
+                "weight": 27
+              },
+              {
+                "label": "Conservatives",
+                "value": "12 seats",
+                "tone": "neutral",
+                "weight": 12
+              },
+              {
+                "label": "Labour",
+                "value": "9 seats",
+                "tone": "unfavorable",
+                "weight": 9
+              },
+              {
+                "label": "Lib Dems / Greens",
+                "value": "5 seats",
+                "tone": "neutral",
+                "weight": 5
+              }
+            ],
+            "label": "Senedd 2026 — seats won (of 96)"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT PLAID ACTUALLY IS",
+        "body": "Plaid Cymru ('Party of Wales') was founded in 1925 as a cultural-linguistic movement to defend the Welsh language, only later adopting independence as a goal. It is social-democratic, pro-EU, and pro-Welsh-speaking — closer ideologically to the SNP than to any English party. Until this election it had never led a Welsh government."
+      },
+      {
+        "heading": "WESTMINSTER VS CARDIFF",
+        "body": "Wales sends 32 MPs to Westminster under first-past-the-post, where Labour still holds most seats. The Senedd uses proportional representation. The two systems can produce wildly divergent results from the same electorate — Welsh voters can return a Labour MP and a Plaid MS on the same day for overlapping territory. This is the structural quirk that lets Labour rule London while losing Cardiff.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can the same Welsh voters elect Labour to Westminster but Plaid to the Senedd?",
+            "options": [
+              "Different electorates are registered for each body",
+              "Westminster uses first-past-the-post; the Senedd uses proportional representation",
+              "Plaid candidates are barred from standing for Westminster seats",
+              "Welsh MPs are appointed by the Senedd, not elected"
+            ],
+            "correct": 1,
+            "explanation": "FPTP rewards Labour's concentrated valley vote with seats; PR splits the same vote share across multiple parties, letting Plaid, Reform and others convert votes into seats Labour denies them at Westminster."
+          }
+        ]
+      },
+      {
+        "heading": "THE KINNOCK LINE",
+        "body": "Neil Kinnock — Labour leader 1983–1992, born in Tredegar, MP for Bedwellty next door — spent his career arguing that Welsh Labour was the unbreakable spine of the British party. His son Stephen sits in Keir Starmer's cabinet. The family's political home now returns no Labour Members of the Senedd at all."
+      }
+    ],
+    "generatedAt": "2026-05-17T08:30:05.420Z",
+    "label": "Labour's Welsh Heartland",
+    "category": "politics",
+    "articleCount": 1
   }
 }
