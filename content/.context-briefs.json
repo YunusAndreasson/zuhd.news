@@ -179212,5 +179212,1334 @@
     "label": "Biosimilars & Macular Degeneration",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-05-15-arxiv-ai-slop-ban-one-year-preprint-moderation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT ARXIV ACTUALLY IS",
+        "body": "arXiv is not a journal. It is a preprint server founded at Los Alamos in 1991 by physicist Paul Ginsparg, designed to circulate papers *before* peer review. The entire culture of physics, math, and now machine learning shifted to posting first and submitting to journals later — or never.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In machine learning especially, the *journal* layer has nearly vanished — conferences like **NeurIPS** and **ICML** are the prestige venues, and arXiv is where the actual reading happens."
+          }
+        ]
+      },
+      {
+        "heading": "THE MODERATION MODEL",
+        "body": "arXiv has always relied on volunteer moderators — working researchers who screen submissions for basic legitimacy, not correctness. The endorsement system requires new authors to be vouched for by established ones. This was sufficient when the cost of writing a fake paper was a graduate student's month; LLMs collapsed that cost to minutes."
+      },
+      {
+        "heading": "WHY JOURNALS FAILED FIRST",
+        "body": "Peer review is unpaid labor done by overworked academics. A reviewer who suspects AI generation has no efficient way to prove it — detection tools are unreliable, and editors are reluctant to reject on suspicion alone. The pipeline that arXiv assumed would catch slop downstream simply isn't catching it."
+      },
+      {
+        "heading": "THE INVERTED GATEKEEPER",
+        "body": "arXiv now demands prior peer-reviewed publication before reinstatement — the opposite of its founding premise, which was to *escape* journal gatekeeping. A preprint server is being forced to act like a journal because journals stopped acting like journals.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was arXiv originally created to bypass?",
+            "options": [
+              "Slow and gatekept journal publishing",
+              "Government classification of physics research",
+              "University tenure committees",
+              "Copyright restrictions on scientific papers"
+            ],
+            "correct": 0,
+            "explanation": "Ginsparg built arXiv in 1991 so physicists could share preprints instantly, routing around the months-long delays of traditional journals."
+          }
+        ]
+      },
+      {
+        "heading": "THE SCALE PROBLEM",
+        "body": "arXiv now receives over 20,000 submissions per month, with computer science the fastest-growing category. Volunteer moderation scales linearly; LLM-generated submissions scale with compute. The arithmetic does not work, which is why bans — a blunt instrument — have replaced screening.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Computer science",
+                "value": "~8,000/mo",
+                "weight": 8000,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Physics",
+                "value": "~5,500/mo",
+                "weight": 5500,
+                "tone": "neutral"
+              },
+              {
+                "label": "Mathematics",
+                "value": "~4,000/mo",
+                "weight": 4000,
+                "tone": "neutral"
+              },
+              {
+                "label": "Quant biology",
+                "value": "~900/mo",
+                "weight": 900,
+                "tone": "favorable"
+              },
+              {
+                "label": "Economics",
+                "value": "~400/mo",
+                "weight": 400,
+                "tone": "favorable"
+              }
+            ],
+            "label": "arXiv monthly submissions by category, recent"
+          }
+        ]
+      },
+      {
+        "heading": "THE GINSPARG WARNING",
+        "body": "Ginsparg himself wrote a 2021 essay warning that arXiv's openness was being exploited by predatory authors padding citation counts and CVs. The current ban is the institutional acknowledgement of a problem the founder named four years before the moderation system formally cracked."
+      }
+    ],
+    "generatedAt": "2026-05-17T04:29:26.188Z",
+    "label": "arXiv & Preprint Moderation",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-15-pakistan-iran-transit-corridors-gwadar-gabd-hormuz-bypass": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHOKEPOINT PROBLEM",
+        "body": "Roughly a fifth of global oil and a third of seaborne LNG transits the Strait of Hormuz. For Iran, every barrel exported by sea passes within range of US Fifth Fleet patrols out of Bahrain — which is the entire point of the sanctions regime.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              38243,
+              53789,
+              41751,
+              30719,
+              22824,
+              22683,
+              20350,
+              15181,
+              11486,
+              9329,
+              10790,
+              11944,
+              10521,
+              10716,
+              9440,
+              8343,
+              9010,
+              20463,
+              20437,
+              15167,
+              13152,
+              10845,
+              7500,
+              7596,
+              9653,
+              8493,
+              7630,
+              8119,
+              7756,
+              6560
+            ],
+            "periods": [
+              "Apr 17",
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16"
+            ],
+            "label": "Strait of Hormuz — Wikipedia views",
+            "unit": "views/day",
+            "highlight": "max",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY OVERLAND MATTERS",
+        "body": "Sanctions enforcement is built around maritime interdiction: ship-to-ship transfers, port inspections, insurance blacklists, satellite tracking of tankers going dark. A truck crossing a land border is administratively invisible to the same toolkit. Overland routes are sanctions arbitrage by geography.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IR",
+              "AF",
+              "OM",
+              "AE"
+            ],
+            "label": "the bypass geography",
+            "markers": [
+              {
+                "lat": 25.1264,
+                "lng": 62.3225,
+                "label": "Gwadar port"
+              },
+              {
+                "lat": 25.1167,
+                "lng": 61.5833,
+                "label": "Gabd border crossing"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 27.1833,
+                "lng": 56.2833,
+                "label": "Bandar Abbas"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "GWADAR'S ORIGIN STORY",
+        "body": "Gwadar was Omani territory until 1958, when Pakistan bought it for $3m. China funded its deepwater port as the maritime terminus of the China-Pakistan Economic Corridor — a $62bn initiative meant to give Beijing an Indian Ocean outlet that bypasses the Malacca Strait. Now Iran gets to use the same logic in reverse.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The same port built to give *China* a bypass of one chokepoint (**Malacca**) is now being wired to give *Iran* a bypass of another (**Hormuz**). One piece of infrastructure, two strategic problems."
+          }
+        ]
+      },
+      {
+        "heading": "THE BALOCH PROBLEM",
+        "body": "The corridor runs through Balochistan on both sides of the border — a region where Baloch nationalist insurgents have attacked Chinese engineers, Iranian border guards, and Pakistani convoys for two decades. Securing 600km of road through hostile terrain is a separate, unsolved problem from building it.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "BLA (Baloch Liberation Army)",
+                "role": "separatist insurgents, Pakistani side",
+                "cc": "PK"
+              },
+              {
+                "name": "Jaish al-Adl",
+                "role": "Sunni Baloch militants, Iranian side",
+                "cc": "IR"
+              },
+              {
+                "name": "Frontier Corps",
+                "role": "Pakistani paramilitary",
+                "cc": "PK"
+              },
+              {
+                "name": "IRGC Ground Forces",
+                "role": "Iranian border security",
+                "cc": "IR"
+              }
+            ],
+            "label": "who actually controls the corridor terrain"
+          }
+        ]
+      },
+      {
+        "heading": "THE MEDIATOR CALCULATION",
+        "body": "Pakistan brokered the March 2023 Saudi-Iran normalization talks alongside China and hosts the Organisation of Islamic Cooperation secretariat. Islamabad reads its diplomatic utility as a shield: Washington needs Pakistan-as-channel to Tehran more than it needs to punish Pakistan-as-conduit for Tehran. The bet is that ambiguity has value the US won't burn.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What gives Pakistan the most leverage to defy US sanctions enforcement here?",
+            "options": [
+              "Its nuclear arsenal",
+              "Its role as a mediator channel to Iran and the Taliban",
+              "Its membership in BRICS",
+              "Its trade surplus with the US"
+            ],
+            "correct": 1,
+            "explanation": "Pakistan is one of the few capitals with working channels to Tehran, Kabul, and Riyadh simultaneously — that brokerage role is harder to replace than to sanction."
+          }
+        ]
+      },
+      {
+        "heading": "THE RUPEE PRESSURE",
+        "body": "Pakistan ran out of dollars in 2023 and survives on a rotating series of IMF programs. Any transit revenue from Iranian trade is denominated in something — barter, yuan, gold, rupees — that the IMF program technically permits but the US Treasury can complicate. The corridor's economics depend on payment rails the sanctions regime hasn't yet closed.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              279.298672,
+              279.298672,
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887
+            ],
+            "periods": [
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 1
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Wikipedia pageviews · as of 2026-05-16",
+      "Open Exchange Rates · as of 2026-05-17"
+    ],
+    "generatedAt": "2026-05-17T04:29:58.619Z",
+    "label": "Overland Bypass of Hormuz",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-15-vera-rubin-lsst-first-light-asteroids-supernovae-interstellar": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INSTRUMENT",
+        "body": "Rubin's 8.4-meter mirror feeds the largest digital camera ever built — 3.2 gigapixels, the size of a small car. A single exposure covers 40 times the area of the full moon. The whole southern sky is reimaged every three to four nights.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "One image is **3.2 gigapixels** — a stadium screen of pixels per snapshot, ~**20 terabytes** of raw data per night."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A SURVEY, NOT A TARGET",
+        "body": "Traditional telescopes point at one object on request. Rubin does the opposite: it stares at everything, all the time, building a time-lapse of the universe. The science isn't in any single image — it's in the differences between tonight's image and last week's.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CL",
+              "AR",
+              "PE",
+              "BO"
+            ],
+            "label": "Chile's high-altitude telescope cluster",
+            "caption": "Atacama's dry air and stable atmosphere host most major optical observatories",
+            "markers": [
+              {
+                "lat": -30.2407,
+                "lng": -70.7366,
+                "label": "Cerro Pachón summit"
+              },
+              {
+                "lat": -29.2563,
+                "lng": -70.7383,
+                "label": "Cerro Tololo (CTIO)"
+              },
+              {
+                "lat": -24.6275,
+                "lng": -70.4044,
+                "label": "Paranal (VLT)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE NAMESAKE",
+        "body": "Vera Rubin's 1970s observations of galaxy rotation curves showed stars at the edges of galaxies orbiting as fast as those near the center — physically impossible unless vast invisible mass surrounded them. Her work made dark matter undeniable. The telescope bearing her name is built to map exactly that invisible structure."
+      },
+      {
+        "heading": "DARK ENERGY, THE TARGET",
+        "body": "Roughly 68% of the universe is dark energy — the unknown force accelerating cosmic expansion. Rubin will measure how galaxy clusters grew over billions of years, and the growth rate constrains what dark energy actually is. This is the single largest open question in physics.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Dark energy",
+                "value": 68,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Dark matter",
+                "value": 27,
+                "tone": "neutral"
+              },
+              {
+                "label": "Ordinary matter",
+                "value": 5,
+                "tone": "favorable"
+              }
+            ],
+            "label": "composition of the universe"
+          }
+        ]
+      },
+      {
+        "heading": "INTERSTELLAR VISITORS",
+        "body": "Until 2017, no object from outside the solar system had ever been observed. Then ʻOumuamua appeared, followed by comet Borisov in 2019. Rubin is expected to find dozens per year — a sample size that turns interstellar objects from curiosities into a population to study.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many confirmed interstellar objects had been detected before Rubin began operations?",
+            "options": [
+              "Zero",
+              "Two",
+              "Around twenty",
+              "Over a hundred"
+            ],
+            "correct": 1,
+            "explanation": "Only ʻOumuamua (2017) and 2I/Borisov (2019) had been confirmed — Rubin is expected to find dozens per year."
+          }
+        ]
+      },
+      {
+        "heading": "THE DATA FIREHOSE",
+        "body": "Every night Rubin generates ~20 terabytes of images and roughly 10 million alerts — notifications that something in the sky changed. No human can review that volume; the pipeline is built around machine classifiers that route alerts to brokers for follow-up within 60 seconds."
+      }
+    ],
+    "generatedAt": "2026-05-17T04:30:32.896Z",
+    "label": "The Rubin Survey",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-16-frontier-llm-ctf-format-collapse-infosec-training": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A CTF ACTUALLY IS",
+        "body": "Capture-the-flag contests hide a string — the 'flag' — behind a vulnerability. Solving means exploiting a buggy binary, cracking a weak cipher, or reversing obfuscated code to retrieve it. The format was invented at DEF CON in 1996 and became the dominant on-ramp into offensive security.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The five canonical categories are **pwn** (binary exploitation), **rev** (reverse engineering), **web**, **crypto**, and **forensics** — a taxonomy that has barely changed in two decades."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE FORMAT WORKED",
+        "body": "CTFs compressed a multi-year apprenticeship into a weekend. A student who could not afford a pentest internship could still build a public scoreboard ranking, which hiring managers at NSA, Google Project Zero, and Trail of Bits learned to read as a credential. The format democratized entry into a field that otherwise gatekept through clearances and referrals."
+      },
+      {
+        "heading": "THE AGENT PROBLEM",
+        "body": "A medium CTF challenge typically requires recognizing a vulnerability class, writing exploit code, and iterating against a remote service — exactly the loop a coding agent runs natively. When the model can read the binary, propose an exploit, run it, parse the error, and retry, the human's edge collapses to whoever scripts the orchestration fastest.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which CTF category is hardest for current LLM agents to one-shot?",
+            "options": [
+              "Web exploitation",
+              "Cryptography puzzles",
+              "Hardware/physical side-channel",
+              "Binary reverse engineering"
+            ],
+            "correct": 2,
+            "explanation": "Hardware challenges need physical probes, oscilloscopes, or custom rigs — the one category an agent in a sandbox cannot touch. Everything text-in/text-out is increasingly automated."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT: CHESS ENGINES",
+        "body": "Correspondence chess — once a serious competitive format — effectively ended when engines surpassed grandmasters in the 2000s. The remaining human tournaments moved to fast time controls and in-person, screen-free settings. CTFs are repeating the migration two decades later for the same reason: a format that allowed remote, time-unlimited play cannot survive a tool that plays it perfectly.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1997",
+                "label": "Deep Blue beats Kasparov"
+              },
+              {
+                "year": "2005",
+                "label": "Correspondence chess engines dominant",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2016",
+                "label": "AlphaGo beats Lee Sedol"
+              },
+              {
+                "year": "2023",
+                "label": "GPT-4 solves easy CTFs"
+              },
+              {
+                "year": "2025",
+                "label": "Opus 4.5 one-shots medium CTFs"
+              }
+            ],
+            "label": "format collapse by AI"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IN-PERSON IS THE FIX",
+        "body": "Closed, in-person events with no internet access and supervised hardware shift the bottleneck back to what a human knows under time pressure. DEF CON Finals has always run this way; what changes is that qualifier rounds — historically remote — now have to follow suit, which raises the cost of competing and narrows the talent funnel CTFs were designed to widen."
+      },
+      {
+        "heading": "THE DEFENSIVE FLIP",
+        "body": "The same agents that solve CTFs also scan real codebases. A vulnerability class that takes a competitor 40 minutes in a contest takes an attacker the same 40 minutes against production software. The training-pipeline crisis and the defender-pipeline crisis are the same event, viewed from two angles.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Industry calls this *offense-defense asymmetry collapse* — when the cost of finding a bug falls toward the cost of patching one, the attacker's structural advantage shrinks but only if defenders deploy the same tools at the same speed."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-17T04:31:05.837Z",
+    "label": "CTFs & Security Training",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-16-haddad-qassam-brigades-assassination-sharm-ceasefire-breach": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO THE QASSAM BRIGADES ARE",
+        "body": "The Izz ad-Din al-Qassam Brigades are Hamas's armed wing, named after a Syrian-born preacher killed by British forces in 1935 while leading an armed revolt against the Mandate. The name itself is a claim of continuity with anti-colonial resistance, not just a militant brand.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Qassam was killed near *Ya'bad* in 1935. His funeral triggered the **Great Palestinian Revolt of 1936–1939** — the largest anti-British uprising in Mandate Palestine, suppressed with collective punishment, home demolitions, and mass detention. The tactics used then are the tactics in use now."
+          }
+        ]
+      },
+      {
+        "heading": "THE DOCTRINE OF TARGETED KILLING",
+        "body": "Israel formalized targeted killings as state policy during the Second Intifada (2000–2005). The Supreme Court ruled in 2006 that they were lawful under specific conditions — imminent threat, no feasible arrest, proportionality. In practice, the conditions have been read expansively, and senior commanders have been killed in their homes alongside family members.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2000",
+                "label": "Second Intifada begins",
+                "emphasis": "start"
+              },
+              {
+                "year": "2002",
+                "label": "Salah Shehade strike kills 14 civilians"
+              },
+              {
+                "year": "2004",
+                "label": "Sheikh Yassin killed leaving dawn prayer",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2004",
+                "label": "Rantisi killed weeks later"
+              },
+              {
+                "year": "2006",
+                "label": "Israeli Supreme Court legalizes practice"
+              },
+              {
+                "year": "2012",
+                "label": "Ahmed Jabari killed, opens Pillar of Defense"
+              },
+              {
+                "year": "2024",
+                "label": "Ismail Haniyeh killed in Tehran"
+              },
+              {
+                "year": "2024",
+                "label": "Yahya Sinwar killed in Rafah"
+              }
+            ],
+            "label": "the targeted-killing arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CEASEFIRES BREAK ON THIS",
+        "body": "Targeted killings sit in a legal gray zone in every modern ceasefire text. Israel reads ceasefires as halting ground operations and rocket exchanges, not intelligence-driven strikes against named commanders. Hamas reads any lethal action as termination. Sharm el-Sheikh, Cairo 2014, Oslo's interim phases — every framework has fractured on this exact ambiguity.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What ended the 2012 Cairo ceasefire negotiations between Israel and Hamas?",
+            "options": [
+              "A Hamas rocket barrage from southern Gaza",
+              "Israel's targeted killing of Ahmed Jabari hours after he received a draft truce text",
+              "A Mossad operation in Khartoum",
+              "An Egyptian mediator withdrawing"
+            ],
+            "correct": 1,
+            "explanation": "Jabari was killed on November 14, 2012 while reportedly reviewing an Egyptian-brokered long-term truce. The strike triggered Operation Pillar of Defense."
+          }
+        ]
+      },
+      {
+        "heading": "THE SHARM EL-SHEIKH FRAMEWORK",
+        "body": "Sharm el-Sheikh is the Egyptian resort on the Sinai's southern tip that has hosted Arab-Israeli negotiations since the 1990s. Its ceasefires are characteristically Egyptian: detailed on prisoner exchanges and aid corridors, deliberately vague on intelligence operations and reserved rights — gaps that each side later fills in its own direction.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "PS",
+              "EG",
+              "JO",
+              "LB"
+            ],
+            "label": "the mediation geography",
+            "markers": [
+              {
+                "lat": 27.9158,
+                "lng": 34.33,
+                "label": "Sharm el-Sheikh"
+              },
+              {
+                "lat": 30.0444,
+                "lng": 31.2357,
+                "label": "Cairo (mediator)"
+              },
+              {
+                "lat": 31.5,
+                "lng": 34.45,
+                "label": "Gaza City"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE COMMAND CHAIN PROBLEM",
+        "body": "Hamas rebuilds command faster than Israel can decapitate it. Yassin to Rantisi took weeks. Haniyeh to Sinwar took months. The brigades have a deep bench of mid-tier commanders by design — a structural lesson learned from the PLO's experience in Beirut in 1982, when one decapitation strike could paralyze an entire organization."
+      }
+    ],
+    "generatedAt": "2026-05-17T04:31:38.424Z",
+    "label": "Targeted Killings & Ceasefires",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-17-cambridge-as-level-paper-leak-pakistan-credentialing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CREDENTIAL EXPORT",
+        "body": "Cambridge International Education, a department of the University of Cambridge, sets and marks O/A-Level exams sat by roughly a million students in 160 countries each year. The product is not teaching — it is the signature on the certificate. Pakistani students pay in dollars for a UK-issued grade because domestic boards are not trusted by foreign universities.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The British exam boards — **Cambridge International** and **Pearson Edexcel** — together dominate Pakistan's elite secondary market. A Cambridge A-Level in math reads the same to an admissions officer in Toronto whether it was sat in Lahore or London."
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO-TIER SYSTEM",
+        "body": "Pakistan runs parallel secondary systems: the Federal and provincial boards (Matric/FSc, Urdu-medium, cheap) and the Cambridge stream (O/A-Level, English-medium, ~30x the fee). The Cambridge stream feeds the civil service, foreign universities, and the corporate sector. A leak in the Cambridge paper hits the children of the country's professional class — and the credibility of the only credential they trusted.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Matric (FBISE)",
+                "value": "~PKR 500",
+                "tone": "favorable"
+              },
+              {
+                "label": "FSc (BISE)",
+                "value": "~PKR 800",
+                "tone": "favorable"
+              },
+              {
+                "label": "Cambridge O-Level",
+                "value": "~PKR 18,000",
+                "tone": "neutral"
+              },
+              {
+                "label": "Cambridge A-Level",
+                "value": "~PKR 22,000",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "approximate per-paper exam fees in Pakistan"
+          }
+        ]
+      },
+      {
+        "heading": "WHY LEAKS SPREAD",
+        "body": "Cambridge ships sealed papers to thousands of centres worldwide weeks ahead of the exam date. The same paper is sat across multiple time zones — Karachi sits hours before London — which means any breach in an early-zone centre can propagate via WhatsApp before later centres open their envelopes. The architecture assumes physical security at every node; in practice, the chain is only as strong as its weakest invigilator."
+      },
+      {
+        "heading": "THE ENFORCEMENT GAP",
+        "body": "Cambridge can void results, ban centres, and refuse to re-enter candidates — but it cannot prosecute. Criminal liability for paper theft sits with Pakistani authorities under the Prevention of Electronic Crimes Act (2016) and provincial penal codes. The credentialing power is foreign; the police power is domestic; neither is sufficient alone.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the structural problem with offshore credentialing: the body that *owns the brand* has no badge, and the body that *has the badge* doesn't own the brand. A leak exposes the seam."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Cambridge has voided papers before — Pakistan in 2014, Sri Lanka in 2017, Bangladesh in 2020 — each time with the same pattern: leak detected late, follow-on paper cancelled, students forced to resit. The remedy punishes the cohort, not the leakers, because Cambridge's only lever is the certificate itself.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When Cambridge International confirms a paper leak, what is its standard remedy?",
+            "options": [
+              "Prosecute the centre staff responsible",
+              "Void affected results and require students to resit",
+              "Reduce the grade boundaries to compensate honest students",
+              "Issue a public apology and let original results stand"
+            ],
+            "correct": 1,
+            "explanation": "Cambridge has no police power abroad — its only lever is the credential, so the standard remedy is to void and re-test, which falls on the cohort rather than the leakers."
+          }
+        ]
+      },
+      {
+        "heading": "THE DOMESTIC SIGNAL",
+        "body": "Pakistan's own boards have a long history of leaked papers — so common that the term 'paper out' is colloquial. The Cambridge stream's value proposition was precisely that it didn't happen there. A confirmed Cambridge leak collapses the premium the parent paid for and pushes the question back onto the state: if even the foreign exam isn't safe, what credential is?"
+      }
+    ],
+    "generatedAt": "2026-05-17T04:32:12.898Z",
+    "label": "Cambridge & Offshore Credentialing",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-17-cassidy-louisiana-primary-loss-trump-impeachment-purge": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SEVEN",
+        "body": "Seven Republican senators voted to convict Trump in the February 2021 impeachment trial — the most bipartisan conviction vote in US history, though still 10 short of the two-thirds needed. With Cassidy's loss, six of the seven are now out of the Senate. Only Murkowski survives, protected by Alaska's ranked-choice ballot.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Bill Cassidy",
+                "role": "Defeated in primary",
+                "years": "2026",
+                "cc": "US"
+              },
+              {
+                "name": "Mitt Romney",
+                "role": "Retired",
+                "years": "2024",
+                "cc": "US"
+              },
+              {
+                "name": "Pat Toomey",
+                "role": "Retired",
+                "years": "2022",
+                "cc": "US"
+              },
+              {
+                "name": "Richard Burr",
+                "role": "Retired",
+                "years": "2022",
+                "cc": "US"
+              },
+              {
+                "name": "Ben Sasse",
+                "role": "Resigned for university post",
+                "years": "2023",
+                "cc": "US"
+              },
+              {
+                "name": "Susan Collins",
+                "role": "Still serving",
+                "years": "to 2026",
+                "cc": "US"
+              },
+              {
+                "name": "Lisa Murkowski",
+                "role": "Still serving",
+                "years": "to 2028",
+                "cc": "US"
+              }
+            ],
+            "label": "the seven conviction voters"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE SUPERMAJORITY",
+        "body": "The Constitution sets conviction at two-thirds of senators present — a deliberately high bar drawn from English impeachment practice. Hamilton argued in Federalist 65 that a simple majority would make impeachment a routine partisan weapon. No US president has ever been removed by Senate conviction.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Judgment in Cases of Impeachment shall not extend further than to removal from Office, and disqualification to hold and enjoy any Office of honor, Trust or Profit under the United States.",
+            "speaker": "US Constitution, Article I §3"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRIMARY WEAPON",
+        "body": "In closed primaries, the median voter is far more partisan than the median general-election voter. A senator who votes against the party's base on a defining issue can win 55% statewide and still lose a primary 35-65. The mechanism is structural, not personal — and it's why intra-party discipline has tightened across both parties since the 2010s.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **primary-electorate capture** — when the activist base controls candidate selection, the office-holder's incentive shifts from *representing the state* to *surviving the primary*."
+          }
+        ]
+      },
+      {
+        "heading": "LOUISIANA'S JUNGLE",
+        "body": "Louisiana uses a 'jungle primary' — all candidates from every party run together; if no one clears 50%, the top two advance to a runoff regardless of party. It was designed by Edwin Edwards in 1975 to weaken party machines. In practice it lets the dominant party stage its internal fight as the real election.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In Louisiana's jungle primary, what happens if no candidate gets over 50%?",
+            "options": [
+              "The top vote-getter wins outright",
+              "The top two advance to a runoff regardless of party",
+              "Each party holds a separate runoff",
+              "The state legislature decides"
+            ],
+            "correct": 1,
+            "explanation": "All candidates run on one ballot; the top two — even if both are Republicans — face off in a runoff. Party affiliation doesn't gate advancement."
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL ECHO",
+        "body": "Party purges of dissenters are not new. After the 1938 midterms, FDR tried to defeat conservative Democrats who blocked his court-packing plan — and mostly failed. What's changed is the primary calendar: incumbents now face mandatory intra-party tests every cycle, where FDR had to engineer challenges from scratch."
+      }
+    ],
+    "generatedAt": "2026-05-17T04:32:45.375Z",
+    "label": "The Impeachment Purge",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-17-india-supreme-court-judges-34-38-ordinance-pendency": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ORDINANCE ROUTE",
+        "body": "Article 123 of India's Constitution lets the President promulgate ordinances when Parliament is not in session — temporary laws with full statutory force. They lapse six weeks after Parliament reconvenes unless ratified. The mechanism exists for emergencies but is routinely used to bypass legislative debate.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "An ordinance is *executive lawmaking* — the President acts on the **cabinet's advice**, not her own judgment. The constitutional architecture treats the President as a rubber stamp for the Prime Minister's office in this domain."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 34 WAS THE CEILING",
+        "body": "The Supreme Court's strength was fixed at 8 judges in 1950, expanded to 11, 14, 18, 26, 31, and then 34 in 2019. Each expansion required a parliamentary amendment to the Supreme Court (Number of Judges) Act. Doing it by ordinance compresses what was historically a deliberated process into a cabinet decision.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1950",
+                "label": "8 judges (founding strength)",
+                "emphasis": "start"
+              },
+              {
+                "year": "1956",
+                "label": "11 judges"
+              },
+              {
+                "year": "1960",
+                "label": "14 judges"
+              },
+              {
+                "year": "1977",
+                "label": "18 judges"
+              },
+              {
+                "year": "1986",
+                "label": "26 judges"
+              },
+              {
+                "year": "2009",
+                "label": "31 judges"
+              },
+              {
+                "year": "2019",
+                "label": "34 judges"
+              },
+              {
+                "year": "2026",
+                "label": "38 judges (by ordinance)",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "Supreme Court bench expansions"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT PENDENCY ACTUALLY MEANS",
+        "body": "India's judiciary holds roughly 50 million pending cases across all levels — the Supreme Court's 95,000 is a sliver of the total. The bottleneck is rarely the apex court; it is the district courts where evidence is recorded and witnesses examined. Adding judges at the top tier filters fewer cases up but does not unclog the base.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "District courts",
+                "value": "~45mn",
+                "weight": 45000000,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "High Courts",
+                "value": "~6mn",
+                "weight": 6000000,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Supreme Court",
+                "value": "~95k",
+                "weight": 95000,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Pending cases by tier (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE COLLEGIUM PROBLEM",
+        "body": "India is the only major democracy where judges appoint judges. The collegium — five senior Supreme Court justices — recommends names; the government can object but ultimately must accept reiterations. Expanding seats does nothing if the collegium and the executive cannot agree on whom to elevate, and historically vacancies persist for months."
+      },
+      {
+        "heading": "WHY HEADCOUNT WON'T FIX IT",
+        "body": "The Supreme Court sits in division benches of 2 or 3 judges, not en banc. More judges means more parallel benches, but also more inconsistent rulings across benches that the Chief Justice then has to reconcile through larger constitutional benches. The structural reformers want case-management software, mandatory mediation, and limits on adjournments — none of which require a constitutional ordinance.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How does the Indian Supreme Court typically hear cases?",
+            "options": [
+              "En banc — all judges sit together on every case",
+              "In division benches of 2 or 3 judges working in parallel",
+              "One judge per case, like a trial court",
+              "Rotating panels of 9 judges, like the US Supreme Court"
+            ],
+            "correct": 1,
+            "explanation": "The Court splits into multiple small benches running in parallel; only constitutional questions are referred to larger 5, 7, or 9-judge benches."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-17T04:33:13.224Z",
+    "label": "India's Supreme Court & the Pendency Crisis",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-17-moscow-khimki-drone-civilian-deaths-ukraine-escalation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY KHIMKI MATTERS",
+        "body": "Khimki sits just northwest of Moscow's MKAD ring road, inside the inner suburbs and under the protective umbrella of the capital's air defense system. A drone landing in Khimki is not a stray — it is a drone that flew through the densest concentration of S-400 and Pantsir batteries in Russia.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "UA",
+              "BY"
+            ],
+            "label": "Moscow suburbs hit overnight",
+            "markers": [
+              {
+                "lat": 55.897,
+                "lng": 37.4297,
+                "label": "Khimki"
+              },
+              {
+                "lat": 55.9116,
+                "lng": 37.7307,
+                "label": "Mytishchi"
+              },
+              {
+                "lat": 55.9075,
+                "lng": 36.8686,
+                "label": "Istra"
+              },
+              {
+                "lat": 55.7558,
+                "lng": 37.6173,
+                "label": "Moscow center"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DISTANCE PROBLEM",
+        "body": "Khimki is roughly 450 km from the nearest Ukrainian-controlled territory. A drone that reaches it has crossed the entire Bryansk-Kaluga air defense belt and the Moscow A-135 anti-ballistic ring. Each successful strike is a data point on how far the seams have opened.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Ukraine's long-range strike fleet leans on the **Liutyi** — a domestically built propeller drone with roughly **2,000 km** range, derived from the same aerodynamic family as Iran's *Shahed-136*. Cost per airframe is widely reported in the low **tens of thousands of dollars**; a single S-400 interceptor missile costs **over a million**."
+          }
+        ]
+      },
+      {
+        "heading": "THE ECONOMICS OF ATTRITION",
+        "body": "A cheap drone forces an expensive interceptor. This is the same asymmetry that made naval mines decisive in the Tanker War and that drove the Houthi Red Sea campaign. The defender wins every engagement and still loses the budget war.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Shahed-style drone",
+                "value": "~$30-50k",
+                "tone": "favorable",
+                "weight": 40
+              },
+              {
+                "label": "Liutyi (Ukrainian)",
+                "value": "~$200k",
+                "tone": "neutral",
+                "weight": 200
+              },
+              {
+                "label": "Pantsir-S1 round",
+                "value": "~$500k",
+                "tone": "unfavorable",
+                "weight": 500
+              },
+              {
+                "label": "S-400 interceptor",
+                "value": "~$1-2m",
+                "tone": "unfavorable",
+                "weight": 1500
+              }
+            ],
+            "label": "cost per shot, approximate"
+          }
+        ]
+      },
+      {
+        "heading": "THE TARGETING DOCTRINE",
+        "body": "Kyiv's stated policy is to strike military and energy infrastructure inside Russia — refineries, airbases, depots. Civilian apartment buildings in Moscow suburbs are not on that target list; they are typically the result of interception debris, guidance failure, or terminal-phase electronic jamming pushing a drone off course."
+      },
+      {
+        "heading": "WHY KYIV DOESN'T CLAIM",
+        "body": "Ukraine routinely avoids claiming strikes on Russian soil even when authorship is obvious. The ambiguity preserves plausible deniability with Western capitals whose donated weapons carry use restrictions, and denies Moscow a clean propaganda frame for retaliation against named Ukrainian commanders or units.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Kyiv rarely officially claim drone strikes deep inside Russia?",
+            "options": [
+              "The strikes are actually carried out by Russian partisans, not Ukraine",
+              "To preserve ambiguity around Western-supplied weapons and use restrictions",
+              "Ukrainian law forbids public acknowledgement of cross-border operations",
+              "Russia jams claim announcements before they reach foreign media"
+            ],
+            "correct": 1,
+            "explanation": "Donor restrictions on Western weapons and the value of strategic ambiguity make non-claiming the default — even when authorship is obvious."
+          }
+        ]
+      },
+      {
+        "heading": "THE MOSCOW AIR DEFENSE RING",
+        "body": "Moscow is the only city in the world ringed by a dedicated nuclear-armed anti-ballistic missile system — the A-135, with 68 silo-based interceptors designed in the Cold War to defeat a US first strike. It was built to stop ICBMs from North Dakota, not propeller drones flying at 200 km/h and 100 meters altitude."
+      }
+    ],
+    "generatedAt": "2026-05-17T04:33:46.608Z",
+    "label": "Drone Warfare & the Moscow Ring",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-17-texas-county-datacenter-construction-ban-states-power-water": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LOAD PROBLEM",
+        "body": "A single hyperscale AI datacenter draws 100-300 megawatts — roughly what a city of 200,000 people consumes. A cluster of them on one grid node can exceed the firm capacity the local utility was built to deliver, forcing either new generation or rationing of existing customers.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The constraint is **firm capacity** — power available on the hottest day at peak demand — not nameplate generation. Adding solar doesn't relax it; adding gas peakers or batteries does."
+          }
+        ]
+      },
+      {
+        "heading": "THE WATER MECHANIC",
+        "body": "Evaporative cooling — the cheapest way to shed heat from server rooms — consumes roughly 1.8 liters of water per kilowatt-hour of compute. A 100MW facility running flat out evaporates millions of liters daily, water that exits the watershed as vapor rather than returning to the aquifer.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US"
+            ],
+            "label": "the three pressure points",
+            "markers": [
+              {
+                "lat": 32.7767,
+                "lng": -96.797,
+                "label": "Dallas-Fort Worth cluster"
+              },
+              {
+                "lat": 38.9072,
+                "lng": -77.436,
+                "label": "Loudoun County, VA"
+              },
+              {
+                "lat": 40.7608,
+                "lng": -111.891,
+                "label": "Salt Lake City corridor"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TAX BARGAIN, REVISITED",
+        "body": "Through the 2010s, states competed to attract datacenters with sales-tax exemptions on servers, property-tax abatements, and discounted industrial power rates. The pitch was jobs and ratables; the reality is 30-50 permanent positions per facility and rate-base costs that residential ratepayers absorb when new transmission gets built.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hyperscale AI",
+                "value": "100-300 MW",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Permanent jobs",
+                "value": "~40",
+                "tone": "neutral"
+              },
+              {
+                "label": "Construction jobs",
+                "value": "~1,500 peak",
+                "tone": "favorable"
+              },
+              {
+                "label": "City of 200k",
+                "value": "~200 MW",
+                "tone": "neutral"
+              }
+            ],
+            "label": "datacenter footprint vs jobs"
+          }
+        ]
+      },
+      {
+        "heading": "THE PREEMPTION QUESTION",
+        "body": "US zoning power sits with counties and municipalities under state enabling acts — the same authority that governs strip malls and feedlots. There is no federal datacenter siting statute analogous to the Natural Gas Act for pipelines or the Atomic Energy Act for reactors. A county ban is legally durable until a state legislature overrides it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Compare nuclear plants: the NRC preempts local objections. Compare datacenters: a single county commission can stop a $5bn facility. The asymmetry is why the industry is now lobbying state legislatures, not Washington."
+          }
+        ]
+      },
+      {
+        "heading": "VIRGINIA AS THE PRECEDENT",
+        "body": "Loudoun County, Virginia hosts roughly 70% of global internet traffic through datacenter alley — the densest concentration on earth. Dominion Energy now warns it cannot meet demand growth without new gas plants; residents have organized against transmission corridors cutting through historic battlefields. The Texas fight is Loudoun's, two years later.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of global internet traffic passes through Loudoun County, Virginia?",
+            "options": [
+              "~20%",
+              "~40%",
+              "~70%",
+              "~95%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 70% — a legacy of MAE-East peering in the 1990s and AWS's us-east-1 region anchoring there."
+          }
+        ]
+      },
+      {
+        "heading": "THE RENEWABLES MISMATCH",
+        "body": "Hyperscalers sign power purchase agreements for solar and wind to claim 100% renewable operations, but the grid serves them with whatever's spinning at 3am. The PPAs add green megawatts to the system on average; the actual hourly load is still met by gas, coal, or nuclear. Texas grid operator ERCOT calls this the 24/7 carbon-free gap."
+      }
+    ],
+    "generatedAt": "2026-05-17T04:34:17.973Z",
+    "label": "Datacenters & Local Power",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-17-who-ebola-drc-pheic-public-health-emergency-strain": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SIX FILOVIRUS SPECIES",
+        "body": "What people call 'Ebola' is actually six distinct species in the Ebolavirus genus. Zaire ebolavirus is the deadliest (up to 90% fatality) and the only one with a licensed vaccine — Ervebo. Sudan, Bundibugyo, Taï Forest, Reston, and Bombali strains have no approved vaccine. A new outbreak's first question is always: which species.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The licensed vaccine **Ervebo** protects against *Zaire ebolavirus only*. Cross-protection against Sudan or Bundibugyo strains is minimal — a different outbreak species means starting from zero."
+          }
+        ]
+      },
+      {
+        "heading": "THE RESERVOIR",
+        "body": "Ebola lives in fruit bats — most likely the hammer-headed bat and two epauletted species across Central African forests. Spillover into humans typically begins with a single contact: butchering bushmeat, entering a bat cave, handling a sick primate. Every outbreak traces back to one index case at the forest edge.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CD",
+              "CG",
+              "GA",
+              "CM",
+              "UG",
+              "SS",
+              "CF"
+            ],
+            "label": "the filovirus belt",
+            "caption": "forested countries where Ebola has spilled over from bat reservoirs"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A PHEIC ACTUALLY DOES",
+        "body": "A Public Health Emergency of International Concern is a legal designation under the 2005 International Health Regulations. It does not deploy troops or doctors — it triggers reporting obligations, unlocks WHO emergency funding, and authorizes temporary recommendations on travel and trade. Crucially, it signals donors to release contingency budgets that sit dormant otherwise.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2009",
+                "label": "H1N1 swine flu pandemic"
+              },
+              {
+                "year": "2014",
+                "label": "polio resurgence"
+              },
+              {
+                "year": "2014",
+                "label": "West Africa Ebola",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2016",
+                "label": "Zika virus"
+              },
+              {
+                "year": "2018",
+                "label": "DRC Ebola (Kivu)"
+              },
+              {
+                "year": "2020",
+                "label": "COVID-19"
+              },
+              {
+                "year": "2022",
+                "label": "mpox"
+              },
+              {
+                "year": "2024",
+                "label": "mpox clade Ib"
+              }
+            ],
+            "label": "every PHEIC ever declared"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DR CONGO, AGAIN",
+        "body": "This is DRC's 15th-recorded Ebola outbreak since the virus was first identified there in 1976 — more than any other country. The Congo Basin's combination of dense forest, bat reservoirs, bushmeat consumption, and weak rural health infrastructure makes recurrence structural, not accidental. The country has institutional memory most others lack; it also has the casualty count to match.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Where was Ebola virus first identified in 1976?",
+            "options": [
+              "Near the Ebola River in what is now DR Congo",
+              "In Uganda's Bwindi forest",
+              "In Sierra Leone during a bushmeat survey",
+              "In a Sudanese cotton factory outbreak"
+            ],
+            "correct": 0,
+            "explanation": "The 1976 outbreak occurred in Yambuku, near the Ebola River in northern Zaire (now DRC) — the virus was named for the river to avoid stigmatizing the village."
+          }
+        ]
+      },
+      {
+        "heading": "THE CASE FATALITY PROBLEM",
+        "body": "Ebola CFR estimates during an active outbreak are always provisional. Deaths are counted faster than recoveries; mild cases go undetected; the denominator is wrong until contact tracing catches up. Historical CFRs have ranged from 25% (Bundibugyo, 2007) to 90% (Zaire, 2003). A 'very high' label this early means the ratio of confirmed deaths to confirmed cases is alarming — not that the true CFR is known."
+      },
+      {
+        "heading": "THE 21-DAY WINDOW",
+        "body": "Ebola's incubation period runs 2 to 21 days. Public health response is built around this: contacts of a confirmed case are monitored for 21 days, and an outbreak is only declared over after 42 days (two incubation cycles) without a new case. The math is unforgiving — one missed contact resets the entire clock.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Survivors remain infectious in *immune-privileged* tissues — eyes, testes, central nervous system — for months. **Sexual transmission** from male survivors has restarted outbreaks more than a year after the original chain was declared closed."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-17T04:34:51.731Z",
+    "label": "Ebola & the PHEIC Mechanism",
+    "category": "science",
+    "articleCount": 1
   }
 }
