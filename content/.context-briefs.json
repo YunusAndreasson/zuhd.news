@@ -181834,5 +181834,1629 @@
     "label": "Labour's Welsh Heartland",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-15-sudan-nashra-ethiopia-credentials-juba-cairo-rsf-defections": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO ARMIES",
+        "body": "Sudan's war is between two generals who once partnered to overthrow a civilian government. The SAF (regular army) under Burhan and the RSF (paramilitary) under Hemedti jointly crushed the 2019 democracy movement, then turned their shared military infrastructure against each other in April 2023.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Abdel Fattah al-Burhan",
+                "role": "SAF commander, de facto head of state",
+                "years": "2019–",
+                "cc": "SD"
+              },
+              {
+                "name": "Mohamed Hamdan Dagalo (Hemedti)",
+                "role": "RSF commander",
+                "years": "2013–",
+                "cc": "SD"
+              }
+            ],
+            "label": "the two commanders"
+          }
+        ]
+      },
+      {
+        "heading": "THE RSF'S ORIGINS",
+        "body": "The RSF evolved from the Janjaweed militias that carried out the Darfur genocide beginning in 2003. The Bashir regime armed Arab militias to fight non-Arab rebels, then formalized them as the Rapid Support Forces in 2013. Hemedti, a former camel trader from Darfur, rose from militia commander to the second most powerful man in Sudan — with troops loyal to him personally, not the state.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The RSF is not a wing of the army; it is a **parallel force** that controls its own gold mines in Darfur and answers to Hemedti, not the general staff. That is why the war did not end at the top — there is no single chain of command to cut."
+          }
+        ]
+      },
+      {
+        "heading": "THE NEIGHBORS' STAKES",
+        "body": "Sudan borders seven countries, and almost every one has a reason to intervene. Egypt backs the SAF to keep the Nile flowing and to deny the UAE-aligned RSF a Red Sea foothold. Ethiopia disputes the al-Fashaga borderland and watches the GERD dam from upstream. South Sudan exports its only oil through Sudanese pipelines.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "EG",
+              "SS",
+              "ET",
+              "TD",
+              "LY",
+              "ER",
+              "CF"
+            ],
+            "label": "Sudan's seven neighbors",
+            "markers": [
+              {
+                "lat": 15.5007,
+                "lng": 32.5599,
+                "label": "Khartoum"
+              },
+              {
+                "lat": 13.6332,
+                "lng": 36.7717,
+                "label": "al-Fashaga (disputed)"
+              },
+              {
+                "lat": 19.6177,
+                "lng": 37.2164,
+                "label": "Port Sudan"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE EXTERNAL BACKERS",
+        "body": "The proxy war behind the proxy war: the UAE supplies the RSF via Chad and Libya's Haftar; Egypt and Saudi Arabia back the SAF; Iran has resupplied SAF drones after a 2024 rapprochement. The 'civil war' framing understates how thoroughly the conflict is funded from outside.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "UAE",
+                "value": "RSF — gold, drones",
+                "cc": "AE",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Egypt",
+                "value": "SAF — air support",
+                "cc": "EG",
+                "tone": "neutral"
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "SAF — diplomacy",
+                "cc": "SA",
+                "tone": "neutral"
+              },
+              {
+                "label": "Iran",
+                "value": "SAF — Mohajer drones",
+                "cc": "IR",
+                "tone": "neutral"
+              },
+              {
+                "label": "Russia (Wagner)",
+                "value": "both — gold for arms",
+                "cc": "RU",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "who backs whom (reported)"
+          }
+        ]
+      },
+      {
+        "heading": "THE PARALLEL STATE",
+        "body": "The RSF's move to bypass Khartoum's aid channels is part of a wider claim to sovereignty. In February 2025 it signed a charter in Nairobi to form a 'Government of Peace and Unity' in territory it controls — the first serious attempt to partition Sudan along the RSF/SAF line since independence in 1956."
+      },
+      {
+        "heading": "THE COST",
+        "body": "Roughly 12 million people have been displaced — the largest displacement crisis in the world. Famine has been formally declared in parts of Darfur and the Nuba Mountains. The Gezira scheme, Sudan's breadbasket, has been overrun and looted; sorghum (the staple, not wheat) has no domestic substitute at scale.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is Sudan's staple grain — the one whose collapse has driven the famine?",
+            "options": [
+              "Wheat",
+              "Sorghum",
+              "Rice",
+              "Maize"
+            ],
+            "correct": 1,
+            "explanation": "Sorghum, grown largely in the Gezira scheme south of Khartoum, is the caloric floor for most Sudanese. When Gezira fell to the RSF in late 2023, there was no domestic substitute."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-17T12:21:35.097Z",
+    "label": "Sudan's War & Its Neighbors",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-17-a7a5-ruble-stablecoin-sanctions-russia-post-sanctions": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY A RUBLE STABLECOIN EXISTS",
+        "body": "SWIFT is the messaging network banks use to confirm cross-border payments. After 2022, major Russian banks were cut off, forcing exporters to settle through informal channels — UAE intermediaries, barter, crypto. A ruble-pegged token sidesteps the messaging layer entirely: the settlement happens on a blockchain, with no correspondent bank in the loop.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The token is named **A7A5** — issued out of Kyrgyzstan, denominated in rubles, marketed to Russian exporters dealing with Asian and Gulf counterparties who can't or won't touch dollar rails."
+          }
+        ]
+      },
+      {
+        "heading": "HOW STABLECOINS ACTUALLY SETTLE",
+        "body": "A stablecoin issuer holds reserve assets — usually short-term government paper and bank deposits — and mints one token per unit of currency deposited. The token moves between wallets in seconds, 24/7, with no bank intermediation. Redemption burns the token and returns the underlying. The peg holds only as long as the reserves do.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "exporter",
+                "label": "Russian exporter"
+              },
+              {
+                "id": "issuer",
+                "label": "Stablecoin issuer"
+              },
+              {
+                "id": "reserves",
+                "label": "Reserve account"
+              },
+              {
+                "id": "chain",
+                "label": "Blockchain"
+              },
+              {
+                "id": "buyer",
+                "label": "Foreign buyer"
+              }
+            ],
+            "links": [
+              {
+                "source": "exporter",
+                "target": "issuer",
+                "value": 100,
+                "label": "deposit rubles"
+              },
+              {
+                "source": "issuer",
+                "target": "reserves",
+                "value": 100,
+                "label": "hold reserves"
+              },
+              {
+                "source": "issuer",
+                "target": "chain",
+                "value": 100,
+                "label": "mint tokens"
+              },
+              {
+                "source": "chain",
+                "target": "buyer",
+                "value": 100,
+                "label": "transfer"
+              },
+              {
+                "source": "buyer",
+                "target": "exporter",
+                "value": 100,
+                "label": "goods/services"
+              }
+            ],
+            "label": "how a cross-border stablecoin trade settles"
+          }
+        ]
+      },
+      {
+        "heading": "THE DOLLAR DOMINANCE PROBLEM",
+        "body": "Nearly all stablecoin volume — over 99% — is denominated in dollars. Tether (USDT) and Circle (USDC) together hold roughly $160bn in US Treasuries, making them collectively a top-20 holder of US government debt. A ruble stablecoin is a structural anomaly: it tries to build sanctions-resistant rails using the same technology that mostly entrenches dollar primacy.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "US dollar",
+                "value": "~$220bn",
+                "tone": "unfavorable",
+                "weight": 99
+              },
+              {
+                "label": "Euro",
+                "value": "~$500m",
+                "tone": "neutral",
+                "weight": 0.3
+              },
+              {
+                "label": "Others (TRY, BRL, RUB…)",
+                "value": "<$200m",
+                "tone": "favorable",
+                "weight": 0.1
+              }
+            ],
+            "label": "stablecoin supply by peg currency"
+          }
+        ]
+      },
+      {
+        "heading": "WHY HONG KONG",
+        "body": "Hong Kong passed a stablecoin licensing regime in 2024 and positioned itself as the Asian crypto hub Singapore declined to be. It is also where Russian and Chinese commodity flows now clear in renminbi and rubles rather than dollars — making it a natural booking center for sanctions-adjacent token issuance that mainland China won't host on its own soil."
+      },
+      {
+        "heading": "THE RETAIL CAP",
+        "body": "The Duma's draft bill capping retail accounts at 300,000 rubles — roughly $3,300 — is not consumer protection. It is a firewall: keep the rail open for trade settlement, keep ordinary Russians from using it as a dollar substitute or a capital-flight channel. Every authoritarian state that has tolerated crypto has eventually drawn this same line.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do governments that allow stablecoins for trade often cap retail use?",
+            "options": [
+              "To prevent money laundering by criminals",
+              "To stop capital flight and preserve domestic currency demand",
+              "To protect retail investors from volatility",
+              "To comply with international banking standards"
+            ],
+            "correct": 1,
+            "explanation": "Stablecoins give citizens a frictionless way to exit the domestic currency. Caps preserve central bank control over the money supply while letting the rail serve trade."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Iran ran a similar experiment after 2018 sanctions, exploring a state-backed crypto rial and tolerating informal USDT corridors through Dubai and Istanbul. The pattern is consistent: sanctioned states don't build alternatives to the dollar — they build workarounds that still ultimately price in dollars or dollar-pegged tokens at the edges.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              76.231514,
+              76.231514,
+              76.231376,
+              74.947786,
+              75.123411,
+              75.876,
+              75.246161,
+              75.185828,
+              75.185828,
+              75.229128,
+              74.873368,
+              75.315304,
+              74.749689,
+              74.94766,
+              74.972582,
+              74.972579,
+              74.935527,
+              75.000725,
+              75.496791,
+              74.745903,
+              74.572447,
+              74.240011,
+              74.240011,
+              74.481524,
+              73.600006,
+              73.827197,
+              74.177267,
+              72.949018,
+              72.7606,
+              72.760611
+            ],
+            "periods": [
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17"
+            ],
+            "label": "Russian ruble",
+            "unit": "RUB / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-17"
+    ],
+    "generatedAt": "2026-05-17T12:22:06.392Z",
+    "label": "Ruble Stablecoins & Sanctions Rails",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-17-bacteriophage-streptococcus-bovis-rumen-livestock": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISCOVERY",
+        "body": "Bacteriophages — viruses that infect bacteria — were independently discovered by Frederick Twort (1915) and Félix d'Hérelle (1917). D'Hérelle coined the name from the Greek phagein, 'to devour,' after watching the agents clear bacterial cultures within hours.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The word *bacteriophage* literally means **bacteria-eater**. Each phage is exquisitely specific — typically infecting one species or even one strain, unlike antibiotics that flatten whole bacterial communities."
+          }
+        ]
+      },
+      {
+        "heading": "THE SOVIET ARC",
+        "body": "The West embraced penicillin after 1928 and largely abandoned phage research. The Soviet Union, cut off from Western antibiotics during the Cold War, kept developing phage therapy. The Eliava Institute in Tbilisi, Georgia, has produced therapeutic phage cocktails continuously since 1923 — a parallel medical tradition Western medicine is only now revisiting as antibiotic resistance accelerates.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GE",
+              "RU",
+              "US",
+              "FR"
+            ],
+            "label": "the split traditions",
+            "caption": "Tbilisi kept the phage line alive while the West went all-in on antibiotics"
+          }
+        ]
+      },
+      {
+        "heading": "THE RUMEN",
+        "body": "A cow's rumen is the largest fermentation vat in nature — 100 to 200 liters in an adult, holding 10 to 50 billion microbes per milliliter. Cattle do not digest grass; their microbes do. The rumen breaks cellulose into volatile fatty acids the animal absorbs as energy.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How does a cow extract energy from grass it cannot digest itself?",
+            "options": [
+              "Stomach acid breaks down cellulose directly",
+              "Rumen microbes ferment cellulose into fatty acids the cow absorbs",
+              "Specialized enzymes in cow saliva digest plant cell walls",
+              "Bacteria in the intestine produce glucose from grass"
+            ],
+            "correct": 1,
+            "explanation": "Ruminants outsource cellulose digestion to a microbial ecosystem in the rumen, which ferments plant matter into volatile fatty acids — the cow's actual energy source."
+          }
+        ]
+      },
+      {
+        "heading": "THE CANCER LINK",
+        "body": "Streptococcus bovis bacteremia has been associated with colorectal cancer since a 1977 New England Journal of Medicine paper. A bloodstream infection with this organism is a clinical trigger for colonoscopy — the bacteria themselves do not cause the tumor, but their presence in blood signals one is likely already there."
+      },
+      {
+        "heading": "WHY PHAGE THERAPY IS RETURNING",
+        "body": "Antibiotic resistance kills roughly 1.3 million people annually and is projected to surpass cancer by 2050. Phages evolve alongside their bacterial targets — when a strain develops resistance, the phage population mutates in response. This co-evolutionary arms race is the structural advantage antibiotics lack.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Specificity",
+                "value": "single strain",
+                "tone": "favorable"
+              },
+              {
+                "label": "Resistance",
+                "value": "co-evolves",
+                "tone": "favorable"
+              },
+              {
+                "label": "Biofilm",
+                "value": "penetrates",
+                "tone": "favorable"
+              },
+              {
+                "label": "Regulation",
+                "value": "unclear pathway",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Shelf life",
+                "value": "living agent",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "phages vs antibiotics"
+          }
+        ]
+      },
+      {
+        "heading": "THE BIOFILM PROBLEM",
+        "body": "Bacteria in biofilms — slime-encased colonies on surfaces — are up to 1,000 times more resistant to antibiotics than free-floating cells. Most chronic infections (catheter, prosthetic, dental, lung) involve biofilms. Phages can penetrate and dissolve biofilm matrices, which is why anti-biofilm activity is the headline property in any new phage isolate."
+      }
+    ],
+    "generatedAt": "2026-05-17T12:22:33.027Z",
+    "label": "Phages & Rumen Microbiology",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-17-car-t-autoimmune-multiple-sclerosis-immunotherapy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ORIGINAL TARGET",
+        "body": "CAR-T was built for blood cancers. Engineers extract a patient's T cells, splice in a synthetic receptor that recognizes a tumor marker (usually CD19 on B cells), grow billions of copies, and infuse them back. The FDA approved the first version (Kymriah) in 2017 for pediatric leukemia.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The synthetic receptor is called a **chimeric antigen receptor** because it fuses an antibody's target-recognition domain to a T cell's killing machinery — a chimera in the biological sense."
+          }
+        ]
+      },
+      {
+        "heading": "WHY B CELLS ARE THE COMMON ENEMY",
+        "body": "In lymphoma, B cells are cancerous. In lupus, MS, and myasthenia gravis, B cells produce autoantibodies that attack the patient's own tissue. The same CD19 marker exists on both. A therapy designed to wipe out malignant B cells turns out to wipe out autoimmune ones too."
+      },
+      {
+        "heading": "RESET, NOT SUPPRESS",
+        "body": "Standard autoimmune drugs (steroids, biologics like rituximab) suppress the immune system continuously — patients dose for life and accept infection risk. CAR-T depletes B cells down to zero in weeks; the bone marrow then regenerates a fresh B cell repertoire that, for reasons not fully understood, often comes back without the autoimmune programming.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Steroids",
+                "value": "daily, lifelong",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Biologics",
+                "value": "infusions every 4–8 wk",
+                "tone": "neutral"
+              },
+              {
+                "label": "CAR-T",
+                "value": "single dose",
+                "tone": "favorable"
+              }
+            ],
+            "label": "autoimmune treatment paradigms"
+          }
+        ]
+      },
+      {
+        "heading": "THE COST WALL",
+        "body": "A single CAR-T dose lists at $400,000–$500,000 in the US, before hospitalization. The cost is structural: each dose is manufactured bespoke from the patient's own cells in a 2–3 week process. Allogeneic ('off-the-shelf') versions use donor cells engineered to evade rejection — same therapy, factory-scale economics."
+      },
+      {
+        "heading": "CYTOKINE RELEASE SYNDROME",
+        "body": "When billions of engineered T cells activate at once, they flood the bloodstream with inflammatory signals. Fever, hypotension, and organ stress follow. CRS is manageable in oncology wards but is the main reason CAR-T has stayed inside hospitals — and the main hurdle for treating autoimmune patients who are otherwise ambulatory.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does CAR-T potentially 'cure' autoimmunity while lifelong biologics only suppress it?",
+            "options": [
+              "It permanently edits the patient's DNA",
+              "It depletes B cells to zero, and the regenerated repertoire often lacks the autoimmune programming",
+              "It directly neutralizes circulating autoantibodies",
+              "It replaces the patient's bone marrow"
+            ],
+            "correct": 1,
+            "explanation": "CAR-T wipes out the existing B cell population; the marrow then repopulates a fresh repertoire that often returns without the self-attacking clones."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-17T12:22:59.284Z",
+    "label": "CAR-T & Autoimmunity",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-17-global-burden-mental-disorders-pregnancy-meta-analysis": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HORMONAL SUBSTRATE",
+        "body": "Pregnancy triples estrogen and raises progesterone tenfold, then both crash within 48 hours of delivery. No other physiological event in adult life produces a hormonal swing of that magnitude. The brain's serotonin and GABA systems, which both sex hormones modulate, are destabilized for months on either side of birth.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The clinical term *perinatal* covers pregnancy through the first year postpartum — the period when **suicide is a leading cause of maternal death** in high-income countries, ahead of hemorrhage and hypertension."
+          }
+        ]
+      },
+      {
+        "heading": "WHY META-ANALYSES MATTER",
+        "body": "Individual prevalence studies of perinatal depression have ranged from 5% to 50% depending on the screening tool, cutoff score, and country. A meta-analysis pools the underlying patient data across dozens of studies, weights by sample size, and produces a single estimate with confidence intervals — the closest thing epidemiology has to a verdict."
+      },
+      {
+        "heading": "THE EDINBURGH SCALE",
+        "body": "Most perinatal screening worldwide uses the Edinburgh Postnatal Depression Scale, a 10-question instrument designed in 1987. It takes three minutes, requires no clinician, and outperforms standard depression scales in pregnancy because it deliberately excludes somatic symptoms — fatigue, appetite change, sleep disruption — that overlap with normal pregnancy."
+      },
+      {
+        "heading": "THE GEOGRAPHIC INVERSION",
+        "body": "Prevalence is highest in South America and sub-Saharan Africa; screening infrastructure is concentrated in Europe, North America, and East Asia. The countries with the most cases have the fewest psychiatrists per capita — Ethiopia has roughly one psychiatrist per million people; the UK has about 150 per million.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Norway",
+                "value": "~48",
+                "cc": "NO",
+                "weight": 48,
+                "tone": "favorable"
+              },
+              {
+                "label": "United States",
+                "value": "~12",
+                "cc": "US",
+                "weight": 12,
+                "tone": "neutral"
+              },
+              {
+                "label": "Brazil",
+                "value": "~3.4",
+                "cc": "BR",
+                "weight": 3.4,
+                "tone": "neutral"
+              },
+              {
+                "label": "India",
+                "value": "~0.75",
+                "cc": "IN",
+                "weight": 0.75,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Nigeria",
+                "value": "~0.15",
+                "cc": "NG",
+                "weight": 0.15,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Ethiopia",
+                "value": "~0.1",
+                "cc": "ET",
+                "weight": 0.1,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Psychiatrists per 100,000 people (WHO)"
+          }
+        ]
+      },
+      {
+        "heading": "THE IPV LINK",
+        "body": "Intimate partner violence in pregnancy is not a separate risk factor stacked on top of mental illness — it is a causal driver. Stress hormones (cortisol, CRH) cross the placenta; chronic activation of the maternal stress axis is associated with preterm birth and low birth weight independent of the mother's diagnosis. The harm compounds across two bodies.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how much does experiencing intimate partner violence in pregnancy increase the risk of perinatal mental illness?",
+            "options": [
+              "Doubles it",
+              "Triples it",
+              "Increases it by ~20%",
+              "No significant effect"
+            ],
+            "correct": 1,
+            "explanation": "Meta-analyses consistently find IPV during pregnancy roughly triples the odds of depression, anxiety, and PTSD — among the largest modifiable risk factors identified."
+          }
+        ]
+      },
+      {
+        "heading": "THE TREATMENT DILEMMA",
+        "body": "SSRIs cross the placenta. Untreated maternal depression also affects fetal development through cortisol exposure and reduced self-care. Both options carry risk; doing nothing is not the safe choice. Most guidelines now recommend continuing antidepressants through pregnancy when the depression is moderate or severe, a reversal of 1990s practice."
+      }
+    ],
+    "generatedAt": "2026-05-17T12:23:25.994Z",
+    "label": "Perinatal Mental Health",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-17-icc-secret-arrest-warrants-five-israeli-officials": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COURT'S JURISDICTION",
+        "body": "The ICC prosecutes individuals — not states — for genocide, war crimes, crimes against humanity, and aggression. It claims jurisdiction either when the accused's state is a member or when the crime occurred on a member's territory. Palestine acceded in 2015; that is the jurisdictional hook for cases involving Israeli conduct in Gaza and the West Bank, even though Israel itself is not a member.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine is called ***territorial jurisdiction*** — the same logic that lets a German court try an American tourist who commits a crime in Berlin."
+          }
+        ]
+      },
+      {
+        "heading": "WHY WARRANTS STAY SEALED",
+        "body": "A sealed warrant is invisible until the target crosses a border into a member state's territory, at which point that state has a treaty obligation to arrest. The secrecy is operational: announce a warrant and the target simply never leaves home. Slobodan Milošević was indicted under seal in 1999; the indictment was unsealed only when NATO's bombing campaign made his arrest plausible."
+      },
+      {
+        "heading": "THE ROME STATUTE MAP",
+        "body": "125 states are parties to the Rome Statute. The US, Israel, China, India, Russia, and most of the Gulf are not. A named official can travel freely among non-members but risks arrest the moment they land in Paris, Berlin, Tokyo, or Pretoria.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "US",
+              "RU",
+              "CN",
+              "IN",
+              "SA",
+              "AE",
+              "EG",
+              "TR"
+            ],
+            "label": "non-members of the Rome Statute (selected)",
+            "caption": "these states have no obligation to arrest"
+          }
+        ]
+      },
+      {
+        "heading": "THE NETANYAHU PRECEDENT",
+        "body": "In November 2024 the ICC issued warrants for Netanyahu and former defense minister Gallant over alleged starvation and civilian-targeting in Gaza, alongside a warrant for Hamas commander Mohammed Deif. It was the first time the court had named a sitting leader of a Western-aligned democracy. France, Germany, and the UK have since equivocated on whether they would honor an arrest on their soil — a stress test the treaty had not faced before."
+      },
+      {
+        "heading": "WHO ACTUALLY GETS ARRESTED",
+        "body": "The court has no police. Every arrest in its history was carried out by a national government — usually after the regime that protected the suspect had already fallen. Charles Taylor was handed over by Liberia's successor government; Bosco Ntaganda walked into the US embassy in Kigali himself. Sitting officials of powerful states have a near-perfect record of avoiding arrest.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many sitting heads of state have actually been arrested and transferred to The Hague under an ICC warrant?",
+            "options": [
+              "None",
+              "One (Omar al-Bashir)",
+              "Three",
+              "Six"
+            ],
+            "correct": 0,
+            "explanation": "Bashir was indicted in 2009 but traveled freely through member states for years; no sitting head of state has been physically transferred to the court."
+          }
+        ]
+      },
+      {
+        "heading": "THE US POSITION",
+        "body": "The American Service-Members' Protection Act of 2002 — nicknamed the 'Hague Invasion Act' — authorizes the US president to use 'all means necessary' to free any American or allied national held by the ICC. The US has never been a party and signed bilateral immunity agreements with over 100 countries pledging not to surrender Americans to the court.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The statute was passed three months after the Rome Statute entered into force — Washington's signal that the court's authority would not extend to *its* soldiers or *its* allies."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-17T12:23:54.599Z",
+    "label": "The ICC & Sealed Warrants",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-17-iran-fm-energy-market-stability-lie-baghaei": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RHETORICAL MOVE",
+        "body": "\"Freedom of navigation\" and \"energy market stability\" are the standard legal-political wrappers great powers use to justify force in someone else's waters. The framing converts a national interest into a global public good, which lowers the diplomatic cost of intervention.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The State Department term of art is **freedom of navigation operations** (FONOPs) — sailing warships through contested waters to assert that a passage is international. The legal theory is real; the selective application is the political part."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HORMUZ IS THE LEVER",
+        "body": "Roughly a fifth of global oil and a third of seaborne LNG transit the Strait of Hormuz — 33 km wide, shipping lanes only 3 km each. Iran's coastline runs along the entire northern edge and the deepest channel hugs the Iranian side, which is why Tehran's posture moves the global oil price before a single shot is fired.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW",
+              "IQ"
+            ],
+            "label": "the Persian Gulf chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 29.0667,
+                "lng": 50.3333,
+                "label": "Kharg Island terminal"
+              },
+              {
+                "lat": 25.1167,
+                "lng": 56.3333,
+                "label": "Fujairah (UAE bypass)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988 Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson planners took on both sides: disruption is easier to threaten than to sustain.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Tanker War begins"
+              },
+              {
+                "year": "1987",
+                "label": "Kuwait reflagging operation"
+              },
+              {
+                "year": "1988",
+                "label": "USS Vincennes shoots down IR655",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Limpet mine attacks at Fujairah"
+              },
+              {
+                "year": "2024",
+                "label": "Houthi attacks shut Red Sea, Hormuz traffic rises"
+              },
+              {
+                "year": "2026-02",
+                "label": "Strikes disrupt Hormuz transits"
+              }
+            ],
+            "label": "Hormuz as a weapon"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BYPASSES DON'T BYPASS",
+        "body": "Saudi Arabia's East-West Pipeline (5 mn bbl/day) and the UAE's Habshan-Fujairah line together could reroute maybe a third of Gulf crude exports. The remaining two-thirds — and nearly all the LNG from Qatar — have no alternative route. There is no engineering solution to the geography.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hormuz transit",
+                "value": "~21 mn bbl/d",
+                "weight": 21,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Saudi E-W pipe",
+                "value": "~5 mn bbl/d",
+                "weight": 5,
+                "tone": "neutral"
+              },
+              {
+                "label": "UAE Fujairah",
+                "value": "~1.5 mn bbl/d",
+                "weight": 1.5,
+                "tone": "neutral"
+              },
+              {
+                "label": "Qatar LNG (no bypass)",
+                "value": "0",
+                "weight": 0.1,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Hormuz bypass capacity vs. transit"
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Mines and missiles do not close a shipping lane — Lloyd's of London war-risk premiums do. Once underwriters reclassify a body of water, commercial vessels reroute regardless of how many munitions remain. The financial chokepoint clamps tighter and faster than the physical one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What actually closes a contested shipping lane to commercial traffic?",
+            "options": [
+              "The number of mines or missiles deployed",
+              "A UN Security Council resolution",
+              "A spike in Lloyd's of London war-risk insurance premiums",
+              "The closure of the coastal state's ports"
+            ],
+            "correct": 2,
+            "explanation": "Once underwriters reclassify a route as war-risk, premiums make voyages uneconomic — commercial vessels reroute long before the physical risk is decisive."
+          }
+        ]
+      },
+      {
+        "heading": "THE DEADLOCK",
+        "body": "Iran's negotiating position pairs sanctions relief with compensation for past damage — a framing the US has never accepted in any nuclear talks since the JCPOA collapsed in 2018. \"Energy stability\" rhetoric from Washington and Tel Aviv lets Tehran cast itself as the aggrieved party defending its own waters, which strengthens the compensation demand domestically even as it stalls the talks."
+      }
+    ],
+    "generatedAt": "2026-05-17T12:24:28.943Z",
+    "label": "Energy Stability as Casus Belli",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-17-jigawa-apc-primary-four-reps-lose-2027-nigeria": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ZONING COMPACT",
+        "body": "Nigerian party politics runs on an unwritten rule called zoning — the presidency rotates between the Muslim north and the Christian south every two terms, and major offices are distributed across six geopolitical zones. The APC's grip on Jigawa is part of the north-west bloc that delivered Buhari twice and Tinubu once.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Zoning is not in the constitution. It is a *gentleman's agreement* among party elites that has held since the 1999 return to democracy — and breaks loudly when it doesn't."
+          }
+        ]
+      },
+      {
+        "heading": "THE STAKEHOLDER MEETING",
+        "body": "Nigerian primaries are rarely won at the ballot. Candidates are filtered first at closed 'stakeholder' or 'consensus' meetings of traditional rulers, party chieftains, and the state governor. By the time formal voting happens, the outcome is usually pre-arranged — which is why being 'blocked at stakeholders' is a death sentence even before ballots are printed."
+      },
+      {
+        "heading": "WHY JIGAWA MATTERS",
+        "body": "Jigawa sits in the Hausa-Fulani heartland of north-west Nigeria, the demographic engine of every winning presidential coalition since 1999. The state delivered over 90% for Buhari in 2015 and 2019. Tinubu — a southern Yoruba Muslim — needs that bloc intact in 2027, which is why intra-APC churn here registers nationally.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "NE",
+              "TD",
+              "CM",
+              "BJ"
+            ],
+            "label": "Jigawa in the north-west bloc",
+            "markers": [
+              {
+                "lat": 11.7506,
+                "lng": 9.3389,
+                "label": "Dutse (Jigawa capital)"
+              },
+              {
+                "lat": 12.0022,
+                "lng": 8.592,
+                "label": "Kano"
+              },
+              {
+                "lat": 9.0579,
+                "lng": 7.4951,
+                "label": "Abuja"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BUHARI INHERITANCE",
+        "body": "Muhammadu Buhari, a Fulani Muslim from Katsina, built a personal northern brand — talakawa (common-man) austerity, anti-corruption posture — that outlived his presidency. APC primaries across the north are still partly a fight over who inherits his network of former aides, ministers, and loyalists.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Muhammadu Buhari",
+                "role": "ex-president, APC patron",
+                "years": "2015–2023",
+                "cc": "NG"
+              },
+              {
+                "name": "Bola Tinubu",
+                "role": "president, APC national leader",
+                "years": "2023–",
+                "cc": "NG"
+              },
+              {
+                "name": "Umar Namadi",
+                "role": "Jigawa governor (APC)",
+                "years": "2023–",
+                "cc": "NG"
+              }
+            ],
+            "label": "the north-west power chain"
+          }
+        ]
+      },
+      {
+        "heading": "THE INCUMBENCY RATE",
+        "body": "Nigeria's National Assembly turns over faster than most legislatures in the world. Roughly two-thirds of House members lose their seats every cycle — primaries, not general elections, are where most exits happen. Compare that to the US House, where >90% of incumbents who seek re-election win.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "~93%",
+                "cc": "US",
+                "weight": 93,
+                "tone": "favorable"
+              },
+              {
+                "label": "UK Commons",
+                "value": "~85%",
+                "cc": "GB",
+                "weight": 85,
+                "tone": "favorable"
+              },
+              {
+                "label": "India (Lok Sabha)",
+                "value": "~55%",
+                "cc": "IN",
+                "weight": 55,
+                "tone": "neutral"
+              },
+              {
+                "label": "Nigeria",
+                "value": "~30%",
+                "cc": "NG",
+                "weight": 30,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "House incumbent re-election rate (selected)"
+          },
+          {
+            "type": "trend",
+            "values": [
+              1345.790676,
+              1345.790676,
+              1346.63,
+              1345.47,
+              1348.77,
+              1351.32,
+              1354.96,
+              1351.847873,
+              1351.847873,
+              1352.81,
+              1360.19,
+              1374.96,
+              1375.07,
+              1374.69,
+              1375.98,
+              1375.98,
+              1375.65,
+              1370.93,
+              1365.9,
+              1360.53,
+              1361.67,
+              1356.19465,
+              1356.19465,
+              1357.96,
+              1363.47,
+              1370.1,
+              1370.5,
+              1370.6,
+              1370.49,
+              1372.988035
+            ],
+            "periods": [
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17"
+            ],
+            "label": "Nigerian naira",
+            "unit": "NGN / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 2027 TESTS",
+        "body": "Tinubu's fuel-subsidy removal and naira float in 2023 cratered northern living standards — the region where staple food inflation hit hardest. The question every APC primary now answers in miniature: does the party's structural lock on the north survive the economic pain it delivered?",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What single Tinubu policy is widely credited with the steepest hit to northern Nigerian household purchasing power?",
+            "options": [
+              "Removing the fuel subsidy in May 2023",
+              "Banning crypto trading",
+              "Raising the VAT rate to 15%",
+              "Imposing a wealth tax on northern elites"
+            ],
+            "correct": 0,
+            "explanation": "Petrol prices roughly tripled overnight when the subsidy was scrapped, cascading into transport and food costs that hit the rural north hardest."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-17"
+    ],
+    "generatedAt": "2026-05-17T12:25:03.328Z",
+    "label": "Nigeria's Northern Politics",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-17-mv-symi-lpg-vessel-hormuz-kandla-gujarat-india": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil-equivalent pass through daily, about a fifth of global energy trade.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "QA",
+              "SA",
+              "IN"
+            ],
+            "label": "Qatar → Kandla, through the bottleneck",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.2854,
+                "lng": 51.531,
+                "label": "Ras Laffan LPG terminal"
+              },
+              {
+                "lat": 23.0225,
+                "lng": 70.2208,
+                "label": "Kandla port"
+              },
+              {
+                "lat": 22.5078,
+                "lng": 59.4593,
+                "label": "Attack site, May 13"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY LPG NOT OIL",
+        "body": "Liquefied petroleum gas — propane and butane — is what fuels Indian kitchens. Roughly 300 million Indian households cook on subsidised LPG cylinders under the Ujjwala scheme. India imports over 60% of its LPG, and Qatar and the UAE are its top suppliers — every cargo that clears Hormuz is a cooking-fuel cargo as much as an energy one.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "India's **Pradhan Mantri Ujjwala Yojana** put LPG connections into 100m+ poor rural households since 2016, replacing biomass cookstoves. A Hormuz disruption is, in practice, a kitchen-fuel disruption."
+          }
+        ]
+      },
+      {
+        "heading": "THE QATAR ROUTE",
+        "body": "Qatar's Ras Laffan complex is the world's largest LPG export terminal, and almost every molecule leaving it must transit Hormuz — Qatar has no Indian Ocean coastline. Unlike Saudi Arabia (East-West pipeline to the Red Sea) or the UAE (Habshan-Fujairah to the Gulf of Oman), Qatar has no bypass. The strait is not a chokepoint for Doha; it is the only door."
+      },
+      {
+        "heading": "WHY IT CAN'T BE BYPASSED",
+        "body": "Saudi Arabia built the East-West Pipeline (5 million bbl/day capacity) partly as a Hormuz hedge, and the UAE built the Habshan-Fujairah pipeline. Together they could reroute maybe a third of Gulf crude. LPG has even less optionality — gas pipelines are scarce, and the existing bypasses are oil-only.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Qatar",
+                "value": "~100%",
+                "cc": "QA",
+                "tone": "unfavorable",
+                "weight": 100
+              },
+              {
+                "label": "Kuwait",
+                "value": "~100%",
+                "cc": "KW",
+                "tone": "unfavorable",
+                "weight": 100
+              },
+              {
+                "label": "Iraq",
+                "value": "~98%",
+                "cc": "IQ",
+                "tone": "unfavorable",
+                "weight": 98
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~75%",
+                "cc": "SA",
+                "tone": "neutral",
+                "weight": 75
+              },
+              {
+                "label": "UAE",
+                "value": "~65%",
+                "cc": "AE",
+                "tone": "neutral",
+                "weight": 65
+              }
+            ],
+            "label": "Gulf exporters' Hormuz exposure"
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Lloyd's of London war-risk premiums — not the attacks themselves — are what closes a shipping lane. After the May 13 attack off Oman, premiums on Gulf-transit hulls reprice within hours. Once they spike past a threshold, commercial vessels reroute or refuse the voyage regardless of how many tankers actually got hit. The financial chokepoint is tighter than the physical one."
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson planners took: disruption is easier to threaten than to sustain. India's choice to flag vessels under its own registry and send them through anyway is the modern echo of that reflagging playbook.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "During the 1980s Tanker War, how did commercial shipping continue through the Gulf?",
+            "options": [
+              "Tankers reflagged under US and Kuwaiti flags with naval escorts",
+              "All Gulf oil was rerouted overland via Saudi pipelines",
+              "Iran and Iraq agreed to spare commercial vessels",
+              "Shipping halted entirely until the war ended in 1988"
+            ],
+            "correct": 0,
+            "explanation": "Operation Earnest Will (1987-88) reflagged Kuwaiti tankers under the US flag, allowing the US Navy to escort them legally — the template India is now adapting."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-17T12:25:36.582Z",
+    "label": "LPG & the Hormuz Lifeline",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-17-philippines-dynastic-politics-dependency": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE UNENFORCED CLAUSE",
+        "body": "Article II Section 26 of the 1987 Constitution prohibits political dynasties — but adds 'as may be defined by law.' Congress, populated by dynasts, has never passed the enabling law in nearly four decades.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The State shall guarantee equal access to opportunities for public service, and prohibit political dynasties as may be defined by law.",
+            "speaker": "Philippine Constitution, Article II §26",
+            "year": "1987"
+          }
+        ]
+      },
+      {
+        "heading": "THE SCALE",
+        "body": "Studies by the Asian Institute of Management estimate roughly 80% of provincial governors and a majority of House members come from dynastic families. The Philippines has one of the highest dynastic shares of any electoral democracy.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Researchers distinguish *thin* dynasties (one relative succeeds another) from **fat** dynasties (multiple relatives hold office simultaneously). The Philippines is unusual globally for how common fat dynasties have become."
+          }
+        ]
+      },
+      {
+        "heading": "THE MACHINERY",
+        "body": "Dynasties run on patronage — local officials control disbursement of pork-barrel funds, public-works contracts, and police postings. An outsider candidate faces not just name recognition gaps but a clientelist network that delivers votes block-by-block."
+      },
+      {
+        "heading": "THE HOUSES",
+        "body": "Marcos and Duterte are the visible apex, but dozens of regional families function the same way. The 2022 ticket — Bongbong Marcos as president, Sara Duterte as vice-president — fused the two largest networks; their 2025 fallout reopened the competition.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Bongbong Marcos",
+                "role": "President; son of Ferdinand Sr.",
+                "years": "2022–",
+                "cc": "PH"
+              },
+              {
+                "name": "Sara Duterte",
+                "role": "Vice-President; daughter of Rodrigo",
+                "years": "2022–",
+                "cc": "PH"
+              },
+              {
+                "name": "Rodrigo Duterte",
+                "role": "Former president; Davao mayor 22+ yrs",
+                "years": "2016–2022",
+                "cc": "PH"
+              },
+              {
+                "name": "Imee Marcos",
+                "role": "Senator; sister of Bongbong",
+                "years": "2019–",
+                "cc": "PH"
+              }
+            ],
+            "label": "the major houses"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1986 RESET THAT WASN'T",
+        "body": "The People Power Revolution ousted Ferdinand Marcos Sr. in 1986 after 21 years and martial law. The 1987 constitution was written to prevent a recurrence — yet by 2022 his son held the presidency. The institutional reforms reset the rules without dismantling the families.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1965",
+                "label": "Ferdinand Marcos Sr. elected"
+              },
+              {
+                "year": "1972",
+                "label": "Martial law declared",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1986",
+                "label": "People Power; family flees to Hawaii"
+              },
+              {
+                "year": "1991",
+                "label": "Imelda returns from exile"
+              },
+              {
+                "year": "2010",
+                "label": "Bongbong elected senator"
+              },
+              {
+                "year": "2022",
+                "label": "Bongbong wins presidency"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1972",
+                "to": "1981",
+                "label": "Martial law",
+                "tone": "unfavorable"
+              },
+              {
+                "from": "1986",
+                "to": "1991",
+                "label": "Family in exile",
+                "tone": "neutral"
+              }
+            ],
+            "label": "the Marcos arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY REFORM STALLS",
+        "body": "Every anti-dynasty bill since 1987 has died in committee. The legislators who would vote on it are themselves the targets — a structural conflict of interest with no constitutional court workaround, since the clause is non-self-executing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why has the constitutional ban on political dynasties never taken effect?",
+            "options": [
+              "The Supreme Court ruled it unconstitutional",
+              "It requires an enabling law that Congress has never passed",
+              "It was repealed by a 1995 amendment",
+              "It only applies to national, not local, offices"
+            ],
+            "correct": 1,
+            "explanation": "The clause is non-self-executing — it explicitly defers to a law 'as may be defined by law,' and dynastic legislators have killed every such bill in committee."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-17T12:26:06.868Z",
+    "label": "Philippine Political Dynasties",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-17-record-drone-attack-moscow-refinery-three-killed": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ECONOMICS",
+        "body": "A Shahed-class long-range drone costs roughly $20,000-$50,000 to build. The Patriot interceptor that shoots it down costs about $4 million. This cost asymmetry — two orders of magnitude — is why drone swarms work even when most are intercepted.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Shahed-136 drone",
+                "value": "~$35k",
+                "tone": "favorable",
+                "weight": 35
+              },
+              {
+                "label": "Geran-2 (RU copy)",
+                "value": "~$50k",
+                "tone": "favorable",
+                "weight": 50
+              },
+              {
+                "label": "IRIS-T missile",
+                "value": "~$430k",
+                "tone": "neutral",
+                "weight": 430
+              },
+              {
+                "label": "Patriot PAC-3",
+                "value": "~$4m",
+                "tone": "unfavorable",
+                "weight": 4000
+              }
+            ],
+            "label": "cost per shot, attacker vs defender"
+          }
+        ]
+      },
+      {
+        "heading": "WHY REFINERIES",
+        "body": "Refineries are soft targets with hard consequences. The crude distillation unit — a single vertical column hundreds of feet tall — cannot be hardened against overhead attack and takes months to rebuild. Russia has roughly 30 major refineries; Ukrainian strikes have hit more than half since 2024, periodically knocking 10-15% of refining capacity offline.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bottleneck is the **CDU** — the crude distillation unit. Every barrel a refinery processes passes through one. Damage it and the whole site idles, regardless of how much downstream capacity survives."
+          }
+        ]
+      },
+      {
+        "heading": "THE RANGE PROBLEM SOLVED",
+        "body": "Moscow sits roughly 450 km from the nearest Ukrainian-controlled territory. Early-war drones could not reach it. Ukraine's domestic UAV industry — now producing the Liutyi, Bober, and modified An-196 — extended range past 1,000 km, putting every refinery in European Russia within reach.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU",
+              "BY"
+            ],
+            "label": "strike geography",
+            "markers": [
+              {
+                "lat": 55.7558,
+                "lng": 37.6173,
+                "label": "Moscow"
+              },
+              {
+                "lat": 55.6037,
+                "lng": 37.7197,
+                "label": "Moscow refinery (Kapotnya)"
+              },
+              {
+                "lat": 50.4501,
+                "lng": 30.5234,
+                "label": "Kyiv"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DOCTRINE FLIP",
+        "body": "For most of military history, strategic bombing required heavy bombers, air superiority, and accepted aircrew losses. Ukraine has demonstrated that a country with no air force and no long-range missiles can still conduct sustained strategic bombing against an adversary's energy infrastructure — using cheap drones built in workshops. The implications for every future war are still being worked out."
+      },
+      {
+        "heading": "THE SHAHED PIPELINE",
+        "body": "Russia's own long-range drone force is built on Iran's Shahed-136, license-produced at the Alabuga special economic zone in Tatarstan as the Geran-2. The Alabuga deal — reportedly worth $1.7 billion — was one of the first major fruits of post-2022 Iran-Russia military cooperation, and it is what enables Russia to launch hundreds of drones per night at Ukrainian cities.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Where is Russia's Shahed-derivative drone factory located?",
+            "options": [
+              "Kaliningrad",
+              "Alabuga SEZ, Tatarstan",
+              "Vladivostok",
+              "St. Petersburg"
+            ],
+            "correct": 1,
+            "explanation": "The Alabuga special economic zone in Tatarstan produces the Geran-2, a license-built version of Iran's Shahed-136."
+          }
+        ]
+      },
+      {
+        "heading": "THE RETALIATION LADDER",
+        "body": "Both sides now follow an unwritten escalation grammar: civilian deaths in one capital invite an energy strike on the other; an energy strike invites a drone swarm on a city. The 556-drone raid following 24 deaths in Kyiv fits this pattern. The danger is that the ladder has no top rung — there is no agreed off-ramp, only diminishing inventories."
+      }
+    ],
+    "generatedAt": "2026-05-17T12:26:40.881Z",
+    "label": "Drone Warfare & Refinery Strikes",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-17-us-iran-five-conditions-400kg-uranium-nuclear-talks": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 400 KG MEANS",
+        "body": "A weapon needs roughly 25 kg of uranium enriched to ~90% (weapons-grade). 400 kg of low-enriched material is the feedstock, not the bomb — but at 60% enrichment, the same mass yields enough fissile core for multiple devices once spun a final time.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction the negotiators fight over is **stockpile mass** times **enrichment level**. Both matter; either alone is misleading."
+          }
+        ]
+      },
+      {
+        "heading": "THE JCPOA BENCHMARK",
+        "body": "The 2015 deal capped Iran at 300 kg of uranium enriched to 3.67% — civilian reactor grade. After the US withdrew in 2018, Iran progressively breached every limit; by 2024 the IAEA reported stockpiles above 6,000 kg and enrichment up to 60%, a short technical step from weapons-grade.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2015",
+                "label": "JCPOA signed in Vienna",
+                "emphasis": "start"
+              },
+              {
+                "year": "2018",
+                "label": "US withdraws under Trump",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Iran begins breaching caps"
+              },
+              {
+                "year": "2020",
+                "label": "Soleimani killed; Natanz sabotaged"
+              },
+              {
+                "year": "2021",
+                "label": "Iran enriches to 60%"
+              },
+              {
+                "year": "2025",
+                "label": "Israeli/US strikes on Natanz, Fordow"
+              },
+              {
+                "year": "2026",
+                "label": "New talks open"
+              }
+            ],
+            "label": "the JCPOA arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ONE FACILITY",
+        "body": "Iran's program is distributed across at least four sites: Natanz (main enrichment), Fordow (buried under a mountain near Qom), Isfahan (conversion), and Arak (heavy water). Consolidating to one site collapses the redundancy that made the program strike-resistant — and makes any future inspection regime far cheaper to verify.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR"
+            ],
+            "label": "Iran's nuclear archipelago",
+            "markers": [
+              {
+                "lat": 33.7248,
+                "lng": 51.7269,
+                "label": "Natanz enrichment"
+              },
+              {
+                "lat": 34.8847,
+                "lng": 50.9931,
+                "label": "Fordow (buried)"
+              },
+              {
+                "lat": 32.6539,
+                "lng": 51.666,
+                "label": "Isfahan conversion"
+              },
+              {
+                "lat": 34.3742,
+                "lng": 49.2406,
+                "label": "Arak heavy water"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE FROZEN ASSETS",
+        "body": "Roughly $100bn in Iranian assets sit blocked across South Korean, Japanese, Iraqi, and European accounts — mostly oil-export proceeds Iran could not repatriate under US sanctions. A 25% release cap means Tehran sees ~$25bn against demands for the full balance plus war reparations.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "South Korea",
+                "value": "~$7bn",
+                "cc": "KR",
+                "weight": 7
+              },
+              {
+                "label": "Iraq",
+                "value": "~$10bn",
+                "cc": "IQ",
+                "weight": 10
+              },
+              {
+                "label": "Japan",
+                "value": "~$3bn",
+                "cc": "JP",
+                "weight": 3
+              },
+              {
+                "label": "EU + UK",
+                "value": "~$2bn",
+                "cc": "EU",
+                "weight": 2
+              },
+              {
+                "label": "Other",
+                "value": "~$80bn",
+                "weight": 80
+              }
+            ],
+            "label": "Iran's frozen funds, by jurisdiction (est.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE BREAKOUT CONCEPT",
+        "body": "\"Breakout time\" is how long Iran would need — from a given stockpile and centrifuge baseline — to produce enough weapons-grade uranium for one device. JCPOA was designed to keep breakout above 12 months. Post-withdrawal estimates collapsed it to weeks. Every kilogram and every centrifuge in the talks maps to days on this clock."
+      },
+      {
+        "heading": "WHY COMPENSATION IS A DEAL-BREAKER",
+        "body": "Accepting compensation for the February strikes would mean the US conceding the strikes were illegal — a precedent Washington has refused since the 1988 Vincennes downing of Iran Air 655. Iran sued at the ICJ then and won a partial settlement, but the US has never paid wartime reparations to a state it considers adversarial.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did the US ultimately pay after the 1988 Vincennes incident, when a Navy cruiser shot down Iran Air 655?",
+            "options": [
+              "Full reparations to Iran's government",
+              "$61.8m in compensation only to victims' families",
+              "Nothing — the case was dismissed",
+              "A formal apology but no money"
+            ],
+            "correct": 1,
+            "explanation": "In 1996 the US settled at the ICJ by paying victims' families directly — never the Iranian state — and offered no apology, the template Washington still follows."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-17T12:27:14.714Z",
+    "label": "Uranium Enrichment & the JCPOA Arc",
+    "category": "politics",
+    "articleCount": 1
   }
 }
