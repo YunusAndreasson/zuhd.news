@@ -183458,5 +183458,1704 @@
     "label": "Uranium Enrichment & the JCPOA Arc",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-17-ai-confidence-calibration-gap-human-perception": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT CALIBRATION MEANS",
+        "body": "A model is calibrated when its stated probabilities match observed frequencies — when it says 70% confident, it should be right 70% of the time. Calibration is a separate property from accuracy: a model can be highly accurate but badly calibrated, or vice versa.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **expected calibration error** — the average gap between a model's stated confidence and its actual hit rate, measured across binned predictions."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MODELS HEDGE BADLY",
+        "body": "Pretrained language models are typically well-calibrated on raw next-token probabilities. Reinforcement learning from human feedback — the step that makes them helpful and polite — systematically destroys this. Raters reward confident, fluent answers, so the model learns to sound sure even when its underlying probability is mixed."
+      },
+      {
+        "heading": "THE AUTOMATION BIAS PRECEDENT",
+        "body": "Long before chatbots, aviation and medical researchers documented automation bias: humans defer to algorithmic outputs even when their own judgment is correct and the system is visibly wrong. The 1995 grounding of the Royal Majesty cruise ship — crew trusted a GPS feed for 24 hours after the antenna cable disconnected — is the canonical case.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The crew's reliance on the automated position-fixing equipment caused them to disregard or discount visual and other cues that should have alerted them.",
+            "speaker": "NTSB Report MAR-97-01, Royal Majesty grounding",
+            "year": "1997"
+          }
+        ]
+      },
+      {
+        "heading": "THE FLUENCY HEURISTIC",
+        "body": "Decades of psychology show that humans use fluency — how easily information is processed — as a proxy for truth. A grammatical, well-structured sentence reads as more credible than a hesitant one, regardless of content. LLMs are fluency machines; their outputs trigger this heuristic on every token."
+      },
+      {
+        "heading": "WHERE IT BITES HARDEST",
+        "body": "The stakes scale with the consequence of acting on a wrong answer. A wrong recipe wastes dinner; a wrong drug interaction or wrong case citation can kill a patient or sanction a lawyer. Studies of clinicians using diagnostic AI find they over-accept confident-but-wrong suggestions, and under-accept correct ones flagged as uncertain — the exact opposite of the intended workflow.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "A model says it is 70% confident in an answer. For the model to be well-calibrated, what should be true?",
+            "options": [
+              "The answer should be correct 70% of the time across many such claims",
+              "The answer is correct, with 30% margin of error",
+              "The model is hedging — the true probability is higher",
+              "70% of users will accept the answer"
+            ],
+            "correct": 0,
+            "explanation": "Calibration is a statistical property of the model's stated probabilities across many predictions — not a margin of error on a single answer."
+          }
+        ]
+      },
+      {
+        "heading": "THE INTERFACE PROBLEM",
+        "body": "Even when a model emits a hedge — 'I'm not sure, but…' — interfaces strip it. Chat UIs display the answer prominently and the caveat as small grey text. Downstream applications often discard the uncertainty token entirely and pass only the most likely output. The calibration that exists in the model rarely survives to the human."
+      }
+    ],
+    "generatedAt": "2026-05-17T17:32:35.240Z",
+    "label": "Calibration & the Confidence Gap",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-17-eureka-egyptian-crew-ransom-somalia-uae-tanker": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY PUNTLAND",
+        "body": "Puntland's 1,600km coastline sits at the mouth of the Gulf of Aden, where one of the world's busiest shipping lanes funnels within range of small boats launched from fishing villages. The autonomous region has a coast guard in name but no navy, and central Mogadishu has never exercised real authority here.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SO",
+              "YE",
+              "DJ",
+              "ET",
+              "OM",
+              "AE"
+            ],
+            "label": "Gulf of Aden chokepoint",
+            "markers": [
+              {
+                "lat": 11.7833,
+                "lng": 50.7667,
+                "label": "Eyl (pirate hub)"
+              },
+              {
+                "lat": 11.27,
+                "lng": 49.18,
+                "label": "Bosaso"
+              },
+              {
+                "lat": 25.118,
+                "lng": 56.346,
+                "label": "Fujairah (departure)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE COLLAPSE THAT BUILT THE PIRATES",
+        "body": "Somali piracy is a child of the 1991 state collapse. Foreign trawlers — Spanish, Korean, Chinese — moved into unpoliced waters and stripped the fisheries; toxic waste dumping followed. The first generation of pirates were fishermen who began boarding the trawlers, then realized cargo ships paid better.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Local fighters branded themselves the **National Volunteer Coast Guard** before the world settled on the word *pirates* — the original framing was self-defense against IUU fishing, and it still shapes how the diaspora justifies the trade."
+          }
+        ]
+      },
+      {
+        "heading": "THE ECONOMIC MODEL",
+        "body": "A ransom is not paid to one man. It is sliced across financiers who fronted the operation, the boarding crew, guards holding the hostages onshore, village elders providing shelter, qat suppliers, and translators. The local economy of an Eyl or Hobyo runs on these splits — which is why community pressure rarely ends a hijacking.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Financiers",
+                "value": "~30%",
+                "weight": 30,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Boarding crew",
+                "value": "~30%",
+                "weight": 30,
+                "tone": "neutral"
+              },
+              {
+                "label": "Onshore guards",
+                "value": "~10%",
+                "weight": 10,
+                "tone": "neutral"
+              },
+              {
+                "label": "Local elders & support",
+                "value": "~20%",
+                "weight": 20,
+                "tone": "neutral"
+              },
+              {
+                "label": "Translators, qat, fuel",
+                "value": "~10%",
+                "weight": 10,
+                "tone": "favorable"
+              }
+            ],
+            "label": "typical ransom split (post-2008 era)"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2011 PEAK AND ITS COLLAPSE",
+        "body": "At its height in 2011, Somali piracy held 736 hostages and cost the global economy an estimated $7bn. Three interventions broke it: armed guards aboard tankers, the EU's Operation Atalanta naval patrols, and Chinese and Indian warships escorting their flagged shipping. Attacks fell more than 90% by 2015.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1991",
+                "label": "Somali state collapse"
+              },
+              {
+                "year": "2005",
+                "label": "First major hijackings"
+              },
+              {
+                "year": "2008",
+                "label": "EU Operation Atalanta begins"
+              },
+              {
+                "year": "2011",
+                "label": "Peak: 736 hostages held",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2012",
+                "label": "Armed guards become standard"
+              },
+              {
+                "year": "2017",
+                "label": "Piracy declared 'effectively suppressed'"
+              },
+              {
+                "year": "2023",
+                "label": "Hijackings resume amid Red Sea chaos"
+              }
+            ],
+            "label": "the piracy arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT'S BACK",
+        "body": "The Houthi campaign in the Red Sea since late 2023 pulled naval assets north and pushed insurers to reroute. The escort umbrella over the Gulf of Aden thinned. Puntland networks — never dismantled, only dormant — restarted operations against the smaller, less-protected vessels still transiting."
+      },
+      {
+        "heading": "WHY OWNERS REFUSE",
+        "body": "Most flag states and insurers no longer cover ransom payments, and several jurisdictions (UK, US) criminalize payments to designated groups. An owner who pays risks losing P&I cover and facing prosecution; the family that goes public is leveraging the only path left — political embarrassment of the flag and crew states.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was the main reason Somali piracy collapsed after 2011?",
+            "options": [
+              "A Somali government crackdown on coastal villages",
+              "Privately contracted armed guards aboard merchant ships",
+              "A UN ransom-payment ban",
+              "Pirates voluntarily stood down after fishery agreements"
+            ],
+            "correct": 1,
+            "explanation": "Embarked armed security teams — legal after 2011 flag-state reforms — ended boardings almost overnight. No ship with armed guards aboard has ever been successfully hijacked by Somali pirates."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-17T17:33:13.394Z",
+    "label": "Somali Piracy & the Puntland Coast",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-17-japan-sbi-rakuten-crypto-etf-fsa-framework": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL PIVOT",
+        "body": "Japan currently regulates crypto under the Payment Services Act — the same law that governs prepaid cards and remittance. Reclassifying it under the Financial Instruments and Exchange Act treats Bitcoin like a stock: insider-trading rules apply, disclosure obligations attach, and ETFs become legally constructible.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shift is from *kessai shudan* (payment means) to *kinyuu shouhin* (financial product) — a category change, not a tweak."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE TAX MATTERS MORE",
+        "body": "Under the payment-tool regime, crypto gains were taxed as miscellaneous income at progressive rates up to 55%. Securities classification drops this to a flat 20% capital gains rate — the same as stocks. For high earners, this is a 35-point tax cut that single-handedly unlocks institutional flows.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              77128.44,
+              75728.46,
+              73856.06,
+              75874.55,
+              76350.25,
+              78194.78,
+              78260.62,
+              77444.8,
+              77619.14,
+              78645.13,
+              77361.3,
+              76345.23,
+              75774.89,
+              76286.58,
+              78172.07,
+              78655.35,
+              78562.55,
+              79823.89,
+              80925.09,
+              81425,
+              80022.04,
+              80189.07,
+              80678.03,
+              82145.66,
+              81725.21,
+              80480.89,
+              79277.8,
+              81051.98,
+              79068.82,
+              78135.01,
+              77937.95
+            ],
+            "periods": [
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 17"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE MRS. WATANABE FACTOR",
+        "body": "Japanese households hold roughly half their financial assets in cash — over $7 trillion sitting in zero-yield deposits. The retail FX-trading archetype, nicknamed Mrs. Watanabe, already moves global currency markets from her kitchen table. A regulated crypto ETF channel taps the same pool.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Cash & deposits",
+                "value": "~$7.4tn",
+                "segments": [
+                  {
+                    "value": 54,
+                    "tone": "unfavorable",
+                    "label": "cash"
+                  }
+                ]
+              },
+              {
+                "label": "Insurance & pension",
+                "value": "~$3.8tn",
+                "segments": [
+                  {
+                    "value": 27,
+                    "tone": "neutral",
+                    "label": "insurance"
+                  }
+                ]
+              },
+              {
+                "label": "Stocks & funds",
+                "value": "~$2.5tn",
+                "segments": [
+                  {
+                    "value": 18,
+                    "tone": "favorable",
+                    "label": "equity"
+                  }
+                ]
+              }
+            ],
+            "label": "Japan household financial assets, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE BROKERAGE CAST",
+        "body": "The applicants are not crypto-native firms — they are Japan's traditional financial pillars. SBI runs the country's largest online brokerage; Rakuten owns a megabank and a securities arm; Nomura is the oldest investment bank in Asia; Daiwa is its century-old rival.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "SBI Holdings",
+                "role": "largest online brokerage",
+                "cc": "JP"
+              },
+              {
+                "name": "Rakuten Securities",
+                "role": "e-commerce conglomerate arm",
+                "cc": "JP"
+              },
+              {
+                "name": "Nomura",
+                "role": "oldest Asian investment bank",
+                "cc": "JP"
+              },
+              {
+                "name": "Daiwa Securities",
+                "role": "century-old rival house",
+                "cc": "JP"
+              }
+            ],
+            "label": "the applicants"
+          }
+        ]
+      },
+      {
+        "heading": "THE MT. GOX LEGACY",
+        "body": "Tokyo-based Mt. Gox handled 70% of global Bitcoin trades before collapsing in 2014 with 850,000 BTC missing. Japan responded with the world's first crypto exchange licensing regime in 2017. Eleven years of cautious incrementalism have produced the most thoroughly stress-tested regulatory framework in the world.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2014",
+                "label": "Mt. Gox collapse",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2017",
+                "label": "World's first exchange licensing"
+              },
+              {
+                "year": "2018",
+                "label": "Coincheck hack ($530m)"
+              },
+              {
+                "year": "2020",
+                "label": "PSA amendments tighten custody"
+              },
+              {
+                "year": "2023",
+                "label": "Stablecoin framework activated"
+              },
+              {
+                "year": "2027",
+                "label": "FIEA reclassification (planned)"
+              }
+            ],
+            "label": "Japan's crypto regulatory arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE QUIZ",
+        "body": "Japan's framework matters globally because it forces a question other jurisdictions have ducked: is crypto a payment system or an investment?",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does reclassifying crypto as a security reduce its tax burden in Japan?",
+            "options": [
+              "Securities are exempt from capital gains tax",
+              "Securities get a flat 20% rate vs. up to 55% as miscellaneous income",
+              "Securities trades are processed offshore",
+              "Securities pay tax only on withdrawal"
+            ],
+            "correct": 1,
+            "explanation": "Japan taxes miscellaneous income progressively up to 55%; securities gains are flat 20%. The reclassification is effectively a 35-point tax cut for high earners."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-17"
+    ],
+    "generatedAt": "2026-05-17T17:33:47.968Z",
+    "label": "Japan's Crypto Reclassification",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-17-nature-based-solutions-community-led-climate-adaptation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A BIODYKE IS",
+        "body": "A biodyke is a riverbank reinforced with living vegetation — deep-rooted grasses like vetiver and bamboo planted into bundled brushwood and bamboo cages packed with stone. The roots bind the soil; the cages absorb the river's first hit. Unlike concrete, it strengthens over time as roots thicken and silt builds.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Nepali technique borrows from older Himalayan engineering — *bioengineering* the Department of Roads has used on landslide-prone slopes since the 1980s, scaled down to village hands and village budgets."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CONCRETE FAILS HERE",
+        "body": "Rigid embankments concentrate a river's energy. When monsoon flows exceed design capacity, a concrete dyke fails catastrophically — the wall holds until it doesn't, and the village behind it floods in minutes. Vegetated banks fail gracefully: they bend, leak, and recover."
+      },
+      {
+        "heading": "THE HIMALAYAN HYDROLOGY",
+        "body": "Nepal's rivers drain the steepest watershed on Earth. A monsoon cell over the Mahabharat range can dump 300mm in a day; that water reaches the Terai lowlands within hours, carrying boulders and trees. Bank erosion here is not gradual — single storms can shift a channel by tens of meters.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NP",
+              "IN",
+              "CN",
+              "BT",
+              "BD"
+            ],
+            "label": "Nepal's flood-prone Terai belt",
+            "markers": [
+              {
+                "lat": 27.6244,
+                "lng": 83.6469,
+                "label": "Nawalparasi (Terai)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 1% FIGURE",
+        "body": "Multiple donor audits — Rainforest Foundation Norway's 2021 review is the most cited — find that under 1% of climate finance flows directly to indigenous and local community organizations, despite their lands holding roughly 80% of remaining global biodiversity. Most money is intermediated through national governments and large NGOs that take overhead and set priorities.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of the world's remaining biodiversity sits on lands managed by indigenous and local communities?",
+            "options": [
+              "About 20%",
+              "About 50%",
+              "About 80%",
+              "About 95%"
+            ],
+            "correct": 2,
+            "explanation": "World Bank and IPBES estimates put it near 80% — which is why the <1% finance share is so stark a mismatch."
+          }
+        ]
+      },
+      {
+        "heading": "WHY INTERMEDIATION MATTERS",
+        "body": "Climate adaptation projects routed through capitals and contractors arrive late and arrive wrong: imported designs, imported materials, maintenance contracts that lapse. Community-led biodykes cost a fraction per kilometer because labor, bamboo, and stone are local — but they require the donor to trust a village committee with a wire transfer, which most funding architectures cannot do."
+      }
+    ],
+    "generatedAt": "2026-05-17T17:34:16.329Z",
+    "label": "Nature-Based Adaptation",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-17-nigeria-cppe-cbn-mpc-monetary-tightening-warning": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "DEMAND-PULL VS COST-PUSH",
+        "body": "Textbook inflation comes in two flavors. Demand-pull is too much money chasing too few goods — rate hikes work. Cost-push is supply shocks raising input prices regardless of demand — rate hikes mostly just crush output.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The lobby's argument rests on this distinction: if Nigerian inflation is **cost-push** (diesel, transport, FX passthrough), then tightening punishes the symptom's victims while leaving the cause untouched."
+          }
+        ]
+      },
+      {
+        "heading": "THE NIGERIAN STACK",
+        "body": "Nigeria removed the petrol subsidy in May 2023 and floated the naira the same year. Both shocks fed straight into transport and import costs. The CBN then chased the resulting inflation with rate hikes from 11.5% to 27.5% — the steepest tightening cycle in the bank's history.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              1345.790676,
+              1345.790676,
+              1346.63,
+              1345.47,
+              1348.77,
+              1351.32,
+              1354.96,
+              1351.847873,
+              1351.847873,
+              1352.81,
+              1360.19,
+              1374.96,
+              1375.07,
+              1374.69,
+              1375.98,
+              1375.98,
+              1375.65,
+              1370.93,
+              1365.9,
+              1360.53,
+              1361.67,
+              1356.19465,
+              1356.19465,
+              1357.96,
+              1363.47,
+              1370.1,
+              1370.5,
+              1370.6,
+              1370.49,
+              1372.988035
+            ],
+            "periods": [
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17"
+            ],
+            "label": "Nigerian naira",
+            "unit": "NGN / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY MANUFACTURERS SCREAM FIRST",
+        "body": "At 26.5%, working-capital loans price above almost any manufacturing margin. Nigerian factories run on imported inputs financed in naira credit; when the policy rate doubles, the spread between borrowing cost and return on inventory inverts and production winds down before inflation does.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did Nigeria's policy rate do between 2022 and 2024?",
+            "options": [
+              "Held steady around 11–13%",
+              "Climbed from 11.5% to 27.5%",
+              "Fell as oil revenue recovered",
+              "Was abolished in favor of FX targeting"
+            ],
+            "correct": 1,
+            "explanation": "The CBN's tightening cycle under Cardoso was the steepest in its history — a response to FX float and subsidy removal, not classic demand inflation."
+          }
+        ]
+      },
+      {
+        "heading": "THE FISCAL DOMINANCE PROBLEM",
+        "body": "Monetary tightening only works if fiscal policy cooperates. When the treasury runs large deficits — Nigeria's pre-election spending fits — the central bank pushes rates up while the government pushes liquidity in. The two cancel, and the private sector pays the friction cost."
+      },
+      {
+        "heading": "THE PEER PATTERN",
+        "body": "Emerging markets that hiked aggressively against supply-side inflation have a common story: currency stabilizes, headline CPI eases, but credit to industry collapses and GDP underperforms for years.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Nigeria",
+                "value": "26.5%",
+                "cc": "NG",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Turkey",
+                "value": "50.0%",
+                "cc": "TR",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Egypt",
+                "value": "27.25%",
+                "cc": "EG",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Pakistan",
+                "value": "12.0%",
+                "cc": "PK",
+                "tone": "neutral"
+              },
+              {
+                "label": "Brazil",
+                "value": "14.75%",
+                "cc": "BR",
+                "tone": "neutral"
+              }
+            ],
+            "label": "policy rates in EM frontier economies"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT ACTUALLY FIXES SUPPLY",
+        "body": "Cost-push inflation needs supply-side answers: refinery capacity (Nigeria imports refined fuel despite producing crude), port throughput, power generation, and FX market depth. Each of these is a multi-year fix; rate decisions are a monthly headline."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-17"
+    ],
+    "generatedAt": "2026-05-17T17:34:44.037Z",
+    "label": "Cost-Push Inflation & Monetary Policy",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-17-odili-efcc-appeal-court-immunity-precedent": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONSTITUTIONAL SHIELD",
+        "body": "Section 308 of Nigeria's 1999 Constitution grants sitting governors, deputy governors, the president, and vice president absolute immunity from civil and criminal proceedings while in office. The clause was inherited from the 1979 constitution, itself modeled on US presidential immunity doctrine — but extended to 36 state executives.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shield covers **civil and criminal** proceedings but explicitly *not* election petitions — the one carve-out the drafters insisted on."
+          }
+        ]
+      },
+      {
+        "heading": "THE EFCC'S MANDATE",
+        "body": "The Economic and Financial Crimes Commission was created in 2003 under Obasanjo, partly to get Nigeria off the FATF blacklist of non-cooperative jurisdictions. Its first chair, Nuhu Ribadu, opened files on 31 of 36 sitting governors — making the agency the most politically consequential institution of the Fourth Republic."
+      },
+      {
+        "heading": "THE INJUNCTION TRICK",
+        "body": "Nigerian governors learned to file pre-emptive constitutional suits in friendly state high courts seeking declarations that EFCC investigations violate their immunity. If the EFCC fails to appeal within the statutory window, the injunction crystallizes — and the doctrine of res judicata bars any future prosecution on those facts, even after the governor leaves office.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can an unappealed state-court injunction permanently block a federal prosecution in Nigeria?",
+            "options": [
+              "The state court outranks federal agencies",
+              "Res judicata — an unappealed judgment becomes final and bars relitigation",
+              "The EFCC has no jurisdiction over former governors",
+              "Governors retain immunity for life under Section 308"
+            ],
+            "correct": 1,
+            "explanation": "Once the appeal window closes, the judgment binds the parties forever — the EFCC's failure to appeal converted a temporary shield into a permanent one."
+          }
+        ]
+      },
+      {
+        "heading": "WHO ODILI IS",
+        "body": "Peter Odili governed Rivers State from 1999 to 2007 — the oil-producing heartland that generates roughly 40% of Nigeria's crude output. He ran for the PDP presidential ticket in 2007 before being dropped from the slate; his 2007 injunction has shielded him for nearly two decades.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG"
+            ],
+            "label": "Rivers State & the federal capital",
+            "markers": [
+              {
+                "lat": 4.8156,
+                "lng": 7.0498,
+                "label": "Port Harcourt"
+              },
+              {
+                "lat": 9.0579,
+                "lng": 7.4951,
+                "label": "Abuja (EFCC HQ)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE GOVERNORS' CLUB",
+        "body": "Of the 31 governors Ribadu opened files on in the mid-2000s, fewer than a handful were ever convicted. James Ibori of Delta State was convicted — but in a London court, on money-laundering charges, after fleeing Nigeria. The domestic conviction rate for ex-governors approaches zero.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "James Ibori",
+                "value": "London conviction, 2012",
+                "tone": "favorable",
+                "cc": "NG"
+              },
+              {
+                "label": "Joshua Dariye",
+                "value": "Convicted 2018",
+                "tone": "favorable",
+                "cc": "NG"
+              },
+              {
+                "label": "Peter Odili",
+                "value": "Shielded by injunction",
+                "tone": "unfavorable",
+                "cc": "NG"
+              },
+              {
+                "label": "Orji Uzor Kalu",
+                "value": "Conviction voided 2020",
+                "tone": "unfavorable",
+                "cc": "NG"
+              },
+              {
+                "label": "Ayo Fayose",
+                "value": "Trial stalled",
+                "tone": "unfavorable",
+                "cc": "NG"
+              }
+            ],
+            "label": "high-profile ex-governor cases"
+          }
+        ]
+      },
+      {
+        "heading": "THE NAIRA CONTEXT",
+        "body": "Nigeria's currency has shed roughly 70% of its value against the dollar since the Tinubu administration floated it in 2023. Every unrecovered stolen-asset case denominated in naira from the 2000s is now worth a small fraction of its original value — the passage of time itself laundering the scale of the alleged theft.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              1345.790676,
+              1345.790676,
+              1346.63,
+              1345.47,
+              1348.77,
+              1351.32,
+              1354.96,
+              1351.847873,
+              1351.847873,
+              1352.81,
+              1360.19,
+              1374.96,
+              1375.07,
+              1374.69,
+              1375.98,
+              1375.98,
+              1375.65,
+              1370.93,
+              1365.9,
+              1360.53,
+              1361.67,
+              1356.19465,
+              1356.19465,
+              1357.96,
+              1363.47,
+              1370.1,
+              1370.5,
+              1370.6,
+              1370.49,
+              1372.988035
+            ],
+            "periods": [
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17"
+            ],
+            "label": "Nigerian naira",
+            "unit": "NGN / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-17"
+    ],
+    "generatedAt": "2026-05-17T17:35:14.800Z",
+    "label": "Governor Immunity & the EFCC",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-17-pakistan-centcom-is-k-counterterrorism-partner": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO IS-K ACTUALLY IS",
+        "body": "Islamic State Khorasan Province (ISKP, or IS-K) emerged in 2015 from defectors of the Pakistani Taliban (TTP) in Orakzai and disaffected Afghan Taliban commanders. 'Khorasan' is the classical Islamic-era name for the region spanning eastern Iran, Afghanistan, and parts of Central Asia and northwest Pakistan — chosen for its eschatological resonance, not its modern borders.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AF",
+              "PK",
+              "IR",
+              "TJ",
+              "UZ",
+              "TM"
+            ],
+            "label": "historical Khorasan",
+            "caption": "the region IS-K claims as its operating theatre"
+          }
+        ]
+      },
+      {
+        "heading": "THE ABBEY GATE LINEAGE",
+        "body": "The August 2021 Kabul airport bombing that killed 13 US service members and ~170 Afghans was an IS-K operation. The bomber, Abdul Rahman al-Logari, had been held in Bagram's prison and walked free when the Taliban emptied it during the US withdrawal. Every subsequent US strike framed as 'IS-K leadership' traces back to that night's debt.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phrase **'American blood on their hands'** in CENTCOM testimony is a near-verbatim callback to the Abbey Gate cohort — a specific, named target list, not a general counterterror posture."
+          }
+        ]
+      },
+      {
+        "heading": "THE TALIBAN–IS-K WAR",
+        "body": "The Afghan Taliban and IS-K are mortal enemies. IS-K considers the Taliban apostate for negotiating with the US in Doha and for running a nation-state rather than a borderless caliphate. Since 2021 the Taliban have killed or captured more IS-K operatives than the US did in twenty years — which is exactly why Washington now needs an intelligence channel into the country it just left."
+      },
+      {
+        "heading": "WHY PAKISTAN, NOT THE TALIBAN",
+        "body": "The US cannot openly partner with the Taliban government it refuses to recognize. Pakistan's ISI has historical penetration of every Pashtun militant network — including IS-K's recruitment pipelines in Bajaur and Khyber — and operates the only functional liaison Washington can use without granting Kabul legitimacy. The arrangement revives a Cold-War-era template: Pakistan as the cut-out for US operations next door."
+      },
+      {
+        "heading": "OPERATION EPIC FURY",
+        "body": "The 'paused but not ended' framing is doctrinally specific. US campaign nomenclature distinguishes terminated operations (archived) from suspended ones (assets retained, authorities preserved, restart on order). A paused Iran campaign means strike packages, ISR tasking, and legal findings remain live — the political off-ramp is reversible by a single executive decision."
+      },
+      {
+        "heading": "THE PRICE OF THE PARTNERSHIP",
+        "body": "Pakistan's CT cooperation has historically been transactional: IMF program flexibility, F-16 sustainment, and silence on internal political prosecutions. CENTCOM publicly naming Pakistan 'central' is itself a deliverable — it gives Islamabad a Washington-stamped counter-narrative against Indian, Afghan, and European critiques of its militant-tolerance record.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does 'Khorasan' in 'Islamic State Khorasan' refer to?",
+            "options": [
+              "A modern administrative province of Afghanistan",
+              "A classical region spanning eastern Iran, Afghanistan, and Central Asia",
+              "A town in northwest Pakistan where the group was founded",
+              "An Arabic word meaning 'frontier'"
+            ],
+            "correct": 1,
+            "explanation": "Khorasan is the pre-modern Islamic-era name for a vast region east of Persia — chosen for its scriptural and eschatological weight, not its modern geography."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-17T17:35:51.172Z",
+    "label": "IS-K & the Pakistan–US CT Channel",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-17-pakistan-dgip-passport-home-delivery-chatbot": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY BROKERS EXIST",
+        "body": "Wherever a state document is scarce, slow, or opaque, an informal market emerges to arbitrage the queue. The broker's product is not the passport — it is certainty about when you will get it. Eliminating brokers requires eliminating the uncertainty they price, not just banning them.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The economics literature calls this **rent-seeking at the counter** — the rent is the gap between the official fee and what citizens will pay to skip the wait."
+          }
+        ]
+      },
+      {
+        "heading": "THE DIGITISATION PLAYBOOK",
+        "body": "India's Passport Seva (2010), Indonesia's M-Paspor (2022), and the UAE's ICA Smart app each followed the same sequence: online slot booking, cashless fees, then home delivery. Each step strips one layer of human discretion — the layer where informal fees were collected.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India",
+                "value": "2010",
+                "cc": "IN"
+              },
+              {
+                "label": "UAE",
+                "value": "2018",
+                "cc": "AE"
+              },
+              {
+                "label": "Indonesia",
+                "value": "2022",
+                "cc": "ID"
+              },
+              {
+                "label": "Bangladesh",
+                "value": "2023",
+                "cc": "BD"
+              },
+              {
+                "label": "Pakistan",
+                "value": "2026",
+                "cc": "PK"
+              }
+            ],
+            "label": "South & Southeast Asia passport digitisation"
+          }
+        ]
+      },
+      {
+        "heading": "WHY QR PAYMENTS MATTER",
+        "body": "Cash at a counter is the broker's oxygen — it is unreceipted, untraceable, and splittable between citizen, agent, and clerk. A QR payment routes the fee directly to the treasury and stamps it with a timestamp tied to the applicant's CNIC. The receipt itself becomes the audit trail."
+      },
+      {
+        "heading": "THE DGIP",
+        "body": "The Directorate General of Immigration & Passports sits under the Interior Ministry and runs ~180 offices across Pakistan plus passport sections in foreign missions. It is one of the highest-touch federal agencies — most citizens' only direct encounter with Islamabad — which is why its queue economy has outsized political weight.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK"
+            ],
+            "label": "DGIP's domestic footprint",
+            "caption": "~180 passport offices nationwide"
+          }
+        ]
+      },
+      {
+        "heading": "THE COURIER LEG",
+        "body": "Home delivery is the quiet half of the reform. Once the passport leaves the office in a tracked courier bag, the in-person collection visit — historically the second extraction point, where a clerk could 'misplace' a booklet until paid — disappears entirely. Pakistan Post and TCS already run the comparable NADRA ID-card delivery rail.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does home delivery do more anti-corruption work than online booking alone?",
+            "options": [
+              "It is cheaper for the applicant than a counter visit",
+              "It eliminates the in-person collection visit, the second informal-fee chokepoint",
+              "It lets the DGIP track which offices are slowest",
+              "It makes the passport tamper-evident in transit"
+            ],
+            "correct": 1,
+            "explanation": "Booking online removes the first counter encounter; delivery removes the second. Both are needed because brokers extract at both ends of the process."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-17T17:36:23.846Z",
+    "label": "Brokers & the Passport Queue",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-17-prudential-bharti-life-india-insurance-deal": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE UNDERPENETRATION",
+        "body": "India's life insurance penetration sits around 3% of GDP — below the global average and far below mature markets. Hundreds of millions of middle-class households have bank accounts and smartphones but no policy, which is why every global insurer treats India as the last great greenfield.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Taiwan",
+                "value": "~11%",
+                "cc": "TW",
+                "weight": 11
+              },
+              {
+                "label": "South Korea",
+                "value": "~6%",
+                "cc": "KR",
+                "weight": 6
+              },
+              {
+                "label": "Japan",
+                "value": "~6%",
+                "cc": "JP",
+                "weight": 6
+              },
+              {
+                "label": "UK",
+                "value": "~8%",
+                "cc": "GB",
+                "weight": 8
+              },
+              {
+                "label": "India",
+                "value": "~3%",
+                "cc": "IN",
+                "tone": "unfavorable",
+                "weight": 3
+              },
+              {
+                "label": "China",
+                "value": "~2%",
+                "cc": "CN",
+                "weight": 2
+              }
+            ],
+            "label": "Life insurance penetration (premiums as % of GDP, 2023)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DISTRIBUTION IS THE MOAT",
+        "body": "Life insurance is sold, not bought. Customers don't wake up wanting a 20-year endowment policy — an agent walks them through it. Building an agent force from scratch in India takes a decade; buying into Bharti's telecom-era distribution skips that decade entirely.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Bharti's edge is the residue of **Airtel** — a retail footprint and customer database built selling SIM cards to the same demographic insurers now want to reach."
+          }
+        ]
+      },
+      {
+        "heading": "LIC'S LONG SHADOW",
+        "body": "The Life Insurance Corporation of India, nationalized in 1956, still holds roughly two-thirds of the market. Private insurers were only allowed back in 2000. Every foreign entrant since has had to claw share off a state behemoth with a branch in every district.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1956",
+                "label": "LIC nationalized, monopoly begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2000",
+                "label": "Sector reopened to private/foreign capital"
+              },
+              {
+                "year": "2015",
+                "label": "FDI cap raised 26% → 49%"
+              },
+              {
+                "year": "2021",
+                "label": "FDI cap raised 49% → 74%"
+              },
+              {
+                "year": "2022",
+                "label": "LIC IPO — largest in Indian history"
+              },
+              {
+                "year": "2025",
+                "label": "Government proposes 100% FDI"
+              }
+            ],
+            "label": "India life insurance, the regulatory arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE FDI CEILING",
+        "body": "Until 2021, foreign insurers were capped at 49% ownership of an Indian life venture — forcing every Prudential, Allianz, and AXA into a JV with a domestic partner. The 74% cap unlocked deals like this one; a mooted 100% cap would unlock the next wave.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the current FDI ceiling for foreign ownership of an Indian life insurer?",
+            "options": [
+              "49%",
+              "74%",
+              "100%",
+              "No cap — fully open since 2000"
+            ],
+            "correct": 1,
+            "explanation": "Raised from 49% to 74% in 2021; the government has proposed but not yet enacted a move to 100%."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PRUDENTIAL IS RESHUFFLING",
+        "body": "Prudential plc already owned a minority stake in ICICI Prudential Life, India's largest private life insurer. Regulators bar a single foreign player from holding controlling stakes in two competing licensees — so taking 75% of Bharti Life forces the ICICI stake down below 10%. The deal is a bet that owning a controlled platform beats owning a slice of a bigger one."
+      }
+    ],
+    "generatedAt": "2026-05-17T17:36:55.793Z",
+    "label": "India's Life Insurance Market",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-17-serbia-azerbaijan-gas-turbine-military-cooperation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RUSSIAN INHERITANCE",
+        "body": "Serbia's gas system was built around a single supplier. Gazprom owns 56.15% of NIS, Serbia's national oil and gas company, and Russian gas flows through the TurkStream pipeline via Bulgaria. No other Balkan state is this exposed to a single non-EU supplier.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The stake in **NIS** (Naftna Industrija Srbije) was sold to Gazprom Neft in 2008 for *€400 million* — widely considered below market value, in exchange for the South Stream pipeline route that Russia later cancelled."
+          }
+        ]
+      },
+      {
+        "heading": "THE SOUTHERN GAS CORRIDOR",
+        "body": "Azerbaijan's Shah Deniz field feeds gas westward through three pipelines: SCP across Georgia, TANAP across Turkey, and TAP into Italy. The corridor was built explicitly as Europe's first major non-Russian gas route — operational since 2020.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AZ",
+              "GE",
+              "TR",
+              "GR",
+              "AL",
+              "IT",
+              "RS",
+              "BG"
+            ],
+            "label": "the Southern Gas Corridor",
+            "markers": [
+              {
+                "lat": 40.4093,
+                "lng": 49.8671,
+                "label": "Shah Deniz / Baku"
+              },
+              {
+                "lat": 43.3209,
+                "lng": 21.8958,
+                "label": "Niš plant site"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY SERBIA, WHY NOW",
+        "body": "US sanctions on NIS — triggered by its Gazprom majority — took effect in 2025, freezing the company out of dollar-denominated trade and crude shipments. Belgrade either had to force a Russian divestment or build new energy capacity outside the sanctioned entity. Niš is the second path."
+      },
+      {
+        "heading": "THE ARMS BARTER",
+        "body": "Serbia's Nora B-52 is a 155mm self-propelled howitzer built by Yugoimport — a rare NATO-caliber system manufactured outside the alliance. Azerbaijan already operates Serbian artillery from earlier deals; pairing gas supply with arms exports turns a commercial transaction into a strategic one.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "UAE",
+                "value": "top buyer",
+                "cc": "AE",
+                "tone": "neutral"
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "ammunition",
+                "cc": "SA",
+                "tone": "neutral"
+              },
+              {
+                "label": "Cyprus",
+                "value": "Nora B-52",
+                "cc": "CY",
+                "tone": "neutral"
+              },
+              {
+                "label": "Azerbaijan",
+                "value": "Nora, mortars",
+                "cc": "AZ",
+                "tone": "neutral"
+              },
+              {
+                "label": "Armenia",
+                "value": "also a buyer",
+                "cc": "AM",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Serbia's arms export destinations, recent years"
+          }
+        ]
+      },
+      {
+        "heading": "THE NON-ALIGNED POSTURE",
+        "body": "Serbia is an EU candidate that refuses to sanction Russia, hosts Chinese surveillance infrastructure, and sells weapons to both sides of the Armenia-Azerbaijan conflict. Belgrade calls this 'military neutrality' — the Tito-era doctrine repackaged. The Azerbaijani deal fits the pattern: every major power gets a thread, none gets a rope."
+      },
+      {
+        "heading": "AZERBAIJAN'S LEVERAGE MOMENT",
+        "body": "Since Russia's 2022 invasion, Azerbaijani gas exports to Europe roughly doubled — from ~8 bcm to a 2027 target of 20 bcm. Baku has parlayed this into diplomatic weight: recognition deals, arms purchases, and infrastructure stakes across the Balkans and Central Europe.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which European country signed the first post-2022 long-term gas deal with Azerbaijan?",
+            "options": [
+              "Germany",
+              "Italy",
+              "Hungary",
+              "Bulgaria"
+            ],
+            "correct": 3,
+            "explanation": "Bulgaria signed first in 2022 via the new IGB interconnector — the EU's flagship project to give Balkan states a Russia-free option."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-17T17:37:28.443Z",
+    "label": "Serbia's Energy Pivot",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-17-trump-netanyahu-call-iran-war-cabinet": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DOCTRINE",
+        "body": "Israel's Begin Doctrine, articulated after the 1981 strike on Iraq's Osirak reactor, holds that no hostile state in the region may acquire nuclear weapons. It was reapplied to Syria's al-Kibar reactor in 2007 and has framed every Israeli calculation on Iran since the early 2000s.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine is named for **Menachem Begin**, but its operational logic — *preventive*, not preemptive — was codified by the air force long before politicians embraced it."
+          }
+        ]
+      },
+      {
+        "heading": "THE TARGETS",
+        "body": "Iran's nuclear program is deliberately dispersed and buried. Natanz holds the main enrichment cascades; Fordow is built 80–90 meters inside a mountain near Qom; Arak houses a heavy-water reactor; Isfahan handles conversion. No single strike can end the program — only delay it.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "IL",
+              "IQ",
+              "SA",
+              "JO"
+            ],
+            "label": "Iran's nuclear archipelago",
+            "markers": [
+              {
+                "lat": 33.7248,
+                "lng": 51.7264,
+                "label": "Natanz enrichment"
+              },
+              {
+                "lat": 34.8845,
+                "lng": 50.9931,
+                "label": "Fordow (deep underground)"
+              },
+              {
+                "lat": 34.3742,
+                "lng": 49.2403,
+                "label": "Arak heavy-water"
+              },
+              {
+                "lat": 32.6546,
+                "lng": 51.668,
+                "label": "Isfahan conversion"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BUNKER PROBLEM",
+        "body": "Fordow sits under enough rock that only the US GBU-57 Massive Ordnance Penetrator — a 30,000-pound bomb deliverable only by the B-2 — is credibly believed to reach it. Israel's own bunker-busters cap out well short of this. Any serious strike on Fordow requires American hardware, American pilots, or both."
+      },
+      {
+        "heading": "THE RETALIATION ARC",
+        "body": "Iran's response options form a ladder: ballistic missiles on Israeli cities (used April and October 2024), Hezbollah rocket barrages from Lebanon, Houthi strikes on Red Sea shipping, attacks on US bases in Iraq and Syria, and closure threats on Hormuz. The 2024 exchanges showed each rung can be climbed without forcing the next."
+      },
+      {
+        "heading": "WHY CHINA IS IN THE BRIEFING",
+        "body": "China buys roughly 90% of Iran's sanctioned oil exports, refined through small Shandong 'teapot' refineries that take discounted Iranian crude. Beijing also brokered the 2023 Saudi–Iran normalization. Any conversation about pressuring Tehran routes through Beijing whether Washington likes it or not.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of Iran's oil exports does China absorb?",
+            "options": [
+              "About 20%",
+              "About 50%",
+              "About 90%",
+              "Iran no longer exports oil under sanctions"
+            ],
+            "correct": 2,
+            "explanation": "China takes ~90% of Iranian crude exports, largely through independent Shandong refineries that pay in yuan and accept the sanctions discount."
+          }
+        ]
+      },
+      {
+        "heading": "THE WAR CABINET",
+        "body": "Israel's wartime decision body is smaller than the full security cabinet — a handful of ministers plus the IDF chief of staff and intelligence heads. It was the forum that authorized the 2024 strikes on Iranian soil, the first direct Israel–Iran exchanges in the Islamic Republic's history."
+      }
+    ],
+    "generatedAt": "2026-05-17T17:37:59.266Z",
+    "label": "Israel-Iran Shadow War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-17-uae-barakah-nuclear-drone-strike-gulf-escalation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ARAB WORLD'S FIRST REACTOR",
+        "body": "Barakah is the first operational nuclear power plant in the Arab world. Built by a Korean consortium led by KEPCO under a $20bn contract signed in 2009, its four APR-1400 reactors came online between 2020 and 2024 and now supply roughly a quarter of the UAE's electricity.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The UAE accepted a *123 Agreement* with Washington — the so-called **gold standard** that forswears domestic uranium enrichment and spent-fuel reprocessing. No other Gulf state has accepted those terms."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY OF FALLOUT",
+        "body": "Barakah sits on the Gulf coast near the Saudi border, upwind of every major Gulf capital under prevailing northwesterly Shamal winds. A serious release would not respect the borders of the state that owns the reactor.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "OM",
+              "IR",
+              "KW"
+            ],
+            "caption": "Shamal winds blow southeast from Barakah toward the Gulf capitals",
+            "markers": [
+              {
+                "lat": 23.9667,
+                "lng": 52.1833,
+                "label": "Barakah plant"
+              },
+              {
+                "lat": 24.4539,
+                "lng": 54.3773,
+                "label": "Abu Dhabi"
+              },
+              {
+                "lat": 25.2854,
+                "lng": 51.531,
+                "label": "Doha"
+              },
+              {
+                "lat": 26.2235,
+                "lng": 50.5876,
+                "label": "Manama"
+              },
+              {
+                "lat": 26.4207,
+                "lng": 50.0888,
+                "label": "Dammam"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY DIESELS MATTERED AT FUKUSHIMA",
+        "body": "A reactor that scrams still generates decay heat for days and must be cooled continuously. At Fukushima in 2011, the reactors shut down cleanly on earthquake detection — it was the loss of backup diesel generators to the tsunami hours later that caused three core meltdowns. Emergency diesels are not a footnote; they are the difference between a shutdown and a disaster."
+      },
+      {
+        "heading": "THE TARGETING TABOO",
+        "body": "Additional Protocol I to the Geneva Conventions (Article 56) prohibits attacks on nuclear power stations even when they are military objectives, because of the risk to civilians from released radiation. The taboo has held remarkably well — Israel's 1981 strike on Iraq's Osirak and 2007 strike on Syria's al-Kibar both hit reactors before fuel loading, precisely to avoid breaching it.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1981-06",
+                "label": "Israel destroys Iraq's Osirak (pre-fuel)"
+              },
+              {
+                "year": "1991-01",
+                "label": "US bombs Iraqi research reactors, Gulf War"
+              },
+              {
+                "year": "2007-09",
+                "label": "Israel destroys Syria's al-Kibar (pre-fuel)"
+              },
+              {
+                "year": "2022-03",
+                "label": "Russia seizes Zaporizhzhia, Ukraine"
+              },
+              {
+                "year": "2025-06",
+                "label": "Israeli strikes near Natanz, Iran",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "strikes on nuclear sites — the precedents"
+          }
+        ]
+      },
+      {
+        "heading": "THE DRONE ASYMMETRY",
+        "body": "A commercial-grade quadcopter costs a few hundred dollars; a Shahed-class loitering munition runs in the low tens of thousands. The air-defense interceptors fired at them — Patriot PAC-3, THAAD — cost millions per shot. This cost ratio is why even well-defended Gulf states cannot intercept everything, and why critical infrastructure must be hardened rather than just defended."
+      },
+      {
+        "heading": "THE IAEA'S LIMITED ROLE",
+        "body": "The IAEA is a safeguards and safety agency, not a security force. It can monitor radiation, inspect damage, and issue statements — but it has no authority to attribute attacks, sanction states, or compel disclosure. When the Director-General 'calls for restraint,' that is the full extent of the agency's enforcement power.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does the IAEA's 'gold standard' 123 Agreement require a partner state to give up?",
+            "options": [
+              "All nuclear power generation",
+              "Domestic uranium enrichment and spent-fuel reprocessing",
+              "Membership in OPEC",
+              "Possession of any radioactive material"
+            ],
+            "correct": 1,
+            "explanation": "The 'gold standard' bars enrichment and reprocessing — the two steps that produce weapons-usable material — while still allowing civilian power reactors fueled by imported uranium."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-17T17:38:37.385Z",
+    "label": "Barakah & Gulf Nuclear Risk",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-17-verifiedx-bitcoin-programmable-private-defi": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY BITCOIN ISN'T PROGRAMMABLE",
+        "body": "Satoshi deliberately stripped Bitcoin's scripting language of loops and complex state to minimize attack surface. The tradeoff: you can verify a signature or check a timelock, but you cannot run a lending market on-chain the way Ethereum does natively.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Bitcoin uses **Script**, a stack-based language without Turing-completeness. Ethereum uses the **EVM**, where contracts hold state and execute arbitrary logic. The gap is a design choice, not an oversight."
+          }
+        ]
+      },
+      {
+        "heading": "THE TVL GAP",
+        "body": "Total Value Locked measures assets committed to a chain's smart contracts. Ethereum's lead reflects a decade of tooling, audits, and developer mindshare — not just capital. Bitcoin's market cap is roughly 4x Ethereum's, yet its DeFi footprint is an order of magnitude smaller.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ethereum",
+                "value": "$44bn",
+                "weight": 44,
+                "tone": "favorable"
+              },
+              {
+                "label": "Solana",
+                "value": "~$8bn",
+                "weight": 8,
+                "tone": "neutral"
+              },
+              {
+                "label": "Bitcoin",
+                "value": "$5bn",
+                "weight": 5,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Tron",
+                "value": "~$5bn",
+                "weight": 5,
+                "tone": "neutral"
+              },
+              {
+                "label": "BSC",
+                "value": "~$4bn",
+                "weight": 4,
+                "tone": "neutral"
+              }
+            ],
+            "label": "DeFi total value locked, May 2026"
+          }
+        ]
+      },
+      {
+        "heading": "THE BRIDGE PROBLEM",
+        "body": "Most Bitcoin-on-Ethereum (wrapped BTC) requires custodians to hold the real BTC and mint a token on Ethereum. Cross-chain bridges have lost over $2.5bn to exploits since 2021 — Ronin, Wormhole, Nomad, Multichain. The custody point is the attack surface.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why have cross-chain bridges been the single largest source of crypto theft?",
+            "options": [
+              "They concentrate locked assets in one smart contract or custodian, creating a high-value target",
+              "Their code is written in less secure languages than other contracts",
+              "Regulators have refused to police them",
+              "They use weaker cryptography than base chains"
+            ],
+            "correct": 0,
+            "explanation": "A bridge holds the pooled collateral for every wrapped token it issues — compromise the lock contract or custodian keys and you take everything at once."
+          }
+        ]
+      },
+      {
+        "heading": "THRESHOLD SIGNATURES",
+        "body": "A threshold signature scheme splits one private key into shares held by separate parties; any quorum (say 7 of 10) can co-sign, but no single party can act alone or reconstruct the key. It lets a distributed validator set custody Bitcoin without a single point of failure.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is cryptographically distinct from a *multisig*: multisig publishes multiple signatures on-chain; a **threshold signature** produces one signature indistinguishable from a normal single-key spend — cheaper, more private, and harder to censor."
+          }
+        ]
+      },
+      {
+        "heading": "ZERO-KNOWLEDGE PROOFS",
+        "body": "A zero-knowledge proof lets one party prove a statement is true — funds suffice, identity is valid, computation ran correctly — without revealing the underlying data. The math dates to a 1985 MIT paper by Goldwasser, Micali, and Rackoff; practical implementations only became efficient in the mid-2010s.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1985",
+                "label": "GMR zero-knowledge paper"
+              },
+              {
+                "year": "2013",
+                "label": "Zerocash / first practical zk-SNARKs"
+              },
+              {
+                "year": "2016",
+                "label": "Zcash mainnet launches"
+              },
+              {
+                "year": "2022",
+                "label": "zkEVM rollups go live on Ethereum",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026",
+                "label": "ZK proofs reach Bitcoin DeFi"
+              }
+            ],
+            "label": "from theory to deployment"
+          }
+        ]
+      },
+      {
+        "heading": "WHY INSTITUTIONS CARE",
+        "body": "Self-custody plus privacy plus programmability is what institutional treasuries have been waiting for. A corporate treasurer cannot park reserves on a chain where every counterparty sees the balance, and cannot use a bridge whose insurance is a screenshot of an audit.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              77128.44,
+              75728.46,
+              73856.06,
+              75874.55,
+              76350.25,
+              78194.78,
+              78260.62,
+              77444.8,
+              77619.14,
+              78645.13,
+              77361.3,
+              76345.23,
+              75774.89,
+              76286.58,
+              78172.07,
+              78655.35,
+              78562.55,
+              79823.89,
+              80925.09,
+              81425,
+              80022.04,
+              80189.07,
+              80678.03,
+              82145.66,
+              81725.21,
+              80480.89,
+              79277.8,
+              81051.98,
+              79068.82,
+              78135.01,
+              77937.95
+            ],
+            "periods": [
+              "Apr 18",
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 17"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-17"
+    ],
+    "generatedAt": "2026-05-17T17:39:07.818Z",
+    "label": "Bitcoin Programmability & DeFi",
+    "category": "tech",
+    "articleCount": 1
   }
 }
