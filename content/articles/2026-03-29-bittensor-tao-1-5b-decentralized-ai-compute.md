@@ -18,4 +18,8 @@ concepts:
   - "Large language model"
 ---
 
-New York — Bittensor's TAO network hit $1.5 billion after Jensen Huang endorsed it. Subnet 3 already trained Covenant-72B, a competitive 70B model, using 70 contributors on commodity hardware. A late-2026 Grayscale ETF decision will determine whether institutional buyers follow.
+New York — Bittensor's TAO network hit $1.5 billion after Jensen Huang endorsed it.
+
+Subnet 3 already trained Covenant-72B, a competitive 70B model, using 70 contributors on commodity hardware.
+
+A late-2026 Grayscale ETF decision will determine whether institutional buyers follow.

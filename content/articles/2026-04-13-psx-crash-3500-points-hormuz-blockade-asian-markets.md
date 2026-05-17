@@ -17,4 +17,8 @@ concepts:
   - "Pakistan"
 ---
 
-Karachi — Pakistan's KSE-100 crashed 5,000 points at open Monday. Trump ordered a naval blockade of Iranian ports; Hormuz has been virtually closed since US-Israeli strikes began February 28. Iran's Revolutionary Guards warned that military vessels approaching Hormuz would violate the 2-week ceasefire.
+Karachi — Pakistan's KSE-100 crashed 5,000 points at open Monday.
+
+Trump ordered a naval blockade of Iranian ports; Hormuz has been virtually closed since US-Israeli strikes began February 28.
+
+Iran's Revolutionary Guards warned that military vessels approaching Hormuz would violate the 2-week ceasefire.

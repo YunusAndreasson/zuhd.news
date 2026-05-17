@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Beijing — Green transition lifts only already-diversified cities, study finds. A difference-in-differences study of 270 [China](country:CN) prefecture cities from 2005-2020 found innovation and industrial agglomeration drive the resilience gain, not the transition alone. Not all city types benefit; resource-dependent cities saw resilience fall, the study found.
+Beijing — Green transition lifts only already-diversified cities, study finds.
+
+A difference-in-differences study of 270 [China](country:CN) prefecture cities from 2005-2020 found innovation and industrial agglomeration drive the resilience gain, not the transition alone.
+
+Not all city types benefit; resource-dependent cities saw resilience fall, the study found.

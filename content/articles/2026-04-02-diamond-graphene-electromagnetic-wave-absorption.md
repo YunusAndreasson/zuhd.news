@@ -18,4 +18,8 @@ concepts:
   - "Materials science"
 ---
 
-London — Diamond-graphene composites solved stealth coating's biggest trade-off. The material absorbs radar at −60 dB across a 4 GHz band while surviving the heat and corrosion that destroy conventional absorbers. The synthesis is scalable under moderate pressure; defense applications for aircraft and missiles are the immediate target.
+London — Diamond-graphene composites solved stealth coating's biggest trade-off.
+
+The material absorbs radar at −60 dB across a 4 GHz band while surviving the heat and corrosion that destroy conventional absorbers.
+
+The synthesis is scalable under moderate pressure; defense applications for aircraft and missiles are the immediate target.

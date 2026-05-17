@@ -17,4 +17,8 @@ concepts:
   - "Atmosphere"
 ---
 
-Boulder — Mars's water budget doesn't close. Scientists counted every known source and sink: even generous estimates for every loss mechanism leave 90 metres of a predicted 150-metre ocean missing. Models cannot resolve the gap; only surface missions can.
+Boulder — Mars's water budget doesn't close.
+
+Scientists counted every known source and sink: even generous estimates for every loss mechanism leave 90 metres of a predicted 150-metre ocean missing.
+
+Models cannot resolve the gap; only surface missions can.

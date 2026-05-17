@@ -24,4 +24,8 @@ concepts:
 sentimentDivergence: 0.5
 ---
 
-Tehran — Iran never refused Islamabad talks. FM Araghchi confirmed Tehran rejects Washington's 15-point proposal, not the Islamabad venue — distrust stems from continued US military deployments. Pakistan's mediation continues; Iran's stated condition is a "conclusive and lasting" end, not a US-dictated settlement.
+Tehran — Iran never refused Islamabad talks.
+
+FM Araghchi confirmed Tehran rejects Washington's 15-point proposal, not the Islamabad venue — distrust stems from continued US military deployments.
+
+Pakistan's mediation continues; Iran's stated condition is a "conclusive and lasting" end, not a US-dictated settlement.

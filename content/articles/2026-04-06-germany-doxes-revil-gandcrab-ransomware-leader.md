@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Berlin — Germany named the leader behind REvil and GandCrab. German federal police identified UNKN, the operator behind both gangs, in a public attribution intended to isolate a suspect Russia won't extradite. Public attribution enables asset freezes and travel bans; UNKN faces arrest if crossing into any cooperating jurisdiction.
+Berlin — Germany named the leader behind REvil and GandCrab.
+
+German federal police identified UNKN, the operator behind both gangs, in a public attribution intended to isolate a suspect Russia won't extradite.
+
+Public attribution enables asset freezes and travel bans; UNKN faces arrest if crossing into any cooperating jurisdiction.

@@ -17,4 +17,8 @@ concepts:
   - "Tehran"
 ---
 
-Washington — Iran-linked hackers hit US oil, gas, and water. FBI warned the campaign targets internet-facing PLCs at industrial plants, deploying data wipers for operational destruction, not data theft. The ceasefire covers missiles, not malware; internet-connected ICS operators remain exposed.
+Washington — Iran-linked hackers hit US oil, gas, and water.
+
+FBI warned the campaign targets internet-facing PLCs at industrial plants, deploying data wipers for operational destruction, not data theft.
+
+The ceasefire covers missiles, not malware; internet-connected ICS operators remain exposed.

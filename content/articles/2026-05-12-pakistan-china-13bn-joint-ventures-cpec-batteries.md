@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Karachi — [Pakistan](country:PK) converted 30% of its [China](country:CN) memoranda into binding contracts. Ambassador Khalil Hashmi tallied $13 billion, 300 agreements, and 36 joint ventures in 2 years; the channel is corporate deals, not sovereign loans. Islamabad is in talks with China's top battery maker on a joint venture to be advanced during the PM's China visit.
+Karachi — [Pakistan](country:PK) converted 30% of its [China](country:CN) memoranda into binding contracts.
+
+Ambassador Khalil Hashmi tallied $13 billion, 300 agreements, and 36 joint ventures in 2 years; the channel is corporate deals, not sovereign loans.
+
+Islamabad is in talks with China's top battery maker on a joint venture to be advanced during the PM's China visit.

@@ -31,4 +31,8 @@ sentimentDivergence: 0.27
 entities: []
 ---
 
-Washington — Trump authorized lethal fire against suspected mine-layers. The shoot-on-sight rule covers unidentified small craft in international waters during an active ceasefire, while [Iran](country:IR) denies placing mines. Pentagon told Congress mine clearance could take 6 months; no timeline for de-escalation has been offered.
+Washington — Trump authorized lethal fire against suspected mine-layers.
+
+The shoot-on-sight rule covers unidentified small craft in international waters during an active ceasefire, while [Iran](country:IR) denies placing mines.
+
+Pentagon told Congress mine clearance could take 6 months; no timeline for de-escalation has been offered.

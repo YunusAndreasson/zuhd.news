@@ -17,4 +17,8 @@ concepts:
   - "Presidency of Donald Trump"
 ---
 
-Washington — Trump calls the Maduro capture his perfect scenario. US companies haven't signed oil contracts in Venezuela; India, not the US, was its largest oil buyer last month. The US began a Hormuz blockade Sunday; experts say Iran is not Venezuela.
+Washington — Trump calls the Maduro capture his perfect scenario.
+
+US companies haven't signed oil contracts in Venezuela; India, not the US, was its largest oil buyer last month.
+
+The US began a Hormuz blockade Sunday; experts say Iran is not Venezuela.

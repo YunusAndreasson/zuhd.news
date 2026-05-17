@@ -22,4 +22,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Bandar Abbas — Gunfire hit 2 ships crossing Hormuz Saturday. Iran briefly reopened then reimposed control; a senior lawmaker required tolls and Iran-set routes. Hundreds remain stranded; industry groups warn mine threats in the corridor are unresolved.
+Bandar Abbas — Gunfire hit 2 ships crossing Hormuz Saturday.
+
+Iran briefly reopened then reimposed control; a senior lawmaker required tolls and Iran-set routes.
+
+Hundreds remain stranded; industry groups warn mine threats in the corridor are unresolved.

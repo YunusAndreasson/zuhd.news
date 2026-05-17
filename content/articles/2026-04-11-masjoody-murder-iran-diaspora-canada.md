@@ -17,4 +17,8 @@ concepts:
   - "University"
 ---
 
-Vancouver — Masjoody named his killers in court before dying. The Iranian-Canadian activist was found dead in March; 2 people he had sued for threats are charged with first-degree murder. CSIS has warned of Iranian operations targeting diaspora Canadians; no state-level charges have been filed.
+Vancouver — Masjoody named his killers in court before dying.
+
+The Iranian-Canadian activist was found dead in March; 2 people he had sued for threats are charged with first-degree murder.
+
+CSIS has warned of Iranian operations targeting diaspora Canadians; no state-level charges have been filed.

@@ -19,4 +19,8 @@ concepts:
   - "Rail transport"
 ---
 
-Istanbul — World Bank lent $1.98B to cross the Bosphorus. A 127km rail line will link Istanbul's Asian and European sides, carry 33 million passengers annually, and connect both major airports. Turkey must secure additional financing to start construction; the World Bank calls it Turkey's largest transport loan ever.
+Istanbul — World Bank lent $1.98B to cross the Bosphorus.
+
+A 127km rail line will link Istanbul's Asian and European sides, carry 33 million passengers annually, and connect both major airports.
+
+Turkey must secure additional financing to start construction; the World Bank calls it Turkey's largest transport loan ever.

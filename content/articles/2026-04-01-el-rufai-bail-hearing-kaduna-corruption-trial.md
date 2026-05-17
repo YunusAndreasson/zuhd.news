@@ -24,4 +24,8 @@ concepts:
   - "Corruption"
 ---
 
-Kaduna — Former Kaduna Governor El-Rufai faces 10-count corruption charge. ICPC charged him with money laundering; his defense team filed to disqualify the judge, then withdrew the motion hours later. The bail ruling is pending — the first accountability test for one of northern Nigeria's most powerful former officials.
+Kaduna — Former Kaduna Governor El-Rufai faces 10-count corruption charge.
+
+ICPC charged him with money laundering; his defense team filed to disqualify the judge, then withdrew the motion hours later.
+
+The bail ruling is pending — the first accountability test for one of northern Nigeria's most powerful former officials.

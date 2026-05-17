@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Kuala Lumpur — 3 Southeast Asian states have no mandatory environmental review for data centers. [Malaysia](country:MY) and 2 regional peers leave affected communities no formal legal recourse. Researchers warn the facilities risk becoming financially unviable if artificial intelligence revenue fails to justify construction costs.
+Kuala Lumpur — 3 Southeast Asian states have no mandatory environmental review for data centers.
+
+[Malaysia](country:MY) and 2 regional peers leave affected communities no formal legal recourse.
+
+Researchers warn the facilities risk becoming financially unviable if artificial intelligence revenue fails to justify construction costs.

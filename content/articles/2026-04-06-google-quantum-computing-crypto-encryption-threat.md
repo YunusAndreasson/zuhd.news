@@ -17,4 +17,8 @@ concepts:
   - "Google"
 ---
 
-Mountain View — 6.9 million unspent bitcoin are now cryptographically exposed. Google's paper shows a quantum machine derives any Bitcoin private key in 9 minutes using Shor's algorithm — before block confirmation. The asymmetry protecting every wallet has an expiration date; no blockchain network has deployed post-quantum encryption.
+Mountain View — 6.9 million unspent bitcoin are now cryptographically exposed.
+
+Google's paper shows a quantum machine derives any Bitcoin private key in 9 minutes using Shor's algorithm — before block confirmation.
+
+The asymmetry protecting every wallet has an expiration date; no blockchain network has deployed post-quantum encryption.

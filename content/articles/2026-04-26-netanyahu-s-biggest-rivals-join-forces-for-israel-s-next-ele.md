@@ -37,4 +37,8 @@ eventCoverage: 154
 entities: []
 ---
 
-Tel Aviv — Bennett-Lapid merger leads Likud in polls. [Israel](country:IL)'s opposition has split votes across micro-parties for years; an April 23 poll puts the merged "Together" slate at 28 projected seats against Likud's 25. Former IDF chief Eisenkot runs solo; his choice to join decides whether the bloc clears 61 seats.
+Tel Aviv — Bennett-Lapid merger leads Likud in polls.
+
+[Israel](country:IL)'s opposition has split votes across micro-parties for years; an April 23 poll puts the merged "Together" slate at 28 projected seats against Likud's 25.
+
+Former IDF chief Eisenkot runs solo; his choice to join decides whether the bloc clears 61 seats.

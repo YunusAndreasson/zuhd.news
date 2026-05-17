@@ -23,4 +23,8 @@ entities:
     kind: "chokepoint"
 ---
 
-London — 20 tankers crossed Hormuz on April 18. Kpler data shows it is the highest crossing count since March 1; 5 of the vessels departed from [Iran](country:IR), carrying petroleum products and metals. The [US](country:US) naval blockade continues, Trump said, until the parties reach a final agreement.
+London — 20 tankers crossed Hormuz on April 18.
+
+Kpler data shows it is the highest crossing count since March 1; 5 of the vessels departed from [Iran](country:IR), carrying petroleum products and metals.
+
+The [US](country:US) naval blockade continues, Trump said, until the parties reach a final agreement.

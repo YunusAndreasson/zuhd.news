@@ -16,4 +16,8 @@ concepts:
   - "Automated Ball-Strike system"
 ---
 
-Baltimore — Baseball's robot umpire ejected its first manager. The strike-zone system adjudicates calls via Jumbotron in seconds; a team burned their last challenge on an obvious strike with bases loaded. No rulebook covers ejecting a manager for arguing a robot's call; the league is writing those rules live.
+Baltimore — Baseball's robot umpire ejected its first manager.
+
+The strike-zone system adjudicates calls via Jumbotron in seconds; a team burned their last challenge on an obvious strike with bases loaded.
+
+No rulebook covers ejecting a manager for arguing a robot's call; the league is writing those rules live.

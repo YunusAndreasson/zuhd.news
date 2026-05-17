@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Redmond — Developers called Microsoft's Windows 11 plan gaslighting. A sambent.com post accused Microsoft of addressing only surface concerns while ignoring core developer objections — it earned 580 Hacker News votes and 421 comments. Microsoft has not responded, and developer trust now sits at the center of its next major Windows decision.
+Redmond — Developers called Microsoft's Windows 11 plan gaslighting.
+
+A sambent.com post accused Microsoft of addressing only surface concerns while ignoring core developer objections — it earned 580 Hacker News votes and 421 comments.
+
+Microsoft has not responded, and developer trust now sits at the center of its next major Windows decision.

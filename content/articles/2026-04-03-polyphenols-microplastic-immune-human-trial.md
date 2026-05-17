@@ -17,4 +17,8 @@ concepts:
   - "Blood plasma"
 ---
 
-London — Plant polyphenols reduced microplastic immune inflammation in humans. A 28-day randomized controlled trial in 98 people showed a polyphenol blend cut 3 inflammatory cytokines by modulating gut microbiota. Researchers named 2 mediators, pointing to dietary polyphenols as a clinical candidate against microplastic toxicity.
+London — Plant polyphenols reduced microplastic immune inflammation in humans.
+
+A 28-day randomized controlled trial in 98 people showed a polyphenol blend cut 3 inflammatory cytokines by modulating gut microbiota.
+
+Researchers named 2 mediators, pointing to dietary polyphenols as a clinical candidate against microplastic toxicity.

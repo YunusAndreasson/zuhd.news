@@ -18,4 +18,8 @@ concepts:
   - "Prime Minister of Greece"
 ---
 
-Athens — 11 Greek lawmakers face EU prosecution for farm subsidy fraud. European prosecutors allege farmers faked pastureland ownership to claim EU funds with help from politicians shielded by parliamentary immunity. Mitsotakis replaced his agriculture minister Friday; parliament must vote to lift immunity before prosecution can proceed.
+Athens — 11 Greek lawmakers face EU prosecution for farm subsidy fraud.
+
+European prosecutors allege farmers faked pastureland ownership to claim EU funds with help from politicians shielded by parliamentary immunity.
+
+Mitsotakis replaced his agriculture minister Friday; parliament must vote to lift immunity before prosecution can proceed.

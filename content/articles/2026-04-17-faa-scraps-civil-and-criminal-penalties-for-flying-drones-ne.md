@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Washington — A lawsuit forced the Federal Aviation Administration to drop criminal drone penalties near immigration enforcement vehicles. The original rule barred flights within 3,000 feet of agents' unmarked cars — unverifiable without visible markings. The FAA advisory still warns drones may be destroyed; the Reporters Committee is litigating.
+Washington — A lawsuit forced the Federal Aviation Administration to drop criminal drone penalties near immigration enforcement vehicles.
+
+The original rule barred flights within 3,000 feet of agents' unmarked cars — unverifiable without visible markings.
+
+The FAA advisory still warns drones may be destroyed; the Reporters Committee is litigating.

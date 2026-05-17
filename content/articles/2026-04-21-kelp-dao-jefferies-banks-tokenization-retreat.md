@@ -16,4 +16,8 @@ concepts:
   - "Tokenization"
 ---
 
-New York — Kelp DAO's $293 million exploit rattled bank tokenization. A single-validator bridge flaw let attackers mint unbacked collateral, leaving Aave with $200 million in bad debt as users withdrew $9 billion. Jefferies analyst Andrew Moss warned traditional finance firms may pause tokenization rollouts to reassess bridge security vulnerabilities.
+New York — Kelp DAO's $293 million exploit rattled bank tokenization.
+
+A single-validator bridge flaw let attackers mint unbacked collateral, leaving Aave with $200 million in bad debt as users withdrew $9 billion.
+
+Jefferies analyst Andrew Moss warned traditional finance firms may pause tokenization rollouts to reassess bridge security vulnerabilities.

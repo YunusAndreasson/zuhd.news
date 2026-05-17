@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Johannesburg — 43 of the city's 129 reservoirs are leaking. The city opened one replacement while admitting 48.7% of treated water never reaches a tap — 26.3% lost to leaks, Johannesburg Water said. Repairing all 43 costs R1.25 billion, Johannesburg Water said; the utility can afford only 15 next year.
+Johannesburg — 43 of the city's 129 reservoirs are leaking.
+
+The city opened one replacement while admitting 48.7% of treated water never reaches a tap — 26.3% lost to leaks, Johannesburg Water said.
+
+Repairing all 43 costs R1.25 billion, Johannesburg Water said; the utility can afford only 15 next year.

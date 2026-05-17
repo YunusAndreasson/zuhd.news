@@ -26,4 +26,8 @@ concepts:
 sentimentDivergence: 0.39
 ---
 
-Beirut — 203 Lebanese killed as Israel offered disarmament talks. Netanyahu directed his cabinet to open direct talks on Hezbollah disarmament, hours after Israeli strikes on Lebanon's capital wounded over 1,000. Lebanon has not responded, and Iran disputes whether the US ceasefire covers Israeli attacks ahead of Saturday talks.
+Beirut — 203 Lebanese killed as Israel offered disarmament talks.
+
+Netanyahu directed his cabinet to open direct talks on Hezbollah disarmament, hours after Israeli strikes on Lebanon's capital wounded over 1,000.
+
+Lebanon has not responded, and Iran disputes whether the US ceasefire covers Israeli attacks ahead of Saturday talks.

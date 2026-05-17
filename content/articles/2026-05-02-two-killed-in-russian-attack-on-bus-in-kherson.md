@@ -34,4 +34,8 @@ sentimentDivergence: 0.27
 entities: []
 ---
 
-Kherson — [Russia](country:RU)'s dawn drone killed 2 commuters. Russia has systematically targeted Kherson civilian transit using small drones since holding cross-river positions, [Ukraine](country:UA)'s human rights ombudsman said. Ukraine downed 142 of 163 Russian drones overnight, the military said; Zelensky warned interceptor supplies are critically short.
+Kherson — [Russia](country:RU)'s dawn drone killed 2 commuters.
+
+Russia has systematically targeted Kherson civilian transit using small drones since holding cross-river positions, [Ukraine](country:UA)'s human rights ombudsman said.
+
+Ukraine downed 142 of 163 Russian drones overnight, the military said; Zelensky warned interceptor supplies are critically short.

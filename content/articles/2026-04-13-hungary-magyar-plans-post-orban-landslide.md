@@ -17,4 +17,8 @@ concepts:
   - "Tisza"
 ---
 
-Budapest — Tisza took 138 seats; Fidesz collapsed to 55. The 2-thirds supermajority gives Magyar's government power to dismantle Orbán's captured judiciary, media, and state enterprises built over 16 years. Magyar speaks today; Trump and Vance, who backed Orbán publicly, are silent.
+Budapest — Tisza took 138 seats; Fidesz collapsed to 55.
+
+The 2-thirds supermajority gives Magyar's government power to dismantle Orbán's captured judiciary, media, and state enterprises built over 16 years.
+
+Magyar speaks today; Trump and Vance, who backed Orbán publicly, are silent.

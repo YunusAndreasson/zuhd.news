@@ -17,4 +17,8 @@ concepts:
   - "Cloud computing"
 ---
 
-Manama — Iran hit AWS twice: UAE, then Bahrain. The March 1 UAE strikes were the first deliberate military attacks on commercial cloud infrastructure, taking banking and hospital systems offline. Iran has since named 12 US tech companies, Microsoft and Google among them, as future targets.
+Manama — Iran hit AWS twice: UAE, then Bahrain.
+
+The March 1 UAE strikes were the first deliberate military attacks on commercial cloud infrastructure, taking banking and hospital systems offline.
+
+Iran has since named 12 US tech companies, Microsoft and Google among them, as future targets.

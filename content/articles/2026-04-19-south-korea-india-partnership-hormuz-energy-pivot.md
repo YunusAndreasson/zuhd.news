@@ -28,4 +28,8 @@ eventCoverage: 56
 sentimentDivergence: 0.52
 ---
 
-New Delhi — [South Korea](country:KR) returned to [India](country:IN) after 8 years. President Lee said Middle East instability exposed shared vulnerability — both nations rely heavily on imported energy routed through Hormuz. Monday's summit covers shipbuilding, semiconductors and an enhanced trade agreement; cooperation deals are expected to be signed.
+New Delhi — [South Korea](country:KR) returned to [India](country:IN) after 8 years.
+
+President Lee said Middle East instability exposed shared vulnerability — both nations rely heavily on imported energy routed through Hormuz.
+
+Monday's summit covers shipbuilding, semiconductors and an enhanced trade agreement; cooperation deals are expected to be signed.

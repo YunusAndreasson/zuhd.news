@@ -17,4 +17,8 @@ concepts:
   - "Surveillance"
 ---
 
-Athens — Predator spyware maker said only governments received its software. Dilian, sentenced to over 126 years in Greece's landmark wiretap trial, told Greek TV his firm sells "exclusively to authorized governments," implicating Athens. Greek opposition leader Nikos Androulakis, a confirmed Predator target, is demanding Prime Minister Kyriakos Mitsotakis explain who authorized the surveillance of 87 Greeks.
+Athens — Predator spyware maker said only governments received its software.
+
+Dilian, sentenced to over 126 years in Greece's landmark wiretap trial, told Greek TV his firm sells "exclusively to authorized governments," implicating Athens.
+
+Greek opposition leader Nikos Androulakis, a confirmed Predator target, is demanding Prime Minister Kyriakos Mitsotakis explain who authorized the surveillance of 87 Greeks.

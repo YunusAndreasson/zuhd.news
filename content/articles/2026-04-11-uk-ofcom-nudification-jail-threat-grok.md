@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-London — Ofcom will jail tech executives over nudification failures. The threat follows the Grok scandal, in which millions of AI-generated nude images of women and children circulated on xAI's platform. Under the Online Safety Act, executives face personal criminal liability where platform-level fines have failed.
+London — Ofcom will jail tech executives over nudification failures.
+
+The threat follows the Grok scandal, in which millions of AI-generated nude images of women and children circulated on xAI's platform.
+
+Under the Online Safety Act, executives face personal criminal liability where platform-level fines have failed.

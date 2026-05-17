@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Warsaw — Zbigniew Ziobro reached Newark with revoked Polish passports. [Hungary](country:HU)'s new Prime Minister Magyar ended Orbán's sanctuary architecture within hours of taking power, refusing to shelter Ziobro or other wanted fugitives. [Poland](country:PL) will seek [US](country:US) extradition; Ziobro faces up to 25 years for Pegasus-spyware abuse of power.
+Warsaw — Zbigniew Ziobro reached Newark with revoked Polish passports.
+
+[Hungary](country:HU)'s new Prime Minister Magyar ended Orbán's sanctuary architecture within hours of taking power, refusing to shelter Ziobro or other wanted fugitives.
+
+[Poland](country:PL) will seek [US](country:US) extradition; Ziobro faces up to 25 years for Pegasus-spyware abuse of power.

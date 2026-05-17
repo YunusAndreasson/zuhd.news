@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Washington — The [US](country:US) Immigration and Customs Enforcement facial recognition app already queries 200 million images from officers' phones; the agency now plans smart glasses that run the same scan hands-free. The glasses leave no visible consent signal. No timeline or public specification has been published.
+Washington — The [US](country:US) Immigration and Customs Enforcement facial recognition app already queries 200 million images from officers' phones; the agency now plans smart glasses that run the same scan hands-free.
+
+The glasses leave no visible consent signal.
+
+No timeline or public specification has been published.

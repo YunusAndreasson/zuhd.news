@@ -17,4 +17,8 @@ concepts:
   - "Spatial transcriptomics"
 ---
 
-Beijing — Spp1 gene deletion silences auditory timing neurons. Spp1 marks bushy cells — neurons that synchronize sound timing — which the atlas confirms are the primary casualty of congenital hearing loss. Spp1 is now a drug target; researchers are designing neuroprostheses to restore cochlear nucleus processing after hearing loss.
+Beijing — Spp1 gene deletion silences auditory timing neurons.
+
+Spp1 marks bushy cells — neurons that synchronize sound timing — which the atlas confirms are the primary casualty of congenital hearing loss.
+
+Spp1 is now a drug target; researchers are designing neuroprostheses to restore cochlear nucleus processing after hearing loss.

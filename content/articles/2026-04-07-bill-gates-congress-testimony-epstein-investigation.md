@@ -18,4 +18,8 @@ concepts:
   - "United States Department of Justice"
 ---
 
-Washington — Gates will testify before Congress on Epstein. The House Oversight Committee called Gates after 3 million DOJ files revealed his contacts with the convicted sex trafficker. Gates denies wrongdoing but prosecutors have not said whether he faces a criminal referral.
+Washington — Gates will testify before Congress on Epstein.
+
+The House Oversight Committee called Gates after 3 million DOJ files revealed his contacts with the convicted sex trafficker.
+
+Gates denies wrongdoing but prosecutors have not said whether he faces a criminal referral.

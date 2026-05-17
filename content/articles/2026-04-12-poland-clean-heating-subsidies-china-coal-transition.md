@@ -11,4 +11,8 @@ sources:
     country: "GB"
 ---
 
-Kraków — Poland made cleaner heat cheaper than coal. The approach — income-based subsidies requiring insulation first — cut Kraków's pollution days from 150 to 30 over ten years. China switched 40 million homes but ended subsidies in 2024, pushing heating costs above 20% of rural income.
+Kraków — Poland made cleaner heat cheaper than coal.
+
+The approach — income-based subsidies requiring insulation first — cut Kraków's pollution days from 150 to 30 over ten years.
+
+China switched 40 million homes but ended subsidies in 2024, pushing heating costs above 20% of rural income.

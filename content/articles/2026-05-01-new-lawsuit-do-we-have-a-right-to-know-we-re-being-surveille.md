@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Scarsdale, New York — Scarsdale hid its surveillance camera map from residents. Flock Safety, a $7bn license-plate-reader company saturating [US](country:US) suburbs, lets municipalities claim camera locations are police-strategy secrets exempt from transparency law. The New York Civil Liberties Union's suit would determine whether such maps are public records.
+Scarsdale, New York — Scarsdale hid its surveillance camera map from residents.
+
+Flock Safety, a $7bn license-plate-reader company saturating [US](country:US) suburbs, lets municipalities claim camera locations are police-strategy secrets exempt from transparency law.
+
+The New York Civil Liberties Union's suit would determine whether such maps are public records.

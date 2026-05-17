@@ -17,4 +17,8 @@ concepts:
   - "Cervical vertebrae"
 ---
 
-Buenos Aires — 3 druggable escape routes explain antiprogestin-resistant breast cancer. Luminal tumors overexpress FGF2 to activate the androgen receptor and Wnt signaling pathways, bypassing antiprogestin therapy. Enzalutamide and a Wnt inhibitor block these routes in mice; whether they extend survival in patients is untested.
+Buenos Aires — 3 druggable escape routes explain antiprogestin-resistant breast cancer.
+
+Luminal tumors overexpress FGF2 to activate the androgen receptor and Wnt signaling pathways, bypassing antiprogestin therapy.
+
+Enzalutamide and a Wnt inhibitor block these routes in mice; whether they extend survival in patients is untested.

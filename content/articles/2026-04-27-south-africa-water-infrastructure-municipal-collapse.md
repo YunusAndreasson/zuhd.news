@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Johannesburg — Limpopo's 2.1 million residents lack basic water access. [South Africa](country:ZA) guarantees water as a constitutional right, but municipal revenue shortfalls have left apartheid-era pipes unrepaired across all nine provinces. The 2023 Blue Drop audit rated 8 Mpumalanga municipalities at critical risk; none have announced repair timelines.
+Johannesburg — Limpopo's 2.1 million residents lack basic water access.
+
+[South Africa](country:ZA) guarantees water as a constitutional right, but municipal revenue shortfalls have left apartheid-era pipes unrepaired across all nine provinces.
+
+The 2023 Blue Drop audit rated 8 Mpumalanga municipalities at critical risk; none have announced repair timelines.

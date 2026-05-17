@@ -28,4 +28,8 @@ eventCoverage: 240
 sentimentDivergence: 0.51
 ---
 
-Rome — Italy cut its defense pact with Israel. Israeli forces struck Italian UN peacekeepers in Lebanon last week; PM Giorgia Meloni ended the 21-year agreement in response. Italian Foreign Minister Antonio Tajani visited Lebanon and called for Israeli withdrawal.
+Rome — Italy cut its defense pact with Israel.
+
+Israeli forces struck Italian UN peacekeepers in Lebanon last week; PM Giorgia Meloni ended the 21-year agreement in response.
+
+Italian Foreign Minister Antonio Tajani visited Lebanon and called for Israeli withdrawal.

@@ -17,4 +17,8 @@ concepts:
   - "Oslo Accords"
 ---
 
-West Bank — Israeli settlers now occupy Areas B and A, nominally under Palestinian Authority jurisdiction. Area C — 60% of the West Bank — has been under settler de facto control for decades; new outposts in Areas B and A erase the last lines the Oslo Accords defined. The Palestinian Authority has no military force in Area C and cannot remove settler outposts from B and A without Israeli army cooperation.
+West Bank — Israeli settlers now occupy Areas B and A, nominally under Palestinian Authority jurisdiction.
+
+Area C — 60% of the West Bank — has been under settler de facto control for decades; new outposts in Areas B and A erase the last lines the Oslo Accords defined.
+
+The Palestinian Authority has no military force in Area C and cannot remove settler outposts from B and A without Israeli army cooperation.

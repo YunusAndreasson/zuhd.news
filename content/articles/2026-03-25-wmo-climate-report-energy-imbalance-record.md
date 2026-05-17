@@ -18,4 +18,8 @@ concepts:
   - "El Niño"
 ---
 
-Geneva — Earth's energy imbalance hit a 65-year high. WMO's 2025 report records 11 consecutive hottest years; for the first time, it quantifies the imbalance: 90% of excess heat now sits in the oceans. WMO warns El Niño could return later this year, pushing 2026 toward new records.
+Geneva — Earth's energy imbalance hit a 65-year high.
+
+WMO's 2025 report records 11 consecutive hottest years; for the first time, it quantifies the imbalance: 90% of excess heat now sits in the oceans.
+
+WMO warns El Niño could return later this year, pushing 2026 toward new records.

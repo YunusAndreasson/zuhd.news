@@ -17,4 +17,8 @@ concepts:
   - "Greenhouse gas emissions"
 ---
 
-London — Drax abandoned the only industrial carbon-capture test. Bioenergy carbon capture has underpinned UN climate-panel models since 2014 as the return path below 1.5°C, despite never operating at scale. A Princeton model finds it adds CO2 for 30 years; no government has removed it from climate projections.
+London — Drax abandoned the only industrial carbon-capture test.
+
+Bioenergy carbon capture has underpinned UN climate-panel models since 2014 as the return path below 1.5°C, despite never operating at scale.
+
+A Princeton model finds it adds CO2 for 30 years; no government has removed it from climate projections.

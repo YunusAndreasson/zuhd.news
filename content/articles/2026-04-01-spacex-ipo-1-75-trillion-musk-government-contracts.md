@@ -17,4 +17,8 @@ concepts:
   - "DOGE"
 ---
 
-Washington — SpaceX filed for the largest IPO in history. The $1.75 trillion target exceeds every prior listing; SpaceX holds monopolies on crewed NASA flights and dominant classified military launch contracts. Musk, who runs DOGE slashing federal budgets, will now sell shares in a company dependent on federal contracts.
+Washington — SpaceX filed for the largest IPO in history.
+
+The $1.75 trillion target exceeds every prior listing; SpaceX holds monopolies on crewed NASA flights and dominant classified military launch contracts.
+
+Musk, who runs DOGE slashing federal budgets, will now sell shares in a company dependent on federal contracts.

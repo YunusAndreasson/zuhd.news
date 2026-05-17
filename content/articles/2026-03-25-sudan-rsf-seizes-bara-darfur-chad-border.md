@@ -16,4 +16,8 @@ concepts:
   - "North Kordofan"
 ---
 
-RSF retook Bara 10 days after losing it. RSF overran absent air defenses with drone strikes and killed 15 at a funeral gathering in Chad. Sudan's military chief General Burhan is courting revolutionary factions after the US designated the Sudanese Muslim Brotherhood — his main political ally — a terrorist organization.
+RSF retook Bara 10 days after losing it.
+
+RSF overran absent air defenses with drone strikes and killed 15 at a funeral gathering in Chad.
+
+Sudan's military chief General Burhan is courting revolutionary factions after the US designated the Sudanese Muslim Brotherhood — his main political ally — a terrorist organization.

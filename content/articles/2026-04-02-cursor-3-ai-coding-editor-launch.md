@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-San Francisco — Cursor 3 shipped, drawing 154 Hacker News comments. AI coding editors now ship major versions quarterly; Cursor competes with GitHub Copilot and 2 rivals for the agentic workflow default. Which editor developers adopt depends on performance in agentic tasks.
+San Francisco — Cursor 3 shipped, drawing 154 Hacker News comments.
+
+AI coding editors now ship major versions quarterly; Cursor competes with GitHub Copilot and 2 rivals for the agentic workflow default.
+
+Which editor developers adopt depends on performance in agentic tasks.

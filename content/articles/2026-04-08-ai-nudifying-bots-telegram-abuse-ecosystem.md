@@ -19,4 +19,8 @@ concepts:
 eventCoverage: 54
 ---
 
-Brussels — AI nudifying bots industrialized sexual abuse on Telegram. Analysis of 2.8 million messages found 24,671 users buying AI-generated images for 5-50 euros, with PayPal processing payments. Telegram remains unclassified under the DSA; researchers say designation would require content moderation.
+Brussels — AI nudifying bots industrialized sexual abuse on Telegram.
+
+Analysis of 2.8 million messages found 24,671 users buying AI-generated images for 5-50 euros, with PayPal processing payments.
+
+Telegram remains unclassified under the DSA; researchers say designation would require content moderation.

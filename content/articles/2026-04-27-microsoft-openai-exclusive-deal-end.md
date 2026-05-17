@@ -15,4 +15,8 @@ entities:
     kind: "stock"
 ---
 
-Seattle — OpenAI loses Microsoft's guaranteed revenue share. The deal — Microsoft's cloud investment in exchange for an OpenAI profit share — is unwinding after renegotiation. OpenAI must now secure compute access on commercial terms.
+Seattle — OpenAI loses Microsoft's guaranteed revenue share.
+
+The deal — Microsoft's cloud investment in exchange for an OpenAI profit share — is unwinding after renegotiation.
+
+OpenAI must now secure compute access on commercial terms.

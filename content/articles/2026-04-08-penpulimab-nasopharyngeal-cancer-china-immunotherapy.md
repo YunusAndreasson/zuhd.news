@@ -16,4 +16,8 @@ concepts:
   - "PD-1"
 ---
 
-Beijing — Penpulimab halved progression rates in EBV-linked throat cancer. A 291-patient Phase 3 trial found penpulimab plus chemotherapy cut disease progression risk by 55% versus placebo (HR 0.45, P<0.0001). The cancer is endemic to southern China and Southeast Asia, underserved by Western drug development.
+Beijing — Penpulimab halved progression rates in EBV-linked throat cancer.
+
+A 291-patient Phase 3 trial found penpulimab plus chemotherapy cut disease progression risk by 55% versus placebo (HR 0.45, P<0.0001).
+
+The cancer is endemic to southern China and Southeast Asia, underserved by Western drug development.

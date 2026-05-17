@@ -17,4 +17,8 @@ concepts:
   - "Annexation"
 ---
 
-Jerusalem — Israel's finance minister called for annexing southern Lebanon. Finance Minister Bezalel Smotrich declared the Litani River must become Israel's northern border; Israeli forces have destroyed bridges over the river, cutting off 1 million displaced Lebanese from the north. Lebanon's government must decide whether to push for a UN Security Council intervention as Israeli troops advance toward the Litani.
+Jerusalem — Israel's finance minister called for annexing southern Lebanon.
+
+Finance Minister Bezalel Smotrich declared the Litani River must become Israel's northern border; Israeli forces have destroyed bridges over the river, cutting off 1 million displaced Lebanese from the north.
+
+Lebanon's government must decide whether to push for a UN Security Council intervention as Israeli troops advance toward the Litani.

@@ -26,4 +26,8 @@ sentimentDivergence: 0.13
 entities: []
 ---
 
-Thiruvananthapuram — Congress won 102 of 140 Kerala seats. The win leaves [India](country:IN) without a left-governed state for the first time since 1977, after earlier losses in West Bengal and Tripura. India's left holds 8 parliament seats; Kerala was its last state government.
+Thiruvananthapuram — Congress won 102 of 140 Kerala seats.
+
+The win leaves [India](country:IN) without a left-governed state for the first time since 1977, after earlier losses in West Bengal and Tripura.
+
+India's left holds 8 parliament seats; Kerala was its last state government.

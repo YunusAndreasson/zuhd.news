@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-London — [Britain](country:GB) declared Uyghur genocide in 2021 — and sanctioned nobody. Parliament's unanimous Commons vote has produced no measures targeting Xinjiang officials, no cotton import ban, no forced-labour polysilicon restriction in 5 years. Without a sanctions bill attached, genocide declarations carry no legal enforcement mechanism.
+London — [Britain](country:GB) declared Uyghur genocide in 2021 — and sanctioned nobody.
+
+Parliament's unanimous Commons vote has produced no measures targeting Xinjiang officials, no cotton import ban, no forced-labour polysilicon restriction in 5 years.
+
+Without a sanctions bill attached, genocide declarations carry no legal enforcement mechanism.

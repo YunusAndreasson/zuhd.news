@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Nairobi — African solar imports from [China](country:CN) surged 17% last year. The 2024 South-South Renewables Centre links Chinese manufacturers to buyers in 16 African countries, while Western donor-driven plans remain in planning phases. Industry groups say local financing and grid-connection conditions remain the primary bottlenecks to scaling deployments.
+Nairobi — African solar imports from [China](country:CN) surged 17% last year.
+
+The 2024 South-South Renewables Centre links Chinese manufacturers to buyers in 16 African countries, while Western donor-driven plans remain in planning phases.
+
+Industry groups say local financing and grid-connection conditions remain the primary bottlenecks to scaling deployments.

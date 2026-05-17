@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Akure — ₦500 million demanded for 1 farm manager. [Nigeria](country:NG)'s southwestern farm belt, previously low-risk, is now being targeted by armed groups from the northern Sahel corridor. Ondo police said they were unaware of the demand; the family is negotiating a lower figure.
+Akure — ₦500 million demanded for 1 farm manager.
+
+[Nigeria](country:NG)'s southwestern farm belt, previously low-risk, is now being targeted by armed groups from the northern Sahel corridor.
+
+Ondo police said they were unaware of the demand; the family is negotiating a lower figure.

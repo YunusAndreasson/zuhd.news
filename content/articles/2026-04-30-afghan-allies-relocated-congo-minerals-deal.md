@@ -17,4 +17,8 @@ entities:
     kind: "commodity"
 ---
 
-Kinshasa — 1,000 Afghan allies rerouted to [Congo](country:CD), not [US](country:US). Washington bundled their resettlement into a December 2025 minerals deal with Congo, trading asylum for cobalt and copper access. Authorities arrested Kinshasa protesters on April 24; evacuees in Qatar's transit camp have no confirmed resettlement date.
+Kinshasa — 1,000 Afghan allies rerouted to [Congo](country:CD), not [US](country:US).
+
+Washington bundled their resettlement into a December 2025 minerals deal with Congo, trading asylum for cobalt and copper access.
+
+Authorities arrested Kinshasa protesters on April 24; evacuees in Qatar's transit camp have no confirmed resettlement date.

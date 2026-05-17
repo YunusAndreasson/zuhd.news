@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Ramallah — [Israel](country:IL) froze $5bn in Palestinian tax revenue. [Israel](country:IL) collects Palestinian taxes under Oslo and has withheld transfers since October 2023, cutting salaries to a flat $670. West Bank hospitals struck April 21 as the banks sustaining the Palestinian Authority run out of credit.
+Ramallah — [Israel](country:IL) froze $5bn in Palestinian tax revenue.
+
+[Israel](country:IL) collects Palestinian taxes under Oslo and has withheld transfers since October 2023, cutting salaries to a flat $670.
+
+West Bank hospitals struck April 21 as the banks sustaining the Palestinian Authority run out of credit.

@@ -10,4 +10,8 @@ sources:
     url: "https://isbgpsafeyet.com/"
 ---
 
-San Francisco — Most ISPs still skip BGP route validation. BGP routes all internet traffic on trust alone; RPKI validation can prevent hijacking, but most ISPs have not deployed it. With state-level cyber operations active during the Iran war, unvalidated BGP leaves internet connections exposed to route manipulation.
+San Francisco — Most ISPs still skip BGP route validation.
+
+BGP routes all internet traffic on trust alone; RPKI validation can prevent hijacking, but most ISPs have not deployed it.
+
+With state-level cyber operations active during the Iran war, unvalidated BGP leaves internet connections exposed to route manipulation.

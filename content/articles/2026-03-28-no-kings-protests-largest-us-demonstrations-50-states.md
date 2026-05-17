@@ -23,4 +23,8 @@ concepts:
   - "Immigration Enforcement"
 ---
 
-Minneapolis — 3,100 events open across every US state today. Organizers project turnout will surpass October's 7 million, with the Iran war, immigration enforcement killings in Minneapolis, and economic anxiety driving participation. Organizers have already declared May 1 the next escalation: a nationwide general strike.
+Minneapolis — 3,100 events open across every US state today.
+
+Organizers project turnout will surpass October's 7 million, with the Iran war, immigration enforcement killings in Minneapolis, and economic anxiety driving participation.
+
+Organizers have already declared May 1 the next escalation: a nationwide general strike.

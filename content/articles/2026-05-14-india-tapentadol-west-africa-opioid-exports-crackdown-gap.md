@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Freetown — Syncom Formulations shipped nearly $15 million of tapentadol to West Africa after [India](country:IN)'s 2025 ban, customs records show. Consignments were labeled "Harmless Medicines for Human Consumption"; [Sierra Leone](country:SL) declared kush a national emergency. India's drug regulator has not revoked any exporter licences.
+Freetown — Syncom Formulations shipped nearly $15 million of tapentadol to West Africa after [India](country:IN)'s 2025 ban, customs records show.
+
+Consignments were labeled "Harmless Medicines for Human Consumption"; [Sierra Leone](country:SL) declared kush a national emergency.
+
+India's drug regulator has not revoked any exporter licences.

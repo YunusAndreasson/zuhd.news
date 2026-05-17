@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.16
 ---
 
-Tehran — Reports say Khamenei was severely disfigured in February. He has not appeared publicly since; the Revolutionary Guards have taken control of strategic decisions. Iran's delegation negotiates with VP Vance in Islamabad today, with the Guards setting terms.
+Tehran — Reports say Khamenei was severely disfigured in February.
+
+He has not appeared publicly since; the Revolutionary Guards have taken control of strategic decisions.
+
+Iran's delegation negotiates with VP Vance in Islamabad today, with the Guards setting terms.

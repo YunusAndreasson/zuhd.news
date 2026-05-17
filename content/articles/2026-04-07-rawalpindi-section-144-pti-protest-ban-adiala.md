@@ -13,4 +13,8 @@ concepts:
   - "Rawalpindi"
 ---
 
-Rawalpindi — Rawalpindi banned all public gatherings for 15 days. Section 144, in force until April 20, targets PTI protests for Imran Khan ahead of April 9. PTI's Khyber Pakhtunkhwa chief minister says his convoy departs regardless.
+Rawalpindi — Rawalpindi banned all public gatherings for 15 days.
+
+Section 144, in force until April 20, targets PTI protests for Imran Khan ahead of April 9.
+
+PTI's Khyber Pakhtunkhwa chief minister says his convoy departs regardless.

@@ -17,4 +17,6 @@ concepts:
   - "Interpreter"
 ---
 
-San Francisco — Rust nightly gains guaranteed tail calls via `become`. Tail-call elimination lets recursive interpreters run indefinitely without stack overflow — turning toy implementations into production-grade language runtimes. `become` is nightly-only; stabilization will determine when it reaches the compiler that millions already use.
+San Francisco — Rust nightly gains guaranteed tail calls via `become`.
+
+Tail-call elimination lets recursive interpreters run indefinitely without stack overflow — turning toy implementations into production-grade language runtimes. `become` is nightly-only; stabilization will determine when it reaches the compiler that millions already use.

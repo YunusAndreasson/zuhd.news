@@ -17,4 +17,8 @@ concepts:
   - "Arizona"
 ---
 
-Phoenix — Climate variability independently drains Arizona's aquifers, NASA data shows. GRACE gravity satellites linked 16% of Arizona's groundwater decline variation to droughts and temperature swings, not human pumping. Southern subbasins face depletion even if Phoenix cuts pumping — they have weaker natural recharge and stronger atmospheric water demand.
+Phoenix — Climate variability independently drains Arizona's aquifers, NASA data shows.
+
+GRACE gravity satellites linked 16% of Arizona's groundwater decline variation to droughts and temperature swings, not human pumping.
+
+Southern subbasins face depletion even if Phoenix cuts pumping — they have weaker natural recharge and stronger atmospheric water demand.

@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Bamako — [Mali](country:ML)'s defense minister died in a truck bombing. Al-Qaeda's Sahel affiliate and Tuareg separatists attacked military bases around the capital last weekend, forcing Russian mercenaries assisting the junta to flee. The assault leaves junta control of Bamako openly contested.
+Bamako — [Mali](country:ML)'s defense minister died in a truck bombing.
+
+Al-Qaeda's Sahel affiliate and Tuareg separatists attacked military bases around the capital last weekend, forcing Russian mercenaries assisting the junta to flee.
+
+The assault leaves junta control of Bamako openly contested.

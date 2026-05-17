@@ -17,4 +17,8 @@ concepts:
   - "Health care"
 ---
 
-Washington — Medical schools must no longer teach health equity. LCME removed structural competency from 2027-28 standards — the requirement for future doctors to learn how poverty, housing, and food access affect health. The Justice Department probed 3 medical schools over race discrimination in admissions — structural health education faces complete removal.
+Washington — Medical schools must no longer teach health equity.
+
+LCME removed structural competency from 2027-28 standards — the requirement for future doctors to learn how poverty, housing, and food access affect health.
+
+The Justice Department probed 3 medical schools over race discrimination in admissions — structural health education faces complete removal.

@@ -17,4 +17,8 @@ concepts:
   - "Stablecoin"
 ---
 
-Hong Kong — HSBC won the city's first stablecoin licence. The HKMA issued 2 licences — to HSBC and a Standard Chartered venture — placing digital currency rails in bank hands, not crypto startups. Congress has debated stablecoin rules for 3 years; banks in Asia and Europe are watching Hong Kong's framework.
+Hong Kong — HSBC won the city's first stablecoin licence.
+
+The HKMA issued 2 licences — to HSBC and a Standard Chartered venture — placing digital currency rails in bank hands, not crypto startups.
+
+Congress has debated stablecoin rules for 3 years; banks in Asia and Europe are watching Hong Kong's framework.

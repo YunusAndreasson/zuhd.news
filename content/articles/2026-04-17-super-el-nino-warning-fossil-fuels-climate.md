@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Geneva — A forming Pacific warming could exceed 2015–16 El Niño intensity, meteorologists warned. A stronger event would disrupt South Asian monsoons and deepen East Africa drought across already-fragile food systems. Afghanistan, rated among the region's most climate-vulnerable countries, cannot access climate finance under Taliban sanctions.
+Geneva — A forming Pacific warming could exceed 2015–16 El Niño intensity, meteorologists warned.
+
+A stronger event would disrupt South Asian monsoons and deepen East Africa drought across already-fragile food systems.
+
+Afghanistan, rated among the region's most climate-vulnerable countries, cannot access climate finance under Taliban sanctions.

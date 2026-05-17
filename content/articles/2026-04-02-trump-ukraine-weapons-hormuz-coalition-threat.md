@@ -18,4 +18,8 @@ concepts:
   - "Mark Rutte"
 ---
 
-Washington — Trump threatened to cut Ukraine's weapons supply. He conditioned continued arms on European participation in a Hormuz coalition, forcing a France-Germany-UK statement pledging safe-passage readiness. The UK hosts 35-country Hormuz talks Thursday; Rubio has not ruled out diverting Ukraine weapons to US stockpiles.
+Washington — Trump threatened to cut Ukraine's weapons supply.
+
+He conditioned continued arms on European participation in a Hormuz coalition, forcing a France-Germany-UK statement pledging safe-passage readiness.
+
+The UK hosts 35-country Hormuz talks Thursday; Rubio has not ruled out diverting Ukraine weapons to US stockpiles.

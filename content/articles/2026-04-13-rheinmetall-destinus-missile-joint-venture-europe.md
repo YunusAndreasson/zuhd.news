@@ -19,4 +19,8 @@ concepts:
 eventCoverage: 42
 ---
 
-Düsseldorf — Rheinmetall agreed to acquire a 51% stake in Destinus. Destinus makes Ukraine's Ruta cruise missile; the deal adds German production capacity to a battlefield-proven design. Regulatory approval is expected in H2 2026; if cleared, it would be Europe's first industrial-scale cruise missile producer.
+Düsseldorf — Rheinmetall agreed to acquire a 51% stake in Destinus.
+
+Destinus makes Ukraine's Ruta cruise missile; the deal adds German production capacity to a battlefield-proven design.
+
+Regulatory approval is expected in H2 2026; if cleared, it would be Europe's first industrial-scale cruise missile producer.

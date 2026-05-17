@@ -14,4 +14,8 @@ concepts:
   - "Protest"
 ---
 
-Tel Aviv — Police are violently suppressing anti-war protests in Israel. Dissent over the Iran war has spread from the left to Israel's political center; opposition lawmakers are absent and protests remain leaderless. Without leaders to negotiate with, the government faces a protest it cannot co-opt or decapitate.
+Tel Aviv — Police are violently suppressing anti-war protests in Israel.
+
+Dissent over the Iran war has spread from the left to Israel's political center; opposition lawmakers are absent and protests remain leaderless.
+
+Without leaders to negotiate with, the government faces a protest it cannot co-opt or decapitate.

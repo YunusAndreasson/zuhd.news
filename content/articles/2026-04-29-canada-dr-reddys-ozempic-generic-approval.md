@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-Ottawa — [Canada](country:CA) became the first G7 country to approve generic semaglutide. Health Canada cleared Dr Reddy's version at 45-90% below brand after [India](country:IN) authorized generics in March. [US](country:US) intellectual property law bars that approval from creating a US market, BMO Capital Markets said.
+Ottawa — [Canada](country:CA) became the first G7 country to approve generic semaglutide.
+
+Health Canada cleared Dr Reddy's version at 45-90% below brand after [India](country:IN) authorized generics in March.
+
+[US](country:US) intellectual property law bars that approval from creating a US market, BMO Capital Markets said.

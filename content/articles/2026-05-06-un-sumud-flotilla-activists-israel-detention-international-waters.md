@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Jerusalem — 2 flotilla organizers seized in international waters. [Israel](country:IL) boarded 22 Global Sumud Flotilla vessels 500 miles from Gaza on April 29 and jailed 2 lead organizers on terrorism charges. The UN human rights office demanded release; no EU government has acted before their detention expires May 10.
+Jerusalem — 2 flotilla organizers seized in international waters.
+
+[Israel](country:IL) boarded 22 Global Sumud Flotilla vessels 500 miles from Gaza on April 29 and jailed 2 lead organizers on terrorism charges.
+
+The UN human rights office demanded release; no EU government has acted before their detention expires May 10.

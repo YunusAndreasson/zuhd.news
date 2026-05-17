@@ -17,4 +17,8 @@ concepts:
   - "Wheat"
 ---
 
-Wad Madani — Sorghum prices spiked in Sudan's breadbasket. 1,470 canal breaches and bank lending withdrawals cut planting across El Gezira; the scheme supplies most of Sudan's grain as war continues. Analysts warn El Gezira's collapse will hit Sudan's national food supply before the next harvest.
+Wad Madani — Sorghum prices spiked in Sudan's breadbasket.
+
+1,470 canal breaches and bank lending withdrawals cut planting across El Gezira; the scheme supplies most of Sudan's grain as war continues.
+
+Analysts warn El Gezira's collapse will hit Sudan's national food supply before the next harvest.

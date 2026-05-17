@@ -29,4 +29,6 @@ entities:
     kind: "stock"
 ---
 
-New York — GameStop offered $55.5 billion for eBay — unfunded. GameStop has $11 billion in market cap and $40 billion combined in cash and committed financing — $16 billion short of the offer. eBay will review the proposal; Morgan Stanley called the business models "fundamentally different."
+New York — GameStop offered $55.5 billion for eBay — unfunded.
+
+GameStop has $11 billion in market cap and $40 billion combined in cash and committed financing — $16 billion short of the offer. eBay will review the proposal; Morgan Stanley called the business models "fundamentally different."

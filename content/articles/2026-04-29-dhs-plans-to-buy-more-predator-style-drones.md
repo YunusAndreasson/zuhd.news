@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Washington — $265M contract expands Customs and Border Protection's Predator drone fleet. The same model flew over Los Angeles protests against immigration enforcement last year that the US military uses over conflict zones. Procurement records show Homeland Security agencies drafting their own MQ-9 fleets, with no civilian oversight framework.
+Washington — $265M contract expands Customs and Border Protection's Predator drone fleet.
+
+The same model flew over Los Angeles protests against immigration enforcement last year that the US military uses over conflict zones.
+
+Procurement records show Homeland Security agencies drafting their own MQ-9 fleets, with no civilian oversight framework.

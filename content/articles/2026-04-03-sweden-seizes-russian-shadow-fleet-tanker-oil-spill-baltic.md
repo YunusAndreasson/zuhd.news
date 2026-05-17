@@ -20,4 +20,8 @@ concepts:
   - "European Union"
 ---
 
-Gotland — A sanctioned Russian tanker left a 12 km oil slick off Gotland. Sweden seized the Flora 1 — sailing from Primorsk with no declared destination, EU-sanctioned, flag status unclear — and opened an environmental crime investigation. Flora 1's unresolved flag status complicates prosecution as EU states escalate shadow fleet seizures.
+Gotland — A sanctioned Russian tanker left a 12 km oil slick off Gotland.
+
+Sweden seized the Flora 1 — sailing from Primorsk with no declared destination, EU-sanctioned, flag status unclear — and opened an environmental crime investigation.
+
+Flora 1's unresolved flag status complicates prosecution as EU states escalate shadow fleet seizures.

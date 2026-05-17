@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Islamabad — Taliban harbors fighters [Pakistan](country:PK) is bombing in [Afghanistan](country:AF). [China](country:CN) leveraged China-Pakistan Economic Corridor contracts and mineral rights, but neither trade nor investment secured Taliban expulsion of the fighters. The failure is Beijing's first since brokering the 2023 Saudi-Iran normalization deal.
+Islamabad — Taliban harbors fighters [Pakistan](country:PK) is bombing in [Afghanistan](country:AF).
+
+[China](country:CN) leveraged China-Pakistan Economic Corridor contracts and mineral rights, but neither trade nor investment secured Taliban expulsion of the fighters.
+
+The failure is Beijing's first since brokering the 2023 Saudi-Iran normalization deal.

@@ -17,4 +17,8 @@ concepts:
   - "Neutrino Oscillation"
 ---
 
-Geneva — Physicists have ruled out sterile neutrinos. Multiple experiments eliminated the hypothetical particle that was meant to explain dark matter and anomalous neutrino oscillation data accumulated since the 1990s. The anomalies that spawned the hypothesis remain unexplained, and theorists have yet to propose a replacement candidate.
+Geneva — Physicists have ruled out sterile neutrinos.
+
+Multiple experiments eliminated the hypothetical particle that was meant to explain dark matter and anomalous neutrino oscillation data accumulated since the 1990s.
+
+The anomalies that spawned the hypothesis remain unexplained, and theorists have yet to propose a replacement candidate.

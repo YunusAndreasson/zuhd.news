@@ -16,4 +16,8 @@ concepts:
   - "Birth asphyxia"
 ---
 
-Davis — Hypoxanthine predicts brain damage severity in oxygen-deprived newborns. The metabolite rose rapidly at birth asphyxia onset and tracked injury severity over 6 days in a sheep model matching human biology. Birth asphyxia kills 900,000 newborns yearly, mostly in low-resource settings; human trials will determine its clinical reach.
+Davis — Hypoxanthine predicts brain damage severity in oxygen-deprived newborns.
+
+The metabolite rose rapidly at birth asphyxia onset and tracked injury severity over 6 days in a sheep model matching human biology.
+
+Birth asphyxia kills 900,000 newborns yearly, mostly in low-resource settings; human trials will determine its clinical reach.

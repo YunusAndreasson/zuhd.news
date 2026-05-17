@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Cairo — IMF arrived; all 4 [Egypt](country:EG) military sell-offs stalled. The IMF loan programme requires selling military-affiliated companies, but land disputes and listing non-compliance block all 4, a government official confirmed. One company may be ready for listing in 3-4 months; the fiscal year ends in June.
+Cairo — IMF arrived; all 4 [Egypt](country:EG) military sell-offs stalled.
+
+The IMF loan programme requires selling military-affiliated companies, but land disputes and listing non-compliance block all 4, a government official confirmed.
+
+One company may be ready for listing in 3-4 months; the fiscal year ends in June.

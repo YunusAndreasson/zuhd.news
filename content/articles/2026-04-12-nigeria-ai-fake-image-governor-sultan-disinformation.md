@@ -18,4 +18,8 @@ concepts:
   - "AI disinformation"
 ---
 
-Abuja — AI fabricated Benue governor bowing to the Sultan of Sokoto. The image spread on Facebook and WhatsApp to suggest Governor Alia's response to Benue killings was driven by northern Muslim patronage. Nigeria's security agencies opened an investigation; Benue's unresolved killing crisis gives AI disinformation maximum traction.
+Abuja — AI fabricated Benue governor bowing to the Sultan of Sokoto.
+
+The image spread on Facebook and WhatsApp to suggest Governor Alia's response to Benue killings was driven by northern Muslim patronage.
+
+Nigeria's security agencies opened an investigation; Benue's unresolved killing crisis gives AI disinformation maximum traction.

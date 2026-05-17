@@ -24,4 +24,8 @@ concepts:
 entities: []
 ---
 
-Washington — Republicans blocked every [Iran](country:IR) war withdrawal vote since February 28. The 60-day limit under the 1973 War Powers Resolution expired Friday; no vote to end the war has passed in [the US](country:US) Congress. Iran warned of "long and painful" reprisals; Trump received a briefing on fresh strike options Thursday.
+Washington — Republicans blocked every [Iran](country:IR) war withdrawal vote since February 28.
+
+The 60-day limit under the 1973 War Powers Resolution expired Friday; no vote to end the war has passed in [the US](country:US) Congress.
+
+Iran warned of "long and painful" reprisals; Trump received a briefing on fresh strike options Thursday.

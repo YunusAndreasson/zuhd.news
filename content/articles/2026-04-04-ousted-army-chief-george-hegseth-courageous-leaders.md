@@ -18,4 +18,6 @@ concepts:
   - "Civil-military relations"
 ---
 
-Washington — Ousted Army Chief George sent a defiant farewell. Hegseth removed George to install political loyalists; George emailed 4-star generals they deserve "courageous leaders of character." Hegseth has fired 13+ senior officers; George's replacement is his own former aide, Gen. Christopher LaNeve.
+Washington — Ousted Army Chief George sent a defiant farewell.
+
+Hegseth removed George to install political loyalists; George emailed 4-star generals they deserve "courageous leaders of character." Hegseth has fired 13+ senior officers; George's replacement is his own former aide, Gen. Christopher LaNeve.

@@ -15,4 +15,8 @@ concepts:
   - "Organized Crime"
 ---
 
-Kraków — 5 court officials stole $9M through phantom contracts. Insiders at Kraków's Court of Appeal awarded fake IT and consulting contracts to family-linked firms, then collected kickbacks while court employees did the actual work. Investigators are pursuing 43 defendants in a related Rzeszów trial that opened in April 2025, working to determine how far the corruption extended.
+Kraków — 5 court officials stole $9M through phantom contracts.
+
+Insiders at Kraków's Court of Appeal awarded fake IT and consulting contracts to family-linked firms, then collected kickbacks while court employees did the actual work.
+
+Investigators are pursuing 43 defendants in a related Rzeszów trial that opened in April 2025, working to determine how far the corruption extended.

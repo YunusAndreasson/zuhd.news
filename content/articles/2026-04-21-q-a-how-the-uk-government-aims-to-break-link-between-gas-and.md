@@ -11,4 +11,8 @@ sources:
     country: "GB"
 ---
 
-London — [Britain](country:GB)'s electricity bills track gas prices because marginal pricing lets gas set the rate even when wind provides most power. A July levy on older generators will redirect windfall profits to consumer bills, Carbon Brief analysts said. Ending marginal pricing altogether remains off the table.
+London — [Britain](country:GB)'s electricity bills track gas prices because marginal pricing lets gas set the rate even when wind provides most power.
+
+A July levy on older generators will redirect windfall profits to consumer bills, Carbon Brief analysts said.
+
+Ending marginal pricing altogether remains off the table.

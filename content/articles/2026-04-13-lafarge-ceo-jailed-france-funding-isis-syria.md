@@ -35,4 +35,8 @@ eventCoverage: 216
 sentimentDivergence: 0.32
 ---
 
-Paris — France jailed a CEO for funding ISIS. Lafarge paid $6.5m to ISIS and al-Nusra Front through a Syrian subsidiary to keep its Jalabiya cement plant operational. Holcim's Lafarge was fined more than €1m; asset confiscation of up to €30m and a crimes-against-humanity probe remain pending.
+Paris — France jailed a CEO for funding ISIS.
+
+Lafarge paid $6.5m to ISIS and al-Nusra Front through a Syrian subsidiary to keep its Jalabiya cement plant operational.
+
+Holcim's Lafarge was fined more than €1m; asset confiscation of up to €30m and a crimes-against-humanity probe remain pending.

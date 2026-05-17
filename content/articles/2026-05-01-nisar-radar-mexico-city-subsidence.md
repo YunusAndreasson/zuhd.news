@@ -15,4 +15,8 @@ sources:
 entities: []
 ---
 
-Mexico City — [US](country:US)-[India](country:IN) radar maps Mexico City's subsidence from orbit. The joint satellite penetrates clouds and vegetation that block optical sensors, mapping centimeter-scale ground movement anywhere on Earth. The system can now track any city where groundwater extraction is sinking the ground.
+Mexico City — [US](country:US)-[India](country:IN) radar maps Mexico City's subsidence from orbit.
+
+The joint satellite penetrates clouds and vegetation that block optical sensors, mapping centimeter-scale ground movement anywhere on Earth.
+
+The system can now track any city where groundwater extraction is sinking the ground.

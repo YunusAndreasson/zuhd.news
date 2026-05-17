@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Washington — US Pacific drug strikes operate without congressional authorization. [US](country:US) forces have reported more than 170 killed since September without trial or charge; the latest strike killed 2 more. No court has accepted jurisdiction; no authorization vote is scheduled.
+Washington — US Pacific drug strikes operate without congressional authorization.
+
+[US](country:US) forces have reported more than 170 killed since September without trial or charge; the latest strike killed 2 more.
+
+No court has accepted jurisdiction; no authorization vote is scheduled.

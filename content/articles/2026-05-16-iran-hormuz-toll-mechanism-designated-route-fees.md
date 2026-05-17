@@ -30,4 +30,8 @@ entities:
     kind: "commodity"
 ---
 
-Tehran — [Iran](country:IR) announced Hormuz toll fees for select vessels. Parliament security chief Ebrahim Azizi said a "designated route" mechanism launches soon, formalizing levies on the world's most critical oil chokepoint. Iran's state television said unnamed European states have begun negotiating transit permits with the Revolutionary Guard navy.
+Tehran — [Iran](country:IR) announced Hormuz toll fees for select vessels.
+
+Parliament security chief Ebrahim Azizi said a "designated route" mechanism launches soon, formalizing levies on the world's most critical oil chokepoint.
+
+Iran's state television said unnamed European states have begun negotiating transit permits with the Revolutionary Guard navy.

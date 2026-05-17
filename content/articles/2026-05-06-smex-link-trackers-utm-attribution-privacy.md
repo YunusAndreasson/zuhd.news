@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Beirut — A forwarded link carries the sender's tracking data. Query strings like utm_source and fbclid tell the site who you are, which campaign brought you, and who forwarded the link. Browser extensions like ClearURLs strip parameters before the page loads — eliminating the leak before it reaches the server.
+Beirut — A forwarded link carries the sender's tracking data.
+
+Query strings like utm_source and fbclid tell the site who you are, which campaign brought you, and who forwarded the link.
+
+Browser extensions like ClearURLs strip parameters before the page loads — eliminating the leak before it reaches the server.

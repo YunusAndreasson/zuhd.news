@@ -23,4 +23,8 @@ entities:
     kind: "crypto"
 ---
 
-New York — Bitcoin exchange-traded fund investors yanked $635 million on Wednesday. The 90-day correlation between fund flows and bitcoin's price collapsed to 0.16 from a February peak of 0.68, SoSoValue data shows. Macro signals — [US](country:US) inflation prints and Federal Reserve expectations — now determine bitcoin's direction, Tesseract Group analysts said.
+New York — Bitcoin exchange-traded fund investors yanked $635 million on Wednesday.
+
+The 90-day correlation between fund flows and bitcoin's price collapsed to 0.16 from a February peak of 0.68, SoSoValue data shows.
+
+Macro signals — [US](country:US) inflation prints and Federal Reserve expectations — now determine bitcoin's direction, Tesseract Group analysts said.

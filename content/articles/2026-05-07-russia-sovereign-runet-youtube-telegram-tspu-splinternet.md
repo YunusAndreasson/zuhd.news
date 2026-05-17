@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-Moscow — [Russia](country:RU) imposed hard blocks on YouTube, Telegram, and VPNs used to bypass them. The Kremlin escalated from months of throttling to full platform cuts, severing the country from global internet backbones. Russian citizens now have no reliable route to blocked content.
+Moscow — [Russia](country:RU) imposed hard blocks on YouTube, Telegram, and VPNs used to bypass them.
+
+The Kremlin escalated from months of throttling to full platform cuts, severing the country from global internet backbones.
+
+Russian citizens now have no reliable route to blocked content.

@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-[South Africa](country:ZA)'s Social Development Minister Sisisi Tolashe structured a state aide's payslip so R7,000 monthly transferred to her daughter. The Ministerial Handbook bars such allowances for private homes; East London is not a designated ministerial seat. The Department has not responded; payslips confirm the transfer.
+[South Africa](country:ZA)'s Social Development Minister Sisisi Tolashe structured a state aide's payslip so R7,000 monthly transferred to her daughter.
+
+The Ministerial Handbook bars such allowances for private homes; East London is not a designated ministerial seat.
+
+The Department has not responded; payslips confirm the transfer.

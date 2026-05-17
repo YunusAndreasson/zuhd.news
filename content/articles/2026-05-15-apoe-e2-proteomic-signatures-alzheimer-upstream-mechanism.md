@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — Apolipoprotein E ε2 reshapes 192 proteins before dementia begins. A Nature Aging study finds the strongest upregulations — UNG, VPS29, and BIRC2 — appear in early adulthood, independent of Alzheimer's diagnosis. 54 of 192 proteins mediate the pathway to Alzheimer's, suggesting targets for upstream intervention.
+London — Apolipoprotein E ε2 reshapes 192 proteins before dementia begins.
+
+A Nature Aging study finds the strongest upregulations — UNG, VPS29, and BIRC2 — appear in early adulthood, independent of Alzheimer's diagnosis.
+
+54 of 192 proteins mediate the pathway to Alzheimer's, suggesting targets for upstream intervention.

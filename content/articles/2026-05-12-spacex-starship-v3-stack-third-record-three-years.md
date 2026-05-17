@@ -23,4 +23,8 @@ entities:
     kind: "currency"
 ---
 
-Brownsville — Starship V3 produces 18 million pounds of thrust. SpaceX stacked V3, setting a 3rd consecutive height record; 33 Raptor 3 engines are 10% more powerful than V2. The [US](country:US) Federal Aviation Administration has not yet issued a launch license for a May 19 attempt.
+Brownsville — Starship V3 produces 18 million pounds of thrust.
+
+SpaceX stacked V3, setting a 3rd consecutive height record; 33 Raptor 3 engines are 10% more powerful than V2.
+
+The [US](country:US) Federal Aviation Administration has not yet issued a launch license for a May 19 attempt.

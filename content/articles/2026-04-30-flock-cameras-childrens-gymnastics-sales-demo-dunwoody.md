@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Dunwoody — Dunwoody renewed Flock's contract after discovering the breach. The [US](country:US) surveillance firm had accessed city feeds — including a children's gym, a pool, and a Jewish community center — to demo its system to other police departments. Its stated policy bars employees from accessing customer footage.
+Dunwoody — Dunwoody renewed Flock's contract after discovering the breach.
+
+The [US](country:US) surveillance firm had accessed city feeds — including a children's gym, a pool, and a Jewish community center — to demo its system to other police departments.
+
+Its stated policy bars employees from accessing customer footage.

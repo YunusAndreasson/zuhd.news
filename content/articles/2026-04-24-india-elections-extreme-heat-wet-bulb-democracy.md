@@ -11,4 +11,8 @@ sources:
     country: "GB"
 ---
 
-Salem — Suraj, 37, died at a Tamil Nadu campaign rally. [India](country:IN) holds 5-state elections through April 29 at heat stress levels where minimal exertion risks organ failure. The 2024 national vote saw up to 700 heat deaths; no government has designated election heat a public health emergency.
+Salem — Suraj, 37, died at a Tamil Nadu campaign rally.
+
+[India](country:IN) holds 5-state elections through April 29 at heat stress levels where minimal exertion risks organ failure.
+
+The 2024 national vote saw up to 700 heat deaths; no government has designated election heat a public health emergency.

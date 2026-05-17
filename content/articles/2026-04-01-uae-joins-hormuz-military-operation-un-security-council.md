@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.09
 ---
 
-Abu Dhabi — UAE volunteers for first Gulf combat role. UAE presses the UN Security Council for a Hormuz force authorization after Iranian attacks hit its facilities. China and Russia hold UNSC veto power as the US weighs ground operations in the strait.
+Abu Dhabi — UAE volunteers for first Gulf combat role.
+
+UAE presses the UN Security Council for a Hormuz force authorization after Iranian attacks hit its facilities.
+
+China and Russia hold UNSC veto power as the US weighs ground operations in the strait.

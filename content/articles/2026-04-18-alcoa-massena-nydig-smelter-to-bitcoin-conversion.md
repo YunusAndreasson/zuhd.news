@@ -25,4 +25,9 @@ entities:
     indicatorId: "stocks:AA"
     kind: "stock"
 ---
-Massena, New York — NYDIG is converting Alcoa's idle smelter into a bitcoin mine. [US](country:US) aluminum smelters can't compete on global pricing; their dedicated hydropower grids are worth more as compute infrastructure. Alcoa's CEO says the deal closes mid-year and expects more idle smelters to follow.
+
+Massena, New York — NYDIG is converting Alcoa's idle smelter into a bitcoin mine.
+
+[US](country:US) aluminum smelters can't compete on global pricing; their dedicated hydropower grids are worth more as compute infrastructure.
+
+Alcoa's CEO says the deal closes mid-year and expects more idle smelters to follow.

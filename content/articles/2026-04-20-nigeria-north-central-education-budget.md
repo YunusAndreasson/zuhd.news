@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Abuja — Benue led 6 states at 21.4%. All 6 North-central Nigerian states missed the 26% benchmark; actual spending falls lower as states release less than approved. Nasarawa raised its share despite a 25.4% out-of-school rate; no federal enforcement exists.
+Abuja — Benue led 6 states at 21.4%.
+
+All 6 North-central Nigerian states missed the 26% benchmark; actual spending falls lower as states release less than approved.
+
+Nasarawa raised its share despite a 25.4% out-of-school rate; no federal enforcement exists.

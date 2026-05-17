@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Baltimore — A manager was ejected for arguing a robot. MLB's new Automated Ball-Strike system lets players challenge umpire calls by tapping their helmet; the AI verdict appears on the scoreboard in seconds and is inarguable. ABS doesn't replace human judgment; it exposes it — already changing how batters and pitchers play.
+Baltimore — A manager was ejected for arguing a robot.
+
+MLB's new Automated Ball-Strike system lets players challenge umpire calls by tapping their helmet; the AI verdict appears on the scoreboard in seconds and is inarguable.
+
+ABS doesn't replace human judgment; it exposes it — already changing how batters and pitchers play.

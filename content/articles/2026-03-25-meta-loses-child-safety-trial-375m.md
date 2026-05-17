@@ -17,4 +17,8 @@ concepts:
   - "Instagram"
 ---
 
-Albuquerque — Jury awarded $375M against Meta for child exploitation. Law enforcement testified Meta's AI-generated abuse reports were "junk" that made crimes uninvestigable; Zuckerberg testified such harms were "inevitable" given the platform's scale. Meta will appeal; a second trial begins May 4, with a parallel Google-Meta case still deadlocked in Los Angeles.
+Albuquerque — Jury awarded $375M against Meta for child exploitation.
+
+Law enforcement testified Meta's AI-generated abuse reports were "junk" that made crimes uninvestigable; Zuckerberg testified such harms were "inevitable" given the platform's scale.
+
+Meta will appeal; a second trial begins May 4, with a parallel Google-Meta case still deadlocked in Los Angeles.

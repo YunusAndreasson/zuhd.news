@@ -15,4 +15,8 @@ concepts:
   - "Mar-a-Lago"
 ---
 
-Washington — 3 senators questioned Trump over TRUMP token profits. Presidential access at the April 28 Mar-a-Lago gala is reserved for the top 29 TRUMP token holders. Fight Fight Fight LLC has not responded; no existing law bars a president from this arrangement.
+Washington — 3 senators questioned Trump over TRUMP token profits.
+
+Presidential access at the April 28 Mar-a-Lago gala is reserved for the top 29 TRUMP token holders.
+
+Fight Fight Fight LLC has not responded; no existing law bars a president from this arrangement.

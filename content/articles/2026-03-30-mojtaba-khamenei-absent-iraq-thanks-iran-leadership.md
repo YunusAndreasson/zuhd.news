@@ -16,4 +16,8 @@ concepts:
   - "Supreme Leader of Iran"
 ---
 
-Tehran — Iran's wartime leader communicates only in writing. Khamenei thanked Iraq's religious leadership via written statement but hasn't appeared since taking power; state media says airstrike injuries, unconfirmed. Trump told the Financial Times the leader is "dead or in bad shape"; US officials negotiate blind.
+Tehran — Iran's wartime leader communicates only in writing.
+
+Khamenei thanked Iraq's religious leadership via written statement but hasn't appeared since taking power; state media says airstrike injuries, unconfirmed.
+
+Trump told the Financial Times the leader is "dead or in bad shape"; US officials negotiate blind.

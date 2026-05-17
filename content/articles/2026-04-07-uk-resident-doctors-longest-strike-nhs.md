@@ -15,4 +15,8 @@ concepts:
   - "England"
 ---
 
-London — English resident doctors began a 6-day strike. They demand reversal of a 26% pay cut; the government says compliance costs £3 billion — what 15 previous strikes have already cost. Tens of thousands of appointments will be cancelled as the NHS loses junior doctors at record rates.
+London — English resident doctors began a 6-day strike.
+
+They demand reversal of a 26% pay cut; the government says compliance costs £3 billion — what 15 previous strikes have already cost.
+
+Tens of thousands of appointments will be cancelled as the NHS loses junior doctors at record rates.

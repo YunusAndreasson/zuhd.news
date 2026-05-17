@@ -16,4 +16,8 @@ concepts:
   - "Pediatrics"
 ---
 
-London — Scientists grew mini-tumors from pediatric brain cancer biopsies. The protocol generates tumoroids from ependymoma and medulloblastoma specimens within 35 days, enabling personalized drug screening where no viable models existed. Each new lab needs 3-6 months to gain proficiency before running drug screens on patient-specific tumors.
+London — Scientists grew mini-tumors from pediatric brain cancer biopsies.
+
+The protocol generates tumoroids from ependymoma and medulloblastoma specimens within 35 days, enabling personalized drug screening where no viable models existed.
+
+Each new lab needs 3-6 months to gain proficiency before running drug screens on patient-specific tumors.

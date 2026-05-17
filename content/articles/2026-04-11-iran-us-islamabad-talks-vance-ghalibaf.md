@@ -28,4 +28,8 @@ eventCoverage: 139
 sentimentDivergence: 0.53
 ---
 
-Islamabad — Iran set 2 preconditions before talks begin. Iran's parliament speaker Ghalibaf demanded a Lebanon ceasefire and frozen-asset release before his delegation would negotiate with Vance's team. Pakistan's prime minister called Saturday's session "make or break" for a permanent ceasefire.
+Islamabad — Iran set 2 preconditions before talks begin.
+
+Iran's parliament speaker Ghalibaf demanded a Lebanon ceasefire and frozen-asset release before his delegation would negotiate with Vance's team.
+
+Pakistan's prime minister called Saturday's session "make or break" for a permanent ceasefire.

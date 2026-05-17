@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Washington — The US immunization advisory panel ended universal hepatitis B vaccination at birth. Perinatal hepatitis B has no other prevention; 2 journal models project 69 to 628 extra infant infections and 29 deaths per year. A federal judge ruled in March the panel restructuring was likely illegal; the policy's status remains uncertain.
+Washington — The US immunization advisory panel ended universal hepatitis B vaccination at birth.
+
+Perinatal hepatitis B has no other prevention; 2 journal models project 69 to 628 extra infant infections and 29 deaths per year.
+
+A federal judge ruled in March the panel restructuring was likely illegal; the policy's status remains uncertain.

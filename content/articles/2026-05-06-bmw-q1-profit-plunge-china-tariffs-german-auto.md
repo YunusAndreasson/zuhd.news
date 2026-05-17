@@ -32,4 +32,8 @@ sentimentDivergence: 0.09
 entities: []
 ---
 
-Munich — BMW Q1 earnings fell 23% to €1.67 billion. [China](country:CN)'s local brands drove volume down 10%; [US](country:US) tariffs cost the automaker €1.75 billion last year, BMW reported. Trump threatened a 25% EU car tariff; BMW flagged "higher tariff volatility" for 2026.
+Munich — BMW Q1 earnings fell 23% to €1.67 billion.
+
+[China](country:CN)'s local brands drove volume down 10%; [US](country:US) tariffs cost the automaker €1.75 billion last year, BMW reported.
+
+Trump threatened a 25% EU car tariff; BMW flagged "higher tariff volatility" for 2026.

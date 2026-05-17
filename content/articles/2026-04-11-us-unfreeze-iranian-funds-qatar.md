@@ -23,4 +23,8 @@ concepts:
   - "United States"
 ---
 
-Islamabad — Iran: US agreed to release $6 billion. The funds are Korean oil payments transferred to Qatar in a 2023 prisoner swap, linked to Hormuz navigation guarantees. Washington denied the deal as Islamabad talks continue, with Hormuz passage as the unresolved condition.
+Islamabad — Iran: US agreed to release $6 billion.
+
+The funds are Korean oil payments transferred to Qatar in a 2023 prisoner swap, linked to Hormuz navigation guarantees.
+
+Washington denied the deal as Islamabad talks continue, with Hormuz passage as the unresolved condition.

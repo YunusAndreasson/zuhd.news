@@ -17,4 +17,8 @@ concepts:
   - "Telecom"
 ---
 
-Beirut — Lebanon's wartime government opened Starlink to NGOs and embassies, citing 700,000 displaced. Lebanon had banned satellite internet before the war to protect its state telecom monopoly — a security oversight center mandated by the original license will not be ready until May. Digital rights group SMEX warned the vague "official purposes" clause could enable surveillance of the displaced populations the expansion claims to serve.
+Beirut — Lebanon's wartime government opened Starlink to NGOs and embassies, citing 700,000 displaced.
+
+Lebanon had banned satellite internet before the war to protect its state telecom monopoly — a security oversight center mandated by the original license will not be ready until May.
+
+Digital rights group SMEX warned the vague "official purposes" clause could enable surveillance of the displaced populations the expansion claims to serve.

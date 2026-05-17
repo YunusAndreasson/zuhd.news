@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-San Francisco — TanStack and AI-vendor packages hit by supply-chain campaign. TanStack is embedded in millions of React applications; npm and PyPI packages tied to multiple AI companies were also compromised. OpenAI directed macOS users to update; the campaign's full scope is under investigation.
+San Francisco — TanStack and AI-vendor packages hit by supply-chain campaign.
+
+TanStack is embedded in millions of React applications; npm and PyPI packages tied to multiple AI companies were also compromised.
+
+OpenAI directed macOS users to update; the campaign's full scope is under investigation.

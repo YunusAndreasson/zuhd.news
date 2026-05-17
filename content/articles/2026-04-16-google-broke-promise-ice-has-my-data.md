@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-San Francisco — Google gave a student's data to ICE. Google's decade-old notification policy lets users contest subpoenas; ICE requested student Thomas-Johnson's records and Google complied silently. The Electronic Frontier Foundation filed complaints in 2 states seeking a deceptive-practices investigation.
+San Francisco — Google gave a student's data to ICE.
+
+Google's decade-old notification policy lets users contest subpoenas; ICE requested student Thomas-Johnson's records and Google complied silently.
+
+The Electronic Frontier Foundation filed complaints in 2 states seeking a deceptive-practices investigation.

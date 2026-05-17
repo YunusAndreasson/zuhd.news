@@ -17,4 +17,8 @@ concepts:
   - "Sonoran Desert toad"
 ---
 
-Rehovot — 1 tobacco plant now makes 5 psychedelic compounds. Weizmann Institute researchers inserted gene pathways from mushrooms, ayahuasca plants, and Sonoran Desert toads into tobacco, building a botanical biomanufacturing platform. Sonoran Desert toads are being poached for the same compounds this platform could replace.
+Rehovot — 1 tobacco plant now makes 5 psychedelic compounds.
+
+Weizmann Institute researchers inserted gene pathways from mushrooms, ayahuasca plants, and Sonoran Desert toads into tobacco, building a botanical biomanufacturing platform.
+
+Sonoran Desert toads are being poached for the same compounds this platform could replace.

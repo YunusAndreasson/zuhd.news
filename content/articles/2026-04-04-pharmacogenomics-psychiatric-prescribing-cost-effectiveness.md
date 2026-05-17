@@ -18,4 +18,8 @@ concepts:
   - "Clozapine"
 ---
 
-London — DNA-guided psychiatric prescribing saves £41.54 per patient. A meta-analysis found multi-gene CYP2D6/CYP2C19 testing cost-effective for depression — but the £41.54 pooled benefit is non-significant. Most model-based studies are industry-funded; the evidence base rests on projections, not replicated trials.
+London — DNA-guided psychiatric prescribing saves £41.54 per patient.
+
+A meta-analysis found multi-gene CYP2D6/CYP2C19 testing cost-effective for depression — but the £41.54 pooled benefit is non-significant.
+
+Most model-based studies are industry-funded; the evidence base rests on projections, not replicated trials.

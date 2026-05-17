@@ -27,4 +27,8 @@ concepts:
   - "Luhansk"
 ---
 
-Kyiv — [Russia](country:RU) declared Luhansk "liberated" a 3rd time. The claim came in July 2022 and June 2025; [Ukraine](country:UA)'s Center for Countering Disinformation says the repetition presets settlement baselines. Gerasimov said forces are 7km from Kramatorsk; Ukraine has not confirmed ceding any Luhansk territory.
+Kyiv — [Russia](country:RU) declared Luhansk "liberated" a 3rd time.
+
+The claim came in July 2022 and June 2025; [Ukraine](country:UA)'s Center for Countering Disinformation says the repetition presets settlement baselines.
+
+Gerasimov said forces are 7km from Kramatorsk; Ukraine has not confirmed ceding any Luhansk territory.

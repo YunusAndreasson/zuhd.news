@@ -17,4 +17,8 @@ concepts:
   - "Open-source software"
 ---
 
-Hangzhou — Alibaba released Qwen 3.6-Plus for real-world AI agents. It launched the same day as Google's Gemma 4, framing an explicit US-China race to own autonomous multi-step tool use. Both are open-licensed; Qwen drew 185 HN points against Gemma 4's 183 — developer adoption, not benchmark claims, will decide the winner.
+Hangzhou — Alibaba released Qwen 3.6-Plus for real-world AI agents.
+
+It launched the same day as Google's Gemma 4, framing an explicit US-China race to own autonomous multi-step tool use.
+
+Both are open-licensed; Qwen drew 185 HN points against Gemma 4's 183 — developer adoption, not benchmark claims, will decide the winner.

@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Quito — La Fiorella's 8 men gone after US strike. Over 170 have been killed in US Pacific strikes in 6 months — no congressional authorization, no judicial review. [Ecuador](country:EC)'s government stonewalled family inquiries; no search team dispatched in 90 days.
+Quito — La Fiorella's 8 men gone after US strike.
+
+Over 170 have been killed in US Pacific strikes in 6 months — no congressional authorization, no judicial review.
+
+[Ecuador](country:EC)'s government stonewalled family inquiries; no search team dispatched in 90 days.

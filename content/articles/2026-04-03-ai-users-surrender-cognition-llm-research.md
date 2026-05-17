@@ -17,4 +17,8 @@ concepts:
   - "Master of Laws"
 ---
 
-Philadelphia — 73% of participants accepted wrong AI answers outright. A University of Pennsylvania study of 1,372 people found fluent, confident AI outputs suppress the meta-cognitive signals that normally trigger deliberate reasoning. Time pressure cut AI correction by 12 points; incentives raised it by 19 — pointing to design over willpower.
+Philadelphia — 73% of participants accepted wrong AI answers outright.
+
+A University of Pennsylvania study of 1,372 people found fluent, confident AI outputs suppress the meta-cognitive signals that normally trigger deliberate reasoning.
+
+Time pressure cut AI correction by 12 points; incentives raised it by 19 — pointing to design over willpower.

@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Culiacán — [US](country:US) prosecutors indicted 10 Sinaloa officials, including the governor and mayor. Charges include drug trafficking, election manipulation, and weapons supply — the first indictment of a sitting governor of [Mexico](country:MX). Rocha Moya denied all charges; Mexico's constitution bars federal authorities from removing him.
+Culiacán — [US](country:US) prosecutors indicted 10 Sinaloa officials, including the governor and mayor.
+
+Charges include drug trafficking, election manipulation, and weapons supply — the first indictment of a sitting governor of [Mexico](country:MX).
+
+Rocha Moya denied all charges; Mexico's constitution bars federal authorities from removing him.

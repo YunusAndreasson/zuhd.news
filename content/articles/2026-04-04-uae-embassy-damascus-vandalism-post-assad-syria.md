@@ -18,4 +18,8 @@ concepts:
   - "Abraham Accords"
 ---
 
-Damascus — Protesters stormed and vandalized the UAE embassy. Demonstrators broke from a pro-Palestinian rally at Umayyad Square, targeting the UAE over its 2020 Abraham Accords normalization with Israel. Syria's post-Assad government had pledged embassy protection; the breach tests whether the new government can deliver.
+Damascus — Protesters stormed and vandalized the UAE embassy.
+
+Demonstrators broke from a pro-Palestinian rally at Umayyad Square, targeting the UAE over its 2020 Abraham Accords normalization with Israel.
+
+Syria's post-Assad government had pledged embassy protection; the breach tests whether the new government can deliver.

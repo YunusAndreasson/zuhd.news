@@ -11,4 +11,8 @@ sources:
     country: "RU"
 ---
 
-Philadelphia — FIFA canceled 2,000 Philadelphia hotel rooms without explanation. The move follows the US imposing $15,000 visa bonds on travelers from 50 countries, making international fan attendance for the June tournament uncertain. If the $15,000 visa bond policy holds through June, ticketed fans from the 50 affected countries face a ban by travel cost rather than by exclusion.
+Philadelphia — FIFA canceled 2,000 Philadelphia hotel rooms without explanation.
+
+The move follows the US imposing $15,000 visa bonds on travelers from 50 countries, making international fan attendance for the June tournament uncertain.
+
+If the $15,000 visa bond policy holds through June, ticketed fans from the 50 affected countries face a ban by travel cost rather than by exclusion.

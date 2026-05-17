@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Washington — Senate declared stablecoins payment rails, not savings accounts. The Clarity Act deal bars [US](country:US) stablecoin issuers from paying yield on reserve holdings, preserving activity-based rewards and protecting bank deposit franchises. If enacted, Treasury and the commodities regulator have one year to write detailed yield rules.
+Washington — Senate declared stablecoins payment rails, not savings accounts.
+
+The Clarity Act deal bars [US](country:US) stablecoin issuers from paying yield on reserve holdings, preserving activity-based rewards and protecting bank deposit franchises.
+
+If enacted, Treasury and the commodities regulator have one year to write detailed yield rules.

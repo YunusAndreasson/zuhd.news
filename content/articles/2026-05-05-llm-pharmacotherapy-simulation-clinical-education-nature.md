@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — Students preferred AI tutors; experts rated 48% substandard. The study found students chose simulators over faculty 49.8% to 30.0%, but preference had no link to expert-rated accuracy. Authors called for expert oversight after accuracy failures included fabricated drug evidence.
+London — Students preferred AI tutors; experts rated 48% substandard.
+
+The study found students chose simulators over faculty 49.8% to 30.0%, but preference had no link to expert-rated accuracy.
+
+Authors called for expert oversight after accuracy failures included fabricated drug evidence.

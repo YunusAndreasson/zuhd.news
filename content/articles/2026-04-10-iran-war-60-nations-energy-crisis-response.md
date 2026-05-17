@@ -18,4 +18,8 @@ concepts:
   - "Fossil fuels"
 ---
 
-Paris — 60 nations declared emergencies with Hormuz still shut. 185 policies span fuel-tax cuts, coal restarts, and renewables acceleration — the largest oil supply disruption in recorded history. Even with a ceasefire, damaged infrastructure means the energy crisis will outlast the conflict.
+Paris — 60 nations declared emergencies with Hormuz still shut.
+
+185 policies span fuel-tax cuts, coal restarts, and renewables acceleration — the largest oil supply disruption in recorded history.
+
+Even with a ceasefire, damaged infrastructure means the energy crisis will outlast the conflict.

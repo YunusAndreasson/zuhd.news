@@ -18,4 +18,8 @@ concepts:
   - "Gulf states"
 ---
 
-Qeshm — US strikes hit Qeshm's desalination plant, Iran says. Gulf states concentrate drinking water in coastal plants; 83% of the region faces extreme water stress, rising to 100% by 2050. Trump threatened all Iranian plants; Bahrain and Kuwait have already reported damage to their own.
+Qeshm — US strikes hit Qeshm's desalination plant, Iran says.
+
+Gulf states concentrate drinking water in coastal plants; 83% of the region faces extreme water stress, rising to 100% by 2050.
+
+Trump threatened all Iranian plants; Bahrain and Kuwait have already reported damage to their own.

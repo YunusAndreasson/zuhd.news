@@ -28,4 +28,8 @@ concepts:
   - "Election Commission of India"
 ---
 
-Kolkata — Bengal denied Rahul Gandhi a rally permit with 2 days' notice. Congress blamed Trinamool's police; Chief Minister Mamata Banerjee accused the Election Commission of fast-tracking Modi's permits while denying hers. Congress will reapply for Gandhi's visit April 25 or 26, before Phase 1 polls 152 seats.
+Kolkata — Bengal denied Rahul Gandhi a rally permit with 2 days' notice.
+
+Congress blamed Trinamool's police; Chief Minister Mamata Banerjee accused the Election Commission of fast-tracking Modi's permits while denying hers.
+
+Congress will reapply for Gandhi's visit April 25 or 26, before Phase 1 polls 152 seats.

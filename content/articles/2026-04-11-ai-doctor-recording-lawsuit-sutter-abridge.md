@@ -17,4 +17,8 @@ concepts:
   - "United States district court"
 ---
 
-San Francisco — Sutter Health recorded patients without consent. A federal class-action alleges Abridge AI captured conversations at Sutter and MemorialCare facilities without patient notice. Plaintiffs seek class certification; Abridge also operates at Kaiser and Mayo Clinic, not yet named.
+San Francisco — Sutter Health recorded patients without consent.
+
+A federal class-action alleges Abridge AI captured conversations at Sutter and MemorialCare facilities without patient notice.
+
+Plaintiffs seek class certification; Abridge also operates at Kaiser and Mayo Clinic, not yet named.

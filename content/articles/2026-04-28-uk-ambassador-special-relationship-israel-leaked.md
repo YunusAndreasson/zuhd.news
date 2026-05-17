@@ -27,4 +27,8 @@ sentimentDivergence: 0.07
 entities: []
 ---
 
-Washington — Only one US "special relationship" exists — with [Israel](country:IL). [UK](country:UK) Ambassador Turner made the remarks privately to students in February; a sitting envoy's alliance ranking rarely leaks. Turner also told students Labour could oust Starmer after May's local elections.
+Washington — Only one US "special relationship" exists — with [Israel](country:IL).
+
+[UK](country:UK) Ambassador Turner made the remarks privately to students in February; a sitting envoy's alliance ranking rarely leaks.
+
+Turner also told students Labour could oust Starmer after May's local elections.

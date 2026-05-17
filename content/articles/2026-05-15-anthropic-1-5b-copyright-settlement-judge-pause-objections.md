@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-San Francisco — A judge paused Anthropic's $1.5 billion copyright settlement. Class members objected that lawyers sought $320 million — over $10,000 per hour — while each author stands to receive only $3,000. Authors must respond to objections by 21 May; 25 opt-outs have filed a separate suit against Anthropic.
+San Francisco — A judge paused Anthropic's $1.5 billion copyright settlement.
+
+Class members objected that lawyers sought $320 million — over $10,000 per hour — while each author stands to receive only $3,000.
+
+Authors must respond to objections by 21 May; 25 opt-outs have filed a separate suit against Anthropic.

@@ -17,4 +17,8 @@ concepts:
   - "Iran"
 ---
 
-Tehran — Iranian embassies trolled Trump from 5 continents. Accounts in Zimbabwe, Nigeria, and South Africa posted Lego animations mocking Trump; Iran's parliament speaker told investors to short his Truth Social posts. The White House pressed NPR over its coverage as ceasefire talks opened in Islamabad.
+Tehran — Iranian embassies trolled Trump from 5 continents.
+
+Accounts in Zimbabwe, Nigeria, and South Africa posted Lego animations mocking Trump; Iran's parliament speaker told investors to short his Truth Social posts.
+
+The White House pressed NPR over its coverage as ceasefire talks opened in Islamabad.

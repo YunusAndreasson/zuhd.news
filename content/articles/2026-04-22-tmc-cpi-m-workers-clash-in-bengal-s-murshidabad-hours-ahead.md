@@ -26,4 +26,8 @@ concepts:
   - "Murshidabad district"
 ---
 
-Murshidabad — Trinamool Congress and Communist Party cadres fought overnight before polling. 4 workers were injured in Raipur, each side blaming the other, hours before [India](country:IN)'s West Bengal assembly vote opened across 152 constituencies. The Election Commission deployed additional forces.
+Murshidabad — Trinamool Congress and Communist Party cadres fought overnight before polling.
+
+4 workers were injured in Raipur, each side blaming the other, hours before [India](country:IN)'s West Bengal assembly vote opened across 152 constituencies.
+
+The Election Commission deployed additional forces.

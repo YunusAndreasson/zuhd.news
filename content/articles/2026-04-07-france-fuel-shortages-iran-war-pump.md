@@ -18,4 +18,8 @@ concepts:
   - "Strait of Hormuz"
 ---
 
-Paris — 18% of French filling stations have run dry. TotalEnergies capped unleaded at €1.99 — below market — drawing a surge in traffic that exhausted supply at its stations. The government has not said when it will tap strategic reserves, and protests are spreading.
+Paris — 18% of French filling stations have run dry.
+
+TotalEnergies capped unleaded at €1.99 — below market — drawing a surge in traffic that exhausted supply at its stations.
+
+The government has not said when it will tap strategic reserves, and protests are spreading.

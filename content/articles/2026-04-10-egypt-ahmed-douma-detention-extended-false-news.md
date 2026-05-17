@@ -17,4 +17,8 @@ concepts:
   - "Abdel Fattah el-Sisi"
 ---
 
-Cairo — Egypt jailed Ahmed Douma again for an article. A court extended his remand 15 days on "spreading false news" charges — for documenting abuses he suffered during his 10-year imprisonment. Pardoned in 2023, Douma complied with 7 summons; his 8th ended in arrest; next hearing decides custody.
+Cairo — Egypt jailed Ahmed Douma again for an article.
+
+A court extended his remand 15 days on "spreading false news" charges — for documenting abuses he suffered during his 10-year imprisonment.
+
+Pardoned in 2023, Douma complied with 7 summons; his 8th ended in arrest; next hearing decides custody.

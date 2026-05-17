@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Seoul — Governor Shin chose bank-issued tokens over stablecoins. The Bank of [South Korea](country:KR) will issue a central bank digital currency paired with commercial bank deposit tokens, excluding private stablecoins. The Digital Asset Basic Act, which would regulate stablecoin issuance, has no passage timeline.
+Seoul — Governor Shin chose bank-issued tokens over stablecoins.
+
+The Bank of [South Korea](country:KR) will issue a central bank digital currency paired with commercial bank deposit tokens, excluding private stablecoins.
+
+The Digital Asset Basic Act, which would regulate stablecoin issuance, has no passage timeline.

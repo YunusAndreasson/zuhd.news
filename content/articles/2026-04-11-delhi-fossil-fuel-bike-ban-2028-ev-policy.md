@@ -27,4 +27,8 @@ concepts:
 sentimentDivergence: 0.54
 ---
 
-Delhi — Delhi bans new petrol two-wheelers from 2028. Two-wheelers make up 67% of Delhi's registered vehicles; the draft offers ₹10,000 scrapping bonuses and 100% road tax exemptions on EVs. The 30-day comment period closes next month; affordable EV financing will determine whether Delhi's 2028 deadline holds.
+Delhi — Delhi bans new petrol two-wheelers from 2028.
+
+Two-wheelers make up 67% of Delhi's registered vehicles; the draft offers ₹10,000 scrapping bonuses and 100% road tax exemptions on EVs.
+
+The 30-day comment period closes next month; affordable EV financing will determine whether Delhi's 2028 deadline holds.

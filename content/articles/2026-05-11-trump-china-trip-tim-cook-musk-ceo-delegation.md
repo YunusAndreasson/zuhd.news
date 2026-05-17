@@ -38,4 +38,8 @@ entities:
     kind: "stock"
 ---
 
-Beijing — Apple, Tesla, Boeing, and Goldman Sachs chiefs join the delegation. The 17 executives represent sectors most exposed to [US](country:US)-[China](country:CN) tariffs; the visit follows a preliminary trade agreement reached last week. Trump meets Xi Wednesday through Friday — the first US presidential visit since 2017 — with trade, Iran, and Taiwan on the agenda.
+Beijing — Apple, Tesla, Boeing, and Goldman Sachs chiefs join the delegation.
+
+The 17 executives represent sectors most exposed to [US](country:US)-[China](country:CN) tariffs; the visit follows a preliminary trade agreement reached last week.
+
+Trump meets Xi Wednesday through Friday — the first US presidential visit since 2017 — with trade, Iran, and Taiwan on the agenda.

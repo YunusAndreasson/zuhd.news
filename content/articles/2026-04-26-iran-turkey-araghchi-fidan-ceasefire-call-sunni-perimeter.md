@@ -23,4 +23,8 @@ concepts:
 entities: []
 ---
 
-Muscat — Araghchi called Fidan from Muscat on Sunday. [Iran](country:IR) opened its Gulf diplomatic tour in [Oman](country:OM) and briefed [Turkey](country:TR) on ceasefire developments with the [US](country:US), Araghchi said. His itinerary beyond Muscat has not been announced; ceasefire talks with Washington have not concluded.
+Muscat — Araghchi called Fidan from Muscat on Sunday.
+
+[Iran](country:IR) opened its Gulf diplomatic tour in [Oman](country:OM) and briefed [Turkey](country:TR) on ceasefire developments with the [US](country:US), Araghchi said.
+
+His itinerary beyond Muscat has not been announced; ceasefire talks with Washington have not concluded.

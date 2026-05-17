@@ -18,4 +18,8 @@ concepts:
   - "TASS"
 ---
 
-Moscow — Russian steel output fell 10% in February. Russia's army runs on steel — shells, armor, railway cars — and a production drop this steep directly constrains what it can field in Ukraine. India expanded output 7.7% and the US 5.8% that month — a widening industrial gap that will not close before the war ends.
+Moscow — Russian steel output fell 10% in February.
+
+Russia's army runs on steel — shells, armor, railway cars — and a production drop this steep directly constrains what it can field in Ukraine.
+
+India expanded output 7.7% and the US 5.8% that month — a widening industrial gap that will not close before the war ends.

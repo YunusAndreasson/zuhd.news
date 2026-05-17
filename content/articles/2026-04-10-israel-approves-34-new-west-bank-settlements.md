@@ -18,4 +18,8 @@ concepts:
   - "Israeli settlement"
 ---
 
-Ramallah — 34 West Bank settlements approved in secret. The security cabinet met April 1 — as Lebanon bombings dominated headlines — bringing Netanyahu-era approvals to 102 settlements since 2022. The decision was not officially published; 24 of the 34 are yet to be built.
+Ramallah — 34 West Bank settlements approved in secret.
+
+The security cabinet met April 1 — as Lebanon bombings dominated headlines — bringing Netanyahu-era approvals to 102 settlements since 2022.
+
+The decision was not officially published; 24 of the 34 are yet to be built.

@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Cairo — Both parents now lose custody on remarriage. [Egypt](country:EG)'s April bill moved fathers from 16th to 2nd in custody preference; mixed-religion mothers also lose custody when a child turns 7. Parliament has not scheduled a vote; advocates say the bill leaves too much to judicial discretion.
+Cairo — Both parents now lose custody on remarriage.
+
+[Egypt](country:EG)'s April bill moved fathers from 16th to 2nd in custody preference; mixed-religion mothers also lose custody when a child turns 7.
+
+Parliament has not scheduled a vote; advocates say the bill leaves too much to judicial discretion.

@@ -26,4 +26,8 @@ entities:
     kind: "commodity"
 ---
 
-Abuja — Commuters are parking their cars and taking buses. [Nigeria](country:NG)'s President Tinubu removed fuel subsidies in 2023; naira depreciation has compounded pump-price inflation past what middle-income earners can absorb. Oil revenues are rising with global prices, a development expert said; the federal government has announced no pump price relief.
+Abuja — Commuters are parking their cars and taking buses.
+
+[Nigeria](country:NG)'s President Tinubu removed fuel subsidies in 2023; naira depreciation has compounded pump-price inflation past what middle-income earners can absorb.
+
+Oil revenues are rising with global prices, a development expert said; the federal government has announced no pump price relief.

@@ -26,4 +26,8 @@ sentimentDivergence: 0.11
 entities: []
 ---
 
-Islamabad — Pakistan's India airspace ban enters its second year. [Pakistan](country:PK) extended the closure to May 24; carriers rerouting over the Arabian Sea face sustained fuel and crew costs. [India](country:IN)'s airlines face that deadline with no bilateral talks scheduled.
+Islamabad — Pakistan's India airspace ban enters its second year.
+
+[Pakistan](country:PK) extended the closure to May 24; carriers rerouting over the Arabian Sea face sustained fuel and crew costs.
+
+[India](country:IN)'s airlines face that deadline with no bilateral talks scheduled.

@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.11
 ---
 
-Leixlip — Intel paid $14.2B to reclaim its own factory. Intel sold Fab 34 to Apollo for $11.2B in 2024; US backing now funds the $3B buyback premium. Fab 34 will run Intel's most advanced 18A process, starting in the US before Ireland receives it.
+Leixlip — Intel paid $14.2B to reclaim its own factory.
+
+Intel sold Fab 34 to Apollo for $11.2B in 2024; US backing now funds the $3B buyback premium.
+
+Fab 34 will run Intel's most advanced 18A process, starting in the US before Ireland receives it.

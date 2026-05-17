@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Bengaluru — Domestic venture funds now lead most [India](country:IN) seed and Series A rounds. Silicon Valley firms dominated in the 2010s; their India arms — Sequoia's Peak XV, Accel India, Nexus — have spun off as locally-controlled funds. India's next startup cycle is funded by local partners, not US general partners.
+Bengaluru — Domestic venture funds now lead most [India](country:IN) seed and Series A rounds.
+
+Silicon Valley firms dominated in the 2010s; their India arms — Sequoia's Peak XV, Accel India, Nexus — have spun off as locally-controlled funds.
+
+India's next startup cycle is funded by local partners, not US general partners.

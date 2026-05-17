@@ -14,4 +14,8 @@ concepts:
   - "Myelopathy"
 ---
 
-Stanford — Bigger AI models failed where simpler ones succeeded. Large EHR-trained foundation models overfit to local care patterns and collapse when transferred to different hospitals. Scale without local calibration erases the efficiency promise; hospitals face validation costs at each new site.
+Stanford — Bigger AI models failed where simpler ones succeeded.
+
+Large EHR-trained foundation models overfit to local care patterns and collapse when transferred to different hospitals.
+
+Scale without local calibration erases the efficiency promise; hospitals face validation costs at each new site.

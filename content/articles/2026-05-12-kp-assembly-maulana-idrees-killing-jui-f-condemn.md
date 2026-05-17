@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Peshawar — Gunmen killed Maulana Idrees, a [Pakistan](country:PK) peace cleric and provincial assembly member. The Khyber Pakhtunkhwa assembly unanimously condemned the killing; his attackers remain unidentified. His Jamiat Ulema-e-Islam (Fazl) colleagues have threatened to halt assembly proceedings unless arrests are made by Thursday.
+Peshawar — Gunmen killed Maulana Idrees, a [Pakistan](country:PK) peace cleric and provincial assembly member.
+
+The Khyber Pakhtunkhwa assembly unanimously condemned the killing; his attackers remain unidentified.
+
+His Jamiat Ulema-e-Islam (Fazl) colleagues have threatened to halt assembly proceedings unless arrests are made by Thursday.

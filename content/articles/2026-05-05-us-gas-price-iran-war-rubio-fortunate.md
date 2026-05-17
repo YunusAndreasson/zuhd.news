@@ -32,4 +32,8 @@ entities:
     kind: "commodity"
 ---
 
-Washington — $4.48: US gas hit a four-year high, the auto club reported. [Iran](country:IR) near-closed Hormuz in February; the strait carries a fifth of global oil, and crude peaked at $112 a barrel in April. Secretary of State Rubio called the [US](country:US) 'fortunate' as a net exporter; the administration seeks a UN Security Council resolution on Hormuz.
+Washington — $4.48: US gas hit a four-year high, the auto club reported.
+
+[Iran](country:IR) near-closed Hormuz in February; the strait carries a fifth of global oil, and crude peaked at $112 a barrel in April.
+
+Secretary of State Rubio called the [US](country:US) 'fortunate' as a net exporter; the administration seeks a UN Security Council resolution on Hormuz.

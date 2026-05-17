@@ -22,4 +22,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Colombo — India's foreign secretary: Trincomalee energy hub can't wait. [Sri Lanka](country:LK)'s deep-water port bypasses Hormuz; a 99-tank colonial storage complex, only 14 in use, is the hub's foundation. Fuel prices rose after February's war; the [India](country:IN)–United Arab Emirates hub was signed last year but not yet built.
+Colombo — India's foreign secretary: Trincomalee energy hub can't wait.
+
+[Sri Lanka](country:LK)'s deep-water port bypasses Hormuz; a 99-tank colonial storage complex, only 14 in use, is the hub's foundation.
+
+Fuel prices rose after February's war; the [India](country:IN)–United Arab Emirates hub was signed last year but not yet built.

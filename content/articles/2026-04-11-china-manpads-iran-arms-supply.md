@@ -28,4 +28,8 @@ eventCoverage: 55
 sentimentDivergence: 0.12
 ---
 
-Beijing — China is readying a MANPADS shipment to Iran. MANPADS — portable, 1-person anti-aircraft missiles — would mark Beijing's first weapons transfer in a war it claims to be mediating. JD Vance leads US-Iran talks in Islamabad this weekend; any confirmed shipment would end the ceasefire.
+Beijing — China is readying a MANPADS shipment to Iran.
+
+MANPADS — portable, 1-person anti-aircraft missiles — would mark Beijing's first weapons transfer in a war it claims to be mediating.
+
+JD Vance leads US-Iran talks in Islamabad this weekend; any confirmed shipment would end the ceasefire.

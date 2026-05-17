@@ -24,4 +24,8 @@ concepts:
 sentimentDivergence: 0.07
 ---
 
-Manila — The Philippines accused China of cyanide dumping at a disputed reef. Cyanide destroys the reef supporting the BRP Sierra Madre, a grounded warship anchoring Manila's territorial claim at Second Thomas Shoal. Beijing dismissed the accusation as a "farce"; Manila will file a formal diplomatic protest next week.
+Manila — The Philippines accused China of cyanide dumping at a disputed reef.
+
+Cyanide destroys the reef supporting the BRP Sierra Madre, a grounded warship anchoring Manila's territorial claim at Second Thomas Shoal.
+
+Beijing dismissed the accusation as a "farce"; Manila will file a formal diplomatic protest next week.

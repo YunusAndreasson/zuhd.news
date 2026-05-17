@@ -17,4 +17,8 @@ concepts:
   - "Parliament"
 ---
 
-Copenhagen — Frederiksen's Social Democrats dropped from 50 to 38 seats. She campaigned on Trump's Greenland threats and European rearmament, but voters punished her from both flanks — the anti-immigration Danish People's Party tripled its vote to 9%. No bloc commands a majority; if coalition talks fail, Denmark faces a second election.
+Copenhagen — Frederiksen's Social Democrats dropped from 50 to 38 seats.
+
+She campaigned on Trump's Greenland threats and European rearmament, but voters punished her from both flanks — the anti-immigration Danish People's Party tripled its vote to 9%.
+
+No bloc commands a majority; if coalition talks fail, Denmark faces a second election.

@@ -34,4 +34,8 @@ entities:
     kind: "commodity"
 ---
 
-Washington — US energy prices rose 17.9% in April, Bureau of Labor Statistics data show. [Iran](country:IR)'s closure of the Strait of Hormuz, through which a fifth of global oil flows, drove the Consumer Price Index to 3.8% — a 3-year high. Rate cuts this year are off the table, with rate hikes under consideration, analysts said.
+Washington — US energy prices rose 17.9% in April, Bureau of Labor Statistics data show.
+
+[Iran](country:IR)'s closure of the Strait of Hormuz, through which a fifth of global oil flows, drove the Consumer Price Index to 3.8% — a 3-year high.
+
+Rate cuts this year are off the table, with rate hikes under consideration, analysts said.

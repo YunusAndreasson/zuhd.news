@@ -18,4 +18,8 @@ concepts:
   - "Federal constitution"
 ---
 
-Mogadishu — Somalia passed a constitution no major region will accept. The 223-0 vote passed only after Puntland and Jubaland boycotted — regional states that command their own armies and territory Mogadishu cannot govern. Both regions must now decide whether to recognize federal authority or pursue formal separation.
+Mogadishu — Somalia passed a constitution no major region will accept.
+
+The 223-0 vote passed only after Puntland and Jubaland boycotted — regional states that command their own armies and territory Mogadishu cannot govern.
+
+Both regions must now decide whether to recognize federal authority or pursue formal separation.

@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Artemis III slips to late 2027 at earliest, NASA Administrator Jared Isaacman told Congress, with a Moon landing now targeted for 2028. SpaceX's Starship and Blue Origin's Blue Moon both require orbital refueling — a capability neither has demonstrated. [China](country:CN) plans its own crewed lunar landing in 2030.
+Artemis III slips to late 2027 at earliest, NASA Administrator Jared Isaacman told Congress, with a Moon landing now targeted for 2028.
+
+SpaceX's Starship and Blue Origin's Blue Moon both require orbital refueling — a capability neither has demonstrated.
+
+[China](country:CN) plans its own crewed lunar landing in 2030.

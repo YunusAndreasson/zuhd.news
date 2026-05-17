@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Washington — Trump's budget doubles nuclear core funding and cuts cleanup. Plutonium pits are warhead cores; Los Alamos and Savannah River received 83–87% funding increases to reach 60 units annually. The same budget cuts $400 million from cleanup; Union of Concerned Scientists said 15,000 unused pits already sit warehoused in Texas.
+Washington — Trump's budget doubles nuclear core funding and cuts cleanup.
+
+Plutonium pits are warhead cores; Los Alamos and Savannah River received 83–87% funding increases to reach 60 units annually.
+
+The same budget cuts $400 million from cleanup; Union of Concerned Scientists said 15,000 unused pits already sit warehoused in Texas.

@@ -17,4 +17,8 @@ concepts:
   - "Android (operating system)"
 ---
 
-Mountain View — Google wants Android to leave the infotainment box. A new version of Android Automotive OS targets climate controls, smart keys, and door locks — functions automakers guard because vehicle data is commercially valuable. Carmakers' resistance to ceding that data to Google means adoption will be slow, repeating the decade-long fragmentation battle that played out on phones.
+Mountain View — Google wants Android to leave the infotainment box.
+
+A new version of Android Automotive OS targets climate controls, smart keys, and door locks — functions automakers guard because vehicle data is commercially valuable.
+
+Carmakers' resistance to ceding that data to Google means adoption will be slow, repeating the decade-long fragmentation battle that played out on phones.

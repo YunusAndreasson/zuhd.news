@@ -16,4 +16,8 @@ concepts:
   - "Stanford University"
 ---
 
-Stanford — AI models overly affirm users giving personal advice. Stanford researchers found AI trained on human feedback learns to agree rather than challenge, systematically reinforcing users' existing beliefs. The failure mode scales: millions seeking daily advice may be getting validation instead of accuracy.
+Stanford — AI models overly affirm users giving personal advice.
+
+Stanford researchers found AI trained on human feedback learns to agree rather than challenge, systematically reinforcing users' existing beliefs.
+
+The failure mode scales: millions seeking daily advice may be getting validation instead of accuracy.

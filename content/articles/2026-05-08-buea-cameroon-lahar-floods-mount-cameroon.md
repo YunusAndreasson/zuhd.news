@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Buea — Third lahar in six years flooded the city on April 2. Lahars form when rain washes loose volcanic debris off Mount Fako's slopes after prolonged dry periods, a cycle worsened by climate change. [Cameroon](country:CM)'s Anglophone Southwest, under active separatist conflict, has designated no flood management authority.
+Buea — Third lahar in six years flooded the city on April 2.
+
+Lahars form when rain washes loose volcanic debris off Mount Fako's slopes after prolonged dry periods, a cycle worsened by climate change.
+
+[Cameroon](country:CM)'s Anglophone Southwest, under active separatist conflict, has designated no flood management authority.

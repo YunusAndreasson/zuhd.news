@@ -18,4 +18,8 @@ concepts:
   - "India"
 ---
 
-Islamabad — Pakistan warned India: nuclear war has no room. Defence Minister Asif cited Pakistan's May military victory as precedent, warning Singh that miscalculation between nuclear states carries drastic consequences. India's response is expected before April 22 — the Pahalgam anniversary that triggered last year's military clash.
+Islamabad — Pakistan warned India: nuclear war has no room.
+
+Defence Minister Asif cited Pakistan's May military victory as precedent, warning Singh that miscalculation between nuclear states carries drastic consequences.
+
+India's response is expected before April 22 — the Pahalgam anniversary that triggered last year's military clash.

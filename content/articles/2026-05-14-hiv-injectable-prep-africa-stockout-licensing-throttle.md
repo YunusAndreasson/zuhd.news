@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Nairobi — Demand for injectable HIV prevention has outrun supply in early-adopting countries, health charities warned. Charities reported depleted stocks and unequal access as rollout of the long-acting shot expanded. The shortage is concentrating doses in better-resourced facilities.
+Nairobi — Demand for injectable HIV prevention has outrun supply in early-adopting countries, health charities warned.
+
+Charities reported depleted stocks and unequal access as rollout of the long-acting shot expanded.
+
+The shortage is concentrating doses in better-resourced facilities.

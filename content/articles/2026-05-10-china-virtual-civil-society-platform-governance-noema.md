@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Milan — [China](country:CN) canceled Teacher Li's Weibo account 50 times. Li Ying receives images from ordinary Chinese through encrypted channels and posts to X, where he says 2 million connect via virtual private network. He predicts more will speak out as the cost of silence rises.
+Milan — [China](country:CN) canceled Teacher Li's Weibo account 50 times.
+
+Li Ying receives images from ordinary Chinese through encrypted channels and posts to X, where he says 2 million connect via virtual private network.
+
+He predicts more will speak out as the cost of silence rises.

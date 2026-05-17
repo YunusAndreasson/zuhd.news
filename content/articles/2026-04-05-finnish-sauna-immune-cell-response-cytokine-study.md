@@ -11,4 +11,8 @@ sources:
     country: "FI"
 ---
 
-Helsinki — Sauna heat activates immune cells, not inflammatory cytokines. Infection triggers cytokines, tissue-damaging immune proteins; sauna heat raises immunity without releasing them. This reframes sauna as a low-inflammation immune stimulus; clinical protocols for therapeutic dosing remain undeveloped.
+Helsinki — Sauna heat activates immune cells, not inflammatory cytokines.
+
+Infection triggers cytokines, tissue-damaging immune proteins; sauna heat raises immunity without releasing them.
+
+This reframes sauna as a low-inflammation immune stimulus; clinical protocols for therapeutic dosing remain undeveloped.

@@ -26,4 +26,8 @@ sentimentDivergence: 0.01
 entities: []
 ---
 
-Washington — 3 frontier labs opened unreleased AI models to [US](country:US) government testers. The Commerce Department's Center for AI Standards and Innovation evaluates models with safety guardrails removed. Foreign regulators gain access only after the center approves security parameters — a US-first veto on frontier AI.
+Washington — 3 frontier labs opened unreleased AI models to [US](country:US) government testers.
+
+The Commerce Department's Center for AI Standards and Innovation evaluates models with safety guardrails removed.
+
+Foreign regulators gain access only after the center approves security parameters — a US-first veto on frontier AI.

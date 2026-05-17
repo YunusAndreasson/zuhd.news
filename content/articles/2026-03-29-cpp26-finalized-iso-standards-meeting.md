@@ -16,4 +16,8 @@ concepts:
   - "Programming language"
 ---
 
-London — C++26 is finalized after the March Croydon meeting. The ISO committee locked the standard in a 3-year cycle — features will shape operating systems, game engines, and embedded firmware for years. Compiler vendors now begin the push to ship conformant implementations before formal publication.
+London — C++26 is finalized after the March Croydon meeting.
+
+The ISO committee locked the standard in a 3-year cycle — features will shape operating systems, game engines, and embedded firmware for years.
+
+Compiler vendors now begin the push to ship conformant implementations before formal publication.

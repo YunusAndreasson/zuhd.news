@@ -35,4 +35,8 @@ entities:
     kind: "stock"
 ---
 
-Visakhapatnam — $15 billion data centre broke ground in [India](country:IN). Chief Minister Chandrababu Naidu offered 601 acres, power, and tax concessions to win the investment, officials said. The state targets a 6.5-gigawatt digital ecosystem; whether further hyperscalers match Google's investment is Andhra Pradesh's open question.
+Visakhapatnam — $15 billion data centre broke ground in [India](country:IN).
+
+Chief Minister Chandrababu Naidu offered 601 acres, power, and tax concessions to win the investment, officials said.
+
+The state targets a 6.5-gigawatt digital ecosystem; whether further hyperscalers match Google's investment is Andhra Pradesh's open question.

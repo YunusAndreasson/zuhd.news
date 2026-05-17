@@ -17,4 +17,8 @@ entities:
     kind: "commodity"
 ---
 
-Beijing — [China](country:CN) published strict fossil-fuel controls on Earth Day. Guiding opinions from China's 2 highest bodies are non-binding on paper but signal mandatory direction for state coal and oil firms. A binding follow-on document April 23 adds provincial emissions and coal consumption as evaluation metrics.
+Beijing — [China](country:CN) published strict fossil-fuel controls on Earth Day.
+
+Guiding opinions from China's 2 highest bodies are non-binding on paper but signal mandatory direction for state coal and oil firms.
+
+A binding follow-on document April 23 adds provincial emissions and coal consumption as evaluation metrics.

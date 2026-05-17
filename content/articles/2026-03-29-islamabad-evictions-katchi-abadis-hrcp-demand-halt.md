@@ -17,4 +17,8 @@ concepts:
   - "Eviction"
 ---
 
-Islamabad — CDA is demolishing Islamabad's oldest Christian settlement. The Capital Development Authority is clearing Allama Iqbal Colony without due process, ignoring a 2015 Supreme Court order protecting informal settlements across Pakistan. HRCP and 5 civil society groups have demanded an immediate halt and compliance with the court order.
+Islamabad — CDA is demolishing Islamabad's oldest Christian settlement.
+
+The Capital Development Authority is clearing Allama Iqbal Colony without due process, ignoring a 2015 Supreme Court order protecting informal settlements across Pakistan.
+
+HRCP and 5 civil society groups have demanded an immediate halt and compliance with the court order.

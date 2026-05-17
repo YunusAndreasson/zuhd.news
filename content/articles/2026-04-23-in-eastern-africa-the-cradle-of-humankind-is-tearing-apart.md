@@ -11,4 +11,8 @@ sources:
     country: "GB"
 ---
 
-Turkana — [Africa](country:KE)'s Turkana Rift is splitting faster than models predicted. GPS and seismic data show magma intrusions are thinning the crust, not slow stretching, researchers reported in Nature Communications. The rift holds humanity's earliest fossil record; the finding reframes how that record formed.
+Turkana — [Africa](country:KE)'s Turkana Rift is splitting faster than models predicted.
+
+GPS and seismic data show magma intrusions are thinning the crust, not slow stretching, researchers reported in Nature Communications.
+
+The rift holds humanity's earliest fossil record; the finding reframes how that record formed.

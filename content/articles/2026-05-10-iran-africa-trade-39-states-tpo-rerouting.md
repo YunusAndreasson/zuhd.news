@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Tehran — [Iran](country:IR)'s African exports hit $554 a ton, up 25%. Iran's Trade Promotion Organization reported the rise from $442, attributing the higher per-ton value to processed goods rather than raw commodities reaching African markets. Iran holds active trade ties with 39 of 54 African states; no total export volumes were disclosed, the organization said.
+Tehran — [Iran](country:IR)'s African exports hit $554 a ton, up 25%.
+
+Iran's Trade Promotion Organization reported the rise from $442, attributing the higher per-ton value to processed goods rather than raw commodities reaching African markets.
+
+Iran holds active trade ties with 39 of 54 African states; no total export volumes were disclosed, the organization said.

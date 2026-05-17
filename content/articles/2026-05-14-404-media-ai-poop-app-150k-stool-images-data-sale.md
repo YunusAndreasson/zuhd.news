@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-New York — 150,000 stool images went on sale on Reddit. PoopCheck falls outside federal health-privacy law, leaving its 25,000 users no right to block the sale of their uploaded images. No [US](country:US) law requires the founder to notify users before selling their images.
+New York — 150,000 stool images went on sale on Reddit.
+
+PoopCheck falls outside federal health-privacy law, leaving its 25,000 users no right to block the sale of their uploaded images.
+
+No [US](country:US) law requires the founder to notify users before selling their images.

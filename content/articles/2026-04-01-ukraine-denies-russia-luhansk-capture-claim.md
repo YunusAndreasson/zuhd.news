@@ -26,4 +26,8 @@ concepts:
   - "Ministry of Defence (Russia)"
 ---
 
-Luhansk — Russia declared Luhansk Oblast fully captured. Ukraine's 3rd Assault Brigade said it still holds the region's western border strip, a parcel Russia has not controlled since 2022. The Kremlin demanded Ukraine withdraw from Donbas "today" or face hardened ceasefire terms in stalled US-mediated talks.
+Luhansk — Russia declared Luhansk Oblast fully captured.
+
+Ukraine's 3rd Assault Brigade said it still holds the region's western border strip, a parcel Russia has not controlled since 2022.
+
+The Kremlin demanded Ukraine withdraw from Donbas "today" or face hardened ceasefire terms in stalled US-mediated talks.

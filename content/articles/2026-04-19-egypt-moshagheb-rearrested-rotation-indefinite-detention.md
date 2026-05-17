@@ -15,4 +15,8 @@ concepts:
   - "Political detention"
 ---
 
-Cairo — Activist Moshagheb rearrested hours after 11-year imprisonment ended. [Egypt](country:EG)'s prosecutors use "rotation" — detaining released dissidents on fresh charges immediately — to extend imprisonment indefinitely without new trials. A Giza court extended his detention to 15 days; new charges include unlawful assembly and inciting riots.
+Cairo — Activist Moshagheb rearrested hours after 11-year imprisonment ended.
+
+[Egypt](country:EG)'s prosecutors use "rotation" — detaining released dissidents on fresh charges immediately — to extend imprisonment indefinitely without new trials.
+
+A Giza court extended his detention to 15 days; new charges include unlawful assembly and inciting riots.

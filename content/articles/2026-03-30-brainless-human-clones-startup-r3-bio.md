@@ -16,4 +16,8 @@ concepts:
   - "Artificial womb"
 ---
 
-San Francisco — A startup pitched investors on brainless human clones. Founder Schloendorn argued brainless clones would not qualify as people; the first batch would be grown via paid surrogates. R3's documents show wiring diagrams for brainless animals; the startup has ARPA-H ties and no public regulatory response.
+San Francisco — A startup pitched investors on brainless human clones.
+
+Founder Schloendorn argued brainless clones would not qualify as people; the first batch would be grown via paid surrogates.
+
+R3's documents show wiring diagrams for brainless animals; the startup has ARPA-H ties and no public regulatory response.

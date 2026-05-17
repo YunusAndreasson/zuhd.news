@@ -28,4 +28,8 @@ entities:
     kind: "stock"
 ---
 
-Menlo Park — Meta backed 10 Louisiana gas plants and orbital solar. Meta cited grid permitting delays for AI power, driving capex into orbital solar and 100-hour battery storage. Overview Energy's orbital demo is set for 2028.
+Menlo Park — Meta backed 10 Louisiana gas plants and orbital solar.
+
+Meta cited grid permitting delays for AI power, driving capex into orbital solar and 100-hour battery storage.
+
+Overview Energy's orbital demo is set for 2028.

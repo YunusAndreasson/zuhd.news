@@ -26,4 +26,8 @@ entities:
     kind: "stock"
 ---
 
-New York — Bristol Myers Squibb licensed 12 Hengrui drug programs. Western pharma is buying pre-validated programs from [China](country:CN)'s labs rather than running early discovery in-house. The deal reaches $15.2 billion at full milestones; Hengrui retains domestic rights for 4 Bristol immunology drugs.
+New York — Bristol Myers Squibb licensed 12 Hengrui drug programs.
+
+Western pharma is buying pre-validated programs from [China](country:CN)'s labs rather than running early discovery in-house.
+
+The deal reaches $15.2 billion at full milestones; Hengrui retains domestic rights for 4 Bristol immunology drugs.

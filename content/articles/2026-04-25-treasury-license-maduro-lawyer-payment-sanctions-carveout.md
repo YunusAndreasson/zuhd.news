@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-New York — Treasury issued a sanctions carve-out for Maduro's lawyer. The [US](country:US) charged Maduro with narcoterrorism, then blocked [Venezuela](country:VE) from paying his lawyer until a Manhattan judge threatened to dismiss the indictment. Judge Hellerstein found Maduro poses no current national security threat; the narcoterrorism case remains active.
+New York — Treasury issued a sanctions carve-out for Maduro's lawyer.
+
+The [US](country:US) charged Maduro with narcoterrorism, then blocked [Venezuela](country:VE) from paying his lawyer until a Manhattan judge threatened to dismiss the indictment.
+
+Judge Hellerstein found Maduro poses no current national security threat; the narcoterrorism case remains active.

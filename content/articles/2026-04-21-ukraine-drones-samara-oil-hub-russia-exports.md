@@ -29,4 +29,8 @@ entities:
     kind: "commodity"
 ---
 
-Samara — Ukrainian drones hit [Russia](country:RU)'s Samara oil blending station. The facility mixes crude from multiple fields to produce Urals — Russia's flagship export grade — routing it toward the Druzhba pipeline. Five 20,000-cubic-metre tanks burned, the Security Service of Ukraine confirmed; Russia has not reported the damage.
+Samara — Ukrainian drones hit [Russia](country:RU)'s Samara oil blending station.
+
+The facility mixes crude from multiple fields to produce Urals — Russia's flagship export grade — routing it toward the Druzhba pipeline.
+
+Five 20,000-cubic-metre tanks burned, the Security Service of Ukraine confirmed; Russia has not reported the damage.

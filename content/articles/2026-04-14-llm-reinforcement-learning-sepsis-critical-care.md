@@ -18,4 +18,8 @@ concepts:
   - "Immune system"
 ---
 
-Seoul — Sepsis AI beat intensive care doctors. Previous models read only vital signs; large-language-model analysis of clinical notes improved survival rates across 3 clinical datasets. Prospective trials are next — no hospital has deployed it, and regulatory clearance requires real-world validation.
+Seoul — Sepsis AI beat intensive care doctors.
+
+Previous models read only vital signs; large-language-model analysis of clinical notes improved survival rates across 3 clinical datasets.
+
+Prospective trials are next — no hospital has deployed it, and regulatory clearance requires real-world validation.

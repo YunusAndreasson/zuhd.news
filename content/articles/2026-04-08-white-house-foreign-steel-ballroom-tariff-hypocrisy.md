@@ -18,4 +18,8 @@ concepts:
   - "Donald Trump"
 ---
 
-Washington — Foreign steel is building Trump's White House ballroom. ArcelorMittal donated European steel for the $400 million structure days before Trump cut tariffs on its Canadian automotive exports in half. Domestic steelmakers paying Trump's tariffs now face foreign-donated steel in the president's own renovation.
+Washington — Foreign steel is building Trump's White House ballroom.
+
+ArcelorMittal donated European steel for the $400 million structure days before Trump cut tariffs on its Canadian automotive exports in half.
+
+Domestic steelmakers paying Trump's tariffs now face foreign-donated steel in the president's own renovation.

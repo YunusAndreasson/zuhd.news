@@ -24,4 +24,8 @@ concepts:
 entities: []
 ---
 
-New Delhi — [India](country:IN)'s April Purchasing Managers' Index rose to 55.9, HSBC showed. Firms built buffer stocks against gas rationing from the war; [France](country:FR)'s composite fell to 47.6, S&P Global said. The Reserve Bank of India held rates in April, pending clarity on the war's economic shock.
+New Delhi — [India](country:IN)'s April Purchasing Managers' Index rose to 55.9, HSBC showed.
+
+Firms built buffer stocks against gas rationing from the war; [France](country:FR)'s composite fell to 47.6, S&P Global said.
+
+The Reserve Bank of India held rates in April, pending clarity on the war's economic shock.

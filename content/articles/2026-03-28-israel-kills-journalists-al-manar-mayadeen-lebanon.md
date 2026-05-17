@@ -17,4 +17,8 @@ concepts:
   - "Lebanon"
 ---
 
-Jezzine — Israel killed 2 journalists in their marked press car. Israel claims Ali Shoaib was a Hezbollah operative; Lebanon's president called it a "blatant crime" violating international humanitarian law. Israel killed 2 of every 3 journalists who died globally in 2025; no accountability mechanism exists.
+Jezzine — Israel killed 2 journalists in their marked press car.
+
+Israel claims Ali Shoaib was a Hezbollah operative; Lebanon's president called it a "blatant crime" violating international humanitarian law.
+
+Israel killed 2 of every 3 journalists who died globally in 2025; no accountability mechanism exists.

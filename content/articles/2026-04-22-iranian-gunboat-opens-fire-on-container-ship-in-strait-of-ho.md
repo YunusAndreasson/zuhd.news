@@ -34,4 +34,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Strait of Hormuz — An Iranian Revolutionary Guard gunboat damaged a container ship's bridge Wednesday. The Guard fired without warning, asserting sovereignty over the Strait hours after [US](country:US) extended [Iran](country:IR)'s ceasefire indefinitely. The crew is safe; Iran's Guard vowed crushing blows and the US blockade of Iranian ports continues.
+Strait of Hormuz — An Iranian Revolutionary Guard gunboat damaged a container ship's bridge Wednesday.
+
+The Guard fired without warning, asserting sovereignty over the Strait hours after [US](country:US) extended [Iran](country:IR)'s ceasefire indefinitely.
+
+The crew is safe; Iran's Guard vowed crushing blows and the US blockade of Iranian ports continues.

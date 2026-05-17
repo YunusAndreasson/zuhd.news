@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Lima — A 2024 Piura drought cost 1.3bn soles, the Piura chamber said. [China](country:CN) won [Peru](country:PE)'s contract to divert Amazon runoff to the coast; 93% of Piura's water licences since 2010 went to export agribusinesses. The megaprojects' water-rights terms remain undecided.
+Lima — A 2024 Piura drought cost 1.3bn soles, the Piura chamber said.
+
+[China](country:CN) won [Peru](country:PE)'s contract to divert Amazon runoff to the coast; 93% of Piura's water licences since 2010 went to export agribusinesses.
+
+The megaprojects' water-rights terms remain undecided.

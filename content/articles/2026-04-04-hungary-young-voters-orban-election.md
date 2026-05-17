@@ -17,4 +17,8 @@ concepts:
   - "Budapest"
 ---
 
-Budapest — 65% of under-30 Hungarians poll against Orbán. Fidesz controls 80% of traditional media, but social channels let opposition voices reach a generation that grew up entirely under electoral autocracy. Whether youth turnout can overcome Orbán's gerrymandered map will be known on April 12.
+Budapest — 65% of under-30 Hungarians poll against Orbán.
+
+Fidesz controls 80% of traditional media, but social channels let opposition voices reach a generation that grew up entirely under electoral autocracy.
+
+Whether youth turnout can overcome Orbán's gerrymandered map will be known on April 12.

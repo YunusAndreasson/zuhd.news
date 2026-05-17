@@ -18,4 +18,8 @@ concepts:
   - "Whole-slide image"
 ---
 
-London — Foundation AI models held accuracy on 1,357 external endometrial cancer slides where CNNs degraded. Tested across 720 patients in real clinical settings, they closed the gap between benchmark results and practice. Pathologist shortage in under-resourced hospitals — where most cases go unclassified — remains the barrier to deployment.
+London — Foundation AI models held accuracy on 1,357 external endometrial cancer slides where CNNs degraded.
+
+Tested across 720 patients in real clinical settings, they closed the gap between benchmark results and practice.
+
+Pathologist shortage in under-resourced hospitals — where most cases go unclassified — remains the barrier to deployment.

@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — The Tenomodulin BRICHOS protein fragment reduced tau clumping, synaptic damage, and memory loss in tauopathy mice. BRICHOS domains bind tau and block its aggregation — the mechanism driving Alzheimer's and related neurodegenerative diseases. Intravenous delivery worked in mice; no human trials are scheduled.
+London — The Tenomodulin BRICHOS protein fragment reduced tau clumping, synaptic damage, and memory loss in tauopathy mice.
+
+BRICHOS domains bind tau and block its aggregation — the mechanism driving Alzheimer's and related neurodegenerative diseases.
+
+Intravenous delivery worked in mice; no human trials are scheduled.

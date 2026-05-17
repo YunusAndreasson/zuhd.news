@@ -22,4 +22,8 @@ concepts:
 entities: []
 ---
 
-Kuwait City — [Kuwait](country:KW) arrested 4 of [Iran](country:IR)'s Revolutionary Guards on Bubiyan Island on May 1. The island controls Khor Abdullah, [Iraq](country:IQ)'s only sea access to the Gulf. [Iran](country:IR) has not acknowledged the arrests; the incident marks a new maritime front in the war.
+Kuwait City — [Kuwait](country:KW) arrested 4 of [Iran](country:IR)'s Revolutionary Guards on Bubiyan Island on May 1.
+
+The island controls Khor Abdullah, [Iraq](country:IQ)'s only sea access to the Gulf.
+
+[Iran](country:IR) has not acknowledged the arrests; the incident marks a new maritime front in the war.

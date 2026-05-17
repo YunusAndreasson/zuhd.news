@@ -15,4 +15,8 @@ concepts:
   - "Non-disclosure agreement"
 ---
 
-San Francisco — Meta gagged its own "Careless People" whistleblower. The order is contractual, not defamation — meaning truth is irrelevant; Sarah Wynn-Williams cannot say anything negative about Meta regardless of accuracy. Her book stays on sale; the ruling exposes the NDA structure that silences former tech employees after they leave.
+San Francisco — Meta gagged its own "Careless People" whistleblower.
+
+The order is contractual, not defamation — meaning truth is irrelevant; Sarah Wynn-Williams cannot say anything negative about Meta regardless of accuracy.
+
+Her book stays on sale; the ruling exposes the NDA structure that silences former tech employees after they leave.

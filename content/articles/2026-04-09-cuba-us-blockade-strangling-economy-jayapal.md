@@ -16,4 +16,8 @@ concepts:
   - "Fuel blockade"
 ---
 
-Havana — Cuba is blacked out 20 hours a day. A US fuel blockade severed power and supply chains — pharmacies closed, roads emptied, only 10% of food needs produced domestically. Rep. Jayapal urged President Trump to negotiate after Cuba released 2,000 prisoners and invited FBI investigators.
+Havana — Cuba is blacked out 20 hours a day.
+
+A US fuel blockade severed power and supply chains — pharmacies closed, roads emptied, only 10% of food needs produced domestically.
+
+Rep. Jayapal urged President Trump to negotiate after Cuba released 2,000 prisoners and invited FBI investigators.

@@ -25,4 +25,8 @@ sentimentDivergence: 0.28
 entities: []
 ---
 
-New York — A sitting [Mexico](country:MX) governor faces [US](country:US) cartel-conspiracy charges. Manhattan prosecutors allege the Chapitos helped elect Rubén Rocha Moya by kidnapping rivals, then received drug-route protection. Mexico's foreign ministry rejected the charges as lacking "evidentiary elements" and filed a formal protest.
+New York — A sitting [Mexico](country:MX) governor faces [US](country:US) cartel-conspiracy charges.
+
+Manhattan prosecutors allege the Chapitos helped elect Rubén Rocha Moya by kidnapping rivals, then received drug-route protection.
+
+Mexico's foreign ministry rejected the charges as lacking "evidentiary elements" and filed a formal protest.

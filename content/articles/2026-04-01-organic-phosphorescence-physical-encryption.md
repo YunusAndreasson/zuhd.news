@@ -15,4 +15,8 @@ concepts:
   - "Encryption"
 ---
 
-London — A molecule glows blue with solvent, green without. Researchers synthesized BrGlu, a purely organic phosphor that reversibly switches emission color via solvent and heat, encoding information in both spatial pattern and glow lifetime. The encryption is physical, not computational — there is no key to steal, only a crystal structure to read.
+London — A molecule glows blue with solvent, green without.
+
+Researchers synthesized BrGlu, a purely organic phosphor that reversibly switches emission color via solvent and heat, encoding information in both spatial pattern and glow lifetime.
+
+The encryption is physical, not computational — there is no key to steal, only a crystal structure to read.

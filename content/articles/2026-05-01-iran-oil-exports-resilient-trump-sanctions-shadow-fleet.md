@@ -22,4 +22,8 @@ entities:
     kind: "commodity"
 ---
 
-Tehran — Trump's deadline for Iranian oil collapse has passed. The [US](country:US) blockade of [Iran](country:IR)'s ports aimed to fill storage and trigger wellhead shutdowns; Brent crude broke $126 as the strategy stalled. Iran has not capitulated; the US blockade continues despite rising global fuel costs.
+Tehran — Trump's deadline for Iranian oil collapse has passed.
+
+The [US](country:US) blockade of [Iran](country:IR)'s ports aimed to fill storage and trigger wellhead shutdowns; Brent crude broke $126 as the strategy stalled.
+
+Iran has not capitulated; the US blockade continues despite rising global fuel costs.

@@ -40,4 +40,8 @@ sentimentDivergence: 0.78
 entities: []
 ---
 
-Brussels — High-risk AI rules covering biometrics and border controls are delayed 16 months under a deal that bans AI nudifier apps. Member states and Parliament provisionally agreed; companies must comply with the nudifier ban by December 2. A formal Parliament vote is still required.
+Brussels — High-risk AI rules covering biometrics and border controls are delayed 16 months under a deal that bans AI nudifier apps.
+
+Member states and Parliament provisionally agreed; companies must comply with the nudifier ban by December 2.
+
+A formal Parliament vote is still required.

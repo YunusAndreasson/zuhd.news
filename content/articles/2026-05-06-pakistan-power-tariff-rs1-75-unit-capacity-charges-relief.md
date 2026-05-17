@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — [Pakistan](country:PK)'s Q1 capacity savings total Rs63.94 billion. Idle-plant capacity charges drove the surplus; the National Electric Power Regulatory Authority said savings yield Rs1.75 per unit consumer relief in June–August. A May 19 hearing sets final rates; fuel costs could erode the Rs2.15 net reduction.
+Islamabad — [Pakistan](country:PK)'s Q1 capacity savings total Rs63.94 billion.
+
+Idle-plant capacity charges drove the surplus; the National Electric Power Regulatory Authority said savings yield Rs1.75 per unit consumer relief in June–August.
+
+A May 19 hearing sets final rates; fuel costs could erode the Rs2.15 net reduction.

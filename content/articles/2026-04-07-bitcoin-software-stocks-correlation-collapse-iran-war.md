@@ -16,4 +16,10 @@ concepts:
   - "Market correlation"
 ---
 
-New York — Bitcoin and software stocks diverged after Iran war. Bitcoin rose 5% and software ETFs fell 2% since Feb. 28, collapsing their near-perfect correlation to 0.13. Correlation recovered to 0.7, with Bitcoin now a war hedge and software stocks an AI cost bet.
+New York — Bitcoin and software stocks diverged after Iran war.
+
+Bitcoin rose 5% and software ETFs fell 2% since Feb.
+
+28, collapsing their near-perfect correlation to 0.13.
+
+Correlation recovered to 0.7, with Bitcoin now a war hedge and software stocks an AI cost bet.

@@ -22,4 +22,8 @@ concepts:
   - "Interest Rates"
 ---
 
-London — UK inflation held at 3% in February — the last clean reading before US-Israeli strikes on Iran shut the Strait of Hormuz and ignited an energy shock. The Bank of England, which had forecast inflation falling to 2.1% by Q2, now projects it could reach 3.5% in Q3; traders have reversed their rate-cut bets and are pricing 2 quarter-point hikes this year instead. February's data is already a relic: it describes an economy that no longer exists.
+London — UK inflation held at 3% in February — the last clean reading before US-Israeli strikes on Iran shut the Strait of Hormuz and ignited an energy shock.
+
+The Bank of England, which had forecast inflation falling to 2.1% by Q2, now projects it could reach 3.5% in Q3; traders have reversed their rate-cut bets and are pricing 2 quarter-point hikes this year instead.
+
+February's data is already a relic: it describes an economy that no longer exists.

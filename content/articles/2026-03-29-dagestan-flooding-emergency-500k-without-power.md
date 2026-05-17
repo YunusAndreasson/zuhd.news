@@ -18,4 +18,8 @@ concepts:
   - "Russia"
 ---
 
-Makhachkala — 500,000 in Dagestan lost power after spring flooding. Spring snowmelt and heavy rain damaged Makhachkala and collapsed a railway bridge. 110,000 remain without power; washed-out roads are blocking emergency crew access to dozens of settlements.
+Makhachkala — 500,000 in Dagestan lost power after spring flooding.
+
+Spring snowmelt and heavy rain damaged Makhachkala and collapsed a railway bridge.
+
+110,000 remain without power; washed-out roads are blocking emergency crew access to dozens of settlements.

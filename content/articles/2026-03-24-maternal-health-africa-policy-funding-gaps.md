@@ -17,4 +17,8 @@ concepts:
   - "Nigeria"
 ---
 
-Nairobi — Nigeria alone accounts for 28% of global maternal deaths. Experts at Tuesday's conference target financing gaps in emergency obstetric care, blood supply chains, and health worker training across 6 sub-Saharan nations. That rate puts Nigeria on track to miss the UN's 2030 maternal survival target.
+Nairobi — Nigeria alone accounts for 28% of global maternal deaths.
+
+Experts at Tuesday's conference target financing gaps in emergency obstetric care, blood supply chains, and health worker training across 6 sub-Saharan nations.
+
+That rate puts Nigeria on track to miss the UN's 2030 maternal survival target.

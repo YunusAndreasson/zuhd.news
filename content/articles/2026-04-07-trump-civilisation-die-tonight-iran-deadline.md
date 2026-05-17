@@ -27,4 +27,6 @@ concepts:
 sentimentDivergence: 0.32
 ---
 
-Washington — Trump posted: "A whole civilisation will die tonight." His 8pm ET deadline demands Iran open the Strait of Hormuz or lose all power plants, bridges, and desalination infrastructure. Iran rejected a ceasefire proposal and threatened reciprocal strikes on Gulf neighbours if Trump proceeds.
+Washington — Trump posted: "A whole civilisation will die tonight." His 8pm ET deadline demands Iran open the Strait of Hormuz or lose all power plants, bridges, and desalination infrastructure.
+
+Iran rejected a ceasefire proposal and threatened reciprocal strikes on Gulf neighbours if Trump proceeds.

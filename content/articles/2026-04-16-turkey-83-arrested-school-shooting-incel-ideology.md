@@ -36,4 +36,8 @@ sentimentDivergence: 0.23
 entities: []
 ---
 
-Kahramanmaraş — Turkey arrested 83 over school shooting posts. The 14-year-old cited US incel killer Elliot Rodger on WhatsApp and used his police-inspector father's 5 guns; Turkey blocked 940 accounts and 93 Telegram groups. Teachers' unions called a 2-day strike; the father awaits trial while parliament has proposed no gun-access reforms.
+Kahramanmaraş — Turkey arrested 83 over school shooting posts.
+
+The 14-year-old cited US incel killer Elliot Rodger on WhatsApp and used his police-inspector father's 5 guns; Turkey blocked 940 accounts and 93 Telegram groups.
+
+Teachers' unions called a 2-day strike; the father awaits trial while parliament has proposed no gun-access reforms.

@@ -29,4 +29,8 @@ sentimentDivergence: 0.2
 entities: []
 ---
 
-Ottawa — Washington imposed preconditions on United States-Mexico-Canada Agreement talks. Prime Minister Mark Carney rejected the demand, saying no country can dictate terms to [Canada](country:CA). [Canada](country:CA) faces a July 1 negotiating deadline with formal talks still unscheduled.
+Ottawa — Washington imposed preconditions on United States-Mexico-Canada Agreement talks.
+
+Prime Minister Mark Carney rejected the demand, saying no country can dictate terms to [Canada](country:CA).
+
+[Canada](country:CA) faces a July 1 negotiating deadline with formal talks still unscheduled.

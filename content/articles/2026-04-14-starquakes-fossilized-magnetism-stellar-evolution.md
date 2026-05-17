@@ -18,4 +18,8 @@ concepts:
   - "Stellar evolution"
 ---
 
-Vienna — Starquakes revealed hidden magnetic fields inside dying stars. Seismic data from red giant cores matched magnetism in their white dwarf remnants — fossil fields that survive the full stellar lifecycle. The paper, published in Astronomy & Astrophysics, reshapes predictions for our sun's eventual white dwarf state.
+Vienna — Starquakes revealed hidden magnetic fields inside dying stars.
+
+Seismic data from red giant cores matched magnetism in their white dwarf remnants — fossil fields that survive the full stellar lifecycle.
+
+The paper, published in Astronomy & Astrophysics, reshapes predictions for our sun's eventual white dwarf state.

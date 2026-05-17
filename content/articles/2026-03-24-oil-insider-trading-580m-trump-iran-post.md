@@ -25,4 +25,8 @@ concepts:
 sentimentDivergence: 0.24
 ---
 
-New York — $580 million in oil futures sold in 60 seconds before Trump's Iran post. 6,200 Brent and WTI contracts changed hands in one minute; then Trump announced "productive" Iran talks at 7:04 AM and oil crashed up to 15% in seconds. Iran denied the talks and oil reversed above $103; CME Group logs large trader positions daily but not identities, leaving no public answer on who traded.
+New York — $580 million in oil futures sold in 60 seconds before Trump's Iran post.
+
+6,200 Brent and WTI contracts changed hands in one minute; then Trump announced "productive" Iran talks at 7:04 AM and oil crashed up to 15% in seconds.
+
+Iran denied the talks and oil reversed above $103; CME Group logs large trader positions daily but not identities, leaving no public answer on who traded.

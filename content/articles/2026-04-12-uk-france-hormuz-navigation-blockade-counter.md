@@ -25,4 +25,8 @@ concepts:
 sentimentDivergence: 0.06
 ---
 
-London — Britain broke from the US on Hormuz. Britain and France are building a coalition against the blockade — it traps allied shipping from the Philippines to South Korea. Britain is sending minesweepers into a waterway it refuses to blockade; Trump says NATO will help clear it.
+London — Britain broke from the US on Hormuz.
+
+Britain and France are building a coalition against the blockade — it traps allied shipping from the Philippines to South Korea.
+
+Britain is sending minesweepers into a waterway it refuses to blockade; Trump says NATO will help clear it.

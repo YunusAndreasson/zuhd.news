@@ -22,4 +22,8 @@ concepts:
 sentimentDivergence: 0.29
 ---
 
-Washington — State Department requires $15,000 bonds from 50 countries. Most affected nations are African; $15,000 exceeds annual income in many, and bonds are refunded only if the visa is denied or the traveler complies. The administration signaled further expansion; no congressional vote is required to add countries.
+Washington — State Department requires $15,000 bonds from 50 countries.
+
+Most affected nations are African; $15,000 exceeds annual income in many, and bonds are refunded only if the visa is denied or the traveler complies.
+
+The administration signaled further expansion; no congressional vote is required to add countries.

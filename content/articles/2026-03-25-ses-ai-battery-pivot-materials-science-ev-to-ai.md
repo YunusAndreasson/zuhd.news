@@ -18,4 +18,8 @@ concepts:
   - "Unmanned aerial vehicle"
 ---
 
-Cambridge — SES AI is abandoning EV batteries for AI. GM- and Hyundai-backed and MIT-founded, the company is exiting EV production because Western battery manufacturers can no longer compete with China on cost. SES will license its materials discovery AI platform to other manufacturers instead of building cells.
+Cambridge — SES AI is abandoning EV batteries for AI.
+
+GM- and Hyundai-backed and MIT-founded, the company is exiting EV production because Western battery manufacturers can no longer compete with China on cost.
+
+SES will license its materials discovery AI platform to other manufacturers instead of building cells.

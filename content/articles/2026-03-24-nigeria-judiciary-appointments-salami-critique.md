@@ -17,4 +17,8 @@ concepts:
   - "Court of Appeal"
 ---
 
-Ilorin — Bad appointments, not corruption, break Nigeria's courts. Justice Ayo Salami, former Appeal Court president, argued that Nigeria promotes magistrates with limited trial exposure to the High Court bench, producing judges who rule from caution rather than law. He urged sitting judges to rule without fear in politically sensitive cases ahead of Nigeria's 2027 elections.
+Ilorin — Bad appointments, not corruption, break Nigeria's courts.
+
+Justice Ayo Salami, former Appeal Court president, argued that Nigeria promotes magistrates with limited trial exposure to the High Court bench, producing judges who rule from caution rather than law.
+
+He urged sitting judges to rule without fear in politically sensitive cases ahead of Nigeria's 2027 elections.

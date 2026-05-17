@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — [Pakistan](country:PK) jailed journalist Gharida Farooqi's harasser. Pakistan's National Cybercrime Investigation Agency arrested 1 person in Chiniot after AI-generated videos of Farooqi circulated during April ceasefire coverage. Further arrests are expected; the same law is routinely deployed against Pakistani journalists.
+Islamabad — [Pakistan](country:PK) jailed journalist Gharida Farooqi's harasser.
+
+Pakistan's National Cybercrime Investigation Agency arrested 1 person in Chiniot after AI-generated videos of Farooqi circulated during April ceasefire coverage.
+
+Further arrests are expected; the same law is routinely deployed against Pakistani journalists.

@@ -17,4 +17,8 @@ concepts:
   - "Drug resistance"
 ---
 
-London — Melanoma rewires itself to beat 2 targeted drugs. Most advanced melanoma patients eventually relapse because cancer develops resistance to BRAF and MEK inhibitors — the most effective drugs available — simultaneously. Researchers will now test whether targeting 3 newly identified proteins can break the resistance cycle and extend survival.
+London — Melanoma rewires itself to beat 2 targeted drugs.
+
+Most advanced melanoma patients eventually relapse because cancer develops resistance to BRAF and MEK inhibitors — the most effective drugs available — simultaneously.
+
+Researchers will now test whether targeting 3 newly identified proteins can break the resistance cycle and extend survival.

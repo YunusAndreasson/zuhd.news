@@ -18,4 +18,6 @@ concepts:
   - "Vaccine"
 ---
 
-Washington — Malone quit CDC's vaccine panel, citing "drama." RFK Jr. appointed him ACIP vice-chair after purging all 17 career experts, but a federal judge last week blocked those appointments as likely illegal. The court also froze Kennedy's overhaul of the childhood vaccine schedule; no replacement vice-chair has been named.
+Washington — Malone quit CDC's vaccine panel, citing "drama." RFK Jr. appointed him ACIP vice-chair after purging all 17 career experts, but a federal judge last week blocked those appointments as likely illegal.
+
+The court also froze Kennedy's overhaul of the childhood vaccine schedule; no replacement vice-chair has been named.

@@ -40,4 +40,8 @@ sentimentDivergence: 0.26
 entities: []
 ---
 
-Odesa — Married couple, both 75, killed in their beds. [Russia](country:RU) launched drones from the Black Sea, striking 3 residential buildings; [Ukraine](country:UA)'s State Emergency Service said 14 others were injured. 140 rescue workers remain at the scene; 8 injured are hospitalized as search operations continue.
+Odesa — Married couple, both 75, killed in their beds.
+
+[Russia](country:RU) launched drones from the Black Sea, striking 3 residential buildings; [Ukraine](country:UA)'s State Emergency Service said 14 others were injured.
+
+140 rescue workers remain at the scene; 8 injured are hospitalized as search operations continue.

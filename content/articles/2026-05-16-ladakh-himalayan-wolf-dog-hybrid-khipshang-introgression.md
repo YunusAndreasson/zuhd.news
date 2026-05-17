@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Ladakh — Wolf-dog hybrids are dissolving an ancient lineage. [India](country:IN)'s Ladakh has 25,000 feral dogs against a few hundred wolves, researchers found; the numeric disparity makes hybridization irreversible without culling. Dog sterilisation is illegal in Ladakh and Buddhist norms prohibit culling, leaving no policy lever to slow introgression.
+Ladakh — Wolf-dog hybrids are dissolving an ancient lineage.
+
+[India](country:IN)'s Ladakh has 25,000 feral dogs against a few hundred wolves, researchers found; the numeric disparity makes hybridization irreversible without culling.
+
+Dog sterilisation is illegal in Ladakh and Buddhist norms prohibit culling, leaving no policy lever to slow introgression.

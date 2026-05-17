@@ -20,4 +20,8 @@ concepts:
   - "Venezuela"
 ---
 
-Washington — Appeals court blocked contempt case over deportation defiance. The 2-1 majority, both Trump appointees, ruled the order lacked precision required for contempt — courts can order but cannot compel. Judge Boasberg retains jurisdiction over pending deportation cases but cannot pursue criminal contempt for the March 2025 flights.
+Washington — Appeals court blocked contempt case over deportation defiance.
+
+The 2-1 majority, both Trump appointees, ruled the order lacked precision required for contempt — courts can order but cannot compel.
+
+Judge Boasberg retains jurisdiction over pending deportation cases but cannot pursue criminal contempt for the March 2025 flights.

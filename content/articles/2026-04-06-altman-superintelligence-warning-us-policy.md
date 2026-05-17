@@ -17,4 +17,8 @@ concepts:
   - "Sam Altman"
 ---
 
-Washington — Altman warned superintelligence risks are no longer theoretical. In an Axios interview, he cited pathogen misuse and a "world-shaking cyberattack" as risks arriving within a year, urging US government coordination. The framing positions OpenAI as a preferred regulatory partner — writing its own oversight rules before Congress acts.
+Washington — Altman warned superintelligence risks are no longer theoretical.
+
+In an Axios interview, he cited pathogen misuse and a "world-shaking cyberattack" as risks arriving within a year, urging US government coordination.
+
+The framing positions OpenAI as a preferred regulatory partner — writing its own oversight rules before Congress acts.

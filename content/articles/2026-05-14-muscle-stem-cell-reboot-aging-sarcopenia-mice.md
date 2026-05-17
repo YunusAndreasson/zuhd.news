@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Durham — Treated old mice grew muscle fibres 45% larger than untreated controls. Aged stem cells run low on glutaminase, limiting the lipids they need to grow; Duke researchers replenished palmitate and oleate outside the body before reimplanting. David Lee of the Duke team said clinical trials are the next step.
+Durham — Treated old mice grew muscle fibres 45% larger than untreated controls.
+
+Aged stem cells run low on glutaminase, limiting the lipids they need to grow; Duke researchers replenished palmitate and oleate outside the body before reimplanting.
+
+David Lee of the Duke team said clinical trials are the next step.

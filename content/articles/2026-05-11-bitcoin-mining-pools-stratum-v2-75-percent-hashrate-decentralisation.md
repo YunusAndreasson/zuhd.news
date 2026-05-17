@@ -23,4 +23,8 @@ entities:
     kind: "crypto"
 ---
 
-New York — Stratum V2 gains 75% of Bitcoin network hashrate. Under V1, pool operators choose which transactions enter each block; Stratum V2 moves that selection to the individual miners doing the work. Foundry's 34.2% hashrate share is unchanged; Stratum V2 redistributes only who picks transactions, not who earns block rewards.
+New York — Stratum V2 gains 75% of Bitcoin network hashrate.
+
+Under V1, pool operators choose which transactions enter each block; Stratum V2 moves that selection to the individual miners doing the work.
+
+Foundry's 34.2% hashrate share is unchanged; Stratum V2 redistributes only who picks transactions, not who earns block rewards.

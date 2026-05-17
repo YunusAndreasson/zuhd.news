@@ -33,4 +33,8 @@ concepts:
 entities: []
 ---
 
-Paris — 3 French carriers bid €24B to absorb SFR, France's second-largest mobile operator. Regulators who blocked similar consolidation in 2013 now back the deal, citing a European shift from consumer price protection to building digital champions. An exclusivity period runs until May 15; antitrust review would then take 12 to 24 months.
+Paris — 3 French carriers bid €24B to absorb SFR, France's second-largest mobile operator.
+
+Regulators who blocked similar consolidation in 2013 now back the deal, citing a European shift from consumer price protection to building digital champions.
+
+An exclusivity period runs until May 15; antitrust review would then take 12 to 24 months.

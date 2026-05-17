@@ -11,4 +11,8 @@ sources:
     country: "GB"
 ---
 
-Iquitos — Peru's Amazonian peatlands formed more recently than thought. The Pastaza-Marañón Basin, Amazonia's largest peatland complex, is part of global systems storing more carbon than all forests combined. Younger peatlands are more sensitive to disturbance; Peru has no legal protection for these carbon stocks.
+Iquitos — Peru's Amazonian peatlands formed more recently than thought.
+
+The Pastaza-Marañón Basin, Amazonia's largest peatland complex, is part of global systems storing more carbon than all forests combined.
+
+Younger peatlands are more sensitive to disturbance; Peru has no legal protection for these carbon stocks.

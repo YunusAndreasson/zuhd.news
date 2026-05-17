@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.31
 ---
 
-Washington — Trump announced 50% tariffs on Iran's arms suppliers. China — Iran's main arms supplier — is the primary target despite courts blocking Trump's tariff authority in February. China's rare-earth leverage and a planned May summit leave enforcement in question.
+Washington — Trump announced 50% tariffs on Iran's arms suppliers.
+
+China — Iran's main arms supplier — is the primary target despite courts blocking Trump's tariff authority in February.
+
+China's rare-earth leverage and a planned May summit leave enforcement in question.

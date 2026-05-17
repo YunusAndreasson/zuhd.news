@@ -27,4 +27,8 @@ concepts:
 entities: []
 ---
 
-Kyiv — Russian strikes killed 5 after Moscow's truce offer. [Russia](country:RU)'s 2-day pause covers only the parade window; [Ukraine](country:UA)'s rival ceasefire, since midnight Tuesday, reframes who blocks talks. Moscow warned of a "massive missile strike on central Kyiv" if Ukrainian forces disrupt the May 9 ceremony.
+Kyiv — Russian strikes killed 5 after Moscow's truce offer.
+
+[Russia](country:RU)'s 2-day pause covers only the parade window; [Ukraine](country:UA)'s rival ceasefire, since midnight Tuesday, reframes who blocks talks.
+
+Moscow warned of a "massive missile strike on central Kyiv" if Ukrainian forces disrupt the May 9 ceremony.

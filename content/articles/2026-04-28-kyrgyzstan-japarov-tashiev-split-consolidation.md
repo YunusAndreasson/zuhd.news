@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-[Kyrgyzstan](country:KG) president Sadyr Japarov dismissed security chief Kamchybek Tashiyev in February over a letter demanding early elections that Tashiyev apparently backed. The 2 men co-governed since the 2020 revolution, with Tashiyev running the security apparatus. Japarov faces re-election in 2027; Tashiyev, stripped of state posts, has not announced next steps.
+[Kyrgyzstan](country:KG) president Sadyr Japarov dismissed security chief Kamchybek Tashiyev in February over a letter demanding early elections that Tashiyev apparently backed.
+
+The 2 men co-governed since the 2020 revolution, with Tashiyev running the security apparatus.
+
+Japarov faces re-election in 2027; Tashiyev, stripped of state posts, has not announced next steps.

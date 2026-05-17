@@ -17,4 +17,8 @@ concepts:
   - "Photon"
 ---
 
-London — Missing black holes confirm pair-instability supernovae are real. The gap — no first-generation black holes above 45 solar masses — matches predictions that pair-instability supernovae destroy massive stars before collapse. Error bars remain 5 solar masses wide; each new year of gravitational wave data narrows the estimate.
+London — Missing black holes confirm pair-instability supernovae are real.
+
+The gap — no first-generation black holes above 45 solar masses — matches predictions that pair-instability supernovae destroy massive stars before collapse.
+
+Error bars remain 5 solar masses wide; each new year of gravitational wave data narrows the estimate.

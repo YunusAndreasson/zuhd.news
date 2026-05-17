@@ -17,4 +17,8 @@ concepts:
   - "Satellite internet"
 ---
 
-Dubai — Starlink now offers satellite internet in the UAE. Low-earth orbit satellites bypass the UAE's fiber duopoly of Etisalat and du, reaching deserts and offshore locations for AED 230 a month. Starlink positions the service as backup connectivity — most UAE residents are expected to keep their existing fiber providers.
+Dubai — Starlink now offers satellite internet in the UAE.
+
+Low-earth orbit satellites bypass the UAE's fiber duopoly of Etisalat and du, reaching deserts and offshore locations for AED 230 a month.
+
+Starlink positions the service as backup connectivity — most UAE residents are expected to keep their existing fiber providers.

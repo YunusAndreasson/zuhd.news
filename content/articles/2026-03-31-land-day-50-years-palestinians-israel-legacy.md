@@ -17,4 +17,8 @@ concepts:
   - "Land confiscation"
 ---
 
-Nazareth — 6 Palestinians died in 1976 defending land. 50 years on, settlement expansion and a new death penalty law show the same confiscation policy widening. Gaza's war has fractured the land rights movement before it can answer what Land Day means next.
+Nazareth — 6 Palestinians died in 1976 defending land.
+
+50 years on, settlement expansion and a new death penalty law show the same confiscation policy widening.
+
+Gaza's war has fractured the land rights movement before it can answer what Land Day means next.

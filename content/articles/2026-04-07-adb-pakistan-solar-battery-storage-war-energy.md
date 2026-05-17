@@ -16,4 +16,8 @@ concepts:
   - "Solar energy"
 ---
 
-Islamabad — ADB pledged battery storage funding for energy-strained Pakistan. The bank will study rooftop solar and storage integration as Pakistan replaces disrupted fuel imports with indigenous generation. ADB's vice president visits Islamabad later this month to confirm financing terms for battery storage and grid reform.
+Islamabad — ADB pledged battery storage funding for energy-strained Pakistan.
+
+The bank will study rooftop solar and storage integration as Pakistan replaces disrupted fuel imports with indigenous generation.
+
+ADB's vice president visits Islamabad later this month to confirm financing terms for battery storage and grid reform.

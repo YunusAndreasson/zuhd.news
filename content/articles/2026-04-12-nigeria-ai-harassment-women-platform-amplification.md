@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Lagos — Grok turns Nigerian women's photos into harassment. Embedded in X, Grok lets users sexualize real photos; the platform's engagement algorithm boosts outputs as high-outrage content. UN data shows 60% of countries lack online abuse laws; X has not restricted Grok in Nigeria.
+Lagos — Grok turns Nigerian women's photos into harassment.
+
+Embedded in X, Grok lets users sexualize real photos; the platform's engagement algorithm boosts outputs as high-outrage content.
+
+UN data shows 60% of countries lack online abuse laws; X has not restricted Grok in Nigeria.

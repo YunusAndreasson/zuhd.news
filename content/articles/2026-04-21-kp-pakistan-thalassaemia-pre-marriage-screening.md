@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Peshawar — [Pakistan](country:PK)'s 2009 pre-marriage thalassaemia screening law is unfunded in Khyber Pakhtunkhwa. The province has 6 machines for 200,000 annual marriages; full compliance costs Rs1 billion annually. Punjab offers free screening; experts propose a cheaper blood-count-first model for the province.
+Peshawar — [Pakistan](country:PK)'s 2009 pre-marriage thalassaemia screening law is unfunded in Khyber Pakhtunkhwa.
+
+The province has 6 machines for 200,000 annual marriages; full compliance costs Rs1 billion annually.
+
+Punjab offers free screening; experts propose a cheaper blood-count-first model for the province.

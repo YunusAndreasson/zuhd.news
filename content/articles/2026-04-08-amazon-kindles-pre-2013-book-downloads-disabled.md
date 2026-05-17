@@ -17,4 +17,8 @@ concepts:
   - "Software"
 ---
 
-Seattle — Amazon disabled book downloads on pre-2013 Kindles. Starting May 20, affected devices can no longer purchase, download, or re-sync books — a permanent platform cut enforced by server-side account lockout. Pre-2013 Kindle owners lost their last download path in February 2025; on May 20, they lose the cloud.
+Seattle — Amazon disabled book downloads on pre-2013 Kindles.
+
+Starting May 20, affected devices can no longer purchase, download, or re-sync books — a permanent platform cut enforced by server-side account lockout.
+
+Pre-2013 Kindle owners lost their last download path in February 2025; on May 20, they lose the cloud.

@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-London — New complexome software fingerprinted mitochondrial disease in patients. A bioinformatics framework benchmarks protein abundance across tissues, then maps complex disruptions to disease signatures. Released as a Python notebook, it lets any lab query proteomics data against the complexome.
+London — New complexome software fingerprinted mitochondrial disease in patients.
+
+A bioinformatics framework benchmarks protein abundance across tissues, then maps complex disruptions to disease signatures.
+
+Released as a Python notebook, it lets any lab query proteomics data against the complexome.

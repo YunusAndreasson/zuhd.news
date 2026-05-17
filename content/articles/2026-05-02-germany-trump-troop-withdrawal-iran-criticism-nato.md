@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Berlin — Pentagon plans to relocate 5,000 troops from [Germany](country:DE). The [US](country:US) confirmed the withdrawal is punishment for Germany's refusal to join the war on [Iran](country:IR) and Chancellor Merz's public criticism. Merz has not apologized; Germany's vice-chancellor told Trump to "see the mess he's made."
+Berlin — Pentagon plans to relocate 5,000 troops from [Germany](country:DE).
+
+The [US](country:US) confirmed the withdrawal is punishment for Germany's refusal to join the war on [Iran](country:IR) and Chancellor Merz's public criticism.
+
+Merz has not apologized; Germany's vice-chancellor told Trump to "see the mess he's made."

@@ -30,4 +30,8 @@ concepts:
 sentimentDivergence: 0.34
 ---
 
-Washington — Hegseth's broker tried to buy a BlackRock defense ETF weeks before the February 28 strikes. The Financial Times reported the Morgan Stanley broker sought the fund; it was unavailable to Morgan Stanley clients. The Pentagon demanded retraction and released no records.
+Washington — Hegseth's broker tried to buy a BlackRock defense ETF weeks before the February 28 strikes.
+
+The Financial Times reported the Morgan Stanley broker sought the fund; it was unavailable to Morgan Stanley clients.
+
+The Pentagon demanded retraction and released no records.

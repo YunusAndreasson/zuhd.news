@@ -15,4 +15,8 @@ concepts:
   - "Longevity"
 ---
 
-London — Psilocybin life-extension claims fail in humans. A study found 11 psychedelic advocates outlived averages no more than cancer researchers with similar socioeconomic profiles, eliminating psilocybin as a variable. No controlled trial exists to separate the drug's effect from lifestyle factors.
+London — Psilocybin life-extension claims fail in humans.
+
+A study found 11 psychedelic advocates outlived averages no more than cancer researchers with similar socioeconomic profiles, eliminating psilocybin as a variable.
+
+No controlled trial exists to separate the drug's effect from lifestyle factors.

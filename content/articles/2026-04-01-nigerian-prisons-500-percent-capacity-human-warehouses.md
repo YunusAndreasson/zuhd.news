@@ -16,4 +16,8 @@ concepts:
   - "Olubunmi Tunji-Ojo"
 ---
 
-Abuja — Nigerian prisons hold 5 times their designed capacity. An 18-month government probe of 86 facilities found 70% of inmates are unconvicted — inmates paying informally for bed space, transport to court, and family visits. Nigeria is piloting virtual court hearings, but the probe has not resulted in criminal charges against any official.
+Abuja — Nigerian prisons hold 5 times their designed capacity.
+
+An 18-month government probe of 86 facilities found 70% of inmates are unconvicted — inmates paying informally for bed space, transport to court, and family visits.
+
+Nigeria is piloting virtual court hearings, but the probe has not resulted in criminal charges against any official.

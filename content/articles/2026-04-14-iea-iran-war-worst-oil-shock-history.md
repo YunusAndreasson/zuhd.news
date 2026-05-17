@@ -16,4 +16,8 @@ concepts:
   - "Strait of Hormuz"
 ---
 
-Paris — Iran war caused history's worst oil shock. Hormuz, carrying 20% of global oil, has been closed since February, swinging demand forecasts from +640,000 to -80,000 barrels daily. Oil prices fell 6% after Trump said Islamabad talks could resume within two days.
+Paris — Iran war caused history's worst oil shock.
+
+Hormuz, carrying 20% of global oil, has been closed since February, swinging demand forecasts from +640,000 to -80,000 barrels daily.
+
+Oil prices fell 6% after Trump said Islamabad talks could resume within two days.

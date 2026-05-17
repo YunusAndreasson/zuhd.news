@@ -18,4 +18,8 @@ concepts:
   - "Bosporus"
 ---
 
-Istanbul — Istanbul wins $2 billion World Bank rail loan. The 127-km line bypasses central Istanbul for a second rail Bosphorus crossing, making Türkiye a logistics bridge between Europe and Asia. The World Bank expects further financing; completion depends on Türkiye managing 50%+ inflation during construction.
+Istanbul — Istanbul wins $2 billion World Bank rail loan.
+
+The 127-km line bypasses central Istanbul for a second rail Bosphorus crossing, making Türkiye a logistics bridge between Europe and Asia.
+
+The World Bank expects further financing; completion depends on Türkiye managing 50%+ inflation during construction.

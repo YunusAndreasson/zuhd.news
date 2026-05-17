@@ -17,4 +17,8 @@ concepts:
   - "Atmosphere"
 ---
 
-Shark Bay — Cyclone Narelle turned Western Australia's sky blood-red. Outback dust is iron-oxide-rich; at cyclone scale, Mie scattering filters blue light, leaving only red. Scientists are tracking the aerosol plume into the Indian Ocean; iron-rich dust historically fertilizes phytoplankton.
+Shark Bay — Cyclone Narelle turned Western Australia's sky blood-red.
+
+Outback dust is iron-oxide-rich; at cyclone scale, Mie scattering filters blue light, leaving only red.
+
+Scientists are tracking the aerosol plume into the Indian Ocean; iron-rich dust historically fertilizes phytoplankton.

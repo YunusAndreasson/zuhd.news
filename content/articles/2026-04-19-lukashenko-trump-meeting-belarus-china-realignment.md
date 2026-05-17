@@ -30,4 +30,8 @@ concepts:
   - "United States"
 ---
 
-Minsk — [Belarus](country:BY) freed 500 prisoners; Lukashenko seeks Trump summit. Belarus pivoted to [Russia](country:RU) and [China](country:CN) under sanctions but says a [US](country:US) deal is still needed for full trade access. [Ukraine](country:UA) has detected new Belarusian military construction near its border as Lukashenko signed a conscription decree Friday.
+Minsk — [Belarus](country:BY) freed 500 prisoners; Lukashenko seeks Trump summit.
+
+Belarus pivoted to [Russia](country:RU) and [China](country:CN) under sanctions but says a [US](country:US) deal is still needed for full trade access.
+
+[Ukraine](country:UA) has detected new Belarusian military construction near its border as Lukashenko signed a conscription decree Friday.

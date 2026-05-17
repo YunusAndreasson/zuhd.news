@@ -16,4 +16,8 @@ concepts:
   - "Risk factor"
 ---
 
-Geneva — 417,000 children died from alcohol in 32 years. Rich countries cut youth drinking deaths 2.7% annually since 1990; 59 low-income countries saw increases, with Libya's mortality rising 773%. WHO's 2022-2030 alcohol action plan targets acceleration, but 59 countries are moving the wrong direction.
+Geneva — 417,000 children died from alcohol in 32 years.
+
+Rich countries cut youth drinking deaths 2.7% annually since 1990; 59 low-income countries saw increases, with Libya's mortality rising 773%.
+
+WHO's 2022-2030 alcohol action plan targets acceleration, but 59 countries are moving the wrong direction.

@@ -28,4 +28,8 @@ concepts:
   - "Militia"
 ---
 
-Baghdad — Freelancer Shelly Kittleson seized in central Baghdad Tuesday. A US official blamed Iran-backed Kataib Hezbollah; 1 suspect was arrested after a vehicle chase toward Babil province. Kittleson, who covered Iraq's armed groups for Al-Monitor and BBC, was warned by the FBI the night before.
+Baghdad — Freelancer Shelly Kittleson seized in central Baghdad Tuesday.
+
+A US official blamed Iran-backed Kataib Hezbollah; 1 suspect was arrested after a vehicle chase toward Babil province.
+
+Kittleson, who covered Iraq's armed groups for Al-Monitor and BBC, was warned by the FBI the night before.

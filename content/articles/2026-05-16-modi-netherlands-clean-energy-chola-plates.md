@@ -32,4 +32,8 @@ entities:
     kind: "commodity"
 ---
 
-The Hague — [India](country:IN) and [Netherlands](country:NL) signed a strategic partnership on semiconductors and clean energy. Prime Minister Modi also secured 11th-century Chola copper plates from Dutch collections; bilateral trade reached $27.8 billion in 2024–25. Modi heads next to Sweden; India–EU trade talks continue.
+The Hague — [India](country:IN) and [Netherlands](country:NL) signed a strategic partnership on semiconductors and clean energy.
+
+Prime Minister Modi also secured 11th-century Chola copper plates from Dutch collections; bilateral trade reached $27.8 billion in 2024–25.
+
+Modi heads next to Sweden; India–EU trade talks continue.

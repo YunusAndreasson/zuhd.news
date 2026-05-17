@@ -29,4 +29,8 @@ sentimentDivergence: 0.32
 entities: []
 ---
 
-Kyiv — Zelensky warned Belarus: join Russia, meet Venezuela's fate. Ukrainian intelligence detected roads and artillery massing near Ukraine's border, Kyiv reported. Belarus President Lukashenko simultaneously signed a decree conscripting reserve officers for active duty.
+Kyiv — Zelensky warned Belarus: join Russia, meet Venezuela's fate.
+
+Ukrainian intelligence detected roads and artillery massing near Ukraine's border, Kyiv reported.
+
+Belarus President Lukashenko simultaneously signed a decree conscripting reserve officers for active duty.

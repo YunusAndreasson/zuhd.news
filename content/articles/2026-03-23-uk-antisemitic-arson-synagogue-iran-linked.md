@@ -18,4 +18,8 @@ concepts:
   - "Iran"
 ---
 
-London — 4 Jewish ambulances burned in Golders Green before dawn. Harakat Ashab al-Yamin, an Iran-linked group behind attacks on Jewish sites in Belgium and the Netherlands, claimed responsibility online. Counterterrorism police must now confirm the group's ties to Iran before declaring the attack an act of terrorism.
+London — 4 Jewish ambulances burned in Golders Green before dawn.
+
+Harakat Ashab al-Yamin, an Iran-linked group behind attacks on Jewish sites in Belgium and the Netherlands, claimed responsibility online.
+
+Counterterrorism police must now confirm the group's ties to Iran before declaring the attack an act of terrorism.

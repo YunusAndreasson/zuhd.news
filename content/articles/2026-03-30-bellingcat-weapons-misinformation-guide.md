@@ -17,4 +17,8 @@ concepts:
   - "Explosives"
 ---
 
-Amsterdam — Non-nuclear blasts form mushroom clouds. Since the Iran war began February 28, viral posts have misidentified thermobaric explosions as nuclear weapons; Bellingcat's new field guide shows why they're wrong. It teaches readers to distinguish weapons by blast pressure, fireball size, and cloud shape.
+Amsterdam — Non-nuclear blasts form mushroom clouds.
+
+Since the Iran war began February 28, viral posts have misidentified thermobaric explosions as nuclear weapons; Bellingcat's new field guide shows why they're wrong.
+
+It teaches readers to distinguish weapons by blast pressure, fireball size, and cloud shape.

@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Washington — Earth Day 2026 draws 1 billion, organizers say. The 2026 theme 'Our Power, Our Planet' marks 56 years since a 20 million-person [US](country:US) protest in 1970 created the movement. EARTHDAY.ORG campaigns target a Global Plastics Treaty and renewable pledges from governments.
+Washington — Earth Day 2026 draws 1 billion, organizers say.
+
+The 2026 theme 'Our Power, Our Planet' marks 56 years since a 20 million-person [US](country:US) protest in 1970 created the movement.
+
+EARTHDAY.ORG campaigns target a Global Plastics Treaty and renewable pledges from governments.

@@ -26,4 +26,8 @@ concepts:
 sentimentDivergence: 0.16
 ---
 
-Manila — President Marcos declared emergency over 45 days of fuel remaining. The Philippines imports nearly all its fuel, relying on Middle East supply chains the Iran war has disrupted. Transport workers plan a 2-day strike starting Thursday, threatening to halt supply chains before the government can procure 1 million replacement barrels.
+Manila — President Marcos declared emergency over 45 days of fuel remaining.
+
+The Philippines imports nearly all its fuel, relying on Middle East supply chains the Iran war has disrupted.
+
+Transport workers plan a 2-day strike starting Thursday, threatening to halt supply chains before the government can procure 1 million replacement barrels.

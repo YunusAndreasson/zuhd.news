@@ -16,4 +16,8 @@ concepts:
 entities: []
 ---
 
-Polluted groundwater flows directly into Philippine coral reefs. [The Philippines](country:PH) treats only 30% of its wastewater, the study found; the rest reaches reefs through underground channels that surface regulation cannot intercept. Philippine reefs cover nearly 10% of the global total; authorities have recorded red tide at 44 coastal sites.
+Polluted groundwater flows directly into Philippine coral reefs.
+
+[The Philippines](country:PH) treats only 30% of its wastewater, the study found; the rest reaches reefs through underground channels that surface regulation cannot intercept.
+
+Philippine reefs cover nearly 10% of the global total; authorities have recorded red tide at 44 coastal sites.

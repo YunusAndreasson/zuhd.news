@@ -17,4 +17,8 @@ concepts:
   - "Liquefied natural gas"
 ---
 
-Washington — US households paid $8.4 billion extra for fuel. America produces more oil than anyone but prices gasoline at world market rates; that market ran through Hormuz before Trump blockaded it. Congress has no fix; the global price mechanism means domestic drilling cannot lower prices while Hormuz stays blocked.
+Washington — US households paid $8.4 billion extra for fuel.
+
+America produces more oil than anyone but prices gasoline at world market rates; that market ran through Hormuz before Trump blockaded it.
+
+Congress has no fix; the global price mechanism means domestic drilling cannot lower prices while Hormuz stays blocked.

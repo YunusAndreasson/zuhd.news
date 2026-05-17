@@ -18,4 +18,8 @@ concepts:
   - "South Africa"
 ---
 
-Pretoria — South Africa's police chief faces fraud charges. Masemola received a court notice to appear April 21 over a R360-million tender; 12 officers were arrested Tuesday on fraud charges in the same case. Ramaphosa vowed to act "in accordance with the law"; Masemola is the 3rd police national commissioner charged in democratic South Africa.
+Pretoria — South Africa's police chief faces fraud charges.
+
+Masemola received a court notice to appear April 21 over a R360-million tender; 12 officers were arrested Tuesday on fraud charges in the same case.
+
+Ramaphosa vowed to act "in accordance with the law"; Masemola is the 3rd police national commissioner charged in democratic South Africa.

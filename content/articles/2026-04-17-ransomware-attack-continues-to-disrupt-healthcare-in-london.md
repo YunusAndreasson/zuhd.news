@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — A ransomware attack on Synnovis still disrupts South East England hospitals 18 months on. The pathology provider's compromise cascaded test-result backlogs across multiple National Health Service trusts that have not cleared. No trust has disclosed a restoration timeline.
+London — A ransomware attack on Synnovis still disrupts South East England hospitals 18 months on.
+
+The pathology provider's compromise cascaded test-result backlogs across multiple National Health Service trusts that have not cleared.
+
+No trust has disclosed a restoration timeline.

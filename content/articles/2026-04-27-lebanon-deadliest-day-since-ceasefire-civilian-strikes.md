@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Israeli strikes killed 14 in southern Lebanese villages Sunday, including women and children — the deadliest single day since the November ceasefire. The strikes hit multiple villages; [Brazil](country:BR), whose nationals were among the dead, publicly condemned the attack. Israel has not acknowledged targeting civilians.
+Israeli strikes killed 14 in southern Lebanese villages Sunday, including women and children — the deadliest single day since the November ceasefire.
+
+The strikes hit multiple villages; [Brazil](country:BR), whose nationals were among the dead, publicly condemned the attack.
+
+Israel has not acknowledged targeting civilians.

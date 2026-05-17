@@ -30,4 +30,8 @@ entities:
     kind: "currency"
 ---
 
-Mumbai — [India](country:IN)'s rupee hit 95.25 per dollar, a record. Brent crude near $113 per barrel pushed import costs higher; Strait of Hormuz tensions and a strained US-Iran ceasefire drove the selling. Foreign Institutional Investors bought Rs 2,836 crore on Monday; Hormuz tension resolution will determine whether support holds.
+Mumbai — [India](country:IN)'s rupee hit 95.25 per dollar, a record.
+
+Brent crude near $113 per barrel pushed import costs higher; Strait of Hormuz tensions and a strained US-Iran ceasefire drove the selling.
+
+Foreign Institutional Investors bought Rs 2,836 crore on Monday; Hormuz tension resolution will determine whether support holds.

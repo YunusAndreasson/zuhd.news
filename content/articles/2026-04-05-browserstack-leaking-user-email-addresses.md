@@ -16,4 +16,8 @@ concepts:
   - "CI/CD"
 ---
 
-Mumbai — BrowserStack leaked engineers' emails to unknown third parties. The tool sits inside CI/CD pipelines at thousands of companies; its user email list maps which engineers work at which firm. BrowserStack has not confirmed the leak or named the third parties receiving the data.
+Mumbai — BrowserStack leaked engineers' emails to unknown third parties.
+
+The tool sits inside CI/CD pipelines at thousands of companies; its user email list maps which engineers work at which firm.
+
+BrowserStack has not confirmed the leak or named the third parties receiving the data.

@@ -15,4 +15,8 @@ concepts:
   - "Commodity"
 ---
 
-Moscow — EU fuel stocks empty April 20, a Kremlin envoy declared. Kirill Dmitriev calculated the last Hormuz tankers reach Europe on April 11, with monitoring beginning April 13 as reserves run down. Energy markets will price the date whether or not EU governments respond; no official rebuttal has emerged.
+Moscow — EU fuel stocks empty April 20, a Kremlin envoy declared.
+
+Kirill Dmitriev calculated the last Hormuz tankers reach Europe on April 11, with monitoring beginning April 13 as reserves run down.
+
+Energy markets will price the date whether or not EU governments respond; no official rebuttal has emerged.

@@ -21,4 +21,10 @@ concepts:
   - "Middle East"
 ---
 
-Tokyo — Japan released state oil reserves Monday for the 2nd time since Iran blocked the Strait of Hormuz. Japan imports nearly all its oil through that route, which Iran has effectively closed since Feb. 28. Economy Minister Sanae Takaichi said Japan will pursue diplomacy but has not committed to joining US military operations in the Strait.
+Tokyo — Japan released state oil reserves Monday for the 2nd time since Iran blocked the Strait of Hormuz.
+
+Japan imports nearly all its oil through that route, which Iran has effectively closed since Feb.
+
+28.
+
+Economy Minister Sanae Takaichi said Japan will pursue diplomacy but has not committed to joining US military operations in the Strait.

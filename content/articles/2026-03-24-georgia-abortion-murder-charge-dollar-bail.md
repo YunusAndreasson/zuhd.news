@@ -17,4 +17,8 @@ concepts:
   - "Murder"
 ---
 
-Savannah — A judge set $1 bail on a murder charge. Alexia Moore was arrested 4 March for taking misoprostol to end a pregnancy — the judge called the malice murder charge "extremely problematic" and said Georgia could likely never secure a conviction. The DA was not consulted before police filed charges and must now decide whether to seek indictment.
+Savannah — A judge set $1 bail on a murder charge.
+
+Alexia Moore was arrested 4 March for taking misoprostol to end a pregnancy — the judge called the malice murder charge "extremely problematic" and said Georgia could likely never secure a conviction.
+
+The DA was not consulted before police filed charges and must now decide whether to seek indictment.

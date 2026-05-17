@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Gaza — 72,757 Palestinians killed since October 2023, the Health Ministry says. The ministry counts 870 dead since the October 2025 ceasefire — 13 in the latest 48 hours — and 771 bodies recovered from rubble. [Israel](country:IL)'s access restrictions leave the Palestinian Health Ministry as the sole functioning count.
+Gaza — 72,757 Palestinians killed since October 2023, the Health Ministry says.
+
+The ministry counts 870 dead since the October 2025 ceasefire — 13 in the latest 48 hours — and 771 bodies recovered from rubble.
+
+[Israel](country:IL)'s access restrictions leave the Palestinian Health Ministry as the sole functioning count.

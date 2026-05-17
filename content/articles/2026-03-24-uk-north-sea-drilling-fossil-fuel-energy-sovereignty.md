@@ -18,4 +18,8 @@ concepts:
   - "Conservative Party (UK)"
 ---
 
-London — Britain's North Sea oil didn't stop Gulf war bills. Oil is priced globally; North Sea barrels offer UK households no protection when Middle East conflict drives prices up. Chancellor Rachel Reeves will set out consumer protection plans on Tuesday as the Conservatives demand new oil licences instead.
+London — Britain's North Sea oil didn't stop Gulf war bills.
+
+Oil is priced globally; North Sea barrels offer UK households no protection when Middle East conflict drives prices up.
+
+Chancellor Rachel Reeves will set out consumer protection plans on Tuesday as the Conservatives demand new oil licences instead.

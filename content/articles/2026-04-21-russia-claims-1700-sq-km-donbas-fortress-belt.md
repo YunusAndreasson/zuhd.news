@@ -31,4 +31,8 @@ concepts:
 entities: []
 ---
 
-Kostiantynivka — Russian forces fight inside the city, Gerasimov said. [Russia](country:RU) claims 1,700 sq km and 80 settlements seized in 2026, with units now 7 to 12 km from Sloviansk and Kramatorsk — [Ukraine](country:UA)'s last Donbas fortress cities. Pro-Ukrainian trackers put 2026 gains at 592 sq km — less than a third of Moscow's figure.
+Kostiantynivka — Russian forces fight inside the city, Gerasimov said.
+
+[Russia](country:RU) claims 1,700 sq km and 80 settlements seized in 2026, with units now 7 to 12 km from Sloviansk and Kramatorsk — [Ukraine](country:UA)'s last Donbas fortress cities.
+
+Pro-Ukrainian trackers put 2026 gains at 592 sq km — less than a third of Moscow's figure.

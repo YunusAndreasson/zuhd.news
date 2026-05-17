@@ -17,4 +17,8 @@ concepts:
   - "Doxxing"
 ---
 
-New York — Trans New Yorkers audited their own digital footprints. At a Queens workshop, participants used commercial tools to surface deadnames, leaked passwords, and indexed photos. Federal executive orders and active doxxing forums make digital security essential for trans people nationwide.
+New York — Trans New Yorkers audited their own digital footprints.
+
+At a Queens workshop, participants used commercial tools to surface deadnames, leaked passwords, and indexed photos.
+
+Federal executive orders and active doxxing forums make digital security essential for trans people nationwide.

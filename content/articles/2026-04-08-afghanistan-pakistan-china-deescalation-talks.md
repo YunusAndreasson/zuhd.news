@@ -17,4 +17,8 @@ concepts:
   - "Realpolitik"
 ---
 
-Urumqi — China brokered a Pakistan-Afghanistan de-escalation deal. Week-long trilateral talks in Xinjiang were the first diplomatic contact since Pakistan's February strikes against TTP hideouts severed bilateral ties. Pakistan demands "visible and verifiable" Afghan action against TTP; Kabul has not responded publicly.
+Urumqi — China brokered a Pakistan-Afghanistan de-escalation deal.
+
+Week-long trilateral talks in Xinjiang were the first diplomatic contact since Pakistan's February strikes against TTP hideouts severed bilateral ties.
+
+Pakistan demands "visible and verifiable" Afghan action against TTP; Kabul has not responded publicly.

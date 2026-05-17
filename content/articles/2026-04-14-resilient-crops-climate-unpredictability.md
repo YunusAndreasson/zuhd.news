@@ -13,4 +13,8 @@ eventCoverage:
 concepts:
 ---
 
-Lancaster — Pennsylvania soybean growers replanted 3 times last year. A mild winter let slugs survive to lay a second egg cycle, doubling populations before conventional pesticide schedules could respond. Researchers say climate disruption has made pest-weather interactions the primary crop risk variable, replacing drought and heat models.
+Lancaster — Pennsylvania soybean growers replanted 3 times last year.
+
+A mild winter let slugs survive to lay a second egg cycle, doubling populations before conventional pesticide schedules could respond.
+
+Researchers say climate disruption has made pest-weather interactions the primary crop risk variable, replacing drought and heat models.

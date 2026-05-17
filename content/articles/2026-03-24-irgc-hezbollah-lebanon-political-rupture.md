@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.5
 ---
 
-Beirut — Iran's Revolutionary Guard Corps struck a British air force base in Cyprus from Lebanese soil, PM Nawaf Salam said. After the November 2024 ceasefire, Iran restructured Hezbollah into autonomous cells — the March 2 rocket attack on Israel may have bypassed even Hezbollah's own senior leadership. Hezbollah official Wafiq Safa warned the group will force the government to reverse its ban on Hezbollah military activities "regardless of the method" after the war ends.
+Beirut — Iran's Revolutionary Guard Corps struck a British air force base in Cyprus from Lebanese soil, PM Nawaf Salam said.
+
+After the November 2024 ceasefire, Iran restructured Hezbollah into autonomous cells — the March 2 rocket attack on Israel may have bypassed even Hezbollah's own senior leadership.
+
+Hezbollah official Wafiq Safa warned the group will force the government to reverse its ban on Hezbollah military activities "regardless of the method" after the war ends.

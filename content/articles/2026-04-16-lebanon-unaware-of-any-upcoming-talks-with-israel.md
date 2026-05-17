@@ -31,4 +31,8 @@ sentimentDivergence: 0.16
 entities: []
 ---
 
-Beirut — Lebanon denied knowing of any planned Israeli contact. Trump announced Israeli-Lebanese talks would happen Thursday; Beirut said it had received no word through any official channel. Israel's security cabinet sat 4 hours Wednesday without reaching a ceasefire decision on Lebanon.
+Beirut — Lebanon denied knowing of any planned Israeli contact.
+
+Trump announced Israeli-Lebanese talks would happen Thursday; Beirut said it had received no word through any official channel.
+
+Israel's security cabinet sat 4 hours Wednesday without reaching a ceasefire decision on Lebanon.

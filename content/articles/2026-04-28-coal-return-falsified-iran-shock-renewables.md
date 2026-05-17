@@ -23,4 +23,8 @@ entities:
     kind: "commodity"
 ---
 
-London — Global coal power will rise at most 1.8% this year despite the Iran oil shock, Ember found. Solar and battery costs now undercut new-build coal in every major economy except [India](country:IN). The 1.8% is Ember's worst-case; the actual figure may be lower still.
+London — Global coal power will rise at most 1.8% this year despite the Iran oil shock, Ember found.
+
+Solar and battery costs now undercut new-build coal in every major economy except [India](country:IN).
+
+The 1.8% is Ember's worst-case; the actual figure may be lower still.

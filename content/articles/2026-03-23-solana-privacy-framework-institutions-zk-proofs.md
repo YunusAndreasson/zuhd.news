@@ -17,4 +17,8 @@ concepts:
   - "Financial regulation"
 ---
 
-San Francisco — Solana now offers institutions 4 levels of transaction privacy. Zero-knowledge proofs let banks prove compliance without revealing transaction amounts or counterparties; Solana processes these computations at near-web speeds. Regulators must now decide whether "auditor keys" — which selectively expose transactions to compliance officers — constitute adequate transparency under law.
+San Francisco — Solana now offers institutions 4 levels of transaction privacy.
+
+Zero-knowledge proofs let banks prove compliance without revealing transaction amounts or counterparties; Solana processes these computations at near-web speeds.
+
+Regulators must now decide whether "auditor keys" — which selectively expose transactions to compliance officers — constitute adequate transparency under law.

@@ -23,4 +23,8 @@ concepts:
 sentimentDivergence: 0.4
 ---
 
-Jewar — India doubled its airports from 74 to 157. Noida International Airport opened 75km from Delhi on Saturday, serving 12 million passengers annually with capacity to expand to 70 million. At full operation a flight takes off every 2 minutes, positioning India as the world's 4th-largest air market.
+Jewar — India doubled its airports from 74 to 157.
+
+Noida International Airport opened 75km from Delhi on Saturday, serving 12 million passengers annually with capacity to expand to 70 million.
+
+At full operation a flight takes off every 2 minutes, positioning India as the world's 4th-largest air market.

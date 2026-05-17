@@ -15,4 +15,8 @@ concepts:
   - "Beale Infrastructure"
 ---
 
-Claremore — Police jailed a farmer for speaking too long. Darren Blanchard exceeded Claremore's 3-minute limit at a datacenter council hearing and was arrested for trespass. Blanchard pleaded not guilty; Beale Infrastructure signed NDAs with city officials and refuses to speak to local media.
+Claremore — Police jailed a farmer for speaking too long.
+
+Darren Blanchard exceeded Claremore's 3-minute limit at a datacenter council hearing and was arrested for trespass.
+
+Blanchard pleaded not guilty; Beale Infrastructure signed NDAs with city officials and refuses to speak to local media.

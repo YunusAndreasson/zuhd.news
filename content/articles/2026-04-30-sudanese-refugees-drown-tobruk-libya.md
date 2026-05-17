@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Tobruk — 17 Sudanese refugees drowned; 9 remain missing. Sudanese fleeing civil war now reach eastern [Libya](country:LY)'s coast — 1,800km from Khartoum — because [Egypt](country:EG)'s border has tightened and central Mediterranean routes are saturated. The UN refugee agency said ending [Sudan](country:SD)'s war and opening legal pathways are the "only solutions"; it counts 559,000 Sudanese already in [Libya](country:LY).
+Tobruk — 17 Sudanese refugees drowned; 9 remain missing.
+
+Sudanese fleeing civil war now reach eastern [Libya](country:LY)'s coast — 1,800km from Khartoum — because [Egypt](country:EG)'s border has tightened and central Mediterranean routes are saturated.
+
+The UN refugee agency said ending [Sudan](country:SD)'s war and opening legal pathways are the "only solutions"; it counts 559,000 Sudanese already in [Libya](country:LY).

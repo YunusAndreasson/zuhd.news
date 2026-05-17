@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Naypyidaw — [Myanmar](country:MM)'s civil war fades from global crisis coverage. Now in its sixth year since the 2021 coup, the conflict has been displaced in international attention by [Ukraine](country:UA), Gaza, and [Iran](country:IR). Southeast Asia's non-interference norm leaves no regional ceasefire mechanism; [Bangladesh](country:BD) absorbs cross-border displacement unaided.
+Naypyidaw — [Myanmar](country:MM)'s civil war fades from global crisis coverage.
+
+Now in its sixth year since the 2021 coup, the conflict has been displaced in international attention by [Ukraine](country:UA), Gaza, and [Iran](country:IR).
+
+Southeast Asia's non-interference norm leaves no regional ceasefire mechanism; [Bangladesh](country:BD) absorbs cross-border displacement unaided.

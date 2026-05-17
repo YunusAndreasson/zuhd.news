@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Barkin Ladi — Gunmen killed 7 across 6 [Nigeria](country:NG) Plateau villages. Attackers struck Sabon Layi and 5 others simultaneously, killing a police officer despite active checkpoints, Berom Youth Moulders Association said. The association passed no-confidence on Sector 4 commander Victor Asuquo and demanded a homeland security ministry.
+Barkin Ladi — Gunmen killed 7 across 6 [Nigeria](country:NG) Plateau villages.
+
+Attackers struck Sabon Layi and 5 others simultaneously, killing a police officer despite active checkpoints, Berom Youth Moulders Association said.
+
+The association passed no-confidence on Sector 4 commander Victor Asuquo and demanded a homeland security ministry.

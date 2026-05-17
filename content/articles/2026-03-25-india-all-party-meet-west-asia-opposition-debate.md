@@ -17,4 +17,8 @@ concepts:
   - "Rajya Sabha"
 ---
 
-New Delhi — India closed parliament's doors on the Iran war. Foreign Minister Jaishankar chose a private briefing over a floor debate, despite opposition chief Kharge's insistence that parliament — not a conference room — is the proper venue while the house is in session. Modi backed Hormuz access in a call with Trump, leaving India's position between US alliance and Gulf oil dependence unresolved.
+New Delhi — India closed parliament's doors on the Iran war.
+
+Foreign Minister Jaishankar chose a private briefing over a floor debate, despite opposition chief Kharge's insistence that parliament — not a conference room — is the proper venue while the house is in session.
+
+Modi backed Hormuz access in a call with Trump, leaving India's position between US alliance and Gulf oil dependence unresolved.

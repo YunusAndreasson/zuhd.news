@@ -31,4 +31,8 @@ sentimentDivergence: 0.57
 entities: []
 ---
 
-New Delhi — 7 AAP Rajya Sabha MPs defected to BJP. [India](country:IN)'s BJP absorbed the bloc 10 months before 2027 Punjab polls, repeating the pre-election defection tactic it used in Maharashtra. Punjab Chief Minister Mann called it a conspiracy; 92 AAP state legislators now face a loyalty test.
+New Delhi — 7 AAP Rajya Sabha MPs defected to BJP.
+
+[India](country:IN)'s BJP absorbed the bloc 10 months before 2027 Punjab polls, repeating the pre-election defection tactic it used in Maharashtra.
+
+Punjab Chief Minister Mann called it a conspiracy; 92 AAP state legislators now face a loyalty test.

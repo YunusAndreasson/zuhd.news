@@ -17,4 +17,8 @@ concepts:
   - "Zulfi Bukhari"
 ---
 
-Lahore — Pakistan's business community fears losing EU trade status. GSP+ covers 37% of Pakistan's exports, worth $9.5 billion annually; it requires human rights compliance reviews every 2 years. The business federation condemned statements that triggered the scare; a fact-check found the original claim was false.
+Lahore — Pakistan's business community fears losing EU trade status.
+
+GSP+ covers 37% of Pakistan's exports, worth $9.5 billion annually; it requires human rights compliance reviews every 2 years.
+
+The business federation condemned statements that triggered the scare; a fact-check found the original claim was false.

@@ -17,4 +17,8 @@ entities:
     kind: "stock"
 ---
 
-Washington — The Congressional Budget Office found Golden Dome requires 1,000 interceptors per incoming missile. It scored the system at $1.2 trillion — 7 times the $175 billion White House estimate. Space Force has contracted Anduril and General Dynamics on interceptors; the Pentagon requests $17.5 billion for fiscal 2027.
+Washington — The Congressional Budget Office found Golden Dome requires 1,000 interceptors per incoming missile.
+
+It scored the system at $1.2 trillion — 7 times the $175 billion White House estimate.
+
+Space Force has contracted Anduril and General Dynamics on interceptors; the Pentagon requests $17.5 billion for fiscal 2027.

@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Los Angeles — 2 undergraduates at the University of California, Los Angeles built an electroporation rig running 384 wells unattended. The system automates 96- and 384-well plate workflows, cutting cell transfection from hours to minutes. It targets the last manual step in synthetic-biology gene delivery.
+Los Angeles — 2 undergraduates at the University of California, Los Angeles built an electroporation rig running 384 wells unattended.
+
+The system automates 96- and 384-well plate workflows, cutting cell transfection from hours to minutes.
+
+It targets the last manual step in synthetic-biology gene delivery.

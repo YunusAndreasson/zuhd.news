@@ -34,4 +34,8 @@ sentimentDivergence: 0.32
 entities: []
 ---
 
-Washington — Warsh's path to Fed Chair is now open. [US](country:US) Justice Department ended its probe of Fed renovation costs; a judge found "essentially zero evidence" of wrongdoing, unblocking Sen. Tillis. Powell's term ends May 15; Warsh has pledged rate independence from Trump.
+Washington — Warsh's path to Fed Chair is now open.
+
+[US](country:US) Justice Department ended its probe of Fed renovation costs; a judge found "essentially zero evidence" of wrongdoing, unblocking Sen. Tillis.
+
+Powell's term ends May 15; Warsh has pledged rate independence from Trump.

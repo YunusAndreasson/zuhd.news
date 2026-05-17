@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Los Angeles — A far-right activist's post triggered 2 wrongful immigration detentions. Secretary of State Rubio revoked their green cards after Laura Loomer misidentified them as a general's relatives on X, but documents show no connection. Hamideh, 47, has an untreated blood condition in [US](country:US) detention and faces deportation to [Iran](country:IR).
+Los Angeles — A far-right activist's post triggered 2 wrongful immigration detentions.
+
+Secretary of State Rubio revoked their green cards after Laura Loomer misidentified them as a general's relatives on X, but documents show no connection.
+
+Hamideh, 47, has an untreated blood condition in [US](country:US) detention and faces deportation to [Iran](country:IR).

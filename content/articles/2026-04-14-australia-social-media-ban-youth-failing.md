@@ -17,4 +17,8 @@ concepts:
   - "Youth online safety"
 ---
 
-Sydney — Australia's under-16 social media ban is failing. Platforms haven't built age-verification systems; children log in with existing accounts, bypassing the law. The UK and France are considering similar laws; Australia's experience is the only live test.
+Sydney — Australia's under-16 social media ban is failing.
+
+Platforms haven't built age-verification systems; children log in with existing accounts, bypassing the law.
+
+The UK and France are considering similar laws; Australia's experience is the only live test.

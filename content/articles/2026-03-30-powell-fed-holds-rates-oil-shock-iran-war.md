@@ -25,4 +25,8 @@ concepts:
   - "United States"
 ---
 
-Cambridge — Powell held rates despite the oil shock. At Harvard, he said energy shocks dissipate before rate changes take effect; tightening now would suppress the economy after the crisis. Treasury yields fell 10bp after his speech; private credit is Powell's next watch item for systemic contagion.
+Cambridge — Powell held rates despite the oil shock.
+
+At Harvard, he said energy shocks dissipate before rate changes take effect; tightening now would suppress the economy after the crisis.
+
+Treasury yields fell 10bp after his speech; private credit is Powell's next watch item for systemic contagion.

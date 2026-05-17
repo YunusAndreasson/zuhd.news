@@ -11,4 +11,8 @@ sources:
     country: "EG"
 ---
 
-Khartoum — [Sudan](country:SD)'s IMF delegation arrived without its finance minister. The 2021 coup froze $1.8 billion in World Bank grants now routed through UN agencies; the delegation pressed for state-linked financing instead. Burhan flew to Jeddah seeking Saudi backing for a rival humanitarian conference against [Germany](country:DE)'s donor framework.
+Khartoum — [Sudan](country:SD)'s IMF delegation arrived without its finance minister.
+
+The 2021 coup froze $1.8 billion in World Bank grants now routed through UN agencies; the delegation pressed for state-linked financing instead.
+
+Burhan flew to Jeddah seeking Saudi backing for a rival humanitarian conference against [Germany](country:DE)'s donor framework.

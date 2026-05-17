@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — Physicists identified the parent state of nickelate superconductors. Nuclear quadrupole resonance revealed a charge-then-spin density wave in La₄Ni₃O₁₀ — the ground state pressure tips into superconductivity, the study found. Knowing the parent state narrows the mechanism candidates, as it did for cuprates three decades ago.
+London — Physicists identified the parent state of nickelate superconductors.
+
+Nuclear quadrupole resonance revealed a charge-then-spin density wave in La₄Ni₃O₁₀ — the ground state pressure tips into superconductivity, the study found.
+
+Knowing the parent state narrows the mechanism candidates, as it did for cuprates three decades ago.

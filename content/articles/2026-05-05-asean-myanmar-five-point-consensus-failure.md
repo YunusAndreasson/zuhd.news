@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Jakarta — [Myanmar](country:MM)'s junta holds power; Rohingya keep fleeing. The Southeast Asian bloc's Five-Point Consensus, agreed after the 2021 coup, required junta cooperation to enforce — guaranteeing deadlock. The bloc now faces pressure to suspend Myanmar, sanction military firms, or recognise the opposition National Unity Government.
+Jakarta — [Myanmar](country:MM)'s junta holds power; Rohingya keep fleeing.
+
+The Southeast Asian bloc's Five-Point Consensus, agreed after the 2021 coup, required junta cooperation to enforce — guaranteeing deadlock.
+
+The bloc now faces pressure to suspend Myanmar, sanction military firms, or recognise the opposition National Unity Government.

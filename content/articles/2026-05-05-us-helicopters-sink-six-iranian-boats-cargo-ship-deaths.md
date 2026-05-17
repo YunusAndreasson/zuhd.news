@@ -23,4 +23,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Strait of Hormuz — US helicopters sank 6 [Iranian](country:IR) patrol boats; Iran simultaneously fired cruise missiles at the escort fleet. US Central Command's Project Freedom used 100 aircraft and 15,000 troops to escort the convoy. The exchange marks the first acknowledged combat since February's ceasefire; the US military has offered no de-escalation terms.
+Strait of Hormuz — US helicopters sank 6 [Iranian](country:IR) patrol boats; Iran simultaneously fired cruise missiles at the escort fleet.
+
+US Central Command's Project Freedom used 100 aircraft and 15,000 troops to escort the convoy.
+
+The exchange marks the first acknowledged combat since February's ceasefire; the US military has offered no de-escalation terms.

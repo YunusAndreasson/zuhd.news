@@ -24,4 +24,8 @@ concepts:
 sentimentDivergence: 0.08
 ---
 
-Shenzhen — Evergrande founder Hui Ka Yan admitted fraud. Hui built $300B in liabilities by illegally taking deposits and fraudulently issuing securities; Beijing's 2020 borrowing crackdown triggered the collapse. Sentencing is unset; hundreds of thousands who paid deposits on unfinished apartments remain uncompensated.
+Shenzhen — Evergrande founder Hui Ka Yan admitted fraud.
+
+Hui built $300B in liabilities by illegally taking deposits and fraudulently issuing securities; Beijing's 2020 borrowing crackdown triggered the collapse.
+
+Sentencing is unset; hundreds of thousands who paid deposits on unfinished apartments remain uncompensated.

@@ -15,4 +15,8 @@ concepts:
   - "Agent infrastructure"
 ---
 
-Stanford — Don't give AI agents filesystem access. Stanford's JAI lab argues agents need structured interfaces, not raw I/O; direct filesystem access makes systems brittle and difficult to audit. No authoritative agent interface standard exists yet; the architecture community is still deciding what structured access should look like.
+Stanford — Don't give AI agents filesystem access.
+
+Stanford's JAI lab argues agents need structured interfaces, not raw I/O; direct filesystem access makes systems brittle and difficult to audit.
+
+No authoritative agent interface standard exists yet; the architecture community is still deciding what structured access should look like.

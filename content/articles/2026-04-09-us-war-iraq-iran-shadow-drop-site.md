@@ -15,4 +15,8 @@ concepts:
   - "United States"
 ---
 
-Anbar — US airstrikes killed 7 Iraqi state soldiers. The PMF are Iraqi state forces under Baghdad, though the US struck their base 5 times on March 25. Baghdad has not demanded withdrawal; whether US strikes on the PMF resume is unresolved.
+Anbar — US airstrikes killed 7 Iraqi state soldiers.
+
+The PMF are Iraqi state forces under Baghdad, though the US struck their base 5 times on March 25.
+
+Baghdad has not demanded withdrawal; whether US strikes on the PMF resume is unresolved.

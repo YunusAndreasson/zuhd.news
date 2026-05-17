@@ -11,4 +11,8 @@ sources:
     country: null
 ---
 
-San Francisco — Google ignores opt-out signals 87% of the time. When a browser sends Google a Global Privacy Control opt-out, Google responds by setting an advertising cookie named IDE. Microsoft's failure rate is 50%, Meta's 69%; Meta's tracking code contains no opt-out check — it fires unconditionally.
+San Francisco — Google ignores opt-out signals 87% of the time.
+
+When a browser sends Google a Global Privacy Control opt-out, Google responds by setting an advertising cookie named IDE.
+
+Microsoft's failure rate is 50%, Meta's 69%; Meta's tracking code contains no opt-out check — it fires unconditionally.

@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Tel Aviv — Israel's missile interceptors fell to double digits. By March 24, Israel had expended 122 of 150 Arrow missiles — and most of a second US-supplied battery — each costing millions to replace. Each Arrow replacement takes months to produce; US Navy ships currently fill the gap.
+Tel Aviv — Israel's missile interceptors fell to double digits.
+
+By March 24, Israel had expended 122 of 150 Arrow missiles — and most of a second US-supplied battery — each costing millions to replace.
+
+Each Arrow replacement takes months to produce; US Navy ships currently fill the gap.

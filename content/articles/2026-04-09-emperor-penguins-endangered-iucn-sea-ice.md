@@ -29,4 +29,8 @@ concepts:
 sentimentDivergence: 0.24
 ---
 
-Paris — The IUCN listed emperor penguins as Endangered. Sea ice has been at record lows since 2016; early spring break-up drowns chicks before they can swim. The population is projected to halve by the 2080s and face near-extinction by 2100 under current emission trajectories.
+Paris — The IUCN listed emperor penguins as Endangered.
+
+Sea ice has been at record lows since 2016; early spring break-up drowns chicks before they can swim.
+
+The population is projected to halve by the 2080s and face near-extinction by 2100 under current emission trajectories.

@@ -17,4 +17,8 @@ concepts:
   - "Artificial intelligence"
 ---
 
-San Francisco — Tinder plans AI scans of users' full camera rolls. A camera roll contains location history, social networks, and private images — data users never consented to share with a dating platform. Match Group has not confirmed an opt-out mechanism or when AI camera roll scanning will become mandatory.
+San Francisco — Tinder plans AI scans of users' full camera rolls.
+
+A camera roll contains location history, social networks, and private images — data users never consented to share with a dating platform.
+
+Match Group has not confirmed an opt-out mechanism or when AI camera roll scanning will become mandatory.

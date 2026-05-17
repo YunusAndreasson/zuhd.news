@@ -17,4 +17,8 @@ concepts:
   - "RNA-Seq"
 ---
 
-London — Breast cancer rewires the brain's immune system. RNA sequencing of 10 patients found brain metastases carry fewer killer T-cells and more immunosuppressive macrophages than the primary tumor. The finding explains why checkpoint inhibitors fail in the brain — a treatment gap with no approved therapy.
+London — Breast cancer rewires the brain's immune system.
+
+RNA sequencing of 10 patients found brain metastases carry fewer killer T-cells and more immunosuppressive macrophages than the primary tumor.
+
+The finding explains why checkpoint inhibitors fail in the brain — a treatment gap with no approved therapy.

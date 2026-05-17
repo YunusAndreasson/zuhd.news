@@ -20,4 +20,8 @@ concepts:
   - "Anthropic"
 ---
 
-Washington — Appeals court refused to stay Anthropic's federal blacklist. Hegseth designated Anthropic a national security supply-chain risk after it refused to let Claude be used for autonomous warfare. Oral arguments are set for May 19; a California federal judge already ruled the blacklist unconstitutional retaliation.
+Washington — Appeals court refused to stay Anthropic's federal blacklist.
+
+Hegseth designated Anthropic a national security supply-chain risk after it refused to let Claude be used for autonomous warfare.
+
+Oral arguments are set for May 19; a California federal judge already ruled the blacklist unconstitutional retaliation.

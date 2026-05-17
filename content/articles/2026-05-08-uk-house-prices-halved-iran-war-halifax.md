@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-London — UK house prices fell a second straight month. Halifax said Iran war energy costs pushed [Britain](country:GB)'s 2-year mortgage rates nearly 1 point higher since March. Halifax, Britain's largest mortgage lender, halved its 2026 house price forecast to 0.4% annual growth.
+London — UK house prices fell a second straight month.
+
+Halifax said Iran war energy costs pushed [Britain](country:GB)'s 2-year mortgage rates nearly 1 point higher since March.
+
+Halifax, Britain's largest mortgage lender, halved its 2026 house price forecast to 0.4% annual growth.

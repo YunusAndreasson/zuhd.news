@@ -15,4 +15,8 @@ concepts:
   - "Internet censorship"
 ---
 
-Tehran — [Iran](country:IR)'s internet blackout passed 50 days Sunday. Tehran has begun selectively restoring access — professors next after partial Google — while keeping the open web blocked for 90 million people. Experts warn selective easing signals a permanent "tiered internet" — access recalibrated as a state-granted privilege, not a right.
+Tehran — [Iran](country:IR)'s internet blackout passed 50 days Sunday.
+
+Tehran has begun selectively restoring access — professors next after partial Google — while keeping the open web blocked for 90 million people.
+
+Experts warn selective easing signals a permanent "tiered internet" — access recalibrated as a state-granted privilege, not a right.

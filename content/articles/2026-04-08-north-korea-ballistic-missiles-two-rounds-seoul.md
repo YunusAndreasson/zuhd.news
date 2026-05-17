@@ -17,4 +17,8 @@ concepts:
   - "North Korea"
 ---
 
-Seoul — North Korea fired 2 missile rounds Wednesday. South Korea's military logged the 4th and 5th tests of 2026, timed to reject Seoul's diplomatic overtures after a drone apology. Pyongyang hasn't responded to Seoul's overtures, leaving Trump's personal ties with Kim as the only remaining channel.
+Seoul — North Korea fired 2 missile rounds Wednesday.
+
+South Korea's military logged the 4th and 5th tests of 2026, timed to reject Seoul's diplomatic overtures after a drone apology.
+
+Pyongyang hasn't responded to Seoul's overtures, leaving Trump's personal ties with Kim as the only remaining channel.

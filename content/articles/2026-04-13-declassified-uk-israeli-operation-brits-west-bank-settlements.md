@@ -11,4 +11,8 @@ sources:
     country: "GB"
 ---
 
-London — An Israeli group recruited Britons for illegal settlements. Shivat Zion routed donations through a UK charity to claim tax relief, letting British taxpayers subsidize settlement relocation. The UK government refused comment; an ICJ advisory requires states not to assist the occupation.
+London — An Israeli group recruited Britons for illegal settlements.
+
+Shivat Zion routed donations through a UK charity to claim tax relief, letting British taxpayers subsidize settlement relocation.
+
+The UK government refused comment; an ICJ advisory requires states not to assist the occupation.

@@ -18,4 +18,8 @@ concepts:
   - "Neurodegenerative disease"
 ---
 
-Chapel Hill — First full-lifespan brain connectivity atlas published today. 3,556 fMRI scans track 3 functional axes from birth to 100; the sensory-association axis peaks at age 19, when brain organization becomes adult-like. Tracking individual network changes over time is the "next major frontier," the researchers say.
+Chapel Hill — First full-lifespan brain connectivity atlas published today.
+
+3,556 fMRI scans track 3 functional axes from birth to 100; the sensory-association axis peaks at age 19, when brain organization becomes adult-like.
+
+Tracking individual network changes over time is the "next major frontier," the researchers say.

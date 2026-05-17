@@ -16,4 +16,8 @@ concepts:
   - "Large language model"
 ---
 
-Cambridge — 50 million health questions hit Microsoft Copilot daily. Microsoft and OpenAI both evaluate their own health AI products but publish no evaluations for external peer review, says MIT Technology Review. Mount Sinai's chief AI officer says unmet healthcare demand is driving adoption faster than evidence can accumulate.
+Cambridge — 50 million health questions hit Microsoft Copilot daily.
+
+Microsoft and OpenAI both evaluate their own health AI products but publish no evaluations for external peer review, says MIT Technology Review.
+
+Mount Sinai's chief AI officer says unmet healthcare demand is driving adoption faster than evidence can accumulate.

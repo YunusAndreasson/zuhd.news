@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-New Delhi — US sanctions exemption for India's Russian arms expires. The law targets buyers of Russian defense systems, but Gulf instability is deepening the India-Russia relationship Washington most wants to sever. If Washington sanctions India, it disrupts a defense technology partnership worth tens of billions of dollars.
+New Delhi — US sanctions exemption for India's Russian arms expires.
+
+The law targets buyers of Russian defense systems, but Gulf instability is deepening the India-Russia relationship Washington most wants to sever.
+
+If Washington sanctions India, it disrupts a defense technology partnership worth tens of billions of dollars.

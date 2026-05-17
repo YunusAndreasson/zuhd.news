@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-London — 2026 tracks as the second-warmest year on record. La Niña cooled Q1 but a strong El Niño is expected by autumn, flipping the climate signal from cooling to warming within months. A potential "super" El Niño would make 2027 the warmest year ever recorded, Carbon Brief predicted.
+London — 2026 tracks as the second-warmest year on record.
+
+La Niña cooled Q1 but a strong El Niño is expected by autumn, flipping the climate signal from cooling to warming within months.
+
+A potential "super" El Niño would make 2027 the warmest year ever recorded, Carbon Brief predicted.

@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-London — Fake eye disease "Bixonimania" fooled health outlets before being debunked. Scientists invented the condition with fake authors, institutions including the University of Fellowship of the Ring, and no real data, posted to preprints in 2024. The study traces how fabricated conditions enter mainstream health coverage before peer review flags them.
+London — Fake eye disease "Bixonimania" fooled health outlets before being debunked.
+
+Scientists invented the condition with fake authors, institutions including the University of Fellowship of the Ring, and no real data, posted to preprints in 2024.
+
+The study traces how fabricated conditions enter mainstream health coverage before peer review flags them.

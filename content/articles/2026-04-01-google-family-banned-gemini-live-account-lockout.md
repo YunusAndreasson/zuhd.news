@@ -11,4 +11,8 @@ sources:
     country: "GB"
 ---
 
-London — Google banned a UK family from all accounts. Their child's Gemini Live session triggered a single moderation flag, permanently suspending family email, photos, and Drive. Google denied all appeals and has no legal obligation to reverse account bans.
+London — Google banned a UK family from all accounts.
+
+Their child's Gemini Live session triggered a single moderation flag, permanently suspending family email, photos, and Drive.
+
+Google denied all appeals and has no legal obligation to reverse account bans.

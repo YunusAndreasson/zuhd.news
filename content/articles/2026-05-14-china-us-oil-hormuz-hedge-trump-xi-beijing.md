@@ -37,4 +37,8 @@ entities:
     kind: "commodity"
 ---
 
-Beijing — [China](country:CN) has not imported US oil since May 2025, when a 20% tariff froze the trade. Xi told Trump Beijing wants to resume purchases to reduce Hormuz exposure; the Iran war cut the strait's traffic for months. Any resumption requires removing the tariff; China's state media made no mention of energy purchases in its summit readout.
+Beijing — [China](country:CN) has not imported US oil since May 2025, when a 20% tariff froze the trade.
+
+Xi told Trump Beijing wants to resume purchases to reduce Hormuz exposure; the Iran war cut the strait's traffic for months.
+
+Any resumption requires removing the tariff; China's state media made no mention of energy purchases in its summit readout.

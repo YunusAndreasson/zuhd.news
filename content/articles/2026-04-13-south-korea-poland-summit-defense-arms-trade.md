@@ -19,4 +19,8 @@ concepts:
   - "Arms industry"
 ---
 
-Seoul — Poland signed $3.8 billion in Korean missiles last December. South Korea has become NATO Europe's fastest-growing arms supplier because US reliability has declined and European factories cannot scale fast enough. A joint press announcement follows Monday's summit; K2 tank and FA-50 jet contracts are on the agenda.
+Seoul — Poland signed $3.8 billion in Korean missiles last December.
+
+South Korea has become NATO Europe's fastest-growing arms supplier because US reliability has declined and European factories cannot scale fast enough.
+
+A joint press announcement follows Monday's summit; K2 tank and FA-50 jet contracts are on the agenda.

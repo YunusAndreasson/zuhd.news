@@ -17,4 +17,8 @@ entities:
     kind: "stock"
 ---
 
-San Francisco — Swan AI spends $113K monthly for 4 employees. Engineering salaries led software costs for decades; AI-native startups now spend more on tokens than payroll. Salesforce invented "Agentic Work Units" to measure whether token spend converts to output; no standard exists yet.
+San Francisco — Swan AI spends $113K monthly for 4 employees.
+
+Engineering salaries led software costs for decades; AI-native startups now spend more on tokens than payroll.
+
+Salesforce invented "Agentic Work Units" to measure whether token spend converts to output; no standard exists yet.

@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Miami — Digital tokens settle trades in seconds, not days. Blockchain tokenization removes batch-settlement windows — the only gap in which human circuit-breakers can intervene before damage compounds, executives warned at Consensus Miami. Former Swift executive Tom Zschach said governance rules — who owns, who halts — haven't been written yet.
+Miami — Digital tokens settle trades in seconds, not days.
+
+Blockchain tokenization removes batch-settlement windows — the only gap in which human circuit-breakers can intervene before damage compounds, executives warned at Consensus Miami.
+
+Former Swift executive Tom Zschach said governance rules — who owns, who halts — haven't been written yet.

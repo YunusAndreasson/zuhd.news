@@ -18,4 +18,8 @@ concepts:
   - "Dodd-Frank Act"
 ---
 
-Nashville — The Third Circuit backed federal prediction market oversight. The Commodity Futures Trading Commission is suing 3 states to preempt gambling laws — prediction platforms face 1 federal ruleset, not 50. The Ninth Circuit consolidates state appeals next week; Chair Selig warned more states face suits.
+Nashville — The Third Circuit backed federal prediction market oversight.
+
+The Commodity Futures Trading Commission is suing 3 states to preempt gambling laws — prediction platforms face 1 federal ruleset, not 50.
+
+The Ninth Circuit consolidates state appeals next week; Chair Selig warned more states face suits.

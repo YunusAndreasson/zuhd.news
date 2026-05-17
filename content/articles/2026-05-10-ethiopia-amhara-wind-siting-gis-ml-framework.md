@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Addis Ababa — [Ethiopia](country:ET) found 1,698 km of high-priority wind corridor. A machine-learning Random Forest model identified North Shewa as optimal, interpolating sparse meteorological stations, the Nature study found. North Shewa hosts a 250 MW project in Ethiopia's government pipeline, confirming the model's output, the authors said.
+Addis Ababa — [Ethiopia](country:ET) found 1,698 km of high-priority wind corridor.
+
+A machine-learning Random Forest model identified North Shewa as optimal, interpolating sparse meteorological stations, the Nature study found.
+
+North Shewa hosts a 250 MW project in Ethiopia's government pipeline, confirming the model's output, the authors said.

@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Hargeisa — [Israel](country:IL) recognised Somaliland on 26 December 2025. Foreign Minister Gideon Saar announced via X, bypassing 30 years of failed African Union lobbying. Hassan Sheikh Mohamud called it [Somalia](country:SO)'s greatest sovereignty violation; [Egypt](country:EG)'s response to the Gulf of Aden positioning is pending.
+Hargeisa — [Israel](country:IL) recognised Somaliland on 26 December 2025.
+
+Foreign Minister Gideon Saar announced via X, bypassing 30 years of failed African Union lobbying.
+
+Hassan Sheikh Mohamud called it [Somalia](country:SO)'s greatest sovereignty violation; [Egypt](country:EG)'s response to the Gulf of Aden positioning is pending.

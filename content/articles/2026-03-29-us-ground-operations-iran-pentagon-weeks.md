@@ -31,4 +31,8 @@ concepts:
 sentimentDivergence: 0.32
 ---
 
-Washington — 3,500 Marines arrived in the Middle East Friday. Pentagon war-games include raids on Kharg Island — Iran's largest oil terminal — and Hormuz coastal sites using special forces and infantry. Trump has not approved the plans; Rubio said Friday the US "can achieve all objectives without ground troops."
+Washington — 3,500 Marines arrived in the Middle East Friday.
+
+Pentagon war-games include raids on Kharg Island — Iran's largest oil terminal — and Hormuz coastal sites using special forces and infantry.
+
+Trump has not approved the plans; Rubio said Friday the US "can achieve all objectives without ground troops."

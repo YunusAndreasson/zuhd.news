@@ -34,4 +34,8 @@ sentimentDivergence: 0.05
 entities: []
 ---
 
-Bangkok — 8 died; [Thailand](country:TH)'s level-crossing barrier never descended. The state rail operator said vehicles parked on the tracks blocked the barrier from lowering; the freight train could not brake before impact. Investigators are recovering the train's data recorder, and the conductor and bus driver are in police custody pending findings.
+Bangkok — 8 died; [Thailand](country:TH)'s level-crossing barrier never descended.
+
+The state rail operator said vehicles parked on the tracks blocked the barrier from lowering; the freight train could not brake before impact.
+
+Investigators are recovering the train's data recorder, and the conductor and bus driver are in police custody pending findings.

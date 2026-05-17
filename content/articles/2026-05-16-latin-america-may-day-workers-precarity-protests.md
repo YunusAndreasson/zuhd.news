@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Caracas — [Venezuela](country:VE) called a $50 bonus a wage raise. Workers across Latin America marched May 1 against wage stagnation and pension cuts, with Venezuela's official salary frozen since 2022. Workers estimate a family food basket costs $700 monthly — nearly 3 times the new $240 income.
+Caracas — [Venezuela](country:VE) called a $50 bonus a wage raise.
+
+Workers across Latin America marched May 1 against wage stagnation and pension cuts, with Venezuela's official salary frozen since 2022.
+
+Workers estimate a family food basket costs $700 monthly — nearly 3 times the new $240 income.

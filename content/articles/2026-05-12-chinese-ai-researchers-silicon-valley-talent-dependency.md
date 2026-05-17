@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-San Francisco — [US](country:US) AI's competitive edge runs through immigration offices. Chinese-born researchers anchor the frontier labs; their visa and travel status has become a live foreign-policy variable in the rivalry with [China](country:CN). No federal policy yet coordinates AI talent immigration with export controls or technology-competition strategy.
+San Francisco — [US](country:US) AI's competitive edge runs through immigration offices.
+
+Chinese-born researchers anchor the frontier labs; their visa and travel status has become a live foreign-policy variable in the rivalry with [China](country:CN).
+
+No federal policy yet coordinates AI talent immigration with export controls or technology-competition strategy.

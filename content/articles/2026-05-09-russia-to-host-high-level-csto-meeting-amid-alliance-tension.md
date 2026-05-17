@@ -40,4 +40,6 @@ sentimentDivergence: 0.66
 entities: []
 ---
 
-Yerevan — Putin called an [Armenia](country:AM) EU referendum "logical." [Russia](country:RU) failed to defend Armenia twice against [Azerbaijan](country:AZ); Yerevan froze Collective Security Treaty Organization membership in 2024 and signed a €2.5B EU deal this month. The alliance meets May 26 without Armenia; Yerevan's parliamentary vote will test the EU pivot's mandate.
+Yerevan — Putin called an [Armenia](country:AM) EU referendum "logical." [Russia](country:RU) failed to defend Armenia twice against [Azerbaijan](country:AZ); Yerevan froze Collective Security Treaty Organization membership in 2024 and signed a €2.5B EU deal this month.
+
+The alliance meets May 26 without Armenia; Yerevan's parliamentary vote will test the EU pivot's mandate.

@@ -17,4 +17,8 @@ concepts:
   - "Account termination"
 ---
 
-London — One AI incident deleted the family's Google accounts. Google's moderation terminated Gmail, Drive, and Photos for all family members — one decision on one product wiping an entire digital identity. UK law has no clear answer on whether platforms can terminate family accounts for one member's behavior.
+London — One AI incident deleted the family's Google accounts.
+
+Google's moderation terminated Gmail, Drive, and Photos for all family members — one decision on one product wiping an entire digital identity.
+
+UK law has no clear answer on whether platforms can terminate family accounts for one member's behavior.

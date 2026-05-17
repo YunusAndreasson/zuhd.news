@@ -12,4 +12,6 @@ sources:
 entities: []
 ---
 
-Doha — Art Basel opened its inaugural [Qatar](country:QA) edition as Gulf statecraft. Gulf monarchies embed art institutions in diplomatic infrastructure, converting prestige into state legitimation — a model scholars call "neoroyal patronage." Sovereign wealth drives the expansion; artists face a choice between access and independence.
+Doha — Art Basel opened its inaugural [Qatar](country:QA) edition as Gulf statecraft.
+
+Gulf monarchies embed art institutions in diplomatic infrastructure, converting prestige into state legitimation — a model scholars call "neoroyal patronage." Sovereign wealth drives the expansion; artists face a choice between access and independence.

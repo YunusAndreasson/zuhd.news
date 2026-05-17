@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Karachi — 11 Pakistani sailors taken hostage off Somalia. Somali piracy resurges when anti-piracy naval cover thins — [Iran](country:IR)-theater deployments have drawn ships from the Gulf of Aden corridor. [Pakistan](country:PK)'s Maritime Affairs Minister ordered an inquiry; no rescue operation has been announced.
+Karachi — 11 Pakistani sailors taken hostage off Somalia.
+
+Somali piracy resurges when anti-piracy naval cover thins — [Iran](country:IR)-theater deployments have drawn ships from the Gulf of Aden corridor.
+
+[Pakistan](country:PK)'s Maritime Affairs Minister ordered an inquiry; no rescue operation has been announced.

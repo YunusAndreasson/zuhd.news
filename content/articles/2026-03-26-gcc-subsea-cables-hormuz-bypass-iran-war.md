@@ -11,4 +11,8 @@ sources:
     country: "LB"
 ---
 
-Manama — 6 GCC cable projects race past Hormuz. Iranian strikes on AWS data centers in UAE and Bahrain revealed the Strait as a single chokepoint for Gulf internet infrastructure. The cables go live without privacy rules — each GCC government decides who can tap the traffic.
+Manama — 6 GCC cable projects race past Hormuz.
+
+Iranian strikes on AWS data centers in UAE and Bahrain revealed the Strait as a single chokepoint for Gulf internet infrastructure.
+
+The cables go live without privacy rules — each GCC government decides who can tap the traffic.

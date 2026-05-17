@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Bengaluru — GalaxEye launched the world's first combined optical-radar satellite. Synthetic aperture radar pierces cloud and night; pairing it with an optical sensor on 1 platform eliminates the matching errors of 2 separate satellites. [India](country:IN)'s GalaxEye targets a 10-satellite constellation by 2030; the 190 kg craft is undergoing commissioning.
+Bengaluru — GalaxEye launched the world's first combined optical-radar satellite.
+
+Synthetic aperture radar pierces cloud and night; pairing it with an optical sensor on 1 platform eliminates the matching errors of 2 separate satellites.
+
+[India](country:IN)'s GalaxEye targets a 10-satellite constellation by 2030; the 190 kg craft is undergoing commissioning.

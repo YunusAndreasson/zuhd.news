@@ -18,4 +18,8 @@ concepts:
   - "Food security"
 ---
 
-Butembo — Butembo's beehives are empty for the first time. Irregular rainfall broke flowering cycles in North Kivu; hives that produced honey from April to July now sit silent. Honey prices in Butembo rose 43-71% year-over-year; Congolese beekeepers lack the capital to adapt that industrial apiaries deploy.
+Butembo — Butembo's beehives are empty for the first time.
+
+Irregular rainfall broke flowering cycles in North Kivu; hives that produced honey from April to July now sit silent.
+
+Honey prices in Butembo rose 43-71% year-over-year; Congolese beekeepers lack the capital to adapt that industrial apiaries deploy.

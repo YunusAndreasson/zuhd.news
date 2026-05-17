@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Ann Arbor — Scientists' gloves shed microplastics into their own samples. University of Michigan found nitrile and latex gloves release particles during sampling, contaminating measurements and potentially inflating published microplastics counts. No standardized glove protocol exists; a decade of environmental research may need replication.
+Ann Arbor — Scientists' gloves shed microplastics into their own samples.
+
+University of Michigan found nitrile and latex gloves release particles during sampling, contaminating measurements and potentially inflating published microplastics counts.
+
+No standardized glove protocol exists; a decade of environmental research may need replication.

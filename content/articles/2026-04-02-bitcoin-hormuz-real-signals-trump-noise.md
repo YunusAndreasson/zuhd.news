@@ -18,4 +18,8 @@ concepts:
   - "IEA"
 ---
 
-Dubai — Only 21 tankers have transited Hormuz since February 28. Ship insurance jumped from under 1% to 7.5% of hull value per trip; IEA emergency reserve releases of 426 million barrels are nearing depletion. Analysts expect reserves to run out within 2 weeks, potentially doubling the supply deficit from 5 million to 10 million barrels per day.
+Dubai — Only 21 tankers have transited Hormuz since February 28.
+
+Ship insurance jumped from under 1% to 7.5% of hull value per trip; IEA emergency reserve releases of 426 million barrels are nearing depletion.
+
+Analysts expect reserves to run out within 2 weeks, potentially doubling the supply deficit from 5 million to 10 million barrels per day.

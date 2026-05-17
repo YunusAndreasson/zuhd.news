@@ -38,4 +38,8 @@ entities:
     kind: "commodity"
 ---
 
-Islamabad — Araghchi left Islamabad; US envoys Witkoff and Kushner never arrived. Trump cancelled the mission as Strait of Hormuz crossings fell from 130 ships daily to a handful. [Iran](country:IR) insists future contact route through [Pakistan](country:PK); Brent crude is nearly 50% above pre-war levels, oil markets show.
+Islamabad — Araghchi left Islamabad; US envoys Witkoff and Kushner never arrived.
+
+Trump cancelled the mission as Strait of Hormuz crossings fell from 130 ships daily to a handful.
+
+[Iran](country:IR) insists future contact route through [Pakistan](country:PK); Brent crude is nearly 50% above pre-war levels, oil markets show.

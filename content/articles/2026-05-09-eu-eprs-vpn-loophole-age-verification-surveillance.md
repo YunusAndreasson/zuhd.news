@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Brussels — VPN apps topped [Britain](country:GB)'s download charts after its age-verification law took effect. EU Parliament researchers call VPNs an age-gate loophole and propose extending verification to VPN access itself. Utah's SB 73 is the first [US](country:US) law requiring age checks before VPN access.
+Brussels — VPN apps topped [Britain](country:GB)'s download charts after its age-verification law took effect.
+
+EU Parliament researchers call VPNs an age-gate loophole and propose extending verification to VPN access itself.
+
+Utah's SB 73 is the first [US](country:US) law requiring age checks before VPN access.

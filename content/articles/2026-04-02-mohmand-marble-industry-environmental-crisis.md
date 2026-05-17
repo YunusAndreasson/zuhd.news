@@ -15,4 +15,8 @@ concepts:
   - "Dam"
 ---
 
-Mohmand — 200 marble factories are poisoning Mohmand's waterways. Untreated slurry from unregulated processing units is silting government dams and blocking seasonal streams, raising flash flood risk for farming communities downstream. Most factories refused relocation to the designated Mohmand Economic Zone; authorities have not enforced it.
+Mohmand — 200 marble factories are poisoning Mohmand's waterways.
+
+Untreated slurry from unregulated processing units is silting government dams and blocking seasonal streams, raising flash flood risk for farming communities downstream.
+
+Most factories refused relocation to the designated Mohmand Economic Zone; authorities have not enforced it.

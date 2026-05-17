@@ -19,4 +19,8 @@ concepts:
 eventCoverage: 52
 ---
 
-Washington — NATO is "beyond reconsideration," Trump told The Telegraph. Allies refused to grant basing rights for Iran operations; Rubio called the alliance a "one-way street" and promised a post-war review. Starmer pledged to act in British national interest; 32 NATO members now face Trump's post-war demands.
+Washington — NATO is "beyond reconsideration," Trump told The Telegraph.
+
+Allies refused to grant basing rights for Iran operations; Rubio called the alliance a "one-way street" and promised a post-war review.
+
+Starmer pledged to act in British national interest; 32 NATO members now face Trump's post-war demands.

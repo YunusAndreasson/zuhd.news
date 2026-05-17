@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Canberra — $2.55bn fuel cut leads Australia's Tuesday budget. [Australia](country:AU)'s budget, built around Iran-war disruption, cuts fuel excise for 3 months and winds back negative gearing for property investors. Treasury forecasts higher inflation and unemployment; the negative gearing reversal breaks Albanese's 2025 election pledge.
+Canberra — $2.55bn fuel cut leads Australia's Tuesday budget.
+
+[Australia](country:AU)'s budget, built around Iran-war disruption, cuts fuel excise for 3 months and winds back negative gearing for property investors.
+
+Treasury forecasts higher inflation and unemployment; the negative gearing reversal breaks Albanese's 2025 election pledge.

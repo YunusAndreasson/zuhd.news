@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — Graphene oxide nanosheet detects lead with lab-grade precision. Functionalized graphene oxide on a quartz crystal microbalance binds lead ions and measures mass change to quantify concentration, the study found. The sensor is lab-only; field-scale lead detection is unavailable in most low-income countries where poisoning data are sparse.
+London — Graphene oxide nanosheet detects lead with lab-grade precision.
+
+Functionalized graphene oxide on a quartz crystal microbalance binds lead ions and measures mass change to quantify concentration, the study found.
+
+The sensor is lab-only; field-scale lead detection is unavailable in most low-income countries where poisoning data are sparse.

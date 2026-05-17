@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Tokyo — XRISM spectra of the Perseus Cluster broke standard supernova models. Element abundances in the intracluster gas — chromium, manganese, nickel — do not match Type-Ia supernova yields, forcing a rethink of white-dwarf detonation chemistry. Revised yields would shift stellar age estimates and recalibrate constraints on dark-matter halos.
+Tokyo — XRISM spectra of the Perseus Cluster broke standard supernova models.
+
+Element abundances in the intracluster gas — chromium, manganese, nickel — do not match Type-Ia supernova yields, forcing a rethink of white-dwarf detonation chemistry.
+
+Revised yields would shift stellar age estimates and recalibrate constraints on dark-matter halos.

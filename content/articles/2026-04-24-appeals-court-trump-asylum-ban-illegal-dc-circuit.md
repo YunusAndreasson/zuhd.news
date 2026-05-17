@@ -31,4 +31,8 @@ sentimentDivergence: 0.2
 entities: []
 ---
 
-Washington — DC Circuit voids Trump's day-one asylum ban. The court found the Immigration and Nationality Act grants asylum rights to anyone physically present in the [US](country:US), a power only Congress can revoke. The administration plans Supreme Court review; the order stays blocked pending full-circuit reconsideration.
+Washington — DC Circuit voids Trump's day-one asylum ban.
+
+The court found the Immigration and Nationality Act grants asylum rights to anyone physically present in the [US](country:US), a power only Congress can revoke.
+
+The administration plans Supreme Court review; the order stays blocked pending full-circuit reconsideration.

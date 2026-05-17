@@ -18,4 +18,8 @@ concepts:
   - "United Nations Security Council"
 ---
 
-Jakarta — Trump's Board of Peace charges $1 billion per seat. US President Donald Trump formed the board after brokering a Gaza ceasefire last October — critics call it a pay-to-play UN Security Council substitute with no legal authority. Indonesian President Prabowo Subianto, facing domestic backlash, warned Indonesia will withdraw if the board fails to benefit Palestinians.
+Jakarta — Trump's Board of Peace charges $1 billion per seat.
+
+US President Donald Trump formed the board after brokering a Gaza ceasefire last October — critics call it a pay-to-play UN Security Council substitute with no legal authority.
+
+Indonesian President Prabowo Subianto, facing domestic backlash, warned Indonesia will withdraw if the board fails to benefit Palestinians.

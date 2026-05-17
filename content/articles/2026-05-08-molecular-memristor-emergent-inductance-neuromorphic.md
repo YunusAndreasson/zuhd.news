@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — 145 kilohenries of inductance from a single nickel-bromide molecule. Inductors use wound coils; this molecule generates inductance from memristive dynamics, making coil geometry obsolete at chip scale. The study suggests emergent inductance extends to all pinched-hysteresis devices, enabling chip-scale memory and reactive elements in one structure.
+London — 145 kilohenries of inductance from a single nickel-bromide molecule.
+
+Inductors use wound coils; this molecule generates inductance from memristive dynamics, making coil geometry obsolete at chip scale.
+
+The study suggests emergent inductance extends to all pinched-hysteresis devices, enabling chip-scale memory and reactive elements in one structure.

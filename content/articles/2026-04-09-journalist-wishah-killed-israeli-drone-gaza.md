@@ -17,4 +17,8 @@ concepts:
   - "Airstrike"
 ---
 
-Gaza — Israel killed journalist Mohammed Wishah with a drone. An Israeli drone struck Wishah's car, setting it ablaze; he is the 262nd journalist killed in Gaza since October 2023. Al Jazeera, Wishah's employer, called the strike deliberate and demanded international prosecution.
+Gaza — Israel killed journalist Mohammed Wishah with a drone.
+
+An Israeli drone struck Wishah's car, setting it ablaze; he is the 262nd journalist killed in Gaza since October 2023.
+
+Al Jazeera, Wishah's employer, called the strike deliberate and demanded international prosecution.

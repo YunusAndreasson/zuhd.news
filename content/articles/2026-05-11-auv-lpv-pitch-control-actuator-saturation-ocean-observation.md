@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Jakarta — Anti-windup controller holds underwater drone pitch under actuator saturation. A Linear Parameter-Varying model adapts pitch commands in real time, restoring attitude when actuators hit physical limits, the study found. Results are simulation only; real-ocean deployment would test multi-day completion in [Indonesia](country:ID) and similar survey programs.
+Jakarta — Anti-windup controller holds underwater drone pitch under actuator saturation.
+
+A Linear Parameter-Varying model adapts pitch commands in real time, restoring attitude when actuators hit physical limits, the study found.
+
+Results are simulation only; real-ocean deployment would test multi-day completion in [Indonesia](country:ID) and similar survey programs.

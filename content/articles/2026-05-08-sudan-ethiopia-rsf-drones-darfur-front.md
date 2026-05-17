@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Khartoum — Sudan: 15 dead in Khartoum drone strike. [Sudan](country:SD) recalled its Addis Ababa ambassador, presenting drone data linking [Ethiopia](country:ET) and the [UAE](country:AE) to a strike on a military commander's home. Rapid Support Forces are massing on the Sudan-Libya-[Egypt](country:EG) border triangle; Khartoum is considering referral to international forums.
+Khartoum — Sudan: 15 dead in Khartoum drone strike.
+
+[Sudan](country:SD) recalled its Addis Ababa ambassador, presenting drone data linking [Ethiopia](country:ET) and the [UAE](country:AE) to a strike on a military commander's home.
+
+Rapid Support Forces are massing on the Sudan-Libya-[Egypt](country:EG) border triangle; Khartoum is considering referral to international forums.

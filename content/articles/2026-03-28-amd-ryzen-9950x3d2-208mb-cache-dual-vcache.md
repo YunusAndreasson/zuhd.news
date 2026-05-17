@@ -15,4 +15,8 @@ concepts:
   - "Ryzen"
 ---
 
-Santa Clara — AMD's 9950X3D2 packs 208MB of cache. 2 3D V-Cache chiplets stacked vertically triple the previous chip's total cache; the design puts server-era memory capacity on a desktop. AMD has not announced a release date or price for the 9950X3D2 Dual Edition.
+Santa Clara — AMD's 9950X3D2 packs 208MB of cache.
+
+2 3D V-Cache chiplets stacked vertically triple the previous chip's total cache; the design puts server-era memory capacity on a desktop.
+
+AMD has not announced a release date or price for the 9950X3D2 Dual Edition.

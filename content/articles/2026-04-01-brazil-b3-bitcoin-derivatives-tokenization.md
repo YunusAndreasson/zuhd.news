@@ -16,4 +16,8 @@ concepts:
   - "Brazil"
 ---
 
-São Paulo — Brazil's B3 launches bitcoin derivatives April 27. B3's regulated event contracts let institutional investors bet on bitcoin, dollar, and index outcomes — the first regulated prediction market in Brazil. B3 is also developing a tokenization platform and stablecoin, targeting later in 2026.
+São Paulo — Brazil's B3 launches bitcoin derivatives April 27.
+
+B3's regulated event contracts let institutional investors bet on bitcoin, dollar, and index outcomes — the first regulated prediction market in Brazil.
+
+B3 is also developing a tokenization platform and stablecoin, targeting later in 2026.

@@ -37,4 +37,8 @@ entities:
     kind: "stock"
 ---
 
-Brussels — Meta's AI determines age from bios, not birthdays. The rollout covers all 27 EU states and Facebook in the [US](country:US), arriving as the EU and [UK](country:GB) tighten platform-liability rules. Meta said UK and EU Facebook expansions follow in June, with no regulatory sign-off on the detection methods.
+Brussels — Meta's AI determines age from bios, not birthdays.
+
+The rollout covers all 27 EU states and Facebook in the [US](country:US), arriving as the EU and [UK](country:GB) tighten platform-liability rules.
+
+Meta said UK and EU Facebook expansions follow in June, with no regulatory sign-off on the detection methods.

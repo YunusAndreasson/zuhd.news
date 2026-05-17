@@ -22,4 +22,8 @@ concepts:
 sentimentDivergence: 0.11
 ---
 
-Kuwait City — Iran struck Kuwait's water plant; 1 worker dead. Kuwait desalinates nearly all its drinking water; Iran escalated from Hormuz blockade to direct strikes on civilian infrastructure. Trump's 10-day pause on Iranian energy strikes expires April 6 — the deadline now governing Gulf escalation.
+Kuwait City — Iran struck Kuwait's water plant; 1 worker dead.
+
+Kuwait desalinates nearly all its drinking water; Iran escalated from Hormuz blockade to direct strikes on civilian infrastructure.
+
+Trump's 10-day pause on Iranian energy strikes expires April 6 — the deadline now governing Gulf escalation.

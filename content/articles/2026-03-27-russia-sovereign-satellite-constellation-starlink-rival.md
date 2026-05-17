@@ -17,4 +17,8 @@ concepts:
   - "Rocket engine"
 ---
 
-Moscow — Russia secretly launched 16 Starlink-rival satellites Monday. The Rassvet constellation deployed without announcement from Plesetsk; Bureau 1440 plans 900 satellites by 2035 to provide full internet coverage. Whether Russia can scale production to 900 units determines if its forces can shed dependency on Western-controlled networks.
+Moscow — Russia secretly launched 16 Starlink-rival satellites Monday.
+
+The Rassvet constellation deployed without announcement from Plesetsk; Bureau 1440 plans 900 satellites by 2035 to provide full internet coverage.
+
+Whether Russia can scale production to 900 units determines if its forces can shed dependency on Western-controlled networks.

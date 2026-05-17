@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Oxford — Stored sperm degrades in every species studied. 115 human studies and 56 species datasets confirm sperm age — not male age — drives DNA damage and worse embryo outcomes. The finding challenges fertility clinic protocols that advise abstinence before donation and captive breeding practices for endangered species.
+Oxford — Stored sperm degrades in every species studied.
+
+115 human studies and 56 species datasets confirm sperm age — not male age — drives DNA damage and worse embryo outcomes.
+
+The finding challenges fertility clinic protocols that advise abstinence before donation and captive breeding practices for endangered species.

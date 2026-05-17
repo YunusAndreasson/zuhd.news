@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.13
 ---
 
-Nizhny Novgorod — Ukraine struck Russia's 4th-largest oil refinery overnight. 87 drones hit NORSI — 340,000 barrels a day — and oil infrastructure at Baltic port Primorsk, hitting production and export simultaneously. Ukraine has disrupted roughly 40% of Russia's oil export capacity; peace talks remain postponed since the Iran war.
+Nizhny Novgorod — Ukraine struck Russia's 4th-largest oil refinery overnight.
+
+87 drones hit NORSI — 340,000 barrels a day — and oil infrastructure at Baltic port Primorsk, hitting production and export simultaneously.
+
+Ukraine has disrupted roughly 40% of Russia's oil export capacity; peace talks remain postponed since the Iran war.

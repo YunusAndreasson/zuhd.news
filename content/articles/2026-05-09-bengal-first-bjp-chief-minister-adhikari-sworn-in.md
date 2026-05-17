@@ -31,4 +31,8 @@ concepts:
 entities: []
 ---
 
-Kolkata — BJP won 209 of 294 Bengal seats, ending 15 years of Trinamool Congress rule. Suvendu Adhikari took oath as chief minister before Prime Minister Modi, winning Bhabanipur by over 15,000 votes. Mamata Banerjee removed "Chief Minister" from her social media profiles within hours.
+Kolkata — BJP won 209 of 294 Bengal seats, ending 15 years of Trinamool Congress rule.
+
+Suvendu Adhikari took oath as chief minister before Prime Minister Modi, winning Bhabanipur by over 15,000 votes.
+
+Mamata Banerjee removed "Chief Minister" from her social media profiles within hours.

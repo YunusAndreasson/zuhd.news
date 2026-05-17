@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-San Francisco — 18% of gray whales entering the Bay die. Arctic warming depleted their prey; gray whales now forage in San Francisco Bay's shipping lanes — an environment that attracts but kills them. No mechanism separates whale foraging from shipping lanes; both pressures are permanent as Arctic prey declines.
+San Francisco — 18% of gray whales entering the Bay die.
+
+Arctic warming depleted their prey; gray whales now forage in San Francisco Bay's shipping lanes — an environment that attracts but kills them.
+
+No mechanism separates whale foraging from shipping lanes; both pressures are permanent as Arctic prey declines.

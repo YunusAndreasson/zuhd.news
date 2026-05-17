@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Cupertino — Apple approved Nvidia eGPU support for Apple Silicon. Apple dropped Nvidia in 2019 with the Intel exit; the approved driver enables Thunderbolt-connected Nvidia cards for compute workloads on M-series Macs. CUDA compatibility and performance parity with native Nvidia hardware on macOS remain untested at scale.
+Cupertino — Apple approved Nvidia eGPU support for Apple Silicon.
+
+Apple dropped Nvidia in 2019 with the Intel exit; the approved driver enables Thunderbolt-connected Nvidia cards for compute workloads on M-series Macs.
+
+CUDA compatibility and performance parity with native Nvidia hardware on macOS remain untested at scale.

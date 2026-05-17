@@ -15,4 +15,8 @@ concepts:
   - "Gambling"
 ---
 
-New York — Gamblers bet $280 million on one Iranian ceasefire. Polymarket gamblers threatened journalists and lobbied a DC thinktank to adjust its frontline maps to resolve bets in their favor. NYSE's parent invested $2 billion in Polymarket; Goldman Sachs now cites its war-outcome odds in client newsletters.
+New York — Gamblers bet $280 million on one Iranian ceasefire.
+
+Polymarket gamblers threatened journalists and lobbied a DC thinktank to adjust its frontline maps to resolve bets in their favor.
+
+NYSE's parent invested $2 billion in Polymarket; Goldman Sachs now cites its war-outcome odds in client newsletters.

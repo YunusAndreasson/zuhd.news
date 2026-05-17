@@ -18,4 +18,8 @@ concepts:
   - "Steven Horsford"
 ---
 
-Washington — Congress re-filed the crypto tax reform bill. The bipartisan bill would exempt stablecoin purchases from capital-gains reporting — fixing the gap where buying coffee with crypto is technically taxable. Its fate depends on whether crypto enters the coming reconciliation tax bill — industry is lobbying hard for inclusion.
+Washington — Congress re-filed the crypto tax reform bill.
+
+The bipartisan bill would exempt stablecoin purchases from capital-gains reporting — fixing the gap where buying coffee with crypto is technically taxable.
+
+Its fate depends on whether crypto enters the coming reconciliation tax bill — industry is lobbying hard for inclusion.

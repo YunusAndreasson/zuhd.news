@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-San Francisco — Mitchell Hashimoto, one of GitHub's earliest users, is migrating Ghostty terminal off the platform over near-daily outages. GitHub Actions froze pull-request review for 2 hours on his announcement day; he has not named a replacement host. Whether other open-source projects follow will test GitHub's grip on hosting.
+San Francisco — Mitchell Hashimoto, one of GitHub's earliest users, is migrating Ghostty terminal off the platform over near-daily outages.
+
+GitHub Actions froze pull-request review for 2 hours on his announcement day; he has not named a replacement host.
+
+Whether other open-source projects follow will test GitHub's grip on hosting.

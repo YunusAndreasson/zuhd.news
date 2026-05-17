@@ -11,4 +11,8 @@ sources:
     country: "AE"
 ---
 
-Cairo — Egypt's Lucky raises $23 million for credit expansion. Cairo's fintech sector draws venture capital despite 30% inflation and an IMF austerity program, as banks underpenetrate a 100-million-person market. Lucky plans regional expansion; its credit products carry default risk in a population squeezed by subsidy cuts.
+Cairo — Egypt's Lucky raises $23 million for credit expansion.
+
+Cairo's fintech sector draws venture capital despite 30% inflation and an IMF austerity program, as banks underpenetrate a 100-million-person market.
+
+Lucky plans regional expansion; its credit products carry default risk in a population squeezed by subsidy cuts.

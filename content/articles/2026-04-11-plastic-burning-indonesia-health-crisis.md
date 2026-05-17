@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Jakarta — Plastic burning in Indonesia is causing birth defects. Industrial incinerators with air scrubbers still raise premature-birth rates; unregulated low-tech furnaces emit far higher dioxins. Rich nations export millions of tonnes of plastic to Indonesia annually while restricting incineration at home.
+Jakarta — Plastic burning in Indonesia is causing birth defects.
+
+Industrial incinerators with air scrubbers still raise premature-birth rates; unregulated low-tech furnaces emit far higher dioxins.
+
+Rich nations export millions of tonnes of plastic to Indonesia annually while restricting incineration at home.

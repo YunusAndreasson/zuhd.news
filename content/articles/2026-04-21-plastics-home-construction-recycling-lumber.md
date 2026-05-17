@@ -23,4 +23,8 @@ entities:
     kind: "currency"
 ---
 
-Cambridge — Recycled-plastic trusses passed [US](country:US) structural load tests. MIT researchers printed structural framing from uncleaned plastic waste and glass fiber; each truss supports over 4,000 pounds and prints in 13 minutes. Meeting a 1-billion-home global need with wood alone would require clearing 3 times the Amazon, the MIT team said.
+Cambridge — Recycled-plastic trusses passed [US](country:US) structural load tests.
+
+MIT researchers printed structural framing from uncleaned plastic waste and glass fiber; each truss supports over 4,000 pounds and prints in 13 minutes.
+
+Meeting a 1-billion-home global need with wood alone would require clearing 3 times the Amazon, the MIT team said.

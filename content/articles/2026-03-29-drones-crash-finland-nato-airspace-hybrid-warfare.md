@@ -27,4 +27,8 @@ concepts:
 sentimentDivergence: 0.22
 ---
 
-Kouvola — 2 drones crashed in NATO Finland on Sunday. F/A-18s scrambled after unidentified drones entered airspace near Kouvola, 50 km from Russia — 4th Baltic NATO incident this week. Finland's PM convened a security meeting; source unclear, though Ukraine's Russian oil-port strikes are the probable origin.
+Kouvola — 2 drones crashed in NATO Finland on Sunday.
+
+F/A-18s scrambled after unidentified drones entered airspace near Kouvola, 50 km from Russia — 4th Baltic NATO incident this week.
+
+Finland's PM convened a security meeting; source unclear, though Ukraine's Russian oil-port strikes are the probable origin.

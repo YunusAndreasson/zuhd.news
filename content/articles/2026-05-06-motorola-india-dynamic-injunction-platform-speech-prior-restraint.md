@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-New Delhi — Motorola's India suit targets reviews not yet written. Motorola's [India](country:IN) unit sued X, YouTube, Instagram, and 4 other platforms to remove existing and future posts it deems defamatory. Digital rights activists warn the dynamic-injunction mechanism would template similar prior-restraint orders across South and Southeast Asia.
+New Delhi — Motorola's India suit targets reviews not yet written.
+
+Motorola's [India](country:IN) unit sued X, YouTube, Instagram, and 4 other platforms to remove existing and future posts it deems defamatory.
+
+Digital rights activists warn the dynamic-injunction mechanism would template similar prior-restraint orders across South and Southeast Asia.

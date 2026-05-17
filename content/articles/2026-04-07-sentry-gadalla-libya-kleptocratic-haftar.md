@@ -18,4 +18,8 @@ concepts:
   - "The Sentry"
 ---
 
-Benghazi — Gadalla looted $300 million from Libya for Haftar. The Sentry traced the mechanism: reserves pledged at a UAE bank, loaned to front companies for Wagner payments and Sudan arms. Gadalla's network spans Benghazi, Dubai, and Toronto; neither he nor Central Bank Governor al-Kabir has faced charges.
+Benghazi — Gadalla looted $300 million from Libya for Haftar.
+
+The Sentry traced the mechanism: reserves pledged at a UAE bank, loaned to front companies for Wagner payments and Sudan arms.
+
+Gadalla's network spans Benghazi, Dubai, and Toronto; neither he nor Central Bank Governor al-Kabir has faced charges.

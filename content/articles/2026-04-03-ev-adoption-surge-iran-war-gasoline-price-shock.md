@@ -16,4 +16,8 @@ concepts:
   - "Electric battery"
 ---
 
-Detroit — Gas surged $1/gallon since the Iran war. Used EV sales rose 12% in Q1; Toyota bZ deliveries jumped 78% year-on-year while Ford cancelled both its truck EVs. Cox Automotive estimates $1.25/gallon more is needed before switching becomes sustained; oil sits at $115.
+Detroit — Gas surged $1/gallon since the Iran war.
+
+Used EV sales rose 12% in Q1; Toyota bZ deliveries jumped 78% year-on-year while Ford cancelled both its truck EVs.
+
+Cox Automotive estimates $1.25/gallon more is needed before switching becomes sustained; oil sits at $115.

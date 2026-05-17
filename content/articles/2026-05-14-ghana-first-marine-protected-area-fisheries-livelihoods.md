@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Accra — [US](country:US) funding cuts nearly derailed Ghana's first marine reserve. [Ghana](country:GH) designated its first 700 sq km protected area; the multiple-use design lets fishing continue while no-take cores allow fish stocks to recover. Ghana's ocean is now 0.3% protected; the global 30×30 goal requires 30% by 2030.
+Accra — [US](country:US) funding cuts nearly derailed Ghana's first marine reserve.
+
+[Ghana](country:GH) designated its first 700 sq km protected area; the multiple-use design lets fishing continue while no-take cores allow fish stocks to recover.
+
+Ghana's ocean is now 0.3% protected; the global 30×30 goal requires 30% by 2030.

@@ -21,4 +21,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Riyadh — [Saudi Arabia](country:SA) and [Kuwait](country:KW) froze [US](country:US) base access. The moves follow US strikes near the Strait of Hormuz, removing 2 Gulf basing arrangements from active use. [Iran](country:IR) separately formalized Strait of Hormuz control through a new maritime authority.
+Riyadh — [Saudi Arabia](country:SA) and [Kuwait](country:KW) froze [US](country:US) base access.
+
+The moves follow US strikes near the Strait of Hormuz, removing 2 Gulf basing arrangements from active use.
+
+[Iran](country:IR) separately formalized Strait of Hormuz control through a new maritime authority.

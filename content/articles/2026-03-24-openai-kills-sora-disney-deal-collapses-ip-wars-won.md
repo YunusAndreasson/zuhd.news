@@ -28,4 +28,8 @@ concepts:
   - "AI video generation"
 ---
 
-San Francisco — Sora is dead; its $1 billion Disney deal void. Studios, actors' unions, and Japanese animators filed IP and likeness suits that made Sora legally toxic within 15 months of launch. OpenAI is redirecting to business productivity as the IP and likeness claims that ended Sora remain unresolved in court.
+San Francisco — Sora is dead; its $1 billion Disney deal void.
+
+Studios, actors' unions, and Japanese animators filed IP and likeness suits that made Sora legally toxic within 15 months of launch.
+
+OpenAI is redirecting to business productivity as the IP and likeness claims that ended Sora remain unresolved in court.

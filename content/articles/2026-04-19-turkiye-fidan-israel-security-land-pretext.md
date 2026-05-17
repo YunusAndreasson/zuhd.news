@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Antalya — Fidan named 4 territories under Israeli occupation. At the Antalya Diplomacy Forum, [Turkey](country:TR)'s foreign minister said [Israel](country:IL) frames Gaza, West Bank, Lebanon, and Syria as security threats while pursuing occupation. Netanyahu rejected Erdoğan's criticism on April 11; NATO has not responded.
+Antalya — Fidan named 4 territories under Israeli occupation.
+
+At the Antalya Diplomacy Forum, [Turkey](country:TR)'s foreign minister said [Israel](country:IL) frames Gaza, West Bank, Lebanon, and Syria as security threats while pursuing occupation.
+
+Netanyahu rejected Erdoğan's criticism on April 11; NATO has not responded.

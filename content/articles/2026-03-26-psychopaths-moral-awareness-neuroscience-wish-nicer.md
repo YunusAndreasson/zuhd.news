@@ -18,4 +18,8 @@ concepts:
   - "Georgetown University"
 ---
 
-Washington — Many psychopaths know right from wrong — and care. Georgetown psychologist Abigail Marsh found psychopathic brains have smaller amygdalas — dulling empathy while leaving moral reasoning intact — opening new treatment paths. 1 participant changed by faking kindness for 18 months until it felt natural; Marsh says few clinics treat psychopathy as a disorder.
+Washington — Many psychopaths know right from wrong — and care.
+
+Georgetown psychologist Abigail Marsh found psychopathic brains have smaller amygdalas — dulling empathy while leaving moral reasoning intact — opening new treatment paths.
+
+1 participant changed by faking kindness for 18 months until it felt natural; Marsh says few clinics treat psychopathy as a disorder.

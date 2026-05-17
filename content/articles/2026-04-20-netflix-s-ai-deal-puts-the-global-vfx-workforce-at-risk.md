@@ -17,4 +17,8 @@ entities:
     kind: "stock"
 ---
 
-Los Angeles — Ben Affleck's AI firm InterPositive automates frame-level visual effects work done by human artists. Netflix acquired it on March 5; artists from Los Angeles to Mumbai risk displacement as studios automate effects work. Screen artists' unions face a decision on whether to challenge the acquisition before Netflix deploys it.
+Los Angeles — Ben Affleck's AI firm InterPositive automates frame-level visual effects work done by human artists.
+
+Netflix acquired it on March 5; artists from Los Angeles to Mumbai risk displacement as studios automate effects work.
+
+Screen artists' unions face a decision on whether to challenge the acquisition before Netflix deploys it.

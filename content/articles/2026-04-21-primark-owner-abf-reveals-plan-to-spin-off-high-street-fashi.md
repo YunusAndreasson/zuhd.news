@@ -27,4 +27,8 @@ eventCoverage: 82
 sentimentDivergence: 0.03
 ---
 
-London — ABF is spinning Primark off its food business. ABF said the split "maximises long-term returns"; group pre-tax profits fell 9%, with sugar swinging to an annual loss. Both entities list on the [UK](country:GB) FTSE 100 by end of 2027; the Weston family keeps majority control of each.
+London — ABF is spinning Primark off its food business.
+
+ABF said the split "maximises long-term returns"; group pre-tax profits fell 9%, with sugar swinging to an annual loss.
+
+Both entities list on the [UK](country:GB) FTSE 100 by end of 2027; the Weston family keeps majority control of each.

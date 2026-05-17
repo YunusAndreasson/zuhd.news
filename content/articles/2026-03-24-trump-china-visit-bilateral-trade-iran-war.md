@@ -19,4 +19,8 @@ concepts:
   - "White House"
 ---
 
-Beijing — Trump lands in Beijing on March 31. China stockpiled Iranian crude while staying neutral on the war, giving Xi leverage over both Washington and Tehran at the first US-China summit since 2017. Trade tariffs are formally on the agenda, but Iran ceasefire terms will shape every session.
+Beijing — Trump lands in Beijing on March 31.
+
+China stockpiled Iranian crude while staying neutral on the war, giving Xi leverage over both Washington and Tehran at the first US-China summit since 2017.
+
+Trade tariffs are formally on the agenda, but Iran ceasefire terms will shape every session.

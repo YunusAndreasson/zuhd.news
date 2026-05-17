@@ -16,4 +16,8 @@ concepts:
 entities: []
 ---
 
-Manila — The [Philippines](country:PH) hasn't graduated a nuclear engineer since 1984, leaving near-zero trained workforce for its 2032 grid restart. A 2025 law created a nuclear regulator, but qualified regulators are scarcer than engineers — the last cohort emigrated, many to [UAE](country:AE). Universities have reopened nuclear courses, but the regulator gap remains the binding constraint.
+Manila — The [Philippines](country:PH) hasn't graduated a nuclear engineer since 1984, leaving near-zero trained workforce for its 2032 grid restart.
+
+A 2025 law created a nuclear regulator, but qualified regulators are scarcer than engineers — the last cohort emigrated, many to [UAE](country:AE).
+
+Universities have reopened nuclear courses, but the regulator gap remains the binding constraint.

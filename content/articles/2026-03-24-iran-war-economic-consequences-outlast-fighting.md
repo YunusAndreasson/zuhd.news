@@ -18,4 +18,8 @@ concepts:
   - "Recession"
 ---
 
-Johannesburg — Iran destroyed 17% of Qatar's gas exports. The International Energy Agency calls it the largest supply disruption in market history — damage that will restrict capacity for up to 5 years, comparable to the 1970s oil shocks that first defined stagflation. Moody's puts US recession odds at 49% for the next 12 months — higher if the Strait of Hormuz stays closed.
+Johannesburg — Iran destroyed 17% of Qatar's gas exports.
+
+The International Energy Agency calls it the largest supply disruption in market history — damage that will restrict capacity for up to 5 years, comparable to the 1970s oil shocks that first defined stagflation.
+
+Moody's puts US recession odds at 49% for the next 12 months — higher if the Strait of Hormuz stays closed.

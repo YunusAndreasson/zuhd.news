@@ -17,4 +17,8 @@ concepts:
   - "WHO"
 ---
 
-Geneva — 88-country dengue observatory went live. The system maps real-time case data as climate change expands mosquito habitats beyond the tropics, sharpening outbreak projections. Health ministries can now preposition supplies before outbreaks peak.
+Geneva — 88-country dengue observatory went live.
+
+The system maps real-time case data as climate change expands mosquito habitats beyond the tropics, sharpening outbreak projections.
+
+Health ministries can now preposition supplies before outbreaks peak.

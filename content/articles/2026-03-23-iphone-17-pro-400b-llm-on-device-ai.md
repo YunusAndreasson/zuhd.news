@@ -13,4 +13,8 @@ eventCoverage: null
 concepts: []
 ---
 
-San Francisco — iPhone 17 Pro ran a 400B-parameter LLM without cloud. Models this size were previously only achievable in server farms consuming megawatts, not a handset battery. If this scales, cloud AI providers lose the infrastructure moat that lets them gate access to frontier models.
+San Francisco — iPhone 17 Pro ran a 400B-parameter LLM without cloud.
+
+Models this size were previously only achievable in server farms consuming megawatts, not a handset battery.
+
+If this scales, cloud AI providers lose the infrastructure moat that lets them gate access to frontier models.

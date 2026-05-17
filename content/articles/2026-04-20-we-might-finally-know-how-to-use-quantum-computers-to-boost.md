@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Pasadena — Batch-feeding data into quantum computers sidesteps the memory bottleneck blocking machine-learning speedups. Oratomic researchers showed the streaming approach eliminates the massive quantum memory previously required. The speedup covers only specific large-dataset tasks; whether a classical equivalent exists remains the next test.
+Pasadena — Batch-feeding data into quantum computers sidesteps the memory bottleneck blocking machine-learning speedups.
+
+Oratomic researchers showed the streaming approach eliminates the massive quantum memory previously required.
+
+The speedup covers only specific large-dataset tasks; whether a classical equivalent exists remains the next test.

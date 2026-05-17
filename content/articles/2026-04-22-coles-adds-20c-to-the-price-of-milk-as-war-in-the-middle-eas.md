@@ -27,4 +27,8 @@ entities:
     kind: "stock"
 ---
 
-Sydney — Coles raised home-brand milk 20c a litre. [Iran](country:IR) war-driven diesel and fertiliser costs hit [Australia](country:AU)'s dairy supply chain, from farm inputs to plastic packaging, Coles said. Woolworths plans to follow; Norco's chief executive warned of supply shortages within 12 months without permanent farm-gate price rises.
+Sydney — Coles raised home-brand milk 20c a litre.
+
+[Iran](country:IR) war-driven diesel and fertiliser costs hit [Australia](country:AU)'s dairy supply chain, from farm inputs to plastic packaging, Coles said.
+
+Woolworths plans to follow; Norco's chief executive warned of supply shortages within 12 months without permanent farm-gate price rises.

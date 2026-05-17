@@ -16,4 +16,8 @@ concepts:
   - "Donald Trump"
 ---
 
-Washington — The US is negotiating the war it started. US and Iranian officials are discussing a ceasefire for Hormuz reopening — the outcome the war was fought to achieve. Trump faces pressure to continue strikes; the Strait stays closed with no mediator or timeline set.
+Washington — The US is negotiating the war it started.
+
+US and Iranian officials are discussing a ceasefire for Hormuz reopening — the outcome the war was fought to achieve.
+
+Trump faces pressure to continue strikes; the Strait stays closed with no mediator or timeline set.

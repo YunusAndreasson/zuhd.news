@@ -15,4 +15,8 @@ concepts:
   - "Hosts file"
 ---
 
-San Jose — Adobe silently edited users' system hosts files. Adobe's installer writes to the system hosts file — the DNS-level config admins rely on for security — rather than check the registry. Sysadmins use the hosts file to block malware; Adobe has repurposed it as a private installation flag.
+San Jose — Adobe silently edited users' system hosts files.
+
+Adobe's installer writes to the system hosts file — the DNS-level config admins rely on for security — rather than check the registry.
+
+Sysadmins use the hosts file to block malware; Adobe has repurposed it as a private installation flag.

@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Tepic — El Jardinero was arrested in Nayarit. He coordinated Jalisco New Generation Cartel synthetic drug production across 6 states; the [US](country:US) had placed a $5 million bounty on him. [Mexico](country:MX) has arrested 2 top cartel figures in 60 days with no successor announced.
+Tepic — El Jardinero was arrested in Nayarit.
+
+He coordinated Jalisco New Generation Cartel synthetic drug production across 6 states; the [US](country:US) had placed a $5 million bounty on him.
+
+[Mexico](country:MX) has arrested 2 top cartel figures in 60 days with no successor announced.

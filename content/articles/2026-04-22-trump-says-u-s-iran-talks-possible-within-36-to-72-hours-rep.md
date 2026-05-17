@@ -23,4 +23,8 @@ concepts:
 entities: []
 ---
 
-Washington — Islamabad talks collapsed on a [US](country:US) nuclear demand. [Pakistan](country:PK) hosted April 11–12 talks; the US required [Iran](country:IR) to formally commit to no nuclear weapons, which Iran rejected. Washington gives Iran 3–5 days to submit a unified proposal before Vice President Vance's second Islamabad trip.
+Washington — Islamabad talks collapsed on a [US](country:US) nuclear demand.
+
+[Pakistan](country:PK) hosted April 11–12 talks; the US required [Iran](country:IR) to formally commit to no nuclear weapons, which Iran rejected.
+
+Washington gives Iran 3–5 days to submit a unified proposal before Vice President Vance's second Islamabad trip.

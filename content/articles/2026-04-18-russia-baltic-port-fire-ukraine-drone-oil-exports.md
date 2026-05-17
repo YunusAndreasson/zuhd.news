@@ -23,4 +23,8 @@ entities:
     kind: "commodity"
 ---
 
-Vysotsk — Ukrainian drones struck Lukoil's Baltic terminal. Primorsk and Ust-Luga on the same coast handle 40% of Russia's seaborne crude, shipping data show. The Leningrad governor has appealed to military retirees to guard oil facilities against Ukraine's drone campaign.
+Vysotsk — Ukrainian drones struck Lukoil's Baltic terminal.
+
+Primorsk and Ust-Luga on the same coast handle 40% of Russia's seaborne crude, shipping data show.
+
+The Leningrad governor has appealed to military retirees to guard oil facilities against Ukraine's drone campaign.

@@ -23,4 +23,8 @@ entities:
     kind: "commodity"
 ---
 
-Gold Coast — Altus called the Trump brand toxic to Australians. The $1.5 billion tower project lasted 3 months; Altus said Iran-war sentiment in [Australia](country:AU) made the brand unfinanceable. The Trump Organization blamed unpaid obligations; Gold Coast mayor Tom Tate confirmed no development application had been submitted.
+Gold Coast — Altus called the Trump brand toxic to Australians.
+
+The $1.5 billion tower project lasted 3 months; Altus said Iran-war sentiment in [Australia](country:AU) made the brand unfinanceable.
+
+The Trump Organization blamed unpaid obligations; Gold Coast mayor Tom Tate confirmed no development application had been submitted.

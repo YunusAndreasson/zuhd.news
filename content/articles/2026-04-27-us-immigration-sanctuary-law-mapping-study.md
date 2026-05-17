@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Washington — "Punitive preemption" drives [US](country:US) sanctuary law, research shows. Researchers mapped 2000-2021 sanctuary laws, finding state ideology predicts immigration legislation more reliably than local demographics. The 21-year dataset creates a baseline as Trump's federal enforcement pushes states toward new preemption or sanctuary laws.
+Washington — "Punitive preemption" drives [US](country:US) sanctuary law, research shows.
+
+Researchers mapped 2000-2021 sanctuary laws, finding state ideology predicts immigration legislation more reliably than local demographics.
+
+The 21-year dataset creates a baseline as Trump's federal enforcement pushes states toward new preemption or sanctuary laws.

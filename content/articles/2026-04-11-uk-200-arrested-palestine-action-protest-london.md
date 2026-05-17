@@ -27,4 +27,8 @@ concepts:
   - "Terrorism Act"
 ---
 
-London — 212 people arrested for holding a sign. Palestine Action was proscribed as a terrorist organization in 2025; the High Court ruled that ban unlawful in February. The Court of Appeal hears the government's challenge on April 28; 2,200 have been charged under the ban.
+London — 212 people arrested for holding a sign.
+
+Palestine Action was proscribed as a terrorist organization in 2025; the High Court ruled that ban unlawful in February.
+
+The Court of Appeal hears the government's challenge on April 28; 2,200 have been charged under the ban.

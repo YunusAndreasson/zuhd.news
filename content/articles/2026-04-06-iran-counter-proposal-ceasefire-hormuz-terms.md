@@ -29,4 +29,8 @@ concepts:
 sentimentDivergence: 0.36
 ---
 
-Tehran — Iran countered Trump's ceasefire offer with 10 demands. Via Pakistan, Tehran demanded a permanent peace deal, sanctions relief, and Hormuz safe-passage guarantees. Trump called the proposal "not good enough", maintaining his Tuesday deadline for Hormuz reopening or broad US strikes.
+Tehran — Iran countered Trump's ceasefire offer with 10 demands.
+
+Via Pakistan, Tehran demanded a permanent peace deal, sanctions relief, and Hormuz safe-passage guarantees.
+
+Trump called the proposal "not good enough", maintaining his Tuesday deadline for Hormuz reopening or broad US strikes.

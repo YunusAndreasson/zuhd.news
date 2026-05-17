@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Cairo — [Egypt](country:EG)'s security forces detained filmmaker Omar Marei without charge. National Security raided his home Monday; his wife said he has thyroid disease requiring daily medication and is recovering from wrist surgery. The Cinema Professions Syndicate is pressing prosecutors to disclose his location.
+Cairo — [Egypt](country:EG)'s security forces detained filmmaker Omar Marei without charge.
+
+National Security raided his home Monday; his wife said he has thyroid disease requiring daily medication and is recovering from wrist surgery.
+
+The Cinema Professions Syndicate is pressing prosecutors to disclose his location.

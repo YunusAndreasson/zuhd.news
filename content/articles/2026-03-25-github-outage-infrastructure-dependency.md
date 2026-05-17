@@ -14,4 +14,8 @@ sources:
     country: "US"
 ---
 
-San Francisco — GitHub went down, blocking 100 million developers. Microsoft's GitHub hosts virtually every major software project, so a single outage cascades through CI/CD pipelines and halts deployments worldwide. Microsoft has not disclosed a cause, exposing how a single vendor controls the deployment pipeline for most of the world's software.
+San Francisco — GitHub went down, blocking 100 million developers.
+
+Microsoft's GitHub hosts virtually every major software project, so a single outage cascades through CI/CD pipelines and halts deployments worldwide.
+
+Microsoft has not disclosed a cause, exposing how a single vendor controls the deployment pipeline for most of the world's software.

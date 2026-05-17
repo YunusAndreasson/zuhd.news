@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Washington — Epstein held crypto stakes while advising [US](country:US) Treasury. Documents show he briefed Treasury officials designing [Iran](country:IR)'s sanctions architecture as he invested in the same blockchain sector. Epstein's advisory role has drawn no official review, though Iran now routes $8B yearly through crypto exchanges, Treasury figures show.
+Washington — Epstein held crypto stakes while advising [US](country:US) Treasury.
+
+Documents show he briefed Treasury officials designing [Iran](country:IR)'s sanctions architecture as he invested in the same blockchain sector.
+
+Epstein's advisory role has drawn no official review, though Iran now routes $8B yearly through crypto exchanges, Treasury figures show.

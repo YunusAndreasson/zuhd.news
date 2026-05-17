@@ -17,4 +17,8 @@ concepts:
   - "Islam"
 ---
 
-Islamabad — 22 clerics appealed to extend the Pakistan-Afghanistan Eid ceasefire. Pakistan launched Operation Ghazab lil-Haq in February, and 3 regional mediators brokered an Eid ceasefire that expired yesterday. The appeal sets a 3-month window covering Hajj season, with no mechanism to enforce compliance from either side.
+Islamabad — 22 clerics appealed to extend the Pakistan-Afghanistan Eid ceasefire.
+
+Pakistan launched Operation Ghazab lil-Haq in February, and 3 regional mediators brokered an Eid ceasefire that expired yesterday.
+
+The appeal sets a 3-month window covering Hajj season, with no mechanism to enforce compliance from either side.

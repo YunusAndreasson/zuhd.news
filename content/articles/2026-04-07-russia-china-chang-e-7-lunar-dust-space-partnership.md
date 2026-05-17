@@ -16,4 +16,8 @@ concepts:
   - "Lunar exploration"
 ---
 
-Moscow — Russia delivered a lunar dust detector to China. The PmL instrument will fly on Chang'e-7 this fall, with Russia preparing 2 more instruments for a 2028-2029 joint mission. Russia and China are building parallel lunar infrastructure to compete with the US-led Artemis coalition.
+Moscow — Russia delivered a lunar dust detector to China.
+
+The PmL instrument will fly on Chang'e-7 this fall, with Russia preparing 2 more instruments for a 2028-2029 joint mission.
+
+Russia and China are building parallel lunar infrastructure to compete with the US-led Artemis coalition.

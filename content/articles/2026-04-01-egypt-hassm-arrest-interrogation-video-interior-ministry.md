@@ -17,4 +17,8 @@ concepts:
   - "Interior Ministry"
 ---
 
-Cairo — Egypt's Interior Ministry aired a militant's interrogation. The video features Hassm operative Ali Abdel Wanis in documentary format — archival footage, offscreen interviewer — for a group inactive since 2018. Wanis is already serving life imprisonment; no new charges have been announced and no court date set.
+Cairo — Egypt's Interior Ministry aired a militant's interrogation.
+
+The video features Hassm operative Ali Abdel Wanis in documentary format — archival footage, offscreen interviewer — for a group inactive since 2018.
+
+Wanis is already serving life imprisonment; no new charges have been announced and no court date set.

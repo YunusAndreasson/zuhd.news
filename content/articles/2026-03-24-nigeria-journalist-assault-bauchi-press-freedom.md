@@ -18,4 +18,8 @@ concepts:
   - "Police officer"
 ---
 
-Bauchi — Police beat radio journalist Mohammed Adamu at Eid. In 2025, Nigerian police were responsible for nearly half of 86 documented journalist attacks, with no case ever prosecuted. Media Rights Agenda, a Nigerian press freedom group, demands Superintendent Jamilu Kabir — who allegedly led the assault and remains in post — be suspended before any investigation begins.
+Bauchi — Police beat radio journalist Mohammed Adamu at Eid.
+
+In 2025, Nigerian police were responsible for nearly half of 86 documented journalist attacks, with no case ever prosecuted.
+
+Media Rights Agenda, a Nigerian press freedom group, demands Superintendent Jamilu Kabir — who allegedly led the assault and remains in post — be suspended before any investigation begins.

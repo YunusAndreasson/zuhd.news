@@ -17,4 +17,8 @@ concepts:
   - "Precision breeding"
 ---
 
-London — A transformer architecture now predicts crop traits from DNA. GP-WAITER embeds GWAS-derived SNP weights into a hybrid CNN-transformer, outperforming 7 existing genomic models by up to 77.5% across 6 crop datasets. Its interpretability layer identifies trait-driving variants — pointing breeders toward precise targets without trial-and-error field testing.
+London — A transformer architecture now predicts crop traits from DNA.
+
+GP-WAITER embeds GWAS-derived SNP weights into a hybrid CNN-transformer, outperforming 7 existing genomic models by up to 77.5% across 6 crop datasets.
+
+Its interpretability layer identifies trait-driving variants — pointing breeders toward precise targets without trial-and-error field testing.

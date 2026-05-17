@@ -35,4 +35,8 @@ entities:
     kind: "commodity"
 ---
 
-Tehran — [Iran](country:IR) claimed governance of the Strait of Hormuz. Mojtaba Khamenei declared a "new legal framework" for the Strait, which carries one-fifth of global oil, rejecting [US](country:US) toll-free access. [Pakistan](country:PK) mediates indirect talks; Iran has declared nuclear and missile arsenals non-negotiable.
+Tehran — [Iran](country:IR) claimed governance of the Strait of Hormuz.
+
+Mojtaba Khamenei declared a "new legal framework" for the Strait, which carries one-fifth of global oil, rejecting [US](country:US) toll-free access.
+
+[Pakistan](country:PK) mediates indirect talks; Iran has declared nuclear and missile arsenals non-negotiable.

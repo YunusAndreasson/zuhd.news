@@ -16,4 +16,8 @@ concepts:
   - "Drug discovery"
 ---
 
-Indianapolis — Lilly paid $2.75B for Insilico AI drug candidates. The deal grants Lilly rights to commercialize AI-discovered oral candidates, including a GLP-1 agent targeting Mounjaro-type indications. No AI-discovered drug has cleared regulatory approval; Insilico's candidate enters Lilly's pipeline as the sector's first real test.
+Indianapolis — Lilly paid $2.75B for Insilico AI drug candidates.
+
+The deal grants Lilly rights to commercialize AI-discovered oral candidates, including a GLP-1 agent targeting Mounjaro-type indications.
+
+No AI-discovered drug has cleared regulatory approval; Insilico's candidate enters Lilly's pipeline as the sector's first real test.

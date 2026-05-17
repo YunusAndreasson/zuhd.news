@@ -28,4 +28,8 @@ eventCoverage: 86
 sentimentDivergence: 0.24
 ---
 
-New York — Blockchain threatens JPMorgan's core business, Dimon told shareholders. The annual letter listed 5 structural risks, with blockchain-native competitors ranked first. Three rivals already run tokenized funds; JPMorgan's Kinexys unit is racing to catch up.
+New York — Blockchain threatens JPMorgan's core business, Dimon told shareholders.
+
+The annual letter listed 5 structural risks, with blockchain-native competitors ranked first.
+
+Three rivals already run tokenized funds; JPMorgan's Kinexys unit is racing to catch up.

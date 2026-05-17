@@ -11,4 +11,8 @@ sources:
     country: "ES"
 ---
 
-Barcelona — AI drones slash wheat field trials from years to 1 season. University of Barcelona researchers used drone imaging and AI to identify climate-resilient varieties faster and more precisely than manual selection. Wheat faces accelerating climate stress; adoption by global breeding programs will determine whether harvests keep pace.
+Barcelona — AI drones slash wheat field trials from years to 1 season.
+
+University of Barcelona researchers used drone imaging and AI to identify climate-resilient varieties faster and more precisely than manual selection.
+
+Wheat faces accelerating climate stress; adoption by global breeding programs will determine whether harvests keep pace.

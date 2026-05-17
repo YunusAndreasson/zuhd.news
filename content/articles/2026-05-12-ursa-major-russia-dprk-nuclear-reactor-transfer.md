@@ -22,4 +22,8 @@ concepts:
 entities: []
 ---
 
-Murcia — A torpedo sank the Russian-flagged Ursa Major off [Spain](country:ES) before its reactor cargo reached [North Korea](country:KP), investigators say. The cargo included submarine propulsion reactors; UN sanctions bar such nuclear transfers to [North Korea](country:KP). [Spain](country:ES)'s defence ministry has not confirmed the claim; the wreck lies 2,500m down.
+Murcia — A torpedo sank the Russian-flagged Ursa Major off [Spain](country:ES) before its reactor cargo reached [North Korea](country:KP), investigators say.
+
+The cargo included submarine propulsion reactors; UN sanctions bar such nuclear transfers to [North Korea](country:KP).
+
+[Spain](country:ES)'s defence ministry has not confirmed the claim; the wreck lies 2,500m down.

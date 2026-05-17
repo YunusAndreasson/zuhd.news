@@ -25,4 +25,8 @@ concepts:
 sentimentDivergence: 0.03
 ---
 
-Washington — Rep. Mace demands Congress vote on Iran. The Pentagon is planning Kharg Island raids; 5,500 additional troops arrived this week with no White House denial. Trump has not decided, but 50,000 US troops now stand in the region awaiting orders.
+Washington — Rep. Mace demands Congress vote on Iran.
+
+The Pentagon is planning Kharg Island raids; 5,500 additional troops arrived this week with no White House denial.
+
+Trump has not decided, but 50,000 US troops now stand in the region awaiting orders.

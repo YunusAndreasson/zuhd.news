@@ -16,4 +16,8 @@ concepts:
   - "Gasoline"
 ---
 
-Canberra — Australia halves its fuel excise starting April 1. Albanese's 3-month cut saves 26 cents per litre, but Australia imports 80% of its refined fuel from overseas. 500 stations have run dry; 39 days of stockpiles won't outlast a 3-month cut if Hormuz stays closed.
+Canberra — Australia halves its fuel excise starting April 1.
+
+Albanese's 3-month cut saves 26 cents per litre, but Australia imports 80% of its refined fuel from overseas.
+
+500 stations have run dry; 39 days of stockpiles won't outlast a 3-month cut if Hormuz stays closed.

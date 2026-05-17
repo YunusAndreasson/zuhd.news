@@ -16,4 +16,8 @@ concepts:
   - "Labor market"
 ---
 
-San Francisco — AI is automating the path from skill to wealth before the next generation can cross it. An essay circulating on Hacker News argues that AI eliminates the years of mid-career practice that let previous generations convert expertise into premium income. 173 upvotes and 167 comments suggest the argument resonates inside the engineering community most directly affected.
+San Francisco — AI is automating the path from skill to wealth before the next generation can cross it.
+
+An essay circulating on Hacker News argues that AI eliminates the years of mid-career practice that let previous generations convert expertise into premium income.
+
+173 upvotes and 167 comments suggest the argument resonates inside the engineering community most directly affected.

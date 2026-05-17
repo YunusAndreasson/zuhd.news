@@ -13,4 +13,8 @@ sources:
 entities: []
 ---
 
-Frankfurt — [Germany](country:DE)'s .de top-level domain went dark for Domain Name System security resolvers. A DENIC signing error broke the cryptographic chain-of-trust, causing resolvers to reject every .de query. DENIC restored service by rollback within hours; no safe key-rollover procedure is yet standardised across registries.
+Frankfurt — [Germany](country:DE)'s .de top-level domain went dark for Domain Name System security resolvers.
+
+A DENIC signing error broke the cryptographic chain-of-trust, causing resolvers to reject every .de query.
+
+DENIC restored service by rollback within hours; no safe key-rollover procedure is yet standardised across registries.

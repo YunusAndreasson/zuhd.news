@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.14
 ---
 
-Islamabad — Pakistan deleted its defence minister's post attacking Israel. Asif called Israel "evil" while Pakistan hosted US-Iran talks; Israel responded by publicly questioning Pakistan's neutrality as mediator. Iran threatened to suspend Islamabad talks unless Israel halts Lebanon operations.
+Islamabad — Pakistan deleted its defence minister's post attacking Israel.
+
+Asif called Israel "evil" while Pakistan hosted US-Iran talks; Israel responded by publicly questioning Pakistan's neutrality as mediator.
+
+Iran threatened to suspend Islamabad talks unless Israel halts Lebanon operations.

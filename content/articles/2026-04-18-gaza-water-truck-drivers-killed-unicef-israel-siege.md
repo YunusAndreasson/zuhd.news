@@ -24,4 +24,8 @@ concepts:
 entities: []
 ---
 
-Gaza City — Israeli forces killed 2 water drivers at Mansoura. It is the only operational Mekorot supply point for the city; UNICEF suspended operations and called for accountability. Israel has not responded; the filling point serving hundreds of thousands remains offline.
+Gaza City — Israeli forces killed 2 water drivers at Mansoura.
+
+It is the only operational Mekorot supply point for the city; UNICEF suspended operations and called for accountability.
+
+Israel has not responded; the filling point serving hundreds of thousands remains offline.

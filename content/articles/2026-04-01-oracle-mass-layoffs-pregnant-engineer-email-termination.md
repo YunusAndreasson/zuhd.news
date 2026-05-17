@@ -17,4 +17,8 @@ concepts:
   - "At-will employment"
 ---
 
-Austin — Oracle emailed a 30-week pregnant engineer her termination at 6am. US at-will law requires no notice or severance, and she was locked out of all systems before the email arrived. Oracle declined to comment; US law offers pregnant workers no protection against at-will layoffs without provable discrimination.
+Austin — Oracle emailed a 30-week pregnant engineer her termination at 6am.
+
+US at-will law requires no notice or severance, and she was locked out of all systems before the email arrived.
+
+Oracle declined to comment; US law offers pregnant workers no protection against at-will layoffs without provable discrimination.

@@ -17,4 +17,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Suva — Fiji and 2 Pacific neighbours run 90%-solar microgrids. Pacific states import nearly all liquid fuel; Hormuz disruptions have made diesel costs exceed solar-plus-storage per kilowatt-hour. The remaining Pacific states face a deployment decision before the next fuel shock; regional scale would cut unit costs further.
+Suva — Fiji and 2 Pacific neighbours run 90%-solar microgrids.
+
+Pacific states import nearly all liquid fuel; Hormuz disruptions have made diesel costs exceed solar-plus-storage per kilowatt-hour.
+
+The remaining Pacific states face a deployment decision before the next fuel shock; regional scale would cut unit costs further.

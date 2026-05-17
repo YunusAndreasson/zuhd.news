@@ -32,4 +32,8 @@ concepts:
 sentimentDivergence: 0.57
 ---
 
-Beijing — China sanctioned Japanese lawmaker Furuya over Taiwan visits. Beijing froze Furuya's assets and barred his entry with immediate effect, targeting the head of Japan's cross-party Japan-Taiwan parliamentarians group. Japan demanded retraction; Takaichi's position that a Taiwan attack is existential for Japan rules out any concession.
+Beijing — China sanctioned Japanese lawmaker Furuya over Taiwan visits.
+
+Beijing froze Furuya's assets and barred his entry with immediate effect, targeting the head of Japan's cross-party Japan-Taiwan parliamentarians group.
+
+Japan demanded retraction; Takaichi's position that a Taiwan attack is existential for Japan rules out any concession.

@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Kyiv — 62% of [Ukraine](country:UA)'s garlic carries a gateway pathogen. GarV-B enables co-infection: GarV-C and ShVX appear only in plants already carrying it, the study found. Plant health authorities are urged to certify planting material before the viruses reach seed stocks.
+Kyiv — 62% of [Ukraine](country:UA)'s garlic carries a gateway pathogen.
+
+GarV-B enables co-infection: GarV-C and ShVX appear only in plants already carrying it, the study found.
+
+Plant health authorities are urged to certify planting material before the viruses reach seed stocks.

@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-King George Island — Antarctic soft coral colonies barely exchange larvae. Sequencing 90 specimens along the Western Antarctic Peninsula found 3 distinct genetic clusters with strong isolation by distance. The finding challenges Marine Protected Area planning that assumes free mixing; local collapses cannot self-repair.
+King George Island — Antarctic soft coral colonies barely exchange larvae.
+
+Sequencing 90 specimens along the Western Antarctic Peninsula found 3 distinct genetic clusters with strong isolation by distance.
+
+The finding challenges Marine Protected Area planning that assumes free mixing; local collapses cannot self-repair.

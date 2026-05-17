@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Tyre — Amal Khalil died in a shelter [Israel](country:IL) bombed. Israel's military struck the house 102 minutes later, then shot the Red Cross vehicle reaching her colleague. The Committee to Protect Journalists called it a grave breach of international humanitarian law; Israel has not responded.
+Tyre — Amal Khalil died in a shelter [Israel](country:IL) bombed.
+
+Israel's military struck the house 102 minutes later, then shot the Red Cross vehicle reaching her colleague.
+
+The Committee to Protect Journalists called it a grave breach of international humanitarian law; Israel has not responded.

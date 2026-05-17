@@ -17,4 +17,8 @@ concepts:
   - "Entrepreneurship"
 ---
 
-United States — A developer worked pest control before building its software. The founder of onhand.pro spent months as a licensed technician before writing a line of code — inverting the standard "talk to users" startup advice. The product is in development; whether lived experience beats customer interviews in vertical SaaS is a bet not yet settled.
+United States — A developer worked pest control before building its software.
+
+The founder of onhand.pro spent months as a licensed technician before writing a line of code — inverting the standard "talk to users" startup advice.
+
+The product is in development; whether lived experience beats customer interviews in vertical SaaS is a bet not yet settled.

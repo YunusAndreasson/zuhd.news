@@ -25,4 +25,8 @@ entities:
     kind: "commodity"
 ---
 
-Tehran — Araghchi tours capitals ahead of talks or war. Tehran bets thinning [US](country:US) interceptors, oil-price pain, and 2026 midterms force a deal, a University of Tehran analyst said. [Iran](country:IR) set a Hormuz blockade condition on any agreement.
+Tehran — Araghchi tours capitals ahead of talks or war.
+
+Tehran bets thinning [US](country:US) interceptors, oil-price pain, and 2026 midterms force a deal, a University of Tehran analyst said.
+
+[Iran](country:IR) set a Hormuz blockade condition on any agreement.

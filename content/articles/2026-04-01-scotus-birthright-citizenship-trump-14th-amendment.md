@@ -29,4 +29,8 @@ concepts:
 sentimentDivergence: 0.08
 ---
 
-Washington — 255,000 children per year face statelessness. Trump's order reinterprets the 14th Amendment to strip citizenship from children of undocumented and temporary-visa parents; every lower court rejected it. The 6-3 conservative court now decides whether jus soli, settled since 1898, survives an executive order.
+Washington — 255,000 children per year face statelessness.
+
+Trump's order reinterprets the 14th Amendment to strip citizenship from children of undocumented and temporary-visa parents; every lower court rejected it.
+
+The 6-3 conservative court now decides whether jus soli, settled since 1898, survives an executive order.

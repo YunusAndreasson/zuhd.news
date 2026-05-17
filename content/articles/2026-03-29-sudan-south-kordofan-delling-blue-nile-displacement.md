@@ -18,4 +18,8 @@ concepts:
   - "South Kordofan"
 ---
 
-Delling — RSF struck Delling, opening Sudan's 3rd active front. SAF claims it repelled the assault; local sources describe fighting in Delling's market districts while 425 families fled Geisan, Blue Nile, overnight. A local leader warned Delling risks falling as El Fasher did; humanitarian access to South Kordofan remains blocked.
+Delling — RSF struck Delling, opening Sudan's 3rd active front.
+
+SAF claims it repelled the assault; local sources describe fighting in Delling's market districts while 425 families fled Geisan, Blue Nile, overnight.
+
+A local leader warned Delling risks falling as El Fasher did; humanitarian access to South Kordofan remains blocked.

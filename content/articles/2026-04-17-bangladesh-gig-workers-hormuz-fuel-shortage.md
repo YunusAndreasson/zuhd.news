@@ -24,4 +24,8 @@ entities:
     kind: "commodity"
 ---
 
-Dhaka — Rideshare drivers queue 6 hours for fuel. Bangladesh imports 95% of its energy; a 7-week US-Iran conflict has cut Strait of Hormuz shipments and driven compressed natural gas surcharges that erase driver margins. Bangladesh has no strategic reserve and its government has announced no subsidy or rationing.
+Dhaka — Rideshare drivers queue 6 hours for fuel.
+
+Bangladesh imports 95% of its energy; a 7-week US-Iran conflict has cut Strait of Hormuz shipments and driven compressed natural gas surcharges that erase driver margins.
+
+Bangladesh has no strategic reserve and its government has announced no subsidy or rationing.

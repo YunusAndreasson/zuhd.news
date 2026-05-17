@@ -14,4 +14,8 @@ concepts:
   - "Hepatocellular carcinoma"
 ---
 
-London — GLI1 is 7 times overexpressed in liver cancer. A meta-analysis of 10 studies found GLI1 elevation predicts intrahepatic metastasis and vascular invasion — both signs of aggressive hepatocellular carcinoma. Prospective trials are needed; current evidence certainty for several outcomes is rated low.
+London — GLI1 is 7 times overexpressed in liver cancer.
+
+A meta-analysis of 10 studies found GLI1 elevation predicts intrahepatic metastasis and vascular invasion — both signs of aggressive hepatocellular carcinoma.
+
+Prospective trials are needed; current evidence certainty for several outcomes is rated low.

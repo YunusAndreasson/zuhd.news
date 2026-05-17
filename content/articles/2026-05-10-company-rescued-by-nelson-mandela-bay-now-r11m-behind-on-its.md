@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Gqeberha — R10M written off in 2023, R11M owed now. [South Africa](country:ZA)'s Nelson Mandela Bay leased Coega Steels a R25M transformer — now under judicial review — while other debtors face disconnection. R11M in arrears is due by May 13; the transformer lease returns to the Pretoria High Court Monday.
+Gqeberha — R10M written off in 2023, R11M owed now.
+
+[South Africa](country:ZA)'s Nelson Mandela Bay leased Coega Steels a R25M transformer — now under judicial review — while other debtors face disconnection.
+
+R11M in arrears is due by May 13; the transformer lease returns to the Pretoria High Court Monday.

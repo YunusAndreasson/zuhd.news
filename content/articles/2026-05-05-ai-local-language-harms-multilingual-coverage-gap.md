@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Amsterdam — AI surveillance in [India](country:IN), exclusion at [US](country:US) borders. Global Voices mapped how AI harms — border enforcement, surveillance, language marginalization — concentrate in communities whose news is non-English. English-only benchmarks miss these failure modes, letting harms in most speakers' first languages go unaudited.
+Amsterdam — AI surveillance in [India](country:IN), exclusion at [US](country:US) borders.
+
+Global Voices mapped how AI harms — border enforcement, surveillance, language marginalization — concentrate in communities whose news is non-English.
+
+English-only benchmarks miss these failure modes, letting harms in most speakers' first languages go unaudited.

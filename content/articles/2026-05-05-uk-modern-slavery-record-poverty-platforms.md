@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — Digital platforms enable traffickers to recruit and control [British](country:GB) victims at scale. British nationals are now the most common slavery victims, driven by rising debt and costs. Eleanor Lyons, the government's anti-slavery commissioner, called for specialist police units and business fines as enforcement falls behind.
+London — Digital platforms enable traffickers to recruit and control [British](country:GB) victims at scale.
+
+British nationals are now the most common slavery victims, driven by rising debt and costs.
+
+Eleanor Lyons, the government's anti-slavery commissioner, called for specialist police units and business fines as enforcement falls behind.

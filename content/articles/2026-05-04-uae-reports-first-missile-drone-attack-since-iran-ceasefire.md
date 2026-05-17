@@ -41,4 +41,8 @@ entities:
     kind: "commodity"
 ---
 
-Fujairah — [Iran](country:IR) struck Fujairah's oil terminal, breaking April's ceasefire, the [UAE](country:AE) reported. The emirate routes crude exports around the Strait of Hormuz — a bypass designed to survive a blockade, now also struck. Brent crude climbed above $113; an Iranian official denied the attack even as the fire burned.
+Fujairah — [Iran](country:IR) struck Fujairah's oil terminal, breaking April's ceasefire, the [UAE](country:AE) reported.
+
+The emirate routes crude exports around the Strait of Hormuz — a bypass designed to survive a blockade, now also struck.
+
+Brent crude climbed above $113; an Iranian official denied the attack even as the fire burned.

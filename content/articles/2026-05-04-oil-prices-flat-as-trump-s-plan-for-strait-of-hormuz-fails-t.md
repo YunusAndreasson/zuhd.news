@@ -38,4 +38,8 @@ entities:
     kind: "stock"
 ---
 
-Singapore — Brent crude held near $108 despite Project Freedom. Project Freedom has no US warship escorts; [Iran](country:IR)'s effective closure removed 14.5 million barrels a day from global supply, Goldman Sachs estimated. Eurasia Group warns [the US](country:US) is weeks from $5 average petrol; even a deal leaves months of supply backlog.
+Singapore — Brent crude held near $108 despite Project Freedom.
+
+Project Freedom has no US warship escorts; [Iran](country:IR)'s effective closure removed 14.5 million barrels a day from global supply, Goldman Sachs estimated.
+
+Eurasia Group warns [the US](country:US) is weeks from $5 average petrol; even a deal leaves months of supply backlog.

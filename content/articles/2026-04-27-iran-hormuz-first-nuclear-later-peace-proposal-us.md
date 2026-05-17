@@ -33,4 +33,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Tehran — [Iran](country:IR) proposed opening Hormuz before nuclear terms are set. The plan, conveyed through [Pakistan](country:PK) mediators, extends the ceasefire first, deferring uranium enrichment terms Washington has demanded. Trump said Iran offered "a lot but not enough"; both Hormuz blockades remain.
+Tehran — [Iran](country:IR) proposed opening Hormuz before nuclear terms are set.
+
+The plan, conveyed through [Pakistan](country:PK) mediators, extends the ceasefire first, deferring uranium enrichment terms Washington has demanded.
+
+Trump said Iran offered "a lot but not enough"; both Hormuz blockades remain.

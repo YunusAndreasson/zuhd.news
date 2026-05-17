@@ -17,4 +17,8 @@ concepts:
   - "Axios (website)"
 ---
 
-Washington — Altman warned US policymakers: superintelligence is imminent. He named AI-assisted bioweapons and cyberattacks as risks requiring government-tech coordination within a year. Congress has yet to act; the coordination Altman proposed would require industry access to government threat intelligence.
+Washington — Altman warned US policymakers: superintelligence is imminent.
+
+He named AI-assisted bioweapons and cyberattacks as risks requiring government-tech coordination within a year.
+
+Congress has yet to act; the coordination Altman proposed would require industry access to government threat intelligence.

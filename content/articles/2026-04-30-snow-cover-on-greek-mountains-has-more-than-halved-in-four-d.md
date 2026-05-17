@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Athens — Vanishing snowpack is cutting [Greece](country:GR)'s hydropower capacity and lengthening its wildfire seasons, a 40-year satellite study found. [Greece](country:GR)'s mountain snowcover — its main summer water source — has more than halved since the 1980s. Researchers warn similar losses are coming for southern Spain, Italy and the Levant.
+Athens — Vanishing snowpack is cutting [Greece](country:GR)'s hydropower capacity and lengthening its wildfire seasons, a 40-year satellite study found.
+
+[Greece](country:GR)'s mountain snowcover — its main summer water source — has more than halved since the 1980s.
+
+Researchers warn similar losses are coming for southern Spain, Italy and the Levant.

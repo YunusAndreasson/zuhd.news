@@ -23,4 +23,8 @@ entities:
     kind: "commodity"
 ---
 
-Lobito — [US](country:US) backs Angola's Lobito Railway against [China](country:CN). The Lobito corridor links [DR Congo](country:CD) cobalt, lithium, and copper to Atlantic ports, competing with China-backed routes that dominate current export logistics. [Angola](country:AO) and DR Congo hold competing offers from Washington and Beijing; neither has committed exclusively to either side.
+Lobito — [US](country:US) backs Angola's Lobito Railway against [China](country:CN).
+
+The Lobito corridor links [DR Congo](country:CD) cobalt, lithium, and copper to Atlantic ports, competing with China-backed routes that dominate current export logistics.
+
+[Angola](country:AO) and DR Congo hold competing offers from Washington and Beijing; neither has committed exclusively to either side.

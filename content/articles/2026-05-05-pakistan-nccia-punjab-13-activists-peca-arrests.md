@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Lahore — 13 arrested in Punjab for army criticism. [Pakistan](country:PK)'s Prevention of Electronic Crimes Act, broadened in 2025, criminalizes military criticism; its national cybercrime agency enforces that boundary province-wide. Amnesty International documented Pakistan's speech laws as detention tools; 13 separate cases are now proceeding.
+Lahore — 13 arrested in Punjab for army criticism.
+
+[Pakistan](country:PK)'s Prevention of Electronic Crimes Act, broadened in 2025, criminalizes military criticism; its national cybercrime agency enforces that boundary province-wide.
+
+Amnesty International documented Pakistan's speech laws as detention tools; 13 separate cases are now proceeding.

@@ -17,4 +17,8 @@ concepts:
   - "Women's rights"
 ---
 
-Cairo — A Cairo court acquitted a man despite 3 confirmed harassment incidents. The court gave no explanation — a pattern in Egyptian misdemeanor rulings. EIPR is demanding the state prosecutor appeal; only public prosecution can challenge misdemeanor acquittals in Egypt.
+Cairo — A Cairo court acquitted a man despite 3 confirmed harassment incidents.
+
+The court gave no explanation — a pattern in Egyptian misdemeanor rulings.
+
+EIPR is demanding the state prosecutor appeal; only public prosecution can challenge misdemeanor acquittals in Egypt.

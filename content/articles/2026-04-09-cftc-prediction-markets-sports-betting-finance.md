@@ -18,4 +18,8 @@ concepts:
   - "Arizona"
 ---
 
-Washington — CFTC argues sports bets are commodity derivatives. Sports event contracts — like those on Kalshi — structurally resemble commodity swaps and fall under federal law. Arizona's April 13 Kalshi arraignment forces a ruling on whether federal or state law governs prediction markets.
+Washington — CFTC argues sports bets are commodity derivatives.
+
+Sports event contracts — like those on Kalshi — structurally resemble commodity swaps and fall under federal law.
+
+Arizona's April 13 Kalshi arraignment forces a ruling on whether federal or state law governs prediction markets.

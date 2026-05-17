@@ -17,4 +17,8 @@ concepts:
   - "Shear thinning"
 ---
 
-Chicago — Your oat milk flows like ketchup, not cow milk. All plant milks except rice are non-Newtonian: trace gums keep them shelf-stable but cause viscosity to drop under pressure, unlike dairy's constant flow. Research now maps the physics precisely enough to design plant milks that foam and steam like dairy.
+Chicago — Your oat milk flows like ketchup, not cow milk.
+
+All plant milks except rice are non-Newtonian: trace gums keep them shelf-stable but cause viscosity to drop under pressure, unlike dairy's constant flow.
+
+Research now maps the physics precisely enough to design plant milks that foam and steam like dairy.

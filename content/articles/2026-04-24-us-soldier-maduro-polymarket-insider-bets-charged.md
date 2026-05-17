@@ -17,4 +17,8 @@ concepts:
   - "Head of state"
 ---
 
-Washington — A soldier made $400,000 betting on Maduro's capture. Master Sgt. Gannon Van Dyke helped plan the January [Venezuela](country:VE) raid, then placed 13 Polymarket wagers using classified knowledge of the outcome. Van Dyke faces 60 years; legislators are drafting rules to bar government employees from trading on classified events.
+Washington — A soldier made $400,000 betting on Maduro's capture.
+
+Master Sgt. Gannon Van Dyke helped plan the January [Venezuela](country:VE) raid, then placed 13 Polymarket wagers using classified knowledge of the outcome.
+
+Van Dyke faces 60 years; legislators are drafting rules to bar government employees from trading on classified events.

@@ -21,4 +21,8 @@ eventCoverage: 71
 entities: []
 ---
 
-Istanbul — Phosphine gas killed a Hamburg family of 4 in their hotel. 6 defendants including the hotel owner face up to 22 years in [Turkey](country:TR) for applying illegal aluminum phosphide pesticide in occupied guest rooms. Authorities have promised stricter hotel inspections; no new national safety regulation has been announced.
+Istanbul — Phosphine gas killed a Hamburg family of 4 in their hotel.
+
+6 defendants including the hotel owner face up to 22 years in [Turkey](country:TR) for applying illegal aluminum phosphide pesticide in occupied guest rooms.
+
+Authorities have promised stricter hotel inspections; no new national safety regulation has been announced.

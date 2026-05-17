@@ -27,4 +27,8 @@ concepts:
 sentimentDivergence: 0.8
 ---
 
-Beijing — Beijing produced the war's first formal ceasefire framework. Wang Yi and Ishaq Dar's 5-point plan demands immediate cessation of hostilities, civilian and energy facility protection, restored Hormuz passage, and a UN-based settlement. Qatar warned Iran's Gulf strikes crossed "many red lines" as Washington kept escalation on the table.
+Beijing — Beijing produced the war's first formal ceasefire framework.
+
+Wang Yi and Ishaq Dar's 5-point plan demands immediate cessation of hostilities, civilian and energy facility protection, restored Hormuz passage, and a UN-based settlement.
+
+Qatar warned Iran's Gulf strikes crossed "many red lines" as Washington kept escalation on the table.

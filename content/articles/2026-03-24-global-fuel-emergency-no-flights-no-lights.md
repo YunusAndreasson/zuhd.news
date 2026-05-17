@@ -21,4 +21,8 @@ concepts:
   - "United States"
 ---
 
-Manila — Philippines declared a national energy emergency as the Middle East war blocked fuel shipments. Bangladesh hiked jet fuel prices 111% since February — the Strait of Hormuz blockade has removed a fifth of the world's daily oil supply — and Sri Lanka ordered street lights and billboard lighting switched off to cut energy use by 25%. Vietnam's national carrier is suspending two dozen domestic flights weekly from next month as Gulf supplies fail to reach Southeast Asia.
+Manila — Philippines declared a national energy emergency as the Middle East war blocked fuel shipments.
+
+Bangladesh hiked jet fuel prices 111% since February — the Strait of Hormuz blockade has removed a fifth of the world's daily oil supply — and Sri Lanka ordered street lights and billboard lighting switched off to cut energy use by 25%.
+
+Vietnam's national carrier is suspending two dozen domestic flights weekly from next month as Gulf supplies fail to reach Southeast Asia.

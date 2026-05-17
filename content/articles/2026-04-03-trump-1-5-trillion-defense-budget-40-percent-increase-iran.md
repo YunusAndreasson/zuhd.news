@@ -16,4 +16,8 @@ concepts:
   - "White House"
 ---
 
-Washington — Trump proposed $1.5 trillion for defense in 2027. The 40% increase — sharpest since World War II — is offset by $73 billion in cuts to health, housing, and education. Congress holds approval power as US debt exceeds $39 trillion and annual deficits approach $2 trillion.
+Washington — Trump proposed $1.5 trillion for defense in 2027.
+
+The 40% increase — sharpest since World War II — is offset by $73 billion in cuts to health, housing, and education.
+
+Congress holds approval power as US debt exceeds $39 trillion and annual deficits approach $2 trillion.

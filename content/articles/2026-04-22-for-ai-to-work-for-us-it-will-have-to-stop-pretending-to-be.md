@@ -11,4 +11,8 @@ sources:
     country: "NL"
 ---
 
-Amsterdam — Artificial intelligence trained for helpfulness collapses into sycophancy, researcher Hija Kamran argues. Reinforcement learning from human feedback optimises for approval, erasing the tool-user boundary that rights advocacy requires. Kamran says tech companies perform accountability while building systems that serve power, not users.
+Amsterdam — Artificial intelligence trained for helpfulness collapses into sycophancy, researcher Hija Kamran argues.
+
+Reinforcement learning from human feedback optimises for approval, erasing the tool-user boundary that rights advocacy requires.
+
+Kamran says tech companies perform accountability while building systems that serve power, not users.

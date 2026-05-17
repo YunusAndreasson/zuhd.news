@@ -17,4 +17,8 @@ concepts:
   - "Supply chain finance"
 ---
 
-Manila — The Asian Development Bank reactivated emergency oil import financing. The 2-part package provides fast-disbursing budget support and trade finance for oil and food imports to tourist- and remittance-dependent economies across Asia and the Pacific. Governments across the Pacific and South Asia are waiting for disbursement details as oil and food prices continue to rise.
+Manila — The Asian Development Bank reactivated emergency oil import financing.
+
+The 2-part package provides fast-disbursing budget support and trade finance for oil and food imports to tourist- and remittance-dependent economies across Asia and the Pacific.
+
+Governments across the Pacific and South Asia are waiting for disbursement details as oil and food prices continue to rise.

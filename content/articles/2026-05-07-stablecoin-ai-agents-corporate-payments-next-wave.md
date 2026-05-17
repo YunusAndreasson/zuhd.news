@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Miami — Stablecoin settlement takes seconds without human approval, making it the practical rail for autonomous AI agent payments, industry executives said. Stripe-backed Tempo and similar firms are pitching stablecoin infrastructure to corporate treasuries. Regulation of autonomous financial agents remains unwritten.
+Miami — Stablecoin settlement takes seconds without human approval, making it the practical rail for autonomous AI agent payments, industry executives said.
+
+Stripe-backed Tempo and similar firms are pitching stablecoin infrastructure to corporate treasuries.
+
+Regulation of autonomous financial agents remains unwritten.

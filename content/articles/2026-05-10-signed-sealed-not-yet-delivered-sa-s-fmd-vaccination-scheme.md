@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Pretoria — 2.59M of [South Africa](country:ZA)'s 14M cattle are vaccinated. A High Court forced the gazettal after the government missed its deadline; unregistered communal herds still spread foot-and-mouth disease to vaccinated farms. The case returns to court Monday; 4 enrollment preconditions remain unmet, including formal vaccine allocation for private use.
+Pretoria — 2.59M of [South Africa](country:ZA)'s 14M cattle are vaccinated.
+
+A High Court forced the gazettal after the government missed its deadline; unregistered communal herds still spread foot-and-mouth disease to vaccinated farms.
+
+The case returns to court Monday; 4 enrollment preconditions remain unmet, including formal vaccine allocation for private use.

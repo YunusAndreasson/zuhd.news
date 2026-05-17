@@ -26,4 +26,8 @@ sentimentDivergence: 0.13
 entities: []
 ---
 
-Nairobi — [France](country:FR)'s Africa summit opens Monday in an anglophone capital for the first time. France was expelled from military bases across the Sahel; [Kenya](country:KE) is now its primary strategic partner on the continent. The two-day summit ends Tuesday; its outcome tests whether Paris can rebuild African ties after the Sahel setbacks.
+Nairobi — [France](country:FR)'s Africa summit opens Monday in an anglophone capital for the first time.
+
+France was expelled from military bases across the Sahel; [Kenya](country:KE) is now its primary strategic partner on the continent.
+
+The two-day summit ends Tuesday; its outcome tests whether Paris can rebuild African ties after the Sahel setbacks.

@@ -15,4 +15,8 @@ concepts:
   - "Wrongful arrest"
 ---
 
-Nashville — AI matched Angela Lipps to another woman's crimes. Tennessee police used the match — no fingerprints, no ID check — to arrest Lipps for offenses committed 1,500 miles away in North Dakota. No US standard governs facial-match-only arrests; Lipps has no mechanism to challenge the algorithm.
+Nashville — AI matched Angela Lipps to another woman's crimes.
+
+Tennessee police used the match — no fingerprints, no ID check — to arrest Lipps for offenses committed 1,500 miles away in North Dakota.
+
+No US standard governs facial-match-only arrests; Lipps has no mechanism to challenge the algorithm.

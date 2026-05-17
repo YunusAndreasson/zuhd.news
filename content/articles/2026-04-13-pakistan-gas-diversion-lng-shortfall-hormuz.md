@@ -17,4 +17,8 @@ concepts:
   - "Tariff"
 ---
 
-Islamabad — Pakistan's liquefied natural gas imports collapsed after Hormuz closed. The fuel powers 5,000MW of Punjab plants; its absence forces triage between 7 million gas consumers and 30 million power users. Furnace oil prices doubled; summer demand peaks at 28,000MW — double current supply — with the triage decision unresolved.
+Islamabad — Pakistan's liquefied natural gas imports collapsed after Hormuz closed.
+
+The fuel powers 5,000MW of Punjab plants; its absence forces triage between 7 million gas consumers and 30 million power users.
+
+Furnace oil prices doubled; summer demand peaks at 28,000MW — double current supply — with the triage decision unresolved.

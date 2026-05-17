@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Cairo — Sayed Moshagheb was rearrested hours after completing an 11-year sentence. [Egypt](country:EG)'s security forces use "rotation": opening new cases before release paperwork clears to restart pretrial detention and circumvent sentence limits. A Giza court extended his detention to 15 days; he faces charges of inciting riots and unlawful assembly.
+Cairo — Sayed Moshagheb was rearrested hours after completing an 11-year sentence.
+
+[Egypt](country:EG)'s security forces use "rotation": opening new cases before release paperwork clears to restart pretrial detention and circumvent sentence limits.
+
+A Giza court extended his detention to 15 days; he faces charges of inciting riots and unlawful assembly.

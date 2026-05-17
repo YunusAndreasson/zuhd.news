@@ -16,4 +16,8 @@ concepts:
   - "Donald Trump"
 ---
 
-Beirut — [Israel](country:IL) killed journalist Amal Khalil in southern [Lebanon](country:LB) on the ceasefire's deadliest day. [The US](country:US) brokered a 3-week extension; Israel's envoy conditioned talks on uprooting Hezbollah, not troop withdrawal. [Lebanon](country:LB) demands withdrawal, detainee return, and border delineation before the deadline.
+Beirut — [Israel](country:IL) killed journalist Amal Khalil in southern [Lebanon](country:LB) on the ceasefire's deadliest day.
+
+[The US](country:US) brokered a 3-week extension; Israel's envoy conditioned talks on uprooting Hezbollah, not troop withdrawal.
+
+[Lebanon](country:LB) demands withdrawal, detainee return, and border delineation before the deadline.

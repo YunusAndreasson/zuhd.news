@@ -28,4 +28,8 @@ eventCoverage: 311
 sentimentDivergence: 0.14
 ---
 
-Seattle — Amazon paid $11.57B for satellite firm Globalstar. The acquisition targets Globalstar's exclusive Band 53 midband spectrum for direct-to-device service, not its satellite fleet. Apple's $1.5B stake converts to Amazon equity; Amazon must maintain Emergency SOS on iPhones as a deal condition.
+Seattle — Amazon paid $11.57B for satellite firm Globalstar.
+
+The acquisition targets Globalstar's exclusive Band 53 midband spectrum for direct-to-device service, not its satellite fleet.
+
+Apple's $1.5B stake converts to Amazon equity; Amazon must maintain Emergency SOS on iPhones as a deal condition.

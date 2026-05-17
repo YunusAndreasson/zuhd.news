@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-New York — The International Rescue Committee deployed AI to triage refugee queries where caseworkers are absent. In crisis zones the committee's AI agents field asylum and shelter questions; an imperfect answer, the committee concluded, is better than none. Wider deployment across its crisis programs awaits accuracy reviews.
+New York — The International Rescue Committee deployed AI to triage refugee queries where caseworkers are absent.
+
+In crisis zones the committee's AI agents field asylum and shelter questions; an imperfect answer, the committee concluded, is better than none.
+
+Wider deployment across its crisis programs awaits accuracy reviews.

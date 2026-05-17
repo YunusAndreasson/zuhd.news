@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Cambridge — 'Quantum jamming' keeps messages secure even if quantum physics itself fails. The technique defeats adversaries with capabilities beyond quantum mechanics — a threat post-quantum standards do not cover. The protocols remain theoretical, with no standardisation timeline, even as governments fund defenses against quantum computers.
+Cambridge — 'Quantum jamming' keeps messages secure even if quantum physics itself fails.
+
+The technique defeats adversaries with capabilities beyond quantum mechanics — a threat post-quantum standards do not cover.
+
+The protocols remain theoretical, with no standardisation timeline, even as governments fund defenses against quantum computers.

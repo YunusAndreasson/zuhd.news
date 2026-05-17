@@ -18,4 +18,8 @@ concepts:
   - "Cryptography"
 ---
 
-New York — Quantum-resistant crypto tokens gained 50% in 24 hours. Google lowered the qubit threshold to crack Bitcoin, pushing traders to set 2029 as their migration deadline. Bitcoin is down 50% against the S&P 500 since last year's Quantum Summit; no blockchain has a deployed post-quantum path.
+New York — Quantum-resistant crypto tokens gained 50% in 24 hours.
+
+Google lowered the qubit threshold to crack Bitcoin, pushing traders to set 2029 as their migration deadline.
+
+Bitcoin is down 50% against the S&P 500 since last year's Quantum Summit; no blockchain has a deployed post-quantum path.

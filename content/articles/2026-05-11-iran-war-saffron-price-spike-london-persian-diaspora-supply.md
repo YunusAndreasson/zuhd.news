@@ -22,4 +22,8 @@ entities:
     kind: "chokepoint"
 ---
 
-London — Saffron at £2,000/kg — up 67% since the war. [Iran](country:IR) grows 90% of world saffron; the Hormuz blockade ended bulk exports, supplier Moein Tayari said. Trump rejected Iran's peace terms Sunday as "totally unacceptable"; London's Persian restaurants absorb losses with no ceasefire in sight.
+London — Saffron at £2,000/kg — up 67% since the war.
+
+[Iran](country:IR) grows 90% of world saffron; the Hormuz blockade ended bulk exports, supplier Moein Tayari said.
+
+Trump rejected Iran's peace terms Sunday as "totally unacceptable"; London's Persian restaurants absorb losses with no ceasefire in sight.

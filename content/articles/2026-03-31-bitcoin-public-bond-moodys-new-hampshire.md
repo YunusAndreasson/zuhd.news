@@ -17,4 +17,8 @@ concepts:
   - "Collateral (finance)"
 ---
 
-Concord — Moody's rated the first Bitcoin-backed public bond. New Hampshire's Finance Authority issued bonds backed by Bitcoin held by BitGo, overcollateralized 1.6x, earning a provisional Ba2 rating — two notches below investment grade. Ba2 is speculative-grade, but gives pension funds and insurers a first framework for buying crypto-backed debt.
+Concord — Moody's rated the first Bitcoin-backed public bond.
+
+New Hampshire's Finance Authority issued bonds backed by Bitcoin held by BitGo, overcollateralized 1.6x, earning a provisional Ba2 rating — two notches below investment grade.
+
+Ba2 is speculative-grade, but gives pension funds and insurers a first framework for buying crypto-backed debt.

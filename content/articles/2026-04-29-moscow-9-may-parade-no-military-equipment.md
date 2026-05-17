@@ -32,4 +32,8 @@ concepts:
 entities: []
 ---
 
-Moscow — Putin's 25th Victory Day proceeds with no armor. [Russia](country:RU)'s Defense Ministry cited the "operational situation" — [Ukraine](country:UA) has destroyed thousands of Russian tanks since 2022, leaving none spare for parade duty. He will address Red Square without tanks or heavy weapons for the first time as president.
+Moscow — Putin's 25th Victory Day proceeds with no armor.
+
+[Russia](country:RU)'s Defense Ministry cited the "operational situation" — [Ukraine](country:UA) has destroyed thousands of Russian tanks since 2022, leaving none spare for parade duty.
+
+He will address Red Square without tanks or heavy weapons for the first time as president.

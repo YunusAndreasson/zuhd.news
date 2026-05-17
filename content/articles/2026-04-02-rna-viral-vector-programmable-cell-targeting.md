@@ -18,4 +18,8 @@ concepts:
   - "Bioengineering"
 ---
 
-London — Scientists built a viral vector that activates only inside diseased cells. Current vectors enter any cell; this one confirms surface proteins before entry and intracellular levels before replication — a kill-switch drug can disable it if the therapy misfires. The vector was tested in cell cultures; animal trials are next.
+London — Scientists built a viral vector that activates only inside diseased cells.
+
+Current vectors enter any cell; this one confirms surface proteins before entry and intracellular levels before replication — a kill-switch drug can disable it if the therapy misfires.
+
+The vector was tested in cell cultures; animal trials are next.

@@ -24,4 +24,8 @@ concepts:
   - "Randolph Moss"
 ---
 
-Washington — Federal judge permanently blocked NPR and PBS defunding. Judge Moss ruled Trump's order violated the First Amendment — cutting funds to punish unfavorable coverage is viewpoint discrimination, not policy. The White House called it 'a ridiculous ruling' and will appeal; Congress separately defunded CPB in July.
+Washington — Federal judge permanently blocked NPR and PBS defunding.
+
+Judge Moss ruled Trump's order violated the First Amendment — cutting funds to punish unfavorable coverage is viewpoint discrimination, not policy.
+
+The White House called it 'a ridiculous ruling' and will appeal; Congress separately defunded CPB in July.

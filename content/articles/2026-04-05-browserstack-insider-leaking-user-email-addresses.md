@@ -11,4 +11,8 @@ sources:
     country: "IE"
 ---
 
-Dublin — A BrowserStack insider is leaking user email addresses. A user traced spam to an address used only for BrowserStack, proving an insider source via email aliasing. Insider access breaches produce no CVE and are undetectable without aliasing; BrowserStack has not responded publicly.
+Dublin — A BrowserStack insider is leaking user email addresses.
+
+A user traced spam to an address used only for BrowserStack, proving an insider source via email aliasing.
+
+Insider access breaches produce no CVE and are undetectable without aliasing; BrowserStack has not responded publicly.

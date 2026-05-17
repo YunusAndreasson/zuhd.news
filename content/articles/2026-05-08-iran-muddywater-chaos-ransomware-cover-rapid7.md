@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Tehran — MuddyWater used ransomware as camouflage in a recent intrusion. What looked like a criminal ransomware attack was [Iran](country:IR)'s Ministry of Intelligence using a commodity kit as a deniability layer. Security researchers attributed the attack to Iran's Ministry of Intelligence, flagging the technique as a template for state deniability.
+Tehran — MuddyWater used ransomware as camouflage in a recent intrusion.
+
+What looked like a criminal ransomware attack was [Iran](country:IR)'s Ministry of Intelligence using a commodity kit as a deniability layer.
+
+Security researchers attributed the attack to Iran's Ministry of Intelligence, flagging the technique as a template for state deniability.

@@ -18,4 +18,8 @@ concepts:
   - "South Africa"
 ---
 
-Johannesburg — ATM records link R11m in cash to Brian Molefe. 706 deposits into alleged slush fund Palcocap cluster around Molefe's successive homes and offices, shifting with each job change. Molefe, now MK Party treasurer, has not responded; no prosecution has followed the Zondo Commission's finding of reasonable grounds for Gupta bribery.
+Johannesburg — ATM records link R11m in cash to Brian Molefe.
+
+706 deposits into alleged slush fund Palcocap cluster around Molefe's successive homes and offices, shifting with each job change.
+
+Molefe, now MK Party treasurer, has not responded; no prosecution has followed the Zondo Commission's finding of reasonable grounds for Gupta bribery.

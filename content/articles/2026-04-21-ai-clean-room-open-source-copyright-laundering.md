@@ -22,4 +22,8 @@ entities:
     kind: "stock"
 ---
 
-New York — Malus.sh sells AI clones of copyleft software. The 1982 IBM clean-room precedent lets AI-reimplemented code claim originality and shed copyleft obligations if the model never copied the source. Malus charges via Stripe; its creators call it "satire" aimed at forcing copyleft licenses into court.
+New York — Malus.sh sells AI clones of copyleft software.
+
+The 1982 IBM clean-room precedent lets AI-reimplemented code claim originality and shed copyleft obligations if the model never copied the source.
+
+Malus charges via Stripe; its creators call it "satire" aimed at forcing copyleft licenses into court.

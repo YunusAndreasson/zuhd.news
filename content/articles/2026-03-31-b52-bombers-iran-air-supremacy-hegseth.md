@@ -24,4 +24,8 @@ concepts:
   - "Pete Hegseth"
 ---
 
-Tehran — B-52s now fly unchallenged over Iranian airspace. Pentagon confirmed bombers struck Tehran and Isfahan on Monday; US forces have hit more than 11,000 targets in a month. Hegseth called next days 'decisive' but refused to rule out ground forces or set an end date.
+Tehran — B-52s now fly unchallenged over Iranian airspace.
+
+Pentagon confirmed bombers struck Tehran and Isfahan on Monday; US forces have hit more than 11,000 targets in a month.
+
+Hegseth called next days 'decisive' but refused to rule out ground forces or set an end date.

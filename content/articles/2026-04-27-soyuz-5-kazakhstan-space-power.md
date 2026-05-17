@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Baikonur — Soyuz-5's test launch marks [Kazakhstan](country:KZ)'s shift to co-operator. For decades Kazakhstan leased Baikonur to [Russia](country:RU) for rent; Soyuz-5 gives Astana equity in launch capability and orbital slots. Russia's loss of Western launch partners makes Kazakhstan its critical infrastructure; Astana can leverage that dependence, analysts say.
+Baikonur — Soyuz-5's test launch marks [Kazakhstan](country:KZ)'s shift to co-operator.
+
+For decades Kazakhstan leased Baikonur to [Russia](country:RU) for rent; Soyuz-5 gives Astana equity in launch capability and orbital slots.
+
+Russia's loss of Western launch partners makes Kazakhstan its critical infrastructure; Astana can leverage that dependence, analysts say.

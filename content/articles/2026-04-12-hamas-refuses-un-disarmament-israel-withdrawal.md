@@ -11,4 +11,8 @@ sources:
     country: "EG"
 ---
 
-Cairo — Hamas rejected UN disarmament plans. The UN offered an 8-month timeline; Hamas says Israel hasn't advanced Phase 2 withdrawal commitments, making any arms surrender premature. The ceasefire holds; Hamas told the UN it will not disarm before Israel commits to Phase 2 withdrawal.
+Cairo — Hamas rejected UN disarmament plans.
+
+The UN offered an 8-month timeline; Hamas says Israel hasn't advanced Phase 2 withdrawal commitments, making any arms surrender premature.
+
+The ceasefire holds; Hamas told the UN it will not disarm before Israel commits to Phase 2 withdrawal.

@@ -15,4 +15,8 @@ concepts:
   - "Shingles"
 ---
 
-Chicago — Birth order shapes risk across 150 health conditions. A 10-million-sibling study links firstborns to autism and allergies and later-borns to migraines and substance abuse. Researchers found no single cause; maternal immune changes in first pregnancies are the leading autism hypothesis.
+Chicago — Birth order shapes risk across 150 health conditions.
+
+A 10-million-sibling study links firstborns to autism and allergies and later-borns to migraines and substance abuse.
+
+Researchers found no single cause; maternal immune changes in first pregnancies are the leading autism hypothesis.

@@ -17,4 +17,8 @@ concepts:
   - "Nvidia"
 ---
 
-Paris — Mistral AI took on $830 million in debt. The loan funds a 44-megawatt data center with 13,800 NVIDIA GB300 GPUs, backed by a consortium of 7 banks. Mistral targets 200 megawatts of European compute by end-2027, carrying debt on a startup not yet profitable.
+Paris — Mistral AI took on $830 million in debt.
+
+The loan funds a 44-megawatt data center with 13,800 NVIDIA GB300 GPUs, backed by a consortium of 7 banks.
+
+Mistral targets 200 megawatts of European compute by end-2027, carrying debt on a startup not yet profitable.

@@ -18,4 +18,8 @@ concepts:
   - "Cloud computing"
 ---
 
-Mumbai — India's internet cables enter 2 active war zones. 3 cables linking India's markets and cloud hubs to Europe pass through the Red Sea. Hormuz is also exposed; rerouted traffic faces higher latency and bandwidth limits.
+Mumbai — India's internet cables enter 2 active war zones.
+
+3 cables linking India's markets and cloud hubs to Europe pass through the Red Sea.
+
+Hormuz is also exposed; rerouted traffic faces higher latency and bandwidth limits.

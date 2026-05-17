@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-Mountain View — Gemini mixes your email summaries into AI training. Opting out requires disabling "Gemini Apps Activity," which also deletes chat history — a setting absent from Google's main privacy page. Google announced $185bn in AI investment for 2026; the opt-out bundles training consent with chat-history deletion, and Google has set no date to separate them.
+Mountain View — Gemini mixes your email summaries into AI training.
+
+Opting out requires disabling "Gemini Apps Activity," which also deletes chat history — a setting absent from Google's main privacy page.
+
+Google announced $185bn in AI investment for 2026; the opt-out bundles training consent with chat-history deletion, and Google has set no date to separate them.

@@ -16,4 +16,8 @@ concepts:
   - "Subnautica 2"
 ---
 
-San Francisco — Krafton fired developers to dodge a $250M bonus. CEO Changhan Kim consulted ChatGPT instead of lawyers to engineer a takeover of Unknown Worlds Entertainment and block the Subnautica 2 bonus payout. A court reinstated the fired developer and ordered Krafton to pay the $250M anyway.
+San Francisco — Krafton fired developers to dodge a $250M bonus.
+
+CEO Changhan Kim consulted ChatGPT instead of lawyers to engineer a takeover of Unknown Worlds Entertainment and block the Subnautica 2 bonus payout.
+
+A court reinstated the fired developer and ordered Krafton to pay the $250M anyway.

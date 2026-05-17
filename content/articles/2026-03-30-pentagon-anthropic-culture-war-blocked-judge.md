@@ -16,4 +16,8 @@ concepts:
   - "Donald Trump"
 ---
 
-San Francisco — A California judge blocked the Pentagon's Anthropic blacklist. Judge Lin ruled Hegseth skipped required process, invented a "kill switch" threat with no evidence, and violated Anthropic's First Amendment rights. The government has 7 days to appeal; Anthropic's second case against the supply chain designation remains unresolved.
+San Francisco — A California judge blocked the Pentagon's Anthropic blacklist.
+
+Judge Lin ruled Hegseth skipped required process, invented a "kill switch" threat with no evidence, and violated Anthropic's First Amendment rights.
+
+The government has 7 days to appeal; Anthropic's second case against the supply chain designation remains unresolved.

@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — [UK](country:GB) renewables run cheap; households pay gas-linked prices. Under marginal pricing, gas plants set the wholesale price all generators receive — including wind that costs nothing to run. The windfall tax on older renewables rises from 45% to 55% in July; voluntary fixed-price contract auctions follow in 2027.
+London — [UK](country:GB) renewables run cheap; households pay gas-linked prices.
+
+Under marginal pricing, gas plants set the wholesale price all generators receive — including wind that costs nothing to run.
+
+The windfall tax on older renewables rises from 45% to 55% in July; voluntary fixed-price contract auctions follow in 2027.

@@ -29,4 +29,8 @@ sentimentDivergence: 0.09
 entities: []
 ---
 
-New York — ShinyHunters stole records on 275 million students. Instructure runs Canvas for half of all North American colleges, concentrating student IDs, grades and messages in a single vendor. The group set a May 12 deadline for Instructure to negotiate before leaking data from nearly 9,000 schools.
+New York — ShinyHunters stole records on 275 million students.
+
+Instructure runs Canvas for half of all North American colleges, concentrating student IDs, grades and messages in a single vendor.
+
+The group set a May 12 deadline for Instructure to negotiate before leaking data from nearly 9,000 schools.

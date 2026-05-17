@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Mulanje — $820 million bauxite mine proposed inside [Malawi](country:MW)'s UNESCO boundary. One ministry took Mulanje to UNESCO in July 2025; another had already licensed Akatswiri Mineral Resources to explore the same slope. Akatswiri formally complained the UNESCO declaration stifles 7 years of licensed bauxite-project work.
+Mulanje — $820 million bauxite mine proposed inside [Malawi](country:MW)'s UNESCO boundary.
+
+One ministry took Mulanje to UNESCO in July 2025; another had already licensed Akatswiri Mineral Resources to explore the same slope.
+
+Akatswiri formally complained the UNESCO declaration stifles 7 years of licensed bauxite-project work.

@@ -28,4 +28,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Washington — Trump claims [Iran](country:IR) told him it is in a "state of collapse" and wants Hormuz opened. Tehran proposed ending the war first and deferring nuclear talks — Trump rejected the sequence, a [US](country:US) official said. Defense officials told Congress that clearing Hormuz mines could take 6 months.
+Washington — Trump claims [Iran](country:IR) told him it is in a "state of collapse" and wants Hormuz opened.
+
+Tehran proposed ending the war first and deferring nuclear talks — Trump rejected the sequence, a [US](country:US) official said.
+
+Defense officials told Congress that clearing Hormuz mines could take 6 months.

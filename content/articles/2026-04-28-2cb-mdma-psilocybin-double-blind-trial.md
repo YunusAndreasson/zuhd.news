@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Basel — 10mg 2C-B mimics MDMA; 30mg mimics psilocybin, the first double-blind head-to-head trial found. The dose-dependent shift shows that entactogens and psychedelics are a continuum — not separate drug classes — within the same compound. University of Basel researchers open 2C-B as a clinical candidate after 40 years of recreational-only data.
+Basel — 10mg 2C-B mimics MDMA; 30mg mimics psilocybin, the first double-blind head-to-head trial found.
+
+The dose-dependent shift shows that entactogens and psychedelics are a continuum — not separate drug classes — within the same compound.
+
+University of Basel researchers open 2C-B as a clinical candidate after 40 years of recreational-only data.

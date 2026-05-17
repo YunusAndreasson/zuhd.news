@@ -27,4 +27,8 @@ sentimentDivergence: 0.15
 entities: []
 ---
 
-Gaza — [Israel](country:IL) destroyed Gaza's water, Médecins Sans Frontières warns. 90% of the system is destroyed or blockaded, UN figures confirm; emergency trucks reach only 407,000 of 2 million residents. A third of Médecins Sans Frontières supply requests have gone unanswered; disease spreads as overcrowded shelters lack sanitation.
+Gaza — [Israel](country:IL) destroyed Gaza's water, Médecins Sans Frontières warns.
+
+90% of the system is destroyed or blockaded, UN figures confirm; emergency trucks reach only 407,000 of 2 million residents.
+
+A third of Médecins Sans Frontières supply requests have gone unanswered; disease spreads as overcrowded shelters lack sanitation.

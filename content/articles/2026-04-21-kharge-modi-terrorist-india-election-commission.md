@@ -30,4 +30,8 @@ concepts:
 entities: []
 ---
 
-Chennai — [India](country:IN)'s ruling party filed an election complaint. Congress chief Kharge called PM Modi a terrorist before clarifying he meant Modi terrorises democratic institutions. A party delegation visits the commission Wednesday to demand criminal charges and campaign restrictions against Kharge.
+Chennai — [India](country:IN)'s ruling party filed an election complaint.
+
+Congress chief Kharge called PM Modi a terrorist before clarifying he meant Modi terrorises democratic institutions.
+
+A party delegation visits the commission Wednesday to demand criminal charges and campaign restrictions against Kharge.

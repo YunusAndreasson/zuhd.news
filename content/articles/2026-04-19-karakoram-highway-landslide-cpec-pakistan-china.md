@@ -17,4 +17,8 @@ concepts:
   - "Gilgit-Baltistan"
 ---
 
-Gilgit — Kohistan slip cut Pakistan's CPEC highway 20 hours. The Karakoram Highway — [Pakistan](country:PK)'s only overland link to [China](country:CN) — runs through landslide-prone gorges, stranding thousands before light traffic resumed. The Astore Valley road remains blocked as Pakistan's meteorological department warns of continuing rain and landslides through Sunday.
+Gilgit — Kohistan slip cut Pakistan's CPEC highway 20 hours.
+
+The Karakoram Highway — [Pakistan](country:PK)'s only overland link to [China](country:CN) — runs through landslide-prone gorges, stranding thousands before light traffic resumed.
+
+The Astore Valley road remains blocked as Pakistan's meteorological department warns of continuing rain and landslides through Sunday.

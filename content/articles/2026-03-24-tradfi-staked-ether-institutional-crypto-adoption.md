@@ -18,4 +18,8 @@ concepts:
   - "Derivative (finance)"
 ---
 
-New York — Insured ETH staking is drawing pension funds and insurers into crypto. Insurance from Chainproof, pegged to the Composite Ether Staking Rate, reimburses institutional validators for yield shortfalls and slashing losses — converting a speculative crypto position into a priceable, regulated instrument. Compliance teams can now approve staked ETH for structured products, and cautious TradFi adoption is pushing Ethereum into institutional portfolios.
+New York — Insured ETH staking is drawing pension funds and insurers into crypto.
+
+Insurance from Chainproof, pegged to the Composite Ether Staking Rate, reimburses institutional validators for yield shortfalls and slashing losses — converting a speculative crypto position into a priceable, regulated instrument.
+
+Compliance teams can now approve staked ETH for structured products, and cautious TradFi adoption is pushing Ethereum into institutional portfolios.

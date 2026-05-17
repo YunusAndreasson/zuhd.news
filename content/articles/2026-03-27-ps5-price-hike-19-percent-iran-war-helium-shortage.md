@@ -28,4 +28,8 @@ concepts:
   - "Video game console"
 ---
 
-Tokyo — Sony raised PS5 prices 19% to $650. Iran's strike on Qatar's gas export facility cut helium exports 14%; Qatar supplies a third of global helium used in semiconductor manufacturing. If the war extends past summer, the PS6—expected later this year—could launch above $1,000.
+Tokyo — Sony raised PS5 prices 19% to $650.
+
+Iran's strike on Qatar's gas export facility cut helium exports 14%; Qatar supplies a third of global helium used in semiconductor manufacturing.
+
+If the war extends past summer, the PS6—expected later this year—could launch above $1,000.

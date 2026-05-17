@@ -18,4 +18,8 @@ concepts:
   - "DOAC"
 ---
 
-London — ML hits AUROC 0.91 on AFib stroke risk. Trained on age, medications, and comorbidities alone, the models beat CHA₂DS₂-VASc's 0.67 and found 102 more high-risk patients per 1,000. External validation held across 3 cohorts; no health system has begun prospective deployment.
+London — ML hits AUROC 0.91 on AFib stroke risk.
+
+Trained on age, medications, and comorbidities alone, the models beat CHA₂DS₂-VASc's 0.67 and found 102 more high-risk patients per 1,000.
+
+External validation held across 3 cohorts; no health system has begun prospective deployment.

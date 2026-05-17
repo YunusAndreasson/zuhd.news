@@ -18,4 +18,8 @@ concepts:
   - "Nigeria"
 ---
 
-Abuja — [Nigeria](country:NG)'s President Tinubu replaced finance minister Wale Edun. Oyedele, previously Minister of State in the same ministry, was elevated to coordinating minister of the economy in a continuity move. Handover is mandated by April 23; Oyedele's fiscal priorities have not been announced.
+Abuja — [Nigeria](country:NG)'s President Tinubu replaced finance minister Wale Edun.
+
+Oyedele, previously Minister of State in the same ministry, was elevated to coordinating minister of the economy in a continuity move.
+
+Handover is mandated by April 23; Oyedele's fiscal priorities have not been announced.

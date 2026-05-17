@@ -23,4 +23,8 @@ concepts:
 sentimentDivergence: 0.23
 ---
 
-Odesa — 22 newborns fled rubble in Odesa's maternity ward. Russia launched 270 drones at Ukraine overnight; with world attention on Iran, Moscow hit civilian sites across Odesa, Kryvyi Rih, and Poltava. Secretary Rubio said Ukraine arms could be diverted to the Iran war; no ceasefire is underway.
+Odesa — 22 newborns fled rubble in Odesa's maternity ward.
+
+Russia launched 270 drones at Ukraine overnight; with world attention on Iran, Moscow hit civilian sites across Odesa, Kryvyi Rih, and Poltava.
+
+Secretary Rubio said Ukraine arms could be diverted to the Iran war; no ceasefire is underway.

@@ -39,4 +39,8 @@ concepts:
 sentimentDivergence: 0.56
 ---
 
-Vienna — OPEC+ raised May oil quotas; none can ship. Hormuz has been closed since February 28, blocking exports from the 4 Gulf members with the only spare capacity. Oil hit $109 a barrel; JPMorgan forecasts a spike above $150 if Hormuz remains closed into May.
+Vienna — OPEC+ raised May oil quotas; none can ship.
+
+Hormuz has been closed since February 28, blocking exports from the 4 Gulf members with the only spare capacity.
+
+Oil hit $109 a barrel; JPMorgan forecasts a spike above $150 if Hormuz remains closed into May.

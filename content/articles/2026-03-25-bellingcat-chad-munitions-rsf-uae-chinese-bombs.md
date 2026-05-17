@@ -18,4 +18,8 @@ concepts:
   - "Weapons forensics"
 ---
 
-Tiné, Chad — Chinese-made bombs killed 17 in Chad in a cross-border strike Bellingcat traced to Sudan's RSF. Tail fragments geolocated 650 metres from the Darfur border match GB25A/GB50A munitions that traveled from the UAE to the RSF before the strike. Chad's prosecutor visited the site, placing a documented supply chain — China to UAE to RSF to Chad — before a potential ICC referral.
+Tiné, Chad — Chinese-made bombs killed 17 in Chad in a cross-border strike Bellingcat traced to Sudan's RSF.
+
+Tail fragments geolocated 650 metres from the Darfur border match GB25A/GB50A munitions that traveled from the UAE to the RSF before the strike.
+
+Chad's prosecutor visited the site, placing a documented supply chain — China to UAE to RSF to Chad — before a potential ICC referral.

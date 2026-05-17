@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Moline — John Deere will pay $99 million to farmers. The largest right-to-repair settlement in history ends years of litigation over software locks that blocked owners from servicing their own tractors. The settlement sets no industry-wide standard; manufacturers across sectors still use software to control hardware they have already sold.
+Moline — John Deere will pay $99 million to farmers.
+
+The largest right-to-repair settlement in history ends years of litigation over software locks that blocked owners from servicing their own tractors.
+
+The settlement sets no industry-wide standard; manufacturers across sectors still use software to control hardware they have already sold.

@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Cambridge — ChatGPT 5.5 Pro solved a Nathanson number-theory problem. Fields Medalist Tim Gowers found it produced PhD-level research in under an hour with no mathematical guidance from him. A problem must now be too hard for a large language model to qualify as junior research, Gowers wrote.
+Cambridge — ChatGPT 5.5 Pro solved a Nathanson number-theory problem.
+
+Fields Medalist Tim Gowers found it produced PhD-level research in under an hour with no mathematical guidance from him.
+
+A problem must now be too hard for a large language model to qualify as junior research, Gowers wrote.

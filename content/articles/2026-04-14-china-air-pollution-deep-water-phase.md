@@ -11,4 +11,8 @@ sources:
     country: null
 ---
 
-Beijing — PM2.5 fell 21%; volatile organic compound emissions rose 8%. Previous gains came from closing steel mills and coal plants; volatile organic compounds from vehicles and chemical factories have no single switch. The national average already meets the 2030 limit; western provinces with growing coal-chemical industries do not.
+Beijing — PM2.5 fell 21%; volatile organic compound emissions rose 8%.
+
+Previous gains came from closing steel mills and coal plants; volatile organic compounds from vehicles and chemical factories have no single switch.
+
+The national average already meets the 2030 limit; western provinces with growing coal-chemical industries do not.

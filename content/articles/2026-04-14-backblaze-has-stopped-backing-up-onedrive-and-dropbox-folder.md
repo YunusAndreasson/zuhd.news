@@ -16,4 +16,8 @@ concepts:
   - "Dropbox"
 ---
 
-San Mateo — Backblaze stopped backing up OneDrive and Dropbox. The service markets unlimited backup but excludes cloud-synced folders, now the primary location for most users' working files. Backblaze has not notified affected customers or disclosed when the exclusion began.
+San Mateo — Backblaze stopped backing up OneDrive and Dropbox.
+
+The service markets unlimited backup but excludes cloud-synced folders, now the primary location for most users' working files.
+
+Backblaze has not notified affected customers or disclosed when the exclusion began.

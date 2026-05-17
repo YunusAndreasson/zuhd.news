@@ -26,4 +26,8 @@ concepts:
 entities: []
 ---
 
-Seattle — UPS and FedEx shares fell 10% on Monday. Amazon opened its logistics network to outside businesses, offering the delivery services it built for its own use. Amazon's fleet of more than 100 cargo planes is already operational; neither carrier has responded.
+Seattle — UPS and FedEx shares fell 10% on Monday.
+
+Amazon opened its logistics network to outside businesses, offering the delivery services it built for its own use.
+
+Amazon's fleet of more than 100 cargo planes is already operational; neither carrier has responded.

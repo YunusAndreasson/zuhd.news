@@ -17,4 +17,8 @@ concepts:
   - "Drug Regulatory Authority of Pakistan"
 ---
 
-Islamabad — Pakistan's insulin delivery device price jumped 114%. The drug regulator blamed the jump on old 2024-25 price labels, but manufacturers say raw material costs rose 20%+. Iran-war disruptions forced DRAP to order diversified sourcing; 85% of drugs are local, but ingredients are imported.
+Islamabad — Pakistan's insulin delivery device price jumped 114%.
+
+The drug regulator blamed the jump on old 2024-25 price labels, but manufacturers say raw material costs rose 20%+.
+
+Iran-war disruptions forced DRAP to order diversified sourcing; 85% of drugs are local, but ingredients are imported.

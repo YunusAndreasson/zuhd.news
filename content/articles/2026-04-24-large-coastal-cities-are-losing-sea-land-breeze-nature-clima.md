@@ -17,4 +17,8 @@ concepts:
   - "Air conditioning"
 ---
 
-London — Mid-latitude coastal cities face 29–45% fewer sea-breeze days. A Nature Climate Change study found ocean warming narrows the land-sea temperature gap, weakening the breeze that clears urban pollutants and cools coastal neighborhoods. Under high emissions, sensitive mid-latitude cities face 4.5× the loss of moderate-mitigation scenarios.
+London — Mid-latitude coastal cities face 29–45% fewer sea-breeze days.
+
+A Nature Climate Change study found ocean warming narrows the land-sea temperature gap, weakening the breeze that clears urban pollutants and cools coastal neighborhoods.
+
+Under high emissions, sensitive mid-latitude cities face 4.5× the loss of moderate-mitigation scenarios.

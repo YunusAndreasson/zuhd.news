@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Lusaka — [Zambia](country:ZM)'s geothermal springs leak mantle helium, scientists say. High helium-3 ratios show the crust has broken through to communicate with the mantle below — the geological signature of a forming continental rift. The same crustal weakness that may eventually split the plate makes Zambia geothermally exceptional for energy development.
+Lusaka — [Zambia](country:ZM)'s geothermal springs leak mantle helium, scientists say.
+
+High helium-3 ratios show the crust has broken through to communicate with the mantle below — the geological signature of a forming continental rift.
+
+The same crustal weakness that may eventually split the plate makes Zambia geothermally exceptional for energy development.

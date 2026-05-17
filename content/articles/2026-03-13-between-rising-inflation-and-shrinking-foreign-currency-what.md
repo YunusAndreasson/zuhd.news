@@ -15,4 +15,8 @@ concepts:
   - "Mostafa Madbuly"
 ---
 
-Cairo — Egyptian pound fell to LE52.42 against the dollar. Prime Minister Mostafa Madbuly confirmed the central bank is holding a flexible exchange rate to retain investors as fuel costs drive inflation. Foreign investors reversed purchases within hours of re-entering the market, leaving the pound's path tied to war speculation.
+Cairo — Egyptian pound fell to LE52.42 against the dollar.
+
+Prime Minister Mostafa Madbuly confirmed the central bank is holding a flexible exchange rate to retain investors as fuel costs drive inflation.
+
+Foreign investors reversed purchases within hours of re-entering the market, leaving the pound's path tied to war speculation.

@@ -42,4 +42,8 @@ sentimentDivergence: 0.3
 entities: []
 ---
 
-Washington, D.C. — Pentagon cleared 8 AI firms for classified military networks. OpenAI, Google, SpaceX, and 5 others accepted 'any lawful use' terms; Anthropic refused the [US](country:US) military's language and faces a ban. Anthropic's legal challenge goes to court in September; 1.3 million Defense Department personnel already use the platform.
+Washington, D.C. — Pentagon cleared 8 AI firms for classified military networks.
+
+OpenAI, Google, SpaceX, and 5 others accepted 'any lawful use' terms; Anthropic refused the [US](country:US) military's language and faces a ban.
+
+Anthropic's legal challenge goes to court in September; 1.3 million Defense Department personnel already use the platform.

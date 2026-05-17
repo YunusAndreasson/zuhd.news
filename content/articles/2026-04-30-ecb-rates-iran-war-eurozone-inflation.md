@@ -31,4 +31,8 @@ entities:
     kind: "commodity"
 ---
 
-Frankfurt — Eurozone inflation hit 3% in April. The European Central Bank held its deposit rate at 2% Thursday; Brent above $120, driven by the [Iran](country:IR) war, has pushed eurozone energy costs to a two-year high. The bank warned war risks have "intensified"; economists expect a 25-basis-point hike to 2.25% at the June meeting.
+Frankfurt — Eurozone inflation hit 3% in April.
+
+The European Central Bank held its deposit rate at 2% Thursday; Brent above $120, driven by the [Iran](country:IR) war, has pushed eurozone energy costs to a two-year high.
+
+The bank warned war risks have "intensified"; economists expect a 25-basis-point hike to 2.25% at the June meeting.

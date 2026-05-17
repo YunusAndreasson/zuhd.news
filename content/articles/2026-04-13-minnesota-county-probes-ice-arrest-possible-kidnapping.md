@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.21
 ---
 
-St. Paul — Federal immigration agents wrongly detained a US citizen. Ramsey County opened a kidnapping probe, saying agents held ChongLy Thao, a US citizen, for an hour without a warrant. Investigators cannot identify the officers; the vehicles' license plates were assigned to different cars.
+St. Paul — Federal immigration agents wrongly detained a US citizen.
+
+Ramsey County opened a kidnapping probe, saying agents held ChongLy Thao, a US citizen, for an hour without a warrant.
+
+Investigators cannot identify the officers; the vehicles' license plates were assigned to different cars.

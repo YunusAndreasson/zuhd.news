@@ -19,4 +19,8 @@ concepts:
   - "Scott Bessent"
 ---
 
-Washington — Wright contradicts Bessent: gas above $3 until 2027. Wright tied relief to ending the [US](country:US)-Israeli war; AAA shows the average at $4.10, up from under $3 before February 28. A Quinnipiac poll found 65% of voters blame Trump for rising prices, with midterms approaching.
+Washington — Wright contradicts Bessent: gas above $3 until 2027.
+
+Wright tied relief to ending the [US](country:US)-Israeli war; AAA shows the average at $4.10, up from under $3 before February 28.
+
+A Quinnipiac poll found 65% of voters blame Trump for rising prices, with midterms approaching.

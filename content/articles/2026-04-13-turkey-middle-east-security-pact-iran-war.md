@@ -28,4 +28,8 @@ eventCoverage: 55
 sentimentDivergence: 0.1
 ---
 
-Ankara — Turkish Foreign Minister Hakan Fidan proposed a formal Middle East security pact. Turkey recently met with Saudi Arabia, Egypt, and Pakistan and is seeking membership in their existing defense pact — the first NATO-border state to bridge both blocs. Fidan warned Israel will act against Syria after the war ends — a zone Turkey calls vital.
+Ankara — Turkish Foreign Minister Hakan Fidan proposed a formal Middle East security pact.
+
+Turkey recently met with Saudi Arabia, Egypt, and Pakistan and is seeking membership in their existing defense pact — the first NATO-border state to bridge both blocs.
+
+Fidan warned Israel will act against Syria after the war ends — a zone Turkey calls vital.

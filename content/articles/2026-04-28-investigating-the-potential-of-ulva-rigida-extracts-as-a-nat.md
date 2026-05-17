@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Phetchaburi — Thai sea lettuce raised collagen 37.68%, topping resveratrol. [Thailand](country:TH)'s Ulva rigida extracts inhibited tyrosinase, the pigmentation enzyme, and raised the SIRT1 longevity gene 87.8%, Scientific Reports found. Cytotoxicity tests at 1.0 mg/mL cleared the key cosmetic safety threshold.
+Phetchaburi — Thai sea lettuce raised collagen 37.68%, topping resveratrol.
+
+[Thailand](country:TH)'s Ulva rigida extracts inhibited tyrosinase, the pigmentation enzyme, and raised the SIRT1 longevity gene 87.8%, Scientific Reports found.
+
+Cytotoxicity tests at 1.0 mg/mL cleared the key cosmetic safety threshold.

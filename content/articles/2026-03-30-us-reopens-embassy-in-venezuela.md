@@ -33,4 +33,8 @@ concepts:
   - "Caracas"
 ---
 
-Caracas — US embassy opens 87 days after Maduro's capture. The State Department restored the mold-damaged chancery to enable oil deals and direct access to the interim government installed after the January raid. Maduro awaits trial in New York while his successor Delcy Rodriguez negotiates a US oil-sales agreement.
+Caracas — US embassy opens 87 days after Maduro's capture.
+
+The State Department restored the mold-damaged chancery to enable oil deals and direct access to the interim government installed after the January raid.
+
+Maduro awaits trial in New York while his successor Delcy Rodriguez negotiates a US oil-sales agreement.

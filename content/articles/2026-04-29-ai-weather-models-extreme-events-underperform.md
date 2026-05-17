@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Geneva — Disaster forecasters cannot yet rely on AI in extreme weather, Science Advances finds. Models trained on historical data miss unprecedented events — exactly the conditions climate change creates, the authors warn. They called it a "warning shot" against replacing traditional systems.
+Geneva — Disaster forecasters cannot yet rely on AI in extreme weather, Science Advances finds.
+
+Models trained on historical data miss unprecedented events — exactly the conditions climate change creates, the authors warn.
+
+They called it a "warning shot" against replacing traditional systems.

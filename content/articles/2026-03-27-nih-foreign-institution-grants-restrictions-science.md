@@ -17,4 +17,8 @@ concepts:
   - "Liaison Committee on Medical Education"
 ---
 
-Washington — NIH cut all grant-sharing with foreign institutions. A STAT survey found 1 in 4 US researchers impacted, stalling malaria trials and disease surveillance programs that depended on NIH subawards abroad. NIH says the change reduces overhead; researchers say it means more paperwork, worse science, and harder grant evaluations.
+Washington — NIH cut all grant-sharing with foreign institutions.
+
+A STAT survey found 1 in 4 US researchers impacted, stalling malaria trials and disease surveillance programs that depended on NIH subawards abroad.
+
+NIH says the change reduces overhead; researchers say it means more paperwork, worse science, and harder grant evaluations.

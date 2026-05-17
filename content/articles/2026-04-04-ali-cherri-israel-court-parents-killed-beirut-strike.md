@@ -11,4 +11,8 @@ sources:
     country: "EG"
 ---
 
-Beirut — He boarded for Vienna; Israel killed his parents. Hours before the 2024 ceasefire, Israel struck Nouaire, killing his parents; Cherri filed a civil complaint with France's War Crimes Unit. The case rests on Cherri's French nationality; a French court will decide whether it has jurisdiction over the Israeli strike.
+Beirut — He boarded for Vienna; Israel killed his parents.
+
+Hours before the 2024 ceasefire, Israel struck Nouaire, killing his parents; Cherri filed a civil complaint with France's War Crimes Unit.
+
+The case rests on Cherri's French nationality; a French court will decide whether it has jurisdiction over the Israeli strike.

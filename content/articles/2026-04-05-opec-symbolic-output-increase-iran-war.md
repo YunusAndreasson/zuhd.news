@@ -23,4 +23,8 @@ concepts:
 sentimentDivergence: 0.45
 ---
 
-Vienna — 206,000 extra barrels daily: agreed, but undeliverable. Saudi Arabia, UAE, Kuwait, and Iraq can raise output, but all 4 have had infrastructure hit by war-related drone and missile strikes. Gulf officials say repairs will take months even if Hormuz reopens Monday and the war stops today.
+Vienna — 206,000 extra barrels daily: agreed, but undeliverable.
+
+Saudi Arabia, UAE, Kuwait, and Iraq can raise output, but all 4 have had infrastructure hit by war-related drone and missile strikes.
+
+Gulf officials say repairs will take months even if Hormuz reopens Monday and the war stops today.

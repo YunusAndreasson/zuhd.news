@@ -40,4 +40,6 @@ entities:
     kind: "chokepoint"
 ---
 
-Tehran — [Iran](country:IR) linked Lebanon to its nuclear terms. Tehran bundled sanctions relief and Hormuz management into its counteroffer, widening the ask beyond uranium; Trump called it "totally unacceptable." [Pakistan](country:PK) is mediating in writing; Iran offered 30 days of post-ceasefire talks.
+Tehran — [Iran](country:IR) linked Lebanon to its nuclear terms.
+
+Tehran bundled sanctions relief and Hormuz management into its counteroffer, widening the ask beyond uranium; Trump called it "totally unacceptable." [Pakistan](country:PK) is mediating in writing; Iran offered 30 days of post-ceasefire talks.

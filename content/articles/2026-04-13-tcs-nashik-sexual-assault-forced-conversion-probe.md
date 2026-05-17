@@ -28,4 +28,8 @@ eventCoverage: 83
 sentimentDivergence: 0.32
 ---
 
-Nashik — Tata Consultancy workers arrested for assault and coerced conversion. Nine complaints allege stalking, abuse, and coerced religious conversion at Tata Consultancy Services Nashik since 2022; Tata Sons ordered a COO-led probe. Police reviewed 40 CCTV recordings; whether the company faces corporate liability is the pending question.
+Nashik — Tata Consultancy workers arrested for assault and coerced conversion.
+
+Nine complaints allege stalking, abuse, and coerced religious conversion at Tata Consultancy Services Nashik since 2022; Tata Sons ordered a COO-led probe.
+
+Police reviewed 40 CCTV recordings; whether the company faces corporate liability is the pending question.

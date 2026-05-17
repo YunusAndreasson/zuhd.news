@@ -18,4 +18,8 @@ concepts:
   - "Fuel crisis"
 ---
 
-Colombo — 38,000 tonnes of Indian petroleum reached Colombo harbour. Sri Lanka imports all its fuel; Hormuz closure has halved global supply, leaving Colombo weeks from a 2022-style economic collapse. Iran is allowing Indian tankers through Hormuz, positioning New Delhi as the region's emergency fuel backstop.
+Colombo — 38,000 tonnes of Indian petroleum reached Colombo harbour.
+
+Sri Lanka imports all its fuel; Hormuz closure has halved global supply, leaving Colombo weeks from a 2022-style economic collapse.
+
+Iran is allowing Indian tankers through Hormuz, positioning New Delhi as the region's emergency fuel backstop.

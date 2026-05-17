@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Geneva — Humanitarian chatbots triage refugees as budgets stall caseworkers. The International Rescue Committee deployed its Signpost chatbot across [Sudan](country:SD), [Gaza](country:PS), [Ukraine](country:UA) and Latin America to answer asylum and shelter queries, filling a caseworker funding gap. The main risk is hallucinated legal advice that misroutes protection cases.
+Geneva — Humanitarian chatbots triage refugees as budgets stall caseworkers.
+
+The International Rescue Committee deployed its Signpost chatbot across [Sudan](country:SD), [Gaza](country:PS), [Ukraine](country:UA) and Latin America to answer asylum and shelter queries, filling a caseworker funding gap.
+
+The main risk is hallucinated legal advice that misroutes protection cases.

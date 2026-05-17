@@ -11,4 +11,8 @@ sources:
     country: "EG"
 ---
 
-Beirut — Israel bombed Lebanon during the Iran ceasefire. Netanyahu declared Hezbollah excluded from the deal, but Iran — holding Strait of Hormuz leverage — reversed him within 24 hours. France is pushing a separate Lebanon disarmament track; regional diplomats say Iran remains in control.
+Beirut — Israel bombed Lebanon during the Iran ceasefire.
+
+Netanyahu declared Hezbollah excluded from the deal, but Iran — holding Strait of Hormuz leverage — reversed him within 24 hours.
+
+France is pushing a separate Lebanon disarmament track; regional diplomats say Iran remains in control.

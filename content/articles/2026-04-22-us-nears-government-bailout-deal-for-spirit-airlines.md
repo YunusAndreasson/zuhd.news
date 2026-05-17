@@ -32,4 +32,8 @@ concepts:
 entities: []
 ---
 
-Washington — Spirit Airlines twice bankrupt; Trump offers $500 million rescue. The deal gives the [US](country:US) option warrants on 90% of Spirit; JPMorgan warned JetBlue and Frontier would seek the same terms. Transportation Secretary Duffy called it "good money after bad"; no final deal has been announced.
+Washington — Spirit Airlines twice bankrupt; Trump offers $500 million rescue.
+
+The deal gives the [US](country:US) option warrants on 90% of Spirit; JPMorgan warned JetBlue and Frontier would seek the same terms.
+
+Transportation Secretary Duffy called it "good money after bad"; no final deal has been announced.

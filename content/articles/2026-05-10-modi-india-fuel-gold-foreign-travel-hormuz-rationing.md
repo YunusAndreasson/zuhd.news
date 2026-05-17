@@ -34,4 +34,8 @@ entities:
     kind: "commodity"
 ---
 
-Hyderabad — Modi told Indians: cut fuel, gold, foreign travel. Each is a major forex outflow; [India](country:IN) spends roughly ₹1,600 crore daily holding fuel prices steady, analysts say. No formal policy change has been announced; analysts expect duty hikes on gold and higher fuel prices soon.
+Hyderabad — Modi told Indians: cut fuel, gold, foreign travel.
+
+Each is a major forex outflow; [India](country:IN) spends roughly ₹1,600 crore daily holding fuel prices steady, analysts say.
+
+No formal policy change has been announced; analysts expect duty hikes on gold and higher fuel prices soon.

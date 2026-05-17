@@ -30,4 +30,8 @@ concepts:
 sentimentDivergence: 0.17
 ---
 
-Siverek — 16 wounded at a Siverek vocational school Tuesday. Turkey enforces strict firearms licensing, registration, and criminal and mental health checks, making school shootings nearly unknown in the country. Interior Ministry opened a criminal investigation; the attacker's motive and how the 18-year-old obtained the shotgun remain unclear.
+Siverek — 16 wounded at a Siverek vocational school Tuesday.
+
+Turkey enforces strict firearms licensing, registration, and criminal and mental health checks, making school shootings nearly unknown in the country.
+
+Interior Ministry opened a criminal investigation; the attacker's motive and how the 18-year-old obtained the shotgun remain unclear.

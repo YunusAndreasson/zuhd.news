@@ -17,4 +17,8 @@ concepts:
   - "Iran war"
 ---
 
-Ramallah — 25 settler attacks hit the occupied West Bank Sunday. IDF attention is on Iran; settlers burned homes, a clinic, and a school across villages from Jenin to Ramallah. The Palestinian Red Crescent called Deir al-Hatab the most severe; 9 were injured there, no arrests reported.
+Ramallah — 25 settler attacks hit the occupied West Bank Sunday.
+
+IDF attention is on Iran; settlers burned homes, a clinic, and a school across villages from Jenin to Ramallah.
+
+The Palestinian Red Crescent called Deir al-Hatab the most severe; 9 were injured there, no arrests reported.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-New York — A Manhattan judge cleared $71M in [North Korea](country:KP)-linked ether to move. Creditors with $877M in North Korea terrorism judgments had sought the funds; the order lets Aave recover them while preserving their claim. The transfer still needs a governance vote — the first [US](country:US) ruling to treat a decentralised-finance protocol as a seizure target.
+New York — A Manhattan judge cleared $71M in [North Korea](country:KP)-linked ether to move.
+
+Creditors with $877M in North Korea terrorism judgments had sought the funds; the order lets Aave recover them while preserving their claim.
+
+The transfer still needs a governance vote — the first [US](country:US) ruling to treat a decentralised-finance protocol as a seizure target.

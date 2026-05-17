@@ -23,4 +23,8 @@ entities:
     kind: "commodity"
 ---
 
-Ohaji-Egbema — Waltersmith plans a 30,000 bpd condensate refinery. [Nigeria](country:NG) exports crude but imports most refined fuel; condensate from Waltersmith's Ibigwe and Assa fields refines cheaper than crude. Partnership agreements for the plant close Q4 2026; an adjacent industrial park will supply 100 million cubic feet of captive gas daily.
+Ohaji-Egbema — Waltersmith plans a 30,000 bpd condensate refinery.
+
+[Nigeria](country:NG) exports crude but imports most refined fuel; condensate from Waltersmith's Ibigwe and Assa fields refines cheaper than crude.
+
+Partnership agreements for the plant close Q4 2026; an adjacent industrial park will supply 100 million cubic feet of captive gas daily.

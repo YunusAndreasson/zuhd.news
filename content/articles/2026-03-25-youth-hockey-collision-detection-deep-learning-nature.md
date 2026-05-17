@@ -18,4 +18,8 @@ concepts:
   - "Sports safety"
 ---
 
-Toronto — Any rink camera can now count youth hockey collisions. A YOLOv8 pipeline detected 86% of head-impact events in full Under-13 games, cutting manual video review from 3 hours to 30 minutes per game. Leagues can now measure collision exposure without wearables — concussion tracking is a surveillance problem, not a hardware one.
+Toronto — Any rink camera can now count youth hockey collisions.
+
+A YOLOv8 pipeline detected 86% of head-impact events in full Under-13 games, cutting manual video review from 3 hours to 30 minutes per game.
+
+Leagues can now measure collision exposure without wearables — concussion tracking is a surveillance problem, not a hardware one.

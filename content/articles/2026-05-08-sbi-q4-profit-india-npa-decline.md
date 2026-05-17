@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Mumbai — [India](country:IN)'s largest bank posted ₹19,684 crore Q4 profit. Gross bad loans fell to 1.49% of advances from 1.82%, the bank's regulatory filing showed. Shares fell nearly 6% on the Bombay exchange; the bank declared a ₹17.35 dividend per share payable June 4.
+Mumbai — [India](country:IN)'s largest bank posted ₹19,684 crore Q4 profit.
+
+Gross bad loans fell to 1.49% of advances from 1.82%, the bank's regulatory filing showed.
+
+Shares fell nearly 6% on the Bombay exchange; the bank declared a ₹17.35 dividend per share payable June 4.

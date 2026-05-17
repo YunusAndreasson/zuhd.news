@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Chicago — Jump Crypto's Firedancer is producing mainnet blocks on Solana. A single codebase running all validators caused the 2022–23 outages; Firedancer, written like a high-frequency trading engine, is the first alternative client. Its stake share stays capped until security audits complete; broader rollout has no set timeline.
+Chicago — Jump Crypto's Firedancer is producing mainnet blocks on Solana.
+
+A single codebase running all validators caused the 2022–23 outages; Firedancer, written like a high-frequency trading engine, is the first alternative client.
+
+Its stake share stays capped until security audits complete; broader rollout has no set timeline.

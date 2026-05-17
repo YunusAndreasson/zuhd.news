@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Enugu — Chiefs allegedly leased Akpawfu land without community consent. In [Nigeria](country:NG), customary land requires community-wide consent to transfer; a 2008 Supreme Court ruling confirmed joint family ownership of the 300-hectare site. Governor Mbah received a formal petition; the chiefs say investor talks have ended.
+Enugu — Chiefs allegedly leased Akpawfu land without community consent.
+
+In [Nigeria](country:NG), customary land requires community-wide consent to transfer; a 2008 Supreme Court ruling confirmed joint family ownership of the 300-hectare site.
+
+Governor Mbah received a formal petition; the chiefs say investor talks have ended.

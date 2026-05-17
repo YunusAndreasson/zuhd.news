@@ -17,4 +17,8 @@ concepts:
   - "Selection bias"
 ---
 
-Guangzhou — Student-teacher brain sync predicts semester-long grades. 4,175 EEG sessions across 393 real classrooms linked high-beta inter-brain coupling with teachers to subsequent academic improvement. The signal works in live classrooms; what schools do with data on neurological disconnection from teachers remains unanswered.
+Guangzhou — Student-teacher brain sync predicts semester-long grades.
+
+4,175 EEG sessions across 393 real classrooms linked high-beta inter-brain coupling with teachers to subsequent academic improvement.
+
+The signal works in live classrooms; what schools do with data on neurological disconnection from teachers remains unanswered.

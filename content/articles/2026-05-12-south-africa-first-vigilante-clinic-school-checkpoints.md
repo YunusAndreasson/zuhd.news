@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Durban — Vigilantes checked school-gate IDs while police watched. Xenowatch documented 255 incidents and 57 deaths from 2022-2024, marking a shift from riots to organized service-point gatekeeping. The Human Sciences Research Council found 2003-high anti-migrant hostility; migrants face ongoing exclusion from clinics and schools.
+Durban — Vigilantes checked school-gate IDs while police watched.
+
+Xenowatch documented 255 incidents and 57 deaths from 2022-2024, marking a shift from riots to organized service-point gatekeeping.
+
+The Human Sciences Research Council found 2003-high anti-migrant hostility; migrants face ongoing exclusion from clinics and schools.

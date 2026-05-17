@@ -17,4 +17,8 @@ concepts:
   - "Dubai"
 ---
 
-Dubai — 3,000 vessels are blocked at Hormuz. Iran's partial closure forced shipping companies onto hybrid sea-overland routes across Arabia, pushing costs up 200% and tripling delivery times. Iran allows passage for vessels from Russia, India, China, and 2 others; all others remain blocked.
+Dubai — 3,000 vessels are blocked at Hormuz.
+
+Iran's partial closure forced shipping companies onto hybrid sea-overland routes across Arabia, pushing costs up 200% and tripling delivery times.
+
+Iran allows passage for vessels from Russia, India, China, and 2 others; all others remain blocked.

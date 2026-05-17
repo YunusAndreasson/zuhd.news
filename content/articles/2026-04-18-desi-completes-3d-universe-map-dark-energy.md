@@ -13,4 +13,8 @@ sources:
 entities: []
 ---
 
-Kitt Peak, Arizona — Researchers completed the largest 3D map of the universe to date. The Dark Energy Spectroscopic Instrument's 5,000 fibre-optic sensors measured the force driving cosmic expansion across billions of light-years. The instrument continues collecting data beyond its planned survey to test whether dark energy's strength has changed over time.
+Kitt Peak, Arizona — Researchers completed the largest 3D map of the universe to date.
+
+The Dark Energy Spectroscopic Instrument's 5,000 fibre-optic sensors measured the force driving cosmic expansion across billions of light-years.
+
+The instrument continues collecting data beyond its planned survey to test whether dark energy's strength has changed over time.

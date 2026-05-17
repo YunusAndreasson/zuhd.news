@@ -25,4 +25,8 @@ concepts:
 entities: []
 ---
 
-Kyiv — $10.5 million moved through an elite housing complex outside the capital. Ukraine's National Anti-Corruption Bureau and anti-graft prosecutors named Yermak, Zelensky's chief of staff for the entire war, as suspect. Yermak denied owning property in the development; Zelensky's office said it was too early to comment.
+Kyiv — $10.5 million moved through an elite housing complex outside the capital.
+
+Ukraine's National Anti-Corruption Bureau and anti-graft prosecutors named Yermak, Zelensky's chief of staff for the entire war, as suspect.
+
+Yermak denied owning property in the development; Zelensky's office said it was too early to comment.

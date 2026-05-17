@@ -17,4 +17,8 @@ concepts:
   - "Upstate New York"
 ---
 
-Massena, New York — Alcoa is offloading its idle Massena smelter. Aluminum smelters draw round-the-clock power through dedicated substations; that infrastructure cuts years off grid-access timelines for bitcoin miners and AI datacenters. Century Aluminum also sold a Kentucky smelter to TeraWulf for computing capacity earlier this year.
+Massena, New York — Alcoa is offloading its idle Massena smelter.
+
+Aluminum smelters draw round-the-clock power through dedicated substations; that infrastructure cuts years off grid-access timelines for bitcoin miners and AI datacenters.
+
+Century Aluminum also sold a Kentucky smelter to TeraWulf for computing capacity earlier this year.

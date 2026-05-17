@@ -17,4 +17,8 @@ concepts:
   - "Climate change"
 ---
 
-Riyadh — Arabian Peninsula wind rivals Europe's best offshore sites. A 40-year study at 5-km resolution found rated-wind conditions most frequent in central-western Saudi Arabia and the northern Red Sea. Hormuz's closure makes Gulf oil infrastructure a liability; these wind corridors offer energy security that bypasses chokepoints.
+Riyadh — Arabian Peninsula wind rivals Europe's best offshore sites.
+
+A 40-year study at 5-km resolution found rated-wind conditions most frequent in central-western Saudi Arabia and the northern Red Sea.
+
+Hormuz's closure makes Gulf oil infrastructure a liability; these wind corridors offer energy security that bypasses chokepoints.

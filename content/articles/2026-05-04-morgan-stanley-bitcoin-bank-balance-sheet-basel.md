@@ -22,4 +22,8 @@ entities:
     kind: "crypto"
 ---
 
-Las Vegas — Morgan Stanley's bitcoin fund drew over $100 million from self-directed clients in 6 days. Basel assigns a 1,250% risk-weight to unhedged crypto, requiring banks to hold $12.50 of capital per dollar. [US](country:US) balance-sheet adoption still needs the Fed, Basel, and currency comptroller to align, the bank's digital-asset chief said.
+Las Vegas — Morgan Stanley's bitcoin fund drew over $100 million from self-directed clients in 6 days.
+
+Basel assigns a 1,250% risk-weight to unhedged crypto, requiring banks to hold $12.50 of capital per dollar.
+
+[US](country:US) balance-sheet adoption still needs the Fed, Basel, and currency comptroller to align, the bank's digital-asset chief said.

@@ -16,4 +16,8 @@ concepts:
   - "Carlos Simon Foundation"
 ---
 
-Valencia — A uterus survived 24 hours outside the body. Researchers in Valencia ran modified blood through a donated organ; the goal is studying IVF implantation failures in a living uterus. The team wants to observe a full menstrual cycle; future iterations may sustain gestation outside the body.
+Valencia — A uterus survived 24 hours outside the body.
+
+Researchers in Valencia ran modified blood through a donated organ; the goal is studying IVF implantation failures in a living uterus.
+
+The team wants to observe a full menstrual cycle; future iterations may sustain gestation outside the body.

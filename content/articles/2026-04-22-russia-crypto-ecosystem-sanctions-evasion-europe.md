@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Brussels — [Russia](country:RU)'s Garantex successor Grinex went offline. Sanctioned for routing Russian funds, Grinex lost $13 million in Tether stablecoins and blamed a Western intelligence cyberattack. Its predecessor Garantex survived years of EU alerts before closure; individual-operator designations remain Europe's unresolved gap.
+Brussels — [Russia](country:RU)'s Garantex successor Grinex went offline.
+
+Sanctioned for routing Russian funds, Grinex lost $13 million in Tether stablecoins and blamed a Western intelligence cyberattack.
+
+Its predecessor Garantex survived years of EU alerts before closure; individual-operator designations remain Europe's unresolved gap.

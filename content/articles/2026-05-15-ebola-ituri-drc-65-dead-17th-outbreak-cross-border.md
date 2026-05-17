@@ -30,4 +30,8 @@ sentimentDivergence: 0.24
 entities: []
 ---
 
-Ituri — 65 dead in [DR Congo](country:CD)'s 17th Ebola outbreak, Africa Centres for Disease Control confirmed. Armed displacement since 2021 collapsed contact-tracing networks, a factor in 2 outbreaks in 3 months. The agency called an urgent cross-border meeting; 246 cases extend to Bunia, with surveillance widening into [South Sudan](country:SS).
+Ituri — 65 dead in [DR Congo](country:CD)'s 17th Ebola outbreak, Africa Centres for Disease Control confirmed.
+
+Armed displacement since 2021 collapsed contact-tracing networks, a factor in 2 outbreaks in 3 months.
+
+The agency called an urgent cross-border meeting; 246 cases extend to Bunia, with surveillance widening into [South Sudan](country:SS).

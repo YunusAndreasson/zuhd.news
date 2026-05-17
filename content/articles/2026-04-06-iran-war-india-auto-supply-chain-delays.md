@@ -17,4 +17,8 @@ concepts:
   - "Commercial vehicle"
 ---
 
-Mumbai — 53% of India's auto dealers report supply disruptions. LPG shortages at Tier-2 parts suppliers cut dealer inventory to a record 27 days, with commercial vehicles facing the worst delays. Automakers have issued no revised delivery timelines for commercial vehicles past April.
+Mumbai — 53% of India's auto dealers report supply disruptions.
+
+LPG shortages at Tier-2 parts suppliers cut dealer inventory to a record 27 days, with commercial vehicles facing the worst delays.
+
+Automakers have issued no revised delivery timelines for commercial vehicles past April.

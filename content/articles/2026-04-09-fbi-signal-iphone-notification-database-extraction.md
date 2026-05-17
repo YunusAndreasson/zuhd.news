@@ -16,4 +16,8 @@ concepts:
   - "Push notifications"
 ---
 
-Washington — Deleted Signal messages survived in iOS notification cache. FBI forensic tools extracted message content from an iPhone's notification database — messages persisted even after the app was deleted. Signal has a setting to block message preview from notifications, but it is off by default.
+Washington — Deleted Signal messages survived in iOS notification cache.
+
+FBI forensic tools extracted message content from an iPhone's notification database — messages persisted even after the app was deleted.
+
+Signal has a setting to block message preview from notifications, but it is off by default.

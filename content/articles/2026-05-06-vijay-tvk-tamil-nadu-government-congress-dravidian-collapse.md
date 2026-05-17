@@ -32,4 +32,8 @@ sentimentDivergence: 0.49
 entities: []
 ---
 
-Chennai — 108 seats ended 6 decades of Dravidian rule. Tamilaga Vettri Kazhagam needs 10 more; Congress's 5 confirmed seats still leave it short, forcing talks with former rival AIADMK. The governor has given the party an appointment; AIADMK's Palaniswami holds the deciding votes.
+Chennai — 108 seats ended 6 decades of Dravidian rule.
+
+Tamilaga Vettri Kazhagam needs 10 more; Congress's 5 confirmed seats still leave it short, forcing talks with former rival AIADMK.
+
+The governor has given the party an appointment; AIADMK's Palaniswami holds the deciding votes.

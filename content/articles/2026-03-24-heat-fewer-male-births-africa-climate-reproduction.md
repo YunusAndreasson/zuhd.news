@@ -16,4 +16,8 @@ concepts:
   - "Heat stress"
 ---
 
-Nairobi — Sub-Saharan heat in early pregnancy measurably reduces male births. Male embryos are more vulnerable to heat stress than female ones — confirmed at population scale across a continent for the first time. Researchers will next test whether the pattern holds in South Asia, where similar heat extremes are recorded.
+Nairobi — Sub-Saharan heat in early pregnancy measurably reduces male births.
+
+Male embryos are more vulnerable to heat stress than female ones — confirmed at population scale across a continent for the first time.
+
+Researchers will next test whether the pattern holds in South Asia, where similar heat extremes are recorded.

@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Peshawar — [Pakistan](country:PK)'s bar councils struck in solidarity with transferred judges. An inter-provincial coordination committee declared Islamabad High Court postings must be rotational, not punitive, rebuking 26th Amendment powers over appointments. Lawyers plan to lobby the law minister for constitutional limits.
+Peshawar — [Pakistan](country:PK)'s bar councils struck in solidarity with transferred judges.
+
+An inter-provincial coordination committee declared Islamabad High Court postings must be rotational, not punitive, rebuking 26th Amendment powers over appointments.
+
+Lawyers plan to lobby the law minister for constitutional limits.

@@ -15,4 +15,8 @@ concepts: []
 entities: []
 ---
 
-Atlanta — Researchers flagged 26 World Cup fixtures as dangerous. The study found 1 in 4 of 104 games carry heat hazardous for athletes, concentrated in southern [US](country:US) host cities. FIFA has not announced schedule or venue changes; once venues are assigned, no formal mechanism exists for relocation.
+Atlanta — Researchers flagged 26 World Cup fixtures as dangerous.
+
+The study found 1 in 4 of 104 games carry heat hazardous for athletes, concentrated in southern [US](country:US) host cities.
+
+FIFA has not announced schedule or venue changes; once venues are assigned, no formal mechanism exists for relocation.

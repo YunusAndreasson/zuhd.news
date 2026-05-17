@@ -22,4 +22,8 @@ concepts:
   - "Neiafu (Vavaʻu)"
 ---
 
-Neiafu — A 7.6-magnitude earthquake struck Tonga's Vavaʻu group on Tuesday. The epicenter near Neiafu triggered a Pacific-wide tsunami warning for an island nation of 100,000 still rebuilding from the 2022 Hunga eruption. The tsunami threat remained active as emergency services — still stretched from 2022 recovery — worked to assess structural damage.
+Neiafu — A 7.6-magnitude earthquake struck Tonga's Vavaʻu group on Tuesday.
+
+The epicenter near Neiafu triggered a Pacific-wide tsunami warning for an island nation of 100,000 still rebuilding from the 2022 Hunga eruption.
+
+The tsunami threat remained active as emergency services — still stretched from 2022 recovery — worked to assess structural damage.

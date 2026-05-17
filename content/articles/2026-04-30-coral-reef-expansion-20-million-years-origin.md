@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Jakarta — Modern coral diversity originated between [Australia](country:AU) and Southeast Asia. Research in Science Advances dates the expansion — the largest in 100 million years — to 20–10 million years ago in that corridor. The Coral Triangle, where this seeding occurred, now faces accelerating bleaching as ocean temperatures rise.
+Jakarta — Modern coral diversity originated between [Australia](country:AU) and Southeast Asia.
+
+Research in Science Advances dates the expansion — the largest in 100 million years — to 20–10 million years ago in that corridor.
+
+The Coral Triangle, where this seeding occurred, now faces accelerating bleaching as ocean temperatures rise.

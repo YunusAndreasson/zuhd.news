@@ -28,4 +28,6 @@ sentimentDivergence: 0.16
 entities: []
 ---
 
-Pahalgam — India's defence minister warned [Pakistan](country:PK): "dot, dot, dot." Rajnath Singh's statement marks 1 year since the Baisaran attack that killed 26 and triggered [India](country:IN)'s Operation Sindoor. A ceasefire ended 4 days of fighting, but India's post-Sindoor posture including water leverage remains.
+Pahalgam — India's defence minister warned [Pakistan](country:PK): "dot, dot, dot." Rajnath Singh's statement marks 1 year since the Baisaran attack that killed 26 and triggered [India](country:IN)'s Operation Sindoor.
+
+A ceasefire ended 4 days of fighting, but India's post-Sindoor posture including water leverage remains.

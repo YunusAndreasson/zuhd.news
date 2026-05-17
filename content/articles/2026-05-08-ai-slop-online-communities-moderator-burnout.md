@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-San Francisco — AI generates plausible posts at nearly zero cost. Volunteer moderators reviewing each post manually cannot match the throughput, burning out the human filter these communities depend on. Developers warn no platform has deployed AI-volume detection; niche technical forums are losing maintainers.
+San Francisco — AI generates plausible posts at nearly zero cost.
+
+Volunteer moderators reviewing each post manually cannot match the throughput, burning out the human filter these communities depend on.
+
+Developers warn no platform has deployed AI-volume detection; niche technical forums are losing maintainers.

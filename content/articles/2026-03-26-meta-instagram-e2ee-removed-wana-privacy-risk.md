@@ -11,4 +11,8 @@ sources:
     country: "LB"
 ---
 
-Beirut — Instagram loses end-to-end encryption on May 8. In West Asia and North Africa, exposed DMs have already led to arrests and public shaming. WhatsApp stays encrypted but Meta AI can access conversations it joins, eroding WANA users' privacy guarantee.
+Beirut — Instagram loses end-to-end encryption on May 8.
+
+In West Asia and North Africa, exposed DMs have already led to arrests and public shaming.
+
+WhatsApp stays encrypted but Meta AI can access conversations it joins, eroding WANA users' privacy guarantee.

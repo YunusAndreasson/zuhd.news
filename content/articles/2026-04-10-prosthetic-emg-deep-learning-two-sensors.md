@@ -17,4 +17,8 @@ concepts:
   - "Feature engineering"
 ---
 
-London — 2 sensors now control a prosthetic hand. Researchers achieved 94% gesture accuracy with 2 EMG electrodes by training a sparse autoencoder that adapts to each user's muscle signals. The model was validated only on able-bodied subjects; clinical trials on amputees are the remaining step.
+London — 2 sensors now control a prosthetic hand.
+
+Researchers achieved 94% gesture accuracy with 2 EMG electrodes by training a sparse autoencoder that adapts to each user's muscle signals.
+
+The model was validated only on able-bodied subjects; clinical trials on amputees are the remaining step.

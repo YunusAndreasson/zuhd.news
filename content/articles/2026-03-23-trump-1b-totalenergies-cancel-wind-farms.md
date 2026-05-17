@@ -17,4 +17,8 @@ concepts:
   - "Fossil fuel"
 ---
 
-Washington — The US paid $1 billion to cancel offshore wind farms. The Interior Department bought out French energy company TotalEnergies' leases off New York and North Carolina for fossil fuel development — a deal announced at a Houston energy conference as crude topped $110 a barrel. Both zones are now open for fossil fuel bids, giving oil companies access to offshore waters previously reserved for wind development.
+Washington — The US paid $1 billion to cancel offshore wind farms.
+
+The Interior Department bought out French energy company TotalEnergies' leases off New York and North Carolina for fossil fuel development — a deal announced at a Houston energy conference as crude topped $110 a barrel.
+
+Both zones are now open for fossil fuel bids, giving oil companies access to offshore waters previously reserved for wind development.

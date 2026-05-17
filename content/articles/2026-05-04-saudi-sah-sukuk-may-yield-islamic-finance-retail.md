@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Riyadh — Sah Sukuk opened for May at 4.56%. Unlike interest-bearing bonds, Sah is structured as ijarah lease shares — returns flow from [Saudi Arabia](country:SA)'s underlying state assets, not riba. Monthly tranches reset the yield each issue, giving retail investors a rolling sovereign-backed Sharia-compliant savings instrument.
+Riyadh — Sah Sukuk opened for May at 4.56%.
+
+Unlike interest-bearing bonds, Sah is structured as ijarah lease shares — returns flow from [Saudi Arabia](country:SA)'s underlying state assets, not riba.
+
+Monthly tranches reset the yield each issue, giving retail investors a rolling sovereign-backed Sharia-compliant savings instrument.

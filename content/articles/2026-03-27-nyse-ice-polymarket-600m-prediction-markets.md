@@ -17,4 +17,8 @@ concepts:
   - "Marketplace"
 ---
 
-New York — NYSE owner ICE invested $600 million in Polymarket. ICE's total commitment reaches nearly $2 billion, validating prediction markets as financial infrastructure alongside equities and futures. Rival Kalshi is valued at $22 billion as lawmakers investigate whether prediction markets are vulnerable to manipulation.
+New York — NYSE owner ICE invested $600 million in Polymarket.
+
+ICE's total commitment reaches nearly $2 billion, validating prediction markets as financial infrastructure alongside equities and futures.
+
+Rival Kalshi is valued at $22 billion as lawmakers investigate whether prediction markets are vulnerable to manipulation.

@@ -18,4 +18,8 @@ concepts:
   - "South Africa"
 ---
 
-Johannesburg — Mbeki's government edited its own Arms Deal audit. Civil society group Open Secrets showed the Khampepe Commission that Mbeki buried $263 million in corruption evidence and ignored German prosecutors. The commission could now unlock prosecutions 25 years delayed — or confirm impunity for the deal's architects.
+Johannesburg — Mbeki's government edited its own Arms Deal audit.
+
+Civil society group Open Secrets showed the Khampepe Commission that Mbeki buried $263 million in corruption evidence and ignored German prosecutors.
+
+The commission could now unlock prosecutions 25 years delayed — or confirm impunity for the deal's architects.

@@ -31,4 +31,8 @@ entities:
     kind: "commodity"
 ---
 
-Brussels — Iran war has cost the EU €24 billion, the Commission said. Its "AccelerateEU" plan proposes taxing electricity below oil and gas and optimizing jet fuel flows — 20% of EU supply crosses the Strait of Hormuz. EU leaders meet in Cyprus this week; electrification legislation is expected by summer.
+Brussels — Iran war has cost the EU €24 billion, the Commission said.
+
+Its "AccelerateEU" plan proposes taxing electricity below oil and gas and optimizing jet fuel flows — 20% of EU supply crosses the Strait of Hormuz.
+
+EU leaders meet in Cyprus this week; electrification legislation is expected by summer.

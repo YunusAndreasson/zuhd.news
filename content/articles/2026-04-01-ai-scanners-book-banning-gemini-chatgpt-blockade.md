@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Washington — AI tools are automating the book-banning pipeline. BLOCKADE uses xAI and OpenAI APIs to scan books against 300 flagged words and generate formal school board challenge PDFs. What previously required a parent reading a book now requires a prompt and a PDF.
+Washington — AI tools are automating the book-banning pipeline.
+
+BLOCKADE uses xAI and OpenAI APIs to scan books against 300 flagged words and generate formal school board challenge PDFs.
+
+What previously required a parent reading a book now requires a prompt and a PDF.

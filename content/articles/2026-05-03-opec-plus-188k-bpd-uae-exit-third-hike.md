@@ -37,4 +37,8 @@ sentimentDivergence: 0.38
 entities: []
 ---
 
-Vienna — The [UAE](country:AE) quit OPEC on May 1 as 7 members voted a 188,000 bpd June output hike, the third monthly increase unwinding 2023 cuts. UAE production is now outside the quota framework, weakening collective discipline. The bloc meets June 7 and can pause the phaseout if markets deteriorate.
+Vienna — The [UAE](country:AE) quit OPEC on May 1 as 7 members voted a 188,000 bpd June output hike, the third monthly increase unwinding 2023 cuts.
+
+UAE production is now outside the quota framework, weakening collective discipline.
+
+The bloc meets June 7 and can pause the phaseout if markets deteriorate.

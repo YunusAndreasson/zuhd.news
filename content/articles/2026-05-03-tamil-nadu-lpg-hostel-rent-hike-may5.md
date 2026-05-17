@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Chennai — Tamil Nadu hostel rents rise Rs 1,000 in May. Commercial cooking gas in [India](country:IN) hit a record Rs 3,071 per cylinder after a Rs 993 hike — the third consecutive monthly rise. Four-sharing rooms now run Rs 6,500–7,500 monthly; revised rates take effect May 5.
+Chennai — Tamil Nadu hostel rents rise Rs 1,000 in May.
+
+Commercial cooking gas in [India](country:IN) hit a record Rs 3,071 per cylinder after a Rs 993 hike — the third consecutive monthly rise.
+
+Four-sharing rooms now run Rs 6,500–7,500 monthly; revised rates take effect May 5.

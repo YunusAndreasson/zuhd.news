@@ -16,4 +16,8 @@ concepts:
   - "Lymphatic vessel"
 ---
 
-London — 2 billion people carry dormant tuberculosis in their bodies. A Nature study found CD8+ killer T cells prevent TB from spreading even without CD4 cells, a mechanism BCG barely activates. The finding maps a path to the first redesign of TB vaccination since BCG was introduced in 1921.
+London — 2 billion people carry dormant tuberculosis in their bodies.
+
+A Nature study found CD8+ killer T cells prevent TB from spreading even without CD4 cells, a mechanism BCG barely activates.
+
+The finding maps a path to the first redesign of TB vaccination since BCG was introduced in 1921.

@@ -19,4 +19,8 @@ concepts:
   - "Sanctions"
 ---
 
-Havana — Moscow and Beijing publicly backed Cuba this week. Russia's deputy FM visited Havana pledging continued western hemisphere presence; Beijing called on Washington to end its blockade and sanctions. Washington has not signalled any easing; 2 US Congress members visited the island the same week.
+Havana — Moscow and Beijing publicly backed Cuba this week.
+
+Russia's deputy FM visited Havana pledging continued western hemisphere presence; Beijing called on Washington to end its blockade and sanctions.
+
+Washington has not signalled any easing; 2 US Congress members visited the island the same week.

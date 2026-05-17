@@ -17,4 +17,8 @@ concepts:
   - "Moon"
 ---
 
-Houston — Artemis II flew past the Moon's far side. The crew spent 7 hours observing the far side — humanity's first close approach to the Moon since Apollo 17 in 1972. Full footage will be released after downlink; live streaming was limited by bandwidth at 6,400 km.
+Houston — Artemis II flew past the Moon's far side.
+
+The crew spent 7 hours observing the far side — humanity's first close approach to the Moon since Apollo 17 in 1972.
+
+Full footage will be released after downlink; live streaming was limited by bandwidth at 6,400 km.

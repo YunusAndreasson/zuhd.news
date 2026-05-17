@@ -16,4 +16,8 @@ concepts:
   - "Gene therapy"
 ---
 
-Batavia — Decades of muon anomaly close: Standard Model confirmed. Fermilab's final measurement pinned the muon g-factor to 127 parts per billion, matching one theoretical approach but leaving a second in conflict. The $3M Breakthrough Prize honors hundreds of collaborators; physicist David Hertzog says conflicting theory methods leave undiscovered physics still possible.
+Batavia — Decades of muon anomaly close: Standard Model confirmed.
+
+Fermilab's final measurement pinned the muon g-factor to 127 parts per billion, matching one theoretical approach but leaving a second in conflict.
+
+The $3M Breakthrough Prize honors hundreds of collaborators; physicist David Hertzog says conflicting theory methods leave undiscovered physics still possible.

@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-San Francisco — Chrome installs 4 GB Gemini Nano without consent. The weights.bin file, used for AI browser features, re-downloads if deleted; no Chrome setting lets users refuse it. A researcher called the push a breach of EU ePrivacy and General Data Protection Regulation rules; Google has not responded.
+San Francisco — Chrome installs 4 GB Gemini Nano without consent.
+
+The weights.bin file, used for AI browser features, re-downloads if deleted; no Chrome setting lets users refuse it.
+
+A researcher called the push a breach of EU ePrivacy and General Data Protection Regulation rules; Google has not responded.

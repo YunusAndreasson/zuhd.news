@@ -38,4 +38,8 @@ concepts:
 entities: []
 ---
 
-Nuuk — Denmark has never refused a US base request. [The US](country:US) is proposing 3 sovereign-territory bases in southern Greenland to surveil [Russia](country:RU) and [China](country:CN) across the North Atlantic. Greenland's prime minister says [Denmark](country:DK)'s caretaker government is stalling final talks.
+Nuuk — Denmark has never refused a US base request.
+
+[The US](country:US) is proposing 3 sovereign-territory bases in southern Greenland to surveil [Russia](country:RU) and [China](country:CN) across the North Atlantic.
+
+Greenland's prime minister says [Denmark](country:DK)'s caretaker government is stalling final talks.

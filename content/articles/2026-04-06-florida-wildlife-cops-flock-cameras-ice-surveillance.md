@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Tallahassee — Florida wildlife police ran 38 immigration plate lookups. ICE holds no Flock contract but diverts queries through conservation officers, who searched over 5,000 national camera networks per lookup. No federal law limits cross-agency sharing of Flock's automated license plate data.
+Tallahassee — Florida wildlife police ran 38 immigration plate lookups.
+
+ICE holds no Flock contract but diverts queries through conservation officers, who searched over 5,000 national camera networks per lookup.
+
+No federal law limits cross-agency sharing of Flock's automated license plate data.

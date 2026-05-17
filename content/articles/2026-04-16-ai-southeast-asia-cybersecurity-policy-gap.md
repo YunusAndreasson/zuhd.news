@@ -14,4 +14,8 @@ concepts: []
 entities: []
 ---
 
-Jakarta — AI enables cyberattacks ASEAN governments cannot defend against. Anthropic's Mythos Preview capability assessment documents AI-enabled threats outpacing Southeast Asia's institutional capacity to detect and respond. ASEAN has no unified AI security framework, and the gap widens with every model generation.
+Jakarta — AI enables cyberattacks ASEAN governments cannot defend against.
+
+Anthropic's Mythos Preview capability assessment documents AI-enabled threats outpacing Southeast Asia's institutional capacity to detect and respond.
+
+ASEAN has no unified AI security framework, and the gap widens with every model generation.

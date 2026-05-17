@@ -17,4 +17,8 @@ concepts:
   - "Human reproduction"
 ---
 
-Adelaide — Microgravity cuts human sperm navigation by 50%. Researchers found sperm navigate by gravity; in simulated weightlessness, directional function collapsed and mouse fertilisation rates fell 30%. NASA's Artemis missions proceed to the Moon; whether humans can reproduce in low gravity has never been tested.
+Adelaide — Microgravity cuts human sperm navigation by 50%.
+
+Researchers found sperm navigate by gravity; in simulated weightlessness, directional function collapsed and mouse fertilisation rates fell 30%.
+
+NASA's Artemis missions proceed to the Moon; whether humans can reproduce in low gravity has never been tested.

@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Washington — Adam O'Neal, WaPo's opinion editor, spent $80,000 on a YouTube show that drew dozens of views. He launched it under Jeff Bezos's rightward editorial pivot. WaPo has not disclosed view counts or announced whether the show continues.
+Washington — Adam O'Neal, WaPo's opinion editor, spent $80,000 on a YouTube show that drew dozens of views.
+
+He launched it under Jeff Bezos's rightward editorial pivot.
+
+WaPo has not disclosed view counts or announced whether the show continues.

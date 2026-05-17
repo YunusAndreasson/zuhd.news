@@ -14,4 +14,8 @@ concepts:
   - "Donald Trump"
 ---
 
-Washington — Insurers won a 2.5% Medicare Advantage pay raise. The administration also dropped a risk-adjustment overhaul flagged by federal auditors as abused — preserving billions in Medicare overpayments for insurers. UnitedHealth, Humana, and CVS Health stocks climbed on the announcement; the rate hike takes effect in 2027.
+Washington — Insurers won a 2.5% Medicare Advantage pay raise.
+
+The administration also dropped a risk-adjustment overhaul flagged by federal auditors as abused — preserving billions in Medicare overpayments for insurers.
+
+UnitedHealth, Humana, and CVS Health stocks climbed on the announcement; the rate hike takes effect in 2027.

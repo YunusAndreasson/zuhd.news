@@ -17,4 +17,8 @@ concepts:
   - "Inter-universal Teichmüller theory"
 ---
 
-Kyoto — 2 groups are formalising Mochizuki's disputed ABC proof. Mochizuki's 2012 claim split mathematics; now both sides are translating the 500-page argument into Lean, software that verifies each step automatically. Both groups found the same flaw Lean can't step past, forcing Mochizuki's first response in 8 years.
+Kyoto — 2 groups are formalising Mochizuki's disputed ABC proof.
+
+Mochizuki's 2012 claim split mathematics; now both sides are translating the 500-page argument into Lean, software that verifies each step automatically.
+
+Both groups found the same flaw Lean can't step past, forcing Mochizuki's first response in 8 years.

@@ -23,4 +23,8 @@ entities:
     kind: "commodity"
 ---
 
-London — Oil hit $100 after [US](country:US)-[Iran](country:IR) talks collapsed and Trump ordered Iranian ports blockaded. A conditional two-week ceasefire had briefly cut prices before the breakdown. European governments announced emergency energy support packages with no talks restart date set.
+London — Oil hit $100 after [US](country:US)-[Iran](country:IR) talks collapsed and Trump ordered Iranian ports blockaded.
+
+A conditional two-week ceasefire had briefly cut prices before the breakdown.
+
+European governments announced emergency energy support packages with no talks restart date set.

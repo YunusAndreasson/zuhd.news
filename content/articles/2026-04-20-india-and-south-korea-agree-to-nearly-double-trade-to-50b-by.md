@@ -30,4 +30,8 @@ sentimentDivergence: 0.23
 entities: []
 ---
 
-New Delhi — [South Korea](country:KR) is embedding shipbuilding capacity in [India](country:IN) to hedge against Gulf supply disruption. PM Modi and South Korean President Lee Jae-myung pledged to raise bilateral trade from $27 billion to $50 billion by 2030 via Korean industrial townships. A trade deal upgrade is due within a year; Iran war disruptions strain both economies.
+New Delhi — [South Korea](country:KR) is embedding shipbuilding capacity in [India](country:IN) to hedge against Gulf supply disruption.
+
+PM Modi and South Korean President Lee Jae-myung pledged to raise bilateral trade from $27 billion to $50 billion by 2030 via Korean industrial townships.
+
+A trade deal upgrade is due within a year; Iran war disruptions strain both economies.

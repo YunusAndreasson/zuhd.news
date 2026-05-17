@@ -17,4 +17,8 @@ concepts:
   - "Crimes against humanity"
 ---
 
-New York — 123 countries voted yes; 3 opposed: US, Israel, Argentina. The UN General Assembly declared the transatlantic slave trade a crime against humanity; the 52 abstentions include Britain, Portugal, and Spain. Ghana specified reparations as education funds and looted artefacts returned — no cash payments to governments.
+New York — 123 countries voted yes; 3 opposed: US, Israel, Argentina.
+
+The UN General Assembly declared the transatlantic slave trade a crime against humanity; the 52 abstentions include Britain, Portugal, and Spain.
+
+Ghana specified reparations as education funds and looted artefacts returned — no cash payments to governments.

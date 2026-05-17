@@ -11,4 +11,8 @@ sources:
     country: "GB"
 ---
 
-Mumbai — 45,000 mangroves cleared for a coastal road. Mangrove roots nurse fish larvae and buffer storm surge; [India](country:IN)'s Supreme Court authorized the felling for a 26km road due in 2029. Koli fishers report lower catches since felling began; no compensation mechanism has been set.
+Mumbai — 45,000 mangroves cleared for a coastal road.
+
+Mangrove roots nurse fish larvae and buffer storm surge; [India](country:IN)'s Supreme Court authorized the felling for a 26km road due in 2029.
+
+Koli fishers report lower catches since felling began; no compensation mechanism has been set.

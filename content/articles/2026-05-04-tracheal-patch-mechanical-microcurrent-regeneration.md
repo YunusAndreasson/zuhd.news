@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — A dual-signal patch drives vascularization in tracheal tissue neither signal achieves alone. Ultrasound activates simultaneous mechanical expansion and piezoelectric microcurrents; together they trigger blood-vessel growth. Synthetic grafts fail these defects because anastomotic sites lack blood supply and trigger immune rejection.
+London — A dual-signal patch drives vascularization in tracheal tissue neither signal achieves alone.
+
+Ultrasound activates simultaneous mechanical expansion and piezoelectric microcurrents; together they trigger blood-vessel growth.
+
+Synthetic grafts fail these defects because anastomotic sites lack blood supply and trigger immune rejection.

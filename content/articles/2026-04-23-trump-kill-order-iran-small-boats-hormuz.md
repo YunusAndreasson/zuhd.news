@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Washington — Trump authorized lethal force against Iranian mining boats. The order — posted on Truth Social — grants [US](country:US) forces standing authority to fire on [Iran](country:IR)'s Revolutionary Guard small boats on sight. The Pentagon told Congress Hormuz demining takes 6 months and cannot start before a ceasefire.
+Washington — Trump authorized lethal force against Iranian mining boats.
+
+The order — posted on Truth Social — grants [US](country:US) forces standing authority to fire on [Iran](country:IR)'s Revolutionary Guard small boats on sight.
+
+The Pentagon told Congress Hormuz demining takes 6 months and cannot start before a ceasefire.

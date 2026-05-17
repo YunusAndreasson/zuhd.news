@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Santiago — 22 arrested in $4.5 million gang money-laundering bust. Tren de Aragua routed drug profits through shell companies in [Chile](country:CL) into cryptocurrency, then transferred funds to [Venezuela](country:VE). The technique places gang funds inside the regulated banking system, bypassing traditional cash-flow monitoring.
+Santiago — 22 arrested in $4.5 million gang money-laundering bust.
+
+Tren de Aragua routed drug profits through shell companies in [Chile](country:CL) into cryptocurrency, then transferred funds to [Venezuela](country:VE).
+
+The technique places gang funds inside the regulated banking system, bypassing traditional cash-flow monitoring.

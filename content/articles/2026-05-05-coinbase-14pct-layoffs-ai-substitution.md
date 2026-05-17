@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-San Francisco — Coinbase's 14% cut starts 16 weeks' severance. CEO Brian Armstrong cited 2 forces: a crypto market downturn and AI that compresses team timelines from weeks to days. Armstrong said AI will keep shrinking team sizes across the crypto sector.
+San Francisco — Coinbase's 14% cut starts 16 weeks' severance.
+
+CEO Brian Armstrong cited 2 forces: a crypto market downturn and AI that compresses team timelines from weeks to days.
+
+Armstrong said AI will keep shrinking team sizes across the crypto sector.

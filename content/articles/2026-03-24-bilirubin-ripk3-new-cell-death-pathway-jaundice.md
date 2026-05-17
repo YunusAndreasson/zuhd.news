@@ -17,4 +17,8 @@ concepts:
   - "Ferroptosis"
 ---
 
-Beijing — Bilirubin kills neurons by bypassing every known cell-death pathway. A Cell Discovery paper found bilirubin directly activates RIPK3, a cell-death kinase, without involving any known upstream regulator. The RIPK3 target now needs validation in animal models of neonatal jaundice before any clinical application.
+Beijing — Bilirubin kills neurons by bypassing every known cell-death pathway.
+
+A Cell Discovery paper found bilirubin directly activates RIPK3, a cell-death kinase, without involving any known upstream regulator.
+
+The RIPK3 target now needs validation in animal models of neonatal jaundice before any clinical application.

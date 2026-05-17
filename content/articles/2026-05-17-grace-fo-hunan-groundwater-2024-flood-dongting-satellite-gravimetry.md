@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Changsha — Groundwater drove 44% of Hunan's 2024 flood fluctuations. GRACE-FO satellites tracked the groundwater share — not surface rivers — at provincial scale in [China](country:CN) for the first time, a Nature study found. Basin managers can now use satellite gravity data to monitor groundwater before the next summer flood season.
+Changsha — Groundwater drove 44% of Hunan's 2024 flood fluctuations.
+
+GRACE-FO satellites tracked the groundwater share — not surface rivers — at provincial scale in [China](country:CN) for the first time, a Nature study found.
+
+Basin managers can now use satellite gravity data to monitor groundwater before the next summer flood season.

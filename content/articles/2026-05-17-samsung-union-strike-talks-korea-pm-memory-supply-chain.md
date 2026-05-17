@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Seoul — Samsung's union meets Monday in last-chance strike talks. [South Korea](country:KR)'s prime minister warned failure would "wreak havoc" on the economy. A stoppage at the world's largest memory chipmaker would move global chip prices within weeks.
+Seoul — Samsung's union meets Monday in last-chance strike talks.
+
+[South Korea](country:KR)'s prime minister warned failure would "wreak havoc" on the economy.
+
+A stoppage at the world's largest memory chipmaker would move global chip prices within weeks.

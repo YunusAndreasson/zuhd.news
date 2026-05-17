@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Cape Town — Julius Malema, convicted of hate speech, retains his seat on [South Africa](country:ZA)'s judicial appointments body. The Helen Suzman Foundation petitioned court to overturn the Speaker's April 30 decision not to assess his fitness. The foundation also challenges the appointments act for lacking a binding code of conduct for commissioners.
+Cape Town — Julius Malema, convicted of hate speech, retains his seat on [South Africa](country:ZA)'s judicial appointments body.
+
+The Helen Suzman Foundation petitioned court to overturn the Speaker's April 30 decision not to assess his fitness.
+
+The foundation also challenges the appointments act for lacking a binding code of conduct for commissioners.

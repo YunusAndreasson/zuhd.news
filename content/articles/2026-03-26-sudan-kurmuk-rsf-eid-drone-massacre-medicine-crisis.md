@@ -11,4 +11,8 @@ sources:
     country: "EG"
 ---
 
-Kurmuk — RSF seized Kurmuk on Sudan's Ethiopian border. Thousands of fighters crossed from Ethiopia under drone cover to take the Blue Nile town. Sudan's military also struck Daein's hospital that day, killing 64; Roseires Dam is next in RSF's path.
+Kurmuk — RSF seized Kurmuk on Sudan's Ethiopian border.
+
+Thousands of fighters crossed from Ethiopia under drone cover to take the Blue Nile town.
+
+Sudan's military also struck Daein's hospital that day, killing 64; Roseires Dam is next in RSF's path.

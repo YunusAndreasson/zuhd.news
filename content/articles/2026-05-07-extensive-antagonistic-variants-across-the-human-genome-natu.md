@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — Human genetics trades one trait against another. Researchers identified 219 genomic regions — 11.4% of human linkage blocks — where the same variant improves one trait while harming another. The variants cluster at intermediate allele frequencies, a signature of balancing selection preserving genetic diversity across populations.
+London — Human genetics trades one trait against another.
+
+Researchers identified 219 genomic regions — 11.4% of human linkage blocks — where the same variant improves one trait while harming another.
+
+The variants cluster at intermediate allele frequencies, a signature of balancing selection preserving genetic diversity across populations.

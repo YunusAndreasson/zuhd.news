@@ -17,4 +17,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Abu Dhabi — [UAE](country:AE) exits OPEC, citing Iran-conflict disruption. Hormuz partly blockaded and Saudi quotas capping its output since 2023, the UAE chose market share over cartel discipline. OPEC loses its second-tier swing producer; [Saudi Arabia](country:SA) must now coordinate production discipline alone.
+Abu Dhabi — [UAE](country:AE) exits OPEC, citing Iran-conflict disruption.
+
+Hormuz partly blockaded and Saudi quotas capping its output since 2023, the UAE chose market share over cartel discipline.
+
+OPEC loses its second-tier swing producer; [Saudi Arabia](country:SA) must now coordinate production discipline alone.

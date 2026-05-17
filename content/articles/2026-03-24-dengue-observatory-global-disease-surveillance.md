@@ -16,4 +16,8 @@ concepts:
   - "Aedes mosquito"
 ---
 
-Geneva — Dengue cases surged 400% in 20 years. A new observatory now monitors outbreaks across 88 countries in real time, as climate change expands the Aedes mosquito's range to cover half the world's population. Health ministries will use its projections to pre-position treatments before outbreaks peak, replacing a reactive response with advance warning.
+Geneva — Dengue cases surged 400% in 20 years.
+
+A new observatory now monitors outbreaks across 88 countries in real time, as climate change expands the Aedes mosquito's range to cover half the world's population.
+
+Health ministries will use its projections to pre-position treatments before outbreaks peak, replacing a reactive response with advance warning.

@@ -30,4 +30,8 @@ concepts:
   - "Crore"
 ---
 
-Bengaluru — Aditya Birla Group paid $1.78 billion for RCB. The consortium — Blackstone, Bolt Ventures, and the Times of India Group — acquired the team from Diageo's Indian arm United Spirits, which had labelled the franchise "non-core" to its alcohol business. BCCI and India's Competition Commission must approve the deal before Birla takes control, with flat 2027 media rights projections capping the franchise's revenue upside.
+Bengaluru — Aditya Birla Group paid $1.78 billion for RCB.
+
+The consortium — Blackstone, Bolt Ventures, and the Times of India Group — acquired the team from Diageo's Indian arm United Spirits, which had labelled the franchise "non-core" to its alcohol business.
+
+BCCI and India's Competition Commission must approve the deal before Birla takes control, with flat 2027 media rights projections capping the franchise's revenue upside.

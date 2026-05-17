@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Washington — US exempted Gulf oil drilling from endangered species protections. The Endangered Species Committee, invoked fewer than 10 times in 50 years, granted the exemption at Defense Secretary Hegseth's request under national security. The ruling sets precedent for overriding environmental law with that claim.
+Washington — US exempted Gulf oil drilling from endangered species protections.
+
+The Endangered Species Committee, invoked fewer than 10 times in 50 years, granted the exemption at Defense Secretary Hegseth's request under national security.
+
+The ruling sets precedent for overriding environmental law with that claim.

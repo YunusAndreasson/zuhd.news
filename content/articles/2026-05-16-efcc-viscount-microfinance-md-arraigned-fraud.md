@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Abuja — Viscount Microfinance's chief faces N19 million fraud charges. [Nigeria](country:NG)'s Economic and Financial Crimes Commission alleged she diverted N19 million and $30,000 in client investment funds to personal use in 2022. Abuja's High Court adjourned the case to 19 July; conviction carries up to 2 years.
+Abuja — Viscount Microfinance's chief faces N19 million fraud charges.
+
+[Nigeria](country:NG)'s Economic and Financial Crimes Commission alleged she diverted N19 million and $30,000 in client investment funds to personal use in 2022.
+
+Abuja's High Court adjourned the case to 19 July; conviction carries up to 2 years.

@@ -29,4 +29,8 @@ concepts:
 sentimentDivergence: 0.39
 ---
 
-Islamabad — 21-hour US-Iran talks yielded no deal. Vance demanded Iran relinquish not just nuclear weapons but breakout capacity — Tehran called those terms excessive and departed. Trump floated a naval blockade as 2 carrier groups massed in the Persian Gulf.
+Islamabad — 21-hour US-Iran talks yielded no deal.
+
+Vance demanded Iran relinquish not just nuclear weapons but breakout capacity — Tehran called those terms excessive and departed.
+
+Trump floated a naval blockade as 2 carrier groups massed in the Persian Gulf.

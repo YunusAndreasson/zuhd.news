@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-The Hague — ICC confirmed Rodrigo Duterte will stand trial. Judges found "substantial grounds" he committed crimes against humanity through a drug war that killed thousands of Filipinos. The [Philippines](country:PH) left the ICC in 2019; the court ruled it retains jurisdiction over crimes committed before withdrawal.
+The Hague — ICC confirmed Rodrigo Duterte will stand trial.
+
+Judges found "substantial grounds" he committed crimes against humanity through a drug war that killed thousands of Filipinos.
+
+The [Philippines](country:PH) left the ICC in 2019; the court ruled it retains jurisdiction over crimes committed before withdrawal.

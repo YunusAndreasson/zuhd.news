@@ -16,4 +16,8 @@ concepts:
   - "Terrorism financing"
 ---
 
-Abuja — Nigeria publicly named 48 terrorism financiers on Saturday. NIGSAC's list targets Boko Haram and 2 other armed networks as terrorism financiers across Nigeria's conflict zones. Listed individuals face asset freezes, including publisher Tukur Mamu, already on trial for terrorism financing.
+Abuja — Nigeria publicly named 48 terrorism financiers on Saturday.
+
+NIGSAC's list targets Boko Haram and 2 other armed networks as terrorism financiers across Nigeria's conflict zones.
+
+Listed individuals face asset freezes, including publisher Tukur Mamu, already on trial for terrorism financing.

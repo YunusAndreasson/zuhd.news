@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Bangkok — Rice has reached its evolutionary thermal limit. Temperatures now rise faster than the 9,000 years of warming that shaped rice's heat tolerance. South and Southeast Asia — home to 3.5 billion rice-dependent people — is warming faster than the global average.
+Bangkok — Rice has reached its evolutionary thermal limit.
+
+Temperatures now rise faster than the 9,000 years of warming that shaped rice's heat tolerance.
+
+South and Southeast Asia — home to 3.5 billion rice-dependent people — is warming faster than the global average.

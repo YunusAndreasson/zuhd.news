@@ -20,4 +20,8 @@ eventCoverage: 23
 entities: []
 ---
 
-Christchurch — Court denied Tarrant's retrial for 2019 mosque killings. Judges rejected his mental illness claims after prison staff and health records contradicted them, with the appeal 505 days overdue. Tarrant remains imprisoned for life, sparing [New Zealand](country:NZ)'s 51 victim families a retrial.
+Christchurch — Court denied Tarrant's retrial for 2019 mosque killings.
+
+Judges rejected his mental illness claims after prison staff and health records contradicted them, with the appeal 505 days overdue.
+
+Tarrant remains imprisoned for life, sparing [New Zealand](country:NZ)'s 51 victim families a retrial.

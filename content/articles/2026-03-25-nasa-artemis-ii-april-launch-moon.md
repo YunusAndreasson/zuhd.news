@@ -32,4 +32,8 @@ concepts:
   - "Space Launch System"
 ---
 
-4 astronauts fly past the Moon on April 1. After 2 rollbacks from hydrogen leaks and a helium seal blockage, Congress passed a 2026 reauthorization giving Administrator Isaacman authority to restructure the program. Success sets the path for Artemis IV's 2028 Moon landing, with the first woman and first person of color on a lunar trajectory aboard.
+4 astronauts fly past the Moon on April 1.
+
+After 2 rollbacks from hydrogen leaks and a helium seal blockage, Congress passed a 2026 reauthorization giving Administrator Isaacman authority to restructure the program.
+
+Success sets the path for Artemis IV's 2028 Moon landing, with the first woman and first person of color on a lunar trajectory aboard.

@@ -14,4 +14,8 @@ concepts: []
 entities: []
 ---
 
-Rajshahi — Barind's paddy shift benefits landowners, not the landless. [Bangladesh](country:BD)'s 8,000 sq km Barind Tract lost 10-15 metres of groundwater in a decade; paddy's exit eliminated the harvest labor that landless workers depended on. Landowners continue expanding into dragon-fruit orchards; for landless laborers, no viable crop exists to switch to.
+Rajshahi — Barind's paddy shift benefits landowners, not the landless.
+
+[Bangladesh](country:BD)'s 8,000 sq km Barind Tract lost 10-15 metres of groundwater in a decade; paddy's exit eliminated the harvest labor that landless workers depended on.
+
+Landowners continue expanding into dragon-fruit orchards; for landless laborers, no viable crop exists to switch to.

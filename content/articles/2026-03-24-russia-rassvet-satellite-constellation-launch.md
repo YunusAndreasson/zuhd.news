@@ -17,4 +17,8 @@ concepts:
   - "Rassvet"
 ---
 
-Moscow — Russia launched 16 satellites for its Starlink rival, Rassvet. Rassvet targets the low-orbit broadband market Starlink dominates, built to give Russia internet infrastructure independent of Western satellites. The 16 satellites will move to target orbit after systems checkout; Russia plans to expand Rassvet to hundreds of satellites but has announced no funding or launch schedule for the next batch.
+Moscow — Russia launched 16 satellites for its Starlink rival, Rassvet.
+
+Rassvet targets the low-orbit broadband market Starlink dominates, built to give Russia internet infrastructure independent of Western satellites.
+
+The 16 satellites will move to target orbit after systems checkout; Russia plans to expand Rassvet to hundreds of satellites but has announced no funding or launch schedule for the next batch.

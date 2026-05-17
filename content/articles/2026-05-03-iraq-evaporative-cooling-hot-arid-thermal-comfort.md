@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Baghdad — Only 6% of Basrah's summer hours are thermally comfortable without active cooling, a study of major cities in [Iraq](country:IQ) found. Evaporative coolers — air chilled by water evaporation — added 54% more comfortable hours in Basrah, 41% in Baghdad, 31% in Mosul. The technology uses a fraction of air-conditioning energy and requires no grid expansion.
+Baghdad — Only 6% of Basrah's summer hours are thermally comfortable without active cooling, a study of major cities in [Iraq](country:IQ) found.
+
+Evaporative coolers — air chilled by water evaporation — added 54% more comfortable hours in Basrah, 41% in Baghdad, 31% in Mosul.
+
+The technology uses a fraction of air-conditioning energy and requires no grid expansion.

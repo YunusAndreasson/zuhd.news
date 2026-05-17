@@ -17,4 +17,8 @@ concepts:
   - "Proxy (climate)"
 ---
 
-London — Phosphorus spikes in ancient oceans preceded 2 mass extinctions. Excess phosphorus starves seawater of oxygen and collapses food webs, the same chemistry agricultural runoff creates in the Gulf of Mexico today. Researchers can now use carbonate records to monitor whether modern runoff rates have crossed the extinction-triggering threshold.
+London — Phosphorus spikes in ancient oceans preceded 2 mass extinctions.
+
+Excess phosphorus starves seawater of oxygen and collapses food webs, the same chemistry agricultural runoff creates in the Gulf of Mexico today.
+
+Researchers can now use carbonate records to monitor whether modern runoff rates have crossed the extinction-triggering threshold.

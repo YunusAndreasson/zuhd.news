@@ -16,4 +16,8 @@ concepts:
   - "Sukuk"
 ---
 
-Karachi — Pakistan non-banks hold a record Rs11tr in state bonds. Banks have invested 4x more in government securities than in private-sector loans as geopolitical uncertainty drives a flight to safety. ADB projects 3.5% GDP growth for FY26 as hundreds of firms relocate to Egypt and Central Asia.
+Karachi — Pakistan non-banks hold a record Rs11tr in state bonds.
+
+Banks have invested 4x more in government securities than in private-sector loans as geopolitical uncertainty drives a flight to safety.
+
+ADB projects 3.5% GDP growth for FY26 as hundreds of firms relocate to Egypt and Central Asia.

@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-New York — Iran-war fuel costs sank Spirit Airlines in 2 months. Spirit's 114 planes, gates, and landing slots at slot-controlled [US](country:US) airports like LaGuardia will be auctioned to settle creditor claims. 17,000 workers lost their jobs; ultra-low fares on Caribbean leisure routes will not be matched by remaining carriers.
+New York — Iran-war fuel costs sank Spirit Airlines in 2 months.
+
+Spirit's 114 planes, gates, and landing slots at slot-controlled [US](country:US) airports like LaGuardia will be auctioned to settle creditor claims.
+
+17,000 workers lost their jobs; ultra-low fares on Caribbean leisure routes will not be matched by remaining carriers.

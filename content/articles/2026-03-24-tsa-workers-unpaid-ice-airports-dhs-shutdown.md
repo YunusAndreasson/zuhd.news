@@ -16,4 +16,8 @@ concepts:
   - "Airport"
 ---
 
-Washington — 400 TSA workers quit after 6 weeks without pay. Trump rejected a Senate deal to fund the Department of Homeland Security without Immigration and Customs Enforcement (ICE), keeping screeners unpaid while ICE agents remain funded and take over airport security checkpoints. Democrats are blocking DHS funding until ICE, which killed 2 unarmed Americans in January, faces accountability reforms.
+Washington — 400 TSA workers quit after 6 weeks without pay.
+
+Trump rejected a Senate deal to fund the Department of Homeland Security without Immigration and Customs Enforcement (ICE), keeping screeners unpaid while ICE agents remain funded and take over airport security checkpoints.
+
+Democrats are blocking DHS funding until ICE, which killed 2 unarmed Americans in January, faces accountability reforms.

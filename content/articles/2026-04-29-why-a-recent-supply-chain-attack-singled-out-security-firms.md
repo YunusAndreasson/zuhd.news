@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-San Francisco — Hackers used Checkmarx and Bitwarden as malware delivery channels. TeamPCP, an access broker, targeted these security tools for their privileged developer access to push malware downstream. It sold stolen credentials to Lapsu$, a ransomware group that dumped private data.
+San Francisco — Hackers used Checkmarx and Bitwarden as malware delivery channels.
+
+TeamPCP, an access broker, targeted these security tools for their privileged developer access to push malware downstream.
+
+It sold stolen credentials to Lapsu$, a ransomware group that dumped private data.

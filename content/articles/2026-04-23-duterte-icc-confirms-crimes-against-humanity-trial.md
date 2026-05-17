@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-The Hague — ICC confirmed Duterte stands trial for murder. Judges found he 'developed and implemented' a killing policy as Davao mayor and [Philippines](country:PH) president; police and hired squads carried it out. No trial date is set; estimated dead range from 6,000 per police to 30,000 by rights groups.
+The Hague — ICC confirmed Duterte stands trial for murder.
+
+Judges found he 'developed and implemented' a killing policy as Davao mayor and [Philippines](country:PH) president; police and hired squads carried it out.
+
+No trial date is set; estimated dead range from 6,000 per police to 30,000 by rights groups.

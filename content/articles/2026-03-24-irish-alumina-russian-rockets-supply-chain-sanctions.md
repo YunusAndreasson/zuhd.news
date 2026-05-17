@@ -18,4 +18,8 @@ concepts:
   - "Ukraine"
 ---
 
-Limerick — Europe's largest alumina refinery feeds Russia's weapons supply chain. EU law bans importing Russian aluminum but does not restrict exporting alumina to Russia, a gap Latvia urged closing and Brussels rejected. Aughinish, the Irish refinery owned by Russian company Rusal whose smelters supply sanctioned weapons manufacturers, can legally continue exports to Russia unless the EU reverses its rejection of Latvia's proposed ban.
+Limerick — Europe's largest alumina refinery feeds Russia's weapons supply chain.
+
+EU law bans importing Russian aluminum but does not restrict exporting alumina to Russia, a gap Latvia urged closing and Brussels rejected.
+
+Aughinish, the Irish refinery owned by Russian company Rusal whose smelters supply sanctioned weapons manufacturers, can legally continue exports to Russia unless the EU reverses its rejection of Latvia's proposed ban.

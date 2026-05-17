@@ -17,4 +17,8 @@ concepts:
   - "Darfur"
 ---
 
-Tawila — A 5-year-old burned to death cooking lentils on Eid. Fire swept through El Omda displacement camp, destroying 903 homes built from grass and plastic packed close together, leaving up to 6,000 people without shelter or belongings. It is the 3rd camp fire in North Darfur this month; Sudan's government must fund permanent shelter construction before the next dry season.
+Tawila — A 5-year-old burned to death cooking lentils on Eid.
+
+Fire swept through El Omda displacement camp, destroying 903 homes built from grass and plastic packed close together, leaving up to 6,000 people without shelter or belongings.
+
+It is the 3rd camp fire in North Darfur this month; Sudan's government must fund permanent shelter construction before the next dry season.

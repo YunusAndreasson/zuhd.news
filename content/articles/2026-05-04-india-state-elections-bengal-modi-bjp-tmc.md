@@ -29,4 +29,8 @@ sentimentDivergence: 0.31
 entities: []
 ---
 
-Kolkata — [India](country:IN)'s Bharatiya Janata Party leads 2 of Bengal's first declared seats. A win would end Mamata Banerjee's Trinamool Congress hold since 2011 — the party's first capture of a non-Hindi-belt eastern state. Tamil Nadu posts the cycle's tightest race; Assam exit polls project ruling-party retention.
+Kolkata — [India](country:IN)'s Bharatiya Janata Party leads 2 of Bengal's first declared seats.
+
+A win would end Mamata Banerjee's Trinamool Congress hold since 2011 — the party's first capture of a non-Hindi-belt eastern state.
+
+Tamil Nadu posts the cycle's tightest race; Assam exit polls project ruling-party retention.

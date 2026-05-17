@@ -18,4 +18,6 @@ concepts:
   - "Patriot missile"
 ---
 
-Brussels — European governments called the US Iran war a "strategic folly." Europe refused to redeploy Patriot batteries to the Middle East, citing no pre-war consultation and no stated war aims from Washington. NATO's eastern flank states are prioritizing territorial defense over Middle East deployment, leaving Trump's demands publicly unanswered.
+Brussels — European governments called the US Iran war a "strategic folly." Europe refused to redeploy Patriot batteries to the Middle East, citing no pre-war consultation and no stated war aims from Washington.
+
+NATO's eastern flank states are prioritizing territorial defense over Middle East deployment, leaving Trump's demands publicly unanswered.

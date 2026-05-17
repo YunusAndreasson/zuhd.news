@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Warsaw — [Poland](country:PL) overtook Switzerland as 20th global economy. Per capita income rose from $6,730 in 1990 to $55,340 in 2025, IMF data show; Poland joined the EU in 2004. The [US](country:US) administration invited Poland as a G20 guest; no guest has ever been promoted to full membership.
+Warsaw — [Poland](country:PL) overtook Switzerland as 20th global economy.
+
+Per capita income rose from $6,730 in 1990 to $55,340 in 2025, IMF data show; Poland joined the EU in 2004.
+
+The [US](country:US) administration invited Poland as a G20 guest; no guest has ever been promoted to full membership.

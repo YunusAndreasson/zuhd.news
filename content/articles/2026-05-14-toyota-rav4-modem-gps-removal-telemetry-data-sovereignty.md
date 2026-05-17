@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-United States — Toyota's RAV4 modem streams location and driver data by default; automakers sell driving records to data brokers. The Data Communication Module and GPS are physically removable without disabling the car. Removing the modem also cuts crash notification and emergency calling — a safety trade-off owners face alone.
+United States — Toyota's RAV4 modem streams location and driver data by default; automakers sell driving records to data brokers.
+
+The Data Communication Module and GPS are physically removable without disabling the car.
+
+Removing the modem also cuts crash notification and emergency calling — a safety trade-off owners face alone.

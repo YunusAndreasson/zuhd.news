@@ -16,4 +16,8 @@ concepts:
   - "Palestine"
 ---
 
-West Bank — Israel shut Allenby Bridge without warning. The bridge is the sole crossing for 3 million West Bank Palestinians, leaving travelers mid-journey with no alternative. Palestinians awaiting medical care abroad face the highest risk as Israel has not set a reopening date.
+West Bank — Israel shut Allenby Bridge without warning.
+
+The bridge is the sole crossing for 3 million West Bank Palestinians, leaving travelers mid-journey with no alternative.
+
+Palestinians awaiting medical care abroad face the highest risk as Israel has not set a reopening date.

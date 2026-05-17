@@ -21,4 +21,8 @@ eventCoverage: 69
 entities: []
 ---
 
-Paris — Musk faces charges over X's child abuse content. Former X CEO Linda Yaccarino and xAI are also named; [France](country:FR) transferred the case to examining magistrates, who can compel testimony that Digital Services Act fines cannot. Investigating judges must decide whether to indict.
+Paris — Musk faces charges over X's child abuse content.
+
+Former X CEO Linda Yaccarino and xAI are also named; [France](country:FR) transferred the case to examining magistrates, who can compel testimony that Digital Services Act fines cannot.
+
+Investigating judges must decide whether to indict.

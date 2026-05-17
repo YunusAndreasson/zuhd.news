@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Istanbul — [Turkey](country:TR) unveiled a 6,000-km ballistic missile, Ankara said. Named Yildirimhan, the liquid-fueled, road-mobile missile is a 10-year project; Turkey is a NATO ally hosting [US](country:US) tactical nuclear weapons. No service date was given; Turkey had not previously fielded a missile beyond 300 km range, defense analysts said.
+Istanbul — [Turkey](country:TR) unveiled a 6,000-km ballistic missile, Ankara said.
+
+Named Yildirimhan, the liquid-fueled, road-mobile missile is a 10-year project; Turkey is a NATO ally hosting [US](country:US) tactical nuclear weapons.
+
+No service date was given; Turkey had not previously fielded a missile beyond 300 km range, defense analysts said.

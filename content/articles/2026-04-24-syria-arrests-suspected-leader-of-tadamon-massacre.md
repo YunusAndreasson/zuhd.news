@@ -17,4 +17,8 @@ concepts:
   - "Interior minister"
 ---
 
-Hama — [Syria](country:SY) arrested Amjad Youssef, suspected ringleader of the 2013 Tadamon massacre. Former Assad forces filmed themselves shooting 288 blindfolded civilians into a pit, then burning and bulldozing the bodies. [France](country:FR) has an open war-crimes probe; whether Syria tries Youssef domestically or extradites him is unresolved.
+Hama — [Syria](country:SY) arrested Amjad Youssef, suspected ringleader of the 2013 Tadamon massacre.
+
+Former Assad forces filmed themselves shooting 288 blindfolded civilians into a pit, then burning and bulldozing the bodies.
+
+[France](country:FR) has an open war-crimes probe; whether Syria tries Youssef domestically or extradites him is unresolved.

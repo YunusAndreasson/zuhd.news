@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Delhi — Priyanka Gandhi's husband Robert Vadra secured bail. The Enforcement Directorate, running the Shikohpur land-deal case for over a decade, saw [India](country:IN)'s courts find insufficient grounds for continued detention. The Delhi High Court hears Vadra's challenge to the trial court's cognisance order on May 18.
+Delhi — Priyanka Gandhi's husband Robert Vadra secured bail.
+
+The Enforcement Directorate, running the Shikohpur land-deal case for over a decade, saw [India](country:IN)'s courts find insufficient grounds for continued detention.
+
+The Delhi High Court hears Vadra's challenge to the trial court's cognisance order on May 18.

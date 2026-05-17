@@ -16,4 +16,8 @@ concepts:
   - "Qatar"
 ---
 
-Islamabad — Hormuz closure left [Pakistan](country:PK) short on power. [Qatar](country:QA) declared force majeure when the strait closed; 25-30 LNG cargoes are stranded, Dawn sources say, and Pakistan's grid is burning diesel instead. Islamabad requested 4 of those cargoes; summer peak demand reaches 28,000 megawatts as temperatures climb.
+Islamabad — Hormuz closure left [Pakistan](country:PK) short on power.
+
+[Qatar](country:QA) declared force majeure when the strait closed; 25-30 LNG cargoes are stranded, Dawn sources say, and Pakistan's grid is burning diesel instead.
+
+Islamabad requested 4 of those cargoes; summer peak demand reaches 28,000 megawatts as temperatures climb.

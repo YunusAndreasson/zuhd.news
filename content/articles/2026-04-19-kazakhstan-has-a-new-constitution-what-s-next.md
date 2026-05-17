@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Astana — [Kazakhstan](country:KZ)'s parliament lost veto powers under a new constitution approved in March. Most major appointments now fall to the president alone, the Parliamentarianism Development Fund said. Analysts warn the superpresidential structure risks elite conflict and protests if the economy worsens.
+Astana — [Kazakhstan](country:KZ)'s parliament lost veto powers under a new constitution approved in March.
+
+Most major appointments now fall to the president alone, the Parliamentarianism Development Fund said.
+
+Analysts warn the superpresidential structure risks elite conflict and protests if the economy worsens.

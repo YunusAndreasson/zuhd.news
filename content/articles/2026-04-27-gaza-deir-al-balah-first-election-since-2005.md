@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Deir al-Balah — 22.7% of Gaza turned out Monday. 9 UN tents served as polling stations; Fatah-linked slates won 6 of 15 council seats in the first vote in [Palestine](country:PS) since 2005. An analyst noted [Israel](country:IL) controls Gaza's crossings, water, and power — without international pressure, the council cannot govern.
+Deir al-Balah — 22.7% of Gaza turned out Monday.
+
+9 UN tents served as polling stations; Fatah-linked slates won 6 of 15 council seats in the first vote in [Palestine](country:PS) since 2005.
+
+An analyst noted [Israel](country:IL) controls Gaza's crossings, water, and power — without international pressure, the council cannot govern.

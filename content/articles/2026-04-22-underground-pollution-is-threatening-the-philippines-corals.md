@@ -11,4 +11,8 @@ sources:
     country: "GB"
 ---
 
-Manila — Only 30% of [the Philippines](country:PH)' wastewater receives treatment. Volcanic rock funnels septic and farm runoff underground directly to reef zones, bypassing coastal law that monitors only surface outfalls. Red tides have been recorded at 44 coastal sites since 1983; no law targets underground discharge.
+Manila — Only 30% of [the Philippines](country:PH)' wastewater receives treatment.
+
+Volcanic rock funnels septic and farm runoff underground directly to reef zones, bypassing coastal law that monitors only surface outfalls.
+
+Red tides have been recorded at 44 coastal sites since 1983; no law targets underground discharge.

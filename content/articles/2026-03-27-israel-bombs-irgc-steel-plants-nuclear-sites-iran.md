@@ -19,4 +19,8 @@ concepts:
   - "Israel Defense Forces"
 ---
 
-Ahvaz — Israel struck Iran's 2 largest steel mills. The IRGC-linked Khuzestan and Mobarakeh plants, alongside Iran's only yellowcake production facility, mark Israel's first strikes on civilian-industrial infrastructure. Iran's Revolutionary Guard warned Gulf industrial sites with American shareholders to evacuate immediately.
+Ahvaz — Israel struck Iran's 2 largest steel mills.
+
+The IRGC-linked Khuzestan and Mobarakeh plants, alongside Iran's only yellowcake production facility, mark Israel's first strikes on civilian-industrial infrastructure.
+
+Iran's Revolutionary Guard warned Gulf industrial sites with American shareholders to evacuate immediately.

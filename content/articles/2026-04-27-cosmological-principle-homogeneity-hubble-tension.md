@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — 3 preprints question whether dark energy exists. If the universe's homogeneity assumption fails, Hubble tension and dark energy anomalies may be artifacts of fitting lumpy data to a smooth model. The papers have not yet reached discovery-level statistical significance; confirmation requires more data from upcoming astronomical surveys.
+London — 3 preprints question whether dark energy exists.
+
+If the universe's homogeneity assumption fails, Hubble tension and dark energy anomalies may be artifacts of fitting lumpy data to a smooth model.
+
+The papers have not yet reached discovery-level statistical significance; confirmation requires more data from upcoming astronomical surveys.

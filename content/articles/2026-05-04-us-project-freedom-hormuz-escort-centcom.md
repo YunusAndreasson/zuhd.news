@@ -33,4 +33,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Muscat — 100 aircraft and 15,000 US troops moved to the Strait of Hormuz on Monday. Trump called it naval escort for neutral tankers; a senior [US](country:US) official said the mission coordinates insurers and flag states, not warships. [Iran](country:IR) rejected Washington's latest terms; a revised draft submitted Sunday set no response deadline.
+Muscat — 100 aircraft and 15,000 US troops moved to the Strait of Hormuz on Monday.
+
+Trump called it naval escort for neutral tankers; a senior [US](country:US) official said the mission coordinates insurers and flag states, not warships.
+
+[Iran](country:IR) rejected Washington's latest terms; a revised draft submitted Sunday set no response deadline.

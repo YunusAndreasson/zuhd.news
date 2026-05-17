@@ -36,4 +36,8 @@ eventCoverage: 139
 sentimentDivergence: 0.21
 ---
 
-Frankfurt — 572 Lufthansa flights canceled; pilots' 4th 2026 strike. Vereinigung Cockpit demands doubled pension contributions; cabin crew union UFO called strikes for Wednesday and Thursday, making 4 consecutive disruption days possible. Lufthansa shares fell 4.5% Monday; the airline and Vereinigung Cockpit held no productive talks since Easter.
+Frankfurt — 572 Lufthansa flights canceled; pilots' 4th 2026 strike.
+
+Vereinigung Cockpit demands doubled pension contributions; cabin crew union UFO called strikes for Wednesday and Thursday, making 4 consecutive disruption days possible.
+
+Lufthansa shares fell 4.5% Monday; the airline and Vereinigung Cockpit held no productive talks since Easter.

@@ -17,4 +17,8 @@ concepts:
   - "Classical mechanics"
 ---
 
-Ljubljana — Quantum magnets explain why surfaces resist sliding. Slovenia's Jožef Stefan Institute found frustrated magnetic ordering — magnets unable to settle into stable configurations — creates mechanical drag. The first microscopic friction theory since 1699 opens design paths for low-friction nanoscale devices.
+Ljubljana — Quantum magnets explain why surfaces resist sliding.
+
+Slovenia's Jožef Stefan Institute found frustrated magnetic ordering — magnets unable to settle into stable configurations — creates mechanical drag.
+
+The first microscopic friction theory since 1699 opens design paths for low-friction nanoscale devices.

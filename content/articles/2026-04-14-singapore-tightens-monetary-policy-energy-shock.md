@@ -23,4 +23,8 @@ concepts:
 sentimentDivergence: 0.01
 ---
 
-Singapore — Singapore's GDP contracted as energy prices surged. The Monetary Authority tightened for the first time in 4 years, the Hormuz closure having removed 25% of global seaborne oil supply. The authority signaled a possible July tightening if energy costs pass through into broader consumer prices.
+Singapore — Singapore's GDP contracted as energy prices surged.
+
+The Monetary Authority tightened for the first time in 4 years, the Hormuz closure having removed 25% of global seaborne oil supply.
+
+The authority signaled a possible July tightening if energy costs pass through into broader consumer prices.

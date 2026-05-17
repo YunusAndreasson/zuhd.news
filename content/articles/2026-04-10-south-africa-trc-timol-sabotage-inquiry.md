@@ -17,4 +17,8 @@ concepts:
   - "Khampepe Commission"
 ---
 
-Johannesburg — 22 apartheid detainees killed; no one prosecuted. State prosecutors sabotaged TRC cases to protect apartheid-era killers, Timol's nephew told a judicial inquiry Thursday. Whether prosecutors can be criminally charged for deliberate sabotage is now before the Khampepe Commission.
+Johannesburg — 22 apartheid detainees killed; no one prosecuted.
+
+State prosecutors sabotaged TRC cases to protect apartheid-era killers, Timol's nephew told a judicial inquiry Thursday.
+
+Whether prosecutors can be criminally charged for deliberate sabotage is now before the Khampepe Commission.

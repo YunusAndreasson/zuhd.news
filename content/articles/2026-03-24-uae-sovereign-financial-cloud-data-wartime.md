@@ -17,4 +17,8 @@ concepts:
   - "United Arab Emirates"
 ---
 
-Abu Dhabi — The UAE is building a sovereign financial cloud. Drone strikes disrupted AWS Bahrain in early March, exposing Gulf banks' dependence on foreign cloud infrastructure for payment and settlement. UAE regulators are racing to complete the migration before another regional disruption hits the same systems.
+Abu Dhabi — The UAE is building a sovereign financial cloud.
+
+Drone strikes disrupted AWS Bahrain in early March, exposing Gulf banks' dependence on foreign cloud infrastructure for payment and settlement.
+
+UAE regulators are racing to complete the migration before another regional disruption hits the same systems.

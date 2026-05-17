@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-New York — A new invariant resolves knots unsolvable for decades. The tool classifies knot pairs that resisted Khovanov homology — the field's benchmark — by computing a unique topological signature. Knot classification feeds quantum field theory and DNA topology, where distinguishing equivalent-looking loops has direct biological consequences.
+New York — A new invariant resolves knots unsolvable for decades.
+
+The tool classifies knot pairs that resisted Khovanov homology — the field's benchmark — by computing a unique topological signature.
+
+Knot classification feeds quantum field theory and DNA topology, where distinguishing equivalent-looking loops has direct biological consequences.

@@ -17,4 +17,8 @@ concepts:
   - "Ethereum"
 ---
 
-San Francisco — New research cut Bitcoin's quantum deadline to 2029. Google and Caltech papers reduced the qubit count needed to break Bitcoin's encryption; 25-30% of supply sits in exposed legacy wallets. QRL surged 40%; Bitcoin developers have not scheduled a post-quantum fork.
+San Francisco — New research cut Bitcoin's quantum deadline to 2029.
+
+Google and Caltech papers reduced the qubit count needed to break Bitcoin's encryption; 25-30% of supply sits in exposed legacy wallets.
+
+QRL surged 40%; Bitcoin developers have not scheduled a post-quantum fork.

@@ -17,4 +17,8 @@ concepts:
   - "China"
 ---
 
-Yaoundé — WTO faces worst trade crisis in 80 years. Rich nations want permanent software tariff exemptions and plurilateral deals; developing countries demand agricultural subsidy reform and consensus rules. US Section 301 tariffs on China, India, and dozens of others are due by May regardless of MC14.
+Yaoundé — WTO faces worst trade crisis in 80 years.
+
+Rich nations want permanent software tariff exemptions and plurilateral deals; developing countries demand agricultural subsidy reform and consensus rules.
+
+US Section 301 tariffs on China, India, and dozens of others are due by May regardless of MC14.

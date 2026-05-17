@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Washington — Title X serves 3 million low-income [US](country:US) women. Trump's overhaul shifts the program toward birth-rate goals, away from the contraception mandate that held bipartisan support for 50 years. Women relying on Title X for contraception have no federally-funded alternative if the program's focus narrows.
+Washington — Title X serves 3 million low-income [US](country:US) women.
+
+Trump's overhaul shifts the program toward birth-rate goals, away from the contraception mandate that held bipartisan support for 50 years.
+
+Women relying on Title X for contraception have no federally-funded alternative if the program's focus narrows.

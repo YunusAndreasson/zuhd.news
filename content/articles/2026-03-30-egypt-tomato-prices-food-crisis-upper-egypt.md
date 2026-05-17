@@ -11,4 +11,8 @@ sources:
     country: "EG"
 ---
 
-Cairo — Egypt's tomatoes hit LE60 per kilogram. A Tuta absoluta leafminer infestation destroyed Upper Egypt's winter crop; many farmers had already quit after three consecutive loss seasons. The PM declared the crisis over; growers say pest resistance and climate shifts make the shortage structural.
+Cairo — Egypt's tomatoes hit LE60 per kilogram.
+
+A Tuta absoluta leafminer infestation destroyed Upper Egypt's winter crop; many farmers had already quit after three consecutive loss seasons.
+
+The PM declared the crisis over; growers say pest resistance and climate shifts make the shortage structural.

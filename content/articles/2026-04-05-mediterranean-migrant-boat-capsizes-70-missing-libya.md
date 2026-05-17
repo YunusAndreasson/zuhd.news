@@ -25,4 +25,8 @@ concepts:
 sentimentDivergence: 0.2
 ---
 
-Lampedusa — 105 people departed Libya Saturday; 32 survived. The boat capsized in a zone nominally managed by Libyan authorities, with no state rescue vessel deployed; commercial ships found the survivors. 683 migrants have drowned in the Mediterranean in 2026; summer crossing season begins in weeks.
+Lampedusa — 105 people departed Libya Saturday; 32 survived.
+
+The boat capsized in a zone nominally managed by Libyan authorities, with no state rescue vessel deployed; commercial ships found the survivors.
+
+683 migrants have drowned in the Mediterranean in 2026; summer crossing season begins in weeks.

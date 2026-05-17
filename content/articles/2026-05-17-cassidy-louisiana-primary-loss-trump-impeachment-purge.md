@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Baton Rouge — 6 of 7 Trump conviction voters ousted. Cassidy came third in Saturday's Louisiana primary with 24.6%, behind Trump-backed Letlow — the last of seven post-January 6 conviction senators forced from office. Letlow and Fleming meet in a June 27 runoff; the [US](country:US) Senate seat has no serious general-election challenger.
+Baton Rouge — 6 of 7 Trump conviction voters ousted.
+
+Cassidy came third in Saturday's Louisiana primary with 24.6%, behind Trump-backed Letlow — the last of seven post-January 6 conviction senators forced from office.
+
+Letlow and Fleming meet in a June 27 runoff; the [US](country:US) Senate seat has no serious general-election challenger.

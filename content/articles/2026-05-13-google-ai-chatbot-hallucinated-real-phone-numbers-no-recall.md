@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-San Francisco — Once in a deployed model, real phone numbers cannot be removed even when owners ask. Gemini treats scraped contact strings as valid answers to business queries, misdirecting strangers' calls to unconsenting people, privacy researchers warn. Google has announced no opt-out mechanism.
+San Francisco — Once in a deployed model, real phone numbers cannot be removed even when owners ask.
+
+Gemini treats scraped contact strings as valid answers to business queries, misdirecting strangers' calls to unconsenting people, privacy researchers warn.
+
+Google has announced no opt-out mechanism.

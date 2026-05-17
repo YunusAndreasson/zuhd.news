@@ -18,4 +18,8 @@ concepts:
   - "Archaeology"
 ---
 
-Fort Collins — Native Americans were gambling 12,000 years ago. A study of 300 Pleistocene artifacts across 57 sites shows binary-lot dice predate Old World gambling by 6,500 years. The find rewrites the origin of probabilistic reasoning, crediting hunter-gatherers over Near East societies.
+Fort Collins — Native Americans were gambling 12,000 years ago.
+
+A study of 300 Pleistocene artifacts across 57 sites shows binary-lot dice predate Old World gambling by 6,500 years.
+
+The find rewrites the origin of probabilistic reasoning, crediting hunter-gatherers over Near East societies.

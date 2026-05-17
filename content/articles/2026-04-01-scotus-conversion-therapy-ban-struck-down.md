@@ -15,4 +15,8 @@ concepts:
   - "Supreme Court of the United States"
 ---
 
-Washington — SCOTUS struck down Colorado's conversion therapy ban 8-1. Justice Gorsuch reframed it as viewpoint regulation, overriding medical consensus that the practice causes harm. The case returns to lower courts, exposing conversion therapy bans in 18 states to legal challenge.
+Washington — SCOTUS struck down Colorado's conversion therapy ban 8-1.
+
+Justice Gorsuch reframed it as viewpoint regulation, overriding medical consensus that the practice causes harm.
+
+The case returns to lower courts, exposing conversion therapy bans in 18 states to legal challenge.

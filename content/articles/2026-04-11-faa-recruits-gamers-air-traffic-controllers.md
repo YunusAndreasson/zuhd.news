@@ -16,4 +16,8 @@ concepts:
   - "Sean Duffy"
 ---
 
-Washington — The FAA is running ads inside video games. 3,500 controllers short of its 14,500 target, the agency is targeting gamers for their spatial reasoning, multitasking, and rapid decision-making. The campaign focuses on non-graduates; only 25% of current controllers hold college degrees, per FAA data.
+Washington — The FAA is running ads inside video games.
+
+3,500 controllers short of its 14,500 target, the agency is targeting gamers for their spatial reasoning, multitasking, and rapid decision-making.
+
+The campaign focuses on non-graduates; only 25% of current controllers hold college degrees, per FAA data.

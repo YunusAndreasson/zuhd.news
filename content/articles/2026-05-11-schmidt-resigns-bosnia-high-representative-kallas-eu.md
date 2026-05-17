@@ -25,4 +25,8 @@ concepts:
 entities: []
 ---
 
-Sarajevo — Schmidt quit [Bosnia](country:BA)'s top peace post. The European Commission passed succession to Kallas, who already manages Ukraine ceasefire talks. Republika Srpska sent the sole European delegation to Putin's Victory Day and now faces no supervisor.
+Sarajevo — Schmidt quit [Bosnia](country:BA)'s top peace post.
+
+The European Commission passed succession to Kallas, who already manages Ukraine ceasefire talks.
+
+Republika Srpska sent the sole European delegation to Putin's Victory Day and now faces no supervisor.

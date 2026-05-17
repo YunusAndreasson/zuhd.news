@@ -16,4 +16,8 @@ concepts:
   - "Pakistan"
 ---
 
-Peshawar — Pakistan's high court blocked an Afghan family's deportation. The court held a pending UN resettlement case bars deportation; the petitioner, a former Afghan officer, faces persecution under Taliban rule. Pakistan has deported 1.7 million Afghans since 2023; the ruling may shield others with live asylum claims.
+Peshawar — Pakistan's high court blocked an Afghan family's deportation.
+
+The court held a pending UN resettlement case bars deportation; the petitioner, a former Afghan officer, faces persecution under Taliban rule.
+
+Pakistan has deported 1.7 million Afghans since 2023; the ruling may shield others with live asylum claims.

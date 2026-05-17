@@ -18,4 +18,8 @@ concepts:
   - "Donald Trump"
 ---
 
-Boston — Judge ruled Trump's CBP One parole revocations unlawful. DHS mass-emailed roughly 900,000 CBP One parolees to leave without the case-by-case review its own regulations require, Judge Burroughs found. DHS called it judicial activism; its appeal timeline has not been announced.
+Boston — Judge ruled Trump's CBP One parole revocations unlawful.
+
+DHS mass-emailed roughly 900,000 CBP One parolees to leave without the case-by-case review its own regulations require, Judge Burroughs found.
+
+DHS called it judicial activism; its appeal timeline has not been announced.

@@ -31,4 +31,8 @@ concepts:
 entities: []
 ---
 
-Noida — IndiGo gets the inaugural slot on June 15. Adani-operated Noida and GMR's Delhi Indira Gandhi now form a 2-airport hub for [India](country:IN)'s largest urban aviation market. Destinations are unannounced; slot decisions follow airline meetings scheduled for next week.
+Noida — IndiGo gets the inaugural slot on June 15.
+
+Adani-operated Noida and GMR's Delhi Indira Gandhi now form a 2-airport hub for [India](country:IN)'s largest urban aviation market.
+
+Destinations are unannounced; slot decisions follow airline meetings scheduled for next week.

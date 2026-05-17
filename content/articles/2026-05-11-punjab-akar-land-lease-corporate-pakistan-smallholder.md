@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Lahore — 83,000 Cholistan acres lack water for incoming leaseholders. [Pakistan](country:PK)'s Punjab land-lease scheme rents state allotments at Rs100; the Rs150,000 market rate makes them a windfall for insiders, 36 farmer groups warn. Punjab's government has set no water-infrastructure timeline for Cholistan's barren tracts.
+Lahore — 83,000 Cholistan acres lack water for incoming leaseholders.
+
+[Pakistan](country:PK)'s Punjab land-lease scheme rents state allotments at Rs100; the Rs150,000 market rate makes them a windfall for insiders, 36 farmer groups warn.
+
+Punjab's government has set no water-infrastructure timeline for Cholistan's barren tracts.

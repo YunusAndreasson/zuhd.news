@@ -30,4 +30,8 @@ concepts:
 sentimentDivergence: 0.24
 ---
 
-New Delhi — 7 of 10 AAP senators merged into [India](country:IN)'s ruling BJP. Meeting anti-defection law's two-thirds threshold, the bloc keeps its seats while stripping AAP of its parliamentary presence. AAP still holds Punjab, but assembly elections come within a year, now without its two top organizers.
+New Delhi — 7 of 10 AAP senators merged into [India](country:IN)'s ruling BJP.
+
+Meeting anti-defection law's two-thirds threshold, the bloc keeps its seats while stripping AAP of its parliamentary presence.
+
+AAP still holds Punjab, but assembly elections come within a year, now without its two top organizers.

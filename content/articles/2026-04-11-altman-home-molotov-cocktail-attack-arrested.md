@@ -24,4 +24,8 @@ concepts:
 sentimentDivergence: 0.38
 ---
 
-San Francisco — A 20-year-old firebombed Sam Altman's San Francisco home. Police arrested the suspect near OpenAI's offices an hour later, where he had threatened to burn the building down. No one was hurt; OpenAI said it is assisting law enforcement, with the investigation still open.
+San Francisco — A 20-year-old firebombed Sam Altman's San Francisco home.
+
+Police arrested the suspect near OpenAI's offices an hour later, where he had threatened to burn the building down.
+
+No one was hurt; OpenAI said it is assisting law enforcement, with the investigation still open.

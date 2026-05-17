@@ -21,4 +21,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Islamabad — Second-round [US](country:US)-[Iran](country:IR) talks collapsed before delegates arrived. [Iran](country:IR) refused to attend while the Hormuz blockade continues, calling it an act of war. [Pakistan](country:PK)'s military chief is brokering; Iran now demands a non-aggression guarantee to resume.
+Islamabad — Second-round [US](country:US)-[Iran](country:IR) talks collapsed before delegates arrived.
+
+[Iran](country:IR) refused to attend while the Hormuz blockade continues, calling it an act of war.
+
+[Pakistan](country:PK)'s military chief is brokering; Iran now demands a non-aggression guarantee to resume.

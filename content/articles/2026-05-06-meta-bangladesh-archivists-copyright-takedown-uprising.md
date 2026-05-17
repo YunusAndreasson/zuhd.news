@@ -17,4 +17,8 @@ entities:
     kind: "stock"
 ---
 
-Dhaka — False copyright claims erased [Bangladesh](country:BD)'s July 2024 uprising archive. Meta removed videos without verifying the fake claims, deleting evidence already submitted to Bangladesh's International Crimes Tribunal. Targets lack legal capacity to file counter-notices; Meta's appeals process has not restored any removed pages.
+Dhaka — False copyright claims erased [Bangladesh](country:BD)'s July 2024 uprising archive.
+
+Meta removed videos without verifying the fake claims, deleting evidence already submitted to Bangladesh's International Crimes Tribunal.
+
+Targets lack legal capacity to file counter-notices; Meta's appeals process has not restored any removed pages.

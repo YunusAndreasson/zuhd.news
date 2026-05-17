@@ -24,4 +24,8 @@ entities:
     kind: "commodity"
 ---
 
-Washington — Trump froze "Project Freedom," citing deal progress. Secretary of State Rubio declared Operation Epic Fury concluded; [Iran](country:IR) has sealed the strait for 2 months, blocking 20% of world oil. Oil futures broke below $100; no resumption timeline has been set.
+Washington — Trump froze "Project Freedom," citing deal progress.
+
+Secretary of State Rubio declared Operation Epic Fury concluded; [Iran](country:IR) has sealed the strait for 2 months, blocking 20% of world oil.
+
+Oil futures broke below $100; no resumption timeline has been set.

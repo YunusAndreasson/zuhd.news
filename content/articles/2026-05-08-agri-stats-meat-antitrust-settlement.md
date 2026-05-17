@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-Washington — Agri Stats pays $350,000 for meatpacker cartel data. The [US](country:US) Justice Department said Agri Stats shared rival pricing data with Tyson, Smithfield, and Perdue, enabling tacit supply coordination. The department confirmed it is now investigating beef, where it said 4 companies control 85% of the market.
+Washington — Agri Stats pays $350,000 for meatpacker cartel data.
+
+The [US](country:US) Justice Department said Agri Stats shared rival pricing data with Tyson, Smithfield, and Perdue, enabling tacit supply coordination.
+
+The department confirmed it is now investigating beef, where it said 4 companies control 85% of the market.

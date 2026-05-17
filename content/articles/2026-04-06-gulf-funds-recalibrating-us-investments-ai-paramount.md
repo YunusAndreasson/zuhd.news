@@ -17,4 +17,8 @@ concepts:
   - "Gulf sovereign wealth fund"
 ---
 
-Doha — Gulf funds review $24 billion in US commitments. Qatar's Investment Authority reconsidered its stake in the $111 billion Paramount-Warner Brothers merger as Iran attacks Gulf energy assets. Qatar will not exit without Saudi backing; a combined withdrawal marks a formal diplomatic break with Washington.
+Doha — Gulf funds review $24 billion in US commitments.
+
+Qatar's Investment Authority reconsidered its stake in the $111 billion Paramount-Warner Brothers merger as Iran attacks Gulf energy assets.
+
+Qatar will not exit without Saudi backing; a combined withdrawal marks a formal diplomatic break with Washington.

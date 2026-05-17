@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Karachi — [Pakistan](country:PK) auto kit imports hit $1.47bn, up 116% year-on-year. New assemblers refuse to disclose local-content ratios; vendors say new-model localisation falls below the 50–70% of older Japanese lines. Auto policy expires June 30, when the government must decide on content requirements.
+Karachi — [Pakistan](country:PK) auto kit imports hit $1.47bn, up 116% year-on-year.
+
+New assemblers refuse to disclose local-content ratios; vendors say new-model localisation falls below the 50–70% of older Japanese lines.
+
+Auto policy expires June 30, when the government must decide on content requirements.

@@ -17,4 +17,8 @@ concepts:
   - "World Health Organization"
 ---
 
-London — Youth drinking killed 417,198 under-20s since 1990. Males died at 5.8–7.5 times the female rate; 36% of deaths came from traffic injuries, burden shifting to low-income nations. Mortality increased in 59 countries — all low or middle-income — where WHO's 2022–2030 alcohol action plan implementation lags.
+London — Youth drinking killed 417,198 under-20s since 1990.
+
+Males died at 5.8–7.5 times the female rate; 36% of deaths came from traffic injuries, burden shifting to low-income nations.
+
+Mortality increased in 59 countries — all low or middle-income — where WHO's 2022–2030 alcohol action plan implementation lags.

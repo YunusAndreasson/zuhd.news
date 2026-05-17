@@ -17,4 +17,8 @@ concepts:
   - "Experian"
 ---
 
-Detroit — Used EV sales jumped 17 percent last quarter. Expired 2020s leases flooded supply and cut average prices 8.5 percent, narrowing the premium over gas cars to $1,334. EVs will reach 15 percent of off-lease supply by year's end, as the $7,500 new-EV credit is gone.
+Detroit — Used EV sales jumped 17 percent last quarter.
+
+Expired 2020s leases flooded supply and cut average prices 8.5 percent, narrowing the premium over gas cars to $1,334.
+
+EVs will reach 15 percent of off-lease supply by year's end, as the $7,500 new-EV credit is gone.

@@ -16,4 +16,8 @@ concepts:
   - "Austerity"
 ---
 
-Islamabad — Pakistan may shut commerce every weekend starting April. The Iran war made Gulf fuel imports unaffordable; a draft plan closes markets and highways on Saturdays and Sundays while exempting hospitals, airports, and public transport. President Zardari chairs a 4pm meeting Monday with all provincial leaders to approve or reject the plan.
+Islamabad — Pakistan may shut commerce every weekend starting April.
+
+The Iran war made Gulf fuel imports unaffordable; a draft plan closes markets and highways on Saturdays and Sundays while exempting hospitals, airports, and public transport.
+
+President Zardari chairs a 4pm meeting Monday with all provincial leaders to approve or reject the plan.

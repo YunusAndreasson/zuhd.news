@@ -26,4 +26,8 @@ entities:
     kind: "stock"
 ---
 
-Seoul — 114% — [South Korea](country:KR)'s Kospi led all major indices. Samsung and SK Hynix produce most of the world's AI high-bandwidth memory and together weigh roughly 60% of the Morgan Stanley Capital International Korea index. Coronation Fund Managers warned supply will normalise when [US](country:US) hyperscaler capex slows, reversing the rally.
+Seoul — 114% — [South Korea](country:KR)'s Kospi led all major indices.
+
+Samsung and SK Hynix produce most of the world's AI high-bandwidth memory and together weigh roughly 60% of the Morgan Stanley Capital International Korea index.
+
+Coronation Fund Managers warned supply will normalise when [US](country:US) hyperscaler capex slows, reversing the rally.

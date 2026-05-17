@@ -20,4 +20,8 @@ eventCoverage: 30
 entities: []
 ---
 
-Brussels — The EU sued [Hungary](country:HU) over retail-tax discrimination. The progressive rate reaches 4.5% of net revenue for foreign chains — Tesco, Auchan, Spar — while domestically-owned rivals stay below the threshold. Opposition leader Magyar pledged to phase the tax out; Budapest has paid EU court fines before without policy change.
+Brussels — The EU sued [Hungary](country:HU) over retail-tax discrimination.
+
+The progressive rate reaches 4.5% of net revenue for foreign chains — Tesco, Auchan, Spar — while domestically-owned rivals stay below the threshold.
+
+Opposition leader Magyar pledged to phase the tax out; Budapest has paid EU court fines before without policy change.

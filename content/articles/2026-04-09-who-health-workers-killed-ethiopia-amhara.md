@@ -16,4 +16,8 @@ concepts:
   - "WHO"
 ---
 
-Amhara — 3 health workers shot dead on April 2. The killings struck a health centre and private clinic in North Gojjam, where Ethiopian federal and regional forces are fighting. WHO demanded an impartial investigation, as no party has claimed responsibility for the shootings.
+Amhara — 3 health workers shot dead on April 2.
+
+The killings struck a health centre and private clinic in North Gojjam, where Ethiopian federal and regional forces are fighting.
+
+WHO demanded an impartial investigation, as no party has claimed responsibility for the shootings.

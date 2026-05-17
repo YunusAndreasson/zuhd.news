@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — [Pakistan](country:PK) confirmed receipt of [Iran](country:IR)'s reply to Washington's ceasefire proposal, displacing Oman and Qatar. Tehran chose Islamabad over established Gulf mediators. Washington has yet to respond; the [US](country:US) reaction determines whether first-stage hostilities talks can begin.
+Islamabad — [Pakistan](country:PK) confirmed receipt of [Iran](country:IR)'s reply to Washington's ceasefire proposal, displacing Oman and Qatar.
+
+Tehran chose Islamabad over established Gulf mediators.
+
+Washington has yet to respond; the [US](country:US) reaction determines whether first-stage hostilities talks can begin.

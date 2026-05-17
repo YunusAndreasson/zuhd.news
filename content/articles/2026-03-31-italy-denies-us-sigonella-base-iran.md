@@ -36,4 +36,8 @@ eventCoverage: 150
 sentimentDivergence: 0.19
 ---
 
-Rome — US warplanes tried landing at Sigonella unannounced. Defense Minister Crosetto refused after the Iran-bound flight plan arrived while aircraft were airborne, bypassing Italy's bilateral treaty. Spain has also closed its bases; the US has not addressed why it bypassed treaty channels.
+Rome — US warplanes tried landing at Sigonella unannounced.
+
+Defense Minister Crosetto refused after the Iran-bound flight plan arrived while aircraft were airborne, bypassing Italy's bilateral treaty.
+
+Spain has also closed its bases; the US has not addressed why it bypassed treaty channels.

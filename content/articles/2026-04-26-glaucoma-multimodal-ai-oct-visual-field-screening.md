@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — A new model hit 0.998 on glaucoma detection. MAM-Fusion-Net fuses optical coherence tomography, visual-field tests, and fundus photographs, surpassing single-input models for glaucoma and neurodegeneration, the study found. The 582-eye study tested 4 neuropathy subtypes; broader cohort validation is needed before clinical deployment.
+London — A new model hit 0.998 on glaucoma detection.
+
+MAM-Fusion-Net fuses optical coherence tomography, visual-field tests, and fundus photographs, surpassing single-input models for glaucoma and neurodegeneration, the study found.
+
+The 582-eye study tested 4 neuropathy subtypes; broader cohort validation is needed before clinical deployment.

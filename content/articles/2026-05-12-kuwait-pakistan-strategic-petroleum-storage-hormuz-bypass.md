@@ -23,4 +23,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Islamabad — Hormuz closure forced a tanker bypass in April. [Pakistan](country:PK) takes over 60% of its diesel from [Kuwait](country:KW), official data show; Kuwait proposes building strategic reserves inside Pakistan. No deal was signed, but it would be the first Gulf reserve base outside Hormuz reach.
+Islamabad — Hormuz closure forced a tanker bypass in April.
+
+[Pakistan](country:PK) takes over 60% of its diesel from [Kuwait](country:KW), official data show; Kuwait proposes building strategic reserves inside Pakistan.
+
+No deal was signed, but it would be the first Gulf reserve base outside Hormuz reach.

@@ -35,4 +35,8 @@ sentimentDivergence: 0.31
 entities: []
 ---
 
-Paris — [Saudi Arabia](country:SA) executed a journalist in 2025. Reporters Without Borders' index put the [US](country:US) at 64th, down 7; the share under "good" press freedom fell from 20% to under 1%. The group demanded "meaningful sanctions"; no international body can compel states that jail or kill journalists.
+Paris — [Saudi Arabia](country:SA) executed a journalist in 2025.
+
+Reporters Without Borders' index put the [US](country:US) at 64th, down 7; the share under "good" press freedom fell from 20% to under 1%.
+
+The group demanded "meaningful sanctions"; no international body can compel states that jail or kill journalists.

@@ -16,4 +16,8 @@ concepts:
   - "Physical Review Letters"
 ---
 
-Minneapolis — Oobleck still defeats physicists. Minnesota researchers found dense drops briefly spread like normal liquid before stiffening — a step existing shear-thickening theory does not predict. The anomaly appeared only at high shear rates; its implications for 3D printing and industrial coatings remain open.
+Minneapolis — Oobleck still defeats physicists.
+
+Minnesota researchers found dense drops briefly spread like normal liquid before stiffening — a step existing shear-thickening theory does not predict.
+
+The anomaly appeared only at high shear rates; its implications for 3D printing and industrial coatings remain open.

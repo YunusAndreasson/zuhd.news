@@ -37,4 +37,8 @@ sentimentDivergence: 0.3
 entities: []
 ---
 
-Hsinchu — TSMC posted a record $18.1 billion quarterly profit. AI demand drove 58% profit growth while the Iran war disrupts helium supplies from Gulf producers — helium being essential for chipmaking. TSMC's CFO says emergency safety stocks cover near-term needs; the company has not disclosed how long that covers or when Gulf restocking resumes.
+Hsinchu — TSMC posted a record $18.1 billion quarterly profit.
+
+AI demand drove 58% profit growth while the Iran war disrupts helium supplies from Gulf producers — helium being essential for chipmaking.
+
+TSMC's CFO says emergency safety stocks cover near-term needs; the company has not disclosed how long that covers or when Gulf restocking resumes.

@@ -16,4 +16,8 @@ concepts:
   - "Humanitarian aid"
 ---
 
-War-era ordnance will outlast Sudan's ceasefire. 3 years of fighting contaminated homes, roads, schools, and hospitals; UN Mine Awareness Day warned contamination outpaces clearance. Returning families encounter landmines at home; the UN says reconstruction cannot begin until mines are cleared.
+War-era ordnance will outlast Sudan's ceasefire.
+
+3 years of fighting contaminated homes, roads, schools, and hospitals; UN Mine Awareness Day warned contamination outpaces clearance.
+
+Returning families encounter landmines at home; the UN says reconstruction cannot begin until mines are cleared.

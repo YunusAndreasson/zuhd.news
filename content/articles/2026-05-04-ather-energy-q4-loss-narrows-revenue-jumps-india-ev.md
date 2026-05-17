@@ -21,4 +21,8 @@ sentimentDivergence: 0.34
 entities: []
 ---
 
-Mumbai — Ather's quarterly loss halved to Rs 100 crore. Revenue jumped 74% to Rs 1,175 crore as the [India](country:IN)-based electric vehicle maker delivered 83,418 scooters and expanded to 700 retail outlets. Annual losses fell to Rs 517 crore from Rs 812 crore; the EL platform launches in fiscal 2027.
+Mumbai — Ather's quarterly loss halved to Rs 100 crore.
+
+Revenue jumped 74% to Rs 1,175 crore as the [India](country:IN)-based electric vehicle maker delivered 83,418 scooters and expanded to 700 retail outlets.
+
+Annual losses fell to Rs 517 crore from Rs 812 crore; the EL platform launches in fiscal 2027.

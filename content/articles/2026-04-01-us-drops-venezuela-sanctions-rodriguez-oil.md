@@ -26,4 +26,8 @@ concepts:
   - "Nicolás Maduro"
 ---
 
-Caracas — Washington lifted sanctions on Venezuela's acting president. Treasury removed Delcy Rodríguez from its sanctions list weeks after the US military captured Maduro in Caracas for drug trafficking. With Hormuz closed, Venezuela's oil is suddenly strategic; Rodríguez's 90-day mandate expires Friday without a scheduled election.
+Caracas — Washington lifted sanctions on Venezuela's acting president.
+
+Treasury removed Delcy Rodríguez from its sanctions list weeks after the US military captured Maduro in Caracas for drug trafficking.
+
+With Hormuz closed, Venezuela's oil is suddenly strategic; Rodríguez's 90-day mandate expires Friday without a scheduled election.

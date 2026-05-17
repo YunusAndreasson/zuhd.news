@@ -16,4 +16,8 @@ concepts:
   - "Cyclin D1"
 ---
 
-Beijing — BMX inhibition reversed chemotherapy resistance in lung cancer. Chemo-resistant small cell lung cancer cells degrade their own tumor suppressor E2F1; BMX kinase stabilizes it, and blocking BMX restores drug sensitivity. SCLC kills 93% of patients within 5 years; ibrutinib — an approved leukemia drug — already inhibits BMX.
+Beijing — BMX inhibition reversed chemotherapy resistance in lung cancer.
+
+Chemo-resistant small cell lung cancer cells degrade their own tumor suppressor E2F1; BMX kinase stabilizes it, and blocking BMX restores drug sensitivity.
+
+SCLC kills 93% of patients within 5 years; ibrutinib — an approved leukemia drug — already inhibits BMX.

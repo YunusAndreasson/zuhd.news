@@ -38,4 +38,8 @@ eventCoverage: 169
 entities: []
 ---
 
-Pyongyang — 2 senior Russian ministers landed in Pyongyang in 2 days. Under their 2024 mutual-defence treaty, [North Korea](country:KP) sent 14,000 troops to Kursk; South Korean intelligence estimates over 2,000 died. Moscow is ready to sign a 2027–2031 military cooperation plan this year, Defence Minister Belousov told Kim Jong Un.
+Pyongyang — 2 senior Russian ministers landed in Pyongyang in 2 days.
+
+Under their 2024 mutual-defence treaty, [North Korea](country:KP) sent 14,000 troops to Kursk; South Korean intelligence estimates over 2,000 died.
+
+Moscow is ready to sign a 2027–2031 military cooperation plan this year, Defence Minister Belousov told Kim Jong Un.

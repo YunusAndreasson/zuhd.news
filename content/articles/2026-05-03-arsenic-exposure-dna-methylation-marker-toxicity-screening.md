@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-London — 200 million people drink arsenic-contaminated water, per public health estimates. A blood DNA marker now measures cumulative individual dose; prior methods tested water sources, not bodies. Clinicians can screen patients for arsenic-linked cancer and heart disease without source surveys.
+London — 200 million people drink arsenic-contaminated water, per public health estimates.
+
+A blood DNA marker now measures cumulative individual dose; prior methods tested water sources, not bodies.
+
+Clinicians can screen patients for arsenic-linked cancer and heart disease without source surveys.

@@ -29,4 +29,8 @@ sentimentDivergence: 0.15
 entities: []
 ---
 
-Kolkata — Suvendu Adhikari's Bharatiya Janata Party takes West Bengal. The 207-seat win ended Mamata Banerjee's 15-year rule; Adhikari, who beat her in Bhabanipur, is frontrunner for chief minister. Prime Minister Modi presides at the May 9 swearing-in at Brigade Parade Ground in [India](country:IN).
+Kolkata — Suvendu Adhikari's Bharatiya Janata Party takes West Bengal.
+
+The 207-seat win ended Mamata Banerjee's 15-year rule; Adhikari, who beat her in Bhabanipur, is frontrunner for chief minister.
+
+Prime Minister Modi presides at the May 9 swearing-in at Brigade Parade Ground in [India](country:IN).

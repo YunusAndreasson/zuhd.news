@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Gaza City — 21 Khilla relatives remain buried in Jabaliya. [Israel](country:IL) bars excavators from [Gaza](country:PS); surviving relatives dig reinforced concrete with hammers and shovels, 29 months on. Six months into the ceasefire, no mechanism exists to recover the thousands of dead still entombed across the strip.
+Gaza City — 21 Khilla relatives remain buried in Jabaliya.
+
+[Israel](country:IL) bars excavators from [Gaza](country:PS); surviving relatives dig reinforced concrete with hammers and shovels, 29 months on.
+
+Six months into the ceasefire, no mechanism exists to recover the thousands of dead still entombed across the strip.

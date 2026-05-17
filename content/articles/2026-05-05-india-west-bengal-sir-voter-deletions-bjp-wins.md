@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Kolkata — Bharatiya Janata Party won 95 of the 147 most-purged constituencies. India's Election Commission removed 9 million voters disproportionately from Trinamool strongholds. Trinamool Congress alleges targeted deletions; the commission has not publicly addressed the correlation.
+Kolkata — Bharatiya Janata Party won 95 of the 147 most-purged constituencies.
+
+India's Election Commission removed 9 million voters disproportionately from Trinamool strongholds.
+
+Trinamool Congress alleges targeted deletions; the commission has not publicly addressed the correlation.

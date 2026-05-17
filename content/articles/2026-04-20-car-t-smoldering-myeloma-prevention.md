@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-San Diego — Carvykti cleared myeloma in all 20 trial patients. The chimeric antigen receptor T-cell drug targets B-cell maturation antigen on plasma cells, shifting treatment from active cancer to prevention. Researchers ask whether high-risk patients should receive it prophylactically; long-term safety data is lacking.
+San Diego — Carvykti cleared myeloma in all 20 trial patients.
+
+The chimeric antigen receptor T-cell drug targets B-cell maturation antigen on plasma cells, shifting treatment from active cancer to prevention.
+
+Researchers ask whether high-risk patients should receive it prophylactically; long-term safety data is lacking.

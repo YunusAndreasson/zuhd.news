@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Dublin — Most bee conservation treats all species as one. Trinity College Dublin and Technical University of [Denmark](country:DK) built radar that identifies individual pollinator species in flight. National bee strategies have treated all pollinators identically; species-level data changes the baseline for pesticide and crop rules.
+Dublin — Most bee conservation treats all species as one.
+
+Trinity College Dublin and Technical University of [Denmark](country:DK) built radar that identifies individual pollinator species in flight.
+
+National bee strategies have treated all pollinators identically; species-level data changes the baseline for pesticide and crop rules.

@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-San Francisco — A publisher killed Google AdSense after 20 years. Ad rates collapsed and quality degraded as Google's ad monopoly corroded the product; the post-mortem got 180 HN votes this week. Publishers are now weighing subscriptions and paywalls; the ad-supported open web no longer pays for itself.
+San Francisco — A publisher killed Google AdSense after 20 years.
+
+Ad rates collapsed and quality degraded as Google's ad monopoly corroded the product; the post-mortem got 180 HN votes this week.
+
+Publishers are now weighing subscriptions and paywalls; the ad-supported open web no longer pays for itself.

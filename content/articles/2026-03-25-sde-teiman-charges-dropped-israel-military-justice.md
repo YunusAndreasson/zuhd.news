@@ -17,4 +17,8 @@ concepts:
   - "Military Justice"
 ---
 
-Tel Aviv — Israel dropped all charges against soldiers filmed abusing a Palestinian detainee at Sde Teiman detention facility. Military prosecutors had filed the case after footage of the abuse circulated publicly, then withdrew all charges following political pressure from nationalist lawmakers who had stormed the facility to free arrested soldiers in 2024. Rights groups say the dismissal confirms Israeli military courts will not hold soldiers accountable for documented abuse of Palestinian detainees; international jurisdiction remains the only external mechanism.
+Tel Aviv — Israel dropped all charges against soldiers filmed abusing a Palestinian detainee at Sde Teiman detention facility.
+
+Military prosecutors had filed the case after footage of the abuse circulated publicly, then withdrew all charges following political pressure from nationalist lawmakers who had stormed the facility to free arrested soldiers in 2024.
+
+Rights groups say the dismissal confirms Israeli military courts will not hold soldiers accountable for documented abuse of Palestinian detainees; international jurisdiction remains the only external mechanism.

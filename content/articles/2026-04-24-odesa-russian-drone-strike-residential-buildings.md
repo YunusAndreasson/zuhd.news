@@ -25,4 +25,8 @@ concepts:
   - "State Emergency Service of Ukraine"
 ---
 
-Odesa — [Russia](country:RU) killed a married couple, both 75, when a drone struck their building overnight. The attack hit 4 residential buildings, injuring 14; emergency workers rescued one person from rubble and evacuated 20 residents. Ukraine's State Emergency Service said 140 workers are still deployed across 4 clean-up sites.
+Odesa — [Russia](country:RU) killed a married couple, both 75, when a drone struck their building overnight.
+
+The attack hit 4 residential buildings, injuring 14; emergency workers rescued one person from rubble and evacuated 20 residents.
+
+Ukraine's State Emergency Service said 140 workers are still deployed across 4 clean-up sites.

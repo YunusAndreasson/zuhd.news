@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Naypyidaw — Wire services call Min Aung Hlaing 'president' freely. [Myanmar](country:MM)'s junta seized power in 2021 with no election; the Lowy Institute argues uncaveated press labels do the coup government's legitimation work for it. No international body has formally recognized the title that media now prints as fact.
+Naypyidaw — Wire services call Min Aung Hlaing 'president' freely.
+
+[Myanmar](country:MM)'s junta seized power in 2021 with no election; the Lowy Institute argues uncaveated press labels do the coup government's legitimation work for it.
+
+No international body has formally recognized the title that media now prints as fact.

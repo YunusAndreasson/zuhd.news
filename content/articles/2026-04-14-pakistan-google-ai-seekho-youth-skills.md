@@ -18,4 +18,8 @@ concepts:
   - "Telenor"
 ---
 
-Karachi — Pakistan launched a free artificial intelligence program. Google supplies cloud credits; the initiative targets Pakistan's tech sector, where 65% of the population is under 35. Hackathons run in May across Karachi, Lahore, and Islamabad — rural developers have no path to the competitive phase.
+Karachi — Pakistan launched a free artificial intelligence program.
+
+Google supplies cloud credits; the initiative targets Pakistan's tech sector, where 65% of the population is under 35.
+
+Hackathons run in May across Karachi, Lahore, and Islamabad — rural developers have no path to the competitive phase.

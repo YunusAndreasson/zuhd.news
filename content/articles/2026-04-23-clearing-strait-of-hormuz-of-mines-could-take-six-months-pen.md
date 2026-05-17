@@ -24,4 +24,8 @@ entities:
     kind: "commodity"
 ---
 
-Washington — Hormuz mines could take 6 months to clear. The strait carries 20% of global oil; clearance cannot begin until [US](country:US) and [Iran](country:IR) hostilities end, meaning energy disruption outlasts any ceasefire. Bessent warned gas prices could stay above $3 until late September; Iran and the US have announced no ceasefire talks.
+Washington — Hormuz mines could take 6 months to clear.
+
+The strait carries 20% of global oil; clearance cannot begin until [US](country:US) and [Iran](country:IR) hostilities end, meaning energy disruption outlasts any ceasefire.
+
+Bessent warned gas prices could stay above $3 until late September; Iran and the US have announced no ceasefire talks.

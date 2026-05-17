@@ -18,4 +18,8 @@ concepts:
   - "Integrated circuit"
 ---
 
-Austin — Tesla commits to Intel's unfinished 14A chip process. Tesla anticipates outrunning graphics-processor supply for its robotaxi and robot programs, and 14A sits beyond Intel's 18A node, which has not yet shipped. Revenue fell year-on-year and margins shrank; 14A has no delivery date.
+Austin — Tesla commits to Intel's unfinished 14A chip process.
+
+Tesla anticipates outrunning graphics-processor supply for its robotaxi and robot programs, and 14A sits beyond Intel's 18A node, which has not yet shipped.
+
+Revenue fell year-on-year and margins shrank; 14A has no delivery date.

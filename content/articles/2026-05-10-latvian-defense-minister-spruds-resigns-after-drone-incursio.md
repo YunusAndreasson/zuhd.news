@@ -26,4 +26,8 @@ sentimentDivergence: 0.21
 entities: []
 ---
 
-Riga — Russian jamming sent 2 drones onto [Latvia](country:LV)'s soil. Prime Minister Silina demanded Defense Minister Spruds resign, citing lost public trust over the incursion. [Ukraine](country:UA) pledged Baltic cooperation on Russian jamming; no shared intercept protocol has been announced.
+Riga — Russian jamming sent 2 drones onto [Latvia](country:LV)'s soil.
+
+Prime Minister Silina demanded Defense Minister Spruds resign, citing lost public trust over the incursion.
+
+[Ukraine](country:UA) pledged Baltic cooperation on Russian jamming; no shared intercept protocol has been announced.

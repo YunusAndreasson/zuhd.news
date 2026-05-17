@@ -11,4 +11,8 @@ sources:
     country: "GB"
 ---
 
-New Delhi — India withdrew its offer to host COP33. IEA's Birol says the current energy crisis exceeds 1973, 1979, and 2022 combined — the Iran war has disrupted global supply. The UNFCCC has 2 years to name a replacement host for the 2028 summit.
+New Delhi — India withdrew its offer to host COP33.
+
+IEA's Birol says the current energy crisis exceeds 1973, 1979, and 2022 combined — the Iran war has disrupted global supply.
+
+The UNFCCC has 2 years to name a replacement host for the 2028 summit.

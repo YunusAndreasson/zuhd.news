@@ -31,4 +31,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Berlin — Only 7 ships crossed Hormuz on Monday. [Germany](country:DE)'s Merz compared the [US](country:US) campaign to Iraq; Tehran proposed peace-before-nuclear sequencing but Rubio rejected [Iran](country:IR)'s demand to control strait access. Araghchi flew to [Russia](country:RU), where Putin pledged continued strategic partnership; Trump said Iran should simply call him.
+Berlin — Only 7 ships crossed Hormuz on Monday.
+
+[Germany](country:DE)'s Merz compared the [US](country:US) campaign to Iraq; Tehran proposed peace-before-nuclear sequencing but Rubio rejected [Iran](country:IR)'s demand to control strait access.
+
+Araghchi flew to [Russia](country:RU), where Putin pledged continued strategic partnership; Trump said Iran should simply call him.

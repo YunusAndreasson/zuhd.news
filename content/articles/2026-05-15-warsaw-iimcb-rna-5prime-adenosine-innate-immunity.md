@@ -16,4 +16,8 @@ concepts: []
 entities: []
 ---
 
-Warsaw — A single RNA letter controls antiviral alarms. Polish researchers showed that adenosine vs guanosine at RNA's 5' end acts as a binary switch on innate immune response strength. 5' cap chemistry is already tunable in mRNA vaccine platforms; the finding reduces trial-and-error in antiviral therapeutic design.
+Warsaw — A single RNA letter controls antiviral alarms.
+
+Polish researchers showed that adenosine vs guanosine at RNA's 5' end acts as a binary switch on innate immune response strength.
+
+5' cap chemistry is already tunable in mRNA vaccine platforms; the finding reduces trial-and-error in antiviral therapeutic design.

@@ -17,4 +17,8 @@ concepts:
   - "Florida"
 ---
 
-Tallahassee — Florida probes OpenAI over a shooting death. The gunman allegedly communicated with ChatGPT before the attack; the victim's family has also filed a civil suit. State investigators have powers civil suits lack; OpenAI has not said whether it will cooperate with the probe.
+Tallahassee — Florida probes OpenAI over a shooting death.
+
+The gunman allegedly communicated with ChatGPT before the attack; the victim's family has also filed a civil suit.
+
+State investigators have powers civil suits lack; OpenAI has not said whether it will cooperate with the probe.

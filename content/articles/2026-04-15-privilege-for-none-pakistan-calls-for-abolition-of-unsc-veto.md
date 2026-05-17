@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-New York — Pakistan demanded abolishing the UN Security Council veto. The US blocked Gaza ceasefire votes using the veto power all 5 permanent members hold. Pakistan's proposal would abolish all vetoes and add elected seats, a reform deadlocked for 30 years.
+New York — Pakistan demanded abolishing the UN Security Council veto.
+
+The US blocked Gaza ceasefire votes using the veto power all 5 permanent members hold.
+
+Pakistan's proposal would abolish all vetoes and add elected seats, a reform deadlocked for 30 years.

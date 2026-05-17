@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Washington — $45M fraud suit targets Trump's crypto venture. Justin Sun, a Chinese crypto billionaire, bought the project's decentralized-finance tokens for political access; his suit claims operators, not Trump, committed the fraud. The World Liberty Financial case tests whether presidential-family token sales constitute securities fraud.
+Washington — $45M fraud suit targets Trump's crypto venture.
+
+Justin Sun, a Chinese crypto billionaire, bought the project's decentralized-finance tokens for political access; his suit claims operators, not Trump, committed the fraud.
+
+The World Liberty Financial case tests whether presidential-family token sales constitute securities fraud.

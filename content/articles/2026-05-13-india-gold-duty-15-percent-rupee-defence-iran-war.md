@@ -37,4 +37,8 @@ entities:
     kind: "commodity"
 ---
 
-New Delhi — April gold imports hit a near-30-year low. [India](country:IN) raised gold and silver duties from 6 to 15% to defend foreign exchange reserves against the Iran war's oil bill. Senco Gold's chief executive said the levy holds one year; industry warns the hike risks reviving gold smuggling.
+New Delhi — April gold imports hit a near-30-year low.
+
+[India](country:IN) raised gold and silver duties from 6 to 15% to defend foreign exchange reserves against the Iran war's oil bill.
+
+Senco Gold's chief executive said the levy holds one year; industry warns the hike risks reviving gold smuggling.

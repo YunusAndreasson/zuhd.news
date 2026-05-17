@@ -18,4 +18,8 @@ concepts:
   - "Shahed drone"
 ---
 
-Kyiv — Russia launched 948 drones at Ukraine in 24 hours. Ukrainian forces downed 541 of 556 drones in the daytime wave alone, deploying aircraft, anti-aircraft systems, electronic warfare, and ground units. Ukraine's military called it the heaviest drone attack since the war began; 15 strikes hit targets across the country despite the intercepts.
+Kyiv — Russia launched 948 drones at Ukraine in 24 hours.
+
+Ukrainian forces downed 541 of 556 drones in the daytime wave alone, deploying aircraft, anti-aircraft systems, electronic warfare, and ground units.
+
+Ukraine's military called it the heaviest drone attack since the war began; 15 strikes hit targets across the country despite the intercepts.

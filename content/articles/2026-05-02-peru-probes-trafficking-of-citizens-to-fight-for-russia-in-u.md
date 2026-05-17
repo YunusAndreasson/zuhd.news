@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Lima — 13 Peruvians died fighting for [Russia](country:RU) in [Ukraine](country:UA). [Peru](country:PE)'s public prosecutor opened a human-trafficking probe into networks that lured men with fake security-guard jobs paying $2,000–$3,000 monthly. Peru says around 600 nationals are deployed since October; Lima has demanded Russia account for their location and wellbeing.
+Lima — 13 Peruvians died fighting for [Russia](country:RU) in [Ukraine](country:UA).
+
+[Peru](country:PE)'s public prosecutor opened a human-trafficking probe into networks that lured men with fake security-guard jobs paying $2,000–$3,000 monthly.
+
+Peru says around 600 nationals are deployed since October; Lima has demanded Russia account for their location and wellbeing.

@@ -18,4 +18,8 @@ concepts:
   - "Oil price"
 ---
 
-Washington — Markets now price Fed rate hikes, not cuts. Oil at $111 has driven 10-year Treasury yields to 4.40%; CME FedWatch shows a 30% chance of rate hikes by year-end against 2.9% odds of cuts. The Fed meets in May; whether it treats Hormuz-driven inflation as transitory decides if rate hikes materialize.
+Washington — Markets now price Fed rate hikes, not cuts.
+
+Oil at $111 has driven 10-year Treasury yields to 4.40%; CME FedWatch shows a 30% chance of rate hikes by year-end against 2.9% odds of cuts.
+
+The Fed meets in May; whether it treats Hormuz-driven inflation as transitory decides if rate hikes materialize.

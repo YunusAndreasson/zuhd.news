@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Nairobi — 600,000 die annually from malaria, WHO data shows. Most research and development flows through European and [US](country:US) institutions; drug-resistant P. falciparum requires continent-based surveillance. African scientists say remaining gains require continent-led research; no major funder has announced a transition.
+Nairobi — 600,000 die annually from malaria, WHO data shows.
+
+Most research and development flows through European and [US](country:US) institutions; drug-resistant P. falciparum requires continent-based surveillance.
+
+African scientists say remaining gains require continent-led research; no major funder has announced a transition.

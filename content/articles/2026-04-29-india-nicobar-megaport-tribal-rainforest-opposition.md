@@ -30,4 +30,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Great Nicobar — [India](country:IN) approved a $9B port on tribal rainforest. The island commands the Strait of Malacca — 30% of global trade — and will displace indigenous communities with minimal outside contact. India's National Green Tribunal approved in February; Gandhi, now on the island, calls it a crime against tribal heritage.
+Great Nicobar — [India](country:IN) approved a $9B port on tribal rainforest.
+
+The island commands the Strait of Malacca — 30% of global trade — and will displace indigenous communities with minimal outside contact.
+
+India's National Green Tribunal approved in February; Gandhi, now on the island, calls it a crime against tribal heritage.

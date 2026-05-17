@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-London — 32 trials: AI cut cardiac all-cause mortality 16%. Decision-support systems reduced mortality and improved medication adherence by 59% across 27 meta-analysed trials. Workflow AI cut diagnostic time by up to 120 seconds and hospital stays by up to 4 days.
+London — 32 trials: AI cut cardiac all-cause mortality 16%.
+
+Decision-support systems reduced mortality and improved medication adherence by 59% across 27 meta-analysed trials.
+
+Workflow AI cut diagnostic time by up to 120 seconds and hospital stays by up to 4 days.

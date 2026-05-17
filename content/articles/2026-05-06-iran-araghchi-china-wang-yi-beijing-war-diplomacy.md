@@ -35,4 +35,8 @@ sentimentDivergence: 0.38
 entities: []
 ---
 
-Beijing — China buys 90% of [Iran](country:IR)'s energy exports. Treasury Secretary Scott Bessent confirmed the figure; [Iran](country:IR)'s Foreign Minister Abbas Araghchi arrived in Beijing 9 days before Trump meets Xi. Iran seeks UN Security Council cover against new sanctions; [China](country:CN) wants Tehran calm before the May 14 summit.
+Beijing — China buys 90% of [Iran](country:IR)'s energy exports.
+
+Treasury Secretary Scott Bessent confirmed the figure; [Iran](country:IR)'s Foreign Minister Abbas Araghchi arrived in Beijing 9 days before Trump meets Xi.
+
+Iran seeks UN Security Council cover against new sanctions; [China](country:CN) wants Tehran calm before the May 14 summit.

@@ -26,4 +26,8 @@ sentimentDivergence: 0.3
 entities: []
 ---
 
-Tokyo — Toyota forecast 22% lower net profit for fiscal 2026. [Japan](country:JP)'s largest carmaker blamed Middle East shipping disruptions and US tariffs, projecting a ¥670 billion Iran war hit. Toyota flagged a third straight year of flat earnings, giving no timeline to offset the twin drags.
+Tokyo — Toyota forecast 22% lower net profit for fiscal 2026.
+
+[Japan](country:JP)'s largest carmaker blamed Middle East shipping disruptions and US tariffs, projecting a ¥670 billion Iran war hit.
+
+Toyota flagged a third straight year of flat earnings, giving no timeline to offset the twin drags.

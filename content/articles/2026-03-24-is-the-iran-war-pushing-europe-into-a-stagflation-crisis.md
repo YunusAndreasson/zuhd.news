@@ -18,4 +18,8 @@ concepts:
   - "Iran"
 ---
 
-Brussels — Iran war energy costs pushed the eurozone composite PMI to a 10-month low in March. Input cost inflation hit its fastest pace since February 2023 while GDP growth tracked below 0.1% for the quarter — the classic stagflation mix policymakers fear most. The European Central Bank must now choose between cutting rates to support growth and raising them to contain prices.
+Brussels — Iran war energy costs pushed the eurozone composite PMI to a 10-month low in March.
+
+Input cost inflation hit its fastest pace since February 2023 while GDP growth tracked below 0.1% for the quarter — the classic stagflation mix policymakers fear most.
+
+The European Central Bank must now choose between cutting rates to support growth and raising them to contain prices.

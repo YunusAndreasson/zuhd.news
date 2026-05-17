@@ -17,4 +17,8 @@ concepts:
   - "Climate system"
 ---
 
-London — Humans shifted Southern Hemisphere winds poleward. A Nature study attributed the shift to greenhouse gases since 2016, affecting the ocean that absorbs 40% of human CO2. The shift increases mechanical energy entering the Southern Ocean, accelerating circulation changes that will alter global carbon uptake.
+London — Humans shifted Southern Hemisphere winds poleward.
+
+A Nature study attributed the shift to greenhouse gases since 2016, affecting the ocean that absorbs 40% of human CO2.
+
+The shift increases mechanical energy entering the Southern Ocean, accelerating circulation changes that will alter global carbon uptake.

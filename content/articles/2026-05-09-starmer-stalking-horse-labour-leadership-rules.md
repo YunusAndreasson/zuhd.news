@@ -30,4 +30,8 @@ concepts:
 entities: []
 ---
 
-London — 81 Labour MPs can force a leadership confidence vote. Catherine West, a former junior minister, gave cabinet until Monday to replace Starmer or she would trigger a vote herself, after Labour lost 1,492 seats in [Britain](country:GB)'s local elections. Starmer's reset speech on Monday collides with West's deadline; Wes Streeting has not ruled out a challenge.
+London — 81 Labour MPs can force a leadership confidence vote.
+
+Catherine West, a former junior minister, gave cabinet until Monday to replace Starmer or she would trigger a vote herself, after Labour lost 1,492 seats in [Britain](country:GB)'s local elections.
+
+Starmer's reset speech on Monday collides with West's deadline; Wes Streeting has not ruled out a challenge.

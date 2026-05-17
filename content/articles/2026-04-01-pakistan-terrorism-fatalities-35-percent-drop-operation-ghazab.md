@@ -16,4 +16,8 @@ concepts:
   - "Hafiz Gul Bahadur"
 ---
 
-Islamabad — Pakistan recorded 35% fewer combat deaths in March. Cross-border strikes under Operation Ghazab lil-Haq into Afghanistan targeting TTP and allied groups coincided with the drop from 506 to 331 killed. TTP announced an escalation; Pakistan ranked 1st on the Global Terrorism Index for the 6th consecutive year.
+Islamabad — Pakistan recorded 35% fewer combat deaths in March.
+
+Cross-border strikes under Operation Ghazab lil-Haq into Afghanistan targeting TTP and allied groups coincided with the drop from 506 to 331 killed.
+
+TTP announced an escalation; Pakistan ranked 1st on the Global Terrorism Index for the 6th consecutive year.

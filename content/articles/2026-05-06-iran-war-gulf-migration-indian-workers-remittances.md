@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Dubai — 1 million Indians left the Gulf, India said. [India](country:IN)'s 10 million Gulf workers sent 38% of the country's $135 billion in annual remittances — a flow the war is now interrupting. Researchers project over a 20% remittance drop; housing and education sectors dependent on Gulf wages face contraction.
+Dubai — 1 million Indians left the Gulf, India said.
+
+[India](country:IN)'s 10 million Gulf workers sent 38% of the country's $135 billion in annual remittances — a flow the war is now interrupting.
+
+Researchers project over a 20% remittance drop; housing and education sectors dependent on Gulf wages face contraction.

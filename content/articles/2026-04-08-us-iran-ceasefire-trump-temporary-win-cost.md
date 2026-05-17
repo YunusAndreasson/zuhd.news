@@ -17,4 +17,8 @@ concepts:
   - "Washington, D.C."
 ---
 
-Washington — Trump's 20:00 EDT bombing deadline passed without strikes. After 28 days of war and a Hormuz blockade, Pakistan brokered Iran's agreement to reopen the Strait under Iranian military management. Iran's nuclear halt and material removal remain unresolved as talks are scheduled to begin Friday in Islamabad.
+Washington — Trump's 20:00 EDT bombing deadline passed without strikes.
+
+After 28 days of war and a Hormuz blockade, Pakistan brokered Iran's agreement to reopen the Strait under Iranian military management.
+
+Iran's nuclear halt and material removal remain unresolved as talks are scheduled to begin Friday in Islamabad.

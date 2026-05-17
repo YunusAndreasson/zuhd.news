@@ -17,4 +17,8 @@ concepts:
   - "Cryptocurrency"
 ---
 
-London — A UK crypto firm's director was a stock-photo model. The firm's real owner, Babak Zanjani, was sanctioned by the US Treasury for funding Iran's Revolutionary Guards; he used the fake director's identity to hide his role for years. UK regulators must decide whether to tighten the identity checks that allowed Zedxion to operate under a false name.
+London — A UK crypto firm's director was a stock-photo model.
+
+The firm's real owner, Babak Zanjani, was sanctioned by the US Treasury for funding Iran's Revolutionary Guards; he used the fake director's identity to hide his role for years.
+
+UK regulators must decide whether to tighten the identity checks that allowed Zedxion to operate under a false name.

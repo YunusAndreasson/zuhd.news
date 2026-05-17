@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-London — The Atlantic overturning current, which keeps Europe warm, is weakening. The UN climate panel projects continuous decline as warming upsets the North Atlantic's salt balance; full collapse before 2100 remains disputed. Whether the slowdown will cross a self-sustaining threshold this century is the unresolved question, the panel said.
+London — The Atlantic overturning current, which keeps Europe warm, is weakening.
+
+The UN climate panel projects continuous decline as warming upsets the North Atlantic's salt balance; full collapse before 2100 remains disputed.
+
+Whether the slowdown will cross a self-sustaining threshold this century is the unresolved question, the panel said.

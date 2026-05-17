@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — [Pakistan](country:PK) raised $390m through its first hybrid Sukuk. The instrument pairs conventional and Shariah-compliant tranches, letting Islamabad tap Gulf Islamic finance outside eurobond markets. Pakistan repaid $2bn to the [UAE](country:AE) the same week, ahead of its next IMF programme review.
+Islamabad — [Pakistan](country:PK) raised $390m through its first hybrid Sukuk.
+
+The instrument pairs conventional and Shariah-compliant tranches, letting Islamabad tap Gulf Islamic finance outside eurobond markets.
+
+Pakistan repaid $2bn to the [UAE](country:AE) the same week, ahead of its next IMF programme review.

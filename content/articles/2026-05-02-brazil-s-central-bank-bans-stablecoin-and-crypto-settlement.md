@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Brasília — [Brazil](country:BR)'s central bank banned crypto from cross-border payments. Resolution 561 bars foreign-exchange providers from routing reais through stablecoins before settling abroad, restoring visibility into hard-currency flows. Stablecoins were 90% of Brazil's crypto volume; unlicensed firms must apply for approval by May 2027.
+Brasília — [Brazil](country:BR)'s central bank banned crypto from cross-border payments.
+
+Resolution 561 bars foreign-exchange providers from routing reais through stablecoins before settling abroad, restoring visibility into hard-currency flows.
+
+Stablecoins were 90% of Brazil's crypto volume; unlicensed firms must apply for approval by May 2027.

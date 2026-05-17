@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-London — Time-restricted eating reversed metabolic damage in animals. Feeding-fasting cycles, not diet composition, dominate liver gene rhythmicity, a Nature synthesis finds. Whether timing effects translate to humans at scale remains the open question in ongoing clinical trials.
+London — Time-restricted eating reversed metabolic damage in animals.
+
+Feeding-fasting cycles, not diet composition, dominate liver gene rhythmicity, a Nature synthesis finds.
+
+Whether timing effects translate to humans at scale remains the open question in ongoing clinical trials.

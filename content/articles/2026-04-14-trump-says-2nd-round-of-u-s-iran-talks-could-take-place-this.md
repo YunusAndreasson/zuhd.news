@@ -34,4 +34,8 @@ eventCoverage: 123
 sentimentDivergence: 0.45
 ---
 
-Islamabad — US-Iran talks resume while the Hormuz blockade holds. Washington's actual offer is a 20-year suspension of nuclear activity — not the permanent ban Trump demands in public. Pakistan hosts a 2nd round this week with a 15-year gap between offers.
+Islamabad — US-Iran talks resume while the Hormuz blockade holds.
+
+Washington's actual offer is a 20-year suspension of nuclear activity — not the permanent ban Trump demands in public.
+
+Pakistan hosts a 2nd round this week with a 15-year gap between offers.

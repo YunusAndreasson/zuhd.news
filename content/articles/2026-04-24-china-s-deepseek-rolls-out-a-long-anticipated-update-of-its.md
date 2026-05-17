@@ -44,4 +44,8 @@ entities:
     kind: "stock"
 ---
 
-Hong Kong — [China](country:CN)'s DeepSeek released its V4 model Friday. The 1.6-trillion-parameter V4 Pro matches leading [US](country:US) closed models in coding benchmarks, DeepSeek said, on an open-source and cheaper basis. DeepSeek said V4 was trained on both Nvidia and Huawei Ascend chips; US export controls on advanced chips to China remain in force.
+Hong Kong — [China](country:CN)'s DeepSeek released its V4 model Friday.
+
+The 1.6-trillion-parameter V4 Pro matches leading [US](country:US) closed models in coding benchmarks, DeepSeek said, on an open-source and cheaper basis.
+
+DeepSeek said V4 was trained on both Nvidia and Huawei Ascend chips; US export controls on advanced chips to China remain in force.

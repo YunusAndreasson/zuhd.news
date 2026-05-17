@@ -29,4 +29,8 @@ concepts:
 entities: []
 ---
 
-Brussels — 8 months: 0 EU trade obligations delivered. [The US](country:US) has set a July 4 deadline — miss it and car tariffs snap from 15% to 25%, Trade Representative Greer said. Parliament meets May 19; EU lawmakers are demanding suspension clauses Washington has already rejected.
+Brussels — 8 months: 0 EU trade obligations delivered.
+
+[The US](country:US) has set a July 4 deadline — miss it and car tariffs snap from 15% to 25%, Trade Representative Greer said.
+
+Parliament meets May 19; EU lawmakers are demanding suspension clauses Washington has already rejected.

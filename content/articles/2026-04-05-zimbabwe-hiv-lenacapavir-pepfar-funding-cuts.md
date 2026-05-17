@@ -17,4 +17,8 @@ concepts:
   - "Zimbabwe"
 ---
 
-Harare — US funding cuts threaten Zimbabwe's lenacapavir HIV programme. The twice-yearly injection showed 100% efficacy in trials, but delivery depends on PEPFAR — the US funding programme now being dismantled. Interrupted delivery creates drug resistance; patients who start and stop lenacapavir are harder to treat than untreated patients.
+Harare — US funding cuts threaten Zimbabwe's lenacapavir HIV programme.
+
+The twice-yearly injection showed 100% efficacy in trials, but delivery depends on PEPFAR — the US funding programme now being dismantled.
+
+Interrupted delivery creates drug resistance; patients who start and stop lenacapavir are harder to treat than untreated patients.

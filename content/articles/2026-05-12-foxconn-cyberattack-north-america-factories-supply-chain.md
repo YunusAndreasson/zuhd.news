@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Milwaukee — Foxconn's cyberattack hit factories across the [US](country:US) and [Mexico](country:MX). The company confirmed plants in Wisconsin, Ohio, Texas, Virginia, and Indiana were affected and declined to specify the scope. Production timelines have not been disclosed; Foxconn manufactures for most major electronics brands.
+Milwaukee — Foxconn's cyberattack hit factories across the [US](country:US) and [Mexico](country:MX).
+
+The company confirmed plants in Wisconsin, Ohio, Texas, Virginia, and Indiana were affected and declined to specify the scope.
+
+Production timelines have not been disclosed; Foxconn manufactures for most major electronics brands.

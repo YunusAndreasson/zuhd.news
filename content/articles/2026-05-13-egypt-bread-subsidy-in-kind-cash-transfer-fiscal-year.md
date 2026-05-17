@@ -21,4 +21,8 @@ entities:
     kind: "currency"
 ---
 
-Cairo — A cash card worth 50 Egyptian pounds would replace Egypt's daily bread quota for millions of subsidy holders. Beneficiaries would be exposed to market price swings the quota system insulated against, the Egyptian Chambers of Commerce warned. Prime Minister Madbuly proposed the switch for fiscal 2026/27 but set no implementation date.
+Cairo — A cash card worth 50 Egyptian pounds would replace Egypt's daily bread quota for millions of subsidy holders.
+
+Beneficiaries would be exposed to market price swings the quota system insulated against, the Egyptian Chambers of Commerce warned.
+
+Prime Minister Madbuly proposed the switch for fiscal 2026/27 but set no implementation date.

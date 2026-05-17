@@ -18,4 +18,8 @@ concepts:
   - "Food insecurity"
 ---
 
-Islamabad — 45 million face acute hunger by mid-2026. War-risk insurance on Hormuz, carrying 20% of world oil, has risen 25–50%, pushing food costs across South Asia and the Philippines. UNOCHA seeks $151 million for Pakistan flood response; WFP warns the toll worsens if oil stays above $100.
+Islamabad — 45 million face acute hunger by mid-2026.
+
+War-risk insurance on Hormuz, carrying 20% of world oil, has risen 25–50%, pushing food costs across South Asia and the Philippines.
+
+UNOCHA seeks $151 million for Pakistan flood response; WFP warns the toll worsens if oil stays above $100.

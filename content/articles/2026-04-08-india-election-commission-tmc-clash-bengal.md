@@ -28,4 +28,8 @@ eventCoverage: 25
 sentimentDivergence: 0.52
 ---
 
-New Delhi — India's 271M voters go to polls April 23. TMC claims the election chief told their delegation "get lost" after 7 minutes; the EC says the delegation shouted and walked out. West Bengal votes in 2 phases on April 23 and 29; notices to remove the CEC are pending in both houses of parliament.
+New Delhi — India's 271M voters go to polls April 23.
+
+TMC claims the election chief told their delegation "get lost" after 7 minutes; the EC says the delegation shouted and walked out.
+
+West Bengal votes in 2 phases on April 23 and 29; notices to remove the CEC are pending in both houses of parliament.

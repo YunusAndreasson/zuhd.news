@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Singapore — Drone doctrine lags hardware across 4 Southeast Asian states with no shared counter-drone grid. [Indonesia](country:ID), [Vietnam](country:VN), [Malaysia](country:MY) and [the Philippines](country:PH) built national systems independently as drone warfare advanced in Ukraine. No cross-border rule governs when a drone crosses the maritime boundaries these archipelago states share.
+Singapore — Drone doctrine lags hardware across 4 Southeast Asian states with no shared counter-drone grid.
+
+[Indonesia](country:ID), [Vietnam](country:VN), [Malaysia](country:MY) and [the Philippines](country:PH) built national systems independently as drone warfare advanced in Ukraine.
+
+No cross-border rule governs when a drone crosses the maritime boundaries these archipelago states share.

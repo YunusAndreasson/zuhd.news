@@ -15,4 +15,8 @@ concepts:
   - "AI Security"
 ---
 
-San Francisco — A third-party AI dev tool breached Vercel. The company warned a limited subset of customers their credentials were compromised; the AI tool responsible has not been named. The incident demonstrates AI dev tools with cloud credentials as a supply-chain attack surface for production infrastructure.
+San Francisco — A third-party AI dev tool breached Vercel.
+
+The company warned a limited subset of customers their credentials were compromised; the AI tool responsible has not been named.
+
+The incident demonstrates AI dev tools with cloud credentials as a supply-chain attack surface for production infrastructure.

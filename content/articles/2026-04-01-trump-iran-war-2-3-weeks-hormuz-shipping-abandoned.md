@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.09
 ---
 
-Washington — Trump told oil importers: seize Hormuz yourselves. Washington signaled it will exit Operation Epic Fury in 2-3 weeks without requiring a deal, abandoning its Hormuz maritime guarantee. The UAE seeks a UN resolution to open Hormuz by force; Trump addresses the nation Wednesday night.
+Washington — Trump told oil importers: seize Hormuz yourselves.
+
+Washington signaled it will exit Operation Epic Fury in 2-3 weeks without requiring a deal, abandoning its Hormuz maritime guarantee.
+
+The UAE seeks a UN resolution to open Hormuz by force; Trump addresses the nation Wednesday night.

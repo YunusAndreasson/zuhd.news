@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-San Francisco — Uber opened its headquarters Saturday for a private "Tech X Future of Iran" conference. Exiled crown prince Reza Pahlavi attended; [US](country:US) intelligence estimates Tehran retains 70% of its pre-war missile inventory. Pahlavi calls himself a democratic bridge; neither military victory nor a succession line is in place.
+San Francisco — Uber opened its headquarters Saturday for a private "Tech X Future of Iran" conference.
+
+Exiled crown prince Reza Pahlavi attended; [US](country:US) intelligence estimates Tehran retains 70% of its pre-war missile inventory.
+
+Pahlavi calls himself a democratic bridge; neither military victory nor a succession line is in place.

@@ -24,4 +24,8 @@ entities:
     kind: "crypto"
 ---
 
-Las Vegas — Adam Back said competing custodians fulfill cypherpunk decentralization better than technical controls. Exchange-traded funds and corporate treasuries prevent network capture, the bitcoin inventor argued. The protocol faces a quantum-resistance upgrade; Back said Blockstream researchers are preparing.
+Las Vegas — Adam Back said competing custodians fulfill cypherpunk decentralization better than technical controls.
+
+Exchange-traded funds and corporate treasuries prevent network capture, the bitcoin inventor argued.
+
+The protocol faces a quantum-resistance upgrade; Back said Blockstream researchers are preparing.

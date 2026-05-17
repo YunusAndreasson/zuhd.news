@@ -28,4 +28,8 @@ eventCoverage: 168
 sentimentDivergence: 0.18
 ---
 
-Washington — Trump kept the 50% metals tariff. The overhaul exempts goods with under 15% metal content but shifts valuation to US sale price — hitting importers who had been declaring artificially low values. The rule takes effect Monday; Canada, the EU, Mexico, and South Korea — the hardest-hit exporters — have no exemptions.
+Washington — Trump kept the 50% metals tariff.
+
+The overhaul exempts goods with under 15% metal content but shifts valuation to US sale price — hitting importers who had been declaring artificially low values.
+
+The rule takes effect Monday; Canada, the EU, Mexico, and South Korea — the hardest-hit exporters — have no exemptions.

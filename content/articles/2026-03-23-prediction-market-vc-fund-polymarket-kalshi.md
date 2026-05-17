@@ -16,4 +16,8 @@ concepts:
   - "Venture capital"
 ---
 
-New York — Polymarket and Kalshi's CEOs launched a $35 million fund. Named 5c(c) Capital after the legal carve-out that legalized event-based trading, the fund backs startups building on top of prediction market infrastructure. The fund's first investments will test whether prediction markets can sustain depth beyond election cycles.
+New York — Polymarket and Kalshi's CEOs launched a $35 million fund.
+
+Named 5c(c) Capital after the legal carve-out that legalized event-based trading, the fund backs startups building on top of prediction market infrastructure.
+
+The fund's first investments will test whether prediction markets can sustain depth beyond election cycles.

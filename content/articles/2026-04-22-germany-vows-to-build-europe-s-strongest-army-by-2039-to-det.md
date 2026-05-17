@@ -34,4 +34,8 @@ eventCoverage: 61
 entities: []
 ---
 
-Berlin — Germany's first military strategy targets 460,000 combat-ready troops. The plan sets 2039 to field Europe's strongest conventional force against [Russia](country:RU), though senior officers demanded a higher troop ceiling. Defence Minister Pistorius called it a "living document," leaving the ceiling open to revision.
+Berlin — Germany's first military strategy targets 460,000 combat-ready troops.
+
+The plan sets 2039 to field Europe's strongest conventional force against [Russia](country:RU), though senior officers demanded a higher troop ceiling.
+
+Defence Minister Pistorius called it a "living document," leaving the ceiling open to revision.

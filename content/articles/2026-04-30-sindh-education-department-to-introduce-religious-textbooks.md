@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Karachi — Sindh's Hindu students have studied Islamiyat by default. [Pakistan](country:PK)'s Sindh province will distribute Hindu religious textbooks for grades 3–5. A charity funds the first run; the education department must budget for the next academic year.
+Karachi — Sindh's Hindu students have studied Islamiyat by default.
+
+[Pakistan](country:PK)'s Sindh province will distribute Hindu religious textbooks for grades 3–5.
+
+A charity funds the first run; the education department must budget for the next academic year.

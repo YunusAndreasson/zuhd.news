@@ -13,4 +13,8 @@ sources:
 entities: []
 ---
 
-Juneau — A golden orb found at 3,300m off Alaska is an egg casing, the US ocean survey agency confirmed. Found in 2023, the orb resisted identification for 3 years despite autonomous surveys and global DNA analysis. No parent species has been described; deep-sea expeditions still yield organisms without names or known ranges.
+Juneau — A golden orb found at 3,300m off Alaska is an egg casing, the US ocean survey agency confirmed.
+
+Found in 2023, the orb resisted identification for 3 years despite autonomous surveys and global DNA analysis.
+
+No parent species has been described; deep-sea expeditions still yield organisms without names or known ranges.

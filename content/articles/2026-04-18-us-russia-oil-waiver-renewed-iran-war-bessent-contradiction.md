@@ -35,4 +35,8 @@ entities:
     kind: "commodity"
 ---
 
-Washington — Treasury reversed Bessent on Russian oil, Friday. The International Energy Agency called the Iran war the worst global energy shock in history; Asian buyers pressed Washington to maintain Russian oil supply. The 30-day waiver expires May 16, contingent on Iran ceasefire progress.
+Washington — Treasury reversed Bessent on Russian oil, Friday.
+
+The International Energy Agency called the Iran war the worst global energy shock in history; Asian buyers pressed Washington to maintain Russian oil supply.
+
+The 30-day waiver expires May 16, contingent on Iran ceasefire progress.

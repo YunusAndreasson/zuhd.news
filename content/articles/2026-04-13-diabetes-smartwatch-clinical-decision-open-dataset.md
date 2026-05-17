@@ -17,4 +17,8 @@ concepts:
   - "Occupational burnout"
 ---
 
-London — Researchers released the first wearable-to-clinical diabetes dataset. 27 Type 1 diabetics were recorded interpreting glucose monitors and making treatment decisions, bridging wearable data and clinical reasoning. This enables AI decision-support for 8.5 million Type 1 diabetics making 180 daily treatment decisions alone.
+London — Researchers released the first wearable-to-clinical diabetes dataset.
+
+27 Type 1 diabetics were recorded interpreting glucose monitors and making treatment decisions, bridging wearable data and clinical reasoning.
+
+This enables AI decision-support for 8.5 million Type 1 diabetics making 180 daily treatment decisions alone.

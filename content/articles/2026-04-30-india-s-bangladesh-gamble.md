@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Dhaka — [India](country:IN) breaks envoy convention with a politician in Dhaka. Delhi is betting personal ties can repair relations strained since 2024's Hasina fall — [Bangladesh](country:BD) has since warmed to [Pakistan](country:PK) and [China](country:CN) while the Teesta water deal freezes. Transit routes connecting India's northeast to the coast now depend on a relationship India never cultivated.
+Dhaka — [India](country:IN) breaks envoy convention with a politician in Dhaka.
+
+Delhi is betting personal ties can repair relations strained since 2024's Hasina fall — [Bangladesh](country:BD) has since warmed to [Pakistan](country:PK) and [China](country:CN) while the Teesta water deal freezes.
+
+Transit routes connecting India's northeast to the coast now depend on a relationship India never cultivated.

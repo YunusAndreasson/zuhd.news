@@ -19,4 +19,8 @@ concepts:
   - "Supply chain"
 ---
 
-San Francisco — A judge ruled the Pentagon "tried to cripple" Anthropic. The "supply chain risk" designation — which would cancel Anthropic's government contracts — came after the company refused the DoD unrestricted access to its AI models for autonomous weapons and domestic surveillance. A preliminary injunction ruling is pending, and the outcome will determine whether AI companies can legally require human oversight before military deployment.
+San Francisco — A judge ruled the Pentagon "tried to cripple" Anthropic.
+
+The "supply chain risk" designation — which would cancel Anthropic's government contracts — came after the company refused the DoD unrestricted access to its AI models for autonomous weapons and domestic surveillance.
+
+A preliminary injunction ruling is pending, and the outcome will determine whether AI companies can legally require human oversight before military deployment.

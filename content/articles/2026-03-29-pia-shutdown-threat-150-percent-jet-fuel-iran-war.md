@@ -16,4 +16,8 @@ concepts:
   - "Iran war"
 ---
 
-Karachi — Pakistan's flag carrier may be forced to close. Jet fuel jumped 150% since March 1 — now Rs 472/litre — accounting for 40% of airline costs; 325 flights cancelled. PIA consortium chairman Arif Habib says the government must reverse the price hike or the carrier shuts down.
+Karachi — Pakistan's flag carrier may be forced to close.
+
+Jet fuel jumped 150% since March 1 — now Rs 472/litre — accounting for 40% of airline costs; 325 flights cancelled.
+
+PIA consortium chairman Arif Habib says the government must reverse the price hike or the carrier shuts down.

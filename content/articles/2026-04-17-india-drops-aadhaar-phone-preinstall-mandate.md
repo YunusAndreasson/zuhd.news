@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-New Delhi — Apple and Samsung blocked India's 6th attempt to mandate Aadhaar on smartphones. Aadhaar links fingerprints and iris scans for 1.34 billion residents; the firms cited security, compatibility, and production-cost objections. Industry documents show all 6 government preload attempts in 2 years collapsed under the same pressure.
+New Delhi — Apple and Samsung blocked India's 6th attempt to mandate Aadhaar on smartphones.
+
+Aadhaar links fingerprints and iris scans for 1.34 billion residents; the firms cited security, compatibility, and production-cost objections.
+
+Industry documents show all 6 government preload attempts in 2 years collapsed under the same pressure.

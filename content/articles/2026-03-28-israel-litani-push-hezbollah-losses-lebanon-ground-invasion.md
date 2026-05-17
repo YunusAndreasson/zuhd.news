@@ -17,4 +17,8 @@ concepts:
   - "Litani River"
 ---
 
-Taybeh — Israel entered Taybeh, driving toward the Litani River. Hezbollah mounted 87 operations in 24 hours — its highest — destroying 20+ Merkava tanks and forcing infantry to withdraw from Qantara. The deeper Israel pushes into southern villages, the heavier the fighting; the Litani River remains uncontrolled.
+Taybeh — Israel entered Taybeh, driving toward the Litani River.
+
+Hezbollah mounted 87 operations in 24 hours — its highest — destroying 20+ Merkava tanks and forcing infantry to withdraw from Qantara.
+
+The deeper Israel pushes into southern villages, the heavier the fighting; the Litani River remains uncontrolled.

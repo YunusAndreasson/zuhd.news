@@ -16,4 +16,8 @@ concepts:
   - "Malware"
 ---
 
-San Francisco — Hackers bought Google's top ad slot for Claude plugins. The site mimicked Anthropic's branding and had passed Google's identity verification before serving malware instead of real installation commands. Google suspended the account, but its identity verification process is unchanged, leaving every future paid advertiser able to repeat the attack.
+San Francisco — Hackers bought Google's top ad slot for Claude plugins.
+
+The site mimicked Anthropic's branding and had passed Google's identity verification before serving malware instead of real installation commands.
+
+Google suspended the account, but its identity verification process is unchanged, leaving every future paid advertiser able to repeat the attack.

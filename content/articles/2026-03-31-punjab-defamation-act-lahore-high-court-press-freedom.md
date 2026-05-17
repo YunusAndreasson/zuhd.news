@@ -17,4 +17,8 @@ concepts:
   - "Judicial independence"
 ---
 
-Lahore — Lahore's High Court summoned Punjab's pre-legislation debate record. The 2024 Defamation Act creates a parallel tribunal and mandates Rs3 million in advance damages — which petitioning journalists say criminalizes press coverage. The court also asked whether Punjab had legislative competence to regulate social media and defamation at all.
+Lahore — Lahore's High Court summoned Punjab's pre-legislation debate record.
+
+The 2024 Defamation Act creates a parallel tribunal and mandates Rs3 million in advance damages — which petitioning journalists say criminalizes press coverage.
+
+The court also asked whether Punjab had legislative competence to regulate social media and defamation at all.

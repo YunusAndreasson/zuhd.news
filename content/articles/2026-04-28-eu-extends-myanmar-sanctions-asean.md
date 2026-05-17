@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Brussels — EU-sanctioned officials remain in [Myanmar](country:MM)'s government. The EU renewed sanctions on military-linked figures and enterprises as Myanmar's government courts Southeast Asian recognition. The Association of Southeast Asian Nations has not recognized Myanmar's new government, leaving EU sanctions without regional backing.
+Brussels — EU-sanctioned officials remain in [Myanmar](country:MM)'s government.
+
+The EU renewed sanctions on military-linked figures and enterprises as Myanmar's government courts Southeast Asian recognition.
+
+The Association of Southeast Asian Nations has not recognized Myanmar's new government, leaving EU sanctions without regional backing.

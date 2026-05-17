@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Philadelphia — AIPAC money backs Stanford through 2 shell groups. [US](country:US) Federal Election Commission filings trace $2.6M through EDW Action Fund to 314 Action, which backs Stanford. Stanford denied taking AIPAC funds at a March 30 forum; neither she nor AIPAC responded to comment requests.
+Philadelphia — AIPAC money backs Stanford through 2 shell groups.
+
+[US](country:US) Federal Election Commission filings trace $2.6M through EDW Action Fund to 314 Action, which backs Stanford.
+
+Stanford denied taking AIPAC funds at a March 30 forum; neither she nor AIPAC responded to comment requests.

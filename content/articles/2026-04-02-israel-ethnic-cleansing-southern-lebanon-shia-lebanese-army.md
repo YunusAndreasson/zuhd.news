@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Southern Lebanon — Lebanese army abandoned Shia villages to Israeli expulsion. Troops have been shooting returning residents and cutting supply lines to border villages south of the Litani, forcing mass displacement. The Lebanese army's formal withdrawal leaves no protection mechanism for civilians still inside the border strip.
+Southern Lebanon — Lebanese army abandoned Shia villages to Israeli expulsion.
+
+Troops have been shooting returning residents and cutting supply lines to border villages south of the Litani, forcing mass displacement.
+
+The Lebanese army's formal withdrawal leaves no protection mechanism for civilians still inside the border strip.

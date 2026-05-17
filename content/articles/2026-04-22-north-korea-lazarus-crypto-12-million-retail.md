@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Seoul — [North Korea](country:KP)-linked hackers stole $12 million this quarter. The group used malware on personal devices in Q1 2026, targeting retail wallet holders rather than exchanges, which have hardened security. Individual private-key holders have no recovery path once a device is compromised.
+Seoul — [North Korea](country:KP)-linked hackers stole $12 million this quarter.
+
+The group used malware on personal devices in Q1 2026, targeting retail wallet holders rather than exchanges, which have hardened security.
+
+Individual private-key holders have no recovery path once a device is compromised.

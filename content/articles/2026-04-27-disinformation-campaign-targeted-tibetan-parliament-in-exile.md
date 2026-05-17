@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Dharamsala — [China](country:CN)-linked Spamouflage targeted Tibet's exile parliament election. The Digital Forensic Research Lab attributed it to a Beijing network that has previously targeted Taiwan's elections. Spamouflage is expanding to diaspora communities with no state-level protection.
+Dharamsala — [China](country:CN)-linked Spamouflage targeted Tibet's exile parliament election.
+
+The Digital Forensic Research Lab attributed it to a Beijing network that has previously targeted Taiwan's elections.
+
+Spamouflage is expanding to diaspora communities with no state-level protection.

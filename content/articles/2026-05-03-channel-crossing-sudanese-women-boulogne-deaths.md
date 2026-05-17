@@ -31,4 +31,8 @@ concepts:
 entities: []
 ---
 
-Neufchatel-Hardelot — 2 Sudanese women, aged 16–20, suffocated on a Channel crossing. Officials say crossings are down year-on-year but boats carry more people — a pattern aid groups attribute to tightened coastal enforcement. [Britain](country:GB) signed a £660m border deal with [France](country:FR); an investigation into who organised the crossing continues.
+Neufchatel-Hardelot — 2 Sudanese women, aged 16–20, suffocated on a Channel crossing.
+
+Officials say crossings are down year-on-year but boats carry more people — a pattern aid groups attribute to tightened coastal enforcement.
+
+[Britain](country:GB) signed a £660m border deal with [France](country:FR); an investigation into who organised the crossing continues.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Seoul — A [North Korean](country:KP) state group drained up to $12M from personal crypto accounts via infostealer malware in Q1 2026, Recorded Future found. The campaign hit individual phones rather than exchanges, bypassing platform-level security controls. Recorded Future said the attack's full scope remains under assessment.
+Seoul — A [North Korean](country:KP) state group drained up to $12M from personal crypto accounts via infostealer malware in Q1 2026, Recorded Future found.
+
+The campaign hit individual phones rather than exchanges, bypassing platform-level security controls.
+
+Recorded Future said the attack's full scope remains under assessment.

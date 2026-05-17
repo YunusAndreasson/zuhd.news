@@ -13,4 +13,8 @@ eventCoverage:
 concepts:
 ---
 
-Islamabad — Pakistani warplanes landed at Saudi air bases. Parliament never reviewed the pact; it commits Pakistan to Saudi Arabia's war even as Islamabad mediates the conflict. If Riyadh invokes the treaty's combat clauses, Pakistan shifts from mediator to belligerent, collapsing its leverage with Tehran.
+Islamabad — Pakistani warplanes landed at Saudi air bases.
+
+Parliament never reviewed the pact; it commits Pakistan to Saudi Arabia's war even as Islamabad mediates the conflict.
+
+If Riyadh invokes the treaty's combat clauses, Pakistan shifts from mediator to belligerent, collapsing its leverage with Tehran.

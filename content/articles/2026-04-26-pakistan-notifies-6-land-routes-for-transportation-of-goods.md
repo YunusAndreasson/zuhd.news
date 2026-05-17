@@ -21,4 +21,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Islamabad — [Pakistan](country:PK) opened 6 overland cargo routes to [Iran](country:IR) Sunday. Over 3,000 containers sat stranded at Karachi after Iran closed Hormuz and the [US](country:US) imposed a port blockade. Pakistan is now a transit corridor for blockaded Iran, pledging encashable customs bonds against its own import levies as guarantee.
+Islamabad — [Pakistan](country:PK) opened 6 overland cargo routes to [Iran](country:IR) Sunday.
+
+Over 3,000 containers sat stranded at Karachi after Iran closed Hormuz and the [US](country:US) imposed a port blockade.
+
+Pakistan is now a transit corridor for blockaded Iran, pledging encashable customs bonds against its own import levies as guarantee.

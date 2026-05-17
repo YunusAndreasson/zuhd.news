@@ -24,4 +24,8 @@ concepts:
   - "Persian Gulf"
 ---
 
-Islamabad — Prime Minister Shehbaz Sharif offered Islamabad for US-Iran talks. Pakistan maintains diplomatic ties with both Washington and Tehran, positioning it as one of few countries with active relations on both sides of the conflict. Neither Washington nor Tehran has responded; US President Donald Trump's threatened strikes on Iranian infrastructure remain on hold.
+Islamabad — Prime Minister Shehbaz Sharif offered Islamabad for US-Iran talks.
+
+Pakistan maintains diplomatic ties with both Washington and Tehran, positioning it as one of few countries with active relations on both sides of the conflict.
+
+Neither Washington nor Tehran has responded; US President Donald Trump's threatened strikes on Iranian infrastructure remain on hold.

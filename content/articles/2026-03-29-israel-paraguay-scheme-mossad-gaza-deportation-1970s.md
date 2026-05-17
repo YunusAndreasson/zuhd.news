@@ -11,4 +11,8 @@ sources:
     country: "IL"
 ---
 
-Gaza — Mossad planned deporting 60,000 Gazans to Paraguay. A podcast series documents the 1970s Mossad operation: agents offered cash and emigration papers to Palestinians following the 1967 occupation of Gaza. The scheme failed; current Israeli officials now advocate transfer using the same premise of voluntary departure.
+Gaza — Mossad planned deporting 60,000 Gazans to Paraguay.
+
+A podcast series documents the 1970s Mossad operation: agents offered cash and emigration papers to Palestinians following the 1967 occupation of Gaza.
+
+The scheme failed; current Israeli officials now advocate transfer using the same premise of voluntary departure.

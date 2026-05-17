@@ -18,4 +18,8 @@ concepts:
   - "Organ donation"
 ---
 
-London — A machine learning model identifies donor livers rejected under wrong age criteria. Trained on 247 liver donors, the gradient boosting model predicts biological age better than chronological age; livers with accelerated biological aging carry a 4.19x higher risk of graft loss, a signal doctors currently miss. Independent peer review must confirm the model on larger cohorts before transplant centres can use it to rescue grafts currently discarded.
+London — A machine learning model identifies donor livers rejected under wrong age criteria.
+
+Trained on 247 liver donors, the gradient boosting model predicts biological age better than chronological age; livers with accelerated biological aging carry a 4.19x higher risk of graft loss, a signal doctors currently miss.
+
+Independent peer review must confirm the model on larger cohorts before transplant centres can use it to rescue grafts currently discarded.

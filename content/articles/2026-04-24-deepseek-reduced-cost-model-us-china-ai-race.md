@@ -18,4 +18,8 @@ concepts:
   - "Open-source software"
 ---
 
-Hangzhou — DeepSeek's V4-Pro tops open-source benchmarks, the company said. The 1.6-trillion-parameter model trails only Google's Gemini-Pro-3.1 and offers a 1-million-token context window at lower compute cost. The White House accused Chinese firms of copying American AI via "industrial-scale distillation campaigns."
+Hangzhou — DeepSeek's V4-Pro tops open-source benchmarks, the company said.
+
+The 1.6-trillion-parameter model trails only Google's Gemini-Pro-3.1 and offers a 1-million-token context window at lower compute cost.
+
+The White House accused Chinese firms of copying American AI via "industrial-scale distillation campaigns."

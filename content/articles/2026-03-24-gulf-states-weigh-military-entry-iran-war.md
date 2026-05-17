@@ -18,4 +18,8 @@ concepts:
   - "Gulf Cooperation Council"
 ---
 
-Riyadh — Saudi Arabia and the UAE are weighing entry into the US-Israeli war against Iran if Tehran attacks Gulf power or water infrastructure. Iran has fired nearly 5,000 missiles and drones at Gulf states since the war began February 28, killing at least 20 people and striking airports, energy facilities, and residential areas. A senior Iranian official warned that US forces seizing Kharg Island, through which 90% of Iranian crude flows, would trigger Iranian strikes on UAE territory and mining of the Strait of Hormuz.
+Riyadh — Saudi Arabia and the UAE are weighing entry into the US-Israeli war against Iran if Tehran attacks Gulf power or water infrastructure.
+
+Iran has fired nearly 5,000 missiles and drones at Gulf states since the war began February 28, killing at least 20 people and striking airports, energy facilities, and residential areas.
+
+A senior Iranian official warned that US forces seizing Kharg Island, through which 90% of Iranian crude flows, would trigger Iranian strikes on UAE territory and mining of the Strait of Hormuz.

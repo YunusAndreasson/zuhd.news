@@ -15,4 +15,8 @@ concepts:
   - "Jet fuel"
 ---
 
-Karachi — Jet fuel surged 150%; PIA faces forced shutdown. Fuel is 30-40% of airline costs; Arif Habib, PIA's consortium chairman, warned that continued prices will force the airline to close. 325 Pakistani flights were cancelled since the war; routes to 4 Gulf states remain suspended.
+Karachi — Jet fuel surged 150%; PIA faces forced shutdown.
+
+Fuel is 30-40% of airline costs; Arif Habib, PIA's consortium chairman, warned that continued prices will force the airline to close.
+
+325 Pakistani flights were cancelled since the war; routes to 4 Gulf states remain suspended.

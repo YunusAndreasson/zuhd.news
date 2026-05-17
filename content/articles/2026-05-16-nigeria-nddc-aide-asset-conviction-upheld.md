@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Port Harcourt — Concealing assets earns 2 years. George Turnah, aide to the Niger Delta Development Commission's former chief, hid a company directorship while under money-laundering investigation. The Court of Appeal dismissed his challenge; [Nigeria](country:NG)'s Economic and Financial Crimes Commission publicized the ruling.
+Port Harcourt — Concealing assets earns 2 years.
+
+George Turnah, aide to the Niger Delta Development Commission's former chief, hid a company directorship while under money-laundering investigation.
+
+The Court of Appeal dismissed his challenge; [Nigeria](country:NG)'s Economic and Financial Crimes Commission publicized the ruling.

@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Singapore — World's first supply-chain resilience treaty enters force. [Singapore](country:SG) and [New Zealand](country:NZ) signed the Agreement on Trade in Essential Supplies — a legally-binding commitment to keep vital goods flowing in crises. The pact, reached in October, sets a template for supply-chain agreements between small open economies.
+Singapore — World's first supply-chain resilience treaty enters force.
+
+[Singapore](country:SG) and [New Zealand](country:NZ) signed the Agreement on Trade in Essential Supplies — a legally-binding commitment to keep vital goods flowing in crises.
+
+The pact, reached in October, sets a template for supply-chain agreements between small open economies.

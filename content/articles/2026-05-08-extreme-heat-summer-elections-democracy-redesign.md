@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Chennai — Delhi's 2024 voter turnout: lowest in a decade. [India](country:IN)'s final 2024 election day ran in extreme heat; in Uttar Pradesh alone, at least 33 polling staff died. Election authorities face pressure to reschedule out of summer; the commission has proposed no changes.
+Chennai — Delhi's 2024 voter turnout: lowest in a decade.
+
+[India](country:IN)'s final 2024 election day ran in extreme heat; in Uttar Pradesh alone, at least 33 polling staff died.
+
+Election authorities face pressure to reschedule out of summer; the commission has proposed no changes.

@@ -16,4 +16,8 @@ concepts:
   - "Bipartisanship"
 ---
 
-Atlanta — Institutional landlords own 0.59% of [US](country:US) single-family homes. Concentration is geographic: Atlanta leads at 4%, with 4 ZIP codes above 12%, a Parcl Labs analysis found. A bipartisan bill would cap ownership at 350 properties, covering roughly 140 firms.
+Atlanta — Institutional landlords own 0.59% of [US](country:US) single-family homes.
+
+Concentration is geographic: Atlanta leads at 4%, with 4 ZIP codes above 12%, a Parcl Labs analysis found.
+
+A bipartisan bill would cap ownership at 350 properties, covering roughly 140 firms.

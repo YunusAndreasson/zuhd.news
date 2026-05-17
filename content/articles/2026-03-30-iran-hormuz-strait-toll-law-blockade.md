@@ -17,4 +17,8 @@ concepts:
   - "TASS"
 ---
 
-Tehran — Iran is writing Hormuz tolls into law. Parliament is codifying fees for a strait carrying 20% of global oil, converting a wartime blockade into permanent sovereign revenue infrastructure. Brent holds at $116; every new Hormuz escalation reprices energy for oil-importing nations.
+Tehran — Iran is writing Hormuz tolls into law.
+
+Parliament is codifying fees for a strait carrying 20% of global oil, converting a wartime blockade into permanent sovereign revenue infrastructure.
+
+Brent holds at $116; every new Hormuz escalation reprices energy for oil-importing nations.

@@ -16,4 +16,8 @@ concepts:
   - "M4"
 ---
 
-Cupertino — Apple's M4 silently broke HiDPI on 4K monitors. M1 through M3 supported it; developers coding on affordable 4K externals must now buy 5K displays or accept blurry text. Apple has not acknowledged the regression or issued a fix.
+Cupertino — Apple's M4 silently broke HiDPI on 4K monitors.
+
+M1 through M3 supported it; developers coding on affordable 4K externals must now buy 5K displays or accept blurry text.
+
+Apple has not acknowledged the regression or issued a fix.

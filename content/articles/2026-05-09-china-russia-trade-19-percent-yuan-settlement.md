@@ -23,4 +23,8 @@ entities:
     kind: "commodity"
 ---
 
-Beijing — [Russia](country:RU)'s surplus with [China](country:CN) held flat at $9.58B despite volume growth. Russia sent 17% more oil, gas, and coal to China in Jan-Apr; Chinese exports back rose 23.1%, General Administration of Customs data show. Annual trade fell 6.9% in 2025, though April's monthly total reached $23.7B, customs data show.
+Beijing — [Russia](country:RU)'s surplus with [China](country:CN) held flat at $9.58B despite volume growth.
+
+Russia sent 17% more oil, gas, and coal to China in Jan-Apr; Chinese exports back rose 23.1%, General Administration of Customs data show.
+
+Annual trade fell 6.9% in 2025, though April's monthly total reached $23.7B, customs data show.

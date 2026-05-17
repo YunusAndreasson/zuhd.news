@@ -30,4 +30,8 @@ sentimentDivergence: 0.19
 entities: []
 ---
 
-Beirut — Netanyahu and Foreign Minister Israel Katz broke November's [Lebanon](country:LB) ceasefire. [Israel](country:IL) coordinated with Washington to kill Hezbollah's Radwan commander Malek Balou in Dahieh, ending 6 months of restraint Trump had personally requested. The ceasefire has no enforcement body; Hezbollah's next move is unannounced.
+Beirut — Netanyahu and Foreign Minister Israel Katz broke November's [Lebanon](country:LB) ceasefire.
+
+[Israel](country:IL) coordinated with Washington to kill Hezbollah's Radwan commander Malek Balou in Dahieh, ending 6 months of restraint Trump had personally requested.
+
+The ceasefire has no enforcement body; Hezbollah's next move is unannounced.

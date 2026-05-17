@@ -23,4 +23,8 @@ entities:
     kind: "crypto"
 ---
 
-New York — Bitcoin briefly cleared $80,000, then retraced to $79,000. Renewed [Iran](country:IR) war tension triggered selling before bitcoin closed above $80,619 — the November sell-off ceiling — Marex analysts said. [US](country:US)-listed exchange-traded funds pulled $630 million Friday; institutional buyers have added $3.29 billion over 2 months, SoSoValue shows.
+New York — Bitcoin briefly cleared $80,000, then retraced to $79,000.
+
+Renewed [Iran](country:IR) war tension triggered selling before bitcoin closed above $80,619 — the November sell-off ceiling — Marex analysts said.
+
+[US](country:US)-listed exchange-traded funds pulled $630 million Friday; institutional buyers have added $3.29 billion over 2 months, SoSoValue shows.

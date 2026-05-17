@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Nuba Mountains — [Sudan](country:SD)'s war reduced Nuba to one surgical hospital. The conflict between the armed forces and the Rapid Support Forces has collapsed health facilities across conflict zones, the UN says. Nuba's only surgeon said the hospital treats everything from gunshot wounds to tumours, with no specialist backup.
+Nuba Mountains — [Sudan](country:SD)'s war reduced Nuba to one surgical hospital.
+
+The conflict between the armed forces and the Rapid Support Forces has collapsed health facilities across conflict zones, the UN says.
+
+Nuba's only surgeon said the hospital treats everything from gunshot wounds to tumours, with no specialist backup.

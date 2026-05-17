@@ -36,4 +36,8 @@ concepts:
 sentimentDivergence: 0.29
 ---
 
-Seoul — Kim Yo Jong called Seoul's apology over drone incursions "wise behaviour." President Lee admitted intelligence officials flew unauthorized drones into North Korea, abandoning Seoul's initial denial and calling the actions "irresponsible." Kim Yo Jong warned Seoul "will pay a price" if violations recur; no formal talks are scheduled.
+Seoul — Kim Yo Jong called Seoul's apology over drone incursions "wise behaviour."
+
+President Lee admitted intelligence officials flew unauthorized drones into North Korea, abandoning Seoul's initial denial and calling the actions "irresponsible."
+
+Kim Yo Jong warned Seoul "will pay a price" if violations recur; no formal talks are scheduled.

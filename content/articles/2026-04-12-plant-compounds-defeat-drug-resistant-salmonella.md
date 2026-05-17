@@ -16,4 +16,8 @@ concepts:
   - "Salmonella Typhimurium"
 ---
 
-London — Plant compounds cut antibiotic resistance 1,024-fold in Salmonella. 4-Hydroxycinnamic and itaconic acid restored 5 antibiotics the bacteria had already defeated, also working against resistant E. coli and Klebsiella. Cheap adjuvants, they could rescue existing antibiotics without new drug development.
+London — Plant compounds cut antibiotic resistance 1,024-fold in Salmonella.
+
+4-Hydroxycinnamic and itaconic acid restored 5 antibiotics the bacteria had already defeated, also working against resistant E. coli and Klebsiella.
+
+Cheap adjuvants, they could rescue existing antibiotics without new drug development.

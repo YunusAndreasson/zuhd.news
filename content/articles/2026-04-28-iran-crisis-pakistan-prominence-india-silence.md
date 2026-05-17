@@ -21,4 +21,8 @@ entities:
     kind: "commodity"
 ---
 
-Islamabad — [India](country:IN) stayed silent as [Pakistan](country:PK) leads US-[Iran](country:IR) talks. [India](country:IN) is Tehran's largest oil buyer; [Pakistan](country:PK)'s ties to both Tehran and Gulf capitals secured its mediator role instead. [Pakistan](country:PK)'s position gives it leverage [India](country:IN) has not used, analysts argue.
+Islamabad — [India](country:IN) stayed silent as [Pakistan](country:PK) leads US-[Iran](country:IR) talks.
+
+[India](country:IN) is Tehran's largest oil buyer; [Pakistan](country:PK)'s ties to both Tehran and Gulf capitals secured its mediator role instead.
+
+[Pakistan](country:PK)'s position gives it leverage [India](country:IN) has not used, analysts argue.

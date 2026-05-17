@@ -16,4 +16,8 @@ concepts:
   - "Inference"
 ---
 
-GitHub — Hypura runs 70B-class models on MacBooks with limited RAM. The scheduler keeps hot transformer layers in memory while spilling cold ones to NVMe, cutting SSD-paging latency to practical levels. The project is open-source and Apple Silicon-only, with no comparable tool for users on other local-inference hardware.
+GitHub — Hypura runs 70B-class models on MacBooks with limited RAM.
+
+The scheduler keeps hot transformer layers in memory while spilling cold ones to NVMe, cutting SSD-paging latency to practical levels.
+
+The project is open-source and Apple Silicon-only, with no comparable tool for users on other local-inference hardware.

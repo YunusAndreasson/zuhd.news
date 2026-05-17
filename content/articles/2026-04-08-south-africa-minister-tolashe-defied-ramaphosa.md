@@ -15,4 +15,8 @@ concepts:
   - "South Africa"
 ---
 
-Cape Town — Tolashe charged her Director-General without presidential authority. Ramaphosa confirmed in March she had no authority under the Public Service Act to discipline or fill the post. ActionSA filed criminal charges over 2 Chinese-gifted SUVs traced to Tolashe's adult children; removal demand stands.
+Cape Town — Tolashe charged her Director-General without presidential authority.
+
+Ramaphosa confirmed in March she had no authority under the Public Service Act to discipline or fill the post.
+
+ActionSA filed criminal charges over 2 Chinese-gifted SUVs traced to Tolashe's adult children; removal demand stands.

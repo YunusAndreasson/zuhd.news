@@ -12,4 +12,6 @@ sources:
 entities: []
 ---
 
-Khartoum — [Sudan](country:SD)'s military chief Burhan visited [Saudi Arabia](country:SA) seeking aid-channel control. Khartoum wants aid routed through state coffers rather than UN agencies, giving the military direct control over food and medicine. $1.8bn in World Bank grants stay frozen; Sudan's IMF re-entry bid faces institutional resistance.
+Khartoum — [Sudan](country:SD)'s military chief Burhan visited [Saudi Arabia](country:SA) seeking aid-channel control.
+
+Khartoum wants aid routed through state coffers rather than UN agencies, giving the military direct control over food and medicine. $1.8bn in World Bank grants stay frozen; Sudan's IMF re-entry bid faces institutional resistance.

@@ -16,4 +16,8 @@ concepts:
   - "Ship tracking"
 ---
 
-Bandar Abbas — A developer built ishormuzopenyet.com to track oil flow. Live ship-tracking APIs cost too much, so they scraped MarineTraffic JSON manually and used IMF PortWatch data with a 4-day lag. 373 HN upvotes; the site's 4-day lag means real-time Hormuz status remains unavailable.
+Bandar Abbas — A developer built ishormuzopenyet.com to track oil flow.
+
+Live ship-tracking APIs cost too much, so they scraped MarineTraffic JSON manually and used IMF PortWatch data with a 4-day lag.
+
+373 HN upvotes; the site's 4-day lag means real-time Hormuz status remains unavailable.

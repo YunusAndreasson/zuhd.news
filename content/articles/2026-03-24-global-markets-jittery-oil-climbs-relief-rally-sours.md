@@ -18,4 +18,8 @@ concepts:
   - "Petroleum"
 ---
 
-Singapore — Iran denied any negotiations as Trump claimed productive talks. With the Strait of Hormuz still blocking 20% of global oil flow, central banks now face rate hikes, not cuts. Brent crude climbed above $103 on Tuesday — the International Energy Agency says prices cannot fall until Iran allows shipping to resume.
+Singapore — Iran denied any negotiations as Trump claimed productive talks.
+
+With the Strait of Hormuz still blocking 20% of global oil flow, central banks now face rate hikes, not cuts.
+
+Brent crude climbed above $103 on Tuesday — the International Energy Agency says prices cannot fall until Iran allows shipping to resume.

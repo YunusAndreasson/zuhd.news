@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Tehran — [Iran](country:IR) will sever all [US](country:US) talks if bombing resumes. A senior official says the deal window is closing as Trump's maximalist demands and Israeli pressure block progress. [Pakistan](country:PK) is hosting a second round of Islamabad talks this week; Iran has not confirmed it will attend.
+Tehran — [Iran](country:IR) will sever all [US](country:US) talks if bombing resumes.
+
+A senior official says the deal window is closing as Trump's maximalist demands and Israeli pressure block progress.
+
+[Pakistan](country:PK) is hosting a second round of Islamabad talks this week; Iran has not confirmed it will attend.

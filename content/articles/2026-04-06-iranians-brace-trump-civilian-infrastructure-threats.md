@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Tehran — Tehran families packed to flee before Tuesday. Trump posted a TruthSocial ultimatum: open the Strait of Hormuz by 8 PM Tuesday or face strikes on power plants and bridges. 3.2 million Iranians were already displaced by mid-March; the war has killed at least 2,076 by official count.
+Tehran — Tehran families packed to flee before Tuesday.
+
+Trump posted a TruthSocial ultimatum: open the Strait of Hormuz by 8 PM Tuesday or face strikes on power plants and bridges.
+
+3.2 million Iranians were already displaced by mid-March; the war has killed at least 2,076 by official count.

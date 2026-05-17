@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Bannu — Bannu's jirga-backed Police Peace Committee launched anti-militant sweeps Saturday. Community elders and [Pakistan](country:PK)'s police vowed operations until militants' "complete elimination" in the district. The committee plans to reclaim gathering spaces allegedly used by militants and screen suspected sympathizers.
+Bannu — Bannu's jirga-backed Police Peace Committee launched anti-militant sweeps Saturday.
+
+Community elders and [Pakistan](country:PK)'s police vowed operations until militants' "complete elimination" in the district.
+
+The committee plans to reclaim gathering spaces allegedly used by militants and screen suspected sympathizers.

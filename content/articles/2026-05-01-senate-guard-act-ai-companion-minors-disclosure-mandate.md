@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Washington — AI companions must say they are not human. Senate Judiciary advanced the bill: it bars minors from AI companions, requires non-human disclosure for all users, and criminalises child sexual solicitation. The bill advances to the full [US](country:US) Senate.
+Washington — AI companions must say they are not human.
+
+Senate Judiciary advanced the bill: it bars minors from AI companions, requires non-human disclosure for all users, and criminalises child sexual solicitation.
+
+The bill advances to the full [US](country:US) Senate.

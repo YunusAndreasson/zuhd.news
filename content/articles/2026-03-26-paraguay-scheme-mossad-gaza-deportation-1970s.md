@@ -11,4 +11,8 @@ sources:
     country: "IL"
 ---
 
-Gaza — Mossad tried to deport 60,000 Gazans in 1976. The operation used cash incentives and Paraguayan government cooperation to empty the newly occupied strip. The scheme failed — but the methods match Israel's current proposals to resettle Gazans abroad.
+Gaza — Mossad tried to deport 60,000 Gazans in 1976.
+
+The operation used cash incentives and Paraguayan government cooperation to empty the newly occupied strip.
+
+The scheme failed — but the methods match Israel's current proposals to resettle Gazans abroad.

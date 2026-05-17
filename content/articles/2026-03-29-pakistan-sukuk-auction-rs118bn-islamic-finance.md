@@ -17,4 +17,8 @@ concepts:
   - "Fuel crisis"
 ---
 
-Islamabad — Pakistan raised Rs118 billion through Sukuk bonds. Sukuk are asset-backed Islamic instruments that comply with the ban on interest; Pakistan tapped them as conventional credit markets froze under war uncertainty. Pakistan is also routing Iran-US ceasefire messages, gaining leverage as both creditor and regional intermediary.
+Islamabad — Pakistan raised Rs118 billion through Sukuk bonds.
+
+Sukuk are asset-backed Islamic instruments that comply with the ban on interest; Pakistan tapped them as conventional credit markets froze under war uncertainty.
+
+Pakistan is also routing Iran-US ceasefire messages, gaining leverage as both creditor and regional intermediary.

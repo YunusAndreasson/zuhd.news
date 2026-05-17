@@ -18,4 +18,8 @@ concepts:
   - "Local inference"
 ---
 
-Mountain View — Google's Gemma 4 now runs offline on iPhone. The AI Edge Gallery app runs Gemma 4 entirely on-device — no API key, no cloud — eliminating privacy and latency costs. Local inference on consumer hardware changes the cost equation for every mobile developer building with AI.
+Mountain View — Google's Gemma 4 now runs offline on iPhone.
+
+The AI Edge Gallery app runs Gemma 4 entirely on-device — no API key, no cloud — eliminating privacy and latency costs.
+
+Local inference on consumer hardware changes the cost equation for every mobile developer building with AI.

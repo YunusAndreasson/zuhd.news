@@ -32,4 +32,8 @@ concepts:
 entities: []
 ---
 
-New Delhi — Bengal cut counting centres from 87 to 77 with no justification. [India](country:IN)'s Election Commission QR photo IDs gate the innermost checkpoint; every authorised person is scanned before entering. Trinamool Congress challenged the reduction days before May 4 results.
+New Delhi — Bengal cut counting centres from 87 to 77 with no justification.
+
+[India](country:IN)'s Election Commission QR photo IDs gate the innermost checkpoint; every authorised person is scanned before entering.
+
+Trinamool Congress challenged the reduction days before May 4 results.

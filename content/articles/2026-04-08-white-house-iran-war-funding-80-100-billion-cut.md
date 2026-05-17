@@ -17,4 +17,8 @@ concepts:
   - "The Pentagon"
 ---
 
-Washington — White House halved its Iran war funding request. The administration plans to ask Congress for $80-100B, down from over $200B the Pentagon requested in March. The 2-week ceasefire leaves Congress under pressure to demand further cuts before a final number is set.
+Washington — White House halved its Iran war funding request.
+
+The administration plans to ask Congress for $80-100B, down from over $200B the Pentagon requested in March.
+
+The 2-week ceasefire leaves Congress under pressure to demand further cuts before a final number is set.

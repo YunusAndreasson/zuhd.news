@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Washington — A $7.5 trillion valuation unlocks Musk's Mars shares. SpaceX's private board granted Musk 200 million super-voting shares for founding a permanent Mars settlement; no timeline or shareholder vote was set. A June 28 share offering targets $1.75 trillion — one-quarter of the threshold for the Mars shares.
+Washington — A $7.5 trillion valuation unlocks Musk's Mars shares.
+
+SpaceX's private board granted Musk 200 million super-voting shares for founding a permanent Mars settlement; no timeline or shareholder vote was set.
+
+A June 28 share offering targets $1.75 trillion — one-quarter of the threshold for the Mars shares.

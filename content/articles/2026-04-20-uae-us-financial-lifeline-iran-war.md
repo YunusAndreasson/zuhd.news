@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Abu Dhabi — [Abu Dhabi](country:AE) sought a [US](country:US) Federal Reserve currency swap. War fears could drain reserves and trigger capital flight; the central bank governor raised the proposal in Washington last week. No formal request has been made; the minister said 2,800 missiles have struck the country since the war began.
+Abu Dhabi — [Abu Dhabi](country:AE) sought a [US](country:US) Federal Reserve currency swap.
+
+War fears could drain reserves and trigger capital flight; the central bank governor raised the proposal in Washington last week.
+
+No formal request has been made; the minister said 2,800 missiles have struck the country since the war began.

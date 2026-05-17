@@ -16,4 +16,8 @@ concepts:
   - "White House"
 ---
 
-Washington — Trump's budget adds $445 billion to the Pentagon. The same request cuts HHS by 12%, slashing NIH and eliminating a health research agency whose defunding Congress rejected last year. Congress blocked these same HHS cuts last year; the war gives them a second vote.
+Washington — Trump's budget adds $445 billion to the Pentagon.
+
+The same request cuts HHS by 12%, slashing NIH and eliminating a health research agency whose defunding Congress rejected last year.
+
+Congress blocked these same HHS cuts last year; the war gives them a second vote.

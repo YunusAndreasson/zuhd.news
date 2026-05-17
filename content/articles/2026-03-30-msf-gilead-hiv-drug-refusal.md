@@ -17,4 +17,8 @@ concepts:
   - "Gilead Sciences"
 ---
 
-New York — Gilead blocked MSF from buying HIV drug lenacapavir. Injections every 6 months provide virtually complete HIV protection; Gilead controls the only supply path, through The Global Fund. MSF called the refusal "unconscionable"; Gilead has not explained why it will not sell the drug directly.
+New York — Gilead blocked MSF from buying HIV drug lenacapavir.
+
+Injections every 6 months provide virtually complete HIV protection; Gilead controls the only supply path, through The Global Fund.
+
+MSF called the refusal "unconscionable"; Gilead has not explained why it will not sell the drug directly.

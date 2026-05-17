@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-San Antonio — 2 women jailed on an influencer's unverified claim. Loomer posted they were Soleimani relatives; Secretary Rubio revoked their green cards and [the US](country:US) arrested them April 3 — birth records show no family connection. One detainee has untreated autoimmune hemolytic anemia; no release date has been set.
+San Antonio — 2 women jailed on an influencer's unverified claim.
+
+Loomer posted they were Soleimani relatives; Secretary Rubio revoked their green cards and [the US](country:US) arrested them April 3 — birth records show no family connection.
+
+One detainee has untreated autoimmune hemolytic anemia; no release date has been set.

@@ -26,4 +26,8 @@ entities:
     kind: "stock"
 ---
 
-New York — Strategy bought 34,164 bitcoin worth $2.54bn. Trump's ceasefire extension drove bitcoin to $77,541; Strategy's holdings reached 815,061 — roughly 4% of total supply, per company figures. CoinShares data show $1.4bn in global crypto fund inflows last week.
+New York — Strategy bought 34,164 bitcoin worth $2.54bn.
+
+Trump's ceasefire extension drove bitcoin to $77,541; Strategy's holdings reached 815,061 — roughly 4% of total supply, per company figures.
+
+CoinShares data show $1.4bn in global crypto fund inflows last week.

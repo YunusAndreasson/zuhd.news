@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Bogotá — Rodriguez's video links him to Active Club Bogotá. Investigators matched tattoos to Javier Ruiz, the group's named leader; Rodriguez ran for [Colombia](country:CO)'s congress under Centro Democrático. Rodriguez declined to answer and threatened legal action.
+Bogotá — Rodriguez's video links him to Active Club Bogotá.
+
+Investigators matched tattoos to Javier Ruiz, the group's named leader; Rodriguez ran for [Colombia](country:CO)'s congress under Centro Democrático.
+
+Rodriguez declined to answer and threatened legal action.

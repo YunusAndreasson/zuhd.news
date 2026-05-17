@@ -28,4 +28,8 @@ entities:
     kind: "stock"
 ---
 
-San Francisco — Every XRP Ledger transaction exposes the account's public key to quantum attack. Shor's algorithm can derive the private key from it; Ripple released a 4-phase quantum-resistance plan targeting 2028 to close the gap. Google warned quantum computing sufficient for this attack may arrive by 2029; Bitcoin has no comparable plan.
+San Francisco — Every XRP Ledger transaction exposes the account's public key to quantum attack.
+
+Shor's algorithm can derive the private key from it; Ripple released a 4-phase quantum-resistance plan targeting 2028 to close the gap.
+
+Google warned quantum computing sufficient for this attack may arrive by 2029; Bitcoin has no comparable plan.

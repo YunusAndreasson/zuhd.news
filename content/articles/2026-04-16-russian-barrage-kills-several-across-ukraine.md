@@ -40,4 +40,8 @@ sentimentDivergence: 0.18
 entities: []
 ---
 
-Kyiv — A 12-year-old died under Kyiv rubble. Russia fired 44 missiles and 659 drones hours after Easter ceasefire, killing at least 13 across Kyiv, Odesa, and Dnipro. Ukraine's air defense intercepted 636 drones, but Zelenskyy's daily requests for air defense missiles to allies remain unmet.
+Kyiv — A 12-year-old died under Kyiv rubble.
+
+Russia fired 44 missiles and 659 drones hours after Easter ceasefire, killing at least 13 across Kyiv, Odesa, and Dnipro.
+
+Ukraine's air defense intercepted 636 drones, but Zelenskyy's daily requests for air defense missiles to allies remain unmet.

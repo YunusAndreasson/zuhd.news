@@ -16,4 +16,8 @@ concepts:
   - "Nigerian naira"
 ---
 
-Lagos — International Breweries ended 7 years of losses. AB InBev's Nigerian unit earned N51 billion in 2025 after the naira stabilisation cut its foreign exchange losses by 92%. Shares jumped 9.9% on Friday, the stock's strongest single-day gain so far this year.
+Lagos — International Breweries ended 7 years of losses.
+
+AB InBev's Nigerian unit earned N51 billion in 2025 after the naira stabilisation cut its foreign exchange losses by 92%.
+
+Shares jumped 9.9% on Friday, the stock's strongest single-day gain so far this year.

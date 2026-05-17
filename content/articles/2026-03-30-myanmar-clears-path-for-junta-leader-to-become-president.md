@@ -28,4 +28,8 @@ eventCoverage: 38
 sentimentDivergence: 0.08
 ---
 
-Naypyidaw — A coup becomes a presidency. Myanmar's parliament nominated Min Aung Hlaing as vice-president; a presidential vote follows as ally Ye Win Oo takes military command. Suu Kyi remains detained while the National Unity Government contests junta control across much of the country.
+Naypyidaw — A coup becomes a presidency.
+
+Myanmar's parliament nominated Min Aung Hlaing as vice-president; a presidential vote follows as ally Ye Win Oo takes military command.
+
+Suu Kyi remains detained while the National Unity Government contests junta control across much of the country.

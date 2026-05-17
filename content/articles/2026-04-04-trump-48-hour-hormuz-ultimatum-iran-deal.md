@@ -27,4 +27,8 @@ concepts:
 sentimentDivergence: 0.35
 ---
 
-Washington — Trump gave Iran 48 hours to open Hormuz. Iran has blockaded the strait since February 28 US-Israeli strikes, cutting off 20 percent of global oil supply to non-friendly nations. Iran's foreign minister says Tehran remains open to talks but rejected a US 15-point plan; Pakistan continues mediating.
+Washington — Trump gave Iran 48 hours to open Hormuz.
+
+Iran has blockaded the strait since February 28 US-Israeli strikes, cutting off 20 percent of global oil supply to non-friendly nations.
+
+Iran's foreign minister says Tehran remains open to talks but rejected a US 15-point plan; Pakistan continues mediating.

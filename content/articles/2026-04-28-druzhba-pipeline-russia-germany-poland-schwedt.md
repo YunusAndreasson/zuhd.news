@@ -23,4 +23,8 @@ entities:
     kind: "commodity"
 ---
 
-Berlin — [Russia](country:RU) halts Kazakh crude through the Druzhba pipeline to [Germany](country:DE) from May 1. PCK Schwedt — the refinery near Berlin already running on Kazakh transit after 2023 sanctions cut Russian crude — faces a reported 43,000 barrel-per-day supply gap. Berlin is in talks with [Poland](country:PL) to backfill via Gdansk; no deal is confirmed.
+Berlin — [Russia](country:RU) halts Kazakh crude through the Druzhba pipeline to [Germany](country:DE) from May 1.
+
+PCK Schwedt — the refinery near Berlin already running on Kazakh transit after 2023 sanctions cut Russian crude — faces a reported 43,000 barrel-per-day supply gap.
+
+Berlin is in talks with [Poland](country:PL) to backfill via Gdansk; no deal is confirmed.

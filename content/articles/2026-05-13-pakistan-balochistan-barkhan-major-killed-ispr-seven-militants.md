@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Barkhan — Major Tauseef Bhatti, 31, was killed alongside 4 soldiers in a firefight in Nosham. [Pakistan](country:PK)'s security forces killed 7 militants in the exchange and recovered weapons and explosives. The army pledged to continue counter-terrorism operations in Balochistan.
+Barkhan — Major Tauseef Bhatti, 31, was killed alongside 4 soldiers in a firefight in Nosham.
+
+[Pakistan](country:PK)'s security forces killed 7 militants in the exchange and recovered weapons and explosives.
+
+The army pledged to continue counter-terrorism operations in Balochistan.

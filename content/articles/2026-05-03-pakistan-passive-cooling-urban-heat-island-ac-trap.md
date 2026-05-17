@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Karachi — Pakistani cities run 5.6°C hotter than surrounding areas. Rolling blackouts make grid-scale air conditioning unworkable; planners are turning to passive cooling — courtyards, water features, and tree corridors. The Breathe Pakistan Climate Conference meets 6–7 May to move urban planners from awareness to policy.
+Karachi — Pakistani cities run 5.6°C hotter than surrounding areas.
+
+Rolling blackouts make grid-scale air conditioning unworkable; planners are turning to passive cooling — courtyards, water features, and tree corridors.
+
+The Breathe Pakistan Climate Conference meets 6–7 May to move urban planners from awareness to policy.

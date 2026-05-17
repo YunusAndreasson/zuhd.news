@@ -17,4 +17,8 @@ concepts:
   - "Corruption"
 ---
 
-Moscow — Russia sentenced the Kursk governor to 14 years. Alexei Smirnov, who presided over Ukraine's surprise August 2024 incursion, was convicted of accepting bribes from firms that built substandard border fortifications. Smirnov's predecessor certified the defenses as complete; Putin fired him and he later died in an apparent suicide.
+Moscow — Russia sentenced the Kursk governor to 14 years.
+
+Alexei Smirnov, who presided over Ukraine's surprise August 2024 incursion, was convicted of accepting bribes from firms that built substandard border fortifications.
+
+Smirnov's predecessor certified the defenses as complete; Putin fired him and he later died in an apparent suicide.

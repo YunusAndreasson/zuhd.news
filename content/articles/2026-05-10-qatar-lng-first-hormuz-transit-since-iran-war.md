@@ -26,4 +26,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Doha — [Qatar](country:QA) sent 1 liquefied natural gas tanker through Hormuz, the first since [Iran](country:IR) closed the strait. Before the closure, Gulf producers shipped about 3 tankers daily through the route. What made the crossing possible — and whether more will follow — has not been disclosed.
+Doha — [Qatar](country:QA) sent 1 liquefied natural gas tanker through Hormuz, the first since [Iran](country:IR) closed the strait.
+
+Before the closure, Gulf producers shipped about 3 tankers daily through the route.
+
+What made the crossing possible — and whether more will follow — has not been disclosed.

@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-London — Researchers 3D-printed load-bearing structures without cement. A Nature Communications paper, from analysis of 90% of global subsoils, identified an alginate biopolymer that raises print speed 33% and structural stability. Cement is among the hardest sectors to decarbonize; the study proposes earthen composites as a substitution pathway.
+London — Researchers 3D-printed load-bearing structures without cement.
+
+A Nature Communications paper, from analysis of 90% of global subsoils, identified an alginate biopolymer that raises print speed 33% and structural stability.
+
+Cement is among the hardest sectors to decarbonize; the study proposes earthen composites as a substitution pathway.

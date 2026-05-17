@@ -15,4 +15,8 @@ concepts:
   - "Renewable energy"
 ---
 
-Berlin — Solar and batteries can power the world today. A technical analysis argues existing photovoltaics and storage can already meet global energy demand — no new breakthroughs required. The Hormuz blockade and $115 oil now pressure every government still subsidizing fossil fuels.
+Berlin — Solar and batteries can power the world today.
+
+A technical analysis argues existing photovoltaics and storage can already meet global energy demand — no new breakthroughs required.
+
+The Hormuz blockade and $115 oil now pressure every government still subsidizing fossil fuels.

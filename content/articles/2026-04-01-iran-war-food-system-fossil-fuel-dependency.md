@@ -17,4 +17,8 @@ concepts:
   - "Strait of Hormuz"
 ---
 
-London — Your food comes from an oil well. 15% of all fossil fuels go into food: nitrogen fertilisers from natural gas, pesticides from petroleum, harvests and transport running on diesel. If the war drags on, scientists warn this could be the worst food price shock in modern history.
+London — Your food comes from an oil well.
+
+15% of all fossil fuels go into food: nitrogen fertilisers from natural gas, pesticides from petroleum, harvests and transport running on diesel.
+
+If the war drags on, scientists warn this could be the worst food price shock in modern history.

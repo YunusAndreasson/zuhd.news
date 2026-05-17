@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Washington — Rosalind Franklin rover secures a SpaceX Mars launch. The European Space Agency cancelled its Roscosmos partnership after Russia's 2022 Ukraine invasion, leaving finished hardware idle for 4 years. A Falcon Heavy launch from Kennedy Space Center is scheduled as soon as late 2028.
+Washington — Rosalind Franklin rover secures a SpaceX Mars launch.
+
+The European Space Agency cancelled its Roscosmos partnership after Russia's 2022 Ukraine invasion, leaving finished hardware idle for 4 years.
+
+A Falcon Heavy launch from Kennedy Space Center is scheduled as soon as late 2028.

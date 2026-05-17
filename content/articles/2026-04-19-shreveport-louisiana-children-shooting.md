@@ -29,4 +29,8 @@ sentimentDivergence: 0.07
 entities: []
 ---
 
-Shreveport — 8 children aged 1 to 14 were killed. A gunman shot 10 people across 3 locations in a domestic attack before Shreveport police killed him during a vehicle chase; some victims were his relatives, police said. Louisiana State Police are investigating the officers' shooting; no victims have been named and no motive established.
+Shreveport — 8 children aged 1 to 14 were killed.
+
+A gunman shot 10 people across 3 locations in a domestic attack before Shreveport police killed him during a vehicle chase; some victims were his relatives, police said.
+
+Louisiana State Police are investigating the officers' shooting; no victims have been named and no motive established.

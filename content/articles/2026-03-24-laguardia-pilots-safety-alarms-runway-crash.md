@@ -16,4 +16,8 @@ concepts:
   - "Runway incursion"
 ---
 
-New York — Pilots warned of LaGuardia runway hazards before 2 died. Documented complaints went to airline management months before the collision but were never forwarded to flight operations. Federal investigators are reviewing whether airlines had a legal obligation to escalate the warnings, and whether the failure constitutes liability.
+New York — Pilots warned of LaGuardia runway hazards before 2 died.
+
+Documented complaints went to airline management months before the collision but were never forwarded to flight operations.
+
+Federal investigators are reviewing whether airlines had a legal obligation to escalate the warnings, and whether the failure constitutes liability.

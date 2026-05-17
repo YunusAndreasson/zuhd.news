@@ -38,4 +38,8 @@ sentimentDivergence: 0.48
 entities: []
 ---
 
-Paris — Leo accepted the UN cultural agency's direct September invitation. The first [US](country:US)-born pope bypassed the UN General Assembly in New York, choosing [France](country:FR) and the agency's Paris headquarters instead. September 25–28 marks the first Vatican state visit to France in 18 years; Leo also stops at Lourdes.
+Paris — Leo accepted the UN cultural agency's direct September invitation.
+
+The first [US](country:US)-born pope bypassed the UN General Assembly in New York, choosing [France](country:FR) and the agency's Paris headquarters instead.
+
+September 25–28 marks the first Vatican state visit to France in 18 years; Leo also stops at Lourdes.

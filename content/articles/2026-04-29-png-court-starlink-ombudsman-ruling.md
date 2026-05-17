@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Port Moresby — [Papua New Guinea](country:PG)'s court ended a 2-year Starlink licensing block. The national court found the Ombudsman Commission exceeded its constitutional powers, striking the watchdog's veto over telecommunications permits. Starlink can now apply for a telecommunications license in the country.
+Port Moresby — [Papua New Guinea](country:PG)'s court ended a 2-year Starlink licensing block.
+
+The national court found the Ombudsman Commission exceeded its constitutional powers, striking the watchdog's veto over telecommunications permits.
+
+Starlink can now apply for a telecommunications license in the country.

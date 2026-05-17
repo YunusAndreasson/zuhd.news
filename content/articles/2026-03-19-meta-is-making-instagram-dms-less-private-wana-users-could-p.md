@@ -16,4 +16,8 @@ concepts:
   - "SMEX"
 ---
 
-Menlo Park — Activists face exposure as Meta ends Instagram encryption. Meta confirmed Instagram's end-to-end encryption ends May 8, allowing Meta and governments to access users' direct messages. SMEX, a West Asian digital rights group, warned this endangers activists and journalists in West Asia and North Africa, where WhatsApp is Meta's only remaining encrypted platform.
+Menlo Park — Activists face exposure as Meta ends Instagram encryption.
+
+Meta confirmed Instagram's end-to-end encryption ends May 8, allowing Meta and governments to access users' direct messages.
+
+SMEX, a West Asian digital rights group, warned this endangers activists and journalists in West Asia and North Africa, where WhatsApp is Meta's only remaining encrypted platform.

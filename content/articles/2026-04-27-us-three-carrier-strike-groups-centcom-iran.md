@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Manama — [US](country:US) Central Command holds 3 carrier groups for the first time since 2003. Each brings roughly 60 aircraft and 7,500 sailors to the Middle East. A fourth carrier, Theodore Roosevelt, trains in the Pacific with no deployment date announced.
+Manama — [US](country:US) Central Command holds 3 carrier groups for the first time since 2003.
+
+Each brings roughly 60 aircraft and 7,500 sailors to the Middle East.
+
+A fourth carrier, Theodore Roosevelt, trains in the Pacific with no deployment date announced.

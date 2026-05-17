@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Lagos — Every Lassa vaccine must clear full efficacy trials after no immune marker predicting survival was found. Epidemic preparedness researchers confirmed no correlate of protection exists. The disease is endemic in [Nigeria](country:NG) and [Sierra Leone](country:SL); the sole commercial assay supplier halted production in December 2024.
+Lagos — Every Lassa vaccine must clear full efficacy trials after no immune marker predicting survival was found.
+
+Epidemic preparedness researchers confirmed no correlate of protection exists.
+
+The disease is endemic in [Nigeria](country:NG) and [Sierra Leone](country:SL); the sole commercial assay supplier halted production in December 2024.

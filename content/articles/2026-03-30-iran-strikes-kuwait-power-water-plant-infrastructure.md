@@ -18,4 +18,8 @@ concepts:
   - "Western Asia"
 ---
 
-Kuwait City — Iran struck Kuwait's electricity and desalination plant. 1 Indian national was killed; desalination supplies 80% of Gulf drinking water — the first civilian water infrastructure struck in the war. Trump threatened Monday to destroy Iranian oil wells if Tehran refuses to reopen Hormuz.
+Kuwait City — Iran struck Kuwait's electricity and desalination plant.
+
+1 Indian national was killed; desalination supplies 80% of Gulf drinking water — the first civilian water infrastructure struck in the war.
+
+Trump threatened Monday to destroy Iranian oil wells if Tehran refuses to reopen Hormuz.

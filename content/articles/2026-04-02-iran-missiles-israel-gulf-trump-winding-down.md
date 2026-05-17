@@ -27,4 +27,8 @@ concepts:
 sentimentDivergence: 0.13
 ---
 
-Dubai — Iran struck Dubai and Bahrain while Trump spoke of winding down the war. Tehran said its missile production sites remain intact; Brent crude hit $108, up 50% since the war began. Trump's April 6 deadline — open Hormuz or face retaliation — went unmentioned in the speech.
+Dubai — Iran struck Dubai and Bahrain while Trump spoke of winding down the war.
+
+Tehran said its missile production sites remain intact; Brent crude hit $108, up 50% since the war began.
+
+Trump's April 6 deadline — open Hormuz or face retaliation — went unmentioned in the speech.

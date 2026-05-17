@@ -33,4 +33,8 @@ concepts:
 sentimentDivergence: 0.38
 ---
 
-Islamabad — Pakistan's PM asked Trump for 2 more weeks. As the sole intermediary, Sharif simultaneously asked Tehran to reopen Hormuz for 2 weeks as a goodwill gesture. A senior Iranian official called the proposal under positive review, and the White House confirmed Trump was aware.
+Islamabad — Pakistan's PM asked Trump for 2 more weeks.
+
+As the sole intermediary, Sharif simultaneously asked Tehran to reopen Hormuz for 2 weeks as a goodwill gesture.
+
+A senior Iranian official called the proposal under positive review, and the White House confirmed Trump was aware.

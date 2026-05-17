@@ -16,4 +16,8 @@ concepts:
   - "Press freedom"
 ---
 
-Jezzine — Israel killed 3 named journalists in an airstrike. Ali Shoeib, Fatima Ftouni, and Mohamed Ftouni died in southern Lebanon alongside 7 paramedics killed in a second strike the same day. Israeli forces simultaneously launched a cross-border incursion into Lebanon from Syria.
+Jezzine — Israel killed 3 named journalists in an airstrike.
+
+Ali Shoeib, Fatima Ftouni, and Mohamed Ftouni died in southern Lebanon alongside 7 paramedics killed in a second strike the same day.
+
+Israeli forces simultaneously launched a cross-border incursion into Lebanon from Syria.

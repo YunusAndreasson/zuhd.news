@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Karachi — Withdrawn cancer drugs return to [Pakistan](country:PK) after a 2-year price freeze. The government approved prices for 35 essential medicines — cancer, transplant, and haemophilia treatments that manufacturers had pulled. The pharmaceutical association said 45 more molecules await clearance.
+Karachi — Withdrawn cancer drugs return to [Pakistan](country:PK) after a 2-year price freeze.
+
+The government approved prices for 35 essential medicines — cancer, transplant, and haemophilia treatments that manufacturers had pulled.
+
+The pharmaceutical association said 45 more molecules await clearance.

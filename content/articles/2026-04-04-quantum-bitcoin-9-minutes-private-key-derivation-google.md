@@ -16,4 +16,8 @@ concepts:
   - "Google"
 ---
 
-Mountain View — Google showed quantum computers could crack Bitcoin wallets. Pre-computation lets the attack finish in 9 minutes once a public key appears, just under Bitcoin's 10-minute confirmation window. 6.9 million BTC have permanently exposed public keys; Bitcoin, unlike Ethereum, has no post-quantum migration underway.
+Mountain View — Google showed quantum computers could crack Bitcoin wallets.
+
+Pre-computation lets the attack finish in 9 minutes once a public key appears, just under Bitcoin's 10-minute confirmation window.
+
+6.9 million BTC have permanently exposed public keys; Bitcoin, unlike Ethereum, has no post-quantum migration underway.

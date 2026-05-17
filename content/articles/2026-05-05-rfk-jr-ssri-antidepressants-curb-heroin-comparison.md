@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Washington — The US government now pays doctors to de-prescribe antidepressants. US Health Secretary Kennedy repeated the heroin comparison despite expert debunking; a 2024 Lancet study found severe discontinuation in 3% of patients. The American Psychiatric Association 'strongly objects' and was not consulted; no congressional review is scheduled.
+Washington — The US government now pays doctors to de-prescribe antidepressants.
+
+US Health Secretary Kennedy repeated the heroin comparison despite expert debunking; a 2024 Lancet study found severe discontinuation in 3% of patients.
+
+The American Psychiatric Association 'strongly objects' and was not consulted; no congressional review is scheduled.

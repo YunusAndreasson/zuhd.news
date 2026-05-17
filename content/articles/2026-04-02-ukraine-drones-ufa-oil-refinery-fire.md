@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.38
 ---
 
-Ufa — Drones reached Ufa, 1,200km from the frontline. Russia intercepted 147 UAVs overnight; 1 struck a refinery industrial zone and another hit a residential building, with no casualties reported. Russia has extended its gasoline export ban through July; each refinery strike narrows domestic fuel reserves under rising pressure.
+Ufa — Drones reached Ufa, 1,200km from the frontline.
+
+Russia intercepted 147 UAVs overnight; 1 struck a refinery industrial zone and another hit a residential building, with no casualties reported.
+
+Russia has extended its gasoline export ban through July; each refinery strike narrows domestic fuel reserves under rising pressure.

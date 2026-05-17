@@ -26,4 +26,8 @@ concepts:
   - "Nizar Amedi"
 ---
 
-Baghdad — Nizar Amedi won 227 of 249 parliamentary votes. Under Iraq's sectarian formula, the president must be Kurdish — PUK and KDP had wrangled for months over the nomination. Amedi has 15 days to name a PM; Trump threatened to cut US support if former PM al-Maliki is chosen.
+Baghdad — Nizar Amedi won 227 of 249 parliamentary votes.
+
+Under Iraq's sectarian formula, the president must be Kurdish — PUK and KDP had wrangled for months over the nomination.
+
+Amedi has 15 days to name a PM; Trump threatened to cut US support if former PM al-Maliki is chosen.

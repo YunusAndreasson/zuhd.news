@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — 1 bid; 224% above estimate; Senate voided it. The Korean lender required use of its own contractors, structurally preventing competitive bidding on [Pakistan](country:PK)'s Rs26 billion Chitral road. A subcommittee will audit all foreign-funded projects; the National Highway Authority has 30 days to re-bid under a two-envelope evaluation.
+Islamabad — 1 bid; 224% above estimate; Senate voided it.
+
+The Korean lender required use of its own contractors, structurally preventing competitive bidding on [Pakistan](country:PK)'s Rs26 billion Chitral road.
+
+A subcommittee will audit all foreign-funded projects; the National Highway Authority has 30 days to re-bid under a two-envelope evaluation.

@@ -17,4 +17,8 @@ concepts:
   - "Insider trading"
 ---
 
-Washington — War became a tradeable asset on US markets. 40 Democrats asked the CFTC and ethics officials to issue guidance after suspicious contracts appeared on Iran and Venezuela strikes. Federal prosecutors have begun questioning prediction market firms about whether specific contracts could trigger insider-trading charges.
+Washington — War became a tradeable asset on US markets.
+
+40 Democrats asked the CFTC and ethics officials to issue guidance after suspicious contracts appeared on Iran and Venezuela strikes.
+
+Federal prosecutors have begun questioning prediction market firms about whether specific contracts could trigger insider-trading charges.

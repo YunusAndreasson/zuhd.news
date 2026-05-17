@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Washington — Abolishing the US foreign aid agency raised Africa conflict probability 6.5 percent, a Science study found. The study linked the 2025 closure to 10.6% more conflict events and 9.3% more battle fatalities in high-aid regions. Tracking models project 9 million preventable deaths by 2030 from the cuts, a February study estimated.
+Washington — Abolishing the US foreign aid agency raised Africa conflict probability 6.5 percent, a Science study found.
+
+The study linked the 2025 closure to 10.6% more conflict events and 9.3% more battle fatalities in high-aid regions.
+
+Tracking models project 9 million preventable deaths by 2030 from the cuts, a February study estimated.

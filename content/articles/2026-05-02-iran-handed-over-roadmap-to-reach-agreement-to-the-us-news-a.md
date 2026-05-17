@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Tehran — [Iran](country:IR) passed Washington a 14-point ceasefire roadmap. [Pakistan](country:PK) carried the document — Iran's counter to a prior US 9-point proposal — bypassing Gulf intermediaries. No timeline has been set; Iran's full conditions remain undisclosed, Iranian state media reported.
+Tehran — [Iran](country:IR) passed Washington a 14-point ceasefire roadmap.
+
+[Pakistan](country:PK) carried the document — Iran's counter to a prior US 9-point proposal — bypassing Gulf intermediaries.
+
+No timeline has been set; Iran's full conditions remain undisclosed, Iranian state media reported.

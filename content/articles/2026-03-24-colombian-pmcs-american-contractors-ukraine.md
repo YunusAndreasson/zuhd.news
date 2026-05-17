@@ -17,4 +17,8 @@ concepts:
   - "Civil war"
 ---
 
-Moscow — Russia says US contractors recruit Colombian veterans for Ukraine. Russian state media attributed the claim to Prozorov, a former Ukrainian security officer who said the pipeline runs from Colombia's civil war through US private military firms. Neither Colombia nor the US has responded; without independent corroboration, the claim remains Russian state media's alone.
+Moscow — Russia says US contractors recruit Colombian veterans for Ukraine.
+
+Russian state media attributed the claim to Prozorov, a former Ukrainian security officer who said the pipeline runs from Colombia's civil war through US private military firms.
+
+Neither Colombia nor the US has responded; without independent corroboration, the claim remains Russian state media's alone.

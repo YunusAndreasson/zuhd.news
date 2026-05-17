@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Gainesville — Sensors detected electron beams inside storm clouds. Balloon, drone, and satellite data also found gamma-ray flashes and dark lightning the standard ice-collision charge model cannot explain. How a cloud's modest field crosses lightning's breakdown threshold remains unanswered despite the new data.
+Gainesville — Sensors detected electron beams inside storm clouds.
+
+Balloon, drone, and satellite data also found gamma-ray flashes and dark lightning the standard ice-collision charge model cannot explain.
+
+How a cloud's modest field crosses lightning's breakdown threshold remains unanswered despite the new data.

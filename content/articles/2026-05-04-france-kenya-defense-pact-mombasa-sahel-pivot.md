@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Mombasa — 800 French troops have arrived for joint exercises. [France](country:FR) was expelled from 6 West African states since 2020 as anti-colonial sentiment swept the Sahel; [Kenya](country:KE), never a French colony, is the new anchor. The Africa-France Summit convenes in Nairobi next week — the first non-Francophone host in the event's 53-year history.
+Mombasa — 800 French troops have arrived for joint exercises.
+
+[France](country:FR) was expelled from 6 West African states since 2020 as anti-colonial sentiment swept the Sahel; [Kenya](country:KE), never a French colony, is the new anchor.
+
+The Africa-France Summit convenes in Nairobi next week — the first non-Francophone host in the event's 53-year history.

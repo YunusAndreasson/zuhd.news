@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Cairo — Egypt's draft budget raises exporter subsidies while cutting household petroleum and cooking-gas support under IMF pressure. Interest payments consume nearly half of government spending. Health and education remain below constitutionally mandated minimums.
+Cairo — Egypt's draft budget raises exporter subsidies while cutting household petroleum and cooking-gas support under IMF pressure.
+
+Interest payments consume nearly half of government spending.
+
+Health and education remain below constitutionally mandated minimums.

@@ -16,4 +16,8 @@ concepts:
   - "China"
 ---
 
-Wuhan — 100 driverless taxis froze in moving traffic simultaneously. A single system fault trapped passengers in elevated ring-road lanes with traffic stopped on both sides. Baidu is now expanding to 3 new cities; regulators must require failure-mode protocols before allowing deployment.
+Wuhan — 100 driverless taxis froze in moving traffic simultaneously.
+
+A single system fault trapped passengers in elevated ring-road lanes with traffic stopped on both sides.
+
+Baidu is now expanding to 3 new cities; regulators must require failure-mode protocols before allowing deployment.

@@ -19,4 +19,8 @@ concepts:
   - "Forbes"
 ---
 
-Moscow — Alexei Mordashov added $8.4bn in a year to reach $37bn, Forbes Russia said. [Russia](country:RU)'s billionaires collectively grew 11% richer as steel, nickel, and oil were rerouted to Asia rather than cut by sanctions. Combined wealth reached $696.5bn; no new names entered the top tier.
+Moscow — Alexei Mordashov added $8.4bn in a year to reach $37bn, Forbes Russia said.
+
+[Russia](country:RU)'s billionaires collectively grew 11% richer as steel, nickel, and oil were rerouted to Asia rather than cut by sanctions.
+
+Combined wealth reached $696.5bn; no new names entered the top tier.

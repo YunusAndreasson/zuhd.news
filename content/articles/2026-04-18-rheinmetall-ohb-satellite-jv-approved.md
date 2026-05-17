@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Berlin — [Germany](country:DE) cleared a Rheinmetall-OHB military satellite joint venture. The Bundeskartellamt approved the pair to bid for a secure communications constellation under Germany's €35bn defence space programme through 2030. It is Europe's second defence-satellite consolidation since December, when Rheinmetall-ICEYE won a €1.7bn reconnaissance contract.
+Berlin — [Germany](country:DE) cleared a Rheinmetall-OHB military satellite joint venture.
+
+The Bundeskartellamt approved the pair to bid for a secure communications constellation under Germany's €35bn defence space programme through 2030.
+
+It is Europe's second defence-satellite consolidation since December, when Rheinmetall-ICEYE won a €1.7bn reconnaissance contract.

@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Istanbul — Attacks have hit Iraqi Kurdish territory, including Erbil. [Turkey](country:TR)'s Erdogan summoned [Iraq](country:IQ)'s Kurdish premier Masrour Barzani to Istanbul to oppose any spread of the US-Iran conflict. Turkey, a NATO member, withheld support for the [US](country:US) campaign; Erdogan pressed Barzani to block its spread.
+Istanbul — Attacks have hit Iraqi Kurdish territory, including Erbil.
+
+[Turkey](country:TR)'s Erdogan summoned [Iraq](country:IQ)'s Kurdish premier Masrour Barzani to Istanbul to oppose any spread of the US-Iran conflict.
+
+Turkey, a NATO member, withheld support for the [US](country:US) campaign; Erdogan pressed Barzani to block its spread.

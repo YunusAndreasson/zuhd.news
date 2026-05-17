@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Charleston — Black lung is resurging across Appalachian coalfields as the [US](country:US) administration directs hundreds of millions into coal projects. Industry lobbying has stalled federal silica-dust rules that would cut miners' exposure to the disease's main driver. The rule has no confirmed effective date; miners face rising exposure.
+Charleston — Black lung is resurging across Appalachian coalfields as the [US](country:US) administration directs hundreds of millions into coal projects.
+
+Industry lobbying has stalled federal silica-dust rules that would cut miners' exposure to the disease's main driver.
+
+The rule has no confirmed effective date; miners face rising exposure.

@@ -17,4 +17,8 @@ concepts:
   - "Israel"
 ---
 
-Tehran — IRGC: Hormuz will never return to normal. Iran's Revolutionary Guard is completing operational preparations for a new Persian Gulf transit order specifically targeting US and Israeli shipping. The new regime takes effect as Trump threatens strikes on Iranian infrastructure by Tuesday evening.
+Tehran — IRGC: Hormuz will never return to normal.
+
+Iran's Revolutionary Guard is completing operational preparations for a new Persian Gulf transit order specifically targeting US and Israeli shipping.
+
+The new regime takes effect as Trump threatens strikes on Iranian infrastructure by Tuesday evening.

@@ -11,4 +11,8 @@ sources:
     country: "NL"
 ---
 
-Guwahati — BJP's AI video showed a Muslim leader being shot. Bellingcat counted 194 hate-speech posts across 499 official BJP accounts in Assam and West Bengal; 31 used AI-generated anti-Muslim imagery ahead of April state elections. India's election commission and major platforms have not removed the official party accounts.
+Guwahati — BJP's AI video showed a Muslim leader being shot.
+
+Bellingcat counted 194 hate-speech posts across 499 official BJP accounts in Assam and West Bengal; 31 used AI-generated anti-Muslim imagery ahead of April state elections.
+
+India's election commission and major platforms have not removed the official party accounts.

@@ -37,4 +37,8 @@ concepts:
 entities: []
 ---
 
-Singapore — Africa's fire record broke by 23% through April. World Weather Attribution said 150 million hectares burned globally; Asia's record also broke, by 40%, as El Niño forms this month. Imperial College London warned climate change and El Niño combined risk unprecedented weather extremes later this year.
+Singapore — Africa's fire record broke by 23% through April.
+
+World Weather Attribution said 150 million hectares burned globally; Asia's record also broke, by 40%, as El Niño forms this month.
+
+Imperial College London warned climate change and El Niño combined risk unprecedented weather extremes later this year.

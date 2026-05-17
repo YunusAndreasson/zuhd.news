@@ -17,4 +17,8 @@ concepts:
   - "Moon"
 ---
 
-Cape Canaveral — Artemis II launched 4 astronauts toward the Moon. Victor Glover becomes the first Black astronaut bound for the Moon on humanity's first crewed lunar mission in 54 years. On April 6, the crew reaches 252,799 miles from Earth, breaking the human distance record; splashdown April 10.
+Cape Canaveral — Artemis II launched 4 astronauts toward the Moon.
+
+Victor Glover becomes the first Black astronaut bound for the Moon on humanity's first crewed lunar mission in 54 years.
+
+On April 6, the crew reaches 252,799 miles from Earth, breaking the human distance record; splashdown April 10.

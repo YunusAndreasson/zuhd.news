@@ -33,4 +33,8 @@ concepts:
 sentimentDivergence: 0.2
 ---
 
-Hangzhou — DeepSeek's V4 runs on domestic Huawei Ascend silicon. The 1.6-trillion-parameter model matches mid-tier [US](country:US) rivals at a fraction of the cost, built on Ascend chips alongside Nvidia GPUs. DeepSeek says V4 trails GPT-5.4 only "marginally"; the White House has not addressed whether chip-export rules will be extended.
+Hangzhou — DeepSeek's V4 runs on domestic Huawei Ascend silicon.
+
+The 1.6-trillion-parameter model matches mid-tier [US](country:US) rivals at a fraction of the cost, built on Ascend chips alongside Nvidia GPUs.
+
+DeepSeek says V4 trails GPT-5.4 only "marginally"; the White House has not addressed whether chip-export rules will be extended.

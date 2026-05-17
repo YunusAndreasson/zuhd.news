@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Minsk — [Belarus](country:BY) freed journalist Andrzej Poczobut in a five-for-five swap with [Poland](country:PL). Imprisoned since 2021 for covering ethnic minority repression and sentenced to 8 years, his release is Lukashenko's most credible overture to the EU since 2020. The exchange followed 2 years of Polish-led diplomacy backed by the US, Romania and Moldova.
+Minsk — [Belarus](country:BY) freed journalist Andrzej Poczobut in a five-for-five swap with [Poland](country:PL).
+
+Imprisoned since 2021 for covering ethnic minority repression and sentenced to 8 years, his release is Lukashenko's most credible overture to the EU since 2020.
+
+The exchange followed 2 years of Polish-led diplomacy backed by the US, Romania and Moldova.

@@ -17,4 +17,8 @@ concepts:
   - "Serpin"
 ---
 
-London — A blood protein marks PTSD risk after trauma. Stress hormones trigger PAI-1 in the hippocampus, disrupting memory consolidation; mice lacking it showed no PTSD profiles under equivalent stress. The finding opens a path to post-trauma blood screening; human trials have not begun.
+London — A blood protein marks PTSD risk after trauma.
+
+Stress hormones trigger PAI-1 in the hippocampus, disrupting memory consolidation; mice lacking it showed no PTSD profiles under equivalent stress.
+
+The finding opens a path to post-trauma blood screening; human trials have not begun.

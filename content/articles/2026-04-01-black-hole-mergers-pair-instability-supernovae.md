@@ -16,4 +16,8 @@ concepts:
   - "Gravitational wave"
 ---
 
-Pasadena — Black hole collisions show where supernovae destroy everything. A mass gap at ~45 solar masses in gravitational wave data confirms that above this threshold, stars detonate completely, leaving no remnant. Error bars span 5 solar masses; additional detector years will narrow the limit and confirm the pair-instability mechanism.
+Pasadena — Black hole collisions show where supernovae destroy everything.
+
+A mass gap at ~45 solar masses in gravitational wave data confirms that above this threshold, stars detonate completely, leaving no remnant.
+
+Error bars span 5 solar masses; additional detector years will narrow the limit and confirm the pair-instability mechanism.

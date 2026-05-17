@@ -33,4 +33,8 @@ entities:
     kind: "stock"
 ---
 
-San Francisco — Qualcomm jumped 12% on OpenAI smartphone chip reports. Analyst Ming-Chi Kuo reported OpenAI is co-developing smartphone chips with Qualcomm and MediaTek, with Luxshare — Apple's second-largest assembler — as exclusive system designer. Specifications are to be finalized by early 2027; mass production is planned for 2028.
+San Francisco — Qualcomm jumped 12% on OpenAI smartphone chip reports.
+
+Analyst Ming-Chi Kuo reported OpenAI is co-developing smartphone chips with Qualcomm and MediaTek, with Luxshare — Apple's second-largest assembler — as exclusive system designer.
+
+Specifications are to be finalized by early 2027; mass production is planned for 2028.

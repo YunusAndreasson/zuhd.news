@@ -40,4 +40,8 @@ concepts:
 entities: []
 ---
 
-Budapest — EU court: [Hungary](country:HU)'s LGBTQ ban breaches foundational treaty. For the first time, Article 2 of the EU Treaty was invoked against a member state; every government's morality legislation now faces the same human-rights test. Incoming PM Magyar, who needs €18bn in frozen EU funds unlocked, takes office in May without committing to repeal.
+Budapest — EU court: [Hungary](country:HU)'s LGBTQ ban breaches foundational treaty.
+
+For the first time, Article 2 of the EU Treaty was invoked against a member state; every government's morality legislation now faces the same human-rights test.
+
+Incoming PM Magyar, who needs €18bn in frozen EU funds unlocked, takes office in May without committing to repeal.

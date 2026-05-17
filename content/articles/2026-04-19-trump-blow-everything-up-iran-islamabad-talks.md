@@ -30,4 +30,8 @@ concepts:
   - "Pakistan"
 ---
 
-Islamabad — Trump threatens Iran's grid; envoys fly to Islamabad. [Pakistan](country:PK) brokered a ceasefire expiring Wednesday; [Iran](country:IR) closed Hormuz until [the US](country:US) ends its naval blockade. Tehran's Supreme National Security Council said it is reviewing US proposals but negotiators will make no concessions.
+Islamabad — Trump threatens Iran's grid; envoys fly to Islamabad.
+
+[Pakistan](country:PK) brokered a ceasefire expiring Wednesday; [Iran](country:IR) closed Hormuz until [the US](country:US) ends its naval blockade.
+
+Tehran's Supreme National Security Council said it is reviewing US proposals but negotiators will make no concessions.

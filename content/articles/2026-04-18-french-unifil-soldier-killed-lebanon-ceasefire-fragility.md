@@ -36,4 +36,8 @@ concepts:
 entities: []
 ---
 
-Ghandouriyeh — Staff Sergeant Montorio died in southern Lebanon. The French paratrooper was ambushed on a route to a UN post; Macron blamed Hezbollah, 3 others wounded. Lebanon's Military Tribunal opened an investigation; the ceasefire leaves Israeli troops in the occupied south.
+Ghandouriyeh — Staff Sergeant Montorio died in southern Lebanon.
+
+The French paratrooper was ambushed on a route to a UN post; Macron blamed Hezbollah, 3 others wounded.
+
+Lebanon's Military Tribunal opened an investigation; the ceasefire leaves Israeli troops in the occupied south.

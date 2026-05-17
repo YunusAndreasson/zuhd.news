@@ -11,4 +11,8 @@ sources:
     country: null
 ---
 
-Cambridge — Ultrasound now generates light inside living tissue. Bringing therapeutic light deep into tissue has required fiber optics or tissue removal; the new technique creates it internally without cutting. Researchers cite cancer phototherapy, neural stimulation, and cell growth as target applications; human trials have not yet begun.
+Cambridge — Ultrasound now generates light inside living tissue.
+
+Bringing therapeutic light deep into tissue has required fiber optics or tissue removal; the new technique creates it internally without cutting.
+
+Researchers cite cancer phototherapy, neural stimulation, and cell growth as target applications; human trials have not yet begun.

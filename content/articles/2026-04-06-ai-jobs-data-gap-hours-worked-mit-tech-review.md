@@ -15,4 +15,8 @@ concepts:
   - "Data center"
 ---
 
-Chicago — Nobody is measuring AI's actual impact on jobs. Task-exposure models, used by both OpenAI and Anthropic, cannot predict displacement without matching occupation-level AI use against actual hours worked. Imas is calling for occupation-level hours-worked data collection now, before any displacement trend becomes visible only in retrospect.
+Chicago — Nobody is measuring AI's actual impact on jobs.
+
+Task-exposure models, used by both OpenAI and Anthropic, cannot predict displacement without matching occupation-level AI use against actual hours worked.
+
+Imas is calling for occupation-level hours-worked data collection now, before any displacement trend becomes visible only in retrospect.

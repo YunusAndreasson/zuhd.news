@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Abuja — Airstrikes in Niger State and Zamfara killed over 100 civilians May 10, locals say. [Nigeria](country:NG)'s Human Rights Commission demanded the Air Force explain 3 strikes in 6 weeks; the military said only militants died. The commission called for independent probes and compensation; Amnesty International has made the same demand.
+Abuja — Airstrikes in Niger State and Zamfara killed over 100 civilians May 10, locals say.
+
+[Nigeria](country:NG)'s Human Rights Commission demanded the Air Force explain 3 strikes in 6 weeks; the military said only militants died.
+
+The commission called for independent probes and compensation; Amnesty International has made the same demand.

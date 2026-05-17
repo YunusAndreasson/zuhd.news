@@ -17,4 +17,8 @@ concepts:
   - "Gold"
 ---
 
-Khartoum — Conflict gold from Sudan reached Volkswagen's supply chain. The RSF seized Sudan's national gold refinery in May 2023, looting $150 million in gold now routed through Dubai into global markets. Volkswagen has not confirmed it suspended purchases; OECD due-diligence rules require companies to verify gold sources.
+Khartoum — Conflict gold from Sudan reached Volkswagen's supply chain.
+
+The RSF seized Sudan's national gold refinery in May 2023, looting $150 million in gold now routed through Dubai into global markets.
+
+Volkswagen has not confirmed it suspended purchases; OECD due-diligence rules require companies to verify gold sources.

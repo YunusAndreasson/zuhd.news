@@ -14,4 +14,6 @@ sources:
 entities: []
 ---
 
-Tehran — 30 of 80 bombed Iranian sites were police stations. [Israel](country:IL)'s Foreign Ministry stated the aim: 'conditions for Iranians to take their destiny.' No [US](country:US) or Israeli plan names what replaces civilian infrastructure if Iran's state collapses.
+Tehran — 30 of 80 bombed Iranian sites were police stations.
+
+[Israel](country:IL)'s Foreign Ministry stated the aim: 'conditions for Iranians to take their destiny.' No [US](country:US) or Israeli plan names what replaces civilian infrastructure if Iran's state collapses.

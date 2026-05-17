@@ -17,4 +17,8 @@ concepts:
   - "High Court of South Africa"
 ---
 
-Johannesburg — 1,400 days after arrest, Transnet accused await trial. Wood and 12 co-accused allegedly siphoned R7 billion from [South Africa](country:ZA)'s state railway through an inflated R54.5 billion locomotive deal. Defence won a February delay claiming 55 terabytes of evidence arrived only in December; the prosecution disputes this.
+Johannesburg — 1,400 days after arrest, Transnet accused await trial.
+
+Wood and 12 co-accused allegedly siphoned R7 billion from [South Africa](country:ZA)'s state railway through an inflated R54.5 billion locomotive deal.
+
+Defence won a February delay claiming 55 terabytes of evidence arrived only in December; the prosecution disputes this.

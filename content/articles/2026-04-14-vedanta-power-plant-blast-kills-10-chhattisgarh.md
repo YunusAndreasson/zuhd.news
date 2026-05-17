@@ -19,4 +19,8 @@ concepts:
 eventCoverage: 71
 ---
 
-Sakti — 10 workers died in a Vedanta boiler explosion. Vedanta attributed the boiler's operation to a subcontractor, a structure that shifts legal liability while concentrating physical risk on contract workers. 25 are injured, several remain missing; whether the subcontractor or Vedanta bears criminal liability is now before state investigators.
+Sakti — 10 workers died in a Vedanta boiler explosion.
+
+Vedanta attributed the boiler's operation to a subcontractor, a structure that shifts legal liability while concentrating physical risk on contract workers.
+
+25 are injured, several remain missing; whether the subcontractor or Vedanta bears criminal liability is now before state investigators.

@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.14
 ---
 
-Washington — Trump called Tuesday "Power Plant Day" in Iran. Hormuz has been closed since a US-Israeli attack on February 28; Iran's deadline to comply expires Monday. Iran's UN mission called Trump's threat direct incitement to war crimes; Oman is mediating before the deadline.
+Washington — Trump called Tuesday "Power Plant Day" in Iran.
+
+Hormuz has been closed since a US-Israeli attack on February 28; Iran's deadline to comply expires Monday.
+
+Iran's UN mission called Trump's threat direct incitement to war crimes; Oman is mediating before the deadline.

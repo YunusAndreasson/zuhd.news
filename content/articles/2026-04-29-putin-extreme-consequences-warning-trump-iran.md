@@ -31,4 +31,8 @@ sentimentDivergence: 0.27
 entities: []
 ---
 
-Moscow — [Russia](country:RU) offered to take [Iran](country:IR)'s enriched uranium. In the same 90-minute call, Putin threatened "extremely harmful consequences" if the [US](country:US) and [Israel](country:IL) resume strikes — broker and deterrent in one conversation. Putin also proposed a Ukraine truce for Russia's May 9 parade; the same offer collapsed last year.
+Moscow — [Russia](country:RU) offered to take [Iran](country:IR)'s enriched uranium.
+
+In the same 90-minute call, Putin threatened "extremely harmful consequences" if the [US](country:US) and [Israel](country:IL) resume strikes — broker and deterrent in one conversation.
+
+Putin also proposed a Ukraine truce for Russia's May 9 parade; the same offer collapsed last year.

@@ -17,4 +17,8 @@ concepts:
   - "Maghazi"
 ---
 
-Gaza — 10 killed as Israeli-backed militia entered Maghazi camp. Abu Nasira fighters crossed from occupied east Gaza while Israeli jets struck, killing Hamas Sahm Unit chief Moussa al-Aidy. Wounded lay in the streets for 2 hours as Israeli forces gave no acknowledgment of the coordinated operation.
+Gaza — 10 killed as Israeli-backed militia entered Maghazi camp.
+
+Abu Nasira fighters crossed from occupied east Gaza while Israeli jets struck, killing Hamas Sahm Unit chief Moussa al-Aidy.
+
+Wounded lay in the streets for 2 hours as Israeli forces gave no acknowledgment of the coordinated operation.

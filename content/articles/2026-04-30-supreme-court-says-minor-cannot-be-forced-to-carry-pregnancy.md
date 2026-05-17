@@ -21,4 +21,8 @@ eventCoverage: 29
 entities: []
 ---
 
-New Delhi — 15-year-old rape survivor: court allows 30-week termination. [India](country:IN)'s Supreme Court ruled no minor can be forced to continue a pregnancy, ordering Parliament to remove abortion time limits for rape cases. The All India Institutes of Medical Sciences was ordered to proceed immediately; Parliament has no fixed deadline.
+New Delhi — 15-year-old rape survivor: court allows 30-week termination.
+
+[India](country:IN)'s Supreme Court ruled no minor can be forced to continue a pregnancy, ordering Parliament to remove abortion time limits for rape cases.
+
+The All India Institutes of Medical Sciences was ordered to proceed immediately; Parliament has no fixed deadline.

@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Philadelphia — Stanford denied pro-Israel lobby cash; $2.6m reached her race anyway. The American Israel Public Affairs Committee routed funds through 314 Action Fund via Kimbark Foundation, federal campaign filings show. Stanford has not responded; the primary for [Pennsylvania](country:US)'s 3rd House seat is ongoing.
+Philadelphia — Stanford denied pro-Israel lobby cash; $2.6m reached her race anyway.
+
+The American Israel Public Affairs Committee routed funds through 314 Action Fund via Kimbark Foundation, federal campaign filings show.
+
+Stanford has not responded; the primary for [Pennsylvania](country:US)'s 3rd House seat is ongoing.

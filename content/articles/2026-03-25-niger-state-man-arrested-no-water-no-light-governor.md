@@ -17,4 +17,8 @@ concepts:
   - "Mohammed Bago"
 ---
 
-Suleja — Hamisu Abdullahi, 38, electrician and father of four, was held for 5 days after shouting "No water, no light" during Governor Mohammed Bago's Eid visit to Suleja's emir's palace. Police charged him with "suspected thuggery and attempting to disrupt government activities," a characterisation critics say criminalises the cheapest form of political speech. Abdullahi faces a charge of suspected thuggery that has not been dropped; the International Press Institute listed Bago in its "Book of Infamy" in 2025 after police shut Badeggi FM and detained a journalist who had reported on a government aide.
+Suleja — Hamisu Abdullahi, 38, electrician and father of four, was held for 5 days after shouting "No water, no light" during Governor Mohammed Bago's Eid visit to Suleja's emir's palace.
+
+Police charged him with "suspected thuggery and attempting to disrupt government activities," a characterisation critics say criminalises the cheapest form of political speech.
+
+Abdullahi faces a charge of suspected thuggery that has not been dropped; the International Press Institute listed Bago in its "Book of Infamy" in 2025 after police shut Badeggi FM and detained a journalist who had reported on a government aide.

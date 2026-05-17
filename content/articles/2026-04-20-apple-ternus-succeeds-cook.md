@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-Cupertino — John Ternus takes Apple's top job September 1. Cook moves to executive chairman; Ternus built Apple silicon and led iPad design. Cook handles global policy from the chairman role while Ternus joins the board.
+Cupertino — John Ternus takes Apple's top job September 1.
+
+Cook moves to executive chairman; Ternus built Apple silicon and led iPad design.
+
+Cook handles global policy from the chairman role while Ternus joins the board.

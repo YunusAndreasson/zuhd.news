@@ -19,4 +19,8 @@ concepts:
 eventCoverage: 82
 ---
 
-Tehran — Iran demanded 5 Arab states pay war reparations. A letter to UN Secretary-General Guterres named Saudi Arabia, Bahrain, Qatar, United Arab Emirates, and Jordan for hosting US forces that struck Iran on February 28. Iran does not expect the payments; the demand forces each government to own its role.
+Tehran — Iran demanded 5 Arab states pay war reparations.
+
+A letter to UN Secretary-General Guterres named Saudi Arabia, Bahrain, Qatar, United Arab Emirates, and Jordan for hosting US forces that struck Iran on February 28.
+
+Iran does not expect the payments; the demand forces each government to own its role.

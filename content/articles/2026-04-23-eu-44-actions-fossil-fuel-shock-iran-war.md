@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Brussels — AccelerateEU lists 44 actions against Iran-war price shocks. The plan puts the war's extra cost to EU importers at €24bn; it mandates storage refills, electricity-over-gas incentives, and accelerated renewables tenders. Tax proposals require member-state unanimity; any EU government holds a fiscal veto.
+Brussels — AccelerateEU lists 44 actions against Iran-war price shocks.
+
+The plan puts the war's extra cost to EU importers at €24bn; it mandates storage refills, electricity-over-gas incentives, and accelerated renewables tenders.
+
+Tax proposals require member-state unanimity; any EU government holds a fiscal veto.

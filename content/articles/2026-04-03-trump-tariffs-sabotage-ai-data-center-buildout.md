@@ -17,4 +17,8 @@ concepts:
   - "China"
 ---
 
-Washington — Tariffs are blocking Trump's own AI data centers. Chinese transformers now face 5-year delivery waits; nearly half of US data centers planned for 2026 are delayed or canceled. Maine is set to ban new AI data center construction until 2027; 10 other states are watching.
+Washington — Tariffs are blocking Trump's own AI data centers.
+
+Chinese transformers now face 5-year delivery waits; nearly half of US data centers planned for 2026 are delayed or canceled.
+
+Maine is set to ban new AI data center construction until 2027; 10 other states are watching.

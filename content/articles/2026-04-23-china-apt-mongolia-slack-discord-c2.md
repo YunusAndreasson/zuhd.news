@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Ulaanbaatar — China-linked hackers breached [Mongolia](country:MN)'s government via chat apps. Czech firm ESET named the group GopherWhisper; it used Slack and Discord because the platforms' encrypted traffic passes most network defenses uninspected. [Mongolia](country:MN) sits between [China](country:CN) and [Russia](country:RU); ESET has not disclosed the breach's full scope.
+Ulaanbaatar — China-linked hackers breached [Mongolia](country:MN)'s government via chat apps.
+
+Czech firm ESET named the group GopherWhisper; it used Slack and Discord because the platforms' encrypted traffic passes most network defenses uninspected.
+
+[Mongolia](country:MN) sits between [China](country:CN) and [Russia](country:RU); ESET has not disclosed the breach's full scope.

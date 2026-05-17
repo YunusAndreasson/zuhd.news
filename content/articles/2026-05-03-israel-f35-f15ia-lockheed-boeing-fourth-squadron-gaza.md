@@ -25,4 +25,8 @@ concepts:
 entities: []
 ---
 
-Tel Aviv — Lockheed and Boeing split Israel's new jet order. [Israel](country:IL)'s procurement cabinet approved a 4th F-35 and 2nd F-15IA squadron as the first phase of a $119 billion expansion, while ICJ genocide proceedings remain active. The war cabinet now meets to decide whether to resume ground operations in Gaza.
+Tel Aviv — Lockheed and Boeing split Israel's new jet order.
+
+[Israel](country:IL)'s procurement cabinet approved a 4th F-35 and 2nd F-15IA squadron as the first phase of a $119 billion expansion, while ICJ genocide proceedings remain active.
+
+The war cabinet now meets to decide whether to resume ground operations in Gaza.

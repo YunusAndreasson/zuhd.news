@@ -17,4 +17,8 @@ concepts:
   - "Model 3"
 ---
 
-Budapest — Crashed Tesla parts rebuilt into a desk computer. A researcher bought wrecked Model 3 components online and demonstrated the main computer unit boots fully intact, preserving stored data. Anyone who buys crashed Tesla components online can access prior owners' personal data until automakers require pre-sale wipes.
+Budapest — Crashed Tesla parts rebuilt into a desk computer.
+
+A researcher bought wrecked Model 3 components online and demonstrated the main computer unit boots fully intact, preserving stored data.
+
+Anyone who buys crashed Tesla components online can access prior owners' personal data until automakers require pre-sale wipes.

@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Tehran — US-Israeli strikes killed at least 1,700 Iranian civilians. Investigators documented a pattern of double-tap strikes — a second strike hitting the same site after civilians gathered to help survivors. Airwars says civilian harm is "inevitable" at 13,000 strikes in 5 weeks — no accountability mechanism has opened.
+Tehran — US-Israeli strikes killed at least 1,700 Iranian civilians.
+
+Investigators documented a pattern of double-tap strikes — a second strike hitting the same site after civilians gathered to help survivors.
+
+Airwars says civilian harm is "inevitable" at 13,000 strikes in 5 weeks — no accountability mechanism has opened.

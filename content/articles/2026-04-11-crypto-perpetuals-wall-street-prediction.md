@@ -16,4 +16,8 @@ concepts:
   - "Cryptocurrency exchange"
 ---
 
-New York — Gold-linked crypto perps predict Monday opens 89% correctly. Commodity-linked perpetuals on Binance hit $31 billion weekly, with weekend volume at 38% of weekday levels. 57% of Monday's expected move is already priced before NYSE opens, making weekend crypto hedging structural.
+New York — Gold-linked crypto perps predict Monday opens 89% correctly.
+
+Commodity-linked perpetuals on Binance hit $31 billion weekly, with weekend volume at 38% of weekday levels.
+
+57% of Monday's expected move is already priced before NYSE opens, making weekend crypto hedging structural.

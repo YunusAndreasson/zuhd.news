@@ -17,4 +17,8 @@ concepts:
   - "Donald Trump"
 ---
 
-Washington — The [US](country:US) government holds $35 bn in Intel shares after a 22% post-earnings price surge. Last August it exchanged $8.9 bn in semiconductor grants for equity at $20.47; the Chips and Science Act authorized that conversion. Warrants for a further 5% stake at $20 are in the money; no divestment timeline has been set.
+Washington — The [US](country:US) government holds $35 bn in Intel shares after a 22% post-earnings price surge.
+
+Last August it exchanged $8.9 bn in semiconductor grants for equity at $20.47; the Chips and Science Act authorized that conversion.
+
+Warrants for a further 5% stake at $20 are in the money; no divestment timeline has been set.

@@ -20,4 +20,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Dhaka — The Iran war cut Bangladesh's imported fuel supply. Bangladesh chose imported coal and gas over domestic renewables for decades; the Hormuz blockade now exposes that as a structural trap for 177 million people. Experts urge a pivot to renewables, but the infrastructure was built for imports.
+Dhaka — The Iran war cut Bangladesh's imported fuel supply.
+
+Bangladesh chose imported coal and gas over domestic renewables for decades; the Hormuz blockade now exposes that as a structural trap for 177 million people.
+
+Experts urge a pivot to renewables, but the infrastructure was built for imports.

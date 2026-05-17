@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-London — The world's oldest known octopus fossil is a nautilus. A 300-million-year-old specimen mislabeled since 1895 was reclassified when CT scanning revealed its nautilus anatomy. CT scans and algorithmic phylogenetics are rewriting museum classifications worldwide.
+London — The world's oldest known octopus fossil is a nautilus.
+
+A 300-million-year-old specimen mislabeled since 1895 was reclassified when CT scanning revealed its nautilus anatomy.
+
+CT scans and algorithmic phylogenetics are rewriting museum classifications worldwide.

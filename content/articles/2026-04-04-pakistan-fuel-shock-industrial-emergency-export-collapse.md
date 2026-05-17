@@ -15,4 +15,8 @@ concepts:
   - "Textile"
 ---
 
-Karachi — Pakistan's fuel costs jumped 43%, threatening factory closures. Pakistan's trade federation declared an economic emergency as the country's 77% cumulative rise dwarfs India and Bangladesh's 2-10%. The federation demanded suspension of the petroleum development levy, warning harvest-season diesel costs now threaten food security.
+Karachi — Pakistan's fuel costs jumped 43%, threatening factory closures.
+
+Pakistan's trade federation declared an economic emergency as the country's 77% cumulative rise dwarfs India and Bangladesh's 2-10%.
+
+The federation demanded suspension of the petroleum development levy, warning harvest-season diesel costs now threaten food security.

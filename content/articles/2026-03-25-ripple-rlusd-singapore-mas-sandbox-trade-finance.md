@@ -18,4 +18,8 @@ concepts:
   - "Stablecoin"
 ---
 
-Singapore — Trade finance still runs on faxed letters of credit. Ripple joined Singapore's MAS BLOOM sandbox to test automatic payment release using RLUSD stablecoin when shipments are verified — targeting a $10 trillion market built on days-long manual settlement. Full MAS regulatory clearance requires a successful sandbox result — without it, banks have no reason to abandon correspondent accounts.
+Singapore — Trade finance still runs on faxed letters of credit.
+
+Ripple joined Singapore's MAS BLOOM sandbox to test automatic payment release using RLUSD stablecoin when shipments are verified — targeting a $10 trillion market built on days-long manual settlement.
+
+Full MAS regulatory clearance requires a successful sandbox result — without it, banks have no reason to abandon correspondent accounts.

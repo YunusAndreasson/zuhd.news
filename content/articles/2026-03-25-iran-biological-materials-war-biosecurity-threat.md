@@ -18,4 +18,8 @@ concepts:
   - "Nunn-Lugar"
 ---
 
-Washington — US intelligence assessments, unclassified, conclude that Iran "very likely aims to continue R&D of chemical and biological agents for offensive purposes" and that strikes on IRGC-linked research facilities have left no reliable inventory of what was destroyed versus dispersed. The Nunn-Lugar parallel is inexact: after the USSR collapsed, the US spent billions securing loose bio-chemical-nuclear stockpiles — but had willing partner governments; Iran is neither stable nor cooperative. America's biosurveillance systems are built to detect known pathogens; an engineered or novel agent may circulate across cities before any signal registers.
+Washington — US intelligence assessments, unclassified, conclude that Iran "very likely aims to continue R&D of chemical and biological agents for offensive purposes" and that strikes on IRGC-linked research facilities have left no reliable inventory of what was destroyed versus dispersed.
+
+The Nunn-Lugar parallel is inexact: after the USSR collapsed, the US spent billions securing loose bio-chemical-nuclear stockpiles — but had willing partner governments; Iran is neither stable nor cooperative.
+
+America's biosurveillance systems are built to detect known pathogens; an engineered or novel agent may circulate across cities before any signal registers.

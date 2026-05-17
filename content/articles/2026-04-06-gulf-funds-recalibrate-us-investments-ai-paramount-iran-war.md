@@ -17,4 +17,6 @@ concepts:
   - "Iran war"
 ---
 
-Doha — Gulf funds are pulling back from US deals. $24 billion in Gulf money backs the Paramount-Warner merger; QIA reconvenes this week as Iranian strikes make US investments politically costly. Qatar won't act without Saudi; another month of war puts the merger and US AI financing at risk.
+Doha — Gulf funds are pulling back from US deals. $24 billion in Gulf money backs the Paramount-Warner merger; QIA reconvenes this week as Iranian strikes make US investments politically costly.
+
+Qatar won't act without Saudi; another month of war puts the merger and US AI financing at risk.

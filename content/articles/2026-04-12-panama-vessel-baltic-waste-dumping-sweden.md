@@ -30,4 +30,8 @@ eventCoverage: 84
 sentimentDivergence: 0.14
 ---
 
-Ystad — Sweden's coast guard boarded a coal-dumping Russia-route ship. Hui Yuan hauled Russian coal under a Panama flag; flag-of-convenience registries let owners dodge the environmental laws of cargo origin states. The master admitted guilt and paid a deposit; Swedish prosecutors determine whether additional charges follow.
+Ystad — Sweden's coast guard boarded a coal-dumping Russia-route ship.
+
+Hui Yuan hauled Russian coal under a Panama flag; flag-of-convenience registries let owners dodge the environmental laws of cargo origin states.
+
+The master admitted guilt and paid a deposit; Swedish prosecutors determine whether additional charges follow.

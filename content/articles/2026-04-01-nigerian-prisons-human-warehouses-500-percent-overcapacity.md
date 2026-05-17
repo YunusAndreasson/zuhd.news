@@ -17,4 +17,8 @@ concepts:
   - "Olubunmi Tunji-Ojo"
 ---
 
-Abuja — Nigeria's prisons are running at 500% capacity. An 18-month probe of 86 facilities found 70% of inmates awaiting trial, with guards charging fees for beds and court transport. Virtual court hearings and a national case-tracking system are launching; overcrowding cannot end without clearing Nigeria's pre-trial backlog.
+Abuja — Nigeria's prisons are running at 500% capacity.
+
+An 18-month probe of 86 facilities found 70% of inmates awaiting trial, with guards charging fees for beds and court transport.
+
+Virtual court hearings and a national case-tracking system are launching; overcrowding cannot end without clearing Nigeria's pre-trial backlog.

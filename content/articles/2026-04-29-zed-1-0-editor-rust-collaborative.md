@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-San Francisco — Atom's authors shipped a GPU-native Zed 1.0. Written from scratch in Rust with a custom GPU rendering framework, Zed avoids Electron's ceiling and ships native AI-agent support. Hundreds of thousands of developers use it daily, the team said; Zed for Business targets enterprise teams with centralized billing.
+San Francisco — Atom's authors shipped a GPU-native Zed 1.0.
+
+Written from scratch in Rust with a custom GPU rendering framework, Zed avoids Electron's ceiling and ships native AI-agent support.
+
+Hundreds of thousands of developers use it daily, the team said; Zed for Business targets enterprise teams with centralized billing.

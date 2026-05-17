@@ -11,4 +11,8 @@ sources:
     country: "IL"
 ---
 
-Jerusalem — Israel moves to legislate the death penalty. Coalition ministers cited Gaza hostages and security threats; critics note the legislation mirrors Iran's execution system, which Israel is simultaneously bombing. A Knesset vote is pending; no democratic ally has endorsed restoring capital punishment.
+Jerusalem — Israel moves to legislate the death penalty.
+
+Coalition ministers cited Gaza hostages and security threats; critics note the legislation mirrors Iran's execution system, which Israel is simultaneously bombing.
+
+A Knesset vote is pending; no democratic ally has endorsed restoring capital punishment.

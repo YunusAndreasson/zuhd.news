@@ -19,4 +19,8 @@ concepts:
   - "Armed Forces Tribunal"
 ---
 
-New Delhi — India cleared the Malegaon accused for Brigadier. Purohit spent years in military custody accused of bombing a Muslim town during Ramadan 2008, killing 6, before his 2025 acquittal. The Armed Forces Tribunal blocked his March 31 retirement to open this path; the promotion awaits formal confirmation.
+New Delhi — India cleared the Malegaon accused for Brigadier.
+
+Purohit spent years in military custody accused of bombing a Muslim town during Ramadan 2008, killing 6, before his 2025 acquittal.
+
+The Armed Forces Tribunal blocked his March 31 retirement to open this path; the promotion awaits formal confirmation.

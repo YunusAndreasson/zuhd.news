@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-London — [Britain](country:GB) cut its Green Climate Fund pledge for 2024–27 from £1.62 billion to £815 million, losing its top-donor position. [Germany](country:DE), France, and Japan now hold larger pledges; the fund's director warned of a "material impact" on 354 active projects. Britain's aid budget shifted toward defence — the largest inter-round cut by any major donor outside the US.
+London — [Britain](country:GB) cut its Green Climate Fund pledge for 2024–27 from £1.62 billion to £815 million, losing its top-donor position.
+
+[Germany](country:DE), France, and Japan now hold larger pledges; the fund's director warned of a "material impact" on 354 active projects.
+
+Britain's aid budget shifted toward defence — the largest inter-round cut by any major donor outside the US.

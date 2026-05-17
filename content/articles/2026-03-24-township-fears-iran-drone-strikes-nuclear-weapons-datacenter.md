@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Ypsilanti — Los Alamos plans a nuclear weapons datacenter in Ypsilanti. The $1.25 billion facility, a partnership between Los Alamos National Laboratory — the US nuclear weapons program — and the University of Michigan, will host weapons modeling, making the 20,000-person township a potential military target. Township attorney Douglas Winters is pushing for a board vote to reject the project before the university breaks ground.
+Ypsilanti — Los Alamos plans a nuclear weapons datacenter in Ypsilanti.
+
+The $1.25 billion facility, a partnership between Los Alamos National Laboratory — the US nuclear weapons program — and the University of Michigan, will host weapons modeling, making the 20,000-person township a potential military target.
+
+Township attorney Douglas Winters is pushing for a board vote to reject the project before the university breaks ground.

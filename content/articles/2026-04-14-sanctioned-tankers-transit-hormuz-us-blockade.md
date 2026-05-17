@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.5
 ---
 
-Bandar Abbas — Tankers crossed Hormuz on the US blockade's first day. 2 were US-sanctioned and China-linked; the blockade bars Iranian port calls but allows strait transit — a distinction all 3 vessels exploited. Iran retains the power to close the strait; China condemned the blockade as "dangerous and irresponsible."
+Bandar Abbas — Tankers crossed Hormuz on the US blockade's first day.
+
+2 were US-sanctioned and China-linked; the blockade bars Iranian port calls but allows strait transit — a distinction all 3 vessels exploited.
+
+Iran retains the power to close the strait; China condemned the blockade as "dangerous and irresponsible."

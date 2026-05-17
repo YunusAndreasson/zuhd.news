@@ -19,4 +19,8 @@ sentimentDivergence: 0.01
 entities: []
 ---
 
-Mumbai — ₹419 crore: Tata Consumer's Q4 profit, up 22%. [India](country:IN)'s top consumer-staples group grew revenues 18% as tea, salt, and pulses held pricing power through the quarter. The board declared a ₹10 per share dividend for FY2025-26; standalone net profit rose 18% to ₹315 crore.
+Mumbai — ₹419 crore: Tata Consumer's Q4 profit, up 22%.
+
+[India](country:IN)'s top consumer-staples group grew revenues 18% as tea, salt, and pulses held pricing power through the quarter.
+
+The board declared a ₹10 per share dividend for FY2025-26; standalone net profit rose 18% to ₹315 crore.

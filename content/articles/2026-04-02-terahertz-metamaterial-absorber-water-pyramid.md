@@ -17,4 +17,8 @@ concepts:
   - "Indium tin oxide"
 ---
 
-London — A metamaterial absorbs 90% of terahertz radiation. Water in pyramid structures creates multiple internal reflections, covering 0.5 to 10 THz while passing visible light. The design enables 6G antennas, security screening, and cancer imaging in transparent devices.
+London — A metamaterial absorbs 90% of terahertz radiation.
+
+Water in pyramid structures creates multiple internal reflections, covering 0.5 to 10 THz while passing visible light.
+
+The design enables 6G antennas, security screening, and cancer imaging in transparent devices.

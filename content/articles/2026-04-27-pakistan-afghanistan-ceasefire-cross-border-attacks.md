@@ -24,4 +24,8 @@ sentimentDivergence: 0.23
 entities: []
 ---
 
-Asadabad — Kunar and South Waziristan exchanged fire Monday. [Pakistan](country:PK) denied hitting [Afghanistan](country:AF)'s Asadabad university; the March ceasefire brokered by [China](country:CN) set no terms on Tehreek-e-Taliban Pakistan sanctuary. The Afghan Taliban called Pakistan's strikes war crimes; Beijing, which brokered the ceasefire, has given no timeline for renewed talks.
+Asadabad — Kunar and South Waziristan exchanged fire Monday.
+
+[Pakistan](country:PK) denied hitting [Afghanistan](country:AF)'s Asadabad university; the March ceasefire brokered by [China](country:CN) set no terms on Tehreek-e-Taliban Pakistan sanctuary.
+
+The Afghan Taliban called Pakistan's strikes war crimes; Beijing, which brokered the ceasefire, has given no timeline for renewed talks.

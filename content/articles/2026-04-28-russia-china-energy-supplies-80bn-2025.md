@@ -27,4 +27,8 @@ entities:
     kind: "commodity"
 ---
 
-Moscow — [China](country:CN)'s Russian oil imports rose 30% in Q1. [Russia](country:RU) sent [China](country:CN) $80 billion in energy in 2025, Moscow's ambassador confirmed; yuan contracts replaced sanctioned European sales. The $80 billion equals a third of all Russia-China trade; [Russia](country:RU) has no comparable alternative market.
+Moscow — [China](country:CN)'s Russian oil imports rose 30% in Q1.
+
+[Russia](country:RU) sent [China](country:CN) $80 billion in energy in 2025, Moscow's ambassador confirmed; yuan contracts replaced sanctioned European sales.
+
+The $80 billion equals a third of all Russia-China trade; [Russia](country:RU) has no comparable alternative market.

@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Khartoum — Dengue has returned with a million new residents. Sudan's government repopulated the capital before fixing waste and water systems; in North Darfur, measles kills children daily in displacement camps. A senior Mahamid commander defected from the Rapid Support Forces to the army, weakening its tribal base in Darfur.
+Khartoum — Dengue has returned with a million new residents.
+
+Sudan's government repopulated the capital before fixing waste and water systems; in North Darfur, measles kills children daily in displacement camps.
+
+A senior Mahamid commander defected from the Rapid Support Forces to the army, weakening its tribal base in Darfur.

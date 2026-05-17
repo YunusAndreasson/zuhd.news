@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Nashville — AeroVironment plans 2,000 Mayhem drones per year. The Switchblade successor swaps payloads for surveillance, jamming, or strike, replacing 5 separate mission-specific airframes with 1 modular design. The US Army is the target market; no procurement contract has been announced.
+Nashville — AeroVironment plans 2,000 Mayhem drones per year.
+
+The Switchblade successor swaps payloads for surveillance, jamming, or strike, replacing 5 separate mission-specific airframes with 1 modular design.
+
+The US Army is the target market; no procurement contract has been announced.

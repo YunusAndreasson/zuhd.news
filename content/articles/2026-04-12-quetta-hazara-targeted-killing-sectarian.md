@@ -17,4 +17,8 @@ concepts:
   - "Quetta"
 ---
 
-Quetta — Gunmen on motorcycles shot dead 2 Hazara men. Hazara are physically distinctive and easily targeted; 509 were killed in Quetta alone between 2012 and 2017, and prosecutions have been rare. Hazara residents blocked the Western Bypass; police were negotiating with protesters as no arrest had been made.
+Quetta — Gunmen on motorcycles shot dead 2 Hazara men.
+
+Hazara are physically distinctive and easily targeted; 509 were killed in Quetta alone between 2012 and 2017, and prosecutions have been rare.
+
+Hazara residents blocked the Western Bypass; police were negotiating with protesters as no arrest had been made.

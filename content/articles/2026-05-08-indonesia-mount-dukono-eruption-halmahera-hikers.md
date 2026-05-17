@@ -34,4 +34,8 @@ sentimentDivergence: 0.32
 entities: []
 ---
 
-Tobelo — Dukono erupted Friday, killing 3 hikers. Indonesia's volcanologists recorded close to 200 eruptions since March; at least 10 more hikers remain missing despite the mountain being closed since April 17. [Indonesia](country:ID)'s rescue teams work rough terrain as eruptions continue; ash threatens Tobelo to the north.
+Tobelo — Dukono erupted Friday, killing 3 hikers.
+
+Indonesia's volcanologists recorded close to 200 eruptions since March; at least 10 more hikers remain missing despite the mountain being closed since April 17.
+
+[Indonesia](country:ID)'s rescue teams work rough terrain as eruptions continue; ash threatens Tobelo to the north.

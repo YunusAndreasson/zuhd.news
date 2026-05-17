@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Kyiv — The [US](country:US) and [Ukraine](country:UA) reached a draft agreement to export Ukrainian drones for Pentagon testing. The 2-year statement of intent, part of Washington's "Drone Dominance" program, is non-binding. Zelenskyy's $50bn joint-production proposal remains unsigned.
+Kyiv — The [US](country:US) and [Ukraine](country:UA) reached a draft agreement to export Ukrainian drones for Pentagon testing.
+
+The 2-year statement of intent, part of Washington's "Drone Dominance" program, is non-binding.
+
+Zelenskyy's $50bn joint-production proposal remains unsigned.

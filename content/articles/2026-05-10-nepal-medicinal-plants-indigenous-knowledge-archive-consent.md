@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Kathmandu — Tharu healers' oral knowledge has no written archive. Sanjib Chaudhary's audio-visual project for the Wikimedia Foundation captures healer voice and gesture that written records lose — knowledge passed healer to healer for generations. The project begins with 2 healers in Saptari and plans to expand across [Nepal](country:NP).
+Kathmandu — Tharu healers' oral knowledge has no written archive.
+
+Sanjib Chaudhary's audio-visual project for the Wikimedia Foundation captures healer voice and gesture that written records lose — knowledge passed healer to healer for generations.
+
+The project begins with 2 healers in Saptari and plans to expand across [Nepal](country:NP).

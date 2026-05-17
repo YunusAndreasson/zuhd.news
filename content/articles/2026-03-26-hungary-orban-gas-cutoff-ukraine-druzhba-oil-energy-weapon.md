@@ -24,4 +24,8 @@ concepts:
   - "Natural Gas"
 ---
 
-Budapest — Ukraine loses 45% of its gas supply. Orbán linked the cut to the Druzhba oil pipeline, disrupted by January strikes, leaving Hungary without cheap Russian crude for 2 months. Hungary's April 12 election gives Orbán domestic incentive; the European Commission promised to help reopen Druzhba.
+Budapest — Ukraine loses 45% of its gas supply.
+
+Orbán linked the cut to the Druzhba oil pipeline, disrupted by January strikes, leaving Hungary without cheap Russian crude for 2 months.
+
+Hungary's April 12 election gives Orbán domestic incentive; the European Commission promised to help reopen Druzhba.

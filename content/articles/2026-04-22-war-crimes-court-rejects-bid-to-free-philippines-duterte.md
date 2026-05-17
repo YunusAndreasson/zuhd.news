@@ -30,4 +30,8 @@ eventCoverage: 44
 entities: []
 ---
 
-The Hague — ICC rejected all 4 of Duterte's appeal grounds. The [Philippines](country:PH) withdrew from the Rome Statute in 2019; the Appeals Chamber ruled withdrawal does not erase liability for crimes committed while a member. The pre-trial chamber will next decide whether to confirm charges for a full crimes-against-humanity trial.
+The Hague — ICC rejected all 4 of Duterte's appeal grounds.
+
+The [Philippines](country:PH) withdrew from the Rome Statute in 2019; the Appeals Chamber ruled withdrawal does not erase liability for crimes committed while a member.
+
+The pre-trial chamber will next decide whether to confirm charges for a full crimes-against-humanity trial.

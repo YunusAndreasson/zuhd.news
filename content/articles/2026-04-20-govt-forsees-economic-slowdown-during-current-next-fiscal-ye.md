@@ -20,4 +20,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Islamabad — [Pakistan](country:PK) cut development spending by Rs173 billion. Planning Minister Ahsan Iqbal confirmed growth misses the 4.2% target; Hormuz closures forced fuel subsidies ahead of development spending. Supply chains take 6-9 months to normalize after any disruption, Iqbal warned, meaning growth will miss targets into the next fiscal year.
+Islamabad — [Pakistan](country:PK) cut development spending by Rs173 billion.
+
+Planning Minister Ahsan Iqbal confirmed growth misses the 4.2% target; Hormuz closures forced fuel subsidies ahead of development spending.
+
+Supply chains take 6-9 months to normalize after any disruption, Iqbal warned, meaning growth will miss targets into the next fiscal year.

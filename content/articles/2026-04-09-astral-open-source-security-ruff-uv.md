@@ -18,4 +18,6 @@ concepts:
   - "Python"
 ---
 
-San Francisco — Astral runs in millions of Python CI pipelines. ruff and uv power major builds; a breach at Astral would cascade into every dependent project. Astral published its supply chain security model; 140 HN points show how closely developers are watching.
+San Francisco — Astral runs in millions of Python CI pipelines. ruff and uv power major builds; a breach at Astral would cascade into every dependent project.
+
+Astral published its supply chain security model; 140 HN points show how closely developers are watching.

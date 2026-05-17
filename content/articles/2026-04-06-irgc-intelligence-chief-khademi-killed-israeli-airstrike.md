@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.43
 ---
 
-Tehran — Israel killed Iran's IRGC intelligence chief at dawn. Major General Majid Khademi is the 5th senior Iranian commander assassinated since February, as US-Israeli strikes systematically target command-and-control nodes to prevent coordinated retaliation. Decapitation campaigns rarely end wars; Iran's Guards warned the Strait of Hormuz "will never return to its former status."
+Tehran — Israel killed Iran's IRGC intelligence chief at dawn.
+
+Major General Majid Khademi is the 5th senior Iranian commander assassinated since February, as US-Israeli strikes systematically target command-and-control nodes to prevent coordinated retaliation.
+
+Decapitation campaigns rarely end wars; Iran's Guards warned the Strait of Hormuz "will never return to its former status."

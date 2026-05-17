@@ -16,4 +16,8 @@ concepts:
   - "Counterfeit Medicine"
 ---
 
-Cairo — Egypt gave every medicine a digital birth certificate. The system tracks pills from factory to patient, but 60% of counterfeits are smuggled in from abroad, bypassing it entirely. A patient unknowingly took counterfeit Cipralex for 5 months; authorities have no mechanism to stop smuggled supply.
+Cairo — Egypt gave every medicine a digital birth certificate.
+
+The system tracks pills from factory to patient, but 60% of counterfeits are smuggled in from abroad, bypassing it entirely.
+
+A patient unknowingly took counterfeit Cipralex for 5 months; authorities have no mechanism to stop smuggled supply.

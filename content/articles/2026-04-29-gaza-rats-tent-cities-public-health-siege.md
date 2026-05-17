@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Gaza — Rats infest 80% of Gaza tent settlements, UN figures show. Destroyed sanitation and uncleared rubble drove the crisis; the UN counted 1.45 million people affected and over 70,000 skin infections recorded in 2026. [Israel](country:IL)'s blockade has prevented sanitation repair; Gaza City's health chief calls it "two wars — bombs, and rats."
+Gaza — Rats infest 80% of Gaza tent settlements, UN figures show.
+
+Destroyed sanitation and uncleared rubble drove the crisis; the UN counted 1.45 million people affected and over 70,000 skin infections recorded in 2026.
+
+[Israel](country:IL)'s blockade has prevented sanitation repair; Gaza City's health chief calls it "two wars — bombs, and rats."

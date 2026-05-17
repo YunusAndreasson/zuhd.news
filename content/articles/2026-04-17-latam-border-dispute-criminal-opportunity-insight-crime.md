@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Quito — Ecuador tariffs push criminal groups across Colombia border. Ecuador's Noboa announced 100% tariffs on Colombian goods from May 1, escalating a security dispute that is expanding informal border crossings. Colombia deployed troops to the border; security cooperation between the 2 governments has stalled.
+Quito — Ecuador tariffs push criminal groups across Colombia border.
+
+Ecuador's Noboa announced 100% tariffs on Colombian goods from May 1, escalating a security dispute that is expanding informal border crossings.
+
+Colombia deployed troops to the border; security cooperation between the 2 governments has stalled.

@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Paris — Apophis skims Earth inside geostationary orbit in 2029. European and Japanese space agencies signed a Ramses mission agreement to rendezvous with Apophis at 32,000 km. The 2029 flyby offers a once-per-generation chance to observe Earth's tidal forces deforming a major asteroid.
+Paris — Apophis skims Earth inside geostationary orbit in 2029.
+
+European and Japanese space agencies signed a Ramses mission agreement to rendezvous with Apophis at 32,000 km.
+
+The 2029 flyby offers a once-per-generation chance to observe Earth's tidal forces deforming a major asteroid.

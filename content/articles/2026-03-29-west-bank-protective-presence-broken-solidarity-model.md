@@ -11,4 +11,8 @@ sources:
     country: "IL"
 ---
 
-West Bank — Settler violence is outpacing civilian deterrence. Israeli and international activists have stood between settlers and Palestinian communities for decades; settlers now attack while soldiers watch. Activists still arrive but cannot shield communities the state has effectively abandoned to settler violence.
+West Bank — Settler violence is outpacing civilian deterrence.
+
+Israeli and international activists have stood between settlers and Palestinian communities for decades; settlers now attack while soldiers watch.
+
+Activists still arrive but cannot shield communities the state has effectively abandoned to settler violence.

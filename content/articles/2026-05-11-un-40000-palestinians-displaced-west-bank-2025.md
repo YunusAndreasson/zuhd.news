@@ -37,4 +37,6 @@ concepts:
 entities: []
 ---
 
-West Bank — 42 Palestinians — 12 children — lost homes last week. The UN confirmed 40,000 displaced since January 2025 through settler raids and demolitions in [Israel](country:IL)-administered Area C. The UN confirmed the displacement violates international law on forced transfer under occupation; the Security Council has taken no enforcement action.
+West Bank — 42 Palestinians — 12 children — lost homes last week.
+
+The UN confirmed 40,000 displaced since January 2025 through settler raids and demolitions in [Israel](country:IL)-administered Area C. The UN confirmed the displacement violates international law on forced transfer under occupation; the Security Council has taken no enforcement action.

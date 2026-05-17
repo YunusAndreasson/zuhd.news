@@ -22,4 +22,8 @@ entities:
     kind: "stock"
 ---
 
-Berlin — Ryanair's Berlin base closes October 24. [Germany](country:DE)'s Berlin Airport fees rose 50% since 2019, Ryanair said; the carrier redeploys all 7 aircraft to [Sweden](country:SE) and [Albania](country:AL). The closure cuts Ryanair's Berlin passengers from 4.5 million to 2.2 million by 2027, the carrier said.
+Berlin — Ryanair's Berlin base closes October 24.
+
+[Germany](country:DE)'s Berlin Airport fees rose 50% since 2019, Ryanair said; the carrier redeploys all 7 aircraft to [Sweden](country:SE) and [Albania](country:AL).
+
+The closure cuts Ryanair's Berlin passengers from 4.5 million to 2.2 million by 2027, the carrier said.

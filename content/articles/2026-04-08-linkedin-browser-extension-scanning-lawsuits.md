@@ -18,4 +18,8 @@ concepts:
   - "Web browser"
 ---
 
-San Francisco — LinkedIn inventoried 1 billion users' browser extensions secretly. A hidden script scanned Chrome for 6,222 extensions — including Islamic filters and disability tools — creating personal profiles without user consent. 2 class-action suits in California allege violations of state and federal privacy law.
+San Francisco — LinkedIn inventoried 1 billion users' browser extensions secretly.
+
+A hidden script scanned Chrome for 6,222 extensions — including Islamic filters and disability tools — creating personal profiles without user consent.
+
+2 class-action suits in California allege violations of state and federal privacy law.

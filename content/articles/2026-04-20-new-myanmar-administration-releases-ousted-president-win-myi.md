@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Naypyidaw — Myanmar's coup general pardoned the president he deposed. Min Aung Hlaing, newly inaugurated as president, released Win Myint and reduced Aung San Suu Kyi's 27-year sentence in a mass amnesty. Suu Kyi remains in custody; Min Aung Hlaing has not announced an election timeline.
+Naypyidaw — Myanmar's coup general pardoned the president he deposed.
+
+Min Aung Hlaing, newly inaugurated as president, released Win Myint and reduced Aung San Suu Kyi's 27-year sentence in a mass amnesty.
+
+Suu Kyi remains in custody; Min Aung Hlaing has not announced an election timeline.

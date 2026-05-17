@@ -17,4 +17,8 @@ concepts:
   - "Information security"
 ---
 
-Zurich — TeleGuard sends private encryption keys to its servers. The app uses hardcoded salt and nonce values: TeleGuard itself and any attacker with a user's public ID can pull the private key via API and decrypt all messages. Over 1 million users are exposed; the flaw is architectural and requires a full cryptographic redesign.
+Zurich — TeleGuard sends private encryption keys to its servers.
+
+The app uses hardcoded salt and nonce values: TeleGuard itself and any attacker with a user's public ID can pull the private key via API and decrypt all messages.
+
+Over 1 million users are exposed; the flaw is architectural and requires a full cryptographic redesign.

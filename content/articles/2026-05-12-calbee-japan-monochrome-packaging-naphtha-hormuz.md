@@ -43,4 +43,8 @@ entities:
     kind: "stock"
 ---
 
-Tokyo — Japan's naphtha reserve is down to 3 weeks. Calbee goes monochrome on 25 May; colour ink needs naphtha and [Japan](country:JP) imports 40% from the Middle East, the cabinet said. Keidanren found 72.5% of consumer companies plan price rises.
+Tokyo — Japan's naphtha reserve is down to 3 weeks.
+
+Calbee goes monochrome on 25 May; colour ink needs naphtha and [Japan](country:JP) imports 40% from the Middle East, the cabinet said.
+
+Keidanren found 72.5% of consumer companies plan price rises.

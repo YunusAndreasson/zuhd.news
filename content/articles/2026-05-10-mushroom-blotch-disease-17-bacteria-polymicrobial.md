@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Gainesville — Plant pathologists hunted a single mushroom blotch pathogen since the 1910s; a University of Florida study in Microbiological Research found 17 bacterial drivers. Blotch is polymicrobial — caused by a community, not one strain. No single treatment can control it; management must target the whole community, researchers concluded.
+Gainesville — Plant pathologists hunted a single mushroom blotch pathogen since the 1910s; a University of Florida study in Microbiological Research found 17 bacterial drivers.
+
+Blotch is polymicrobial — caused by a community, not one strain.
+
+No single treatment can control it; management must target the whole community, researchers concluded.

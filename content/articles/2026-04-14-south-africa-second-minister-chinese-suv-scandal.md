@@ -18,4 +18,8 @@ concepts:
   - "African National Congress Women's League"
 ---
 
-Pretoria — 2 South African ministers took Chinese sport utility vehicles. Beijing Automotive Group channeled 5 vehicles through China's Pretoria embassy to ruling party leaders who also served as cabinet ministers. Neither minister filed gift disclosures for 3 years; President Ramaphosa faces pressure to investigate members of his inner circle.
+Pretoria — 2 South African ministers took Chinese sport utility vehicles.
+
+Beijing Automotive Group channeled 5 vehicles through China's Pretoria embassy to ruling party leaders who also served as cabinet ministers.
+
+Neither minister filed gift disclosures for 3 years; President Ramaphosa faces pressure to investigate members of his inner circle.

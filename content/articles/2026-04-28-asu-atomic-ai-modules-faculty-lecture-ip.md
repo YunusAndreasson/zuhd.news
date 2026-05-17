@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Arizona State University launched a platform that clips faculty lectures into AI modules without notifying or compensating professors. The university claims work-for-hire ownership of course recordings, allowing it to commercialize that content; faculty have no opt-out right. No disclosure deadline has been set, and accuracy concerns from early tests remain unaddressed.
+Arizona State University launched a platform that clips faculty lectures into AI modules without notifying or compensating professors.
+
+The university claims work-for-hire ownership of course recordings, allowing it to commercialize that content; faculty have no opt-out right.
+
+No disclosure deadline has been set, and accuracy concerns from early tests remain unaddressed.

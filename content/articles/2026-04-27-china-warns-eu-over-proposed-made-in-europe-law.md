@@ -26,4 +26,8 @@ sentimentDivergence: 0.42
 entities: []
 ---
 
-Brussels — [China](country:CN) threatened retaliation over the EU's industrial law. The act bars foreign investments in batteries, electric vehicles and solar unless investors employ 50% EU workers and transfer technology. Beijing filed formal objections; the law needs approval from member states and parliament before taking effect.
+Brussels — [China](country:CN) threatened retaliation over the EU's industrial law.
+
+The act bars foreign investments in batteries, electric vehicles and solar unless investors employ 50% EU workers and transfer technology.
+
+Beijing filed formal objections; the law needs approval from member states and parliament before taking effect.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Zamfara — Governor Lawal's militia faces accusations of extrajudicial killing. Lawal formed the Community Protection Guards in 2024 to fight terrorism; members now face charges of political intimidation after beating a teacher over social media posts. The Guards' spokesperson said it will investigate; members were linked to a killing in [Nigeria](country:NG) in 2024.
+Zamfara — Governor Lawal's militia faces accusations of extrajudicial killing.
+
+Lawal formed the Community Protection Guards in 2024 to fight terrorism; members now face charges of political intimidation after beating a teacher over social media posts.
+
+The Guards' spokesperson said it will investigate; members were linked to a killing in [Nigeria](country:NG) in 2024.

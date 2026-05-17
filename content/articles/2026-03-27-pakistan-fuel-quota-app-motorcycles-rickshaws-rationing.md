@@ -17,4 +17,8 @@ concepts:
   - "Petroleum"
 ---
 
-Islamabad — Pakistan will ration petrol to rickshaws by smartphone. Federal and provincial governments agreed to link subsidized fuel allotments to citizens' national IDs via app, cutting leakage as import costs surge from the Iran war. Per-vehicle limits will be set by cabinet; officials are negotiating cost-sharing with provinces to avoid consumer price hikes.
+Islamabad — Pakistan will ration petrol to rickshaws by smartphone.
+
+Federal and provincial governments agreed to link subsidized fuel allotments to citizens' national IDs via app, cutting leakage as import costs surge from the Iran war.
+
+Per-vehicle limits will be set by cabinet; officials are negotiating cost-sharing with provinces to avoid consumer price hikes.

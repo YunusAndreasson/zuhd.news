@@ -17,4 +17,8 @@ concepts:
   - "Central bank"
 ---
 
-Paris — France pulled its last gold from US vaults, netting a $15 billion gain. The repatriation completes a shift away from dollar-denominated asset storage by a NATO core ally — accelerated by US tariffs, the Iran war, and eroding confidence in dollar-based financial architecture. No other core NATO member has fully exited US gold storage as central banks globally reduce dollar exposure.
+Paris — France pulled its last gold from US vaults, netting a $15 billion gain.
+
+The repatriation completes a shift away from dollar-denominated asset storage by a NATO core ally — accelerated by US tariffs, the Iran war, and eroding confidence in dollar-based financial architecture.
+
+No other core NATO member has fully exited US gold storage as central banks globally reduce dollar exposure.

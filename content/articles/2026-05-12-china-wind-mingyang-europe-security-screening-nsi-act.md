@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-London — [Britain](country:GB) vetoed Mingyang's $2 billion Scottish wind factory. The UK cited security concerns; Danish Vestas announced a rival factory at the same Scottish port the same day. BloombergNEF said fewer supply routes raise European project costs; Mingyang has not announced alternative European sites.
+London — [Britain](country:GB) vetoed Mingyang's $2 billion Scottish wind factory.
+
+The UK cited security concerns; Danish Vestas announced a rival factory at the same Scottish port the same day.
+
+BloombergNEF said fewer supply routes raise European project costs; Mingyang has not announced alternative European sites.

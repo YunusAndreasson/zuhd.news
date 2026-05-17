@@ -16,4 +16,8 @@ concepts:
   - "Public hospital"
 ---
 
-Karachi — 40°C heat and 12-hour power cuts leave pregnant women in informal settlements without fans or clinics. [Pakistan](country:PK) has no heat-health protocol; women in Karachi deliver without power or water. The city's last public hospital opened in 1974, a 2020 provincial review found; no budget covers cooling or adaptation.
+Karachi — 40°C heat and 12-hour power cuts leave pregnant women in informal settlements without fans or clinics.
+
+[Pakistan](country:PK) has no heat-health protocol; women in Karachi deliver without power or water.
+
+The city's last public hospital opened in 1974, a 2020 provincial review found; no budget covers cooling or adaptation.

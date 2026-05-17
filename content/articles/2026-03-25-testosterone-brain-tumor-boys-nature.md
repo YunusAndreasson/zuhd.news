@@ -17,4 +17,8 @@ concepts:
   - "Cellular differentiation"
 ---
 
-Basel — Androgens, not chromosomes, cause boys' fatal brain tumor. A Nature study showed androgen exposure keeps male hindbrain stem cells in an immature state longer, producing more aggressive tumors in a cancer that strikes boys at age 3 with a 50% five-year survival rate. Blocking androgen receptors with existing drugs shrank those cells in lab tests without affecting other tumor types, giving researchers a first drug target for a cancer that has resisted treatment for decades — though safety for toddlers remains untested.
+Basel — Androgens, not chromosomes, cause boys' fatal brain tumor.
+
+A Nature study showed androgen exposure keeps male hindbrain stem cells in an immature state longer, producing more aggressive tumors in a cancer that strikes boys at age 3 with a 50% five-year survival rate.
+
+Blocking androgen receptors with existing drugs shrank those cells in lab tests without affecting other tumor types, giving researchers a first drug target for a cancer that has resisted treatment for decades — though safety for toddlers remains untested.

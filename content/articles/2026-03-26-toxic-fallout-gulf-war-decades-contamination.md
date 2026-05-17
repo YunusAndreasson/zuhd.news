@@ -17,4 +17,8 @@ concepts:
   - "Iran"
 ---
 
-Ahvaz — Gulf airstrikes poisoned soil, water, and food chains. Scientists warn petrochemical contamination from bombed refineries enters aquifers and persists for decades, citing historical Gulf conflict data. Scientists urge the parties to the conflict to fund cleanup before contamination reaches regional drinking water.
+Ahvaz — Gulf airstrikes poisoned soil, water, and food chains.
+
+Scientists warn petrochemical contamination from bombed refineries enters aquifers and persists for decades, citing historical Gulf conflict data.
+
+Scientists urge the parties to the conflict to fund cleanup before contamination reaches regional drinking water.

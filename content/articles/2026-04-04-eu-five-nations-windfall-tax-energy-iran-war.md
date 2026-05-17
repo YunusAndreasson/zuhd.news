@@ -26,4 +26,8 @@ eventCoverage: 34
 sentimentDivergence: 0.35
 ---
 
-Brussels — 5 EU finance ministers demanded a windfall tax. Brent crude hit $100 after February's US-Israel strikes on Iran; the 2022 solidarity tax on Russian-war windfall profits is their legal template. Commissioner Hoekstra's response will test EU cohesion as oil costs push southern members toward recession.
+Brussels — 5 EU finance ministers demanded a windfall tax.
+
+Brent crude hit $100 after February's US-Israel strikes on Iran; the 2022 solidarity tax on Russian-war windfall profits is their legal template.
+
+Commissioner Hoekstra's response will test EU cohesion as oil costs push southern members toward recession.

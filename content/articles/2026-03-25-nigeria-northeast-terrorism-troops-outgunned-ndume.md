@@ -17,4 +17,8 @@ concepts:
   - "Babagana Zulum"
 ---
 
-Maiduguri — Nigerian troops abandoned Ngoshe without ammunition, a senator says. Boko Haram and ISWAP killed 23 in Maiduguri that week, part of sustained attacks on army positions and civilians across Borno. Nigeria's Defence Headquarters dismissed the account, but Borno governor Zulum has separately warned the military is overstretched.
+Maiduguri — Nigerian troops abandoned Ngoshe without ammunition, a senator says.
+
+Boko Haram and ISWAP killed 23 in Maiduguri that week, part of sustained attacks on army positions and civilians across Borno.
+
+Nigeria's Defence Headquarters dismissed the account, but Borno governor Zulum has separately warned the military is overstretched.

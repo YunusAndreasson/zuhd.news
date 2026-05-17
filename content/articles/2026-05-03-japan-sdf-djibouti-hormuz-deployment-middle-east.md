@@ -22,4 +22,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Djibouti — [Japan](country:JP) has Self-Defense Force units deployed near Hormuz. Analysts propose using the existing footprint in a two-step approach to ensure safe passage — a role Tokyo has not yet claimed during the current war. No deployment order has been issued; Japan's government has not responded to the two-step proposal.
+Djibouti — [Japan](country:JP) has Self-Defense Force units deployed near Hormuz.
+
+Analysts propose using the existing footprint in a two-step approach to ensure safe passage — a role Tokyo has not yet claimed during the current war.
+
+No deployment order has been issued; Japan's government has not responded to the two-step proposal.

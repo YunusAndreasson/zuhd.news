@@ -34,4 +34,6 @@ concepts:
   - "Mineral extraction"
 ---
 
-Malabo — Pope Leo called mineral extraction "colonization." Oil is 90% of [Equatorial Guinea](country:GQ)'s exports, the African Development Bank says; over half its 2 million people stay poor. Leo visits an Amnesty International-flagged detention center in Bata on Wednesday, where political prisoners are held without lawyers.
+Malabo — Pope Leo called mineral extraction "colonization." Oil is 90% of [Equatorial Guinea](country:GQ)'s exports, the African Development Bank says; over half its 2 million people stay poor.
+
+Leo visits an Amnesty International-flagged detention center in Bata on Wednesday, where political prisoners are held without lawyers.

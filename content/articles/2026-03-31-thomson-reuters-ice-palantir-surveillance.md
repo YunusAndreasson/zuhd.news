@@ -17,4 +17,8 @@ concepts:
   - "Immigration enforcement"
 ---
 
-Washington — Immigrants' data powers ICE deportation scores. Thomson Reuters' CLEAR database — addresses, Social Security numbers, ethnicity — feeds Palantir's ELITE, which generates those confidence scores for raids. Thomson Reuters employees sent leadership a signed protest letter; a minority shareholder is now pushing the board.
+Washington — Immigrants' data powers ICE deportation scores.
+
+Thomson Reuters' CLEAR database — addresses, Social Security numbers, ethnicity — feeds Palantir's ELITE, which generates those confidence scores for raids.
+
+Thomson Reuters employees sent leadership a signed protest letter; a minority shareholder is now pushing the board.

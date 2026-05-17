@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Stockholm — Sweden pulled laptops to reverse falling literacy. The government is restoring books after linking digital tools to falling literacy scores, reversing a policy most rich countries adopted without testing. Tech firms say it will hurt student prospects; Sweden has not published the literacy data behind the reversal.
+Stockholm — Sweden pulled laptops to reverse falling literacy.
+
+The government is restoring books after linking digital tools to falling literacy scores, reversing a policy most rich countries adopted without testing.
+
+Tech firms say it will hurt student prospects; Sweden has not published the literacy data behind the reversal.

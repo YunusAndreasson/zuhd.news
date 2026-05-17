@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — Pahalgam victims: India shared no evidence, Pakistan says. [India](country:IN) also refused a neutral investigation, [Pakistan](country:PK) said; bilateral airspace and trade remain frozen. The Resistance Front claimed responsibility; no independent probe has established who directed the attack.
+Islamabad — Pahalgam victims: India shared no evidence, Pakistan says.
+
+[India](country:IN) also refused a neutral investigation, [Pakistan](country:PK) said; bilateral airspace and trade remain frozen.
+
+The Resistance Front claimed responsibility; no independent probe has established who directed the attack.

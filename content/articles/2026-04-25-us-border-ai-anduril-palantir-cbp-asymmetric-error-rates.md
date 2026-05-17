@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Washington — Migrants at the [US](country:US)-Mexico border are now classified by autonomous AI sensors with no governing law. US Customs and Border Protection deploys drones that flagged migrants at asymmetric error rates across racial groups, a UC Irvine law clinic found. The Homeland Security Department exempts itself from algorithmic accountability.
+Washington — Migrants at the [US](country:US)-Mexico border are now classified by autonomous AI sensors with no governing law.
+
+US Customs and Border Protection deploys drones that flagged migrants at asymmetric error rates across racial groups, a UC Irvine law clinic found.
+
+The Homeland Security Department exempts itself from algorithmic accountability.

@@ -17,4 +17,8 @@ concepts:
   - "Responsible disclosure"
 ---
 
-Miami — Quittr leaked users' porn habits for 9 months. 3 researchers warned of a Firebase misconfiguration since July 2025, exposing ages, confessions, and data from self-identified minors. The developer acknowledged the flaw months before the fix, without disclosing whether any exposed data was accessed.
+Miami — Quittr leaked users' porn habits for 9 months.
+
+3 researchers warned of a Firebase misconfiguration since July 2025, exposing ages, confessions, and data from self-identified minors.
+
+The developer acknowledged the flaw months before the fix, without disclosing whether any exposed data was accessed.

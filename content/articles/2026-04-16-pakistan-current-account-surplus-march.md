@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Karachi — Pakistan's March current account surplus reached $1.07 billion. Lower imports and higher remittances drove the gain — the second-highest monthly surplus on record, as Iran war energy prices compressed domestic demand. Pakistan's role as Iran ceasefire mediator gains credibility with accounts in surplus.
+Karachi — Pakistan's March current account surplus reached $1.07 billion.
+
+Lower imports and higher remittances drove the gain — the second-highest monthly surplus on record, as Iran war energy prices compressed domestic demand.
+
+Pakistan's role as Iran ceasefire mediator gains credibility with accounts in surplus.

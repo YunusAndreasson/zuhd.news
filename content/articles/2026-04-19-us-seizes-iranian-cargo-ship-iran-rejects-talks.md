@@ -39,4 +39,8 @@ entities:
     kind: "commodity"
 ---
 
-Strait of Hormuz — US forces seized an Iranian cargo ship. [Iran](country:IR) rejected second-round peace talks, citing the [US](country:US) naval blockade as a ceasefire breach, with Islamabad talks due before Tuesday's truce deadline. Oil markets reopen Monday with the strait still closed to most traffic.
+Strait of Hormuz — US forces seized an Iranian cargo ship.
+
+[Iran](country:IR) rejected second-round peace talks, citing the [US](country:US) naval blockade as a ceasefire breach, with Islamabad talks due before Tuesday's truce deadline.
+
+Oil markets reopen Monday with the strait still closed to most traffic.

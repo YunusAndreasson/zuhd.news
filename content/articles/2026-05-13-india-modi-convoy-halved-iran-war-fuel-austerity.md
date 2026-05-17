@@ -24,4 +24,8 @@ entities:
     kind: "commodity"
 ---
 
-New Delhi — Modi's motorcade halved; state leaders followed within days. India's government cited the Iran war's fuel costs; rising crude has pushed the current account deeper into deficit. State chief ministers from the ruling party matched the cut; an electric vehicle adoption plan circulates to all state governments.
+New Delhi — Modi's motorcade halved; state leaders followed within days.
+
+India's government cited the Iran war's fuel costs; rising crude has pushed the current account deeper into deficit.
+
+State chief ministers from the ruling party matched the cut; an electric vehicle adoption plan circulates to all state governments.

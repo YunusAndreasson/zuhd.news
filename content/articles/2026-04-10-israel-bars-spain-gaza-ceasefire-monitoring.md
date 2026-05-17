@@ -27,4 +27,8 @@ concepts:
 sentimentDivergence: 0.23
 ---
 
-Jerusalem — Netanyahu expelled Spain from Gaza's monitoring centre. Spain recognized Palestine in 2024, opposed the Iran war, and closed its airspace to US military aircraft — Israel calls this disqualifying. France and UK remain inside the centre; either could face expulsion upon recognizing Palestine.
+Jerusalem — Netanyahu expelled Spain from Gaza's monitoring centre.
+
+Spain recognized Palestine in 2024, opposed the Iran war, and closed its airspace to US military aircraft — Israel calls this disqualifying.
+
+France and UK remain inside the centre; either could face expulsion upon recognizing Palestine.

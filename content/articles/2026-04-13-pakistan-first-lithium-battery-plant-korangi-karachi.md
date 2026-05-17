@@ -17,4 +17,8 @@ concepts:
   - "Manufacturing"
 ---
 
-Karachi — Pakistan's first lithium battery plant opens in Karachi. The 4-megawatt Korangi facility will supply 2,000 electric bikes monthly under a 5-year national battery manufacturing policy to reduce import dependence. The policy still awaits cabinet approval and will be announced in Budget 2026-27, expected later this year.
+Karachi — Pakistan's first lithium battery plant opens in Karachi.
+
+The 4-megawatt Korangi facility will supply 2,000 electric bikes monthly under a 5-year national battery manufacturing policy to reduce import dependence.
+
+The policy still awaits cabinet approval and will be announced in Budget 2026-27, expected later this year.

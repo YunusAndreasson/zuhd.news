@@ -23,4 +23,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Paris — International Energy Agency forecasts 120-bcm gas supply loss by 2030. [Qatar](country:QA)'s output is down 20 bcm since Hormuz closed; [Iran](country:IR) strikes risk 70 bcm more, the agency said. Repair of plants struck by Iran could take 4 years; the Strait of Hormuz remains closed.
+Paris — International Energy Agency forecasts 120-bcm gas supply loss by 2030.
+
+[Qatar](country:QA)'s output is down 20 bcm since Hormuz closed; [Iran](country:IR) strikes risk 70 bcm more, the agency said.
+
+Repair of plants struck by Iran could take 4 years; the Strait of Hormuz remains closed.

@@ -22,4 +22,8 @@ entities:
     kind: "commodity"
 ---
 
-Caracas — Armed networks still control Venezuela's gold mines. Venezuela's new law grants foreign entry rights; armed groups including the National Liberation Army control production. The US lifted gold sanctions in January; traders are entering before armed networks controlling the mines are removed.
+Caracas — Armed networks still control Venezuela's gold mines.
+
+Venezuela's new law grants foreign entry rights; armed groups including the National Liberation Army control production.
+
+The US lifted gold sanctions in January; traders are entering before armed networks controlling the mines are removed.

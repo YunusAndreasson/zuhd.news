@@ -21,4 +21,8 @@ entities:
     kind: "stock"
 ---
 
-Austin — TI-84 Evo runs 3x faster at 156 MHz. The [US](country:US) classroom staple adds USB-C charging, 50% more graphing area, and Python support, while staying deliberately offline to preserve exam eligibility. Each unit includes a 4-year online calculator subscription; Texas Instruments did not disclose pricing.
+Austin — TI-84 Evo runs 3x faster at 156 MHz.
+
+The [US](country:US) classroom staple adds USB-C charging, 50% more graphing area, and Python support, while staying deliberately offline to preserve exam eligibility.
+
+Each unit includes a 4-year online calculator subscription; Texas Instruments did not disclose pricing.

@@ -21,4 +21,8 @@ eventCoverage: 49
 entities: []
 ---
 
-Tokyo — Astronomers found atmosphere around a 500-km Kuiper Belt body. Prior models held only Pluto-class bodies could retain one; Japanese astronomers confirmed it via occultation — a star dimming gradually through atmosphere. Webb will determine if cryovolcanism sustains the atmosphere or a past impact created it.
+Tokyo — Astronomers found atmosphere around a 500-km Kuiper Belt body.
+
+Prior models held only Pluto-class bodies could retain one; Japanese astronomers confirmed it via occultation — a star dimming gradually through atmosphere.
+
+Webb will determine if cryovolcanism sustains the atmosphere or a past impact created it.

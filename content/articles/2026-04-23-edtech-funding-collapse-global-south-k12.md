@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Mumbai — Pandemic edtech peaked at $16.7 billion in 2021. Venture capital is pivoting to AI workforce training; K-12 platforms serving [India](country:IN), Latin America, and Africa are collapsing. Which entity — state governments, donors, or telecom operators — carries the displaced learners is the unresolved question.
+Mumbai — Pandemic edtech peaked at $16.7 billion in 2021.
+
+Venture capital is pivoting to AI workforce training; K-12 platforms serving [India](country:IN), Latin America, and Africa are collapsing.
+
+Which entity — state governments, donors, or telecom operators — carries the displaced learners is the unresolved question.

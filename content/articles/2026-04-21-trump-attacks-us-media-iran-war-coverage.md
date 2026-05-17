@@ -25,4 +25,8 @@ concepts:
 entities: []
 ---
 
-Washington — Iran's uranium survived Operation Midnight Hammer, Trump admitted. On Truth Social, he acknowledged the stockpile needs "a long and difficult process" to excavate, contradicting his "total obliteration" claim. He attacked CNN and 3 other outlets for showing the war as a [US](country:US) loss; no official damage assessment has been released.
+Washington — Iran's uranium survived Operation Midnight Hammer, Trump admitted.
+
+On Truth Social, he acknowledged the stockpile needs "a long and difficult process" to excavate, contradicting his "total obliteration" claim.
+
+He attacked CNN and 3 other outlets for showing the war as a [US](country:US) loss; no official damage assessment has been released.

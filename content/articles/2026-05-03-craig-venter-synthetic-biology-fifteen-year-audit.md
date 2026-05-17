@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-San Diego — J. Craig Venter, who in 2010 created the first cell driven by a synthetic genome, has died. It proved life could run on designed DNA; 15 years later, no organism has been engineered from scratch for commercial use. Researchers say the field's remaining gap is not DNA synthesis — it is the tools to design the right sequence.
+San Diego — J. Craig Venter, who in 2010 created the first cell driven by a synthetic genome, has died.
+
+It proved life could run on designed DNA; 15 years later, no organism has been engineered from scratch for commercial use.
+
+Researchers say the field's remaining gap is not DNA synthesis — it is the tools to design the right sequence.

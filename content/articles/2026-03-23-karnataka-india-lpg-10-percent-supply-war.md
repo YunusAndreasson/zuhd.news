@@ -18,4 +18,8 @@ concepts:
   - "Iran"
 ---
 
-Bengaluru — Karnataka's cooking gas supply fell 78% in a week. India imports 75% of its LPG from the Middle East; the Hormuz blockade cut Karnataka's allocation from 45,000 to 10,000 cylinders daily. Karnataka's legislature erupted in cross-party anger Monday; 80% of the state's hotels face closure unless allocations recover within days.
+Bengaluru — Karnataka's cooking gas supply fell 78% in a week.
+
+India imports 75% of its LPG from the Middle East; the Hormuz blockade cut Karnataka's allocation from 45,000 to 10,000 cylinders daily.
+
+Karnataka's legislature erupted in cross-party anger Monday; 80% of the state's hotels face closure unless allocations recover within days.

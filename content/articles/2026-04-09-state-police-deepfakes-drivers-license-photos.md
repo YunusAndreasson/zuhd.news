@@ -15,4 +15,8 @@ concepts:
   - "Driver's license"
 ---
 
-Philadelphia — 3,000 deepfakes from a state police database. Pennsylvania Corporal Kamnik used the police database JNET to pull driver's license photos and generate AI pornography, including of a judge. Kamnik pleaded guilty to 9 felonies and will be sentenced in July.
+Philadelphia — 3,000 deepfakes from a state police database.
+
+Pennsylvania Corporal Kamnik used the police database JNET to pull driver's license photos and generate AI pornography, including of a judge.
+
+Kamnik pleaded guilty to 9 felonies and will be sentenced in July.

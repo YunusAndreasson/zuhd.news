@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Santa Marta — 57 nations convened in [Colombia](country:CO) and closed the first fossil-fuel transition summit without a production cap. They agreed to voluntary roadmaps; the 2023 Dubai climate pact's 'transition away' pledge carries no enforcement. Tuvalu and Ireland host the next in 2027; [Brazil](country:BR)'s 2025 Belém presidency pledged an informal fossil-fuel roadmap.
+Santa Marta — 57 nations convened in [Colombia](country:CO) and closed the first fossil-fuel transition summit without a production cap.
+
+They agreed to voluntary roadmaps; the 2023 Dubai climate pact's 'transition away' pledge carries no enforcement.
+
+Tuvalu and Ireland host the next in 2027; [Brazil](country:BR)'s 2025 Belém presidency pledged an informal fossil-fuel roadmap.

@@ -18,4 +18,8 @@ concepts:
   - "Music industry"
 ---
 
-Washington — Supreme Court overturned a $1 billion piracy verdict. Cox Communications won after the Court held that ISPs routing traffic are not vicariously liable for subscriber piracy without direct control over and financial benefit from the infringement. The music industry won no enforcement order, and individual infringers are far harder to pursue than their ISP infrastructure.
+Washington — Supreme Court overturned a $1 billion piracy verdict.
+
+Cox Communications won after the Court held that ISPs routing traffic are not vicariously liable for subscriber piracy without direct control over and financial benefit from the infringement.
+
+The music industry won no enforcement order, and individual infringers are far harder to pursue than their ISP infrastructure.

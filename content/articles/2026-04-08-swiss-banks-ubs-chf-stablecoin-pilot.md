@@ -21,4 +21,8 @@ concepts:
   - "Banking in Switzerland"
 ---
 
-Zurich — 6 Swiss banks opened a franc stablecoin sandbox. UBS and 5 others will test franc-pegged tokens for settlement speed and blockchain connectivity through 2026. A full franc stablecoin launch depends on trial results, with a 12-bank euro consortium separately launching in late 2026.
+Zurich — 6 Swiss banks opened a franc stablecoin sandbox.
+
+UBS and 5 others will test franc-pegged tokens for settlement speed and blockchain connectivity through 2026.
+
+A full franc stablecoin launch depends on trial results, with a 12-bank euro consortium separately launching in late 2026.

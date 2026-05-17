@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Abuja — President Tinubu signed the 2026 budget; 2025 isn't finished. Nigeria extended the 2025 deadline because capital projects were incomplete — leaving Africa's largest economy running two fiscal years simultaneously. Ministries now face dual deadlines: 2025 capex closes June 30 while the new cycle runs concurrently.
+Abuja — President Tinubu signed the 2026 budget; 2025 isn't finished.
+
+Nigeria extended the 2025 deadline because capital projects were incomplete — leaving Africa's largest economy running two fiscal years simultaneously.
+
+Ministries now face dual deadlines: 2025 capex closes June 30 while the new cycle runs concurrently.

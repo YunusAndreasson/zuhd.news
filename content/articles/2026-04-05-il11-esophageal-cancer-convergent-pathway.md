@@ -15,4 +15,8 @@ concepts:
   - "STAT3"
 ---
 
-London — Esophageal cancer kills 500,000 people annually worldwide. Both major subtypes — squamous cell and adenocarcinoma — share the IL-11/STAT3 inflammatory axis despite differing in cause and geography. Blocking IL-11 reduced cancer cell viability and migration in lab tests, making it a candidate treatment for both.
+London — Esophageal cancer kills 500,000 people annually worldwide.
+
+Both major subtypes — squamous cell and adenocarcinoma — share the IL-11/STAT3 inflammatory axis despite differing in cause and geography.
+
+Blocking IL-11 reduced cancer cell viability and migration in lab tests, making it a candidate treatment for both.

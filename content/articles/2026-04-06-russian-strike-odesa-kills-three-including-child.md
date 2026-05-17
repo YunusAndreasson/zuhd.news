@@ -24,4 +24,8 @@ eventCoverage: 34
 sentimentDivergence: 0.07
 ---
 
-Odesa — 3 dead, including a child. A Russian drone barrage hit residential areas for a 4th year; Odesa's port supplies grain to Africa and the Middle East. Ukraine's exchange struck 8 in Novorossiysk; Russia would not confirm whether the Chevron-linked oil terminal was hit.
+Odesa — 3 dead, including a child.
+
+A Russian drone barrage hit residential areas for a 4th year; Odesa's port supplies grain to Africa and the Middle East.
+
+Ukraine's exchange struck 8 in Novorossiysk; Russia would not confirm whether the Chevron-linked oil terminal was hit.

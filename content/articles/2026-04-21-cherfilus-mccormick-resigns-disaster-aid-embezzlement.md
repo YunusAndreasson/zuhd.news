@@ -31,4 +31,8 @@ sentimentDivergence: 0.43
 entities: []
 ---
 
-Washington — $5 million in federal disaster funds entered her campaign. [US](country:US) Representative Sheila Cherfilus-McCormick resigned Tuesday ahead of expulsion, charged with laundering the funds through her family's healthcare firm into her 2021 campaign. Her trial on 11 federal fraud counts is set for February 2027; she faces up to 53 years in prison.
+Washington — $5 million in federal disaster funds entered her campaign.
+
+[US](country:US) Representative Sheila Cherfilus-McCormick resigned Tuesday ahead of expulsion, charged with laundering the funds through her family's healthcare firm into her 2021 campaign.
+
+Her trial on 11 federal fraud counts is set for February 2027; she faces up to 53 years in prison.

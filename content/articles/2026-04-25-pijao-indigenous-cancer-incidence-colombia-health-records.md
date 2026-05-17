@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Ibagué — Pijao breast cancer incidence is 3.8 per 100,000. That rate is 20× below indigenous peer groups with mature registries; a 26-year, 42,094-person study found absent surveillance — not lower risk — explains the gap. [Colombia](country:CO) has no formal indigenous cancer registries; the study calls for a national cancer registry.
+Ibagué — Pijao breast cancer incidence is 3.8 per 100,000.
+
+That rate is 20× below indigenous peer groups with mature registries; a 26-year, 42,094-person study found absent surveillance — not lower risk — explains the gap.
+
+[Colombia](country:CO) has no formal indigenous cancer registries; the study calls for a national cancer registry.

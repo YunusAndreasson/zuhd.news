@@ -15,4 +15,8 @@ concepts:
   - "Health care"
 ---
 
-Kabul — Spring floods hit 73,000 people across [Afghanistan](country:AF). Homes, farmland, and roads are destroyed; aid funding collapsed in 2021 just as [Iran](country:IR) War returnees converge on the same provinces. Women and girls face the worst healthcare gaps; agencies have called for immediate food, shelter, and cash assistance.
+Kabul — Spring floods hit 73,000 people across [Afghanistan](country:AF).
+
+Homes, farmland, and roads are destroyed; aid funding collapsed in 2021 just as [Iran](country:IR) War returnees converge on the same provinces.
+
+Women and girls face the worst healthcare gaps; agencies have called for immediate food, shelter, and cash assistance.

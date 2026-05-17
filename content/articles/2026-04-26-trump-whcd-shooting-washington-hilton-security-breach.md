@@ -29,4 +29,8 @@ sentimentDivergence: 0.05
 entities: []
 ---
 
-Washington — Gunman opened fire at Washington Hilton's security checkpoint. Trump and Vice President Vance were evacuated uninjured as Secret Service swarmed the banquet hall and hundreds of guests ducked under tables. The [US](country:US) Secret Service faces questions about hotel-wide screening at the same venue where Reagan was shot in 1981.
+Washington — Gunman opened fire at Washington Hilton's security checkpoint.
+
+Trump and Vice President Vance were evacuated uninjured as Secret Service swarmed the banquet hall and hundreds of guests ducked under tables.
+
+The [US](country:US) Secret Service faces questions about hotel-wide screening at the same venue where Reagan was shot in 1981.

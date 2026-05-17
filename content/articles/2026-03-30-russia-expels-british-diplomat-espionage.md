@@ -30,4 +30,8 @@ concepts:
 sentimentDivergence: 0.52
 ---
 
-Moscow — Russia expelled British second secretary Janse van Rensburg. The FSB said he gathered sensitive economic intelligence at informal meetings with Russian experts and gave him 2 weeks to leave. London called the accusation "complete nonsense" and accused Russia of an aggressive harassment campaign against British embassy staff.
+Moscow — Russia expelled British second secretary Janse van Rensburg.
+
+The FSB said he gathered sensitive economic intelligence at informal meetings with Russian experts and gave him 2 weeks to leave.
+
+London called the accusation "complete nonsense" and accused Russia of an aggressive harassment campaign against British embassy staff.

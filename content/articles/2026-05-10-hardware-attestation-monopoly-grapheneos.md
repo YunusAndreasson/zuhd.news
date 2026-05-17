@@ -14,4 +14,8 @@ concepts: []
 entities: []
 ---
 
-Mountain View — Banking, transit, and government apps now reject users of alternative operating systems like GrapheneOS. Google's Play Integrity API requires chip-level stock-OS certification, blocking users who don't run manufacturer software. GrapheneOS published the affected app list; no bank has offered an exemption.
+Mountain View — Banking, transit, and government apps now reject users of alternative operating systems like GrapheneOS.
+
+Google's Play Integrity API requires chip-level stock-OS certification, blocking users who don't run manufacturer software.
+
+GrapheneOS published the affected app list; no bank has offered an exemption.

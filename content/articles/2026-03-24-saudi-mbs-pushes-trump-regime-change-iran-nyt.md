@@ -29,4 +29,8 @@ concepts:
   - "Israel"
 ---
 
-Riyadh — MBS privately urged Trump to destroy Iran's government. He advocated seizing Iran's Kharg Island oil terminal despite Saudi Arabia's oil facilities lying within Iranian missile range. Trump's administration sent Iran a 15-point demand through Pakistan, leaving MBS's war scenario unresolved.
+Riyadh — MBS privately urged Trump to destroy Iran's government.
+
+He advocated seizing Iran's Kharg Island oil terminal despite Saudi Arabia's oil facilities lying within Iranian missile range.
+
+Trump's administration sent Iran a 15-point demand through Pakistan, leaving MBS's war scenario unresolved.

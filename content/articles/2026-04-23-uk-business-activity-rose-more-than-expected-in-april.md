@@ -26,4 +26,8 @@ concepts:
   - "Manufacturing"
 ---
 
-London — [UK](country:GB) business activity hit 52 on stockpiling surge. Companies rushed to beat supply shortages from the Iran war, S&P Global said, pushing input-cost inflation to its highest since 2022. The Bank of England sets rates April 30 with service-sector inflation at a monthly record.
+London — [UK](country:GB) business activity hit 52 on stockpiling surge.
+
+Companies rushed to beat supply shortages from the Iran war, S&P Global said, pushing input-cost inflation to its highest since 2022.
+
+The Bank of England sets rates April 30 with service-sector inflation at a monthly record.

@@ -17,4 +17,8 @@ concepts:
   - "Ceasefire"
 ---
 
-West Bank — Israel approved 34 new settlements. The record batch — the largest single approval in years — came during ceasefire talks, while strikes simultaneously continued across Lebanon and Gaza. Netanyahu vowed strikes will continue; mediators face pressure to add a settlement freeze to ceasefire terms.
+West Bank — Israel approved 34 new settlements.
+
+The record batch — the largest single approval in years — came during ceasefire talks, while strikes simultaneously continued across Lebanon and Gaza.
+
+Netanyahu vowed strikes will continue; mediators face pressure to add a settlement freeze to ceasefire terms.

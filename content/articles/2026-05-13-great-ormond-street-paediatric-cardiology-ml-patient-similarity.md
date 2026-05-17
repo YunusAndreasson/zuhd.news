@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — A machine-learning system trained on 1,522 Great Ormond Street cardiac records matched new cases to their most similar historical patients. A second model predicted length of stay with 0.88 accuracy; both outperformed clinicians on rare diagnoses. The approach extends to other rare-disease specialties by swapping training records, the authors said.
+London — A machine-learning system trained on 1,522 Great Ormond Street cardiac records matched new cases to their most similar historical patients.
+
+A second model predicted length of stay with 0.88 accuracy; both outperformed clinicians on rare diagnoses.
+
+The approach extends to other rare-disease specialties by swapping training records, the authors said.

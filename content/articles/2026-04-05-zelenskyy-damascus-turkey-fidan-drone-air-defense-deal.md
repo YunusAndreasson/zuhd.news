@@ -19,4 +19,8 @@ concepts:
   - "Volodymyr Zelenskyy"
 ---
 
-Damascus — Zelenskyy landed in Damascus alongside Turkey's foreign minister. The visit follows Gulf and Turkey stops where Ukraine offered drone expertise in exchange for air defense missiles unavailable from Western allies. Zelenskyy is scheduled to meet Syria's Ahmed al-Sharaa; a defense cooperation agreement is on the agenda.
+Damascus — Zelenskyy landed in Damascus alongside Turkey's foreign minister.
+
+The visit follows Gulf and Turkey stops where Ukraine offered drone expertise in exchange for air defense missiles unavailable from Western allies.
+
+Zelenskyy is scheduled to meet Syria's Ahmed al-Sharaa; a defense cooperation agreement is on the agenda.

@@ -11,4 +11,8 @@ sources:
     country: "GB"
 ---
 
-London — Mars and Earth formed from chemically separate solar rings. Standard models assumed one protoplanetary disc, but isotopic differences between Earth and Mars now require a two-ring origin. The model predicts distinct chemical signatures for the inner planets — European Space Agency missions to Mercury and Venus will test whether it holds.
+London — Mars and Earth formed from chemically separate solar rings.
+
+Standard models assumed one protoplanetary disc, but isotopic differences between Earth and Mars now require a two-ring origin.
+
+The model predicts distinct chemical signatures for the inner planets — European Space Agency missions to Mercury and Venus will test whether it holds.

@@ -16,4 +16,8 @@ concepts:
   - "Palestinian Authority"
 ---
 
-Beddawi — An Israeli airstrike killed 2 in Beddawi refugee camp. Lebanon's military cordoned Palestinian camps under a Palestinian Authority weapons deal, leaving 250,000 refugees confined and unarmed as Israeli strikes push north. Lebanese authorities must now decide whether to allow evacuation — residents are legally barred from owning property or working outside the camps.
+Beddawi — An Israeli airstrike killed 2 in Beddawi refugee camp.
+
+Lebanon's military cordoned Palestinian camps under a Palestinian Authority weapons deal, leaving 250,000 refugees confined and unarmed as Israeli strikes push north.
+
+Lebanese authorities must now decide whether to allow evacuation — residents are legally barred from owning property or working outside the camps.

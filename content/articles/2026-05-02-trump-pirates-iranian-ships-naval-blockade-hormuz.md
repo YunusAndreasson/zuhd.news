@@ -42,4 +42,8 @@ entities:
     kind: "commodity"
 ---
 
-Washington — [The US](country:US) blockaded [Iran](country:IR)'s ports; oil hit $120 a barrel. Iran said it sealed the Strait of Hormuz, which carries roughly 20% of global oil. Trump, calling the seizures "very profitable," said he is "not satisfied" with Iran's ceasefire offer; Tehran warned of an "unprecedented" response.
+Washington — [The US](country:US) blockaded [Iran](country:IR)'s ports; oil hit $120 a barrel.
+
+Iran said it sealed the Strait of Hormuz, which carries roughly 20% of global oil.
+
+Trump, calling the seizures "very profitable," said he is "not satisfied" with Iran's ceasefire offer; Tehran warned of an "unprecedented" response.

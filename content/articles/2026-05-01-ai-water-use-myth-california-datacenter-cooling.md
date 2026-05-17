@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Davis — Agriculture, not AI, drives California's water crisis. Datacenter cooling is largely closed-loop; what circulates as "AI water use" often counts electricity-generation water, [US](country:US) water researchers say. No mandatory disclosure rules exist for datacenter water consumption, which researchers say fuels speculative reporting.
+Davis — Agriculture, not AI, drives California's water crisis.
+
+Datacenter cooling is largely closed-loop; what circulates as "AI water use" often counts electricity-generation water, [US](country:US) water researchers say.
+
+No mandatory disclosure rules exist for datacenter water consumption, which researchers say fuels speculative reporting.

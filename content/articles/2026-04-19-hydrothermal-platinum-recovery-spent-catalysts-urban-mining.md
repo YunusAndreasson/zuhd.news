@@ -16,4 +16,8 @@ concepts:
   - "Catalysis"
 ---
 
-London — 92% platinum recovery from spent refinery catalysts. Hydrothermal leaching at 165°C achieves a sixfold yield gain over ambient-temperature methods while reducing acid use, a Nature study found. Platinum's primary supply is dominated by [South Africa](country:ZA) and [Russia](country:RU); spent-catalyst recovery could reduce that mining dependency.
+London — 92% platinum recovery from spent refinery catalysts.
+
+Hydrothermal leaching at 165°C achieves a sixfold yield gain over ambient-temperature methods while reducing acid use, a Nature study found.
+
+Platinum's primary supply is dominated by [South Africa](country:ZA) and [Russia](country:RU); spent-catalyst recovery could reduce that mining dependency.

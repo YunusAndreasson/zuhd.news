@@ -17,4 +17,8 @@ concepts:
   - "Russia"
 ---
 
-Havana — Russia's Anatoly Kolodkin delivered 700,000 barrels to Cuba. Trump had banned all oil to Cuba, then waved the tanker through; Havana released 2,010 prisoners three days later. The sticking point is Rubio, who pledged to unseat the Castros — Cuba's negotiating team includes one.
+Havana — Russia's Anatoly Kolodkin delivered 700,000 barrels to Cuba.
+
+Trump had banned all oil to Cuba, then waved the tanker through; Havana released 2,010 prisoners three days later.
+
+The sticking point is Rubio, who pledged to unseat the Castros — Cuba's negotiating team includes one.

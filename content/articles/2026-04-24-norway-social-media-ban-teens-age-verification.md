@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Oslo — [Norway](country:NO) will require social media platforms to verify user ages under an upcoming bill. The legislation shifts liability from parents to platforms, making Meta and TikTok legally responsible for minors — as [Australia](country:AU) already does. The European Commission has not announced whether it will adopt the model.
+Oslo — [Norway](country:NO) will require social media platforms to verify user ages under an upcoming bill.
+
+The legislation shifts liability from parents to platforms, making Meta and TikTok legally responsible for minors — as [Australia](country:AU) already does.
+
+The European Commission has not announced whether it will adopt the model.

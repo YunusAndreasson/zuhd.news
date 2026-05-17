@@ -11,4 +11,8 @@ sources:
     country: null
 ---
 
-San Diego — WebinarTV published private addiction recovery Zoom sessions. The site scraped public Zoom links without host consent, publishing sessions participants believed were private. WebinarTV hosts 200,000 such recordings; Zoom has not changed its link-sharing defaults.
+San Diego — WebinarTV published private addiction recovery Zoom sessions.
+
+The site scraped public Zoom links without host consent, publishing sessions participants believed were private.
+
+WebinarTV hosts 200,000 such recordings; Zoom has not changed its link-sharing defaults.

@@ -17,4 +17,8 @@ concepts:
   - "Adjudication"
 ---
 
-West Bengal — 8.9 million voters deleted, skewed toward Muslim seats. Muslim-majority constituencies represent 22.6% of West Bengal's electorate but absorbed 40.5% of adjudication deletions, a ratio 6 times the overall skew. Final rolls are not set; 22,163 voters remain under adjudication before the state's assembly election.
+West Bengal — 8.9 million voters deleted, skewed toward Muslim seats.
+
+Muslim-majority constituencies represent 22.6% of West Bengal's electorate but absorbed 40.5% of adjudication deletions, a ratio 6 times the overall skew.
+
+Final rolls are not set; 22,163 voters remain under adjudication before the state's assembly election.

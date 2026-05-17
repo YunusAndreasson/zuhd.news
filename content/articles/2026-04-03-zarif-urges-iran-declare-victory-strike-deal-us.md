@@ -24,4 +24,8 @@ concepts:
 sentimentDivergence: 0.17
 ---
 
-Tehran — Zarif: Iran should declare victory and negotiate. In Foreign Affairs, the architect of the 2015 nuclear deal proposed nuclear curbs and Hormuz reopening in exchange for full sanctions relief. With half its launchers intact, Zarif warns Iran's leverage narrows with each infrastructure strike.
+Tehran — Zarif: Iran should declare victory and negotiate.
+
+In Foreign Affairs, the architect of the 2015 nuclear deal proposed nuclear curbs and Hormuz reopening in exchange for full sanctions relief.
+
+With half its launchers intact, Zarif warns Iran's leverage narrows with each infrastructure strike.

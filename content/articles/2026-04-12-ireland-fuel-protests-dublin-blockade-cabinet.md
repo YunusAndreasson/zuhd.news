@@ -16,4 +16,8 @@ concepts:
   - "Garda Síochána"
 ---
 
-Dublin — Police cleared O'Connell Street overnight. Hauliers blockaded Ireland's only refinery, Galway harbour, and key depots for 4 days, draining 600 of 1,500 filling stations dry. Cabinet meets Sunday to approve direct payments as hauliers cite "bones of an agreement."
+Dublin — Police cleared O'Connell Street overnight.
+
+Hauliers blockaded Ireland's only refinery, Galway harbour, and key depots for 4 days, draining 600 of 1,500 filling stations dry.
+
+Cabinet meets Sunday to approve direct payments as hauliers cite "bones of an agreement."

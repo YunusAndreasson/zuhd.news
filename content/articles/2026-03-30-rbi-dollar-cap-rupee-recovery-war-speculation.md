@@ -15,4 +15,8 @@ concepts:
   - "Currency intervention"
 ---
 
-Mumbai — India's RBI capped each bank's dollar holdings. The $100 million per-bank limit forces $18 billion in position unwinds; the rupee had fallen 4% since the war began. Banks have until April 10; oil makes up 80% of India's imports, keeping rupee pressure alive.
+Mumbai — India's RBI capped each bank's dollar holdings.
+
+The $100 million per-bank limit forces $18 billion in position unwinds; the rupee had fallen 4% since the war began.
+
+Banks have until April 10; oil makes up 80% of India's imports, keeping rupee pressure alive.

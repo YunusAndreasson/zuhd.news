@@ -17,4 +17,8 @@ concepts:
   - "Anti-corruption"
 ---
 
-Almaty — Kazakhstan arrested anti-corruption blogger Sanzhar Bokayev on Wednesday. Prosecutors claim Bokayev paid people to cut down Almaty park trees, then filmed the destruction to manufacture the outrage he reported on. His allies say he flew back from the US knowing arrest was certain; prosecutors have since added embezzlement charges to his case.
+Almaty — Kazakhstan arrested anti-corruption blogger Sanzhar Bokayev on Wednesday.
+
+Prosecutors claim Bokayev paid people to cut down Almaty park trees, then filmed the destruction to manufacture the outrage he reported on.
+
+His allies say he flew back from the US knowing arrest was certain; prosecutors have since added embezzlement charges to his case.

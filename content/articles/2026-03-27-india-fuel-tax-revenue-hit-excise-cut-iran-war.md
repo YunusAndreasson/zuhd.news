@@ -19,4 +19,8 @@ concepts:
 eventCoverage: 19
 ---
 
-New Delhi — India cut diesel excise duty to zero. The government slashed petrol excise from 13 to 3 rupees per liter and diesel entirely, absorbing losses of 30 rupees per liter as Gulf crude surged from $70 to $122 per barrel. Diesel export duties rose to 21.5 rupees per liter — how long the budget absorbs $122-per-barrel crude is unresolved.
+New Delhi — India cut diesel excise duty to zero.
+
+The government slashed petrol excise from 13 to 3 rupees per liter and diesel entirely, absorbing losses of 30 rupees per liter as Gulf crude surged from $70 to $122 per barrel.
+
+Diesel export duties rose to 21.5 rupees per liter — how long the budget absorbs $122-per-barrel crude is unresolved.

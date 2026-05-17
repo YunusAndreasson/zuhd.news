@@ -17,4 +17,8 @@ concepts:
   - "Strait of Hormuz"
 ---
 
-Tehran — Iran cut discounts on crude exports mid-bombardment. Hormuz access is now limited to 5 friendly states since March 25, giving Tehran pricing power over buyers with no alternative source. Iran's Oil Minister pledged domestic supply; those 5 states cannot source oil elsewhere while Hormuz remains restricted.
+Tehran — Iran cut discounts on crude exports mid-bombardment.
+
+Hormuz access is now limited to 5 friendly states since March 25, giving Tehran pricing power over buyers with no alternative source.
+
+Iran's Oil Minister pledged domestic supply; those 5 states cannot source oil elsewhere while Hormuz remains restricted.

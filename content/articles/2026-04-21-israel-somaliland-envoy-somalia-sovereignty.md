@@ -24,4 +24,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Mogadishu — Somaliland, bordering the Bab el-Mandeb strait, received its first Israeli diplomatic envoy. [Somalia](country:SO) claims the territory and called the move a UN Charter sovereignty violation. [Iran](country:IR) called on the UN, the African Union, and the Organisation of Islamic Cooperation to censure [Israel](country:IL); none have convened.
+Mogadishu — Somaliland, bordering the Bab el-Mandeb strait, received its first Israeli diplomatic envoy.
+
+[Somalia](country:SO) claims the territory and called the move a UN Charter sovereignty violation.
+
+[Iran](country:IR) called on the UN, the African Union, and the Organisation of Islamic Cooperation to censure [Israel](country:IL); none have convened.

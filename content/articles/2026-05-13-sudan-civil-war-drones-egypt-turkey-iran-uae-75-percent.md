@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Khartoum — Drone strikes now dominate Sudan's 3-year civil war. [Egypt](country:EG) and [Turkey](country:TR) supply drones to government forces and the [UAE](country:AE) backs the rival Rapid Support Forces, an investigation found. No state supplier has faced international sanction and ceasefire talks have not resumed since 2023.
+Khartoum — Drone strikes now dominate Sudan's 3-year civil war.
+
+[Egypt](country:EG) and [Turkey](country:TR) supply drones to government forces and the [UAE](country:AE) backs the rival Rapid Support Forces, an investigation found.
+
+No state supplier has faced international sanction and ceasefire talks have not resumed since 2023.

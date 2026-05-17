@@ -24,4 +24,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Visakhapatnam — 46,313 tonnes of liquefied petroleum gas cleared Hormuz Saturday. The Marshall Islands-flagged Sarv Shakti used routing [Iran](country:IR) has not blocked for neutral shippers. The tanker arrives Visakhapatnam by Sunday; [India](country:IN)'s cooking-gas supply depends on how many such transits follow.
+Visakhapatnam — 46,313 tonnes of liquefied petroleum gas cleared Hormuz Saturday.
+
+The Marshall Islands-flagged Sarv Shakti used routing [Iran](country:IR) has not blocked for neutral shippers.
+
+The tanker arrives Visakhapatnam by Sunday; [India](country:IN)'s cooking-gas supply depends on how many such transits follow.

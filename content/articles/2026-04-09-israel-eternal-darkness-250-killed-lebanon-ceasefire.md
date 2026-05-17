@@ -11,4 +11,8 @@ sources:
     country: "EG"
 ---
 
-Beirut — 250 people were killed hours after a ceasefire was announced. Israel launched 100+ airstrikes across Beirut, the Bekaa Valley, and southern Lebanon — the largest single operation of the war. Iran threatened to exit the truce; the US confirmed it never included Lebanon in the ceasefire terms.
+Beirut — 250 people were killed hours after a ceasefire was announced.
+
+Israel launched 100+ airstrikes across Beirut, the Bekaa Valley, and southern Lebanon — the largest single operation of the war.
+
+Iran threatened to exit the truce; the US confirmed it never included Lebanon in the ceasefire terms.

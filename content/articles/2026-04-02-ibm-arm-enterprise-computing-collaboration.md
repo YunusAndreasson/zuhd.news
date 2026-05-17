@@ -17,4 +17,8 @@ concepts:
   - "CPU architecture"
 ---
 
-New York — IBM and Arm are targeting enterprise middleware — x86's last major stronghold. Apple and cloud providers moved to Arm years ago; IBM now extends Arm into the transaction systems and legacy databases that anchored x86 dominance. Enterprise data center buyers have not yet committed.
+New York — IBM and Arm are targeting enterprise middleware — x86's last major stronghold.
+
+Apple and cloud providers moved to Arm years ago; IBM now extends Arm into the transaction systems and legacy databases that anchored x86 dominance.
+
+Enterprise data center buyers have not yet committed.

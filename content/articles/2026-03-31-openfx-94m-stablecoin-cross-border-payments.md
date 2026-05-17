@@ -17,4 +17,8 @@ concepts:
   - "Latin America"
 ---
 
-Dubai — OpenFX handles $45 billion in annual cross-border payments. The 2-year-old startup bridges banking rails with stablecoins for institutional transfers of $1 million to $10 million, targeting corridors where correspondent banking fails. The $94 million round — led by Accel and Pantera — funds expansion into Southeast Asia and Latin America.
+Dubai — OpenFX handles $45 billion in annual cross-border payments.
+
+The 2-year-old startup bridges banking rails with stablecoins for institutional transfers of $1 million to $10 million, targeting corridors where correspondent banking fails.
+
+The $94 million round — led by Accel and Pantera — funds expansion into Southeast Asia and Latin America.

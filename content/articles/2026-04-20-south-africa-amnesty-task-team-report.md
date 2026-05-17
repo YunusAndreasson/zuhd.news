@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Johannesburg — A 2004 report proposed amnesty for apartheid perpetrators. The Amnesty Task Team proposed a constitutional amendment shielding indemnity laws for perpetrators from court challenge. The Khampepe Commission, where the report surfaced, is testing whether a 2-decade prosecution freeze was political interference.
+Johannesburg — A 2004 report proposed amnesty for apartheid perpetrators.
+
+The Amnesty Task Team proposed a constitutional amendment shielding indemnity laws for perpetrators from court challenge.
+
+The Khampepe Commission, where the report surfaced, is testing whether a 2-decade prosecution freeze was political interference.

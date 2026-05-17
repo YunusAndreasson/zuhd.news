@@ -17,4 +17,8 @@ concepts:
   - "Strait of Hormuz"
 ---
 
-London — Britain convenes 35 nations without the US. The coalition meets Thursday to restore Strait of Hormuz passage — 1,000 ships are stranded, cutting 20% of global oil supply. Military planners follow Thursday to assess maritime escort options as Washington's role narrows.
+London — Britain convenes 35 nations without the US.
+
+The coalition meets Thursday to restore Strait of Hormuz passage — 1,000 ships are stranded, cutting 20% of global oil supply.
+
+Military planners follow Thursday to assess maritime escort options as Washington's role narrows.

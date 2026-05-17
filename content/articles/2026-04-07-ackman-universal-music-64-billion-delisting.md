@@ -27,4 +27,8 @@ concepts:
 sentimentDivergence: 0.2
 ---
 
-Amsterdam — Pershing Square offered $64 billion for Universal Music. The 78% premium includes moving Universal's listing from Amsterdam to the NYSE, betting European markets underprice the world's largest music catalog. UMG shares jumped 12%, with the deal requiring two-thirds shareholder approval and CEO Lucian Grainge staying on.
+Amsterdam — Pershing Square offered $64 billion for Universal Music.
+
+The 78% premium includes moving Universal's listing from Amsterdam to the NYSE, betting European markets underprice the world's largest music catalog.
+
+UMG shares jumped 12%, with the deal requiring two-thirds shareholder approval and CEO Lucian Grainge staying on.

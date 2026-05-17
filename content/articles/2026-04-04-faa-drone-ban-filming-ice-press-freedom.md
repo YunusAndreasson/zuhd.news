@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Washington — FAA imposed temporary flight restrictions around ICE operations. The EFF argues the FAA weaponized airspace rules as press censorship; a journalist sued on First Amendment grounds. The lawsuit will test whether FAA rules can function as speech restrictions shielded from First Amendment review.
+Washington — FAA imposed temporary flight restrictions around ICE operations.
+
+The EFF argues the FAA weaponized airspace rules as press censorship; a journalist sued on First Amendment grounds.
+
+The lawsuit will test whether FAA rules can function as speech restrictions shielded from First Amendment review.

@@ -18,4 +18,8 @@ concepts:
   - "Alireza Tangsiri"
 ---
 
-Tehran — Tehran confirmed IRGC Navy commander Tangsiri's death. Iran acknowledged the death 4 days after Israel first reported it, timing the announcement after parliament passed Hormuz blockade legislation. The Hormuz closure disrupts a fifth of global oil flows; who commands the IRGC Navy next is unannounced.
+Tehran — Tehran confirmed IRGC Navy commander Tangsiri's death.
+
+Iran acknowledged the death 4 days after Israel first reported it, timing the announcement after parliament passed Hormuz blockade legislation.
+
+The Hormuz closure disrupts a fifth of global oil flows; who commands the IRGC Navy next is unannounced.

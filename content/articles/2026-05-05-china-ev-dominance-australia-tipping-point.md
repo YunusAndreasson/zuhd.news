@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Sydney — [China](country:CN) now sells electric vehicles under $15,000 at scale. State financing and battery vertical integration, from lithium mine to finished pack, cut unit costs below any tariff-free competitor. [Australia](country:AU)'s sales data confirms the sector has tipped; South Asia and the Pacific face the same shift without tariff protection.
+Sydney — [China](country:CN) now sells electric vehicles under $15,000 at scale.
+
+State financing and battery vertical integration, from lithium mine to finished pack, cut unit costs below any tariff-free competitor.
+
+[Australia](country:AU)'s sales data confirms the sector has tipped; South Asia and the Pacific face the same shift without tariff protection.

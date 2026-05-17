@@ -16,4 +16,8 @@ concepts:
   - "University of Kordofan"
 ---
 
-Khartoum — Security forces arrested 11 professors mid-strike. Academics at 35 universities began a 3rd day of nationwide action as forces detained more professors across 3 cities. The professors' committee demands a revised salary structure; organizers say a wider strike is being prepared.
+Khartoum — Security forces arrested 11 professors mid-strike.
+
+Academics at 35 universities began a 3rd day of nationwide action as forces detained more professors across 3 cities.
+
+The professors' committee demands a revised salary structure; organizers say a wider strike is being prepared.

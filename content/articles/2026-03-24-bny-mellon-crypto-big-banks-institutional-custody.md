@@ -17,4 +17,8 @@ concepts:
   - "Tokenization (data security)"
 ---
 
-New York — BNY Mellon's CEO called banks crypto's "adoption vehicle" at the Digital Asset Summit. The framing inverts the premise of decentralized finance, which was designed to eliminate custodial intermediaries like BNY. The Digital Asset Market Clarity Act has stalled in the Senate after banks pushed for language barring interest on stablecoin balances.
+New York — BNY Mellon's CEO called banks crypto's "adoption vehicle" at the Digital Asset Summit.
+
+The framing inverts the premise of decentralized finance, which was designed to eliminate custodial intermediaries like BNY.
+
+The Digital Asset Market Clarity Act has stalled in the Senate after banks pushed for language barring interest on stablecoin balances.

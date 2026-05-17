@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Southern China — Half the Lagerstätte's species are new to science. The [China](country:CN) site preserves soft-tissue Cambrian fauna from a stage once thought impossible to fossilize, bridging the gap to Ordovician diversification. The new species challenge existing timelines of animal diversification; their evolutionary connections remain under analysis.
+Southern China — Half the Lagerstätte's species are new to science.
+
+The [China](country:CN) site preserves soft-tissue Cambrian fauna from a stage once thought impossible to fossilize, bridging the gap to Ordovician diversification.
+
+The new species challenge existing timelines of animal diversification; their evolutionary connections remain under analysis.

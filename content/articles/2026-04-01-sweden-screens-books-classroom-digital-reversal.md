@@ -16,4 +16,8 @@ concepts:
   - "Educational technology"
 ---
 
-Stockholm — Sweden is replacing classroom screens with physical books. Scores fell between 2018 and 2022; the government spent $137 million on physical books last year and plans to ban school phones. Scores won't reflect the shift for years; the US, which spent $30B on ed-tech in 2024, is watching.
+Stockholm — Sweden is replacing classroom screens with physical books.
+
+Scores fell between 2018 and 2022; the government spent $137 million on physical books last year and plans to ban school phones.
+
+Scores won't reflect the shift for years; the US, which spent $30B on ed-tech in 2024, is watching.

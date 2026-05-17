@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Austin — Texas county banned all new datacenter construction. [US](country:US) municipalities once offered datacenter tax incentives; many now block siting outright as AI infrastructure strains power grids and water. Utah, Virginia and Texas face parallel fights; no federal siting framework governs datacenter power or water use.
+Austin — Texas county banned all new datacenter construction.
+
+[US](country:US) municipalities once offered datacenter tax incentives; many now block siting outright as AI infrastructure strains power grids and water.
+
+Utah, Virginia and Texas face parallel fights; no federal siting framework governs datacenter power or water use.

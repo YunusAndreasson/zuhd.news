@@ -38,4 +38,8 @@ concepts:
 sentimentDivergence: 0.13
 ---
 
-Frankfurt — Markets price 2 to 3 ECB rate hikes this year after ECB President Christine Lagarde warned firms will pass Iran war energy costs to consumers faster than in 2022. The 2022 inflation surge "left a mark" on an entire generation, setting a lower bar for action even before inflation persistently overshoots the 2% target. The ECB held rates at 2% last week while its own adverse scenario projects inflation above 4% by H2 2026.
+Frankfurt — Markets price 2 to 3 ECB rate hikes this year after ECB President Christine Lagarde warned firms will pass Iran war energy costs to consumers faster than in 2022.
+
+The 2022 inflation surge "left a mark" on an entire generation, setting a lower bar for action even before inflation persistently overshoots the 2% target.
+
+The ECB held rates at 2% last week while its own adverse scenario projects inflation above 4% by H2 2026.

@@ -27,4 +27,8 @@ entities:
     kind: "stock"
 ---
 
-New York — BlackRock fund options hit $27bn open interest Friday. Deribit has set bitcoin volatility pricing since 2016; the [US](country:US)-regulated exchange-traded fund now gives institutions their first onshore macro hedge. The fund's calls concentrate at $110k bitcoin expiring October, against Deribit's August peak, Volmex data shows.
+New York — BlackRock fund options hit $27bn open interest Friday.
+
+Deribit has set bitcoin volatility pricing since 2016; the [US](country:US)-regulated exchange-traded fund now gives institutions their first onshore macro hedge.
+
+The fund's calls concentrate at $110k bitcoin expiring October, against Deribit's August peak, Volmex data shows.

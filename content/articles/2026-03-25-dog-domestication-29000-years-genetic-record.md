@@ -27,4 +27,8 @@ concepts:
 sentimentDivergence: 0.02
 ---
 
-London — The world's oldest confirmed dog is 15,800 years old. Bones from Pınarbaşı, Turkey — confirmed domestic by DNA — push the genetic record back 5,000 years, to the Ice Age, before agriculture. Researchers say the evidence points to Asia as the origin, but where exactly remains unresolved.
+London — The world's oldest confirmed dog is 15,800 years old.
+
+Bones from Pınarbaşı, Turkey — confirmed domestic by DNA — push the genetic record back 5,000 years, to the Ice Age, before agriculture.
+
+Researchers say the evidence points to Asia as the origin, but where exactly remains unresolved.

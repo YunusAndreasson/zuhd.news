@@ -25,4 +25,8 @@ concepts:
 sentimentDivergence: 0.1
 ---
 
-Cary — Epic Games cut 1,000 jobs as Fortnite engagement fell through 2025. CEO Tim Sweeney cited spending outpacing revenue and weaker consumer spending, explicitly denying AI as a cause. Sweeney identified $500 million in cost savings but gave no timeline for when Epic returns to growth.
+Cary — Epic Games cut 1,000 jobs as Fortnite engagement fell through 2025.
+
+CEO Tim Sweeney cited spending outpacing revenue and weaker consumer spending, explicitly denying AI as a cause.
+
+Sweeney identified $500 million in cost savings but gave no timeline for when Epic returns to growth.

@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-60% of African creators earn under $100 monthly. Platform payouts disconnected from view counts leave most of Africa's $3bn creator economy inaccessible without secondary income, the report found. The report projects the sector at $17bn by 2030; no country surveyed has enacted legal protections for digital workers.
+60% of African creators earn under $100 monthly.
+
+Platform payouts disconnected from view counts leave most of Africa's $3bn creator economy inaccessible without secondary income, the report found.
+
+The report projects the sector at $17bn by 2030; no country surveyed has enacted legal protections for digital workers.

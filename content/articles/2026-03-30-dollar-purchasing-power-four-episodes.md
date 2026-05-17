@@ -16,4 +16,8 @@ concepts:
   - "Monetary policy"
 ---
 
-Washington — 4 crises destroyed 72% of dollar purchasing power. Each was a discrete shock — WWI, WWII, the 1970s oil crisis, and the 2020s — not slow erosion but concentrated destruction between long periods of stability. With oil past $115, analysts see the structural conditions for a 5th episode forming now.
+Washington — 4 crises destroyed 72% of dollar purchasing power.
+
+Each was a discrete shock — WWI, WWII, the 1970s oil crisis, and the 2020s — not slow erosion but concentrated destruction between long periods of stability.
+
+With oil past $115, analysts see the structural conditions for a 5th episode forming now.

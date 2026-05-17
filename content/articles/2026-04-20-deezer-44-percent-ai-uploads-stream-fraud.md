@@ -17,4 +17,8 @@ concepts:
   - "Click fraud"
 ---
 
-Paris — 44% of new Deezer uploads are AI-generated. Pay-per-stream economics let synthetic catalogues with bot listeners drain artist royalties; Deezer says it demonetizes 85% of AI streams. Deezer is the only major platform to publish an AI fraud rate; others have not disclosed equivalent data.
+Paris — 44% of new Deezer uploads are AI-generated.
+
+Pay-per-stream economics let synthetic catalogues with bot listeners drain artist royalties; Deezer says it demonetizes 85% of AI streams.
+
+Deezer is the only major platform to publish an AI fraud rate; others have not disclosed equivalent data.

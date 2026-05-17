@@ -22,4 +22,6 @@ entities:
     kind: "commodity"
 ---
 
-Washington — [Iran](country:IR) will start shutting in oil wells within days as blockaded storage fills, US Treasury Secretary Scott Bessent said Sunday. The [US](country:US) naval blockade imposed April 13 has blocked all Iranian ports; Tehran calls the seizure of 2 tankers and 3.8 million barrels "state piracy." Bessent predicted prices will fall once the conflict ends.
+Washington — [Iran](country:IR) will start shutting in oil wells within days as blockaded storage fills, US Treasury Secretary Scott Bessent said Sunday.
+
+The [US](country:US) naval blockade imposed April 13 has blocked all Iranian ports; Tehran calls the seizure of 2 tankers and 3.8 million barrels "state piracy." Bessent predicted prices will fall once the conflict ends.

@@ -40,4 +40,6 @@ sentimentDivergence: 0.71
 entities: []
 ---
 
-Rome — Leo named European rearmament a "betrayal of diplomacy." European spending hit $864 billion in 2025, the Stockholm International Peace Research Institute said, as NATO members raced to meet a new 5%-of-GDP target. Leo's first encyclical, expected within weeks, will address AI governance and autonomous weapons.
+Rome — Leo named European rearmament a "betrayal of diplomacy." European spending hit $864 billion in 2025, the Stockholm International Peace Research Institute said, as NATO members raced to meet a new 5%-of-GDP target.
+
+Leo's first encyclical, expected within weeks, will address AI governance and autonomous weapons.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Tredegar — Labour took just 9 of 96 Welsh seats. [Britain](country:GB)'s Plaid Cymru formed government with 43, giving Labour its worst Welsh result in over a century. Labour faces Westminster with no first-past-the-post base left in Wales, even in Bevan's Tredegar.
+Tredegar — Labour took just 9 of 96 Welsh seats.
+
+[Britain](country:GB)'s Plaid Cymru formed government with 43, giving Labour its worst Welsh result in over a century.
+
+Labour faces Westminster with no first-past-the-post base left in Wales, even in Bevan's Tredegar.

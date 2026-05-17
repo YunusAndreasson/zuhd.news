@@ -17,4 +17,8 @@ concepts:
   - "Iran"
 ---
 
-Abuja — A Nigerian confessed to Iran-trained embassy surveillance. Haruna Abbas testified Iranian military trained him in surveillance and weapons handling, then tasked him to recruit 3 more Nigerians to monitor US and Israeli embassies. The court adjourned to April 1; the Iran war has accelerated prosecution of cases dormant since 2013.
+Abuja — A Nigerian confessed to Iran-trained embassy surveillance.
+
+Haruna Abbas testified Iranian military trained him in surveillance and weapons handling, then tasked him to recruit 3 more Nigerians to monitor US and Israeli embassies.
+
+The court adjourned to April 1; the Iran war has accelerated prosecution of cases dormant since 2013.

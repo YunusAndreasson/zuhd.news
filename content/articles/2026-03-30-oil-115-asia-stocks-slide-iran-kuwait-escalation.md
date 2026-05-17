@@ -16,4 +16,8 @@ concepts:
   - "Kuwait"
 ---
 
-London — Brent crude hit $115, highest since 2022. Iran's Kuwait strike and Houthi attacks drove Asian equities lower; Japan's Nikkei fell 4.5%. Brent is on track for its biggest monthly gain ever; April 6 is the next Iran escalation deadline.
+London — Brent crude hit $115, highest since 2022.
+
+Iran's Kuwait strike and Houthi attacks drove Asian equities lower; Japan's Nikkei fell 4.5%.
+
+Brent is on track for its biggest monthly gain ever; April 6 is the next Iran escalation deadline.

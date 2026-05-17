@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-San Francisco — OpenAI's content-provenance labels for ChatGPT Images 2.0 require a paid subscription. The safety card confirms the model generates convincing photorealistic public-figure images at scale. OpenAI has not announced a free-tier rollout date.
+San Francisco — OpenAI's content-provenance labels for ChatGPT Images 2.0 require a paid subscription.
+
+The safety card confirms the model generates convincing photorealistic public-figure images at scale.
+
+OpenAI has not announced a free-tier rollout date.

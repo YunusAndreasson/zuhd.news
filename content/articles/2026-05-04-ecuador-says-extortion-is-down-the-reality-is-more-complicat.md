@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Guayaquil — Cartel Jalisco extorted a Guayaquil primary school's bus drivers. [Ecuador](country:EC)'s attorney general recorded 23,080 extortion cases in 2024, versus 1,616 in 2019; experts say gang fragments replaced dismantled cartels. Police say the offensive is driving extortion down; victims say crime has dispersed, not decreased.
+Guayaquil — Cartel Jalisco extorted a Guayaquil primary school's bus drivers.
+
+[Ecuador](country:EC)'s attorney general recorded 23,080 extortion cases in 2024, versus 1,616 in 2019; experts say gang fragments replaced dismantled cartels.
+
+Police say the offensive is driving extortion down; victims say crime has dispersed, not decreased.

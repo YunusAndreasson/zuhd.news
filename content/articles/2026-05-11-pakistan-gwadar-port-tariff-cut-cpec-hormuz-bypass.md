@@ -24,4 +24,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Gwadar — [Pakistan](country:PK) cut Gwadar's fees to compete with Jebel Ali. Maritime Minister Chaudhry cut berthing fees 25% and transshipment charges 40%, citing Hormuz disruptions drawing traffic toward [Iran](country:IR)'s Chabahar and Dubai's Jebel Ali. The port logged only 4 transshipment calls in April; no shipping lines have committed to diverting.
+Gwadar — [Pakistan](country:PK) cut Gwadar's fees to compete with Jebel Ali.
+
+Maritime Minister Chaudhry cut berthing fees 25% and transshipment charges 40%, citing Hormuz disruptions drawing traffic toward [Iran](country:IR)'s Chabahar and Dubai's Jebel Ali.
+
+The port logged only 4 transshipment calls in April; no shipping lines have committed to diverting.

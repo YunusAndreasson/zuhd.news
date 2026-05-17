@@ -17,4 +17,8 @@ concepts:
   - "Merkava"
 ---
 
-Southern Lebanon — Hezbollah carried out 87 operations in 24 hours. Israeli forces took Taybeh but lost over 20 Merkava tanks to ambushes as they pushed toward the Litani River. Fighting intensifies as Israeli forces approach Qantara — the last gateway before crossing the Litani.
+Southern Lebanon — Hezbollah carried out 87 operations in 24 hours.
+
+Israeli forces took Taybeh but lost over 20 Merkava tanks to ambushes as they pushed toward the Litani River.
+
+Fighting intensifies as Israeli forces approach Qantara — the last gateway before crossing the Litani.

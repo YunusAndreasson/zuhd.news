@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Hanoi — Vietnam is targeting chip packaging and test capacity, not semiconductor fabrication. Back-end assembly requires less capital than fabs, giving [Vietnam](country:VN) a credible entry into the supply chain while [US](country:US) firms seek to diversify away from China. Hanoi has yet to announce investment targets or a timeline for moving up the value chain.
+Hanoi — Vietnam is targeting chip packaging and test capacity, not semiconductor fabrication.
+
+Back-end assembly requires less capital than fabs, giving [Vietnam](country:VN) a credible entry into the supply chain while [US](country:US) firms seek to diversify away from China.
+
+Hanoi has yet to announce investment targets or a timeline for moving up the value chain.

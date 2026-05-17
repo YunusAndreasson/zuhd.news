@@ -18,4 +18,8 @@ concepts:
   - "Pakistan"
 ---
 
-Ghaziabad — Loni ranked the world's most polluted city in 2025. Its annual PM2.5 averaged 112.5 micrograms — 22 times the WHO safe limit of 5 — driven by brick kilns, heavy traffic, and stubble burning that traps under stagnant winter air. IQAir's 2025 World Air Quality Report found the global share of cities meeting the WHO standard dropped from 17% to 14% in a single year.
+Ghaziabad — Loni ranked the world's most polluted city in 2025.
+
+Its annual PM2.5 averaged 112.5 micrograms — 22 times the WHO safe limit of 5 — driven by brick kilns, heavy traffic, and stubble burning that traps under stagnant winter air.
+
+IQAir's 2025 World Air Quality Report found the global share of cities meeting the WHO standard dropped from 17% to 14% in a single year.

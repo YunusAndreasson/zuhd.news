@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Miami — Perpetual futures account for over 70 percent of global crypto trading. Galaxy analyst Mike Harvey predicted equity perpetuals will surpass crypto volumes within 3 years, with 24/7 infrastructure already live. [US](country:US) Securities and Exchange Commission rules tie each derivative to spot exchange-traded fund approval for the same asset.
+Miami — Perpetual futures account for over 70 percent of global crypto trading.
+
+Galaxy analyst Mike Harvey predicted equity perpetuals will surpass crypto volumes within 3 years, with 24/7 infrastructure already live.
+
+[US](country:US) Securities and Exchange Commission rules tie each derivative to spot exchange-traded fund approval for the same asset.

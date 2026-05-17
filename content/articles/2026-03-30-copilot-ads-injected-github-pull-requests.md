@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-San Francisco — Copilot injected ads into 1.5 million pull requests. PR review is where developers decide what ships to production — Copilot's automation of summaries gave Microsoft a channel to embed promotions. 222 HN upvotes in hours; Microsoft has not said whether this is a feature or a bug.
+San Francisco — Copilot injected ads into 1.5 million pull requests.
+
+PR review is where developers decide what ships to production — Copilot's automation of summaries gave Microsoft a channel to embed promotions.
+
+222 HN upvotes in hours; Microsoft has not said whether this is a feature or a bug.

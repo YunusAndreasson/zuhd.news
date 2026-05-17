@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-San Francisco — Anthropic's Mythos flags exploits human auditors miss. Decentralized-finance protocols share liquidity and bridges; Mythos maps how minor flaws chain into systemic failures, Gauntlet's security head said. Hayden Adams of Uniswap warned AI will split protocols between continuous auditors and those that don't.
+San Francisco — Anthropic's Mythos flags exploits human auditors miss.
+
+Decentralized-finance protocols share liquidity and bridges; Mythos maps how minor flaws chain into systemic failures, Gauntlet's security head said.
+
+Hayden Adams of Uniswap warned AI will split protocols between continuous auditors and those that don't.

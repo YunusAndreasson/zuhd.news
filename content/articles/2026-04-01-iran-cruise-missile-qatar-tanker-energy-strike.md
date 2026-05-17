@@ -19,4 +19,8 @@ concepts:
 eventCoverage: 34
 ---
 
-Doha — Iran fired 3 cruise missiles at Qatar. One struck a QatarEnergy-leased tanker in Qatari waters; 2 were intercepted and all 21 crew evacuated without casualties. Qatar, the war's most active Gulf mediator, has not responded; its diplomatic role may now be untenable.
+Doha — Iran fired 3 cruise missiles at Qatar.
+
+One struck a QatarEnergy-leased tanker in Qatari waters; 2 were intercepted and all 21 crew evacuated without casualties.
+
+Qatar, the war's most active Gulf mediator, has not responded; its diplomatic role may now be untenable.

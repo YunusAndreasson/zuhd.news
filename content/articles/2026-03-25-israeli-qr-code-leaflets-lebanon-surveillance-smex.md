@@ -18,4 +18,8 @@ concepts:
   - "Digital rights"
 ---
 
-Beirut — Israeli aircraft dropped leaflets carrying QR codes that fingerprint Lebanese phones. The QR-linked pages collect phone type, network provider, browser fingerprint, and battery status — giving Israeli intelligence the data to identify WhatsApp numbers before any message is sent. Israel continues to drop the leaflets across southern Lebanon, and those who already scanned cannot reverse the exposure.
+Beirut — Israeli aircraft dropped leaflets carrying QR codes that fingerprint Lebanese phones.
+
+The QR-linked pages collect phone type, network provider, browser fingerprint, and battery status — giving Israeli intelligence the data to identify WhatsApp numbers before any message is sent.
+
+Israel continues to drop the leaflets across southern Lebanon, and those who already scanned cannot reverse the exposure.

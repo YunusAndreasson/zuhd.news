@@ -39,4 +39,8 @@ sentimentDivergence: 0.59
 entities: []
 ---
 
-Manila — 17,000 troops from 7 nations opened Balikatan. [Japan](country:JP)'s 1,400 troops will fire cruise missiles near Luzon — its most assertive projection into disputed waters. The [US](country:US) is simultaneously fighting [Iran](country:IR) while deploying one of its largest-ever Balikatan contingents.
+Manila — 17,000 troops from 7 nations opened Balikatan.
+
+[Japan](country:JP)'s 1,400 troops will fire cruise missiles near Luzon — its most assertive projection into disputed waters.
+
+The [US](country:US) is simultaneously fighting [Iran](country:IR) while deploying one of its largest-ever Balikatan contingents.

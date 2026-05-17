@@ -25,4 +25,8 @@ entities:
     kind: "commodity"
 ---
 
-New York — Bitcoin topped $80,000 as oil crossed $100. Since March, fund data show 11 [US](country:US)-listed spot bitcoin exchange-traded funds raised $4.45 billion, nearly erasing autumn outflows. Whether bitcoin holds through an equity sell-off — the real test of its inflation-hedge case — is unresolved.
+New York — Bitcoin topped $80,000 as oil crossed $100.
+
+Since March, fund data show 11 [US](country:US)-listed spot bitcoin exchange-traded funds raised $4.45 billion, nearly erasing autumn outflows.
+
+Whether bitcoin holds through an equity sell-off — the real test of its inflation-hedge case — is unresolved.

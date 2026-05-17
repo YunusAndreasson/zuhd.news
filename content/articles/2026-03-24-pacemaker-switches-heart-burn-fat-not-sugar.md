@@ -18,4 +18,8 @@ concepts:
   - "British Heart Foundation"
 ---
 
-Oxford — A pacemaker switched failing hearts back to burning fat. Heart failure switches the organ from fat to glucose, a less efficient fuel that forces it to work harder until it fails. How the electrical signal triggers the metabolic switch is still unknown, and efficacy trials testing long-term survival benefit have not yet started.
+Oxford — A pacemaker switched failing hearts back to burning fat.
+
+Heart failure switches the organ from fat to glucose, a less efficient fuel that forces it to work harder until it fails.
+
+How the electrical signal triggers the metabolic switch is still unknown, and efficacy trials testing long-term survival benefit have not yet started.

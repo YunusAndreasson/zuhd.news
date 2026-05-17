@@ -17,4 +17,8 @@ concepts:
   - "Chemistry"
 ---
 
-Makhanda — The ocean is no longer chemically natural. 2,300 seawater samples across 3 oceans showed synthetic chemicals embedded in dissolved organic matter, with industrial compounds detected far offshore. Concentrations fall from rivers to open ocean but never reach zero, establishing a permanent synthetic baseline.
+Makhanda — The ocean is no longer chemically natural.
+
+2,300 seawater samples across 3 oceans showed synthetic chemicals embedded in dissolved organic matter, with industrial compounds detected far offshore.
+
+Concentrations fall from rivers to open ocean but never reach zero, establishing a permanent synthetic baseline.

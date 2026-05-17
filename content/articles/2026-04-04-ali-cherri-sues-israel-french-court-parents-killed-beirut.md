@@ -18,4 +18,8 @@ concepts:
   - "France"
 ---
 
-Beirut — Israel killed both of Ali Cherri's parents. Cherri, a French national, filed with France's War Crimes Unit — using his citizenship to invoke universal jurisdiction over the Beirut strike. The filing forces French prosecutors to either accept the case or explain why Israel is exempt.
+Beirut — Israel killed both of Ali Cherri's parents.
+
+Cherri, a French national, filed with France's War Crimes Unit — using his citizenship to invoke universal jurisdiction over the Beirut strike.
+
+The filing forces French prosecutors to either accept the case or explain why Israel is exempt.

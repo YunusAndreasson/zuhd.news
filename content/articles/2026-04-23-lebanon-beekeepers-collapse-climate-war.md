@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Southern Lebanon — Israeli bombardments reduced ByBee's 120 hives to 8. A ByBee founder says [Lebanon](country:LB)'s bee population fell 60% in 20 years; war damage compounds pesticide and climate stress on crops. Lebanon imports most food; beekeepers warn of wider crop failures if hive losses continue.
+Southern Lebanon — Israeli bombardments reduced ByBee's 120 hives to 8.
+
+A ByBee founder says [Lebanon](country:LB)'s bee population fell 60% in 20 years; war damage compounds pesticide and climate stress on crops.
+
+Lebanon imports most food; beekeepers warn of wider crop failures if hive losses continue.

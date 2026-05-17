@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Canberra — Tripled gas prices triggered [Australia](country:AU)'s first export quota. LNG exports linked domestic prices to global markets a decade ago; the 20% reservation forces supply priority before 3 Queensland producers can export overseas, starting July 2027. A parliamentary inquiry into a 25% gas export tax tables its report Thursday.
+Canberra — Tripled gas prices triggered [Australia](country:AU)'s first export quota.
+
+LNG exports linked domestic prices to global markets a decade ago; the 20% reservation forces supply priority before 3 Queensland producers can export overseas, starting July 2027.
+
+A parliamentary inquiry into a 25% gas export tax tables its report Thursday.

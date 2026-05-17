@@ -17,4 +17,8 @@ concepts:
   - "Chris Bowen"
 ---
 
-Canberra — Diesel is missing from 3.4% of Australian stations. Hormuz disruptions pushed crude oil past $115/barrel; Labor halved fuel excise but diesel wholesale prices rose 10c after an initial 20c drop. The government secured supply through May; Trump's Tuesday deadline for Iran to reopen Hormuz is what decides it.
+Canberra — Diesel is missing from 3.4% of Australian stations.
+
+Hormuz disruptions pushed crude oil past $115/barrel; Labor halved fuel excise but diesel wholesale prices rose 10c after an initial 20c drop.
+
+The government secured supply through May; Trump's Tuesday deadline for Iran to reopen Hormuz is what decides it.

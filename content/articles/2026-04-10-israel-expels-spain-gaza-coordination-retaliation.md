@@ -37,4 +37,8 @@ concepts:
 sentimentDivergence: 0.24
 ---
 
-Jerusalem — Israel expelled Spain from Gaza's aid coordination center. Netanyahu acted after Spain blocked US aircraft, pushed EU sanctions against Israel, and recognized Palestine — the US was briefed in advance. Spain has no seat in the room where Gaza's aid is decided; the EU-Israel association agreement suspension vote now carries more weight.
+Jerusalem — Israel expelled Spain from Gaza's aid coordination center.
+
+Netanyahu acted after Spain blocked US aircraft, pushed EU sanctions against Israel, and recognized Palestine — the US was briefed in advance.
+
+Spain has no seat in the room where Gaza's aid is decided; the EU-Israel association agreement suspension vote now carries more weight.

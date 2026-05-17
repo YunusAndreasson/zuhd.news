@@ -33,4 +33,8 @@ sentimentDivergence: 0.26
 entities: []
 ---
 
-Dnipro — 4 killed, residential building collapses. [Russia](country:RU) launched 619 drones and 47 missiles at [Ukraine](country:UA) overnight, targeting residential, energy, and business infrastructure, the air force said. 5 people remain trapped in Dnipro rubble as Zelensky demands faster EU air-defense deliveries.
+Dnipro — 4 killed, residential building collapses.
+
+[Russia](country:RU) launched 619 drones and 47 missiles at [Ukraine](country:UA) overnight, targeting residential, energy, and business infrastructure, the air force said.
+
+5 people remain trapped in Dnipro rubble as Zelensky demands faster EU air-defense deliveries.

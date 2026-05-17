@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Paris — The European Space Agency paid €51.65M for one Sentinel-1C launch. India's Polar Satellite Launch Vehicle costs roughly €18.6M per flight, per government figures — Vega-C's premium reflects Europe's sovereign industrial policy, not market pricing. Four further Vega-C Copernicus launches are contracted at the same rate, with no European alternative.
+Paris — The European Space Agency paid €51.65M for one Sentinel-1C launch.
+
+India's Polar Satellite Launch Vehicle costs roughly €18.6M per flight, per government figures — Vega-C's premium reflects Europe's sovereign industrial policy, not market pricing.
+
+Four further Vega-C Copernicus launches are contracted at the same rate, with no European alternative.

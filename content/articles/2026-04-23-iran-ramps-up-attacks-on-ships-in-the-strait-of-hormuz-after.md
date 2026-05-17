@@ -17,4 +17,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Bandar Abbas — [Iran](country:IR) seized 2 container ships hours after Trump extended the ceasefire. The Islamic Revolutionary Guard Corps fired on 3 vessels and seized 2 in the Strait of Hormuz as [the US](country:US) announced the extension. Tehran says it won't resume nuclear talks until Washington lifts its blockade of Iranian ports.
+Bandar Abbas — [Iran](country:IR) seized 2 container ships hours after Trump extended the ceasefire.
+
+The Islamic Revolutionary Guard Corps fired on 3 vessels and seized 2 in the Strait of Hormuz as [the US](country:US) announced the extension.
+
+Tehran says it won't resume nuclear talks until Washington lifts its blockade of Iranian ports.

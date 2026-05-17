@@ -32,4 +32,8 @@ eventCoverage: 114
 sentimentDivergence: 0.42
 ---
 
-Prague — 6 Molotov cocktails hit the Russian House on Thursday night. 3 of the 6 failed to ignite by chance; Czech police are investigating the unidentified attacker for criminal mischief. Russia labeled the attack terrorism and has demanded Czech authorities boost security at all Russian-funded facilities.
+Prague — 6 Molotov cocktails hit the Russian House on Thursday night.
+
+3 of the 6 failed to ignite by chance; Czech police are investigating the unidentified attacker for criminal mischief.
+
+Russia labeled the attack terrorism and has demanded Czech authorities boost security at all Russian-funded facilities.

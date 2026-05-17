@@ -25,4 +25,8 @@ concepts:
 entities: []
 ---
 
-Damascus — EU ends its 14-year Syria trade suspension. The [UAE](country:AE) sent its first post-Assad business delegation to Damascus the same day; [Syria](country:SY) pursues its first sovereign credit rating. The World Bank estimates reconstruction at $216bn.
+Damascus — EU ends its 14-year Syria trade suspension.
+
+The [UAE](country:AE) sent its first post-Assad business delegation to Damascus the same day; [Syria](country:SY) pursues its first sovereign credit rating.
+
+The World Bank estimates reconstruction at $216bn.

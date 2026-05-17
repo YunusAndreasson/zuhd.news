@@ -24,4 +24,8 @@ entities:
     kind: "stock"
 ---
 
-Kathmandu — All 277 passengers on a Turkish Airlines flight evacuated without injury Monday. The A330 from Istanbul caught fire on the right landing gear, closing [Nepal](country:NP)'s sole runway. Nepal's tourism economy depends on one runway; no second has received funding or a construction date.
+Kathmandu — All 277 passengers on a Turkish Airlines flight evacuated without injury Monday.
+
+The A330 from Istanbul caught fire on the right landing gear, closing [Nepal](country:NP)'s sole runway.
+
+Nepal's tourism economy depends on one runway; no second has received funding or a construction date.

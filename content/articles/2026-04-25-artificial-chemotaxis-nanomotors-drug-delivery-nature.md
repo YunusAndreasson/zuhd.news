@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — A Nature review establishes nanomotors' first engineering framework. Nanomotors lacked standardized gradient-sensing methods; the framework covers physical principles, fuel sources, and collective behavior for blood-compatible motors targeting tumors. No clinical deployment has begun; prospective hospital trials are needed before medical use.
+London — A Nature review establishes nanomotors' first engineering framework.
+
+Nanomotors lacked standardized gradient-sensing methods; the framework covers physical principles, fuel sources, and collective behavior for blood-compatible motors targeting tumors.
+
+No clinical deployment has begun; prospective hospital trials are needed before medical use.

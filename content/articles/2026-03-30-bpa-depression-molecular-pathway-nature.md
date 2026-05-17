@@ -16,4 +16,8 @@ concepts:
   - "Neurodevelopmental disorder"
 ---
 
-London — Plastic chemical BPA is causally linked to depression. Researchers mapped 571 shared BPA-depression gene targets and confirmed 4 causal proteins in synaptic and neurodevelopmental pathways using Mendelian randomization. BPA is in receipts, food containers, and bottles; FDA and EU have no neurological exposure limit for it.
+London — Plastic chemical BPA is causally linked to depression.
+
+Researchers mapped 571 shared BPA-depression gene targets and confirmed 4 causal proteins in synaptic and neurodevelopmental pathways using Mendelian randomization.
+
+BPA is in receipts, food containers, and bottles; FDA and EU have no neurological exposure limit for it.

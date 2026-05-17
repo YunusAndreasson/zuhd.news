@@ -33,4 +33,8 @@ sentimentDivergence: 0.16
 entities: []
 ---
 
-Lebanon — 2 French peacekeepers are dead from a deliberate UN Interim Force in Lebanon attack. President Macron blamed Hezbollah for the April 18 southern Lebanon strike — the first such accusation from a NATO state. [France](country:FR) must renew its 700-troop mission mandate by August 2026.
+Lebanon — 2 French peacekeepers are dead from a deliberate UN Interim Force in Lebanon attack.
+
+President Macron blamed Hezbollah for the April 18 southern Lebanon strike — the first such accusation from a NATO state.
+
+[France](country:FR) must renew its 700-troop mission mandate by August 2026.

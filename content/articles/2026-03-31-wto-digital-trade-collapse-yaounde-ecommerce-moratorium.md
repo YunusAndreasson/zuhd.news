@@ -18,4 +18,8 @@ concepts:
   - "Brazil"
 ---
 
-Yaoundé — WTO talks collapsed without renewing the e-commerce moratorium. Brazil blocked extension of the 25-year ban on digital trade duties, leaving cross-border SaaS and streaming open to national tariffs. 66 WTO members agreed a separate baseline digital deal, but the main body's relevance is now in question.
+Yaoundé — WTO talks collapsed without renewing the e-commerce moratorium.
+
+Brazil blocked extension of the 25-year ban on digital trade duties, leaving cross-border SaaS and streaming open to national tariffs.
+
+66 WTO members agreed a separate baseline digital deal, but the main body's relevance is now in question.

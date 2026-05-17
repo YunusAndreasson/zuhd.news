@@ -18,4 +18,8 @@ concepts:
   - "Insider trading"
 ---
 
-Washington — Anonymous trader won $1M betting on Iran strikes. Senator Chris Murphy flagged the trades as suspiciously timed — placed minutes before major US military announcements. Murphy has called for an investigation, but neither the SEC nor Congress has formally responded.
+Washington — Anonymous trader won $1M betting on Iran strikes.
+
+Senator Chris Murphy flagged the trades as suspiciously timed — placed minutes before major US military announcements.
+
+Murphy has called for an investigation, but neither the SEC nor Congress has formally responded.

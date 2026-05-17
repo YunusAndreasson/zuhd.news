@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Kyiv — A zero-click Roundcube flaw gave Russian military intelligence read access to Ukraine's war-crimes dockets. The exploit triggers when a prosecutor opens email, requiring no attachment — allowing file exfiltration without detection. Ukraine confirmed the breach; which cases were accessed and when systems will be patched remain undisclosed.
+Kyiv — A zero-click Roundcube flaw gave Russian military intelligence read access to Ukraine's war-crimes dockets.
+
+The exploit triggers when a prosecutor opens email, requiring no attachment — allowing file exfiltration without detection.
+
+Ukraine confirmed the breach; which cases were accessed and when systems will be patched remain undisclosed.

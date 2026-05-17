@@ -37,4 +37,8 @@ concepts:
 sentimentDivergence: 0.45
 ---
 
-Paris — Stellantis confirmed 12 fires before recalling 700,000 vehicles. The same 1.2-litre mild-hybrid powertrain shared across 8 Stellantis brands allows water to enter the engine in humid conditions, triggering fire. A 30-minute repair resolves the defect; platform consolidation means one flaw spans 200,000 vehicles in France alone.
+Paris — Stellantis confirmed 12 fires before recalling 700,000 vehicles.
+
+The same 1.2-litre mild-hybrid powertrain shared across 8 Stellantis brands allows water to enter the engine in humid conditions, triggering fire.
+
+A 30-minute repair resolves the defect; platform consolidation means one flaw spans 200,000 vehicles in France alone.

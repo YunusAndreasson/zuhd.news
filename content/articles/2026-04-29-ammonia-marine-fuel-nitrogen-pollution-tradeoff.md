@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — Ammonia fuel can raise marine nitrogen pollution 185%. N2O from ammonia combustion carries 273 times CO2's warming potential; the International Maritime Organization's net-zero shipping strategy requires no nitrogen after-treatment. Uncontrolled ammonia fleets could consume up to 21% of the global nitrogen safety budget by mid-century, the study found.
+London — Ammonia fuel can raise marine nitrogen pollution 185%.
+
+N2O from ammonia combustion carries 273 times CO2's warming potential; the International Maritime Organization's net-zero shipping strategy requires no nitrogen after-treatment.
+
+Uncontrolled ammonia fleets could consume up to 21% of the global nitrogen safety budget by mid-century, the study found.

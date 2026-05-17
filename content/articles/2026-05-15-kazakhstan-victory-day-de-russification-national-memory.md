@@ -16,4 +16,8 @@ concepts: []
 entities: []
 ---
 
-Astana — Victory Day in [Kazakhstan](country:KZ) is shedding Soviet framing. The government has pursued quiet de-Russification, replacing Soviet war memory with a Kazakh national narrative. Whether the shift extends to school curricula or state media is undecided.
+Astana — Victory Day in [Kazakhstan](country:KZ) is shedding Soviet framing.
+
+The government has pursued quiet de-Russification, replacing Soviet war memory with a Kazakh national narrative.
+
+Whether the shift extends to school curricula or state media is undecided.

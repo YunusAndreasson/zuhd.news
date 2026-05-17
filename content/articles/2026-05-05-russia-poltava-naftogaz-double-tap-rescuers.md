@@ -39,4 +39,8 @@ sentimentDivergence: 0.31
 entities: []
 ---
 
-Poltava — A second missile hit emergency workers mid-rescue. [Russia](country:RU) launched 11 missiles and 164 drones, Ukrainian officials said; 4 died and gas was cut to 3,500 subscribers as Naftogaz confirmed production losses. Russia's announced Victory Day ceasefire starts May 8; Zelensky's counter-ceasefire begins midnight Tuesday.
+Poltava — A second missile hit emergency workers mid-rescue.
+
+[Russia](country:RU) launched 11 missiles and 164 drones, Ukrainian officials said; 4 died and gas was cut to 3,500 subscribers as Naftogaz confirmed production losses.
+
+Russia's announced Victory Day ceasefire starts May 8; Zelensky's counter-ceasefire begins midnight Tuesday.

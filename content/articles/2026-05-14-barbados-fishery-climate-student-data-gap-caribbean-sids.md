@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Bridgetown — Students substitute for [Barbados](country:BB)'s absent fisheries monitors. Hurricanes Beryl and Melissa damaged the national fisheries complex; sargassum mats now block harbours while juvenile dolphinfish cluster in the weed. Without population counts, dolphinfish stock collapse could go undetected until irreversible, researchers warn.
+Bridgetown — Students substitute for [Barbados](country:BB)'s absent fisheries monitors.
+
+Hurricanes Beryl and Melissa damaged the national fisheries complex; sargassum mats now block harbours while juvenile dolphinfish cluster in the weed.
+
+Without population counts, dolphinfish stock collapse could go undetected until irreversible, researchers warn.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Washington — Russia's Kosmos 2589 reached geosynchronous orbit in April. At 36,000 km, [Russia](country:RU), [China](country:CN), and the [US](country:US) now each fly inspector satellite fleets, making close passes of rivals routine. The US Space Force is replacing 8 inspector satellites with a refuelable fleet aimed at "space superiority at scale."
+Washington — Russia's Kosmos 2589 reached geosynchronous orbit in April.
+
+At 36,000 km, [Russia](country:RU), [China](country:CN), and the [US](country:US) now each fly inspector satellite fleets, making close passes of rivals routine.
+
+The US Space Force is replacing 8 inspector satellites with a refuelable fleet aimed at "space superiority at scale."

@@ -27,4 +27,8 @@ concepts:
 sentimentDivergence: 0.11
 ---
 
-Qom — Iran's Supreme Leader hasn't appeared since February's strikes. A diplomatic memo based on US-Israeli intelligence says Mojtaba Khamenei is unconscious in Qom, unable to govern. Tehran issues his statements via TV after a command-center video of him was debunked as AI-generated.
+Qom — Iran's Supreme Leader hasn't appeared since February's strikes.
+
+A diplomatic memo based on US-Israeli intelligence says Mojtaba Khamenei is unconscious in Qom, unable to govern.
+
+Tehran issues his statements via TV after a command-center video of him was debunked as AI-generated.

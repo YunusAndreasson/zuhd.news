@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Washington — FDA cleared Otarmeni, the first dual-AAV gene therapy. OTOF exceeds a single viral capsid; splitting it across 2 adeno-associated viruses unlocks gene therapy for dozens of large-gene disorders beyond hearing loss. NEJM trial data showed 3 of 12 patients reached normal hearing sensitivity; FDA meets June 4 on eligibility.
+Washington — FDA cleared Otarmeni, the first dual-AAV gene therapy.
+
+OTOF exceeds a single viral capsid; splitting it across 2 adeno-associated viruses unlocks gene therapy for dozens of large-gene disorders beyond hearing loss.
+
+NEJM trial data showed 3 of 12 patients reached normal hearing sensitivity; FDA meets June 4 on eligibility.

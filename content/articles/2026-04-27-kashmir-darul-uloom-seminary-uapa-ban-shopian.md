@@ -25,4 +25,8 @@ eventCoverage: 25
 entities: []
 ---
 
-Shopian — 814 students stranded as [India](country:IN) sealed Kashmir's largest Islamic seminary. India's Unlawful Activities Prevention Act designation — first applied to a madrasa — empowers authorities to freeze assets without conviction. The school's chairman denied the Jamaat-e-Islami links; 102 faculty also face displacement.
+Shopian — 814 students stranded as [India](country:IN) sealed Kashmir's largest Islamic seminary.
+
+India's Unlawful Activities Prevention Act designation — first applied to a madrasa — empowers authorities to freeze assets without conviction.
+
+The school's chairman denied the Jamaat-e-Islami links; 102 faculty also face displacement.

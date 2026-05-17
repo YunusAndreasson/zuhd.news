@@ -31,4 +31,8 @@ sentimentDivergence: 0.23
 entities: []
 ---
 
-New Delhi — Fuel has neared 60% of [India](country:IN)'s airline costs. West Asia's war drove jet fuel up ₹73 per litre on international routes; state taxes reaching 29% compound it, the Federation of Indian Airlines said. The federation asked the government to suspend excise duty; the monthly jet fuel price revision is due this week.
+New Delhi — Fuel has neared 60% of [India](country:IN)'s airline costs.
+
+West Asia's war drove jet fuel up ₹73 per litre on international routes; state taxes reaching 29% compound it, the Federation of Indian Airlines said.
+
+The federation asked the government to suspend excise duty; the monthly jet fuel price revision is due this week.

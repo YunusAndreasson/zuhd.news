@@ -16,4 +16,8 @@ concepts:
   - "Cropping system"
 ---
 
-Beijing — China imports over 60% of its soybeans. A Nature study modeled how crop reallocation and dietary shifts could raise China's domestic soybean output. With Hormuz disruptions cutting main import routes, Beijing faces a strategic food dependency with no short-term agricultural fix.
+Beijing — China imports over 60% of its soybeans.
+
+A Nature study modeled how crop reallocation and dietary shifts could raise China's domestic soybean output.
+
+With Hormuz disruptions cutting main import routes, Beijing faces a strategic food dependency with no short-term agricultural fix.

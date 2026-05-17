@@ -16,4 +16,8 @@ concepts:
   - "Colorado River"
 ---
 
-Denver — Colorado River headwaters hit 24% of average snowpack. March heat broke 1,500 temperature records and compressed snowpack to levels normally seen in May; Sierra Nevada reached 18% of average. Lake Mead and Lake Powell are 25-33% full; if levels fall further, dams stop generating power entirely.
+Denver — Colorado River headwaters hit 24% of average snowpack.
+
+March heat broke 1,500 temperature records and compressed snowpack to levels normally seen in May; Sierra Nevada reached 18% of average.
+
+Lake Mead and Lake Powell are 25-33% full; if levels fall further, dams stop generating power entirely.

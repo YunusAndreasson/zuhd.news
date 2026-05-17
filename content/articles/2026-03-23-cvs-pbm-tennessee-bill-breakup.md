@@ -17,4 +17,8 @@ concepts:
   - "Tennessee"
 ---
 
-Nashville — Tennessee may force CVS to sell its 9,000 pharmacies. CVS's Caremark subsidiary negotiates drug prices for 100 million Americans while CVS pharmacies fill those same prescriptions, a conflict of interest state lawmakers say inflates costs. If enacted, CVS warns it will close 134 Tennessee stores and cut 2,000 jobs.
+Nashville — Tennessee may force CVS to sell its 9,000 pharmacies.
+
+CVS's Caremark subsidiary negotiates drug prices for 100 million Americans while CVS pharmacies fill those same prescriptions, a conflict of interest state lawmakers say inflates costs.
+
+If enacted, CVS warns it will close 134 Tennessee stores and cut 2,000 jobs.

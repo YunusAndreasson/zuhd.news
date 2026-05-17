@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Karachi — Gulf remittances rose through 73 days of conflict. [Pakistan](country:PK)'s Middle East inflows reached $18.2 billion — 53% of $33.9 billion total — as most workers stayed abroad rather than returning home, State Bank of Pakistan data show. The State Bank targets $18 billion in reserves by end of June after a $1.2 billion IMF tranche.
+Karachi — Gulf remittances rose through 73 days of conflict.
+
+[Pakistan](country:PK)'s Middle East inflows reached $18.2 billion — 53% of $33.9 billion total — as most workers stayed abroad rather than returning home, State Bank of Pakistan data show.
+
+The State Bank targets $18 billion in reserves by end of June after a $1.2 billion IMF tranche.

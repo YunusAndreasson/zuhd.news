@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — Sarcopenic muscle suppresses tumors less than healthy muscle. Muscle releases tumor-suppressing vesicles via a NOTCH-SDC2 pathway that declines with aging but revives with exercise, the study found. The study is preclinical; the pathway remains unvalidated in humans.
+London — Sarcopenic muscle suppresses tumors less than healthy muscle.
+
+Muscle releases tumor-suppressing vesicles via a NOTCH-SDC2 pathway that declines with aging but revives with exercise, the study found.
+
+The study is preclinical; the pathway remains unvalidated in humans.

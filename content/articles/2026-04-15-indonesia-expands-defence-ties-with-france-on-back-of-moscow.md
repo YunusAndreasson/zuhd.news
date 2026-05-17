@@ -22,4 +22,8 @@ entities:
     kind: "commodity"
 ---
 
-Paris — Prabowo visited Moscow then Paris within 48 hours. Indonesia procured defense equipment from both Russia and France as oil prices rose amid the Iran conflict. Jakarta's decision on a US overflight request will define its alignment between Washington and Beijing.
+Paris — Prabowo visited Moscow then Paris within 48 hours.
+
+Indonesia procured defense equipment from both Russia and France as oil prices rose amid the Iran conflict.
+
+Jakarta's decision on a US overflight request will define its alignment between Washington and Beijing.

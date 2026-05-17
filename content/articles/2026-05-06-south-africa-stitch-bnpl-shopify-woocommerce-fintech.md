@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-Cape Town — Stitch, [South Africa](country:ZA)'s largest payments platform, embedded buy-now-pay-later into Shopify and WooCommerce with no merchant volume minimum. In low card-penetration markets, it functions as the primary credit rail, not a Visa add-on. South Africa's e-commerce market is projected at R133 billion by year-end, Stitch said.
+Cape Town — Stitch, [South Africa](country:ZA)'s largest payments platform, embedded buy-now-pay-later into Shopify and WooCommerce with no merchant volume minimum.
+
+In low card-penetration markets, it functions as the primary credit rail, not a Visa add-on.
+
+South Africa's e-commerce market is projected at R133 billion by year-end, Stitch said.

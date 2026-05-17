@@ -25,4 +25,8 @@ entities:
     kind: "stock"
 ---
 
-San Francisco — Google cut the qubit cost to crack Bitcoin. The attack targets 6.9 million BTC in addresses where public keys are permanently visible onchain, including Satoshi's approximately 1 million coins. Bitcoin has no post-quantum roadmap; Bitcoin Improvement Proposal 360 and competing upgrades lack consensus.
+San Francisco — Google cut the qubit cost to crack Bitcoin.
+
+The attack targets 6.9 million BTC in addresses where public keys are permanently visible onchain, including Satoshi's approximately 1 million coins.
+
+Bitcoin has no post-quantum roadmap; Bitcoin Improvement Proposal 360 and competing upgrades lack consensus.

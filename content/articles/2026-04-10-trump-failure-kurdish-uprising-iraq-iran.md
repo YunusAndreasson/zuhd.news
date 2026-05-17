@@ -18,4 +18,8 @@ concepts:
   - "PJAK"
 ---
 
-Sulaymaniyah — Kurds denied receiving US weapons for Iran uprising. Trump told Fox News he sent guns through Kurdish groups to Iranian protesters; all major Kurdish parties denied receiving them. The 6-party Kurdish alliance formed 6 days before the war; PJAK said discussions predated any US contact.
+Sulaymaniyah — Kurds denied receiving US weapons for Iran uprising.
+
+Trump told Fox News he sent guns through Kurdish groups to Iranian protesters; all major Kurdish parties denied receiving them.
+
+The 6-party Kurdish alliance formed 6 days before the war; PJAK said discussions predated any US contact.

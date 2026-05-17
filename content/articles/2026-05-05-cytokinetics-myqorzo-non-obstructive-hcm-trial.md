@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-San Francisco — Myqorzo hit its primary endpoint in a non-obstructive hypertrophic cardiomyopathy trial. The drug is approved for the obstructive form; this trial tests whether cardiac-myosin inhibition works where no approved therapy exists. Regulatory submission is planned; label expansion would reach the larger untreated patient population.
+San Francisco — Myqorzo hit its primary endpoint in a non-obstructive hypertrophic cardiomyopathy trial.
+
+The drug is approved for the obstructive form; this trial tests whether cardiac-myosin inhibition works where no approved therapy exists.
+
+Regulatory submission is planned; label expansion would reach the larger untreated patient population.

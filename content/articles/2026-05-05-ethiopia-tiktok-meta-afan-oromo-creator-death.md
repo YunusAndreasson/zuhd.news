@@ -17,4 +17,8 @@ entities:
     kind: "stock"
 ---
 
-Addis Ababa — Boni's explicit farewell video remains live on Facebook. TikTok and Meta's moderation systems do not cover Afan Oromo, [Ethiopia](country:ET)'s most widely spoken language, disabling all automated safety interventions. The harassment video wishing her dead also remained online; neither platform has addressed its Afan Oromo moderation gap.
+Addis Ababa — Boni's explicit farewell video remains live on Facebook.
+
+TikTok and Meta's moderation systems do not cover Afan Oromo, [Ethiopia](country:ET)'s most widely spoken language, disabling all automated safety interventions.
+
+The harassment video wishing her dead also remained online; neither platform has addressed its Afan Oromo moderation gap.

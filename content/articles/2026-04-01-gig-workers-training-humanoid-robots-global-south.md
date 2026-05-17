@@ -16,4 +16,8 @@ concepts:
   - "Nigeria"
 ---
 
-Lagos — Gig workers in Nigeria are training factory robots. A Palo Alto startup hires workers in 50+ countries to record household tasks as training data for humanoid robot manufacturers. The workers teaching the machines are the first the machines will replace.
+Lagos — Gig workers in Nigeria are training factory robots.
+
+A Palo Alto startup hires workers in 50+ countries to record household tasks as training data for humanoid robot manufacturers.
+
+The workers teaching the machines are the first the machines will replace.

@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-Dubai — 4% to 28%: stablecoin savings in 6 years. Binance says 77% of its users are now in emerging markets, where stablecoin transfers cost $0.0001 against a SWIFT minimum of $20. Moody's and the IMF warn: when households save in dollar stablecoins, central banks lose monetary policy traction.
+Dubai — 4% to 28%: stablecoin savings in 6 years.
+
+Binance says 77% of its users are now in emerging markets, where stablecoin transfers cost $0.0001 against a SWIFT minimum of $20.
+
+Moody's and the IMF warn: when households save in dollar stablecoins, central banks lose monetary policy traction.

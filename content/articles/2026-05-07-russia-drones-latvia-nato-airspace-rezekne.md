@@ -44,4 +44,8 @@ entities:
     kind: "commodity"
 ---
 
-Rēzekne — 4 oil tanks hit; schools closed across Rēzekne. [Latvia](country:LV)'s defence minister said the drones were probably [Ukraine](country:UA)'s, aimed at Russian oil terminals; NATO jets from Šiauliai patrolled Latvian airspace. Latvia's army warned of recurrence as [Russia](country:RU)'s war continues; flight restrictions near Rēzekne remain in place.
+Rēzekne — 4 oil tanks hit; schools closed across Rēzekne.
+
+[Latvia](country:LV)'s defence minister said the drones were probably [Ukraine](country:UA)'s, aimed at Russian oil terminals; NATO jets from Šiauliai patrolled Latvian airspace.
+
+Latvia's army warned of recurrence as [Russia](country:RU)'s war continues; flight restrictions near Rēzekne remain in place.

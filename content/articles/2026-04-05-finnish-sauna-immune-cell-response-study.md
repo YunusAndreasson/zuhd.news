@@ -17,4 +17,8 @@ concepts:
   - "Natural killer cell"
 ---
 
-Helsinki — Sauna heat boosts immune surveillance without triggering inflammation. A controlled trial found heat stress activates natural killer cells and T-cells while leaving systemic cytokine markers unchanged. Whether the effect persists across repeated sessions and translates to clinical protocols remains untested.
+Helsinki — Sauna heat boosts immune surveillance without triggering inflammation.
+
+A controlled trial found heat stress activates natural killer cells and T-cells while leaving systemic cytokine markers unchanged.
+
+Whether the effect persists across repeated sessions and translates to clinical protocols remains untested.

@@ -25,4 +25,8 @@ entities:
     kind: "commodity"
 ---
 
-Moscow — Hormuz closure would strand Gulf fertilizer mid-planting. [Russia](country:RU)'s Security Council warned a blockade would cut 10% of oil supply and halt fertilizer shipments at the start of planting season. The strait carries 20% of world oil, International Energy Agency figures show; deputy Alexey Shevtsov cited no specific trigger.
+Moscow — Hormuz closure would strand Gulf fertilizer mid-planting.
+
+[Russia](country:RU)'s Security Council warned a blockade would cut 10% of oil supply and halt fertilizer shipments at the start of planting season.
+
+The strait carries 20% of world oil, International Energy Agency figures show; deputy Alexey Shevtsov cited no specific trigger.

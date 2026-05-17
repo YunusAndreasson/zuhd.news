@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Beirut — An Iraqi MP's fake pornographic video stayed up. [Iraq](country:IQ)'s Aliya Nasif publicly denied the clip; a fact-check confirmed the fabrication, yet the video stayed up past 150,000 views. Content moderation treats Arabic speakers as secondary; UN Women says 50% of Arab women don't feel safe online.
+Beirut — An Iraqi MP's fake pornographic video stayed up.
+
+[Iraq](country:IQ)'s Aliya Nasif publicly denied the clip; a fact-check confirmed the fabrication, yet the video stayed up past 150,000 views.
+
+Content moderation treats Arabic speakers as secondary; UN Women says 50% of Arab women don't feel safe online.

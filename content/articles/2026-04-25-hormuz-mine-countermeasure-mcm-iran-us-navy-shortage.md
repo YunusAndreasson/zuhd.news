@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Washington — USS Canberra is the only minesweeper in US Central Command. A [US](country:US) official said [Iran](country:IR) placed mines in the Strait; over 95% were destroyed in Operation Epic Fury. Defense Secretary Hegseth called the mining a ceasefire violation; [Iran](country:IR)'s Islamic Revolutionary Guard Corps fleet remains active with no clearance timeline set.
+Washington — USS Canberra is the only minesweeper in US Central Command.
+
+A [US](country:US) official said [Iran](country:IR) placed mines in the Strait; over 95% were destroyed in Operation Epic Fury.
+
+Defense Secretary Hegseth called the mining a ceasefire violation; [Iran](country:IR)'s Islamic Revolutionary Guard Corps fleet remains active with no clearance timeline set.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Washington — Legal experts call [US](country:US) Pacific narco strikes extrajudicial killings. Since September, the military has struck dozens of boats, asserting cartel ties but presenting no court evidence, killing 185. Trump's "armed conflict" claim remains untested in court.
+Washington — Legal experts call [US](country:US) Pacific narco strikes extrajudicial killings.
+
+Since September, the military has struck dozens of boats, asserting cartel ties but presenting no court evidence, killing 185.
+
+Trump's "armed conflict" claim remains untested in court.

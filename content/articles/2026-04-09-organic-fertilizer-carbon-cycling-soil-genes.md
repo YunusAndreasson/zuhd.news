@@ -17,4 +17,8 @@ concepts:
   - "Metagenomics"
 ---
 
-Guiyang — Chemical fertilizer releases soil carbon; organic fertilizer locks it. A 3-year Guizhou field trial using metagenomics showed organic fertilizer upregulates carbon-fixation genes and suppresses decomposition pathways. Agricultural soil holds more carbon than all forests; this mechanism has not been factored into climate models.
+Guiyang — Chemical fertilizer releases soil carbon; organic fertilizer locks it.
+
+A 3-year Guizhou field trial using metagenomics showed organic fertilizer upregulates carbon-fixation genes and suppresses decomposition pathways.
+
+Agricultural soil holds more carbon than all forests; this mechanism has not been factored into climate models.

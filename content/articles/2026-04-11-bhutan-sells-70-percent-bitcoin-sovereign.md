@@ -17,4 +17,8 @@ concepts:
   - "Proof of concept"
 ---
 
-Thimphu — Bhutan has sold 70% of its bitcoin. Druk Holdings accumulated 13,000 BTC through hydropower, but $71,000 prices and lower post-halving rewards made selling electricity to India more profitable. Arkham shows no inflows for a year — the fund has not said whether it will sell the rest.
+Thimphu — Bhutan has sold 70% of its bitcoin.
+
+Druk Holdings accumulated 13,000 BTC through hydropower, but $71,000 prices and lower post-halving rewards made selling electricity to India more profitable.
+
+Arkham shows no inflows for a year — the fund has not said whether it will sell the rest.

@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Kathmandu — By 2024, Annapurna's snow leopards were gone. Conservation group Teka Samuha uses the decade-long wildlife collapse at a 4,300m pastureland in [Nepal](country:NP)'s school curricula as first-hand climate evidence. Students trained as climate messengers carry adaptation lessons to both Himalayan and lowland communities.
+Kathmandu — By 2024, Annapurna's snow leopards were gone.
+
+Conservation group Teka Samuha uses the decade-long wildlife collapse at a 4,300m pastureland in [Nepal](country:NP)'s school curricula as first-hand climate evidence.
+
+Students trained as climate messengers carry adaptation lessons to both Himalayan and lowland communities.

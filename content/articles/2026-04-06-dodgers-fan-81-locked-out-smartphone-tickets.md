@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Los Angeles — An 81-year-old Dodgers fan is locked out. The Dodgers' ticketing system now requires a smartphone for purchase and entry, making no accommodation for people without mobile devices. With 246 HN points and 232 comments, the case sharpens pressure for venues to offer non-digital ticket alternatives.
+Los Angeles — An 81-year-old Dodgers fan is locked out.
+
+The Dodgers' ticketing system now requires a smartphone for purchase and entry, making no accommodation for people without mobile devices.
+
+With 246 HN points and 232 comments, the case sharpens pressure for venues to offer non-digital ticket alternatives.

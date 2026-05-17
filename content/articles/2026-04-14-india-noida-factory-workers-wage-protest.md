@@ -26,4 +26,8 @@ concepts:
 sentimentDivergence: 0.19
 ---
 
-Noida — 7,500 auto workers blocked roads across India's auto parts belt. Haryana raised minimum wages 35% on April 8; factory managers had not posted notices, and workers in neighboring Uttar Pradesh demanded parity. Uttar Pradesh announced an interim 21% wage hike for Noida; a wage board will set permanent rates next month.
+Noida — 7,500 auto workers blocked roads across India's auto parts belt.
+
+Haryana raised minimum wages 35% on April 8; factory managers had not posted notices, and workers in neighboring Uttar Pradesh demanded parity.
+
+Uttar Pradesh announced an interim 21% wage hike for Noida; a wage board will set permanent rates next month.

@@ -32,4 +32,8 @@ concepts:
 sentimentDivergence: 0.35
 ---
 
-Washington — 48 hours remain on Trump's Hormuz ultimatum. Sen. Graham endorsed "massive military operation" as Iran holds a missing F-15 crew member and has rejected a 15-point US peace plan. Tehran's FM says talks remain possible; Trump has threatened power plants, oil, and desalination targets if Hormuz stays closed.
+Washington — 48 hours remain on Trump's Hormuz ultimatum.
+
+Sen. Graham endorsed "massive military operation" as Iran holds a missing F-15 crew member and has rejected a 15-point US peace plan.
+
+Tehran's FM says talks remain possible; Trump has threatened power plants, oil, and desalination targets if Hormuz stays closed.

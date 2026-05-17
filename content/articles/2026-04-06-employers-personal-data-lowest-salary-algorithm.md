@@ -16,4 +16,8 @@ concepts:
   - "Privacy"
 ---
 
-New York — Employers profile job candidates to minimize salary offers. HR platforms buy financial profiles and browsing history to calculate the minimum a given candidate will accept before making an offer. No US law prohibits this; candidates receive no disclosure that their financial data shaped their offer.
+New York — Employers profile job candidates to minimize salary offers.
+
+HR platforms buy financial profiles and browsing history to calculate the minimum a given candidate will accept before making an offer.
+
+No US law prohibits this; candidates receive no disclosure that their financial data shaped their offer.

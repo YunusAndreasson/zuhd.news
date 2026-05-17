@@ -17,4 +17,8 @@ concepts:
   - "University of Tehran"
 ---
 
-Tehran — IRGC named 4 Gulf campuses legitimate military targets. The Guard said US forces struck Tehran's University of Science and Technology and ordered campus communities 1 km back. The Pentagon deployed Marine units on the USS Tripoli to prepare for ground operations.
+Tehran — IRGC named 4 Gulf campuses legitimate military targets.
+
+The Guard said US forces struck Tehran's University of Science and Technology and ordered campus communities 1 km back.
+
+The Pentagon deployed Marine units on the USS Tripoli to prepare for ground operations.

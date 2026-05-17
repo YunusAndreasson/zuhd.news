@@ -19,4 +19,8 @@ concepts:
 eventCoverage: 23
 ---
 
-Karachi — [Pakistan](country:PK) repaid $3.45 bn to the [UAE](country:AE), ending 7 years of automatic rollovers on a 2019 stabilisation deposit. The UAE demanded early return after the Iran war disrupted Gulf finances. A $3 bn Saudi transfer confirmed April 21 covered the shortfall; International Monetary Fund-monitored reserves remain under pressure.
+Karachi — [Pakistan](country:PK) repaid $3.45 bn to the [UAE](country:AE), ending 7 years of automatic rollovers on a 2019 stabilisation deposit.
+
+The UAE demanded early return after the Iran war disrupted Gulf finances.
+
+A $3 bn Saudi transfer confirmed April 21 covered the shortfall; International Monetary Fund-monitored reserves remain under pressure.

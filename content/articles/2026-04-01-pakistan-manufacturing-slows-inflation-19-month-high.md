@@ -19,4 +19,8 @@ concepts:
   - "Middle East"
 ---
 
-Karachi — Pakistan's factory inflation hit a 19-month high. The PMI fell to 52.9 in March as the US-Iran war cut energy supply and fuel costs surged. A rate hike is now the base case as energy costs spill into broad-based price growth.
+Karachi — Pakistan's factory inflation hit a 19-month high.
+
+The PMI fell to 52.9 in March as the US-Iran war cut energy supply and fuel costs surged.
+
+A rate hike is now the base case as energy costs spill into broad-based price growth.

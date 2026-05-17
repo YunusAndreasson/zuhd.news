@@ -23,4 +23,8 @@ entities:
     kind: "currency"
 ---
 
-Istanbul — Hetzner costs $233 for DigitalOcean's $1,432 server. [Turkey](country:TR)'s lira drop made dollar-denominated cloud unaffordable; European dedicated servers offer comparable specs. The 6x gap holds for steady workloads; US cloud is cheaper only where managed services are actively used.
+Istanbul — Hetzner costs $233 for DigitalOcean's $1,432 server.
+
+[Turkey](country:TR)'s lira drop made dollar-denominated cloud unaffordable; European dedicated servers offer comparable specs.
+
+The 6x gap holds for steady workloads; US cloud is cheaper only where managed services are actively used.

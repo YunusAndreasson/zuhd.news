@@ -17,4 +17,8 @@ concepts:
   - "Gaming"
 ---
 
-— Wine 11 drops 31 years of user-space Windows emulation. The new architecture passes Windows system calls through the Linux kernel directly, removing the translation overhead that previously made games run slower under Linux than on native Windows. Gaming distributions like SteamOS will test whether the gains hold across the full Windows title catalog.
+— Wine 11 drops 31 years of user-space Windows emulation.
+
+The new architecture passes Windows system calls through the Linux kernel directly, removing the translation overhead that previously made games run slower under Linux than on native Windows.
+
+Gaming distributions like SteamOS will test whether the gains hold across the full Windows title catalog.

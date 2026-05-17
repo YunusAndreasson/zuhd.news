@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — Pakistan angles for post-war gains as mediator. [Pakistan](country:PK)'s security analysts call the country a 'swing state' — maximizing flexibility rather than anchoring to one ally. What [Pakistan](country:PK) gains depends on what [Iran](country:IR) looks like after a truce.
+Islamabad — Pakistan angles for post-war gains as mediator.
+
+[Pakistan](country:PK)'s security analysts call the country a 'swing state' — maximizing flexibility rather than anchoring to one ally.
+
+What [Pakistan](country:PK) gains depends on what [Iran](country:IR) looks like after a truce.

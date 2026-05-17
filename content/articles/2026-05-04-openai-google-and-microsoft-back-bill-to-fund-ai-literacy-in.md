@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Washington — OpenAI, Google and Microsoft backed a K-12 AI literacy bill as Trump fired all 22 National Science Board members. The Schiff-Rounds act routes National Science Foundation grants to AI curriculum, but the foundation has had no director for a year. Trump's nominee is a financier with no research background.
+Washington — OpenAI, Google and Microsoft backed a K-12 AI literacy bill as Trump fired all 22 National Science Board members.
+
+The Schiff-Rounds act routes National Science Foundation grants to AI curriculum, but the foundation has had no director for a year.
+
+Trump's nominee is a financier with no research background.

@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Port Said — A Port Said court issued [Egypt](country:EG)'s second-ever discrimination verdict. The 2014 constitution mandated an Anti-Discrimination Commission that was never formed; Article 161-bis has produced just 2 verdicts in 12 years. Civil society says the legislature lacks political will to enforce the law.
+Port Said — A Port Said court issued [Egypt](country:EG)'s second-ever discrimination verdict.
+
+The 2014 constitution mandated an Anti-Discrimination Commission that was never formed; Article 161-bis has produced just 2 verdicts in 12 years.
+
+Civil society says the legislature lacks political will to enforce the law.

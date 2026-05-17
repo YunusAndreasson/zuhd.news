@@ -19,4 +19,8 @@ concepts:
   - "Oil prices"
 ---
 
-Islamabad — Pakistan cut diesel prices by Rs135 per litre. Sharif called it a peace dividend from the US-Iran ceasefire he brokered; Pakistan hosts Vance-Iran talks in Islamabad Friday. A Rs80 petrol levy cut last week preceded this; both linked directly to ceasefire oil relief.
+Islamabad — Pakistan cut diesel prices by Rs135 per litre.
+
+Sharif called it a peace dividend from the US-Iran ceasefire he brokered; Pakistan hosts Vance-Iran talks in Islamabad Friday.
+
+A Rs80 petrol levy cut last week preceded this; both linked directly to ceasefire oil relief.

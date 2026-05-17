@@ -11,4 +11,8 @@ sources:
     country: "GB"
 ---
 
-Bogotá — 129 oil projects bind [Colombia](country:CO) to investor arbitration. Foreign investors can sue governments in private arbitration — the mechanism that cost [Ecuador](country:EC) $24 million for canceling one mining license. Petro signaled he may exit the system; 220 economists urged withdrawal before a phase-out triggers claims.
+Bogotá — 129 oil projects bind [Colombia](country:CO) to investor arbitration.
+
+Foreign investors can sue governments in private arbitration — the mechanism that cost [Ecuador](country:EC) $24 million for canceling one mining license.
+
+Petro signaled he may exit the system; 220 economists urged withdrawal before a phase-out triggers claims.

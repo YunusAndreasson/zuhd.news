@@ -29,4 +29,8 @@ concepts:
 entities: []
 ---
 
-Naypyidaw — [Myanmar](country:MM) cut Suu Kyi's prison term to roughly 18 years. The junta reduced all sentences as Myanmar prepares elections; she was transferred from prison to house arrest. Her son says no one has contacted him; more than 30,000 political prisoners hold no equivalent amnesty.
+Naypyidaw — [Myanmar](country:MM) cut Suu Kyi's prison term to roughly 18 years.
+
+The junta reduced all sentences as Myanmar prepares elections; she was transferred from prison to house arrest.
+
+Her son says no one has contacted him; more than 30,000 political prisoners hold no equivalent amnesty.

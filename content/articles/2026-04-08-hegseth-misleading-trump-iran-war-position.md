@@ -17,4 +17,6 @@ concepts:
   - "The Washington Post"
 ---
 
-Washington — Hegseth told Trump Iran had "no air defenses." An official confirmed Hegseth's claims contradict Pentagon assessments: over half of Iran's missiles remain intact. Trump has repeated those claims publicly; the downed F-15, whose crew was stranded in Iran, exposed the gap.
+Washington — Hegseth told Trump Iran had "no air defenses." An official confirmed Hegseth's claims contradict Pentagon assessments: over half of Iran's missiles remain intact.
+
+Trump has repeated those claims publicly; the downed F-15, whose crew was stranded in Iran, exposed the gap.

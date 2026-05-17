@@ -24,4 +24,8 @@ concepts:
 sentimentDivergence: 0.16
 ---
 
-London — UK banned crypto donations targeting Reform UK's £12M windfall. The Rycroft review found cryptocurrency's anonymity allows foreign donors to evade electoral controls; a former Reform politician was sentenced to 10.5 years for taking Russian bribes as a member of the European Parliament. Reform MPs walked out during the announcement; the legislation gives parties 30 days to return any crypto donations already received.
+London — UK banned crypto donations targeting Reform UK's £12M windfall.
+
+The Rycroft review found cryptocurrency's anonymity allows foreign donors to evade electoral controls; a former Reform politician was sentenced to 10.5 years for taking Russian bribes as a member of the European Parliament.
+
+Reform MPs walked out during the announcement; the legislation gives parties 30 days to return any crypto donations already received.

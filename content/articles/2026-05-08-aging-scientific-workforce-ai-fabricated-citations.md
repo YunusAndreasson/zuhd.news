@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Boston — 4,000 fabricated citations found in 2,800 medical papers. AI-generated references pass peer review undetected; the rate reached 1 in 277 papers by early 2026. Most flagging still falls to volunteer librarians rather than journal editors.
+Boston — 4,000 fabricated citations found in 2,800 medical papers.
+
+AI-generated references pass peer review undetected; the rate reached 1 in 277 papers by early 2026.
+
+Most flagging still falls to volunteer librarians rather than journal editors.

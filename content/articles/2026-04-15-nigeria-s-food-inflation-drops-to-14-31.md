@@ -16,4 +16,8 @@ concepts:
 entities: []
 ---
 
-Abuja — Nigeria's food inflation fell to 14.31% in March. The annual rate halved from 25.22%, but food still costs 4.17% more than last month. The National Bureau of Statistics says "price stability has yet to set in" as short-term volatility continues.
+Abuja — Nigeria's food inflation fell to 14.31% in March.
+
+The annual rate halved from 25.22%, but food still costs 4.17% more than last month.
+
+The National Bureau of Statistics says "price stability has yet to set in" as short-term volatility continues.

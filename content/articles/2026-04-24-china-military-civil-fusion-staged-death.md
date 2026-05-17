@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Beijing — [China](country:CN) dropped "military-civil fusion" from official vocabulary. The label triggered [US](country:US) export controls, so Beijing relabeled the strategy — a technique that neutralizes sanctions regimes without altering the programs they target. The US has not announced criteria that would catch the strategy regardless of what China calls it.
+Beijing — [China](country:CN) dropped "military-civil fusion" from official vocabulary.
+
+The label triggered [US](country:US) export controls, so Beijing relabeled the strategy — a technique that neutralizes sanctions regimes without altering the programs they target.
+
+The US has not announced criteria that would catch the strategy regardless of what China calls it.

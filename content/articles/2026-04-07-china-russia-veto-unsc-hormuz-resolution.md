@@ -38,4 +38,8 @@ concepts:
 sentimentDivergence: 0.61
 ---
 
-New York — Russia and China vetoed the UNSC Hormuz resolution Tuesday. Bahrain's draft authorized naval escorts to protect commercial shipping, which Moscow and Beijing said would legitimize further US-Israeli force. Both tabled a rival ceasefire draft as Trump's 8 p.m. deadline had expired hours earlier.
+New York — Russia and China vetoed the UNSC Hormuz resolution Tuesday.
+
+Bahrain's draft authorized naval escorts to protect commercial shipping, which Moscow and Beijing said would legitimize further US-Israeli force.
+
+Both tabled a rival ceasefire draft as Trump's 8 p.m. deadline had expired hours earlier.

@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Cairo — Giza court fined Al-Bawaba publisher over LE3 million. The Labor Ministry sued after former MP Abdel Rahim Ali's newspaper paid journalists LE1,000 monthly and negotiations failed. A Cairo court dismissed Ali's slander suit against syndicate members the same day.
+Cairo — Giza court fined Al-Bawaba publisher over LE3 million.
+
+The Labor Ministry sued after former MP Abdel Rahim Ali's newspaper paid journalists LE1,000 monthly and negotiations failed.
+
+A Cairo court dismissed Ali's slander suit against syndicate members the same day.

@@ -19,4 +19,8 @@ concepts:
 sentimentDivergence: 0.13
 ---
 
-Houston — Artemis II crosses within Moon's gravity Sunday. Koch and Hansen become the first woman and first non-American near the Moon, flying within 4,000 miles on April 6. The flyby sets a distance record; Artemis III's planned landing faces a 23% NASA budget cut.
+Houston — Artemis II crosses within Moon's gravity Sunday.
+
+Koch and Hansen become the first woman and first non-American near the Moon, flying within 4,000 miles on April 6.
+
+The flyby sets a distance record; Artemis III's planned landing faces a 23% NASA budget cut.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Abuja — 190 [Nigerians](country:NG) died of Lassa fever in 2026 as the fatality rate reached 25.2%, up from 19.1% last year. Nigeria's disease-control agency tied the rise to delayed hospital presentation; ribavirin is effective when given early. 84% of cases concentrate in 5 states; the agency said earlier referrals are the primary lever.
+Abuja — 190 [Nigerians](country:NG) died of Lassa fever in 2026 as the fatality rate reached 25.2%, up from 19.1% last year.
+
+Nigeria's disease-control agency tied the rise to delayed hospital presentation; ribavirin is effective when given early.
+
+84% of cases concentrate in 5 states; the agency said earlier referrals are the primary lever.

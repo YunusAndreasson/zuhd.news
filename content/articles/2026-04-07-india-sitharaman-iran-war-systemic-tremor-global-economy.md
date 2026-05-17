@@ -17,4 +17,8 @@ concepts:
   - "Nirmala Sitharaman"
 ---
 
-New Delhi — Sitharaman: US-Iran war is now systemic. India's finance minister warned the conflict threatens global energy arteries and has replaced isolated economic shocks with permanent market volatility. India holds $688 billion in reserves, but Hormuz closure directly threatens its primary oil import route.
+New Delhi — Sitharaman: US-Iran war is now systemic.
+
+India's finance minister warned the conflict threatens global energy arteries and has replaced isolated economic shocks with permanent market volatility.
+
+India holds $688 billion in reserves, but Hormuz closure directly threatens its primary oil import route.

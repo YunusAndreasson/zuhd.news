@@ -40,4 +40,8 @@ sentimentDivergence: 0.25
 entities: []
 ---
 
-Rome — Trump called Pope Leo XIV "terrible" and threatened to pull [US](country:US) troops from [Italy](country:IT) after Rome denied Sicily as a weapons staging base for the Iran war. Secretary of State Marco Rubio visits May 7-8, meeting Vatican Cardinal Pietro Parolin and Italian Foreign Minister Antonio Tajani. A meeting with Meloni is requested but unconfirmed.
+Rome — Trump called Pope Leo XIV "terrible" and threatened to pull [US](country:US) troops from [Italy](country:IT) after Rome denied Sicily as a weapons staging base for the Iran war.
+
+Secretary of State Marco Rubio visits May 7-8, meeting Vatican Cardinal Pietro Parolin and Italian Foreign Minister Antonio Tajani.
+
+A meeting with Meloni is requested but unconfirmed.

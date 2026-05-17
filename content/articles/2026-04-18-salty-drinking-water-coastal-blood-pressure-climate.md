@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Dhaka — Dissolved sodium in coastal tap water raises blood pressure independently of dietary salt, new research finds. The study links saline groundwater — worsened by rising seas — to elevated hypertension rates in coastal communities. Researchers say current hypertension guidelines do not account for tap water sodium as a distinct cardiovascular risk.
+Dhaka — Dissolved sodium in coastal tap water raises blood pressure independently of dietary salt, new research finds.
+
+The study links saline groundwater — worsened by rising seas — to elevated hypertension rates in coastal communities.
+
+Researchers say current hypertension guidelines do not account for tap water sodium as a distinct cardiovascular risk.

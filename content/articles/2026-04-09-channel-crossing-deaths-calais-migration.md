@@ -19,4 +19,8 @@ concepts:
   - "Human migration"
 ---
 
-Calais — 4 drowned wading into the Channel near Calais. They were trying to board an offshore dinghy — a tactic trafficking networks use to evade coastal police patrols. 38 others were rescued; the boat continued toward Britain; the Boulogne prosecutor opened a criminal investigation.
+Calais — 4 drowned wading into the Channel near Calais.
+
+They were trying to board an offshore dinghy — a tactic trafficking networks use to evade coastal police patrols.
+
+38 others were rescued; the boat continued toward Britain; the Boulogne prosecutor opened a criminal investigation.

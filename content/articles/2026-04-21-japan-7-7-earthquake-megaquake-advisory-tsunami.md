@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Hokkaido — 7.7 quake off northern [Japan](country:JP) triggers rare megaquake advisory. Japan issues megaquake advisories when a large foreshock raises the statistical probability of an M8+ follow-on event in nearby fault zones. The tsunami alert was short-lived; the megaquake risk window has no specified end date.
+Hokkaido — 7.7 quake off northern [Japan](country:JP) triggers rare megaquake advisory.
+
+Japan issues megaquake advisories when a large foreshock raises the statistical probability of an M8+ follow-on event in nearby fault zones.
+
+The tsunami alert was short-lived; the megaquake risk window has no specified end date.

@@ -17,4 +17,8 @@ concepts:
   - "Infrastructure"
 ---
 
-Karachi — A court ruled 20 years after a fatal electrocution. K-Electric must pay Rs50.6 million to heirs of 2 men killed when a snapped wire electrified floodwater in their DHA neighbourhood in August 2006. The court directed NEPRA and the Power Ministry to audit KE's wire infrastructure — 20 years of monsoon seasons passed since the 2006 deaths without one.
+Karachi — A court ruled 20 years after a fatal electrocution.
+
+K-Electric must pay Rs50.6 million to heirs of 2 men killed when a snapped wire electrified floodwater in their DHA neighbourhood in August 2006.
+
+The court directed NEPRA and the Power Ministry to audit KE's wire infrastructure — 20 years of monsoon seasons passed since the 2006 deaths without one.

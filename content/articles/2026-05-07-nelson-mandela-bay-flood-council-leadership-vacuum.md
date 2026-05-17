@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Gqeberha — Flood responders ran out of fuel mid-disaster. [South Africa](country:ZA)'s metro law requires an appointed city manager to authorise contracts; Nelson Mandela Bay has had no lawful appointee since March. Civil society has called for provincial intervention; 2 provincial ministers will visit to assess damage and unlock emergency funding.
+Gqeberha — Flood responders ran out of fuel mid-disaster.
+
+[South Africa](country:ZA)'s metro law requires an appointed city manager to authorise contracts; Nelson Mandela Bay has had no lawful appointee since March.
+
+Civil society has called for provincial intervention; 2 provincial ministers will visit to assess damage and unlock emergency funding.

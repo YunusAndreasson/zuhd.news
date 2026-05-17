@@ -16,4 +16,8 @@ concepts:
   - "SyntaqLite"
 ---
 
-San Francisco — One developer's 8-year idea shipped in 3 months. He used AI coding assistants to build SyntaqLite — a project he had designed mentally for 8 years but never started. Whether AI assistance produces lasting tools or collapses into prototype debt is the open question for solo developers.
+San Francisco — One developer's 8-year idea shipped in 3 months.
+
+He used AI coding assistants to build SyntaqLite — a project he had designed mentally for 8 years but never started.
+
+Whether AI assistance produces lasting tools or collapses into prototype debt is the open question for solo developers.

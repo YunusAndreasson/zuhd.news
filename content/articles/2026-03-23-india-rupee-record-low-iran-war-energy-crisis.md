@@ -21,4 +21,8 @@ concepts:
   - "Foreign exchange market"
 ---
 
-Mumbai — India's rupee hit a record 93.98 per dollar Monday. Oil prices surged 50% this month as the Iran war deepens, hitting India, which imports 85% of its oil. Bank of America raised its June forecast to 94 per dollar from 89, assuming weeks, not months, of conflict.
+Mumbai — India's rupee hit a record 93.98 per dollar Monday.
+
+Oil prices surged 50% this month as the Iran war deepens, hitting India, which imports 85% of its oil.
+
+Bank of America raised its June forecast to 94 per dollar from 89, assuming weeks, not months, of conflict.

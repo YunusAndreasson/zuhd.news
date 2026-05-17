@@ -36,4 +36,8 @@ sentimentDivergence: 0.09
 entities: []
 ---
 
-Bucharest — [Romania](country:RO)'s leu hit a record low. Social Democrats joined the far-right Alliance for Romanian Unity to remove PM Bolojan — whose austerity had cut the EU's largest deficit but cost the left votes. President Dan must nominate a new premier; elections are not due until 2028.
+Bucharest — [Romania](country:RO)'s leu hit a record low.
+
+Social Democrats joined the far-right Alliance for Romanian Unity to remove PM Bolojan — whose austerity had cut the EU's largest deficit but cost the left votes.
+
+President Dan must nominate a new premier; elections are not due until 2028.

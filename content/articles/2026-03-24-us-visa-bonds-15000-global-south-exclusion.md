@@ -25,4 +25,8 @@ concepts:
 sentimentDivergence: 0.29
 ---
 
-Washington — 50 countries must now post $15,000 to visit America. A bond of $5,000 to $15,000, refunded only if the traveler departs on time, imposes a financial threshold most citizens in the targeted countries cannot meet, without constituting a formal visa ban. Countries across Africa, Central Asia, and Southeast Asia join from April 2; no court has stayed the expansion.
+Washington — 50 countries must now post $15,000 to visit America.
+
+A bond of $5,000 to $15,000, refunded only if the traveler departs on time, imposes a financial threshold most citizens in the targeted countries cannot meet, without constituting a formal visa ban.
+
+Countries across Africa, Central Asia, and Southeast Asia join from April 2; no court has stayed the expansion.

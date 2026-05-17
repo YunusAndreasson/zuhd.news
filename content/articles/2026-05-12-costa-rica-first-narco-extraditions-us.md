@@ -16,4 +16,8 @@ concepts: []
 entities: []
 ---
 
-San José — [Costa Rica](country:CR)'s former security minister is among the first nationals extradited to the [US](country:US) on drug charges. Celso Gamboa allegedly sold fugitive intelligence to Colombian traffickers after organized crime infiltrated the judiciary. [Costa Rica](country:CR)'s most wanted, alias "Diablo," remains at large.
+San José — [Costa Rica](country:CR)'s former security minister is among the first nationals extradited to the [US](country:US) on drug charges.
+
+Celso Gamboa allegedly sold fugitive intelligence to Colombian traffickers after organized crime infiltrated the judiciary.
+
+[Costa Rica](country:CR)'s most wanted, alias "Diablo," remains at large.

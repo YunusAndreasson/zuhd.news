@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-São Paulo — Online raffles disguised $320M in drug proceeds, Brazilian authorities said. [Brazil](country:BR)'s First Capital Command recruited influencers to stage fake raffles and hide proceeds in sponsorship invoices. [Mexico](country:MX) and [Colombia](country:CO) have each opened parallel investigations into 64 influencers.
+São Paulo — Online raffles disguised $320M in drug proceeds, Brazilian authorities said.
+
+[Brazil](country:BR)'s First Capital Command recruited influencers to stage fake raffles and hide proceeds in sponsorship invoices.
+
+[Mexico](country:MX) and [Colombia](country:CO) have each opened parallel investigations into 64 influencers.

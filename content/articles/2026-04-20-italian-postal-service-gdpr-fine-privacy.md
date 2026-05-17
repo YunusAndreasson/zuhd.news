@@ -24,4 +24,8 @@ entities:
     kind: "stock"
 ---
 
-Rome — [Italy](country:IT)'s Garante fined Poste Italiane and Postepay €12.5M for data violations. The 2 state entities shared millions of customer records with insurers and financial sellers without lawful basis. Poste Italiane has not appealed; it is the largest privacy fine against a state-owned Italian operator.
+Rome — [Italy](country:IT)'s Garante fined Poste Italiane and Postepay €12.5M for data violations.
+
+The 2 state entities shared millions of customer records with insurers and financial sellers without lawful basis.
+
+Poste Italiane has not appealed; it is the largest privacy fine against a state-owned Italian operator.

@@ -16,4 +16,8 @@ concepts:
   - "Ridesharing company"
 ---
 
-Karachi — Petrol at Rs322 is erasing gig wages. Pakistan's Rs55 overnight hike, triggered by the Hormuz closure, halved monthly income for ride-hailing captains who averaged Rs3,500 daily take-home. The government weighs a capped motorcycle subsidy; another hike is due within days.
+Karachi — Petrol at Rs322 is erasing gig wages.
+
+Pakistan's Rs55 overnight hike, triggered by the Hormuz closure, halved monthly income for ride-hailing captains who averaged Rs3,500 daily take-home.
+
+The government weighs a capped motorcycle subsidy; another hike is due within days.

@@ -29,4 +29,8 @@ concepts:
 entities: []
 ---
 
-Gaza — $26.3bn needed within 18 months for recovery. The EU-UN-World Bank assessment documented 371,888 destroyed homes and an 84% economic contraction; total recovery needs $71.4bn over 10 years. Trump proposed clearing Gaza as a resort; the report requires Palestinian governance of the rebuild.
+Gaza — $26.3bn needed within 18 months for recovery.
+
+The EU-UN-World Bank assessment documented 371,888 destroyed homes and an 84% economic contraction; total recovery needs $71.4bn over 10 years.
+
+Trump proposed clearing Gaza as a resort; the report requires Palestinian governance of the rebuild.

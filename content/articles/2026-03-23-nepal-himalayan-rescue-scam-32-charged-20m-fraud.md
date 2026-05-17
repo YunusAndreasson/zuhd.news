@@ -16,4 +16,8 @@ concepts:
   - "Kathmandu District Court"
 ---
 
-Kathmandu — Himalayan guides fed tourists baking soda to fake illness. A criminal network of guides, hospitals, and helicopter operators siphoned $19.7 million from international travel insurers. With 23 suspects still at large, several major insurers including Travellers Assists have dropped Nepal coverage entirely.
+Kathmandu — Himalayan guides fed tourists baking soda to fake illness.
+
+A criminal network of guides, hospitals, and helicopter operators siphoned $19.7 million from international travel insurers.
+
+With 23 suspects still at large, several major insurers including Travellers Assists have dropped Nepal coverage entirely.

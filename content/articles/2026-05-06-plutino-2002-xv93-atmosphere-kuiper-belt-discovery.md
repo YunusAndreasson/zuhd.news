@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Honolulu — 2002 XV93 keeps an atmosphere no model predicted. Many larger Kuiper Belt dwarf planets cannot hold atmospheres; 2002 XV93 falls below the known volatile-retention threshold with no model explaining how. The finding reopens Pluto's classification debate; the US space agency's administrator is already pushing for its reinstatement.
+Honolulu — 2002 XV93 keeps an atmosphere no model predicted.
+
+Many larger Kuiper Belt dwarf planets cannot hold atmospheres; 2002 XV93 falls below the known volatile-retention threshold with no model explaining how.
+
+The finding reopens Pluto's classification debate; the US space agency's administrator is already pushing for its reinstatement.

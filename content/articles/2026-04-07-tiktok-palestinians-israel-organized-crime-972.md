@@ -11,4 +11,8 @@ sources:
     country: "IL"
 ---
 
-Nazareth — 100 million views amplify Palestinian crime inside Israel. Videos of luxury cars and gang threats spread far beyond the street; Israel under-polices Palestinian citizens while surveilling them politically. Neither TikTok nor Israeli police have acted; organized crime continues to fill the governance vacuum.
+Nazareth — 100 million views amplify Palestinian crime inside Israel.
+
+Videos of luxury cars and gang threats spread far beyond the street; Israel under-polices Palestinian citizens while surveilling them politically.
+
+Neither TikTok nor Israeli police have acted; organized crime continues to fill the governance vacuum.

@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-Sacramento — GM sold driver data to insurers. [US](country:US) state California fined GM $12 million for sharing braking and location data under the state's consumer privacy law. The state called it the first regulatory charge for automaker telematics data resale; no federal equivalent law exists.
+Sacramento — GM sold driver data to insurers.
+
+[US](country:US) state California fined GM $12 million for sharing braking and location data under the state's consumer privacy law.
+
+The state called it the first regulatory charge for automaker telematics data resale; no federal equivalent law exists.

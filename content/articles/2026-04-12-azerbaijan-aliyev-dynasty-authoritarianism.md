@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Baku — Ilham Aliyev's Iftars are now state spectacle. Since 2020, state media replaced policy coverage with family mosque visits; his wife holds the vice presidency. His son appeared at Davos in January, positioning him as heir without a formal succession announcement.
+Baku — Ilham Aliyev's Iftars are now state spectacle.
+
+Since 2020, state media replaced policy coverage with family mosque visits; his wife holds the vice presidency.
+
+His son appeared at Davos in January, positioning him as heir without a formal succession announcement.

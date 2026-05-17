@@ -17,4 +17,8 @@ concepts:
   - "Energy policy"
 ---
 
-Seoul — Public parking lots must now install solar canopies. Covered parking generates power without consuming land; South Korea is turning dead asphalt into distributed generation capacity. At $120/barrel oil, deploying renewables on existing infrastructure cuts payback time against new power plants.
+Seoul — Public parking lots must now install solar canopies.
+
+Covered parking generates power without consuming land; South Korea is turning dead asphalt into distributed generation capacity.
+
+At $120/barrel oil, deploying renewables on existing infrastructure cuts payback time against new power plants.

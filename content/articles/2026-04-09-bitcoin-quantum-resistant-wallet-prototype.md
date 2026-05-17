@@ -17,4 +17,8 @@ concepts:
   - "Chief technology officer"
 ---
 
-San Francisco — Billions in Bitcoin have no quantum defense. Lightning Labs CTO Olaoluwa Osuntokun built a prototype rescue tool that proves wallet ownership without the digital signature scheme a quantum computer could forge or disable. No formal proposal exists; developers assign 28% odds that a quantum-resistant upgrade ships by 2027.
+San Francisco — Billions in Bitcoin have no quantum defense.
+
+Lightning Labs CTO Olaoluwa Osuntokun built a prototype rescue tool that proves wallet ownership without the digital signature scheme a quantum computer could forge or disable.
+
+No formal proposal exists; developers assign 28% odds that a quantum-resistant upgrade ships by 2027.

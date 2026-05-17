@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.56
 ---
 
-Tehran — Israel killed Iran's 3rd consecutive IRGC intelligence chief. He replaced a predecessor Israel also killed and was US-sanctioned for suppressing Iran's protests. Israel's defense minister pledged to pursue remaining Guards leadership; Iran has replaced each killed official within weeks.
+Tehran — Israel killed Iran's 3rd consecutive IRGC intelligence chief.
+
+He replaced a predecessor Israel also killed and was US-sanctioned for suppressing Iran's protests.
+
+Israel's defense minister pledged to pursue remaining Guards leadership; Iran has replaced each killed official within weeks.

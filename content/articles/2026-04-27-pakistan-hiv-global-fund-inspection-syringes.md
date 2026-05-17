@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — 300 Taunsa children contracted HIV from reused syringes. [Pakistan](country:PK) logged 618 new HIV cases in Islamabad between January 2025 and March 2026, attributed to syringe reuse and inadequate blood screening. The Global Fund — Pakistan's main HIV donor — is expected to inspect in May.
+Islamabad — 300 Taunsa children contracted HIV from reused syringes.
+
+[Pakistan](country:PK) logged 618 new HIV cases in Islamabad between January 2025 and March 2026, attributed to syringe reuse and inadequate blood screening.
+
+The Global Fund — Pakistan's main HIV donor — is expected to inspect in May.

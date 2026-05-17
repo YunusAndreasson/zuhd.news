@@ -17,4 +17,8 @@ concepts:
   - "Iran war"
 ---
 
-Doha — Qatar is propping up its own banks. The Qatar Investment Authority intervened as the Iran war froze regional trade flows, cutting export revenues and straining bank liquidity. Qatar's banks remain exposed to Hormuz-linked trade disruption; the intervention's scale has not been disclosed.
+Doha — Qatar is propping up its own banks.
+
+The Qatar Investment Authority intervened as the Iran war froze regional trade flows, cutting export revenues and straining bank liquidity.
+
+Qatar's banks remain exposed to Hormuz-linked trade disruption; the intervention's scale has not been disclosed.

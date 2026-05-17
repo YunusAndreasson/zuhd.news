@@ -16,4 +16,8 @@ concepts:
   - "West Bank"
 ---
 
-Humsa — Israeli settlers sexually assaulted a Palestinian herder in Humsa. Rights groups document a wave of similar attacks across the occupied Jordan Valley this spring, targeting herding communities whose land settlers are moving to claim. The Israeli military governs Area C, where Humsa sits; settler prosecutions for such violence are rare, and rights groups say the impunity drives further displacement.
+Humsa — Israeli settlers sexually assaulted a Palestinian herder in Humsa.
+
+Rights groups document a wave of similar attacks across the occupied Jordan Valley this spring, targeting herding communities whose land settlers are moving to claim.
+
+The Israeli military governs Area C, where Humsa sits; settler prosecutions for such violence are rare, and rights groups say the impunity drives further displacement.

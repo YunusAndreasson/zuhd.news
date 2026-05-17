@@ -17,4 +17,8 @@ concepts:
   - "Infrastructure"
 ---
 
-Tehran — US strikes killed 8 at Iran's Karaj Bridge. A second strike hit rescue workers as civilians gathered for Nature Day. IRGC claimed strikes on Amazon and Oracle Gulf data centers serving millions in South Asia; neither confirmed.
+Tehran — US strikes killed 8 at Iran's Karaj Bridge.
+
+A second strike hit rescue workers as civilians gathered for Nature Day.
+
+IRGC claimed strikes on Amazon and Oracle Gulf data centers serving millions in South Asia; neither confirmed.

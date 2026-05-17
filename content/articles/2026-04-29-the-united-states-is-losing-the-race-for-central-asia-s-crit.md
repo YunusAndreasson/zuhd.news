@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Astana — [China](country:CN) has secured Central Asian critical mineral supply chains while the [US](country:US) lags. Beijing built rail and processing links to route Kazakh and Uzbek lithium, uranium and rare earths eastward; the US has produced no binding offtake agreements. Analysts warn the entry window is narrowing as long-term contracts lock in routes.
+Astana — [China](country:CN) has secured Central Asian critical mineral supply chains while the [US](country:US) lags.
+
+Beijing built rail and processing links to route Kazakh and Uzbek lithium, uranium and rare earths eastward; the US has produced no binding offtake agreements.
+
+Analysts warn the entry window is narrowing as long-term contracts lock in routes.

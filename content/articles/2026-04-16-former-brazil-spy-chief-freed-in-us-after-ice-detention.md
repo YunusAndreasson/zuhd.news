@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Washington — Brazil's coup convict walked free in the US. Ramagem, ex-spy chief convicted with Bolsonaro for plotting a coup, was detained by ICE Monday and freed within 48 hours. ICE gave no reason for the release; his immigration status in the US remains undisclosed.
+Washington — Brazil's coup convict walked free in the US.
+
+Ramagem, ex-spy chief convicted with Bolsonaro for plotting a coup, was detained by ICE Monday and freed within 48 hours.
+
+ICE gave no reason for the release; his immigration status in the US remains undisclosed.

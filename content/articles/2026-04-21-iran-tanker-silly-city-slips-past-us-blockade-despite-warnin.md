@@ -19,4 +19,8 @@ concepts:
 eventCoverage: 32
 ---
 
-Strait of Hormuz — [Iran](country:IR)'s Silly City ran the [US](country:US) naval blockade. Iran's navy escorted it through the Arabian Sea; shipping intelligence service Lloyd's List reports over 20 shadow vessels have passed the blockade. The ceasefire expires Wednesday; Trump warned that without a deal, "lots of bombs start going off."
+Strait of Hormuz — [Iran](country:IR)'s Silly City ran the [US](country:US) naval blockade.
+
+Iran's navy escorted it through the Arabian Sea; shipping intelligence service Lloyd's List reports over 20 shadow vessels have passed the blockade.
+
+The ceasefire expires Wednesday; Trump warned that without a deal, "lots of bombs start going off."

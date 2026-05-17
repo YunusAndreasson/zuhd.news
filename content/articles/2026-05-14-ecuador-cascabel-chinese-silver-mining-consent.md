@@ -15,4 +15,8 @@ entities:
     kind: "commodity"
 ---
 
-Ibarra — Jiangxi Copper bought [Ecuador](country:EC)'s Cascabel mine for $1.2 billion. [China](country:CN)'s largest copper producer completed the deal in March; the government says Cascabel could be the world's largest underground silver mine. 300 residents must be relocated before construction, but environmental licensing and community consent remain unresolved.
+Ibarra — Jiangxi Copper bought [Ecuador](country:EC)'s Cascabel mine for $1.2 billion.
+
+[China](country:CN)'s largest copper producer completed the deal in March; the government says Cascabel could be the world's largest underground silver mine.
+
+300 residents must be relocated before construction, but environmental licensing and community consent remain unresolved.

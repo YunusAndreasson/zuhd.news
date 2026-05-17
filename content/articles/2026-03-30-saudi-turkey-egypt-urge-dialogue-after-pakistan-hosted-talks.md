@@ -24,4 +24,8 @@ eventCoverage: 45
 sentimentDivergence: 0.36
 ---
 
-Islamabad — 4 states met to broker US-Iran talks; neither Washington nor Tehran attended. Saudi Arabia, Turkey, Egypt, and Pakistan issued a joint call for negotiations and a ceasefire; Pakistani FM Dar heads to Beijing for follow-up. Washington and Tehran have not confirmed direct talks.
+Islamabad — 4 states met to broker US-Iran talks; neither Washington nor Tehran attended.
+
+Saudi Arabia, Turkey, Egypt, and Pakistan issued a joint call for negotiations and a ceasefire; Pakistani FM Dar heads to Beijing for follow-up.
+
+Washington and Tehran have not confirmed direct talks.

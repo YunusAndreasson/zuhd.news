@@ -17,4 +17,8 @@ concepts:
   - "Effect size"
 ---
 
-London — Blood DNA predicts psychiatric risk before symptoms appear. 18 methylation clusters in 506 adolescents correlate with brain shrinkage and depression — the same patterns recur in Alzheimer's and Parkinson's cohorts. The atlas predicts who will develop these conditions — whether early treatment can prevent them remains unknown.
+London — Blood DNA predicts psychiatric risk before symptoms appear.
+
+18 methylation clusters in 506 adolescents correlate with brain shrinkage and depression — the same patterns recur in Alzheimer's and Parkinson's cohorts.
+
+The atlas predicts who will develop these conditions — whether early treatment can prevent them remains unknown.

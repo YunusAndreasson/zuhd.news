@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-Manama — [Iran](country:IR) struck 3 Amazon cloud facilities across the Gulf in March. Amazon says restoration will take months; Beirut-based Social Media Exchange argues the attacks created the first humanitarian-law precedent for kinetic cloud strikes. Iran's Tasnim agency listed 30 US tech sites — Google, Microsoft, Palantir — as targets.
+Manama — [Iran](country:IR) struck 3 Amazon cloud facilities across the Gulf in March.
+
+Amazon says restoration will take months; Beirut-based Social Media Exchange argues the attacks created the first humanitarian-law precedent for kinetic cloud strikes.
+
+Iran's Tasnim agency listed 30 US tech sites — Google, Microsoft, Palantir — as targets.

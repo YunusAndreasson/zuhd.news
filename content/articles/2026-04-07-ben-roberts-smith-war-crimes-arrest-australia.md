@@ -17,4 +17,8 @@ concepts:
   - "Sydney Airport"
 ---
 
-Sydney — Australia arrested its most-decorated living soldier. Ben Roberts-Smith won the Victoria Cross, then sued journalists who reported his killings of unarmed Afghans — and lost on appeal in 2023. He faces 5 war crimes murder charges; Australia's war crimes inquiry spans dozens of other soldiers.
+Sydney — Australia arrested its most-decorated living soldier.
+
+Ben Roberts-Smith won the Victoria Cross, then sued journalists who reported his killings of unarmed Afghans — and lost on appeal in 2023.
+
+He faces 5 war crimes murder charges; Australia's war crimes inquiry spans dozens of other soldiers.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — PL-15 missiles saw first-ever combat last May. [Pakistan](country:PK) used J-10C jets, PL-15s, and [China](country:CN) drones to down at least 6 Rafales in 4 days, military sources said. The all-Chinese air-combat stack now defines Pakistan's procurement baseline, military sources said; no Western re-equipment is planned.
+Islamabad — PL-15 missiles saw first-ever combat last May.
+
+[Pakistan](country:PK) used J-10C jets, PL-15s, and [China](country:CN) drones to down at least 6 Rafales in 4 days, military sources said.
+
+The all-Chinese air-combat stack now defines Pakistan's procurement baseline, military sources said; no Western re-equipment is planned.

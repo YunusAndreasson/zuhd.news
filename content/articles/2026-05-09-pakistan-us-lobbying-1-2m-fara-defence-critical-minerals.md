@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Washington — Critical minerals headline [Pakistan](country:PK)'s new Washington mandate. Ervin Graves Strategy Group registered under FARA on May 1 to lobby Congress and the executive branch for $50,000 a month, covering defence, minerals, and economic diplomacy. Pakistan competes with [India](country:IN)'s dominant Washington network; both expanded lobbying after the Pahalgam attack last year.
+Washington — Critical minerals headline [Pakistan](country:PK)'s new Washington mandate.
+
+Ervin Graves Strategy Group registered under FARA on May 1 to lobby Congress and the executive branch for $50,000 a month, covering defence, minerals, and economic diplomacy.
+
+Pakistan competes with [India](country:IN)'s dominant Washington network; both expanded lobbying after the Pahalgam attack last year.

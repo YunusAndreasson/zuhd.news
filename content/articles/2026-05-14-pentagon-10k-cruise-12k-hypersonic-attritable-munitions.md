@@ -18,4 +18,8 @@ entities:
     kind: "stock"
 ---
 
-Washington — Pentagon ordered 10,000 cruise missiles and 12,000 hypersonic munitions. The [US](country:US) Department of War contracted Anduril, Leidos, and Castelion for delivery by 2029, replacing standoff stocks depleted by the Iran-war campaign. Whether existing factory capacity can sustain that production rate by the 2029 deadline remains unresolved.
+Washington — Pentagon ordered 10,000 cruise missiles and 12,000 hypersonic munitions.
+
+The [US](country:US) Department of War contracted Anduril, Leidos, and Castelion for delivery by 2029, replacing standoff stocks depleted by the Iran-war campaign.
+
+Whether existing factory capacity can sustain that production rate by the 2029 deadline remains unresolved.

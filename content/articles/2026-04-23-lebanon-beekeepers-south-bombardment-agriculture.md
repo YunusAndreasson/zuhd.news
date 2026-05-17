@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-South Lebanon — 8 of 120 ByBee hives survived Israeli strikes. Pollinator loss degrades the 2026 Litani basin citrus and olive harvest — damage that outlasts bombing and stays uncounted. [Lebanon](country:LB)'s bee population fell 60% over 2 decades from pesticides; war damage takes years to recover.
+South Lebanon — 8 of 120 ByBee hives survived Israeli strikes.
+
+Pollinator loss degrades the 2026 Litani basin citrus and olive harvest — damage that outlasts bombing and stays uncounted.
+
+[Lebanon](country:LB)'s bee population fell 60% over 2 decades from pesticides; war damage takes years to recover.

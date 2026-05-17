@@ -32,4 +32,8 @@ sentimentDivergence: 0.11
 entities: []
 ---
 
-Chennai — Stalin lost the seat he held since 2011. Actor Vijay's Tamilaga Vettri Kazhagam leads 106 of [India](country:IN)'s Tamil Nadu's 234 seats, ahead of both parties but 12 short of majority. Vijay pledged no alliances before the vote; a hung house means Congress now holds the deciding hand.
+Chennai — Stalin lost the seat he held since 2011.
+
+Actor Vijay's Tamilaga Vettri Kazhagam leads 106 of [India](country:IN)'s Tamil Nadu's 234 seats, ahead of both parties but 12 short of majority.
+
+Vijay pledged no alliances before the vote; a hung house means Congress now holds the deciding hand.

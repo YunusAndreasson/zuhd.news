@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Johannesburg — Testimony blames a turf war for apartheid impunity. [South Africa](country:ZA)'s rival investigation units fought over jurisdiction in 2003, stalling murder prosecutions — not missing evidence, testimony shows. A judicial inquiry is probing whether political interference deepened the stall.
+Johannesburg — Testimony blames a turf war for apartheid impunity.
+
+[South Africa](country:ZA)'s rival investigation units fought over jurisdiction in 2003, stalling murder prosecutions — not missing evidence, testimony shows.
+
+A judicial inquiry is probing whether political interference deepened the stall.

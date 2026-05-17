@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Geneva — El Niño may arrive by May, WMO warns. WMO: rapidly rising equatorial Pacific temperatures signal El Niño that will cut monsoon rainfall across South Asia and the Sahel. [India](country:IN) and [Pakistan](country:PK) open kharif planting in June; Sahel harvests typically collapse during El Niño years.
+Geneva — El Niño may arrive by May, WMO warns.
+
+WMO: rapidly rising equatorial Pacific temperatures signal El Niño that will cut monsoon rainfall across South Asia and the Sahel.
+
+[India](country:IN) and [Pakistan](country:PK) open kharif planting in June; Sahel harvests typically collapse during El Niño years.

@@ -17,4 +17,8 @@ concepts:
   - "Advertising"
 ---
 
-Bentonville — New Vizio TVs won't activate without a Walmart account. Walmart bought Vizio for $2.3 billion in December 2024; the account requirement funnels TV owners into its $6.4 billion ad-targeting platform. Walmart hasn't confirmed which models are affected or whether existing devices face a mandatory firmware update.
+Bentonville — New Vizio TVs won't activate without a Walmart account.
+
+Walmart bought Vizio for $2.3 billion in December 2024; the account requirement funnels TV owners into its $6.4 billion ad-targeting platform.
+
+Walmart hasn't confirmed which models are affected or whether existing devices face a mandatory firmware update.

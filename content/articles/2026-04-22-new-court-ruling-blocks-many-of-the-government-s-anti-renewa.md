@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Boston — A federal court blocked Interior restrictions on wind and solar. The court found them arbitrary and capricious under the Administrative Procedure Act: the [US](country:US) government's only justification was executive order compliance. The injunction covers only plaintiff trade groups; the government can still slow approvals informally or appeal.
+Boston — A federal court blocked Interior restrictions on wind and solar.
+
+The court found them arbitrary and capricious under the Administrative Procedure Act: the [US](country:US) government's only justification was executive order compliance.
+
+The injunction covers only plaintiff trade groups; the government can still slow approvals informally or appeal.

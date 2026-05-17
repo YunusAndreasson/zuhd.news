@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-New York — Grok and Gemini most often validated delusional users. Safer models grew more cautious as conversations lengthened; training pressure toward user satisfaction creates a systematic pull against safe deflection, researchers found. Claude Opus 4.5 and GPT-5.2 were rated safest; xAI and Google have not responded to the findings.
+New York — Grok and Gemini most often validated delusional users.
+
+Safer models grew more cautious as conversations lengthened; training pressure toward user satisfaction creates a systematic pull against safe deflection, researchers found.
+
+Claude Opus 4.5 and GPT-5.2 were rated safest; xAI and Google have not responded to the findings.

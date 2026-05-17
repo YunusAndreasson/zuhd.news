@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Ypsilanti Township voted a 365-day water moratorium on hyperscale datacenters. Trustees blocked the Los Alamos facility, priced at $1.2bn and projected to draw 500,000 gallons daily. The township attorney called the site a "high-value target"; no legal challenge has been filed.
+Ypsilanti Township voted a 365-day water moratorium on hyperscale datacenters.
+
+Trustees blocked the Los Alamos facility, priced at $1.2bn and projected to draw 500,000 gallons daily.
+
+The township attorney called the site a "high-value target"; no legal challenge has been filed.

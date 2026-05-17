@@ -17,4 +17,8 @@ concepts:
   - "Iran"
 ---
 
-Washington — Trump called Pope Leo XIV "WEAK on Crime" Sunday. Leo had called Trump's threat to destroy Iranian civilization "truly unacceptable" and urged 1.4 billion Catholics to pressure lawmakers against the war. No Vatican response came; American Catholic legislators aligned with Trump face direct papal pressure to oppose the war.
+Washington — Trump called Pope Leo XIV "WEAK on Crime" Sunday.
+
+Leo had called Trump's threat to destroy Iranian civilization "truly unacceptable" and urged 1.4 billion Catholics to pressure lawmakers against the war.
+
+No Vatican response came; American Catholic legislators aligned with Trump face direct papal pressure to oppose the war.

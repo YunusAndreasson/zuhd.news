@@ -28,4 +28,8 @@ eventCoverage: 17
 sentimentDivergence: 0.09
 ---
 
-Washington — Trump exits Iran in 3 weeks. He told allies the US won't reopen Hormuz and said Iran needs no deal to end the war. Iran's Revolutionary Guards threatened 18 US tech firms ahead of Trump's Wednesday address to the nation.
+Washington — Trump exits Iran in 3 weeks.
+
+He told allies the US won't reopen Hormuz and said Iran needs no deal to end the war.
+
+Iran's Revolutionary Guards threatened 18 US tech firms ahead of Trump's Wednesday address to the nation.

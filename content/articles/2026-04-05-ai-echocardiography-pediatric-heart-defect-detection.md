@@ -16,4 +16,8 @@ concepts:
   - "Pediatrics"
 ---
 
-Seoul — AI detected pediatric heart defects at 97% accuracy. Trained on 174 echocardiograms at Seoul Asan Medical Center, the model reads live video to identify Tetralogy of Fallot's 4 anatomical features. Tetralogy of Fallot affects 1 in 2,500 births; late detection in low-income settings is common and often fatal.
+Seoul — AI detected pediatric heart defects at 97% accuracy.
+
+Trained on 174 echocardiograms at Seoul Asan Medical Center, the model reads live video to identify Tetralogy of Fallot's 4 anatomical features.
+
+Tetralogy of Fallot affects 1 in 2,500 births; late detection in low-income settings is common and often fatal.

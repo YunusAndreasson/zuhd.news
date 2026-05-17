@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Washington — Iran's retaliation cyber campaign runs quiet, officials say. [US](country:US) officials assess [Iran](country:IR)'s retaliation as persistent webshell intrusions into utilities and hospitals — where dwell time is the attack, not spectacle. The high-visibility breach defenders are bracing for is not the campaign underway.
+Washington — Iran's retaliation cyber campaign runs quiet, officials say.
+
+[US](country:US) officials assess [Iran](country:IR)'s retaliation as persistent webshell intrusions into utilities and hospitals — where dwell time is the attack, not spectacle.
+
+The high-visibility breach defenders are bracing for is not the campaign underway.

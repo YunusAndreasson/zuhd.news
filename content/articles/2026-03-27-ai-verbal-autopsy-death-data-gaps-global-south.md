@@ -11,4 +11,8 @@ sources:
     country: "GB"
 ---
 
-Geneva — Billions die with no official cause of death. Researchers built an AI that classifies deaths from verbal autopsy interviews — family accounts of symptoms that WHO designed as a post-mortem substitute. Without cause-of-death data, disease prevention is impossible — the tool targets the Global South, where most deaths go uncertified.
+Geneva — Billions die with no official cause of death.
+
+Researchers built an AI that classifies deaths from verbal autopsy interviews — family accounts of symptoms that WHO designed as a post-mortem substitute.
+
+Without cause-of-death data, disease prevention is impossible — the tool targets the Global South, where most deaths go uncertified.

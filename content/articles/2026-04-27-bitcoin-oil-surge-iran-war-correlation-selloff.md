@@ -26,4 +26,8 @@ entities:
     kind: "crypto"
 ---
 
-Chicago — Bitcoin reversed from $79,500 to below $78,000. Brent crude hit $107 — its highest since the [US](country:US)–[Iran](country:IR) ceasefire — driving Chicago Mercantile Exchange bitcoin futures lower at 23:00 UTC; spot followed by 05:30. Ether fell 2.2% against bitcoin's 1.1%; both tracked oil downward on Iran war news, not diverging from it.
+Chicago — Bitcoin reversed from $79,500 to below $78,000.
+
+Brent crude hit $107 — its highest since the [US](country:US)–[Iran](country:IR) ceasefire — driving Chicago Mercantile Exchange bitcoin futures lower at 23:00 UTC; spot followed by 05:30.
+
+Ether fell 2.2% against bitcoin's 1.1%; both tracked oil downward on Iran war news, not diverging from it.

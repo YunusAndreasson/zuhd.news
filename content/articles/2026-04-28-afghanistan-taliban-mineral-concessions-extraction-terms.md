@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-[Afghanistan](country:AF) granted lithium and rare-earth concessions to Chinese, Iranian, and Turkish operators on raw-extraction terms — no processing requirements, minimal royalties. The Taliban holds an estimated $1 trillion in reserves but sanctions leave it no leverage to demand better terms. Contract details have not been publicly disclosed.
+[Afghanistan](country:AF) granted lithium and rare-earth concessions to Chinese, Iranian, and Turkish operators on raw-extraction terms — no processing requirements, minimal royalties.
+
+The Taliban holds an estimated $1 trillion in reserves but sanctions leave it no leverage to demand better terms.
+
+Contract details have not been publicly disclosed.

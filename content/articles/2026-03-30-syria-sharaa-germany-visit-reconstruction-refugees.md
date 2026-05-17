@@ -16,4 +16,8 @@ concepts:
   - "Germany"
 ---
 
-Berlin — Syria's once-sanctioned president lands in Germany. EU sanctions on Al-Sharaa were lifted when he ousted Assad; he meets Chancellor Merz to trade refugee returns for reconstruction funds. 1 million Syrians in Germany lost asylum grounds under Merz; today's talks decide their path home.
+Berlin — Syria's once-sanctioned president lands in Germany.
+
+EU sanctions on Al-Sharaa were lifted when he ousted Assad; he meets Chancellor Merz to trade refugee returns for reconstruction funds.
+
+1 million Syrians in Germany lost asylum grounds under Merz; today's talks decide their path home.

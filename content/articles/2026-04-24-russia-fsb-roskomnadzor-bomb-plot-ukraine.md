@@ -40,4 +40,8 @@ sentimentDivergence: 0.29
 entities: []
 ---
 
-Moscow — [Russia](country:RU)'s internet censor was the assassination target. Russia's Federal Security Service said it foiled a car-bomb plot against Roskomnadzor's leadership April 18, detaining 7 suspects it says [Ukraine](country:UA) recruited via Telegram. Terrorism charges — carrying a possible life sentence — remain under consideration, the agency said.
+Moscow — [Russia](country:RU)'s internet censor was the assassination target.
+
+Russia's Federal Security Service said it foiled a car-bomb plot against Roskomnadzor's leadership April 18, detaining 7 suspects it says [Ukraine](country:UA) recruited via Telegram.
+
+Terrorism charges — carrying a possible life sentence — remain under consideration, the agency said.

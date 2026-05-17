@@ -15,4 +15,8 @@ concepts:
   - "Iran"
 ---
 
-Khondab — US-Israeli strikes hit Iran's heavy water plant. Heavy water reactors produce medical isotopes and fuel research reactors, not enriched uranium; Iran reported the March 27 strike to the IAEA. Iran's atomic agency called it a "crime against science" — a framing aimed at rallying IAEA member states.
+Khondab — US-Israeli strikes hit Iran's heavy water plant.
+
+Heavy water reactors produce medical isotopes and fuel research reactors, not enriched uranium; Iran reported the March 27 strike to the IAEA.
+
+Iran's atomic agency called it a "crime against science" — a framing aimed at rallying IAEA member states.

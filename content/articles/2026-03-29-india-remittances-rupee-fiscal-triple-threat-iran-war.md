@@ -17,4 +17,8 @@ concepts:
   - "India"
 ---
 
-Mumbai — Iran war threatens India's 3 economic pillars. 38% of India's inward remittances originate in the Gulf; every $10-per-barrel crude rise widens the current account deficit by $15 billion. SBI Funds projects rupee at ₹96 and a $70 billion current-account gap if crude stays near $100.
+Mumbai — Iran war threatens India's 3 economic pillars.
+
+38% of India's inward remittances originate in the Gulf; every $10-per-barrel crude rise widens the current account deficit by $15 billion.
+
+SBI Funds projects rupee at ₹96 and a $70 billion current-account gap if crude stays near $100.

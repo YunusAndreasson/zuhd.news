@@ -13,4 +13,8 @@ eventCoverage:
 concepts:
 ---
 
-Manila — President Marcos opened talks with Beijing this month. The Iran war has consumed US military bandwidth; treaty ally Philippines is hedging toward China while Washington manages a second front. The next South China Sea incident will test whether Washington can reclaim deterrent credibility with a hedging ally.
+Manila — President Marcos opened talks with Beijing this month.
+
+The Iran war has consumed US military bandwidth; treaty ally Philippines is hedging toward China while Washington manages a second front.
+
+The next South China Sea incident will test whether Washington can reclaim deterrent credibility with a hedging ally.

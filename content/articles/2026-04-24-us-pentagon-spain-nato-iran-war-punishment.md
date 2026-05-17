@@ -32,4 +32,8 @@ sentimentDivergence: 0.45
 entities: []
 ---
 
-Washington — A leaked Pentagon email threatened [Spain](country:ES)'s NATO membership. The email — confirmed by a [US](country:US) official — frames denying basing rights for the Iran war as an "absolute baseline" for continued membership. NATO's founding treaty has no suspension provision; the alliance meets in Turkey on July 7.
+Washington — A leaked Pentagon email threatened [Spain](country:ES)'s NATO membership.
+
+The email — confirmed by a [US](country:US) official — frames denying basing rights for the Iran war as an "absolute baseline" for continued membership.
+
+NATO's founding treaty has no suspension provision; the alliance meets in Turkey on July 7.

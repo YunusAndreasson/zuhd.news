@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Hong Kong — Sailing out risks gunfire, the shipowners association says. Richard Hext of the Hong Kong Shipowners Association says about 100 vessels and 2,300 crew are trapped inside the strait. The priority is food, water, and psychological support; [China](country:CN) has called for unimpeded passage to be restored.
+Hong Kong — Sailing out risks gunfire, the shipowners association says.
+
+Richard Hext of the Hong Kong Shipowners Association says about 100 vessels and 2,300 crew are trapped inside the strait.
+
+The priority is food, water, and psychological support; [China](country:CN) has called for unimpeded passage to be restored.

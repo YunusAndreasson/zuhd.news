@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-Sydney — 4 gaming platforms face binding safety notices. [Australia](country:AU)'s eSafety commissioner invoked the Online Safety Act, citing that 9 in 10 Australians aged 8–17 play online. Roblox separately faces $23m in [US](country:US) state settlements and 140 federal lawsuits, US court filings show.
+Sydney — 4 gaming platforms face binding safety notices.
+
+[Australia](country:AU)'s eSafety commissioner invoked the Online Safety Act, citing that 9 in 10 Australians aged 8–17 play online.
+
+Roblox separately faces $23m in [US](country:US) state settlements and 140 federal lawsuits, US court filings show.

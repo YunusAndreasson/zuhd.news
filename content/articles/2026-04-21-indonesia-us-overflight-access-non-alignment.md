@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Jakarta — [The US](country:US) requests blanket overflight rights over [Indonesia](country:ID). Whether approved or not, the request could invite equivalent access demands from [China](country:CN) and [Russia](country:RU), cutting against Jakarta's non-aligned "free and active" doctrine. President Prabowo has not decided; the answer reveals which way Southeast Asia's largest Muslim-majority state tilts.
+Jakarta — [The US](country:US) requests blanket overflight rights over [Indonesia](country:ID).
+
+Whether approved or not, the request could invite equivalent access demands from [China](country:CN) and [Russia](country:RU), cutting against Jakarta's non-aligned "free and active" doctrine.
+
+President Prabowo has not decided; the answer reveals which way Southeast Asia's largest Muslim-majority state tilts.

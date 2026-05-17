@@ -31,4 +31,8 @@ entities:
     kind: "commodity"
 ---
 
-Ottawa — [Canada](country:CA) seeded a C$25bn national investment fund. Carney modeled the Canada Strong Fund on Norway's oil wealth vehicle, citing [US](country:US) tariff pressure on the trade-dependent economy. The US-Canada free trade agreement is up for revision this summer, with Washington demanding major changes.
+Ottawa — [Canada](country:CA) seeded a C$25bn national investment fund.
+
+Carney modeled the Canada Strong Fund on Norway's oil wealth vehicle, citing [US](country:US) tariff pressure on the trade-dependent economy.
+
+The US-Canada free trade agreement is up for revision this summer, with Washington demanding major changes.

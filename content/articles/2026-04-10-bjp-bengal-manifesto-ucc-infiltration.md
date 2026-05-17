@@ -27,4 +27,8 @@ concepts:
 sentimentDivergence: 0.17
 ---
 
-Kolkata — BJP promised Uniform Civil Code in 6 months. UCC overrides Muslim personal law on marriage, divorce, and inheritance; Bengal is 27% Muslim — the highest of any non-Muslim-majority Indian state. Bengal votes May 4; a BJP win would impose UCC on Bengal's 30 million Muslims.
+Kolkata — BJP promised Uniform Civil Code in 6 months.
+
+UCC overrides Muslim personal law on marriage, divorce, and inheritance; Bengal is 27% Muslim — the highest of any non-Muslim-majority Indian state.
+
+Bengal votes May 4; a BJP win would impose UCC on Bengal's 30 million Muslims.

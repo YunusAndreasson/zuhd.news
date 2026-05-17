@@ -17,4 +17,8 @@ concepts:
   - "Federal Register"
 ---
 
-Washington — RFK Jr. rewrote the CDC vaccine panel's charter. After a judge blocked his hand-picked members for lacking expertise, Kennedy amended ACIP's charter to grant himself direct appointment power. New criteria — drafted by anti-vaccine group ICAN — drop immunization expertise requirements entirely.
+Washington — RFK Jr. rewrote the CDC vaccine panel's charter.
+
+After a judge blocked his hand-picked members for lacking expertise, Kennedy amended ACIP's charter to grant himself direct appointment power.
+
+New criteria — drafted by anti-vaccine group ICAN — drop immunization expertise requirements entirely.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — Light-driven CO₂ fixation builds drug-critical amino acids. A cascade of hydrogen atom transfer and radical-polar crossover generates a nucleophilic carbanion that captures CO₂, the study said. The reaction runs via photoredox catalysis or direct ultraviolet excitation; researchers say broad substrate scope suits pharmaceutical applications.
+London — Light-driven CO₂ fixation builds drug-critical amino acids.
+
+A cascade of hydrogen atom transfer and radical-polar crossover generates a nucleophilic carbanion that captures CO₂, the study said.
+
+The reaction runs via photoredox catalysis or direct ultraviolet excitation; researchers say broad substrate scope suits pharmaceutical applications.

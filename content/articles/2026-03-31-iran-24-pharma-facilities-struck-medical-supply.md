@@ -18,4 +18,8 @@ concepts:
   - "Israel"
 ---
 
-Tehran — 24 Iranian pharmaceutical factories struck since February 28. Iran's deputy health minister said US and Israeli strikes have "seriously damaged" medical equipment production and supply chains for 88 million people. Iran insists essential medicines remain available; WHO has not confirmed the status of Iran's drug supply.
+Tehran — 24 Iranian pharmaceutical factories struck since February 28.
+
+Iran's deputy health minister said US and Israeli strikes have "seriously damaged" medical equipment production and supply chains for 88 million people.
+
+Iran insists essential medicines remain available; WHO has not confirmed the status of Iran's drug supply.

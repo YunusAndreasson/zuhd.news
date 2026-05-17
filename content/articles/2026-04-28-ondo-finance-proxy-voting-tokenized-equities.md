@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-New York — $700 million in tokenized stock gets shareholder votes. Broadridge maps wallet addresses to ballots via ProxyVote, which Ondo says closes the last gap between a token and a real equity. The sector tripled last year; the [US](country:US) Securities and Exchange Commission has not declared governance-enabled tokens real shares.
+New York — $700 million in tokenized stock gets shareholder votes.
+
+Broadridge maps wallet addresses to ballots via ProxyVote, which Ondo says closes the last gap between a token and a real equity.
+
+The sector tripled last year; the [US](country:US) Securities and Exchange Commission has not declared governance-enabled tokens real shares.

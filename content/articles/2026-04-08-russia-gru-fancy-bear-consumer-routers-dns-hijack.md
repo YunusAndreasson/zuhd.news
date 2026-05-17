@@ -17,4 +17,8 @@ concepts:
   - "Russia"
 ---
 
-Washington — Russia's GRU hijacked 40,000 home routers for espionage. The unit changed router DNS to proxy Microsoft 365 logins, capturing OAuth tokens after multifactor authentication. 290,000 IP addresses hit the malicious resolver over 4 weeks, with the operation's full target list undisclosed.
+Washington — Russia's GRU hijacked 40,000 home routers for espionage.
+
+The unit changed router DNS to proxy Microsoft 365 logins, capturing OAuth tokens after multifactor authentication.
+
+290,000 IP addresses hit the malicious resolver over 4 weeks, with the operation's full target list undisclosed.

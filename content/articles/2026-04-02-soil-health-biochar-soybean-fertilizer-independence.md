@@ -17,4 +17,8 @@ concepts:
   - "Cover crop"
 ---
 
-Tokyo — Biochar matched conventional soybean yields without plowing. A 19-year Japanese study found biochar and cover crops kept soil carbon above 3.8% while cutting N2O output. Urea is at a 5-year high; the method gives growers a path off synthetic inputs.
+Tokyo — Biochar matched conventional soybean yields without plowing.
+
+A 19-year Japanese study found biochar and cover crops kept soil carbon above 3.8% while cutting N2O output.
+
+Urea is at a 5-year high; the method gives growers a path off synthetic inputs.

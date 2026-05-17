@@ -18,4 +18,8 @@ concepts:
   - "Critical infrastructure"
 ---
 
-Denver — Cisco and IBM push Colorado repair exemption. SB26-090 would exempt "critical infrastructure" IT from Colorado's 2024 Consumer Right to Repair Act; advocates warn the loophole covers any internet-connected device. The bill advances to Senate and House votes next week; consumer groups call it an unlimited exemption.
+Denver — Cisco and IBM push Colorado repair exemption.
+
+SB26-090 would exempt "critical infrastructure" IT from Colorado's 2024 Consumer Right to Repair Act; advocates warn the loophole covers any internet-connected device.
+
+The bill advances to Senate and House votes next week; consumer groups call it an unlimited exemption.

@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Tokyo — Japan courts [Australia](country:AU) as [China](country:CN) ties cool. Tokyo, historically selective about diplomatic partners, now treats Canberra as a structural substitute, Lowy Institute analysts said. The alignment's durability will be tested if Australia's next government shifts its own China posture.
+Tokyo — Japan courts [Australia](country:AU) as [China](country:CN) ties cool.
+
+Tokyo, historically selective about diplomatic partners, now treats Canberra as a structural substitute, Lowy Institute analysts said.
+
+The alignment's durability will be tested if Australia's next government shifts its own China posture.

@@ -17,4 +17,8 @@ concepts:
   - "Fiscal policy"
 ---
 
-Islamabad — Pakistan's debt-to-GDP ratio hit 71.7% in FY25. Despite a Rs1.8 trillion primary surplus, Rs8.9 trillion in interest payments drove total debt up 13% to Rs80.52 trillion. Pakistan has breached its own debt law every year; the legal ceiling was 56% of GDP by FY25.
+Islamabad — Pakistan's debt-to-GDP ratio hit 71.7% in FY25.
+
+Despite a Rs1.8 trillion primary surplus, Rs8.9 trillion in interest payments drove total debt up 13% to Rs80.52 trillion.
+
+Pakistan has breached its own debt law every year; the legal ceiling was 56% of GDP by FY25.

@@ -18,4 +18,8 @@ concepts:
   - "Photonics"
 ---
 
-London — Graphene modulator controls light amplitude and phase independently. It operates at 1550 nm — standard telecom wavelength — with 6.5 GHz bandwidth and 20 Gbit/s for photonic chip integration. Graphene's tunable conductivity is the enabling property; the device remains a lab prototype.
+London — Graphene modulator controls light amplitude and phase independently.
+
+It operates at 1550 nm — standard telecom wavelength — with 6.5 GHz bandwidth and 20 Gbit/s for photonic chip integration.
+
+Graphene's tunable conductivity is the enabling property; the device remains a lab prototype.

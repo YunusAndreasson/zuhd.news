@@ -16,4 +16,8 @@ concepts:
 entities: []
 ---
 
-Khartoum — [Ethiopia](country:ET) expelled Sudan's ambassador after Khartoum accused Addis Ababa of hosting drone platforms used in strikes on Sudanese territory. [South Sudan](country:SS) ordered [Egypt](country:EG) to close a border base, fearing it would be drawn into the drone war. A Mahamid commander defected from the Rapid Support Forces, deepening fractures inside the rebel group.
+Khartoum — [Ethiopia](country:ET) expelled Sudan's ambassador after Khartoum accused Addis Ababa of hosting drone platforms used in strikes on Sudanese territory.
+
+[South Sudan](country:SS) ordered [Egypt](country:EG) to close a border base, fearing it would be drawn into the drone war.
+
+A Mahamid commander defected from the Rapid Support Forces, deepening fractures inside the rebel group.

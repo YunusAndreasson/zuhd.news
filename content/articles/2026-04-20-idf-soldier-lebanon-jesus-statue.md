@@ -29,4 +29,8 @@ concepts:
 entities: []
 ---
 
-Debl — Israel occupies Debl months past Lebanon's October ceasefire. An IDF soldier was photographed sledgehammering a Jesus statue there; the Rossing Center logged 155 anti-Christian incidents inside Israel in 2025. Netanyahu vowed discipline; Debl's mayor demanded equal accountability for homes and statues destroyed across the village.
+Debl — Israel occupies Debl months past Lebanon's October ceasefire.
+
+An IDF soldier was photographed sledgehammering a Jesus statue there; the Rossing Center logged 155 anti-Christian incidents inside Israel in 2025.
+
+Netanyahu vowed discipline; Debl's mayor demanded equal accountability for homes and statues destroyed across the village.

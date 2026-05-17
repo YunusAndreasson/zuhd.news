@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Johannesburg — Hawks chief and Crime Intelligence head arrested Sunday. Both headed [South Africa](country:ZA)'s apex units — Hawks and Crime Intelligence — among 15 senior officers due in Gauteng courts this week. Both appear at Kempton Park court Monday; suspended Police Commissioner Masemola faces a separate tender case Wednesday.
+Johannesburg — Hawks chief and Crime Intelligence head arrested Sunday.
+
+Both headed [South Africa](country:ZA)'s apex units — Hawks and Crime Intelligence — among 15 senior officers due in Gauteng courts this week.
+
+Both appear at Kempton Park court Monday; suspended Police Commissioner Masemola faces a separate tender case Wednesday.

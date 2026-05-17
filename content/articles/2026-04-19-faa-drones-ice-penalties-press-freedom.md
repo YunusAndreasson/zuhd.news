@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Washington — Criminal drone penalties near immigration vehicles are lifted. The Federal Aviation Administration dropped the rule after a journalist's lawsuit; agencies can still destroy drones they deem threats. The Reporters Committee says a DC Circuit ruling will define remaining press restrictions on filming.
+Washington — Criminal drone penalties near immigration vehicles are lifted.
+
+The Federal Aviation Administration dropped the rule after a journalist's lawsuit; agencies can still destroy drones they deem threats.
+
+The Reporters Committee says a DC Circuit ruling will define remaining press restrictions on filming.

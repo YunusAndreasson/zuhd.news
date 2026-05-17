@@ -24,4 +24,8 @@ entities:
     kind: "stock"
 ---
 
-Washington — Saildrone's ocean-sensor platform is now a missile ship. The 170-foot Spectre — co-designed with Lockheed Martin — entered the [US](country:US) Navy's unmanned surface vessel competition, missile-armed and sonar-equipped. Saildrone said Spectre meets 100% of the competition's specs; a procurement decision has not been announced.
+Washington — Saildrone's ocean-sensor platform is now a missile ship.
+
+The 170-foot Spectre — co-designed with Lockheed Martin — entered the [US](country:US) Navy's unmanned surface vessel competition, missile-armed and sonar-equipped.
+
+Saildrone said Spectre meets 100% of the competition's specs; a procurement decision has not been announced.

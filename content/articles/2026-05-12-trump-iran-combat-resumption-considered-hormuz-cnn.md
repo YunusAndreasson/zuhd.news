@@ -31,4 +31,8 @@ sentimentDivergence: 0.22
 entities: []
 ---
 
-Washington — Iran's peace letter dropped nuclear guarantees, Trump said. The [US](country:US) administration is split between hawks pushing airstrikes and a diplomacy camp, while Trump accused [Pakistan](country:PK)'s mediators of softening [Iran](country:IR)'s actual position. A final decision is unlikely before Trump departs for [China](country:CN) on Tuesday, officials said.
+Washington — Iran's peace letter dropped nuclear guarantees, Trump said.
+
+The [US](country:US) administration is split between hawks pushing airstrikes and a diplomacy camp, while Trump accused [Pakistan](country:PK)'s mediators of softening [Iran](country:IR)'s actual position.
+
+A final decision is unlikely before Trump departs for [China](country:CN) on Tuesday, officials said.

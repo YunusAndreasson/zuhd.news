@@ -15,4 +15,8 @@ concepts:
   - "Air pollution"
 ---
 
-Beijing — China's clean-air policies pay for themselves. A Nature study found joint carbon and pollution cuts across 31 provinces deliver health returns exceeding their cost. Developing nations have the blueprint; replicating it requires the policy coordination China's government imposed.
+Beijing — China's clean-air policies pay for themselves.
+
+A Nature study found joint carbon and pollution cuts across 31 provinces deliver health returns exceeding their cost.
+
+Developing nations have the blueprint; replicating it requires the policy coordination China's government imposed.

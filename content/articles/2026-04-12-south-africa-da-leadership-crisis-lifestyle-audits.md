@@ -17,4 +17,8 @@ concepts:
   - "Democratic Alliance (South Africa)"
 ---
 
-Johannesburg — The DA mandated lifestyle audits for all members. Steenhuisen quit early amid financial allegations; the party that campaigns on anti-corruption now faces its own governance failures. The same congress is electing Steenhuisen's replacement, who inherits a party now policing itself.
+Johannesburg — The DA mandated lifestyle audits for all members.
+
+Steenhuisen quit early amid financial allegations; the party that campaigns on anti-corruption now faces its own governance failures.
+
+The same congress is electing Steenhuisen's replacement, who inherits a party now policing itself.

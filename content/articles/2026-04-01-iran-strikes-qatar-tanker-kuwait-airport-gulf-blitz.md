@@ -24,4 +24,8 @@ concepts:
 sentimentDivergence: 0.02
 ---
 
-Dubai — Iran hit 4 Gulf states before dawn. Strikes hit Kuwait Airport's fuel tanks and a Qatar tanker; Iranian forces intercepted 2 Saudi drones, pushing Brent crude above $104. Trump plans a Wednesday address; ceasefire talks continue with Iranian trust "at zero."
+Dubai — Iran hit 4 Gulf states before dawn.
+
+Strikes hit Kuwait Airport's fuel tanks and a Qatar tanker; Iranian forces intercepted 2 Saudi drones, pushing Brent crude above $104.
+
+Trump plans a Wednesday address; ceasefire talks continue with Iranian trust "at zero."

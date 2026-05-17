@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-New York — AI prose now triggers human-detection fatigue online. A few models trained on the same corpus have collapsed professional prose into 1 recognizable style. Writers avoiding AI patterns are now flagged as AI by audiences conditioned to the same style.
+New York — AI prose now triggers human-detection fatigue online.
+
+A few models trained on the same corpus have collapsed professional prose into 1 recognizable style.
+
+Writers avoiding AI patterns are now flagged as AI by audiences conditioned to the same style.

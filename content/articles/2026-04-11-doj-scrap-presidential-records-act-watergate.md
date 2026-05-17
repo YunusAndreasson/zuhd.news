@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Washington — Trump's DOJ is targeting the Presidential Records Act. Enacted after Watergate to ensure presidential communications eventually become public, the 1978 law has governed every administration's documents since Ford. Eliminating it would permanently seal presidential communications and decision memos from public access.
+Washington — Trump's DOJ is targeting the Presidential Records Act.
+
+Enacted after Watergate to ensure presidential communications eventually become public, the 1978 law has governed every administration's documents since Ford.
+
+Eliminating it would permanently seal presidential communications and decision memos from public access.

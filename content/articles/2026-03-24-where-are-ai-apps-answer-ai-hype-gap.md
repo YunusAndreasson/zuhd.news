@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-San Francisco — Most AI products are thin wrappers over API calls. Answer.AI founder Jeremy Howard argues the bottleneck has shifted from model capability to product design, while current industry valuations depend on applications not yet built. Until those applications are built, AI valuations rest on a product layer no one has shipped.
+San Francisco — Most AI products are thin wrappers over API calls.
+
+Answer.AI founder Jeremy Howard argues the bottleneck has shifted from model capability to product design, while current industry valuations depend on applications not yet built.
+
+Until those applications are built, AI valuations rest on a product layer no one has shipped.

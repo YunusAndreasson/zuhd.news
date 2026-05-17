@@ -17,4 +17,8 @@ concepts:
   - "Employment law"
 ---
 
-San Francisco — Meta legally silenced its own whistleblower. Wynn-Williams testified before Congress about Facebook's deals with authoritarian governments; Meta now bars her criticism under an employment agreement. Whether employment law can silence a Congressional witness is the question before the court enforcing the order.
+San Francisco — Meta legally silenced its own whistleblower.
+
+Wynn-Williams testified before Congress about Facebook's deals with authoritarian governments; Meta now bars her criticism under an employment agreement.
+
+Whether employment law can silence a Congressional witness is the question before the court enforcing the order.

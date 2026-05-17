@@ -16,4 +16,8 @@ concepts:
   - "Price of oil"
 ---
 
-Port-au-Prince — Alexandre Joseph now walks 4 hours a day. Haiti raised diesel 37% on April 2 — the Iran war doubled transport costs across a country that imports all its fuel. WFP warned millions already on emergency rations are being pushed past the point of collapse.
+Port-au-Prince — Alexandre Joseph now walks 4 hours a day.
+
+Haiti raised diesel 37% on April 2 — the Iran war doubled transport costs across a country that imports all its fuel.
+
+WFP warned millions already on emergency rations are being pushed past the point of collapse.

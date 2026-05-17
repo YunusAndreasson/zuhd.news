@@ -23,4 +23,8 @@ concepts:
 sentimentDivergence: 0.06
 ---
 
-Jerusalem — "I feel like the owner here," Ben-Gvir declared. Jordan called it a "desecration" — it holds custodianship of the compound under a status-quo agreement that bars Jewish prayer at the site. Netanyahu has not responded; Ben-Gvir is pressing for prayer permits that would shatter the arrangement upheld since 1967.
+Jerusalem — "I feel like the owner here," Ben-Gvir declared.
+
+Jordan called it a "desecration" — it holds custodianship of the compound under a status-quo agreement that bars Jewish prayer at the site.
+
+Netanyahu has not responded; Ben-Gvir is pressing for prayer permits that would shatter the arrangement upheld since 1967.

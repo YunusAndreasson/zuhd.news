@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Lake Vättern — Wastewater cocaine altered wild Atlantic salmon movement. Cocaine-exposed salmon swam 1.9 times farther per week than controls at concentrations European rivers already carry, the study found. Migration disruption in a climate-stressed species has unknown spawning consequences; no wastewater cocaine limit exists.
+Lake Vättern — Wastewater cocaine altered wild Atlantic salmon movement.
+
+Cocaine-exposed salmon swam 1.9 times farther per week than controls at concentrations European rivers already carry, the study found.
+
+Migration disruption in a climate-stressed species has unknown spawning consequences; no wastewater cocaine limit exists.

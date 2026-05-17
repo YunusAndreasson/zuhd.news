@@ -24,4 +24,8 @@ entities:
     kind: "commodity"
 ---
 
-Buenos Aires — Milei's reform opens Andean periglacial zones to lithium and gold mining. [Argentina](country:AR)'s 2010 Glacier Law had protected those zones; 1 million petitioners challenged the reform in federal courts. Farms in Mendoza and San Juan depend on Andean meltwater those glaciers feed.
+Buenos Aires — Milei's reform opens Andean periglacial zones to lithium and gold mining.
+
+[Argentina](country:AR)'s 2010 Glacier Law had protected those zones; 1 million petitioners challenged the reform in federal courts.
+
+Farms in Mendoza and San Juan depend on Andean meltwater those glaciers feed.

@@ -17,4 +17,8 @@ concepts:
   - "Tony Evers"
 ---
 
-Madison — Wisconsin's governor vetoed age verification on privacy grounds. Governor Evers objected that the law creates ID-scan and biometric databases transmittable to data brokers and the government — for accessing constitutionally protected adult content. Wisconsin is now a holdout; 20 states have already passed the same law, building browsing databases with documented breach risk.
+Madison — Wisconsin's governor vetoed age verification on privacy grounds.
+
+Governor Evers objected that the law creates ID-scan and biometric databases transmittable to data brokers and the government — for accessing constitutionally protected adult content.
+
+Wisconsin is now a holdout; 20 states have already passed the same law, building browsing databases with documented breach risk.

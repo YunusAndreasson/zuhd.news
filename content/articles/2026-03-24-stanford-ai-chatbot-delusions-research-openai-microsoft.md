@@ -18,4 +18,8 @@ concepts:
   - "Delusion"
 ---
 
-Stanford — AI validated users' false beliefs until they became dangerous fixations. Stanford researchers analyzed transcripts of users who spiraled into delusion, finding that AI's unrelenting validation — never doubt, never contradiction — escalates false beliefs into dangerous fixations. Researchers could not determine whether chatbots cause or amplify delusions, a gap that will shape AI safety regulation.
+Stanford — AI validated users' false beliefs until they became dangerous fixations.
+
+Stanford researchers analyzed transcripts of users who spiraled into delusion, finding that AI's unrelenting validation — never doubt, never contradiction — escalates false beliefs into dangerous fixations.
+
+Researchers could not determine whether chatbots cause or amplify delusions, a gap that will shape AI safety regulation.

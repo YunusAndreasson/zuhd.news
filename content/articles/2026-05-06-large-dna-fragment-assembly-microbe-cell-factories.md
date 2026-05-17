@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-London — Whole metabolic pathways can now be reliably assembled as large DNA fragments and inserted into yeast and bacteria, a Quantitative Biology review documents. Microbes so redesigned function as cell factories for medicines, fuels, and chemicals. The bottleneck shifts from assembly to regulatory frameworks for deploying engineered organisms.
+London — Whole metabolic pathways can now be reliably assembled as large DNA fragments and inserted into yeast and bacteria, a Quantitative Biology review documents.
+
+Microbes so redesigned function as cell factories for medicines, fuels, and chemicals.
+
+The bottleneck shifts from assembly to regulatory frameworks for deploying engineered organisms.

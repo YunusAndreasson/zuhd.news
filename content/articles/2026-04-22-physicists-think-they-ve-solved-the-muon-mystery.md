@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-University Park — Physicists closed a 20-year Standard Model anomaly. A Penn State lattice chromodynamics recalculation of hadronic vacuum polarization brings theory and experiment within half a sigma. The result constrains but does not eliminate the regions where physics beyond the Standard Model might exist.
+University Park — Physicists closed a 20-year Standard Model anomaly.
+
+A Penn State lattice chromodynamics recalculation of hadronic vacuum polarization brings theory and experiment within half a sigma.
+
+The result constrains but does not eliminate the regions where physics beyond the Standard Model might exist.

@@ -30,4 +30,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — [Iran](country:IR) refused talks under threat; truce expires Wednesday. Trump said publicly "the military is raring to go" while praising Iran, leaving [Pakistan](country:PK)'s mediation in limbo. Pakistan's delegation waits in Islamabad; Iran has signaled its team may not attend Wednesday's session.
+Islamabad — [Iran](country:IR) refused talks under threat; truce expires Wednesday.
+
+Trump said publicly "the military is raring to go" while praising Iran, leaving [Pakistan](country:PK)'s mediation in limbo.
+
+Pakistan's delegation waits in Islamabad; Iran has signaled its team may not attend Wednesday's session.

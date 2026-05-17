@@ -17,4 +17,8 @@ concepts:
   - "California"
 ---
 
-Sacramento — PFAS forever chemicals coat 37% of California produce. 90% of peaches and 80% of strawberries tested positive; EWG found at least 40 produce types contaminated from 930 samples. California introduced a 2035 ban; the Trump EPA is approving new PFAS crop uses, not fewer.
+Sacramento — PFAS forever chemicals coat 37% of California produce.
+
+90% of peaches and 80% of strawberries tested positive; EWG found at least 40 produce types contaminated from 930 samples.
+
+California introduced a 2035 ban; the Trump EPA is approving new PFAS crop uses, not fewer.

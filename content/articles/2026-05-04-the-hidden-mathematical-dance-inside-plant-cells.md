@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-New York — Chloroplasts reshape every few minutes to manage light intake. Under dim light they spread thin to maximize photon capture; at high noon they cluster edge-on to shield DNA from ultraviolet damage. Researchers are modeling the underlying geometry to determine what triggers the switch.
+New York — Chloroplasts reshape every few minutes to manage light intake.
+
+Under dim light they spread thin to maximize photon capture; at high noon they cluster edge-on to shield DNA from ultraviolet damage.
+
+Researchers are modeling the underlying geometry to determine what triggers the switch.

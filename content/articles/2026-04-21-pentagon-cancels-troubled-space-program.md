@@ -21,4 +21,8 @@ entities:
     kind: "stock"
 ---
 
-Washington — [US](country:US) Space Force scrapped an $8B satellite program. Raytheon's $3.7B Global Positioning System contract ballooned to nearly $8B, slipped 9 years past its deadline, and still failed testing. Space Force will now run satellite navigation from its legacy 1990s control stations, with no funded replacement.
+Washington — [US](country:US) Space Force scrapped an $8B satellite program.
+
+Raytheon's $3.7B Global Positioning System contract ballooned to nearly $8B, slipped 9 years past its deadline, and still failed testing.
+
+Space Force will now run satellite navigation from its legacy 1990s control stations, with no funded replacement.

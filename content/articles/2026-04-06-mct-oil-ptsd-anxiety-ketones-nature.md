@@ -17,4 +17,8 @@ concepts:
   - "Ketone bodies"
 ---
 
-London — MCT oil reduced PTSD anxiety in lab rats. MCT raised circulating ketones and cut anxiety scores in a PTSD rat model without affecting locomotion or neuroinflammation. No human trial has tested this; whether ketones reduce PTSD symptoms in humans remains unknown.
+London — MCT oil reduced PTSD anxiety in lab rats.
+
+MCT raised circulating ketones and cut anxiety scores in a PTSD rat model without affecting locomotion or neuroinflammation.
+
+No human trial has tested this; whether ketones reduce PTSD symptoms in humans remains unknown.

@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Belém — Ocean microalgae eat bacteria when nutrients run short. Mixotrophy — photosynthesis combined with bacterial predation — dominates in the nutrient-depleted outer plume, challenging textbook models of ocean carbon cycling. [Germany](country:DE)'s Leibniz Institute unsettles global models of tropical ocean productivity.
+Belém — Ocean microalgae eat bacteria when nutrients run short.
+
+Mixotrophy — photosynthesis combined with bacterial predation — dominates in the nutrient-depleted outer plume, challenging textbook models of ocean carbon cycling.
+
+[Germany](country:DE)'s Leibniz Institute unsettles global models of tropical ocean productivity.

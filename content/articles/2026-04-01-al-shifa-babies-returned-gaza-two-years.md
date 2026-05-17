@@ -17,4 +17,8 @@ concepts:
   - "Premature births"
 ---
 
-Khan Younis — 8 Al-Shifa babies came home to Gaza. Israel besieged Al-Shifa in November 2023; 5 infants died before evacuation, 28 were sent to Egypt without their families. The remaining 20 are still in Egypt, their return subject to Israeli restrictions on crossing points.
+Khan Younis — 8 Al-Shifa babies came home to Gaza.
+
+Israel besieged Al-Shifa in November 2023; 5 infants died before evacuation, 28 were sent to Egypt without their families.
+
+The remaining 20 are still in Egypt, their return subject to Israeli restrictions on crossing points.

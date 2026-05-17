@@ -17,4 +17,8 @@ concepts:
   - "Bitcoin"
 ---
 
-New York — Rate hike odds hit 30% for 2026. Iran war drove Brent to $111 from $70, pushing 10-year Treasury yields to 4.40% and flipping earlier expectations for 3 rate cuts. Bitcoin held near $67,000 while gold fell 20% and the Nasdaq entered correction; a hike threatens all 3.
+New York — Rate hike odds hit 30% for 2026.
+
+Iran war drove Brent to $111 from $70, pushing 10-year Treasury yields to 4.40% and flipping earlier expectations for 3 rate cuts.
+
+Bitcoin held near $67,000 while gold fell 20% and the Nasdaq entered correction; a hike threatens all 3.

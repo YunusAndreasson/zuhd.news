@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-New York — arXiv will ban authors a year for hallucinated references or large language model prompts left intact in submissions. Future submissions from banned authors must then pass peer review — the first hard gate on a major preprint server. Fabricated citations appeared in 1 in 277 biomedical papers in early 2026, up from 1 in 2,828 in 2023, Columbia researchers found.
+New York — arXiv will ban authors a year for hallucinated references or large language model prompts left intact in submissions.
+
+Future submissions from banned authors must then pass peer review — the first hard gate on a major preprint server.
+
+Fabricated citations appeared in 1 in 277 biomedical papers in early 2026, up from 1 in 2,828 in 2023, Columbia researchers found.

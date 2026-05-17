@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — Cell coordination, not cell count, predicts immunotherapy survival. A 217-patient study found denser B-cell, T-cell, and tertiary lymphoid structure coordination predicted longer survival after checkpoint inhibitors. The authors called for replication before applying immune-circuit profiling to checkpoint therapy selection.
+London — Cell coordination, not cell count, predicts immunotherapy survival.
+
+A 217-patient study found denser B-cell, T-cell, and tertiary lymphoid structure coordination predicted longer survival after checkpoint inhibitors.
+
+The authors called for replication before applying immune-circuit profiling to checkpoint therapy selection.

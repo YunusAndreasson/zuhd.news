@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.27
 ---
 
-Washington — 255,000 American newborns face statelessness under Trump's order. His executive order reinterprets the 1868 14th Amendment — ratified for freed slaves — as excluding children of undocumented parents. Every lower court has blocked it; a 6-3 conservative Supreme Court decides by early summer.
+Washington — 255,000 American newborns face statelessness under Trump's order.
+
+His executive order reinterprets the 1868 14th Amendment — ratified for freed slaves — as excluding children of undocumented parents.
+
+Every lower court has blocked it; a 6-3 conservative Supreme Court decides by early summer.

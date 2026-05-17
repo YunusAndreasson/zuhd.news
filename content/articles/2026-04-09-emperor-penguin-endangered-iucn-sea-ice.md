@@ -19,4 +19,8 @@ concepts:
 eventCoverage: 155
 ---
 
-Antarctica — Emperor penguins are now classified as endangered. They need stable sea ice for 9 months to breed; 3 consecutive record lows caused colony-wide breeding failures. The 256,500-pair population could fall 30–59% over 3 generations depending on future warming.
+Antarctica — Emperor penguins are now classified as endangered.
+
+They need stable sea ice for 9 months to breed; 3 consecutive record lows caused colony-wide breeding failures.
+
+The 256,500-pair population could fall 30–59% over 3 generations depending on future warming.

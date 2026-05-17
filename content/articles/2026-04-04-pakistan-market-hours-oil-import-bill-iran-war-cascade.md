@@ -16,4 +16,8 @@ concepts:
   - "Electricity"
 ---
 
-Lahore — Pakistan considers closing markets early to cut fuel. Markets running until 2am burn imported furnace oil; at $115 crude, the import bill is unsustainable, said Planning Minister Ahsan Iqbal. Provinces have one week to consult traders; energy tariff increases could follow if market-hour talks fail.
+Lahore — Pakistan considers closing markets early to cut fuel.
+
+Markets running until 2am burn imported furnace oil; at $115 crude, the import bill is unsustainable, said Planning Minister Ahsan Iqbal.
+
+Provinces have one week to consult traders; energy tariff increases could follow if market-hour talks fail.

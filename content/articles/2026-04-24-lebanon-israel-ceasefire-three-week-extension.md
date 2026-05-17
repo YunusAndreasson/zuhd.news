@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Beirut — Washington brokered a 3-week Lebanon ceasefire extension, one day after Israeli strikes killed a journalist. [Israel](country:IL) holds a 5-10km strip of southern Lebanese territory; Israeli operations have killed nearly 2,500 since March 2, Lebanese authorities say. Israel's envoy said Oval Office talks hinge on Hezbollah disarmament — not Israeli withdrawal.
+Beirut — Washington brokered a 3-week Lebanon ceasefire extension, one day after Israeli strikes killed a journalist.
+
+[Israel](country:IL) holds a 5-10km strip of southern Lebanese territory; Israeli operations have killed nearly 2,500 since March 2, Lebanese authorities say.
+
+Israel's envoy said Oval Office talks hinge on Hezbollah disarmament — not Israeli withdrawal.

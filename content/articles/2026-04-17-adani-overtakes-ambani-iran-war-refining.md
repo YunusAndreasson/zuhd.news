@@ -27,4 +27,8 @@ entities:
     kind: "commodity"
 ---
 
-Mumbai — Reliance shed $16.9bn on Iran-war crude premiums. Adani passed Ambani as Asia's richest on the Bloomberg Billionaires index; Jefferies data show Reliance fell 14%. Adani's US fraud case seeks dismissal this month.
+Mumbai — Reliance shed $16.9bn on Iran-war crude premiums.
+
+Adani passed Ambani as Asia's richest on the Bloomberg Billionaires index; Jefferies data show Reliance fell 14%.
+
+Adani's US fraud case seeks dismissal this month.

@@ -21,4 +21,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Islamabad — [Pakistan](country:PK)'s grid faces cuts as summer demand climbs. [Qatar](country:QA) declared force majeure on LNG contracts last month as the Strait of Hormuz closed; Pakistan is negotiating 4 of roughly 25 stranded cargoes to supply its LNG power plants. Without them, Punjab's 6,000MW gas plants must switch to high-speed diesel, the Power Division warned.
+Islamabad — [Pakistan](country:PK)'s grid faces cuts as summer demand climbs.
+
+[Qatar](country:QA) declared force majeure on LNG contracts last month as the Strait of Hormuz closed; Pakistan is negotiating 4 of roughly 25 stranded cargoes to supply its LNG power plants.
+
+Without them, Punjab's 6,000MW gas plants must switch to high-speed diesel, the Power Division warned.

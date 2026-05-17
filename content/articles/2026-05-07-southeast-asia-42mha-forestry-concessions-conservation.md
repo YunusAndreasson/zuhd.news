@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Jakarta — 4.6 Mha of key biodiversity areas face clearing. The study identifies rights-holders across 3,754 concessions in [Indonesia](country:ID), [Malaysia](country:MY), Cambodia and Myanmar, making voluntary conservation cheaper than new reserves. Carbon markets alone cannot unlock all 42 Mha; the study calls for complementary finance and governance reform.
+Jakarta — 4.6 Mha of key biodiversity areas face clearing.
+
+The study identifies rights-holders across 3,754 concessions in [Indonesia](country:ID), [Malaysia](country:MY), Cambodia and Myanmar, making voluntary conservation cheaper than new reserves.
+
+Carbon markets alone cannot unlock all 42 Mha; the study calls for complementary finance and governance reform.

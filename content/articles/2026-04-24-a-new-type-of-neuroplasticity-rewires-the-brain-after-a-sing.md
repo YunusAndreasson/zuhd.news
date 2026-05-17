@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-New York — Researchers found a second form of neuroplasticity. Unlike Hebbian learning — which requires repeated co-firing — the new mechanism lets a single experience rewire neural circuits across longer timescales. The finding has not been independently replicated; confirmation would revise models of trauma and memory consolidation.
+New York — Researchers found a second form of neuroplasticity.
+
+Unlike Hebbian learning — which requires repeated co-firing — the new mechanism lets a single experience rewire neural circuits across longer timescales.
+
+The finding has not been independently replicated; confirmation would revise models of trauma and memory consolidation.

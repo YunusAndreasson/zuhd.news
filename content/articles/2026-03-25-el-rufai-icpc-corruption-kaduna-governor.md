@@ -17,4 +17,8 @@ concepts:
   - "Governor"
 ---
 
-Kaduna — 10 corruption counts name former governor El-Rufai. ICPC alleges he pocketed N289m and $797,900, making him the most senior official charged in Nigeria's current anti-corruption drive. El-Rufai faces arraignment on March 31.
+Kaduna — 10 corruption counts name former governor El-Rufai.
+
+ICPC alleges he pocketed N289m and $797,900, making him the most senior official charged in Nigeria's current anti-corruption drive.
+
+El-Rufai faces arraignment on March 31.

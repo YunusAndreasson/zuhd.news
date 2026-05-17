@@ -16,4 +16,8 @@ concepts:
   - "Computer security"
 ---
 
-San Francisco — Anthropic's unreleased AI model leaked via CMS error. A draft blog post in a public cache named it "Mythos" — confirmed by Anthropic as a "step change" beyond Opus 4.6. Anthropic removed the cache post-inquiry; the model, described as posing "unprecedented cybersecurity risks," remains in limited trials.
+San Francisco — Anthropic's unreleased AI model leaked via CMS error.
+
+A draft blog post in a public cache named it "Mythos" — confirmed by Anthropic as a "step change" beyond Opus 4.6.
+
+Anthropic removed the cache post-inquiry; the model, described as posing "unprecedented cybersecurity risks," remains in limited trials.

@@ -18,4 +18,8 @@ concepts:
   - "Container ship"
 ---
 
-Strait of Hormuz — Iran's navy blocked the container ship SELEN at Hormuz for lacking a transit permit. IRGC Commander Ali Reza Tangsiri declared all vessels must coordinate passage with Iranian authorities, claiming control over the world's most important oil shipping lane. Iran has also begun charging transit fees on commercial vessels, moving beyond interdiction to systematic toll-collection.
+Strait of Hormuz — Iran's navy blocked the container ship SELEN at Hormuz for lacking a transit permit.
+
+IRGC Commander Ali Reza Tangsiri declared all vessels must coordinate passage with Iranian authorities, claiming control over the world's most important oil shipping lane.
+
+Iran has also begun charging transit fees on commercial vessels, moving beyond interdiction to systematic toll-collection.

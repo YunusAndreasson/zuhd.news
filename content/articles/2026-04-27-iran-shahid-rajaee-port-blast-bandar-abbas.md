@@ -19,4 +19,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Bandar Abbas — Blast at Shahid Rajaee port killed dozens. [Iran](country:IR)'s largest container terminal, near the mouth of the Strait of Hormuz, handles the bulk of its marine trade and sustained massive structural damage. No cause has been attributed; Iranian state media reported the blast occurred on April 26.
+Bandar Abbas — Blast at Shahid Rajaee port killed dozens.
+
+[Iran](country:IR)'s largest container terminal, near the mouth of the Strait of Hormuz, handles the bulk of its marine trade and sustained massive structural damage.
+
+No cause has been attributed; Iranian state media reported the blast occurred on April 26.

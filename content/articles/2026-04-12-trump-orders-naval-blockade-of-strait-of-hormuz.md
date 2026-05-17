@@ -34,4 +34,8 @@ eventCoverage: 671
 sentimentDivergence: 0.52
 ---
 
-Islamabad — Trump blockaded the Strait of Hormuz. The Islamabad talks collapsed after 21 hours over enrichment; Iran says Hormuz is non-negotiable and the strait remains under Tehran's control. 2 US carrier groups face Iranian positions in the strait; the 2-week ceasefire holds until either side escalates.
+Islamabad — Trump blockaded the Strait of Hormuz.
+
+The Islamabad talks collapsed after 21 hours over enrichment; Iran says Hormuz is non-negotiable and the strait remains under Tehran's control.
+
+2 US carrier groups face Iranian positions in the strait; the 2-week ceasefire holds until either side escalates.

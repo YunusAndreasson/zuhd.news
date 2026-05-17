@@ -17,4 +17,8 @@ concepts:
   - "Jubaland"
 ---
 
-Mogadishu — Somalia passed a new constitution 223 votes to zero. Puntland and Jubaland — regional states governing autonomously since 1991 — rejected it outright, backed by former presidents and prime ministers who say it centralizes power illegally in Mogadishu. Both regions command their own armies, and their next move determines whether Somalia's constitution governs the country or only the capital.
+Mogadishu — Somalia passed a new constitution 223 votes to zero.
+
+Puntland and Jubaland — regional states governing autonomously since 1991 — rejected it outright, backed by former presidents and prime ministers who say it centralizes power illegally in Mogadishu.
+
+Both regions command their own armies, and their next move determines whether Somalia's constitution governs the country or only the capital.

@@ -31,4 +31,8 @@ concepts:
 sentimentDivergence: 0.39
 ---
 
-Tehran — Iran downed a US F-15E Strike Eagle. Iran's air defense confirmed an F-15E, not the F-35 it initially claimed, as its first manned aircraft downed in 35 days. 1 crew member was rescued; the second is still missing as US helicopters search central Iran.
+Tehran — Iran downed a US F-15E Strike Eagle.
+
+Iran's air defense confirmed an F-15E, not the F-35 it initially claimed, as its first manned aircraft downed in 35 days.
+
+1 crew member was rescued; the second is still missing as US helicopters search central Iran.

@@ -16,4 +16,8 @@ concepts:
   - "Islamic Revolutionary Guard Corps"
 ---
 
-Tehran — Iran's Guards have sidelined the president. A military IRGC council now controls key appointments, blocking Pezeshkian from naming a new intelligence minister. New Supreme Leader Mojtaba Khamenei's whereabouts are unknown; the IRGC has cut his access to government reports.
+Tehran — Iran's Guards have sidelined the president.
+
+A military IRGC council now controls key appointments, blocking Pezeshkian from naming a new intelligence minister.
+
+New Supreme Leader Mojtaba Khamenei's whereabouts are unknown; the IRGC has cut his access to government reports.

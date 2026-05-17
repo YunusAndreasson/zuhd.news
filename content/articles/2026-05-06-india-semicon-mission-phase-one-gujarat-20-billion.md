@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-New Delhi — Micron and Kaynes' Indian fabs are sold out. Phase one of [India](country:IN)'s semiconductor mission closes with 12 approved units and ₹1.65 lakh crore (~$20bn) committed, Technology Minister Vaishnaw said. Phase two, India Semiconductor Mission 2.0, is now being prepared with an expected outlay above ₹1 lakh crore.
+New Delhi — Micron and Kaynes' Indian fabs are sold out.
+
+Phase one of [India](country:IN)'s semiconductor mission closes with 12 approved units and ₹1.65 lakh crore (~$20bn) committed, Technology Minister Vaishnaw said.
+
+Phase two, India Semiconductor Mission 2.0, is now being prepared with an expected outlay above ₹1 lakh crore.

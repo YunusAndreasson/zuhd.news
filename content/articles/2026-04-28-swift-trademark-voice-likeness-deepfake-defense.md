@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Taylor Swift filed [US](country:US) trademark applications covering her voice and likeness, seeking protection against AI cloning, attorney Josh Gerben said. Copyright covers existing recordings; trademark would extend to new AI-generated content mimicking her voice — a legal gap courts have not resolved. The applications have not yet been reviewed.
+Taylor Swift filed [US](country:US) trademark applications covering her voice and likeness, seeking protection against AI cloning, attorney Josh Gerben said.
+
+Copyright covers existing recordings; trademark would extend to new AI-generated content mimicking her voice — a legal gap courts have not resolved.
+
+The applications have not yet been reviewed.

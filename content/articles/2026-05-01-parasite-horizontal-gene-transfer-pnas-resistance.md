@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Starkville — Parasites swap genes more freely than assumed. A new study found horizontal gene transfer — not just mutation — drives resistance and host-jumping in parasitic protists. Resistance arrives faster than models predict; antiparasitic design must now target genetic exchange, not just point mutations.
+Starkville — Parasites swap genes more freely than assumed.
+
+A new study found horizontal gene transfer — not just mutation — drives resistance and host-jumping in parasitic protists.
+
+Resistance arrives faster than models predict; antiparasitic design must now target genetic exchange, not just point mutations.

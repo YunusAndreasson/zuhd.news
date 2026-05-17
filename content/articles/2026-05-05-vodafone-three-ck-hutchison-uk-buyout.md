@@ -25,4 +25,8 @@ concepts:
 entities: []
 ---
 
-London — Vodafone paid £4.3bn to take VodafoneThree solo. CK Hutchison took a £2.65 billion valuation cut for early liquidity; it had already sold [UK](country:UK) ports before clearing this telecom stake. A national-security review must clear the deal; Vodafone expects completion in the second half of 2026.
+London — Vodafone paid £4.3bn to take VodafoneThree solo.
+
+CK Hutchison took a £2.65 billion valuation cut for early liquidity; it had already sold [UK](country:UK) ports before clearing this telecom stake.
+
+A national-security review must clear the deal; Vodafone expects completion in the second half of 2026.

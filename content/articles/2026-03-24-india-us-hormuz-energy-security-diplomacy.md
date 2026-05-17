@@ -23,4 +23,8 @@ concepts:
 sentimentDivergence: 0.2
 ---
 
-New Delhi — India's Prime Minister Modi backed US pressure on Iran over Hormuz. The Hormuz strait, which carries nearly a fifth of global crude, is why Washington paused airstrikes on Iranian oil infrastructure to allow negotiations. The US gave Tehran a deadline to reopen Hormuz, warning paused airstrikes remain on the table.
+New Delhi — India's Prime Minister Modi backed US pressure on Iran over Hormuz.
+
+The Hormuz strait, which carries nearly a fifth of global crude, is why Washington paused airstrikes on Iranian oil infrastructure to allow negotiations.
+
+The US gave Tehran a deadline to reopen Hormuz, warning paused airstrikes remain on the table.

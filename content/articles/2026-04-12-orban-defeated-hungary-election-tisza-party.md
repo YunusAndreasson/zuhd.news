@@ -32,4 +32,8 @@ concepts:
 sentimentDivergence: 0.31
 ---
 
-Budapest — Orbán's 16-year government fell Sunday. Tisza took 52% to Fidesz's 39% — a protest vote against a leader aligned with both Trump and Putin. Magyar now faces EU funding battles and military demands that will test whether Hungary's course actually changes.
+Budapest — Orbán's 16-year government fell Sunday.
+
+Tisza took 52% to Fidesz's 39% — a protest vote against a leader aligned with both Trump and Putin.
+
+Magyar now faces EU funding battles and military demands that will test whether Hungary's course actually changes.

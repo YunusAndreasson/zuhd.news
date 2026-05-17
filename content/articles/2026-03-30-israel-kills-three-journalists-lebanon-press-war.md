@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Jezzine — Israel killed 3 journalists in southern Lebanon. Ali Shoeib, Fatima Ftouni, and Mohamed Ftouni died in an Israeli airstrike in Jezzine as Israeli operations expanded from Iran into Lebanon. Israel has not commented on the killings; 3 UN peacekeepers also died in Lebanon the same day.
+Jezzine — Israel killed 3 journalists in southern Lebanon.
+
+Ali Shoeib, Fatima Ftouni, and Mohamed Ftouni died in an Israeli airstrike in Jezzine as Israeli operations expanded from Iran into Lebanon.
+
+Israel has not commented on the killings; 3 UN peacekeepers also died in Lebanon the same day.

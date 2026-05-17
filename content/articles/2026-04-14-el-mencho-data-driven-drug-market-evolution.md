@@ -13,4 +13,8 @@ eventCoverage:
 concepts:
 ---
 
-Guadalajara — El Mencho's cartel outlived his February killing. Two decades of seizure and price data show the Jalisco cartel built meth networks that run without central leadership. No successor is confirmed; analysts expect regional commanders to fight for market share, not collapse.
+Guadalajara — El Mencho's cartel outlived his February killing.
+
+Two decades of seizure and price data show the Jalisco cartel built meth networks that run without central leadership.
+
+No successor is confirmed; analysts expect regional commanders to fight for market share, not collapse.

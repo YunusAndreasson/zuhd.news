@@ -17,4 +17,8 @@ concepts:
   - "Parkinson's disease"
 ---
 
-London — Parkinson's researchers were targeting the wrong cells. DNAJC6 mutations damage oligodendrocytes — brain insulation cells — not just dopamine neurons, suggesting the disease disables neural circuits before neurons die. Oligodendrocytes are now an untested drug target for a disease affecting 10 million people.
+London — Parkinson's researchers were targeting the wrong cells.
+
+DNAJC6 mutations damage oligodendrocytes — brain insulation cells — not just dopamine neurons, suggesting the disease disables neural circuits before neurons die.
+
+Oligodendrocytes are now an untested drug target for a disease affecting 10 million people.

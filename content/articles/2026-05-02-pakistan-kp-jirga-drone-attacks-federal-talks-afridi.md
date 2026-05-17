@@ -22,4 +22,8 @@ entities:
     kind: "currency"
 ---
 
-Peshawar — A tribal grand assembly challenged federal drone authority. [Pakistan](country:PK)'s Khyber Pakhtunkhwa chief minister said 22 military operations and over 14,000 intelligence raids have failed to produce peace in the province. If talks fail, the jirga will march on Islamabad and demand 800bn rupees in unpaid post-merger funds.
+Peshawar — A tribal grand assembly challenged federal drone authority.
+
+[Pakistan](country:PK)'s Khyber Pakhtunkhwa chief minister said 22 military operations and over 14,000 intelligence raids have failed to produce peace in the province.
+
+If talks fail, the jirga will march on Islamabad and demand 800bn rupees in unpaid post-merger funds.

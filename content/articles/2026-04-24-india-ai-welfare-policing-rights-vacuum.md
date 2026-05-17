@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-New Delhi — 500 cameras monitored [India](country:IN)'s artificial intelligence governance summit. Its framework — soft guidelines, an ethics bill, data-protection rules — imposes no pre-deployment assessments or transparency obligations. Facial recognition and predictive policing operate across Indian cities without legal redress for wrongful identifications.
+New Delhi — 500 cameras monitored [India](country:IN)'s artificial intelligence governance summit.
+
+Its framework — soft guidelines, an ethics bill, data-protection rules — imposes no pre-deployment assessments or transparency obligations.
+
+Facial recognition and predictive policing operate across Indian cities without legal redress for wrongful identifications.

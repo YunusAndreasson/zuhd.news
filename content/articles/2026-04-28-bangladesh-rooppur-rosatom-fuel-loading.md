@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Dhaka — Russian fuel entered [Bangladesh](country:BD)'s first nuclear reactor Tuesday. Rosatom built it on $11.9 billion in [Russia](country:RU)'s sovereign debt and will supply fuel and manage spent waste for 60 years. Trial generation begins; Dhaka projects $1 billion in annual fuel-import savings, according to experts.
+Dhaka — Russian fuel entered [Bangladesh](country:BD)'s first nuclear reactor Tuesday.
+
+Rosatom built it on $11.9 billion in [Russia](country:RU)'s sovereign debt and will supply fuel and manage spent waste for 60 years.
+
+Trial generation begins; Dhaka projects $1 billion in annual fuel-import savings, according to experts.

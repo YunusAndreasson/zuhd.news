@@ -18,4 +18,8 @@ concepts:
   - "Benjamin Netanyahu"
 ---
 
-Bint Jbeil — 5 Israeli divisions have the town encircled. They sealed access routes from every axis, but Hezbollah has held off entry — the offensive is timed to torpedo Islamabad ceasefire talks. Washington is running a competing ceasefire track, but Netanyahu's Lebanon escalation is the variable neither forum controls.
+Bint Jbeil — 5 Israeli divisions have the town encircled.
+
+They sealed access routes from every axis, but Hezbollah has held off entry — the offensive is timed to torpedo Islamabad ceasefire talks.
+
+Washington is running a competing ceasefire track, but Netanyahu's Lebanon escalation is the variable neither forum controls.

@@ -28,4 +28,8 @@ concepts:
   - "Strait of Hormuz"
 ---
 
-Washington — Trump expects to resume bombing [Iran](country:IR) by Wednesday. The [US](country:US) military boarded a 2nd tanker mid-truce — the Tifani, 2 million barrels of crude — while blockading Iran's ports. Vance meets in Islamabad Wednesday; Iran's parliamentary speaker warned of "new cards on the battlefield."
+Washington — Trump expects to resume bombing [Iran](country:IR) by Wednesday.
+
+The [US](country:US) military boarded a 2nd tanker mid-truce — the Tifani, 2 million barrels of crude — while blockading Iran's ports.
+
+Vance meets in Islamabad Wednesday; Iran's parliamentary speaker warned of "new cards on the battlefield."

@@ -36,4 +36,8 @@ entities:
     kind: "stock"
 ---
 
-San Francisco — OpenAI is free to buy Amazon's cloud. The deal kills Microsoft's revenue-share obligation and the AGI clause that would have revoked its license at superintelligence. OpenAI's $50bn Amazon Web Services arrangement, which Microsoft was weighing legal action over, can now proceed.
+San Francisco — OpenAI is free to buy Amazon's cloud.
+
+The deal kills Microsoft's revenue-share obligation and the AGI clause that would have revoked its license at superintelligence.
+
+OpenAI's $50bn Amazon Web Services arrangement, which Microsoft was weighing legal action over, can now proceed.

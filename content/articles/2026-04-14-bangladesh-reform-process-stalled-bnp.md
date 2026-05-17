@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Dhaka — Bangladesh voted yes on reform; the government stalled. Post-revolution governments routinely win referendums then delay implementation — restructuring institutions dilutes the power they just won. Opposition parties have escalated to walkouts and protests; the Bangladesh Nationalist Party has announced no timeline.
+Dhaka — Bangladesh voted yes on reform; the government stalled.
+
+Post-revolution governments routinely win referendums then delay implementation — restructuring institutions dilutes the power they just won.
+
+Opposition parties have escalated to walkouts and protests; the Bangladesh Nationalist Party has announced no timeline.

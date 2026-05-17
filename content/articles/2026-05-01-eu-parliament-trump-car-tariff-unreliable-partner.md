@@ -35,4 +35,8 @@ sentimentDivergence: 0.26
 entities: []
 ---
 
-Brussels — Trump raised EU auto tariffs to 25%. The Turnberry Agreement set a 15% ceiling; the [US](country:US) then expanded steel tariffs unilaterally to new products, which Brussels says violates the deal. European Parliament finalizes conditional ratification in June, with a 2028 expiry unless Washington fulfills its commitments.
+Brussels — Trump raised EU auto tariffs to 25%.
+
+The Turnberry Agreement set a 15% ceiling; the [US](country:US) then expanded steel tariffs unilaterally to new products, which Brussels says violates the deal.
+
+European Parliament finalizes conditional ratification in June, with a 2028 expiry unless Washington fulfills its commitments.

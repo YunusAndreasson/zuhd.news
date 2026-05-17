@@ -17,4 +17,8 @@ concepts:
   - "Strait of Hormuz"
 ---
 
-Tehran — Zolqadr took Iran's top security post. He crushed the 2009 protests, answers to Mojtaba Khamenei, and was elevated as Israel's strikes empowered his faction. Pakistan brokered a 15-point US proposal while Tehran denies talks exist, leaving Zolqadr as the undeclared gatekeeper.
+Tehran — Zolqadr took Iran's top security post.
+
+He crushed the 2009 protests, answers to Mojtaba Khamenei, and was elevated as Israel's strikes empowered his faction.
+
+Pakistan brokered a 15-point US proposal while Tehran denies talks exist, leaving Zolqadr as the undeclared gatekeeper.

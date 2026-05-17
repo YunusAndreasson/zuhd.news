@@ -38,4 +38,8 @@ sentimentDivergence: 0.2
 entities: []
 ---
 
-Chernobyl — 1,100 hectares are burning inside the exclusion zone after a drone crash. Burning radioactive biomass aerosolizes contaminated particles; landmines from [Russia](country:RU)'s 2022 incursion block firefighters from parts of the zone. [Ukraine](country:UA)'s emergency service reports gamma within normal limits; Russian drones continue igniting border-zone forests.
+Chernobyl — 1,100 hectares are burning inside the exclusion zone after a drone crash.
+
+Burning radioactive biomass aerosolizes contaminated particles; landmines from [Russia](country:RU)'s 2022 incursion block firefighters from parts of the zone.
+
+[Ukraine](country:UA)'s emergency service reports gamma within normal limits; Russian drones continue igniting border-zone forests.

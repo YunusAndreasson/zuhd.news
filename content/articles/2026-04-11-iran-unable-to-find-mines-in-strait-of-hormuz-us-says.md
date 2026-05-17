@@ -32,4 +32,8 @@ concepts:
 sentimentDivergence: 0.29
 ---
 
-Islamabad — Iran cannot locate the mines it laid. The IRGC mined the Strait haphazardly in March, logging incomplete coordinates; some mines drifted, and neither side can quickly clear them. Vance meets Araghchi in Islamabad today; Trump has made complete Hormuz reopening his precondition for ending the war.
+Islamabad — Iran cannot locate the mines it laid.
+
+The IRGC mined the Strait haphazardly in March, logging incomplete coordinates; some mines drifted, and neither side can quickly clear them.
+
+Vance meets Araghchi in Islamabad today; Trump has made complete Hormuz reopening his precondition for ending the war.

@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-London — UK renewables saved £1.7 billion in gas costs since the Iran war began. Grid analysis found 21 terawatt hours of UK wind and solar since late February cut gas generation to record lows in [Britain](country:GB). Gas set electricity prices 25% less often in spring 2026 than in 2022's Russia-Ukraine spike.
+London — UK renewables saved £1.7 billion in gas costs since the Iran war began.
+
+Grid analysis found 21 terawatt hours of UK wind and solar since late February cut gas generation to record lows in [Britain](country:GB).
+
+Gas set electricity prices 25% less often in spring 2026 than in 2022's Russia-Ukraine spike.

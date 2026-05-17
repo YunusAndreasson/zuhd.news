@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Chicago — A study of 3,099 community elders found loneliness — the subjective feeling, not social isolation — predicted faster motor decline and worse Parkinsonism. Even after controlling for depression and genetic risk, loneliness remained the binding factor, researchers found. Lewy body patients showed the strongest link at autopsy, suggesting loneliness tracks neurodegeneration directly.
+Chicago — A study of 3,099 community elders found loneliness — the subjective feeling, not social isolation — predicted faster motor decline and worse Parkinsonism.
+
+Even after controlling for depression and genetic risk, loneliness remained the binding factor, researchers found.
+
+Lewy body patients showed the strongest link at autopsy, suggesting loneliness tracks neurodegeneration directly.

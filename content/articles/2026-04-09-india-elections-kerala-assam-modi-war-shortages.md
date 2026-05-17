@@ -24,4 +24,8 @@ eventCoverage: 98
 sentimentDivergence: 0.04
 ---
 
-New Delhi — 27 million Indians voted today with empty cooking gas cylinders. A month of Hormuz closure cut India's LPG supply, making wartime shortages the central issue in state elections across Kerala, Assam, and Puducherry. Kerala — where 2 million emigrants send $23 billion home from Gulf states — is the result that matters most.
+New Delhi — 27 million Indians voted today with empty cooking gas cylinders.
+
+A month of Hormuz closure cut India's LPG supply, making wartime shortages the central issue in state elections across Kerala, Assam, and Puducherry.
+
+Kerala — where 2 million emigrants send $23 billion home from Gulf states — is the result that matters most.

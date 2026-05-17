@@ -17,4 +17,8 @@ concepts:
   - "Paleoanthropology"
 ---
 
-Washington — Neanderthals survived 350,000 years perpetually near extinction. New research shows their populations were chronically near collapse, yet they persisted longer than modern humans have existed so far. The finding reframes their extinction: not a robust species outcompeted, but a fragile one finally ended by Homo sapiens contact.
+Washington — Neanderthals survived 350,000 years perpetually near extinction.
+
+New research shows their populations were chronically near collapse, yet they persisted longer than modern humans have existed so far.
+
+The finding reframes their extinction: not a robust species outcompeted, but a fragile one finally ended by Homo sapiens contact.

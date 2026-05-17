@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Douglas — A Flock camera issued a traffic ticket. Georgia State Patrol ticketed a motorcyclist for holding his phone using a Flock ALPR — marketed as a stolen-vehicle and violent-crime tool. No law restricts what police can search Flock's camera network for — warrants are not required.
+Douglas — A Flock camera issued a traffic ticket.
+
+Georgia State Patrol ticketed a motorcyclist for holding his phone using a Flock ALPR — marketed as a stolen-vehicle and violent-crime tool.
+
+No law restricts what police can search Flock's camera network for — warrants are not required.

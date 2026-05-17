@@ -32,4 +32,8 @@ sentimentDivergence: 0.02
 entities: []
 ---
 
-Thiruvananthapuram — Kerala allies overruled Delhi's choice for chief minister. Muslim League and Kerala Congress partners blocked K.C. Venugopal despite Rahul Gandhi's backing in a nine-leader party meeting. The new non-communist [India](country:IN) state government — first in Kerala in a decade — must be sworn in before the assembly expires May 23.
+Thiruvananthapuram — Kerala allies overruled Delhi's choice for chief minister.
+
+Muslim League and Kerala Congress partners blocked K.C. Venugopal despite Rahul Gandhi's backing in a nine-leader party meeting.
+
+The new non-communist [India](country:IN) state government — first in Kerala in a decade — must be sworn in before the assembly expires May 23.

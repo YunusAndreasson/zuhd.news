@@ -17,4 +17,8 @@ concepts:
   - "Finance"
 ---
 
-Canberra — Australia put crypto under ASIC licensing. The Corporations Amendment bill bans asset commingling and applies broker-level disclosure and dispute rules to exchanges and custody providers. Industry estimates the accessible market at A$24 billion, 24 times the prior A$1 billion.
+Canberra — Australia put crypto under ASIC licensing.
+
+The Corporations Amendment bill bans asset commingling and applies broker-level disclosure and dispute rules to exchanges and custody providers.
+
+Industry estimates the accessible market at A$24 billion, 24 times the prior A$1 billion.

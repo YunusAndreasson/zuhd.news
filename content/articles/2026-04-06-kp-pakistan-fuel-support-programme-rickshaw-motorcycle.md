@@ -17,4 +17,8 @@ concepts:
   - "Government of Khyber Pakhtunkhwa"
 ---
 
-Peshawar — KP launched a fuel subsidy for rickshaw operators. The Ehsaas Fuel Support Programme pays Rs2,000/month to motorcycle, scooter, and rickshaw owners — verified through Pakistan's BISP welfare registry. Applications open today on the Dastak app; Excise & Taxation Office verification precedes first disbursement.
+Peshawar — KP launched a fuel subsidy for rickshaw operators.
+
+The Ehsaas Fuel Support Programme pays Rs2,000/month to motorcycle, scooter, and rickshaw owners — verified through Pakistan's BISP welfare registry.
+
+Applications open today on the Dastak app; Excise & Taxation Office verification precedes first disbursement.

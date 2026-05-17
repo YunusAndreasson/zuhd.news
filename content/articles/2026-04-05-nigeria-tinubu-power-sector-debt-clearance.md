@@ -18,4 +18,8 @@ concepts:
   - "Electricity"
 ---
 
-Abuja — Nigeria cleared N3.3 trillion in power sector arrears. President Tinubu's plan covers debts from 2015 to 2025; unpaid generation companies cut capacity, compounding blackouts across 220 million people. 15 generation companies signed deals; N223 billion disbursed, with Series II payments starting this quarter.
+Abuja — Nigeria cleared N3.3 trillion in power sector arrears.
+
+President Tinubu's plan covers debts from 2015 to 2025; unpaid generation companies cut capacity, compounding blackouts across 220 million people.
+
+15 generation companies signed deals; N223 billion disbursed, with Series II payments starting this quarter.

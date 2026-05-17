@@ -28,4 +28,8 @@ entities:
     kind: "stock"
 ---
 
-Mumbai — Know-your-customer violations and related-party flows killed Paytm's license. [India](country:IN)'s Reserve Bank escalated enforcement over 8 years, finding repeated compliance failures at the payments bank. The Reserve Bank seeks a High Court winding-up order; Paytm has enough to repay all depositors, it said.
+Mumbai — Know-your-customer violations and related-party flows killed Paytm's license.
+
+[India](country:IN)'s Reserve Bank escalated enforcement over 8 years, finding repeated compliance failures at the payments bank.
+
+The Reserve Bank seeks a High Court winding-up order; Paytm has enough to repay all depositors, it said.

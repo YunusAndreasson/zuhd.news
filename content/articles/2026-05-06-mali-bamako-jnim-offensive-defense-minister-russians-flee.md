@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Bamako — Truck bomb kills [Mali](country:ML)'s defense minister. A jihadist-Tuareg coalition struck multiple installations around the capital as Russian mercenaries supporting the junta fled. Junta forces have not confirmed Bamako control; analysts warn a collapse would be the region's largest government fall.
+Bamako — Truck bomb kills [Mali](country:ML)'s defense minister.
+
+A jihadist-Tuareg coalition struck multiple installations around the capital as Russian mercenaries supporting the junta fled.
+
+Junta forces have not confirmed Bamako control; analysts warn a collapse would be the region's largest government fall.

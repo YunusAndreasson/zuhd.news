@@ -18,4 +18,8 @@ concepts:
   - "Cloud computing"
 ---
 
-Karachi — Pakistan's SadaPay collapsed after drone strikes hit AWS Bahrain. Pakistan's digital banking routes through Gulf datacenters; AWS Bahrain has been disrupted since March 1 drone strikes, affecting Pakistani and Gulf financial services. SadaPay says debit cards still work; Amazon must migrate workloads to an alternate region before full app access returns.
+Karachi — Pakistan's SadaPay collapsed after drone strikes hit AWS Bahrain.
+
+Pakistan's digital banking routes through Gulf datacenters; AWS Bahrain has been disrupted since March 1 drone strikes, affecting Pakistani and Gulf financial services.
+
+SadaPay says debit cards still work; Amazon must migrate workloads to an alternate region before full app access returns.

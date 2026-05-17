@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-396 South African wastewater systems are now critical. The 2025 Green Drop Report found 66 of 848 systems functioning — down from 118. Three Johannesburg plants were disqualified; the water department has set no enforcement timeline.
+396 South African wastewater systems are now critical.
+
+The 2025 Green Drop Report found 66 of 848 systems functioning — down from 118.
+
+Three Johannesburg plants were disqualified; the water department has set no enforcement timeline.

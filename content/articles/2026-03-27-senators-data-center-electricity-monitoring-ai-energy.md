@@ -17,4 +17,8 @@ concepts:
   - "United States Senate"
 ---
 
-Washington — US senators want data centers metered like factories. Warren and Hawley want mandatory EIA disclosures; no federal agency currently tracks data center power use despite surging AI demand. Sanders has separately introduced a national construction moratorium pending AI safety law; a dozen states are considering their own.
+Washington — US senators want data centers metered like factories.
+
+Warren and Hawley want mandatory EIA disclosures; no federal agency currently tracks data center power use despite surging AI demand.
+
+Sanders has separately introduced a national construction moratorium pending AI safety law; a dozen states are considering their own.

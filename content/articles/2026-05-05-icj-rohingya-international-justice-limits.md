@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Cox's Bazar — 1 million Rohingya have no path home. The International Court of Justice can assign legal responsibility to [Myanmar](country:MM)'s junta but cannot compel return or guarantee safety. [Bangladesh](country:BD) cannot sustain Cox's Bazar indefinitely; no repatriation timeline exists while Myanmar's junta still controls the territory.
+Cox's Bazar — 1 million Rohingya have no path home.
+
+The International Court of Justice can assign legal responsibility to [Myanmar](country:MM)'s junta but cannot compel return or guarantee safety.
+
+[Bangladesh](country:BD) cannot sustain Cox's Bazar indefinitely; no repatriation timeline exists while Myanmar's junta still controls the territory.

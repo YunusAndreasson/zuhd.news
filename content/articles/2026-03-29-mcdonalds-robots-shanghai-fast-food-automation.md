@@ -16,4 +16,8 @@ concepts:
   - "Robot"
 ---
 
-Shanghai — McDonald's ran a robot pilot in Shanghai. Keenon Robotics humanoid machines greeted customers and cleared trays during a store opening — a short-term test, not a commercial rollout. McDonald's has 40,000 restaurants globally; a commercial rollout would be the largest humanoid robot deployment in history.
+Shanghai — McDonald's ran a robot pilot in Shanghai.
+
+Keenon Robotics humanoid machines greeted customers and cleared trays during a store opening — a short-term test, not a commercial rollout.
+
+McDonald's has 40,000 restaurants globally; a commercial rollout would be the largest humanoid robot deployment in history.

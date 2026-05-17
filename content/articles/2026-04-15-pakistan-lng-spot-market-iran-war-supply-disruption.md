@@ -27,4 +27,8 @@ entities:
     kind: "commodity"
 ---
 
-Islamabad — Qatar declared force majeure on Pakistan's gas deliveries. Spot liquefied natural gas has surged to $20-30 per mmBtu; Pakistan now routes crude via Saudi Arabia's Yanbu port to bypass Hormuz. Petroleum Minister Malik warned prolonged shortages could threaten food security as a new domestic gas well begins output.
+Islamabad — Qatar declared force majeure on Pakistan's gas deliveries.
+
+Spot liquefied natural gas has surged to $20-30 per mmBtu; Pakistan now routes crude via Saudi Arabia's Yanbu port to bypass Hormuz.
+
+Petroleum Minister Malik warned prolonged shortages could threaten food security as a new domestic gas well begins output.

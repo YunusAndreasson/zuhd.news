@@ -18,4 +18,8 @@ concepts:
   - "Aerospace"
 ---
 
-Paris — France's Lise exchange plans Europe's first onchain IPO. Under the EU's DLT pilot regime, onchain settlement cuts listing costs for firms too small to access Euronext. Aerospace supplier ST Group lists April 9; the DLT pilot has no precedent at IPO scale.
+Paris — France's Lise exchange plans Europe's first onchain IPO.
+
+Under the EU's DLT pilot regime, onchain settlement cuts listing costs for firms too small to access Euronext.
+
+Aerospace supplier ST Group lists April 9; the DLT pilot has no precedent at IPO scale.

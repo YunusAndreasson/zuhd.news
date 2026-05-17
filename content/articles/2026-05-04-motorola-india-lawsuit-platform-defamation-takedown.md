@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-New Delhi — Motorola asked [India](country:IN)'s courts to compel platform takedowns. The March filing targets major social media companies, seeking court orders to remove device reviews the company labels defamatory. Digital rights activists warn the suit could shift India's platform regime from reactive content removal toward predictive censorship.
+New Delhi — Motorola asked [India](country:IN)'s courts to compel platform takedowns.
+
+The March filing targets major social media companies, seeking court orders to remove device reviews the company labels defamatory.
+
+Digital rights activists warn the suit could shift India's platform regime from reactive content removal toward predictive censorship.

@@ -17,4 +17,8 @@ concepts:
   - "De-dollarization"
 ---
 
-Paris — France withdrew its last gold from US custody. The repatriation locked in a $15B gain as gold surpassed $3,100/oz; Germany and Poland made similar moves in 2017 and 2019. Other Western central banks holding gold in New York now face pressure to explain why theirs remains.
+Paris — France withdrew its last gold from US custody.
+
+The repatriation locked in a $15B gain as gold surpassed $3,100/oz; Germany and Poland made similar moves in 2017 and 2019.
+
+Other Western central banks holding gold in New York now face pressure to explain why theirs remains.

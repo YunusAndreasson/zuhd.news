@@ -11,4 +11,8 @@ sources:
     country: "NG"
 ---
 
-Kano — Kano court sacked a local government chair for fraud. The court found a New Nigeria Peoples Party candidate was unlawfully replaced, then installed the original winner rather than ordering a new vote. This ruling's survival on appeal will test how much independence Nigeria's lower courts have gained from party machines.
+Kano — Kano court sacked a local government chair for fraud.
+
+The court found a New Nigeria Peoples Party candidate was unlawfully replaced, then installed the original winner rather than ordering a new vote.
+
+This ruling's survival on appeal will test how much independence Nigeria's lower courts have gained from party machines.

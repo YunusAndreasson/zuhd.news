@@ -26,4 +26,8 @@ concepts:
   - "Eminent domain"
 ---
 
-Buenos Aires — US court erased Argentina's $16.1 billion YPF debt. The 2nd Circuit ruled a Manhattan judge misread Argentine law on the 2012 nationalization; Burford Capital shares fell 54%. Burford can petition the Supreme Court — if denied, Milei clears a liability equal to 45% of Argentina's budget.
+Buenos Aires — US court erased Argentina's $16.1 billion YPF debt.
+
+The 2nd Circuit ruled a Manhattan judge misread Argentine law on the 2012 nationalization; Burford Capital shares fell 54%.
+
+Burford can petition the Supreme Court — if denied, Milei clears a liability equal to 45% of Argentina's budget.

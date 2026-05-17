@@ -19,4 +19,8 @@ concepts:
   - "Asia"
 ---
 
-Abu Dhabi — Masdar and TotalEnergies formed a $2.2 billion joint venture for Asian renewables. The 50-50 deal targets 9 gigawatts across solar, wind and storage in 9 markets by 2030. Masdar invests $15 billion in renewables annually; the venture arrives as Gulf producers plan Hormuz bypass routes.
+Abu Dhabi — Masdar and TotalEnergies formed a $2.2 billion joint venture for Asian renewables.
+
+The 50-50 deal targets 9 gigawatts across solar, wind and storage in 9 markets by 2030.
+
+Masdar invests $15 billion in renewables annually; the venture arrives as Gulf producers plan Hormuz bypass routes.

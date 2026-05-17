@@ -19,4 +19,8 @@ concepts:
   - "Port"
 ---
 
-Abuja — Nigeria seeks $6bn from Abu Dhabi and London. Tinubu requested $5bn from First Abu Dhabi Bank to refinance existing debt and $1bn via UK-arranged Citibank for Lagos port reconstruction. Nigeria's public debt exceeds N87 trillion; the Senate Committee on Local and Foreign Debts now reviews both requests.
+Abuja — Nigeria seeks $6bn from Abu Dhabi and London.
+
+Tinubu requested $5bn from First Abu Dhabi Bank to refinance existing debt and $1bn via UK-arranged Citibank for Lagos port reconstruction.
+
+Nigeria's public debt exceeds N87 trillion; the Senate Committee on Local and Foreign Debts now reviews both requests.

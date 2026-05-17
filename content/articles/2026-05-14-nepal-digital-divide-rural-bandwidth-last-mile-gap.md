@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Kathmandu — Millions of Nepalis lack working internet despite official penetration figures. Rural and urban connections are counted together, hiding that most rural service is unreliable or too expensive to use. Access to jobs, education, and government services depends on connectivity rural [Nepal](country:NP) has not delivered.
+Kathmandu — Millions of Nepalis lack working internet despite official penetration figures.
+
+Rural and urban connections are counted together, hiding that most rural service is unreliable or too expensive to use.
+
+Access to jobs, education, and government services depends on connectivity rural [Nepal](country:NP) has not delivered.

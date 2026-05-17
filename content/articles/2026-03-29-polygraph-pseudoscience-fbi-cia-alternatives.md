@@ -17,4 +17,8 @@ concepts:
   - "FBI"
 ---
 
-Washington — Polygraphs fail innocent people 43% of the time. The FBI, CIA, and NSA still require them for employment despite a 2003 National Academies finding that the science is inadequate. Researchers are testing fMRI and AI-behavioral alternatives, but dispute whether reliable deception detection is theoretically achievable.
+Washington — Polygraphs fail innocent people 43% of the time.
+
+The FBI, CIA, and NSA still require them for employment despite a 2003 National Academies finding that the science is inadequate.
+
+Researchers are testing fMRI and AI-behavioral alternatives, but dispute whether reliable deception detection is theoretically achievable.

@@ -33,4 +33,8 @@ entities:
     kind: "stock"
 ---
 
-Sydney — Microsoft pledges A$25 billion for Australian AI infrastructure. [Australia](country:AU) is Microsoft's biggest single-country commitment outside the [US](country:US), following 3 earlier Asian pledges. Microsoft will train 3 million Australians in AI skills by 2028 and expand Azure GPU capacity by 140%.
+Sydney — Microsoft pledges A$25 billion for Australian AI infrastructure.
+
+[Australia](country:AU) is Microsoft's biggest single-country commitment outside the [US](country:US), following 3 earlier Asian pledges.
+
+Microsoft will train 3 million Australians in AI skills by 2028 and expand Azure GPU capacity by 140%.

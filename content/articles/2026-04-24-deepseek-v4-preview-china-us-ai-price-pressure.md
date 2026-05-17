@@ -26,4 +26,8 @@ sentimentDivergence: 0
 entities: []
 ---
 
-Hangzhou — DeepSeek V4 ships a 1-million-token open model. V4-Pro uses 27% of V3's compute and matches OpenAI's flagship model, [China](country:CN)'s DeepSeek said, at prices below [US](country:US) rivals. OpenAI and Anthropic have accused DeepSeek of training on their outputs; neither has filed suit.
+Hangzhou — DeepSeek V4 ships a 1-million-token open model.
+
+V4-Pro uses 27% of V3's compute and matches OpenAI's flagship model, [China](country:CN)'s DeepSeek said, at prices below [US](country:US) rivals.
+
+OpenAI and Anthropic have accused DeepSeek of training on their outputs; neither has filed suit.

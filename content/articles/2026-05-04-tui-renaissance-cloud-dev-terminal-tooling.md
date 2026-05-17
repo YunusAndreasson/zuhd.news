@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-San Francisco — David Heinemeier Hansson's Omarchy distro builds on terminal user interface tools, not graphical apps. Windows cycled through 4 major frameworks without a standard; Linux's toolkit split also pushes companies toward Electron. Lazygit, k9s, and btop show the terminal trend; vim outlasted Atom, Sublime, and their Electron successors.
+San Francisco — David Heinemeier Hansson's Omarchy distro builds on terminal user interface tools, not graphical apps.
+
+Windows cycled through 4 major frameworks without a standard; Linux's toolkit split also pushes companies toward Electron.
+
+Lazygit, k9s, and btop show the terminal trend; vim outlasted Atom, Sublime, and their Electron successors.

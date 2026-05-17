@@ -17,4 +17,8 @@ concepts:
   - "US-China Relations"
 ---
 
-Tokyo — Japan deployed missiles that can hit Shanghai. The Type 25, with a 600-mile range, went operational March 31 with US support alongside Japan's first hypersonic weapon. China warns Japan has gone "far beyond self-defense" as Trump prepares a Beijing summit next month.
+Tokyo — Japan deployed missiles that can hit Shanghai.
+
+The Type 25, with a 600-mile range, went operational March 31 with US support alongside Japan's first hypersonic weapon.
+
+China warns Japan has gone "far beyond self-defense" as Trump prepares a Beijing summit next month.

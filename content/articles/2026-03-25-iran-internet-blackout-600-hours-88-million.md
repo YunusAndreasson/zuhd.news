@@ -17,4 +17,8 @@ concepts:
   - "Internet blackout"
 ---
 
-Tehran — Iran has had 1% internet connectivity for 26 days since the US-Israeli strikes on February 28. NetBlocks confirmed the blackout passed 600 hours on March 25, cutting 88 million Iranians off from banking, external news, and communications. Iran's government controls the kill switch and has set no restoration date as the blackout enters its fourth week.
+Tehran — Iran has had 1% internet connectivity for 26 days since the US-Israeli strikes on February 28.
+
+NetBlocks confirmed the blackout passed 600 hours on March 25, cutting 88 million Iranians off from banking, external news, and communications.
+
+Iran's government controls the kill switch and has set no restoration date as the blackout enters its fourth week.

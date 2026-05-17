@@ -16,4 +16,8 @@ concepts:
   - "South African Police Service"
 ---
 
-Pretoria — South Africa's military cannot locate its own weapons. The Auditor-General found R68 billion in military assets unverifiable — qualifying SANDF's accounts for the 9th consecutive year. 2,200 soldiers deploy Wednesday in an R823 million crime operation with no parliamentary budget breakdown.
+Pretoria — South Africa's military cannot locate its own weapons.
+
+The Auditor-General found R68 billion in military assets unverifiable — qualifying SANDF's accounts for the 9th consecutive year.
+
+2,200 soldiers deploy Wednesday in an R823 million crime operation with no parliamentary budget breakdown.

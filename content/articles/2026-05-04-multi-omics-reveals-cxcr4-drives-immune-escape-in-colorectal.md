@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-London — Checkpoint inhibitors fail most colorectal cancer patients. A study in Cell Death & Disease found CXCR4 reprograms macrophages and exhausts CD8 T cells — the immune shield blocking checkpoint therapy. CXCR4 inhibitors are already approved for blood cancers by US regulators, making combination trials mechanistically viable.
+London — Checkpoint inhibitors fail most colorectal cancer patients.
+
+A study in Cell Death & Disease found CXCR4 reprograms macrophages and exhausts CD8 T cells — the immune shield blocking checkpoint therapy.
+
+CXCR4 inhibitors are already approved for blood cancers by US regulators, making combination trials mechanistically viable.

@@ -25,4 +25,8 @@ concepts:
   - "United States Congress"
 ---
 
-Washington — Florida Rep. Cherfilus-McCormick resigned to pre-empt expulsion. Charged with $5 million in federal COVID fund theft, she quit 20 minutes before the [US](country:US) House Ethics Committee vote on expulsion. Her resignation is the third by a House member in a week amid active ethics investigations.
+Washington — Florida Rep. Cherfilus-McCormick resigned to pre-empt expulsion.
+
+Charged with $5 million in federal COVID fund theft, she quit 20 minutes before the [US](country:US) House Ethics Committee vote on expulsion.
+
+Her resignation is the third by a House member in a week amid active ethics investigations.

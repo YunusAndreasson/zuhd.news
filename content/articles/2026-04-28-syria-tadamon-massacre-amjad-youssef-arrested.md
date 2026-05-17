@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Hama — Syrian forces arrested Amjad Youssef, filmed executing 41 civilians into a pit in Damascus in 2013. [Syria](country:SY)'s Internal Security Forces tracked him for 30 days before seizing him at his family home — the first domestic prosecution of a regime-era mass killer since Assad's fall. The Tadamon footage is already evidence in European courts.
+Hama — Syrian forces arrested Amjad Youssef, filmed executing 41 civilians into a pit in Damascus in 2013.
+
+[Syria](country:SY)'s Internal Security Forces tracked him for 30 days before seizing him at his family home — the first domestic prosecution of a regime-era mass killer since Assad's fall.
+
+The Tadamon footage is already evidence in European courts.

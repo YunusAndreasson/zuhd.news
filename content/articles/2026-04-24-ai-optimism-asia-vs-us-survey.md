@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-San Francisco — A molotov hit Sam Altman's San Francisco home. A new survey shows [US](country:US) respondents markedly less AI-optimistic than Asian counterparts, who frame the technology as productivity catch-up rather than displacement. No cross-border AI governance framework exists; the two publics are developing divergent relationships with the technology.
+San Francisco — A molotov hit Sam Altman's San Francisco home.
+
+A new survey shows [US](country:US) respondents markedly less AI-optimistic than Asian counterparts, who frame the technology as productivity catch-up rather than displacement.
+
+No cross-border AI governance framework exists; the two publics are developing divergent relationships with the technology.

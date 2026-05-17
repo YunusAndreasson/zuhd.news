@@ -17,4 +17,8 @@ concepts:
   - "Correlation"
 ---
 
-Nairobi — Land use drives traffic; building roads doesn't. A 30-city causal study across 6 continents found urban form and land use shape mobility more strongly than road network expansion. Cities adding roads instead of reforming land use risk locking in the congestion they're trying to relieve.
+Nairobi — Land use drives traffic; building roads doesn't.
+
+A 30-city causal study across 6 continents found urban form and land use shape mobility more strongly than road network expansion.
+
+Cities adding roads instead of reforming land use risk locking in the congestion they're trying to relieve.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Washington — Half the US Patriot stockpile may be gone. The Center for Strategic and International Studies counted 850 Tomahawks and 1,000 cruise missiles fired in 39 days; rebuilding takes 3-5 years. The Pentagon's fiscal 2027 request includes $70 billion for munitions; allies warn [US](country:US) delivery timelines slip.
+Washington — Half the US Patriot stockpile may be gone.
+
+The Center for Strategic and International Studies counted 850 Tomahawks and 1,000 cruise missiles fired in 39 days; rebuilding takes 3-5 years.
+
+The Pentagon's fiscal 2027 request includes $70 billion for munitions; allies warn [US](country:US) delivery timelines slip.

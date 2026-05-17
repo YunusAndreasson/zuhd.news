@@ -29,4 +29,8 @@ sentimentDivergence: 0.27
 entities: []
 ---
 
-Ottawa — [Canada](country:CA)'s new governor general prosecuted Slobodan Milošević. PM Carney named Arbour, 79, for holding institutions accountable; her Yugoslav tribunal work produced history's first indictment of a sitting head of state. Arbour begins a five-year term as commander-in-chief, the first governor general appointed by King Charles.
+Ottawa — [Canada](country:CA)'s new governor general prosecuted Slobodan Milošević.
+
+PM Carney named Arbour, 79, for holding institutions accountable; her Yugoslav tribunal work produced history's first indictment of a sitting head of state.
+
+Arbour begins a five-year term as commander-in-chief, the first governor general appointed by King Charles.

@@ -16,4 +16,8 @@ concepts:
   - "Glucagon-like peptide-1"
 ---
 
-Washington — FDA approved Lilly's first oral obesity pill, orforglipron. A pill needs no cold chain or injection; Lilly priced orforglipron at $349/month, above Novo Nordisk's competing $299/month oral Wegovy. Wegovy's pill leads at 13.6% weight loss vs. orforglipron's 11.2%; which one insurers favor will determine the market.
+Washington — FDA approved Lilly's first oral obesity pill, orforglipron.
+
+A pill needs no cold chain or injection; Lilly priced orforglipron at $349/month, above Novo Nordisk's competing $299/month oral Wegovy.
+
+Wegovy's pill leads at 13.6% weight loss vs. orforglipron's 11.2%; which one insurers favor will determine the market.

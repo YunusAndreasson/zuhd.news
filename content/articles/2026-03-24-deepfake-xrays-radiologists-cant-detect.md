@@ -16,4 +16,8 @@ concepts:
   - "Health care"
 ---
 
-Boston — 17 radiologists missed AI X-rays 59% of the time. ChatGPT generated the X-rays from text prompts describing anatomy and disease, and could only detect its own fakes 57% of the time. No telehealth platform requires proof of image origin, creating an unmonitored pipeline for fabricated medical evidence.
+Boston — 17 radiologists missed AI X-rays 59% of the time.
+
+ChatGPT generated the X-rays from text prompts describing anatomy and disease, and could only detect its own fakes 57% of the time.
+
+No telehealth platform requires proof of image origin, creating an unmonitored pipeline for fabricated medical evidence.

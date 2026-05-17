@@ -43,4 +43,8 @@ entities:
     kind: "commodity"
 ---
 
-Berlin — [Russia](country:RU) halts Kazakh crude to [Germany](country:DE), May 1. PCK Schwedt supplies 90% of Berlin's fuel, per operator data; Germany negotiated the Kazakh pipeline route as its post-sanctions bypass, and Moscow is now closing it. Germany's minister named 2 alternative ports; the regulator warned of regional pricing effects.
+Berlin — [Russia](country:RU) halts Kazakh crude to [Germany](country:DE), May 1.
+
+PCK Schwedt supplies 90% of Berlin's fuel, per operator data; Germany negotiated the Kazakh pipeline route as its post-sanctions bypass, and Moscow is now closing it.
+
+Germany's minister named 2 alternative ports; the regulator warned of regional pricing effects.

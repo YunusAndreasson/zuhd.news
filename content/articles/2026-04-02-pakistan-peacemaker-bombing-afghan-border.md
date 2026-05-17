@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Islamabad — Pakistan is mediating Iran talks while bombing Afghanistan. Pakistani forces are emptying villages in Khost and Kunar; journalists and monitors are barred from the zone. Pakistan's mediator role gives coalition partners justification to ignore the Afghan campaign.
+Islamabad — Pakistan is mediating Iran talks while bombing Afghanistan.
+
+Pakistani forces are emptying villages in Khost and Kunar; journalists and monitors are barred from the zone.
+
+Pakistan's mediator role gives coalition partners justification to ignore the Afghan campaign.

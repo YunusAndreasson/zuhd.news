@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — [Pakistan](country:PK) cleared 5G trials for Gilgit-Baltistan. The disputed territory has no provincial assembly and was excluded from Pakistan's March spectrum auction; Islamabad governs its telecom access separately. Trials across 3 frequency bands must precede a separate spectrum auction; no date is set.
+Islamabad — [Pakistan](country:PK) cleared 5G trials for Gilgit-Baltistan.
+
+The disputed territory has no provincial assembly and was excluded from Pakistan's March spectrum auction; Islamabad governs its telecom access separately.
+
+Trials across 3 frequency bands must precede a separate spectrum auction; no date is set.

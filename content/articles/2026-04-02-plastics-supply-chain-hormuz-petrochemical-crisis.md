@@ -18,4 +18,8 @@ concepts:
   - "Naphtha"
 ---
 
-Dubai — Asian naphtha prices surged 50% last month. The Middle East supplies 40% of Asia's naphtha — the crude fraction that becomes polypropylene for packaging and auto parts — and stockpiles are nearly exhausted. India's largest water bottle supplier raised prices 11%; toy makers expect similar increases within weeks.
+Dubai — Asian naphtha prices surged 50% last month.
+
+The Middle East supplies 40% of Asia's naphtha — the crude fraction that becomes polypropylene for packaging and auto parts — and stockpiles are nearly exhausted.
+
+India's largest water bottle supplier raised prices 11%; toy makers expect similar increases within weeks.

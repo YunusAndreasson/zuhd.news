@@ -35,4 +35,8 @@ concepts:
 sentimentDivergence: 0.26
 ---
 
-London — Russia mapped Britain's Atlantic cables. Defense Secretary Healey publicized the month-long covert operation to expose Putin's hybrid warfare strategy while Washington remained focused on Iran. Russia denied any threat; the 2 GUGI submarines are designed to return and destroy what they surveyed.
+London — Russia mapped Britain's Atlantic cables.
+
+Defense Secretary Healey publicized the month-long covert operation to expose Putin's hybrid warfare strategy while Washington remained focused on Iran.
+
+Russia denied any threat; the 2 GUGI submarines are designed to return and destroy what they surveyed.

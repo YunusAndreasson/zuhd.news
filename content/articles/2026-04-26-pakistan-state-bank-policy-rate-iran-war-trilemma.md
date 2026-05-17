@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Karachi — [Pakistan](country:PK)'s short-term inflation spiked to 14% in the week ending April 23. The State Bank meets Monday; most economists expect a 100-basis-point hike on Gulf-war fuel costs, lifting the rate to 11.5%. A higher rate increases borrowing costs and complicates Pakistan's IMF programme targets.
+Karachi — [Pakistan](country:PK)'s short-term inflation spiked to 14% in the week ending April 23.
+
+The State Bank meets Monday; most economists expect a 100-basis-point hike on Gulf-war fuel costs, lifting the rate to 11.5%.
+
+A higher rate increases borrowing costs and complicates Pakistan's IMF programme targets.

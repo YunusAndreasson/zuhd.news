@@ -17,4 +17,8 @@ concepts:
   - "United States Senate Committee on the Judiciary"
 ---
 
-Washington — Bondi's firing gives Republicans leverage over the Fed. With the AG vacancy requiring Senate Judiciary confirmation, Sen. Thom Tillis holds a blocking vote in a committee that can tie 11-11. Barclays says Tillis could demand DOJ drop the Powell investigation as the price of his confirmation vote.
+Washington — Bondi's firing gives Republicans leverage over the Fed.
+
+With the AG vacancy requiring Senate Judiciary confirmation, Sen. Thom Tillis holds a blocking vote in a committee that can tie 11-11.
+
+Barclays says Tillis could demand DOJ drop the Powell investigation as the price of his confirmation vote.

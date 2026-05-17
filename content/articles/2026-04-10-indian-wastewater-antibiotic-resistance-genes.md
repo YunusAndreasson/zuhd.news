@@ -17,4 +17,8 @@ concepts:
   - "Antibiotic"
 ---
 
-New Delhi — Antibiotic resistance genes pervade India's urban sewage. Hospitals and pharmaceutical factories discharge resistance genes — India makes most of the world's generic antibiotics. AMR already kills 1.3 million yearly and resistant bacteria spread through rivers no treatment plant removes.
+New Delhi — Antibiotic resistance genes pervade India's urban sewage.
+
+Hospitals and pharmaceutical factories discharge resistance genes — India makes most of the world's generic antibiotics.
+
+AMR already kills 1.3 million yearly and resistant bacteria spread through rivers no treatment plant removes.

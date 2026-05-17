@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-San Francisco — Simon Willison, developer and AI blogger, no longer reviews AI-written production code. He argues that as agents grow reliable, the habit of reviewing output atrophies — the critical skill edge cases need most. Willison says the incident class is shifting from AI errors to human approval of AI output nobody fully read.
+San Francisco — Simon Willison, developer and AI blogger, no longer reviews AI-written production code.
+
+He argues that as agents grow reliable, the habit of reviewing output atrophies — the critical skill edge cases need most.
+
+Willison says the incident class is shifting from AI errors to human approval of AI output nobody fully read.

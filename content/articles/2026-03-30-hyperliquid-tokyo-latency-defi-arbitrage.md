@@ -17,4 +17,8 @@ concepts:
   - "Tokyo"
 ---
 
-Tokyo — All 24 Hyperliquid validators run on one AWS Tokyo server. Local traders hold a 200ms edge over European competitors on a $4 billion daily market—the same geographic arbitrage traditional finance spent decades neutralizing. The validator cluster makes decentralization a claim, not a fact, as institutions enter.
+Tokyo — All 24 Hyperliquid validators run on one AWS Tokyo server.
+
+Local traders hold a 200ms edge over European competitors on a $4 billion daily market—the same geographic arbitrage traditional finance spent decades neutralizing.
+
+The validator cluster makes decentralization a claim, not a fact, as institutions enter.

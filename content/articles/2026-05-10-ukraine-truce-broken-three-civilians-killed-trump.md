@@ -27,4 +27,8 @@ sentimentDivergence: 0.26
 entities: []
 ---
 
-Zaporizhia — 3 Ukrainians died in drone and artillery attacks within 24 hours of [Russia](country:RU)'s ceasefire taking effect. Trump's three-day pause, active since May 9, carries no enforcement clause and no monitor — both sides have accused each other of violations. [US](country:US) envoys are traveling to Moscow with no agreed date for formal talks to resume.
+Zaporizhia — 3 Ukrainians died in drone and artillery attacks within 24 hours of [Russia](country:RU)'s ceasefire taking effect.
+
+Trump's three-day pause, active since May 9, carries no enforcement clause and no monitor — both sides have accused each other of violations.
+
+[US](country:US) envoys are traveling to Moscow with no agreed date for formal talks to resume.

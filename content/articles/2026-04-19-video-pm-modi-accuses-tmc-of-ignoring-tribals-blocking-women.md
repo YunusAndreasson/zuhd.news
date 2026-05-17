@@ -28,4 +28,8 @@ eventCoverage: 97
 sentimentDivergence: 0.23
 ---
 
-Bishnupur — TMC blocked women's 33% parliamentary reservation, Modi said. The bill would have given women one-third of Parliament and assembly seats from 2029; Trinamool Congress and Congress blocked it, he alleged. West Bengal votes April 23; [India](country:IN)'s Bharatiya Janata Party is targeting women and tribal voters in TMC-held seats.
+Bishnupur — TMC blocked women's 33% parliamentary reservation, Modi said.
+
+The bill would have given women one-third of Parliament and assembly seats from 2029; Trinamool Congress and Congress blocked it, he alleged.
+
+West Bengal votes April 23; [India](country:IN)'s Bharatiya Janata Party is targeting women and tribal voters in TMC-held seats.

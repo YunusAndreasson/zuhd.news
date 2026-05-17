@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-India deployed 500 cameras at its artificial intelligence summit. Amnesty International warned that facial recognition operates in railways and predictive policing with no prior assessment or legal safeguards. The government permits deployment before any human-rights review; no accountability law exists.
+India deployed 500 cameras at its artificial intelligence summit.
+
+Amnesty International warned that facial recognition operates in railways and predictive policing with no prior assessment or legal safeguards.
+
+The government permits deployment before any human-rights review; no accountability law exists.

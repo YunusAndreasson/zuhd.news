@@ -17,4 +17,8 @@ concepts:
   - "NASA"
 ---
 
-Washington — Both Lunar Gateway habitat modules corroded before launch. The National Aeronautics and Space Administration's administrator confirmed it at Congressional testimony; Northrop Grumman promises Q3 2026 repairs. The program was already paused in March; whether the International Habitation Module remains in the Moon base plan is undecided.
+Washington — Both Lunar Gateway habitat modules corroded before launch.
+
+The National Aeronautics and Space Administration's administrator confirmed it at Congressional testimony; Northrop Grumman promises Q3 2026 repairs.
+
+The program was already paused in March; whether the International Habitation Module remains in the Moon base plan is undecided.

@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-South Lebanon — IDF wrapped Merkava tanks in wire mesh. Sunday's strike killed 1 IDF soldier and wounded 6 as Hezbollah's fiber-optic drones defeat [Israel](country:IL)'s electronic jamming. The wire netting is Israel's improvised response with no systematic counter deployed.
+South Lebanon — IDF wrapped Merkava tanks in wire mesh.
+
+Sunday's strike killed 1 IDF soldier and wounded 6 as Hezbollah's fiber-optic drones defeat [Israel](country:IL)'s electronic jamming.
+
+The wire netting is Israel's improvised response with no systematic counter deployed.

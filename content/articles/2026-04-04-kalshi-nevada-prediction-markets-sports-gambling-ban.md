@@ -17,4 +17,8 @@ concepts:
   - "U.S. state"
 ---
 
-Carson City — Nevada judge: Kalshi's sports markets are gambling. Judge Jason Woodbury extended a preliminary injunction, ruling Kalshi's sports contracts "indistinguishable" from gambling that requires a state license. The CFTC sued 3 states Thursday arguing federal jurisdiction; prediction markets now face simultaneous court battles.
+Carson City — Nevada judge: Kalshi's sports markets are gambling.
+
+Judge Jason Woodbury extended a preliminary injunction, ruling Kalshi's sports contracts "indistinguishable" from gambling that requires a state license.
+
+The CFTC sued 3 states Thursday arguing federal jurisdiction; prediction markets now face simultaneous court battles.

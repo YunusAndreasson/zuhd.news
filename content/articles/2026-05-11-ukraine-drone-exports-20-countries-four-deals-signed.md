@@ -40,4 +40,8 @@ sentimentDivergence: 0.43
 entities: []
 ---
 
-Kyiv — 20 countries seek drone deals with [Ukraine](country:UA). Zelenskyy confirmed 4 signed deals; fuel-supply agreements are already flowing to Ukraine under the first contracts. A drone-security partnership will also launch in an unspecified region, Zelenskyy said.
+Kyiv — 20 countries seek drone deals with [Ukraine](country:UA).
+
+Zelenskyy confirmed 4 signed deals; fuel-supply agreements are already flowing to Ukraine under the first contracts.
+
+A drone-security partnership will also launch in an unspecified region, Zelenskyy said.

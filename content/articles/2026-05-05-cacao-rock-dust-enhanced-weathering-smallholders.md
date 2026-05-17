@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Accra — Enhanced weathering sequesters CO2 while growing more cocoa. Crushed silicate minerals form bicarbonate on contact with rainwater, drawing CO2 from atmosphere while releasing calcium and phosphorus into depleted soil. Most cocoa is grown by smallholders in West Africa and [Indonesia](country:ID) facing soil collapse from monoculture.
+Accra — Enhanced weathering sequesters CO2 while growing more cocoa.
+
+Crushed silicate minerals form bicarbonate on contact with rainwater, drawing CO2 from atmosphere while releasing calcium and phosphorus into depleted soil.
+
+Most cocoa is grown by smallholders in West Africa and [Indonesia](country:ID) facing soil collapse from monoculture.

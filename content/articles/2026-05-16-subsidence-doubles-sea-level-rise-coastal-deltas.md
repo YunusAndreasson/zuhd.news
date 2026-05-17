@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Jakarta — 71% of coastal people live in subsiding zones. A Nature Communications study found they experience 6mm/year of relative rise — twice the climate-driven rate. Global sea-level projections understate risk for river deltas across South and Southeast Asia, researchers said.
+Jakarta — 71% of coastal people live in subsiding zones.
+
+A Nature Communications study found they experience 6mm/year of relative rise — twice the climate-driven rate.
+
+Global sea-level projections understate risk for river deltas across South and Southeast Asia, researchers said.

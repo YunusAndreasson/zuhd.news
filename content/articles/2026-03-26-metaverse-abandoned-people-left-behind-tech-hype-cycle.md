@@ -17,4 +17,8 @@ concepts:
   - "Mark Zuckerberg"
 ---
 
-Menlo Park — Meta abandoned Horizon Worlds' creators last week. Diaz, a former Meta VR developer, called the announcement "institutional betrayal"; AA meetings and a church still used Horizon Worlds at shutdown. Bosworth reversed course March 18, promising Horizon Worlds "for the foreseeable future"; Diaz said the promise "reassures nobody" without a firm commitment.
+Menlo Park — Meta abandoned Horizon Worlds' creators last week.
+
+Diaz, a former Meta VR developer, called the announcement "institutional betrayal"; AA meetings and a church still used Horizon Worlds at shutdown.
+
+Bosworth reversed course March 18, promising Horizon Worlds "for the foreseeable future"; Diaz said the promise "reassures nobody" without a firm commitment.

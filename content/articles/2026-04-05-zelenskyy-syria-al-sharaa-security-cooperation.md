@@ -21,4 +21,8 @@ concepts:
 sentimentDivergence: 0.04
 ---
 
-Damascus — Zelenskyy visited Damascus to offer Ukraine's drone-defense expertise. Ukraine signed defense deals with Saudi Arabia, Qatar, and UAE last week; Syria has no air defenses against Iranian drones. Al-Sharaa must decide whether to bring Ukraine into Syria's security architecture as Russia reasserts its basing rights.
+Damascus — Zelenskyy visited Damascus to offer Ukraine's drone-defense expertise.
+
+Ukraine signed defense deals with Saudi Arabia, Qatar, and UAE last week; Syria has no air defenses against Iranian drones.
+
+Al-Sharaa must decide whether to bring Ukraine into Syria's security architecture as Russia reasserts its basing rights.

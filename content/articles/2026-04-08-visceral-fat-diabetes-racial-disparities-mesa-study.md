@@ -18,4 +18,8 @@ concepts:
   - "CT scan"
 ---
 
-New York — Visceral fat drives diabetes risk differently by ethnicity. MESA's 1,457-person cohort shows it mediates Hispanic T2D risk but not Black Americans', pointing to an unmapped second pathway. Standard BMI screening misses both groups; major health bodies have yet to adopt ethnicity-specific fat thresholds.
+New York — Visceral fat drives diabetes risk differently by ethnicity.
+
+MESA's 1,457-person cohort shows it mediates Hispanic T2D risk but not Black Americans', pointing to an unmapped second pathway.
+
+Standard BMI screening misses both groups; major health bodies have yet to adopt ethnicity-specific fat thresholds.

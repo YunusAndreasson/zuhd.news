@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — Computed tomography screening misses indeterminate lung nodules. LungDxFormer, an artificial-intelligence hybrid of neural network and transformer, classified benign, indeterminate, and malignant nodules at 97% with heat-map output. The model used retrospective data; hospital trials are needed before clinical use.
+London — Computed tomography screening misses indeterminate lung nodules.
+
+LungDxFormer, an artificial-intelligence hybrid of neural network and transformer, classified benign, indeterminate, and malignant nodules at 97% with heat-map output.
+
+The model used retrospective data; hospital trials are needed before clinical use.

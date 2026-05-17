@@ -20,4 +20,8 @@ eventCoverage: 22
 entities: []
 ---
 
-New Delhi — 48-minute Mumbai-Pune is [India](country:IN)'s bet against short-haul aviation. Railway Minister Vaishnaw cited Japan and [South Korea](country:KR), where bullet trains captured dense corridors, and announced Rs 16 lakh crore in infrastructure. Airlines on Mumbai-Pune and 4 parallel corridors face a state-predicted demand collapse with no completion date set.
+New Delhi — 48-minute Mumbai-Pune is [India](country:IN)'s bet against short-haul aviation.
+
+Railway Minister Vaishnaw cited Japan and [South Korea](country:KR), where bullet trains captured dense corridors, and announced Rs 16 lakh crore in infrastructure.
+
+Airlines on Mumbai-Pune and 4 parallel corridors face a state-predicted demand collapse with no completion date set.

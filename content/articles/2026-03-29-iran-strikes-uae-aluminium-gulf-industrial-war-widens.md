@@ -23,4 +23,8 @@ concepts:
 sentimentDivergence: 0.13
 ---
 
-Abu Dhabi — Iran hit 2 Gulf smelters in 1 day. The IRGC targeted Emirates Global Aluminium in Abu Dhabi and Aluminium Bahrain in Manama, together producing 9% of global aluminium supply. Every Gulf state hosting heavy industry is now a target; IRGC vowed further strikes if US-Israeli raids continue.
+Abu Dhabi — Iran hit 2 Gulf smelters in 1 day.
+
+The IRGC targeted Emirates Global Aluminium in Abu Dhabi and Aluminium Bahrain in Manama, together producing 9% of global aluminium supply.
+
+Every Gulf state hosting heavy industry is now a target; IRGC vowed further strikes if US-Israeli raids continue.

@@ -36,4 +36,6 @@ concepts:
 sentimentDivergence: 0.38
 ---
 
-Madrid — Spain denied US airbases despite Trump's trade threats. Sanchez told parliament the Iran war has already caused 2,000 deaths, displaced 4 million, and cost Spanish companies €100 billion in one month — "far worse than 2003 Iraq." Spain's Popular Party backed the 2003 Iraq invasion and lost the 2004 election after the Madrid bombings; Sanchez is invoking that history to dare the right to side with Trump before Spain's next vote.
+Madrid — Spain denied US airbases despite Trump's trade threats.
+
+Sanchez told parliament the Iran war has already caused 2,000 deaths, displaced 4 million, and cost Spanish companies €100 billion in one month — "far worse than 2003 Iraq." Spain's Popular Party backed the 2003 Iraq invasion and lost the 2004 election after the Madrid bombings; Sanchez is invoking that history to dare the right to side with Trump before Spain's next vote.

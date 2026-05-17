@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Shanghai — RedNote launches US e-commerce. The app is now hiring US staff and hosting campus events to commercialize its audience from January's TikTok scare. Whether US regulators extend TikTok scrutiny to Chinese lifestyle apps will determine if the expansion holds.
+Shanghai — RedNote launches US e-commerce.
+
+The app is now hiring US staff and hosting campus events to commercialize its audience from January's TikTok scare.
+
+Whether US regulators extend TikTok scrutiny to Chinese lifestyle apps will determine if the expansion holds.

@@ -32,4 +32,8 @@ concepts:
 sentimentDivergence: 0.22
 ---
 
-Miami — A judge dismissed Trump's $10 billion Epstein suit. Judge Darrin Gayles ruled Trump failed the actual malice standard: the Wall Street Journal printed his denial, undercutting reckless disregard. Trump can refile an amended complaint by April 27, making the dismissal without prejudice rather than final.
+Miami — A judge dismissed Trump's $10 billion Epstein suit.
+
+Judge Darrin Gayles ruled Trump failed the actual malice standard: the Wall Street Journal printed his denial, undercutting reckless disregard.
+
+Trump can refile an amended complaint by April 27, making the dismissal without prejudice rather than final.

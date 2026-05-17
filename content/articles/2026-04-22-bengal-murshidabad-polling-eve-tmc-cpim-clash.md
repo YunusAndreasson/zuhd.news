@@ -28,4 +28,8 @@ sentimentDivergence: 0.38
 entities: []
 ---
 
-Murshidabad — Trinamool and CPI(M) workers clashed overnight, 4 injured. 152 [India](country:IN) constituencies opened polls Thursday; Murshidabad is Muslim-majority and its booth results swing state totals. Results declared May 4; the election commission deleted 9.1 million from voter rolls before polling, opposition parties say.
+Murshidabad — Trinamool and CPI(M) workers clashed overnight, 4 injured.
+
+152 [India](country:IN) constituencies opened polls Thursday; Murshidabad is Muslim-majority and its booth results swing state totals.
+
+Results declared May 4; the election commission deleted 9.1 million from voter rolls before polling, opposition parties say.

@@ -26,4 +26,8 @@ entities:
     kind: "stock"
 ---
 
-Miami Beach — AI agents cannot open bank accounts. Know-your-customer rails were built for humans; Google Cloud and PayPal told Consensus Miami stablecoins are the only machine-readable payment layer. Google donated its Agentic Payments Protocol to the FIDO Foundation; 120 partners including PayPal are signed on.
+Miami Beach — AI agents cannot open bank accounts.
+
+Know-your-customer rails were built for humans; Google Cloud and PayPal told Consensus Miami stablecoins are the only machine-readable payment layer.
+
+Google donated its Agentic Payments Protocol to the FIDO Foundation; 120 partners including PayPal are signed on.

@@ -16,4 +16,8 @@ concepts:
   - "Synthetic biology"
 ---
 
-La Jolla — Scientists simulated a complete cell's life cycle computationally. The paper models the full cell cycle of JCVI-syn3A — the most minimal known bacterium — across 50 simulated replicates. Progress requires uniting AI's pattern-finding with mechanistic causation — neither approach can scale alone.
+La Jolla — Scientists simulated a complete cell's life cycle computationally.
+
+The paper models the full cell cycle of JCVI-syn3A — the most minimal known bacterium — across 50 simulated replicates.
+
+Progress requires uniting AI's pattern-finding with mechanistic causation — neither approach can scale alone.

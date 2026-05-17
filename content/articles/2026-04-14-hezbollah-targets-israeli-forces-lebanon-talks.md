@@ -28,4 +28,8 @@ eventCoverage: 122
 sentimentDivergence: 0.39
 ---
 
-Washington — Lebanon-Israel peace talks opened; Hezbollah targeted Israeli forces hours later. Secretary of State Marco Rubio hosted the first direct negotiations since 1983. Lebanese President Joseph Aoun says no agreement is possible while Israel occupies Lebanese territory.
+Washington — Lebanon-Israel peace talks opened; Hezbollah targeted Israeli forces hours later.
+
+Secretary of State Marco Rubio hosted the first direct negotiations since 1983.
+
+Lebanese President Joseph Aoun says no agreement is possible while Israel occupies Lebanese territory.

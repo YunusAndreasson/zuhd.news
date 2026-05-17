@@ -17,4 +17,8 @@ concepts:
   - "CPT symmetry"
 ---
 
-Geneva — CERN moved antimatter between traps for the first time. Transporting antihydrogen required magnetic confinement during transit — any contact with the trap walls destroys the sample instantly — enabling precision tests outside the production apparatus. Physicists will now test whether antimatter falls at the same rate as matter under gravity, a probe of CPT symmetry that standard physics assumes but has never measured with antimatter.
+Geneva — CERN moved antimatter between traps for the first time.
+
+Transporting antihydrogen required magnetic confinement during transit — any contact with the trap walls destroys the sample instantly — enabling precision tests outside the production apparatus.
+
+Physicists will now test whether antimatter falls at the same rate as matter under gravity, a probe of CPT symmetry that standard physics assumes but has never measured with antimatter.

@@ -18,4 +18,8 @@ concepts:
   - "Tech backlash"
 ---
 
-San Francisco — An essay warns AI displacement will trigger violence. Like the Luddites, economic anxiety channels into attacks on visible corporate targets — AI labs have no political answer. Hacker News readers voted 321-0 that the threat is real.
+San Francisco — An essay warns AI displacement will trigger violence.
+
+Like the Luddites, economic anxiety channels into attacks on visible corporate targets — AI labs have no political answer.
+
+Hacker News readers voted 321-0 that the threat is real.

@@ -36,4 +36,8 @@ entities:
     kind: "stock"
 ---
 
-Meta is spending up to $135bn on artificial intelligence infrastructure this year. The company cut 8,000 jobs; its chief people officer said the layoffs "offset" the buildout. Microsoft said it offered buyouts to 7% of its [US](country:US) workforce; both companies report earnings April 29.
+Meta is spending up to $135bn on artificial intelligence infrastructure this year.
+
+The company cut 8,000 jobs; its chief people officer said the layoffs "offset" the buildout.
+
+Microsoft said it offered buyouts to 7% of its [US](country:US) workforce; both companies report earnings April 29.

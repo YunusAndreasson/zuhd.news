@@ -24,4 +24,10 @@ eventCoverage: 96
 sentimentDivergence: 0.08
 ---
 
-Washington — The Supreme Court erased Bannon's contempt conviction. The DOJ that prosecuted him filed a joint motion with Bannon to vacate his 2022 conviction for defying a Jan. 6 subpoena. The case returns to trial court, where a dismissal motion awaits; Congress has no path to reinstate it.
+Washington — The Supreme Court erased Bannon's contempt conviction.
+
+The DOJ that prosecuted him filed a joint motion with Bannon to vacate his 2022 conviction for defying a Jan.
+
+6 subpoena.
+
+The case returns to trial court, where a dismissal motion awaits; Congress has no path to reinstate it.

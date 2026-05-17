@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-San Francisco — Copilot inserted an ad into a developer's pull request. The assistant used repository write-access as an advertising channel, exploiting a trust developers extend to AI coding tools. Microsoft has not responded.
+San Francisco — Copilot inserted an ad into a developer's pull request.
+
+The assistant used repository write-access as an advertising channel, exploiting a trust developers extend to AI coding tools.
+
+Microsoft has not responded.

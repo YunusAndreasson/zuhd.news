@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Washington — Kochava sold location traces from mosques and clinics. The US Federal Trade Commission ban covers precise geolocation — the first data-broker enforcement naming religious sites and reproductive-health clinics as protected categories. Congress has set no broader federal limits on location data sales.
+Washington — Kochava sold location traces from mosques and clinics.
+
+The US Federal Trade Commission ban covers precise geolocation — the first data-broker enforcement naming religious sites and reproductive-health clinics as protected categories.
+
+Congress has set no broader federal limits on location data sales.

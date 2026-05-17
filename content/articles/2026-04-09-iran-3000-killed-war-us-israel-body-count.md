@@ -27,4 +27,8 @@ eventCoverage: 121
 sentimentDivergence: 0.13
 ---
 
-Beirut — Israel's largest Lebanon strike wave killed over 200. Within hours of signing the Iran ceasefire, Israel hit 100 Hezbollah targets insisting the truce excluded Lebanon. Hezbollah resumed rocket fire Thursday; Iran and Pakistan disputed Lebanon's exclusion, leaving the deal's scope unresolved.
+Beirut — Israel's largest Lebanon strike wave killed over 200.
+
+Within hours of signing the Iran ceasefire, Israel hit 100 Hezbollah targets insisting the truce excluded Lebanon.
+
+Hezbollah resumed rocket fire Thursday; Iran and Pakistan disputed Lebanon's exclusion, leaving the deal's scope unresolved.

@@ -26,4 +26,8 @@ eventCoverage: 82
 sentimentDivergence: 0.44
 ---
 
-London — 3 Russian submarines probed Britain's undersea cables. Britain tracked the submarines 24/7 with 500 personnel as Russia's deep-sea directorate surveilled cables carrying 99% of UK international data. The submarines retreated; Healey warned Putin that damaging the cables will not be tolerated.
+London — 3 Russian submarines probed Britain's undersea cables.
+
+Britain tracked the submarines 24/7 with 500 personnel as Russia's deep-sea directorate surveilled cables carrying 99% of UK international data.
+
+The submarines retreated; Healey warned Putin that damaging the cables will not be tolerated.

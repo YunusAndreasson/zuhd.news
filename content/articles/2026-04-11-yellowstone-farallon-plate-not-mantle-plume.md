@@ -16,4 +16,8 @@ concepts:
   - "Snake River Plain"
 ---
 
-Yellowstone — Yellowstone may not be a mantle plume. A Science paper argues the heat traces to stresses from the Farallon plate, a tectonic slab still sinking beneath North America. The model leaves unexplained why only Yellowstone, among many Farallon subduction zones, produced this volcanic system.
+Yellowstone — Yellowstone may not be a mantle plume.
+
+A Science paper argues the heat traces to stresses from the Farallon plate, a tectonic slab still sinking beneath North America.
+
+The model leaves unexplained why only Yellowstone, among many Farallon subduction zones, produced this volcanic system.

@@ -19,4 +19,8 @@ concepts:
 eventCoverage: 26
 ---
 
-Mumbai — India's rupee surged 1.8% — a 12-year record. The RBI banned offshore rupee derivatives and capped forward positions at $100M — forcing banks to unwind, squeezing speculators betting against the currency. The RBI decides rates Wednesday; analysts forecast 96 rupees by year-end if the Iran war extends another quarter.
+Mumbai — India's rupee surged 1.8% — a 12-year record.
+
+The RBI banned offshore rupee derivatives and capped forward positions at $100M — forcing banks to unwind, squeezing speculators betting against the currency.
+
+The RBI decides rates Wednesday; analysts forecast 96 rupees by year-end if the Iran war extends another quarter.

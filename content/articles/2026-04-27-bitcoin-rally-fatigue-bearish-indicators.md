@@ -25,4 +25,8 @@ entities:
     kind: "stock"
 ---
 
-New York — Bitcoin's Coinbase premium hit -0.04% Monday. The index measures [US](country:US) institutional buying against offshore prices; 14 straight positive days ending negative has historically preceded pullbacks. A Bitfinex whale holds 79,342 bitcoin at near-cycle-peak exposure, marking the first demand gap in two weeks.
+New York — Bitcoin's Coinbase premium hit -0.04% Monday.
+
+The index measures [US](country:US) institutional buying against offshore prices; 14 straight positive days ending negative has historically preceded pullbacks.
+
+A Bitfinex whale holds 79,342 bitcoin at near-cycle-peak exposure, marking the first demand gap in two weeks.

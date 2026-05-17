@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Cambridge — Compact-star mergers explain the universe's fastest optical transients. A neutron star or black hole spiraling into a Wolf-Rayet core produces the fast fade, blue color, and X-ray signature supernovae lack. Galaxy morphology rules out failed supernovae and intermediate-mass black-hole tidal disruptions as rival explanations.
+Cambridge — Compact-star mergers explain the universe's fastest optical transients.
+
+A neutron star or black hole spiraling into a Wolf-Rayet core produces the fast fade, blue color, and X-ray signature supernovae lack.
+
+Galaxy morphology rules out failed supernovae and intermediate-mass black-hole tidal disruptions as rival explanations.

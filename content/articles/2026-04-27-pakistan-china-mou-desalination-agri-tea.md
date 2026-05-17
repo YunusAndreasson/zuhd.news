@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Beijing — [Pakistan](country:PK) signed 3 [China](country:CN) deals: desalination, seeds, tea. Desalination addresses Karachi's water crisis; agri-tech expands Chinese agricultural inputs; tea adds export diversification. President Zardari's Beijing visit ends May 1; no financing terms for the Karachi project were disclosed.
+Beijing — [Pakistan](country:PK) signed 3 [China](country:CN) deals: desalination, seeds, tea.
+
+Desalination addresses Karachi's water crisis; agri-tech expands Chinese agricultural inputs; tea adds export diversification.
+
+President Zardari's Beijing visit ends May 1; no financing terms for the Karachi project were disclosed.

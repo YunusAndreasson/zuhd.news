@@ -14,4 +14,8 @@ concepts:
   - "Budapest"
 ---
 
-Budapest — JD Vance arrived in Budapest to back Orbán. Hungary votes this weekend; Orbán has blocked €90 billion in EU aid to Ukraine and trails the opposition by 10 percentage points. Vance will appear alongside Orbán at a joint press conference and rally billed as Hungarian-American Friendship Day.
+Budapest — JD Vance arrived in Budapest to back Orbán.
+
+Hungary votes this weekend; Orbán has blocked €90 billion in EU aid to Ukraine and trails the opposition by 10 percentage points.
+
+Vance will appear alongside Orbán at a joint press conference and rally billed as Hungarian-American Friendship Day.

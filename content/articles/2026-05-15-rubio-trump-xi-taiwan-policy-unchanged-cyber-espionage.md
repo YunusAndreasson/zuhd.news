@@ -38,4 +38,8 @@ entities:
     kind: "commodity"
 ---
 
-Beijing — "We spy like hell on them, too," Trump told reporters. The Trump-Xi summit at Zhongnanhai produced no Taiwan movement — Secretary Rubio confirmed [US](country:US) policy unchanged — while [China](country:CN) said it will keep buying Iranian oil. A $14 billion arms package for [Taiwan](country:TW) stays suspended pending Trump's review.
+Beijing — "We spy like hell on them, too," Trump told reporters.
+
+The Trump-Xi summit at Zhongnanhai produced no Taiwan movement — Secretary Rubio confirmed [US](country:US) policy unchanged — while [China](country:CN) said it will keep buying Iranian oil.
+
+A $14 billion arms package for [Taiwan](country:TW) stays suspended pending Trump's review.

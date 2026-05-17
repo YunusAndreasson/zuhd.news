@@ -17,4 +17,8 @@ concepts:
   - "Ukraine"
 ---
 
-Crimea — Soviet-era An-26 crashed, killing all 29 aboard. Russia relies on An-26s — a 1960s design it cannot replace under sanctions — for logistics in Ukraine. The defense ministry attributed it to technical failure, but Ukraine has not commented.
+Crimea — Soviet-era An-26 crashed, killing all 29 aboard.
+
+Russia relies on An-26s — a 1960s design it cannot replace under sanctions — for logistics in Ukraine.
+
+The defense ministry attributed it to technical failure, but Ukraine has not commented.

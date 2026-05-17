@@ -17,4 +17,8 @@ concepts:
   - "International Energy Agency"
 ---
 
-Santa Marta — Scientists demand an immediate halt to fossil-fuel expansion. 24 scientists told [Colombia](country:CO)'s 50-nation Santa Marta summit to reject gas as a transition fuel, going beyond COP30's consensus language. Scientists finalize the report before negotiations open 24 April; adoption of the 'halt expansion' language is unresolved.
+Santa Marta — Scientists demand an immediate halt to fossil-fuel expansion.
+
+24 scientists told [Colombia](country:CO)'s 50-nation Santa Marta summit to reject gas as a transition fuel, going beyond COP30's consensus language.
+
+Scientists finalize the report before negotiations open 24 April; adoption of the 'halt expansion' language is unresolved.

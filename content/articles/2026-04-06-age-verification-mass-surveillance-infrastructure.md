@@ -17,4 +17,8 @@ concepts:
   - "Identity"
 ---
 
-London — Age-gate laws build identity databases governments can repurpose. Every mandate from the UK, US, or EU creates verification infrastructure with no statutory limits on reuse. No country requires the identity records to be deleted.
+London — Age-gate laws build identity databases governments can repurpose.
+
+Every mandate from the UK, US, or EU creates verification infrastructure with no statutory limits on reuse.
+
+No country requires the identity records to be deleted.

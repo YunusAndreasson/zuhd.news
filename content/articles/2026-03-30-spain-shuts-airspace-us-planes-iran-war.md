@@ -29,4 +29,8 @@ concepts:
   - "Israel"
 ---
 
-Madrid — Spain banned US warplanes from its airspace. Defense Minister Robles confirmed the closure extends beyond jointly operated bases, forcing US aircraft to reroute around a NATO ally's sovereign territory. If other NATO states follow, US force projection through the Mediterranean faces its first structural constraint.
+Madrid — Spain banned US warplanes from its airspace.
+
+Defense Minister Robles confirmed the closure extends beyond jointly operated bases, forcing US aircraft to reroute around a NATO ally's sovereign territory.
+
+If other NATO states follow, US force projection through the Mediterranean faces its first structural constraint.

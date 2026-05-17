@@ -23,4 +23,6 @@ concepts:
   - "Viktor Orbán"
 ---
 
-Brussels — The European Union accused Hungary of leaking classified intelligence to Russia, demanding Orbán's government explain intercepted communications between Budapest and Moscow. RT quoted Hungarian Foreign Minister Péter Szijjártó calling the accusation "fake news manufactured by Brussels bureaucrats." EU foreign policy chief Kaja Kallas gave Hungary 48 hours to respond before triggering Article 7 proceedings.
+Brussels — The European Union accused Hungary of leaking classified intelligence to Russia, demanding Orbán's government explain intercepted communications between Budapest and Moscow.
+
+RT quoted Hungarian Foreign Minister Péter Szijjártó calling the accusation "fake news manufactured by Brussels bureaucrats." EU foreign policy chief Kaja Kallas gave Hungary 48 hours to respond before triggering Article 7 proceedings.

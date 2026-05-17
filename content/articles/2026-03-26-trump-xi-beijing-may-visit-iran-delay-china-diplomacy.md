@@ -24,4 +24,8 @@ concepts:
   - "Strait of Hormuz"
 ---
 
-Washington — Trump sets Beijing visit for May 14. Trump postponed the March trip for Iran; the White House pegged operations at 4–6 weeks, implying a ceasefire before May 14. China's leverage grew as Trump lost tariff authority in court and allies refused to join the Iran intervention.
+Washington — Trump sets Beijing visit for May 14.
+
+Trump postponed the March trip for Iran; the White House pegged operations at 4–6 weeks, implying a ceasefire before May 14.
+
+China's leverage grew as Trump lost tariff authority in court and allies refused to join the Iran intervention.

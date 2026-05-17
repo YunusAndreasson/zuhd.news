@@ -18,4 +18,8 @@ concepts:
   - "Google"
 ---
 
-Mountain View — Google revised its Q Day estimate to 2029. The deadline is years earlier than forecast, giving banks and governments 3 years to adopt post-quantum encryption before current standards break. NIST finalized replacement standards in 2024, but migration across global infrastructure has barely begun.
+Mountain View — Google revised its Q Day estimate to 2029.
+
+The deadline is years earlier than forecast, giving banks and governments 3 years to adopt post-quantum encryption before current standards break.
+
+NIST finalized replacement standards in 2024, but migration across global infrastructure has barely begun.

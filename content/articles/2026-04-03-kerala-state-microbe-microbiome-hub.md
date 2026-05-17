@@ -11,4 +11,8 @@ sources:
     country: "GB"
 ---
 
-Thiruvananthapuram — Kerala designated an official state microbe. The designation anchors a microbiome hub targeting sustainable agriculture and gut health. The hub will convert findings into farming and health policy or remain a symbolic first.
+Thiruvananthapuram — Kerala designated an official state microbe.
+
+The designation anchors a microbiome hub targeting sustainable agriculture and gut health.
+
+The hub will convert findings into farming and health policy or remain a symbolic first.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Brussels — A7A5 processed $119.7B to bypass EU sanctions, Chainalysis found. The EU's 20th [Russia](country:RU) package bans A7A5, 20 Russian banks, and all Russian crypto exchanges. EU providers now face sanctions exposure for continued service to any targeted platform.
+Brussels — A7A5 processed $119.7B to bypass EU sanctions, Chainalysis found.
+
+The EU's 20th [Russia](country:RU) package bans A7A5, 20 Russian banks, and all Russian crypto exchanges.
+
+EU providers now face sanctions exposure for continued service to any targeted platform.

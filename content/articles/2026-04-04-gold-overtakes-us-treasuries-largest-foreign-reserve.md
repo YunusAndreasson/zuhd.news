@@ -11,4 +11,8 @@ sources:
     country: "IN"
 ---
 
-Washington — Gold now leads global foreign reserves. Central banks shifted from US Treasuries to gold as dollar-weaponization through sanctions accelerated, with China, Russia, and Gulf states leading purchases. No central bank has announced Treasuries purchases, leaving the dollar's reserve status unresolved.
+Washington — Gold now leads global foreign reserves.
+
+Central banks shifted from US Treasuries to gold as dollar-weaponization through sanctions accelerated, with China, Russia, and Gulf states leading purchases.
+
+No central bank has announced Treasuries purchases, leaving the dollar's reserve status unresolved.

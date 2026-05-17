@@ -34,4 +34,8 @@ concepts:
 entities: []
 ---
 
-Ashkelon — Abu Keshek refused water for 4 days; Israel filed no charges. [Israel](country:IL) intercepted the 170-person flotilla in international waters off Greece, over 1,000 km from Gaza, singling out 2 organisers for transfer while releasing 168 others. [Spain](country:ES) and [Brazil](country:BR) summoned Israeli envoys; Adalah said deportation is imminent within days.
+Ashkelon — Abu Keshek refused water for 4 days; Israel filed no charges.
+
+[Israel](country:IL) intercepted the 170-person flotilla in international waters off Greece, over 1,000 km from Gaza, singling out 2 organisers for transfer while releasing 168 others.
+
+[Spain](country:ES) and [Brazil](country:BR) summoned Israeli envoys; Adalah said deportation is imminent within days.

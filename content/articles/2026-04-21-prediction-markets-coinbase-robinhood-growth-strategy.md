@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-New York — Crypto trading volumes fell 23% in Q1 2026. Coinbase and Gemini expanded into election and sports prediction markets to offset the drop; New York then sued. State attorneys general and the federal futures regulator disagree on whether the contracts are swaps or gambling.
+New York — Crypto trading volumes fell 23% in Q1 2026.
+
+Coinbase and Gemini expanded into election and sports prediction markets to offset the drop; New York then sued.
+
+State attorneys general and the federal futures regulator disagree on whether the contracts are swaps or gambling.

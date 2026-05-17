@@ -17,4 +17,8 @@ concepts:
   - "Corruption"
 ---
 
-Pretoria — South Africa's police commissioner faces charges over a R360M tender he himself flagged as suspicious. 12 officers were also arrested Tuesday; President Ramaphosa has yet to respond publicly. The commissioner is due in court April 21.
+Pretoria — South Africa's police commissioner faces charges over a R360M tender he himself flagged as suspicious.
+
+12 officers were also arrested Tuesday; President Ramaphosa has yet to respond publicly.
+
+The commissioner is due in court April 21.

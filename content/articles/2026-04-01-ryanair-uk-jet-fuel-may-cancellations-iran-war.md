@@ -24,4 +24,8 @@ concepts:
 sentimentDivergence: 0.06
 ---
 
-London — UK jet fuel costs doubled since Hormuz closed. The UK sources more than half its jet fuel from Kuwait, making it Europe's most exposed market to the closure. Ryanair's CEO said 10-25% of May-June supply is at risk; cancellation decisions will be taken weekly.
+London — UK jet fuel costs doubled since Hormuz closed.
+
+The UK sources more than half its jet fuel from Kuwait, making it Europe's most exposed market to the closure.
+
+Ryanair's CEO said 10-25% of May-June supply is at risk; cancellation decisions will be taken weekly.

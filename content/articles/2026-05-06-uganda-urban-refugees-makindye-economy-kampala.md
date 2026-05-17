@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Kampala — 9 percent of [Uganda](country:UG)'s 1.96 million refugees live in the capital, the Office of the Prime Minister counts. Congolese and South Sudanese entrepreneurs in Makindye pay city taxes and employ Ugandan nationals — a contribution refugee accounting does not measure. Uganda's aid framework has no category for urban refugee tax revenue.
+Kampala — 9 percent of [Uganda](country:UG)'s 1.96 million refugees live in the capital, the Office of the Prime Minister counts.
+
+Congolese and South Sudanese entrepreneurs in Makindye pay city taxes and employ Ugandan nationals — a contribution refugee accounting does not measure.
+
+Uganda's aid framework has no category for urban refugee tax revenue.

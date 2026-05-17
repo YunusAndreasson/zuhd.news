@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Bushehr — Rosatom restarted concrete and rebar work at Bushehr Unit 2. Rosatom CEO Alexey Likhachev said a small on-site team resumed civil works, with technical and consulting support delivered remotely. Reactor components and steam generators for Unit 2 are being manufactured on schedule, Likhachev said.
+Bushehr — Rosatom restarted concrete and rebar work at Bushehr Unit 2.
+
+Rosatom CEO Alexey Likhachev said a small on-site team resumed civil works, with technical and consulting support delivered remotely.
+
+Reactor components and steam generators for Unit 2 are being manufactured on schedule, Likhachev said.

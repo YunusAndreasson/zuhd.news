@@ -16,4 +16,8 @@ concepts:
   - "Iran"
 ---
 
-Canberra — Australia imports over 80% of its fuel. Albanese announced $693 million in cheap loans for essential businesses and a 32-cent GST cut on petrol to blunt the Iran war's disruption to supply chains. His May budget, which he called the most ambitious to date, will define how long the cushion lasts.
+Canberra — Australia imports over 80% of its fuel.
+
+Albanese announced $693 million in cheap loans for essential businesses and a 32-cent GST cut on petrol to blunt the Iran war's disruption to supply chains.
+
+His May budget, which he called the most ambitious to date, will define how long the cushion lasts.

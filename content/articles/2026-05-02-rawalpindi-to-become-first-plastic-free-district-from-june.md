@@ -16,4 +16,8 @@ concepts:
 entities: []
 ---
 
-Rawalpindi — [Pakistan](country:PK)'s Punjab bans bags thinner than 75 microns. The Punjab Environment Protection Agency enforces the ban through fines and shop sealings, with certified eco-bags over 75 microns already available. The ban will expand to all Punjab district headquarters in phases after Rawalpindi's June deadline.
+Rawalpindi — [Pakistan](country:PK)'s Punjab bans bags thinner than 75 microns.
+
+The Punjab Environment Protection Agency enforces the ban through fines and shop sealings, with certified eco-bags over 75 microns already available.
+
+The ban will expand to all Punjab district headquarters in phases after Rawalpindi's June deadline.

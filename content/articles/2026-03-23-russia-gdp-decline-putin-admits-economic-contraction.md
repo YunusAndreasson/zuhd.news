@@ -17,4 +17,8 @@ concepts:
   - "Economic growth"
 ---
 
-Moscow — Putin himself acknowledged Russia's GDP fell 2.1% in January. Russia's industrial output also fell 0.8% that month, a double contraction indicating the war economy is shrinking under Western sanctions. Putin ordered his economic team to devise a recovery plan before Russia releases March GDP data in April.
+Moscow — Putin himself acknowledged Russia's GDP fell 2.1% in January.
+
+Russia's industrial output also fell 0.8% that month, a double contraction indicating the war economy is shrinking under Western sanctions.
+
+Putin ordered his economic team to devise a recovery plan before Russia releases March GDP data in April.

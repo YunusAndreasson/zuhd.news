@@ -17,4 +17,8 @@ concepts:
   - "Nosebleed"
 ---
 
-Chiang Mai — 4,750 wildfire hotspots blanketed northern Thailand Tuesday. Burns from 3 countries drive seasonal haze no single government controls, with PM2.5 at hazardous levels. Families with children are leaving seasonally; a 2023 lawsuit demanding an emergency pollution plan remains unresolved.
+Chiang Mai — 4,750 wildfire hotspots blanketed northern Thailand Tuesday.
+
+Burns from 3 countries drive seasonal haze no single government controls, with PM2.5 at hazardous levels.
+
+Families with children are leaving seasonally; a 2023 lawsuit demanding an emergency pollution plan remains unresolved.

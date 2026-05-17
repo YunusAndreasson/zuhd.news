@@ -17,4 +17,8 @@ entities:
     kind: "commodity"
 ---
 
-Lagos — Oil exporter [Nigeria](country:NG) cannot keep household fans running. Nigeria's Meteorological Agency links the surge to the dry-wet seasonal transition; grid failure transfers cooling costs entirely to individuals. No federal response has been announced as temperatures remain above seasonal norms across northern and inland southern regions.
+Lagos — Oil exporter [Nigeria](country:NG) cannot keep household fans running.
+
+Nigeria's Meteorological Agency links the surge to the dry-wet seasonal transition; grid failure transfers cooling costs entirely to individuals.
+
+No federal response has been announced as temperatures remain above seasonal norms across northern and inland southern regions.

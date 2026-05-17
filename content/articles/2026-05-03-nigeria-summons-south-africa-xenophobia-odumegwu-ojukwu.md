@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Abuja — South Africa's army killed 2 Nigerians in April. [Nigeria](country:NG)'s Foreign Minister Bianca Odumegwu-Ojukwu summoned [South Africa](country:ZA)'s High Commissioner Thamsanqa Mseleku to protest attacks on Nigerian citizens and businesses. The meeting is set for Monday; enforcement commitments from Pretoria failed after prior xenophobic cycles in 2015 and 2019.
+Abuja — South Africa's army killed 2 Nigerians in April.
+
+[Nigeria](country:NG)'s Foreign Minister Bianca Odumegwu-Ojukwu summoned [South Africa](country:ZA)'s High Commissioner Thamsanqa Mseleku to protest attacks on Nigerian citizens and businesses.
+
+The meeting is set for Monday; enforcement commitments from Pretoria failed after prior xenophobic cycles in 2015 and 2019.

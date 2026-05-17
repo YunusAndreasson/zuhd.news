@@ -21,4 +21,8 @@ entities:
     kind: "commodity"
 ---
 
-Rawalpindi — A 4-day security lockdown paralyzed Islamabad's supply chain. [Pakistan](country:PK)'s Rawalpindi-Islamabad road closures stopped oil tankers and emptied wholesale food markets; both airports' fuel supply is at risk. The Punjab government holds the authorization; traders warn shortages will spread to Azad Kashmir and beyond within days.
+Rawalpindi — A 4-day security lockdown paralyzed Islamabad's supply chain.
+
+[Pakistan](country:PK)'s Rawalpindi-Islamabad road closures stopped oil tankers and emptied wholesale food markets; both airports' fuel supply is at risk.
+
+The Punjab government holds the authorization; traders warn shortages will spread to Azad Kashmir and beyond within days.

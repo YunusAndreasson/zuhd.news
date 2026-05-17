@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Chaman — Pakistan struck Afghan Taliban posts in a cross-border operation. Operation Ghazab lil-Haq marks the first time [Pakistan](country:PK) has named [Afghanistan](country:AF)'s Taliban government — not only Tehrik-e-Taliban Pakistan — as a target. Islamabad says strikes will continue until objectives are achieved; Kabul has not responded.
+Chaman — Pakistan struck Afghan Taliban posts in a cross-border operation.
+
+Operation Ghazab lil-Haq marks the first time [Pakistan](country:PK) has named [Afghanistan](country:AF)'s Taliban government — not only Tehrik-e-Taliban Pakistan — as a target.
+
+Islamabad says strikes will continue until objectives are achieved; Kabul has not responded.

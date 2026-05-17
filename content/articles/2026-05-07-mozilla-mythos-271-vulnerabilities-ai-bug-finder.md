@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-San Francisco — 2 months, 271 bugs, almost no false positives. The key is a custom harness giving Anthropic's Mythos Firefox's crash-test pipeline and a second language model to grade each report. Mozilla published 12 of the 271 bug reports; critics question whether cherry-picking conceals less accurate results.
+San Francisco — 2 months, 271 bugs, almost no false positives.
+
+The key is a custom harness giving Anthropic's Mythos Firefox's crash-test pipeline and a second language model to grade each report.
+
+Mozilla published 12 of the 271 bug reports; critics question whether cherry-picking conceals less accurate results.

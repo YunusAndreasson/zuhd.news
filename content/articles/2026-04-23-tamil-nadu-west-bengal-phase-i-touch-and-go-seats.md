@@ -30,4 +30,8 @@ sentimentDivergence: 0.45
 entities: []
 ---
 
-New Delhi — [India](country:IN)'s 2 largest state elections opened simultaneously Thursday. The Bharatiya Janata Party battles Trinamool in Bengal and backs a Tamil Nadu opposition alliance. Bengal's Phase 2 votes April 29; 12 Phase 1 seats were won by margins under 1% last cycle.
+New Delhi — [India](country:IN)'s 2 largest state elections opened simultaneously Thursday.
+
+The Bharatiya Janata Party battles Trinamool in Bengal and backs a Tamil Nadu opposition alliance.
+
+Bengal's Phase 2 votes April 29; 12 Phase 1 seats were won by margins under 1% last cycle.

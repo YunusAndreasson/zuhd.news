@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-San Jose — Memory chips now cost more than hobbyist computers. 3 companies — Samsung, SK Hynix, and Micron — control 95% of DRAM; AI datacenters outbid hobbyists, pricing single-board computers out of reach. Regulators have not challenged the cartel, and hobbyist hardware keeps getting pricier as AI demand grows.
+San Jose — Memory chips now cost more than hobbyist computers.
+
+3 companies — Samsung, SK Hynix, and Micron — control 95% of DRAM; AI datacenters outbid hobbyists, pricing single-board computers out of reach.
+
+Regulators have not challenged the cartel, and hobbyist hardware keeps getting pricier as AI demand grows.

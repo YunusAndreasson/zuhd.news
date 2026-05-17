@@ -16,4 +16,8 @@ concepts:
   - "Michaël Randrianirina"
 ---
 
-Antananarivo — Madagascar's transitional president named a financial crimes investigator premier. Mamitiana Rajaonarison has led Madagascar's financial intelligence service since 2021, chosen after political unrest toppled the previous government. President Michaël Randrianirina tasked Rajaonarison with drafting a new constitution and organizing elections — Madagascar's first credible transition in over a decade.
+Antananarivo — Madagascar's transitional president named a financial crimes investigator premier.
+
+Mamitiana Rajaonarison has led Madagascar's financial intelligence service since 2021, chosen after political unrest toppled the previous government.
+
+President Michaël Randrianirina tasked Rajaonarison with drafting a new constitution and organizing elections — Madagascar's first credible transition in over a decade.

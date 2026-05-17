@@ -17,4 +17,8 @@ concepts:
   - "Phases of clinical research"
 ---
 
-San Francisco — Allogene's off-the-shelf cell therapy cleared B-cell lymphoma 3 times better. Standard therapy takes 4 weeks and costs $400,000 to custom-make per patient; Allogene's uses pre-made donor cells. Phase 3 interim data must hold through the full trial before any regulatory filing.
+San Francisco — Allogene's off-the-shelf cell therapy cleared B-cell lymphoma 3 times better.
+
+Standard therapy takes 4 weeks and costs $400,000 to custom-make per patient; Allogene's uses pre-made donor cells.
+
+Phase 3 interim data must hold through the full trial before any regulatory filing.

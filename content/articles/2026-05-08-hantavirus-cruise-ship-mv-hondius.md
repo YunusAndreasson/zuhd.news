@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Cape Verde — 8 hantavirus cases, 3 dead, aboard MV Hondius. Andes hantavirus has a 30–40% fatality rate, no treatment, and can spread person-to-person, WHO says. WHO is developing disembarkation procedures; the agency said 30 passengers from 12 countries face 42-day monitoring.
+Cape Verde — 8 hantavirus cases, 3 dead, aboard MV Hondius.
+
+Andes hantavirus has a 30–40% fatality rate, no treatment, and can spread person-to-person, WHO says.
+
+WHO is developing disembarkation procedures; the agency said 30 passengers from 12 countries face 42-day monitoring.

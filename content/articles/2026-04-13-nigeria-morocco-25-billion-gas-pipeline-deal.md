@@ -16,4 +16,8 @@ concepts:
   - "Europe"
 ---
 
-Abuja — $25 billion Nigeria-Morocco gas pipeline moves to signing. The 6,900 km African Atlantic Gas Pipeline will carry 30 billion cubic meters annually, routing half to Morocco and European markets. The first phase links Morocco to Mauritanian gas fields; Nigeria's connection arrives last, after 2031.
+Abuja — $25 billion Nigeria-Morocco gas pipeline moves to signing.
+
+The 6,900 km African Atlantic Gas Pipeline will carry 30 billion cubic meters annually, routing half to Morocco and European markets.
+
+The first phase links Morocco to Mauritanian gas fields; Nigeria's connection arrives last, after 2031.

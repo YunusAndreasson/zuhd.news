@@ -13,4 +13,8 @@ sources:
 entities: []
 ---
 
-Yangon — No independent outlet operates legally inside [Myanmar](country:MM) today. The Committee to Protect Journalists ranks Myanmar among the world's leading journalist jailers; exiled reporters use underground networks. Reporters Without Borders lists it among the most dangerous press environments; those who stayed report from active conflict zones.
+Yangon — No independent outlet operates legally inside [Myanmar](country:MM) today.
+
+The Committee to Protect Journalists ranks Myanmar among the world's leading journalist jailers; exiled reporters use underground networks.
+
+Reporters Without Borders lists it among the most dangerous press environments; those who stayed report from active conflict zones.

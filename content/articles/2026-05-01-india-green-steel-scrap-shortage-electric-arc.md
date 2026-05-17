@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-New Delhi — A quarter of [India](country:IN)'s steel scrap is imported. The world's 2nd-largest steel producer targets 50% scrap use by 2047 — up from 23% today — but domestic scrap collection remains underdeveloped. A planned output doubling to 400 million tonnes by 2035 widens the import shortfall before domestic supply can accumulate.
+New Delhi — A quarter of [India](country:IN)'s steel scrap is imported.
+
+The world's 2nd-largest steel producer targets 50% scrap use by 2047 — up from 23% today — but domestic scrap collection remains underdeveloped.
+
+A planned output doubling to 400 million tonnes by 2035 widens the import shortfall before domestic supply can accumulate.

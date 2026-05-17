@@ -23,4 +23,8 @@ entities:
     kind: "commodity"
 ---
 
-Bogotá — [Colombia](country:CO) convened 50 nations on fossil fuel exit. Unlike climate summits, this targets supply — the dimension oil producers have always blocked; the framework mirrors a Non-Proliferation Treaty. [Saudi Arabia](country:SA), [Russia](country:RU), and the [US](country:US) are not at the table; their absence defines the agreement's ceiling.
+Bogotá — [Colombia](country:CO) convened 50 nations on fossil fuel exit.
+
+Unlike climate summits, this targets supply — the dimension oil producers have always blocked; the framework mirrors a Non-Proliferation Treaty.
+
+[Saudi Arabia](country:SA), [Russia](country:RU), and the [US](country:US) are not at the table; their absence defines the agreement's ceiling.

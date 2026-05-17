@@ -17,4 +17,8 @@ concepts:
   - "Syria"
 ---
 
-Manama — Bahrain and Kuwait airspace: day 30 of closure. The closures began February 28 when US-Israeli strikes hit Iran; Syria also closed its airspace, cutting the region's main aviation corridors. No reopening date exists; the closures update in 12-hour extensions with no declared end condition.
+Manama — Bahrain and Kuwait airspace: day 30 of closure.
+
+The closures began February 28 when US-Israeli strikes hit Iran; Syria also closed its airspace, cutting the region's main aviation corridors.
+
+No reopening date exists; the closures update in 12-hour extensions with no declared end condition.

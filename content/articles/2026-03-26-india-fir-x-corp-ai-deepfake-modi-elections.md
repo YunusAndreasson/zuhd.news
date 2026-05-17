@@ -19,4 +19,6 @@ concepts:
 eventCoverage: 17
 ---
 
-Thiruvananthapuram — Kerala Police criminally charged X Corp. The FIR cites forgery and identity theft over a Modi deepfake X Corp left up despite official takedown notices. Whether hosting unremoved AI deepfakes creates platform criminal liability now falls to Indian courts.
+Thiruvananthapuram — Kerala Police criminally charged X Corp. The FIR cites forgery and identity theft over a Modi deepfake X Corp left up despite official takedown notices.
+
+Whether hosting unremoved AI deepfakes creates platform criminal liability now falls to Indian courts.

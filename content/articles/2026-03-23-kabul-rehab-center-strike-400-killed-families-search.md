@@ -16,4 +16,8 @@ concepts:
   - "Omid rehabilitation center"
 ---
 
-Kabul — Pakistani jets killed 400 addiction patients during Ramadan iftar. The facility held up to 1,800 patients — families' last resort in a country with no functional public healthcare. Pakistan denied striking a civilian target; the Taliban vowed retaliation as family members dug through the wreckage for survivors.
+Kabul — Pakistani jets killed 400 addiction patients during Ramadan iftar.
+
+The facility held up to 1,800 patients — families' last resort in a country with no functional public healthcare.
+
+Pakistan denied striking a civilian target; the Taliban vowed retaliation as family members dug through the wreckage for survivors.

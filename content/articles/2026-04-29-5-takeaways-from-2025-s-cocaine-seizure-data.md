@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Bogotá — Europe is now the world's largest cocaine market. Crime researchers found [South Korea](country:KR) interdictions up 300% in 2025 and a record 6.5-ton narco-submarine haul near the Azores as traffickers open Asian and Oceanian routes. [Colombian](country:CO) production keeps rising while prices hold; analysts say enforcement has not constrained supply.
+Bogotá — Europe is now the world's largest cocaine market.
+
+Crime researchers found [South Korea](country:KR) interdictions up 300% in 2025 and a record 6.5-ton narco-submarine haul near the Azores as traffickers open Asian and Oceanian routes.
+
+[Colombian](country:CO) production keeps rising while prices hold; analysts say enforcement has not constrained supply.

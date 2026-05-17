@@ -34,4 +34,8 @@ entities:
     kind: "chokepoint"
 ---
 
-London — Brent crude topped $101 as Hormuz remains blockaded. [The UK](country:GB) is sending HMS Dragon for a [France](country:FR)-led coalition mission to reopen the strait, citing commercial shipping protection. [Iran](country:IR) warned the [US](country:US) Navy would face "decisive force"; Washington awaits Tehran's response to a ceasefire proposal.
+London — Brent crude topped $101 as Hormuz remains blockaded.
+
+[The UK](country:GB) is sending HMS Dragon for a [France](country:FR)-led coalition mission to reopen the strait, citing commercial shipping protection.
+
+[Iran](country:IR) warned the [US](country:US) Navy would face "decisive force"; Washington awaits Tehran's response to a ceasefire proposal.

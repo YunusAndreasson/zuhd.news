@@ -17,4 +17,8 @@ concepts:
   - "Anti-ship weapon"
 ---
 
-Islamabad — [Pakistan](country:PK) Navy test-fired the indigenous Taimoor cruise missile. Pakistan's military confirmed the air-launched anti-ship weapon hit its target at extended range — the third indigenous naval test in 3 months. Pakistan mediates the [US](country:US)-[Iran](country:IR) ceasefire while testing the weapons it might need if the war expands.
+Islamabad — [Pakistan](country:PK) Navy test-fired the indigenous Taimoor cruise missile.
+
+Pakistan's military confirmed the air-launched anti-ship weapon hit its target at extended range — the third indigenous naval test in 3 months.
+
+Pakistan mediates the [US](country:US)-[Iran](country:IR) ceasefire while testing the weapons it might need if the war expands.

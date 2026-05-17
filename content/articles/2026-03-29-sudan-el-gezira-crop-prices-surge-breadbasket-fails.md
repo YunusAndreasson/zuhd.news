@@ -17,4 +17,8 @@ concepts:
   - "Food security"
 ---
 
-El Gezira — Sorghum prices surge as the breadbasket fails. El Gezira has 1,470+ broken irrigation canals from the civil war; banks have stopped lending as crops and equipment were destroyed. With planting capacity decimated, Sudan faces cascading food shortages by the next harvest with no government intervention.
+El Gezira — Sorghum prices surge as the breadbasket fails.
+
+El Gezira has 1,470+ broken irrigation canals from the civil war; banks have stopped lending as crops and equipment were destroyed.
+
+With planting capacity decimated, Sudan faces cascading food shortages by the next harvest with no government intervention.

@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Bhuj — Western [India](country:IN)'s salt pans hit near-lethal heat daily. India's heat plans cover cities; salt pan workers labor in open desert with no shade or cooling infrastructure, relying on simple techniques to survive. India has no uniform occupational temperature ceiling for outdoor extractive workers; Gujarat's monsoon arrives in mid-June.
+Bhuj — Western [India](country:IN)'s salt pans hit near-lethal heat daily.
+
+India's heat plans cover cities; salt pan workers labor in open desert with no shade or cooling infrastructure, relying on simple techniques to survive.
+
+India has no uniform occupational temperature ceiling for outdoor extractive workers; Gujarat's monsoon arrives in mid-June.

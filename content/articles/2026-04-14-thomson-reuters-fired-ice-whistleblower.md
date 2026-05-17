@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-New York — Thomson Reuters fired its top immigration dissenter. After 200 employees protested data contracts with US immigration enforcement, the company fired their organizer 9 days later. The fired organizer's Oregon lawsuit seeks reinstatement while Thomson Reuters keeps the contracts.
+New York — Thomson Reuters fired its top immigration dissenter.
+
+After 200 employees protested data contracts with US immigration enforcement, the company fired their organizer 9 days later.
+
+The fired organizer's Oregon lawsuit seeks reinstatement while Thomson Reuters keeps the contracts.

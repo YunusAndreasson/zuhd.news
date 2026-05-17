@@ -11,4 +11,8 @@ sources:
     country: "NL"
 ---
 
-Tehran — Satellite analysis counted 80 [Iranian](country:IR) police stations destroyed in 3 weeks. [Israel](country:IL) and the [US](country:US) struck 30 police stations and 29 command centers, targeting domestic repression capacity alongside military sites. Israel's foreign ministry said the strikes give Iranians "conditions to take their destiny into their own hands."
+Tehran — Satellite analysis counted 80 [Iranian](country:IR) police stations destroyed in 3 weeks.
+
+[Israel](country:IL) and the [US](country:US) struck 30 police stations and 29 command centers, targeting domestic repression capacity alongside military sites.
+
+Israel's foreign ministry said the strikes give Iranians "conditions to take their destiny into their own hands."

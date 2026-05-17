@@ -16,4 +16,8 @@ concepts:
   - "Iran war"
 ---
 
-Riyadh — Iran war exposed Hormuz as a kill switch. Gulf economies flow through Hormuz; Iran's retaliation closed the strait, cutting exports and exposing the region's hydrocarbon dependency. Saudi Arabia's Vision 2030 solar targets and UAE renewable investment now carry strategic, not just economic, logic.
+Riyadh — Iran war exposed Hormuz as a kill switch.
+
+Gulf economies flow through Hormuz; Iran's retaliation closed the strait, cutting exports and exposing the region's hydrocarbon dependency.
+
+Saudi Arabia's Vision 2030 solar targets and UAE renewable investment now carry strategic, not just economic, logic.

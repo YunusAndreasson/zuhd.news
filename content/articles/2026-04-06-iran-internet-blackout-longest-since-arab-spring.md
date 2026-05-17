@@ -17,4 +17,8 @@ concepts:
   - "Censorship"
 ---
 
-Tehran — Iran's internet has been cut for 38 days. The longest national shutdown since the Arab Spring leaves 88 million Iranians on a state-monitored domestic intranet where searches for "war" return no results. Miaan Group reports domestic search engines display only Iran's "decisive victory"; no timeline for restoration exists.
+Tehran — Iran's internet has been cut for 38 days.
+
+The longest national shutdown since the Arab Spring leaves 88 million Iranians on a state-monitored domestic intranet where searches for "war" return no results.
+
+Miaan Group reports domestic search engines display only Iran's "decisive victory"; no timeline for restoration exists.

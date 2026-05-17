@@ -17,4 +17,8 @@ concepts:
   - "Mutation"
 ---
 
-London — KRAS was called undruggable — researchers just destroyed it. DJX-A-KM degrades the KRAS protein by recruiting an E3 ligase called FBXO28, bypassing the resistance mechanism that defeats existing inhibitors like sotorasib. The blueprint extends to pan-KRAS variants, which drive roughly 25% of all human cancers.
+London — KRAS was called undruggable — researchers just destroyed it.
+
+DJX-A-KM degrades the KRAS protein by recruiting an E3 ligase called FBXO28, bypassing the resistance mechanism that defeats existing inhibitors like sotorasib.
+
+The blueprint extends to pan-KRAS variants, which drive roughly 25% of all human cancers.

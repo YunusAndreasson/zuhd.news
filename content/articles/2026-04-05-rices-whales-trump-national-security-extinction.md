@@ -16,4 +16,8 @@ concepts:
   - "Gulf of Mexico"
 ---
 
-Washington — 50 Rice's whales: the entire species. Trump's God Squad stripped Endangered Species Act protections from Gulf marine life for the first time, citing national security. Environmental groups have sued to reverse the ruling; if it stands, national security could override any environmental protection.
+Washington — 50 Rice's whales: the entire species.
+
+Trump's God Squad stripped Endangered Species Act protections from Gulf marine life for the first time, citing national security.
+
+Environmental groups have sued to reverse the ruling; if it stands, national security could override any environmental protection.

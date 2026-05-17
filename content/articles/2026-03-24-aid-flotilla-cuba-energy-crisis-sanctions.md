@@ -17,4 +17,8 @@ concepts:
   - "Donald Trump"
 ---
 
-Havana — Solar panels, medicine, and bicycles arrived aboard the "Granma 2.0" as Cuba enters its 3rd month without petroleum imports. The US energy blockade has cut off diesel, fuel oil, and jet fuel from an island that produces only 40% of its own fuel, causing rolling nationwide blackouts. 2 more flotilla vessels are en route as Trump openly threatens to "take" Cuba and install a US-aligned government.
+Havana — Solar panels, medicine, and bicycles arrived aboard the "Granma 2.0" as Cuba enters its 3rd month without petroleum imports.
+
+The US energy blockade has cut off diesel, fuel oil, and jet fuel from an island that produces only 40% of its own fuel, causing rolling nationwide blackouts.
+
+2 more flotilla vessels are en route as Trump openly threatens to "take" Cuba and install a US-aligned government.

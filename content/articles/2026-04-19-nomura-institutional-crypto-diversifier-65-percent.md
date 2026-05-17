@@ -16,4 +16,8 @@ concepts:
   - "Institutional investor"
 ---
 
-Tokyo — Nomura: 65% now see crypto as a diversifier. Clearer rules in [Japan](country:JP) and Western ETF approval gave investors a treasury-asset framework, not speculation, the bank's 500-respondent survey found. Most plan to allocate 2% to 5%; counterparty risk and volatility remain the main barriers.
+Tokyo — Nomura: 65% now see crypto as a diversifier.
+
+Clearer rules in [Japan](country:JP) and Western ETF approval gave investors a treasury-asset framework, not speculation, the bank's 500-respondent survey found.
+
+Most plan to allocate 2% to 5%; counterparty risk and volatility remain the main barriers.

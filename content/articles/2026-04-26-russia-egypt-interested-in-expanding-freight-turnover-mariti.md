@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Cairo — Putin aide Patrushev landed in Cairo Sunday. [Russia](country:RU) and [Egypt](country:EG) are building a bilateral freight corridor; Patrushev met the transport minister to discuss expanding turnover and logistics infrastructure. Talks continue; no framework was signed, the Maritime Board said.
+Cairo — Putin aide Patrushev landed in Cairo Sunday.
+
+[Russia](country:RU) and [Egypt](country:EG) are building a bilateral freight corridor; Patrushev met the transport minister to discuss expanding turnover and logistics infrastructure.
+
+Talks continue; no framework was signed, the Maritime Board said.

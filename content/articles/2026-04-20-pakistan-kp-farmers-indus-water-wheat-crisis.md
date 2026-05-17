@@ -21,4 +21,8 @@ entities:
     kind: "commodity"
 ---
 
-Peshawar — [India](country:IN)'s Indus treaty freeze threatens [Pakistan](country:PK)'s wheat harvest. Khyber Pakhtunkhwa faces a 70% wheat production gap; reduced Indus flows also threaten Tarbela dam's electricity, Peshawar researchers warn. The Permanent Court of Arbitration confirms the treaty is binding; Pakistan is pressing the World Bank to intervene.
+Peshawar — [India](country:IN)'s Indus treaty freeze threatens [Pakistan](country:PK)'s wheat harvest.
+
+Khyber Pakhtunkhwa faces a 70% wheat production gap; reduced Indus flows also threaten Tarbela dam's electricity, Peshawar researchers warn.
+
+The Permanent Court of Arbitration confirms the treaty is binding; Pakistan is pressing the World Bank to intervene.

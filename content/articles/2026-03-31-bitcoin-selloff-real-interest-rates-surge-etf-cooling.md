@@ -16,4 +16,8 @@ concepts:
   - "Stablecoin"
 ---
 
-New York — Bitcoin absorption ratio collapsed to 1.3x from 5.3x. Real 10-year yields rose 30 basis points to 2.02% since Feb 28, pulling capital from Bitcoin as war drives oil-led inflation. A rally requires ETF inflows that have dried up; analysts say recovery depends on oil easing real yields.
+New York — Bitcoin absorption ratio collapsed to 1.3x from 5.3x.
+
+Real 10-year yields rose 30 basis points to 2.02% since Feb 28, pulling capital from Bitcoin as war drives oil-led inflation.
+
+A rally requires ETF inflows that have dried up; analysts say recovery depends on oil easing real yields.

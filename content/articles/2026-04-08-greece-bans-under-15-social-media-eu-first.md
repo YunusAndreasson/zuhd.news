@@ -37,4 +37,8 @@ concepts:
 sentimentDivergence: 0.35
 ---
 
-Athens — Greece bans social media for under-15s from January 2027. Mitsotakis announced it on TikTok, citing that 75% of Greek child users are primary school age. He wrote to EU Commission President von der Leyen proposing a bloc-wide age limit of 15.
+Athens — Greece bans social media for under-15s from January 2027.
+
+Mitsotakis announced it on TikTok, citing that 75% of Greek child users are primary school age.
+
+He wrote to EU Commission President von der Leyen proposing a bloc-wide age limit of 15.

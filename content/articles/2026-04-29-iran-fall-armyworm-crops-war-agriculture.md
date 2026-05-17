@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Tehran — Fall armyworm has reached [Iran](country:IR)'s grain fields after stripping harvests across Africa and South Asia since 2016. Conflict has disrupted pesticide imports and crop surveillance, leaving farms with weakened defenses. Researchers warn Iran cannot mobilize adequate controls before the growing season peaks.
+Tehran — Fall armyworm has reached [Iran](country:IR)'s grain fields after stripping harvests across Africa and South Asia since 2016.
+
+Conflict has disrupted pesticide imports and crop surveillance, leaving farms with weakened defenses.
+
+Researchers warn Iran cannot mobilize adequate controls before the growing season peaks.

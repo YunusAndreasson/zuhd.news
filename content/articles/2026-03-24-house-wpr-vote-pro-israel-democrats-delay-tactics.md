@@ -18,4 +18,8 @@ concepts:
   - "Iran"
 ---
 
-Washington — House Democrats maneuver to delay the Iran war vote. Rep. Meeks said he will wait 60 days before filing, citing an executive-branch interpretation that legal scholars say runs afoul of the Constitution. Minority Leader Jeffries says a new War Powers Resolution has the votes to pass in a House floor vote expected Wednesday.
+Washington — House Democrats maneuver to delay the Iran war vote.
+
+Rep. Meeks said he will wait 60 days before filing, citing an executive-branch interpretation that legal scholars say runs afoul of the Constitution.
+
+Minority Leader Jeffries says a new War Powers Resolution has the votes to pass in a House floor vote expected Wednesday.

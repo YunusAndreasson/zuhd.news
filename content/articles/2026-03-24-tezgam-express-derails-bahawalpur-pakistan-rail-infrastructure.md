@@ -11,4 +11,8 @@ sources:
     country: "PK"
 ---
 
-Bahawalpur — The Tezgam Express derailed near Bahawalpur Tuesday night. The same train killed 74 in a 2019 fire on British-era track that Pakistan has chronically underfunded. Pakistan ordered a probe into a line engineers have flagged for preventable safety failures for years.
+Bahawalpur — The Tezgam Express derailed near Bahawalpur Tuesday night.
+
+The same train killed 74 in a 2019 fire on British-era track that Pakistan has chronically underfunded.
+
+Pakistan ordered a probe into a line engineers have flagged for preventable safety failures for years.

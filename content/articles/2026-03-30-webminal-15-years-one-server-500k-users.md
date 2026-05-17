@@ -13,4 +13,8 @@ eventCoverage: null
 concepts: []
 ---
 
-Chennai — Webminal has served 500,000 users on 1 server. The free Linux terminal has run for 15 years on a single 8GB server, with no venture funding and no infrastructure team. The operator published the full architecture; the site remains free, outlasting better-funded competitors that burned capital on scale.
+Chennai — Webminal has served 500,000 users on 1 server.
+
+The free Linux terminal has run for 15 years on a single 8GB server, with no venture funding and no infrastructure team.
+
+The operator published the full architecture; the site remains free, outlasting better-funded competitors that burned capital on scale.

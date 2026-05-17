@@ -17,4 +17,8 @@ concepts:
   - "Apple Silicon"
 ---
 
-Cupertino — Apple named hardware chief John Ternus CEO. Cook becomes executive chairman; Ternus, who built Apple Silicon, inherits a $3 trillion company that ceded AI model training to cloud partners. Apple's AI model strategy — train in-house or cede to cloud — remains Ternus's unannounced first decision.
+Cupertino — Apple named hardware chief John Ternus CEO.
+
+Cook becomes executive chairman; Ternus, who built Apple Silicon, inherits a $3 trillion company that ceded AI model training to cloud partners.
+
+Apple's AI model strategy — train in-house or cede to cloud — remains Ternus's unannounced first decision.

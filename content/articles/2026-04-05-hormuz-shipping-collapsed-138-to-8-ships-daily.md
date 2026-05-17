@@ -17,4 +17,8 @@ concepts:
   - "United Kingdom"
 ---
 
-Dubai — Hormuz: 138 ships daily, now 8. UK Navy recorded 27 attacks since March 1, when Iran closed the strait to ships linked to the US and Israel. Iran allows passage for Russia, India, China, and Pakistan; Tehran demands war reparations before full reopening.
+Dubai — Hormuz: 138 ships daily, now 8.
+
+UK Navy recorded 27 attacks since March 1, when Iran closed the strait to ships linked to the US and Israel.
+
+Iran allows passage for Russia, India, China, and Pakistan; Tehran demands war reparations before full reopening.

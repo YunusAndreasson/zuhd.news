@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — A single cellular trigger governs the stress-response decision. The mechanism is shared across cancer and fibrosis, conditions typically treated as opposites with separate drug pipelines. The finding suggests 1 approach could address both diseases; clinical applications remain years away.
+London — A single cellular trigger governs the stress-response decision.
+
+The mechanism is shared across cancer and fibrosis, conditions typically treated as opposites with separate drug pipelines.
+
+The finding suggests 1 approach could address both diseases; clinical applications remain years away.

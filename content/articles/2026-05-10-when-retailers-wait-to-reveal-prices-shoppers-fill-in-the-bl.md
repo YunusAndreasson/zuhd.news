@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Ames — Click-to-reveal pricing leads buyers to underestimate costs. Iowa State researcher Minzhe Xu found the effect holds across multiple retailers, the Journal of Consumer Research reports. No disclosure rule yet governs delayed-pricing design.
+Ames — Click-to-reveal pricing leads buyers to underestimate costs.
+
+Iowa State researcher Minzhe Xu found the effect holds across multiple retailers, the Journal of Consumer Research reports.
+
+No disclosure rule yet governs delayed-pricing design.

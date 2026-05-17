@@ -17,4 +17,8 @@ concepts:
   - "Article 422"
 ---
 
-Yerevan — Armenia's top independent editor faces 2-5 years in prison. Authorities charged Hraparak editor Armine Ohanyan under Article 422, which criminalizes "calls to seize power," over a December 2024 editorial. Hraparak warned that several more editors face prosecution before parliamentary elections — a threat the ruling party has not denied.
+Yerevan — Armenia's top independent editor faces 2-5 years in prison.
+
+Authorities charged Hraparak editor Armine Ohanyan under Article 422, which criminalizes "calls to seize power," over a December 2024 editorial.
+
+Hraparak warned that several more editors face prosecution before parliamentary elections — a threat the ruling party has not denied.

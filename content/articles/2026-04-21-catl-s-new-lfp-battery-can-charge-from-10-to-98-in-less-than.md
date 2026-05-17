@@ -18,4 +18,8 @@ concepts:
   - "BYD"
 ---
 
-Ningde — CATL's cobalt-free battery hits petrol-pump charging speed. [China](country:CN)'s Shenxing 3.0 charges 10–98% in 6 minutes 27 seconds — NMC packs from Hyundai and Porsche need 18 minutes for 10–80%. BYD's Blade Battery 2.0 takes 9 minutes for the same charge; no Western pack approaches either mark.
+Ningde — CATL's cobalt-free battery hits petrol-pump charging speed.
+
+[China](country:CN)'s Shenxing 3.0 charges 10–98% in 6 minutes 27 seconds — NMC packs from Hyundai and Porsche need 18 minutes for 10–80%.
+
+BYD's Blade Battery 2.0 takes 9 minutes for the same charge; no Western pack approaches either mark.

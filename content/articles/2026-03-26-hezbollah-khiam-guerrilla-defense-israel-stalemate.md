@@ -18,4 +18,8 @@ concepts:
   - "Guerrilla warfare"
 ---
 
-Khiam — Israel seized Khiam's outskirts but not its center. Hezbollah uses "kill pockets" — lure, strike, reposition — to stymie Israeli armor after 2 weeks of fighting for the hilltop town. Khiam's capture would give Israel a foothold to disrupt Hezbollah supply lines toward the Beqaa Valley.
+Khiam — Israel seized Khiam's outskirts but not its center.
+
+Hezbollah uses "kill pockets" — lure, strike, reposition — to stymie Israeli armor after 2 weeks of fighting for the hilltop town.
+
+Khiam's capture would give Israel a foothold to disrupt Hezbollah supply lines toward the Beqaa Valley.

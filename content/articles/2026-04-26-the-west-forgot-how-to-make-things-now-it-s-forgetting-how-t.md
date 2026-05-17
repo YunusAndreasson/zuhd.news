@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Washington — Stinger production was dark for 20 years. Pentagon-mandated consolidation in 1993 shrank [US](country:US) defence contractors from 51 to 5; the workforce fell from 3.2 million to 1.1 million, and a May 2022 order won't deliver until 2026. The essay argues AI coding scaffolds deskill software as consolidation hollowed out defence.
+Washington — Stinger production was dark for 20 years.
+
+Pentagon-mandated consolidation in 1993 shrank [US](country:US) defence contractors from 51 to 5; the workforce fell from 3.2 million to 1.1 million, and a May 2022 order won't deliver until 2026.
+
+The essay argues AI coding scaffolds deskill software as consolidation hollowed out defence.

@@ -26,4 +26,8 @@ sentimentDivergence: 0.21
 entities: []
 ---
 
-Washington — Grand jury indicted the Southern Poverty Law Center on 11 counts. Acting Attorney General Todd Blanche accused the [US](country:US) civil-rights nonprofit of manufacturing extremism by paying informants in far-right groups. The center vowed to contest the charges; FBI Director Kash Patel cut bureau ties in October.
+Washington — Grand jury indicted the Southern Poverty Law Center on 11 counts.
+
+Acting Attorney General Todd Blanche accused the [US](country:US) civil-rights nonprofit of manufacturing extremism by paying informants in far-right groups.
+
+The center vowed to contest the charges; FBI Director Kash Patel cut bureau ties in October.

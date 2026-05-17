@@ -26,4 +26,8 @@ entities:
     kind: "commodity"
 ---
 
-Islamabad — [Pakistan](country:PK)'s government fleet is 60% grounded. PM Sharif extended fuel-conservation orders to June 13, banning ministerial travel and cutting state offices to a 4-day week, as the Hormuz blockade extends the oil shock into government logistics. The federal budget is due June 8 — five days before the measures expire.
+Islamabad — [Pakistan](country:PK)'s government fleet is 60% grounded.
+
+PM Sharif extended fuel-conservation orders to June 13, banning ministerial travel and cutting state offices to a 4-day week, as the Hormuz blockade extends the oil shock into government logistics.
+
+The federal budget is due June 8 — five days before the measures expire.

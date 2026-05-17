@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Sacramento — California's Protect Our Games Act passed committee. The bill requires a playable offline mode or escrowed server keys on shutdown, shifting end-of-life software from publisher discretion to consumer law. The bill still needs majority votes in the full California Assembly and Senate before reaching Governor Gavin Newsom.
+Sacramento — California's Protect Our Games Act passed committee.
+
+The bill requires a playable offline mode or escrowed server keys on shutdown, shifting end-of-life software from publisher discretion to consumer law.
+
+The bill still needs majority votes in the full California Assembly and Senate before reaching Governor Gavin Newsom.

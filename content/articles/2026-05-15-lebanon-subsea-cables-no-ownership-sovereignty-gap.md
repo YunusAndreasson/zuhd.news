@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Beirut — [Lebanon](country:LB) owns no stake in any submarine cable on its shores; foreign operators route all Lebanese internet traffic. The cabinet joined the Medusa Mediterranean cable in January, but at access-only terms with no landing point. [Israel](country:IL), Cyprus, Greece, and Gulf states are positioning as regional cable hubs, gaining leverage Lebanon cannot match.
+Beirut — [Lebanon](country:LB) owns no stake in any submarine cable on its shores; foreign operators route all Lebanese internet traffic.
+
+The cabinet joined the Medusa Mediterranean cable in January, but at access-only terms with no landing point.
+
+[Israel](country:IL), Cyprus, Greece, and Gulf states are positioning as regional cable hubs, gaining leverage Lebanon cannot match.

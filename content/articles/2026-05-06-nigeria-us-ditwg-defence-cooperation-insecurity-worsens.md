@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Abuja — Boko Haram attacks rose while about 200 US troops and MQ-9 drones operated in Nigeria. [Nigeria](country:NG) and the [US](country:US) launched defence working groups under a 2026 Roadmap, deepening a partnership that has not halted the Islamic State's West Africa branch. No benchmarks were set, leaving security accountability undefined.
+Abuja — Boko Haram attacks rose while about 200 US troops and MQ-9 drones operated in Nigeria.
+
+[Nigeria](country:NG) and the [US](country:US) launched defence working groups under a 2026 Roadmap, deepening a partnership that has not halted the Islamic State's West Africa branch.
+
+No benchmarks were set, leaving security accountability undefined.

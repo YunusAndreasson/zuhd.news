@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Washington — Trump confirmed a review of the 36,400 US troops in Germany for possible reduction. [Germany](country:DE) hosts Ramstein Air Base, NATO's main logistics hub, and released its first national military strategy last week. Trump said his decision on troop levels will come "in a short period."
+Washington — Trump confirmed a review of the 36,400 US troops in Germany for possible reduction.
+
+[Germany](country:DE) hosts Ramstein Air Base, NATO's main logistics hub, and released its first national military strategy last week.
+
+Trump said his decision on troop levels will come "in a short period."

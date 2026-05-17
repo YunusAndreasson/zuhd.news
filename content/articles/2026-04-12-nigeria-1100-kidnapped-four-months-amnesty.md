@@ -16,4 +16,8 @@ concepts:
   - "Torture"
 ---
 
-Abuja — 1,100 kidnapped across northern Nigeria since January. Amnesty documents armed groups raiding entire villages across Kebbi, Benue, Katsina and Plateau states — security forces routinely arrive hours after attacks. Families unable to pay ransoms face execution as Amnesty warns continued impunity makes more abductions inevitable.
+Abuja — 1,100 kidnapped across northern Nigeria since January.
+
+Amnesty documents armed groups raiding entire villages across Kebbi, Benue, Katsina and Plateau states — security forces routinely arrive hours after attacks.
+
+Families unable to pay ransoms face execution as Amnesty warns continued impunity makes more abductions inevitable.

@@ -18,4 +18,8 @@ concepts:
   - "European Union"
 ---
 
-Paris — France is migrating its government systems to Linux. France is treating Microsoft like Russian gas — a strategic dependency to unwind as EU-US tensions over the Iran war deepen. France's move tests whether a government can exit Microsoft at scale; other EU governments are watching.
+Paris — France is migrating its government systems to Linux.
+
+France is treating Microsoft like Russian gas — a strategic dependency to unwind as EU-US tensions over the Iran war deepen.
+
+France's move tests whether a government can exit Microsoft at scale; other EU governments are watching.

@@ -39,4 +39,8 @@ sentimentDivergence: 0.41
 entities: []
 ---
 
-Madrid — [Spain](country:ES) will propose ending the EU-[Israel](country:IL) pact Tuesday. The 2000 agreement governs €45bn in annual trade and includes a human rights clause the European Commission found Israel may be breaching. The proposal needs a qualified majority at the EU Council, where [Germany](country:DE) and [Hungary](country:HU) are expected to oppose it.
+Madrid — [Spain](country:ES) will propose ending the EU-[Israel](country:IL) pact Tuesday.
+
+The 2000 agreement governs €45bn in annual trade and includes a human rights clause the European Commission found Israel may be breaching.
+
+The proposal needs a qualified majority at the EU Council, where [Germany](country:DE) and [Hungary](country:HU) are expected to oppose it.

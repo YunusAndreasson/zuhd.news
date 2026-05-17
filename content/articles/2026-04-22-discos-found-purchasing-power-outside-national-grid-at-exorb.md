@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — [Pakistan](country:PK) found power distributors buying electricity outside the grid. The merit order dispatches cheapest plants first; the distributors bypassed it with off-grid bilateral contracts, passing costs to consumers. The power minister ordered an independent probe; the companies' names and duration of the practice have not been disclosed.
+Islamabad — [Pakistan](country:PK) found power distributors buying electricity outside the grid.
+
+The merit order dispatches cheapest plants first; the distributors bypassed it with off-grid bilateral contracts, passing costs to consumers.
+
+The power minister ordered an independent probe; the companies' names and duration of the practice have not been disclosed.

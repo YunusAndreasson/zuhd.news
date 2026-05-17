@@ -22,4 +22,8 @@ concepts:
   - "New York City"
 ---
 
-New York — An Air Canada Express jet struck a fire truck on the runway at LaGuardia Airport, killing both pilots. Air traffic recordings show the tower was managing a separate incident when the collision occurred, according to AP. The airport remains closed with 200 flights diverted, stranding thousands of passengers across the northeastern United States.
+New York — An Air Canada Express jet struck a fire truck on the runway at LaGuardia Airport, killing both pilots.
+
+Air traffic recordings show the tower was managing a separate incident when the collision occurred, according to AP.
+
+The airport remains closed with 200 flights diverted, stranding thousands of passengers across the northeastern United States.

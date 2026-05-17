@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-Taipei — Qatar's facility damage cut [Taiwan](country:TW)'s LNG supply by one-third. TSMC's 30-year wind deal anchors offshore project finance; S&P Global estimates its fabs will reach 25% of Taiwan's electricity grid by 2030. Taiwan's vice minister said gas is secured through August; nuclear restart and offshore wind expansion remain pending decisions.
+Taipei — Qatar's facility damage cut [Taiwan](country:TW)'s LNG supply by one-third.
+
+TSMC's 30-year wind deal anchors offshore project finance; S&P Global estimates its fabs will reach 25% of Taiwan's electricity grid by 2030.
+
+Taiwan's vice minister said gas is secured through August; nuclear restart and offshore wind expansion remain pending decisions.

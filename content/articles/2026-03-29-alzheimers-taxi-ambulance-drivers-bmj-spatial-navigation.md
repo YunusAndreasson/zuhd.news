@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-London — Taxi and ambulance drivers die of Alzheimer's more. Spatial navigation is widely believed to prevent dementia; this BMJ study found the opposite holds for professional drivers. Researchers cannot yet isolate whether stress, exhaust, or navigation itself is the cause.
+London — Taxi and ambulance drivers die of Alzheimer's more.
+
+Spatial navigation is widely believed to prevent dementia; this BMJ study found the opposite holds for professional drivers.
+
+Researchers cannot yet isolate whether stress, exhaust, or navigation itself is the cause.

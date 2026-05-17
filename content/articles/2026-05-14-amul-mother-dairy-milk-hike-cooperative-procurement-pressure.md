@@ -32,4 +32,8 @@ concepts:
 entities: []
 ---
 
-New Delhi — A 3.7% farmgate rise preceded the Rs 2 retail hike. Both cooperatives cite cattle feed and fuel costs as the driver, passing 75–80% of milk receipts to [India](country:IN)'s 3.6 million dairy farmers. Regional dairy companies are expected to follow as procurement costs remain elevated.
+New Delhi — A 3.7% farmgate rise preceded the Rs 2 retail hike.
+
+Both cooperatives cite cattle feed and fuel costs as the driver, passing 75–80% of milk receipts to [India](country:IN)'s 3.6 million dairy farmers.
+
+Regional dairy companies are expected to follow as procurement costs remain elevated.

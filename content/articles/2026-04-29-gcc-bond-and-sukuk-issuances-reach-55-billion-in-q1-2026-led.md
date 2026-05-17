@@ -16,4 +16,8 @@ entities:
     kind: "commodity"
 ---
 
-Riyadh — Gulf sukuk hit $55B in Q1, a record. [Saudi Arabia](country:SA) led the issuance, funding Vision-2030 capex through debt as Iran-war oil prices compress revenue. Gulf and Asian sharia-compliant funds absorbed the record supply; Saudi officials said Vision-2030 capex will drive further issuance.
+Riyadh — Gulf sukuk hit $55B in Q1, a record.
+
+[Saudi Arabia](country:SA) led the issuance, funding Vision-2030 capex through debt as Iran-war oil prices compress revenue.
+
+Gulf and Asian sharia-compliant funds absorbed the record supply; Saudi officials said Vision-2030 capex will drive further issuance.

@@ -17,4 +17,8 @@ concepts:
   - "Entanglement"
 ---
 
-Vienna — Physicists proved quantum time has no fixed order. A Bell-equivalent test placed results 18 standard deviations from any causal explanation, confirming temporal superposition as a fundamental property. Loopholes remain; the device already outperforms classical channels in cryptography and quantum key distribution.
+Vienna — Physicists proved quantum time has no fixed order.
+
+A Bell-equivalent test placed results 18 standard deviations from any causal explanation, confirming temporal superposition as a fundamental property.
+
+Loopholes remain; the device already outperforms classical channels in cryptography and quantum key distribution.

@@ -28,4 +28,6 @@ concepts:
 sentimentDivergence: 0.25
 ---
 
-Washington — Trump told allies: "Go get your own oil." Having helped close Hormuz, the US now demands allies reopen the Strait it blocked — with no formal request or plan. April 6 looms; Saudi Arabia wants ground troops deployed but no ally has committed.
+Washington — Trump told allies: "Go get your own oil." Having helped close Hormuz, the US now demands allies reopen the Strait it blocked — with no formal request or plan.
+
+April 6 looms; Saudi Arabia wants ground troops deployed but no ally has committed.

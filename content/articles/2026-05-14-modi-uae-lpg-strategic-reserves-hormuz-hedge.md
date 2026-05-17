@@ -31,4 +31,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Abu Dhabi — Modi signed 2 LPG and strategic-reserves pacts. Physical storage rights let [India](country:IN) draw from [UAE](country:AE) tanks through a Hormuz closure — something spot-cargo contracts cannot guarantee. Both sides target $200 billion in bilateral trade by 2032, but the India-Middle East-Europe corridor remains stalled by conflict.
+Abu Dhabi — Modi signed 2 LPG and strategic-reserves pacts.
+
+Physical storage rights let [India](country:IN) draw from [UAE](country:AE) tanks through a Hormuz closure — something spot-cargo contracts cannot guarantee.
+
+Both sides target $200 billion in bilateral trade by 2032, but the India-Middle East-Europe corridor remains stalled by conflict.

@@ -17,4 +17,8 @@ concepts:
   - "Semiconductor"
 ---
 
-Cambridge — Arm Holdings will sell its own chips. Meta co-developed the first product — an AI data center processor — and signed as launch customer alongside OpenAI, both of which license the same Arm architecture they now compete against. Apple, Qualcomm, and other Arm licensees face a direct competitor embedded in their supply chains.
+Cambridge — Arm Holdings will sell its own chips.
+
+Meta co-developed the first product — an AI data center processor — and signed as launch customer alongside OpenAI, both of which license the same Arm architecture they now compete against.
+
+Apple, Qualcomm, and other Arm licensees face a direct competitor embedded in their supply chains.

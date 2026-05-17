@@ -16,4 +16,8 @@ concepts:
   - "Trade"
 ---
 
-EU sealed trade deals on 2 continents in one week. Australia signed its pact days after Paraguay triggered EU-Mercosur — back-to-back deals as US tariffs push nations toward regional alternatives. Both deals require European Parliament ratification; Australia's must also clear Australian state assemblies.
+EU sealed trade deals on 2 continents in one week.
+
+Australia signed its pact days after Paraguay triggered EU-Mercosur — back-to-back deals as US tariffs push nations toward regional alternatives.
+
+Both deals require European Parliament ratification; Australia's must also clear Australian state assemblies.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Hong Kong — Deepfakes duped an employee into transferring millions. Generative AI makes plausibility — not falsehood — cheap and ambient; scholars warn humans can no longer reliably distinguish real from manipulated content. Governments deploying AI for public services face citizens who have lost basic trust in what algorithms show them.
+Hong Kong — Deepfakes duped an employee into transferring millions.
+
+Generative AI makes plausibility — not falsehood — cheap and ambient; scholars warn humans can no longer reliably distinguish real from manipulated content.
+
+Governments deploying AI for public services face citizens who have lost basic trust in what algorithms show them.

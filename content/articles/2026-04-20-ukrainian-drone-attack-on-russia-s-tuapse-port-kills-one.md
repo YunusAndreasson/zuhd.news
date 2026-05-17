@@ -37,4 +37,8 @@ sentimentDivergence: 0.62
 entities: []
 ---
 
-Tuapse — 2nd drone strike in 4 days hit Tuapse. [Ukraine](country:UA)'s attack on [Russia](country:RU)'s only Black Sea refinery killed 1 worker; vessel-tracking data showed ship calls to Tuapse halved. Vessels diverted 160km to Novorossiysk, which recorded 20% more arrivals in the same period.
+Tuapse — 2nd drone strike in 4 days hit Tuapse.
+
+[Ukraine](country:UA)'s attack on [Russia](country:RU)'s only Black Sea refinery killed 1 worker; vessel-tracking data showed ship calls to Tuapse halved.
+
+Vessels diverted 160km to Novorossiysk, which recorded 20% more arrivals in the same period.

@@ -18,4 +18,6 @@ concepts:
   - "Hate speech"
 ---
 
-Guwahati — BJP posted an AI video of Assam's CM shooting Muslims. Bellingcat found 194 of 499 BJP posts in Assam and West Bengal met the UN hate speech definition; 31 used AI imagery including the deleted CM video captioned "foreigner-free Assam." Both states hold elections in April; all posts came from official BJP accounts.
+Guwahati — BJP posted an AI video of Assam's CM shooting Muslims.
+
+Bellingcat found 194 of 499 BJP posts in Assam and West Bengal met the UN hate speech definition; 31 used AI imagery including the deleted CM video captioned "foreigner-free Assam." Both states hold elections in April; all posts came from official BJP accounts.

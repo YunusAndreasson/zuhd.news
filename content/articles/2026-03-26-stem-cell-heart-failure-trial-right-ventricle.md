@@ -17,4 +17,8 @@ concepts:
   - "Coagulation"
 ---
 
-Beijing — Stem cells shrank the right ventricle. In 40 patients, 3 umbilical cord cell infusions reduced right ventricular volume while left ventricular outcomes matched placebo. RV-first transit shows IV cells can target chambers selectively — elevated D-dimer in treated patients is still unexplained.
+Beijing — Stem cells shrank the right ventricle.
+
+In 40 patients, 3 umbilical cord cell infusions reduced right ventricular volume while left ventricular outcomes matched placebo.
+
+RV-first transit shows IV cells can target chambers selectively — elevated D-dimer in treated patients is still unexplained.

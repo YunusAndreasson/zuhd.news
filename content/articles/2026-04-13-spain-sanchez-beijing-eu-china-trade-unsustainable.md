@@ -19,4 +19,8 @@ concepts:
   - "Xi Jinping"
 ---
 
-Beijing — Spain's deficit with China grew 18% last year. Trump threatened Spain's trade after it denied bases for Iran strikes; Beijing is Madrid's hedge against US trade pressure. Sanchez seeks raw material deals ahead of Trump's May visit to Beijing.
+Beijing — Spain's deficit with China grew 18% last year.
+
+Trump threatened Spain's trade after it denied bases for Iran strikes; Beijing is Madrid's hedge against US trade pressure.
+
+Sanchez seeks raw material deals ahead of Trump's May visit to Beijing.

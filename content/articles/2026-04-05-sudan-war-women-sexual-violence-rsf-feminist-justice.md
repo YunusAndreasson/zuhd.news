@@ -16,4 +16,8 @@ concepts:
   - "Sudan"
 ---
 
-Khartoum — 3,700 rapes in Sudan's RSF zones last year. Rapid Support Forces use rape as a weapon to dismantle civilian organizing in areas without functional courts, health systems, or outside observers. MSF called these crimes "collective punishment along ethnic lines"; no state has referred Sudan to the ICC.
+Khartoum — 3,700 rapes in Sudan's RSF zones last year.
+
+Rapid Support Forces use rape as a weapon to dismantle civilian organizing in areas without functional courts, health systems, or outside observers.
+
+MSF called these crimes "collective punishment along ethnic lines"; no state has referred Sudan to the ICC.

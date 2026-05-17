@@ -16,4 +16,8 @@ concepts:
   - "Fidelity Investments"
 ---
 
-New York — Bitcoin's worst drawdown this cycle is 50%. Prior peaks triggered 84-87% crashes; bitcoin ETFs and pension funds now create a structural floor that didn't exist. If the floor holds through the Iran shock, Fidelity's case for a 1-3% allocation becomes hard to dismiss.
+New York — Bitcoin's worst drawdown this cycle is 50%.
+
+Prior peaks triggered 84-87% crashes; bitcoin ETFs and pension funds now create a structural floor that didn't exist.
+
+If the floor holds through the Iran shock, Fidelity's case for a 1-3% allocation becomes hard to dismiss.

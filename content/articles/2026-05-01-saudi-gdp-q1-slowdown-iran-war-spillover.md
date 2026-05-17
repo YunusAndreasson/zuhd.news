@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Riyadh — [Saudi Arabia](country:SA) posted 2.8% GDP growth in Q1. The result came as the [Iran](country:IR) conflict disrupted Gulf shipping and suppressed regional economic activity across bystander economies. No sector breakdown was provided; the government has not signaled a policy adjustment in response.
+Riyadh — [Saudi Arabia](country:SA) posted 2.8% GDP growth in Q1.
+
+The result came as the [Iran](country:IR) conflict disrupted Gulf shipping and suppressed regional economic activity across bystander economies.
+
+No sector breakdown was provided; the government has not signaled a policy adjustment in response.

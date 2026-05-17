@@ -42,4 +42,8 @@ sentimentDivergence: 0.51
 entities: []
 ---
 
-Gulf of Oman — [US](country:US) cannon fire disabled [Iran](country:IR)'s M/T Hasna. USS Abraham Lincoln's F/A-18 fired 20mm rounds after Hasna's crew ignored warnings — the blockade's 2nd kinetic enforcement since April 13. US military figures show 52 ships redirected since the blockade began; Iran has not commented as nuclear talks continue.
+Gulf of Oman — [US](country:US) cannon fire disabled [Iran](country:IR)'s M/T Hasna.
+
+USS Abraham Lincoln's F/A-18 fired 20mm rounds after Hasna's crew ignored warnings — the blockade's 2nd kinetic enforcement since April 13.
+
+US military figures show 52 ships redirected since the blockade began; Iran has not commented as nuclear talks continue.

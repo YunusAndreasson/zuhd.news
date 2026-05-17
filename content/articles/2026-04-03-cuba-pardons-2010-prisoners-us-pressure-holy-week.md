@@ -35,4 +35,8 @@ concepts:
 sentimentDivergence: 0.38
 ---
 
-Havana — Cuba pardoned 2,010 prisoners as US-Cuba negotiations advanced. Havana called it a sovereign Holy Week gesture; the release follows Trump allowing a Russian oil tanker into Cuban waters days earlier. Cuba called the releases a sovereign act immune from US conditions; the 2 governments remain split on what normalization requires.
+Havana — Cuba pardoned 2,010 prisoners as US-Cuba negotiations advanced.
+
+Havana called it a sovereign Holy Week gesture; the release follows Trump allowing a Russian oil tanker into Cuban waters days earlier.
+
+Cuba called the releases a sovereign act immune from US conditions; the 2 governments remain split on what normalization requires.

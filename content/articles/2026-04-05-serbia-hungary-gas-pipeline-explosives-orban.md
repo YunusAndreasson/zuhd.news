@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.28
 ---
 
-Kanjiza — 2 explosive backpacks found near the Hungarian border. Serbian police found them at the Balkan Stream pipeline — Russia's main gas route into Hungary — with no suspect identified. Orbán, facing elections April 12, convened an emergency defense council; investigators have not named a perpetrator or motive.
+Kanjiza — 2 explosive backpacks found near the Hungarian border.
+
+Serbian police found them at the Balkan Stream pipeline — Russia's main gas route into Hungary — with no suspect identified.
+
+Orbán, facing elections April 12, convened an emergency defense council; investigators have not named a perpetrator or motive.

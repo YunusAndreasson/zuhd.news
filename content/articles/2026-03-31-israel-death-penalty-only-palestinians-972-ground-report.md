@@ -11,4 +11,12 @@ sources:
     country: "IL"
 ---
 
-Jerusalem — Israel enacted capital punishment for Palestinians only. The law establishes ethnicity-specific execution rights; a tribunal to execute those convicted of Oct. 7 attacks is next. Palestinians on the ground say: 'They already shoot us for no reason. Now they have a death penalty.'
+Jerusalem — Israel enacted capital punishment for Palestinians only.
+
+The law establishes ethnicity-specific execution rights; a tribunal to execute those convicted of Oct.
+
+7 attacks is next.
+
+Palestinians on the ground say: 'They already shoot us for no reason.
+
+Now they have a death penalty.'

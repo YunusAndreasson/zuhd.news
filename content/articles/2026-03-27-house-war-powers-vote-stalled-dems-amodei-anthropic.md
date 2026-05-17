@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Washington — Democrats are blocking the House anti-war vote. House Foreign Affairs Democrat Greg Meeks plans to postpone a War Powers Resolution vote to mid-April, despite enough Republicans to pass it. Congress goes into 2-week recess tomorrow — the vote dies unless Meeks reverses by Friday.
+Washington — Democrats are blocking the House anti-war vote.
+
+House Foreign Affairs Democrat Greg Meeks plans to postpone a War Powers Resolution vote to mid-April, despite enough Republicans to pass it.
+
+Congress goes into 2-week recess tomorrow — the vote dies unless Meeks reverses by Friday.

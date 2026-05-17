@@ -18,4 +18,8 @@ concepts:
   - "Intragroup conflict"
 ---
 
-Kibale — 24 chimps dead in Uganda's largest recorded war. The 200-member Ngogo community split in 2015; one faction staged lethal raids on the other, killing 7 adults and 17 infants. Such events occur once every 500 years; researchers watch whether the factions permanently separate.
+Kibale — 24 chimps dead in Uganda's largest recorded war.
+
+The 200-member Ngogo community split in 2015; one faction staged lethal raids on the other, killing 7 adults and 17 infants.
+
+Such events occur once every 500 years; researchers watch whether the factions permanently separate.

@@ -32,4 +32,8 @@ sentimentDivergence: 0.19
 entities: []
 ---
 
-Baltimore — [Singapore](country:SG)'s Synergy Marine is indicted for forging safety certificates. An unapproved pump caused 2 generator blackouts in 4 minutes, disabling the Dali's steering before the 2024 strike that killed 6 Latin American workers. Supervisor Karthik Nair is in [India](country:IN); no extradition request has been filed.
+Baltimore — [Singapore](country:SG)'s Synergy Marine is indicted for forging safety certificates.
+
+An unapproved pump caused 2 generator blackouts in 4 minutes, disabling the Dali's steering before the 2024 strike that killed 6 Latin American workers.
+
+Supervisor Karthik Nair is in [India](country:IN); no extradition request has been filed.

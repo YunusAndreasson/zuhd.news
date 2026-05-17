@@ -16,4 +16,8 @@ concepts:
   - "Women's rights"
 ---
 
-Liberia has no law against female genital mutilation. The Women and Girls Protection Bill would create one, but traditional leaders who perform the procedure have mounted fierce opposition, leaving Liberia among West Africa's last countries without a ban. UN Women's country representative called for no compromise as lawmakers prepare to vote.
+Liberia has no law against female genital mutilation.
+
+The Women and Girls Protection Bill would create one, but traditional leaders who perform the procedure have mounted fierce opposition, leaving Liberia among West Africa's last countries without a ban.
+
+UN Women's country representative called for no compromise as lawmakers prepare to vote.

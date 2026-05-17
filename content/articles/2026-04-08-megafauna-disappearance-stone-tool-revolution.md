@@ -17,4 +17,8 @@ concepts:
   - "Predation"
 ---
 
-Tel Aviv — Stone axes vanished with megafauna 200,000 years ago. Researchers cross-referenced 47 Levant sites and found heavy axes disappeared as megaherbivores over 1,000 kg went extinct. The team says prey-shift forced the cognitive leap; rivals say intelligence was already emerging.
+Tel Aviv — Stone axes vanished with megafauna 200,000 years ago.
+
+Researchers cross-referenced 47 Levant sites and found heavy axes disappeared as megaherbivores over 1,000 kg went extinct.
+
+The team says prey-shift forced the cognitive leap; rivals say intelligence was already emerging.

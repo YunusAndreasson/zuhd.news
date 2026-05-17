@@ -36,4 +36,8 @@ eventCoverage: 84
 sentimentDivergence: 0.27
 ---
 
-Manila — Iran war is cutting growth across Asia. ADB cut Asia-Pacific 2026 growth to 5.1% as Hormuz blockage cascades through fertilizer, food, and semiconductor supply chains. If the war lasts through the third quarter, growth falls to 4.7% and inflation surges to 5.6%.
+Manila — Iran war is cutting growth across Asia.
+
+ADB cut Asia-Pacific 2026 growth to 5.1% as Hormuz blockage cascades through fertilizer, food, and semiconductor supply chains.
+
+If the war lasts through the third quarter, growth falls to 4.7% and inflation surges to 5.6%.

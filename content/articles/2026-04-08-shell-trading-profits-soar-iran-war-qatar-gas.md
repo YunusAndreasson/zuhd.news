@@ -17,4 +17,8 @@ concepts:
   - "Chemical substance"
 ---
 
-London — Shell made $700M trading Iran-war volatility. Q1 commodity trading profits hit $200M–$700M as energy markets surged; simultaneous strikes on Qatar's Ras Laffan LNG complex cut Shell's gas output 5%. Oil fell below $100 on the ceasefire announcement; whether Hormuz's reopening restores Qatari LNG volumes is unresolved.
+London — Shell made $700M trading Iran-war volatility.
+
+Q1 commodity trading profits hit $200M–$700M as energy markets surged; simultaneous strikes on Qatar's Ras Laffan LNG complex cut Shell's gas output 5%.
+
+Oil fell below $100 on the ceasefire announcement; whether Hormuz's reopening restores Qatari LNG volumes is unresolved.

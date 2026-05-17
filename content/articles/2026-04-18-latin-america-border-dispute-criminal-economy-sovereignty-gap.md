@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Bogotá — Contraband flows have risen across the Colombia-Ecuador border. Ecuador's 100% tariffs on Colombian goods take effect May 1, pushing trade to informal crossings criminal groups control. Colombia has deployed troops to the border; criminal gains will persist without bilateral security cooperation, still unannounced.
+Bogotá — Contraband flows have risen across the Colombia-Ecuador border.
+
+Ecuador's 100% tariffs on Colombian goods take effect May 1, pushing trade to informal crossings criminal groups control.
+
+Colombia has deployed troops to the border; criminal gains will persist without bilateral security cooperation, still unannounced.

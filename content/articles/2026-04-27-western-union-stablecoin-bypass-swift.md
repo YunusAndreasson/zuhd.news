@@ -22,4 +22,8 @@ entities:
     kind: "stock"
 ---
 
-New York — Western Union's dollar stablecoin launches on Solana next month. [The US](country:US) firm's international wire network pauses on weekends and takes 2-3 days in some markets; the stablecoin runs 24/7 across 200 countries. MoneyGram and Stripe have launched rival stablecoin rails; Western Union's launch is the first at correspondent-bank scale.
+New York — Western Union's dollar stablecoin launches on Solana next month.
+
+[The US](country:US) firm's international wire network pauses on weekends and takes 2-3 days in some markets; the stablecoin runs 24/7 across 200 countries.
+
+MoneyGram and Stripe have launched rival stablecoin rails; Western Union's launch is the first at correspondent-bank scale.

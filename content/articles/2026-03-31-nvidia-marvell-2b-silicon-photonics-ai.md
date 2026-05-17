@@ -17,4 +17,8 @@ concepts:
   - "Artificial intelligence"
 ---
 
-Santa Clara — Nvidia bet $2bn on optical AI interconnects. The deal with Marvell co-develops silicon photonics to replace copper links in AI data centers and integrate hyperscaler chips alongside Nvidia GPUs. Marvell shares jumped 8% to $83bn; mass-producing photonic circuits at scale remains unsolved.
+Santa Clara — Nvidia bet $2bn on optical AI interconnects.
+
+The deal with Marvell co-develops silicon photonics to replace copper links in AI data centers and integrate hyperscaler chips alongside Nvidia GPUs.
+
+Marvell shares jumped 8% to $83bn; mass-producing photonic circuits at scale remains unsolved.

@@ -17,4 +17,8 @@ concepts:
   - "All Progressives Congress"
 ---
 
-Sokoto — Bandits overran Sokoto communities; Abuja never responded. Senator Ibrahim Lamido says he quit APC after repeated appeals to Abuja produced no security response. He has not named his next party, but allies are moving to the African Democratic Congress.
+Sokoto — Bandits overran Sokoto communities; Abuja never responded.
+
+Senator Ibrahim Lamido says he quit APC after repeated appeals to Abuja produced no security response.
+
+He has not named his next party, but allies are moving to the African Democratic Congress.

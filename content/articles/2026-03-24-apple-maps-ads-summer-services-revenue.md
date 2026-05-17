@@ -17,4 +17,8 @@ concepts:
   - "App Store (iOS/iPadOS)"
 ---
 
-Cupertino — Apple Maps adds paid ads starting this summer. Businesses can pay to appear at the top of map search results; Apple says user location data stays on-device and will not be shared with advertisers. The ads launch alongside the Apple Business platform on April 14, as Services revenue pressure pushes Apple deeper into the ad ecosystem.
+Cupertino — Apple Maps adds paid ads starting this summer.
+
+Businesses can pay to appear at the top of map search results; Apple says user location data stays on-device and will not be shared with advertisers.
+
+The ads launch alongside the Apple Business platform on April 14, as Services revenue pressure pushes Apple deeper into the ad ecosystem.

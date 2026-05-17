@@ -17,4 +17,8 @@ concepts:
   - "Declan Ganley"
 ---
 
-Washington — Rivada Networks wants the US to claim Antarctica. Chairman Declan Ganley argues Marie Byrd Land — 1.5 million km² — is legally open for acquisition, citing satellite polar coverage needs. The 1959 Antarctic Treaty bars new claims from all signatories; no US government response has been given.
+Washington — Rivada Networks wants the US to claim Antarctica.
+
+Chairman Declan Ganley argues Marie Byrd Land — 1.5 million km² — is legally open for acquisition, citing satellite polar coverage needs.
+
+The 1959 Antarctic Treaty bars new claims from all signatories; no US government response has been given.

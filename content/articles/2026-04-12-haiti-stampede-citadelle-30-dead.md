@@ -17,4 +17,8 @@ concepts:
   - "World Heritage Site"
 ---
 
-Milot — At least 30 killed in Haiti Citadelle stampede. Social media crowds overwhelmed the entrance as heavy rain triggered the Easter crush at the UNESCO fortress. Haiti's civil protection authority warned the toll may rise as Prime Minister Fils-Aimé opened an investigation.
+Milot — At least 30 killed in Haiti Citadelle stampede.
+
+Social media crowds overwhelmed the entrance as heavy rain triggered the Easter crush at the UNESCO fortress.
+
+Haiti's civil protection authority warned the toll may rise as Prime Minister Fils-Aimé opened an investigation.

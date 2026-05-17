@@ -16,4 +16,8 @@ concepts:
   - "Bitcoin network"
 ---
 
-New York — Bitcoin's hashrate posted its first quarterly decline. With production costs at $90,000 and spot price at $67,000, listed miners are shifting capital to AI infrastructure where margins are positive. Reduced US miner concentration may improve decentralization, but further price drops could push smaller operators out entirely.
+New York — Bitcoin's hashrate posted its first quarterly decline.
+
+With production costs at $90,000 and spot price at $67,000, listed miners are shifting capital to AI infrastructure where margins are positive.
+
+Reduced US miner concentration may improve decentralization, but further price drops could push smaller operators out entirely.

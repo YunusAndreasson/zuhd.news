@@ -17,4 +17,8 @@ concepts:
   - "Ministry of Defence (Russia)"
 ---
 
-Crimea — All 29 aboard Russia's An-26 military transport died. The Defense Ministry confirmed the crash during a "routine flight" — an unusually transparent acknowledgment for a military that suppresses casualty data. No cause has been given; Ukraine has not claimed the aircraft, leaving combat damage or mechanical failure unresolved.
+Crimea — All 29 aboard Russia's An-26 military transport died.
+
+The Defense Ministry confirmed the crash during a "routine flight" — an unusually transparent acknowledgment for a military that suppresses casualty data.
+
+No cause has been given; Ukraine has not claimed the aircraft, leaving combat damage or mechanical failure unresolved.

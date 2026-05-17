@@ -18,4 +18,8 @@ concepts:
   - "Tokenization"
 ---
 
-New York — DeFi yields are shifting from trading leverage to tokenized real-world assets. Protocols like Pendle already enable fixed-to-floating rate swaps in crypto, mirroring how bond markets distribute risk; Aave founder Stani Kulechov told the Digital Asset Summit that real-world asset tokenization will replace leverage as the yield base. Most DeFi yield still depends on leverage, and Kulechov gave no timeline for when tokenization displaces it.
+New York — DeFi yields are shifting from trading leverage to tokenized real-world assets.
+
+Protocols like Pendle already enable fixed-to-floating rate swaps in crypto, mirroring how bond markets distribute risk; Aave founder Stani Kulechov told the Digital Asset Summit that real-world asset tokenization will replace leverage as the yield base.
+
+Most DeFi yield still depends on leverage, and Kulechov gave no timeline for when tokenization displaces it.

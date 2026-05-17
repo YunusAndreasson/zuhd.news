@@ -42,4 +42,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Islamabad — Wednesday's ceasefire expires with no deal reached. [Pakistan](country:PK) brokered the truce after [US](country:US)-Israeli strikes on [Iran](country:IR) February 28; uranium enrichment and Strait of Hormuz access remain the core disputes. Tehran has not confirmed attendance, citing the US naval blockade of Iranian ports.
+Islamabad — Wednesday's ceasefire expires with no deal reached.
+
+[Pakistan](country:PK) brokered the truce after [US](country:US)-Israeli strikes on [Iran](country:IR) February 28; uranium enrichment and Strait of Hormuz access remain the core disputes.
+
+Tehran has not confirmed attendance, citing the US naval blockade of Iranian ports.

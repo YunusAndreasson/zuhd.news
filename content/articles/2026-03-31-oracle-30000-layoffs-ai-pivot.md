@@ -15,4 +15,8 @@ concepts:
   - "Layoff"
 ---
 
-Austin — Oracle announced 30,000 job cuts. The scale ranks among the largest single-company tech layoffs on record; Oracle cited no reason, named no divisions, and set no timeline. Workers across the company now wait to learn if their role is among those eliminated.
+Austin — Oracle announced 30,000 job cuts.
+
+The scale ranks among the largest single-company tech layoffs on record; Oracle cited no reason, named no divisions, and set no timeline.
+
+Workers across the company now wait to learn if their role is among those eliminated.

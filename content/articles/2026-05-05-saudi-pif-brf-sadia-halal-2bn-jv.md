@@ -16,4 +16,8 @@ entities:
     kind: "stock"
 ---
 
-Riyadh — [Saudi Arabia](country:SA)'s Public Investment Fund paid $2bn for a stake in [Brazil](country:BR)'s BRF (Brasil Foods), Sadia's parent. BRF supplies halal products globally; the stake ties Saudi supply-chain control to certification influence. The Organisation of Islamic Cooperation values the global halal market above $2 trillion; standards remain contested.
+Riyadh — [Saudi Arabia](country:SA)'s Public Investment Fund paid $2bn for a stake in [Brazil](country:BR)'s BRF (Brasil Foods), Sadia's parent.
+
+BRF supplies halal products globally; the stake ties Saudi supply-chain control to certification influence.
+
+The Organisation of Islamic Cooperation values the global halal market above $2 trillion; standards remain contested.

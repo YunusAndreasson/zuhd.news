@@ -30,4 +30,8 @@ concepts:
 entities: []
 ---
 
-Chandigarh — Third Arora raid this year ended in arrest. [India](country:IN)'s Enforcement Directorate raided 3 Aam Aadmi Party ministers since January; previous target Mittal joined India's ruling party days after his search. Arora, who didn't defect, is in custody; the party called statewide protests for Sunday.
+Chandigarh — Third Arora raid this year ended in arrest.
+
+[India](country:IN)'s Enforcement Directorate raided 3 Aam Aadmi Party ministers since January; previous target Mittal joined India's ruling party days after his search.
+
+Arora, who didn't defect, is in custody; the party called statewide protests for Sunday.

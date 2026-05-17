@@ -18,4 +18,8 @@ concepts:
   - "Fossil fuel"
 ---
 
-London — Hormuz closure became Britain's case for clean energy. Chancellor Reeves will tell G7 Monday that renewables and nuclear — not North Sea drilling — are the only lasting defense against energy shocks. Starmer convenes oil majors and banks Monday to design emergency measures for the ongoing closure.
+London — Hormuz closure became Britain's case for clean energy.
+
+Chancellor Reeves will tell G7 Monday that renewables and nuclear — not North Sea drilling — are the only lasting defense against energy shocks.
+
+Starmer convenes oil majors and banks Monday to design emergency measures for the ongoing closure.

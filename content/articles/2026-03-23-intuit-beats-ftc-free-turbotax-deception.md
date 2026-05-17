@@ -17,4 +17,8 @@ concepts:
   - "SEC v. Jarkesy"
 ---
 
-Washington — The FTC cannot prosecute deceptive ads in its own courts. The 5th Circuit ruled 3-0 for Intuit, citing the 2024 Jarkesy precedent to dismiss the agency's in-house case over TurboTax "free" filing promotions. The case moves to federal court, where Trump's Republican-majority FTC must decide whether to refile charges.
+Washington — The FTC cannot prosecute deceptive ads in its own courts.
+
+The 5th Circuit ruled 3-0 for Intuit, citing the 2024 Jarkesy precedent to dismiss the agency's in-house case over TurboTax "free" filing promotions.
+
+The case moves to federal court, where Trump's Republican-majority FTC must decide whether to refile charges.

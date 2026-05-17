@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-New Delhi — Indian firms flooded West Africa with 320 million opioid pills. India's regulator approved exports under a loophole treating recipient countries as unregulated markets, even where tapentadol is banned. Export values surged 5-fold since 2022 after India restricted tramadol, trade records show; the loophole remains open.
+New Delhi — Indian firms flooded West Africa with 320 million opioid pills.
+
+India's regulator approved exports under a loophole treating recipient countries as unregulated markets, even where tapentadol is banned.
+
+Export values surged 5-fold since 2022 after India restricted tramadol, trade records show; the loophole remains open.

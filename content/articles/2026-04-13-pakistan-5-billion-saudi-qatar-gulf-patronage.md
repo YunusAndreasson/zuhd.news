@@ -15,4 +15,8 @@ concepts:
   - "Qatar"
 ---
 
-Islamabad — Saudi Arabia and Qatar committed $5 billion to Pakistan. Pakistan faces a $3.5 billion United Arab Emirates debt repayment this month; the bailout comes from states hosting the war Pakistan was mediating. Riyadh has not stated terms; Finance Minister Aurangzeb meets the IMF in Washington this week.
+Islamabad — Saudi Arabia and Qatar committed $5 billion to Pakistan.
+
+Pakistan faces a $3.5 billion United Arab Emirates debt repayment this month; the bailout comes from states hosting the war Pakistan was mediating.
+
+Riyadh has not stated terms; Finance Minister Aurangzeb meets the IMF in Washington this week.

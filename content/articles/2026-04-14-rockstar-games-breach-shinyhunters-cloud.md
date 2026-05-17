@@ -17,4 +17,8 @@ concepts:
   - "Cloud security"
 ---
 
-New York — ShinyHunters breached Rockstar via a cloud vendor. The group accessed a cloud analytics platform, not Rockstar's own systems — the supply-chain vector where every vendor's access becomes the target's vulnerability. ShinyHunters threatened to publish the data unpaid; Rockstar has not confirmed the breach or disclosed what was taken.
+New York — ShinyHunters breached Rockstar via a cloud vendor.
+
+The group accessed a cloud analytics platform, not Rockstar's own systems — the supply-chain vector where every vendor's access becomes the target's vulnerability.
+
+ShinyHunters threatened to publish the data unpaid; Rockstar has not confirmed the breach or disclosed what was taken.

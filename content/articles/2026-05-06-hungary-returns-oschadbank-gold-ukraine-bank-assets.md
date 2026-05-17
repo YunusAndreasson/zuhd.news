@@ -41,4 +41,8 @@ entities:
     kind: "commodity"
 ---
 
-Kyiv — [Hungary](country:HU) seized $82 million from Ukraine's Oschadbank. Budapest cited money laundering; [Ukraine](country:UA) said it was leverage over Druzhba pipeline oil; Hungary's PM Viktor Orbán lost the April election. Peter Magyar succeeds Orbán on Saturday and has pledged to normalize ties with Kyiv.
+Kyiv — [Hungary](country:HU) seized $82 million from Ukraine's Oschadbank.
+
+Budapest cited money laundering; [Ukraine](country:UA) said it was leverage over Druzhba pipeline oil; Hungary's PM Viktor Orbán lost the April election.
+
+Peter Magyar succeeds Orbán on Saturday and has pledged to normalize ties with Kyiv.

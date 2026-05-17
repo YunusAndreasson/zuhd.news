@@ -17,4 +17,8 @@ concepts:
   - "Nigeria"
 ---
 
-Abuja — Nigeria blocked Africa's UN Secretary-General candidate. Abuja's Note Verbale argues Sall bypassed AU vetting and was forced through a 24-hour silence procedure; 20 of 55 states objected. Without AU endorsement, Sall enters April 20 dialogues against Latin American nominees backed by their regional blocs.
+Abuja — Nigeria blocked Africa's UN Secretary-General candidate.
+
+Abuja's Note Verbale argues Sall bypassed AU vetting and was forced through a 24-hour silence procedure; 20 of 55 states objected.
+
+Without AU endorsement, Sall enters April 20 dialogues against Latin American nominees backed by their regional blocs.

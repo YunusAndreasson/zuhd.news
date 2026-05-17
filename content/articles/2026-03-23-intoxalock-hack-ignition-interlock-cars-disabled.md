@@ -16,4 +16,8 @@ concepts:
   - "Des Moines, Iowa"
 ---
 
-Des Moines — 1 firm's breach stranded court-ordered DUI drivers nationwide. Ignition interlock devices are court-required in many states, making one company's servers a hidden dependency for millions of drivers under court-ordered programs. Drivers on interlock programs have no fallback — missing a retest triggers a lockout even during a cyberattack.
+Des Moines — 1 firm's breach stranded court-ordered DUI drivers nationwide.
+
+Ignition interlock devices are court-required in many states, making one company's servers a hidden dependency for millions of drivers under court-ordered programs.
+
+Drivers on interlock programs have no fallback — missing a retest triggers a lockout even during a cyberattack.

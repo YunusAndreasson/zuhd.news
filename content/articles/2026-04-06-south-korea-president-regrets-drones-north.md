@@ -19,4 +19,8 @@ concepts:
   - "Pyongyang"
 ---
 
-Seoul — Lee apologized to Pyongyang for government drone flights. Lee confirmed NIS officials and a soldier sent the January drones, publicly repudiating his predecessor's covert operation. North Korea warned of a "terrible response" to future drones; Pyongyang has not yet acknowledged Lee's apology.
+Seoul — Lee apologized to Pyongyang for government drone flights.
+
+Lee confirmed NIS officials and a soldier sent the January drones, publicly repudiating his predecessor's covert operation.
+
+North Korea warned of a "terrible response" to future drones; Pyongyang has not yet acknowledged Lee's apology.

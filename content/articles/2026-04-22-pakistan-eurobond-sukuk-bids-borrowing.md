@@ -20,4 +20,8 @@ entities:
     kind: "currency"
 ---
 
-Islamabad — [Pakistan](country:PK) priced a $750m Eurobond at 6.975%. Pakistan selected the mandate on lowest yield; sukuk and rupee-dollar bonds are planned in subsequent tranches. Bids for 3-year underwriting mandates close May 25; timing depends on market windows.
+Islamabad — [Pakistan](country:PK) priced a $750m Eurobond at 6.975%.
+
+Pakistan selected the mandate on lowest yield; sukuk and rupee-dollar bonds are planned in subsequent tranches.
+
+Bids for 3-year underwriting mandates close May 25; timing depends on market windows.

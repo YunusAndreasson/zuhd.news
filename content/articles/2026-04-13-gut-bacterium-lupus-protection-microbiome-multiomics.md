@@ -17,4 +17,8 @@ concepts:
   - "Carbohydrate"
 ---
 
-London — A gut bacterium reversed lupus progression in mice. Faecalibacterium prausnitzii shifts carbohydrate metabolism and rebalances immune T-cell ratios, suppressing the autoantibody production that drives lupus kidney damage. 5 million people have lupus with no cure; researchers propose F. prausnitzii as a probiotic candidate for human trials.
+London — A gut bacterium reversed lupus progression in mice.
+
+Faecalibacterium prausnitzii shifts carbohydrate metabolism and rebalances immune T-cell ratios, suppressing the autoantibody production that drives lupus kidney damage.
+
+5 million people have lupus with no cure; researchers propose F. prausnitzii as a probiotic candidate for human trials.

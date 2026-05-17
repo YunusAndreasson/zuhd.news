@@ -35,4 +35,8 @@ concepts:
 sentimentDivergence: 0.71
 ---
 
-Naypyidaw — 429 votes "elected" an accused war criminal president. Min Aung Hlaing, the 2021 coup leader, received the presidency from a parliament his proxy party controls — 80% of seats plus a 25% military bloc. Aung San Suu Kyi serves 27 years in detention; the resistance coalition formed this week is the main counter to his rule.
+Naypyidaw — 429 votes "elected" an accused war criminal president.
+
+Min Aung Hlaing, the 2021 coup leader, received the presidency from a parliament his proxy party controls — 80% of seats plus a 25% military bloc.
+
+Aung San Suu Kyi serves 27 years in detention; the resistance coalition formed this week is the main counter to his rule.

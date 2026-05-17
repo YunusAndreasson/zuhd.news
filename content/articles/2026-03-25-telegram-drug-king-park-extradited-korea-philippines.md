@@ -19,4 +19,8 @@ concepts:
   - "Extradition"
 ---
 
-Incheon — Park Wang-yeol ran a drug network from inside prison. Serving 60 years for murdering 3 South Koreans, the 48-year-old dealt methamphetamine via Telegram until President Lee secured his extradition from Philippine President Marcos. He faces South Korean drug charges before returning to complete his 60-year Philippine sentence.
+Incheon — Park Wang-yeol ran a drug network from inside prison.
+
+Serving 60 years for murdering 3 South Koreans, the 48-year-old dealt methamphetamine via Telegram until President Lee secured his extradition from Philippine President Marcos.
+
+He faces South Korean drug charges before returning to complete his 60-year Philippine sentence.

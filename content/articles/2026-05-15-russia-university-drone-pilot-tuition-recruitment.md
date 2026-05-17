@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Moscow — 270 Russian universities now market military contracts to students. [Russia](country:RU) offers free tuition and $70,000 for a year's drone service, targeting the 2 million men enrolled in universities. One confirmed student death has emerged; Russia's target is 168,000 drone operators by year-end.
+Moscow — 270 Russian universities now market military contracts to students.
+
+[Russia](country:RU) offers free tuition and $70,000 for a year's drone service, targeting the 2 million men enrolled in universities.
+
+One confirmed student death has emerged; Russia's target is 168,000 drone operators by year-end.

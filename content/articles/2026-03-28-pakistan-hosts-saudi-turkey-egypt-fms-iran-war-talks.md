@@ -18,4 +18,8 @@ concepts:
   - "Iran"
 ---
 
-Islamabad — Islamabad hosts Saudi, Turkish, and Egyptian FMs Sunday. Pakistan is relaying messages between Washington and Tehran while the 3 largest Sunni states coordinate their own diplomatic track. Iran continues missile attacks; Pakistan declines to reveal its mediation terms, citing negotiations' sensitivity.
+Islamabad — Islamabad hosts Saudi, Turkish, and Egyptian FMs Sunday.
+
+Pakistan is relaying messages between Washington and Tehran while the 3 largest Sunni states coordinate their own diplomatic track.
+
+Iran continues missile attacks; Pakistan declines to reveal its mediation terms, citing negotiations' sensitivity.

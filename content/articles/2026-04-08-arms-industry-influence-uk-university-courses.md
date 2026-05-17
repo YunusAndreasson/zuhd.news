@@ -17,4 +17,8 @@ concepts:
   - "Academic freedom"
 ---
 
-London — Arms firms set strategy at 21 UK universities. FOI requests revealed BAE Systems and 2 other defence contractors on 53 advisory committees shaping academic departments. Those firms post record profits from the Iran war while retaining these seats on university strategy boards.
+London — Arms firms set strategy at 21 UK universities.
+
+FOI requests revealed BAE Systems and 2 other defence contractors on 53 advisory committees shaping academic departments.
+
+Those firms post record profits from the Iran war while retaining these seats on university strategy boards.

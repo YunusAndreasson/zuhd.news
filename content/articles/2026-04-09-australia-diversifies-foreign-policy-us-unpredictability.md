@@ -17,4 +17,8 @@ concepts:
   - "European Union"
 ---
 
-Canberra — Australia called the US "unpredictable" and announced it is diversifying alliances. FM Penny Wong said Canberra is deepening ties with Japan, the EU, and 3 other partners while still naming Washington its most important ally. Washington has not responded; other G7 governments are making similar public pivots.
+Canberra — Australia called the US "unpredictable" and announced it is diversifying alliances.
+
+FM Penny Wong said Canberra is deepening ties with Japan, the EU, and 3 other partners while still naming Washington its most important ally.
+
+Washington has not responded; other G7 governments are making similar public pivots.

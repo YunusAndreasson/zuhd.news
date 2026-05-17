@@ -16,4 +16,8 @@ concepts:
   - "Farid Tir"
 ---
 
-Marseille — A former Marseille prosecutor coined a word for the city's drug killings: narchomicides. 6 members of the DZ Mafia face trial for murders over cocaine territory in the city's housing projects. A second DZ Mafia trial opens in fall 2026 for the killing of a civil society activist's brother.
+Marseille — A former Marseille prosecutor coined a word for the city's drug killings: narchomicides.
+
+6 members of the DZ Mafia face trial for murders over cocaine territory in the city's housing projects.
+
+A second DZ Mafia trial opens in fall 2026 for the killing of a civil society activist's brother.

@@ -24,4 +24,8 @@ concepts:
 sentimentDivergence: 0.26
 ---
 
-Beirut — Lebanon expelled Iran's ambassador while Israeli jets bombed Beirut. Lebanon had already expelled the Iranian Revolutionary Guard Corps on March 5 — part of a visible break with Tehran as Israeli airstrikes intensified. Ambassador Mohammad Reza Sheibani must leave by March 29 — a deadline that tests whether Tehran accepts Lebanon's pivot.
+Beirut — Lebanon expelled Iran's ambassador while Israeli jets bombed Beirut.
+
+Lebanon had already expelled the Iranian Revolutionary Guard Corps on March 5 — part of a visible break with Tehran as Israeli airstrikes intensified.
+
+Ambassador Mohammad Reza Sheibani must leave by March 29 — a deadline that tests whether Tehran accepts Lebanon's pivot.

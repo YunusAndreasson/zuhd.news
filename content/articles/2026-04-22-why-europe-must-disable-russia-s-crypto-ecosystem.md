@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Moscow — Grinex, [Russia](country:RU)'s main crypto exchange, suspended after a $13M cyberattack. Grinex replaced the sanctioned Garantex; European regulators hold MiCA authority to block Russia's crypto evasion rails but have not used it. Grinex blamed Western intelligence for the hack and has named no restoration date.
+Moscow — Grinex, [Russia](country:RU)'s main crypto exchange, suspended after a $13M cyberattack.
+
+Grinex replaced the sanctioned Garantex; European regulators hold MiCA authority to block Russia's crypto evasion rails but have not used it.
+
+Grinex blamed Western intelligence for the hack and has named no restoration date.

@@ -17,4 +17,8 @@ concepts:
   - "Sora"
 ---
 
-Cupertino — OpenAI shut Sora: $15M burn, $2.1M revenue. Rivals spent billions on training; Apple held cash while frontier model quality collapsed toward open-source parity. Apple's next product cycle tests whether device integration holds before rivals ship on-device models.
+Cupertino — OpenAI shut Sora: $15M burn, $2.1M revenue.
+
+Rivals spent billions on training; Apple held cash while frontier model quality collapsed toward open-source parity.
+
+Apple's next product cycle tests whether device integration holds before rivals ship on-device models.

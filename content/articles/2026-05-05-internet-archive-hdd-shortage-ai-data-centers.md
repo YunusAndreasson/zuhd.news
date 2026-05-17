@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-San Francisco — Internet Archive cannot source its preferred 28-30TB drives. AI hyperscalers doubled or tripled storage prices since October — the same drives the Internet Archive and Wikimedia need to preserve the web. Founder Brewster Kahle said the project collects 100 TB daily against 210 PB already archived.
+San Francisco — Internet Archive cannot source its preferred 28-30TB drives.
+
+AI hyperscalers doubled or tripled storage prices since October — the same drives the Internet Archive and Wikimedia need to preserve the web.
+
+Founder Brewster Kahle said the project collects 100 TB daily against 210 PB already archived.

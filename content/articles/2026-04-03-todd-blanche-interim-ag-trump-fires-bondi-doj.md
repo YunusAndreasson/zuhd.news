@@ -17,4 +17,8 @@ concepts:
   - "Crypto enforcement"
 ---
 
-Washington — Trump's criminal defense lawyer now runs the DOJ. Blanche, Trump's former personal criminal defense attorney, had already disbanded crypto enforcement while holding crypto assets in violation of ethics rules. Ongoing federal prosecutions of Trump allies now proceed under the man who defended the president in criminal court.
+Washington — Trump's criminal defense lawyer now runs the DOJ.
+
+Blanche, Trump's former personal criminal defense attorney, had already disbanded crypto enforcement while holding crypto assets in violation of ethics rules.
+
+Ongoing federal prosecutions of Trump allies now proceed under the man who defended the president in criminal court.

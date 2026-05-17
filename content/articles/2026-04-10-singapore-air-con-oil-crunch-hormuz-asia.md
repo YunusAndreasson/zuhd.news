@@ -18,4 +18,8 @@ concepts:
   - "Energy crisis"
 ---
 
-Singapore — Air conditioning rationed in Lee Kuan Yew's Singapore. A city that imports all its energy, Singapore now caps office AC at 25°C as Hormuz fuel prices surge. If Hormuz stays shut much longer, Singapore says further energy restrictions will follow.
+Singapore — Air conditioning rationed in Lee Kuan Yew's Singapore.
+
+A city that imports all its energy, Singapore now caps office AC at 25°C as Hormuz fuel prices surge.
+
+If Hormuz stays shut much longer, Singapore says further energy restrictions will follow.

@@ -17,4 +17,8 @@ concepts:
   - "Settler colonialism"
 ---
 
-Jerusalem — Israel's cabinet condemned settler attacks it authorized. Ministers arming settlers with military escorts now issue condemnations for international audiences, not courts. No prosecution has been announced; West Bank annexation accelerates under diplomatic cover.
+Jerusalem — Israel's cabinet condemned settler attacks it authorized.
+
+Ministers arming settlers with military escorts now issue condemnations for international audiences, not courts.
+
+No prosecution has been announced; West Bank annexation accelerates under diplomatic cover.

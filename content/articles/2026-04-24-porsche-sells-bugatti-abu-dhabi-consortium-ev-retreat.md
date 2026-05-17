@@ -19,4 +19,8 @@ concepts:
   - "Volkswagen Group"
 ---
 
-Stuttgart — Porsche sold its Bugatti stake to the HOF Capital consortium after Q1 2026 sales fell 15%. Porsche formed Bugatti Rimac in 2021 betting electric hypercars would sell; buyers rejected the concept. Volkswagen Group has since cut annual output by 1 million cars and announced tens of thousands of job reductions.
+Stuttgart — Porsche sold its Bugatti stake to the HOF Capital consortium after Q1 2026 sales fell 15%.
+
+Porsche formed Bugatti Rimac in 2021 betting electric hypercars would sell; buyers rejected the concept.
+
+Volkswagen Group has since cut annual output by 1 million cars and announced tens of thousands of job reductions.

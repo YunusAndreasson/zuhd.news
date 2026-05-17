@@ -18,4 +18,8 @@ concepts:
   - "MeitY"
 ---
 
-New Delhi — India drafted rules targeting individual social media posts. Current rules only covered publishers; the draft extends blocking powers to any user sharing news or current affairs. The draft is open until April 14 and would make advisories binding, stripping safe-harbor from non-compliant platforms.
+New Delhi — India drafted rules targeting individual social media posts.
+
+Current rules only covered publishers; the draft extends blocking powers to any user sharing news or current affairs.
+
+The draft is open until April 14 and would make advisories binding, stripping safe-harbor from non-compliant platforms.

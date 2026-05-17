@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-US — A proof shows optimal missile defense allocation is NP-complete. NP-complete means no algorithm can ever optimally match interceptors to an incoming strike as it scales. The proof means every deployed missile defense system runs on imperfect heuristics — permanently.
+US — A proof shows optimal missile defense allocation is NP-complete.
+
+NP-complete means no algorithm can ever optimally match interceptors to an incoming strike as it scales.
+
+The proof means every deployed missile defense system runs on imperfect heuristics — permanently.

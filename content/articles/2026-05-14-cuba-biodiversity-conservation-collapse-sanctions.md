@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Havana — Scientists warn 52 vertebrate species face critical extinction risk in [Cuba](country:CU). Biologist Isbel Díaz Torres says real conservation requires active science and infrastructure the economic crisis has eliminated. A mass exodus of young scientists has left no succession for field monitoring, she said.
+Havana — Scientists warn 52 vertebrate species face critical extinction risk in [Cuba](country:CU).
+
+Biologist Isbel Díaz Torres says real conservation requires active science and infrastructure the economic crisis has eliminated.
+
+A mass exodus of young scientists has left no succession for field monitoring, she said.

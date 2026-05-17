@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-London — A Nature study reports 97.8% accuracy for a fuzzy neural network classifying plant diseases from smallholder field images. The model fuses RGB and hyperspectral data, tolerating the incomplete labels common in low-resource farming datasets. Low computational needs make it deployable for extension services in South Asia and Africa.
+London — A Nature study reports 97.8% accuracy for a fuzzy neural network classifying plant diseases from smallholder field images.
+
+The model fuses RGB and hyperspectral data, tolerating the incomplete labels common in low-resource farming datasets.
+
+Low computational needs make it deployable for extension services in South Asia and Africa.

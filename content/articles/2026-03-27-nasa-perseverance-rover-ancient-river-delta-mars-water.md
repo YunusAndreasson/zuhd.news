@@ -17,4 +17,8 @@ concepts:
   - "Mars"
 ---
 
-Pasadena — 4-billion-year-old delta confirmed beneath Mars' Jezero Crater. RIMFAX radar mapped sediments 35 meters underground, finding a delta 3.7-4.2 billion years old — older than Jezero's visible Western Delta. A Jezero rock already holds a potential biosignature; the buried delta's older sediments are next for drilling.
+Pasadena — 4-billion-year-old delta confirmed beneath Mars' Jezero Crater.
+
+RIMFAX radar mapped sediments 35 meters underground, finding a delta 3.7-4.2 billion years old — older than Jezero's visible Western Delta.
+
+A Jezero rock already holds a potential biosignature; the buried delta's older sediments are next for drilling.

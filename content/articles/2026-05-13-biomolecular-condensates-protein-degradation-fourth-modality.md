@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — Condensates degraded an oncogenic KRAS mutation while sparing normal copies. Antibody-loaded condensates using liquid-liquid phase separation eliminated the variant and suppressed tumor growth in animals without harming healthy cells, a study found. The platform may reach intracellular proteins conventional degrader drugs cannot target.
+London — Condensates degraded an oncogenic KRAS mutation while sparing normal copies.
+
+Antibody-loaded condensates using liquid-liquid phase separation eliminated the variant and suppressed tumor growth in animals without harming healthy cells, a study found.
+
+The platform may reach intracellular proteins conventional degrader drugs cannot target.

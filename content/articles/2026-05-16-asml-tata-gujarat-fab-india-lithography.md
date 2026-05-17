@@ -30,4 +30,8 @@ entities:
     kind: "stock"
 ---
 
-Dholera — Tata's $11 billion Gujarat fab signed with ASML for advanced lithography tools. [US](country:US) export controls barring ASML's China sales make [India](country:IN) an unrestricted substitute market. The 300mm fab targets automotive and AI chips; India's government aims to match leading producers by 2032.
+Dholera — Tata's $11 billion Gujarat fab signed with ASML for advanced lithography tools.
+
+[US](country:US) export controls barring ASML's China sales make [India](country:IN) an unrestricted substitute market.
+
+The 300mm fab targets automotive and AI chips; India's government aims to match leading producers by 2032.

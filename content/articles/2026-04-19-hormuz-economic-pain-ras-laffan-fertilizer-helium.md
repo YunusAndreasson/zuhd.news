@@ -24,4 +24,8 @@ entities:
     kind: "commodity"
 ---
 
-Washington — Gulf energy damage: $58 billion, Responsible Statecraft estimates. [Saudi Arabia](country:SA)'s finance minister told the IMF seaborne trade won't recover until June; [Qatar](country:QA)'s Ras Laffan liquefied natural gas needs 4 years for turbine parts. Fertilizer, helium, and ethylene glycol face disruption after any peace deal.
+Washington — Gulf energy damage: $58 billion, Responsible Statecraft estimates.
+
+[Saudi Arabia](country:SA)'s finance minister told the IMF seaborne trade won't recover until June; [Qatar](country:QA)'s Ras Laffan liquefied natural gas needs 4 years for turbine parts.
+
+Fertilizer, helium, and ethylene glycol face disruption after any peace deal.

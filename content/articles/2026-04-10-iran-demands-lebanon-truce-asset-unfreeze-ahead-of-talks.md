@@ -26,4 +26,8 @@ concepts:
 sentimentDivergence: 0.05
 ---
 
-Islamabad — 1,900 dead in Lebanon since March. Parliament Speaker Ghalibaf posted 2 pre-conditions before talks open: Lebanon ceasefire and Iranian asset release — both mutually agreed but unimplemented by Washington. Vance flew to Islamabad regardless, warning Tehran not to "play" Washington; the Lebanon condition remains unmet.
+Islamabad — 1,900 dead in Lebanon since March.
+
+Parliament Speaker Ghalibaf posted 2 pre-conditions before talks open: Lebanon ceasefire and Iranian asset release — both mutually agreed but unimplemented by Washington.
+
+Vance flew to Islamabad regardless, warning Tehran not to "play" Washington; the Lebanon condition remains unmet.

@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-San Francisco — Ghost Pepper runs voice-to-text entirely on-device. The macOS hold-to-talk app uses fully local AI models — no cloud connection — released as open-source MIT software. 276 Hacker News upvotes confirm demand; no major AI vendor offers a comparable on-device voice option.
+San Francisco — Ghost Pepper runs voice-to-text entirely on-device.
+
+The macOS hold-to-talk app uses fully local AI models — no cloud connection — released as open-source MIT software.
+
+276 Hacker News upvotes confirm demand; no major AI vendor offers a comparable on-device voice option.

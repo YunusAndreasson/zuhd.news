@@ -16,4 +16,8 @@ concepts:
   - "Digital rights"
 ---
 
-New York — A Chrome extension makes AI chatbots crawl, serving minutes-long responses by design. The tool, called Slow LLM, manipulates JavaScript's Fetch function — a technique artist Sam Lavigne says restores "friction" against the de-skilling of human cognition. Lavigne published the source code, and major AI companies have not patched the JavaScript hook the extension exploits.
+New York — A Chrome extension makes AI chatbots crawl, serving minutes-long responses by design.
+
+The tool, called Slow LLM, manipulates JavaScript's Fetch function — a technique artist Sam Lavigne says restores "friction" against the de-skilling of human cognition.
+
+Lavigne published the source code, and major AI companies have not patched the JavaScript hook the extension exploits.

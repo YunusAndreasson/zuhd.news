@@ -28,4 +28,8 @@ sentimentDivergence: 0.27
 entities: []
 ---
 
-Washington — Trump threatened to fire Federal Reserve Chair Powell. A criminal probe into building cost overruns — finding no evidence of crime — has blocked Fed nominee Kevin Warsh's Senate confirmation, set for April 21. Powell won't leave voluntarily; if Warsh is confirmed, Trump gains a board majority to direct monetary policy.
+Washington — Trump threatened to fire Federal Reserve Chair Powell.
+
+A criminal probe into building cost overruns — finding no evidence of crime — has blocked Fed nominee Kevin Warsh's Senate confirmation, set for April 21.
+
+Powell won't leave voluntarily; if Warsh is confirmed, Trump gains a board majority to direct monetary policy.

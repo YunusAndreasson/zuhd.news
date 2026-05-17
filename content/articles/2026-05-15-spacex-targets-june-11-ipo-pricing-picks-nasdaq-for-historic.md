@@ -25,4 +25,8 @@ entities:
     kind: "index"
 ---
 
-New York — SpaceX holds 8,285 bitcoin on its balance sheet. The June 11 Nasdaq IPO targets a $1.75 trillion valuation, pushing SpaceX's bitcoin treasury into passive index flows for the first time. MSCI warned the offering could drain liquidity from crypto markets as passive capital reallocates at index inclusion.
+New York — SpaceX holds 8,285 bitcoin on its balance sheet.
+
+The June 11 Nasdaq IPO targets a $1.75 trillion valuation, pushing SpaceX's bitcoin treasury into passive index flows for the first time.
+
+MSCI warned the offering could drain liquidity from crypto markets as passive capital reallocates at index inclusion.

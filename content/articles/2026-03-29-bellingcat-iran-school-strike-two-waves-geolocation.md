@@ -18,4 +18,8 @@ concepts:
   - "Open-source intelligence"
 ---
 
-Minab — 2nd wave struck the compound as first responders arrived. New videos show Tomahawks hit Minab in 2 waves; solar analysis placed the girls' school in the first strike. A preliminary US military investigation concluded a US strike likely killed 175 people, including children.
+Minab — 2nd wave struck the compound as first responders arrived.
+
+New videos show Tomahawks hit Minab in 2 waves; solar analysis placed the girls' school in the first strike.
+
+A preliminary US military investigation concluded a US strike likely killed 175 people, including children.

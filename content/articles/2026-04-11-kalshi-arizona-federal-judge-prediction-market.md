@@ -17,4 +17,8 @@ concepts:
   - "Injunction"
 ---
 
-Phoenix — Arizona can't arraign Kalshi on Monday. Judge Liburdi ruled CFTC oversight of Kalshi's event contracts preempts Arizona's gambling law, blocking all criminal and civil enforcement. The Ninth Circuit hears a consolidated case next week; Nevada's state-court block on Kalshi remains in effect.
+Phoenix — Arizona can't arraign Kalshi on Monday.
+
+Judge Liburdi ruled CFTC oversight of Kalshi's event contracts preempts Arizona's gambling law, blocking all criminal and civil enforcement.
+
+The Ninth Circuit hears a consolidated case next week; Nevada's state-court block on Kalshi remains in effect.

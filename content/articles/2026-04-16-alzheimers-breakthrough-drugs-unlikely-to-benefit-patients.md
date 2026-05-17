@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-London — Cochrane found Alzheimer's "breakthrough" drugs clinically insignificant. Lecanemab and donanemab, which target beta-amyloid plaques, scored "well below" the threshold for meaningful benefit while costing £90,000 for 18 months. The review triggered fierce backlash from rival researchers; the NHS has not approved either drug.
+London — Cochrane found Alzheimer's "breakthrough" drugs clinically insignificant.
+
+Lecanemab and donanemab, which target beta-amyloid plaques, scored "well below" the threshold for meaningful benefit while costing £90,000 for 18 months.
+
+The review triggered fierce backlash from rival researchers; the NHS has not approved either drug.

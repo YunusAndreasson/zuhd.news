@@ -17,4 +17,8 @@ concepts:
   - "Hacker News"
 ---
 
-San Francisco — A browser game builds a GPU. The creator built "Mvidia" citing a gap in GPU resources — it walks players through pipelines, shader cores, and memory hierarchies. GPU architecture drives AI training speed; the game drew 361 Hacker News upvotes within hours of posting.
+San Francisco — A browser game builds a GPU.
+
+The creator built "Mvidia" citing a gap in GPU resources — it walks players through pipelines, shader cores, and memory hierarchies.
+
+GPU architecture drives AI training speed; the game drew 361 Hacker News upvotes within hours of posting.

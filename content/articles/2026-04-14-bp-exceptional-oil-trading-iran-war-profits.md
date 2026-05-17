@@ -17,4 +17,6 @@ concepts:
   - "Brent crude"
 ---
 
-London — BP upgraded Q1 oil trading guidance to "exceptional." Oil surged 60% this year — Brent hit $120 — as the Iran war drove volatility that BP's trading desk turned into profit. BP reports Q1 results on April 28, when trading windfalls and consumer cost increases become fully visible.
+London — BP upgraded Q1 oil trading guidance to "exceptional." Oil surged 60% this year — Brent hit $120 — as the Iran war drove volatility that BP's trading desk turned into profit.
+
+BP reports Q1 results on April 28, when trading windfalls and consumer cost increases become fully visible.

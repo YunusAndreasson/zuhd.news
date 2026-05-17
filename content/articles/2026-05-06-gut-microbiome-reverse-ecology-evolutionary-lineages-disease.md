@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Vienna — 1 gut species contains many disease-linked lineages. A University of Vienna team applied "reverse ecology" and found that intra-species lineages track with inflammatory bowel disease, colorectal cancer, diabetes, and ageing. Published in Nature, the finding suggests species-level taxonomy was obscuring the gut's disease-biomarker signal.
+Vienna — 1 gut species contains many disease-linked lineages.
+
+A University of Vienna team applied "reverse ecology" and found that intra-species lineages track with inflammatory bowel disease, colorectal cancer, diabetes, and ageing.
+
+Published in Nature, the finding suggests species-level taxonomy was obscuring the gut's disease-biomarker signal.

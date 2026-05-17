@@ -22,4 +22,8 @@ entities:
     kind: "stock"
 ---
 
-Washington — [US](country:US) contractor tools reached [Russia](country:RU) and criminal hands. Peter Williams of Trenchant was indicted for selling them to a Russian firm while Google traced the same tools to [China](country:CN)-linked criminal operations. The indictment does not explain how they spread, and deployed tools cannot be recalled.
+Washington — [US](country:US) contractor tools reached [Russia](country:RU) and criminal hands.
+
+Peter Williams of Trenchant was indicted for selling them to a Russian firm while Google traced the same tools to [China](country:CN)-linked criminal operations.
+
+The indictment does not explain how they spread, and deployed tools cannot be recalled.

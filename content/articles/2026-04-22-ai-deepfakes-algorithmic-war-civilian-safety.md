@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Washington — Generative artificial intelligence systems were deployed in [US](country:US)-[Israel](country:IL) targeting decisions against [Iran](country:IR). Investigators found the systems accelerated attack sequencing and issued weapons recommendations, compressing decision cycles that previously took days. No international legal framework governs these systems in military targeting.
+Washington — Generative artificial intelligence systems were deployed in [US](country:US)-[Israel](country:IL) targeting decisions against [Iran](country:IR).
+
+Investigators found the systems accelerated attack sequencing and issued weapons recommendations, compressing decision cycles that previously took days.
+
+No international legal framework governs these systems in military targeting.

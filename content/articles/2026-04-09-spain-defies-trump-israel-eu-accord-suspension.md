@@ -20,4 +20,8 @@ concepts:
   - "José Manuel Albares"
 ---
 
-Madrid — Spain demanded suspension of the EU-Israel accord. Sanchez closed Spanish airspace to war aircraft and accused Israel of violating the 2-week ceasefire after strikes killed 250+ in Lebanon. Trump allies are urging the US to punish Madrid, which already rejected Trump's 5% NATO spending demand.
+Madrid — Spain demanded suspension of the EU-Israel accord.
+
+Sanchez closed Spanish airspace to war aircraft and accused Israel of violating the 2-week ceasefire after strikes killed 250+ in Lebanon.
+
+Trump allies are urging the US to punish Madrid, which already rejected Trump's 5% NATO spending demand.

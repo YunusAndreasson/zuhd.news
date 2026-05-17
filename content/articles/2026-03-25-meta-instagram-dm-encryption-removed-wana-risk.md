@@ -18,4 +18,8 @@ concepts:
   - "Digital Rights"
 ---
 
-Beirut — Meta will remove end-to-end encryption from Instagram Direct Messages on May 8, 2026, citing low uptake of the optional feature; digital rights group SMEX warns the change puts West Asia and North Africa users at acute physical risk. In WANA, SMEX's Digital Safety Helpdesk documents cases where exposed private messages have led to public shaming, legal exposure, and harm to women and activists — populations Meta has already proven willing to suppress, having repeatedly banned Palestinian journalists' accounts. WhatsApp remains Meta's only fully encrypted platform, but Meta AI can now access WhatsApp messages if prompted by either party.
+Beirut — Meta will remove end-to-end encryption from Instagram Direct Messages on May 8, 2026, citing low uptake of the optional feature; digital rights group SMEX warns the change puts West Asia and North Africa users at acute physical risk.
+
+In WANA, SMEX's Digital Safety Helpdesk documents cases where exposed private messages have led to public shaming, legal exposure, and harm to women and activists — populations Meta has already proven willing to suppress, having repeatedly banned Palestinian journalists' accounts.
+
+WhatsApp remains Meta's only fully encrypted platform, but Meta AI can now access WhatsApp messages if prompted by either party.

@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.25
 ---
 
-Cotonou — Benin cast ballots Sunday with no credible opposition. Wadagni, Talon's finance minister, faces one token rival — candidacy rules raised in 2024 blocked all serious challengers from standing. Results expected Tuesday — Talon's bloc holds all 109 parliament seats.
+Cotonou — Benin cast ballots Sunday with no credible opposition.
+
+Wadagni, Talon's finance minister, faces one token rival — candidacy rules raised in 2024 blocked all serious challengers from standing.
+
+Results expected Tuesday — Talon's bloc holds all 109 parliament seats.

@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Beijing — [China](country:CN) makes more than half the world's steel. China's 15th Five-Year Plan named hydrogen an industry of the future; 3 ministries now reward city clusters that meet hydrogen-for-steel targets. Officials call this an inflection point; only a handful of commercial-scale hydrogen steelmakers operate globally, including in China.
+Beijing — [China](country:CN) makes more than half the world's steel.
+
+China's 15th Five-Year Plan named hydrogen an industry of the future; 3 ministries now reward city clusters that meet hydrogen-for-steel targets.
+
+Officials call this an inflection point; only a handful of commercial-scale hydrogen steelmakers operate globally, including in China.

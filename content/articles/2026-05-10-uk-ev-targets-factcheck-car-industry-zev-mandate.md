@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-London — UK carmakers claimed zero-emission vehicle demand was too low. The mandate's built-in flexibilities pushed [UK](country:GB) compliance to 24.5% in 2024, 2.5 points above the 22% target, government data show. The car industry is lobbying for an urgent mandate review, claiming natural demand remains too weak.
+London — UK carmakers claimed zero-emission vehicle demand was too low.
+
+The mandate's built-in flexibilities pushed [UK](country:GB) compliance to 24.5% in 2024, 2.5 points above the 22% target, government data show.
+
+The car industry is lobbying for an urgent mandate review, claiming natural demand remains too weak.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Philadelphia — No approved treatment exists for Huntington's disease. [US](country:US)-based Latus Bio raised $42 million to run gene therapy trials for Huntington's and Batten disease. Batten disease trial data arrives by year-end; Huntington's enrollment is next.
+Philadelphia — No approved treatment exists for Huntington's disease.
+
+[US](country:US)-based Latus Bio raised $42 million to run gene therapy trials for Huntington's and Batten disease.
+
+Batten disease trial data arrives by year-end; Huntington's enrollment is next.

@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Seattle — Microsoft cut off VeraCrypt with no explanation given. The termination of VeraCrypt's developer account blocks Windows updates for the encryption tool used by journalists, activists, and security professionals worldwide. No appeal process has been offered; journalists and activists using VeraCrypt face unpatched vulnerabilities.
+Seattle — Microsoft cut off VeraCrypt with no explanation given.
+
+The termination of VeraCrypt's developer account blocks Windows updates for the encryption tool used by journalists, activists, and security professionals worldwide.
+
+No appeal process has been offered; journalists and activists using VeraCrypt face unpatched vulnerabilities.

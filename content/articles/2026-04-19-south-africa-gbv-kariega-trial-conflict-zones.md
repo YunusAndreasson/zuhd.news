@@ -16,4 +16,8 @@ concepts:
   - "Kariega"
 ---
 
-Gqeberha — 2 Kariega girls raped, burned: 4 men on trial. Ibanathi Peter and Sinothando Malinga — 17 and 19 — were raped, stabbed, and set alight in June 2025. Sonke Gender Justice says [South Africa](country:ZA) loses more women to violence than active conflict zones.
+Gqeberha — 2 Kariega girls raped, burned: 4 men on trial.
+
+Ibanathi Peter and Sinothando Malinga — 17 and 19 — were raped, stabbed, and set alight in June 2025.
+
+Sonke Gender Justice says [South Africa](country:ZA) loses more women to violence than active conflict zones.

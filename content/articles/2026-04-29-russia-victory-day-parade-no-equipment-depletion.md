@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Moscow — [Russia](country:RU) fields infantry columns, not armor, at its May 9 Victory Day parade. The defense ministry cited the "current operational situation" — all tanks are at [Ukraine](country:UA)'s eastern front. [US](country:US)-brokered ceasefire talks remain stalled; Russia's front commitment has stripped Moscow's usual armor display.
+Moscow — [Russia](country:RU) fields infantry columns, not armor, at its May 9 Victory Day parade.
+
+The defense ministry cited the "current operational situation" — all tanks are at [Ukraine](country:UA)'s eastern front.
+
+[US](country:US)-brokered ceasefire talks remain stalled; Russia's front commitment has stripped Moscow's usual armor display.

@@ -11,4 +11,8 @@ sources:
     country: "EG"
 ---
 
-Bint Jbeil — Israel advanced 6 km into south Lebanon. 30,000 fled the first day; thousands of non-Shia villagers stayed, fearing evacuation means permanent land loss. Israeli forces advance toward Bint Jbeil; 1,600 residents of Debel are stranded without food in their path.
+Bint Jbeil — Israel advanced 6 km into south Lebanon.
+
+30,000 fled the first day; thousands of non-Shia villagers stayed, fearing evacuation means permanent land loss.
+
+Israeli forces advance toward Bint Jbeil; 1,600 residents of Debel are stranded without food in their path.

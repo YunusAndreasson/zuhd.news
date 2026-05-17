@@ -18,4 +18,8 @@ concepts:
   - "Strait of Hormuz"
 ---
 
-Tehran — Iran's speaker warned of a US ground-assault plan. The US has simultaneously offered negotiation terms and redeployed 10,000 soldiers and 2 marine expeditionary units to the Gulf. Trump extended Iran's Hormuz deadline by 10 days; whether he approves a Pentagon ground assault remains his call.
+Tehran — Iran's speaker warned of a US ground-assault plan.
+
+The US has simultaneously offered negotiation terms and redeployed 10,000 soldiers and 2 marine expeditionary units to the Gulf.
+
+Trump extended Iran's Hormuz deadline by 10 days; whether he approves a Pentagon ground assault remains his call.

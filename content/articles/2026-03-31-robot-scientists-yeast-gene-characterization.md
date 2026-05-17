@@ -17,4 +17,8 @@ concepts:
   - "Simulation"
 ---
 
-London — Robot Eve ran its own genomics experiments. Eve designed hypotheses, ran transcriptomics and metabolomics, and identified YGR067C's role in yeast respiration — 1 of 880 still-uncharacterized genes in brewer's yeast. Whether the approach scales to more complex organisms is the next test.
+London — Robot Eve ran its own genomics experiments.
+
+Eve designed hypotheses, ran transcriptomics and metabolomics, and identified YGR067C's role in yeast respiration — 1 of 880 still-uncharacterized genes in brewer's yeast.
+
+Whether the approach scales to more complex organisms is the next test.

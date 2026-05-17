@@ -23,4 +23,8 @@ entities:
     kind: "commodity"
 ---
 
-New Mexico — Scientists found calcium-copper-silicon clathrate in nuclear blast glass. The cage-lattice structure, unknown in detonation fallout, was recovered from the 1945 Trinity test site. It is now a candidate forensic signature for attributing future nuclear detonations, researchers said.
+New Mexico — Scientists found calcium-copper-silicon clathrate in nuclear blast glass.
+
+The cage-lattice structure, unknown in detonation fallout, was recovered from the 1945 Trinity test site.
+
+It is now a candidate forensic signature for attributing future nuclear detonations, researchers said.

@@ -17,4 +17,8 @@ concepts:
   - "Precision agriculture"
 ---
 
-London — PlantCLR detects crop disease without labeled training data. The framework achieved 99.1% accuracy on PlantVillage, transferring to cassava and other crops with 96.8% without retraining. The code is public; real-world deployment in smallholder farms has not begun.
+London — PlantCLR detects crop disease without labeled training data.
+
+The framework achieved 99.1% accuracy on PlantVillage, transferring to cassava and other crops with 96.8% without retraining.
+
+The code is public; real-world deployment in smallholder farms has not begun.

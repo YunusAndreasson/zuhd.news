@@ -17,4 +17,8 @@ concepts:
   - "Drug discovery"
 ---
 
-London — 3 clove flavonoids blocked diabetes and Alzheimer's enzymes simultaneously. Type 2 diabetes and Alzheimer's share enzyme pathways; all 3 compounds bound both active sites with pharmaceutical potency. Apigenin, the strongest of the 3, passed drug-likeness screening — preclinical trials are the next step to test whether a single clove compound can treat both conditions.
+London — 3 clove flavonoids blocked diabetes and Alzheimer's enzymes simultaneously.
+
+Type 2 diabetes and Alzheimer's share enzyme pathways; all 3 compounds bound both active sites with pharmaceutical potency.
+
+Apigenin, the strongest of the 3, passed drug-likeness screening — preclinical trials are the next step to test whether a single clove compound can treat both conditions.

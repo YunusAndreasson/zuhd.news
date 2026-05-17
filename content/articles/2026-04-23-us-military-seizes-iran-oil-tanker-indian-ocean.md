@@ -33,4 +33,8 @@ entities:
     kind: "chokepoint"
 ---
 
-[US](country:US) forces seized a 3rd tanker this week. The Majestic X, bound for [China](country:CN), was intercepted 2,000km from the Strait of Hormuz, [US](country:US) military confirmed. [Iran](country:IR) gave no immediate response; ceasefire talks in [Pakistan](country:PK) remain frozen.
+[US](country:US) forces seized a 3rd tanker this week.
+
+The Majestic X, bound for [China](country:CN), was intercepted 2,000km from the Strait of Hormuz, [US](country:US) military confirmed.
+
+[Iran](country:IR) gave no immediate response; ceasefire talks in [Pakistan](country:PK) remain frozen.

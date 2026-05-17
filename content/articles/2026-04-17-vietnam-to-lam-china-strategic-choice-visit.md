@@ -18,4 +18,6 @@ concepts:
 entities: []
 ---
 
-Beijing — Vietnam named China a 'strategic choice of overarching and long-term significance.' Hanoi has hedged between Washington and Beijing for decades; Trump-era tariffs made China's supply-chain integration newly attractive. To Lam's 4-day visit produced a joint statement; analysts say Vietnam has not used such language toward Beijing before.
+Beijing — Vietnam named China a 'strategic choice of overarching and long-term significance.' Hanoi has hedged between Washington and Beijing for decades; Trump-era tariffs made China's supply-chain integration newly attractive.
+
+To Lam's 4-day visit produced a joint statement; analysts say Vietnam has not used such language toward Beijing before.

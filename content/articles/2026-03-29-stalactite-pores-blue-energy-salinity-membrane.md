@@ -15,4 +15,8 @@ concepts:
   - "Lipid bilayer"
 ---
 
-London — Stalactite-shaped pores turn salt gradients into electricity. Researchers coated the pores with lipid bilayers, letting ions flow faster while maintaining the charge selectivity needed to convert gradients into current. The design in principle works at any estuary; the remaining gap is scaling from lab to commercial grid.
+London — Stalactite-shaped pores turn salt gradients into electricity.
+
+Researchers coated the pores with lipid bilayers, letting ions flow faster while maintaining the charge selectivity needed to convert gradients into current.
+
+The design in principle works at any estuary; the remaining gap is scaling from lab to commercial grid.

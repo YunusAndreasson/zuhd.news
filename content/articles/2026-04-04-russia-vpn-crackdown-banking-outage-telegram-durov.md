@@ -24,4 +24,8 @@ concepts:
 sentimentDivergence: 0.31
 ---
 
-Moscow — Russia's VPN crackdown crashed its own banking system. 65 million Russians use Telegram daily via VPN; Friday's filtering system overload made cash the only payment method nationwide. Authorities plan to charge fees for VPN use if international data traffic exceeds a threshold, beginning April 15.
+Moscow — Russia's VPN crackdown crashed its own banking system.
+
+65 million Russians use Telegram daily via VPN; Friday's filtering system overload made cash the only payment method nationwide.
+
+Authorities plan to charge fees for VPN use if international data traffic exceeds a threshold, beginning April 15.

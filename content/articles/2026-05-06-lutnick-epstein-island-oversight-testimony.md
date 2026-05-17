@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Washington — Lutnick: 2 hours on Epstein's island in 2012, no explanation. The [US](country:US) Commerce Secretary told Congress he cannot recall the visit, contradicting a past public claim he had cut all ties with Epstein years earlier. The House Oversight Committee said lying to Congress is a felony; no follow-up hearing has been scheduled.
+Washington — Lutnick: 2 hours on Epstein's island in 2012, no explanation.
+
+The [US](country:US) Commerce Secretary told Congress he cannot recall the visit, contradicting a past public claim he had cut all ties with Epstein years earlier.
+
+The House Oversight Committee said lying to Congress is a felony; no follow-up hearing has been scheduled.

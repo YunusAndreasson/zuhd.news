@@ -11,4 +11,8 @@ sources:
     country: null
 ---
 
-Jakarta — $500 rented enterprise-grade phishing to anyone. The FBI and Indonesian law enforcement dismantled W3LL, a service that let buyers generate fake login portals to steal corporate credentials. This is among the first cybercrime takedowns jointly led by the US and Indonesia; W3LL's operator has not been charged.
+Jakarta — $500 rented enterprise-grade phishing to anyone.
+
+The FBI and Indonesian law enforcement dismantled W3LL, a service that let buyers generate fake login portals to steal corporate credentials.
+
+This is among the first cybercrime takedowns jointly led by the US and Indonesia; W3LL's operator has not been charged.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — Players spent $54M on non-fungible tokens; the game failed. Studio 22cans collected the pre-sale crypto proceeds to fund Masters of Albion, its non-blockchain successor; Legacy's land-token holders were never refunded. Molyneux now sells $25 early access to Masters of Albion, funded by those same non-fungible token proceeds.
+London — Players spent $54M on non-fungible tokens; the game failed.
+
+Studio 22cans collected the pre-sale crypto proceeds to fund Masters of Albion, its non-blockchain successor; Legacy's land-token holders were never refunded.
+
+Molyneux now sells $25 early access to Masters of Albion, funded by those same non-fungible token proceeds.

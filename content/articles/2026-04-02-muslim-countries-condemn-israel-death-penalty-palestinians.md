@@ -25,4 +25,8 @@ concepts:
 sentimentDivergence: 0.48
 ---
 
-Islamabad — 8 foreign ministers condemned Israel's death penalty law for Palestinians. Israel's military courts try West Bank Palestinians separately; the law makes hanging the default for those convicted of deadly attacks. Netanyahu asked the Knesset to soften it; the ministers called for international accountability.
+Islamabad — 8 foreign ministers condemned Israel's death penalty law for Palestinians.
+
+Israel's military courts try West Bank Palestinians separately; the law makes hanging the default for those convicted of deadly attacks.
+
+Netanyahu asked the Knesset to soften it; the ministers called for international accountability.

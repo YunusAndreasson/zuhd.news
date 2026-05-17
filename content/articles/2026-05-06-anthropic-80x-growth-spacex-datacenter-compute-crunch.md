@@ -32,4 +32,8 @@ sentimentDivergence: 0.22
 entities: []
 ---
 
-San Francisco — Anthropic signed all 300 megawatts of SpaceX's Memphis data centre, available within a month. The deal follows 80× Q1 revenue growth that overwhelmed the company's compute capacity. Anthropic is reportedly raising at a $900B valuation and exploring gigawatt-scale space-based facilities with SpaceX.
+San Francisco — Anthropic signed all 300 megawatts of SpaceX's Memphis data centre, available within a month.
+
+The deal follows 80× Q1 revenue growth that overwhelmed the company's compute capacity.
+
+Anthropic is reportedly raising at a $900B valuation and exploring gigawatt-scale space-based facilities with SpaceX.

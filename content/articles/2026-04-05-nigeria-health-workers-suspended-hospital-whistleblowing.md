@@ -17,4 +17,8 @@ concepts:
   - "Health professional"
 ---
 
-Enugu — 2 nurses suspended for filming a powerless ward. The pair recorded Uwani Health Centre on night duty — no water, no power, a woman in labour without oxygen. Ezzy Healthcare Training College refuses comment; Nigerian social media is demanding reinstatement and a government investigation.
+Enugu — 2 nurses suspended for filming a powerless ward.
+
+The pair recorded Uwani Health Centre on night duty — no water, no power, a woman in labour without oxygen.
+
+Ezzy Healthcare Training College refuses comment; Nigerian social media is demanding reinstatement and a government investigation.

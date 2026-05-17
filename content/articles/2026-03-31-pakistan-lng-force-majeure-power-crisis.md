@@ -17,4 +17,8 @@ concepts:
   - "Strait of Hormuz"
 ---
 
-Islamabad — Pakistan's LNG suppliers have declared force majeure. The Hormuz war halted Qatar's LNG operations on March 2, cutting 20% of global supply and idling Pakistan's 4,500-megawatt gas generation fleet. Coal from South Africa and Indonesia is the only fuel backup; officials promised April electricity tariffs unchanged.
+Islamabad — Pakistan's LNG suppliers have declared force majeure.
+
+The Hormuz war halted Qatar's LNG operations on March 2, cutting 20% of global supply and idling Pakistan's 4,500-megawatt gas generation fleet.
+
+Coal from South Africa and Indonesia is the only fuel backup; officials promised April electricity tariffs unchanged.

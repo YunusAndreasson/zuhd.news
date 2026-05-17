@@ -27,4 +27,8 @@ eventCoverage: 138
 sentimentDivergence: 0.09
 ---
 
-New Delhi — 181 Lok Sabha seats will go to women. Blocked for 3 decades, the law ties 2029 implementation to new delimitation; parliament meets April 16-18 to pass the amendment. Two constitutional amendments need a two-thirds majority to pass; the exclusion of Other Backward Class reservation is already drawing opposition.
+New Delhi — 181 Lok Sabha seats will go to women.
+
+Blocked for 3 decades, the law ties 2029 implementation to new delimitation; parliament meets April 16-18 to pass the amendment.
+
+Two constitutional amendments need a two-thirds majority to pass; the exclusion of Other Backward Class reservation is already drawing opposition.

@@ -17,4 +17,8 @@ concepts:
   - "Public interest"
 ---
 
-Washington — Kalshi won federal protection from state gambling regulators. The Third Circuit ruled 2-1 that CFTC registration presumptively approves Kalshi's sports contracts, preempting New Jersey's enforcement attempt. Other states face the same argument; the CFTC hasn't ruled sports contracts against the public interest.
+Washington — Kalshi won federal protection from state gambling regulators.
+
+The Third Circuit ruled 2-1 that CFTC registration presumptively approves Kalshi's sports contracts, preempting New Jersey's enforcement attempt.
+
+Other states face the same argument; the CFTC hasn't ruled sports contracts against the public interest.

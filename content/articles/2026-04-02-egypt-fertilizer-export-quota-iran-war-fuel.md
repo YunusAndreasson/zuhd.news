@@ -11,4 +11,8 @@ sources:
     country: "EG"
 ---
 
-Cairo — Egypt raised fuel prices 31% at once. To offset the gas cost spike, the government is raising export quotas for fertilizer makers — diverting urea from Egyptian farmers during planting season. Global urea is at $750 a ton, near its 5-year peak, and climbing as the Hormuz blockade continues.
+Cairo — Egypt raised fuel prices 31% at once.
+
+To offset the gas cost spike, the government is raising export quotas for fertilizer makers — diverting urea from Egyptian farmers during planting season.
+
+Global urea is at $750 a ton, near its 5-year peak, and climbing as the Hormuz blockade continues.

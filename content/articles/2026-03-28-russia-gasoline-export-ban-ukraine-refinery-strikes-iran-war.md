@@ -18,4 +18,8 @@ concepts:
   - "Ukraine"
 ---
 
-Moscow — Russia bans gasoline exports from April 1. Ukraine's drones have halted 40% of Russia's export capacity; the Iran war's price spike makes domestic sales more profitable than exports. The ban runs through July; European markets that lost Hormuz supply now face a Russian shortfall too.
+Moscow — Russia bans gasoline exports from April 1.
+
+Ukraine's drones have halted 40% of Russia's export capacity; the Iran war's price spike makes domestic sales more profitable than exports.
+
+The ban runs through July; European markets that lost Hormuz supply now face a Russian shortfall too.

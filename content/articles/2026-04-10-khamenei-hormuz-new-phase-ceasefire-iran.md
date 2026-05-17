@@ -18,4 +18,6 @@ concepts:
   - "Lebanon"
 ---
 
-Tehran — Mojtaba Khamenei declared Hormuz enters a 'new phase.' The Strait routes 20% of global oil; the declaration came hours before ceasefire talks convened in Washington. Iran warned of 'strong responses' to strikes on Hezbollah; Washington talks have yet to produce a deal.
+Tehran — Mojtaba Khamenei declared Hormuz enters a 'new phase.' The Strait routes 20% of global oil; the declaration came hours before ceasefire talks convened in Washington.
+
+Iran warned of 'strong responses' to strikes on Hezbollah; Washington talks have yet to produce a deal.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Washington — New bill sets a $200,000 H-1B salary floor. 8 Republicans filed the measure, which cuts the annual cap from 65,000 to 25,000 and freezes all approvals for 3 years. [India](country:IN) holds over 70% of H-1B approvals, more than any other country.
+Washington — New bill sets a $200,000 H-1B salary floor.
+
+8 Republicans filed the measure, which cuts the annual cap from 65,000 to 25,000 and freezes all approvals for 3 years.
+
+[India](country:IN) holds over 70% of H-1B approvals, more than any other country.

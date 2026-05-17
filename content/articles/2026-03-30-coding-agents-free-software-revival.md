@@ -15,4 +15,8 @@ concepts:
   - "AI coding agents"
 ---
 
-London — AI agents change the economics of open source. Free software won infrastructure but lost applications because maintenance is expensive; agents make individual forks economically viable for the first time. Corporate maintainers who profit from maintenance complexity now face direct competition from AI-maintained community forks.
+London — AI agents change the economics of open source.
+
+Free software won infrastructure but lost applications because maintenance is expensive; agents make individual forks economically viable for the first time.
+
+Corporate maintainers who profit from maintenance complexity now face direct competition from AI-maintained community forks.

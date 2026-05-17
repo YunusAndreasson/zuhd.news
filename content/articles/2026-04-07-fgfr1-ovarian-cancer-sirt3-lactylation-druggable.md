@@ -16,4 +16,8 @@ concepts:
   - "Lactylation"
 ---
 
-London — FGFR1 suppresses ovarian cancer through metabolic reprogramming. The receptor stabilizes SIRT3, which removes lactate-driven histone modifications — protein tags that fuel the tumor's metabolic acceleration. Low FGFR1 predicts worse survival, flagging SIRT3 activators as a candidate drug target for ovarian cancer.
+London — FGFR1 suppresses ovarian cancer through metabolic reprogramming.
+
+The receptor stabilizes SIRT3, which removes lactate-driven histone modifications — protein tags that fuel the tumor's metabolic acceleration.
+
+Low FGFR1 predicts worse survival, flagging SIRT3 activators as a candidate drug target for ovarian cancer.

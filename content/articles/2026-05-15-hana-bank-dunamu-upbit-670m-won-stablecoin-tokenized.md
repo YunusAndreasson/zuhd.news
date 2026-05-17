@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Seoul — Hana Bank bought Upbit's parent to issue won stablecoins. The ₩1 trillion ($670 million) stake in Dunamu — which handles over 80% of [South Korea](country:KR)'s crypto trading — makes Hana its 4th-largest shareholder. The deal closes June 15; the two firms also plan blockchain remittances and tokenized securities.
+Seoul — Hana Bank bought Upbit's parent to issue won stablecoins.
+
+The ₩1 trillion ($670 million) stake in Dunamu — which handles over 80% of [South Korea](country:KR)'s crypto trading — makes Hana its 4th-largest shareholder.
+
+The deal closes June 15; the two firms also plan blockchain remittances and tokenized securities.

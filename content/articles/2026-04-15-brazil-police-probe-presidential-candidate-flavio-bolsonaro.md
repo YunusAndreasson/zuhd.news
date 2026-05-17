@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Brasília — Brazil probed Bolsonaro's son for defaming Lula. The same justice who prosecuted the 2023 insurrection authorized the probe after Flávio Bolsonaro posted Maduro arrest footage alongside Lula's image. Federal police have 60 days; polls show Bolsonaro and Lula within 2 points for October's presidency.
+Brasília — Brazil probed Bolsonaro's son for defaming Lula.
+
+The same justice who prosecuted the 2023 insurrection authorized the probe after Flávio Bolsonaro posted Maduro arrest footage alongside Lula's image.
+
+Federal police have 60 days; polls show Bolsonaro and Lula within 2 points for October's presidency.

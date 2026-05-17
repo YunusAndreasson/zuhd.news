@@ -17,4 +17,8 @@ concepts:
   - "African Continental Free Trade Area"
 ---
 
-Abuja — Nigeria slashed car tariffs from 70% to 40%. New tariffs maintain a higher wall for non-ECOWAS imports, deepening West African integration as the US and EU fragment global trade. Import adjustment taxes phase out by 2036 under AfCFTA — betting that African free trade outlasts current fragmentation.
+Abuja — Nigeria slashed car tariffs from 70% to 40%.
+
+New tariffs maintain a higher wall for non-ECOWAS imports, deepening West African integration as the US and EU fragment global trade.
+
+Import adjustment taxes phase out by 2036 under AfCFTA — betting that African free trade outlasts current fragmentation.

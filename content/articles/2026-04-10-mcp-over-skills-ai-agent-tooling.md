@@ -17,4 +17,8 @@ concepts:
   - "Platform Lock-in"
 ---
 
-San Francisco — MCP is winning the AI tooling protocol war. Developers favor the open Model Context Protocol over proprietary skills platforms, repeating an open-versus-locked battle from HTTP to USB. Whichever protocol wins the agent tooling layer controls AI's extension points — a choice developers are actively making now.
+San Francisco — MCP is winning the AI tooling protocol war.
+
+Developers favor the open Model Context Protocol over proprietary skills platforms, repeating an open-versus-locked battle from HTTP to USB.
+
+Whichever protocol wins the agent tooling layer controls AI's extension points — a choice developers are actively making now.

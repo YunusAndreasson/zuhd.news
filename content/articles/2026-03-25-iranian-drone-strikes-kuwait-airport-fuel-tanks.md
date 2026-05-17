@@ -18,4 +18,10 @@ concepts:
   - "Unmanned aerial vehicle"
 ---
 
-Kuwait City — Iran hit Kuwait airport's fuel tanks again. Kuwait has absorbed 4 Iranian strikes since Feb. 28 — a passenger terminal, fuel tanks, radar systems, then fuel tanks again — each probing a different system. Air defences intercepted 6 drones Tuesday, but commercial flights remain suspended and Kuwait has not responded militarily to any of the 4 attacks.
+Kuwait City — Iran hit Kuwait airport's fuel tanks again.
+
+Kuwait has absorbed 4 Iranian strikes since Feb.
+
+28 — a passenger terminal, fuel tanks, radar systems, then fuel tanks again — each probing a different system.
+
+Air defences intercepted 6 drones Tuesday, but commercial flights remain suspended and Kuwait has not responded militarily to any of the 4 attacks.

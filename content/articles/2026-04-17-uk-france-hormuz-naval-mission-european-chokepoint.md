@@ -43,4 +43,8 @@ entities:
     kind: "commodity"
 ---
 
-Paris — Iran's ceasefire expires April 22. France and the UK will lead 49 nations to police Hormuz — through which 20% of world oil flows — after Washington declined NATO leadership. Military officials meet at Northwood, UK, next week to finalize the mission.
+Paris — Iran's ceasefire expires April 22.
+
+France and the UK will lead 49 nations to police Hormuz — through which 20% of world oil flows — after Washington declined NATO leadership.
+
+Military officials meet at Northwood, UK, next week to finalize the mission.

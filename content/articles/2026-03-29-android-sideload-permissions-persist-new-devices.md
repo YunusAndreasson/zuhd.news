@@ -16,4 +16,8 @@ concepts:
   - "Google Play"
 ---
 
-Mountain View — Android sideloading permissions now persist across new phones. Previously each phone switch reset these permissions; Google is now treating sideloading as a persistent preference, not a one-time security exception. For developers and power users, the right to install outside the Play Store is now a durable setting.
+Mountain View — Android sideloading permissions now persist across new phones.
+
+Previously each phone switch reset these permissions; Google is now treating sideloading as a persistent preference, not a one-time security exception.
+
+For developers and power users, the right to install outside the Play Store is now a durable setting.

@@ -11,4 +11,8 @@ sources:
     country: "EG"
 ---
 
-Daein — Sudan's military killed ~100 civilians over Eid in Darfur. A hospital in Daein was hit Friday night, killing 64 patients and staff; RSF also captured Kurmuk in Blue Nile State, threatening the state capital Damazin. Kurmuk's fall puts key irrigation infrastructure at risk as Iran war disruptions strangle Sudan's medicine supply.
+Daein — Sudan's military killed ~100 civilians over Eid in Darfur.
+
+A hospital in Daein was hit Friday night, killing 64 patients and staff; RSF also captured Kurmuk in Blue Nile State, threatening the state capital Damazin.
+
+Kurmuk's fall puts key irrigation infrastructure at risk as Iran war disruptions strangle Sudan's medicine supply.

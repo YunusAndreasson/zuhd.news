@@ -18,4 +18,8 @@ concepts:
   - "Central Reserve Police Force"
 ---
 
-Imphal — CRPF shot 2 protesters dead in Manipur Tuesday. Troops fired on crowds demanding justice for a 5-year-old and infant sister killed in the Meitei-Kuki conflict, which has displaced 60,000. Authorities suspended internet across 5 districts and transferred the case to India's National Investigation Agency.
+Imphal — CRPF shot 2 protesters dead in Manipur Tuesday.
+
+Troops fired on crowds demanding justice for a 5-year-old and infant sister killed in the Meitei-Kuki conflict, which has displaced 60,000.
+
+Authorities suspended internet across 5 districts and transferred the case to India's National Investigation Agency.

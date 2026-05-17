@@ -21,4 +21,8 @@ eventCoverage: 23
 entities: []
 ---
 
-New Taipei — Taiwan chipmaker trade-secret theft drew 10 years. [Taiwan](country:TW) prosecuted under the National Security Act, treating semiconductor intellectual property as a strategic state asset. Tokyo Electron's Taiwan unit was fined $5 million; the [Japan](country:JP)-listed parent has not commented.
+New Taipei — Taiwan chipmaker trade-secret theft drew 10 years.
+
+[Taiwan](country:TW) prosecuted under the National Security Act, treating semiconductor intellectual property as a strategic state asset.
+
+Tokyo Electron's Taiwan unit was fined $5 million; the [Japan](country:JP)-listed parent has not commented.

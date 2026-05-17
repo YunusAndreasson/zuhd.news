@@ -16,4 +16,8 @@ concepts:
   - "Donald Trump"
 ---
 
-Tehran — Iran rejected Trump's ceasefire proposal Monday. Iran dismissed a Pakistani-brokered 15-day pause as "detached from reality"; it demands a permanent end to hostilities, sanctions relief, and reconstruction. Trump had not yet signed the Pakistani framework as the Tuesday deadline expired without agreement.
+Tehran — Iran rejected Trump's ceasefire proposal Monday.
+
+Iran dismissed a Pakistani-brokered 15-day pause as "detached from reality"; it demands a permanent end to hostilities, sanctions relief, and reconstruction.
+
+Trump had not yet signed the Pakistani framework as the Tuesday deadline expired without agreement.

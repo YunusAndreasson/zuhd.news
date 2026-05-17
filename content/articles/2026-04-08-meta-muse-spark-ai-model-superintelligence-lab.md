@@ -17,4 +17,8 @@ concepts:
   - "OpenAI"
 ---
 
-Menlo Park — Meta's superintelligence lab shipped its first model. Muse Spark nears rivals on writing and reasoning but lags on coding, where OpenAI and rivals lead. Alexandr Wang, 29, leads the division Zuckerberg built for billions; Muse Spark is his first public output.
+Menlo Park — Meta's superintelligence lab shipped its first model.
+
+Muse Spark nears rivals on writing and reasoning but lags on coding, where OpenAI and rivals lead.
+
+Alexandr Wang, 29, leads the division Zuckerberg built for billions; Muse Spark is his first public output.

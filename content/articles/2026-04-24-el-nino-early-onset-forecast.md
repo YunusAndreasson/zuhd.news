@@ -15,4 +15,8 @@ concepts:
   - "Climate"
 ---
 
-Geneva — El Niño may begin by May, WMO forecasts. Equatorial Pacific sea temperatures are rising faster than seasonal models predicted; WMO's April update expects above-normal land temperatures nearly globally for at least 3 months. WMO's next probability update is due in May; the onset window spans May through July with no central estimate.
+Geneva — El Niño may begin by May, WMO forecasts.
+
+Equatorial Pacific sea temperatures are rising faster than seasonal models predicted; WMO's April update expects above-normal land temperatures nearly globally for at least 3 months.
+
+WMO's next probability update is due in May; the onset window spans May through July with no central estimate.

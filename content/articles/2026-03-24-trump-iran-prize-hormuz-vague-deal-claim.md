@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.22
 ---
 
-Washington — Trump told reporters Iran gave the US a "very significant prize" related to oil and gas but refused to name it. The statement came the day after he extended his deadline for Iran to reopen the Strait of Hormuz and delayed threatened strikes on Iranian energy facilities. Iran's military command said its forces will fight "until complete victory," having previously dismissed Trump's ceasefire claims as "fake news."
+Washington — Trump told reporters Iran gave the US a "very significant prize" related to oil and gas but refused to name it.
+
+The statement came the day after he extended his deadline for Iran to reopen the Strait of Hormuz and delayed threatened strikes on Iranian energy facilities.
+
+Iran's military command said its forces will fight "until complete victory," having previously dismissed Trump's ceasefire claims as "fake news."

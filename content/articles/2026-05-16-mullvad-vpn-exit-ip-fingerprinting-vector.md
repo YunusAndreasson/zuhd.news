@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Stockholm — Mullvad's exit-IP pool narrows to 284 identifiable combinations. Each WireGuard key occupies the same percentile slot across all servers, creating a stable cross-site fingerprint regardless of server choice. Any virtual private network with a small advertised exit-IP pool shares this property, independent of privacy claims.
+Stockholm — Mullvad's exit-IP pool narrows to 284 identifiable combinations.
+
+Each WireGuard key occupies the same percentile slot across all servers, creating a stable cross-site fingerprint regardless of server choice.
+
+Any virtual private network with a small advertised exit-IP pool shares this property, independent of privacy claims.

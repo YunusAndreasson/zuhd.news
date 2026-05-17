@@ -11,4 +11,8 @@ sources:
     country: "GB"
 ---
 
-Montevideo — 15,000 Uruguayan hives died in late 2025. Scientists confirmed chemical poisoning, but Uruguay only regulates individual pesticides — not the cocktails of up to 7 that farmers routinely mix. MGAP's investigation remains inconclusive; 85 beekeepers face the same hazard as the new season begins.
+Montevideo — 15,000 Uruguayan hives died in late 2025.
+
+Scientists confirmed chemical poisoning, but Uruguay only regulates individual pesticides — not the cocktails of up to 7 that farmers routinely mix.
+
+MGAP's investigation remains inconclusive; 85 beekeepers face the same hazard as the new season begins.

@@ -15,4 +15,8 @@ concepts:
   - "Cybersecurity and Infrastructure Security Agency"
 ---
 
-Washington — Trump signed a memo paying 260,000 DHS workers. A 2-month congressional impasse left FEMA, CISA, and Coast Guard workers unpaid; the memo taps unidentified funds to circumvent it. The move faces a constitutional challenge — the power of the purse belongs to Congress, not the White House.
+Washington — Trump signed a memo paying 260,000 DHS workers.
+
+A 2-month congressional impasse left FEMA, CISA, and Coast Guard workers unpaid; the memo taps unidentified funds to circumvent it.
+
+The move faces a constitutional challenge — the power of the purse belongs to Congress, not the White House.

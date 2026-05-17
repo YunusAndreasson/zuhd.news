@@ -24,4 +24,8 @@ eventCoverage: 24
 sentimentDivergence: 0
 ---
 
-Yobe — Nigerian jets killed 200 at a Saturday market. Air Force claimed a Boko Haram target; the jets hit a Yobe market — Nigeria's third mass civilian bombing since 2017. Nigeria's military has issued no correction; Amnesty International is calling for an independent investigation.
+Yobe — Nigerian jets killed 200 at a Saturday market.
+
+Air Force claimed a Boko Haram target; the jets hit a Yobe market — Nigeria's third mass civilian bombing since 2017.
+
+Nigeria's military has issued no correction; Amnesty International is calling for an independent investigation.

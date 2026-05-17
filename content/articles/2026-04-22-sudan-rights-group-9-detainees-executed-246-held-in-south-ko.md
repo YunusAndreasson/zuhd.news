@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Kadugli — [Sudan](country:SD)'s military executed 9 Nuba detainees since January. The Nuba Mountains Observatory documented 228 civilians in Kadugli custody — men, women, and children — held by Sudan's military intelligence. No international body accesses the sites; the Observatory plans to expand documentation to Khartoum by month's end.
+Kadugli — [Sudan](country:SD)'s military executed 9 Nuba detainees since January.
+
+The Nuba Mountains Observatory documented 228 civilians in Kadugli custody — men, women, and children — held by Sudan's military intelligence.
+
+No international body accesses the sites; the Observatory plans to expand documentation to Khartoum by month's end.

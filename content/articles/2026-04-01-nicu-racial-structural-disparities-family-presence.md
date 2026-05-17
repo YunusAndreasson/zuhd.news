@@ -17,4 +17,8 @@ concepts:
   - "Massachusetts"
 ---
 
-Boston — Race and class predict NICU family presence. A study of 6 Massachusetts NICUs found Black, Hispanic, and non-English-speaking mothers missed more skin-to-skin time due to jobs, transport, and language. No single hospital policy caused the gaps, leaving no clear intervention target.
+Boston — Race and class predict NICU family presence.
+
+A study of 6 Massachusetts NICUs found Black, Hispanic, and non-English-speaking mothers missed more skin-to-skin time due to jobs, transport, and language.
+
+No single hospital policy caused the gaps, leaving no clear intervention target.

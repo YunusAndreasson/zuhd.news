@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Mountain View — Gemma 4 now runs offline on iPhone hardware. Google's AI Edge Gallery app delivers the open-weight model to consumer hardware, eliminating cloud dependency for tasks that previously required server inference. On-device inference at this quality level changes the calculus for privacy-sensitive AI apps and offline use cases.
+Mountain View — Gemma 4 now runs offline on iPhone hardware.
+
+Google's AI Edge Gallery app delivers the open-weight model to consumer hardware, eliminating cloud dependency for tasks that previously required server inference.
+
+On-device inference at this quality level changes the calculus for privacy-sensitive AI apps and offline use cases.

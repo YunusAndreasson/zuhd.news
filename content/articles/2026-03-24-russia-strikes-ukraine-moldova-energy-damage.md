@@ -18,4 +18,8 @@ concepts:
   - "Zaporizhzhia"
 ---
 
-Kyiv — Russian strikes cut Moldova's power link to Europe. Russia launched 34 missiles and 392 drones; Ukrainian President Volodymyr Zelenskyy warned Ukraine is running short of air-defence missiles while the US is focused on Iran. Zelenskyy has appealed to allies to deliver promised air-defence munitions before Ukraine's current stocks run out.
+Kyiv — Russian strikes cut Moldova's power link to Europe.
+
+Russia launched 34 missiles and 392 drones; Ukrainian President Volodymyr Zelenskyy warned Ukraine is running short of air-defence missiles while the US is focused on Iran.
+
+Zelenskyy has appealed to allies to deliver promised air-defence munitions before Ukraine's current stocks run out.

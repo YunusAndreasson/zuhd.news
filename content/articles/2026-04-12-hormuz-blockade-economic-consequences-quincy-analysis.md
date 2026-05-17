@@ -18,4 +18,8 @@ concepts:
   - "Quincy Institute"
 ---
 
-Washington — A full Hormuz blockade means $200 oil. The strait carries 98% of Philippine energy and routes 90% of China's Iran oil — Trump's blockade harms treaty allies more than Tehran. If Houthis re-enter, 2 shipping lanes close and oil hits $200; US farmers mid-planting are already short fertilizer.
+Washington — A full Hormuz blockade means $200 oil.
+
+The strait carries 98% of Philippine energy and routes 90% of China's Iran oil — Trump's blockade harms treaty allies more than Tehran.
+
+If Houthis re-enter, 2 shipping lanes close and oil hits $200; US farmers mid-planting are already short fertilizer.

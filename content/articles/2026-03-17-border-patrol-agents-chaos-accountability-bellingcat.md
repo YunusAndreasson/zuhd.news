@@ -13,4 +13,8 @@ eventCoverage: null
 concepts: []
 ---
 
-Washington — Border Patrol agents hide faces and badge numbers on duty. Bellingcat, an open-source investigations outlet, needed 85 hours of footage to link 2 names to documented abuses across California and Chicago. An appeals court this month vacated the only federal restraining order on the agency's Chicago operations.
+Washington — Border Patrol agents hide faces and badge numbers on duty.
+
+Bellingcat, an open-source investigations outlet, needed 85 hours of footage to link 2 names to documented abuses across California and Chicago.
+
+An appeals court this month vacated the only federal restraining order on the agency's Chicago operations.

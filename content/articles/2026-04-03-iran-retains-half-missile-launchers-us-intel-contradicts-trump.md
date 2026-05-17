@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.3
 ---
 
-Washington — 50% of Iran's missile launchers survived 35 days of US-Israeli bombing. US intelligence found Iran retains roughly half its drone stock and most coastal cruise missiles — the weapons controlling Hormuz — contradicting Trump's "very few" claim. Trump threatened bridges and power plants as Iran launched fresh strikes on Israel Thursday.
+Washington — 50% of Iran's missile launchers survived 35 days of US-Israeli bombing.
+
+US intelligence found Iran retains roughly half its drone stock and most coastal cruise missiles — the weapons controlling Hormuz — contradicting Trump's "very few" claim.
+
+Trump threatened bridges and power plants as Iran launched fresh strikes on Israel Thursday.

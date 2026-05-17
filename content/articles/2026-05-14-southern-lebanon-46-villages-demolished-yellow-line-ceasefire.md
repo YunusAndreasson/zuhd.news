@@ -18,4 +18,6 @@ concepts:
 entities: []
 ---
 
-South Lebanon — [Israel](country:IL) has flattened 46 of 54 villages inside the IDF Yellow Line, satellite imagery shows. Defence Minister Katz publicly stated the goal: permanently clear the border zone "in accordance with the Rafah model." Imagery from March 2 and May 8 shows demolitions accelerating; no IDF withdrawal timeline has been set.
+South Lebanon — [Israel](country:IL) has flattened 46 of 54 villages inside the IDF Yellow Line, satellite imagery shows.
+
+Defence Minister Katz publicly stated the goal: permanently clear the border zone "in accordance with the Rafah model." Imagery from March 2 and May 8 shows demolitions accelerating; no IDF withdrawal timeline has been set.

@@ -16,4 +16,8 @@ concepts:
 entities: []
 ---
 
-Lagos — Nigeria's predatory lending protections were suspended overnight. Wireless app providers argued the consumer protection commission lacked authority over telecoms; the court agreed and issued an interim restraining order. The hearing resumes April 27; the blocked rules banned lenders from harvesting borrowers' contacts to harass defaulters.
+Lagos — Nigeria's predatory lending protections were suspended overnight.
+
+Wireless app providers argued the consumer protection commission lacked authority over telecoms; the court agreed and issued an interim restraining order.
+
+The hearing resumes April 27; the blocked rules banned lenders from harvesting borrowers' contacts to harass defaulters.

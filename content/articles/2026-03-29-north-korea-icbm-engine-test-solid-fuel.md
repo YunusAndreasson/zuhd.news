@@ -18,4 +18,8 @@ concepts:
   - "Nuclear weapons"
 ---
 
-Pyongyang — Kim tested an upgraded solid-fuel ICBM engine. Solid-fuel ICBMs need no pre-fueling, shrinking detection windows; the upgraded engine is designed to carry multiple warheads past US missile defenses. Kim's parliament speech pledged nuclear status "irreversible"; Trump has not responded, preoccupied with the Iran campaign.
+Pyongyang — Kim tested an upgraded solid-fuel ICBM engine.
+
+Solid-fuel ICBMs need no pre-fueling, shrinking detection windows; the upgraded engine is designed to carry multiple warheads past US missile defenses.
+
+Kim's parliament speech pledged nuclear status "irreversible"; Trump has not responded, preoccupied with the Iran campaign.

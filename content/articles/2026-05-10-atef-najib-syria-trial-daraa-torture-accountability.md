@@ -30,4 +30,8 @@ sentimentDivergence: 0.09
 entities: []
 ---
 
-Damascus — Prosecutors detailed children tortured, fingernails pulled, ambulances blocked from the wounded. Najib ran security in Daraa when schoolchildren were tortured for graffiti — he is the first Assad official tried inside [Syria](country:SY). Assad is tried in absentia from Moscow; [Russia](country:RU) has shown no intention of extraditing him.
+Damascus — Prosecutors detailed children tortured, fingernails pulled, ambulances blocked from the wounded.
+
+Najib ran security in Daraa when schoolchildren were tortured for graffiti — he is the first Assad official tried inside [Syria](country:SY).
+
+Assad is tried in absentia from Moscow; [Russia](country:RU) has shown no intention of extraditing him.

@@ -17,4 +17,8 @@ concepts:
   - "United States"
 ---
 
-Washington — OFAC sanctioned 40 [Iran](country:IR)-linked tankers and 1 Chinese refiner. [China](country:CN)'s Hengli Petrochemical — the second-largest independent refinery — purchased billions in Iranian crude from the Revolutionary Guards Corps, Treasury said. Iran's shadow fleet adapts faster than any sanctions list; Hormuz tanker traffic remains well below prewar levels.
+Washington — OFAC sanctioned 40 [Iran](country:IR)-linked tankers and 1 Chinese refiner.
+
+[China](country:CN)'s Hengli Petrochemical — the second-largest independent refinery — purchased billions in Iranian crude from the Revolutionary Guards Corps, Treasury said.
+
+Iran's shadow fleet adapts faster than any sanctions list; Hormuz tanker traffic remains well below prewar levels.

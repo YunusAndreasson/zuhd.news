@@ -16,4 +16,8 @@ concepts:
   - "Jay Bhattacharya"
 ---
 
-Atlanta — A Trump official blocked CDC's COVID vaccine study. NIH director Bhattacharya halted its scheduled publication after the study found 55% fewer hospitalizations and 50% fewer urgent care visits. Bhattacharya cited methodology, but the identical test-negative design cleared review in a CDC flu study one week earlier.
+Atlanta — A Trump official blocked CDC's COVID vaccine study.
+
+NIH director Bhattacharya halted its scheduled publication after the study found 55% fewer hospitalizations and 50% fewer urgent care visits.
+
+Bhattacharya cited methodology, but the identical test-negative design cleared review in a CDC flu study one week earlier.

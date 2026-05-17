@@ -18,4 +18,8 @@ concepts:
   - "European Central Bank"
 ---
 
-Brussels — European factory input costs hit a 3-year high in March. S&P Global's PMI found 0.1% quarterly GDP growth and 3% inflation projections — the ECB must now choose between raising rates and deepening a contraction. The drop in business expectations was the sharpest since Russia invaded Ukraine, pointing to further slowdown ahead.
+Brussels — European factory input costs hit a 3-year high in March.
+
+S&P Global's PMI found 0.1% quarterly GDP growth and 3% inflation projections — the ECB must now choose between raising rates and deepening a contraction.
+
+The drop in business expectations was the sharpest since Russia invaded Ukraine, pointing to further slowdown ahead.

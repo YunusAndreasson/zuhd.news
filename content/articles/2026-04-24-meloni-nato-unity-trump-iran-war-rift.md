@@ -36,4 +36,8 @@ sentimentDivergence: 0.74
 entities: []
 ---
 
-Nicosia — Pentagon threatened [Spain](country:ES)'s NATO seat over [Iran](country:IR). Spain and 2 European allies blocked [US](country:US) bases and airspace — Washington has no treaty power to suspend NATO members for it. EU leaders stage a May Article 42.7 simulation in Brussels — the mutual defense clause invoked only once, after Paris in 2015.
+Nicosia — Pentagon threatened [Spain](country:ES)'s NATO seat over [Iran](country:IR).
+
+Spain and 2 European allies blocked [US](country:US) bases and airspace — Washington has no treaty power to suspend NATO members for it.
+
+EU leaders stage a May Article 42.7 simulation in Brussels — the mutual defense clause invoked only once, after Paris in 2015.

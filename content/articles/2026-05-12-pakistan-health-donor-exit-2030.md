@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — [Pakistan](country:PK) spends 0.9% of GDP on public health. The "donor graduation" label ends international grants by 2030 despite a South Asian average of 4%, the Tabadlab report found. The Global Fund already cut $27.2m from tuberculosis programs in July 2025; HIV and polio face the same phase-out.
+Islamabad — [Pakistan](country:PK) spends 0.9% of GDP on public health.
+
+The "donor graduation" label ends international grants by 2030 despite a South Asian average of 4%, the Tabadlab report found.
+
+The Global Fund already cut $27.2m from tuberculosis programs in July 2025; HIV and polio face the same phase-out.

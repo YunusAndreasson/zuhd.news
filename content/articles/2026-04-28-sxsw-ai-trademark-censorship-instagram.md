@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Austin — SXSW's AI tool auto-removed posts merely naming the festival to criticise it. BrandShield flags any trademark mention at near-zero cost — including speech [US](country:US) fair-use law explicitly protects — while every counter-notice burdens the user. The Electronic Frontier Foundation called the removals "over-enforcement"; SXSW has not responded.
+Austin — SXSW's AI tool auto-removed posts merely naming the festival to criticise it.
+
+BrandShield flags any trademark mention at near-zero cost — including speech [US](country:US) fair-use law explicitly protects — while every counter-notice burdens the user.
+
+The Electronic Frontier Foundation called the removals "over-enforcement"; SXSW has not responded.

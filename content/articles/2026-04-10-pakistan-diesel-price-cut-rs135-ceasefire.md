@@ -17,4 +17,8 @@ concepts:
   - "Muslim world"
 ---
 
-Islamabad — Pakistan cut diesel prices by Rs135 per litre. Shehbaz Sharif framed the record cut as relief after weeks of Gulf war-driven inflation, linking it to the US-Iran ceasefire Pakistan brokered. Pakistan will host US-Iran peace talks; Sharif described the hosting as Pakistan's defining diplomatic moment.
+Islamabad — Pakistan cut diesel prices by Rs135 per litre.
+
+Shehbaz Sharif framed the record cut as relief after weeks of Gulf war-driven inflation, linking it to the US-Iran ceasefire Pakistan brokered.
+
+Pakistan will host US-Iran peace talks; Sharif described the hosting as Pakistan's defining diplomatic moment.

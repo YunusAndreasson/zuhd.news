@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Karachi — Petrol in Pakistan surged 50% in two months. The central bank raised [Pakistan](country:PK)'s policy rate 100 basis points to 11.5%, citing April inflation at 10.9% — the first double-digit reading in 21 months. Debt servicing already consumes 46.7% of federal expenditure; the higher rate compounds that burden.
+Karachi — Petrol in Pakistan surged 50% in two months.
+
+The central bank raised [Pakistan](country:PK)'s policy rate 100 basis points to 11.5%, citing April inflation at 10.9% — the first double-digit reading in 21 months.
+
+Debt servicing already consumes 46.7% of federal expenditure; the higher rate compounds that burden.

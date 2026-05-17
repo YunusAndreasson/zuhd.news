@@ -22,4 +22,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Gurbulak — [Turkey](country:TR) opened a customs post on [Iran](country:IR)'s border. The Gurbulak post handles 200,000 transit trucks annually, giving Iran an overland artery as the Strait of Hormuz stays militarily contested. Turkey holds NATO membership; no Washington statement on the opening was issued.
+Gurbulak — [Turkey](country:TR) opened a customs post on [Iran](country:IR)'s border.
+
+The Gurbulak post handles 200,000 transit trucks annually, giving Iran an overland artery as the Strait of Hormuz stays militarily contested.
+
+Turkey holds NATO membership; no Washington statement on the opening was issued.

@@ -17,4 +17,8 @@ concepts:
   - "Real estate"
 ---
 
-Dubai — Sanctioned Iranian magnate owns $29M in Dubai villas. Caribbean "golden passport" programs sell new legal identities, allowing Hossein Shamkhani to buy 4 Dubai villas as "Hugo Hayek" despite US and EU sanctions. The US Justice Department filed civil forfeiture in March targeting $15.3 million in linked accounts; the Dubai properties remain in Shamkhani's possession pending any UAE action.
+Dubai — Sanctioned Iranian magnate owns $29M in Dubai villas.
+
+Caribbean "golden passport" programs sell new legal identities, allowing Hossein Shamkhani to buy 4 Dubai villas as "Hugo Hayek" despite US and EU sanctions.
+
+The US Justice Department filed civil forfeiture in March targeting $15.3 million in linked accounts; the Dubai properties remain in Shamkhani's possession pending any UAE action.

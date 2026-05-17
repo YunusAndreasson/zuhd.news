@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Washington — Thomson Reuters sells ethnicity data to ICE. Documents show its CLEAR database feeds Palantir's deportation platform, which ICE uses to identify neighborhoods for raids. Employees signed a protest letter; a minority shareholder is pressing the company to exit the contracts.
+Washington — Thomson Reuters sells ethnicity data to ICE.
+
+Documents show its CLEAR database feeds Palantir's deportation platform, which ICE uses to identify neighborhoods for raids.
+
+Employees signed a protest letter; a minority shareholder is pressing the company to exit the contracts.

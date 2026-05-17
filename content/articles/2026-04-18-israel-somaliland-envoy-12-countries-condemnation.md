@@ -17,4 +17,9 @@ concepts:
   - "Sovereignty"
 entities: []
 ---
-Mogadishu — 12 states condemned [Israel](country:IL)'s envoy appointment to Somaliland. Israel recognized Somaliland in December, the first state to do so; the Arab League opposes the move as a violation of Somali territorial integrity. The [US](country:US) defended the move at the Security Council; several states questioned a link to Palestinian relocation proposals.
+
+Mogadishu — 12 states condemned [Israel](country:IL)'s envoy appointment to Somaliland.
+
+Israel recognized Somaliland in December, the first state to do so; the Arab League opposes the move as a violation of Somali territorial integrity.
+
+The [US](country:US) defended the move at the Security Council; several states questioned a link to Palestinian relocation proposals.

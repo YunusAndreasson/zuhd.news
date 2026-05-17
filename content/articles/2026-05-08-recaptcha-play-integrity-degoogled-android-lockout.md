@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-San Francisco — reCAPTCHA now silently fails on de-Googled Android phones. The update requires Play Integrity attestation — a hardware-level certificate tied to Google Play Services — locking out GrapheneOS, LineageOS, and other privacy-focused Android builds. No fix timeline exists; the change blocks access to banking, government, and healthcare sites using reCAPTCHA for login.
+San Francisco — reCAPTCHA now silently fails on de-Googled Android phones.
+
+The update requires Play Integrity attestation — a hardware-level certificate tied to Google Play Services — locking out GrapheneOS, LineageOS, and other privacy-focused Android builds.
+
+No fix timeline exists; the change blocks access to banking, government, and healthcare sites using reCAPTCHA for login.

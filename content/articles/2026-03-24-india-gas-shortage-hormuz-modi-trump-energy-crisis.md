@@ -19,4 +19,8 @@ concepts:
   - "Petroleum"
 ---
 
-New Delhi — India rationed gas to fertilizer, aluminum, and semiconductor plants. Iran is charging transit fees at the Strait of Hormuz, through which India imports 85 percent of its oil. India freed 4 stranded vessels on Tuesday, but Iran's fees remain and no relief mechanism exists outside US mediation.
+New Delhi — India rationed gas to fertilizer, aluminum, and semiconductor plants.
+
+Iran is charging transit fees at the Strait of Hormuz, through which India imports 85 percent of its oil.
+
+India freed 4 stranded vessels on Tuesday, but Iran's fees remain and no relief mechanism exists outside US mediation.

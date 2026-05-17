@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Dhahran — [Saudi Arabia](country:SA)'s aquifers drain faster than they refill. Fossil aquifers supply two-thirds of its irrigation; 1.6 billion cubic metres of treated wastewater goes unused annually, King Fahd University researchers said. No reuse policy exists; researchers propose redirecting that volume to slow aquifer drawdown.
+Dhahran — [Saudi Arabia](country:SA)'s aquifers drain faster than they refill.
+
+Fossil aquifers supply two-thirds of its irrigation; 1.6 billion cubic metres of treated wastewater goes unused annually, King Fahd University researchers said.
+
+No reuse policy exists; researchers propose redirecting that volume to slow aquifer drawdown.

@@ -41,4 +41,8 @@ sentimentDivergence: 0.46
 entities: []
 ---
 
-Kyiv — A [Russia](country:RU)n cruise missile killed 24, including 3 children, in a residential block, Kyiv said. [Ukraine](country:UA) and Russia that day completed phase one of a 1,000-each prisoner exchange brokered by the [UAE](country:AE), releasing soldiers held since 2022. Phase two has no set timeline; 795 prisoners per side remain in the agreed pool.
+Kyiv — A [Russia](country:RU)n cruise missile killed 24, including 3 children, in a residential block, Kyiv said.
+
+[Ukraine](country:UA) and Russia that day completed phase one of a 1,000-each prisoner exchange brokered by the [UAE](country:AE), releasing soldiers held since 2022.
+
+Phase two has no set timeline; 795 prisoners per side remain in the agreed pool.

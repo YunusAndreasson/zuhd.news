@@ -17,4 +17,8 @@ concepts:
   - "Nigeria"
 ---
 
-Awka — Anambra state deployed tricycles on World TB Day to bring tuberculosis testing to communities that hospitals cannot reach. Nigeria is one of 8 countries carrying two-thirds of the global TB burden; tricycles navigate unpaved roads that mobile clinics cannot, and testing and treatment remain free across the state. Nigeria's federal health ministry must now decide whether to fund the model in other high-burden states.
+Awka — Anambra state deployed tricycles on World TB Day to bring tuberculosis testing to communities that hospitals cannot reach.
+
+Nigeria is one of 8 countries carrying two-thirds of the global TB burden; tricycles navigate unpaved roads that mobile clinics cannot, and testing and treatment remain free across the state.
+
+Nigeria's federal health ministry must now decide whether to fund the model in other high-burden states.

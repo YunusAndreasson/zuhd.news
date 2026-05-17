@@ -27,4 +27,8 @@ concepts:
   - "Bunker buster"
 ---
 
-Isfahan — Secondary explosions lit the ammunition depot overnight. US bunker-busters struck central Isfahan, where Iran stores uranium enriched to 60% purity in surface facilities and fortified tunnels beneath mountains. Iran's underground network remains unassessed; neither side has confirmed the strike's scope or casualties.
+Isfahan — Secondary explosions lit the ammunition depot overnight.
+
+US bunker-busters struck central Isfahan, where Iran stores uranium enriched to 60% purity in surface facilities and fortified tunnels beneath mountains.
+
+Iran's underground network remains unassessed; neither side has confirmed the strike's scope or casualties.

@@ -18,4 +18,8 @@ concepts:
   - "Artificial intelligence"
 ---
 
-Beijing — Chinese firms sell AI-tracked US troop movements commercially. Companies combine Jilin satellite imagery with open-source data to map US military positions and sell it as a product. No legal framework separates commercial satellite analytics from military espionage.
+Beijing — Chinese firms sell AI-tracked US troop movements commercially.
+
+Companies combine Jilin satellite imagery with open-source data to map US military positions and sell it as a product.
+
+No legal framework separates commercial satellite analytics from military espionage.

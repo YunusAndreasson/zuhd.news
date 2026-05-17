@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.24
 ---
 
-Tehran — US B-52s fly over Iran for first time. Washington declared air supremacy after destroying Iran's defenses; Hegseth said the next days will be "decisive" with no timeline offered. April 6 deadline for Hormuz negotiations looms; Iran says it has submitted no proposal.
+Tehran — US B-52s fly over Iran for first time.
+
+Washington declared air supremacy after destroying Iran's defenses; Hegseth said the next days will be "decisive" with no timeline offered.
+
+April 6 deadline for Hormuz negotiations looms; Iran says it has submitted no proposal.

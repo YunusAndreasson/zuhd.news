@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Washington — [US](country:US) seabed-mining licences advance unilaterally in the Pacific. The mineral drive erodes the island partnerships — forward basing and deterrence — that Washington built over decades, analysts warn. Pacific island states host the forward bases Washington needs for deterrence; no multilateral framework governs the licences.
+Washington — [US](country:US) seabed-mining licences advance unilaterally in the Pacific.
+
+The mineral drive erodes the island partnerships — forward basing and deterrence — that Washington built over decades, analysts warn.
+
+Pacific island states host the forward bases Washington needs for deterrence; no multilateral framework governs the licences.

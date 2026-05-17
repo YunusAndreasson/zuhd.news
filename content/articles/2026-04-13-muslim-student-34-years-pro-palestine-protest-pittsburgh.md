@@ -11,4 +11,8 @@ sources:
     country: null
 ---
 
-Pittsburgh — 34 years for 51 seconds of protest. Ali, a Muslim with no prior record, faces 3 felony charges including assault; nearly every co-defendant got a plea deal. The American Civil Liberties Union of Pennsylvania flagged prosecutorial bias; all 3 counts carry a maximum of 34 years.
+Pittsburgh — 34 years for 51 seconds of protest.
+
+Ali, a Muslim with no prior record, faces 3 felony charges including assault; nearly every co-defendant got a plea deal.
+
+The American Civil Liberties Union of Pennsylvania flagged prosecutorial bias; all 3 counts carry a maximum of 34 years.

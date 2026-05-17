@@ -28,4 +28,8 @@ sentimentDivergence: 0.28
 entities: []
 ---
 
-120 naval troops captured Audias Flores Silva, known as El Jardinero, inside a Nayarit cabin guarded by 60 armed personnel. Flores Silva ran Pacific drug routes for the Jalisco New Generation Cartel — 1 of 3 named successors since El Mencho died in February. 2 rival successors remain free; the US State Department holds a $5M bounty on Flores Silva.
+120 naval troops captured Audias Flores Silva, known as El Jardinero, inside a Nayarit cabin guarded by 60 armed personnel.
+
+Flores Silva ran Pacific drug routes for the Jalisco New Generation Cartel — 1 of 3 named successors since El Mencho died in February.
+
+2 rival successors remain free; the US State Department holds a $5M bounty on Flores Silva.

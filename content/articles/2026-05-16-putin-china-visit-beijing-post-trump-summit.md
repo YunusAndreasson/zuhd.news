@@ -38,4 +38,8 @@ concepts:
 entities: []
 ---
 
-Beijing — Putin lands in [China](country:CN) hours after Trump departed. The May 19-20 visit, confirmed by the Kremlin, follows [the US](country:US) president's Beijing summit by a single day. Xi and Putin plan a joint declaration and bilateral documents at the close, the Kremlin said.
+Beijing — Putin lands in [China](country:CN) hours after Trump departed.
+
+The May 19-20 visit, confirmed by the Kremlin, follows [the US](country:US) president's Beijing summit by a single day.
+
+Xi and Putin plan a joint declaration and bilateral documents at the close, the Kremlin said.

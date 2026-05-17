@@ -19,4 +19,8 @@ concepts:
 eventCoverage: 57
 ---
 
-Wolfsburg — Volkswagen's global deliveries fell 4% in Q1. China and the US are its 2 largest non-European markets; weak demand in both drove the decline. Volkswagen has not updated full-year guidance; Q2 results will show whether the contraction in both markets is accelerating.
+Wolfsburg — Volkswagen's global deliveries fell 4% in Q1.
+
+China and the US are its 2 largest non-European markets; weak demand in both drove the decline.
+
+Volkswagen has not updated full-year guidance; Q2 results will show whether the contraction in both markets is accelerating.

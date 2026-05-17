@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Ankara — JanaWare ransomware has targeted Turkish systems since 2020. The malware enforces execution constraints via system locale and IP geolocation, activating only on Turkish devices. Security researchers have not identified the operators; a 6-year targeting window suggests a persistent rather than opportunistic campaign.
+Ankara — JanaWare ransomware has targeted Turkish systems since 2020.
+
+The malware enforces execution constraints via system locale and IP geolocation, activating only on Turkish devices.
+
+Security researchers have not identified the operators; a 6-year targeting window suggests a persistent rather than opportunistic campaign.

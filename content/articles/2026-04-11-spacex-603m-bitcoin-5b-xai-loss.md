@@ -17,4 +17,8 @@ concepts:
   - "Initial public offering"
 ---
 
-Hawthorne — SpaceX holds 8,285 BTC worth $603 million. Revenue hit $18.5B but xAI integration swung SpaceX from an $8B profit to a $5B loss. A planned IPO filing will force SpaceX to mark its bitcoin at fair value for the first time.
+Hawthorne — SpaceX holds 8,285 BTC worth $603 million.
+
+Revenue hit $18.5B but xAI integration swung SpaceX from an $8B profit to a $5B loss.
+
+A planned IPO filing will force SpaceX to mark its bitcoin at fair value for the first time.

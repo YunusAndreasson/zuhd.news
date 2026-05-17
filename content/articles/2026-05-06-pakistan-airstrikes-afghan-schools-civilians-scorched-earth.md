@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Asadabad — [Pakistan](country:PK)'s drone killed 7 at Sayed Jamaluddin University, local officials said. Islamabad calls the campaign counter-terrorism, but its strikes have hit schools, mosques, and civilian homes across [Afghanistan](country:AF)'s Kunar province. Kabul and Islamabad met for China-mediated talks in Urumqi in April; Pakistan has not halted operations since.
+Asadabad — [Pakistan](country:PK)'s drone killed 7 at Sayed Jamaluddin University, local officials said.
+
+Islamabad calls the campaign counter-terrorism, but its strikes have hit schools, mosques, and civilian homes across [Afghanistan](country:AF)'s Kunar province.
+
+Kabul and Islamabad met for China-mediated talks in Urumqi in April; Pakistan has not halted operations since.

@@ -39,4 +39,8 @@ sentimentDivergence: 0.38
 entities: []
 ---
 
-Sinpo — North Korea fired its 4th April missile barrage. Kyungnam University analyst Lim Eul-chul said [North Korea](country:KP) views [US](country:US) focus on [Iran](country:IR) as a 'golden time' to upgrade capability. Trump and [China](country:CN)'s Xi are scheduled for mid-May talks in which North Korea is expected on the agenda.
+Sinpo — North Korea fired its 4th April missile barrage.
+
+Kyungnam University analyst Lim Eul-chul said [North Korea](country:KP) views [US](country:US) focus on [Iran](country:IR) as a 'golden time' to upgrade capability.
+
+Trump and [China](country:CN)'s Xi are scheduled for mid-May talks in which North Korea is expected on the agenda.

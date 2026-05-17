@@ -19,4 +19,8 @@ concepts:
 eventCoverage: 41
 ---
 
-Bodrum — 18 people drowned off the Turkish coast. The inflatable boat was ferrying migrants toward Greece when it tried to evade Turkey's Coast Guard and capsized in rough seas. An unknown number remain missing; EU migration policy outsources this interception to Turkey, legally clean for Brussels.
+Bodrum — 18 people drowned off the Turkish coast.
+
+The inflatable boat was ferrying migrants toward Greece when it tried to evade Turkey's Coast Guard and capsized in rough seas.
+
+An unknown number remain missing; EU migration policy outsources this interception to Turkey, legally clean for Brussels.

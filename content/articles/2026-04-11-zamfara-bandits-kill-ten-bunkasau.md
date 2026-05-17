@@ -17,4 +17,8 @@ concepts:
   - "Atiku Abubakar"
 ---
 
-Zamfara — Bandits killed 10 in Bunkasau village on Friday night. Attackers on motorcycles operated for over an hour while police didn't respond — western Zamfara has recorded multiple raids in the past week. Nigeria last week convicted 386 terrorism suspects; the verdicts have not deterred attacks in Zamfara or Katsina.
+Zamfara — Bandits killed 10 in Bunkasau village on Friday night.
+
+Attackers on motorcycles operated for over an hour while police didn't respond — western Zamfara has recorded multiple raids in the past week.
+
+Nigeria last week convicted 386 terrorism suspects; the verdicts have not deterred attacks in Zamfara or Katsina.

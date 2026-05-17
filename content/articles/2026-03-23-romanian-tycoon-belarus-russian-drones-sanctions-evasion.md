@@ -13,4 +13,8 @@ eventCoverage: null
 concepts: []
 ---
 
-Minsk — A Romanian businessman's partner co-owns Russia's strike drone company. Mihai Buzdugan's 15 Belarusian firms, registered in a special economic zone, obscure links to EU-sanctioned Lukashenko allies and the drone industry. OCCRP, an investigative journalism network, gives EU regulators evidence that member nationals can evade sanctions through Belarusian corporate structures.
+Minsk — A Romanian businessman's partner co-owns Russia's strike drone company.
+
+Mihai Buzdugan's 15 Belarusian firms, registered in a special economic zone, obscure links to EU-sanctioned Lukashenko allies and the drone industry.
+
+OCCRP, an investigative journalism network, gives EU regulators evidence that member nationals can evade sanctions through Belarusian corporate structures.

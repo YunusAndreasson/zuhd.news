@@ -23,4 +23,8 @@ entities:
     kind: "crypto"
 ---
 
-San Francisco — Claude found a wallet file, not cracked Bitcoin's encryption. A user fed their old laptop to Claude; it located a 2019 backup with a password already in a notebook, recovering 5 bitcoin worth $395,000. Anthropic has not addressed whether the technique applies to devices the user does not own.
+San Francisco — Claude found a wallet file, not cracked Bitcoin's encryption.
+
+A user fed their old laptop to Claude; it located a 2019 backup with a password already in a notebook, recovering 5 bitcoin worth $395,000.
+
+Anthropic has not addressed whether the technique applies to devices the user does not own.

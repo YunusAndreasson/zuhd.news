@@ -17,4 +17,8 @@ concepts:
   - "Purchasing power"
 ---
 
-Lagos — Lagos rice hit ₦58,000 a bag this Easter. Fuel prices doubled transport costs from northern supply farms; traders say foot traffic is high but purchasing power has collapsed. Market leaders are petitioning the government for fuel subsidies before losses on perishable goods compound.
+Lagos — Lagos rice hit ₦58,000 a bag this Easter.
+
+Fuel prices doubled transport costs from northern supply farms; traders say foot traffic is high but purchasing power has collapsed.
+
+Market leaders are petitioning the government for fuel subsidies before losses on perishable goods compound.

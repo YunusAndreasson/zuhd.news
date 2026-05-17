@@ -15,4 +15,8 @@ concepts:
   - "United Nations Framework Convention on Climate Change"
 ---
 
-Bangkok — 330 IPCC delegates adjourned without setting AR7's timeline. Nations have deadlocked 5 consecutive times; China and 3 major emitters want AR7 published past the 2028 global stocktake. IPCC chair Skea called the meeting "minimal"; the next session must deliver a schedule or AR7 misses 2028.
+Bangkok — 330 IPCC delegates adjourned without setting AR7's timeline.
+
+Nations have deadlocked 5 consecutive times; China and 3 major emitters want AR7 published past the 2028 global stocktake.
+
+IPCC chair Skea called the meeting "minimal"; the next session must deliver a schedule or AR7 misses 2028.

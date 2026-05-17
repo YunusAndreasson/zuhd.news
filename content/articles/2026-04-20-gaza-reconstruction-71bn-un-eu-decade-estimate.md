@@ -17,4 +17,8 @@ concepts:
   - "Israel Defense Forces"
 ---
 
-Gaza — UN and EU put Gaza reconstruction at $71bn. [Israel](country:IL)'s campaign destroyed 371,888 housing units, contracted the economy 84%, and pushed human development back 77 years, the UN-EU assessment found. No donor fund has been established; [Palestine](country:PS)'s fragile October ceasefire offers no guarantee reconstruction could begin.
+Gaza — UN and EU put Gaza reconstruction at $71bn.
+
+[Israel](country:IL)'s campaign destroyed 371,888 housing units, contracted the economy 84%, and pushed human development back 77 years, the UN-EU assessment found.
+
+No donor fund has been established; [Palestine](country:PS)'s fragile October ceasefire offers no guarantee reconstruction could begin.

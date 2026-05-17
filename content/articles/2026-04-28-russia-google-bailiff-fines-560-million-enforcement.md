@@ -25,4 +25,8 @@ entities:
     kind: "stock"
 ---
 
-Russian bailiffs opened 62 enforcement proceedings against Google, extracting 42 billion rubles ($561M) from frozen domestic accounts, per court documents. The debt doubled since February from $347M; Google exited [Russia](country:RU) in 2022 but left accounts reachable by domestic courts. Google has not commented; unpaid penalties continue to compound.
+Russian bailiffs opened 62 enforcement proceedings against Google, extracting 42 billion rubles ($561M) from frozen domestic accounts, per court documents.
+
+The debt doubled since February from $347M; Google exited [Russia](country:RU) in 2022 but left accounts reachable by domestic courts.
+
+Google has not commented; unpaid penalties continue to compound.

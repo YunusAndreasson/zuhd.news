@@ -11,4 +11,8 @@ sources:
     country: null
 ---
 
-San Francisco — A hacker breached Doublespeed, a16z's AI influencer farm. The platform manages AI-generated TikTok influencers; the hacker queued anti-a16z memes across 573 accounts and claimed to exfiltrate 47MB of data. Doublespeed was also breached in December 2025; a16z has not disclosed total exposure.
+San Francisco — A hacker breached Doublespeed, a16z's AI influencer farm.
+
+The platform manages AI-generated TikTok influencers; the hacker queued anti-a16z memes across 573 accounts and claimed to exfiltrate 47MB of data.
+
+Doublespeed was also breached in December 2025; a16z has not disclosed total exposure.

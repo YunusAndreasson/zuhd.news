@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Geneva — FIFA cleared Israeli settlement clubs of any rule violation. Its governance committee dismissed a Palestinian complaint, ruling the West Bank's legal status "unresolved" — disregarding 59 years of UN resolutions. A separate ICC complaint accuses FIFA's president of aiding war crimes.
+Geneva — FIFA cleared Israeli settlement clubs of any rule violation.
+
+Its governance committee dismissed a Palestinian complaint, ruling the West Bank's legal status "unresolved" — disregarding 59 years of UN resolutions.
+
+A separate ICC complaint accuses FIFA's president of aiding war crimes.

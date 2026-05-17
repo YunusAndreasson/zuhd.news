@@ -19,4 +19,8 @@ concepts:
 eventCoverage: 34
 ---
 
-Mumbai — India's stock market lost $76 billion Monday. Crude at $116 drove foreign outflows; India imports 80% of its oil, exposing it to Gulf war pricing across banking, aviation, and consumer costs. The RBI is defending the rupee while managing equity outflows simultaneously.
+Mumbai — India's stock market lost $76 billion Monday.
+
+Crude at $116 drove foreign outflows; India imports 80% of its oil, exposing it to Gulf war pricing across banking, aviation, and consumer costs.
+
+The RBI is defending the rupee while managing equity outflows simultaneously.

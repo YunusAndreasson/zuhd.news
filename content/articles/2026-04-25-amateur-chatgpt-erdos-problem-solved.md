@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Los Angeles — GPT-5.4 Pro solved a 60-year-old Erdős conjecture with a single prompt. Liam Price, 23, submitted the proof with no mathematics training; mathematician Terence Tao said it used a method the field had overlooked. Experts say the approach may generalize; formal peer review has not yet begun.
+Los Angeles — GPT-5.4 Pro solved a 60-year-old Erdős conjecture with a single prompt.
+
+Liam Price, 23, submitted the proof with no mathematics training; mathematician Terence Tao said it used a method the field had overlooked.
+
+Experts say the approach may generalize; formal peer review has not yet begun.

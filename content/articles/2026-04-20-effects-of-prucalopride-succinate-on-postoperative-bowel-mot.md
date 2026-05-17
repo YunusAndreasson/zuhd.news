@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — Gastrectomy patients hit 96.9% colonic transit on prucalopride vs 90.2% on mosapride. A randomized trial found no difference at day 3; prucalopride pulled ahead by day 5, with lower inflammatory markers. The authors call for confirmatory trials before clinical adoption.
+London — Gastrectomy patients hit 96.9% colonic transit on prucalopride vs 90.2% on mosapride.
+
+A randomized trial found no difference at day 3; prucalopride pulled ahead by day 5, with lower inflammatory markers.
+
+The authors call for confirmatory trials before clinical adoption.

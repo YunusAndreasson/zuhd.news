@@ -17,4 +17,8 @@ concepts:
   - "Vaccine hesitancy"
 ---
 
-Washington — RFK Jr. unlocked 14 banned injectable treatments. The compounds include growth-hormone stimulants with cancer-promotion potential and no randomized trial data; FDA leaders oppose the move internally. No trials are planned before compounding pharmacies gain access; the agency's own leaders have "reservations."
+Washington — RFK Jr. unlocked 14 banned injectable treatments.
+
+The compounds include growth-hormone stimulants with cancer-promotion potential and no randomized trial data; FDA leaders oppose the move internally.
+
+No trials are planned before compounding pharmacies gain access; the agency's own leaders have "reservations."

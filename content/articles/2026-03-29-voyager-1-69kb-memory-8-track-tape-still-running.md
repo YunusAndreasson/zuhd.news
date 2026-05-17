@@ -15,4 +15,8 @@ concepts:
   - "Deep space"
 ---
 
-Pasadena — 69 KB of memory, 49 years running. Launched 1977, it still returns data from 15 billion miles on hardware that predates the IBM PC by 4 years. Its RTG power fails in the early 2030s — the first hard deadline in 49 years of continuous operation.
+Pasadena — 69 KB of memory, 49 years running.
+
+Launched 1977, it still returns data from 15 billion miles on hardware that predates the IBM PC by 4 years.
+
+Its RTG power fails in the early 2030s — the first hard deadline in 49 years of continuous operation.

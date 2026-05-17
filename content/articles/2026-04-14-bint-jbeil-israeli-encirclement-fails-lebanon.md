@@ -17,4 +17,8 @@ concepts:
   - "Israel"
 ---
 
-Bint Jbeil — Israel encircled Bint Jbeil but couldn't enter. Israel's 401st Armored Brigade — Gaza-hardened — surrounded the town as US-Iran talks opened in Islamabad. 5 divisions ring south Lebanon; Washington and Islamabad host rival ceasefire tracks while Israel's advance continues.
+Bint Jbeil — Israel encircled Bint Jbeil but couldn't enter.
+
+Israel's 401st Armored Brigade — Gaza-hardened — surrounded the town as US-Iran talks opened in Islamabad.
+
+5 divisions ring south Lebanon; Washington and Islamabad host rival ceasefire tracks while Israel's advance continues.

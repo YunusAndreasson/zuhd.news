@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Washington — [Israel](country:IL) secretly paid $700,000 for congressional lobbying. Eagles' Wings ran Israel Advocacy Day without disclosing the Israeli foreign ministry payment, a potential Foreign Agents Registration Act violation. Eagles' Wings has not registered as a foreign agent; the funding was not disclosed to lawmakers.
+Washington — [Israel](country:IL) secretly paid $700,000 for congressional lobbying.
+
+Eagles' Wings ran Israel Advocacy Day without disclosing the Israeli foreign ministry payment, a potential Foreign Agents Registration Act violation.
+
+Eagles' Wings has not registered as a foreign agent; the funding was not disclosed to lawmakers.

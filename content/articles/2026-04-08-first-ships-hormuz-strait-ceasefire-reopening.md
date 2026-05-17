@@ -19,4 +19,8 @@ concepts:
   - "Bandar Abbas"
 ---
 
-Bandar Abbas — 2 ships crossed Hormuz hours after the ceasefire. NJ Earth and Daytona Beach transited at 06:59 and 08:44 UTC, the first hulls through Iran's weeks-long blockade. Insurance rates and rerouting will take days to reset; 2 ships is a trickle, not a reopening.
+Bandar Abbas — 2 ships crossed Hormuz hours after the ceasefire.
+
+NJ Earth and Daytona Beach transited at 06:59 and 08:44 UTC, the first hulls through Iran's weeks-long blockade.
+
+Insurance rates and rerouting will take days to reset; 2 ships is a trickle, not a reopening.

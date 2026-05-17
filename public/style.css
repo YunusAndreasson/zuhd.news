@@ -494,9 +494,8 @@ footer {
   font-size: clamp(1.375rem, 0.4vw + 1.2rem, 1.5rem);
   line-height: 1.6;
 
-  .s {
-    display: block;
-    margin-bottom: 0.5em;
+  p {
+    margin: 0 0 0.5em;
 
     &:last-child { margin-bottom: 0; }
   }
@@ -590,9 +589,8 @@ footer {
     }
   }
 
-  .article-body .s {
-    display: block;
-    margin-bottom: 0.3em;
+  .article-body p {
+    margin: 0 0 0.3em;
   }
 
   .briefing-track { display: none; }
@@ -1081,14 +1079,11 @@ body.article-page-body::before {
 
 /* Body — inherits font-size + line-height from `.article-page-main`
    (set there so the `ch` measure tracks the actual reading size). Each
-   `.s` sentence-block lives on its own line; the per-sentence rhythm
-   reads as deliberate space rather than tight running prose. */
+   markdown paragraph renders as its own `<p>` block; the per-block rhythm
+   reads as deliberate space rather than tight running prose. Block margins
+   live on the `> p, > h2, ...` rule below. */
 .article-page-main .article-body {
   margin-top: 0;
-}
-
-.article-page-main .article-body .s {
-  margin-bottom: 0.55em;
 }
 
 /* Lead paragraph — the orienting block right after the title. Steps up
@@ -1103,10 +1098,6 @@ body.article-page-body::before {
   margin-bottom: var(--space-lg);
   letter-spacing: -0.012em;
   text-wrap: balance;
-}
-
-.article-page-main .article-body > p:first-of-type .s {
-  margin-bottom: 0.45em;
 }
 
 /* Dateline — the geographic anchor of the story. Sits as its own line
@@ -1168,7 +1159,6 @@ body.article-page-body::before {
 
 .article-page-main .article-body blockquote p { margin: 0; }
 .article-page-main .article-body blockquote p + p { margin-top: var(--space-sm); }
-.article-page-main .article-body blockquote .s { display: inline; margin-bottom: 0; }
 
 /* Subtle sources line — dimmed, small, no interactivity */
 .article-sources-flat {

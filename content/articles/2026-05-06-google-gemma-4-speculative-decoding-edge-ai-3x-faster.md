@@ -22,4 +22,8 @@ entities:
     kind: "stock"
 ---
 
-Mountain View — Google's Gemma 4 hits 3x faster output. A 74-million-parameter drafter proposes tokens that Gemma 4 verifies in parallel, cutting latency on consumer hardware, Google said. Gemma 4 ships under Apache 2.0; drafter weights are open for any developer to deploy.
+Mountain View — Google's Gemma 4 hits 3x faster output.
+
+A 74-million-parameter drafter proposes tokens that Gemma 4 verifies in parallel, cutting latency on consumer hardware, Google said.
+
+Gemma 4 ships under Apache 2.0; drafter weights are open for any developer to deploy.

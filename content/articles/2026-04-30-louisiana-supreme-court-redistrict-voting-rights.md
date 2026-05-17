@@ -30,4 +30,8 @@ sentimentDivergence: 0.28
 entities: []
 ---
 
-Baton Rouge — Louisiana loses a Democratic congressional seat. The court struck the Voting Rights Act-mandated Black-majority district as an unconstitutional racial gerrymander. Louisiana's legislature must redraw by June 1; the state's May primaries are at risk.
+Baton Rouge — Louisiana loses a Democratic congressional seat.
+
+The court struck the Voting Rights Act-mandated Black-majority district as an unconstitutional racial gerrymander.
+
+Louisiana's legislature must redraw by June 1; the state's May primaries are at risk.

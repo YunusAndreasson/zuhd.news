@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-San Pedro de Atacama — The Atacama radio array confirmed 2 quasars merging at redshift 5.7, when the universe was under a billion years old. J2037–4537 is the 2nd such ancient pair found, suggesting mergers shaped galaxy cores before large structures formed. The preprint awaits review; if confirmed, it constrains early black-hole growth.
+San Pedro de Atacama — The Atacama radio array confirmed 2 quasars merging at redshift 5.7, when the universe was under a billion years old.
+
+J2037–4537 is the 2nd such ancient pair found, suggesting mergers shaped galaxy cores before large structures formed.
+
+The preprint awaits review; if confirmed, it constrains early black-hole growth.

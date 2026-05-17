@@ -30,4 +30,8 @@ sentimentDivergence: 0.3
 entities: []
 ---
 
-Dnipro — Russia struck Dnipro twice, hitting rescuers inside. [Russia](country:RU) killed 10 across [Ukraine](country:UA) Saturday; the same apartment block was struck twice in 20 hours, the regional governor said. President Zelenskyy signed deals in [Azerbaijan](country:AZ) and urged the EU to advance its Hungary-stalled 20th sanctions package.
+Dnipro — Russia struck Dnipro twice, hitting rescuers inside.
+
+[Russia](country:RU) killed 10 across [Ukraine](country:UA) Saturday; the same apartment block was struck twice in 20 hours, the regional governor said.
+
+President Zelenskyy signed deals in [Azerbaijan](country:AZ) and urged the EU to advance its Hungary-stalled 20th sanctions package.

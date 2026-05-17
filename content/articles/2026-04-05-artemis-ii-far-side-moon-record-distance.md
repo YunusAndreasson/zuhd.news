@@ -17,4 +17,8 @@ concepts:
   - "Apollo"
 ---
 
-Houston — Artemis II is breaking Apollo's 53-year distance record. The crew will swing 4,000 miles above the far side Monday, deeper into space than any human since Apollo 17 in 1972. NASA targets a 2028 south pole landing; this flyby tests whether the hardware survives the trip.
+Houston — Artemis II is breaking Apollo's 53-year distance record.
+
+The crew will swing 4,000 miles above the far side Monday, deeper into space than any human since Apollo 17 in 1972.
+
+NASA targets a 2028 south pole landing; this flyby tests whether the hardware survives the trip.

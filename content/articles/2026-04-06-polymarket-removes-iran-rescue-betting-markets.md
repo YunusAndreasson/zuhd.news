@@ -16,4 +16,8 @@ concepts:
   - "Commodity Futures Trading Commission"
 ---
 
-New York — Polymarket sold bets on a US airman's rescue. Rep. Seth Moulton called it "disgusting"; Polymarket removed the market and admitted it bypassed internal safeguards. Congressional Democrats introduced legislation banning prediction markets on military operations.
+New York — Polymarket sold bets on a US airman's rescue.
+
+Rep. Seth Moulton called it "disgusting"; Polymarket removed the market and admitted it bypassed internal safeguards.
+
+Congressional Democrats introduced legislation banning prediction markets on military operations.

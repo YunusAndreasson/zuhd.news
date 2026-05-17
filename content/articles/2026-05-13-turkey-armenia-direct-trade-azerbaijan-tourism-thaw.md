@@ -40,4 +40,8 @@ sentimentDivergence: 0.51
 entities: []
 ---
 
-Ankara — [Turkey](country:TR) shut the 311-km [Armenia](country:AM) frontier in 1993 backing [Azerbaijan](country:AZ) over Nagorno-Karabakh; it opened a direct customs lane Wednesday. Goods can now travel as either country's exports. Full border reopening requires Armenia to sign a formal peace deal with Azerbaijan, Turkey's foreign ministry said.
+Ankara — [Turkey](country:TR) shut the 311-km [Armenia](country:AM) frontier in 1993 backing [Azerbaijan](country:AZ) over Nagorno-Karabakh; it opened a direct customs lane Wednesday.
+
+Goods can now travel as either country's exports.
+
+Full border reopening requires Armenia to sign a formal peace deal with Azerbaijan, Turkey's foreign ministry said.

@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-San Francisco — A new RTL8159 chip has cut 10-gigabit ethernet adapters to $80. The silicon connects via USB 3.2, letting home labs reach datacenter speeds without a switch upgrade. Full 10Gbps needs USB 3.2 Gen 2x2; most laptops deliver 6-7Gbps, a gap manufacturers rarely disclose.
+San Francisco — A new RTL8159 chip has cut 10-gigabit ethernet adapters to $80.
+
+The silicon connects via USB 3.2, letting home labs reach datacenter speeds without a switch upgrade.
+
+Full 10Gbps needs USB 3.2 Gen 2x2; most laptops deliver 6-7Gbps, a gap manufacturers rarely disclose.

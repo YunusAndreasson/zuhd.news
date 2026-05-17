@@ -32,4 +32,8 @@ entities:
     kind: "stock"
 ---
 
-London — A reopened Hormuz leaves months of tanker queues. JPMorgan sees $97 average Brent for 2026 regardless — bottlenecks shift from the waterway to tanker charters, refinery ramp-ups, and logistics. Aramco's Amin Nasser warned a delayed reopening stretches normalization into 2027; 100 million barrels are lost weekly, he told investors.
+London — A reopened Hormuz leaves months of tanker queues.
+
+JPMorgan sees $97 average Brent for 2026 regardless — bottlenecks shift from the waterway to tanker charters, refinery ramp-ups, and logistics.
+
+Aramco's Amin Nasser warned a delayed reopening stretches normalization into 2027; 100 million barrels are lost weekly, he told investors.

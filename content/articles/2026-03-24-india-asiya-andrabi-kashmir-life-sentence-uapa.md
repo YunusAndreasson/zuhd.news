@@ -19,4 +19,8 @@ concepts:
   - "National Investigation Agency"
 ---
 
-Delhi — Asiya Andrabi spent 8 years detained before Monday's conviction. India's National Investigation Agency sentenced the head of Kashmiri women's group Dukhtaran-e-Millat to life in prison under UAPA, a counterterrorism law with a conviction rate above 97 percent, for advocating Kashmir's self-determination. Her 2 associates received 30-year terms, and India has not indicated it will review UAPA's detention-without-trial provisions.
+Delhi — Asiya Andrabi spent 8 years detained before Monday's conviction.
+
+India's National Investigation Agency sentenced the head of Kashmiri women's group Dukhtaran-e-Millat to life in prison under UAPA, a counterterrorism law with a conviction rate above 97 percent, for advocating Kashmir's self-determination.
+
+Her 2 associates received 30-year terms, and India has not indicated it will review UAPA's detention-without-trial provisions.

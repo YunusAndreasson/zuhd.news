@@ -24,4 +24,6 @@ concepts:
 sentimentDivergence: 0.26
 ---
 
-Washington — US forces stay near Iran for 'next conquest.' President Trump threatened overwhelming strikes if Tehran doesn't comply, while Iran's semiofficial media mapped sea mines still marking the Hormuz strait. Iran's delegation lands in Islamabad Thursday carrying 10 conditions Washington has already rejected.
+Washington — US forces stay near Iran for 'next conquest.' President Trump threatened overwhelming strikes if Tehran doesn't comply, while Iran's semiofficial media mapped sea mines still marking the Hormuz strait.
+
+Iran's delegation lands in Islamabad Thursday carrying 10 conditions Washington has already rejected.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — BioEmu runs 100,000 GPU-hours of protein simulation in minutes. BioEmu samples thousands of conformations by stability, showing which states a protein visits, not just its most stable shape. Protein-structure competition CASP16 added conformational-ensemble tracks; BioEmu teams now target how drug binding reshapes the full state landscape.
+London — BioEmu runs 100,000 GPU-hours of protein simulation in minutes.
+
+BioEmu samples thousands of conformations by stability, showing which states a protein visits, not just its most stable shape.
+
+Protein-structure competition CASP16 added conformational-ensemble tracks; BioEmu teams now target how drug binding reshapes the full state landscape.

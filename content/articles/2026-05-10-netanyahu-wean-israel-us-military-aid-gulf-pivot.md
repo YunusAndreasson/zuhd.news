@@ -30,4 +30,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Jerusalem — Israeli planners misjudged [Iran](country:IR)'s Hormuz stranglehold, Netanyahu admitted. He told a US broadcaster he wants [Israel](country:IL)'s $3.8bn annual US aid cut to zero within a decade, replacing it with Gulf alliances. The existing $38 billion US commitment runs through 2028; no Gulf state has named a replacement figure.
+Jerusalem — Israeli planners misjudged [Iran](country:IR)'s Hormuz stranglehold, Netanyahu admitted.
+
+He told a US broadcaster he wants [Israel](country:IL)'s $3.8bn annual US aid cut to zero within a decade, replacing it with Gulf alliances.
+
+The existing $38 billion US commitment runs through 2028; no Gulf state has named a replacement figure.

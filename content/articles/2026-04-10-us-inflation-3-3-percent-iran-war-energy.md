@@ -29,4 +29,8 @@ concepts:
 sentimentDivergence: 0.13
 ---
 
-Washington — US inflation hit 3.3%, highest since May 2024. Gasoline rose 21% in March — the largest monthly increase since 1967 — as the Hormuz closure cut Gulf oil supply for 6 weeks. The White House called it a "short-term disruption"; the Fed's 2026 rate-cut projections are now in doubt.
+Washington — US inflation hit 3.3%, highest since May 2024.
+
+Gasoline rose 21% in March — the largest monthly increase since 1967 — as the Hormuz closure cut Gulf oil supply for 6 weeks.
+
+The White House called it a "short-term disruption"; the Fed's 2026 rate-cut projections are now in doubt.

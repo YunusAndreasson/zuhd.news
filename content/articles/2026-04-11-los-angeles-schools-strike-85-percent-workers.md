@@ -17,4 +17,8 @@ concepts:
   - "Los Angeles"
 ---
 
-Los Angeles — 600,000 students may lose school Tuesday. 85% of LAUSD's 83,000 workers plan to walk out, demanding pay raises from a district that holds $5 billion in reserves. District officials say restricted reserves already cover all spending; talks continue through the weekend before Tuesday's deadline.
+Los Angeles — 600,000 students may lose school Tuesday.
+
+85% of LAUSD's 83,000 workers plan to walk out, demanding pay raises from a district that holds $5 billion in reserves.
+
+District officials say restricted reserves already cover all spending; talks continue through the weekend before Tuesday's deadline.

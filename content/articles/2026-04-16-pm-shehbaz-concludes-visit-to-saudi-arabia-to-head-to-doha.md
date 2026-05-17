@@ -27,4 +27,8 @@ sentimentDivergence: 0.15
 entities: []
 ---
 
-Jeddah — Pakistan's PM briefed Saudi Arabia on Iran mediation. Shehbaz briefed Mohammed bin Salman on the Islamabad talks that produced the US-Iran ceasefire, then flew to meet Qatar's Emir. Shehbaz will present Pakistan's mediation position at Turkey's Antalya Diplomacy Forum on April 18.
+Jeddah — Pakistan's PM briefed Saudi Arabia on Iran mediation.
+
+Shehbaz briefed Mohammed bin Salman on the Islamabad talks that produced the US-Iran ceasefire, then flew to meet Qatar's Emir.
+
+Shehbaz will present Pakistan's mediation position at Turkey's Antalya Diplomacy Forum on April 18.

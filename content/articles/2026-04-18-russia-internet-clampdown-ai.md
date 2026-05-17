@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Moscow — [Russia](country:RU) blocked Telegram and is tightening all internet controls. A 3-week Moscow mobile blackout followed AI-guided [US](country:US) strikes on [Iran](country:IR) — reportedly 11,000 since February 28 — demonstrating targeting capabilities the Kremlin cannot match. Putin revived a national AI programme to develop domestic alternatives to Pentagon targeting systems.
+Moscow — [Russia](country:RU) blocked Telegram and is tightening all internet controls.
+
+A 3-week Moscow mobile blackout followed AI-guided [US](country:US) strikes on [Iran](country:IR) — reportedly 11,000 since February 28 — demonstrating targeting capabilities the Kremlin cannot match.
+
+Putin revived a national AI programme to develop domestic alternatives to Pentagon targeting systems.

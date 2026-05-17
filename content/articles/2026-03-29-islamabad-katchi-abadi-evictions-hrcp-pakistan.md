@@ -18,4 +18,8 @@ concepts:
   - "Eviction"
 ---
 
-Islamabad — Authorities are demolishing a 25-year-old Christian settlement. The Capital Development Authority is clearing homes without resettlement plans, defying a 2015 Supreme Court stay order protecting katchi abadi residents. Pakistan's Human Rights Commission demands a halt; Allama Iqbal Colony faces demolition within days.
+Islamabad — Authorities are demolishing a 25-year-old Christian settlement.
+
+The Capital Development Authority is clearing homes without resettlement plans, defying a 2015 Supreme Court stay order protecting katchi abadi residents.
+
+Pakistan's Human Rights Commission demands a halt; Allama Iqbal Colony faces demolition within days.

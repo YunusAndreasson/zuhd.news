@@ -24,4 +24,8 @@ entities:
     kind: "crypto"
 ---
 
-New York — Bitcoin is 40% below its October peak of $126,000. Analyst James Check's Mean Reversion Index puts a $40,000 close in the 0.4th percentile of all daily closes — below any comparable historical deviation. Today's price near $78,000 sits at the 31.5th percentile: historically weak but within normal correction range, Check said.
+New York — Bitcoin is 40% below its October peak of $126,000.
+
+Analyst James Check's Mean Reversion Index puts a $40,000 close in the 0.4th percentile of all daily closes — below any comparable historical deviation.
+
+Today's price near $78,000 sits at the 31.5th percentile: historically weak but within normal correction range, Check said.

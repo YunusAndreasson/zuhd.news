@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Karachi — 3-5°C above normal: Sindh under heatwave alert. [Pakistan](country:PK)'s meteorological department forecast dangerous temperatures in Jacobabad and 2 other districts where brick-kiln and farm workers cannot stop. May heatwave alerts in Pakistan have become routine, advancing the dangerous-heat season into harvest and fasting periods.
+Karachi — 3-5°C above normal: Sindh under heatwave alert.
+
+[Pakistan](country:PK)'s meteorological department forecast dangerous temperatures in Jacobabad and 2 other districts where brick-kiln and farm workers cannot stop.
+
+May heatwave alerts in Pakistan have become routine, advancing the dangerous-heat season into harvest and fasting periods.

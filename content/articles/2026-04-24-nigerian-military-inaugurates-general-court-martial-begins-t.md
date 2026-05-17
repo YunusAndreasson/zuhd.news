@@ -17,4 +17,8 @@ concepts:
   - "Abuja"
 ---
 
-Abuja — [Nigeria](country:NG)'s military opened court-martial for 30 officers Friday. The October 2025 plot targeted President Tinubu; serving officers face a closed tribunal, civilian co-suspects federal court. Bail hearings — including a retired general and a police officer — remain pending.
+Abuja — [Nigeria](country:NG)'s military opened court-martial for 30 officers Friday.
+
+The October 2025 plot targeted President Tinubu; serving officers face a closed tribunal, civilian co-suspects federal court.
+
+Bail hearings — including a retired general and a police officer — remain pending.

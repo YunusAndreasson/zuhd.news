@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Cairo — [Egypt](country:EG)'s anti-discrimination statute has no definition of discrimination. It places the full prosecution burden on victims; courts have recorded just 2 convictions in 10 years. A commission mandated by Egypt's 2014 constitution has not been established; no legislation is pending.
+Cairo — [Egypt](country:EG)'s anti-discrimination statute has no definition of discrimination.
+
+It places the full prosecution burden on victims; courts have recorded just 2 convictions in 10 years.
+
+A commission mandated by Egypt's 2014 constitution has not been established; no legislation is pending.

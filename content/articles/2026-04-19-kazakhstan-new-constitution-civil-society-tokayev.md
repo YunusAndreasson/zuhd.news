@@ -17,4 +17,8 @@ concepts:
   - "Civil society"
 ---
 
-Astana — Tokayev's new constitution strengthens presidential grip. Analysts say it preserves the 1995 "superpresidential" system, redirecting parliamentary authority to a new People's Council under presidential control. If [Kazakhstan](country:KZ)'s economy continues to worsen, analysts warn, civic tension over blocked participation is likely to produce protests.
+Astana — Tokayev's new constitution strengthens presidential grip.
+
+Analysts say it preserves the 1995 "superpresidential" system, redirecting parliamentary authority to a new People's Council under presidential control.
+
+If [Kazakhstan](country:KZ)'s economy continues to worsen, analysts warn, civic tension over blocked participation is likely to produce protests.

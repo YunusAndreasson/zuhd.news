@@ -26,4 +26,8 @@ concepts:
 sentimentDivergence: 0.29
 ---
 
-Washington — NASA cancelled Lunar Gateway, stranding allied hardware mid-build. NASA Administrator Jared Isaacman announced a 3-phase, $20-billion lunar surface base that will repurpose the HALO habitation module the European Space Agency delivered in April 2025 — hardware also built in part by the Japan Aerospace Exploration Agency. Artemis III targets 2027, but the required Starship lander has not yet reached orbit; China aims to land humans on the Moon by 2030.
+Washington — NASA cancelled Lunar Gateway, stranding allied hardware mid-build.
+
+NASA Administrator Jared Isaacman announced a 3-phase, $20-billion lunar surface base that will repurpose the HALO habitation module the European Space Agency delivered in April 2025 — hardware also built in part by the Japan Aerospace Exploration Agency.
+
+Artemis III targets 2027, but the required Starship lander has not yet reached orbit; China aims to land humans on the Moon by 2030.

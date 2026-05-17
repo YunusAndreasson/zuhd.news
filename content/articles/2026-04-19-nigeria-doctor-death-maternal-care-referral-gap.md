@@ -16,4 +16,8 @@ concepts:
   - "Intensive care medicine"
 ---
 
-Yenagoa — Dr Ere Ogbachi died delivering her own triplets. Niger Delta University Teaching Hospital lacked an ICU; she was transferred mid-crisis to Federal Medical Centre Yenagoa. WHO figures show [Nigeria](country:NG) accounts for a quarter of global maternal deaths, driven by ICU gaps and broken referral chains.
+Yenagoa — Dr Ere Ogbachi died delivering her own triplets.
+
+Niger Delta University Teaching Hospital lacked an ICU; she was transferred mid-crisis to Federal Medical Centre Yenagoa.
+
+WHO figures show [Nigeria](country:NG) accounts for a quarter of global maternal deaths, driven by ICU gaps and broken referral chains.

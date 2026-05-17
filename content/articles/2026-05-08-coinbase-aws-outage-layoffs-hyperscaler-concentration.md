@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-San Francisco — Coinbase posted a Q1 loss of $1.49 per share — analysts forecast $0.27 profit — while offline for hours Thursday. Amazon Web Services' Virginia region lost multiple availability zones simultaneously; all Coinbase trading routed through that single region. A 14% workforce cut preceded the outage.
+San Francisco — Coinbase posted a Q1 loss of $1.49 per share — analysts forecast $0.27 profit — while offline for hours Thursday.
+
+Amazon Web Services' Virginia region lost multiple availability zones simultaneously; all Coinbase trading routed through that single region.
+
+A 14% workforce cut preceded the outage.

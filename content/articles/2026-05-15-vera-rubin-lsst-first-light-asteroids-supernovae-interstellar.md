@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Cerro Pachón — Rubin Observatory caught its first interstellar objects. The [Chile](country:CL)-based telescope images the full sky every few nights, targeting ~37 billion sources — near-Earth asteroids, failed supernovae — over a decade. The survey is now live; the 10-year run will underpin studies of dark energy and cosmic structure.
+Cerro Pachón — Rubin Observatory caught its first interstellar objects.
+
+The [Chile](country:CL)-based telescope images the full sky every few nights, targeting ~37 billion sources — near-Earth asteroids, failed supernovae — over a decade.
+
+The survey is now live; the 10-year run will underpin studies of dark energy and cosmic structure.

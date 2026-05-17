@@ -16,4 +16,8 @@ concepts:
   - "Permeation"
 ---
 
-London — A steel-cracking defect now builds cheaper fuel cells. Hydrogen permeation dissociates ruthenium clusters into single atoms stabilized on nitrogen-doped carbon, achieving platinum-group catalyst performance without platinum. Fuel cell cost is the final barrier to mass adoption; this technique applies to a whole metal class.
+London — A steel-cracking defect now builds cheaper fuel cells.
+
+Hydrogen permeation dissociates ruthenium clusters into single atoms stabilized on nitrogen-doped carbon, achieving platinum-group catalyst performance without platinum.
+
+Fuel cell cost is the final barrier to mass adoption; this technique applies to a whole metal class.

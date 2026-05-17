@@ -26,4 +26,6 @@ entities:
     kind: "stock"
 ---
 
-New York — Bitcoin is down 9% this year; Intel has gained 218%. Cerebras, valued at $8.1 billion 8 months ago, priced at $40 billion Wednesday; OpenAI and SpaceX listings are pending. "Buy bitcoin" searches hit a 12-month low, Kalshi data show, as capital shifts from digital assets toward AI equities.
+New York — Bitcoin is down 9% this year; Intel has gained 218%.
+
+Cerebras, valued at $8.1 billion 8 months ago, priced at $40 billion Wednesday; OpenAI and SpaceX listings are pending. "Buy bitcoin" searches hit a 12-month low, Kalshi data show, as capital shifts from digital assets toward AI equities.

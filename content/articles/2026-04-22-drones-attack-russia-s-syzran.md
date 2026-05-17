@@ -37,4 +37,8 @@ entities:
     kind: "commodity"
 ---
 
-Syzran — A Ukrainian drone hit Syzran's Rosneft refinery on Astrakhanskaya Street, killing 2 and reaching 1,000km inside [Russia](country:RU). Russian officials had described the oil interior as beyond drone range before the strike. [Russia](country:RU)'s Defense Ministry said 155 drones were downed overnight across 11 regions; US-brokered peace talks remain paused.
+Syzran — A Ukrainian drone hit Syzran's Rosneft refinery on Astrakhanskaya Street, killing 2 and reaching 1,000km inside [Russia](country:RU).
+
+Russian officials had described the oil interior as beyond drone range before the strike.
+
+[Russia](country:RU)'s Defense Ministry said 155 drones were downed overnight across 11 regions; US-brokered peace talks remain paused.

@@ -17,4 +17,8 @@ concepts:
   - "Brain"
 ---
 
-London — A specific brain cell may slow Parkinson's progression. Parvalbumin interneurons in the striatum produce GDNF, a growth factor lost in Parkinson's, and orchestrate disease-shaping plasticity. Current drugs only replace dopamine — this cell type offers the first druggable target to slow the disease.
+London — A specific brain cell may slow Parkinson's progression.
+
+Parvalbumin interneurons in the striatum produce GDNF, a growth factor lost in Parkinson's, and orchestrate disease-shaping plasticity.
+
+Current drugs only replace dopamine — this cell type offers the first druggable target to slow the disease.

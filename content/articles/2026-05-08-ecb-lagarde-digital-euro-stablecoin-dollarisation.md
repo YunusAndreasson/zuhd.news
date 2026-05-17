@@ -23,4 +23,8 @@ entities:
     kind: "currency"
 ---
 
-Madrid — Dollar stablecoins hit $310bn; 2 firms hold 90% of that market. European Central Bank chief Christine Lagarde warned [US](country:US)-issued stablecoins risk "digital dollarisation" of European payments if dollar rails dominate. The bank targets a digital euro by 2029; a 12-bank consortium plans a rival private version this year.
+Madrid — Dollar stablecoins hit $310bn; 2 firms hold 90% of that market.
+
+European Central Bank chief Christine Lagarde warned [US](country:US)-issued stablecoins risk "digital dollarisation" of European payments if dollar rails dominate.
+
+The bank targets a digital euro by 2029; a 12-bank consortium plans a rival private version this year.

@@ -16,4 +16,8 @@ concepts:
   - "Supreme Leader of Afghanistan"
 ---
 
-Kabul — Taliban freed US linguist Coyle held 14 months. The Iran war has shifted US focus away from Afghanistan, giving the Taliban room to extract diplomatic concessions through staged prisoner releases. Washington has not eased its wrongful-detention designations or offered the Taliban diplomatic recognition, leaving prisoner releases their only lever with US diplomacy.
+Kabul — Taliban freed US linguist Coyle held 14 months.
+
+The Iran war has shifted US focus away from Afghanistan, giving the Taliban room to extract diplomatic concessions through staged prisoner releases.
+
+Washington has not eased its wrongful-detention designations or offered the Taliban diplomatic recognition, leaving prisoner releases their only lever with US diplomacy.

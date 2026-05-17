@@ -17,4 +17,8 @@ concepts:
   - "Mental health"
 ---
 
-Berlin — Depressed men look different than depressed women. 163 in-patients scoring high on masculine depression — marked by aggression and substance abuse rather than sadness — showed greater overall clinical burden. Standard screening tools look for sadness; men presenting with anger or risk-taking are routinely missed and undertreated.
+Berlin — Depressed men look different than depressed women.
+
+163 in-patients scoring high on masculine depression — marked by aggression and substance abuse rather than sadness — showed greater overall clinical burden.
+
+Standard screening tools look for sadness; men presenting with anger or risk-taking are routinely missed and undertreated.

@@ -17,4 +17,8 @@ concepts:
   - "Small and medium enterprises"
 ---
 
-Islamabad — Pakistan approved its first Shariah-compliant credit guarantee scheme. Islamic banks can now lend to SMEs via profit-sharing contracts, bypassing interest-based collateral that excluded most borrowers. Whether banks adopt the structure will determine if small businesses gain real access to credit.
+Islamabad — Pakistan approved its first Shariah-compliant credit guarantee scheme.
+
+Islamic banks can now lend to SMEs via profit-sharing contracts, bypassing interest-based collateral that excluded most borrowers.
+
+Whether banks adopt the structure will determine if small businesses gain real access to credit.

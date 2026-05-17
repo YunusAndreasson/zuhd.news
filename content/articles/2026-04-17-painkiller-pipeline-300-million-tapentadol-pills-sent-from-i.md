@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Accra — 320 million tapentadol pills left [India](country:IN) for West Africa over 3 years, trade export records show. India's 2018 tramadol crackdown pushed traffickers to tapentadol — a synthetic opioid 2–3 times more potent — which most West African regulators have not approved. Trade records show [Sierra Leone](country:SL) and [Ghana](country:GH) received 80% of shipments by value.
+Accra — 320 million tapentadol pills left [India](country:IN) for West Africa over 3 years, trade export records show.
+
+India's 2018 tramadol crackdown pushed traffickers to tapentadol — a synthetic opioid 2–3 times more potent — which most West African regulators have not approved.
+
+Trade records show [Sierra Leone](country:SL) and [Ghana](country:GH) received 80% of shipments by value.

@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Riyadh — A biosimilar of macular degeneration drug Lucentis has entered trials in [Saudi Arabia](country:SA) and [Jordan](country:JO), the first Middle East sites in the FORCE study. The original trial excluded the region; FYB-201 costs less than Lucentis. Outcomes benchmarked against European data will determine whether Gulf health systems expand biosimilar access.
+Riyadh — A biosimilar of macular degeneration drug Lucentis has entered trials in [Saudi Arabia](country:SA) and [Jordan](country:JO), the first Middle East sites in the FORCE study.
+
+The original trial excluded the region; FYB-201 costs less than Lucentis.
+
+Outcomes benchmarked against European data will determine whether Gulf health systems expand biosimilar access.

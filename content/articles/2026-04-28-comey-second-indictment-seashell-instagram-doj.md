@@ -40,4 +40,6 @@ sentimentDivergence: 0.27
 entities: []
 ---
 
-Washington — 2nd Comey indictment targets a seashell photo. The charge requires proving a "true threat" with knowing intent; Comey says he did not know "8647" meant "end 47." A judge dismissed the first indictment in November; the First Amendment case opens in North Carolina.
+Washington — 2nd Comey indictment targets a seashell photo.
+
+The charge requires proving a "true threat" with knowing intent; Comey says he did not know "8647" meant "end 47." A judge dismissed the first indictment in November; the First Amendment case opens in North Carolina.

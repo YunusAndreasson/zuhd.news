@@ -17,4 +17,8 @@ concepts:
   - "Energy Crisis"
 ---
 
-Karachi — Pakistan's fuel dealers postpone a strike today. The dealers cited Iran supply risk after a Rs55/litre March hike failed to raise dealer margins from 2.59% to their 8% demand. The government is finalising a mobile-app fuel quota for two- and three-wheelers without consulting dealers, according to Dawn.
+Karachi — Pakistan's fuel dealers postpone a strike today.
+
+The dealers cited Iran supply risk after a Rs55/litre March hike failed to raise dealer margins from 2.59% to their 8% demand.
+
+The government is finalising a mobile-app fuel quota for two- and three-wheelers without consulting dealers, according to Dawn.

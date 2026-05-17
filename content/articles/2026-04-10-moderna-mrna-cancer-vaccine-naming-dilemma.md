@@ -18,4 +18,8 @@ concepts:
   - "Merck & Co."
 ---
 
-Cambridge — Moderna stopped calling its cancer shot a vaccine. The shot encodes tumour markers in mRNA, trains the immune system to kill them, and halved melanoma deaths in Merck trials. Physicians warn patients may refuse an effective cancer treatment because its mechanism — vaccination — is now politically radioactive.
+Cambridge — Moderna stopped calling its cancer shot a vaccine.
+
+The shot encodes tumour markers in mRNA, trains the immune system to kill them, and halved melanoma deaths in Merck trials.
+
+Physicians warn patients may refuse an effective cancer treatment because its mechanism — vaccination — is now politically radioactive.

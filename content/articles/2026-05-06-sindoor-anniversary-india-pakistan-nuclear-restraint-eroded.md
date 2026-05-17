@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Islamabad — A year on from Operation Sindoor, analysts warn both capitals appear to believe escalation is controllable. [India](country:IN)'s strikes inside [Pakistan](country:PK) crossed a historic cross-border taboo; [US](country:US) mediation that once capped such crises is no longer assured. The next crisis, analysts say, will arrive with compressed timelines and less room to back down.
+Islamabad — A year on from Operation Sindoor, analysts warn both capitals appear to believe escalation is controllable.
+
+[India](country:IN)'s strikes inside [Pakistan](country:PK) crossed a historic cross-border taboo; [US](country:US) mediation that once capped such crises is no longer assured.
+
+The next crisis, analysts say, will arrive with compressed timelines and less room to back down.

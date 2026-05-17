@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Newark — 2 men jailed for North Korea laptop farms. Racks of US-domiciled laptops let North Korean workers pose as American remote employees — generating more than $5 million for Pyongyang. The operation's North Korean beneficiaries remain beyond US jurisdiction.
+Newark — 2 men jailed for North Korea laptop farms.
+
+Racks of US-domiciled laptops let North Korean workers pose as American remote employees — generating more than $5 million for Pyongyang.
+
+The operation's North Korean beneficiaries remain beyond US jurisdiction.

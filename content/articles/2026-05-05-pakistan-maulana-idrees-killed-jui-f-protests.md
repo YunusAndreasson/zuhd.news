@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Charsadda — Gunmen shot dead cleric Maulana Idrees on Tuesday. Idrees was a Khyber Pakhtunkhwa legislator and adviser to Jamiat Ulema-e-Islam Fazl chief Fazlur Rehman. Fazlur Rehman called [Pakistan](country:PK)-wide protests Wednesday and Friday; no arrests made.
+Charsadda — Gunmen shot dead cleric Maulana Idrees on Tuesday.
+
+Idrees was a Khyber Pakhtunkhwa legislator and adviser to Jamiat Ulema-e-Islam Fazl chief Fazlur Rehman.
+
+Fazlur Rehman called [Pakistan](country:PK)-wide protests Wednesday and Friday; no arrests made.

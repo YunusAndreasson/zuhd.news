@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Johannesburg — [South Africa](country:ZA)'s agricultural output has more than doubled in real terms over 3 decades. Land and export profits stay concentrated in large commercial farms; Black smallholders gain no capital access or market linkages. Researchers say rebuilding extension services and market infrastructure — gutted after 1994 — is the structural fix.
+Johannesburg — [South Africa](country:ZA)'s agricultural output has more than doubled in real terms over 3 decades.
+
+Land and export profits stay concentrated in large commercial farms; Black smallholders gain no capital access or market linkages.
+
+Researchers say rebuilding extension services and market infrastructure — gutted after 1994 — is the structural fix.

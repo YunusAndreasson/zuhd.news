@@ -23,4 +23,8 @@ concepts:
 sentimentDivergence: 0.18
 ---
 
-Dublin — Intel reclaimed Fab 34 for $14.2 billion. Apollo bought 49% in 2024 when Intel was near collapse; US government equity and AI CPU demand reversed the company. Intel shares jumped 8%; 18A, its most advanced node, reaches Leixlip only after US deployment — timeline unannounced.
+Dublin — Intel reclaimed Fab 34 for $14.2 billion.
+
+Apollo bought 49% in 2024 when Intel was near collapse; US government equity and AI CPU demand reversed the company.
+
+Intel shares jumped 8%; 18A, its most advanced node, reaches Leixlip only after US deployment — timeline unannounced.

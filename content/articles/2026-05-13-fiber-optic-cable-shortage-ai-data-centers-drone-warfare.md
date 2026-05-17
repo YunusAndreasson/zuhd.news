@@ -26,4 +26,8 @@ entities:
     kind: "stock"
 ---
 
-Washington — A 50km drone-control fiber spool jumped from $300 to $2,500 as AI data-center buildout and battlefield demand collide on global supply. Shanghai-based Sun Telecom declared a "fiber famine" in January; Corning announced a $6 billion cable deal with Meta. [US](country:US) internet providers are reporting cancelled orders.
+Washington — A 50km drone-control fiber spool jumped from $300 to $2,500 as AI data-center buildout and battlefield demand collide on global supply.
+
+Shanghai-based Sun Telecom declared a "fiber famine" in January; Corning announced a $6 billion cable deal with Meta.
+
+[US](country:US) internet providers are reporting cancelled orders.

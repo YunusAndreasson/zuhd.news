@@ -16,4 +16,8 @@ concepts:
   - "Circle"
 ---
 
-Washington — CLARITY Act bans yield on stablecoins. Stablecoins would become payment rails only — yield returns to banks, gutting the business models of DeFi protocols like Aave and Compound. Senators Alsobrooks and Tillis reached a stablecoin rules agreement, bringing final passage closer than any prior crypto legislation.
+Washington — CLARITY Act bans yield on stablecoins.
+
+Stablecoins would become payment rails only — yield returns to banks, gutting the business models of DeFi protocols like Aave and Compound.
+
+Senators Alsobrooks and Tillis reached a stablecoin rules agreement, bringing final passage closer than any prior crypto legislation.

@@ -17,4 +17,8 @@ concepts:
   - "Donald Trump"
 ---
 
-Kyiv — Ukraine knocked 40% of Russian oil exports offline. Drone strikes on Leningrad ports disabled Russia's export capacity — the same capacity Trump unlocked by lifting sanctions to compensate for Hormuz. Brent crude is back above $100 — options markets are pricing Fed rate hikes within 2 weeks.
+Kyiv — Ukraine knocked 40% of Russian oil exports offline.
+
+Drone strikes on Leningrad ports disabled Russia's export capacity — the same capacity Trump unlocked by lifting sanctions to compensate for Hormuz.
+
+Brent crude is back above $100 — options markets are pricing Fed rate hikes within 2 weeks.

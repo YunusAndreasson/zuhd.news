@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-New York — Bird retinas supply photoreceptors without overlying blood vessels that occlude mammalian vision. Mammalian retinal vessels always block part of the visual field; new research explains how birds evolved past this structural limit. Researchers say the findings illuminate why human photoreceptors fail when blood supply deteriorates.
+New York — Bird retinas supply photoreceptors without overlying blood vessels that occlude mammalian vision.
+
+Mammalian retinal vessels always block part of the visual field; new research explains how birds evolved past this structural limit.
+
+Researchers say the findings illuminate why human photoreceptors fail when blood supply deteriorates.

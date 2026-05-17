@@ -18,4 +18,8 @@ concepts:
   - "Strait of Hormuz"
 ---
 
-Cape Town — 17.8 million South Africans are food insecure. The number rose from 14 million in 2019, driven by 30%-plus unemployment and a Hormuz fuel price shock now threading through supply chains. 29% of under-5 children are already stunted; the price shock has not yet reached supermarket shelves.
+Cape Town — 17.8 million South Africans are food insecure.
+
+The number rose from 14 million in 2019, driven by 30%-plus unemployment and a Hormuz fuel price shock now threading through supply chains.
+
+29% of under-5 children are already stunted; the price shock has not yet reached supermarket shelves.

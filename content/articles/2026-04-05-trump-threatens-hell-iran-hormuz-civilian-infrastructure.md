@@ -25,4 +25,8 @@ concepts:
 sentimentDivergence: 0.15
 ---
 
-Washington — Trump named Iran's power plants as Monday's targets. Hormuz has been shut since February 28 when US-Israeli strikes hit Iran, blocking 20% of global energy trade. Iran's top general vowed unrestricted strikes on all US and Israeli infrastructure if the deadline passes.
+Washington — Trump named Iran's power plants as Monday's targets.
+
+Hormuz has been shut since February 28 when US-Israeli strikes hit Iran, blocking 20% of global energy trade.
+
+Iran's top general vowed unrestricted strikes on all US and Israeli infrastructure if the deadline passes.

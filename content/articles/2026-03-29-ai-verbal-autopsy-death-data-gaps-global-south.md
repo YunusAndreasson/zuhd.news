@@ -11,4 +11,8 @@ sources:
     country: "GB"
 ---
 
-London — 2 in 3 global deaths go uncertified. An AI verbal autopsy tool interviews bereaved families to assign probable cause of death in regions lacking forensic infrastructure. The tool's accuracy in wide field trials is unvalidated; deployment decisions for global health policy now rest on it.
+London — 2 in 3 global deaths go uncertified.
+
+An AI verbal autopsy tool interviews bereaved families to assign probable cause of death in regions lacking forensic infrastructure.
+
+The tool's accuracy in wide field trials is unvalidated; deployment decisions for global health policy now rest on it.

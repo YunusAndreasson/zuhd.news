@@ -16,4 +16,8 @@ concepts:
   - "United States Forest Service"
 ---
 
-Washington — 89 percent of US wildfires are ignited by people. A study found roads quadruple fire ignition in forests, yet the USDA is citing wildfire prevention to justify new roads into 45 million protected acres. A federal court must decide whether the USDA's justification for rescinding the 25-year-old Roadless Rule holds up to legal review.
+Washington — 89 percent of US wildfires are ignited by people.
+
+A study found roads quadruple fire ignition in forests, yet the USDA is citing wildfire prevention to justify new roads into 45 million protected acres.
+
+A federal court must decide whether the USDA's justification for rescinding the 25-year-old Roadless Rule holds up to legal review.

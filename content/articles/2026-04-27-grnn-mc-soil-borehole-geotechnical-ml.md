@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — Between-borehole soil profiling still runs on 1970s rules. Two machine learning models now improve on it: random forest predicts more accurately; a neural-network variant better quantifies per-stratum uncertainty — the gap that matters when a wrong call means structural failure. Neither is yet validated for routine engineering practice.
+London — Between-borehole soil profiling still runs on 1970s rules.
+
+Two machine learning models now improve on it: random forest predicts more accurately; a neural-network variant better quantifies per-stratum uncertainty — the gap that matters when a wrong call means structural failure.
+
+Neither is yet validated for routine engineering practice.

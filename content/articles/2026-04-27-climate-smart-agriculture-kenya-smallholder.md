@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Nairobi — Most climate adaptation funding bypasses the farm. [Kenya](country:KE)'s on-farm trials test which practices deliver measurable yield gains in local conditions. Results will determine which practices funders scale across sub-Saharan Africa.
+Nairobi — Most climate adaptation funding bypasses the farm.
+
+[Kenya](country:KE)'s on-farm trials test which practices deliver measurable yield gains in local conditions.
+
+Results will determine which practices funders scale across sub-Saharan Africa.

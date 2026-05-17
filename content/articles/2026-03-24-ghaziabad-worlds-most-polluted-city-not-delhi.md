@@ -18,4 +18,8 @@ concepts:
   - "Pakistan"
 ---
 
-Ghaziabad — Loni, a Delhi suburb, is the world's most polluted city. Loni shares Delhi's airshed but has no monitoring or mitigation systems, recording PM2.5 at 112.5 micrograms per cubic metre — 22 times the WHO safe limit. Stubble burning returns each October and raises northern India's pollution by 60%, with no national ban in force.
+Ghaziabad — Loni, a Delhi suburb, is the world's most polluted city.
+
+Loni shares Delhi's airshed but has no monitoring or mitigation systems, recording PM2.5 at 112.5 micrograms per cubic metre — 22 times the WHO safe limit.
+
+Stubble burning returns each October and raises northern India's pollution by 60%, with no national ban in force.

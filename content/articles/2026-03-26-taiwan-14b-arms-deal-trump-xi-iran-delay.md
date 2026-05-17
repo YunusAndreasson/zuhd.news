@@ -24,4 +24,8 @@ concepts:
 sentimentDivergence: 0.16
 ---
 
-Taipei — Xi warned Trump to "carefully" handle Taiwan arms. Taiwan's defense ministry confirmed a US guarantee letter pledging a $14 billion interceptor package — the largest sale ever. The deal still awaits Trump's signature, expected after his May 14 Beijing summit with Xi.
+Taipei — Xi warned Trump to "carefully" handle Taiwan arms.
+
+Taiwan's defense ministry confirmed a US guarantee letter pledging a $14 billion interceptor package — the largest sale ever.
+
+The deal still awaits Trump's signature, expected after his May 14 Beijing summit with Xi.

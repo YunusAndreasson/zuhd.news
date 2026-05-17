@@ -24,4 +24,8 @@ entities:
     kind: "commodity"
 ---
 
-Hanoi — [Japan](country:JP) pledged crude for Vietnam's Nghi Son refinery. The 6 agreements position Japan as [Vietnam](country:VN)'s top minerals and energy partner as [China](country:CN)'s supply chains dominate rare-earth processing. Sanae Takaichi, Japan's ruling-party leader, meets President To Lam Saturday; the South China Sea dispute is on the agenda.
+Hanoi — [Japan](country:JP) pledged crude for Vietnam's Nghi Son refinery.
+
+The 6 agreements position Japan as [Vietnam](country:VN)'s top minerals and energy partner as [China](country:CN)'s supply chains dominate rare-earth processing.
+
+Sanae Takaichi, Japan's ruling-party leader, meets President To Lam Saturday; the South China Sea dispute is on the agenda.

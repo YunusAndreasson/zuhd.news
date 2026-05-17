@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Beijing — [China](country:CN)'s provinces face new binding fossil-fuel caps. State officials called the dual-body directive 'extremely rare'; it binds Communist Party committees and government agencies at every level. Analysts call it the foundation for China's energy transition; more specific rules are pending.
+Beijing — [China](country:CN)'s provinces face new binding fossil-fuel caps.
+
+State officials called the dual-body directive 'extremely rare'; it binds Communist Party committees and government agencies at every level.
+
+Analysts call it the foundation for China's energy transition; more specific rules are pending.

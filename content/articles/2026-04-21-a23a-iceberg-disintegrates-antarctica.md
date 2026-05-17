@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-St. Petersburg — World's biggest iceberg A23a has fully disintegrated. Grounded for 30 years after calving from Antarctica in 1986, A23a shed 99% of its mass within 18 months of entering open water, the Arctic and Antarctic Research Institute said. The fragments now drift near 49°S, having covered 1,000 km in 3 months; none exceed 50 sq km.
+St. Petersburg — World's biggest iceberg A23a has fully disintegrated.
+
+Grounded for 30 years after calving from Antarctica in 1986, A23a shed 99% of its mass within 18 months of entering open water, the Arctic and Antarctic Research Institute said.
+
+The fragments now drift near 49°S, having covered 1,000 km in 3 months; none exceed 50 sq km.

@@ -28,4 +28,10 @@ concepts:
 sentimentDivergence: 0.21
 ---
 
-Los Angeles — ICE arrested the niece of assassinated IRGC commander Soleimani. Sec. Rubio revoked Hamideh Soleimani Afshar's green card for social media posts supporting Iran; her daughter was also arrested and her husband barred from entry. At least 2 other Iranians lost legal status this week under the same framework.
+Los Angeles — ICE arrested the niece of assassinated IRGC commander Soleimani.
+
+Sec.
+
+Rubio revoked Hamideh Soleimani Afshar's green card for social media posts supporting Iran; her daughter was also arrested and her husband barred from entry.
+
+At least 2 other Iranians lost legal status this week under the same framework.

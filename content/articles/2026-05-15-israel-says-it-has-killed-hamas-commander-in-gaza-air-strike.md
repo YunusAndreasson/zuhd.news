@@ -34,4 +34,8 @@ concepts:
 entities: []
 ---
 
-Gaza — Israeli strikes hit a Rimal residential building and vehicle, killing 3 women and a child on Nakba Day. [Israel](country:IL) said it targeted Hamas commander Izz al-Din al-Haddad; 7 Palestinians died in the strikes. Hamas has not confirmed Haddad's death; 857 Palestinians have been killed since the October ceasefire, the Gaza health ministry said.
+Gaza — Israeli strikes hit a Rimal residential building and vehicle, killing 3 women and a child on Nakba Day.
+
+[Israel](country:IL) said it targeted Hamas commander Izz al-Din al-Haddad; 7 Palestinians died in the strikes.
+
+Hamas has not confirmed Haddad's death; 857 Palestinians have been killed since the October ceasefire, the Gaza health ministry said.

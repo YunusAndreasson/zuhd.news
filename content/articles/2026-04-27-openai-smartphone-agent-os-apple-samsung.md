@@ -21,4 +21,8 @@ eventCoverage: 25
 entities: []
 ---
 
-San Francisco — OpenAI is reportedly building a phone without apps. An agent owning the screen would replace app navigation — cutting Apple and Samsung's app-store distribution layer out of every transaction. Analyst Ming-Chi Kuo cites 2028 as the mass-production target; previous agent-phone bets by Rabbit and Humane both failed.
+San Francisco — OpenAI is reportedly building a phone without apps.
+
+An agent owning the screen would replace app navigation — cutting Apple and Samsung's app-store distribution layer out of every transaction.
+
+Analyst Ming-Chi Kuo cites 2028 as the mass-production target; previous agent-phone bets by Rabbit and Humane both failed.

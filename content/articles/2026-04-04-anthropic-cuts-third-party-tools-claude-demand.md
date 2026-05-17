@@ -18,4 +18,8 @@ concepts:
 eventCoverage: 34
 ---
 
-San Francisco — Claude subscriptions stop covering third-party tools April 5. Agent-driven tools like OpenClaw hammer Claude with continuous requests — the flat-rate gym-membership model breaks when the sumo wrestlers show up. Whether competing providers — OpenAI, Google — follow or hold flat-rate pricing will define AI subscription economics.
+San Francisco — Claude subscriptions stop covering third-party tools April 5.
+
+Agent-driven tools like OpenClaw hammer Claude with continuous requests — the flat-rate gym-membership model breaks when the sumo wrestlers show up.
+
+Whether competing providers — OpenAI, Google — follow or hold flat-rate pricing will define AI subscription economics.

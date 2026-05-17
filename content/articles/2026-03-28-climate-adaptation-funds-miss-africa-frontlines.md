@@ -15,4 +15,8 @@ concepts:
   - "Climate finance"
 ---
 
-Nairobi — Africa gets pledges; adaptation finance doesn't arrive. International funds pass through regional banks and national agencies before reaching local farmers; each intermediary layer cuts delivery speed and access. Private capital won't enter until fund structures improve; local actors lack the accreditation to access existing instruments.
+Nairobi — Africa gets pledges; adaptation finance doesn't arrive.
+
+International funds pass through regional banks and national agencies before reaching local farmers; each intermediary layer cuts delivery speed and access.
+
+Private capital won't enter until fund structures improve; local actors lack the accreditation to access existing instruments.

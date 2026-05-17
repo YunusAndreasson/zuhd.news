@@ -16,4 +16,8 @@ concepts:
   - "Iran war"
 ---
 
-West Bank — Israel jailed a Palestinian woman without legal access. It locked down all prisons at war's start, cutting legal visits to hundreds of Palestinian detainees. Israeli courts cannot hear detention challenges from any of them until the lockdown lifts.
+West Bank — Israel jailed a Palestinian woman without legal access.
+
+It locked down all prisons at war's start, cutting legal visits to hundreds of Palestinian detainees.
+
+Israeli courts cannot hear detention challenges from any of them until the lockdown lifts.

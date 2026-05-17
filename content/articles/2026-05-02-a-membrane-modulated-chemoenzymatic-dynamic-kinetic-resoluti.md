@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — Chiral drugs need two mutually hostile catalysts. A membrane-modulated 2-stage process spatially separates racemization and resolution, letting both run without interference. The platform improves yield and enables pharmaceutical phthalide synthesis that conventional dynamic kinetic resolution could not produce efficiently.
+London — Chiral drugs need two mutually hostile catalysts.
+
+A membrane-modulated 2-stage process spatially separates racemization and resolution, letting both run without interference.
+
+The platform improves yield and enables pharmaceutical phthalide synthesis that conventional dynamic kinetic resolution could not produce efficiently.

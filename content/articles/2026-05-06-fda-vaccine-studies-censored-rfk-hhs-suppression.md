@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Washington — Officials withdrew accepted vaccine studies after political review. The US health department directed the Food and Drug Administration to pull COVID-19 and shingles studies already accepted by journals; a vaccine hospitalization analysis was also killed. Secretary Robert F. Kennedy Jr. pledged "radical transparency" but provided no scientific rationale.
+Washington — Officials withdrew accepted vaccine studies after political review.
+
+The US health department directed the Food and Drug Administration to pull COVID-19 and shingles studies already accepted by journals; a vaccine hospitalization analysis was also killed.
+
+Secretary Robert F. Kennedy Jr. pledged "radical transparency" but provided no scientific rationale.

@@ -20,4 +20,8 @@ entities:
     kind: "commodity"
 ---
 
-Kathmandu — [Nepal](country:NP) now has South Asia's most expensive petrol at NPR 219 per litre. The Nepal Oil Corporation raised prices 4 times in April — 60 percent above January — as Strait of Hormuz disruption raised costs. With no domestic refining and a single [India](country:IN) pipeline, no buffer exists against further Gulf shocks.
+Kathmandu — [Nepal](country:NP) now has South Asia's most expensive petrol at NPR 219 per litre.
+
+The Nepal Oil Corporation raised prices 4 times in April — 60 percent above January — as Strait of Hormuz disruption raised costs.
+
+With no domestic refining and a single [India](country:IN) pipeline, no buffer exists against further Gulf shocks.

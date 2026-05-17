@@ -14,4 +14,8 @@ concepts:
   - "Robot"
 ---
 
-San Francisco — Generalist's GEN-1 robot hits 99% production reliability. Trained on 500,000 hours of wearable hand-capture data, it folds boxes and services vacuums at 3x the speed of its predecessor. Physical AI has crossed the deployment threshold; warehouse automation and manufacturing face disruption at scale.
+San Francisco — Generalist's GEN-1 robot hits 99% production reliability.
+
+Trained on 500,000 hours of wearable hand-capture data, it folds boxes and services vacuums at 3x the speed of its predecessor.
+
+Physical AI has crossed the deployment threshold; warehouse automation and manufacturing face disruption at scale.

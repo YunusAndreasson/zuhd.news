@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Beirut — [Lebanon](country:LB) activated data roaming at 110 shared towers. Roaming fixes billing but not physical capacity; combined load on strained networks degrades quality for all users. Touch confirmed the service is permanent but said it cannot substitute for new infrastructure investment.
+Beirut — [Lebanon](country:LB) activated data roaming at 110 shared towers.
+
+Roaming fixes billing but not physical capacity; combined load on strained networks degrades quality for all users.
+
+Touch confirmed the service is permanent but said it cannot substitute for new infrastructure investment.

@@ -17,4 +17,8 @@ concepts:
   - "Nigeria"
 ---
 
-Kano — Sheikh Kabara: his blasphemy death sentence is retaliation. Convicted in 2022 by a Kano Sharia court, he alleges his 3-year appeal has been blocked — dates altered, filings tampered. His petition to Chief Justice Kekere-Ekun tests whether federal rights override a Sharia court's death verdict.
+Kano — Sheikh Kabara: his blasphemy death sentence is retaliation.
+
+Convicted in 2022 by a Kano Sharia court, he alleges his 3-year appeal has been blocked — dates altered, filings tampered.
+
+His petition to Chief Justice Kekere-Ekun tests whether federal rights override a Sharia court's death verdict.

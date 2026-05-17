@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Lusaka — [China](country:CN) pressured [Zambia](country:ZM) to block [Taiwan](country:TW) from RightsCon. Access Now refused to exclude Taiwan delegates; Zambia then postponed the conference 3 weeks before 3,700 participants were to arrive. Digital rights group SMEX warned the move gives any host government a template to shut down transnational rights gatherings.
+Lusaka — [China](country:CN) pressured [Zambia](country:ZM) to block [Taiwan](country:TW) from RightsCon.
+
+Access Now refused to exclude Taiwan delegates; Zambia then postponed the conference 3 weeks before 3,700 participants were to arrive.
+
+Digital rights group SMEX warned the move gives any host government a template to shut down transnational rights gatherings.

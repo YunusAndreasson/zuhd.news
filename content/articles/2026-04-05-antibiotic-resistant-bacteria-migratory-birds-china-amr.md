@@ -16,4 +16,8 @@ concepts:
   - "Tetracycline"
 ---
 
-Guangzhou — Migratory birds spread drug-resistant bacteria across continents. In Guangzhou, 69% of sampled birds carried resistant bacteria; 4 strains were vancomycin-resistant. These strains travel flyways, bypassing border controls built only for human transmission.
+Guangzhou — Migratory birds spread drug-resistant bacteria across continents.
+
+In Guangzhou, 69% of sampled birds carried resistant bacteria; 4 strains were vancomycin-resistant.
+
+These strains travel flyways, bypassing border controls built only for human transmission.

@@ -13,4 +13,8 @@ eventCoverage: null
 concepts: []
 ---
 
-New York — Slow LLM makes AI chatbots crawl — deliberately. Artist Sam Lavigne built it to reintroduce friction after students began outsourcing thinking and emotional processing to AI, forgetting skills they once had. Lavigne open-sourced the code for schools and parents to deploy before a generation forgets to think unaided.
+New York — Slow LLM makes AI chatbots crawl — deliberately.
+
+Artist Sam Lavigne built it to reintroduce friction after students began outsourcing thinking and emotional processing to AI, forgetting skills they once had.
+
+Lavigne open-sourced the code for schools and parents to deploy before a generation forgets to think unaided.

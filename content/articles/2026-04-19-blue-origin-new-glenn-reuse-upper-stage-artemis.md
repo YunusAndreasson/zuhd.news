@@ -17,4 +17,8 @@ concepts:
   - "Reusable launch vehicle"
 ---
 
-Cape Canaveral — Blue Origin's reused booster lands; upper stage fails. AST SpaceMobile's BlueBird 7 was placed into a 95-mile orbit instead of 285 miles, forcing destructive reentry. A months-long investigation would delay Blue Moon, the [US](country:US) moon program's only alternative to SpaceX before 2028.
+Cape Canaveral — Blue Origin's reused booster lands; upper stage fails.
+
+AST SpaceMobile's BlueBird 7 was placed into a 95-mile orbit instead of 285 miles, forcing destructive reentry.
+
+A months-long investigation would delay Blue Moon, the [US](country:US) moon program's only alternative to SpaceX before 2028.

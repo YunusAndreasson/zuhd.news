@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Bogotá — An Andean court ruled [Colombia](country:CO)'s HIV patent override did not breach regional trade law. Colombia issued a compulsory license for dolutegravir on public-health grounds; the ruling validates that approach under Andean law. Bolivia, Ecuador, and Peru now have a confirmed legal template for generic pricing of patented medicines.
+Bogotá — An Andean court ruled [Colombia](country:CO)'s HIV patent override did not breach regional trade law.
+
+Colombia issued a compulsory license for dolutegravir on public-health grounds; the ruling validates that approach under Andean law.
+
+Bolivia, Ecuador, and Peru now have a confirmed legal template for generic pricing of patented medicines.

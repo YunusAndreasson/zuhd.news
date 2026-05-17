@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Swat — Torwali secured cancellation of the 207-megawatt Madyan dam. [Pakistan](country:PK)'s Khyber Pakhtunkhwa had backed the World Bank-funded project, one of 18 dams planned on the Swat River. Project proponents can still challenge the cancellation; the World Bank has not responded.
+Swat — Torwali secured cancellation of the 207-megawatt Madyan dam.
+
+[Pakistan](country:PK)'s Khyber Pakhtunkhwa had backed the World Bank-funded project, one of 18 dams planned on the Swat River.
+
+Project proponents can still challenge the cancellation; the World Bank has not responded.

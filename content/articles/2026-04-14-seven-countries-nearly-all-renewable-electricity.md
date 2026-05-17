@@ -18,4 +18,8 @@ concepts:
   - "IEA"
 ---
 
-Kathmandu — 7 nations top 99.7% renewable electricity. Nepal, Bhutan, and Ethiopia achieved this through hydropower — river geography and political will, not GDP. Hydro-dependent grids face the same rainfall disruption from climate change; electricity is only part of total energy use.
+Kathmandu — 7 nations top 99.7% renewable electricity.
+
+Nepal, Bhutan, and Ethiopia achieved this through hydropower — river geography and political will, not GDP.
+
+Hydro-dependent grids face the same rainfall disruption from climate change; electricity is only part of total energy use.

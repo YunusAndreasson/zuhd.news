@@ -26,4 +26,8 @@ entities:
     kind: "commodity"
 ---
 
-Washington — 45 million more people face acute food insecurity this year if Brent stays above $100, the World Bank said. Fertilizer prices are up 31% as Hormuz energy costs cascade into farm inputs across Sub-Saharan Africa and South Asia. At $111, oil is $25 above the World Bank baseline that assumed [Iran](country:IR)'s disruptions ended this month.
+Washington — 45 million more people face acute food insecurity this year if Brent stays above $100, the World Bank said.
+
+Fertilizer prices are up 31% as Hormuz energy costs cascade into farm inputs across Sub-Saharan Africa and South Asia.
+
+At $111, oil is $25 above the World Bank baseline that assumed [Iran](country:IR)'s disruptions ended this month.

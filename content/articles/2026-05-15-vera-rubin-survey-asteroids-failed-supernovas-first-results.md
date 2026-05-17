@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Atacama — The Vera C. Rubin Observatory identified near-Earth asteroids, failed supernovas, and interstellar visitors within weeks of first light. It images the full visible sky every few nights via a single automated pipeline, replacing targeted searches. [Chile](country:CL)-based Rubin runs for a decade; astronomers expect it to outpace a century of prior asteroid cataloguing within years.
+Atacama — The Vera C. Rubin Observatory identified near-Earth asteroids, failed supernovas, and interstellar visitors within weeks of first light.
+
+It images the full visible sky every few nights via a single automated pipeline, replacing targeted searches.
+
+[Chile](country:CL)-based Rubin runs for a decade; astronomers expect it to outpace a century of prior asteroid cataloguing within years.

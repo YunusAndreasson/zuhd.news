@@ -17,4 +17,8 @@ concepts:
   - "Strait of Hormuz"
 ---
 
-Tehran — Iran's parliament declared Hormuz free passage over. A new law requires vessels to pay transit tolls in rials, forcing demand for a sanctions-crushed currency. Ships that refuse face seizure by Iranian forces — legal leverage Iran cannot achieve through air power.
+Tehran — Iran's parliament declared Hormuz free passage over.
+
+A new law requires vessels to pay transit tolls in rials, forcing demand for a sanctions-crushed currency.
+
+Ships that refuse face seizure by Iranian forces — legal leverage Iran cannot achieve through air power.

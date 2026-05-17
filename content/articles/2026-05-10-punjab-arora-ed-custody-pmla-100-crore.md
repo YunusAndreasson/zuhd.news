@@ -24,4 +24,8 @@ concepts:
 entities: []
 ---
 
-Gurugram — [India](country:IN)'s first Aam Aadmi Party minister jailed. A money-laundering court gave the Enforcement Directorate 7 days to trace ₹102.5 crore in alleged fraudulent goods and services tax refunds via shell entities, the judge said. Punjab's Chief Minister called it political; Arora's custody expires May 17.
+Gurugram — [India](country:IN)'s first Aam Aadmi Party minister jailed.
+
+A money-laundering court gave the Enforcement Directorate 7 days to trace ₹102.5 crore in alleged fraudulent goods and services tax refunds via shell entities, the judge said.
+
+Punjab's Chief Minister called it political; Arora's custody expires May 17.

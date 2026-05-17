@@ -17,4 +17,8 @@ concepts:
   - "Federal Reserve"
 ---
 
-New York — Bitcoin now prices Fed pivots before markets react. Spot ETF approval in 2024 shifted Bitcoin from retail reaction to institutional front-running; its easing correlation reversed, 3 times stronger. Stagflation fears have shifted rate expectations from cuts to hikes; BTC is pricing the Fed pivot first.
+New York — Bitcoin now prices Fed pivots before markets react.
+
+Spot ETF approval in 2024 shifted Bitcoin from retail reaction to institutional front-running; its easing correlation reversed, 3 times stronger.
+
+Stagflation fears have shifted rate expectations from cuts to hikes; BTC is pricing the Fed pivot first.

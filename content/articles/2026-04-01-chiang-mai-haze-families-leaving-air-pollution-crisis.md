@@ -17,4 +17,8 @@ concepts:
   - "Thailand"
 ---
 
-Chiang Mai — Families are fleeing Chiang Mai's poisoned air. Satellite data recorded 4,750 hotspots across Thailand Tuesday — a record — as agricultural burning and dry-season wildfires peak before planting season. A Chiang Mai court ordered an emergency plan in 2024; farmers who can't afford alternatives keep burning.
+Chiang Mai — Families are fleeing Chiang Mai's poisoned air.
+
+Satellite data recorded 4,750 hotspots across Thailand Tuesday — a record — as agricultural burning and dry-season wildfires peak before planting season.
+
+A Chiang Mai court ordered an emergency plan in 2024; farmers who can't afford alternatives keep burning.

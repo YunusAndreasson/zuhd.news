@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-Susono — 8 cameras watch a single Woven City intersection. [Japan](country:JP)'s Toyota spent $10 billion on the 175-acre company town at Mount Fuji, handpicking 100 residents to stress-test surveillance and mobility systems. Toyota plans to sell the Vision Engine — which tracks individuals by clothing across cameras — to city governments.
+Susono — 8 cameras watch a single Woven City intersection.
+
+[Japan](country:JP)'s Toyota spent $10 billion on the 175-acre company town at Mount Fuji, handpicking 100 residents to stress-test surveillance and mobility systems.
+
+Toyota plans to sell the Vision Engine — which tracks individuals by clothing across cameras — to city governments.

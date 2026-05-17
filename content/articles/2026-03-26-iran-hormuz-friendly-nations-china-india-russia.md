@@ -31,4 +31,8 @@ concepts:
 sentimentDivergence: 0.38
 ---
 
-Tehran — Iran sorted Hormuz access by geopolitical allegiance. Araghchi named 5 nations, including China, India, and Russia, as permitted — all others must coordinate with Iranian authorities to pass. The UN warns of mounting commodity disruptions as Araghchi rules out any talks with the US.
+Tehran — Iran sorted Hormuz access by geopolitical allegiance.
+
+Araghchi named 5 nations, including China, India, and Russia, as permitted — all others must coordinate with Iranian authorities to pass.
+
+The UN warns of mounting commodity disruptions as Araghchi rules out any talks with the US.

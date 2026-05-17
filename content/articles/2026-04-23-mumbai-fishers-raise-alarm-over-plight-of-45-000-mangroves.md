@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Mumbai — 46,000 mangroves cleared for Mumbai coastal road. The mangroves form the city's flood barrier; [India](country:IN)'s Brihanmumbai Municipal Corporation will raze them for a 26 km road by 2029. Koli fishers report catches already declining since piling began; livelihoods of thousands depend on the mangrove nurseries.
+Mumbai — 46,000 mangroves cleared for Mumbai coastal road.
+
+The mangroves form the city's flood barrier; [India](country:IN)'s Brihanmumbai Municipal Corporation will raze them for a 26 km road by 2029.
+
+Koli fishers report catches already declining since piling began; livelihoods of thousands depend on the mangrove nurseries.

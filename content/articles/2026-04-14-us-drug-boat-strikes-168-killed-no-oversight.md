@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Washington — US killed 168 at sea in 48 strikes. Southern Command has run the strikes since September 2025 without congressional authorization, designating targets "narco-terrorists" and killing them without trial. Trump pledged Monday to use the same "kill system" to enforce the Strait of Hormuz blockade.
+Washington — US killed 168 at sea in 48 strikes.
+
+Southern Command has run the strikes since September 2025 without congressional authorization, designating targets "narco-terrorists" and killing them without trial.
+
+Trump pledged Monday to use the same "kill system" to enforce the Strait of Hormuz blockade.

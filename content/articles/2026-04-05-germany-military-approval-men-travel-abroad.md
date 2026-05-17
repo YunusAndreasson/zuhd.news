@@ -16,4 +16,8 @@ concepts:
   - "Bundestag"
 ---
 
-Berlin — A Cold War clause quietly became German law. January's military service law buried a clause requiring men aged 17–45 to apply for Bundeswehr permission before stays abroad exceeding 3 months. The ministry says approval is automatic while service is voluntary, but clarifying regulations have not been issued.
+Berlin — A Cold War clause quietly became German law.
+
+January's military service law buried a clause requiring men aged 17–45 to apply for Bundeswehr permission before stays abroad exceeding 3 months.
+
+The ministry says approval is automatic while service is voluntary, but clarifying regulations have not been issued.

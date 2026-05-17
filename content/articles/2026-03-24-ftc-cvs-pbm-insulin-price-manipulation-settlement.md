@@ -17,4 +17,8 @@ concepts:
   - "Diabetes"
 ---
 
-Washington — CVS Caremark inflated insulin prices, the FTC charged. Pharmacy benefit managers use rebate walls to steer patients toward costlier drugs while rewarding manufacturers for keeping list prices high. Cigna's Express Scripts settled last month, but UnitedHealth's OptumRx remains under the original September 2024 FTC action.
+Washington — CVS Caremark inflated insulin prices, the FTC charged.
+
+Pharmacy benefit managers use rebate walls to steer patients toward costlier drugs while rewarding manufacturers for keeping list prices high.
+
+Cigna's Express Scripts settled last month, but UnitedHealth's OptumRx remains under the original September 2024 FTC action.

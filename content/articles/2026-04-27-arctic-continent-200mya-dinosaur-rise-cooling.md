@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-New York — A continent 3× Antarctica's once filled the Arctic. Palaeontologist Paul Olsen argues its year-round ice amplified volcanic cooling 201 million years ago, killing competing reptile lineages while feathered dinosaurs survived. Olsen presents the hypothesis next month at the European Geosciences Union; it has not been peer-reviewed.
+New York — A continent 3× Antarctica's once filled the Arctic.
+
+Palaeontologist Paul Olsen argues its year-round ice amplified volcanic cooling 201 million years ago, killing competing reptile lineages while feathered dinosaurs survived.
+
+Olsen presents the hypothesis next month at the European Geosciences Union; it has not been peer-reviewed.

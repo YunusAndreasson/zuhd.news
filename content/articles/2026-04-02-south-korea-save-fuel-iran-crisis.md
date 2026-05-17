@@ -19,4 +19,8 @@ concepts:
   - "Strait of Hormuz"
 ---
 
-Seoul — South Korea imposed a fuel price cap for the first time in 30 years. President Lee proposed a $17 billion emergency budget and expanded fuel tax cuts after Brent crude jumped 40% in March. Parliament votes by April 10; Korea imports nearly all its energy and faces deeper price pressure if Hormuz stays closed.
+Seoul — South Korea imposed a fuel price cap for the first time in 30 years.
+
+President Lee proposed a $17 billion emergency budget and expanded fuel tax cuts after Brent crude jumped 40% in March.
+
+Parliament votes by April 10; Korea imports nearly all its energy and faces deeper price pressure if Hormuz stays closed.

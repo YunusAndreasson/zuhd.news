@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Washington — OFAC froze $344M in USDT on Iran-linked wallets. Tether blacklisted the addresses on-chain in minutes — a capability no correspondent bank has for freezing sovereign funds, [US](country:US) Treasury said. Any sovereign routing payments through USDT now holds the same vulnerability as [Iran](country:IR)'s central bank just discovered.
+Washington — OFAC froze $344M in USDT on Iran-linked wallets.
+
+Tether blacklisted the addresses on-chain in minutes — a capability no correspondent bank has for freezing sovereign funds, [US](country:US) Treasury said.
+
+Any sovereign routing payments through USDT now holds the same vulnerability as [Iran](country:IR)'s central bank just discovered.

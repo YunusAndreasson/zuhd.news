@@ -21,4 +21,8 @@ concepts:
   - "JD Vance"
 ---
 
-Islamabad — [Pakistan](country:PK)'s ceasefire mediation window closes Wednesday. [Iran](country:IR) cited "unacceptable actions" — a [US](country:US) Hormuz blockade — and declined to send a delegation, prompting Vance to cancel his Islamabad trip. Trump's envoys Witkoff and Kushner consulted Tuesday on options short of restarting airstrikes.
+Islamabad — [Pakistan](country:PK)'s ceasefire mediation window closes Wednesday.
+
+[Iran](country:IR) cited "unacceptable actions" — a [US](country:US) Hormuz blockade — and declined to send a delegation, prompting Vance to cancel his Islamabad trip.
+
+Trump's envoys Witkoff and Kushner consulted Tuesday on options short of restarting airstrikes.

@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Imphal — A blast killed 2 children while they slept. Meitei and Naga communities imposed simultaneous shutdowns — the closest to joint protest [India](country:IN)'s 3-year ethnic conflict has produced. The central government handed both cases to the National Investigation Agency; lawyers demanded a parallel judicial inquiry.
+Imphal — A blast killed 2 children while they slept.
+
+Meitei and Naga communities imposed simultaneous shutdowns — the closest to joint protest [India](country:IN)'s 3-year ethnic conflict has produced.
+
+The central government handed both cases to the National Investigation Agency; lawyers demanded a parallel judicial inquiry.

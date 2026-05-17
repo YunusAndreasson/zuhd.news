@@ -21,4 +21,8 @@ concepts:
 sentimentDivergence: 0.14
 ---
 
-London — Revolut's profit surged 57% to £1.7 billion in 2025. The jump came as Revolut finally won a full UK banking licence after a 5-year wait, unlocking lending products for 13 million UK customers. It applied for a US banking licence this month and targets 100 million global customers by mid-2027.
+London — Revolut's profit surged 57% to £1.7 billion in 2025.
+
+The jump came as Revolut finally won a full UK banking licence after a 5-year wait, unlocking lending products for 13 million UK customers.
+
+It applied for a US banking licence this month and targets 100 million global customers by mid-2027.

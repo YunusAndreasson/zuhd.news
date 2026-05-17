@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Saint Paul — Craig denied AIPAC ties while it held fundraisers. AIPAC hosted at least a dozen events for Craig's Senate campaign; Federal Election Commission filings document bundled donations, making the denial verifiable on demand. AIPAC-backed candidates lost recent primaries in Illinois and New Jersey.
+Saint Paul — Craig denied AIPAC ties while it held fundraisers.
+
+AIPAC hosted at least a dozen events for Craig's Senate campaign; Federal Election Commission filings document bundled donations, making the denial verifiable on demand.
+
+AIPAC-backed candidates lost recent primaries in Illinois and New Jersey.

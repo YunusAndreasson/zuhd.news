@@ -24,4 +24,8 @@ sentimentDivergence: 0.24
 entities: []
 ---
 
-Dearborn — 1.4 million F-150s recalled for unexpected downshifts. Worn electrical connections corrupt the powertrain control module's signals, causing automatic downshifts; the remedy is a dealership software update. The National Highway Traffic Safety Administration linked 2 injuries to the defect; owner letters go out July 13.
+Dearborn — 1.4 million F-150s recalled for unexpected downshifts.
+
+Worn electrical connections corrupt the powertrain control module's signals, causing automatic downshifts; the remedy is a dealership software update.
+
+The National Highway Traffic Safety Administration linked 2 injuries to the defect; owner letters go out July 13.

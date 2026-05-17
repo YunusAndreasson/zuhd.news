@@ -29,4 +29,8 @@ sentimentDivergence: 0.13
 entities: []
 ---
 
-London — British Airways' owner hedged its summer fuel supply. [Britain](country:GB)'s International Airlines Group expects 2026 fuel costs of €9 billion — €2 billion above forecast — from Iran war disruptions. The group's chief executive Gallego warned Middle East disruption could tighten global jet fuel availability once summer hedges expire.
+London — British Airways' owner hedged its summer fuel supply.
+
+[Britain](country:GB)'s International Airlines Group expects 2026 fuel costs of €9 billion — €2 billion above forecast — from Iran war disruptions.
+
+The group's chief executive Gallego warned Middle East disruption could tighten global jet fuel availability once summer hedges expire.

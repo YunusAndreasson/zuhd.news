@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Fort Collins — Native Americans played dice 12,000 years ago. Robert Madden's analysis of 300 artifacts from 57 sites across 12 states pushes organized dice play 6,500 years before Mesopotamia. Smithsonian collections used in the study hold thousands more unanalyzed artifacts that could extend the timeline further.
+Fort Collins — Native Americans played dice 12,000 years ago.
+
+Robert Madden's analysis of 300 artifacts from 57 sites across 12 states pushes organized dice play 6,500 years before Mesopotamia.
+
+Smithsonian collections used in the study hold thousands more unanalyzed artifacts that could extend the timeline further.

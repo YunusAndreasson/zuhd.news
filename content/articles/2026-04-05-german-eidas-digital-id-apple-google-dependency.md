@@ -18,4 +18,8 @@ concepts:
   - "Google"
 ---
 
-Berlin — Germany's EU digital wallet mandates Big Tech accounts. Apple and Google control device attestation APIs, making an account with either company mandatory for this EU sovereignty project. No open-source attestation alternative exists; no European mobile OS commands the market share needed to replace either platform.
+Berlin — Germany's EU digital wallet mandates Big Tech accounts.
+
+Apple and Google control device attestation APIs, making an account with either company mandatory for this EU sovereignty project.
+
+No open-source attestation alternative exists; no European mobile OS commands the market share needed to replace either platform.

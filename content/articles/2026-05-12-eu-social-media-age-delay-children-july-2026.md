@@ -38,4 +38,8 @@ concepts:
 entities: []
 ---
 
-Copenhagen — Von der Leyen proposed reversing the parental-consent default. A panel reports by July on rules requiring platforms to prove child safety, not parents to opt children out. [France](country:FR) is targeting its own under-15 ban by September; EU legislation could follow the same month.
+Copenhagen — Von der Leyen proposed reversing the parental-consent default.
+
+A panel reports by July on rules requiring platforms to prove child safety, not parents to opt children out.
+
+[France](country:FR) is targeting its own under-15 ban by September; EU legislation could follow the same month.

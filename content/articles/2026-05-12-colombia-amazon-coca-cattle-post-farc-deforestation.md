@@ -14,4 +14,8 @@ concepts: []
 entities: []
 ---
 
-Bogotá — 800,000 Amazon hectares lost in [Colombia](country:CO)'s post-accord decade. The peace deal left land tenure unresolved; splinter groups occupied freed territories and converted them to coca fields and cattle pasture. President Petro's Total Peace Programme offers agroforestry and tourism as substitutes; deforestation has not slowed.
+Bogotá — 800,000 Amazon hectares lost in [Colombia](country:CO)'s post-accord decade.
+
+The peace deal left land tenure unresolved; splinter groups occupied freed territories and converted them to coca fields and cattle pasture.
+
+President Petro's Total Peace Programme offers agroforestry and tourism as substitutes; deforestation has not slowed.

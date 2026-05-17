@@ -34,4 +34,8 @@ sentimentDivergence: 0.21
 entities: []
 ---
 
-Tokyo — Sony forecast a ¥30bn hit from memory prices this fiscal year. AI datacentre buildout crowded out chip supply in Q1; new production lines take a year to commission despite billions in pledged investment. [Japan](country:JP)'s Sony secured 2026 supply but warns prices persist; Nintendo raised Switch 2 prices $50 in the [US](country:US).
+Tokyo — Sony forecast a ¥30bn hit from memory prices this fiscal year.
+
+AI datacentre buildout crowded out chip supply in Q1; new production lines take a year to commission despite billions in pledged investment.
+
+[Japan](country:JP)'s Sony secured 2026 supply but warns prices persist; Nintendo raised Switch 2 prices $50 in the [US](country:US).

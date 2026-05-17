@@ -17,4 +17,8 @@ concepts:
   - "OSINT"
 ---
 
-Tehran — Bellingcat mapped Iran war damage via radar. Iran's blackout and restricted commercial imagery pushed the group to adapt its Gaza algorithm to ESA Sentinel-1 SAR, which penetrates cloud. The approach marks satellite radar as counter-censorship infrastructure no blackout can block.
+Tehran — Bellingcat mapped Iran war damage via radar.
+
+Iran's blackout and restricted commercial imagery pushed the group to adapt its Gaza algorithm to ESA Sentinel-1 SAR, which penetrates cloud.
+
+The approach marks satellite radar as counter-censorship infrastructure no blackout can block.

@@ -18,4 +18,8 @@ concepts:
   - "Sweden"
 ---
 
-Stockholm — Semaglutide cut depression risk 44% and anxiety 38%. A 13-year, 100,000-person Swedish study found GLP-1 users also had 50% fewer substance-use hospitalizations — suggesting brain reward-pathway effects beyond blood sugar control. The Lancet study is observational; health regulators will not approve GLP-1 drugs for mental health without randomized trial evidence.
+Stockholm — Semaglutide cut depression risk 44% and anxiety 38%.
+
+A 13-year, 100,000-person Swedish study found GLP-1 users also had 50% fewer substance-use hospitalizations — suggesting brain reward-pathway effects beyond blood sugar control.
+
+The Lancet study is observational; health regulators will not approve GLP-1 drugs for mental health without randomized trial evidence.

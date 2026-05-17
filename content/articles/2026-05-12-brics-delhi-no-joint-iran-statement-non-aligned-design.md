@@ -30,4 +30,8 @@ sentimentDivergence: 0.15
 entities: []
 ---
 
-New Delhi — Deputy talks on Iran broke down last month. [Russia](country:RU) and [China](country:CN) back Iran; the [UAE](country:AE) opposes it; [India](country:IN) has declared neutrality, leaving BRICS without a common position. Foreign ministers convene May 14–15; the September Delhi summit is the deadline for a consensus communiqué.
+New Delhi — Deputy talks on Iran broke down last month.
+
+[Russia](country:RU) and [China](country:CN) back Iran; the [UAE](country:AE) opposes it; [India](country:IN) has declared neutrality, leaving BRICS without a common position.
+
+Foreign ministers convene May 14–15; the September Delhi summit is the deadline for a consensus communiqué.

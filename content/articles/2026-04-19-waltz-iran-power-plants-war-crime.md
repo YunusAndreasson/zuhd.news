@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-New York — "Not a war crime," the [US](country:US) UN envoy said. Mike Waltz told ABC News that [Iran](country:IR)'s infrastructure serves "dual military purposes," preempting what he called irresponsible war-crimes accusations ahead of Monday's Islamabad talks. Trump threatened to strike every Iranian power plant and bridge if the ceasefire expires Wednesday without a deal.
+New York — "Not a war crime," the [US](country:US) UN envoy said.
+
+Mike Waltz told ABC News that [Iran](country:IR)'s infrastructure serves "dual military purposes," preempting what he called irresponsible war-crimes accusations ahead of Monday's Islamabad talks.
+
+Trump threatened to strike every Iranian power plant and bridge if the ceasefire expires Wednesday without a deal.

@@ -24,4 +24,8 @@ concepts:
 sentimentDivergence: 0.14
 ---
 
-Nikopol — Drone hit the covered market at 09:50 on a Saturday. 5 dead — 3 women and 2 men — 19 wounded including a 14-year-old girl in critical condition; Russia fired 286 drones overnight, of which 260 were intercepted. A fourth round of peace talks remains postponed indefinitely after Russia rejected Kyiv's Easter truce as a "PR stunt."
+Nikopol — Drone hit the covered market at 09:50 on a Saturday.
+
+5 dead — 3 women and 2 men — 19 wounded including a 14-year-old girl in critical condition; Russia fired 286 drones overnight, of which 260 were intercepted.
+
+A fourth round of peace talks remains postponed indefinitely after Russia rejected Kyiv's Easter truce as a "PR stunt."

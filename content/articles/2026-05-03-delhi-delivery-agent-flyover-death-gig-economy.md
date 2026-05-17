@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-New Delhi — Rajkumar, 25, fell 30 feet from a flyover. He had arrived from Jharkhand one week prior and just joined a delivery company; the driver who struck him fled. Police registered a case in Delhi; the driver has not been arrested.
+New Delhi — Rajkumar, 25, fell 30 feet from a flyover.
+
+He had arrived from Jharkhand one week prior and just joined a delivery company; the driver who struck him fled.
+
+Police registered a case in Delhi; the driver has not been arrested.

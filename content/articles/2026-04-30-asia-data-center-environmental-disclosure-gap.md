@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Kuala Lumpur — Asia's AI data centers skip environmental review. [Malaysia](country:MY) and 3 Southeast Asian neighbors require no impact assessment before construction; communities are rarely consulted. Experts warn the centers risk becoming stranded assets if AI revenue does not materialize.
+Kuala Lumpur — Asia's AI data centers skip environmental review.
+
+[Malaysia](country:MY) and 3 Southeast Asian neighbors require no impact assessment before construction; communities are rarely consulted.
+
+Experts warn the centers risk becoming stranded assets if AI revenue does not materialize.

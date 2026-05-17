@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Tokyo — [Japan](country:JP) endorsed its first domestic loitering munition Monday. Startup AirKamuy ships the drone flatpacked like furniture; at $2,000, it matches disposable first-person-view drone economics from [Ukraine](country:UA). Defense Minister Koizumi backed the model; Japan aims to be the world's "most extensive" military drone operator, he said.
+Tokyo — [Japan](country:JP) endorsed its first domestic loitering munition Monday.
+
+Startup AirKamuy ships the drone flatpacked like furniture; at $2,000, it matches disposable first-person-view drone economics from [Ukraine](country:UA).
+
+Defense Minister Koizumi backed the model; Japan aims to be the world's "most extensive" military drone operator, he said.

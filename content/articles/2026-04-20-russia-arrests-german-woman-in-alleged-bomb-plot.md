@@ -30,4 +30,8 @@ sentimentDivergence: 0.24
 entities: []
 ---
 
-Pyatigorsk — [Russia](country:RU) says it foiled a German woman's bomb plot before it detonated. The Federal Security Service claims [Ukraine](country:UA) recruited the 57-year-old through a Central Asian intermediary; [Germany](country:DE) and Kyiv declined to comment. Both suspects face life in prison; no independent verification of Ukraine's role has emerged.
+Pyatigorsk — [Russia](country:RU) says it foiled a German woman's bomb plot before it detonated.
+
+The Federal Security Service claims [Ukraine](country:UA) recruited the 57-year-old through a Central Asian intermediary; [Germany](country:DE) and Kyiv declined to comment.
+
+Both suspects face life in prison; no independent verification of Ukraine's role has emerged.

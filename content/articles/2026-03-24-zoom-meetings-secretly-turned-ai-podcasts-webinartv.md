@@ -18,4 +18,8 @@ concepts:
   - "Surveillance capitalism"
 ---
 
-San Francisco — WebinarTV turned 200,000 Zoom calls into podcasts without consent. The company scrapes public Zoom links, records calls, and generates AI summaries; attendees are never notified, even when hosts explicitly chose not to record. WebinarTV removes recordings on request, but most participants never discover they were recorded.
+San Francisco — WebinarTV turned 200,000 Zoom calls into podcasts without consent.
+
+The company scrapes public Zoom links, records calls, and generates AI summaries; attendees are never notified, even when hosts explicitly chose not to record.
+
+WebinarTV removes recordings on request, but most participants never discover they were recorded.

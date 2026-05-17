@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Askira Uba — Islamic State fighters killed 11 in Pubagu. The group attacked 3 communities in Askira Uba this month; [Nigeria](country:NG)'s national emergency agency was unaware of this latest strike. Residents face displacement without state support; no government agency beyond the local government has responded.
+Askira Uba — Islamic State fighters killed 11 in Pubagu.
+
+The group attacked 3 communities in Askira Uba this month; [Nigeria](country:NG)'s national emergency agency was unaware of this latest strike.
+
+Residents face displacement without state support; no government agency beyond the local government has responded.

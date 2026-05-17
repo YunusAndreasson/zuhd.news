@@ -18,4 +18,8 @@ concepts:
   - "Snake venom"
 ---
 
-San Francisco — 138,000 people die of snakebite annually. Horse-based antivenoms risk anaphylaxis and work only for specific species; Tim Friede self-immunized for 25 years so Centivax could clone his broad-spectrum human antibodies. They neutralized king cobra venom without prior king cobra exposure; human trials have not begun.
+San Francisco — 138,000 people die of snakebite annually.
+
+Horse-based antivenoms risk anaphylaxis and work only for specific species; Tim Friede self-immunized for 25 years so Centivax could clone his broad-spectrum human antibodies.
+
+They neutralized king cobra venom without prior king cobra exposure; human trials have not begun.

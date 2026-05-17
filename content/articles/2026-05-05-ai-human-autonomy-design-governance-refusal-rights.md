@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-New York — AI procurement rules do not require systems to preserve users' right to refuse AI recommendations, a new analysis finds. Autonomy, it argues, is an institutional achievement requiring designed refusal rights — not a default that disclosure preserves. Without procurement mandates, disclosure is the only safeguard.
+New York — AI procurement rules do not require systems to preserve users' right to refuse AI recommendations, a new analysis finds.
+
+Autonomy, it argues, is an institutional achievement requiring designed refusal rights — not a default that disclosure preserves.
+
+Without procurement mandates, disclosure is the only safeguard.

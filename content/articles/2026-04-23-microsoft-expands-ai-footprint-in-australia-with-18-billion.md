@@ -19,4 +19,8 @@ concepts:
   - "Satya Nadella"
 ---
 
-Sydney — Satya Nadella signed an A$25 billion deal to build AI data centres in [Australia](country:AU). Total hyperscaler pledges reach A$52 billion, the government said; Microsoft alone integrates with the Australian Signals Directorate. A memorandum sets national-interest and water-use conditions; no domestic cloud operates at this scale.
+Sydney — Satya Nadella signed an A$25 billion deal to build AI data centres in [Australia](country:AU).
+
+Total hyperscaler pledges reach A$52 billion, the government said; Microsoft alone integrates with the Australian Signals Directorate.
+
+A memorandum sets national-interest and water-use conditions; no domestic cloud operates at this scale.

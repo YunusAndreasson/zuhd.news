@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Guadalajara — Mexican prosecutors charged La Jefa with laundering $165mn. Rosalinda González Valencia ran 73 front companies for [Mexico](country:MX)'s most powerful cartel while US sanctions pursued gunmen, not her financial network. El Mencho died as cartel head; her son Juan Carlos now competes for succession.
+Guadalajara — Mexican prosecutors charged La Jefa with laundering $165mn.
+
+Rosalinda González Valencia ran 73 front companies for [Mexico](country:MX)'s most powerful cartel while US sanctions pursued gunmen, not her financial network.
+
+El Mencho died as cartel head; her son Juan Carlos now competes for succession.

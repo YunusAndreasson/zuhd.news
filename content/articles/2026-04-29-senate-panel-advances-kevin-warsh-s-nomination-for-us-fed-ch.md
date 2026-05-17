@@ -37,4 +37,8 @@ sentimentDivergence: 0.2
 entities: []
 ---
 
-Washington — Senate clears Warsh, Trump's rate-cut pick, 13-11. The former Fed governor was Trump's explicit choice over Fed independence; the Justice Department dropped its Powell probe last week, freeing Republican holdouts. Full Senate could vote May 11; Trump wants Powell off the Board before his 2028 governor term ends.
+Washington — Senate clears Warsh, Trump's rate-cut pick, 13-11.
+
+The former Fed governor was Trump's explicit choice over Fed independence; the Justice Department dropped its Powell probe last week, freeing Republican holdouts.
+
+Full Senate could vote May 11; Trump wants Powell off the Board before his 2028 governor term ends.

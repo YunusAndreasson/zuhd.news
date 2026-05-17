@@ -19,4 +19,8 @@ concepts:
   - "LPG"
 ---
 
-New Delhi — India scrapped import duties on 40 petrochemicals. The Iran war diverted domestic feedstock to LPG production, leaving plastic and pharmaceutical makers facing higher import costs. The exemption expires June 30; if Hormuz stays closed, India faces permanent import dependence.
+New Delhi — India scrapped import duties on 40 petrochemicals.
+
+The Iran war diverted domestic feedstock to LPG production, leaving plastic and pharmaceutical makers facing higher import costs.
+
+The exemption expires June 30; if Hormuz stays closed, India faces permanent import dependence.

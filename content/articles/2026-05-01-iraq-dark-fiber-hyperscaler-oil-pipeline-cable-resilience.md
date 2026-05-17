@@ -23,4 +23,8 @@ entities:
     kind: "commodity"
 ---
 
-Baghdad — [US](country:US) firms leased dark fiber on [Iraq](country:IQ)'s oil pipelines. [Iran](country:IR)'s war cut Gulf subsea cable routes, making oil corridors the backup path. Whether the corridor stays secure is now a question for data-center operators, not just oil traders.
+Baghdad — [US](country:US) firms leased dark fiber on [Iraq](country:IQ)'s oil pipelines.
+
+[Iran](country:IR)'s war cut Gulf subsea cable routes, making oil corridors the backup path.
+
+Whether the corridor stays secure is now a question for data-center operators, not just oil traders.

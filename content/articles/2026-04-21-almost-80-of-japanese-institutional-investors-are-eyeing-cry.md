@@ -17,4 +17,8 @@ concepts:
   - "Nomura Holdings"
 ---
 
-Tokyo — 80% of [Japan](country:JP)'s institutional investors plan to hold crypto. A Nomura survey of 518 professionals found most target 2-5% portfolio allocations by 2029, drawn by low correlation with traditional assets. Japan's Financial Instruments and Exchange Act provides regulatory cover; volatility and counterparty risk remain the main barriers cited.
+Tokyo — 80% of [Japan](country:JP)'s institutional investors plan to hold crypto.
+
+A Nomura survey of 518 professionals found most target 2-5% portfolio allocations by 2029, drawn by low correlation with traditional assets.
+
+Japan's Financial Instruments and Exchange Act provides regulatory cover; volatility and counterparty risk remain the main barriers cited.

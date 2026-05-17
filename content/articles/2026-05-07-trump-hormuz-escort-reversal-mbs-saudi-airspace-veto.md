@@ -26,4 +26,8 @@ eventCoverage: 17
 entities: []
 ---
 
-Riyadh — Mohammed bin Salman blocked US aircraft from airspace. [Saudi Arabia](country:SA) denied use of Prince Sultan Air Base and airspace, and [Kuwait](country:KW) also blocked US access, after Trump's unilateral "Project Freedom" announcement. Trump paused the escort plan; [Iran](country:IR) said it is reviewing a US peace proposal through Pakistani mediators.
+Riyadh — Mohammed bin Salman blocked US aircraft from airspace.
+
+[Saudi Arabia](country:SA) denied use of Prince Sultan Air Base and airspace, and [Kuwait](country:KW) also blocked US access, after Trump's unilateral "Project Freedom" announcement.
+
+Trump paused the escort plan; [Iran](country:IR) said it is reviewing a US peace proposal through Pakistani mediators.

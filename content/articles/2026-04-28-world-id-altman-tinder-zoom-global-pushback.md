@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-San Francisco — Tinder, Zoom and Docusign are adopting World ID, Sam Altman's iris-scan identity tool, despite suspensions in [Germany](country:DE), [Brazil](country:BR) and 4 other countries. Each scan creates a permanent biometric template — the price of AI-bot screening that [US](country:US) platforms now need. Users in markets that banned World ID face it as a login condition.
+San Francisco — Tinder, Zoom and Docusign are adopting World ID, Sam Altman's iris-scan identity tool, despite suspensions in [Germany](country:DE), [Brazil](country:BR) and 4 other countries.
+
+Each scan creates a permanent biometric template — the price of AI-bot screening that [US](country:US) platforms now need.
+
+Users in markets that banned World ID face it as a login condition.

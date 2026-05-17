@@ -33,4 +33,8 @@ sentimentDivergence: 0.25
 entities: []
 ---
 
-Guwahati — Assam's Bharatiya Janata Party won 82 of 126 seats on pledges to clear Muslim-majority char islands. [India](country:IN)'s ruling party describes the policy as land reclamation from chars — river islands with largely Muslim populations. Chief Minister Himanta Biswa Sarma pledged 165,000 more acres cleared and tea wages raised to ₹500.
+Guwahati — Assam's Bharatiya Janata Party won 82 of 126 seats on pledges to clear Muslim-majority char islands.
+
+[India](country:IN)'s ruling party describes the policy as land reclamation from chars — river islands with largely Muslim populations.
+
+Chief Minister Himanta Biswa Sarma pledged 165,000 more acres cleared and tea wages raised to ₹500.

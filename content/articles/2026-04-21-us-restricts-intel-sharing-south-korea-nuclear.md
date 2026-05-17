@@ -22,4 +22,8 @@ concepts:
 entities: []
 ---
 
-Seoul — Unification Minister Chung Dong-young named [North Korea](country:KP)'s Kusong site as a uranium enrichment facility in parliament. Washington cut [South Korea](country:KR)'s satellite intelligence on North Korea this month. Seoul said core [US](country:US) cooperation continues; the Kusong disclosure has not been retracted.
+Seoul — Unification Minister Chung Dong-young named [North Korea](country:KP)'s Kusong site as a uranium enrichment facility in parliament.
+
+Washington cut [South Korea](country:KR)'s satellite intelligence on North Korea this month.
+
+Seoul said core [US](country:US) cooperation continues; the Kusong disclosure has not been retracted.

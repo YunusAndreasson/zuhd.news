@@ -18,4 +18,8 @@ concepts:
   - "Extinction"
 ---
 
-Washington — A whale species has 51 survivors left. Trump invoked the Endangered Species Committee — used twice in 47 years — to exempt all Gulf oil operations from habitat protections, citing national security. The committee meets Tuesday; legal experts say no valid exemption application was filed and a conservation lawsuit remains pending.
+Washington — A whale species has 51 survivors left.
+
+Trump invoked the Endangered Species Committee — used twice in 47 years — to exempt all Gulf oil operations from habitat protections, citing national security.
+
+The committee meets Tuesday; legal experts say no valid exemption application was filed and a conservation lawsuit remains pending.

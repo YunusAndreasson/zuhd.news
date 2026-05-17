@@ -36,4 +36,8 @@ eventCoverage: 103
 sentimentDivergence: 0.49
 ---
 
-Washington — Hegseth fired the Army's top general mid-war. Gen. Randy George had 2 years left on his Senate-confirmed term; Hegseth replaced him with a former aide as acting chief. The new chief inherits command as Trump weighs sending ground troops into Iran.
+Washington — Hegseth fired the Army's top general mid-war.
+
+Gen. Randy George had 2 years left on his Senate-confirmed term; Hegseth replaced him with a former aide as acting chief.
+
+The new chief inherits command as Trump weighs sending ground troops into Iran.

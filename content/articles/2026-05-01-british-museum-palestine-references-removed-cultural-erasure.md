@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — 'Palestinian' became 'Canaanite' on a British Museum label. The Hyksos caption changed after UK Lawyers for Israel lobbied the institution; the museum has not named a decision-maker. The Palestinian ambassador raised the case with the [UK](country:GB) Foreign Office; the museum has not replied.
+London — 'Palestinian' became 'Canaanite' on a British Museum label.
+
+The Hyksos caption changed after UK Lawyers for Israel lobbied the institution; the museum has not named a decision-maker.
+
+The Palestinian ambassador raised the case with the [UK](country:GB) Foreign Office; the museum has not replied.

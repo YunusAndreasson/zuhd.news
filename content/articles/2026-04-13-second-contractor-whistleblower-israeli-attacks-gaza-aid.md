@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Gaza — A 12-year-old was shot reaching for food. David McIntosh is the second contractor to document Israeli soldiers firing on Palestinians at a Gaza food distribution site. Neither the security firm nor the aid operator has responded; McIntosh says the attacks were routine, not exceptional.
+Gaza — A 12-year-old was shot reaching for food.
+
+David McIntosh is the second contractor to document Israeli soldiers firing on Palestinians at a Gaza food distribution site.
+
+Neither the security firm nor the aid operator has responded; McIntosh says the attacks were routine, not exceptional.

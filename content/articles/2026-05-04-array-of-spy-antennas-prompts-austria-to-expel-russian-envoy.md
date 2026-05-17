@@ -30,4 +30,8 @@ concepts:
 entities: []
 ---
 
-Vienna — [Austria](country:AT) expelled 3 Russian embassy diplomats linked to rooftop antennas intercepting feeds from Vienna-based international organizations. 14 Russian diplomats have been expelled since 2020. [Russia](country:RU) vowed retaliation; Austria is drafting a law to criminalize espionage against hosted institutions.
+Vienna — [Austria](country:AT) expelled 3 Russian embassy diplomats linked to rooftop antennas intercepting feeds from Vienna-based international organizations.
+
+14 Russian diplomats have been expelled since 2020.
+
+[Russia](country:RU) vowed retaliation; Austria is drafting a law to criminalize espionage against hosted institutions.

@@ -15,4 +15,8 @@ concepts:
   - "Khyber Pakhtunkhwa"
 ---
 
-Quetta — Pakistan mandated 8pm market closures in 2 provinces. Balochistan's economy runs entirely on trade with no major industries; traders in Quetta rejected the order and warned of protests. KP closures take effect April 6; wedding halls must shut by 10pm under threat of legal action.
+Quetta — Pakistan mandated 8pm market closures in 2 provinces.
+
+Balochistan's economy runs entirely on trade with no major industries; traders in Quetta rejected the order and warned of protests.
+
+KP closures take effect April 6; wedding halls must shut by 10pm under threat of legal action.

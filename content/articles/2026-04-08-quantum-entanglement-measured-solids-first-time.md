@@ -17,4 +17,8 @@ concepts:
   - "Quantum technology"
 ---
 
-Los Alamos — Scientists first measured quantum entanglement in solids. Neutron bombardment yields a minimum count of entangled particles without requiring a prior model of the material. Next month the team tests a phase transition where models break down and entanglement is predicted to spike.
+Los Alamos — Scientists first measured quantum entanglement in solids.
+
+Neutron bombardment yields a minimum count of entangled particles without requiring a prior model of the material.
+
+Next month the team tests a phase transition where models break down and entanglement is predicted to spike.

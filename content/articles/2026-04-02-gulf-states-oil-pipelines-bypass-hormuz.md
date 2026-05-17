@@ -18,4 +18,8 @@ concepts:
   - "Energy security"
 ---
 
-Riyadh — Saudi Arabia is expanding a pipeline that already bypasses Hormuz. The East-West line is the primary candidate, but any new route costs billions and takes years to build. Iran conditionally reopened Hormuz to Russia, India and China, but producers are hedging against renewed closure.
+Riyadh — Saudi Arabia is expanding a pipeline that already bypasses Hormuz.
+
+The East-West line is the primary candidate, but any new route costs billions and takes years to build.
+
+Iran conditionally reopened Hormuz to Russia, India and China, but producers are hedging against renewed closure.

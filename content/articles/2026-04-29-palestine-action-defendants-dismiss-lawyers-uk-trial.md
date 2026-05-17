@@ -15,4 +15,8 @@ entities:
     kind: "stock"
 ---
 
-London — 5 Palestine Action defendants dismissed their barristers to address the jury directly. Charged with criminal damage to [Israel](country:IL)'s Elbit Systems factory in Bristol, they said court constraints blocked a full defence. A sixth defendant, facing a grievous bodily harm charge, retained counsel; the [UK](country:GB) jury retires to deliberate.
+London — 5 Palestine Action defendants dismissed their barristers to address the jury directly.
+
+Charged with criminal damage to [Israel](country:IL)'s Elbit Systems factory in Bristol, they said court constraints blocked a full defence.
+
+A sixth defendant, facing a grievous bodily harm charge, retained counsel; the [UK](country:GB) jury retires to deliberate.

@@ -21,4 +21,6 @@ entities:
     kind: "stock"
 ---
 
-Austin — Texas sued Netflix for tracking children through default autoplay. The state asked a court to ban data collection on children's accounts, calling the recommendation pipeline "surveillance machinery." The court must decide whether autoplay constitutes illegal collection under [US](country:US) consumer-protection law.
+Austin — Texas sued Netflix for tracking children through default autoplay.
+
+The state asked a court to ban data collection on children's accounts, calling the recommendation pipeline "surveillance machinery." The court must decide whether autoplay constitutes illegal collection under [US](country:US) consumer-protection law.

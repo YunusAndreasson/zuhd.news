@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Washington — TP-Link's [US](country:US) security patch ban slips to 2029. The Federal Communications Commission delayed the 2027 deadline; TP-Link and drone-maker DJI keep receiving patches from vendors Washington labels security risks. No domestic alternative exists at scale; the 2029 deadline carries an "at least" qualifier.
+Washington — TP-Link's [US](country:US) security patch ban slips to 2029.
+
+The Federal Communications Commission delayed the 2027 deadline; TP-Link and drone-maker DJI keep receiving patches from vendors Washington labels security risks.
+
+No domestic alternative exists at scale; the 2029 deadline carries an "at least" qualifier.

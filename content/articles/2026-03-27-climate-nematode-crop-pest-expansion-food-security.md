@@ -17,4 +17,8 @@ concepts:
   - "Species distribution"
 ---
 
-Nairobi — Root-knot nematodes are expanding into new agricultural zones. A Nature study using climate models shows these soil worms — already responsible for $100 billion in annual crop losses — gaining range across South Asia, sub-Saharan Africa, and South America as temperatures rise. Under high-emission scenarios, new high-risk overlap zones will form in regions currently considered safe by 2100.
+Nairobi — Root-knot nematodes are expanding into new agricultural zones.
+
+A Nature study using climate models shows these soil worms — already responsible for $100 billion in annual crop losses — gaining range across South Asia, sub-Saharan Africa, and South America as temperatures rise.
+
+Under high-emission scenarios, new high-risk overlap zones will form in regions currently considered safe by 2100.

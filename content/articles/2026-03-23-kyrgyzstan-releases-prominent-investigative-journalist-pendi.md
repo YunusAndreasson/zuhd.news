@@ -16,4 +16,8 @@ concepts:
   - "Kyrgyz Supreme Court"
 ---
 
-Bishkek — Kyrgyzstan released journalist Makhabat Tazhibek kyzy after 18 months. Kyrgyzstan's Supreme Court overturned her 6-year sentence following UN pressure, ordering a retrial while keeping criminal charges in place. Her husband Bolot Temirov, also an investigative journalist at Temirov Live, warned that clearing her and her colleagues still requires sustained international pressure.
+Bishkek — Kyrgyzstan released journalist Makhabat Tazhibek kyzy after 18 months.
+
+Kyrgyzstan's Supreme Court overturned her 6-year sentence following UN pressure, ordering a retrial while keeping criminal charges in place.
+
+Her husband Bolot Temirov, also an investigative journalist at Temirov Live, warned that clearing her and her colleagues still requires sustained international pressure.

@@ -30,4 +30,6 @@ concepts:
 sentimentDivergence: 0.1
 ---
 
-Pyongyang — North Korea's new engine hits 2,500 kN. The 26% jump over September's test is designed for multi-warhead ICBMs that overwhelm US missile defense, not just reach it. Washington is fixed on Iran; North Korea still needs a live ICBM test to prove warhead reentry survival.
+Pyongyang — North Korea's new engine hits 2,500 kN. The 26% jump over September's test is designed for multi-warhead ICBMs that overwhelm US missile defense, not just reach it.
+
+Washington is fixed on Iran; North Korea still needs a live ICBM test to prove warhead reentry survival.

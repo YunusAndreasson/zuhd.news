@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — High-salt rats lost hypertension by week 32. Standard dietary models used in preclinical metabolic research for decades fail to reliably reproduce hypertension or diabetes, the study found. The authors call for supplemental induction methods alongside diet-only protocols.
+London — High-salt rats lost hypertension by week 32.
+
+Standard dietary models used in preclinical metabolic research for decades fail to reliably reproduce hypertension or diabetes, the study found.
+
+The authors call for supplemental induction methods alongside diet-only protocols.

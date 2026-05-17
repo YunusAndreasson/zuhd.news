@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Khairpur — Sindh suspended 3 commanders over a drone strike. [Pakistan](country:PK)'s security forces have not named who operated the drone; 4 people died in the strike. A probe committee has formed; accountability was directed at local police, not the unidentified attackers.
+Khairpur — Sindh suspended 3 commanders over a drone strike.
+
+[Pakistan](country:PK)'s security forces have not named who operated the drone; 4 people died in the strike.
+
+A probe committee has formed; accountability was directed at local police, not the unidentified attackers.

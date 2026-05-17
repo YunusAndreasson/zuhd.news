@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.17
 ---
 
-New Delhi — India told its Supreme Court: faith overrides equality. 9 judges will rule on women's access to temples and mosques, and on Bohra female genital mutilation. Hearings end April 22; the verdict will determine whether India's constitutional equality can override religious autonomy.
+New Delhi — India told its Supreme Court: faith overrides equality.
+
+9 judges will rule on women's access to temples and mosques, and on Bohra female genital mutilation.
+
+Hearings end April 22; the verdict will determine whether India's constitutional equality can override religious autonomy.

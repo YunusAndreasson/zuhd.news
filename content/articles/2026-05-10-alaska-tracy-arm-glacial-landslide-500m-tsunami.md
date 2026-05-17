@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Juneau — An Alaskan slope shed 63.5 million cubic meters in August 2025. Glacier retreat stripped Tracy Arm's ice-stabilized slope, triggering a 500-meter wave — the second-highest tsunami recorded — a Science study found. Tracy Arm sees 20-plus boats daily in summer; the team is developing seismic early-warning for similar slopes worldwide.
+Juneau — An Alaskan slope shed 63.5 million cubic meters in August 2025.
+
+Glacier retreat stripped Tracy Arm's ice-stabilized slope, triggering a 500-meter wave — the second-highest tsunami recorded — a Science study found.
+
+Tracy Arm sees 20-plus boats daily in summer; the team is developing seismic early-warning for similar slopes worldwide.

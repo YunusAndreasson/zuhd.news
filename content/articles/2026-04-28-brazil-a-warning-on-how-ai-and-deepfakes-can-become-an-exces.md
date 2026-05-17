@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Rio de Janeiro — Deepfake production is near-free; victims bear all removal costs. [Brazil](country:BR) has no law criminalizing non-consensual sexual deepfakes, leaving students without legal recourse. Internetlab is urging regulators to classify sexual deepfakes as excessive risk.
+Rio de Janeiro — Deepfake production is near-free; victims bear all removal costs.
+
+[Brazil](country:BR) has no law criminalizing non-consensual sexual deepfakes, leaving students without legal recourse.
+
+Internetlab is urging regulators to classify sexual deepfakes as excessive risk.

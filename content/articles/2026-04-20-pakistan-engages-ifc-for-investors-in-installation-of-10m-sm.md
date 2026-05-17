@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — 10 million smart meters will cut billing fraud across [Pakistan](country:PK)'s power system. The World Bank's International Finance Corporation is attracting investors for the project; billing fraud fuels Pakistan's chronic circular debt. Meter prices fell 40% through competitive bidding; whether private operators pass costs to consumers remains unresolved.
+Islamabad — 10 million smart meters will cut billing fraud across [Pakistan](country:PK)'s power system.
+
+The World Bank's International Finance Corporation is attracting investors for the project; billing fraud fuels Pakistan's chronic circular debt.
+
+Meter prices fell 40% through competitive bidding; whether private operators pass costs to consumers remains unresolved.

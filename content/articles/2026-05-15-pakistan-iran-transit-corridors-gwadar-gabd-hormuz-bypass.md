@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Islamabad — [Pakistan](country:PK) opened 6 land routes to Iran. The Gwadar–Gabd corridor cuts border transit from 16 hours to 3, offering [Iran](country:IR) an overland bypass of US sanctions on its maritime trade. Islamabad calculates its mediator role shields it from sanctions, Pakistani diplomatic sources said; Washington has not responded.
+Islamabad — [Pakistan](country:PK) opened 6 land routes to Iran.
+
+The Gwadar–Gabd corridor cuts border transit from 16 hours to 3, offering [Iran](country:IR) an overland bypass of US sanctions on its maritime trade.
+
+Islamabad calculates its mediator role shields it from sanctions, Pakistani diplomatic sources said; Washington has not responded.

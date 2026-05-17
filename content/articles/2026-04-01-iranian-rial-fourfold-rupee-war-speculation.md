@@ -24,4 +24,8 @@ entities:
     kind: "currency"
 ---
 
-Karachi — Iranian rial quadrupled against Pakistani rupee since the war began. Balochistan importers paying for Iranian petroleum in rials pushed rates from Rs 2,500 to Rs 10,000 per 10 million. Pakistan held the dollar rate stable but oil pass-throughs are feeding domestic inflation.
+Karachi — Iranian rial quadrupled against Pakistani rupee since the war began.
+
+Balochistan importers paying for Iranian petroleum in rials pushed rates from Rs 2,500 to Rs 10,000 per 10 million.
+
+Pakistan held the dollar rate stable but oil pass-throughs are feeding domestic inflation.

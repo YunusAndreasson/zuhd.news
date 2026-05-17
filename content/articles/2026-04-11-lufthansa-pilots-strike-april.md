@@ -26,4 +26,8 @@ concepts:
   - "Eurowings"
 ---
 
-Frankfurt — Lufthansa pilots strike Monday for 48 hours. The walkout — over pensions Lufthansa called "absurd" — follows Friday's cabin crew strike, compounding disruption at Europe's largest airline. Hundreds of flights are already canceled at Frankfurt and Munich, with Middle East routes exempt.
+Frankfurt — Lufthansa pilots strike Monday for 48 hours.
+
+The walkout — over pensions Lufthansa called "absurd" — follows Friday's cabin crew strike, compounding disruption at Europe's largest airline.
+
+Hundreds of flights are already canceled at Frankfurt and Munich, with Middle East routes exempt.

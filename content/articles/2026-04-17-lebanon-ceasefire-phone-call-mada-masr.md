@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Beirut — Hezbollah held as Washington announced a Lebanon ceasefire. Trump delayed to arrange an Aoun-Netanyahu call not held in 34 years; Lebanon declined and the call never happened. Israel's occupation of southern Lebanon remains unresolved; Iran has linked the truce to ongoing Iran-US talks in Islamabad.
+Beirut — Hezbollah held as Washington announced a Lebanon ceasefire.
+
+Trump delayed to arrange an Aoun-Netanyahu call not held in 34 years; Lebanon declined and the call never happened.
+
+Israel's occupation of southern Lebanon remains unresolved; Iran has linked the truce to ongoing Iran-US talks in Islamabad.

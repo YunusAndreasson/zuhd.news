@@ -17,4 +17,8 @@ concepts:
   - "Match Group"
 ---
 
-Los Angeles — Tinder plans to scan its users' entire camera rolls with AI. Internal documents obtained by 404 Media show the app will analyze all locally-stored photos — including sensitive documents and intimate images — to infer users' interests and build profiles. Tinder has not published retention policies for the scans or said whether images will train its AI models.
+Los Angeles — Tinder plans to scan its users' entire camera rolls with AI.
+
+Internal documents obtained by 404 Media show the app will analyze all locally-stored photos — including sensitive documents and intimate images — to infer users' interests and build profiles.
+
+Tinder has not published retention policies for the scans or said whether images will train its AI models.

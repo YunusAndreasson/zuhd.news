@@ -17,4 +17,8 @@ concepts:
   - "Sovereignty"
 ---
 
-Tehran — Iran is monetizing the Strait of Hormuz. Parliament's toll bill covers the strait where only Chinese and Iranian-linked ships now move, with Brent crude at $114. The US models crude at $200 if the bill passes, making toll authority a ceasefire sticking point.
+Tehran — Iran is monetizing the Strait of Hormuz.
+
+Parliament's toll bill covers the strait where only Chinese and Iranian-linked ships now move, with Brent crude at $114.
+
+The US models crude at $200 if the bill passes, making toll authority a ceasefire sticking point.

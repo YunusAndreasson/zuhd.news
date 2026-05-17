@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Cairo — Egypt arrested Ahmed Douma for writing about his own imprisonment; a court rejected his appeal Thursday. His lawyers argued none of Egypt's Criminal Procedures Code remand conditions apply — yet the court extended his detention 15 days. He has no trial date, three years after completing a decade-long sentence.
+Cairo — Egypt arrested Ahmed Douma for writing about his own imprisonment; a court rejected his appeal Thursday.
+
+His lawyers argued none of Egypt's Criminal Procedures Code remand conditions apply — yet the court extended his detention 15 days.
+
+He has no trial date, three years after completing a decade-long sentence.

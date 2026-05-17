@@ -28,4 +28,8 @@ entities:
     kind: "stock"
 ---
 
-Brussels — [Belgium](country:BE) suspended nuclear dismantling to nationalise 7 reactors. A 2003 phase-out law made [France](country:FR)'s Engie the exit party; the 2022 gas crisis and the [Iran](country:IR) war reversed the calculation. Engie priced decommissioning at €8.4bn; both sides agreed "financially neutral" terms — Belgium absorbs the liability by October 1.
+Brussels — [Belgium](country:BE) suspended nuclear dismantling to nationalise 7 reactors.
+
+A 2003 phase-out law made [France](country:FR)'s Engie the exit party; the 2022 gas crisis and the [Iran](country:IR) war reversed the calculation.
+
+Engie priced decommissioning at €8.4bn; both sides agreed "financially neutral" terms — Belgium absorbs the liability by October 1.

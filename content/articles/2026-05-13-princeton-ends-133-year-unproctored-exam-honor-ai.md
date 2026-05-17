@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Princeton — One faculty member opposed Monday's proctoring vote. AI tools made cheating invisible to peers; a 2025 senior survey found 30% had cheated, leaving the peer-reporting system ineffective. Proctors observe from July 1 but may not intervene; suspected violations go to the student-run Honor Committee.
+Princeton — One faculty member opposed Monday's proctoring vote.
+
+AI tools made cheating invisible to peers; a 2025 senior survey found 30% had cheated, leaving the peer-reporting system ineffective.
+
+Proctors observe from July 1 but may not intervene; suspected violations go to the student-run Honor Committee.

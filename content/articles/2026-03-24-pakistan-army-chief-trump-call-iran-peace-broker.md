@@ -18,4 +18,8 @@ concepts:
   - "Mohammad Bagher Ghalibaf"
 ---
 
-Islamabad — Pakistan's army chief called Trump directly to broker Iran peace talks. Iran's side demands the previous US negotiating team — Witkoff and Kushner — be removed, viewing them as architects of a deception that preceded the bombing. JD Vance is now the probable US negotiator if talks convene in Islamabad next week.
+Islamabad — Pakistan's army chief called Trump directly to broker Iran peace talks.
+
+Iran's side demands the previous US negotiating team — Witkoff and Kushner — be removed, viewing them as architects of a deception that preceded the bombing.
+
+JD Vance is now the probable US negotiator if talks convene in Islamabad next week.

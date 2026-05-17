@@ -17,4 +17,8 @@ concepts:
   - "Fertilizer"
 ---
 
-Doha — Qatar produces half the world's traded urea. Hormuz disruption severed Qatari urea exports; fertiliser plants in India, Bangladesh, and Pakistan are shutting down from natural gas shortages. If fertiliser prices double, food prices could rise 20–30%; even a ceasefire today cannot prevent the coming shock.
+Doha — Qatar produces half the world's traded urea.
+
+Hormuz disruption severed Qatari urea exports; fertiliser plants in India, Bangladesh, and Pakistan are shutting down from natural gas shortages.
+
+If fertiliser prices double, food prices could rise 20–30%; even a ceasefire today cannot prevent the coming shock.

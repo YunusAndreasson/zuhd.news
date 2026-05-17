@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — A 4,200-parameter artificial intelligence model matched large medical imaging models. ML-ConvNet's compact architecture runs on CPU and mobile hardware, classifying brain MRI, lung CT and chest X-rays without GPU infrastructure. Multi-institutional external validation is needed before clinical use, the authors said.
+London — A 4,200-parameter artificial intelligence model matched large medical imaging models.
+
+ML-ConvNet's compact architecture runs on CPU and mobile hardware, classifying brain MRI, lung CT and chest X-rays without GPU infrastructure.
+
+Multi-institutional external validation is needed before clinical use, the authors said.

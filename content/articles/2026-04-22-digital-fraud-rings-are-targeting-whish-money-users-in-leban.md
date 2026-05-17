@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Beirut — Fraud rings are impersonating Whish Money agents on WhatsApp to drain user accounts. [Lebanon](country:LB) has no deposit insurance or fraud regulator, leaving victims with no recovery path. Whish became [Lebanon](country:LB)'s de facto bank after 2019 but carries no backstop for fraud victims.
+Beirut — Fraud rings are impersonating Whish Money agents on WhatsApp to drain user accounts.
+
+[Lebanon](country:LB) has no deposit insurance or fraud regulator, leaving victims with no recovery path.
+
+Whish became [Lebanon](country:LB)'s de facto bank after 2019 but carries no backstop for fraud victims.

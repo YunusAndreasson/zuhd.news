@@ -17,4 +17,8 @@ concepts:
   - "Logistics"
 ---
 
-Samara — Ukrainian drones hit Russia's chemical spine. A rubber plant and fertilizer hub in Samara burned; 1 died in a Sea of Azov ship strike. Ukraine has struck Togliatti before; the campaign now targets the industrial economy sustaining Russia's war.
+Samara — Ukrainian drones hit Russia's chemical spine.
+
+A rubber plant and fertilizer hub in Samara burned; 1 died in a Sea of Azov ship strike.
+
+Ukraine has struck Togliatti before; the campaign now targets the industrial economy sustaining Russia's war.

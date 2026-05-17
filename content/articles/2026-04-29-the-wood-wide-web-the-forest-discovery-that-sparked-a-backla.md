@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — Forest ecologist Suzanne Simard's mycorrhizal data is under dispute. Her hypothesis — trees exchange nutrients via underground fungi — became popular-science orthodoxy over a decade; ecologists now challenge the supporting evidence. Her new book defends the framework; whether the data supports the popular narrative remains unresolved.
+London — Forest ecologist Suzanne Simard's mycorrhizal data is under dispute.
+
+Her hypothesis — trees exchange nutrients via underground fungi — became popular-science orthodoxy over a decade; ecologists now challenge the supporting evidence.
+
+Her new book defends the framework; whether the data supports the popular narrative remains unresolved.

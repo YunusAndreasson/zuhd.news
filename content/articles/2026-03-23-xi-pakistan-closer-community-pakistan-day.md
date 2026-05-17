@@ -17,4 +17,8 @@ concepts:
   - "CPEC"
 ---
 
-Islamabad — Pakistan is mediating the US-Iran war. Chinese President Xi Jinping pledged "even closer" ties on Pakistan's national day, backing Islamabad's mediation between Washington and Tehran. Chinese Foreign Minister Wang Yi met Deputy Prime Minister Ishaq Dar to advance bilateral agreements — deepening Beijing's stake in whatever deal Pakistan brokers.
+Islamabad — Pakistan is mediating the US-Iran war.
+
+Chinese President Xi Jinping pledged "even closer" ties on Pakistan's national day, backing Islamabad's mediation between Washington and Tehran.
+
+Chinese Foreign Minister Wang Yi met Deputy Prime Minister Ishaq Dar to advance bilateral agreements — deepening Beijing's stake in whatever deal Pakistan brokers.

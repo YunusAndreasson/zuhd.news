@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Johannesburg — Any used iPhone is now a payment terminal. Yoco's 200,000 merchants in [South Africa](country:ZA) can replace rented card-reader hardware with any iPhone XS or later running the Yoco app. Payment acceptance shifts from hardware rental to a software switch on existing devices.
+Johannesburg — Any used iPhone is now a payment terminal.
+
+Yoco's 200,000 merchants in [South Africa](country:ZA) can replace rented card-reader hardware with any iPhone XS or later running the Yoco app.
+
+Payment acceptance shifts from hardware rental to a software switch on existing devices.

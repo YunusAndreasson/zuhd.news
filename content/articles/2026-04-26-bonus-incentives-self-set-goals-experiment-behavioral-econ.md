@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Tilburg — Workers paid bonuses underperformed those given none. A Tilburg University experiment found bonus offers led workers to set lower self-imposed goals. The result challenges corporate incentive design and applies to teacher pay and conditional cash-transfer schemes.
+Tilburg — Workers paid bonuses underperformed those given none.
+
+A Tilburg University experiment found bonus offers led workers to set lower self-imposed goals.
+
+The result challenges corporate incentive design and applies to teacher pay and conditional cash-transfer schemes.

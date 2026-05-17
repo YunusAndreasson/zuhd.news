@@ -29,4 +29,8 @@ concepts:
   - "Donald Trump"
 ---
 
-Diego Garcia — 2,000 Chagossians remain barred from their home islands. Britain shelved sovereignty legislation after Trump blocked the deal, preserving Diego Garcia — a US bomber base 5,300km from Iran. Mauritius vowed legal and diplomatic action against the decision, which contradicts a 2019 ICJ ruling recommending return.
+Diego Garcia — 2,000 Chagossians remain barred from their home islands.
+
+Britain shelved sovereignty legislation after Trump blocked the deal, preserving Diego Garcia — a US bomber base 5,300km from Iran.
+
+Mauritius vowed legal and diplomatic action against the decision, which contradicts a 2019 ICJ ruling recommending return.

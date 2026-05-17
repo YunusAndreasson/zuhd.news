@@ -18,4 +18,8 @@ concepts:
   - "Autonomous vehicles"
 ---
 
-Chicago — A delivery robot shattered a Chicago bus stop shelter. Serve Robotics' robot, operating under an Uber Eats partnership, scattered glass across the sidewalk — 3,600 Chicago residents had already signed a petition to ban sidewalk robots before the crash. Chicago must now decide whether to let Serve Robotics keep operating on city sidewalks; the company said it reviewed the incident and cleaned up but has not explained what caused the crash.
+Chicago — A delivery robot shattered a Chicago bus stop shelter.
+
+Serve Robotics' robot, operating under an Uber Eats partnership, scattered glass across the sidewalk — 3,600 Chicago residents had already signed a petition to ban sidewalk robots before the crash.
+
+Chicago must now decide whether to let Serve Robotics keep operating on city sidewalks; the company said it reviewed the incident and cleaned up but has not explained what caused the crash.

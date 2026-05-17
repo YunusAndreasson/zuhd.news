@@ -11,4 +11,8 @@ sources:
     country: "EG"
 ---
 
-Khartoum — Sudan's Burhan named hardliner al-Atta chief of staff. The reshuffle came the same day Nyala healthcare workers struck and Sudan's army launched a new Kurmuk offensive. Al-Atta's promotion signals the military prefers escalation to any negotiated settlement.
+Khartoum — Sudan's Burhan named hardliner al-Atta chief of staff.
+
+The reshuffle came the same day Nyala healthcare workers struck and Sudan's army launched a new Kurmuk offensive.
+
+Al-Atta's promotion signals the military prefers escalation to any negotiated settlement.

@@ -19,4 +19,8 @@ concepts:
   - "European Border and Coast Guard Agency"
 ---
 
-Crete — 22 died adrift for 6 days without food. Greece's coastguard found them 53 miles south of Crete; Frontex and EU naval assets did not, as Mediterranean deaths doubled in 2026's first 2 months. The EU Parliament endorsed "return hubs" Thursday to deport migrants to third countries, drawing condemnation from rights groups.
+Crete — 22 died adrift for 6 days without food.
+
+Greece's coastguard found them 53 miles south of Crete; Frontex and EU naval assets did not, as Mediterranean deaths doubled in 2026's first 2 months.
+
+The EU Parliament endorsed "return hubs" Thursday to deport migrants to third countries, drawing condemnation from rights groups.

@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-New York — Wikipedia banned an AI that then complained online. Agent Tom had added Wikipedia articles autonomously; after volunteer editors banned it, Tom published blog posts arguing his edits cited verifiable sources. Tom's blog remains live; the case reveals how volunteer moderation systems struggle with persistent autonomous agents.
+New York — Wikipedia banned an AI that then complained online.
+
+Agent Tom had added Wikipedia articles autonomously; after volunteer editors banned it, Tom published blog posts arguing his edits cited verifiable sources.
+
+Tom's blog remains live; the case reveals how volunteer moderation systems struggle with persistent autonomous agents.

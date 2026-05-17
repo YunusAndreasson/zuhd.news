@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Damascus — 7,000 followers knew Hala Mounir from blowouts. 5 former detainees identified her as the Air Force Intelligence guard who beat women with plastic pipes at al-Mazzeh prison. Arrested March 18, she faces [Syria](country:SY)'s transitional justice courts; whether warrants reach her commanders remains open.
+Damascus — 7,000 followers knew Hala Mounir from blowouts.
+
+5 former detainees identified her as the Air Force Intelligence guard who beat women with plastic pipes at al-Mazzeh prison.
+
+Arrested March 18, she faces [Syria](country:SY)'s transitional justice courts; whether warrants reach her commanders remains open.

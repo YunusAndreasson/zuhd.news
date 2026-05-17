@@ -15,4 +15,8 @@ concepts:
   - "Artificial intelligence"
 ---
 
-San Francisco — Attackers compromised LiteLLM, a Python router for AI APIs. LiteLLM routes AI API calls for thousands of companies, making the supply chain a backdoor into enterprise AI infrastructure. BerriAI, the company behind LiteLLM, must confirm which package versions were compromised before the thousands of companies using it can safely redeploy.
+San Francisco — Attackers compromised LiteLLM, a Python router for AI APIs.
+
+LiteLLM routes AI API calls for thousands of companies, making the supply chain a backdoor into enterprise AI infrastructure.
+
+BerriAI, the company behind LiteLLM, must confirm which package versions were compromised before the thousands of companies using it can safely redeploy.

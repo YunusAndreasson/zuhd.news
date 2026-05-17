@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — Neutrophils fire first in zebrafish heart regeneration. Single-cell gene-expression sequencing shows what is present, not what just activated; metabolic labeling tracks newly made ribonucleic acid within each cell. Blocking macrophage Toll-like receptor signaling improved early regeneration markers, pointing to a human cardiac-repair target.
+London — Neutrophils fire first in zebrafish heart regeneration.
+
+Single-cell gene-expression sequencing shows what is present, not what just activated; metabolic labeling tracks newly made ribonucleic acid within each cell.
+
+Blocking macrophage Toll-like receptor signaling improved early regeneration markers, pointing to a human cardiac-repair target.

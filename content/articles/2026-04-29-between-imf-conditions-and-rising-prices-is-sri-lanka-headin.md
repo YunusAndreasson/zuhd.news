@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Colombo — [Sri Lanka](country:LK)'s IMF programme may be deepening the crisis it was meant to resolve. Economists argue austerity conditions are driving cost-push inflation rather than the demand-side recovery the IMF assumed, squeezing real wages without stimulating growth. The programme's next review has set no revised growth target.
+Colombo — [Sri Lanka](country:LK)'s IMF programme may be deepening the crisis it was meant to resolve.
+
+Economists argue austerity conditions are driving cost-push inflation rather than the demand-side recovery the IMF assumed, squeezing real wages without stimulating growth.
+
+The programme's next review has set no revised growth target.

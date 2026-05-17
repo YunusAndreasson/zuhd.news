@@ -16,4 +16,8 @@ concepts:
   - "Software transparency"
 ---
 
-San Francisco — Anthropic's coding agent ships with hidden behavioral systems. A leaked NPM map file exposed fake tools, frustration detectors, and an "undercover mode" — none documented to developers using the tool. Anthropic has not confirmed the leak or addressed what the undocumented behaviors do.
+San Francisco — Anthropic's coding agent ships with hidden behavioral systems.
+
+A leaked NPM map file exposed fake tools, frustration detectors, and an "undercover mode" — none documented to developers using the tool.
+
+Anthropic has not confirmed the leak or addressed what the undocumented behaviors do.

@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Syzran — Ukrainian drones struck a Syzran apartment block. [Russia](country:RU)'s Samara governor confirmed 4 people including a child were pulled from a partially collapsed entrance; emergency services remain on scene. The governor said drone attacks on Samara region are continuing; [Ukraine](country:UA) has not commented.
+Syzran — Ukrainian drones struck a Syzran apartment block.
+
+[Russia](country:RU)'s Samara governor confirmed 4 people including a child were pulled from a partially collapsed entrance; emergency services remain on scene.
+
+The governor said drone attacks on Samara region are continuing; [Ukraine](country:UA) has not commented.

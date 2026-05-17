@@ -18,4 +18,8 @@ concepts:
   - "Sustainable development"
 ---
 
-Abuja — Nigeria's Southeast Development Commission launched a $50 million startup fund. The South East Venture Capital Program targets tech startups across the 5 Igbo states, a region historically underserved by federal capital despite strong entrepreneurial output. Selected startups compete for $450,000 in SAFE investments at the May 13 Pitch Competition finals.
+Abuja — Nigeria's Southeast Development Commission launched a $50 million startup fund.
+
+The South East Venture Capital Program targets tech startups across the 5 Igbo states, a region historically underserved by federal capital despite strong entrepreneurial output.
+
+Selected startups compete for $450,000 in SAFE investments at the May 13 Pitch Competition finals.

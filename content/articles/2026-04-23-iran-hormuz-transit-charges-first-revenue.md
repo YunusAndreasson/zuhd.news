@@ -26,4 +26,8 @@ entities:
     kind: "commodity"
 ---
 
-Tehran — [Iran](country:IR) collects first Hormuz toll revenue. Iran's Central Bank received first rial transit payments as Tehran turns the chokepoint — carrying roughly 20% of world oil — into a revenue stream. The [US](country:US) shoot-and-kill order covers the same waterway; Iran says it has seized 2 vessels for navigation violations.
+Tehran — [Iran](country:IR) collects first Hormuz toll revenue.
+
+Iran's Central Bank received first rial transit payments as Tehran turns the chokepoint — carrying roughly 20% of world oil — into a revenue stream.
+
+The [US](country:US) shoot-and-kill order covers the same waterway; Iran says it has seized 2 vessels for navigation violations.

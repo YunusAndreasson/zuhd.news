@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Self-represented federal civil cases rose from 11% to 16.8% between 2022 and 2025, per a preprint covering 4.5 million [US](country:US) court records. AI detection software found AI-drafted content in over 18% of 2026 complaints sampled — up from near zero before 2019. Federal courts have no mechanism to flag hallucinated caselaw before it reaches a judge.
+Self-represented federal civil cases rose from 11% to 16.8% between 2022 and 2025, per a preprint covering 4.5 million [US](country:US) court records.
+
+AI detection software found AI-drafted content in over 18% of 2026 complaints sampled — up from near zero before 2019.
+
+Federal courts have no mechanism to flag hallucinated caselaw before it reaches a judge.

@@ -25,4 +25,8 @@ concepts:
 sentimentDivergence: 0.12
 ---
 
-Austin — Intel joined Musk's $25 billion Terafab chip project. Terafab aims to produce 50x global chip output for orbital AI datacenters, which Gartner called "peak insanity" in February. Intel spent $5.26 billion on Ohio fabs already delayed to 2030, but its Terafab role is undisclosed.
+Austin — Intel joined Musk's $25 billion Terafab chip project.
+
+Terafab aims to produce 50x global chip output for orbital AI datacenters, which Gartner called "peak insanity" in February.
+
+Intel spent $5.26 billion on Ohio fabs already delayed to 2030, but its Terafab role is undisclosed.

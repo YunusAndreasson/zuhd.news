@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-San Mateo — Backblaze silently stopped backing up cloud-synced folders. Users paying for 'unlimited backup' found the gap during restores — the app's exclusion list does not name OneDrive or Dropbox. The full scope of silent exclusions is undisclosed; users must manually audit what Backblaze is actually backing up.
+San Mateo — Backblaze silently stopped backing up cloud-synced folders.
+
+Users paying for 'unlimited backup' found the gap during restores — the app's exclusion list does not name OneDrive or Dropbox.
+
+The full scope of silent exclusions is undisclosed; users must manually audit what Backblaze is actually backing up.

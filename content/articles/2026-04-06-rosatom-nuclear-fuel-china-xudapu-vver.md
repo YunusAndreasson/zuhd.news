@@ -18,4 +18,8 @@ concepts:
   - "China"
 ---
 
-Huludao — Rosatom delivered Xudapu's first reactor fuel load. 4 Russian-designed VVER-1200 reactors are under construction in China, each requiring Russian fuel supply chains that outlast any sanctions regime. Rosatom plans 3 more initial fuel loads for Tianwan and Xudapu units by end of 2026.
+Huludao — Rosatom delivered Xudapu's first reactor fuel load.
+
+4 Russian-designed VVER-1200 reactors are under construction in China, each requiring Russian fuel supply chains that outlast any sanctions regime.
+
+Rosatom plans 3 more initial fuel loads for Tianwan and Xudapu units by end of 2026.

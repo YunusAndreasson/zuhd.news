@@ -16,4 +16,8 @@ concepts:
   - "Amnesty International"
 ---
 
-Jerusalem — Knesset enacted capital punishment targeting Palestinians only. The law applies exclusively to Palestinians convicted of lethal attacks Israel classifies as terrorism, allowing no pardon or commutation. A military tribunal to prosecute October 7 defendants under the new statute is now being established.
+Jerusalem — Knesset enacted capital punishment targeting Palestinians only.
+
+The law applies exclusively to Palestinians convicted of lethal attacks Israel classifies as terrorism, allowing no pardon or commutation.
+
+A military tribunal to prosecute October 7 defendants under the new statute is now being established.

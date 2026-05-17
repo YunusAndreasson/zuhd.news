@@ -20,4 +20,8 @@ entities:
     kind: "commodity"
 ---
 
-New York — Venezuela's oil exports to [China](country:CN) fell 92% after Maduro fell, analysts say. [China](country:CN) opposes the [US](country:US)-Bahraini Hormuz resolution for the same reason: [Iran](country:IR)'s oil would similarly shift to US control. [Russia](country:RU) has echoed Beijing, making a double veto likely when the draft reaches the Security Council.
+New York — Venezuela's oil exports to [China](country:CN) fell 92% after Maduro fell, analysts say.
+
+[China](country:CN) opposes the [US](country:US)-Bahraini Hormuz resolution for the same reason: [Iran](country:IR)'s oil would similarly shift to US control.
+
+[Russia](country:RU) has echoed Beijing, making a double veto likely when the draft reaches the Security Council.

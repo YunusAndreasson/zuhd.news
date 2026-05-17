@@ -18,4 +18,8 @@ concepts:
   - "Greenwashing"
 ---
 
-Tinley Manor — Club Med's KZN resort plans lethal shark nets. KwaZulu-Natal's gillnets kill 49% of non-target animals they catch — including endangered loggerhead turtles and humpback dolphins nesting in the same coastal zone. KZNSB's own non-lethal barrier prototype has existed for a decade without deployment; the resort opens this year.
+Tinley Manor — Club Med's KZN resort plans lethal shark nets.
+
+KwaZulu-Natal's gillnets kill 49% of non-target animals they catch — including endangered loggerhead turtles and humpback dolphins nesting in the same coastal zone.
+
+KZNSB's own non-lethal barrier prototype has existed for a decade without deployment; the resort opens this year.

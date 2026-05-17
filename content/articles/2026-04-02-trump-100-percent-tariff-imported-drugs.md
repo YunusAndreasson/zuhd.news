@@ -16,4 +16,8 @@ concepts:
   - "Donald Trump"
 ---
 
-Washington — 100% tariff on imported patented drugs is imminent. A draft executive order using Section 232 authority would double the cost of brand-name medications and their active ingredients. An announcement is expected Thursday; India and Ireland, which supply most US generic ingredients, face severe losses.
+Washington — 100% tariff on imported patented drugs is imminent.
+
+A draft executive order using Section 232 authority would double the cost of brand-name medications and their active ingredients.
+
+An announcement is expected Thursday; India and Ireland, which supply most US generic ingredients, face severe losses.

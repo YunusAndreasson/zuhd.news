@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-New Delhi — [India](country:IN) is relaxing 2020 curbs on [China](country:CN)-origin investment. The restrictions, imposed after the Galwan border clash, required government approval for all Chinese foreign direct investment. New Delhi will test whether relaxed rules draw Chinese capital away from Southeast Asian manufacturing rivals.
+New Delhi — [India](country:IN) is relaxing 2020 curbs on [China](country:CN)-origin investment.
+
+The restrictions, imposed after the Galwan border clash, required government approval for all Chinese foreign direct investment.
+
+New Delhi will test whether relaxed rules draw Chinese capital away from Southeast Asian manufacturing rivals.

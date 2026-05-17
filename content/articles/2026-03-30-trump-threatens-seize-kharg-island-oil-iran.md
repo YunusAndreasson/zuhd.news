@@ -31,4 +31,8 @@ concepts:
 sentimentDivergence: 0.16
 ---
 
-Tehran — Trump wants Kharg Island, Iran's main oil hub. Kharg handles 90% of Iranian crude exports, and a seizure would require a sustained US ground presence, Trump acknowledged. Iran's parliament threatened to strike US regional allies once American soldiers arrive on Iranian soil.
+Tehran — Trump wants Kharg Island, Iran's main oil hub.
+
+Kharg handles 90% of Iranian crude exports, and a seizure would require a sustained US ground presence, Trump acknowledged.
+
+Iran's parliament threatened to strike US regional allies once American soldiers arrive on Iranian soil.

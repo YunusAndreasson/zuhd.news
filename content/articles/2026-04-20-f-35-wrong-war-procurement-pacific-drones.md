@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Washington — [US](country:US) Pacific wargames repeatedly find F-35s destroyed before combat. Taiwan scenarios show most losses occur on the ground; the F-35's cost and production cap cannot sustain that attrition. A $2 trillion single-platform program leaves no headroom to procure replacement drones.
+Washington — [US](country:US) Pacific wargames repeatedly find F-35s destroyed before combat.
+
+Taiwan scenarios show most losses occur on the ground; the F-35's cost and production cap cannot sustain that attrition.
+
+A $2 trillion single-platform program leaves no headroom to procure replacement drones.

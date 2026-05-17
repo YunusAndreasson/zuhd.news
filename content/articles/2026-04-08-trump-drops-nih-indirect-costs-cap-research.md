@@ -17,4 +17,8 @@ concepts:
   - "University"
 ---
 
-Washington — Trump dropped the NIH overhead cap fight. The DOJ declined to appeal, leaving lower courts' block of the 50%-to-15% cut intact. Hundreds of protected universities wait to see whether Trump targets other research funding.
+Washington — Trump dropped the NIH overhead cap fight.
+
+The DOJ declined to appeal, leaving lower courts' block of the 50%-to-15% cut intact.
+
+Hundreds of protected universities wait to see whether Trump targets other research funding.

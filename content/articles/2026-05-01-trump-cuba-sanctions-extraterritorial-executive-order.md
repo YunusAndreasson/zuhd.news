@@ -32,4 +32,8 @@ sentimentDivergence: 0.62
 entities: []
 ---
 
-Havana — Trump's executive order targets foreign banks globally. It freezes [US](country:US) assets of foreign firms in Cuban energy or finance — a secondary-sanctions approach Cuba called collective punishment. US-Havana talks continue; Cuba has rejected removing President Díaz-Canel as a precondition.
+Havana — Trump's executive order targets foreign banks globally.
+
+It freezes [US](country:US) assets of foreign firms in Cuban energy or finance — a secondary-sanctions approach Cuba called collective punishment.
+
+US-Havana talks continue; Cuba has rejected removing President Díaz-Canel as a precondition.

@@ -18,4 +18,8 @@ concepts:
   - "Ukraine"
 ---
 
-Moscow — Russia jailed a journalist for joining Telegram. Russia's FSB charged a former Radio Free Europe reporter with espionage for monitoring a Ukrainian intelligence Telegram channel. The charge creates a template: any journalist with digital contact abroad faces the same espionage exposure.
+Moscow — Russia jailed a journalist for joining Telegram.
+
+Russia's FSB charged a former Radio Free Europe reporter with espionage for monitoring a Ukrainian intelligence Telegram channel.
+
+The charge creates a template: any journalist with digital contact abroad faces the same espionage exposure.

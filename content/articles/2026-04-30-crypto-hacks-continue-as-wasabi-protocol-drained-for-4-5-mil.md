@@ -20,4 +20,6 @@ concepts:
 entities: []
 ---
 
-San Francisco — Admin key theft cost Wasabi Protocol $4.55M. Wasabi's admin key had no timelock or multisig; once compromised, it allowed instant vault upgrades to drain user funds, Blockaid said. Decentralized finance losses in 2026 passed $770M across 30 incidents, blockchain data show; Wasabi had not issued a statement as of Thursday.
+San Francisco — Admin key theft cost Wasabi Protocol $4.55M. Wasabi's admin key had no timelock or multisig; once compromised, it allowed instant vault upgrades to drain user funds, Blockaid said.
+
+Decentralized finance losses in 2026 passed $770M across 30 incidents, blockchain data show; Wasabi had not issued a statement as of Thursday.

@@ -19,4 +19,8 @@ concepts:
   - "Nuclear negotiations"
 ---
 
-Tehran — Iran rejected Jared Kushner as its nuclear interlocutor. Tehran views Vance as more open to a deal than Kushner or Rubio, even as Trump sent a 15-point ceasefire proposal through Pakistani intermediaries. Witkoff remains Washington's lead envoy — a diplomatic source warned Iran will have to deal with whoever Trump sends.
+Tehran — Iran rejected Jared Kushner as its nuclear interlocutor.
+
+Tehran views Vance as more open to a deal than Kushner or Rubio, even as Trump sent a 15-point ceasefire proposal through Pakistani intermediaries.
+
+Witkoff remains Washington's lead envoy — a diplomatic source warned Iran will have to deal with whoever Trump sends.

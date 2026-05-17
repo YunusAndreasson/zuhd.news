@@ -16,4 +16,8 @@ concepts:
   - "Population genetics"
 ---
 
-Washington — Neanderthal breeding populations sometimes fell below 1,000. New genetic analysis found populations far smaller than assumed — a species surviving 350,000 years near extinction through adaptation, not numbers. The results force a rethink of minimum viable population thresholds used in modern conservation.
+Washington — Neanderthal breeding populations sometimes fell below 1,000.
+
+New genetic analysis found populations far smaller than assumed — a species surviving 350,000 years near extinction through adaptation, not numbers.
+
+The results force a rethink of minimum viable population thresholds used in modern conservation.

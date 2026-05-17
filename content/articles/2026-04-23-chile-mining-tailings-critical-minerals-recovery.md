@@ -17,4 +17,8 @@ concepts:
   - "Tailings"
 ---
 
-Antofagasta — [Chile](country:CL)'s 836 mine-waste dumps hold cobalt, rare earths, and copper. [China](country:CN) dominates global rare earth processing, making Chilean tailings a supply-chain diversification target for [US](country:US) and European governments. Pilots are underway, but researchers warn reprocessing strains scarce Atacama water.
+Antofagasta — [Chile](country:CL)'s 836 mine-waste dumps hold cobalt, rare earths, and copper.
+
+[China](country:CN) dominates global rare earth processing, making Chilean tailings a supply-chain diversification target for [US](country:US) and European governments.
+
+Pilots are underway, but researchers warn reprocessing strains scarce Atacama water.

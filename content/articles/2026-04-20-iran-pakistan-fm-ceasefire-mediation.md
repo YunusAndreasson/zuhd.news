@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Tehran — Iran accused the [US](country:US) of ceasefire violations, port threats, and contradictory demands. Foreign Minister Araghchi made the accusations while thanking [Pakistan](country:PK) for mediating. Pakistan's PM Sharif is consulting [Saudi Arabia](country:SA), Qatar, and [Turkey](country:TR) to build consensus for a settlement.
+Tehran — Iran accused the [US](country:US) of ceasefire violations, port threats, and contradictory demands.
+
+Foreign Minister Araghchi made the accusations while thanking [Pakistan](country:PK) for mediating.
+
+Pakistan's PM Sharif is consulting [Saudi Arabia](country:SA), Qatar, and [Turkey](country:TR) to build consensus for a settlement.

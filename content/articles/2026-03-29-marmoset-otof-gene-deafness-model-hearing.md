@@ -18,4 +18,8 @@ concepts:
   - "CRISPR"
 ---
 
-Göttingen — Gene-edited marmosets are deaf in every cell. Prior CRISPR primate edits produced mosaics — mixed edited and unedited cells — corrupting results; this knockout silences otoferlin, the cochlear transmitter, uniformly. OTOF gene therapy is in pediatric trials; this primate model lets researchers optimize dosing before scaling.
+Göttingen — Gene-edited marmosets are deaf in every cell.
+
+Prior CRISPR primate edits produced mosaics — mixed edited and unedited cells — corrupting results; this knockout silences otoferlin, the cochlear transmitter, uniformly.
+
+OTOF gene therapy is in pediatric trials; this primate model lets researchers optimize dosing before scaling.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Hangzhou — Nature retracted a 51-study meta-analysis praising ChatGPT. Hangzhou Normal University researchers pooled the studies to argue ChatGPT improved student learning and higher-order thinking. No replacement exists; AI education programs citing this paper now lack peer-reviewed backing.
+Hangzhou — Nature retracted a 51-study meta-analysis praising ChatGPT.
+
+Hangzhou Normal University researchers pooled the studies to argue ChatGPT improved student learning and higher-order thinking.
+
+No replacement exists; AI education programs citing this paper now lack peer-reviewed backing.

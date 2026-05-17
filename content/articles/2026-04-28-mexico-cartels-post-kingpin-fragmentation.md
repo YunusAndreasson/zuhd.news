@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Mexico City — Jalisco Cartel's Nayarit chief was captured. [Mexico](country:MX)'s 20-year kingpin strategy fragmented cartels into leaderless cells, leaving [US](country:US) extraditions and designations with no boss to target. Violence multiplied as cartels splintered; El Chapo's brother also escaped that week.
+Mexico City — Jalisco Cartel's Nayarit chief was captured.
+
+[Mexico](country:MX)'s 20-year kingpin strategy fragmented cartels into leaderless cells, leaving [US](country:US) extraditions and designations with no boss to target.
+
+Violence multiplied as cartels splintered; El Chapo's brother also escaped that week.

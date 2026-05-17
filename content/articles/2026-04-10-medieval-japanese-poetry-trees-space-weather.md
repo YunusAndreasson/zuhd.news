@@ -17,4 +17,8 @@ concepts:
   - "Space Weather"
 ---
 
-Kyoto — Ancient Japanese poems now map solar storm history. Researchers cross-referenced medieval aurora poems with radiocarbon spikes in buried trees to build a timeline of extreme solar events going back millennia. A repeat Carrington-scale storm would knock out satellites and power grids; researchers now have the first frequency estimates.
+Kyoto — Ancient Japanese poems now map solar storm history.
+
+Researchers cross-referenced medieval aurora poems with radiocarbon spikes in buried trees to build a timeline of extreme solar events going back millennia.
+
+A repeat Carrington-scale storm would knock out satellites and power grids; researchers now have the first frequency estimates.

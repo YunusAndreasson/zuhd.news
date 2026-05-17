@@ -26,4 +26,8 @@ entities:
     kind: "stock"
 ---
 
-New York — Strategy's preferred stock dip halts bitcoin purchases. When the preferred stock falls below $100 par — averaging $0.45 per ex-date — Strategy cannot use its share-issuance program to buy bitcoin. Shareholders vote June 8; approval would make it the only semi-monthly preferred among 953 listed alternatives.
+New York — Strategy's preferred stock dip halts bitcoin purchases.
+
+When the preferred stock falls below $100 par — averaging $0.45 per ex-date — Strategy cannot use its share-issuance program to buy bitcoin.
+
+Shareholders vote June 8; approval would make it the only semi-monthly preferred among 953 listed alternatives.

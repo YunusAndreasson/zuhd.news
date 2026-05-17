@@ -21,4 +21,8 @@ entities:
     kind: "commodity"
 ---
 
-Astana — [Russia](country:RU) suspended Druzhba pipeline oil flows to [Germany](country:DE). [Kazakhstan](country:KZ) rerouted 260,000 tons via the Caspian Pipeline Consortium, transit data show, after Russia cited "technical constraints" on May 1. Kazakhstan says domestic fuel prices are unaffected; whether Germany finds alternative supply is unresolved.
+Astana — [Russia](country:RU) suspended Druzhba pipeline oil flows to [Germany](country:DE).
+
+[Kazakhstan](country:KZ) rerouted 260,000 tons via the Caspian Pipeline Consortium, transit data show, after Russia cited "technical constraints" on May 1.
+
+Kazakhstan says domestic fuel prices are unaffected; whether Germany finds alternative supply is unresolved.

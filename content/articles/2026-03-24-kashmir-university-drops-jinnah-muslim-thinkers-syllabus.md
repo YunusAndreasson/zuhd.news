@@ -18,4 +18,8 @@ concepts:
   - "University of Jammu"
 ---
 
-Jammu — Jammu University removed Muhammad Ali Jinnah from its political science syllabus. The BJP's student wing, Akhil Bharatiya Vidyarthi Parishad, protested including Jinnah alongside Allama Iqbal and Muslim reformer Syed Ahmad Khan — all named in the same complaint. The Board of Studies meets Tuesday to confirm the change; the political science department chair has called the removal an "unnecessary controversy," but the decision stands unless overturned.
+Jammu — Jammu University removed Muhammad Ali Jinnah from its political science syllabus.
+
+The BJP's student wing, Akhil Bharatiya Vidyarthi Parishad, protested including Jinnah alongside Allama Iqbal and Muslim reformer Syed Ahmad Khan — all named in the same complaint.
+
+The Board of Studies meets Tuesday to confirm the change; the political science department chair has called the removal an "unnecessary controversy," but the decision stands unless overturned.

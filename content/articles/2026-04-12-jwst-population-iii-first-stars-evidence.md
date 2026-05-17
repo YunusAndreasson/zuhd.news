@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Baltimore — JWST detected the universe's first generation of stars. Population III stars are pure hydrogen-helium with no metals; they existed only in theory until JWST's infrared sensors detected their spectral signature. Peer review determines if the signal is definitive; confirmation would establish when the universe's first stars ignited.
+Baltimore — JWST detected the universe's first generation of stars.
+
+Population III stars are pure hydrogen-helium with no metals; they existed only in theory until JWST's infrared sensors detected their spectral signature.
+
+Peer review determines if the signal is definitive; confirmation would establish when the universe's first stars ignited.

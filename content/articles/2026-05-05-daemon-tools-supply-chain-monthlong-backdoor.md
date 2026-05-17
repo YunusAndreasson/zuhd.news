@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Moscow — Daemon Tools updates were backdoored for 27 days. Kaspersky found signed installers collecting system data from thousands of machines in 100+ countries. Affected versions span April 8 to May 5; Kaspersky urged scanning all machines updated in that window.
+Moscow — Daemon Tools updates were backdoored for 27 days.
+
+Kaspersky found signed installers collecting system data from thousands of machines in 100+ countries.
+
+Affected versions span April 8 to May 5; Kaspersky urged scanning all machines updated in that window.

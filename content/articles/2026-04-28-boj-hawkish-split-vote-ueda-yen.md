@@ -29,4 +29,8 @@ entities:
     kind: "currency"
 ---
 
-Tokyo — 3 [Japan](country:JP) central bankers voted to raise rates. The Bank of Japan held at 0.75%, citing Middle East uncertainty; yen carry trades hinge on the gap with [US](country:US) rates. Swaps price 68% odds of a June hike; the yen at 159 is near Japan's last intervention floor.
+Tokyo — 3 [Japan](country:JP) central bankers voted to raise rates.
+
+The Bank of Japan held at 0.75%, citing Middle East uncertainty; yen carry trades hinge on the gap with [US](country:US) rates.
+
+Swaps price 68% odds of a June hike; the yen at 159 is near Japan's last intervention floor.

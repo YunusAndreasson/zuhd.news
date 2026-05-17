@@ -18,4 +18,8 @@ concepts:
   - "VPN"
 ---
 
-Redmond — WireGuard unblocked: Windows version ships after signing dispute. Microsoft's mandatory kernel driver signing gave it a veto over WireGuard updates — the VPN used by millions as a secure tunneling backbone. Microsoft's signing requirement remains unchanged; any future dispute could block WireGuard updates again.
+Redmond — WireGuard unblocked: Windows version ships after signing dispute.
+
+Microsoft's mandatory kernel driver signing gave it a veto over WireGuard updates — the VPN used by millions as a secure tunneling backbone.
+
+Microsoft's signing requirement remains unchanged; any future dispute could block WireGuard updates again.

@@ -17,4 +17,8 @@ concepts:
   - "Epidemiology"
 ---
 
-Miami — Never-married adults face 70-85% higher cancer risk. A 4-million-person study across 12 US states found the gap spans nearly every major cancer type, particularly preventable ones. Researchers now urge updating cancer screening criteria to include marital status.
+Miami — Never-married adults face 70-85% higher cancer risk.
+
+A 4-million-person study across 12 US states found the gap spans nearly every major cancer type, particularly preventable ones.
+
+Researchers now urge updating cancer screening criteria to include marital status.

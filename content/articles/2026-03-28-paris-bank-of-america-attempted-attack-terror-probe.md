@@ -26,4 +26,8 @@ concepts:
 sentimentDivergence: 0.27
 ---
 
-Paris — A teenager targeted Bank of America in Paris. An Iran-linked Telegram channel had designated the Paris branch a target days earlier; the 17-year-old suspect was recruited via Snapchat for €600. A second suspect remains at large; France has heightened security around US interests since the Iran war began.
+Paris — A teenager targeted Bank of America in Paris.
+
+An Iran-linked Telegram channel had designated the Paris branch a target days earlier; the 17-year-old suspect was recruited via Snapchat for €600.
+
+A second suspect remains at large; France has heightened security around US interests since the Iran war began.

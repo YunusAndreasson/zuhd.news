@@ -30,4 +30,6 @@ sentimentDivergence: 0.28
 entities: []
 ---
 
-Washington — $25 billion: the [Iran](country:IR) war's first official price tag, Pentagon comptroller figures show. Hegseth refused a timeline or end-state 60 days into an unauthorized conflict, calling congressional critics "reckless, feckless and defeatist." Friday is the War Powers deadline; [US](country:US) Republicans have signaled they will skip an authorization vote.
+Washington — $25 billion: the [Iran](country:IR) war's first official price tag, Pentagon comptroller figures show.
+
+Hegseth refused a timeline or end-state 60 days into an unauthorized conflict, calling congressional critics "reckless, feckless and defeatist." Friday is the War Powers deadline; [US](country:US) Republicans have signaled they will skip an authorization vote.

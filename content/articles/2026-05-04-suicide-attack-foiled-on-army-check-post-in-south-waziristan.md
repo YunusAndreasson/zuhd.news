@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Wana — [Pakistan](country:PK) Army intercepted an explosives-laden coach at Azam Warsak. The blast killed 1 civilian and damaged a seminary, a petrol pump, and nearby homes; soldiers were the intended targets. Security forces launched a search operation; attacks rose 34% in 2025, the Pakistan Institute for Peace Studies said.
+Wana — [Pakistan](country:PK) Army intercepted an explosives-laden coach at Azam Warsak.
+
+The blast killed 1 civilian and damaged a seminary, a petrol pump, and nearby homes; soldiers were the intended targets.
+
+Security forces launched a search operation; attacks rose 34% in 2025, the Pakistan Institute for Peace Studies said.

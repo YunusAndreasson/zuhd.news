@@ -16,4 +16,8 @@ concepts:
   - "Middle East"
 ---
 
-Jerusalem — AI has made war footage impossible to trust. Researchers call it the "liar's dividend": manufactured doubt makes real footage as suspect as the fakes, undermining any evidentiary standard. Meta ended US fact-checking last year; its Oversight Board warned the "community notes" replacement is inadequate for conflict zones.
+Jerusalem — AI has made war footage impossible to trust.
+
+Researchers call it the "liar's dividend": manufactured doubt makes real footage as suspect as the fakes, undermining any evidentiary standard.
+
+Meta ended US fact-checking last year; its Oversight Board warned the "community notes" replacement is inadequate for conflict zones.

@@ -17,4 +17,8 @@ concepts:
   - "Drug resistance mechanism"
 ---
 
-London — Antibiotic-resistant bacteria shield sensitive neighbors by degrading drugs. Disabling the degradation stops both individual resistance and the cross-protection it provides — restoring drug sensitivity across the bacterial community. The mechanism operates in cystic fibrosis lung bacteria; whether blocking it works in patients remains untested.
+London — Antibiotic-resistant bacteria shield sensitive neighbors by degrading drugs.
+
+Disabling the degradation stops both individual resistance and the cross-protection it provides — restoring drug sensitivity across the bacterial community.
+
+The mechanism operates in cystic fibrosis lung bacteria; whether blocking it works in patients remains untested.

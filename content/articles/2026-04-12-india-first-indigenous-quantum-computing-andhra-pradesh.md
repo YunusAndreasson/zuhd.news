@@ -23,4 +23,8 @@ eventCoverage: 39
 sentimentDivergence: 0.37
 ---
 
-Amaravati — India launches its first indigenous quantum computers. Amaravati 1S and 1Q run at near-absolute-zero without IBM or Google components, giving India a hardware certification capability it previously lacked. The facility opens April 14; quantum startups renting IBM or Google cloud hardware now have a domestic alternative.
+Amaravati — India launches its first indigenous quantum computers.
+
+Amaravati 1S and 1Q run at near-absolute-zero without IBM or Google components, giving India a hardware certification capability it previously lacked.
+
+The facility opens April 14; quantum startups renting IBM or Google cloud hardware now have a domestic alternative.

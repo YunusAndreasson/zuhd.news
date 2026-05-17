@@ -30,4 +30,8 @@ concepts:
 entities: []
 ---
 
-Brussels — The UN counts 540 West Bank settler attacks this year. EU ministers froze 3 [Israeli](country:IL) settler leaders' assets, overruling Hungary; 11 Palestinians died in those attacks. A French-Swedish settlement-product boycott lacks the 65% member majority needed to advance.
+Brussels — The UN counts 540 West Bank settler attacks this year.
+
+EU ministers froze 3 [Israeli](country:IL) settler leaders' assets, overruling Hungary; 11 Palestinians died in those attacks.
+
+A French-Swedish settlement-product boycott lacks the 65% member majority needed to advance.

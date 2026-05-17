@@ -11,4 +11,8 @@ sources:
     country: "LB"
 ---
 
-Beirut — A Lebanese journalist's account fell in 30 seconds. SMEX attributed the attack to BITTER, a South Asia espionage group that also hit Egyptian civil society with identical infrastructure. BITTER's state sponsor is unconfirmed, but the Lebanon–Egypt campaign marks a documented shift into Arab civil society.
+Beirut — A Lebanese journalist's account fell in 30 seconds.
+
+SMEX attributed the attack to BITTER, a South Asia espionage group that also hit Egyptian civil society with identical infrastructure.
+
+BITTER's state sponsor is unconfirmed, but the Lebanon–Egypt campaign marks a documented shift into Arab civil society.

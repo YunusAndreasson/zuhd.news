@@ -16,4 +16,8 @@ concepts:
   - "Donald Trump"
 ---
 
-Washington — Trump imposed 100% tariffs on imported brand-name drugs. The US imports over $200B in pharmaceuticals annually; transplant, cancer, and autoimmune patients cannot substitute with generics. Congress has not moved to block the order; patients face doubled prices at their next prescription refill.
+Washington — Trump imposed 100% tariffs on imported brand-name drugs.
+
+The US imports over $200B in pharmaceuticals annually; transplant, cancer, and autoimmune patients cannot substitute with generics.
+
+Congress has not moved to block the order; patients face doubled prices at their next prescription refill.

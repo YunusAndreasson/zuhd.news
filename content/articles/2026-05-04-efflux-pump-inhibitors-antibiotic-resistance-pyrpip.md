@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-London — Resistant E. coli susceptible again at sub-toxic doses. Cryo-EM-guided design pinpointed two AcrB binding sites, achieving 10-fold potency over prior inhibitors at concentrations below antibacterial toxicity. The adjuvant approach bypasses the development pipeline new antibiotics require; clinical trials have not been announced.
+London — Resistant E. coli susceptible again at sub-toxic doses.
+
+Cryo-EM-guided design pinpointed two AcrB binding sites, achieving 10-fold potency over prior inhibitors at concentrations below antibacterial toxicity.
+
+The adjuvant approach bypasses the development pipeline new antibiotics require; clinical trials have not been announced.

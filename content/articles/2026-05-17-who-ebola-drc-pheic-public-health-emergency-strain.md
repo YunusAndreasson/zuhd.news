@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Kinshasa — 90 Ebola deaths triggered WHO's highest alert. [DR Congo](country:CD)'s health minister confirmed no vaccine or treatment exists for the current strain; WHO issued a Public Health Emergency of International Concern. The designation unlocks cross-border response funding; the strain's "very high" case fatality rate remains unquantified.
+Kinshasa — 90 Ebola deaths triggered WHO's highest alert.
+
+[DR Congo](country:CD)'s health minister confirmed no vaccine or treatment exists for the current strain; WHO issued a Public Health Emergency of International Concern.
+
+The designation unlocks cross-border response funding; the strain's "very high" case fatality rate remains unquantified.

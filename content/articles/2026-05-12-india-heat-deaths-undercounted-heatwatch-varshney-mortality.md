@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Akola — [India](country:IN)'s clinicians still debate whether heat can kill. Indian death certificates name comorbidities, not heat, as cause; researchers say India has the world's highest heat-mortality burden but no surveillance baseline. HeatWatch tracks cases from informal workers; no national framework mandates heat as a reportable cause of death.
+Akola — [India](country:IN)'s clinicians still debate whether heat can kill.
+
+Indian death certificates name comorbidities, not heat, as cause; researchers say India has the world's highest heat-mortality burden but no surveillance baseline.
+
+HeatWatch tracks cases from informal workers; no national framework mandates heat as a reportable cause of death.

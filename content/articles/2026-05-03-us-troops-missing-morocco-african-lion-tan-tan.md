@@ -31,4 +31,8 @@ sentimentDivergence: 0.26
 entities: []
 ---
 
-Tan Tan — 2 [US](country:US) service members vanished Saturday near a cliff in [Morocco](country:MA)'s Cap Draa training area. US Africa Command and Moroccan forces launched ground, air and maritime searches; the command has not disclosed which branch they serve. African Lion, the largest annual US exercise in Africa, runs through May 8.
+Tan Tan — 2 [US](country:US) service members vanished Saturday near a cliff in [Morocco](country:MA)'s Cap Draa training area.
+
+US Africa Command and Moroccan forces launched ground, air and maritime searches; the command has not disclosed which branch they serve.
+
+African Lion, the largest annual US exercise in Africa, runs through May 8.

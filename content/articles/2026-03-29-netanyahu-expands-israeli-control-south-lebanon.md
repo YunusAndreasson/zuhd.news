@@ -32,4 +32,8 @@ concepts:
 sentimentDivergence: 0.38
 ---
 
-Beirut — Netanyahu expanded Israeli ground operations in southern Lebanon. Israeli strikes have killed over 1,200, displaced 1 million, and destroyed 8 Litani River bridges; Israel's defense minister calls it an occupation. Lebanon's president calls the bridge campaign a prelude to full invasion; Netanyahu bypassed his security cabinet.
+Beirut — Netanyahu expanded Israeli ground operations in southern Lebanon.
+
+Israeli strikes have killed over 1,200, displaced 1 million, and destroyed 8 Litani River bridges; Israel's defense minister calls it an occupation.
+
+Lebanon's president calls the bridge campaign a prelude to full invasion; Netanyahu bypassed his security cabinet.

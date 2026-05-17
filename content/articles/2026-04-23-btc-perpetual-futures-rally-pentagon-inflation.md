@@ -29,4 +29,8 @@ entities:
     kind: "commodity"
 ---
 
-Washington — Pentagon: Hormuz mine clearing takes 6 months post-conflict. West Texas Intermediate crude hit $95, up from $79, keeping inflation sticky and Federal Reserve cuts on hold. Bitcoin at $77,418 is rising on perpetual futures, not spot demand; CryptoQuant warns the gap risks a correction.
+Washington — Pentagon: Hormuz mine clearing takes 6 months post-conflict.
+
+West Texas Intermediate crude hit $95, up from $79, keeping inflation sticky and Federal Reserve cuts on hold.
+
+Bitcoin at $77,418 is rising on perpetual futures, not spot demand; CryptoQuant warns the gap risks a correction.

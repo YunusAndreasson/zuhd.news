@@ -13,4 +13,8 @@ eventCoverage: null
 concepts: []
 ---
 
-Tehran — Iran called US President Trump's talks oil market fraud. Trump threatened Iran's energy infrastructure Saturday, then claimed productive talks Monday — a pattern Tehran says creates false price signals without real diplomacy. Iran is now formalizing a nuclear enrichment doctrine that rules out any deal without simultaneous ceasefire on 3 fronts.
+Tehran — Iran called US President Trump's talks oil market fraud.
+
+Trump threatened Iran's energy infrastructure Saturday, then claimed productive talks Monday — a pattern Tehran says creates false price signals without real diplomacy.
+
+Iran is now formalizing a nuclear enrichment doctrine that rules out any deal without simultaneous ceasefire on 3 fronts.

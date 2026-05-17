@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — Eprodisate blocked the liquid droplets that seed Parkinson's. The kidney-disease drug targets alpha-synuclein condensates before they harden into Lewy-body fibrils. The study found eprodisate reduced oxidative stress and increased cell survival in cell models; no human trials have been announced.
+London — Eprodisate blocked the liquid droplets that seed Parkinson's.
+
+The kidney-disease drug targets alpha-synuclein condensates before they harden into Lewy-body fibrils.
+
+The study found eprodisate reduced oxidative stress and increased cell survival in cell models; no human trials have been announced.

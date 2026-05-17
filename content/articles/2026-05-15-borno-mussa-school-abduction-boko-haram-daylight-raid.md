@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Mussa — Suspected Boko Haram fighters raided a school in Mussa village during class hours Friday, abducting an unknown number of pupils. Borno State's deputy speaker confirmed the raid but would not state how many were taken. [Nigeria](country:NG)'s military and police issued no statement by nightfall.
+Mussa — Suspected Boko Haram fighters raided a school in Mussa village during class hours Friday, abducting an unknown number of pupils.
+
+Borno State's deputy speaker confirmed the raid but would not state how many were taken.
+
+[Nigeria](country:NG)'s military and police issued no statement by nightfall.

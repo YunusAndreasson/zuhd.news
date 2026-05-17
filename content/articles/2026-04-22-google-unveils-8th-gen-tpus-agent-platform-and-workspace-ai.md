@@ -30,4 +30,8 @@ concepts:
 entities: []
 ---
 
-Mountain View — Google launched cross-app AI memory for Workspace. Workspace Intelligence creates a unified graph across Gmail, Docs, Drive, Meet, and Chat, enabling agents to act across all apps simultaneously. Google also ships 8th-gen Tensor Processing Units at 1-million-chip scale, targeting enterprise Microsoft 365 accounts with migration tools.
+Mountain View — Google launched cross-app AI memory for Workspace.
+
+Workspace Intelligence creates a unified graph across Gmail, Docs, Drive, Meet, and Chat, enabling agents to act across all apps simultaneously.
+
+Google also ships 8th-gen Tensor Processing Units at 1-million-chip scale, targeting enterprise Microsoft 365 accounts with migration tools.

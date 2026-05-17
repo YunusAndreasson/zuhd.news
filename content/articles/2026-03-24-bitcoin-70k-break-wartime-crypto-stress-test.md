@@ -16,4 +16,8 @@ concepts:
   - "Solana (blockchain platform)"
 ---
 
-New York — Circle fell 16 percent on a yield ban draft. The Clarity Act would ban yields on stablecoin balances, eliminating USDC's main advantage over bank accounts. The Senate vote will determine whether stablecoin issuers can build a viable business on transaction fees alone.
+New York — Circle fell 16 percent on a yield ban draft.
+
+The Clarity Act would ban yields on stablecoin balances, eliminating USDC's main advantage over bank accounts.
+
+The Senate vote will determine whether stablecoin issuers can build a viable business on transaction fees alone.

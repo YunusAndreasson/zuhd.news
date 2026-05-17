@@ -17,4 +17,8 @@ concepts:
   - "Sex Ratio at Birth"
 ---
 
-Africa — Elevated temperatures in early pregnancy are selectively killing male fetuses across Africa, shifting sex ratios at birth in the regions most exposed to heat stress. Male embryos are more vulnerable than female ones to thermal stress during the first trimester, when the placenta is still forming. Clinical guidance on protecting pregnancies from heat stress does not yet exist; researchers are calling for Africa-specific adaptation frameworks before the demographic effect compounds.
+Africa — Elevated temperatures in early pregnancy are selectively killing male fetuses across Africa, shifting sex ratios at birth in the regions most exposed to heat stress.
+
+Male embryos are more vulnerable than female ones to thermal stress during the first trimester, when the placenta is still forming.
+
+Clinical guidance on protecting pregnancies from heat stress does not yet exist; researchers are calling for Africa-specific adaptation frameworks before the demographic effect compounds.

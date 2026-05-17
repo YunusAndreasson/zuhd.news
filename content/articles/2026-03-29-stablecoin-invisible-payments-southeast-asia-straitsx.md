@@ -18,4 +18,8 @@ concepts:
   - "Singapore"
 ---
 
-Singapore — Bangkok tourists pay with Singapore stablecoins unknowingly. StraitsX runs the invisible layer: XSGD on Solana settles cross-border payments while users see only familiar e-wallets and QR codes. Its 40x card volume growth signals crypto crossing into everyday commerce before regulators catch up.
+Singapore — Bangkok tourists pay with Singapore stablecoins unknowingly.
+
+StraitsX runs the invisible layer: XSGD on Solana settles cross-border payments while users see only familiar e-wallets and QR codes.
+
+Its 40x card volume growth signals crypto crossing into everyday commerce before regulators catch up.

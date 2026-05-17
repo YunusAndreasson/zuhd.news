@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Manila — Philippine President Marcos reopened South China Sea oil exploration talks. Manila insists the Philippine constitution governs any joint arrangement — keeping sovereignty claims intact while accessing disputed seabed reserves. Beijing claims the entire disputed zone; it is unclear what sovereignty terms China will accept.
+Manila — Philippine President Marcos reopened South China Sea oil exploration talks.
+
+Manila insists the Philippine constitution governs any joint arrangement — keeping sovereignty claims intact while accessing disputed seabed reserves.
+
+Beijing claims the entire disputed zone; it is unclear what sovereignty terms China will accept.

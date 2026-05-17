@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-San Francisco — 35% of new websites are AI-generated. A Stanford-led study found the share rose from zero in late 2022, with AI text trending more positive and stylistically uniform. Search and AI training datasets now absorb this synthetic content, the study warned, degrading semantic diversity and factual accuracy.
+San Francisco — 35% of new websites are AI-generated.
+
+A Stanford-led study found the share rose from zero in late 2022, with AI text trending more positive and stylistically uniform.
+
+Search and AI training datasets now absorb this synthetic content, the study warned, degrading semantic diversity and factual accuracy.

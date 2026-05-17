@@ -18,4 +18,8 @@ concepts:
   - "Abuja"
 ---
 
-Abuja — Nigeria convicted 386 people in 4 days. The court processed 508 terrorism defendants — 96 per day — securing 386 convictions, 8 discharges, and 2 acquittals. The AGF called it transparent; 112 cases adjourned for a second phase, with no independent review announced.
+Abuja — Nigeria convicted 386 people in 4 days.
+
+The court processed 508 terrorism defendants — 96 per day — securing 386 convictions, 8 discharges, and 2 acquittals.
+
+The AGF called it transparent; 112 cases adjourned for a second phase, with no independent review announced.

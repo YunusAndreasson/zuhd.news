@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-San Francisco — GitHub launches native stacked pull requests. Developers can now chain large changes into a reviewable sequence that merges together, replacing third-party tools like Graphite. Pricing and enterprise availability have not been disclosed.
+San Francisco — GitHub launches native stacked pull requests.
+
+Developers can now chain large changes into a reviewable sequence that merges together, replacing third-party tools like Graphite.
+
+Pricing and enterprise availability have not been disclosed.

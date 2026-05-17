@@ -17,4 +17,8 @@ concepts:
   - "United Arab Emirates"
 ---
 
-Dubai — 70 Britons jailed for drone photos. Passively receiving an image triggers arrest under UAE law carrying up to 10 years; residents now inform on contacts to avoid liability. Half of Dubai's 240,000 British residents have left; the rest navigate enforcement by neighborhood informants.
+Dubai — 70 Britons jailed for drone photos.
+
+Passively receiving an image triggers arrest under UAE law carrying up to 10 years; residents now inform on contacts to avoid liability.
+
+Half of Dubai's 240,000 British residents have left; the rest navigate enforcement by neighborhood informants.

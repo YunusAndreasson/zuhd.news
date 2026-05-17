@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Beirut — Israel pushed ground forces north of Lebanon's Litani River. Washington talks will extend the ceasefire while [Israel](country:IL) continues striking south [Lebanon](country:LB) — the political and security tracks deliberately uncoupled, a diplomat said. Hezbollah rejects talks while strikes continue; President Aoun demands a security halt first.
+Beirut — Israel pushed ground forces north of Lebanon's Litani River.
+
+Washington talks will extend the ceasefire while [Israel](country:IL) continues striking south [Lebanon](country:LB) — the political and security tracks deliberately uncoupled, a diplomat said.
+
+Hezbollah rejects talks while strikes continue; President Aoun demands a security halt first.

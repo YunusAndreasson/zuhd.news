@@ -18,4 +18,8 @@ concepts:
   - "Endangered Species"
 ---
 
-Jakarta — 9 Facebook groups sell protected Indonesian wildlife. Bellingcat traced all 9 groups — combined 70,000 members — to 1 Jakarta broker; species include silvery gibbons with under 2,500 wild individuals. Three groups have been live for 5+ years; Meta has not responded to the investigation, conducted with Mongabay.
+Jakarta — 9 Facebook groups sell protected Indonesian wildlife.
+
+Bellingcat traced all 9 groups — combined 70,000 members — to 1 Jakarta broker; species include silvery gibbons with under 2,500 wild individuals.
+
+Three groups have been live for 5+ years; Meta has not responded to the investigation, conducted with Mongabay.

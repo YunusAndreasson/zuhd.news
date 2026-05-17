@@ -17,4 +17,8 @@ concepts:
   - "Derivative (finance)"
 ---
 
-New York — MSBT debuts: Morgan Stanley's first direct Bitcoin product. Managing $1.9T in assets and holding $9.3T in client wealth, Morgan Stanley undercuts BlackRock's iShares Bitcoin Trust at 0.14% vs. 0.25%. E*Trade will add direct Bitcoin, Ethereum, and Solana trading in H1 2026, deepening Morgan Stanley's retail crypto push.
+New York — MSBT debuts: Morgan Stanley's first direct Bitcoin product.
+
+Managing $1.9T in assets and holding $9.3T in client wealth, Morgan Stanley undercuts BlackRock's iShares Bitcoin Trust at 0.14% vs. 0.25%.
+
+E*Trade will add direct Bitcoin, Ethereum, and Solana trading in H1 2026, deepening Morgan Stanley's retail crypto push.

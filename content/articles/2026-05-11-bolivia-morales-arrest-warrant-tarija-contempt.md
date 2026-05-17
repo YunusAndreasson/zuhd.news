@@ -38,4 +38,8 @@ concepts:
 entities: []
 ---
 
-Tarija — A court declared Evo Morales a fugitive after he skipped trial on minor-trafficking charges. Hundreds of coca growers in Chapare shield him — supporters blocked roads for 24 days to repel a prior arrest attempt. The trial stays suspended until he appears; [Bolivia](country:BO) separately seeks US drug-trafficking evidence against him.
+Tarija — A court declared Evo Morales a fugitive after he skipped trial on minor-trafficking charges.
+
+Hundreds of coca growers in Chapare shield him — supporters blocked roads for 24 days to repel a prior arrest attempt.
+
+The trial stays suspended until he appears; [Bolivia](country:BO) separately seeks US drug-trafficking evidence against him.

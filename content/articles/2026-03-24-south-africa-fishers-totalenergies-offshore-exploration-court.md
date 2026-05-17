@@ -17,4 +17,8 @@ concepts:
   - "South Africa"
 ---
 
-Cape Town — Port Nolloth fishers sued TotalEnergies over blowout risk. Aukotowa Fisheries argues the DMRE's assessment dismissed blowout risk without justification, ignoring a community where 27.1% unemployment makes fishing irreplaceable. The court reserved judgment on whether climate impacts of future production must be assessed at the exploration stage.
+Cape Town — Port Nolloth fishers sued TotalEnergies over blowout risk.
+
+Aukotowa Fisheries argues the DMRE's assessment dismissed blowout risk without justification, ignoring a community where 27.1% unemployment makes fishing irreplaceable.
+
+The court reserved judgment on whether climate impacts of future production must be assessed at the exploration stage.

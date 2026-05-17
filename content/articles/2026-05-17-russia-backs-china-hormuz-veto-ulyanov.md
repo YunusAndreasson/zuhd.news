@@ -23,4 +23,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Tehran — [Russia](country:RU)'s Vienna envoy Ulyanov confirmed Moscow shares [China](country:CN)'s Hormuz veto position. Both powers vetoed an earlier Security Council draft last month; the new [US](country:US)-Bahraini resolution faces a likely double veto. [Iran](country:IR) closed the strait after February 28 US-Israeli strikes; Tehran said Trump's blockade violated the ceasefire [Pakistan](country:PK) brokered April 8.
+Tehran — [Russia](country:RU)'s Vienna envoy Ulyanov confirmed Moscow shares [China](country:CN)'s Hormuz veto position.
+
+Both powers vetoed an earlier Security Council draft last month; the new [US](country:US)-Bahraini resolution faces a likely double veto.
+
+[Iran](country:IR) closed the strait after February 28 US-Israeli strikes; Tehran said Trump's blockade violated the ceasefire [Pakistan](country:PK) brokered April 8.

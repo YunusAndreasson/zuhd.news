@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Tari — [Papua New Guinea](country:PG)'s National Court is using human-rights provisions to enjoin clan violence in Hela before it starts. The approach treats preemptive injunctions as justiciable under existing law, requiring no new legislation. Papua New Guinea's Supreme Court must uphold the jurisdiction or the model collapses.
+Tari — [Papua New Guinea](country:PG)'s National Court is using human-rights provisions to enjoin clan violence in Hela before it starts.
+
+The approach treats preemptive injunctions as justiciable under existing law, requiring no new legislation.
+
+Papua New Guinea's Supreme Court must uphold the jurisdiction or the model collapses.

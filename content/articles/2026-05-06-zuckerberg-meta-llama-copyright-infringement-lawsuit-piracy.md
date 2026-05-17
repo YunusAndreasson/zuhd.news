@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-New York — Meta stripped metadata from pirated books, publishers allege. 5 publishers including Hachette and Elsevier claim Zuckerberg personally cleared the plan to torrent millions of books and forgo licensing. A 2025 case found fair use; the documented CEO instruction to skip licensing is the new suit's distinguishing claim.
+New York — Meta stripped metadata from pirated books, publishers allege.
+
+5 publishers including Hachette and Elsevier claim Zuckerberg personally cleared the plan to torrent millions of books and forgo licensing.
+
+A 2025 case found fair use; the documented CEO instruction to skip licensing is the new suit's distinguishing claim.

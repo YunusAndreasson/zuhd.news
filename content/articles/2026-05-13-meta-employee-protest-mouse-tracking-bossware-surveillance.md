@@ -20,4 +20,6 @@ concepts:
 entities: []
 ---
 
-Menlo Park — Flyers hit Meta vending machines: 'Data Extraction Factory.' The company says mouse and keystroke data trains AI agents; the tracking software appeared one week before a 10% workforce layoff. [UK](country:GB) employees launched a union drive with the Communication Workers Union; [US](country:US) flyer authors cited labor law protections.
+Menlo Park — Flyers hit Meta vending machines: 'Data Extraction Factory.' The company says mouse and keystroke data trains AI agents; the tracking software appeared one week before a 10% workforce layoff.
+
+[UK](country:GB) employees launched a union drive with the Communication Workers Union; [US](country:US) flyer authors cited labor law protections.

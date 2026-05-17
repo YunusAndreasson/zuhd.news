@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Beijing — Haotian AI replaces faces live on video calls. Low-latency face-swapping on standard conferencing apps enables "CFO told me to wire the money" fraud without any technical tell. The tool sells commercially; any call from a known contact is now an unverified identity claim.
+Beijing — Haotian AI replaces faces live on video calls.
+
+Low-latency face-swapping on standard conferencing apps enables "CFO told me to wire the money" fraud without any technical tell.
+
+The tool sells commercially; any call from a known contact is now an unverified identity claim.

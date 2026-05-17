@@ -11,4 +11,8 @@ sources:
     country: "LB"
 ---
 
-Marjayoun — Israel is emptying southern Lebanon's Shia villages. The Lebanese army has withdrawn and UNIFIL is paralyzed; Israeli forces killed 6 Lebanese soldiers in the past month. Israel has set no withdrawal timeline and the cleared communities may never be resettled.
+Marjayoun — Israel is emptying southern Lebanon's Shia villages.
+
+The Lebanese army has withdrawn and UNIFIL is paralyzed; Israeli forces killed 6 Lebanese soldiers in the past month.
+
+Israel has set no withdrawal timeline and the cleared communities may never be resettled.

@@ -25,4 +25,8 @@ concepts:
   - "Bucha, Kiev Oblast"
 ---
 
-Bucha — EU sent Ukraine $92M from frozen Russian profits. Kallas delivered the announcement in Bucha on its 4th massacre anniversary; Europe holds €210 billion in frozen Russian reserves. Hungary still blocks the €90 billion loan Ukraine needs to avoid running out of cash by spring.
+Bucha — EU sent Ukraine $92M from frozen Russian profits.
+
+Kallas delivered the announcement in Bucha on its 4th massacre anniversary; Europe holds €210 billion in frozen Russian reserves.
+
+Hungary still blocks the €90 billion loan Ukraine needs to avoid running out of cash by spring.

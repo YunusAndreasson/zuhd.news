@@ -29,4 +29,6 @@ concepts:
 sentimentDivergence: 0.31
 ---
 
-Washington — Trump called NATO a "paper tiger." He said the US-founded alliance became irrelevant after Europeans refused to join the Iran war and the Hormuz strait closed. Any withdrawal requires a two-thirds Senate vote — the decision now lands on Republican senators.
+Washington — Trump called NATO a "paper tiger." He said the US-founded alliance became irrelevant after Europeans refused to join the Iran war and the Hormuz strait closed.
+
+Any withdrawal requires a two-thirds Senate vote — the decision now lands on Republican senators.

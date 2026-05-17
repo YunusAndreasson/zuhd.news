@@ -28,4 +28,8 @@ sentimentDivergence: 0.24
 entities: []
 ---
 
-New Delhi — India allocated 24 seats to Pakistan-administered Kashmir. The bill formally maps constituencies in Pakistan-administered territory, applying Indian electoral law to land outside its control. The bill still needs Rajya Sabha approval; opposition parties called it "against the country's integrity."
+New Delhi — India allocated 24 seats to Pakistan-administered Kashmir.
+
+The bill formally maps constituencies in Pakistan-administered territory, applying Indian electoral law to land outside its control.
+
+The bill still needs Rajya Sabha approval; opposition parties called it "against the country's integrity."

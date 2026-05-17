@@ -25,4 +25,8 @@ concepts:
 sentimentDivergence: 0.18
 ---
 
-Islamabad — [US](country:US) forces boarded a sanctioned Iranian crude tanker. The Pentagon confirmed the Indian Ocean seizure hours before [Pakistan](country:PK)-brokered ceasefire talks in Islamabad reconvene, with the 2-week truce expiring Wednesday. [Iran](country:IR)'s lead negotiator warned of "new cards on the battlefield"; Brent crude was near $95 a barrel.
+Islamabad — [US](country:US) forces boarded a sanctioned Iranian crude tanker.
+
+The Pentagon confirmed the Indian Ocean seizure hours before [Pakistan](country:PK)-brokered ceasefire talks in Islamabad reconvene, with the 2-week truce expiring Wednesday.
+
+[Iran](country:IR)'s lead negotiator warned of "new cards on the battlefield"; Brent crude was near $95 a barrel.

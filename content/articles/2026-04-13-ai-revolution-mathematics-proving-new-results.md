@@ -11,4 +11,8 @@ sources:
     country: null
 ---
 
-New York — AI aced 5 of 6 Math Olympiad problems. The International Mathematical Olympiad tests the world's best high school students; AI matched that standard in July 2025, ahead of researcher projections. Whether AI can prove new theorems — not just replicate competition problems — defines what comes next for mathematics.
+New York — AI aced 5 of 6 Math Olympiad problems.
+
+The International Mathematical Olympiad tests the world's best high school students; AI matched that standard in July 2025, ahead of researcher projections.
+
+Whether AI can prove new theorems — not just replicate competition problems — defines what comes next for mathematics.

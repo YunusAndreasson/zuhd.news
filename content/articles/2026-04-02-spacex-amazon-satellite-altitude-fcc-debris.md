@@ -17,4 +17,8 @@ concepts:
   - "Spacecraft"
 ---
 
-Washington — SpaceX filed an FCC collision complaint against Amazon. SpaceX lowered Starlink into the altitudes Amazon was already using, then demanded action when its satellites needed 30 emergency maneuvers within hours. 2 recent Starlink failures already created debris at those altitudes, undercutting its safety claim.
+Washington — SpaceX filed an FCC collision complaint against Amazon.
+
+SpaceX lowered Starlink into the altitudes Amazon was already using, then demanded action when its satellites needed 30 emergency maneuvers within hours.
+
+2 recent Starlink failures already created debris at those altitudes, undercutting its safety claim.

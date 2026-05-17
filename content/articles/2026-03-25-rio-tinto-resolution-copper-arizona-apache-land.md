@@ -17,4 +17,8 @@ concepts:
   - "Copper"
 ---
 
-Arizona — Congress transferred Apache sacred land to Rio Tinto for copper mining. The deposit at Oak Flat holds 40 billion pounds of copper — over a quarter of US annual demand — enough for Congress to override years of San Carlos Apache court resistance. Rio's $500 million drilling campaign is underway, with US smelting now unprofitable and no commitment to process the copper domestically.
+Arizona — Congress transferred Apache sacred land to Rio Tinto for copper mining.
+
+The deposit at Oak Flat holds 40 billion pounds of copper — over a quarter of US annual demand — enough for Congress to override years of San Carlos Apache court resistance.
+
+Rio's $500 million drilling campaign is underway, with US smelting now unprofitable and no commitment to process the copper domestically.

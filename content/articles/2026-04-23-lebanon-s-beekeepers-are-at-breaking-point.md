@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Tyre — [Israel](country:IL)'s strikes reduced ByBee's 120 hives to 8. [Lebanon](country:LB)'s bee population has fallen 60% over 2 decades, keepers say — pesticides, climate, then bombardment; the next generation of keepers is emigrating. The pollination gap threatens citrus and wildflower crops sustaining local food systems across the south.
+Tyre — [Israel](country:IL)'s strikes reduced ByBee's 120 hives to 8.
+
+[Lebanon](country:LB)'s bee population has fallen 60% over 2 decades, keepers say — pesticides, climate, then bombardment; the next generation of keepers is emigrating.
+
+The pollination gap threatens citrus and wildflower crops sustaining local food systems across the south.

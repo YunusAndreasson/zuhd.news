@@ -17,4 +17,8 @@ concepts:
   - "Iran"
 ---
 
-Dubai — Missiles hit 5 countries hours after ceasefire. Iran launched ballistic missiles at Israel and 4 Gulf states within hours of Trump's ceasefire post, triggering civilian alerts. Whether Iran's launches preceded or violated ceasefire terms will determine whether Friday's Islamabad talks proceed.
+Dubai — Missiles hit 5 countries hours after ceasefire.
+
+Iran launched ballistic missiles at Israel and 4 Gulf states within hours of Trump's ceasefire post, triggering civilian alerts.
+
+Whether Iran's launches preceded or violated ceasefire terms will determine whether Friday's Islamabad talks proceed.

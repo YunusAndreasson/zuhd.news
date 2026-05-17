@@ -23,4 +23,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Tehran — Ships face force for skipping Iran's lanes. Iran's Revolutionary Guard set Hormuz corridors near Larak Island and threatened a 'decisive' response to deviating vessels. Shippers, insurers, and the International Maritime Organization have not said whether they will comply.
+Tehran — Ships face force for skipping Iran's lanes.
+
+Iran's Revolutionary Guard set Hormuz corridors near Larak Island and threatened a 'decisive' response to deviating vessels.
+
+Shippers, insurers, and the International Maritime Organization have not said whether they will comply.

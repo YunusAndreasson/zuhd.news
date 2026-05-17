@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Honiara — Solomon Islands' high court ordered parliament to convene. The prime minister is appealing, creating a standoff between the judiciary and the executive over a pending no-confidence vote. If the appeal fails, parliament must convene and the prime minister faces an immediate no-confidence vote.
+Honiara — Solomon Islands' high court ordered parliament to convene.
+
+The prime minister is appealing, creating a standoff between the judiciary and the executive over a pending no-confidence vote.
+
+If the appeal fails, parliament must convene and the prime minister faces an immediate no-confidence vote.

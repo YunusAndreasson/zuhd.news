@@ -16,4 +16,8 @@ concepts:
   - "United Kingdom"
 ---
 
-London — BAE Systems sits on 53 university advisory committees. FOI requests found 21 UK universities let BAE and 3 defence firms set strategic direction for academic departments. No law governs arms industry access to curricula; none of the 21 universities has disclosed what was changed.
+London — BAE Systems sits on 53 university advisory committees.
+
+FOI requests found 21 UK universities let BAE and 3 defence firms set strategic direction for academic departments.
+
+No law governs arms industry access to curricula; none of the 21 universities has disclosed what was changed.

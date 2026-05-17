@@ -18,4 +18,8 @@ concepts:
   - "United Arab Emirates"
 ---
 
-Abu Dhabi — Iran struck the world's largest premium aluminium plant. Missiles and drones hit Emirates Global Aluminium's Al Taweelah site in Abu Dhabi's Khalifa Economic Zone, injuring workers and damaging the facility. EGA supplies construction and electronics globally; Iran is now targeting Gulf industry, not just oil.
+Abu Dhabi — Iran struck the world's largest premium aluminium plant.
+
+Missiles and drones hit Emirates Global Aluminium's Al Taweelah site in Abu Dhabi's Khalifa Economic Zone, injuring workers and damaging the facility.
+
+EGA supplies construction and electronics globally; Iran is now targeting Gulf industry, not just oil.

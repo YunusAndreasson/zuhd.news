@@ -17,4 +17,8 @@ concepts:
   - "Performance regression"
 ---
 
-Seattle — Linux 7.0 halved PostgreSQL throughput on AWS. An AWS engineer traced it to scheduler changes not tested against database I/O workloads. Fixing the regression risks breaking other workloads; no patch has been released.
+Seattle — Linux 7.0 halved PostgreSQL throughput on AWS.
+
+An AWS engineer traced it to scheduler changes not tested against database I/O workloads.
+
+Fixing the regression risks breaking other workloads; no patch has been released.

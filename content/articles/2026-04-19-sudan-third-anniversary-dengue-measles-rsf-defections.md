@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Khartoum — Measles deaths mount daily in Darfur displacement camps. [Sudan](country:SD)'s army retook Khartoum without rebuilding water systems, while a Mahamid Rapid Support Forces commander defected, defying leader Dagalo. The rainy season approaches; medical sources warn dengue could worsen as humanitarian access across Darfur remains severed.
+Khartoum — Measles deaths mount daily in Darfur displacement camps.
+
+[Sudan](country:SD)'s army retook Khartoum without rebuilding water systems, while a Mahamid Rapid Support Forces commander defected, defying leader Dagalo.
+
+The rainy season approaches; medical sources warn dengue could worsen as humanitarian access across Darfur remains severed.

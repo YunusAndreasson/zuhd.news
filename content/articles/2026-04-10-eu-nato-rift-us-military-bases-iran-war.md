@@ -16,4 +16,8 @@ concepts:
   - "Strategic Autonomy"
 ---
 
-Brussels — NATO was tested and failed, Trump said. During the Iran operation, almost all European members blocked US base access, driven by domestic politics over collective defense obligations. Trump is now weighing a US withdrawal from the alliance, two senior diplomats warned.
+Brussels — NATO was tested and failed, Trump said.
+
+During the Iran operation, almost all European members blocked US base access, driven by domestic politics over collective defense obligations.
+
+Trump is now weighing a US withdrawal from the alliance, two senior diplomats warned.

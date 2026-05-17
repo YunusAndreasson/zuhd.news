@@ -11,4 +11,8 @@ sources:
     country: "KW"
 ---
 
-Kuwait City — Journalist Ahmed Shihab-Eldin enters week 6 in custody. Kuwait set up a fast-track security tribunal on March 31, weeks after his arrest, to resolve national security cases quickly. He faces charges of spreading false information and harming national security; his trial date has not been set.
+Kuwait City — Journalist Ahmed Shihab-Eldin enters week 6 in custody.
+
+Kuwait set up a fast-track security tribunal on March 31, weeks after his arrest, to resolve national security cases quickly.
+
+He faces charges of spreading false information and harming national security; his trial date has not been set.

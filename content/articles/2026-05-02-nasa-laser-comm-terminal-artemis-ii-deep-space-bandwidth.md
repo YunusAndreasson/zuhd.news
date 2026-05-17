@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Houston — NASA's optical terminal carried high-definition video from 384,000 km on Artemis II. The system replaced deep-space radio, requiring millimetre-precise pointing through atmospheric turbulence. Wiseman's crew flew farther from Earth than any humans before; the same precision scales to Mars.
+Houston — NASA's optical terminal carried high-definition video from 384,000 km on Artemis II.
+
+The system replaced deep-space radio, requiring millimetre-precise pointing through atmospheric turbulence.
+
+Wiseman's crew flew farther from Earth than any humans before; the same precision scales to Mars.

@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Santiago — 31 Indigenous marine zones face rollback in [Chile](country:CL). The 2008 Lafkenche Act gave Indigenous communities legal authority over coastal marine zones — the only such model in Latin America. Weeks into office, President Kast's government announced amendments to allow industrial development through zones under Indigenous stewardship.
+Santiago — 31 Indigenous marine zones face rollback in [Chile](country:CL).
+
+The 2008 Lafkenche Act gave Indigenous communities legal authority over coastal marine zones — the only such model in Latin America.
+
+Weeks into office, President Kast's government announced amendments to allow industrial development through zones under Indigenous stewardship.

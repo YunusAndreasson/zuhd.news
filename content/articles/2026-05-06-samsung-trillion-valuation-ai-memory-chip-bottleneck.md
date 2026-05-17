@@ -36,4 +36,8 @@ entities:
     kind: "stock"
 ---
 
-Seoul — Samsung's first-quarter profit rose 48-fold. [South Korea](country:KR)'s Samsung crossed $1 trillion in market cap as AI demand made memory spending structural, the company reported. SK Hynix is close behind; Samsung says 2027 supply will be tighter than 2026, keeping chip prices elevated.
+Seoul — Samsung's first-quarter profit rose 48-fold.
+
+[South Korea](country:KR)'s Samsung crossed $1 trillion in market cap as AI demand made memory spending structural, the company reported.
+
+SK Hynix is close behind; Samsung says 2027 supply will be tighter than 2026, keeping chip prices elevated.

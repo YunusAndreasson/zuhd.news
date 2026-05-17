@@ -22,4 +22,8 @@ entities:
     kind: "stock"
 ---
 
-Brussels — Gemini exclusively holds Android access to hotwords, screen context, and hardware interfaces that rival AI assistants lack. The EU's Digital Markets Act requires Google to share those system privileges with competitors. The European Commission must rule by July 27; failure means fines up to 10% of Google's global revenue.
+Brussels — Gemini exclusively holds Android access to hotwords, screen context, and hardware interfaces that rival AI assistants lack.
+
+The EU's Digital Markets Act requires Google to share those system privileges with competitors.
+
+The European Commission must rule by July 27; failure means fines up to 10% of Google's global revenue.

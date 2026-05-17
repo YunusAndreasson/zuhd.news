@@ -17,4 +17,8 @@ concepts:
   - "Hezbollah"
 ---
 
-Tel Aviv — Israeli Air Force struck Iran after ceasefire. The US-Iran deal is bilateral; Washington coordinated with Israel in advance, explicitly allowing continued Israeli strikes. The IDF logged at least 2 Iranian missile launches post-ceasefire; Israeli operations against Hezbollah in Lebanon continue unpaused.
+Tel Aviv — Israeli Air Force struck Iran after ceasefire.
+
+The US-Iran deal is bilateral; Washington coordinated with Israel in advance, explicitly allowing continued Israeli strikes.
+
+The IDF logged at least 2 Iranian missile launches post-ceasefire; Israeli operations against Hezbollah in Lebanon continue unpaused.

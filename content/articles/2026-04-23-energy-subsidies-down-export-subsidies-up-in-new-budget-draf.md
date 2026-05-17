@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Cairo — Petroleum subsidies fall as export spending tops fiscal 2027. [Egypt](country:EG)'s draft shifts consumer energy protection to export subsidies; interest payments already consume nearly half of spending, Finance Ministry data show. Health and education allocations stay below constitutional minimums of 6% and 3% of GDP, the same data show.
+Cairo — Petroleum subsidies fall as export spending tops fiscal 2027.
+
+[Egypt](country:EG)'s draft shifts consumer energy protection to export subsidies; interest payments already consume nearly half of spending, Finance Ministry data show.
+
+Health and education allocations stay below constitutional minimums of 6% and 3% of GDP, the same data show.

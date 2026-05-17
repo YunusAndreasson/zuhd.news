@@ -17,4 +17,8 @@ concepts:
   - "Caleb Mutfwang"
 ---
 
-Jos — Gunmen attacked Angwan Rukuba on Sunday night. Plateau State imposed a 48-hour curfew after several Jos North residents were killed; forces deployed to prevent reprisals in an area with a history of intercommunal violence. The perpetrators are unidentified; Governor Mutfwang has ordered their arrest.
+Jos — Gunmen attacked Angwan Rukuba on Sunday night.
+
+Plateau State imposed a 48-hour curfew after several Jos North residents were killed; forces deployed to prevent reprisals in an area with a history of intercommunal violence.
+
+The perpetrators are unidentified; Governor Mutfwang has ordered their arrest.

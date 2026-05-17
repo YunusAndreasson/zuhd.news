@@ -26,4 +26,8 @@ sentimentDivergence: 0.34
 entities: []
 ---
 
-Mumbai — Maharashtra froze Tata Trusts' board without notice. [India](country:IN)'s Tata Trusts own 66% of Tata Sons; a 2025 Maharashtra law capping permanent trustees at one-quarter of the board prompted the ex-parte halt. The impasse delays the Reserve Bank of India's pending ruling on whether Tata Sons must list publicly.
+Mumbai — Maharashtra froze Tata Trusts' board without notice.
+
+[India](country:IN)'s Tata Trusts own 66% of Tata Sons; a 2025 Maharashtra law capping permanent trustees at one-quarter of the board prompted the ex-parte halt.
+
+The impasse delays the Reserve Bank of India's pending ruling on whether Tata Sons must list publicly.

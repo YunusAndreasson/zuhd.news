@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Washington — The acting Attorney General's wife joined a federal health advisory council. Her husband's Justice Department oversees prosecutors who investigate misconduct in the same [US](country:US) grants she helps review, a former institute director said. The appointment was not publicized; it is the first council seat filled in over a year.
+Washington — The acting Attorney General's wife joined a federal health advisory council.
+
+Her husband's Justice Department oversees prosecutors who investigate misconduct in the same [US](country:US) grants she helps review, a former institute director said.
+
+The appointment was not publicized; it is the first council seat filled in over a year.

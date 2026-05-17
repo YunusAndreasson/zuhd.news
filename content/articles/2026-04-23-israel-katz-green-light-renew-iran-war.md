@@ -40,4 +40,8 @@ sentimentDivergence: 0.42
 entities: []
 ---
 
-Defense Minister [Israel Katz](country:IL) vowed to destroy [Iran](country:IR)'s power grid. Katz said IDF targets are set; [Israel](country:IL) awaits [US](country:US) authorization before resuming strikes. Tehran activated air defenses that evening; [Pakistan](country:PK)-hosted ceasefire talks have not resumed.
+Defense Minister [Israel Katz](country:IL) vowed to destroy [Iran](country:IR)'s power grid.
+
+Katz said IDF targets are set; [Israel](country:IL) awaits [US](country:US) authorization before resuming strikes.
+
+Tehran activated air defenses that evening; [Pakistan](country:PK)-hosted ceasefire talks have not resumed.

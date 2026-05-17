@@ -27,4 +27,8 @@ concepts:
   - "United States Marine Corps"
 ---
 
-Washington — 3,500 Marines have arrived in the Gulf. Pentagon planners are finalizing raids on Kharg Island — 90% of Iran's crude exports — in operations expected to last weeks. Trump has not approved; 62% of Americans oppose ground troops, but USS Tripoli is already in position.
+Washington — 3,500 Marines have arrived in the Gulf.
+
+Pentagon planners are finalizing raids on Kharg Island — 90% of Iran's crude exports — in operations expected to last weeks.
+
+Trump has not approved; 62% of Americans oppose ground troops, but USS Tripoli is already in position.

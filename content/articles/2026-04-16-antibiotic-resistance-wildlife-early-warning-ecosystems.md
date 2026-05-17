@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Rome — Foxes harbor more antibiotic resistance than hospital patients. Researchers found resistance at 5 times the hospital rate, indicating antibiotic pollution has created self-sustaining environmental reservoirs. Wastewater is the suspected route; hospital stewardship addresses the wrong bottleneck once resistance is endemic in wildlife.
+Rome — Foxes harbor more antibiotic resistance than hospital patients.
+
+Researchers found resistance at 5 times the hospital rate, indicating antibiotic pollution has created self-sustaining environmental reservoirs.
+
+Wastewater is the suspected route; hospital stewardship addresses the wrong bottleneck once resistance is endemic in wildlife.

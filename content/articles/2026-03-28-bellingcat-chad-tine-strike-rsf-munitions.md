@@ -11,4 +11,8 @@ sources:
     country: "NL"
 ---
 
-Tiné — 17 dead; munition remnants matched to RSF weapons. Bellingcat geolocated GB25A/GB50A bomb fragments 650 metres from RSF-held Sudan, the same type UAE re-exported to the group. RSF denies the strike; Chad's public prosecutor visited the impact site and soldiers photographed the evidence.
+Tiné — 17 dead; munition remnants matched to RSF weapons.
+
+Bellingcat geolocated GB25A/GB50A bomb fragments 650 metres from RSF-held Sudan, the same type UAE re-exported to the group.
+
+RSF denies the strike; Chad's public prosecutor visited the impact site and soldiers photographed the evidence.

@@ -28,4 +28,10 @@ concepts:
 sentimentDivergence: 0.2
 ---
 
-Washington — The Supreme Court vacated Bannon's contempt-of-Congress conviction Monday. Trump's Justice Department declared dismissal "in the interests of justice" — erasing accountability for defying the Jan. 6 committee subpoena that investigated Trump's own conduct. If Congress cannot enforce its subpoenas, its constitutional mechanism for executive oversight is effectively decorative.
+Washington — The Supreme Court vacated Bannon's contempt-of-Congress conviction Monday.
+
+Trump's Justice Department declared dismissal "in the interests of justice" — erasing accountability for defying the Jan.
+
+6 committee subpoena that investigated Trump's own conduct.
+
+If Congress cannot enforce its subpoenas, its constitutional mechanism for executive oversight is effectively decorative.

@@ -47,10 +47,18 @@ concepts:
   - "Key Entity"
 ---
 
-One paragraph. Exactly **3 sentences** — not 2, not 4. 40-50 words total (body text only, excluding frontmatter). Follow the per-sentence word limits in `<rhythm>`.
+Hook block — one tight sentence.
+
+Context block — one tight sentence; or two short sentences if both are load-bearing.
+
+Future block — one tight sentence.
 ```
 
-**Hard limit: body text (everything after the closing `---`) must be ≤350 characters.** This is enforced downstream — articles that overshoot get rewritten shorter before publish, wasting cycle time. Aim for 280-330 characters; under-spending is better than overspending. A rough check: 50 words at ~6 chars/word ≈ 300 characters. Markdown link markup (`[text](url)` brackets and URLs) does **not** count against this budget — only the visible text does, so country tags and inline source links are free against the limit.
+The body is **three markdown paragraphs (blocks), separated by a blank line**. The blank line is what creates the visible vertical gap between blocks on the reader's screen — both the web reader (`<p>` tags rendered with CSS margin) and the mobile app (`<Text>` elements with marginBottom). Three paragraphs in the markdown = three blocks on screen. No blank line = no gap = the blocks collapse into one. Write the blank line.
+
+40-55 words total across the three blocks (body text only, excluding frontmatter). Follow the per-block word limits in `<rhythm>`.
+
+**Hard limit: body text (everything after the closing `---`) must be ≤350 characters.** This is enforced downstream — articles that overshoot get rewritten shorter before publish, wasting cycle time. Aim for 280-330 characters; under-spending is better than overspending. A rough check: 50 words at ~6 chars/word ≈ 300 characters. Markdown link markup (`[text](url)` brackets and URLs) does **not** count against this budget — only the visible text does, so country tags and inline source links are free against the limit. The two blank-line separators between blocks count for ~4 characters total — negligible.
 
 List every source from the selection's `sources` array (see task step 2). `eventCoverage` and `concepts` are filled automatically by a post-writer script if missing.
 
@@ -58,13 +66,13 @@ List every source from the selection's `sources` array (see task step 2). `event
 
 <rhythm>
 
-Every article is **3 sentences**. Always 3. Hook → Context → Future:
+Every article is **3 blocks**. Always 3. Each block is a markdown paragraph separated from the next by a blank line. Hook → Context → Future:
 
-1. **Hook** (≤8 words) — the most arresting concrete detail. A number, a name, a consequence. Not the title restated. Not background that could have been written last week.
+1. **Hook block** (≤8 words, one sentence) — the most arresting concrete detail. A number, a name, a consequence. Not the title restated. Not background that could have been written last week.
 
-2. **Context** (≤22 words) — *why* this happened, *how* it works, or *how big* it is. Teach the mechanism, not just more facts. If covering the hook tells you *what*, this sentence tells you *why*.
+2. **Context block** (≤22 words, one sentence — or two short sentences only if both are load-bearing) — *why* this happened, *how* it works, or *how big* it is. Teach the mechanism, not just more facts. If the hook tells you *what*, this block tells you *why*.
 
-3. **Future** (≤18 words) — something specific and unresolved. A deadline, a pending decision, a named consequence. End on what's at stake, not a summary. Never end with "X must now Y" — that is prescription, not tension. Name the decision-maker, the deadline, or the thing that breaks.
+3. **Future block** (≤18 words, one sentence) — something specific and unresolved. A deadline, a pending decision, a named consequence. End on what's at stake, not a summary. Never end with "X must now Y" — that is prescription, not tension. Name the decision-maker, the deadline, or the thing that breaks.
 
 </rhythm>
 
@@ -76,7 +84,7 @@ Every article is **3 sentences**. Always 3. Hook → Context → Future:
 
 **Neutrality.** Center the affected, not the powerful. Consistent terminology for all states ("government" for all, never "regime" for some). Name the actor in violence. Attribute all labels symmetrically.
 
-**Economy.** Drop filler ("In a significant development"), hedging ("could reshape"), and speculation ("is poised to"). Start with the fact. Each sentence must introduce new information — if S3 restates S2 with different words, rewrite S3 with what happens next.
+**Economy.** Drop filler ("In a significant development"), hedging ("could reshape"), and speculation ("is poised to"). Start with the fact. Each block must introduce new information — if the future block restates the context block with different words, rewrite it with what happens next.
 
 **Attribute non-routine numbers.** Contested figures — casualty counts, production volumes, market-share claims, specific statistics — earn a 2-3 word inline attribution: "the central bank said," "DoD figures show," "according to the study." Routine, self-evident facts (ages, dates, geography) don't. If a figure is load-bearing and lacks a named authority in the source material, drop or soften it — don't float it as if it were common knowledge.
 
@@ -103,7 +111,7 @@ Every article is **3 sentences**. Always 3. Hook → Context → Future:
 
 <examples>
 
-Each example body below is **3 sentences**. Count them.
+Each example body below is **3 blocks** — three markdown paragraphs separated by a blank line. The blank line is mandatory; it is what renders as the visible gap between blocks on web and mobile.
 
 <example>
 ---
@@ -126,7 +134,11 @@ concepts:
   - "Russia"
 ---
 
-London — Dart frog toxin killed Alexei Navalny. 5 European governments confirmed tissue samples contained epibatidine — the first forensic evidence linking his 2024 prison death to poisoning. [Britain](country:GB) referred [Russia](country:RU) to the chemical weapons watchdog, which has 40 days to open a formal probe.
+London — Dart frog toxin killed Alexei Navalny.
+
+5 European governments confirmed tissue samples contained epibatidine — the first forensic evidence linking his 2024 prison death to poisoning.
+
+[Britain](country:GB) referred [Russia](country:RU) to the chemical weapons watchdog, which has 40 days to open a formal probe.
 </example>
 
 <example>
@@ -143,7 +155,11 @@ sources:
     country: "QA"
 ---
 
-Gaza — 4 of 11 remaining hospitals have gone dark. [Israel](country:IL) has blocked aid convoys for a 3rd consecutive week, cutting generator fuel to the last functioning medical facilities. Generators at Al-Shifa and Nasser hospitals run out within 48 hours, WHO said.
+Gaza — 4 of 11 remaining hospitals have gone dark.
+
+[Israel](country:IL) has blocked aid convoys for a 3rd consecutive week, cutting generator fuel to the last functioning medical facilities.
+
+Generators at Al-Shifa and Nasser hospitals run out within 48 hours, WHO said.
 </example>
 
 <example>
@@ -160,7 +176,11 @@ sources:
     country: "MY"
 ---
 
-Hanoi — 20 million unconnected Vietnamese gained satellite broadband. The radio frequency authority licensed 4 gateway stations and 600,000 Starlink terminals — the first Western carrier cleared for [Vietnam](country:VN)'s market. State-backed Viettel and Vietnam Posts face a February 2027 decision on matching tariffs.
+Hanoi — 20 million unconnected Vietnamese gained satellite broadband.
+
+The radio frequency authority licensed 4 gateway stations and 600,000 Starlink terminals — the first Western carrier cleared for [Vietnam](country:VN)'s market.
+
+State-backed Viettel and Vietnam Posts face a February 2027 decision on matching tariffs.
 </example>
 
 <example>
@@ -177,7 +197,11 @@ sources:
     country: "PK"
 ---
 
-Karachi — SadaPay collapsed after Gulf strikes. [Pakistan](country:PK)'s fintechs route through AWS Bahrain, offline since drone strikes on March 1 cut service to 3 million users. SadaPay has set no restoration date; 2 rival fintechs remain offline.
+Karachi — SadaPay collapsed after Gulf strikes.
+
+[Pakistan](country:PK)'s fintechs route through AWS Bahrain, offline since drone strikes on March 1 cut service to 3 million users.
+
+SadaPay has set no restoration date; 2 rival fintechs remain offline.
 </example>
 
 </examples>
@@ -185,10 +209,10 @@ Karachi — SadaPay collapsed after Gulf strikes. [Pakistan](country:PK)'s finte
 <antipatterns>
 Rewrite before saving.
 
-- **The title echo.** S1 restates the headline with a verb change. Title: "Microsoft Pause Threatens Carbon Removal." Hook: "Microsoft is pausing carbon removal purchases." → The reader already read the title. A restated hook burns ~20% of the body budget on nothing. Replace with a number, a name, or a consequence that *isn't* in the title. Better hook from the same sources: "Microsoft has bought 80% of all contracted carbon removal." That's a fact the title doesn't carry.
-  - **Mandatory self-check before saving:** redact the title, re-read S1 alone. If S1 still works as a standalone opener that carries information not in the title, keep it. If S1 leans on title context (i.e. removing the title would make the hook look generic, repetitive, or empty), rewrite S1 with a number, name, or consequence the title doesn't carry. This check applies to every article — no exceptions.
-- **The restating context:** S2 says the same thing as S1 with more words. "14 people died. The death toll from the attack reached 14." → S2 must teach WHY or HOW.
-- **The empty future:** S3 predicts nothing specific. "The situation remains fluid." "It remains to be seen." → Name the decision, the deadline, the actor.
+- **The title echo.** The hook block restates the headline with a verb change. Title: "Microsoft Pause Threatens Carbon Removal." Hook: "Microsoft is pausing carbon removal purchases." → The reader already read the title. A restated hook burns ~20% of the body budget on nothing. Replace with a number, a name, or a consequence that *isn't* in the title. Better hook from the same sources: "Microsoft has bought 80% of all contracted carbon removal." That's a fact the title doesn't carry.
+- **The restating context:** the context block says the same thing as the hook with more words. "14 people died. The death toll from the attack reached 14." → the context block must teach WHY or HOW.
+- **The empty future:** the future block predicts nothing specific. "The situation remains fluid." "It remains to be seen." → Name the decision, the deadline, the actor.
+- **The missing blank line:** writing the three blocks on consecutive lines with no blank line between them. → The renderer needs the blank line to produce the visual gap. No blank line means the reader sees one wall of prose instead of three blocks. Always put a blank line between blocks.
 - **The Western reaction lead:** "The US condemned Iran's..." → Center the affected. What happened to the people the story is about?
 - **The hedge parade:** "Could reshape," "may signal," "is poised to," "raises questions about." → State what happened. If the consequence is uncertain, name the specific uncertainty.
 - **The dateline mismatch:** Article about Indonesian plastic burning datelined Jakarta because Jakarta is the capital. → Dateline the specific location where the story happened.

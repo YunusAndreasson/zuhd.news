@@ -33,4 +33,10 @@ concepts:
 sentimentDivergence: 0.2
 ---
 
-Arabian Sea — Iran fired cruise missiles at USS Abraham Lincoln. The Qader anti-ship missile, fired from Iran's coast, would mark the first Iranian strike on a US capital ship since the war began Feb. 28; the carrier reportedly changed position, though the Pentagon issued no confirmation. The 82nd Airborne received deployment orders the same day.
+Arabian Sea — Iran fired cruise missiles at USS Abraham Lincoln.
+
+The Qader anti-ship missile, fired from Iran's coast, would mark the first Iranian strike on a US capital ship since the war began Feb.
+
+28; the carrier reportedly changed position, though the Pentagon issued no confirmation.
+
+The 82nd Airborne received deployment orders the same day.

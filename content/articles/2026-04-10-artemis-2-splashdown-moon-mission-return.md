@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.19
 ---
 
-San Diego — 4 astronauts near Earth from lunar orbit Friday. Orion's heat shield shed unexpected material on Artemis I; NASA steepened re-entry to cut exposure time, but the design is unchanged. A successful return clears Orion for Artemis III — the actual lunar landing — currently planned for later in 2026.
+San Diego — 4 astronauts near Earth from lunar orbit Friday.
+
+Orion's heat shield shed unexpected material on Artemis I; NASA steepened re-entry to cut exposure time, but the design is unchanged.
+
+A successful return clears Orion for Artemis III — the actual lunar landing — currently planned for later in 2026.

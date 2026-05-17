@@ -11,4 +11,8 @@ sources:
     country: "DE"
 ---
 
-Berlin — Document Foundation published statement addressing LibreOffice speculation. LibreOffice is the only major open-source office suite without a corporate owner; community anxiety about its future drove 118 HN votes. 71 HN comments show the community wants specific governance guarantees, not reassurance, about long-term stewardship.
+Berlin — Document Foundation published statement addressing LibreOffice speculation.
+
+LibreOffice is the only major open-source office suite without a corporate owner; community anxiety about its future drove 118 HN votes.
+
+71 HN comments show the community wants specific governance guarantees, not reassurance, about long-term stewardship.

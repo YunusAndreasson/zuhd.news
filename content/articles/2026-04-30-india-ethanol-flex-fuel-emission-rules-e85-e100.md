@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-New Delhi — [India](country:IN)'s draft rules open vehicle certification to E85, E100, and pure biodiesel blends. Automakers including Toyota say they are ready to launch flex-fuel vehicles once certification extends beyond the current E20 cap. The proposals are open for 30-day public comment before standards are finalized.
+New Delhi — [India](country:IN)'s draft rules open vehicle certification to E85, E100, and pure biodiesel blends.
+
+Automakers including Toyota say they are ready to launch flex-fuel vehicles once certification extends beyond the current E20 cap.
+
+The proposals are open for 30-day public comment before standards are finalized.

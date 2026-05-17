@@ -17,4 +17,8 @@ concepts:
   - "United States"
 ---
 
-Atlanta — CDC paused diagnostic testing for rabies and pox viruses. State labs lack the capacity to test for either; the CDC functions as the reference laboratory for the Western Hemisphere, with no replacement named. HHS said some tests may return in coming weeks without specifying which ones.
+Atlanta — CDC paused diagnostic testing for rabies and pox viruses.
+
+State labs lack the capacity to test for either; the CDC functions as the reference laboratory for the Western Hemisphere, with no replacement named.
+
+HHS said some tests may return in coming weeks without specifying which ones.

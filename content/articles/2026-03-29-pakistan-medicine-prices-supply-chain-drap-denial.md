@@ -16,4 +16,8 @@ concepts:
   - "Medicine"
 ---
 
-Islamabad — Insulin devices rose 114% in Pakistan, pharmacists reported. DRAP denied a supply crisis, saying 85% of medicines are locally made and supply is stable. DRAP ordered manufacturers to diversify sourcing; if Gulf shipping stays disrupted, stockouts will follow in coming months.
+Islamabad — Insulin devices rose 114% in Pakistan, pharmacists reported.
+
+DRAP denied a supply crisis, saying 85% of medicines are locally made and supply is stable.
+
+DRAP ordered manufacturers to diversify sourcing; if Gulf shipping stays disrupted, stockouts will follow in coming months.

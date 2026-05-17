@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Washington — Saildrone unveiled Spectre, a missile-armed 170-foot autonomous warship. The ocean-survey firm entered the [US](country:US) Navy's Medium Unmanned Surface Vessel competition with a Tomahawk-capable vertical launch system. The competition opened last month; Saildrone has no prior armed platform.
+Washington — Saildrone unveiled Spectre, a missile-armed 170-foot autonomous warship.
+
+The ocean-survey firm entered the [US](country:US) Navy's Medium Unmanned Surface Vessel competition with a Tomahawk-capable vertical launch system.
+
+The competition opened last month; Saildrone has no prior armed platform.

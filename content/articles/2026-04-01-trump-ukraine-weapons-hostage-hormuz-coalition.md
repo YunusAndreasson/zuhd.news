@@ -25,4 +25,8 @@ concepts:
 sentimentDivergence: 0.2
 ---
 
-Brussels — Trump used Ukraine weapons as Hormuz leverage. Europe refused the Iran war; Trump threatened to halt arms through NATO's PURL fund until allies signed a coalition statement. 35 governments meet this week to form the Hormuz coalition — but only "after the fighting stops."
+Brussels — Trump used Ukraine weapons as Hormuz leverage.
+
+Europe refused the Iran war; Trump threatened to halt arms through NATO's PURL fund until allies signed a coalition statement.
+
+35 governments meet this week to form the Hormuz coalition — but only "after the fighting stops."

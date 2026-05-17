@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Calgary — Tetra, a Canadian fintech, launched [Canada](country:CA)'s first regulated digital dollar with Alberta's approval. Canada clears $424 billion daily on 1980s batch rails, Tetra said; no regulated domestic stablecoin existed before. The launch makes Canada the first G7 state with a regulated non-USD stablecoin; Solana support is planned next.
+Calgary — Tetra, a Canadian fintech, launched [Canada](country:CA)'s first regulated digital dollar with Alberta's approval.
+
+Canada clears $424 billion daily on 1980s batch rails, Tetra said; no regulated domestic stablecoin existed before.
+
+The launch makes Canada the first G7 state with a regulated non-USD stablecoin; Solana support is planned next.

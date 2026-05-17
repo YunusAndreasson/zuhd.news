@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — [Pakistan](country:PK)'s petroleum levy surged 45% in nine months. The levy became the government's largest revenue source, cutting the deficit to 0.7% of GDP — a 27-year low, the Finance Ministry said. Defence spending and subsidies rose while revenue-to-GDP fell; analysts warn the surplus depends on war-elevated fuel prices.
+Islamabad — [Pakistan](country:PK)'s petroleum levy surged 45% in nine months.
+
+The levy became the government's largest revenue source, cutting the deficit to 0.7% of GDP — a 27-year low, the Finance Ministry said.
+
+Defence spending and subsidies rose while revenue-to-GDP fell; analysts warn the surplus depends on war-elevated fuel prices.

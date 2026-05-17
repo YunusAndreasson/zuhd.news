@@ -16,4 +16,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Abu Dhabi — Iranian missiles and drones struck the [UAE](country:AE) for a second day. Joint Chiefs Chairman Gen. Dan Caine confirmed [Iran](country:IR) attacked US forces 10 times during the ceasefire; Iran's Revolutionary Guard threatened non-Iranian vessels in the Strait of Hormuz. No threshold for ceasefire collapse has been publicly defined.
+Abu Dhabi — Iranian missiles and drones struck the [UAE](country:AE) for a second day.
+
+Joint Chiefs Chairman Gen. Dan Caine confirmed [Iran](country:IR) attacked US forces 10 times during the ceasefire; Iran's Revolutionary Guard threatened non-Iranian vessels in the Strait of Hormuz.
+
+No threshold for ceasefire collapse has been publicly defined.

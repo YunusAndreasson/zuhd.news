@@ -17,4 +17,8 @@ concepts:
   - "Stranded asset"
 ---
 
-Yorkshire — [UK](country:GB) gas firm Reabold plans on-site Bitcoin mining. West Newton's gas cannot reach UK pipelines; burning it on-site for Bitcoin converts a stranded asset into revenue, delaying field retirement. UK government says gas supply is unaffected; whether regulators license a full data center remains unresolved.
+Yorkshire — [UK](country:GB) gas firm Reabold plans on-site Bitcoin mining.
+
+West Newton's gas cannot reach UK pipelines; burning it on-site for Bitcoin converts a stranded asset into revenue, delaying field retirement.
+
+UK government says gas supply is unaffected; whether regulators license a full data center remains unresolved.

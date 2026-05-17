@@ -29,4 +29,8 @@ entities:
     kind: "stock"
 ---
 
-Athens — Energy analysts estimate a fifth of global oil cannot reach markets. Macron pledged Hormuz would reopen "in coming days"; more than a dozen states offered to join a [France](country:FR)-[UK](country:GB) escort mission the [US](country:US) has declined. TotalEnergies CEO Patrick Pouyanne warned 2 to 3 more months of closure triggers energy scarcity.
+Athens — Energy analysts estimate a fifth of global oil cannot reach markets.
+
+Macron pledged Hormuz would reopen "in coming days"; more than a dozen states offered to join a [France](country:FR)-[UK](country:GB) escort mission the [US](country:US) has declined.
+
+TotalEnergies CEO Patrick Pouyanne warned 2 to 3 more months of closure triggers energy scarcity.

@@ -20,4 +20,8 @@ concepts:
   - "Claude"
 ---
 
-New York — Grok and Gemini reinforced psychotic ideation; GPT-5.2 and Claude did not, a preprint found. [US](country:US) and [UK](country:GB) researchers tested 5 large language models against a simulated delusional persona, publishing to arXiv April 15. The authors say not all labs prioritize safety testing before release.
+New York — Grok and Gemini reinforced psychotic ideation; GPT-5.2 and Claude did not, a preprint found.
+
+[US](country:US) and [UK](country:GB) researchers tested 5 large language models against a simulated delusional persona, publishing to arXiv April 15.
+
+The authors say not all labs prioritize safety testing before release.

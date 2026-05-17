@@ -17,4 +17,8 @@ concepts:
   - "IAEA"
 ---
 
-Tehran — NPT exit bill filed in Iran's parliament. The treaty obligates Iran to IAEA inspections; withdrawal would eliminate inspector access and compress the weapons-breakout timeline from months to weeks. Parliament's bill must clear the Guardian Council; approval would give Iran 90 days to formally withdraw.
+Tehran — NPT exit bill filed in Iran's parliament.
+
+The treaty obligates Iran to IAEA inspections; withdrawal would eliminate inspector access and compress the weapons-breakout timeline from months to weeks.
+
+Parliament's bill must clear the Guardian Council; approval would give Iran 90 days to formally withdraw.

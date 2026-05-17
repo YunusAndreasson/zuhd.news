@@ -23,4 +23,8 @@ entities:
     kind: "commodity"
 ---
 
-Karachi — 94% of foreign funds have exited [Pakistan](country:PK)'s T-bills, the State Bank said. The oil import bill rose from $300m to $800m per week; war-risk premium now exceeds the carry yield that attracted the money. Friday's 83-basis-point yield hike to near 12% seeks to retain domestic buyers; recovery requires war resolution, experts said.
+Karachi — 94% of foreign funds have exited [Pakistan](country:PK)'s T-bills, the State Bank said.
+
+The oil import bill rose from $300m to $800m per week; war-risk premium now exceeds the carry yield that attracted the money.
+
+Friday's 83-basis-point yield hike to near 12% seeks to retain domestic buyers; recovery requires war resolution, experts said.

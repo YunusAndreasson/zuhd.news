@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.13
 ---
 
-Tyre — Israel killed 3 UNIFIL peacekeepers. All 3 were Indonesian; Israel's invasion has repeatedly struck UN positions and Lebanese checkpoints while the Security Council takes no action. The 8,000-strong force remains under a mandate expiring December 2026; no emergency Security Council session is scheduled.
+Tyre — Israel killed 3 UNIFIL peacekeepers.
+
+All 3 were Indonesian; Israel's invasion has repeatedly struck UN positions and Lebanese checkpoints while the Security Council takes no action.
+
+The 8,000-strong force remains under a mandate expiring December 2026; no emergency Security Council session is scheduled.

@@ -26,4 +26,8 @@ sentimentDivergence: 0.06
 entities: []
 ---
 
-Beijing — Not one H200 has shipped. The [US](country:US) licensed 75,000 H200s each to 10 [China](country:CN) hyperscalers including ByteDance, but Beijing has blocked the purchases. A US demand for 25% of chip revenue is reportedly one obstacle; Beijing separately cites tampering risks.
+Beijing — Not one H200 has shipped.
+
+The [US](country:US) licensed 75,000 H200s each to 10 [China](country:CN) hyperscalers including ByteDance, but Beijing has blocked the purchases.
+
+A US demand for 25% of chip revenue is reportedly one obstacle; Beijing separately cites tampering risks.

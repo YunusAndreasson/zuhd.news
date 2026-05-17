@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-New York — Physicists solved how the bacterial flagellum spins. Protons crossing the membrane drive conformational changes in stator proteins, generating torque like a macroscopic rotor-stator engine. The 50-year resolution closes the question of whether biology's motors need forces beyond physics.
+New York — Physicists solved how the bacterial flagellum spins.
+
+Protons crossing the membrane drive conformational changes in stator proteins, generating torque like a macroscopic rotor-stator engine.
+
+The 50-year resolution closes the question of whether biology's motors need forces beyond physics.

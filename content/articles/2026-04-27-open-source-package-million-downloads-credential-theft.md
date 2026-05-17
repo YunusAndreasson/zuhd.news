@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-San Francisco — elementary-data 0.23.3 harvested warehouse credentials and Secure Shell keys. A GitHub Actions flaw gave attackers signing keys, letting them push a malicious build of the genuine package — not a fake. Continuous integration runners are most exposed; anyone who ran 0.23.3 must rotate warehouse credentials, cloud keys, and Secure Shell keys.
+San Francisco — elementary-data 0.23.3 harvested warehouse credentials and Secure Shell keys.
+
+A GitHub Actions flaw gave attackers signing keys, letting them push a malicious build of the genuine package — not a fake.
+
+Continuous integration runners are most exposed; anyone who ran 0.23.3 must rotate warehouse credentials, cloud keys, and Secure Shell keys.

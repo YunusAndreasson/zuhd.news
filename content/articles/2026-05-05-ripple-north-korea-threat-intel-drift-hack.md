@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-San Francisco — [North Korea](country:KP) stole $577 million from crypto in April, blockchain data show. Lazarus Group operatives infiltrate firms as job applicants, building trust for months before deploying malware, Ripple confirmed. Whether sharing threat indicators slows Lazarus campaigns is unresolved.
+San Francisco — [North Korea](country:KP) stole $577 million from crypto in April, blockchain data show.
+
+Lazarus Group operatives infiltrate firms as job applicants, building trust for months before deploying malware, Ripple confirmed.
+
+Whether sharing threat indicators slows Lazarus campaigns is unresolved.

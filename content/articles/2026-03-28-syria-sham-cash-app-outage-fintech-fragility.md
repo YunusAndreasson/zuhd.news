@@ -16,4 +16,8 @@ concepts:
   - "Digital payments"
 ---
 
-Damascus — Syria's government salary app went offline March 8. Sham Cash disburses public-sector salaries; a diaspora engineer got the domain suspended by filing fraud evidence with its registrar. The company says funds are held by the central bank; SMEX's 2025 forensic audit found deeper structural vulnerabilities.
+Damascus — Syria's government salary app went offline March 8.
+
+Sham Cash disburses public-sector salaries; a diaspora engineer got the domain suspended by filing fraud evidence with its registrar.
+
+The company says funds are held by the central bank; SMEX's 2025 forensic audit found deeper structural vulnerabilities.

@@ -17,4 +17,8 @@ concepts:
   - "Solid-state electronics"
 ---
 
-Geneva — 2 labs cannot replicate Italy's 30-year dark matter signal. DAMA/LIBRA, Italy's detector, claims dark matter creates a seasonal pattern in its crystals — a result 2 rival teams using identical materials cannot reproduce. DarkSide-20k, under construction with 20 tonnes of liquid argon, will either settle the dispute or deepen it by 2035.
+Geneva — 2 labs cannot replicate Italy's 30-year dark matter signal.
+
+DAMA/LIBRA, Italy's detector, claims dark matter creates a seasonal pattern in its crystals — a result 2 rival teams using identical materials cannot reproduce.
+
+DarkSide-20k, under construction with 20 tonnes of liquid argon, will either settle the dispute or deepen it by 2035.

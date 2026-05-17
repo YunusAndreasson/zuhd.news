@@ -18,4 +18,8 @@ concepts:
   - "Russia"
 ---
 
-Kyiv — Washington links security deal to full Donbas withdrawal. Zelenskyy said Trump is pressuring Kyiv while distracted by Iran; Russia demands Ukraine cede 6,000 sq km of fortified Donbas. Zelenskyy says only a 3-way Trump-Putin summit can resolve the territory split and rearmament terms.
+Kyiv — Washington links security deal to full Donbas withdrawal.
+
+Zelenskyy said Trump is pressuring Kyiv while distracted by Iran; Russia demands Ukraine cede 6,000 sq km of fortified Donbas.
+
+Zelenskyy says only a 3-way Trump-Putin summit can resolve the territory split and rearmament terms.

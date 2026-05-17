@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Beirut — Lebanon joined a cable that bypasses its coast. [Lebanon](country:LB) joined the 7,100km Medusa cable in January, but the system has no landing station in the country. States owning landing stations control routing, transit law, and data access; Lebanon holds a subscription, not sovereignty.
+Beirut — Lebanon joined a cable that bypasses its coast.
+
+[Lebanon](country:LB) joined the 7,100km Medusa cable in January, but the system has no landing station in the country.
+
+States owning landing stations control routing, transit law, and data access; Lebanon holds a subscription, not sovereignty.

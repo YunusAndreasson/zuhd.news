@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.48
 ---
 
-Baghdad — Kataib Hezbollah seized freelance journalist Shelly Kittleson. The Iran-aligned militia abducted her from central Baghdad after the FBI warned her of credible threats 4 times this week. Iraq launched a manhunt and arrested 1 suspect; Kittleson has not been found.
+Baghdad — Kataib Hezbollah seized freelance journalist Shelly Kittleson.
+
+The Iran-aligned militia abducted her from central Baghdad after the FBI warned her of credible threats 4 times this week.
+
+Iraq launched a manhunt and arrested 1 suspect; Kittleson has not been found.

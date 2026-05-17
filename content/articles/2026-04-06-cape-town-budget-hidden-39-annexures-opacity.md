@@ -16,4 +16,8 @@ concepts:
   - "Mayor"
 ---
 
-Cape Town — Cape Town buried its budget across 39 annexures. The headline 10.2% rate cut conceals a 7% total rates revenue increase, while cleaning fees rise 37% by 2028/29. The budget heads to public participation, but 39 annexures make meaningful scrutiny nearly impossible without machine assistance.
+Cape Town — Cape Town buried its budget across 39 annexures.
+
+The headline 10.2% rate cut conceals a 7% total rates revenue increase, while cleaning fees rise 37% by 2028/29.
+
+The budget heads to public participation, but 39 annexures make meaningful scrutiny nearly impossible without machine assistance.

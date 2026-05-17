@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Santa Cruz — Bolivia jailed Mapaya, the Espartanos' Colombia-port boss. Jorge Campaz fled Colombia in 2021 after a gang split and ran Buenaventura's container drug routes 2,000 km away. Colombia seeks extradition; Spain arrested the rival Shottas' leader in February.
+Santa Cruz — Bolivia jailed Mapaya, the Espartanos' Colombia-port boss.
+
+Jorge Campaz fled Colombia in 2021 after a gang split and ran Buenaventura's container drug routes 2,000 km away.
+
+Colombia seeks extradition; Spain arrested the rival Shottas' leader in February.

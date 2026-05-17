@@ -21,4 +21,8 @@ concepts:
   - "Republican Party (United States)"
 ---
 
-Washington — Trump won't reopen DHS without a voting law. The SAVE Act — requiring proof-of-citizenship for voter registration — lacks enough Senate votes to overcome a filibuster, Majority Leader Thune confirmed. TSA agents miss their 2nd paycheck this Friday unless Congress breaks the impasse.
+Washington — Trump won't reopen DHS without a voting law.
+
+The SAVE Act — requiring proof-of-citizenship for voter registration — lacks enough Senate votes to overcome a filibuster, Majority Leader Thune confirmed.
+
+TSA agents miss their 2nd paycheck this Friday unless Congress breaks the impasse.

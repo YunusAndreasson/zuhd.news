@@ -17,4 +17,8 @@ concepts:
   - "United Arab Emirates dirham"
 ---
 
-Dubai — UAE diesel jumps 72% from April 1. The monthly revision — tied to global benchmarks since 2015 deregulation — pushed diesel to Dh4.69 from Dh2.72, its steepest single-month jump. May's revision depends on whether Hormuz reopens; EU energy ministers meeting Tuesday warned of a prolonged disruption.
+Dubai — UAE diesel jumps 72% from April 1.
+
+The monthly revision — tied to global benchmarks since 2015 deregulation — pushed diesel to Dh4.69 from Dh2.72, its steepest single-month jump.
+
+May's revision depends on whether Hormuz reopens; EU energy ministers meeting Tuesday warned of a prolonged disruption.

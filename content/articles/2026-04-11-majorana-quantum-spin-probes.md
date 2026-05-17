@@ -15,4 +15,8 @@ concepts:
   - "Quasiparticle"
 ---
 
-Delft — Physicists built a usable Majorana substitute. Majorana fermions, particles identical to their own antiparticle, remain unobserved; the team engineered analogs from solid-state quasiparticles for quantum spin sensing. The approach lets labs build quantum sensors today without waiting for a particle that may not exist.
+Delft — Physicists built a usable Majorana substitute.
+
+Majorana fermions, particles identical to their own antiparticle, remain unobserved; the team engineered analogs from solid-state quasiparticles for quantum spin sensing.
+
+The approach lets labs build quantum sensors today without waiting for a particle that may not exist.

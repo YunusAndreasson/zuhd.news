@@ -30,4 +30,6 @@ sentimentDivergence: 0.47
 entities: []
 ---
 
-Jerusalem — 850 Palestinians have been killed since October's ceasefire, Hamas said. [US](country:US) envoy Mladenov offered Hamas elections after disarming, calling disarmament "not negotiable." Hamas refuses while [Israel](country:IL) holds over half of Gaza.
+Jerusalem — 850 Palestinians have been killed since October's ceasefire, Hamas said.
+
+[US](country:US) envoy Mladenov offered Hamas elections after disarming, calling disarmament "not negotiable." Hamas refuses while [Israel](country:IL) holds over half of Gaza.

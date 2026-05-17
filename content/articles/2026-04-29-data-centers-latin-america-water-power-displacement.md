@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Santiago — Latin America's AI boom is depleting its aquifers. Investigators document [US](country:US) hyperscalers siting data centers in water-stressed [Mexico](country:MX) and [Chile](country:CL), driving up household energy costs in communities without recourse. Data center demand is growing 20% annually, UN data shows.
+Santiago — Latin America's AI boom is depleting its aquifers.
+
+Investigators document [US](country:US) hyperscalers siting data centers in water-stressed [Mexico](country:MX) and [Chile](country:CL), driving up household energy costs in communities without recourse.
+
+Data center demand is growing 20% annually, UN data shows.

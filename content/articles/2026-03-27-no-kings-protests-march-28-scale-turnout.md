@@ -27,4 +27,8 @@ eventCoverage: 125
 sentimentDivergence: 0.25
 ---
 
-Minneapolis — 3,100 US protests are scheduled for tomorrow. October's 7 million turnout set a national record; 2 activists killed by ICE and the Iran war have driven signups higher since. Crossing 7 million tomorrow would make it the largest protest in US history; a May 1 general strike follows.
+Minneapolis — 3,100 US protests are scheduled for tomorrow.
+
+October's 7 million turnout set a national record; 2 activists killed by ICE and the Iran war have driven signups higher since.
+
+Crossing 7 million tomorrow would make it the largest protest in US history; a May 1 general strike follows.

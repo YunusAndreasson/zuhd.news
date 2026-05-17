@@ -17,4 +17,8 @@ concepts:
   - "Iran Conflict"
 ---
 
-Beijing — China ended 41 months of factory-price deflation. The March PPI rose 0.5% year-on-year — driven by Iran war oil and metals costs, not recovering domestic demand. Beijing's stimulus has not reached factory demand; rising input costs without consumer recovery risks stagflation.
+Beijing — China ended 41 months of factory-price deflation.
+
+The March PPI rose 0.5% year-on-year — driven by Iran war oil and metals costs, not recovering domestic demand.
+
+Beijing's stimulus has not reached factory demand; rising input costs without consumer recovery risks stagflation.

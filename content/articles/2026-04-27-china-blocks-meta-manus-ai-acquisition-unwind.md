@@ -31,4 +31,8 @@ entities:
     kind: "stock"
 ---
 
-Beijing — [China](country:CN) ordered a completed acquisition reversed. China's top economic planning agency blocked Meta's $2B Manus acquisition, declaring the Chinese-founded startup's talent and technology non-exportable. Two Manus co-founders remain barred from leaving China; no unwind mechanism has been announced for already-integrated product teams.
+Beijing — [China](country:CN) ordered a completed acquisition reversed.
+
+China's top economic planning agency blocked Meta's $2B Manus acquisition, declaring the Chinese-founded startup's talent and technology non-exportable.
+
+Two Manus co-founders remain barred from leaving China; no unwind mechanism has been announced for already-integrated product teams.

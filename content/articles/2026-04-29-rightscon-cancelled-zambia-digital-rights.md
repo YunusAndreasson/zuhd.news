@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Lusaka — [Zambia](country:ZM) blocked RightsCon days before it opened. The government cited "pending security clearances" for unnamed speakers — effectively barring activists whose own governments had flagged them. Access Now told thousands of registered attendees to cancel travel; no new venue or date has been announced.
+Lusaka — [Zambia](country:ZM) blocked RightsCon days before it opened.
+
+The government cited "pending security clearances" for unnamed speakers — effectively barring activists whose own governments had flagged them.
+
+Access Now told thousands of registered attendees to cancel travel; no new venue or date has been announced.

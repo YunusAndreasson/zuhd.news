@@ -31,4 +31,8 @@ sentimentDivergence: 0.42
 entities: []
 ---
 
-Sydney — [Australia](country:AU) holds no government-owned fuel reserve. Prime Minister Albanese's A$10bn plan builds 1 billion litres, lifting fuel cover from 30 to 50 days after Iran-war shortages. Parliament votes on the budget next week; A$7.5bn of the package disburses as conditional loans.
+Sydney — [Australia](country:AU) holds no government-owned fuel reserve.
+
+Prime Minister Albanese's A$10bn plan builds 1 billion litres, lifting fuel cover from 30 to 50 days after Iran-war shortages.
+
+Parliament votes on the budget next week; A$7.5bn of the package disburses as conditional loans.

@@ -18,4 +18,8 @@ concepts:
   - "International Emergency Economic Powers Act"
 ---
 
-Pretoria — Washington launched a Section 301 forced labour investigation against South Africa, one of 60 countries targeted after the US Supreme Court struck down Trump's IEEPA tariffs. South Africa already faces the continent's highest US tariff at 30%, and Trade Minister Parks Tau confirmed receiving the probe letter. Economists say the compliance demands are pretext for US pressure over BRICS alignment and support for the ICJ case against Israel, with hearings set for April-May.
+Pretoria — Washington launched a Section 301 forced labour investigation against South Africa, one of 60 countries targeted after the US Supreme Court struck down Trump's IEEPA tariffs.
+
+South Africa already faces the continent's highest US tariff at 30%, and Trade Minister Parks Tau confirmed receiving the probe letter.
+
+Economists say the compliance demands are pretext for US pressure over BRICS alignment and support for the ICJ case against Israel, with hearings set for April-May.

@@ -18,4 +18,8 @@ concepts:
   - "Type 2 diabetes"
 ---
 
-Baltimore — Maryland capped Jardiance at $204 per month. The Prescription Drug Affordability Board benchmarked its cap against Medicare's negotiated price — only the 2nd state panel to set a hard drug ceiling. Pharmaceutical legal challenges are expected; other state boards are waiting to see if the January 2027 deadline holds.
+Baltimore — Maryland capped Jardiance at $204 per month.
+
+The Prescription Drug Affordability Board benchmarked its cap against Medicare's negotiated price — only the 2nd state panel to set a hard drug ceiling.
+
+Pharmaceutical legal challenges are expected; other state boards are waiting to see if the January 2027 deadline holds.

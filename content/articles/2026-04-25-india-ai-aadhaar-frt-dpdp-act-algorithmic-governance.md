@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-New Delhi — 500 cameras secured [India](country:IN)'s AI ethics summit. India's data protection law exempts government AI, leaving facial recognition at railways and predictive policing in 3 cities without oversight. Amnesty International called it AI-aided authoritarianism; India has no AI law requiring pre-deployment impact assessments.
+New Delhi — 500 cameras secured [India](country:IN)'s AI ethics summit.
+
+India's data protection law exempts government AI, leaving facial recognition at railways and predictive policing in 3 cities without oversight.
+
+Amnesty International called it AI-aided authoritarianism; India has no AI law requiring pre-deployment impact assessments.

@@ -24,4 +24,8 @@ concepts:
 sentimentDivergence: 0.16
 ---
 
-Kuala Lumpur — Malaysia lifted its 2026 growth forecast to 4-5%. Bank Negara cited net energy exporter status and 5.2% GDP growth in 2025 as buffers against the war's oil shock. The government now spends 4 billion ringgit monthly in fuel subsidies; inflation is forecast at 1.5-2.5%.
+Kuala Lumpur — Malaysia lifted its 2026 growth forecast to 4-5%.
+
+Bank Negara cited net energy exporter status and 5.2% GDP growth in 2025 as buffers against the war's oil shock.
+
+The government now spends 4 billion ringgit monthly in fuel subsidies; inflation is forecast at 1.5-2.5%.

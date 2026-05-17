@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Moscow — Moscow's mobile internet was shut for 3 weeks. [Russia](country:RU) banned virtual private networks, instituted internet whitelists, and blocked Telegram while announcing a national artificial intelligence project. State media cited [US](country:US) strikes on [Iran](country:IR) as justification; no legal framework for the whitelists has been published.
+Moscow — Moscow's mobile internet was shut for 3 weeks.
+
+[Russia](country:RU) banned virtual private networks, instituted internet whitelists, and blocked Telegram while announcing a national artificial intelligence project.
+
+State media cited [US](country:US) strikes on [Iran](country:IR) as justification; no legal framework for the whitelists has been published.

@@ -16,4 +16,8 @@ concepts:
   - "Memory safety"
 ---
 
-San Francisco — Lisette brings Rust's ownership model to Go. It adopts Rust's memory ownership semantics — no garbage collector — while compiling to Go, inheriting its deployment simplicity and standard library. Hacker News developers debate whether ownership semantics survive Go's type system; the compiler is in early development.
+San Francisco — Lisette brings Rust's ownership model to Go.
+
+It adopts Rust's memory ownership semantics — no garbage collector — while compiling to Go, inheriting its deployment simplicity and standard library.
+
+Hacker News developers debate whether ownership semantics survive Go's type system; the compiler is in early development.

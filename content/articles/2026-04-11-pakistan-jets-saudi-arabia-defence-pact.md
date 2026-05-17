@@ -26,4 +26,8 @@ concepts:
   - "Islamabad"
 ---
 
-Dhahran — Pakistani fighter jets arrived in Saudi Arabia Saturday. Iran struck Saudi energy infrastructure killing a Saudi national, triggering a September 2025 defense pact obligating Pakistani air cover. Islamabad simultaneously hosts US-Iran peace talks, positioning Pakistan as both ceasefire mediator and Saudi security guarantor.
+Dhahran — Pakistani fighter jets arrived in Saudi Arabia Saturday.
+
+Iran struck Saudi energy infrastructure killing a Saudi national, triggering a September 2025 defense pact obligating Pakistani air cover.
+
+Islamabad simultaneously hosts US-Iran peace talks, positioning Pakistan as both ceasefire mediator and Saudi security guarantor.

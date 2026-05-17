@@ -16,4 +16,8 @@ concepts:
   - "Web development"
 ---
 
-Amsterdam — DOOM now runs as pure CSS, no JavaScript. No canvas — the project uses checkbox state and CSS counters to handle raycasting, collision detection, and input entirely in stylesheets. 390 HN upvotes; the browser's rendering engine is now the only thing between CSS and a game engine.
+Amsterdam — DOOM now runs as pure CSS, no JavaScript.
+
+No canvas — the project uses checkbox state and CSS counters to handle raycasting, collision detection, and input entirely in stylesheets.
+
+390 HN upvotes; the browser's rendering engine is now the only thing between CSS and a game engine.

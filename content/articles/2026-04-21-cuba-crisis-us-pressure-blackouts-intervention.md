@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Havana — [Cuba](country:CU)'s grid collapsed 3 times in March alone. [The US](country:US) blockade limits fuel imports; without power, water pumps fail, hospitals dim, and internet drops for hours at a stretch. Trump declared a "new dawn for Cuba" and sent officials to Havana; no reform deadline was set.
+Havana — [Cuba](country:CU)'s grid collapsed 3 times in March alone.
+
+[The US](country:US) blockade limits fuel imports; without power, water pumps fail, hospitals dim, and internet drops for hours at a stretch.
+
+Trump declared a "new dawn for Cuba" and sent officials to Havana; no reform deadline was set.

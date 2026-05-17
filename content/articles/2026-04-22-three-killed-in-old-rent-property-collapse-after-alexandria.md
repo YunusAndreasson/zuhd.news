@@ -11,4 +11,8 @@ sources:
     country: "EG"
 ---
 
-Alexandria — A roof collapse killed a family of 3. [Egypt](country:EG)'s old-rent law caps rents at 1940s rates and bars evictions, making upkeep irrational; the landlord ignored a renovation order for nearly 2 decades. A 2025 reform began gradual dissolution, but existing buildings remain legally frozen.
+Alexandria — A roof collapse killed a family of 3.
+
+[Egypt](country:EG)'s old-rent law caps rents at 1940s rates and bars evictions, making upkeep irrational; the landlord ignored a renovation order for nearly 2 decades.
+
+A 2025 reform began gradual dissolution, but existing buildings remain legally frozen.

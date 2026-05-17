@@ -15,4 +15,8 @@ concepts:
   - "AI safety"
 ---
 
-San Francisco — 1.5B parameters: once "too dangerous"; now baseline competence. OpenAI withheld GPT-2 in 2019 citing misuse risk; a 238-point Hacker News thread now asks whether the safety concern was genuine. No regulatory framework has kept pace with the 1,000x scaling; how "responsible AI" language adapts is unresolved.
+San Francisco — 1.5B parameters: once "too dangerous"; now baseline competence.
+
+OpenAI withheld GPT-2 in 2019 citing misuse risk; a 238-point Hacker News thread now asks whether the safety concern was genuine.
+
+No regulatory framework has kept pace with the 1,000x scaling; how "responsible AI" language adapts is unresolved.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-San Francisco — Weekly Copilot costs nearly doubled since January, pushing GitHub to switch to per-token billing on June 1. Internal documents show agentic sessions consumed GPU resources the flat monthly fee never covered. Subscribers can preview their June bill; Anthropic moved Claude Enterprise to full cost recovery.
+San Francisco — Weekly Copilot costs nearly doubled since January, pushing GitHub to switch to per-token billing on June 1.
+
+Internal documents show agentic sessions consumed GPU resources the flat monthly fee never covered.
+
+Subscribers can preview their June bill; Anthropic moved Claude Enterprise to full cost recovery.

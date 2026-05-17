@@ -22,4 +22,8 @@ entities:
     kind: "commodity"
 ---
 
-New Delhi — [India](country:IN) cuts fuel use to protect foreign exchange. Modi publicly called for carpooling and metro use, citing foreign-exchange pressure from rising oil import costs. Tamil Nadu's governor cut his official convoy from 10 vehicles to 4; the appeal carries no enforcement mechanism.
+New Delhi — [India](country:IN) cuts fuel use to protect foreign exchange.
+
+Modi publicly called for carpooling and metro use, citing foreign-exchange pressure from rising oil import costs.
+
+Tamil Nadu's governor cut his official convoy from 10 vehicles to 4; the appeal carries no enforcement mechanism.

@@ -18,4 +18,8 @@ concepts:
   - "BIIB094"
 ---
 
-London — Biogen's drug silenced a Parkinson's gene in living patients. LRRK2 mutations cause 2% of cases, but the pathway is overactive across most Parkinson's, giving this approach relevance far beyond inherited disease. Larger trials are now under way, testing whether LRRK2 reduction actually slows disease progression.
+London — Biogen's drug silenced a Parkinson's gene in living patients.
+
+LRRK2 mutations cause 2% of cases, but the pathway is overactive across most Parkinson's, giving this approach relevance far beyond inherited disease.
+
+Larger trials are now under way, testing whether LRRK2 reduction actually slows disease progression.

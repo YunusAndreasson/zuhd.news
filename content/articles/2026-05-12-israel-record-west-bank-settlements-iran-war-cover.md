@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-West Bank — 34 settlements: [Israel](country:IL)'s largest single approval batch. Authorized secretly in late March, the vote unlocks water and electricity hookups permanently entrenching each outpost in occupied [Palestine](country:PS). Palestinian communities near approved sites face formal dispossession once infrastructure connects each outpost to the Israeli grid.
+West Bank — 34 settlements: [Israel](country:IL)'s largest single approval batch.
+
+Authorized secretly in late March, the vote unlocks water and electricity hookups permanently entrenching each outpost in occupied [Palestine](country:PS).
+
+Palestinian communities near approved sites face formal dispossession once infrastructure connects each outpost to the Israeli grid.

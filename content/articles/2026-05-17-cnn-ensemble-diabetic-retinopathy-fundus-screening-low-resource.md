@@ -16,4 +16,8 @@ concepts:
 entities: []
 ---
 
-Dhaka — Diabetic retinopathy blinds millions without specialist care. A Nature study built a 4-model artificial intelligence ensemble to screen the disease from retinal photos in clinics without ophthalmologists. Clinical deployment is the next step; the model has been validated on a single dataset only.
+Dhaka — Diabetic retinopathy blinds millions without specialist care.
+
+A Nature study built a 4-model artificial intelligence ensemble to screen the disease from retinal photos in clinics without ophthalmologists.
+
+Clinical deployment is the next step; the model has been validated on a single dataset only.

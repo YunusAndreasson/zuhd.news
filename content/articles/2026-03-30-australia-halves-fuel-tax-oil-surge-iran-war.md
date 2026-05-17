@@ -28,4 +28,8 @@ concepts:
   - "Fuel"
 ---
 
-Canberra — Australia halved its fuel excise from April 1. Hormuz disruption drove oil to $116/barrel; Australia imports 80% of refined fuel and 500 petrol stations ran dry from panic buying. Victoria offered a month of free transit; NSW is considering fuel rationing as stage 4 emergency measures.
+Canberra — Australia halved its fuel excise from April 1.
+
+Hormuz disruption drove oil to $116/barrel; Australia imports 80% of refined fuel and 500 petrol stations ran dry from panic buying.
+
+Victoria offered a month of free transit; NSW is considering fuel rationing as stage 4 emergency measures.

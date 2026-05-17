@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-New York — Airbnb guests tricked AI hosts into sharing recipes. Companies now sell AI chatbots to Airbnb hosts to handle all guest messages — the last task hosts hadn't yet outsourced. Airbnb allows the tools for off-hours use; a guest facing a real emergency gets whatever the AI decides.
+New York — Airbnb guests tricked AI hosts into sharing recipes.
+
+Companies now sell AI chatbots to Airbnb hosts to handle all guest messages — the last task hosts hadn't yet outsourced.
+
+Airbnb allows the tools for off-hours use; a guest facing a real emergency gets whatever the AI decides.

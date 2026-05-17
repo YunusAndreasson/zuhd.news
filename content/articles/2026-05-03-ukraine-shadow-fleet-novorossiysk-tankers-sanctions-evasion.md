@@ -39,4 +39,8 @@ concepts:
 entities: []
 ---
 
-Novorossiysk — 2 shadow fleet tankers disabled at Russia's Black Sea gateway. [Russia](country:RU) assembled the shadow fleet after 2022 to bypass G7 price-cap sanctions; [Ukraine](country:UA) is now destroying the evasion infrastructure directly. President Zelenskyy confirmed the operation and pledged to expand long-range strike capability.
+Novorossiysk — 2 shadow fleet tankers disabled at Russia's Black Sea gateway.
+
+[Russia](country:RU) assembled the shadow fleet after 2022 to bypass G7 price-cap sanctions; [Ukraine](country:UA) is now destroying the evasion infrastructure directly.
+
+President Zelenskyy confirmed the operation and pledged to expand long-range strike capability.

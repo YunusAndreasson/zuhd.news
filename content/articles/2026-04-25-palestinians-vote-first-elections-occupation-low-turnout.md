@@ -39,4 +39,8 @@ concepts:
 entities: []
 ---
 
-Deir al-Balah — 24.53% of registered Palestinians voted by midday. [Palestine](country:PS)'s first municipal elections since 2006 cover 420 West Bank councils and Deir al-Balah — Fatah-only ballot, Hamas barred, no national vote in sight. Western donors tied financial support to local councils, the Palestinian Authority's only democratic body.
+Deir al-Balah — 24.53% of registered Palestinians voted by midday.
+
+[Palestine](country:PS)'s first municipal elections since 2006 cover 420 West Bank councils and Deir al-Balah — Fatah-only ballot, Hamas barred, no national vote in sight.
+
+Western donors tied financial support to local councils, the Palestinian Authority's only democratic body.

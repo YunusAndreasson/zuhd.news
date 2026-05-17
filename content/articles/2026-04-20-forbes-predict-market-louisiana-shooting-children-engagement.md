@@ -17,4 +17,8 @@ concepts:
   - "Algorithmic news"
 ---
 
-New York — Forbes gambled on 8 dead children in Shreveport. ForbesPredict, launched in January to reverse AI-eroded traffic, placed an 18% gun-law wager beneath the child-killing story; readers used tokens to bet. Forbes has not publicly addressed the placement or removed the prediction box.
+New York — Forbes gambled on 8 dead children in Shreveport.
+
+ForbesPredict, launched in January to reverse AI-eroded traffic, placed an 18% gun-law wager beneath the child-killing story; readers used tokens to bet.
+
+Forbes has not publicly addressed the placement or removed the prediction box.

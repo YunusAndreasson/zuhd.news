@@ -17,4 +17,8 @@ concepts:
   - "Mark Zuckerberg"
 ---
 
-Menlo Park — Meta tried to kill Horizon Worlds last week. AA groups, churches, and artists built communities inside it; Meta renamed its company after the platform before attempting to shut it down. Meta's CTO promised "foreseeable future" access after backlash; developer Diaz says that promise "doesn't reassure anybody."
+Menlo Park — Meta tried to kill Horizon Worlds last week.
+
+AA groups, churches, and artists built communities inside it; Meta renamed its company after the platform before attempting to shut it down.
+
+Meta's CTO promised "foreseeable future" access after backlash; developer Diaz says that promise "doesn't reassure anybody."

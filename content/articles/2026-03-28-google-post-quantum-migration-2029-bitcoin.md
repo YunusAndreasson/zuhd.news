@@ -17,4 +17,8 @@ concepts:
   - "Bitcoin"
 ---
 
-Mountain View — Google set a 2029 deadline for post-quantum migration. Ethereum has 8 years of preparation and a hard-fork roadmap; Bitcoin has no coordinated plan and no engineering team assigned. Bitcoin uses ECDSA — Google's explicit target — but has no governance mechanism to coordinate a migration in 3 years.
+Mountain View — Google set a 2029 deadline for post-quantum migration.
+
+Ethereum has 8 years of preparation and a hard-fork roadmap; Bitcoin has no coordinated plan and no engineering team assigned.
+
+Bitcoin uses ECDSA — Google's explicit target — but has no governance mechanism to coordinate a migration in 3 years.

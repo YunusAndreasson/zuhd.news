@@ -17,4 +17,8 @@ concepts:
   - "Board of Peace"
 ---
 
-Washington — Congress adjourned without voting on Iran war powers. Murkowski is drafting war authorization, not a limit; the State Department diverted $1.25 billion from disaster relief to Trump's Gaza Board of Peace. The Pentagon redirected $750 million from Ukraine weapons stockpiles to replenish US Tomahawk supplies.
+Washington — Congress adjourned without voting on Iran war powers.
+
+Murkowski is drafting war authorization, not a limit; the State Department diverted $1.25 billion from disaster relief to Trump's Gaza Board of Peace.
+
+The Pentagon redirected $750 million from Ukraine weapons stockpiles to replenish US Tomahawk supplies.

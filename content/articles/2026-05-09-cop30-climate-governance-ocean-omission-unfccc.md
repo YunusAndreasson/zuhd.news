@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Belém — 90% of excess planetary heat enters the ocean. The UNFCCC has no ocean metrics in national reports and no systematic integration into Global Stocktake assessments — a structural gap, not a knowledge one, researchers argue. Embedding ocean indicators before COP31 is the minimum needed for climate plans to track cascading marine risks.
+Belém — 90% of excess planetary heat enters the ocean.
+
+The UNFCCC has no ocean metrics in national reports and no systematic integration into Global Stocktake assessments — a structural gap, not a knowledge one, researchers argue.
+
+Embedding ocean indicators before COP31 is the minimum needed for climate plans to track cascading marine risks.

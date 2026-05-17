@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Lagos — Obasa's 2025 ouster resolved in his favor Saturday. [Nigeria](country:NG)'s All Progressives Congress ran no candidate against its Lagos Assembly speaker — all 11 Agege wards aligned behind him. Obasa's 2027 federal race would open Lagos Assembly's speaker seat for the first time since 2015.
+Lagos — Obasa's 2025 ouster resolved in his favor Saturday.
+
+[Nigeria](country:NG)'s All Progressives Congress ran no candidate against its Lagos Assembly speaker — all 11 Agege wards aligned behind him.
+
+Obasa's 2027 federal race would open Lagos Assembly's speaker seat for the first time since 2015.

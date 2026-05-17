@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — 44% of ABCB4 liver variants got conflicting artificial intelligence classifications. The variants cause the most common pregnancy liver disorder; a 253-patient study found the tools contradicted published functional data. Artificial intelligence scores cannot replace functional or segregation studies in clinical genetics, the authors concluded.
+London — 44% of ABCB4 liver variants got conflicting artificial intelligence classifications.
+
+The variants cause the most common pregnancy liver disorder; a 253-patient study found the tools contradicted published functional data.
+
+Artificial intelligence scores cannot replace functional or segregation studies in clinical genetics, the authors concluded.

@@ -15,4 +15,8 @@ concepts:
   - "Station house officer"
 ---
 
-Khairpur — [Pakistan](country:PK)'s Sindh suspended 3 police officers after a deadly drone strike. The government ordered a probe headed by the Ghotki superintendent of police after 4 civilians died, but no authority has named who operated the drone. Sindh's Home Minister demanded a public account of the incident.
+Khairpur — [Pakistan](country:PK)'s Sindh suspended 3 police officers after a deadly drone strike.
+
+The government ordered a probe headed by the Ghotki superintendent of police after 4 civilians died, but no authority has named who operated the drone.
+
+Sindh's Home Minister demanded a public account of the incident.

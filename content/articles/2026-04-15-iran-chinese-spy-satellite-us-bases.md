@@ -25,4 +25,8 @@ sentimentDivergence: 0.16
 entities: []
 ---
 
-Tehran — China's satellite guided Iran's strikes on US bases. Iran's Revolutionary Guard acquired China's TEE-01B satellite in 2024, mapping US military sites across 8 countries before March. Leaked Iranian documents confirm it as the first Chinese satellite used for operational targeting against US forces.
+Tehran — China's satellite guided Iran's strikes on US bases.
+
+Iran's Revolutionary Guard acquired China's TEE-01B satellite in 2024, mapping US military sites across 8 countries before March.
+
+Leaked Iranian documents confirm it as the first Chinese satellite used for operational targeting against US forces.

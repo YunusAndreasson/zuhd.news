@@ -15,4 +15,8 @@ concepts:
   - "Israeli Military Courts"
 ---
 
-Tel Aviv — Israel acquitted soldiers filmed abusing a Palestinian prisoner. The acquittal ended the only prosecution from Sde Teiman, a military detention facility where Gaza detainees have reported systematic abuse. Palestinian detainees remain held at Sde Teiman with Israel's military courts controlling all accountability for their treatment.
+Tel Aviv — Israel acquitted soldiers filmed abusing a Palestinian prisoner.
+
+The acquittal ended the only prosecution from Sde Teiman, a military detention facility where Gaza detainees have reported systematic abuse.
+
+Palestinian detainees remain held at Sde Teiman with Israel's military courts controlling all accountability for their treatment.

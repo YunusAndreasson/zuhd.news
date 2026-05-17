@@ -26,4 +26,8 @@ concepts:
   - "Tehran"
 ---
 
-Washington — Trump said he wants Kharg Island's oil. Kharg processes 90% of Iran's crude — 1.5 million barrels daily — making its capture more economically decisive than the air campaign. Iran mined Kharg; any amphibious approach through the Gulf exposes US ships to Iranian coastal missiles and drones.
+Washington — Trump said he wants Kharg Island's oil.
+
+Kharg processes 90% of Iran's crude — 1.5 million barrels daily — making its capture more economically decisive than the air campaign.
+
+Iran mined Kharg; any amphibious approach through the Gulf exposes US ships to Iranian coastal missiles and drones.

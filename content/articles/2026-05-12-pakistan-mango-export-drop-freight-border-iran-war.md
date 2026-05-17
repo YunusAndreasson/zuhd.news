@@ -21,4 +21,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Lahore — [Pakistan](country:PK)'s mango crop is down 300,000 tonnes, exporters estimate. Weather cut output and pushed exports 10 days late; Hormuz disruption raised freight and cut the airline cargo capacity Pakistan needs to reach Europe. Prices will not recover: Afghan border closures weakened demand in Pakistan's main regional market, exporters warn.
+Lahore — [Pakistan](country:PK)'s mango crop is down 300,000 tonnes, exporters estimate.
+
+Weather cut output and pushed exports 10 days late; Hormuz disruption raised freight and cut the airline cargo capacity Pakistan needs to reach Europe.
+
+Prices will not recover: Afghan border closures weakened demand in Pakistan's main regional market, exporters warn.

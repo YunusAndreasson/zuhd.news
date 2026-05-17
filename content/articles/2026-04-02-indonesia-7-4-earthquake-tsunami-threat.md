@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.44
 ---
 
-Ternate — 1 person died in Manado from falling debris. A 7.4-magnitude quake struck the Molucca Sea at 35km depth, triggering tsunami warnings across 1,000km of coastline in Indonesia, the Philippines and Malaysia. Authorities are assessing structural damage near Ternate, a city of 205,000 in one of the Ring of Fire's most seismically active zones.
+Ternate — 1 person died in Manado from falling debris.
+
+A 7.4-magnitude quake struck the Molucca Sea at 35km depth, triggering tsunami warnings across 1,000km of coastline in Indonesia, the Philippines and Malaysia.
+
+Authorities are assessing structural damage near Ternate, a city of 205,000 in one of the Ring of Fire's most seismically active zones.

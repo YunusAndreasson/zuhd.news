@@ -13,4 +13,8 @@ sources:
 entities: []
 ---
 
-Washington — The [US](country:US) House renewed warrantless foreign surveillance 235-191. Section 702 of the Foreign Intelligence Surveillance Act lets agencies collect foreigners' communications without a court order, capturing Americans' messages incidentally. Senate passage remains uncertain after the bill required 2 House attempts.
+Washington — The [US](country:US) House renewed warrantless foreign surveillance 235-191.
+
+Section 702 of the Foreign Intelligence Surveillance Act lets agencies collect foreigners' communications without a court order, capturing Americans' messages incidentally.
+
+Senate passage remains uncertain after the bill required 2 House attempts.

@@ -17,4 +17,8 @@ concepts:
   - "NASA"
 ---
 
-Cape Canaveral — 4 astronauts launch for the Moon in April. The 10-day Orion mission will test life support, navigation, and heat shield at lunar return speed — systems untested on a crewed flight. Artemis III cannot attempt a Moon landing unless all systems pass this test.
+Cape Canaveral — 4 astronauts launch for the Moon in April.
+
+The 10-day Orion mission will test life support, navigation, and heat shield at lunar return speed — systems untested on a crewed flight.
+
+Artemis III cannot attempt a Moon landing unless all systems pass this test.

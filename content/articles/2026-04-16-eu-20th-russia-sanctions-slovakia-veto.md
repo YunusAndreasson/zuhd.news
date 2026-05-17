@@ -23,4 +23,8 @@ entities:
     kind: "commodity"
 ---
 
-Brussels — Slovakia will veto round 20 unless Druzhba reopens. EU sanctions require unanimity; Bratislava still runs on Russian Druzhba crude and demands Ukraine reopen the pipeline before agreeing. EU ambassadors meet April 17; if Slovakia holds, the 20th package fails and Russia faces no new restrictions.
+Brussels — Slovakia will veto round 20 unless Druzhba reopens.
+
+EU sanctions require unanimity; Bratislava still runs on Russian Druzhba crude and demands Ukraine reopen the pipeline before agreeing.
+
+EU ambassadors meet April 17; if Slovakia holds, the 20th package fails and Russia faces no new restrictions.

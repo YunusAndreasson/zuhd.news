@@ -33,4 +33,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Washington — [US](country:US) pump prices rose 52% since late February. Senator Hawley introduced a bill to pause the 18.4¢/gallon tax — revenue that funds highway and bridge infrastructure — as [Iran](country:IR) war closed the Strait of Hormuz for 2 months. Analysts say a 3-month pause would cost $7 billion in road funds; Trump said ceasefire talks are on "life support."
+Washington — [US](country:US) pump prices rose 52% since late February.
+
+Senator Hawley introduced a bill to pause the 18.4¢/gallon tax — revenue that funds highway and bridge infrastructure — as [Iran](country:IR) war closed the Strait of Hormuz for 2 months.
+
+Analysts say a 3-month pause would cost $7 billion in road funds; Trump said ceasefire talks are on "life support."

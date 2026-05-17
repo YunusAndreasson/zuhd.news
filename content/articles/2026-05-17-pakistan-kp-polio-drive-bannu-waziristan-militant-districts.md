@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Peshawar — [Pakistan](country:PK) has recorded 3 polio cases this year. Khyber Pakhtunkhwa is deploying 35,000 security personnel alongside 22,450 vaccination teams across 23 districts where the polio and militant maps overlap, provincial authorities said. North Waziristan and Bannu — each with an active environmental sample — begin their campaign Monday.
+Peshawar — [Pakistan](country:PK) has recorded 3 polio cases this year.
+
+Khyber Pakhtunkhwa is deploying 35,000 security personnel alongside 22,450 vaccination teams across 23 districts where the polio and militant maps overlap, provincial authorities said.
+
+North Waziristan and Bannu — each with an active environmental sample — begin their campaign Monday.

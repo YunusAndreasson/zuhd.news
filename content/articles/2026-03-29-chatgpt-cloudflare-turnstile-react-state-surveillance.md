@@ -16,4 +16,8 @@ concepts:
   - "OpenAI"
 ---
 
-San Francisco — Cloudflare reads ChatGPT's app state before you type. A developer reverse-engineered Turnstile's obfuscated code and found it extracts internal app state — not just browser fingerprints — before input is enabled. OpenAI has not disclosed that its bot-detection partner inspects app state for 100 million users.
+San Francisco — Cloudflare reads ChatGPT's app state before you type.
+
+A developer reverse-engineered Turnstile's obfuscated code and found it extracts internal app state — not just browser fingerprints — before input is enabled.
+
+OpenAI has not disclosed that its bot-detection partner inspects app state for 100 million users.

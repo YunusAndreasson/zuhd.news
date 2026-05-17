@@ -17,4 +17,8 @@ concepts:
   - "Water purification"
 ---
 
-London — Magnesium and tartaric acid yield silver nanoparticles without heat. The particles degraded 91.6% of a dye pollutant in 3 hours under visible light, making them viable for solar-powered water purification. The authors say scale-up uses only cheap commodity chemicals and propose the process for water treatment — but industrial trials have not yet begun.
+London — Magnesium and tartaric acid yield silver nanoparticles without heat.
+
+The particles degraded 91.6% of a dye pollutant in 3 hours under visible light, making them viable for solar-powered water purification.
+
+The authors say scale-up uses only cheap commodity chemicals and propose the process for water treatment — but industrial trials have not yet begun.

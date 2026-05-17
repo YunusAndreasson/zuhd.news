@@ -28,4 +28,8 @@ sentimentDivergence: 0.18
 entities: []
 ---
 
-Beirut — Katz: demolish Hezbollah outposts during Lebanon ceasefire. [Israel](country:IL)'s defense minister ordered booby-trapped structures destroyed and homes labeled Hezbollah outposts removed without requiring hostile fire. [Lebanon](country:LB)'s government has not responded; the truce has no enforcement mechanism.
+Beirut — Katz: demolish Hezbollah outposts during Lebanon ceasefire.
+
+[Israel](country:IL)'s defense minister ordered booby-trapped structures destroyed and homes labeled Hezbollah outposts removed without requiring hostile fire.
+
+[Lebanon](country:LB)'s government has not responded; the truce has no enforcement mechanism.

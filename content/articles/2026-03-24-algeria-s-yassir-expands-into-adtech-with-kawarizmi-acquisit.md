@@ -17,4 +17,8 @@ concepts:
   - "Adtech"
 ---
 
-Algiers — An Algerian app acquired a Paris tech company. Yassir — a ride-hailing and delivery super app with 8 million users across 6 countries — bought Paris-based Kawarizmi to access programmatic advertising technology spanning Europe, Africa, and the Middle East. The deal gives Yassir infrastructure to sell its first-party user data to European and African brands for the first time.
+Algiers — An Algerian app acquired a Paris tech company.
+
+Yassir — a ride-hailing and delivery super app with 8 million users across 6 countries — bought Paris-based Kawarizmi to access programmatic advertising technology spanning Europe, Africa, and the Middle East.
+
+The deal gives Yassir infrastructure to sell its first-party user data to European and African brands for the first time.

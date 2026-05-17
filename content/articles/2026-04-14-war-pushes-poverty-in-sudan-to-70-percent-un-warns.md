@@ -35,4 +35,8 @@ eventCoverage: 98
 sentimentDivergence: 0.35
 ---
 
-Khartoum — 70% of Sudanese now live in poverty. The 4-year civil war has collapsed Sudanese incomes to 1992 levels with humanitarian aid covering just 16% of need. Wednesday's Berlin conference targets over $1 billion in pledges, with neither warring faction present.
+Khartoum — 70% of Sudanese now live in poverty.
+
+The 4-year civil war has collapsed Sudanese incomes to 1992 levels with humanitarian aid covering just 16% of need.
+
+Wednesday's Berlin conference targets over $1 billion in pledges, with neither warring faction present.

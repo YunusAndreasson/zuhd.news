@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Tokyo — Japan's new missile can reach Shanghai. Type 25 extends Japan's strike range from 120 to 600 miles, putting Chinese mainland cities within reach for the first time. China warned the deployment "casts a long shadow"; Trump meets Xi in Beijing next month.
+Tokyo — Japan's new missile can reach Shanghai.
+
+Type 25 extends Japan's strike range from 120 to 600 miles, putting Chinese mainland cities within reach for the first time.
+
+China warned the deployment "casts a long shadow"; Trump meets Xi in Beijing next month.

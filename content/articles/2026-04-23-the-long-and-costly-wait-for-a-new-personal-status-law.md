@@ -11,4 +11,8 @@ sources:
     country: "EG"
 ---
 
-Cairo — MP Soliman's death revived [Egypt](country:EG)'s personal status bill. The 2021 draft let men divorce verbally and allowed guardians to annul women's marriages — provisions that drove the bill's collapse. Parliament has set no vote date and legal advocates say the draft remains unchanged.
+Cairo — MP Soliman's death revived [Egypt](country:EG)'s personal status bill.
+
+The 2021 draft let men divorce verbally and allowed guardians to annul women's marriages — provisions that drove the bill's collapse.
+
+Parliament has set no vote date and legal advocates say the draft remains unchanged.

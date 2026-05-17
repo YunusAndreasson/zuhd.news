@@ -23,4 +23,8 @@ entities:
     kind: "commodity"
 ---
 
-London — 2 oil tycoons denied bribing Diezani Alison-Madueke. The former Nigerian petroleum minister directed crude allocation by personal discretion; the [UK](country:GB) trial is the only proceeding nearing a verdict on the scheme. The defence presents its case next, with judgment to follow.
+London — 2 oil tycoons denied bribing Diezani Alison-Madueke.
+
+The former Nigerian petroleum minister directed crude allocation by personal discretion; the [UK](country:GB) trial is the only proceeding nearing a verdict on the scheme.
+
+The defence presents its case next, with judgment to follow.

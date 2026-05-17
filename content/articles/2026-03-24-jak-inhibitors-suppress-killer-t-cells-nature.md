@@ -18,4 +18,8 @@ concepts:
   - "Infection risk"
 ---
 
-London — Arthritis drugs block immune T cells from burning glucose. A Nature study found JAK inhibitors uncouple immune activation from metabolic fuel — cells show activation markers but cannot produce the energy needed to fight infection. Patients on JAK inhibitors need infection-monitoring protocols that clinical guidelines do not yet require.
+London — Arthritis drugs block immune T cells from burning glucose.
+
+A Nature study found JAK inhibitors uncouple immune activation from metabolic fuel — cells show activation markers but cannot produce the energy needed to fight infection.
+
+Patients on JAK inhibitors need infection-monitoring protocols that clinical guidelines do not yet require.

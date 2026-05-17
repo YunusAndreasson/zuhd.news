@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Thacker Pass — Amnesty found consent never sought at 3 Nevada lithium mines. The [US](country:US) Bureau of Land Management permitted Thacker Pass in under a year, treating unanswered letters to COVID-closed tribal offices as non-objection. Rhyolite Ridge holds a $1 billion Energy Department loan with no consent agreement from Northern Paiute communities.
+Thacker Pass — Amnesty found consent never sought at 3 Nevada lithium mines.
+
+The [US](country:US) Bureau of Land Management permitted Thacker Pass in under a year, treating unanswered letters to COVID-closed tribal offices as non-objection.
+
+Rhyolite Ridge holds a $1 billion Energy Department loan with no consent agreement from Northern Paiute communities.

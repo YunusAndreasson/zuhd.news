@@ -31,4 +31,8 @@ eventCoverage: 49
 sentimentDivergence: 0.24
 ---
 
-Dubai — Dubai capped foreign airlines at 1 daily flight, citing the Iran conflict. Emirates and Flydubai are exempt; IndiGo is cut from 15 approved summer flights to 1. India's airline federation asked New Delhi for reciprocal action against Emirates if restrictions hold past May 31.
+Dubai — Dubai capped foreign airlines at 1 daily flight, citing the Iran conflict.
+
+Emirates and Flydubai are exempt; IndiGo is cut from 15 approved summer flights to 1.
+
+India's airline federation asked New Delhi for reciprocal action against Emirates if restrictions hold past May 31.

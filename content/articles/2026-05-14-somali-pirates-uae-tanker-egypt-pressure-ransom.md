@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Mogadishu — 30 gunmen hold the MT Eureka near Puntland. Pirates seized the UAE-owned tanker off [Yemen](country:YE) on May 2 — the 2nd Gulf of Aden hijacking in 10 days — and are demanding $10 million. [Egypt](country:EG) is pressing [Somalia](country:SO)'s ambassador over 8 Egyptian crew; no ransom talks have been confirmed.
+Mogadishu — 30 gunmen hold the MT Eureka near Puntland.
+
+Pirates seized the UAE-owned tanker off [Yemen](country:YE) on May 2 — the 2nd Gulf of Aden hijacking in 10 days — and are demanding $10 million.
+
+[Egypt](country:EG) is pressing [Somalia](country:SO)'s ambassador over 8 Egyptian crew; no ransom talks have been confirmed.

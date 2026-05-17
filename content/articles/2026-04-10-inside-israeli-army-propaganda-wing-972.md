@@ -18,4 +18,6 @@ concepts:
   - "Lebanon"
 ---
 
-Tel Aviv — IDF Spokesperson's Unit runs psy-ops on foreign press. Soldiers and journalists told +972 the unit shapes narratives through selective leaks and exclusive access. +972's report is the first sourced from inside the unit, spanning Gaza and Lebanon operations still underway.
+Tel Aviv — IDF Spokesperson's Unit runs psy-ops on foreign press.
+
+Soldiers and journalists told +972 the unit shapes narratives through selective leaks and exclusive access. +972's report is the first sourced from inside the unit, spanning Gaza and Lebanon operations still underway.

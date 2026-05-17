@@ -17,4 +17,8 @@ concepts:
   - "Africa"
 ---
 
-Brussels — The EU is building deportation hubs in Africa. The EU Migration Pact — effective June 12 — expands raids, racial profiling, and third-country detention centers, mirroring Trump policies Europe openly condemns. 80,000+ pushbacks were recorded in 2025 — including beatings and forced crossings; the pact's compliance mechanisms are untested.
+Brussels — The EU is building deportation hubs in Africa.
+
+The EU Migration Pact — effective June 12 — expands raids, racial profiling, and third-country detention centers, mirroring Trump policies Europe openly condemns.
+
+80,000+ pushbacks were recorded in 2025 — including beatings and forced crossings; the pact's compliance mechanisms are untested.

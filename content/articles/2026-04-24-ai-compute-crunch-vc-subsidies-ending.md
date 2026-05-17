@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-San Francisco — Apple says it cannot secure chipmaking capacity for upcoming iPhones. AI hyperscalers are outbidding device-makers at shared fabs, ending the era of VC-subsidized cheap inference. A 2TB SSD that cost $159 now sells for $575, 404 Media reported; data-center electricity costs are rising in parallel.
+San Francisco — Apple says it cannot secure chipmaking capacity for upcoming iPhones.
+
+AI hyperscalers are outbidding device-makers at shared fabs, ending the era of VC-subsidized cheap inference.
+
+A 2TB SSD that cost $159 now sells for $575, 404 Media reported; data-center electricity costs are rising in parallel.

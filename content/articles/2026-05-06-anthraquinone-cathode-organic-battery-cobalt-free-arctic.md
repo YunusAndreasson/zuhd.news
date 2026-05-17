@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — PMDI-2AQ cathode holds charge to -40°C without cobalt. It handles both lithium and sodium-ion chemistries and resists the solvent attack that ended every prior organic cathode candidate, researchers report in Nature. Sodium-ion compatibility means countries without lithium reserves could build domestic battery industries without mine access.
+London — PMDI-2AQ cathode holds charge to -40°C without cobalt.
+
+It handles both lithium and sodium-ion chemistries and resists the solvent attack that ended every prior organic cathode candidate, researchers report in Nature.
+
+Sodium-ion compatibility means countries without lithium reserves could build domestic battery industries without mine access.

@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Brussels — [Belgium](country:BE) signed to nationalize ENGIE's 7-reactor fleet. Parliament reversed Belgium's 2003 phase-out last year; the country runs on gas imports and has not expanded renewables fast enough. A basic agreement with ENGIE is due by October; De Wever's government also plans new-build reactors.
+Brussels — [Belgium](country:BE) signed to nationalize ENGIE's 7-reactor fleet.
+
+Parliament reversed Belgium's 2003 phase-out last year; the country runs on gas imports and has not expanded renewables fast enough.
+
+A basic agreement with ENGIE is due by October; De Wever's government also plans new-build reactors.

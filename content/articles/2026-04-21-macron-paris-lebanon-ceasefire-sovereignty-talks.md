@@ -35,4 +35,8 @@ sentimentDivergence: 0.67
 entities: []
 ---
 
-Paris — Israeli war in Lebanon: 2,294 dead since March, official figures show. Lebanon needs €500 million over 6 months; [France](country:FR) was excluded from Washington talks by [Israel](country:IL) and the [US](country:US). The US-[Iran](country:IR) ceasefire expires Wednesday, hours before Lebanon-Israel ambassador talks in Washington Thursday.
+Paris — Israeli war in Lebanon: 2,294 dead since March, official figures show.
+
+Lebanon needs €500 million over 6 months; [France](country:FR) was excluded from Washington talks by [Israel](country:IL) and the [US](country:US).
+
+The US-[Iran](country:IR) ceasefire expires Wednesday, hours before Lebanon-Israel ambassador talks in Washington Thursday.

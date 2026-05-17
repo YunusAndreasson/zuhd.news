@@ -22,4 +22,8 @@ entities:
     kind: "crypto"
 ---
 
-New York — NFT sales fell 42% since February; floors doubled. Wash trading accounts for 50% of total volume, CryptoSlam data show; fewer real buyers are bidding up a shrinking pool of blue-chip collections. Aggregate trading profits remain negative; Ethereum's 18% monthly rally — not NFT demand — is what holds floors up.
+New York — NFT sales fell 42% since February; floors doubled.
+
+Wash trading accounts for 50% of total volume, CryptoSlam data show; fewer real buyers are bidding up a shrinking pool of blue-chip collections.
+
+Aggregate trading profits remain negative; Ethereum's 18% monthly rally — not NFT demand — is what holds floors up.

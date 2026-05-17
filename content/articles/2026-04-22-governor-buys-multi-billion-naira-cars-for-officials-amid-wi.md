@@ -21,4 +21,8 @@ entities:
     kind: "currency"
 ---
 
-Minna — Niger State's governor procured 100 vehicles for officials. Recipients include judges, commissioners, and board members; the purchase cost billions of naira but no total figure has been disclosed. [Nigeria](country:NG)'s National Bureau of Statistics puts the state's poverty rate at 69.1%.
+Minna — Niger State's governor procured 100 vehicles for officials.
+
+Recipients include judges, commissioners, and board members; the purchase cost billions of naira but no total figure has been disclosed.
+
+[Nigeria](country:NG)'s National Bureau of Statistics puts the state's poverty rate at 69.1%.

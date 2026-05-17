@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Arlington — DARPA wants 500-drone swarms launched from ordinary shipping containers. Each container would autonomously manage launch, recovery, and recharge — sustaining operations for days inside contested or enemy territory. Once [the US](country:US) fields it, adversaries can pre-position identical systems inside containers at allied ports worldwide.
+Arlington — DARPA wants 500-drone swarms launched from ordinary shipping containers.
+
+Each container would autonomously manage launch, recovery, and recharge — sustaining operations for days inside contested or enemy territory.
+
+Once [the US](country:US) fields it, adversaries can pre-position identical systems inside containers at allied ports worldwide.

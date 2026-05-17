@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Saarbrücken — Kidney denervation reduced post-infarction cardiac scarring in rats. The procedure, approved for hypertension, severs renal nerves that amplify the body's stress response after infarction, improving heart pump function within 4 weeks. No human trials on post-infarction cardiac remodeling are registered.
+Saarbrücken — Kidney denervation reduced post-infarction cardiac scarring in rats.
+
+The procedure, approved for hypertension, severs renal nerves that amplify the body's stress response after infarction, improving heart pump function within 4 weeks.
+
+No human trials on post-infarction cardiac remodeling are registered.

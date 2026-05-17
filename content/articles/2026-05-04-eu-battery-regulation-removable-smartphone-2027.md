@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Brussels — No flagship phone meets EU's 2027 battery rule. The Battery Regulation bans glued-in cells and heat adhesives, reversing a decade of Apple and Samsung sealed-glass design. Replacement cells must be available for 5 years post-sale, a threshold no current flagship meets.
+Brussels — No flagship phone meets EU's 2027 battery rule.
+
+The Battery Regulation bans glued-in cells and heat adhesives, reversing a decade of Apple and Samsung sealed-glass design.
+
+Replacement cells must be available for 5 years post-sale, a threshold no current flagship meets.

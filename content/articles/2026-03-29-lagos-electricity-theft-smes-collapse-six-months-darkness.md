@@ -17,4 +17,8 @@ concepts:
   - "Nigeria"
 ---
 
-Lagos — Ketu-Epe has been dark for 6 months. Vandals cut the high-tension cables in September; SMEs now pay triple grid rates running generators and buying ice daily. The stolen cable is at the police station; officials missed every repair deadline, including Christmas.
+Lagos — Ketu-Epe has been dark for 6 months.
+
+Vandals cut the high-tension cables in September; SMEs now pay triple grid rates running generators and buying ice daily.
+
+The stolen cable is at the police station; officials missed every repair deadline, including Christmas.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Pretoria — 12,000 teachers enrolled in a WhatsApp hearing screener in 1 month. Only 10% of [South Africa](country:ZA)'s mandated school hearing screenings happen annually, due to equipment and staffing gaps, University of Pretoria researchers said. The research team is now seeking accreditation to give participating teachers professional development credits.
+Pretoria — 12,000 teachers enrolled in a WhatsApp hearing screener in 1 month.
+
+Only 10% of [South Africa](country:ZA)'s mandated school hearing screenings happen annually, due to equipment and staffing gaps, University of Pretoria researchers said.
+
+The research team is now seeking accreditation to give participating teachers professional development credits.

@@ -31,4 +31,8 @@ sentimentDivergence: 0.18
 entities: []
 ---
 
-Las Palmas — 3 passengers died aboard Dutch cruise ship MV Hondius as hantavirus spread. [Spain](country:ES) approved docking but Canary Islands president Clavijo refused, citing insufficient safety data. 150 passengers from 23 countries remain stranded near [Cape Verde](country:CV) pending talks with Prime Minister Sánchez.
+Las Palmas — 3 passengers died aboard Dutch cruise ship MV Hondius as hantavirus spread.
+
+[Spain](country:ES) approved docking but Canary Islands president Clavijo refused, citing insufficient safety data.
+
+150 passengers from 23 countries remain stranded near [Cape Verde](country:CV) pending talks with Prime Minister Sánchez.

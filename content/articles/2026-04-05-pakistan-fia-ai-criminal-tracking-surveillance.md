@@ -15,4 +15,8 @@ concepts:
   - "Pakistan"
 ---
 
-Islamabad — Pakistan's FIA built AI that ages criminal photographs. The system generates updated appearance projections from old photos and links biometric data, bank accounts, and family members in a public database. Pakistan has no independent data protection authority; the FIA has previously targeted journalists and political critics.
+Islamabad — Pakistan's FIA built AI that ages criminal photographs.
+
+The system generates updated appearance projections from old photos and links biometric data, bank accounts, and family members in a public database.
+
+Pakistan has no independent data protection authority; the FIA has previously targeted journalists and political critics.

@@ -20,4 +20,8 @@ concepts:
   - "Colombian Air Force"
 ---
 
-Puerto Leguízamo — A Colombian Hercules crashed with 110 soldiers aboard. Defence Minister Pedro Sánchez confirmed the C-130 went down on takeoff from Puerto Leguízamo, 3 km from town in Colombia's Amazon province of Putumayo. No survivors have been confirmed as rescue teams sweep the dense jungle crash site.
+Puerto Leguízamo — A Colombian Hercules crashed with 110 soldiers aboard.
+
+Defence Minister Pedro Sánchez confirmed the C-130 went down on takeoff from Puerto Leguízamo, 3 km from town in Colombia's Amazon province of Putumayo.
+
+No survivors have been confirmed as rescue teams sweep the dense jungle crash site.

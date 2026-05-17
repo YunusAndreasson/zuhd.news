@@ -19,4 +19,8 @@ concepts:
   - "Ceasefire"
 ---
 
-Islamabad — Islamabad sealed its Red Zone for Iran-US talks. Pakistan declared a 2-day local holiday, vacated a hotel for delegations, and closed entry points — security matching the 2024 SCO summit. VP JD Vance leads the US side; Iran arrives Thursday carrying 10 conditions Washington has not accepted.
+Islamabad — Islamabad sealed its Red Zone for Iran-US talks.
+
+Pakistan declared a 2-day local holiday, vacated a hotel for delegations, and closed entry points — security matching the 2024 SCO summit.
+
+VP JD Vance leads the US side; Iran arrives Thursday carrying 10 conditions Washington has not accepted.

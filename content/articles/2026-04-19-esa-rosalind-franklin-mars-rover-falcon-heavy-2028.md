@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Paris — Rosalind Franklin will launch 6 years behind schedule. [Russia](country:RU)'s 2022 invasion of [Ukraine](country:UA) cancelled the Roscosmos contract; SpaceX Falcon Heavy is now set for a late-2028 launch. Washington's fiscal-year 2027 budget proposes cutting Mars contributions; Europe's space agency says it can replace them.
+Paris — Rosalind Franklin will launch 6 years behind schedule.
+
+[Russia](country:RU)'s 2022 invasion of [Ukraine](country:UA) cancelled the Roscosmos contract; SpaceX Falcon Heavy is now set for a late-2028 launch.
+
+Washington's fiscal-year 2027 budget proposes cutting Mars contributions; Europe's space agency says it can replace them.

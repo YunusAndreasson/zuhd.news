@@ -17,4 +17,8 @@ concepts:
   - "Species"
 ---
 
-Stockholm — Spruce wood filters 90% of nanoplastics per cycle. Softwood's microstructure traps plastic particles through pressure-driven filtration, outperforming hardwood alternatives and needing no chemical treatment. Whether spruce membranes can scale to municipal water treatment or remain a lab proof-of-concept is untested.
+Stockholm — Spruce wood filters 90% of nanoplastics per cycle.
+
+Softwood's microstructure traps plastic particles through pressure-driven filtration, outperforming hardwood alternatives and needing no chemical treatment.
+
+Whether spruce membranes can scale to municipal water treatment or remain a lab proof-of-concept is untested.

@@ -17,4 +17,8 @@ concepts:
   - "Volkswagen emissions scandal"
 ---
 
-Chattanooga — VW stopped making the ID.4 in Tennessee. The Dieselgate settlement required VW to build EVs locally; abolishing the clean-vehicle tax credit caused a 62% sales collapse. Inventory runs into 2027; VW has no timeline for a next-generation electric model at Chattanooga.
+Chattanooga — VW stopped making the ID.4 in Tennessee.
+
+The Dieselgate settlement required VW to build EVs locally; abolishing the clean-vehicle tax credit caused a 62% sales collapse.
+
+Inventory runs into 2027; VW has no timeline for a next-generation electric model at Chattanooga.

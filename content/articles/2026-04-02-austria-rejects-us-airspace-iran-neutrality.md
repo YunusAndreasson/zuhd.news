@@ -23,4 +23,8 @@ concepts:
 sentimentDivergence: 0.35
 ---
 
-Vienna — Austria's neutrality law blocked several US overflight requests. The defence ministry confirmed "several" US requests to use Austrian airspace for Iran operations; Spain and Italy have also refused similar bids. Austria reviews each further request individually, leaving US war logistics without a European corridor.
+Vienna — Austria's neutrality law blocked several US overflight requests.
+
+The defence ministry confirmed "several" US requests to use Austrian airspace for Iran operations; Spain and Italy have also refused similar bids.
+
+Austria reviews each further request individually, leaving US war logistics without a European corridor.

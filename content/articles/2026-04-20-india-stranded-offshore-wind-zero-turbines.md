@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-New Delhi — [India](country:IN)'s 2024 offshore wind tender drew no bids. Turbine costs are unrecoverable at the solar-parity tariffs Indian power markets offer; the 30 GW target has no turbines built. The [UK](country:GB) and India launched a joint "trustforce" in February; no financing model has been agreed.
+New Delhi — [India](country:IN)'s 2024 offshore wind tender drew no bids.
+
+Turbine costs are unrecoverable at the solar-parity tariffs Indian power markets offer; the 30 GW target has no turbines built.
+
+The [UK](country:GB) and India launched a joint "trustforce" in February; no financing model has been agreed.

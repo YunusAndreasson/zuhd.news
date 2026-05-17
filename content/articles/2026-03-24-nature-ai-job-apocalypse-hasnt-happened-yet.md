@@ -17,4 +17,8 @@ concepts:
   - "Data collection"
 ---
 
-New Haven — Yale found no AI unemployment surge after ChatGPT launched. Census data shows 18% of US businesses used AI recently — executives over-announce AI to shareholders while operations remain largely unchanged. Researchers call for better labor data collection, warning that existing systems cannot track role-level displacement that aggregate employment figures mask.
+New Haven — Yale found no AI unemployment surge after ChatGPT launched.
+
+Census data shows 18% of US businesses used AI recently — executives over-announce AI to shareholders while operations remain largely unchanged.
+
+Researchers call for better labor data collection, warning that existing systems cannot track role-level displacement that aggregate employment figures mask.

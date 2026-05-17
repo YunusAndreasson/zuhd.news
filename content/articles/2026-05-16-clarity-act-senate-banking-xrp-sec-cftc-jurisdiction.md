@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Washington — Senate Banking advanced the digital-asset clarity bill 15–9. The bill divides secondary-market oversight between securities and commodities regulators, ending the gap blocking institutional custody. The Senate version must merge with the Agriculture Committee version before the Memorial Day recess deadline.
+Washington — Senate Banking advanced the digital-asset clarity bill 15–9.
+
+The bill divides secondary-market oversight between securities and commodities regulators, ending the gap blocking institutional custody.
+
+The Senate version must merge with the Agriculture Committee version before the Memorial Day recess deadline.

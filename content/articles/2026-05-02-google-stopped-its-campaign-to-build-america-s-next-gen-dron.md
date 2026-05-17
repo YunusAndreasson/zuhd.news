@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-Washington — Google quit the $100mn Pentagon contest to build voice-controlled drone swarms. OpenAI and 2 rivals remain in the competition to field air, ground and water autonomous systems. Google holds a separate $200mn Pentagon artificial intelligence contract; 600+ employees oppose military use.
+Washington — Google quit the $100mn Pentagon contest to build voice-controlled drone swarms.
+
+OpenAI and 2 rivals remain in the competition to field air, ground and water autonomous systems.
+
+Google holds a separate $200mn Pentagon artificial intelligence contract; 600+ employees oppose military use.

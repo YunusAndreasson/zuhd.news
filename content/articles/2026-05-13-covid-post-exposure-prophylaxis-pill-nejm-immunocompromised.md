@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Tokyo — Ensitrelvir cut COVID infections from 9% to 3% when taken within 72 hours of household exposure, a 2,000-person trial found. The New England Journal of Medicine study is the first proof an oral drug can prevent COVID after contact. [Japan](country:JP) approved it in March; a [US](country:US) regulatory decision is expected within weeks.
+Tokyo — Ensitrelvir cut COVID infections from 9% to 3% when taken within 72 hours of household exposure, a 2,000-person trial found.
+
+The New England Journal of Medicine study is the first proof an oral drug can prevent COVID after contact.
+
+[Japan](country:JP) approved it in March; a [US](country:US) regulatory decision is expected within weeks.

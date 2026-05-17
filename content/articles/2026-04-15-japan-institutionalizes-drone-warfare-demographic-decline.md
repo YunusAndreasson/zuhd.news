@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Tokyo — Japan built 2 military offices for drone warfare. The Ground Self-Defense Force cannot recruit enough soldiers — demographic decline has made automation not a doctrine but a necessity. Japan is the first major military to institutionalize unmanned operations because it ran out of people to fight.
+Tokyo — Japan built 2 military offices for drone warfare.
+
+The Ground Self-Defense Force cannot recruit enough soldiers — demographic decline has made automation not a doctrine but a necessity.
+
+Japan is the first major military to institutionalize unmanned operations because it ran out of people to fight.

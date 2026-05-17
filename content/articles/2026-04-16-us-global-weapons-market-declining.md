@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Washington — 3 wars are draining the US weapons stockpile. US production lines cannot replace what Ukraine, Israel, and the Iran war consume, creating backlogs that push buyers toward South Korean and Turkish competitors. Whether the emerging suppliers will use leverage that Washington consistently declined to apply is the unresolved question.
+Washington — 3 wars are draining the US weapons stockpile.
+
+US production lines cannot replace what Ukraine, Israel, and the Iran war consume, creating backlogs that push buyers toward South Korean and Turkish competitors.
+
+Whether the emerging suppliers will use leverage that Washington consistently declined to apply is the unresolved question.

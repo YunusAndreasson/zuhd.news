@@ -17,4 +17,8 @@ concepts:
   - "Strike action"
 ---
 
-Karachi — Pakistan fuel dealers scrapped their strike over war. Dealers wanted 8% margins after a Rs55/litre hike; they stood down fearing war would cut supply before they got their money. The government is finalizing an app-based fuel quota system without consulting dealers.
+Karachi — Pakistan fuel dealers scrapped their strike over war.
+
+Dealers wanted 8% margins after a Rs55/litre hike; they stood down fearing war would cut supply before they got their money.
+
+The government is finalizing an app-based fuel quota system without consulting dealers.

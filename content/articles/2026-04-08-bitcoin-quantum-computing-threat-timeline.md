@@ -16,4 +16,8 @@ concepts:
   - "SHA-256"
 ---
 
-Cambridge — Bitcoin's ECDSA signatures break with ~4,000 logical qubits — hardware not yet built. SHA-256 mining resists longer, but a post-quantum upgrade requires miner supermajority vote. Miners must agree before hardware catches up.
+Cambridge — Bitcoin's ECDSA signatures break with ~4,000 logical qubits — hardware not yet built.
+
+SHA-256 mining resists longer, but a post-quantum upgrade requires miner supermajority vote.
+
+Miners must agree before hardware catches up.

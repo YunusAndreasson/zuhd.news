@@ -22,4 +22,8 @@ entities:
     kind: "stock"
 ---
 
-Mountain View — Penske Media: AI Overviews cut referral clicks 90%. Google announced new outbound link sections inside AI answers but has not acknowledged that its search product reduces web traffic. The EU's Digital Markets Act designates Google a gatekeeper; Google is testing a subscription API for publishers.
+Mountain View — Penske Media: AI Overviews cut referral clicks 90%.
+
+Google announced new outbound link sections inside AI answers but has not acknowledged that its search product reduces web traffic.
+
+The EU's Digital Markets Act designates Google a gatekeeper; Google is testing a subscription API for publishers.

@@ -35,4 +35,8 @@ sentimentDivergence: 0.58
 entities: []
 ---
 
-Beijing — [US](country:US) officials have asked [China](country:CN) to pressure [Iran](country:IR). [China](country:CN) has sought tariff relief, semiconductor concessions, and [Taiwan](country:TW) arms limits in the negotiations. Thursday talks will test whether Xi offers anything concrete on Iran in exchange for trade concessions.
+Beijing — [US](country:US) officials have asked [China](country:CN) to pressure [Iran](country:IR).
+
+[China](country:CN) has sought tariff relief, semiconductor concessions, and [Taiwan](country:TW) arms limits in the negotiations.
+
+Thursday talks will test whether Xi offers anything concrete on Iran in exchange for trade concessions.

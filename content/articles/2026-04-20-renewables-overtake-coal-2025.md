@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — Fossil electricity fell in absolute terms last year. Renewables overtook coal globally in 2025, Ember found; solar alone met 75% of demand growth, adding 647GW. Solar's fourth straight year leading electricity growth coincided with the first fossil decline outside a global crisis.
+London — Fossil electricity fell in absolute terms last year.
+
+Renewables overtook coal globally in 2025, Ember found; solar alone met 75% of demand growth, adding 647GW.
+
+Solar's fourth straight year leading electricity growth coincided with the first fossil decline outside a global crisis.

@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Madrid — Spain expanded broadcast IP blocks beyond football. Telefónica won a court order extending the piracy-blocking system to Champions League, tennis, golf, and films — but dynamic blocks take entire address ranges and thousands of legitimate sites offline. The order runs through 2026-27; similar lobbying is active across the EU.
+Madrid — Spain expanded broadcast IP blocks beyond football.
+
+Telefónica won a court order extending the piracy-blocking system to Champions League, tennis, golf, and films — but dynamic blocks take entire address ranges and thousands of legitimate sites offline.
+
+The order runs through 2026-27; similar lobbying is active across the EU.

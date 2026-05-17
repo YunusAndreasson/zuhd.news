@@ -18,4 +18,6 @@ entities:
     kind: "commodity"
 ---
 
-Santa Marta — [Ecuador](country:EC) cancelled a copper mine in cloud forests, then paid the miner $24M. Investor-state rules in 3,000 treaties let foreign firms sue over cancelled licences; communities have no reciprocal right. [Colombia](country:CO)'s president weighs withdrawal; 129 domestic oil and gas projects face identical claims.
+Santa Marta — [Ecuador](country:EC) cancelled a copper mine in cloud forests, then paid the miner $24M. Investor-state rules in 3,000 treaties let foreign firms sue over cancelled licences; communities have no reciprocal right.
+
+[Colombia](country:CO)'s president weighs withdrawal; 129 domestic oil and gas projects face identical claims.

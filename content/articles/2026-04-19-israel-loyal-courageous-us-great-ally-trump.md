@@ -36,4 +36,8 @@ concepts:
 sentimentDivergence: 0.35
 ---
 
-Washington — Trump praised [Israel](country:IL) while separately posting that the [US](country:US) prohibits further Lebanon strikes. Netanyahu's advisers sought White House clarification — the praise post appeared to contradict a statement prohibiting Israel from Lebanon strikes. Whether Washington enforces the Lebanon prohibition could determine the ceasefire's survival.
+Washington — Trump praised [Israel](country:IL) while separately posting that the [US](country:US) prohibits further Lebanon strikes.
+
+Netanyahu's advisers sought White House clarification — the praise post appeared to contradict a statement prohibiting Israel from Lebanon strikes.
+
+Whether Washington enforces the Lebanon prohibition could determine the ceasefire's survival.

@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Dubai — Deported in 6 days, no charge filed, no hearing. The [UAE](country:AE) makes no judicial review available before deportation; the Kafala system leaves 1.7 million Pakistani nationals expellable by administrative order. [Pakistan](country:PK) has raised no formal protest while UAE authorities continue vetting workers' social-media histories.
+Dubai — Deported in 6 days, no charge filed, no hearing.
+
+The [UAE](country:AE) makes no judicial review available before deportation; the Kafala system leaves 1.7 million Pakistani nationals expellable by administrative order.
+
+[Pakistan](country:PK) has raised no formal protest while UAE authorities continue vetting workers' social-media histories.

@@ -15,4 +15,8 @@ concepts:
   - "Attorney general"
 ---
 
-Abuja — Nigeria's anti-corruption agency seized former AG Malami's Abuja property. The Economic and Financial Crimes Commission said it traced the property to assets Malami accumulated while shielding allies from prosecution during his 8 years as the country's top law officer. Malami is now seeking Kebbi governorship on an opposition ticket; the EFCC case has yet to reach trial.
+Abuja — Nigeria's anti-corruption agency seized former AG Malami's Abuja property.
+
+The Economic and Financial Crimes Commission said it traced the property to assets Malami accumulated while shielding allies from prosecution during his 8 years as the country's top law officer.
+
+Malami is now seeking Kebbi governorship on an opposition ticket; the EFCC case has yet to reach trial.

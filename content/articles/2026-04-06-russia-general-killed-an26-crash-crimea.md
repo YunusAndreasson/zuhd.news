@@ -19,4 +19,8 @@ concepts:
   - "Ministry of Defence (Russia)"
 ---
 
-Crimea — Russia's 14th general dies in An-26 crash. Lt-Gen Aleksandr Otroshchenko, Northern Fleet air corps commander since 2013, was among 29 killed; Moscow delayed confirmation 6 days. Cause remains unconfirmed; a criminal case has been opened but Ukraine has not claimed the crash.
+Crimea — Russia's 14th general dies in An-26 crash.
+
+Lt-Gen Aleksandr Otroshchenko, Northern Fleet air corps commander since 2013, was among 29 killed; Moscow delayed confirmation 6 days.
+
+Cause remains unconfirmed; a criminal case has been opened but Ukraine has not claimed the crash.

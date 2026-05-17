@@ -31,4 +31,8 @@ sentimentDivergence: 0.35
 entities: []
 ---
 
-Mumbai — [India](country:IN)'s factory input costs hit a 44-month peak in April. The manufacturing Purchasing Managers' Index expanded to 54.7; Iran war commodity spillovers drove the surge, economist Pranjul Bhandari said. Output and selling prices both rose at their fastest pace in 6 months.
+Mumbai — [India](country:IN)'s factory input costs hit a 44-month peak in April.
+
+The manufacturing Purchasing Managers' Index expanded to 54.7; Iran war commodity spillovers drove the surge, economist Pranjul Bhandari said.
+
+Output and selling prices both rose at their fastest pace in 6 months.

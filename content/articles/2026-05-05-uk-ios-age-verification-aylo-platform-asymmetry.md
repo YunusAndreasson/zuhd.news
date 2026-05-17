@@ -24,4 +24,8 @@ entities:
     kind: "stock"
 ---
 
-London — Pornhub reopened in [Britain](country:GB) for iOS users only. Aylo, Pornhub's parent, lifted the 3-month UK ban after Apple embedded age verification into iOS 26.4 — Android, lacking the feature, remains blocked. Britain's age-verification law now works only via Apple; over half of [US](country:US) states have adopted the same approach.
+London — Pornhub reopened in [Britain](country:GB) for iOS users only.
+
+Aylo, Pornhub's parent, lifted the 3-month UK ban after Apple embedded age verification into iOS 26.4 — Android, lacking the feature, remains blocked.
+
+Britain's age-verification law now works only via Apple; over half of [US](country:US) states have adopted the same approach.

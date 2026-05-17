@@ -24,4 +24,8 @@ concepts:
 entities: []
 ---
 
-London — 154 [UK](country:GB) Claire's stores shut Monday. Kroll made 1,300 workers redundant as the chain entered insolvency twice in 12 months, squeezed by Shein and Temu. 356 Asda concessions remain open while an unnamed buyer negotiates with landlords over vacant sites.
+London — 154 [UK](country:GB) Claire's stores shut Monday.
+
+Kroll made 1,300 workers redundant as the chain entered insolvency twice in 12 months, squeezed by Shein and Temu.
+
+356 Asda concessions remain open while an unnamed buyer negotiates with landlords over vacant sites.

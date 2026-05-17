@@ -17,4 +17,8 @@ concepts:
   - "Tropical cyclone"
 ---
 
-Saipan — Typhoon Sinlaku, at 278 km/h peak, nears Saipan. Sinlaku is 2026's strongest storm and has already damaged Chuuk's outer atolls; the Mariana Islands have minimal infrastructure and no meaningful evacuation options. Guam faces gusts up to 105 km/h through Wednesday; dangerous sea conditions are expected to last until Thursday.
+Saipan — Typhoon Sinlaku, at 278 km/h peak, nears Saipan.
+
+Sinlaku is 2026's strongest storm and has already damaged Chuuk's outer atolls; the Mariana Islands have minimal infrastructure and no meaningful evacuation options.
+
+Guam faces gusts up to 105 km/h through Wednesday; dangerous sea conditions are expected to last until Thursday.

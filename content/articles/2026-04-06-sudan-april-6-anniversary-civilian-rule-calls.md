@@ -16,4 +16,8 @@ concepts:
   - "Omar al-Bashir"
 ---
 
-Khartoum — Sudanese parties marked the April 6 sit-in anniversary amid civil war. The mass protest that toppled Bashir in 2019 is now commemorated as the generals who hijacked that revolution wage war killing tens of thousands. Civil groups demand a ceasefire and accountability for the June 3 sit-in crackdown; no peace process is underway.
+Khartoum — Sudanese parties marked the April 6 sit-in anniversary amid civil war.
+
+The mass protest that toppled Bashir in 2019 is now commemorated as the generals who hijacked that revolution wage war killing tens of thousands.
+
+Civil groups demand a ceasefire and accountability for the June 3 sit-in crackdown; no peace process is underway.

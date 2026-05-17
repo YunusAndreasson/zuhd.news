@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Buenos Aires — [Argentina](country:AR) retired 36 A-4AR Fightinghawks Thursday, the last Cold War surplus combat jets in South America. The aircraft, used against British forces in the 1982 Falklands War, were replaced by F-16s that entered flight training in March. No operational readiness date has been set.
+Buenos Aires — [Argentina](country:AR) retired 36 A-4AR Fightinghawks Thursday, the last Cold War surplus combat jets in South America.
+
+The aircraft, used against British forces in the 1982 Falklands War, were replaced by F-16s that entered flight training in March.
+
+No operational readiness date has been set.

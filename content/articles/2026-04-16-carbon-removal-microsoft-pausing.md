@@ -16,4 +16,8 @@ concepts:
 entities: []
 ---
 
-Redmond — Microsoft is pausing carbon removal purchases. The company has bought roughly 80% of all contracted carbon removal globally, making it effectively a single-buyer market with no government policy backstop. Without mandates requiring emitters to pay for removal, the sector has no path to scale if Microsoft steps back.
+Redmond — Microsoft is pausing carbon removal purchases.
+
+The company has bought roughly 80% of all contracted carbon removal globally, making it effectively a single-buyer market with no government policy backstop.
+
+Without mandates requiring emitters to pay for removal, the sector has no path to scale if Microsoft steps back.

@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-New York — Slot machines' variable-ratio schedule now governs Polymarket. Natasha Dow Schüll's research traces the same reinforcement loop from Las Vegas to phones, trading apps, and prediction markets. Prediction markets are now legal for any credit-card holder; no regulator has applied addiction-design frameworks to their architecture.
+New York — Slot machines' variable-ratio schedule now governs Polymarket.
+
+Natasha Dow Schüll's research traces the same reinforcement loop from Las Vegas to phones, trading apps, and prediction markets.
+
+Prediction markets are now legal for any credit-card holder; no regulator has applied addiction-design frameworks to their architecture.

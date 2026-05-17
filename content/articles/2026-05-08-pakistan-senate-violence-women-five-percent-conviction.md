@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — Rubina Chandio was shot dead in Sindh in an alleged honour killing. Senator Sherry Rehman called [Pakistan](country:PK)'s 5% conviction rate for violence against women "a systemic failure"; legislation exists, she said, but enforcement does not. Rehman referred Chandio's case to the Senate Human Rights Committee for immediate scrutiny.
+Islamabad — Rubina Chandio was shot dead in Sindh in an alleged honour killing.
+
+Senator Sherry Rehman called [Pakistan](country:PK)'s 5% conviction rate for violence against women "a systemic failure"; legislation exists, she said, but enforcement does not.
+
+Rehman referred Chandio's case to the Senate Human Rights Committee for immediate scrutiny.

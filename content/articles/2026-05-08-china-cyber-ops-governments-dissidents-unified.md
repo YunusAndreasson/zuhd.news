@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Washington — A single [China](country:CN) operator targeted governments and dissidents in 1 campaign. One strand collected intelligence from Asian defense and government networks; the other surveilled Tibetan, Uyghur, and Hong Kong diaspora overseas. 3 democracies sanctioned China-linked actors the same week.
+Washington — A single [China](country:CN) operator targeted governments and dissidents in 1 campaign.
+
+One strand collected intelligence from Asian defense and government networks; the other surveilled Tibetan, Uyghur, and Hong Kong diaspora overseas.
+
+3 democracies sanctioned China-linked actors the same week.

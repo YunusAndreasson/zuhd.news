@@ -33,4 +33,8 @@ sentimentDivergence: 0.51
 entities: []
 ---
 
-Naypyitaw — Myanmar freed Win Myint in a mass amnesty. The junta cut Suu Kyi's sentence 4.5 years while she stays in secret detention. Her son Kim Aris has demanded proof of life.
+Naypyitaw — Myanmar freed Win Myint in a mass amnesty.
+
+The junta cut Suu Kyi's sentence 4.5 years while she stays in secret detention.
+
+Her son Kim Aris has demanded proof of life.

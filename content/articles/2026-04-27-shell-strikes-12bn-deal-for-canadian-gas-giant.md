@@ -28,4 +28,8 @@ entities:
     kind: "stock"
 ---
 
-London — Shell bought [Canada](country:CA)'s ARC Resources for $13.6bn. Shell, in its biggest deal since 2015, said AI datacenter power and Asian liquefied natural gas demand will sustain gas for a generation. The acquisition adds 2 billion barrels to reserves and boosts annual production growth from 1% to 4%.
+London — Shell bought [Canada](country:CA)'s ARC Resources for $13.6bn.
+
+Shell, in its biggest deal since 2015, said AI datacenter power and Asian liquefied natural gas demand will sustain gas for a generation.
+
+The acquisition adds 2 billion barrels to reserves and boosts annual production growth from 1% to 4%.

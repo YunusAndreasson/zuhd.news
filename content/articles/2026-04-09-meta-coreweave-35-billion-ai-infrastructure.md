@@ -24,4 +24,8 @@ eventCoverage: 101
 sentimentDivergence: 0.14
 ---
 
-New York — Meta committed $35 billion to one GPU cloud. The CoreWeave contract runs through 2032, covering Meta's AI inference and first commercial deployments of Nvidia's next-generation chips. Amazon disclosed $200 billion in AI capex for 2026 the same day; spending across the industry shows no ceiling.
+New York — Meta committed $35 billion to one GPU cloud.
+
+The CoreWeave contract runs through 2032, covering Meta's AI inference and first commercial deployments of Nvidia's next-generation chips.
+
+Amazon disclosed $200 billion in AI capex for 2026 the same day; spending across the industry shows no ceiling.

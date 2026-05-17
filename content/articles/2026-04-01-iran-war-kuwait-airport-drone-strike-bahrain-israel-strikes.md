@@ -18,4 +18,8 @@ concepts:
   - "Bahrain"
 ---
 
-Kuwait City — Iran drone ignited Kuwait airport fuel tanks. Iran struck Kuwait's civilian aviation fueling company and Bahrain on the same day Israel launched wide-scale retaliation across Tehran. Kuwait's civil aviation authority has not suspended flights to Iran; its declared neutrality is now under visible strain.
+Kuwait City — Iran drone ignited Kuwait airport fuel tanks.
+
+Iran struck Kuwait's civilian aviation fueling company and Bahrain on the same day Israel launched wide-scale retaliation across Tehran.
+
+Kuwait's civil aviation authority has not suspended flights to Iran; its declared neutrality is now under visible strain.

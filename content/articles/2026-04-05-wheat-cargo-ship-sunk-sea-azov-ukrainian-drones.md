@@ -36,4 +36,8 @@ concepts:
 sentimentDivergence: 0.43
 ---
 
-Kerch — Russia blamed Ukraine for sinking a wheat freighter. The Volgo-Balt cargo ship sank April 3 — 1 killed, 2 missing — after a reported drone strike 30 miles north of Kerch. Ukraine has not confirmed the attack; Moscow promised retaliation against civilian ship strikes.
+Kerch — Russia blamed Ukraine for sinking a wheat freighter.
+
+The Volgo-Balt cargo ship sank April 3 — 1 killed, 2 missing — after a reported drone strike 30 miles north of Kerch.
+
+Ukraine has not confirmed the attack; Moscow promised retaliation against civilian ship strikes.

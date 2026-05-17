@@ -17,4 +17,8 @@ concepts:
   - "Indian rupee"
 ---
 
-Noida — Factory workers rioted after 24-hour-old wage promises. Neighboring Haryana raised minimum wages to ₹19,000 against Uttar Pradesh's ₹13,000 — a gap workers could see across a state border. Uttar Pradesh is revising labor laws; Delhi police sealed border crossings to prevent unrest reaching the capital.
+Noida — Factory workers rioted after 24-hour-old wage promises.
+
+Neighboring Haryana raised minimum wages to ₹19,000 against Uttar Pradesh's ₹13,000 — a gap workers could see across a state border.
+
+Uttar Pradesh is revising labor laws; Delhi police sealed border crossings to prevent unrest reaching the capital.

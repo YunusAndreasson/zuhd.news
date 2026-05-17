@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — Canadian evidence triggered Ofcom's formal Telegram investigation. [Britain](country:GB)'s Online Safety Act enables fines up to 10% of global revenue for child sexual abuse material violations. Telegram has historically ignored takedown requests; formal investigation removes that discretion.
+London — Canadian evidence triggered Ofcom's formal Telegram investigation.
+
+[Britain](country:GB)'s Online Safety Act enables fines up to 10% of global revenue for child sexual abuse material violations.
+
+Telegram has historically ignored takedown requests; formal investigation removes that discretion.

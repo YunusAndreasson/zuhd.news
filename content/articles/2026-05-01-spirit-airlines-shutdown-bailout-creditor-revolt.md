@@ -27,4 +27,8 @@ sentimentDivergence: 0.2
 entities: []
 ---
 
-Fort Lauderdale — Spirit Airlines folds; a $500m federal bailout collapsed. Bondholders preferred liquidation after the [US](country:US) government demanded its loan rank above $3bn in existing debt — a seniority dispute no reorganization survived. Cirium data show fares rose 23% when Spirit exited a route; United and American move to absorb its slots.
+Fort Lauderdale — Spirit Airlines folds; a $500m federal bailout collapsed.
+
+Bondholders preferred liquidation after the [US](country:US) government demanded its loan rank above $3bn in existing debt — a seniority dispute no reorganization survived.
+
+Cirium data show fares rose 23% when Spirit exited a route; United and American move to absorb its slots.

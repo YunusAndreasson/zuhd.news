@@ -22,4 +22,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Brent crude settled at $98.48 on Tuesday. Hormuz handled only 3 ships in 24 hours — a strait that moves 20% of global oil in peacetime, shipping data showed. Trafigura pegs the supply loss at 1 billion barrels; the company projects 500 million more per month if the blockade continues.
+Brent crude settled at $98.48 on Tuesday.
+
+Hormuz handled only 3 ships in 24 hours — a strait that moves 20% of global oil in peacetime, shipping data showed.
+
+Trafigura pegs the supply loss at 1 billion barrels; the company projects 500 million more per month if the blockade continues.

@@ -11,4 +11,8 @@ sources:
     country: "AU"
 ---
 
-Hobart — Tasmanian scientists confirm logged forests burn more severely. The 2019 Riveaux Road fire cut through logged and old-growth Huon Valley forest, giving researchers a direct comparison without lab controls. The findings challenge industry claims that commercial thinning reduces fire risk; Tasmania's forest policy faces revision.
+Hobart — Tasmanian scientists confirm logged forests burn more severely.
+
+The 2019 Riveaux Road fire cut through logged and old-growth Huon Valley forest, giving researchers a direct comparison without lab controls.
+
+The findings challenge industry claims that commercial thinning reduces fire risk; Tasmania's forest policy faces revision.

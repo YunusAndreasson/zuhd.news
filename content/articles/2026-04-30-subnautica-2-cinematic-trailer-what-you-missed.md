@@ -30,4 +30,8 @@ sentimentDivergence: 0.28
 entities: []
 ---
 
-San Francisco — A $250m bonus dispute delayed Subnautica 2. [South Korea](country:KR)'s Krafton fired CEO Ted Gill in 2025; a court found it was to dodge the bonus and reinstated him in March. Subnautica 2 opens May 14 on PC and Xbox at $29.99, with Mac and Switch 2 release dates unset.
+San Francisco — A $250m bonus dispute delayed Subnautica 2.
+
+[South Korea](country:KR)'s Krafton fired CEO Ted Gill in 2025; a court found it was to dodge the bonus and reinstated him in March.
+
+Subnautica 2 opens May 14 on PC and Xbox at $29.99, with Mac and Switch 2 release dates unset.

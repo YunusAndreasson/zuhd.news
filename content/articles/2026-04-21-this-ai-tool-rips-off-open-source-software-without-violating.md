@@ -17,4 +17,8 @@ entities:
     kind: "stock"
 ---
 
-San Francisco — Malus.sh clones open-source software without violating copyright. The 1982 IBM clean-room method let rivals build compatible products without copying code; Malus automates this split via AI. Whether AI-generated clones can legally shed licence obligations is untested; the tool already charges and delivers.
+San Francisco — Malus.sh clones open-source software without violating copyright.
+
+The 1982 IBM clean-room method let rivals build compatible products without copying code; Malus automates this split via AI.
+
+Whether AI-generated clones can legally shed licence obligations is untested; the tool already charges and delivers.

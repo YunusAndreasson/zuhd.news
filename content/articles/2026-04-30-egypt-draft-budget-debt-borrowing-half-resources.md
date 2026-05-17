@@ -21,4 +21,8 @@ entities:
     kind: "currency"
 ---
 
-Cairo — 64% of [Egypt](country:EG)'s budget goes to debt service. Half of all resources come from new borrowing; of every pound collected, 60 piasters pay interest. The budget projects LE47/dollar and 9.3% inflation; the dollar trades at LE53 and March inflation ran at 13.5%.
+Cairo — 64% of [Egypt](country:EG)'s budget goes to debt service.
+
+Half of all resources come from new borrowing; of every pound collected, 60 piasters pay interest.
+
+The budget projects LE47/dollar and 9.3% inflation; the dollar trades at LE53 and March inflation ran at 13.5%.

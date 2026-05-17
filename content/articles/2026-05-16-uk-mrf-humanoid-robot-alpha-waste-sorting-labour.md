@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — Alpha robot targets [UK](country:GB) waste sorting jobs. TeknTrash adapted the [China](country:CN)-built humanoid for UK conditions where human sorters must rotate every 20 minutes. Full deployment still needs months of training data, TeknTrash said.
+London — Alpha robot targets [UK](country:GB) waste sorting jobs.
+
+TeknTrash adapted the [China](country:CN)-built humanoid for UK conditions where human sorters must rotate every 20 minutes.
+
+Full deployment still needs months of training data, TeknTrash said.

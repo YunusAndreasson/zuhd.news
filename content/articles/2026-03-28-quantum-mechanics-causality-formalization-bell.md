@@ -16,4 +16,8 @@ concepts:
   - "Photon"
 ---
 
-Vienna — Quantum causal order is indefinite — now formally proven. Using a Bell-equivalent test, Vienna researchers measured photons 18 standard deviations outside what fixed causal order predicts. Loopholes remain, but the same loophole-closing path used for Bell's theorem now applies; quantum computing applications are already documented.
+Vienna — Quantum causal order is indefinite — now formally proven.
+
+Using a Bell-equivalent test, Vienna researchers measured photons 18 standard deviations outside what fixed causal order predicts.
+
+Loopholes remain, but the same loophole-closing path used for Bell's theorem now applies; quantum computing applications are already documented.

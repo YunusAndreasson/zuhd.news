@@ -17,4 +17,8 @@ concepts:
   - "El Niño"
 ---
 
-London — Coastal ocean warming makes deadly heatwaves strike multiple regions in unison. A Nature Geoscience study found warming seas force humid heatwaves — the deadliest kind, where high moisture prevents sweat from cooling the body — to cluster across coastal regions simultaneously. Researchers project El Niño-like sea changes expected this century will accelerate that clustering across coastal Asia and North America.
+London — Coastal ocean warming makes deadly heatwaves strike multiple regions in unison.
+
+A Nature Geoscience study found warming seas force humid heatwaves — the deadliest kind, where high moisture prevents sweat from cooling the body — to cluster across coastal regions simultaneously.
+
+Researchers project El Niño-like sea changes expected this century will accelerate that clustering across coastal Asia and North America.

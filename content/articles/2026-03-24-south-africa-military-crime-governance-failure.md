@@ -17,4 +17,8 @@ concepts:
   - "South Africa"
 ---
 
-Johannesburg — South Africa deployed its army to 5 provinces. The R883 million operation targets gang violence, filling a gap created when the government's apex development plan quietly removed violence prevention as a national priority over 16 years. When the deployments end, the same violence will resume — no prevention strategy exists to take their place.
+Johannesburg — South Africa deployed its army to 5 provinces.
+
+The R883 million operation targets gang violence, filling a gap created when the government's apex development plan quietly removed violence prevention as a national priority over 16 years.
+
+When the deployments end, the same violence will resume — no prevention strategy exists to take their place.

@@ -16,4 +16,8 @@ concepts:
   - "Pakistan"
 ---
 
-Islamabad — Pakistan forecasts 8.5% March inflation. The Finance Ministry warns oil prices threaten the import bill while forex reserves hold at a 4-year high. IT exports and Eid remittances may offset war energy costs, but LNG prices are rising alongside oil.
+Islamabad — Pakistan forecasts 8.5% March inflation.
+
+The Finance Ministry warns oil prices threaten the import bill while forex reserves hold at a 4-year high.
+
+IT exports and Eid remittances may offset war energy costs, but LNG prices are rising alongside oil.

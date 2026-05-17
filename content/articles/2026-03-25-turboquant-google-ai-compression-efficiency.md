@@ -17,4 +17,8 @@ concepts:
   - "AI Efficiency"
 ---
 
-Mountain View — Google Research published TurboQuant, an extreme model compression technique that reduces model weight precision far beyond standard quantization thresholds. TurboQuant breaks the requirement that frontier-scale AI run on data-center hardware: models compressed this far are viable on edge devices. Practitioners are now stress-testing the quality trade-off, and chip makers whose revenue depends on data-center demand are watching the results.
+Mountain View — Google Research published TurboQuant, an extreme model compression technique that reduces model weight precision far beyond standard quantization thresholds.
+
+TurboQuant breaks the requirement that frontier-scale AI run on data-center hardware: models compressed this far are viable on edge devices.
+
+Practitioners are now stress-testing the quality trade-off, and chip makers whose revenue depends on data-center demand are watching the results.

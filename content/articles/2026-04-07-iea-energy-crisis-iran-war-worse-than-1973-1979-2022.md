@@ -19,4 +19,8 @@ concepts:
   - "Iran"
 ---
 
-Paris — Crude hit a record $150 a barrel. IEA says 11 million barrels of oil and 140 bcm of gas lost daily exceeds the 1973, 1979, and 2022 crises combined. Developing nations face the worst food-price spiral in decades as IEA, IMF, and World Bank convene Monday.
+Paris — Crude hit a record $150 a barrel.
+
+IEA says 11 million barrels of oil and 140 bcm of gas lost daily exceeds the 1973, 1979, and 2022 crises combined.
+
+Developing nations face the worst food-price spiral in decades as IEA, IMF, and World Bank convene Monday.

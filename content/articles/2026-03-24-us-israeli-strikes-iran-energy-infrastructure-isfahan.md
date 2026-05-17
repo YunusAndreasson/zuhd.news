@@ -24,4 +24,8 @@ concepts:
   - "Natural gas"
 ---
 
-Isfahan — US and Israeli forces struck Iranian gas infrastructure hours after Trump announced a pause in attacks. The strikes hit gas pressure stations in Isfahan and Khorramshahr that supply heat to millions of civilians, not weapons or military systems. Iran's Revolutionary Guard announced reciprocal strikes on Gulf energy grids and desalination plants as stated policy if attacks continue.
+Isfahan — US and Israeli forces struck Iranian gas infrastructure hours after Trump announced a pause in attacks.
+
+The strikes hit gas pressure stations in Isfahan and Khorramshahr that supply heat to millions of civilians, not weapons or military systems.
+
+Iran's Revolutionary Guard announced reciprocal strikes on Gulf energy grids and desalination plants as stated policy if attacks continue.

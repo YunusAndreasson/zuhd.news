@@ -17,4 +17,8 @@ concepts:
   - "Vulnerability (computing)"
 ---
 
-Mountain View — Google grafted Rust into the Pixel 10 modem. Project Zero proved remote code execution over the Internet on Pixel modems; Google replaced the DNS parser with memory-safe Rust. The Pixel 10 ships first; the library's size may limit adoption on constrained embedded modems.
+Mountain View — Google grafted Rust into the Pixel 10 modem.
+
+Project Zero proved remote code execution over the Internet on Pixel modems; Google replaced the DNS parser with memory-safe Rust.
+
+The Pixel 10 ships first; the library's size may limit adoption on constrained embedded modems.

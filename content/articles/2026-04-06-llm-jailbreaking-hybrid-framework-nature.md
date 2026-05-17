@@ -17,4 +17,8 @@ concepts:
   - "Large language model"
 ---
 
-London — AB-JB jailbroke 5 LLMs with 93% success. The 3-stage framework pairs semantic prompt variants with suffix optimization, bypassing guardrails in Llama2 and 4 other open-source models. The affected models remain publicly available without safety updates.
+London — AB-JB jailbroke 5 LLMs with 93% success.
+
+The 3-stage framework pairs semantic prompt variants with suffix optimization, bypassing guardrails in Llama2 and 4 other open-source models.
+
+The affected models remain publicly available without safety updates.

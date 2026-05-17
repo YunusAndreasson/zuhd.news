@@ -15,4 +15,6 @@ concepts:
   - "Price controls"
 ---
 
-Cairo — Fuel prices rose 30% in Egypt — again. Egypt's 3rd fuel hike in a year triggered food inflation; President Sisi threatened military tribunals for merchants who raised prices. "Price manipulation" has no definition in Egyptian law; merchants must now choose between compliance and a legal challenge.
+Cairo — Fuel prices rose 30% in Egypt — again.
+
+Egypt's 3rd fuel hike in a year triggered food inflation; President Sisi threatened military tribunals for merchants who raised prices. "Price manipulation" has no definition in Egyptian law; merchants must now choose between compliance and a legal challenge.

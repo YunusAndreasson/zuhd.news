@@ -11,4 +11,8 @@ sources:
     country: "AU"
 ---
 
-Jakarta — US blockade exposed ASEAN's energy security as fiction. Every ASEAN state outsourced freedom of navigation to the US Navy; the Philippines, a US treaty ally, routes 98% of its energy imports through Hormuz. ASEAN has no collective energy reserve or naval capacity to reopen a chokepoint its protector now blockades.
+Jakarta — US blockade exposed ASEAN's energy security as fiction.
+
+Every ASEAN state outsourced freedom of navigation to the US Navy; the Philippines, a US treaty ally, routes 98% of its energy imports through Hormuz.
+
+ASEAN has no collective energy reserve or naval capacity to reopen a chokepoint its protector now blockades.

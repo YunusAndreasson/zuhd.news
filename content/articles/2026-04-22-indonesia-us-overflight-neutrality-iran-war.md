@@ -11,4 +11,8 @@ sources:
     country: "AU"
 ---
 
-Jakarta — Blanket US overflight triggers co-belligerent status. Under neutrality law, granting blanket passage to [US](country:US) aircraft targeting [Iran](country:IR) strips [Indonesia](country:ID)'s non-combatant standing. Washington's request is unconfirmed publicly; Indonesia — home to 230 million Muslims — has not announced a position.
+Jakarta — Blanket US overflight triggers co-belligerent status.
+
+Under neutrality law, granting blanket passage to [US](country:US) aircraft targeting [Iran](country:IR) strips [Indonesia](country:ID)'s non-combatant standing.
+
+Washington's request is unconfirmed publicly; Indonesia — home to 230 million Muslims — has not announced a position.

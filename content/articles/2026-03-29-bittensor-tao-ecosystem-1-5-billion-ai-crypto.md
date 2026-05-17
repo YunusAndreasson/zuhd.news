@@ -17,4 +17,8 @@ concepts:
   - "Ecosystem"
 ---
 
-New York — Bittensor ecosystem hit $1.5 billion in market cap. Subnet 3's Covenant-72B LLM — trained permissionlessly across commodity hardware by 70 contributors — matched Meta's Llama 2 70B on benchmarks while Jensen Huang endorsed it. A Grayscale ETF decision expected by late 2026 and expansion to 256 subnets would unlock institutional access.
+New York — Bittensor ecosystem hit $1.5 billion in market cap.
+
+Subnet 3's Covenant-72B LLM — trained permissionlessly across commodity hardware by 70 contributors — matched Meta's Llama 2 70B on benchmarks while Jensen Huang endorsed it.
+
+A Grayscale ETF decision expected by late 2026 and expansion to 256 subnets would unlock institutional access.

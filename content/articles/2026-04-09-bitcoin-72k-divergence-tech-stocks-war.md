@@ -15,4 +15,8 @@ concepts:
   - "iShares Tech-Software ETF"
 ---
 
-New York — Bitcoin hit $72,300 while software stocks fell. Netanyahu's Lebanon ceasefire triggered a 3% BTC spike, extending a month-long divergence: BTC up 9% while the iShares software ETF fell 12%. Whether the decoupling holds depends on ceasefire talks slated for Saturday.
+New York — Bitcoin hit $72,300 while software stocks fell.
+
+Netanyahu's Lebanon ceasefire triggered a 3% BTC spike, extending a month-long divergence: BTC up 9% while the iShares software ETF fell 12%.
+
+Whether the decoupling holds depends on ceasefire talks slated for Saturday.

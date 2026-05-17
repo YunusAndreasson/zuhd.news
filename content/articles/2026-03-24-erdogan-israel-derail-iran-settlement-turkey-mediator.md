@@ -11,4 +11,6 @@ sources:
     country: "RU"
 ---
 
-Ankara — Erdoğan called the Iran conflict "Israel's war." Turkey is coordinating with Pakistan and Egypt on a rival diplomatic track, bypassing US-Israeli mediation. Turkey must now reach Tehran before US-Israeli talks foreclose the alternative track — a diplomatic path with no prior model in the Iran conflict.
+Ankara — Erdoğan called the Iran conflict "Israel's war." Turkey is coordinating with Pakistan and Egypt on a rival diplomatic track, bypassing US-Israeli mediation.
+
+Turkey must now reach Tehran before US-Israeli talks foreclose the alternative track — a diplomatic path with no prior model in the Iran conflict.

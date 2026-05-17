@@ -35,4 +35,8 @@ concepts:
 sentimentDivergence: 0.38
 ---
 
-Sinpo — 7th North Korean launch fell east of Japan. Kyungnam University professor: [North Korea](country:KP) sees [US](country:US) focus on [Iran](country:IR) as "a golden time" — its 4th April launch, timed ahead of a May Trump-Xi summit. [South Korea](country:KR) and [Japan](country:JP) are coordinating; Pyongyang rejects the UN test ban as an infringement on self-defense.
+Sinpo — 7th North Korean launch fell east of Japan.
+
+Kyungnam University professor: [North Korea](country:KP) sees [US](country:US) focus on [Iran](country:IR) as "a golden time" — its 4th April launch, timed ahead of a May Trump-Xi summit.
+
+[South Korea](country:KR) and [Japan](country:JP) are coordinating; Pyongyang rejects the UN test ban as an infringement on self-defense.

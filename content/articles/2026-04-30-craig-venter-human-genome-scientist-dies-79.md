@@ -29,4 +29,8 @@ concepts:
 entities: []
 ---
 
-San Diego — Venter's race halved the Human Genome Project's timeline. Celera's whole-genome shotgun sequencing — random fragmentation and computational assembly — erased the [US](country:US) government consortium's decade-long head start. Sequencing costs have since fallen to $200 per genome; he died of cancer at 79.
+San Diego — Venter's race halved the Human Genome Project's timeline.
+
+Celera's whole-genome shotgun sequencing — random fragmentation and computational assembly — erased the [US](country:US) government consortium's decade-long head start.
+
+Sequencing costs have since fallen to $200 per genome; he died of cancer at 79.

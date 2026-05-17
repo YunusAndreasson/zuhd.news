@@ -39,4 +39,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Islamabad — 22 Iranian sailors landed in Pakistan Sunday night. The [US](country:US) transferred the crew; [Pakistan](country:PK) has mediated since US bombing of [Iran](country:IR) began in February. Iran condemned the April 19 seizure as unlawful; Trump announced 'Operation Freedom' Monday to guide stranded ships out of Hormuz.
+Islamabad — 22 Iranian sailors landed in Pakistan Sunday night.
+
+The [US](country:US) transferred the crew; [Pakistan](country:PK) has mediated since US bombing of [Iran](country:IR) began in February.
+
+Iran condemned the April 19 seizure as unlawful; Trump announced 'Operation Freedom' Monday to guide stranded ships out of Hormuz.

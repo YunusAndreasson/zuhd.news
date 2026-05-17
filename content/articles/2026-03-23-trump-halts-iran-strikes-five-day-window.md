@@ -26,4 +26,8 @@ concepts:
   - "Pentagon"
 ---
 
-Washington — Trump halted all Pentagon strikes on Iran for 5 days after what he called "very productive" talks, though Iran's foreign ministry flatly denied any negotiations took place. The pause came hours after Iran threatened to destroy every power plant in West Asia — including those supplying US military bases — if attacks continued. Israeli Defence Minister Katz said strikes on Iran would "increase significantly," directly contradicting the American pause.
+Washington — Trump halted all Pentagon strikes on Iran for 5 days after what he called "very productive" talks, though Iran's foreign ministry flatly denied any negotiations took place.
+
+The pause came hours after Iran threatened to destroy every power plant in West Asia — including those supplying US military bases — if attacks continued.
+
+Israeli Defence Minister Katz said strikes on Iran would "increase significantly," directly contradicting the American pause.

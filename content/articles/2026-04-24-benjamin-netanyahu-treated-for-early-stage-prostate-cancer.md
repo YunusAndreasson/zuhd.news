@@ -23,4 +23,8 @@ concepts:
 sentimentDivergence: 0.4
 ---
 
-Jerusalem — A prostate tumour in [Israel](country:IL)'s prime minister has disappeared after radiation. Netanyahu kept the diagnosis private for 2.5 months; doctors found the lesion early and the medical report confirms it is gone. He requested a 2-month publication delay citing the [Iran](country:IR) war; a White House visit is scheduled.
+Jerusalem — A prostate tumour in [Israel](country:IL)'s prime minister has disappeared after radiation.
+
+Netanyahu kept the diagnosis private for 2.5 months; doctors found the lesion early and the medical report confirms it is gone.
+
+He requested a 2-month publication delay citing the [Iran](country:IR) war; a White House visit is scheduled.

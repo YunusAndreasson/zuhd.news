@@ -13,4 +13,8 @@ eventCoverage: null
 concepts: []
 ---
 
-Cairo — Giza operators built StreamEast to 1.6 billion annual visits. StreamEast distributed its servers to survive takedowns — the lead investigator on the case acknowledged she had no illusion the brand would outlast the arrests. StreamEast domains reappeared within days of the operators' 2025 arrest; the 2 Egyptians still face trial.
+Cairo — Giza operators built StreamEast to 1.6 billion annual visits.
+
+StreamEast distributed its servers to survive takedowns — the lead investigator on the case acknowledged she had no illusion the brand would outlast the arrests.
+
+StreamEast domains reappeared within days of the operators' 2025 arrest; the 2 Egyptians still face trial.

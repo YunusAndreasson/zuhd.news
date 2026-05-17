@@ -17,4 +17,8 @@ concepts:
   - "KD025"
 ---
 
-Tokyo — KD025 reversed schizophrenia symptoms in mice. Every approved antipsychotic since 1952 blocks dopamine D2 receptors, causing movement disorders in most patients; KD025 targets Rho-kinase 2 instead. The drug has not yet been tested in humans; 24 million people globally live with schizophrenia.
+Tokyo — KD025 reversed schizophrenia symptoms in mice.
+
+Every approved antipsychotic since 1952 blocks dopamine D2 receptors, causing movement disorders in most patients; KD025 targets Rho-kinase 2 instead.
+
+The drug has not yet been tested in humans; 24 million people globally live with schizophrenia.

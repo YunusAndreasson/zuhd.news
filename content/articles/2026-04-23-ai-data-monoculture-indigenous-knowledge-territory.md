@@ -11,4 +11,8 @@ sources:
     country: "NL"
 ---
 
-São Paulo — AI systems classify [Brazil](country:BR)'s territories for extraction markets. Models trained on commodity data overwrite indigenous land knowledge — a monoculture pattern, Coding Rights researchers say. No framework distinguishes AI land-use categories from indigenous territorial rights.
+São Paulo — AI systems classify [Brazil](country:BR)'s territories for extraction markets.
+
+Models trained on commodity data overwrite indigenous land knowledge — a monoculture pattern, Coding Rights researchers say.
+
+No framework distinguishes AI land-use categories from indigenous territorial rights.

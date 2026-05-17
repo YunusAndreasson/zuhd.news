@@ -17,4 +17,6 @@ concepts:
   - "Securities Act of 1933"
 ---
 
-Washington — SEC's crypto rulebook is one step from publication. "Regulation Crypto" draws legal lines around which token transactions count as securities; the framework has cleared White House review. Publication ends years of enforcement-only oversight and gives crypto projects advance fundraising clarity.
+Washington — SEC's crypto rulebook is one step from publication. "Regulation Crypto" draws legal lines around which token transactions count as securities; the framework has cleared White House review.
+
+Publication ends years of enforcement-only oversight and gives crypto projects advance fundraising clarity.

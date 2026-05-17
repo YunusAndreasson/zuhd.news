@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Sarasota — Dolphins pass forever chemicals to calves through milk. Per- and polyfluoroalkyl substances — PFAS — concentrate in milk fat, dosing calves at peak vulnerability in the first confirmed marine mammal transfer. Industrial producers face no global phase-out; the pathway likely extends to all marine mammals, researchers said.
+Sarasota — Dolphins pass forever chemicals to calves through milk.
+
+Per- and polyfluoroalkyl substances — PFAS — concentrate in milk fat, dosing calves at peak vulnerability in the first confirmed marine mammal transfer.
+
+Industrial producers face no global phase-out; the pathway likely extends to all marine mammals, researchers said.

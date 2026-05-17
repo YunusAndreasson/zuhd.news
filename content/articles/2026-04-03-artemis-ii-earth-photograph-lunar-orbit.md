@@ -11,4 +11,8 @@ sources:
     country: "GB"
 ---
 
-Houston — Artemis II photographed Earth whole from lunar distance. First humans beyond low Earth orbit since Apollo 17 in 1972, the crew produced humanity's first crewed full-Earth photograph in 54 years. Artemis II is a flyby; NASA is still scheduling Artemis III, the crewed Moon landing.
+Houston — Artemis II photographed Earth whole from lunar distance.
+
+First humans beyond low Earth orbit since Apollo 17 in 1972, the crew produced humanity's first crewed full-Earth photograph in 54 years.
+
+Artemis II is a flyby; NASA is still scheduling Artemis III, the crewed Moon landing.

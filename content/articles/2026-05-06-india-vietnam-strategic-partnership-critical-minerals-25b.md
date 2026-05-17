@@ -34,4 +34,8 @@ sentimentDivergence: 0.12
 entities: []
 ---
 
-New Delhi — [India](country:IN) secured a critical-minerals pact with [Vietnam](country:VN). 13 memorandums of understanding cover rare earths, defence, and Unified Payments Interface links; the 2 sides set a $25B bilateral trade target by 2030. Hanoi invited New Delhi into its nuclear power sector; BrahMos missile talks continue.
+New Delhi — [India](country:IN) secured a critical-minerals pact with [Vietnam](country:VN).
+
+13 memorandums of understanding cover rare earths, defence, and Unified Payments Interface links; the 2 sides set a $25B bilateral trade target by 2030.
+
+Hanoi invited New Delhi into its nuclear power sector; BrahMos missile talks continue.

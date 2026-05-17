@@ -29,4 +29,8 @@ concepts:
 entities: []
 ---
 
-Washington — Iran's power grid serves 88 million people. Defense Secretary Pete Hegseth threatened to bomb it and blockade Iran's ports if Iran rejects a nuclear deal. The ceasefire expires April 22; Islamabad talks have no confirmed resumption date.
+Washington — Iran's power grid serves 88 million people.
+
+Defense Secretary Pete Hegseth threatened to bomb it and blockade Iran's ports if Iran rejects a nuclear deal.
+
+The ceasefire expires April 22; Islamabad talks have no confirmed resumption date.

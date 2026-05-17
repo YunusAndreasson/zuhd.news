@@ -18,4 +18,8 @@ concepts:
   - "Economic damage"
 ---
 
-Princeton — Marine heatwaves make cyclones 93% more destructive. A new study of 789 cyclones finds the damage premium holds after controlling for coastal development — ocean heat is the independent variable. Marine heatwaves are growing more frequent; the north Atlantic and Indian Ocean already trend upward in heatwave-amplified storms.
+Princeton — Marine heatwaves make cyclones 93% more destructive.
+
+A new study of 789 cyclones finds the damage premium holds after controlling for coastal development — ocean heat is the independent variable.
+
+Marine heatwaves are growing more frequent; the north Atlantic and Indian Ocean already trend upward in heatwave-amplified storms.

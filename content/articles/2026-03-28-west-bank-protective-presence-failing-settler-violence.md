@@ -15,4 +15,8 @@ concepts:
   - "Palestinian communities"
 ---
 
-West Bank — West Bank activist shields no longer deter settlers. Activists who have physically shielded Palestinian villages for decades report the army now ignores settler attacks even when witnesses are present. 25+ settler attacks occur each weekend; with no deterrent left, communities face expulsion without protection.
+West Bank — West Bank activist shields no longer deter settlers.
+
+Activists who have physically shielded Palestinian villages for decades report the army now ignores settler attacks even when witnesses are present.
+
+25+ settler attacks occur each weekend; with no deterrent left, communities face expulsion without protection.

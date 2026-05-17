@@ -18,4 +18,8 @@ concepts:
   - "Ukraine"
 ---
 
-Moscow — Russia banned gasoline exports by refiners through July 31. The decree extends a previous trader ban to direct producers, curbing supply to meet seasonal demand and rising domestic prices. Ukraine's drone campaign is striking Russian refineries; the dual pressure cuts export supply through summer.
+Moscow — Russia banned gasoline exports by refiners through July 31.
+
+The decree extends a previous trader ban to direct producers, curbing supply to meet seasonal demand and rising domestic prices.
+
+Ukraine's drone campaign is striking Russian refineries; the dual pressure cuts export supply through summer.

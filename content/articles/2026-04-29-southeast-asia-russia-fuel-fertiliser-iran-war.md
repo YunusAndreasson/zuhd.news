@@ -23,4 +23,8 @@ entities:
     kind: "commodity"
 ---
 
-Jakarta — [Indonesia](country:ID) ordered 150 million barrels of Russian crude. The [Iran](country:IR) war collapsed Gulf throughput; [Russia](country:RU) signed crude and fertiliser deals across four Southeast Asian states despite EU sanctions warnings. A [US](country:US) waiver allowing Russian oil purchases, extended mid-April, expires in 30 days.
+Jakarta — [Indonesia](country:ID) ordered 150 million barrels of Russian crude.
+
+The [Iran](country:IR) war collapsed Gulf throughput; [Russia](country:RU) signed crude and fertiliser deals across four Southeast Asian states despite EU sanctions warnings.
+
+A [US](country:US) waiver allowing Russian oil purchases, extended mid-April, expires in 30 days.

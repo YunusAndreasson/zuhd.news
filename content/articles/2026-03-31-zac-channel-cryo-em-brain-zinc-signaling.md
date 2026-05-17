@@ -17,4 +17,8 @@ concepts:
   - "Drug discovery"
 ---
 
-London — Zinc activates ZAC through rare cation-π bonds. Cryo-EM resolved 3 functional states of human ZAC at 2.62 Å, identifying zinc-binding sites at all 5 ECD subunit interfaces. ZAC is implicated in neurodegeneration; the structures reveal 2 drug-binding sites for small-molecule targeting.
+London — Zinc activates ZAC through rare cation-π bonds.
+
+Cryo-EM resolved 3 functional states of human ZAC at 2.62 Å, identifying zinc-binding sites at all 5 ECD subunit interfaces.
+
+ZAC is implicated in neurodegeneration; the structures reveal 2 drug-binding sites for small-molecule targeting.

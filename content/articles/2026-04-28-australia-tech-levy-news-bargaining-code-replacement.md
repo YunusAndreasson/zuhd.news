@@ -26,4 +26,8 @@ entities:
     kind: "stock"
 ---
 
-[Australia](country:AU) tabled a 2.25% levy on Meta, Google, and TikTok revenue unless each strikes voluntary payment deals with local publishers. The 2021 News Media Bargaining Code gave platforms a negotiated exit; the new bill taxes non-compliance by default. No platform has announced a deal; the bill has not passed parliament.
+[Australia](country:AU) tabled a 2.25% levy on Meta, Google, and TikTok revenue unless each strikes voluntary payment deals with local publishers.
+
+The 2021 News Media Bargaining Code gave platforms a negotiated exit; the new bill taxes non-compliance by default.
+
+No platform has announced a deal; the bill has not passed parliament.

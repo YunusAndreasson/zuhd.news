@@ -18,4 +18,8 @@ concepts:
   - "Social media regulation"
 ---
 
-Sydney — Australia's eSafety targets 4 platforms for noncompliance. 1 in 3 parents reported their under-16 child had an account after the ban — platforms allowed repeated age-assurance attempts until children passed. Penalties of up to A$49.5 million await noncompliant platforms; the regulator decides by mid-year.
+Sydney — Australia's eSafety targets 4 platforms for noncompliance.
+
+1 in 3 parents reported their under-16 child had an account after the ban — platforms allowed repeated age-assurance attempts until children passed.
+
+Penalties of up to A$49.5 million await noncompliant platforms; the regulator decides by mid-year.

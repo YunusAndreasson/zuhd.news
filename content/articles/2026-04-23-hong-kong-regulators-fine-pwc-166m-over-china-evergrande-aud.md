@@ -18,4 +18,8 @@ concepts:
   - "Financial statement"
 ---
 
-Hong Kong — PwC fined HK$1.3bn, [Hong Kong](country:HK)'s largest audit penalty. The Accounting and Financial Reporting Council found PwC 'knowingly permitted' Evergrande to book revenue on undelivered flats, overstating 564bn yuan. PwC faces a 6-month ban from new clients and must set aside HK$1bn to compensate minority Evergrande shareholders.
+Hong Kong — PwC fined HK$1.3bn, [Hong Kong](country:HK)'s largest audit penalty.
+
+The Accounting and Financial Reporting Council found PwC 'knowingly permitted' Evergrande to book revenue on undelivered flats, overstating 564bn yuan.
+
+PwC faces a 6-month ban from new clients and must set aside HK$1bn to compensate minority Evergrande shareholders.

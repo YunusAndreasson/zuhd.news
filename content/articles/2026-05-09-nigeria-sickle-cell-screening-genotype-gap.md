@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Abuja — A 2020 study found 94% genotype awareness in [Nigeria](country:NG) but only 10% correctly estimated reproductive risk. Nigeria has the world's highest sickle cell burden, yet tests often lack counselling or quality controls, a physician warned. Lesser-known genotypes SC and AC cause serious disease but rarely appear in health campaigns.
+Abuja — A 2020 study found 94% genotype awareness in [Nigeria](country:NG) but only 10% correctly estimated reproductive risk.
+
+Nigeria has the world's highest sickle cell burden, yet tests often lack counselling or quality controls, a physician warned.
+
+Lesser-known genotypes SC and AC cause serious disease but rarely appear in health campaigns.

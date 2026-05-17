@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Qouzah — Joe and Diana Elias found their home's demolition via satellite image — no authority told them. [Israel](country:IL) razed nearly a third of Qouzah's buildings between March 3 and April 16; UN figures show 1.2 million displaced across Lebanon. The couple say they won't rebuild without lasting peace; Israeli forces remain up to 10km inside Lebanon.
+Qouzah — Joe and Diana Elias found their home's demolition via satellite image — no authority told them.
+
+[Israel](country:IL) razed nearly a third of Qouzah's buildings between March 3 and April 16; UN figures show 1.2 million displaced across Lebanon.
+
+The couple say they won't rebuild without lasting peace; Israeli forces remain up to 10km inside Lebanon.

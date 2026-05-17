@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Abakaliki — Governor Nwifuru borrowed ₦20 billion without assembly approval. [Nigeria](country:NG)'s Ebonyi Fiscal Responsibility Law requires legislative sign-off and cost-benefit analysis before state borrowing; no public record of either exists for the Q1 2026 loan. 3 officials, including the assembly speaker, declined to comment or did not respond.
+Abakaliki — Governor Nwifuru borrowed ₦20 billion without assembly approval.
+
+[Nigeria](country:NG)'s Ebonyi Fiscal Responsibility Law requires legislative sign-off and cost-benefit analysis before state borrowing; no public record of either exists for the Q1 2026 loan.
+
+3 officials, including the assembly speaker, declined to comment or did not respond.

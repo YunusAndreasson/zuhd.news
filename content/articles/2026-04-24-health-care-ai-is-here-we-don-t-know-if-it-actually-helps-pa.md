@@ -17,4 +17,8 @@ concepts:
   - "University of Michigan"
 ---
 
-Ann Arbor — A Nature Medicine review found no randomized trial evidence that clinical AI improves patient outcomes. Sepsis predictors, imaging triage, and ambient scribes are deployed because the Food and Drug Administration clears devices on accuracy metrics, not health results. Liability when a model causes harm remains legally undefined.
+Ann Arbor — A Nature Medicine review found no randomized trial evidence that clinical AI improves patient outcomes.
+
+Sepsis predictors, imaging triage, and ambient scribes are deployed because the Food and Drug Administration clears devices on accuracy metrics, not health results.
+
+Liability when a model causes harm remains legally undefined.

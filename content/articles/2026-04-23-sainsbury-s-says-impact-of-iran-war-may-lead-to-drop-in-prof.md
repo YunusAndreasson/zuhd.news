@@ -26,4 +26,8 @@ entities:
     kind: "stock"
 ---
 
-London — [Britain](country:GB)'s Sainsbury's cut guidance, blaming the Iran war. The supermarket told investors annual profit could fall £55m, citing shipping costs and squeezed customer budgets. WH Smith also cut £10m for weaker travel demand; Tesco has not yet updated guidance.
+London — [Britain](country:GB)'s Sainsbury's cut guidance, blaming the Iran war.
+
+The supermarket told investors annual profit could fall £55m, citing shipping costs and squeezed customer budgets.
+
+WH Smith also cut £10m for weaker travel demand; Tesco has not yet updated guidance.

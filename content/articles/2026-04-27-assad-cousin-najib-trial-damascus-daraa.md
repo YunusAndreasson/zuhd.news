@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Damascus — Hamza al-Khatib's portrait faced his torturer in court. Atef Najib ran [Syria](country:SY)'s Daraa crackdown that triggered the 2011 uprising — the first senior government official tried on Syrian soil. Families from Daraa testified Monday; Damascus now faces prosecuting thousands of Mukhabarat officials with no transitional justice framework.
+Damascus — Hamza al-Khatib's portrait faced his torturer in court.
+
+Atef Najib ran [Syria](country:SY)'s Daraa crackdown that triggered the 2011 uprising — the first senior government official tried on Syrian soil.
+
+Families from Daraa testified Monday; Damascus now faces prosecuting thousands of Mukhabarat officials with no transitional justice framework.

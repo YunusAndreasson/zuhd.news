@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Budapest — Tisza took 141 seats, crossing [Hungary](country:HU)'s supermajority line. Péter Magyar's movement can now rewrite the electoral laws and judicial appointment rules Viktor Orbán engineered over 16 years. Orbán quits parliament but stays Fidesz leader; Magyar is scheduled to take office May 9.
+Budapest — Tisza took 141 seats, crossing [Hungary](country:HU)'s supermajority line.
+
+Péter Magyar's movement can now rewrite the electoral laws and judicial appointment rules Viktor Orbán engineered over 16 years.
+
+Orbán quits parliament but stays Fidesz leader; Magyar is scheduled to take office May 9.

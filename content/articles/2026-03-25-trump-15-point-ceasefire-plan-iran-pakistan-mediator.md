@@ -29,4 +29,6 @@ concepts:
 sentimentDivergence: 0.4
 ---
 
-Tehran — Iran called US peace overtures "negotiating with yourselves." Washington sent a 15-point ceasefire plan through Pakistan as it deployed 1,000 more 82nd Airborne troops — atop 50,000 already in the region. Pakistan offered to host talks by next week; new supreme leader Khamenei has not been publicly heard since his appointment.
+Tehran — Iran called US peace overtures "negotiating with yourselves." Washington sent a 15-point ceasefire plan through Pakistan as it deployed 1,000 more 82nd Airborne troops — atop 50,000 already in the region.
+
+Pakistan offered to host talks by next week; new supreme leader Khamenei has not been publicly heard since his appointment.

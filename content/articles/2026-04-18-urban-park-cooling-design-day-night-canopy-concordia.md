@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Montreal — Dense park canopies can trap heat after sundown. Concordia researchers found that tree arrangement determines whether parks cool neighborhoods at night or radiate absorbed heat back into the city. Most megacity park policies specify coverage, not arrangement, the researchers found.
+Montreal — Dense park canopies can trap heat after sundown.
+
+Concordia researchers found that tree arrangement determines whether parks cool neighborhoods at night or radiate absorbed heat back into the city.
+
+Most megacity park policies specify coverage, not arrangement, the researchers found.

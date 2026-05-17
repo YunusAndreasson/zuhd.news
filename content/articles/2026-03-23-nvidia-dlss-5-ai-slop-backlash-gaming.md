@@ -17,4 +17,8 @@ concepts:
   - "Gaming"
 ---
 
-Santa Clara — DLSS 5 generates visual detail that game artists never drew. Nvidia CEO Jensen Huang defended the technology after gamers called it 'AI slop,' arguing it preserves artistic intent — but gamers say AI-generated pixels cannot replicate hand-crafted style. No commercial game has shipped with DLSS 5; when one does, gamers say they will test Huang's claims frame by frame.
+Santa Clara — DLSS 5 generates visual detail that game artists never drew.
+
+Nvidia CEO Jensen Huang defended the technology after gamers called it 'AI slop,' arguing it preserves artistic intent — but gamers say AI-generated pixels cannot replicate hand-crafted style.
+
+No commercial game has shipped with DLSS 5; when one does, gamers say they will test Huang's claims frame by frame.

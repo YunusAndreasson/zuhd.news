@@ -29,4 +29,8 @@ concepts:
 entities: []
 ---
 
-New Delhi — Monsoon forecast 6 days early for Kerala. The monsoon delivers 70% of [India](country:IN)'s annual rainfall; the India Meteorological Department projects 80 cm — 8% below average — as El Niño emerges. The US weather agency puts 82% odds on El Niño by July, above 50% chance of a strong event by November.
+New Delhi — Monsoon forecast 6 days early for Kerala.
+
+The monsoon delivers 70% of [India](country:IN)'s annual rainfall; the India Meteorological Department projects 80 cm — 8% below average — as El Niño emerges.
+
+The US weather agency puts 82% odds on El Niño by July, above 50% chance of a strong event by November.

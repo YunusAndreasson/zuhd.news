@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Shenzhen — Journalist's scheduled contact was an undisclosed AI agent. In [China](country:CN)'s one-person companies, agents now handle email, scheduling, and client contact without disclosing their nature to counterparties. No rule requires disclosure; recipients cannot verify whether they negotiate with a human or a supervised agent.
+Shenzhen — Journalist's scheduled contact was an undisclosed AI agent.
+
+In [China](country:CN)'s one-person companies, agents now handle email, scheduling, and client contact without disclosing their nature to counterparties.
+
+No rule requires disclosure; recipients cannot verify whether they negotiate with a human or a supervised agent.

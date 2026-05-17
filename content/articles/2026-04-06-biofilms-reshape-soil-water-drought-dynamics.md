@@ -16,4 +16,8 @@ concepts:
   - "Sorption"
 ---
 
-London — Bacterial biofilms reverse how dry soils hold water. In dry soils, biofilms increase water retention 10-49% and reverse the expected sorption pattern, effectively engineering soil hydrology from the ground up. The mechanism could inform drought-resistant agriculture design as climate change dries soils across farming regions.
+London — Bacterial biofilms reverse how dry soils hold water.
+
+In dry soils, biofilms increase water retention 10-49% and reverse the expected sorption pattern, effectively engineering soil hydrology from the ground up.
+
+The mechanism could inform drought-resistant agriculture design as climate change dries soils across farming regions.

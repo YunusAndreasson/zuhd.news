@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Pearl Harbor — The Levin now carries an unidentified launcher. It appeared between December 2025 and March 2026; similar anti-drone launchers were added to 2 other destroyers last year. Its type is undisclosed; the Navy has not responded to queries about the installation.
+Pearl Harbor — The Levin now carries an unidentified launcher.
+
+It appeared between December 2025 and March 2026; similar anti-drone launchers were added to 2 other destroyers last year.
+
+Its type is undisclosed; the Navy has not responded to queries about the installation.

@@ -19,4 +19,8 @@ concepts:
 eventCoverage: 28
 ---
 
-Abu Dhabi — UAE pushes to forcibly reopen Hormuz. Abu Dhabi lobbied US, European, and Asian militaries for a UN Security Council resolution authorizing force and offered its own troops. Trump's 2-3 week exit timeline leaves UAE to act without US cover.
+Abu Dhabi — UAE pushes to forcibly reopen Hormuz.
+
+Abu Dhabi lobbied US, European, and Asian militaries for a UN Security Council resolution authorizing force and offered its own troops.
+
+Trump's 2-3 week exit timeline leaves UAE to act without US cover.

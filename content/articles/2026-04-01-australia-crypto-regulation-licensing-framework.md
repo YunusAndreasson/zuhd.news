@@ -17,4 +17,8 @@ concepts:
   - "Finance"
 ---
 
-Canberra — Australia licensed crypto exchanges under financial services law. The bill creates 2 tiers — digital asset platforms and tokenized custody providers — targeting an A$24 billion market. Australia regulates as the US deregulates, positioning Sydney as an institutional crypto hub.
+Canberra — Australia licensed crypto exchanges under financial services law.
+
+The bill creates 2 tiers — digital asset platforms and tokenized custody providers — targeting an A$24 billion market.
+
+Australia regulates as the US deregulates, positioning Sydney as an institutional crypto hub.

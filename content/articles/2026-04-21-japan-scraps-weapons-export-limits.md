@@ -29,4 +29,8 @@ sentimentDivergence: 0.41
 entities: []
 ---
 
-Tokyo — Fighters, missiles, and destroyers joined [Japan](country:JP)'s export list. The cabinet lifted an 80-year postwar ban, approving sales of all three to 17 partner nations. The carve-out lets the cabinet authorize wartime sales at its discretion — the clause regional neighbors are watching.
+Tokyo — Fighters, missiles, and destroyers joined [Japan](country:JP)'s export list.
+
+The cabinet lifted an 80-year postwar ban, approving sales of all three to 17 partner nations.
+
+The carve-out lets the cabinet authorize wartime sales at its discretion — the clause regional neighbors are watching.

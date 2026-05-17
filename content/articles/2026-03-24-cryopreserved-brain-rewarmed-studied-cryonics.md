@@ -18,4 +18,8 @@ concepts:
   - "Vitrification"
 ---
 
-Scottsdale — Scientists examined tissue from a cryopreserved human brain for the first time. Cryobiologist Greg Fahy found cell structures partially recovered after fixation — cooling to -196°C creates mechanical tension that can shatter tissue, but no cracks appeared in this case. Independent peer review must now determine whether partial structural recovery supports the vitrification claims cryonics rests on; Fahy posted results as a preprint on bioRxiv.
+Scottsdale — Scientists examined tissue from a cryopreserved human brain for the first time.
+
+Cryobiologist Greg Fahy found cell structures partially recovered after fixation — cooling to -196°C creates mechanical tension that can shatter tissue, but no cracks appeared in this case.
+
+Independent peer review must now determine whether partial structural recovery supports the vitrification claims cryonics rests on; Fahy posted results as a preprint on bioRxiv.

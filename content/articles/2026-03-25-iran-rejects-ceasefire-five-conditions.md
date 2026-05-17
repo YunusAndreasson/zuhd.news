@@ -32,4 +32,8 @@ concepts:
 sentimentDivergence: 0.45
 ---
 
-Tehran — Iran rejected the US ceasefire plan, naming 5 conditions. Tehran's demands include full reparations, a halt on all regional fronts, and international recognition of Iran's right to levy Strait of Hormuz transit fees — modeled on Egypt's Suez Canal toll. After Pakistan delivered the plan with a 24-hour deadline that has now expired, Iran told all intermediaries no talks begin until all 5 conditions are accepted in advance.
+Tehran — Iran rejected the US ceasefire plan, naming 5 conditions.
+
+Tehran's demands include full reparations, a halt on all regional fronts, and international recognition of Iran's right to levy Strait of Hormuz transit fees — modeled on Egypt's Suez Canal toll.
+
+After Pakistan delivered the plan with a 24-hour deadline that has now expired, Iran told all intermediaries no talks begin until all 5 conditions are accepted in advance.

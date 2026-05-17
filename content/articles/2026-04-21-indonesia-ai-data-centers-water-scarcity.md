@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Jakarta — 170 data centers now operate in [Indonesia](country:ID). Each medium facility consumes 300,000 gallons daily — equal to 1,000 households — and nearly half sit in the country's hottest regions. As [Singapore](country:SG) tightens data-center investment rules, capacity flows to Batam, where 18 centers operate and communities report water pressure dropping.
+Jakarta — 170 data centers now operate in [Indonesia](country:ID).
+
+Each medium facility consumes 300,000 gallons daily — equal to 1,000 households — and nearly half sit in the country's hottest regions.
+
+As [Singapore](country:SG) tightens data-center investment rules, capacity flows to Batam, where 18 centers operate and communities report water pressure dropping.

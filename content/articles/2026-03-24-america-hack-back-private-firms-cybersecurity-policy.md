@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Washington — Retaliatory hacking by US firms was illegal — until now. The US government authorized corporate cyber retaliation after concluding it cannot defend the private sector against state-sponsored attacks alone. No legal framework governs escalation if a corporate hack-back triggers a government response from a targeted state.
+Washington — Retaliatory hacking by US firms was illegal — until now.
+
+The US government authorized corporate cyber retaliation after concluding it cannot defend the private sector against state-sponsored attacks alone.
+
+No legal framework governs escalation if a corporate hack-back triggers a government response from a targeted state.

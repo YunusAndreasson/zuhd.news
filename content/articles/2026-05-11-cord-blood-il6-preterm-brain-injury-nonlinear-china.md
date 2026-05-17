@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Shenyang — Linear interleukin-6 screening mislabels highest-risk preterm infants. A [China](country:CN)-based neonatal unit found brain-injury risk accelerates nonlinearly above 49 pg/mL in 1,028 infants; linear screening misses the inflection. African and Asian neonatal units following Western interleukin-6 guidelines may under-screen the highest-risk infants.
+Shenyang — Linear interleukin-6 screening mislabels highest-risk preterm infants.
+
+A [China](country:CN)-based neonatal unit found brain-injury risk accelerates nonlinearly above 49 pg/mL in 1,028 infants; linear screening misses the inflection.
+
+African and Asian neonatal units following Western interleukin-6 guidelines may under-screen the highest-risk infants.

@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Amsterdam — Hackers breached Basic-Fit, Europe's largest gym chain. Member data was downloaded across multiple EU countries simultaneously, triggering mandatory breach notification obligations in each jurisdiction within 72 hours. Basic-Fit has not disclosed what data was stolen or whether any EU regulator has opened an inquiry.
+Amsterdam — Hackers breached Basic-Fit, Europe's largest gym chain.
+
+Member data was downloaded across multiple EU countries simultaneously, triggering mandatory breach notification obligations in each jurisdiction within 72 hours.
+
+Basic-Fit has not disclosed what data was stolen or whether any EU regulator has opened an inquiry.

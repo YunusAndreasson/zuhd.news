@@ -17,4 +17,8 @@ concepts:
   - "Iran"
 ---
 
-Beijing — China brokered the Iran ceasefire through 3 intermediaries. Beijing worked through Pakistan, Turkey, and Egypt to nudge Iran toward talks, with Trump publicly confirming China's role. Whether Beijing claims mediation credit before Trump's May visit to Xi will define the ceasefire's diplomatic stakes.
+Beijing — China brokered the Iran ceasefire through 3 intermediaries.
+
+Beijing worked through Pakistan, Turkey, and Egypt to nudge Iran toward talks, with Trump publicly confirming China's role.
+
+Whether Beijing claims mediation credit before Trump's May visit to Xi will define the ceasefire's diplomatic stakes.

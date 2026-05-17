@@ -15,4 +15,8 @@ concepts:
   - "Mexico"
 ---
 
-Guadalajara — [US](country:US) sanctioned CJNG's money-laundering matriarch. [Mexican](country:MX) prosecutors allege Rosalinda González Valencia ran 73 front companies; the Jalisco cartel uses female kin networks as a legal firewall between street operations and financial flows. She serves a 5-year Mexican sentence; US sanctions freeze any assets in American jurisdiction.
+Guadalajara — [US](country:US) sanctioned CJNG's money-laundering matriarch.
+
+[Mexican](country:MX) prosecutors allege Rosalinda González Valencia ran 73 front companies; the Jalisco cartel uses female kin networks as a legal firewall between street operations and financial flows.
+
+She serves a 5-year Mexican sentence; US sanctions freeze any assets in American jurisdiction.

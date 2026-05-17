@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Washington — Historic norm: 11 per year; Thursday alone brought 12. Federal law requires citizenship revocation to be based on application-time fraud — a bar [the US](country:US) administration is stretching past post-naturalization offenses. Acting Attorney General Blanche vowed further expansion; cases cover charges from terrorism support to child abuse.
+Washington — Historic norm: 11 per year; Thursday alone brought 12.
+
+Federal law requires citizenship revocation to be based on application-time fraud — a bar [the US](country:US) administration is stretching past post-naturalization offenses.
+
+Acting Attorney General Blanche vowed further expansion; cases cover charges from terrorism support to child abuse.

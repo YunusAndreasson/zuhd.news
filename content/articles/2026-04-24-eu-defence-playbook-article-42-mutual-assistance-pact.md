@@ -34,4 +34,8 @@ concepts:
 sentimentDivergence: 0.23
 ---
 
-Nicosia — EU's mutual-defence clause has no war plan. Leaders commissioned a blueprint after a Pentagon memo threatened to suspend [Spain](country:ES) from NATO for denying Iran-war overflight rights. EU diplomats run tabletop exercises in May; NATO's July 7 summit in Turkey is the first formal test.
+Nicosia — EU's mutual-defence clause has no war plan.
+
+Leaders commissioned a blueprint after a Pentagon memo threatened to suspend [Spain](country:ES) from NATO for denying Iran-war overflight rights.
+
+EU diplomats run tabletop exercises in May; NATO's July 7 summit in Turkey is the first formal test.

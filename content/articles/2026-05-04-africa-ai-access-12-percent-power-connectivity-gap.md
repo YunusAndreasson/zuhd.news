@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Nairobi — Less than 12% of Africans can meaningfully access AI. Stable power is the prerequisite ahead of connectivity or devices; African governments are rolling out AI strategies while electrical grid coverage remains far short. Western firms are opening hubs in African capitals while grid investment remains years behind.
+Nairobi — Less than 12% of Africans can meaningfully access AI.
+
+Stable power is the prerequisite ahead of connectivity or devices; African governments are rolling out AI strategies while electrical grid coverage remains far short.
+
+Western firms are opening hubs in African capitals while grid investment remains years behind.

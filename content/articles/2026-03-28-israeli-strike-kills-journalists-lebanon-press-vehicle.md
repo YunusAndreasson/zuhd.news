@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.44
 ---
 
-Jezzine — A marked press car took 4 missiles. Israel killed 3 journalists and then struck the responding paramedics; it claimed Shuaib worked for Hezbollah intelligence without providing evidence. Lebanon will file a UN complaint; no country has killed more journalists in CPJ's recorded history than Israel.
+Jezzine — A marked press car took 4 missiles.
+
+Israel killed 3 journalists and then struck the responding paramedics; it claimed Shuaib worked for Hezbollah intelligence without providing evidence.
+
+Lebanon will file a UN complaint; no country has killed more journalists in CPJ's recorded history than Israel.

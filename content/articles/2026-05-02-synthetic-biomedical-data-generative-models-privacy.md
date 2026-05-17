@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — Researchers validated a synthetic patient-data tool across 26 biobanks. Published in npj Digital Medicine, the framework uses diffusion models to produce privacy-preserving records at 3 regulatory tiers. The code is open-source; regulators have not ruled whether synthetic data qualifies as evidence.
+London — Researchers validated a synthetic patient-data tool across 26 biobanks.
+
+Published in npj Digital Medicine, the framework uses diffusion models to produce privacy-preserving records at 3 regulatory tiers.
+
+The code is open-source; regulators have not ruled whether synthetic data qualifies as evidence.

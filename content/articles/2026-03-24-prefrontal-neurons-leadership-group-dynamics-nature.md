@@ -15,4 +15,8 @@ concepts:
   - "Social group"
 ---
 
-London — Brain stimulation turned mice followers into leaders, Nature reports. Because group structure emerges from individual brains, stimulating one mouse's prefrontal cortex disrupted the social hierarchy of the entire huddle. The finding means decades of leadership studies, run on solitary animals, missed the neural mechanisms that drive group hierarchy.
+London — Brain stimulation turned mice followers into leaders, Nature reports.
+
+Because group structure emerges from individual brains, stimulating one mouse's prefrontal cortex disrupted the social hierarchy of the entire huddle.
+
+The finding means decades of leadership studies, run on solitary animals, missed the neural mechanisms that drive group hierarchy.

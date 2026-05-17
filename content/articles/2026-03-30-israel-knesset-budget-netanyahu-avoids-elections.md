@@ -17,4 +17,8 @@ concepts:
   - "Iran"
 ---
 
-Jerusalem — Israel passed a wartime budget worth $270 billion. The vote beat the April 1 deadline that would have triggered early elections, locking Netanyahu into power until at least October. Netanyahu faces ICC warrants and must hold elections by October; he now controls when that vote happens.
+Jerusalem — Israel passed a wartime budget worth $270 billion.
+
+The vote beat the April 1 deadline that would have triggered early elections, locking Netanyahu into power until at least October.
+
+Netanyahu faces ICC warrants and must hold elections by October; he now controls when that vote happens.

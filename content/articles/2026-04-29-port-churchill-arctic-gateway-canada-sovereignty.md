@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Churchill — [Canada](country:CA) made Churchill's Arctic port a federal priority. PM Carney sees it as key to doubling non-US exports in a decade as climate change extends Hudson Bay's ice-free season. No construction timeline exists for a port that runs only 4-5 months annually and whose viability is disputed.
+Churchill — [Canada](country:CA) made Churchill's Arctic port a federal priority.
+
+PM Carney sees it as key to doubling non-US exports in a decade as climate change extends Hudson Bay's ice-free season.
+
+No construction timeline exists for a port that runs only 4-5 months annually and whose viability is disputed.

@@ -16,4 +16,8 @@ concepts:
   - "Artificial intelligence"
 ---
 
-London — AI hits 92.5% seabed accuracy on incomplete data. A random forest trained on 229,808 synthetic soil samples achieved it on partial sensor readings, replacing costly offshore redrills. Offshore wind is bottlenecked by survey costs; this cuts the data requirement per turbine foundation.
+London — AI hits 92.5% seabed accuracy on incomplete data.
+
+A random forest trained on 229,808 synthetic soil samples achieved it on partial sensor readings, replacing costly offshore redrills.
+
+Offshore wind is bottlenecked by survey costs; this cuts the data requirement per turbine foundation.

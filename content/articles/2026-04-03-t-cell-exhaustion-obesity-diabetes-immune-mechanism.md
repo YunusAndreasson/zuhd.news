@@ -18,4 +18,8 @@ concepts:
   - "Obesity"
 ---
 
-Guangzhou — Obesity exhausts key immune cells in diabetic patients. Chinese researchers found γδ T cells in 54 type 2 diabetes patients expressing PD-1 and TIGIT exhaustion markers proportional to BMI. PD-1 is the same checkpoint targeted by existing cancer immunotherapy drugs, raising their potential use in metabolic disease.
+Guangzhou — Obesity exhausts key immune cells in diabetic patients.
+
+Chinese researchers found γδ T cells in 54 type 2 diabetes patients expressing PD-1 and TIGIT exhaustion markers proportional to BMI.
+
+PD-1 is the same checkpoint targeted by existing cancer immunotherapy drugs, raising their potential use in metabolic disease.

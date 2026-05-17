@@ -3,7 +3,7 @@ import { transformSync } from 'esbuild'
 import { join, basename } from 'path'
 import { createHash } from 'crypto'
 import { parseFrontmatter } from './lib/frontmatter.js'
-import { splitSentences as splitBodySentencesShared, ABBREVS } from './lib/sentences.js'
+import { splitBlocks } from './lib/blocks.js'
 import { buildOgPng } from './lib/og-image.js'
 import { buildIslands } from './build/islands.js'
 import { buildCountryPages } from './build/country-pages.js'
@@ -95,18 +95,6 @@ const markdownToHtml = (md) => {
   return result.join('\n')
 }
 
-// Shares ABBREVS with lib/sentences.js — prevents acronym list drift between
-// the markdown-space validator (count check) and this HTML-space wrapper.
-// Lookahead accepts `<` so sentences starting with rendered markdown links
-// (country tags become `<a href="country:XX">…</a>`) still split correctly.
-const splitSentences = (html) =>
-  html.replace(/<p>([\s\S]*?)<\/p>/g, (match, inner) => {
-    const masked = inner.replace(ABBREVS, m => m.replace('. ', '.\x00'))
-    const sentences = masked.split(/(?<=[.!?][\u201D\u2019]?(?:<\/em>)?)\s+(?=[\p{Lu}<])/u)
-    if (sentences.length <= 1) return match
-    return '<p>' + sentences.map(s => `<span class="s">${s.replace(/\.\x00/g, '. ')}</span>`).join(' ') + '</p>'
-  })
-
 const formatDate = (dateStr) =>
   new Date(dateStr).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
 
@@ -136,7 +124,7 @@ const buildArticle = (filename) => {
   // the first paragraph of the rendered HTML.
   const datelineMatch = body.match(/^([^\n—]+?)\s+—\s+/)
   const strippedBody = datelineMatch ? body.slice(datelineMatch[0].length) : body
-  let renderedHtml = splitSentences(markdownToHtml(strippedBody))
+  let renderedHtml = markdownToHtml(strippedBody)
   if (datelineMatch) {
     const location = datelineMatch[1].trim()
     renderedHtml = renderedHtml.replace(
@@ -480,12 +468,12 @@ const lastCycleTs = existsSync(lastCyclePath)
   ? (JSON.parse(readFileSync(lastCyclePath, 'utf-8')).timestamp ?? '')
   : ''
 
-// Split body into sentences — shared with validate-articles.js
-const splitBodySentences = splitBodySentencesShared
-
 // (threadLookup moved above buildArticle calls)
 
-// API feeds — pre-grouped, pre-split sentences for native rendering
+// API feeds — pre-grouped, pre-split blocks for native rendering.
+// Mobile reads `article.sentences: string[]` and maps each entry to a `<Text>`
+// element. Field name is `sentences` for mobile-client compatibility; each
+// entry is a markdown paragraph (block), not necessarily a single sentence.
 const generated = new Date().toISOString()
 const apiGrouped = groupByWindow(sorted, cutoff)
 const apiCategories = Object.fromEntries(
@@ -515,7 +503,7 @@ const apiCategories = Object.fromEntries(
           threadDay: thread.threadDay,
           threadArticleCount: thread.threadArticleCount,
         }),
-        sentences: splitBodySentences(body)
+        sentences: splitBlocks(body)
       }
     })
   ])

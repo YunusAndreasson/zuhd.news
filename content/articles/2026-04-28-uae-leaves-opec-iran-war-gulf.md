@@ -47,4 +47,8 @@ entities:
     kind: "commodity"
 ---
 
-Abu Dhabi — [UAE](country:AE) exits OPEC effective May 1, shattering Gulf oil unity. [Iran](country:IR)'s Strait of Hormuz blockade created a 13.7 million barrels-per-day global shortfall, Goldman Sachs said, erasing the logic of cartel production caps for Abu Dhabi. Freed from quota constraints, Abu Dhabi targets 5 million barrels per day of capacity by 2027.
+Abu Dhabi — [UAE](country:AE) exits OPEC effective May 1, shattering Gulf oil unity.
+
+[Iran](country:IR)'s Strait of Hormuz blockade created a 13.7 million barrels-per-day global shortfall, Goldman Sachs said, erasing the logic of cartel production caps for Abu Dhabi.
+
+Freed from quota constraints, Abu Dhabi targets 5 million barrels per day of capacity by 2027.

@@ -17,4 +17,8 @@ concepts:
   - "Darfur"
 ---
 
-Darfur — Rape in Darfur outlasts every RSF advance. RSF fighters targeted Zaghawa, Massalit, and Fur; MSF logged 3,396 survivors in 22 months, 56% assaulted during routine tasks like fetching water. MSF called the humanitarian response a failure; RSF holds the territory and controls who can investigate.
+Darfur — Rape in Darfur outlasts every RSF advance.
+
+RSF fighters targeted Zaghawa, Massalit, and Fur; MSF logged 3,396 survivors in 22 months, 56% assaulted during routine tasks like fetching water.
+
+MSF called the humanitarian response a failure; RSF holds the territory and controls who can investigate.

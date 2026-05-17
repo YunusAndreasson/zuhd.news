@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Cambridge — Sponsored research at the Massachusetts Institute of Technology fell 10% in one year. President Sally Kornbluth named 2 drivers: federal awards down more than 20% and visa delays draining the international graduate pipeline. Some federal agencies are discussing geography-based over merit-based allocation, which would cut its share further.
+Cambridge — Sponsored research at the Massachusetts Institute of Technology fell 10% in one year.
+
+President Sally Kornbluth named 2 drivers: federal awards down more than 20% and visa delays draining the international graduate pipeline.
+
+Some federal agencies are discussing geography-based over merit-based allocation, which would cut its share further.

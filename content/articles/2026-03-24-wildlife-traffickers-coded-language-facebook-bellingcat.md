@@ -17,4 +17,8 @@ concepts:
   - "Bellingcat"
 ---
 
-Jakarta — 70,000 Facebook users trade protected wildlife in coded language. Meta's keyword moderation cannot detect emoji substitutions and misspelled species names, leaving 9 Jakarta-based groups to operate openly for up to 5 years. Indonesian law sets 5 years for trading a silvery gibbon, but the broker Bellingcat identified has not been charged.
+Jakarta — 70,000 Facebook users trade protected wildlife in coded language.
+
+Meta's keyword moderation cannot detect emoji substitutions and misspelled species names, leaving 9 Jakarta-based groups to operate openly for up to 5 years.
+
+Indonesian law sets 5 years for trading a silvery gibbon, but the broker Bellingcat identified has not been charged.

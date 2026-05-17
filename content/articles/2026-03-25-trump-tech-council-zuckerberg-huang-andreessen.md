@@ -24,4 +24,8 @@ concepts:
 sentimentDivergence: 0.15
 ---
 
-Washington — Trump appointed 6 tech billionaires to his science council. Members include Zuckerberg, Jensen Huang, and Andreessen — executives in the industries the council will advise on, who collectively donated millions to Trump's campaigns — replacing the academics who historically filled the body. A federal judge ruled the Pentagon's targeting of Anthropic may be illegal, a case determining whether these companies face any constraint on military AI use.
+Washington — Trump appointed 6 tech billionaires to his science council.
+
+Members include Zuckerberg, Jensen Huang, and Andreessen — executives in the industries the council will advise on, who collectively donated millions to Trump's campaigns — replacing the academics who historically filled the body.
+
+A federal judge ruled the Pentagon's targeting of Anthropic may be illegal, a case determining whether these companies face any constraint on military AI use.

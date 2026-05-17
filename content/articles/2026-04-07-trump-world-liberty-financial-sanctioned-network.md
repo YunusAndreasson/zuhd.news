@@ -17,4 +17,8 @@ concepts:
   - "United Arab Emirates"
 ---
 
-Washington — Trump's crypto connects to a sanctioned network. WLFI partnered with AB DAO, which promoted a resort tied to Cambodia's sanctioned Prince Group until weeks before the deal. A UAE adviser-linked firm holds 49% of WLFI, acquired for $500 million before Trump took office.
+Washington — Trump's crypto connects to a sanctioned network.
+
+WLFI partnered with AB DAO, which promoted a resort tied to Cambodia's sanctioned Prince Group until weeks before the deal.
+
+A UAE adviser-linked firm holds 49% of WLFI, acquired for $500 million before Trump took office.

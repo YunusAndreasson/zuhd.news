@@ -25,4 +25,10 @@ concepts:
 sentimentDivergence: 0.28
 ---
 
-Washington — US armed Iranian protesters while negotiating peace. The Kurds kept the weapons; Trump disclosed the operation at Easter, while his envoys were negotiating with Iranian officials in Europe. Trump threatened Iranian power plants and bridges by Tuesday 8 p.m. ET unless Hormuz reopens.
+Washington — US armed Iranian protesters while negotiating peace.
+
+The Kurds kept the weapons; Trump disclosed the operation at Easter, while his envoys were negotiating with Iranian officials in Europe.
+
+Trump threatened Iranian power plants and bridges by Tuesday 8 p.m.
+
+ET unless Hormuz reopens.

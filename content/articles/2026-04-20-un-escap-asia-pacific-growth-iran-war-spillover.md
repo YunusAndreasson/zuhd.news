@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Bangkok — The UN's Asia-Pacific economic commission cut 2026 growth to 4%. The UN attributes the decline to Middle East war spillover: surging energy costs, freight disruption, and weakening export demand. The commission warns of "notably lower" growth and higher inflation if the conflict prolongs, with fiscal buffers already depleted.
+Bangkok — The UN's Asia-Pacific economic commission cut 2026 growth to 4%.
+
+The UN attributes the decline to Middle East war spillover: surging energy costs, freight disruption, and weakening export demand.
+
+The commission warns of "notably lower" growth and higher inflation if the conflict prolongs, with fiscal buffers already depleted.

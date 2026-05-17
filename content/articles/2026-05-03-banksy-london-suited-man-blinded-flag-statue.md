@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — A flag-blinded suit walks off a ledge. Installed overnight in Waterloo Place among [UK](country:GB) monuments, the bronze carries Banksy's signature; an Instagram post confirms his involvement. Authorities say they will not remove it; the mayor's office called it 'art that draws great interest.'
+London — A flag-blinded suit walks off a ledge.
+
+Installed overnight in Waterloo Place among [UK](country:GB) monuments, the bronze carries Banksy's signature; an Instagram post confirms his involvement.
+
+Authorities say they will not remove it; the mayor's office called it 'art that draws great interest.'

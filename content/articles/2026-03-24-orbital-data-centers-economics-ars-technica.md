@@ -18,4 +18,8 @@ concepts:
   - "Energy"
 ---
 
-San Francisco — SpaceX plans 1 million satellites for orbital data centers. Space solar yields 5 to 7 times more power than ground arrays; 6 US states now have pending moratoriums on new data center development. Viability requires Starship to cut launch costs below $1,000 per kilogram and Musk's $20 billion Terafab chip project to ship.
+San Francisco — SpaceX plans 1 million satellites for orbital data centers.
+
+Space solar yields 5 to 7 times more power than ground arrays; 6 US states now have pending moratoriums on new data center development.
+
+Viability requires Starship to cut launch costs below $1,000 per kilogram and Musk's $20 billion Terafab chip project to ship.

@@ -17,4 +17,8 @@ concepts:
   - "IMF"
 ---
 
-Cairo — Egypt hiked household fuel 31% but left industry unchanged. Egypt's industrial sector pays $5.75 per million Btu for gas while the government buys some at spot market prices above $20. IMF reviewers will assess whether Egypt can sustain that gap while Middle East conflict keeps spot prices elevated.
+Cairo — Egypt hiked household fuel 31% but left industry unchanged.
+
+Egypt's industrial sector pays $5.75 per million Btu for gas while the government buys some at spot market prices above $20.
+
+IMF reviewers will assess whether Egypt can sustain that gap while Middle East conflict keeps spot prices elevated.

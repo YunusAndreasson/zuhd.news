@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Abuja — 36 serving Nigerian officers face military tribunal Friday. [Nigeria](country:NG)'s Defence Headquarters convened a General Court Martial for officers detained since 2025; charges include treason, terrorism, and money laundering. Civilians and 2 retired officers face separate treason and terrorism charges at Federal High Court.
+Abuja — 36 serving Nigerian officers face military tribunal Friday.
+
+[Nigeria](country:NG)'s Defence Headquarters convened a General Court Martial for officers detained since 2025; charges include treason, terrorism, and money laundering.
+
+Civilians and 2 retired officers face separate treason and terrorism charges at Federal High Court.

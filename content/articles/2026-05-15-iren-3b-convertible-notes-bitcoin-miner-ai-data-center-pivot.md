@@ -21,4 +21,8 @@ entities:
     kind: "crypto"
 ---
 
-Sydney — IREN raised $3 billion to exit Bitcoin mining. 1% convertible notes fund a $3.4 billion Nvidia cloud agreement and $3.5 billion in graphics processing unit purchases from Dell. IREN shares fell over 3% in pre-market on dilution risk from the 32.5% conversion premium.
+Sydney — IREN raised $3 billion to exit Bitcoin mining.
+
+1% convertible notes fund a $3.4 billion Nvidia cloud agreement and $3.5 billion in graphics processing unit purchases from Dell.
+
+IREN shares fell over 3% in pre-market on dilution risk from the 32.5% conversion premium.

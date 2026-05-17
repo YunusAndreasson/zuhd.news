@@ -32,4 +32,8 @@ entities:
     kind: "stock"
 ---
 
-Munich — [Germany](country:DE) banned Acer and Asus PCs in January. High Efficiency Video Coding's 2 patent pools stack fees that device makers, not chipmakers, pay per device; Dell and HP disabled support on select laptops. Access Advance raises royalty rates July 1; AV1, the royalty-free alternative, still lacks hardware support on older devices.
+Munich — [Germany](country:DE) banned Acer and Asus PCs in January.
+
+High Efficiency Video Coding's 2 patent pools stack fees that device makers, not chipmakers, pay per device; Dell and HP disabled support on select laptops.
+
+Access Advance raises royalty rates July 1; AV1, the royalty-free alternative, still lacks hardware support on older devices.

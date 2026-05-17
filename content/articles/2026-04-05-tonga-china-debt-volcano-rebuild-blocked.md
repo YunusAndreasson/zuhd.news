@@ -18,4 +18,8 @@ concepts:
   - "Debt distress"
 ---
 
-Nuku'alofa — Tonga's China debt repayment eclipses its rebuild budget. The $17.7 million 2025 repayment to China's Exim Bank nearly doubled Tonga's annual infrastructure budget of $10.1 million. China has not offered Tonga debt restructuring as IMF distress risk climbs.
+Nuku'alofa — Tonga's China debt repayment eclipses its rebuild budget.
+
+The $17.7 million 2025 repayment to China's Exim Bank nearly doubled Tonga's annual infrastructure budget of $10.1 million.
+
+China has not offered Tonga debt restructuring as IMF distress risk climbs.

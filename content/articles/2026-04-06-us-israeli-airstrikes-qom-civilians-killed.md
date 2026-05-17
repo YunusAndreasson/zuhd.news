@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.22
 ---
 
-Qom — US-Israeli strikes killed 5 in Qom seminary district. The same night's airstrikes struck a residential building in Eslamshahr killing 13 and hit Sharif University of Technology in Tehran. Trump's Tuesday ultimatum demands Iran reopen the Strait of Hormuz or face destruction of power plants.
+Qom — US-Israeli strikes killed 5 in Qom seminary district.
+
+The same night's airstrikes struck a residential building in Eslamshahr killing 13 and hit Sharif University of Technology in Tehran.
+
+Trump's Tuesday ultimatum demands Iran reopen the Strait of Hormuz or face destruction of power plants.

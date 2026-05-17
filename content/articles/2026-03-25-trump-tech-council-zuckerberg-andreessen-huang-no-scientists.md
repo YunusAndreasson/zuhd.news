@@ -30,4 +30,8 @@ concepts:
 sentimentDivergence: 0.22
 ---
 
-Washington — Trump's science advisory council has almost no scientists. Of 13 named members, 12 are tech executives or investors — Zuckerberg, Andreessen, Jensen Huang — with 1 physicist; the council is chaired by Trump's AI and crypto czar. 9 seats remain vacant and the panel expires January 2027.
+Washington — Trump's science advisory council has almost no scientists.
+
+Of 13 named members, 12 are tech executives or investors — Zuckerberg, Andreessen, Jensen Huang — with 1 physicist; the council is chaired by Trump's AI and crypto czar.
+
+9 seats remain vacant and the panel expires January 2027.

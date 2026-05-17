@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Kathmandu — Home Minister Sudhan Gurung resigned over alleged ties to a money-laundering suspect. He is the 2nd minister to quit in [Nepal](country:NP)'s first 4 weeks under an anti-corruption government. Prime Minister Balendra Shah now holds the portfolio pending a replacement.
+Kathmandu — Home Minister Sudhan Gurung resigned over alleged ties to a money-laundering suspect.
+
+He is the 2nd minister to quit in [Nepal](country:NP)'s first 4 weeks under an anti-corruption government.
+
+Prime Minister Balendra Shah now holds the portfolio pending a replacement.

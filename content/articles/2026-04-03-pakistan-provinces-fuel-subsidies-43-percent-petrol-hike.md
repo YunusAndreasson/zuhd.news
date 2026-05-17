@@ -16,4 +16,8 @@ concepts:
   - "Motorcycle"
 ---
 
-Islamabad — Pakistan's petrol price jumped 43%. 4 provinces will pool Rs200 billion over 3 months to subsidize motorcyclists, farmers, and truckers after Islamabad hit its IMF spending ceiling. A mobile app for 20-litre biker quotas launches next week; Balochistan's data gaps leave millions unreachable.
+Islamabad — Pakistan's petrol price jumped 43%.
+
+4 provinces will pool Rs200 billion over 3 months to subsidize motorcyclists, farmers, and truckers after Islamabad hit its IMF spending ceiling.
+
+A mobile app for 20-litre biker quotas launches next week; Balochistan's data gaps leave millions unreachable.

@@ -37,4 +37,8 @@ concepts:
 entities: []
 ---
 
-Moscow — Red Square runs no tanks May 9. [Russia](country:RU)'s Defence Ministry cited "current operational situation"; armoured vehicles had featured every parade since 2008, the Suvorov cadet march since 1995. Su-25s fly on schedule; the broadcast cuts live to frontline positions as the [Ukraine](country:UA) war enters year 4.
+Moscow — Red Square runs no tanks May 9.
+
+[Russia](country:RU)'s Defence Ministry cited "current operational situation"; armoured vehicles had featured every parade since 2008, the Suvorov cadet march since 1995.
+
+Su-25s fly on schedule; the broadcast cuts live to frontline positions as the [Ukraine](country:UA) war enters year 4.

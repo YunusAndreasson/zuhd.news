@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Abuja — [Nigeria](country:NG)'s tariffs on finished goods reach 70%. The Centre for the Promotion of Private Enterprise called it structured industrialisation but warned import-reliant businesses face cost shocks. Nigeria's petroleum refiners, with recent investment in new capacity, received no protective tariff; the centre recommended adding one.
+Abuja — [Nigeria](country:NG)'s tariffs on finished goods reach 70%.
+
+The Centre for the Promotion of Private Enterprise called it structured industrialisation but warned import-reliant businesses face cost shocks.
+
+Nigeria's petroleum refiners, with recent investment in new capacity, received no protective tariff; the centre recommended adding one.

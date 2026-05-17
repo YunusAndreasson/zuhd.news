@@ -28,4 +28,8 @@ concepts:
   - "Taiwan (island)"
 ---
 
-Beijing — China sanctioned PM Takaichi's close ally over Taiwan. Furuya, head of Japan's cross-party Taiwan lawmakers' group, met President Lai this month; Beijing froze his assets and banned his entry immediately. Tokyo called the sanctions "absolutely unacceptable"; Beijing has now punished 3 Japanese figures since Takaichi took office.
+Beijing — China sanctioned PM Takaichi's close ally over Taiwan.
+
+Furuya, head of Japan's cross-party Taiwan lawmakers' group, met President Lai this month; Beijing froze his assets and banned his entry immediately.
+
+Tokyo called the sanctions "absolutely unacceptable"; Beijing has now punished 3 Japanese figures since Takaichi took office.

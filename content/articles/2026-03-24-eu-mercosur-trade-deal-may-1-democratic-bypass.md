@@ -36,4 +36,8 @@ concepts:
   - "Uruguay"
 ---
 
-Brussels — EU enacted Mercosur on May 1 without parliament's vote. The 25-year deal links 700 million people and covers 25% of global GDP through provisional application, bypassing full ratification by all 27 member states. Parliament has challenged the deal before the Court of Justice, which can void it before ratification completes.
+Brussels — EU enacted Mercosur on May 1 without parliament's vote.
+
+The 25-year deal links 700 million people and covers 25% of global GDP through provisional application, bypassing full ratification by all 27 member states.
+
+Parliament has challenged the deal before the Court of Justice, which can void it before ratification completes.

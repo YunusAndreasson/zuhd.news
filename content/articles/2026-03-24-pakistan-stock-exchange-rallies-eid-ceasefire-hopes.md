@@ -18,4 +18,8 @@ concepts:
   - "Geopolitics"
 ---
 
-Karachi — Pakistan's KSE-100 rose 1,225 points after Eid. The index had fallen 8 straight weeks on Iran war volatility; analysts put the forward price-to-earnings ratio at 6.6 times, below historical averages. Investor confidence hinges on IMF review progress and whether the Iran war de-escalates before Pakistan's energy import costs rise further.
+Karachi — Pakistan's KSE-100 rose 1,225 points after Eid.
+
+The index had fallen 8 straight weeks on Iran war volatility; analysts put the forward price-to-earnings ratio at 6.6 times, below historical averages.
+
+Investor confidence hinges on IMF review progress and whether the Iran war de-escalates before Pakistan's energy import costs rise further.

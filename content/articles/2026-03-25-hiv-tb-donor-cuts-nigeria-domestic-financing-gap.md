@@ -18,4 +18,8 @@ concepts:
   - "Global Health Financing"
 ---
 
-Lokoja — 1.6 million people died of TB globally in 2023; in Nigeria, the HIV and TB programs built to cut that number are losing their foreign funding base. The AIDS Healthcare Foundation, which runs treatment programs across 7 Nigerian states, warned on World TB Day that donor cuts are outpacing any domestic replacement. Nigeria's Kogi State Assembly has been asked to act, but HIV programs interrupted mid-treatment accelerate drug resistance that future funding cannot undo.
+Lokoja — 1.6 million people died of TB globally in 2023; in Nigeria, the HIV and TB programs built to cut that number are losing their foreign funding base.
+
+The AIDS Healthcare Foundation, which runs treatment programs across 7 Nigerian states, warned on World TB Day that donor cuts are outpacing any domestic replacement.
+
+Nigeria's Kogi State Assembly has been asked to act, but HIV programs interrupted mid-treatment accelerate drug resistance that future funding cannot undo.

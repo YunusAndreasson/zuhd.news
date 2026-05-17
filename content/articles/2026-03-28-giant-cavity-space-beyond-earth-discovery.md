@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-New York — A near-Earth cosmic void contradicts standard cosmological models. The region was predicted to contain matter; its emptiness adds a new anomaly to local-universe maps that astronomers cannot yet explain. Researchers have not identified the mechanism; the finding puts large-scale structure theory under direct scrutiny.
+New York — A near-Earth cosmic void contradicts standard cosmological models.
+
+The region was predicted to contain matter; its emptiness adds a new anomaly to local-universe maps that astronomers cannot yet explain.
+
+Researchers have not identified the mechanism; the finding puts large-scale structure theory under direct scrutiny.

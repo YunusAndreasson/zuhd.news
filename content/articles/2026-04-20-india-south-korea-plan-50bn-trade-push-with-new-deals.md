@@ -32,4 +32,8 @@ concepts:
 sentimentDivergence: 0.25
 ---
 
-New Delhi — [India](country:IN) and [South Korea](country:KR) set a $50bn bilateral trade goal. The deal targets chips, shipbuilding, and critical minerals to hedge against Hormuz disruption; Seoul will also raise naphtha imports from India. India wants to close South Korea's $12.8bn trade surplus; the revised trade pact will be the mechanism.
+New Delhi — [India](country:IN) and [South Korea](country:KR) set a $50bn bilateral trade goal.
+
+The deal targets chips, shipbuilding, and critical minerals to hedge against Hormuz disruption; Seoul will also raise naphtha imports from India.
+
+India wants to close South Korea's $12.8bn trade surplus; the revised trade pact will be the mechanism.

@@ -17,4 +17,8 @@ concepts:
   - "Border crossings"
 ---
 
-Gaza — University offers expire, crossings shut. [Israel](country:IL) controls Gaza's crossings; the Rafah passage, opened for medical travel only in February, leaves no route for students. Yaqeen Abu Anza, blocked from dentistry and medicine placements, joined hundreds rallying Monday for humanitarian crossing status.
+Gaza — University offers expire, crossings shut.
+
+[Israel](country:IL) controls Gaza's crossings; the Rafah passage, opened for medical travel only in February, leaves no route for students.
+
+Yaqeen Abu Anza, blocked from dentistry and medicine placements, joined hundreds rallying Monday for humanitarian crossing status.

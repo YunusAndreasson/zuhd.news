@@ -30,4 +30,8 @@ sentimentDivergence: 0.18
 entities: []
 ---
 
-Washington — The 2025 [US](country:US)-EU deal has not been ratified. Ratification requires sign-off from all 27 member states; EU lawmakers approved it in March with steel and aluminium carve-outs that governments have not matched. Negotiators reconvene May 19; a July 4 miss triggers tariffs Trump called "much higher" without specifying a rate.
+Washington — The 2025 [US](country:US)-EU deal has not been ratified.
+
+Ratification requires sign-off from all 27 member states; EU lawmakers approved it in March with steel and aluminium carve-outs that governments have not matched.
+
+Negotiators reconvene May 19; a July 4 miss triggers tariffs Trump called "much higher" without specifying a rate.

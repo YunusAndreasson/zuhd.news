@@ -21,4 +21,8 @@ entities:
     kind: "stock"
 ---
 
-Beijing — Shell and CATL bought worthless pig-farm credits, CarbonPlan found. 31% of [China](country:CN) biogas projects were already profitable from energy savings — meaning buyers paid for no additional climate benefit. Gold Standard, the certifier, pledged a review; CarbonPlan's analysis has not been peer-reviewed.
+Beijing — Shell and CATL bought worthless pig-farm credits, CarbonPlan found.
+
+31% of [China](country:CN) biogas projects were already profitable from energy savings — meaning buyers paid for no additional climate benefit.
+
+Gold Standard, the certifier, pledged a review; CarbonPlan's analysis has not been peer-reviewed.

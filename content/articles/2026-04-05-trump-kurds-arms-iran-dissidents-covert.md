@@ -23,4 +23,8 @@ concepts:
 sentimentDivergence: 0.28
 ---
 
-Washington — Trump armed Iranian protesters through Kurdish intermediaries. Washington supplied weapons to dissidents while US negotiators met Iranian officials in Europe — the guns never reached their targets. Trump now threatens to bomb Iranian power plants Tuesday unless Tehran reopens the Strait of Hormuz.
+Washington — Trump armed Iranian protesters through Kurdish intermediaries.
+
+Washington supplied weapons to dissidents while US negotiators met Iranian officials in Europe — the guns never reached their targets.
+
+Trump now threatens to bomb Iranian power plants Tuesday unless Tehran reopens the Strait of Hormuz.

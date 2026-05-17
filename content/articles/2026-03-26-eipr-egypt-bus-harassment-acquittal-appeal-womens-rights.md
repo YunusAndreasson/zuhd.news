@@ -17,4 +17,8 @@ concepts:
   - "Sexual Harassment"
 ---
 
-Cairo — Moqattam court acquitted a serial harasser Tuesday. EIPR called for a prosecution appeal after the ruling cleared a man investigations confirmed harassed the same woman 3 times in February. Only the state prosecutor can appeal; the defense awaits written reasoning, often absent from Egyptian misdemeanor courts, within 2 weeks.
+Cairo — Moqattam court acquitted a serial harasser Tuesday.
+
+EIPR called for a prosecution appeal after the ruling cleared a man investigations confirmed harassed the same woman 3 times in February.
+
+Only the state prosecutor can appeal; the defense awaits written reasoning, often absent from Egyptian misdemeanor courts, within 2 weeks.

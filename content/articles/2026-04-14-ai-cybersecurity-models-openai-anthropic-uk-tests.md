@@ -27,4 +27,8 @@ concepts:
 sentimentDivergence: 0.18
 ---
 
-London — AI completed a corporate network attack autonomously. Anthropic's Mythos chained dozens of steps into a complete network breach — previous models only handled individual tasks. OpenAI released a parallel cyber model the same week while no US AI security framework governs either.
+London — AI completed a corporate network attack autonomously.
+
+Anthropic's Mythos chained dozens of steps into a complete network breach — previous models only handled individual tasks.
+
+OpenAI released a parallel cyber model the same week while no US AI security framework governs either.

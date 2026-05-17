@@ -22,4 +22,8 @@ concepts:
   - "Oil"
 ---
 
-Paris — The International Energy Agency declared the current energy disruption worse than the 1973 and 1979 oil shocks combined. Strait of Hormuz closures have cut 21% of global oil transit, and IEA chief Fatih Birol warned the crisis would persist even if a ceasefire is reached within weeks. Pakistan reported fuel stations across Sindh province running dry, with rationing expected by Friday.
+Paris — The International Energy Agency declared the current energy disruption worse than the 1973 and 1979 oil shocks combined.
+
+Strait of Hormuz closures have cut 21% of global oil transit, and IEA chief Fatih Birol warned the crisis would persist even if a ceasefire is reached within weeks.
+
+Pakistan reported fuel stations across Sindh province running dry, with rationing expected by Friday.

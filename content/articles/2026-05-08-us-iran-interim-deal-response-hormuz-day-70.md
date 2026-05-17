@@ -38,4 +38,8 @@ entities:
     kind: "commodity"
 ---
 
-Strait of Hormuz — US forces struck 2 Iranian tankers at Hormuz. [Pakistan](country:PK) passed a [US](country:US) ceasefire memorandum to [Iran](country:IR); the Strait has been closed 70 days, carrying a fifth of global oil. Secretary of State Marco Rubio expected Tehran's response Friday; Trump threatened "one big glow" without a deal.
+Strait of Hormuz — US forces struck 2 Iranian tankers at Hormuz.
+
+[Pakistan](country:PK) passed a [US](country:US) ceasefire memorandum to [Iran](country:IR); the Strait has been closed 70 days, carrying a fifth of global oil.
+
+Secretary of State Marco Rubio expected Tehran's response Friday; Trump threatened "one big glow" without a deal.

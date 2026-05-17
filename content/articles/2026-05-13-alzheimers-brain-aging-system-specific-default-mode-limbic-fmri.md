@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — Limbic brain regions age decades faster than sensorimotor regions, a study of 1,478 pre-symptomatic participants found. Default-mode and attention networks showed abnormal aging while sensorimotor systems remained normal. Aggregate brain-age models mask this divergence, generating false-negative screening results.
+London — Limbic brain regions age decades faster than sensorimotor regions, a study of 1,478 pre-symptomatic participants found.
+
+Default-mode and attention networks showed abnormal aging while sensorimotor systems remained normal.
+
+Aggregate brain-age models mask this divergence, generating false-negative screening results.

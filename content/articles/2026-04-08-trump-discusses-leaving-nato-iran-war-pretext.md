@@ -32,4 +32,8 @@ concepts:
 sentimentDivergence: 0.38
 ---
 
-Washington — Trump is formally discussing NATO withdrawal. The Iran war gave Trump his pretext: allied governments refused base access and naval patrols. Rutte meets Trump this week, with all 32 member states now weighing their response.
+Washington — Trump is formally discussing NATO withdrawal.
+
+The Iran war gave Trump his pretext: allied governments refused base access and naval patrols.
+
+Rutte meets Trump this week, with all 32 member states now weighing their response.

@@ -17,4 +17,8 @@ concepts:
   - "United States special operations forces"
 ---
 
-Tehran — US special forces entered Iran. Iran downed 2 US warplanes Friday — the war's first aircraft losses, 48 hours after Trump declared total victory. Iranian militias hunt the missing weapons systems officer; Trump refused to say what his capture would mean.
+Tehran — US special forces entered Iran.
+
+Iran downed 2 US warplanes Friday — the war's first aircraft losses, 48 hours after Trump declared total victory.
+
+Iranian militias hunt the missing weapons systems officer; Trump refused to say what his capture would mean.

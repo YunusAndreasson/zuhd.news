@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Rockville — Regenxbio's micro-dystrophin therapy hit its biomarker endpoint, measuring protein expression, not function. Rival Elevidys killed 2 patients from liver failure, trial data show; Regenxbio will file with the Food and Drug Administration next quarter. Regulators must decide whether biomarker data alone warrants accelerated approval.
+Rockville — Regenxbio's micro-dystrophin therapy hit its biomarker endpoint, measuring protein expression, not function.
+
+Rival Elevidys killed 2 patients from liver failure, trial data show; Regenxbio will file with the Food and Drug Administration next quarter.
+
+Regulators must decide whether biomarker data alone warrants accelerated approval.

@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-London — The Foreign Office overruled Mandelson's security vetting before appointment. Government rules allowed the overrule; Prime Minister Starmer says he learned of the power only this week. Former Foreign Office chief Olly Robins testifies to parliament Tuesday, which could contradict Starmer's account.
+London — The Foreign Office overruled Mandelson's security vetting before appointment.
+
+Government rules allowed the overrule; Prime Minister Starmer says he learned of the power only this week.
+
+Former Foreign Office chief Olly Robins testifies to parliament Tuesday, which could contradict Starmer's account.

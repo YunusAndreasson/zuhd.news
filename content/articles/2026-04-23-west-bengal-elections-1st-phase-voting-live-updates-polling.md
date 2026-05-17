@@ -27,4 +27,8 @@ concepts:
 sentimentDivergence: 0.2
 ---
 
-Kolkata — 36 million Bengalis opened polls in 152 seats. Trinamool and BJP contest minority belts after a disputed voter list revision; Tamil Nadu's 234 seats see a simultaneous three-way DMK–AIADMK–Vijay split. Counting begins May 4, with results read as [India](country:IN)'s first major opposition test since Modi's 2024 re-election.
+Kolkata — 36 million Bengalis opened polls in 152 seats.
+
+Trinamool and BJP contest minority belts after a disputed voter list revision; Tamil Nadu's 234 seats see a simultaneous three-way DMK–AIADMK–Vijay split.
+
+Counting begins May 4, with results read as [India](country:IN)'s first major opposition test since Modi's 2024 re-election.

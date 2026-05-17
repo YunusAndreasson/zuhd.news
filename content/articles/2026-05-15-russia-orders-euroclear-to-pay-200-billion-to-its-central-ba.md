@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Moscow — Euroclear holds roughly €280 billion in frozen Russian assets. A Moscow arbitration court ruled [Russia](country:RU) is owed €200 billion by Euroclear, mirroring the EU's sovereign asset freeze. [Belgium](country:BE), where Euroclear is based, has no obligation to comply; the ruling creates grounds to seize Euroclear-linked assets on Russian soil.
+Moscow — Euroclear holds roughly €280 billion in frozen Russian assets.
+
+A Moscow arbitration court ruled [Russia](country:RU) is owed €200 billion by Euroclear, mirroring the EU's sovereign asset freeze.
+
+[Belgium](country:BE), where Euroclear is based, has no obligation to comply; the ruling creates grounds to seize Euroclear-linked assets on Russian soil.

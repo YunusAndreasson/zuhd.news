@@ -22,4 +22,8 @@ entities:
     kind: "commodity"
 ---
 
-London — Elymus repens gene cuts Fusarium blight by 70%. Researchers transferred the weed's resistance gene into wheat via interspecific hybridization, bypassing genetically modified organism regulations entirely. Fusarium Head Blight costs producers billions yearly; the non-transgenic method deploys without regulatory barriers.
+London — Elymus repens gene cuts Fusarium blight by 70%.
+
+Researchers transferred the weed's resistance gene into wheat via interspecific hybridization, bypassing genetically modified organism regulations entirely.
+
+Fusarium Head Blight costs producers billions yearly; the non-transgenic method deploys without regulatory barriers.

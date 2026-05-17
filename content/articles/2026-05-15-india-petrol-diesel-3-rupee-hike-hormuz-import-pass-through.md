@@ -29,4 +29,8 @@ entities:
     kind: "commodity"
 ---
 
-New Delhi — ₹3-per-litre hike raised Delhi petrol to ₹97.77. [India](country:IN) imports the majority of its crude through Hormuz, closed since February, sustaining a rising import bill passed directly to consumers. Prime Minister Modi called for voluntary fuel conservation; opposition parties demand excise-duty cuts instead.
+New Delhi — ₹3-per-litre hike raised Delhi petrol to ₹97.77.
+
+[India](country:IN) imports the majority of its crude through Hormuz, closed since February, sustaining a rising import bill passed directly to consumers.
+
+Prime Minister Modi called for voluntary fuel conservation; opposition parties demand excise-duty cuts instead.

@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Kazan — [Russia](country:RU) drafted 16-year-olds into Shahed drone assembly. Since 2022, legislation has relaxed child labor laws to feed war production, as the labor minister warned Putin of an 11-million worker shortfall by 2030. Fertility rates are at a 200-year low; the statistics agency stopped publishing monthly demographic data.
+Kazan — [Russia](country:RU) drafted 16-year-olds into Shahed drone assembly.
+
+Since 2022, legislation has relaxed child labor laws to feed war production, as the labor minister warned Putin of an 11-million worker shortfall by 2030.
+
+Fertility rates are at a 200-year low; the statistics agency stopped publishing monthly demographic data.

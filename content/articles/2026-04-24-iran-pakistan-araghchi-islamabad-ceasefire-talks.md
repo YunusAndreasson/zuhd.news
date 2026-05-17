@@ -40,4 +40,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Islamabad — Hormuz stays closed as [US](country:US)-[Iran](country:IR) talks resume. Iran's Foreign Minister Araghchi flew to [Pakistan](country:PK), the only venue both sides accept, for the 2nd round of talks. Iran demands the blockade lifted before progress; Brent crude is above $107 a barrel.
+Islamabad — Hormuz stays closed as [US](country:US)-[Iran](country:IR) talks resume.
+
+Iran's Foreign Minister Araghchi flew to [Pakistan](country:PK), the only venue both sides accept, for the 2nd round of talks.
+
+Iran demands the blockade lifted before progress; Brent crude is above $107 a barrel.

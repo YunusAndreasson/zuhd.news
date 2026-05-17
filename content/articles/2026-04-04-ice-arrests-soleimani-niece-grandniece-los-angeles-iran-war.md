@@ -16,4 +16,8 @@ concepts:
   - "U.S. Immigration and Customs Enforcement"
 ---
 
-ICE arrested Soleimani's niece and daughter in Los Angeles during the active US-Iran war. The State Department announced it — not ICE — framing the detention as foreign policy while the US bombs Iran. No charges were filed; the administration cited barring supporters of "anti-American terrorist regimes."
+ICE arrested Soleimani's niece and daughter in Los Angeles during the active US-Iran war.
+
+The State Department announced it — not ICE — framing the detention as foreign policy while the US bombs Iran.
+
+No charges were filed; the administration cited barring supporters of "anti-American terrorist regimes."

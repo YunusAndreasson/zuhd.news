@@ -17,4 +17,8 @@ concepts:
   - "Hungary"
 ---
 
-Budapest — Both Washington and Moscow back Orbán as Hungary votes Thursday. Rubio told him "your success is our success" while Russian intelligence allegedly undermines the Tisza opposition. Polls show Fidesz trailing centre-right Tisza, making foreign backing a hedge against the EU's first pro-Ukraine government.
+Budapest — Both Washington and Moscow back Orbán as Hungary votes Thursday.
+
+Rubio told him "your success is our success" while Russian intelligence allegedly undermines the Tisza opposition.
+
+Polls show Fidesz trailing centre-right Tisza, making foreign backing a hedge against the EU's first pro-Ukraine government.

@@ -24,4 +24,8 @@ concepts:
 sentimentDivergence: 0.3
 ---
 
-New Delhi — India sold 29.67 million vehicles in FY26. 5 of 6 vehicle categories hit all-time highs, driven by a September GST cut that reduced two-wheeler prices by up to 10%. FY27 growth is forecast in high single digits, with Iran war supply chain disruptions as the key risk.
+New Delhi — India sold 29.67 million vehicles in FY26.
+
+5 of 6 vehicle categories hit all-time highs, driven by a September GST cut that reduced two-wheeler prices by up to 10%.
+
+FY27 growth is forecast in high single digits, with Iran war supply chain disruptions as the key risk.

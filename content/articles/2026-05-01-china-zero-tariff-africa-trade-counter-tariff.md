@@ -35,4 +35,8 @@ sentimentDivergence: 0.23
 entities: []
 ---
 
-Shenzhen — South African apples cleared [China](country:CN)'s customs at midnight. The zero-tariff expansion now covers all 53 African states with diplomatic ties, up from 33 least-developed nations, as [US](country:US) tariffs rise. Analysts say Africa's trade deficit with [China](country:CN) hit $102 billion last year, up 65%; structural barriers limit the gains.
+Shenzhen — South African apples cleared [China](country:CN)'s customs at midnight.
+
+The zero-tariff expansion now covers all 53 African states with diplomatic ties, up from 33 least-developed nations, as [US](country:US) tariffs rise.
+
+Analysts say Africa's trade deficit with [China](country:CN) hit $102 billion last year, up 65%; structural barriers limit the gains.

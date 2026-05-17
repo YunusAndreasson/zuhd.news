@@ -17,4 +17,8 @@ concepts:
   - "Quality of life"
 ---
 
-London — 42 variables now guide secukinumab dose escalation. Causal ML estimates counterfactual response — what each patient would experience without dose change — rather than just predicting outcomes. The approach extends to chronic diseases; no regulator has set approval standards for ML dosing.
+London — 42 variables now guide secukinumab dose escalation.
+
+Causal ML estimates counterfactual response — what each patient would experience without dose change — rather than just predicting outcomes.
+
+The approach extends to chronic diseases; no regulator has set approval standards for ML dosing.

@@ -20,4 +20,8 @@ concepts:
   - "Slovakia"
 ---
 
-Brussels — EU shelved its planned 2027 Russian oil ban. US-Israeli strikes closed the Strait of Hormuz, driving Brent to $120/barrel and making a parallel cut in Russian supply untenable. Hungary and Slovakia, which kept Russian pipeline flows under sanctions exemptions, now have leverage to block future EU sanctions packages.
+Brussels — EU shelved its planned 2027 Russian oil ban.
+
+US-Israeli strikes closed the Strait of Hormuz, driving Brent to $120/barrel and making a parallel cut in Russian supply untenable.
+
+Hungary and Slovakia, which kept Russian pipeline flows under sanctions exemptions, now have leverage to block future EU sanctions packages.

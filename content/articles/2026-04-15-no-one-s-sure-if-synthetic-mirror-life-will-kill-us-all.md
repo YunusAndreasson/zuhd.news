@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Cambridge — Mirror organisms defeat every biological defense. Mirror-image proteins — built with the opposite chirality from Earth life — are invisible to every enzyme and immune cell. Stanford's David Relman warned that researchers once saw this as theoretical but now near self-replicating mirror ribosomes.
+Cambridge — Mirror organisms defeat every biological defense.
+
+Mirror-image proteins — built with the opposite chirality from Earth life — are invisible to every enzyme and immune cell.
+
+Stanford's David Relman warned that researchers once saw this as theoretical but now near self-replicating mirror ribosomes.

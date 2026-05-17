@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — Trump threatened [Britain](country:GB) with tariffs unless it drops its 2% digital services tax, applied to US tech revenues since 2020. The warning came during a White House event, days before King Charles visits Washington; he said the royal visit could ease UK-US tensions. He gave no tariff deadline; trade talks are ongoing.
+London — Trump threatened [Britain](country:GB) with tariffs unless it drops its 2% digital services tax, applied to US tech revenues since 2020.
+
+The warning came during a White House event, days before King Charles visits Washington; he said the royal visit could ease UK-US tensions.
+
+He gave no tariff deadline; trade talks are ongoing.

@@ -11,4 +11,8 @@ sources:
     country: "LB"
 ---
 
-Damascus — Syria's only digital payment app locked users out. The app pays public sector salaries; a Trustpilot campaign by a Syrian engineer got its domain suspended, exposing post-war Syria's single-wallet dependency. The domain was restored within hours — no security audit or fund guarantee has been published.
+Damascus — Syria's only digital payment app locked users out.
+
+The app pays public sector salaries; a Trustpilot campaign by a Syrian engineer got its domain suspended, exposing post-war Syria's single-wallet dependency.
+
+The domain was restored within hours — no security audit or fund guarantee has been published.

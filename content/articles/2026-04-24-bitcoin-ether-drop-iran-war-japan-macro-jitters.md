@@ -17,4 +17,8 @@ concepts:
   - "Cryptocurrency"
 ---
 
-Washington — New [Iran](country:IR) mines in the Strait of Hormuz stalled a bitcoin rally this week. The Strait carries 20% of world seaborne oil; WTI crude has risen 40% to $96 since late February. The Bank of [Japan](country:JP) meets next week with inflation above target, adding pressure on the [US](country:US) Federal Reserve.
+Washington — New [Iran](country:IR) mines in the Strait of Hormuz stalled a bitcoin rally this week.
+
+The Strait carries 20% of world seaborne oil; WTI crude has risen 40% to $96 since late February.
+
+The Bank of [Japan](country:JP) meets next week with inflation above target, adding pressure on the [US](country:US) Federal Reserve.

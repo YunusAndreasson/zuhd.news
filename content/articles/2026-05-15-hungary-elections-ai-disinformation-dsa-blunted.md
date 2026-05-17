@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Budapest — Fidesz lost to Péter Magyar's Tisza party in April despite running state media, Russian disinformation, and AI-generated campaign ads. EU Digital Services Act rules forced platforms to ban paid political advertising, cutting Fidesz's main amplification tool. Mérték media analysts found the campaign mobilized opponents rather than persuaded undecided voters.
+Budapest — Fidesz lost to Péter Magyar's Tisza party in April despite running state media, Russian disinformation, and AI-generated campaign ads.
+
+EU Digital Services Act rules forced platforms to ban paid political advertising, cutting Fidesz's main amplification tool.
+
+Mérték media analysts found the campaign mobilized opponents rather than persuaded undecided voters.

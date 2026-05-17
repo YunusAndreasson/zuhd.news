@@ -17,4 +17,8 @@ concepts:
   - "Drone warfare"
 ---
 
-El Geneina — [Sudan](country:SD)'s army drone hit the hospital; 3 killed. 100 civilians have been killed in Delling since February; 51,000 are trapped with its main hospital closed, a UN protection group said. The Rapid Support Forces' political bloc condemned the strike as a war crime; no international accountability mechanism is active.
+El Geneina — [Sudan](country:SD)'s army drone hit the hospital; 3 killed.
+
+100 civilians have been killed in Delling since February; 51,000 are trapped with its main hospital closed, a UN protection group said.
+
+The Rapid Support Forces' political bloc condemned the strike as a war crime; no international accountability mechanism is active.

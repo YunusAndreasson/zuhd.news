@@ -17,4 +17,8 @@ concepts:
   - "Chilas"
 ---
 
-Chilas — Communities shut Karakoram Highway over broken dam pledges. WAPDA acquired 18,000 acres for the dam without honoring a 2025 agreement on compensation, royalties, and local employment. Organizers threatened a march on the dam construction site if the 31-point agreement is not implemented.
+Chilas — Communities shut Karakoram Highway over broken dam pledges.
+
+WAPDA acquired 18,000 acres for the dam without honoring a 2025 agreement on compensation, royalties, and local employment.
+
+Organizers threatened a march on the dam construction site if the 31-point agreement is not implemented.

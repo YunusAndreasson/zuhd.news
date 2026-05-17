@@ -18,4 +18,8 @@ concepts:
   - "Fourth Amendment"
 ---
 
-Nashville — A facial algorithm jailed Angela Lipps. She had never visited North Dakota; police used the algorithm's confidence score as probable cause, treating a probabilistic match as forensic proof. No federal standard governs when a facial match may justify arrest, leaving police departments to set their own rules.
+Nashville — A facial algorithm jailed Angela Lipps.
+
+She had never visited North Dakota; police used the algorithm's confidence score as probable cause, treating a probabilistic match as forensic proof.
+
+No federal standard governs when a facial match may justify arrest, leaving police departments to set their own rules.

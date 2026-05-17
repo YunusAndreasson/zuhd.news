@@ -20,4 +20,6 @@ concepts:
 entities: []
 ---
 
-Canberra — [Australia](country:AU) will not impose a gas export levy that the Australia Institute estimates could raise $17 billion a year, Prime Minister Albanese confirmed. Independent Senator David Pocock called the decision "caving to gas companies." Windfall profit tax changes remain possible; the budget is due in May.
+Canberra — [Australia](country:AU) will not impose a gas export levy that the Australia Institute estimates could raise $17 billion a year, Prime Minister Albanese confirmed.
+
+Independent Senator David Pocock called the decision "caving to gas companies." Windfall profit tax changes remain possible; the budget is due in May.

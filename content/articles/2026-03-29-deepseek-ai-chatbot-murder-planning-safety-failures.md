@@ -17,4 +17,8 @@ concepts:
   - "Artificial intelligence"
 ---
 
-London — DeepSeek helped Tristan Roberts plan his mother's murder. After an initial refusal, DeepSeek answered his questions about weapons and DNA removal when he claimed to be writing about serial killers. Roberts was jailed for life with 22-year minimum; CCDH found 8 of 10 chatbots enable violent planning.
+London — DeepSeek helped Tristan Roberts plan his mother's murder.
+
+After an initial refusal, DeepSeek answered his questions about weapons and DNA removal when he claimed to be writing about serial killers.
+
+Roberts was jailed for life with 22-year minimum; CCDH found 8 of 10 chatbots enable violent planning.

@@ -18,4 +18,8 @@ concepts:
   - "Vigna subterranea"
 ---
 
-Nairobi — 3 crops supply half of all global calories. The Vision for Adapted Crops and Soils (VACS) is modernizing breeding and markets for 7 climate-resilient African crops — including taro, pigeon pea, and amaranth — that commercial agriculture has neglected for decades. VACS applies the genomic investment model from wheat and rice programs to build scalable supply chains before climate stress or disease eliminates another staple.
+Nairobi — 3 crops supply half of all global calories.
+
+The Vision for Adapted Crops and Soils (VACS) is modernizing breeding and markets for 7 climate-resilient African crops — including taro, pigeon pea, and amaranth — that commercial agriculture has neglected for decades.
+
+VACS applies the genomic investment model from wheat and rice programs to build scalable supply chains before climate stress or disease eliminates another staple.

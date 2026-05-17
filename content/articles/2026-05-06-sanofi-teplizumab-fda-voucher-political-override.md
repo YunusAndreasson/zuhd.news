@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-Washington — Appointee overruled US drug agency scientists on teplizumab. Acting drug-evaluation director Tracy Beth Høeg rejected staff scientists' positive review; Sanofi exited Commissioner Makary's fast-track voucher program in response. Agency directors rarely review individual drugs; Makary himself has called political overrides of scientific staff a "disaster."
+Washington — Appointee overruled US drug agency scientists on teplizumab.
+
+Acting drug-evaluation director Tracy Beth Høeg rejected staff scientists' positive review; Sanofi exited Commissioner Makary's fast-track voucher program in response.
+
+Agency directors rarely review individual drugs; Makary himself has called political overrides of scientific staff a "disaster."

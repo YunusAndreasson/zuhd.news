@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.53
 ---
 
-Iran denied rejecting Pakistan's offer to host peace talks. FM Araghchi said US media misrepresents Tehran — Iran accepts mediation but demands terms that conclusively end the war, not a temporary halt. Iran called the US 15-point proposal "too difficult to accept"; Pakistan's FM said talks are "right on track."
+Iran denied rejecting Pakistan's offer to host peace talks.
+
+FM Araghchi said US media misrepresents Tehran — Iran accepts mediation but demands terms that conclusively end the war, not a temporary halt.
+
+Iran called the US 15-point proposal "too difficult to accept"; Pakistan's FM said talks are "right on track."

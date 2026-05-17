@@ -21,4 +21,8 @@ concepts:
   - "Intelligence agency"
 ---
 
-Kyiv — Russia fired 392 drones at Ukraine as diplomacy collapsed. The Iran war began February 28, shifting US attention to the Middle East and leaving Kyiv's talks without American backing. Washington threatened to quit mediation unless Russia agrees to a summit with Trump and Ukrainian President Zelenskyy that Moscow has rejected.
+Kyiv — Russia fired 392 drones at Ukraine as diplomacy collapsed.
+
+The Iran war began February 28, shifting US attention to the Middle East and leaving Kyiv's talks without American backing.
+
+Washington threatened to quit mediation unless Russia agrees to a summit with Trump and Ukrainian President Zelenskyy that Moscow has rejected.

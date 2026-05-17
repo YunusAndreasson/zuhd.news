@@ -19,4 +19,8 @@ concepts:
   - "Abuja"
 ---
 
-Abuja — Nigeria's FCT minister threatened to shoot a journalist. Wike said on live TV he'd have shot Channels anchor Seun Okinbaloye for raising alarm about one-party rule under Tinubu's APC. Amnesty Nigeria called the remarks reckless; Wike holds his ministerial post.
+Abuja — Nigeria's FCT minister threatened to shoot a journalist.
+
+Wike said on live TV he'd have shot Channels anchor Seun Okinbaloye for raising alarm about one-party rule under Tinubu's APC.
+
+Amnesty Nigeria called the remarks reckless; Wike holds his ministerial post.

@@ -22,4 +22,9 @@ entities:
     indicatorId: "brent"
     kind: "commodity"
 ---
-Milan — [Italy](country:IT)'s deputy PM called for resuming Russian gas imports. Matteo Salvini cited the [US](country:US) temporarily suspending Russian oil sanctions as justification for Europe to follow. Whether the EU will soften its Russian energy sanctions in response remains undecided.
+
+Milan — [Italy](country:IT)'s deputy PM called for resuming Russian gas imports.
+
+Matteo Salvini cited the [US](country:US) temporarily suspending Russian oil sanctions as justification for Europe to follow.
+
+Whether the EU will soften its Russian energy sanctions in response remains undecided.

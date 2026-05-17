@@ -42,4 +42,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Tehran — [US](country:US) intelligence shows Iran retains 70% of its prewar missiles and 90% of underground launch facilities, directly contradicting White House claims of decimation. [Iran](country:IR) has restored 30 of 33 Hormuz missile sites as of early May. Talks are stalled; Trump has been briefed on new strike options, officials said.
+Tehran — [US](country:US) intelligence shows Iran retains 70% of its prewar missiles and 90% of underground launch facilities, directly contradicting White House claims of decimation.
+
+[Iran](country:IR) has restored 30 of 33 Hormuz missile sites as of early May.
+
+Talks are stalled; Trump has been briefed on new strike options, officials said.

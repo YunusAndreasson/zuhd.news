@@ -17,4 +17,8 @@ concepts:
   - "Al Mayadeen"
 ---
 
-Tyre — Israel killed 3 journalists, then bombed the rescuers. Israel acknowledged targeting 1 reporter it called a Hezbollah operative; Lebanon's health ministry said the follow-up strike on rescuers was deliberate. Over 1,180 people have been killed in Lebanon since February 28; Israel struck 100+ targets there since Friday.
+Tyre — Israel killed 3 journalists, then bombed the rescuers.
+
+Israel acknowledged targeting 1 reporter it called a Hezbollah operative; Lebanon's health ministry said the follow-up strike on rescuers was deliberate.
+
+Over 1,180 people have been killed in Lebanon since February 28; Israel struck 100+ targets there since Friday.

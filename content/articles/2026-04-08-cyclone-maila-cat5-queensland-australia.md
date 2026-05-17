@@ -17,4 +17,8 @@ concepts:
   - "Australia"
 ---
 
-Cairns — Category-5 Cyclone Maila targets Queensland's flood-soaked coast. The season's 7th severe cyclone — against a norm of 5 — carries lower pressure than March's Narelle. Landfall expected Monday near Lockhart River–Cairns; saturated catchments face compounded flooding.
+Cairns — Category-5 Cyclone Maila targets Queensland's flood-soaked coast.
+
+The season's 7th severe cyclone — against a norm of 5 — carries lower pressure than March's Narelle.
+
+Landfall expected Monday near Lockhart River–Cairns; saturated catchments face compounded flooding.

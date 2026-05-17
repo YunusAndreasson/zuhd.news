@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-London — Ember: Iran war won't rescue coal from decline. Even with 8 countries switching to coal from blockaded LNG, Ember's worst-case scenario caps the global rise at 1.8%. Ember said any coal rise merely masks structural decline; clean-energy capacity additions continue to outpace demand.
+London — Ember: Iran war won't rescue coal from decline.
+
+Even with 8 countries switching to coal from blockaded LNG, Ember's worst-case scenario caps the global rise at 1.8%.
+
+Ember said any coal rise merely masks structural decline; clean-energy capacity additions continue to outpace demand.

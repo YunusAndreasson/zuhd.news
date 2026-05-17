@@ -20,4 +20,8 @@ concepts:
   - "Aviation"
 ---
 
-Washington — The [US](country:US) government is negotiating a $500mn senior loan to Spirit Airlines that would yield majority government ownership via equity warrants. Spirit filed its second bankruptcy in 2025 after the first eliminated $1bn in debt but made no operational changes; Iran-war fuel costs accelerated collapse. Its $3bn creditor group has not been briefed; a federal bankruptcy judge must approve any restructuring plan.
+Washington — The [US](country:US) government is negotiating a $500mn senior loan to Spirit Airlines that would yield majority government ownership via equity warrants.
+
+Spirit filed its second bankruptcy in 2025 after the first eliminated $1bn in debt but made no operational changes; Iran-war fuel costs accelerated collapse.
+
+Its $3bn creditor group has not been briefed; a federal bankruptcy judge must approve any restructuring plan.

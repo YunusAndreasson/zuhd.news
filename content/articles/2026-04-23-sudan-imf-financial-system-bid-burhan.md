@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Khartoum — US sanctions blocked Sudan's finance minister from Washington. The 2021 coup froze $1.8bn in World Bank grants; the delegation has no territorial control or reform record to unlock them. The IMF has set no timeline for restoring [Sudan](country:SD)'s access to concessional financing.
+Khartoum — US sanctions blocked Sudan's finance minister from Washington.
+
+The 2021 coup froze $1.8bn in World Bank grants; the delegation has no territorial control or reform record to unlock them.
+
+The IMF has set no timeline for restoring [Sudan](country:SD)'s access to concessional financing.

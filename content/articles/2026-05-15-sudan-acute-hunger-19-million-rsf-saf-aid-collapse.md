@@ -13,4 +13,8 @@ sources:
 entities: []
 ---
 
-Khartoum — 40% of [Sudan](country:SD)'s people face acute hunger, per UN food monitors. The civil war between the Rapid Support Forces and the Sudanese army has collapsed aid corridors; army drone strikes are escalating on Nyala. No humanitarian corridor into Darfur has been announced.
+Khartoum — 40% of [Sudan](country:SD)'s people face acute hunger, per UN food monitors.
+
+The civil war between the Rapid Support Forces and the Sudanese army has collapsed aid corridors; army drone strikes are escalating on Nyala.
+
+No humanitarian corridor into Darfur has been announced.

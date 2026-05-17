@@ -19,4 +19,8 @@ concepts:
   - "Yaoundé"
 ---
 
-Yaoundé — WTO ministerial talks collapsed without extending e-commerce moratorium. Brazil blocked the US extension bid, ending a 27-year exemption shielding tech companies from digital customs duties. States may now tax streaming and downloads; Okonjo-Iweala is pursuing a side deal to restore it.
+Yaoundé — WTO ministerial talks collapsed without extending e-commerce moratorium.
+
+Brazil blocked the US extension bid, ending a 27-year exemption shielding tech companies from digital customs duties.
+
+States may now tax streaming and downloads; Okonjo-Iweala is pursuing a side deal to restore it.

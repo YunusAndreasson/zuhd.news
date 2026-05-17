@@ -17,4 +17,8 @@ concepts:
   - "Homesh"
 ---
 
-West Bank — Settlers raided al-Fandaqumiya on Eid night, injuring 13. 25 settler attacks struck West Bank villages in one week since the Iran war began, burning homes, cars, and a healthcare clinic. Settlers coordinated attacks via public Telegram and WhatsApp groups; Israeli forces did not intervene.
+West Bank — Settlers raided al-Fandaqumiya on Eid night, injuring 13.
+
+25 settler attacks struck West Bank villages in one week since the Iran war began, burning homes, cars, and a healthcare clinic.
+
+Settlers coordinated attacks via public Telegram and WhatsApp groups; Israeli forces did not intervene.

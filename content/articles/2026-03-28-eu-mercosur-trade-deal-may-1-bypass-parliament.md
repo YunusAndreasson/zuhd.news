@@ -32,4 +32,8 @@ concepts:
 sentimentDivergence: 0.36
 ---
 
-Brussels — Brussels bypassed Parliament to start Mercosur. The deal spans 700 million people and 25% of global GDP, entering force May 1 while the EU court rules on its legality. France and Poland remain opposed; a court ruling against the deal would halt it mid-implementation.
+Brussels — Brussels bypassed Parliament to start Mercosur.
+
+The deal spans 700 million people and 25% of global GDP, entering force May 1 while the EU court rules on its legality.
+
+France and Poland remain opposed; a court ruling against the deal would halt it mid-implementation.

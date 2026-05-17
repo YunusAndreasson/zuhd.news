@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — A sparse-attention method halves edge-device inference latency and cuts peak memory 45%. Dynamic sparsity gates activate only cross-sensor pairs with strong signal, enabling camera, microphone, and motion-sensor fusion on phones, the paper found. The authors say this clears the main barrier to always-on sensor fusion on embedded boards.
+London — A sparse-attention method halves edge-device inference latency and cuts peak memory 45%.
+
+Dynamic sparsity gates activate only cross-sensor pairs with strong signal, enabling camera, microphone, and motion-sensor fusion on phones, the paper found.
+
+The authors say this clears the main barrier to always-on sensor fusion on embedded boards.

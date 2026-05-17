@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Berlin — [US](country:US) prosecutors spent 7 years identifying who ran Dream Market before charging Owe Martin Andresen. [Germany](country:DE) has arrested him; the marketplace operated 2013–2019 as one of the dark web's largest criminal drug exchanges. No court date has been set.
+Berlin — [US](country:US) prosecutors spent 7 years identifying who ran Dream Market before charging Owe Martin Andresen.
+
+[Germany](country:DE) has arrested him; the marketplace operated 2013–2019 as one of the dark web's largest criminal drug exchanges.
+
+No court date has been set.

@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Washington — [US](country:US) border AI denies migrants entry with no appeal. Customs and Border Protection systems track movements before land crossings; a University of California, Irvine legal clinic found the algorithm disproportionately targets migrants of colour. The same systems are sold to Gulf, European, and South Asian border agencies.
+Washington — [US](country:US) border AI denies migrants entry with no appeal.
+
+Customs and Border Protection systems track movements before land crossings; a University of California, Irvine legal clinic found the algorithm disproportionately targets migrants of colour.
+
+The same systems are sold to Gulf, European, and South Asian border agencies.

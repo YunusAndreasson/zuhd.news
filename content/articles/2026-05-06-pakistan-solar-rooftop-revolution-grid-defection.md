@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — Grid flight, not policy, is driving [Pakistan](country:PK)'s solar boom: 18GW imported in fiscal 2025, Ember shows, with tariffs up 155 percent since 2021. Regulators project the exodus shifts $48 billion in fixed costs to remaining grid users by 2034. Net-metering cuts will boost off-grid battery adoption, the Pakistan Solar Association warned.
+Islamabad — Grid flight, not policy, is driving [Pakistan](country:PK)'s solar boom: 18GW imported in fiscal 2025, Ember shows, with tariffs up 155 percent since 2021.
+
+Regulators project the exodus shifts $48 billion in fixed costs to remaining grid users by 2034.
+
+Net-metering cuts will boost off-grid battery adoption, the Pakistan Solar Association warned.

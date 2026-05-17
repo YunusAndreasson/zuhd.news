@@ -23,4 +23,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Houston — [China](country:CN) replaced Gulf naphtha with [US](country:US) ethane. Exports hit a record 776,000 barrels per day in March, 47% above 2025 levels, with three-quarters bound for China, trade data showed. Tanker shortages and Panama Canal delays are straining logistics; traders expect elevated exports to persist through year-end.
+Houston — [China](country:CN) replaced Gulf naphtha with [US](country:US) ethane.
+
+Exports hit a record 776,000 barrels per day in March, 47% above 2025 levels, with three-quarters bound for China, trade data showed.
+
+Tanker shortages and Panama Canal delays are straining logistics; traders expect elevated exports to persist through year-end.

@@ -17,4 +17,8 @@ concepts:
   - "Habitability"
 ---
 
-Ithaca — Of 6,000 known exoplanets, only 45 have water potential. Astrophysicists drew the shortlist by ranking rocky planets on habitability; top candidates include 4 TRAPPIST-1 worlds at 40 light years and Proxima Centauri b, the nearest, at 4. JWST now has a prioritized target queue; how many of the 45 have atmospheres thick enough to probe will determine where the search for life focuses next.
+Ithaca — Of 6,000 known exoplanets, only 45 have water potential.
+
+Astrophysicists drew the shortlist by ranking rocky planets on habitability; top candidates include 4 TRAPPIST-1 worlds at 40 light years and Proxima Centauri b, the nearest, at 4.
+
+JWST now has a prioritized target queue; how many of the 45 have atmospheres thick enough to probe will determine where the search for life focuses next.

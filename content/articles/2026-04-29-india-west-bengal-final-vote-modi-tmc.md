@@ -27,4 +27,8 @@ concepts:
 entities: []
 ---
 
-Kolkata — 9.1 million voters struck from West Bengal rolls. The Election Commission removed 12% of the electorate — Muslims disproportionately, the Sabar Institute found — in [India](country:IN)'s most contested state. Results May 4; if Trinamool Congress holds, the last regional check on Bharatiya Janata Party's national dominance survives.
+Kolkata — 9.1 million voters struck from West Bengal rolls.
+
+The Election Commission removed 12% of the electorate — Muslims disproportionately, the Sabar Institute found — in [India](country:IN)'s most contested state.
+
+Results May 4; if Trinamool Congress holds, the last regional check on Bharatiya Janata Party's national dominance survives.

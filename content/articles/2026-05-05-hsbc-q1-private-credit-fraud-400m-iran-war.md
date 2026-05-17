@@ -39,4 +39,8 @@ concepts:
 entities: []
 ---
 
-London — Europe's largest bank took a $400m fraud loss. HSBC blamed "fraud-related secondary securitisation" — lending through private-credit chains that concentrates bank risk in a $3.5 trillion market outside prudential oversight. HSBC's 2026 credit-charge forecast rose to 45 basis points on [Iran](country:IR) war risk; Hong Kong shares fell 4%.
+London — Europe's largest bank took a $400m fraud loss.
+
+HSBC blamed "fraud-related secondary securitisation" — lending through private-credit chains that concentrates bank risk in a $3.5 trillion market outside prudential oversight.
+
+HSBC's 2026 credit-charge forecast rose to 45 basis points on [Iran](country:IR) war risk; Hong Kong shares fell 4%.

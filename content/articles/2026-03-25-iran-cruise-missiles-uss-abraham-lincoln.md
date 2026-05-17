@@ -31,4 +31,8 @@ concepts:
 sentimentDivergence: 0.2
 ---
 
-Persian Gulf — Iran launched cruise missiles at USS Abraham Lincoln. Iran's navy said the Qader anti-ship missiles struck after the carrier changed position; US Central Command has not confirmed the attack, and Trump told reporters 101 missiles were all intercepted. The 82nd Airborne's 7,000-troop deployment is active, and South Korean analysts warn the combined force posture points toward a seizure of Iran's Kharg Island oil terminal.
+Persian Gulf — Iran launched cruise missiles at USS Abraham Lincoln.
+
+Iran's navy said the Qader anti-ship missiles struck after the carrier changed position; US Central Command has not confirmed the attack, and Trump told reporters 101 missiles were all intercepted.
+
+The 82nd Airborne's 7,000-troop deployment is active, and South Korean analysts warn the combined force posture points toward a seizure of Iran's Kharg Island oil terminal.

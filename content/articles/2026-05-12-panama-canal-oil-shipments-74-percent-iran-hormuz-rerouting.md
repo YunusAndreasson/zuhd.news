@@ -29,4 +29,8 @@ entities:
     kind: "commodity"
 ---
 
-Panama City — Panama Canal set an all-time oil-transit high. Traffic rose 74% to 1.77 million barrels daily in April as [Iran](country:IR)'s Hormuz blockade cut Gulf crude routes to Asia. Priority slots now auction for up to $1 million; supertankers reroute around Africa's Cape of Good Hope.
+Panama City — Panama Canal set an all-time oil-transit high.
+
+Traffic rose 74% to 1.77 million barrels daily in April as [Iran](country:IR)'s Hormuz blockade cut Gulf crude routes to Asia.
+
+Priority slots now auction for up to $1 million; supertankers reroute around Africa's Cape of Good Hope.

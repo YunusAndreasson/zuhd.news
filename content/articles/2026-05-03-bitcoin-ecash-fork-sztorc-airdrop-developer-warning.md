@@ -24,4 +24,6 @@ entities:
     kind: "crypto"
 ---
 
-New York — eCash's no-replay design risks unintended Bitcoin fund loss. Unspent-transaction-output distribution gives custodians, not owners, airdrop control; Sergio Lerner of Rootstock called the model "morally objectionable." Bitcoin developers have not agreed on replay protection; Sztorc has not amended his proposal.
+New York — eCash's no-replay design risks unintended Bitcoin fund loss.
+
+Unspent-transaction-output distribution gives custodians, not owners, airdrop control; Sergio Lerner of Rootstock called the model "morally objectionable." Bitcoin developers have not agreed on replay protection; Sztorc has not amended his proposal.

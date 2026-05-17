@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Washington — 200 food-safety positions moving; scientists expected to quit. Forced relocation converts staffing cuts into resignations — the [US](country:US) Economic Research Service was gutted this way in 2019, Marion Nestle said. Consumer advocates warn the departures will delay Salmonella reforms; the Agriculture Department has given no relocation timeline.
+Washington — 200 food-safety positions moving; scientists expected to quit.
+
+Forced relocation converts staffing cuts into resignations — the [US](country:US) Economic Research Service was gutted this way in 2019, Marion Nestle said.
+
+Consumer advocates warn the departures will delay Salmonella reforms; the Agriculture Department has given no relocation timeline.

@@ -11,4 +11,8 @@ sources:
     country: "LB"
 ---
 
-Beirut — Fraud rings target Whish Money, [Lebanon](country:LB)'s de facto payment system. Organized criminals impersonate Whish customer service on WhatsApp, extracting authentication codes from users who have no other payment option. Whish has not announced anti-fraud measures and has suspended some charity accounts citing compliance.
+Beirut — Fraud rings target Whish Money, [Lebanon](country:LB)'s de facto payment system.
+
+Organized criminals impersonate Whish customer service on WhatsApp, extracting authentication codes from users who have no other payment option.
+
+Whish has not announced anti-fraud measures and has suspended some charity accounts citing compliance.

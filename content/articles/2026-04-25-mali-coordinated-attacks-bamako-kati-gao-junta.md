@@ -38,4 +38,8 @@ concepts:
 entities: []
 ---
 
-Bamako — Gunfire reached General Goita's Kati residence. [Mali](country:ML)'s junta expelled UN and French forces for Russian mercenaries, yet al-Qaeda-linked fighters struck 5 cities simultaneously, security sources said. No group claimed responsibility; Malian authorities have not announced an operation to retake the 5 struck cities.
+Bamako — Gunfire reached General Goita's Kati residence.
+
+[Mali](country:ML)'s junta expelled UN and French forces for Russian mercenaries, yet al-Qaeda-linked fighters struck 5 cities simultaneously, security sources said.
+
+No group claimed responsibility; Malian authorities have not announced an operation to retake the 5 struck cities.

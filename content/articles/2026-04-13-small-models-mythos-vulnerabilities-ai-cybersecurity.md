@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-San Francisco — Cheap AI matched Mythos, a frontier AI security tool, finding zero-day exploits. A 3.6B-parameter model at $0.11/million tokens reproduced Mythos's FreeBSD exploit; the moat is the pipeline, not the model. Security teams that assumed frontier-only threat now face attackers running cheap, open-weights models locally.
+San Francisco — Cheap AI matched Mythos, a frontier AI security tool, finding zero-day exploits.
+
+A 3.6B-parameter model at $0.11/million tokens reproduced Mythos's FreeBSD exploit; the moat is the pipeline, not the model.
+
+Security teams that assumed frontier-only threat now face attackers running cheap, open-weights models locally.

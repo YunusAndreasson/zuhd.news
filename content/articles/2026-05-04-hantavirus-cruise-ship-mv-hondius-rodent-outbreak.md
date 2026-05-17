@@ -25,4 +25,8 @@ sentimentDivergence: 0.27
 entities: []
 ---
 
-Johannesburg — Rodent droppings killed 3; 3 more are hospitalized. Hantavirus spreads through inhaled rodent particles — not person-to-person — with a pulmonary fatality rate near 40%, WHO said. No cruise protocol covers rodent pathogens; the [Netherlands](country:NL)-flagged MV Hondius case may be the first shipboard outbreak recorded.
+Johannesburg — Rodent droppings killed 3; 3 more are hospitalized.
+
+Hantavirus spreads through inhaled rodent particles — not person-to-person — with a pulmonary fatality rate near 40%, WHO said.
+
+No cruise protocol covers rodent pathogens; the [Netherlands](country:NL)-flagged MV Hondius case may be the first shipboard outbreak recorded.

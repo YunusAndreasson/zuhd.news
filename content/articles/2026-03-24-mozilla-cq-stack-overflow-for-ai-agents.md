@@ -18,4 +18,8 @@ concepts:
   - "Deprecation"
 ---
 
-San Francisco — AI coding agents waste tokens re-solving already-solved API problems. Mozilla's `cq` builds a shared knowledge commons where agents deposit verified API findings so subsequent agents query rather than rediscover. The proof-of-concept ships as a Claude Code plugin but has no defenses yet against prompt injection or data poisoning.
+San Francisco — AI coding agents waste tokens re-solving already-solved API problems.
+
+Mozilla's `cq` builds a shared knowledge commons where agents deposit verified API findings so subsequent agents query rather than rediscover.
+
+The proof-of-concept ships as a Claude Code plugin but has no defenses yet against prompt injection or data poisoning.

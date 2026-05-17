@@ -14,4 +14,8 @@ concepts:
   - "World Wide Web"
 ---
 
-San Francisco — 340 HN users backed Blogosphere for personal-blog discovery. The site surfaces human-written posts as AI floods platforms and social algorithms deprioritize substance. Its staying power against algorithmic feeds remains untested.
+San Francisco — 340 HN users backed Blogosphere for personal-blog discovery.
+
+The site surfaces human-written posts as AI floods platforms and social algorithms deprioritize substance.
+
+Its staying power against algorithmic feeds remains untested.

@@ -18,4 +18,8 @@ concepts:
   - "Paramount"
 ---
 
-Burbank — Disney unwound its $1B OpenAI deal. The January deal promised Sora-generated Disney character videos on Disney+, reversed before a single one launched. The collapse shakes the financial logic behind Paramount's merger with Warner Bros., premised on AI cost cuts.
+Burbank — Disney unwound its $1B OpenAI deal.
+
+The January deal promised Sora-generated Disney character videos on Disney+, reversed before a single one launched.
+
+The collapse shakes the financial logic behind Paramount's merger with Warner Bros., premised on AI cost cuts.

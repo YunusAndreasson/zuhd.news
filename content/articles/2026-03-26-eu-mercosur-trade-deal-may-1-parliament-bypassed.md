@@ -35,4 +35,8 @@ concepts:
 sentimentDivergence: 0.36
 ---
 
-Brussels — Brussels activated EU-Mercosur, bypassing Parliament's court challenge. The Commission invoked provisional application to start tariff cuts on 90% of goods across a 700-million-person market, overriding France-led opposition. Trade starts May 1 and halts only if the European Court of Justice rules against it.
+Brussels — Brussels activated EU-Mercosur, bypassing Parliament's court challenge.
+
+The Commission invoked provisional application to start tariff cuts on 90% of goods across a 700-million-person market, overriding France-led opposition.
+
+Trade starts May 1 and halts only if the European Court of Justice rules against it.

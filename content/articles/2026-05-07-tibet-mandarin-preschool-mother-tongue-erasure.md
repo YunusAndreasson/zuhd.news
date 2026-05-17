@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Lhasa — A 5-year-old stopped speaking Tibetan within weeks. [China](country:CN)'s education ministry mandated Mandarin-only instruction across all schools in 2021, telling kindergartens to pressure families to speak Chinese at home. Authorities have banned supplemental Tibetan classes in many counties; Human Rights Watch calls for Beijing to reverse the policy.
+Lhasa — A 5-year-old stopped speaking Tibetan within weeks.
+
+[China](country:CN)'s education ministry mandated Mandarin-only instruction across all schools in 2021, telling kindergartens to pressure families to speak Chinese at home.
+
+Authorities have banned supplemental Tibetan classes in many counties; Human Rights Watch calls for Beijing to reverse the policy.

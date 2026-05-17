@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Dubai — Gulf sukuk markets are nearing saturation. Growth globally is forecast to slow to 5-10% as Gulf Cooperation Council core markets mature and Malaysian and Indonesian gains level off, an industry report found. Pakistan, [Egypt](country:EG), and [Nigeria](country:NG) are next-growth targets, but no major expansion has been announced.
+Dubai — Gulf sukuk markets are nearing saturation.
+
+Growth globally is forecast to slow to 5-10% as Gulf Cooperation Council core markets mature and Malaysian and Indonesian gains level off, an industry report found.
+
+Pakistan, [Egypt](country:EG), and [Nigeria](country:NG) are next-growth targets, but no major expansion has been announced.

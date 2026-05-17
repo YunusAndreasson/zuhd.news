@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-San Francisco — Anthropic cuts Nvidia exposure with custom AI silicon. New deals with Google Cloud and Broadcom target training chips purpose-built for Anthropic's workloads. Custom silicon takes years to ship; Anthropic remains Nvidia-dependent for all current and near-term training runs.
+San Francisco — Anthropic cuts Nvidia exposure with custom AI silicon.
+
+New deals with Google Cloud and Broadcom target training chips purpose-built for Anthropic's workloads.
+
+Custom silicon takes years to ship; Anthropic remains Nvidia-dependent for all current and near-term training runs.

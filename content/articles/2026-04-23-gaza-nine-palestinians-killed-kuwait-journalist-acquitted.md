@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Gaza — 9 Palestinians killed, 3 of them children. [Israel](country:IL)'s strikes continued through a ceasefire covering [Lebanon](country:LB) but not Gaza; Palestinian health officials said Israeli forces have killed 40 Palestinians since January. No ceasefire covers Gaza; the exclusion has no stated timeline for resolution.
+Gaza — 9 Palestinians killed, 3 of them children.
+
+[Israel](country:IL)'s strikes continued through a ceasefire covering [Lebanon](country:LB) but not Gaza; Palestinian health officials said Israeli forces have killed 40 Palestinians since January.
+
+No ceasefire covers Gaza; the exclusion has no stated timeline for resolution.

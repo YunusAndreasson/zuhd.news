@@ -17,4 +17,8 @@ concepts:
   - "Counterparty"
 ---
 
-Thimphu — Bhutan's Bitcoin pledge is mathematically impossible. Druk Holding sold $152 million in BTC this year, cutting holdings to 4,453 — less than half the 10,000 BTC pledged to Gelephu Mindfulness City. The government has not confirmed whether the pledge stands as transfers to QCP Capital Singapore accelerate.
+Thimphu — Bhutan's Bitcoin pledge is mathematically impossible.
+
+Druk Holding sold $152 million in BTC this year, cutting holdings to 4,453 — less than half the 10,000 BTC pledged to Gelephu Mindfulness City.
+
+The government has not confirmed whether the pledge stands as transfers to QCP Capital Singapore accelerate.

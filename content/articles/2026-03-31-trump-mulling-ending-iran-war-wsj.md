@@ -27,4 +27,8 @@ concepts:
 sentimentDivergence: 0.35
 ---
 
-Washington — Trump weighs ending the Iran war early. Officials said reopening Hormuz would push the conflict past his 4-to-6-week timeline, making diplomatic pressure the preferred option. Asian stocks reversed losses; a 10,000-troop deployment and Kharg Island seizure remain under consideration.
+Washington — Trump weighs ending the Iran war early.
+
+Officials said reopening Hormuz would push the conflict past his 4-to-6-week timeline, making diplomatic pressure the preferred option.
+
+Asian stocks reversed losses; a 10,000-troop deployment and Kharg Island seizure remain under consideration.

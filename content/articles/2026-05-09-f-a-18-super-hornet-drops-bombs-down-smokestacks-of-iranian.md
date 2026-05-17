@@ -24,4 +24,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Bandar Abbas — 70 tankers worth over $13B sit stranded at Hormuz. US F/A-18s disabled 2 more by bombing down their smokestacks — killing propulsion without sinking — US Central Command confirmed. [Iran](country:IR) struck the United Arab Emirates hours later; Trump rejected Tehran's peace offer the same day.
+Bandar Abbas — 70 tankers worth over $13B sit stranded at Hormuz.
+
+US F/A-18s disabled 2 more by bombing down their smokestacks — killing propulsion without sinking — US Central Command confirmed.
+
+[Iran](country:IR) struck the United Arab Emirates hours later; Trump rejected Tehran's peace offer the same day.

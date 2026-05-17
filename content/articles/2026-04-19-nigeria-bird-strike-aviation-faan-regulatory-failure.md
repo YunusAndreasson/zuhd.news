@@ -17,4 +17,8 @@ concepts:
   - "Flight International"
 ---
 
-Abuja — United Nigeria Airlines grounded 3 flights in 48 hours. Urban waste dumps and encroachment near [Nigeria](country:NG)'s airport perimeters attract birds; airport authority control measures have not kept pace. Air Peace recorded 52 strikes in 2025; without perimeter reform, expanding carriers face escalating groundings and maintenance costs.
+Abuja — United Nigeria Airlines grounded 3 flights in 48 hours.
+
+Urban waste dumps and encroachment near [Nigeria](country:NG)'s airport perimeters attract birds; airport authority control measures have not kept pace.
+
+Air Peace recorded 52 strikes in 2025; without perimeter reform, expanding carriers face escalating groundings and maintenance costs.

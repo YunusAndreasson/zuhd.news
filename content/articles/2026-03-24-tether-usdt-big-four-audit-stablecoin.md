@@ -16,4 +16,8 @@ concepts:
   - "Stablecoin"
 ---
 
-New York — Tether's stablecoin USDT faces its first full audit. Tether has backed USDT — now the de facto dollar for millions without bank accounts — only with attestations rather than audits. Tether's CFO pledged the audit would come without naming the firm or committing to a date, leaving $184 billion in reserves unverified by any independent accountant.
+New York — Tether's stablecoin USDT faces its first full audit.
+
+Tether has backed USDT — now the de facto dollar for millions without bank accounts — only with attestations rather than audits.
+
+Tether's CFO pledged the audit would come without naming the firm or committing to a date, leaving $184 billion in reserves unverified by any independent accountant.

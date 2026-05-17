@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-London — Russia's frigate escorted tankers past Britain last week. HMS Dragon, Britain's sole air-defense destroyer in the Mediterranean, docked again with technical failures, leaving no ship capable of interdiction. Britain's Defence Investment Plan, delayed until after May elections, is expected to list projects the country cannot afford.
+London — Russia's frigate escorted tankers past Britain last week.
+
+HMS Dragon, Britain's sole air-defense destroyer in the Mediterranean, docked again with technical failures, leaving no ship capable of interdiction.
+
+Britain's Defence Investment Plan, delayed until after May elections, is expected to list projects the country cannot afford.

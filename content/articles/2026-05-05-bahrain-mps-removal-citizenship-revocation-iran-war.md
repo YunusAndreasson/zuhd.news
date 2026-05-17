@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Manama — [Bahrain](country:BH) is expelling 3 MPs for questioning revocations. A 2024 law stripped courts of jurisdiction and redefined revocation as sovereign — no evidence, no appeal, under the king. The parliamentary removal vote is expected this week; family members of the 69 stripped citizens are also affected.
+Manama — [Bahrain](country:BH) is expelling 3 MPs for questioning revocations.
+
+A 2024 law stripped courts of jurisdiction and redefined revocation as sovereign — no evidence, no appeal, under the king.
+
+The parliamentary removal vote is expected this week; family members of the 69 stripped citizens are also affected.

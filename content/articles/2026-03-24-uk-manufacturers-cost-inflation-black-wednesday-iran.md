@@ -19,4 +19,8 @@ concepts:
   - "Middle East"
 ---
 
-London — UK factory costs hit their worst since Black Wednesday. Iran war oil disruption drove the surge through energy and raw material prices to factory floors. Manufacturers will pass rising costs to consumers through the second quarter unless oil prices stabilize.
+London — UK factory costs hit their worst since Black Wednesday.
+
+Iran war oil disruption drove the surge through energy and raw material prices to factory floors.
+
+Manufacturers will pass rising costs to consumers through the second quarter unless oil prices stabilize.

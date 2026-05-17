@@ -18,4 +18,8 @@ concepts:
   - "Pam Bondi"
 ---
 
-Washington — Only 6 officials saw documents Trump kept. Raskin wrote to Bondi that prosecutors found a "business interests" motive for retention and that an aide uploaded scans to cloud storage. Raskin demanded Bondi release the full file by April 14; the Justice Department called the letter "a cheap political stunt."
+Washington — Only 6 officials saw documents Trump kept.
+
+Raskin wrote to Bondi that prosecutors found a "business interests" motive for retention and that an aide uploaded scans to cloud storage.
+
+Raskin demanded Bondi release the full file by April 14; the Justice Department called the letter "a cheap political stunt."

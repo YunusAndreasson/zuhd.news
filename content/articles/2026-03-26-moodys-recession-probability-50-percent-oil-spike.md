@@ -17,4 +17,8 @@ concepts:
   - "Presidency of Donald Trump"
 ---
 
-New York — Moody's recession probability crossed 50%. The indicator, accurate in 2001, 2007, and 2020, now reflects 92,000 February job losses and Q4 GDP revised down to 0.7%. Powell told reporters nobody knows the war's economic impact; Wells Fargo pegs $130 oil as the recession trigger.
+New York — Moody's recession probability crossed 50%.
+
+The indicator, accurate in 2001, 2007, and 2020, now reflects 92,000 February job losses and Q4 GDP revised down to 0.7%.
+
+Powell told reporters nobody knows the war's economic impact; Wells Fargo pegs $130 oil as the recession trigger.

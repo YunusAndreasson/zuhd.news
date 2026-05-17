@@ -16,4 +16,8 @@ concepts:
   - "Phasor measurement"
 ---
 
-London — Optimal power-grid sensor placement cuts monitoring costs. A multi-objective algorithm balances sensor placement against accuracy; tested on a 2,383-bus grid, it outperformed competing methods. Integrating renewables demands more grid sensors; the approach identifies critical locations, cutting deployment cost while keeping estimation accurate.
+London — Optimal power-grid sensor placement cuts monitoring costs.
+
+A multi-objective algorithm balances sensor placement against accuracy; tested on a 2,383-bus grid, it outperformed competing methods.
+
+Integrating renewables demands more grid sensors; the approach identifies critical locations, cutting deployment cost while keeping estimation accurate.

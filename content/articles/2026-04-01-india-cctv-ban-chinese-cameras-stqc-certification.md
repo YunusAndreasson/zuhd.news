@@ -19,4 +19,8 @@ concepts:
 eventCoverage: 56
 ---
 
-New Delhi — India barred uncertified cameras from its surveillance market. New STQC and BIS-ER rules effectively exclude Hikvision and Dahua — already banned in the US and UK — from the world's fastest-growing CCTV market. Domestic brands Qubo and CP Plus stand to absorb the vacancy; Hikvision did not respond to queries.
+New Delhi — India barred uncertified cameras from its surveillance market.
+
+New STQC and BIS-ER rules effectively exclude Hikvision and Dahua — already banned in the US and UK — from the world's fastest-growing CCTV market.
+
+Domestic brands Qubo and CP Plus stand to absorb the vacancy; Hikvision did not respond to queries.

@@ -17,4 +17,8 @@ concepts:
   - "Medicaid"
 ---
 
-Washington — Drug kickback fines hit just 2.2% of implicated revenue. 64 US government settlements from 2000-2025 left Medicare and Medicaid — the defrauded payers — absorbing billions while companies priced penalties into operating costs. Structural reform requires congressional action, but none has been introduced in 25 years of documented violations.
+Washington — Drug kickback fines hit just 2.2% of implicated revenue.
+
+64 US government settlements from 2000-2025 left Medicare and Medicaid — the defrauded payers — absorbing billions while companies priced penalties into operating costs.
+
+Structural reform requires congressional action, but none has been introduced in 25 years of documented violations.

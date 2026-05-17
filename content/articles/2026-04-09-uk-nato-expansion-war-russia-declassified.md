@@ -11,4 +11,8 @@ sources:
     country: "GB"
 ---
 
-London — UK wargamed a NATO-Russia war in 1996. Declassified defence files show British intelligence predicted Russian retaliation if Baltic states joined NATO, 26 years before Moscow invaded Ukraine. The files contradict Western claims that expansion did not provoke Russia.
+London — UK wargamed a NATO-Russia war in 1996.
+
+Declassified defence files show British intelligence predicted Russian retaliation if Baltic states joined NATO, 26 years before Moscow invaded Ukraine.
+
+The files contradict Western claims that expansion did not provoke Russia.

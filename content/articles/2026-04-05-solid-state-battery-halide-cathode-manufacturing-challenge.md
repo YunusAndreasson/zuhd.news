@@ -17,4 +17,8 @@ concepts:
   - "Halide"
 ---
 
-London — The leading solid-state battery chemistry dissolves in standard solvents. Wet infiltration destroys LiYClBr electrolytes, blocking lithium-ion transport through the cathode. Halide-based designs cannot scale until manufacturers solve solvent selection and cathode porosity.
+London — The leading solid-state battery chemistry dissolves in standard solvents.
+
+Wet infiltration destroys LiYClBr electrolytes, blocking lithium-ion transport through the cathode.
+
+Halide-based designs cannot scale until manufacturers solve solvent selection and cathode porosity.

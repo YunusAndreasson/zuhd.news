@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Tel Aviv — Last year's [Iran](country:IR) war exhausted [Israel](country:IL)'s 7 tankers. The KC-46 Gideon, first of 6 ordered, replaces those aging aircraft and extends F-35I operating range over Iran. Delivery is in 1 month; Israel will add satellite communications for strike coordination and has ordered 2 additional aircraft since the Iran war.
+Tel Aviv — Last year's [Iran](country:IR) war exhausted [Israel](country:IL)'s 7 tankers.
+
+The KC-46 Gideon, first of 6 ordered, replaces those aging aircraft and extends F-35I operating range over Iran.
+
+Delivery is in 1 month; Israel will add satellite communications for strike coordination and has ordered 2 additional aircraft since the Iran war.

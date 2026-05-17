@@ -17,4 +17,8 @@ concepts:
   - "G20"
 ---
 
-Pretoria — France disinvited South Africa from the G7 Summit. Macron personally invited Ramaphosa at the 2025 G20, then reversed under US pressure over South Africa's ICJ genocide case against Israel. South Africa will also be excluded from the US-hosted G20 in Miami; Pretoria is pursuing the ICJ case even as diplomatic isolation grows.
+Pretoria — France disinvited South Africa from the G7 Summit.
+
+Macron personally invited Ramaphosa at the 2025 G20, then reversed under US pressure over South Africa's ICJ genocide case against Israel.
+
+South Africa will also be excluded from the US-hosted G20 in Miami; Pretoria is pursuing the ICJ case even as diplomatic isolation grows.

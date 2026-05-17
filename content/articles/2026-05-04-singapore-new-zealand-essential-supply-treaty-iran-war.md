@@ -26,4 +26,8 @@ sentimentDivergence: 0.4
 entities: []
 ---
 
-Singapore — First global essential-goods continuity treaty signed Monday. [Singapore](country:SG) and [New Zealand](country:NZ) legally banned mutual export restrictions on food, fuel and medicine in response to Iran war supply shocks. Both governments invited others to join; Singapore assumes the South-East Asian regional chair in 2027.
+Singapore — First global essential-goods continuity treaty signed Monday.
+
+[Singapore](country:SG) and [New Zealand](country:NZ) legally banned mutual export restrictions on food, fuel and medicine in response to Iran war supply shocks.
+
+Both governments invited others to join; Singapore assumes the South-East Asian regional chair in 2027.

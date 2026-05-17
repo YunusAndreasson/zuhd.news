@@ -17,4 +17,8 @@ concepts:
   - "Commodity"
 ---
 
-Brussels — EU fuel stocks will empty around April 20. Russia's envoy Dmitriev said last Hormuz shipments reach Europe April 11, with depletion days after as the Strait closure passes 5 weeks. EU energy ministers must agree on rationing or alternative supply within 16 days.
+Brussels — EU fuel stocks will empty around April 20.
+
+Russia's envoy Dmitriev said last Hormuz shipments reach Europe April 11, with depletion days after as the Strait closure passes 5 weeks.
+
+EU energy ministers must agree on rationing or alternative supply within 16 days.

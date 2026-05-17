@@ -22,4 +22,8 @@ entities:
     kind: "commodity"
 ---
 
-London — Green methanol breaks even only when CO2 feed is free. Strontium oxide in a copper-zinc catalyst raised CO2-to-methanol yield from 123 to 152 g/kg/h, a Nature study found. The experiments used a lab-scale slurry tank reactor; no industrial pilot has been announced.
+London — Green methanol breaks even only when CO2 feed is free.
+
+Strontium oxide in a copper-zinc catalyst raised CO2-to-methanol yield from 123 to 152 g/kg/h, a Nature study found.
+
+The experiments used a lab-scale slurry tank reactor; no industrial pilot has been announced.

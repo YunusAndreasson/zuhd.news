@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-London — South London hospitals remain unrestored 18 months after a ransomware attack. The Synnovis pathology contractor's breach cut services across South East London; test result backlogs persist. No National Health Service trust has set a restoration timeline.
+London — South London hospitals remain unrestored 18 months after a ransomware attack.
+
+The Synnovis pathology contractor's breach cut services across South East London; test result backlogs persist.
+
+No National Health Service trust has set a restoration timeline.

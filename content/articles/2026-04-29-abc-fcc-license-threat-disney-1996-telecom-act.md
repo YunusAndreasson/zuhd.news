@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-Washington — ABC's 8 broadcast licenses face a Federal Communications Commission review. Revoking any requires proof of willful, repeated violations — a near-insurmountable standard under the Telecommunications Act. Disney pledged to fight but the White House holds broad regulatory leverage over its businesses.
+Washington — ABC's 8 broadcast licenses face a Federal Communications Commission review.
+
+Revoking any requires proof of willful, repeated violations — a near-insurmountable standard under the Telecommunications Act.
+
+Disney pledged to fight but the White House holds broad regulatory leverage over its businesses.

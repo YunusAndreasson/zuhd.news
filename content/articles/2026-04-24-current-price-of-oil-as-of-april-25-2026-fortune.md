@@ -35,4 +35,8 @@ entities:
     kind: "commodity"
 ---
 
-London — Brent oil crossed $105 on Hormuz fears. Prices rebounded from below $94 a week ago; the International Energy Agency called [Iran](country:IR)'s Hormuz mine-and-blockade the largest oil supply shock in history. A [US](country:US)–Iran ceasefire is in place with no full clearance timeline; West Texas Intermediate traded at $96 Friday.
+London — Brent oil crossed $105 on Hormuz fears.
+
+Prices rebounded from below $94 a week ago; the International Energy Agency called [Iran](country:IR)'s Hormuz mine-and-blockade the largest oil supply shock in history.
+
+A [US](country:US)–Iran ceasefire is in place with no full clearance timeline; West Texas Intermediate traded at $96 Friday.

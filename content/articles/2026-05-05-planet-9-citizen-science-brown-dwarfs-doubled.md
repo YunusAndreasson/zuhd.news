@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Pasadena — Volunteers, not astronomers, found 3,000 brown dwarfs. Backyard Worlds, a 10-year US space agency project, revised the stellar census: 1 brown dwarf per 3 to 4 sun-like stars. Brown dwarfs' distribution around the sun remains unmapped; no dedicated survey has targeted them at this scale.
+Pasadena — Volunteers, not astronomers, found 3,000 brown dwarfs.
+
+Backyard Worlds, a 10-year US space agency project, revised the stellar census: 1 brown dwarf per 3 to 4 sun-like stars.
+
+Brown dwarfs' distribution around the sun remains unmapped; no dedicated survey has targeted them at this scale.

@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-San Jose — Cisco infrastructure aided [Israel](country:IL)'s air force strike coordination, leaked documents show. Whistleblowers provided files showing the Israeli Defense Ministry and Air Force expanded Cisco contracts; an officer described the networks handling drone targeting in Gaza. The [US](country:US) networking giant has not responded publicly.
+San Jose — Cisco infrastructure aided [Israel](country:IL)'s air force strike coordination, leaked documents show.
+
+Whistleblowers provided files showing the Israeli Defense Ministry and Air Force expanded Cisco contracts; an officer described the networks handling drone targeting in Gaza.
+
+The [US](country:US) networking giant has not responded publicly.

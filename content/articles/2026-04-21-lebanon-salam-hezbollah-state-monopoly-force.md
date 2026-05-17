@@ -22,4 +22,8 @@ concepts:
   - "Emmanuel Macron"
 ---
 
-Paris — [Lebanon](country:LB)'s PM Nawaf Salam won't be intimidated by Hezbollah. Speaking alongside [France](country:FR)'s Macron, Salam said ambassador-level talks with [Israel](country:IL) continue Thursday in Washington, calling diplomacy "a responsible act" to restore sovereignty. Lebanon's 10-day truce holds; disarming Hezbollah remains the central unresolved demand in Washington.
+Paris — [Lebanon](country:LB)'s PM Nawaf Salam won't be intimidated by Hezbollah.
+
+Speaking alongside [France](country:FR)'s Macron, Salam said ambassador-level talks with [Israel](country:IL) continue Thursday in Washington, calling diplomacy "a responsible act" to restore sovereignty.
+
+Lebanon's 10-day truce holds; disarming Hezbollah remains the central unresolved demand in Washington.

@@ -37,4 +37,8 @@ entities:
     kind: "stock"
 ---
 
-Riyadh — Aramco reported $32.5 billion in first-quarter profit. The company's East-West pipeline processed 7 million barrels a day, routing crude past [Iran](country:IR)'s Hormuz blockade to Yanbu, Aramco said. [Saudi Arabia](country:SA) cut output by 2 million barrels a day, a volume Aramco said will stay offline until Hormuz reopens.
+Riyadh — Aramco reported $32.5 billion in first-quarter profit.
+
+The company's East-West pipeline processed 7 million barrels a day, routing crude past [Iran](country:IR)'s Hormuz blockade to Yanbu, Aramco said.
+
+[Saudi Arabia](country:SA) cut output by 2 million barrels a day, a volume Aramco said will stay offline until Hormuz reopens.

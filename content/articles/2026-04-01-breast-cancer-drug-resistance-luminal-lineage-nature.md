@@ -17,4 +17,8 @@ concepts:
   - "Elacestrant"
 ---
 
-San Francisco — ER+ breast tumors resist drugs by shedding cell identity. A Nature study found giredestrant-resistant tumors lose estrogen-receptor dependence, switching on EGFR and Hippo pathways instead of accumulating mutations. FOXA1 and FOXM1 transcription factors mark the resistant subtype; 30-50% of patients progress by their first scan.
+San Francisco — ER+ breast tumors resist drugs by shedding cell identity.
+
+A Nature study found giredestrant-resistant tumors lose estrogen-receptor dependence, switching on EGFR and Hippo pathways instead of accumulating mutations.
+
+FOXA1 and FOXM1 transcription factors mark the resistant subtype; 30-50% of patients progress by their first scan.

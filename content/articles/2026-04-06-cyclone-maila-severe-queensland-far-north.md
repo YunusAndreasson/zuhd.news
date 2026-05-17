@@ -17,4 +17,8 @@ concepts:
   - "Solomon Sea"
 ---
 
-Cairns — Category 3 Cyclone Maila targets Far North Queensland. BoM tracked Maila at 130 km/h over the Solomon Sea; weekend landfall would make it Queensland's 2nd cyclone strike in 3 weeks. BoM forecasters warned Maila could be larger than Narelle, affecting more communities across the Far North coast.
+Cairns — Category 3 Cyclone Maila targets Far North Queensland.
+
+BoM tracked Maila at 130 km/h over the Solomon Sea; weekend landfall would make it Queensland's 2nd cyclone strike in 3 weeks.
+
+BoM forecasters warned Maila could be larger than Narelle, affecting more communities across the Far North coast.

@@ -24,4 +24,8 @@ entities:
     kind: "stock"
 ---
 
-Brasília — Google AI Overviews strip traffic from news publishers. [Brazil](country:BR)'s antitrust authority opened a formal probe, saying the product creates zero-click sessions that deprive publishers of revenue. Investigators must distinguish AI Overviews from traditional search snippets — a line no competition authority has drawn.
+Brasília — Google AI Overviews strip traffic from news publishers.
+
+[Brazil](country:BR)'s antitrust authority opened a formal probe, saying the product creates zero-click sessions that deprive publishers of revenue.
+
+Investigators must distinguish AI Overviews from traditional search snippets — a line no competition authority has drawn.

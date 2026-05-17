@@ -24,4 +24,8 @@ sentimentDivergence: 0.04
 entities: []
 ---
 
-OpenAI priced GPT-5.5 at $30 per million output tokens, double its predecessor. The model completes complex tasks without detailed instructions, OpenAI said; access is through its application programming interface only. The Pro tier costs $180 per million tokens; no free-tier launch date exists.
+OpenAI priced GPT-5.5 at $30 per million output tokens, double its predecessor.
+
+The model completes complex tasks without detailed instructions, OpenAI said; access is through its application programming interface only.
+
+The Pro tier costs $180 per million tokens; no free-tier launch date exists.

@@ -11,4 +11,8 @@ sources:
     country: "AE"
 ---
 
-Baku — ICD extended $15m to Azerbaijan's Turan Bank. ICD — the Islamic Development Bank Group's private-sector arm — earmarked the funds for SME lending, expanding Islamic finance infrastructure into the South Caucasus. The deal marks ICD's first direct facility in Azerbaijan, extending Shariah-compliant infrastructure into the South Caucasus.
+Baku — ICD extended $15m to Azerbaijan's Turan Bank.
+
+ICD — the Islamic Development Bank Group's private-sector arm — earmarked the funds for SME lending, expanding Islamic finance infrastructure into the South Caucasus.
+
+The deal marks ICD's first direct facility in Azerbaijan, extending Shariah-compliant infrastructure into the South Caucasus.

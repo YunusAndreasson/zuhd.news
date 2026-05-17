@@ -15,4 +15,6 @@ concepts:
   - "Implied volatility"
 ---
 
-New York — Bitcoin's $70K range masks a derivatives breakdown. Options traders pay 48-55% implied volatility premiums for downside protection while spot prices appear calm — Bitfinex calls it a "fragile equilibrium." If bitcoin falls below $68,000, market makers must sell to hedge, amplifying losses toward $60,000.
+New York — Bitcoin's $70K range masks a derivatives breakdown.
+
+Options traders pay 48-55% implied volatility premiums for downside protection while spot prices appear calm — Bitfinex calls it a "fragile equilibrium." If bitcoin falls below $68,000, market makers must sell to hedge, amplifying losses toward $60,000.

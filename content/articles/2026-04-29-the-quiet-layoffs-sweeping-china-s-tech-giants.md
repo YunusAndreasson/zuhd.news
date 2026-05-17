@@ -20,4 +20,8 @@ entities:
     kind: "stock"
 ---
 
-Beijing — Alibaba shed 34%, Baidu 7% — to fund AI. [China](country:CN)'s platforms trimmed non-AI engineering and rebuilt around model teams — the same pivot US tech giants made, but without public earnings disclosures. Chinese workers have no US-style severance; they absorb the AI industry's restructuring without legal protection.
+Beijing — Alibaba shed 34%, Baidu 7% — to fund AI.
+
+[China](country:CN)'s platforms trimmed non-AI engineering and rebuilt around model teams — the same pivot US tech giants made, but without public earnings disclosures.
+
+Chinese workers have no US-style severance; they absorb the AI industry's restructuring without legal protection.

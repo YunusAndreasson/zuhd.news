@@ -18,4 +18,8 @@ concepts:
   - "Nissan"
 ---
 
-Paris — Renault's Q1 sales rose 7.3%, beating expectations. Partner-channel sales to Nissan and [China](country:CN)'s Geely outpaced the market as Dacia — Renault's budget brand — faced a production halt. Renault gave no timeline for resolving the Dacia disruption.
+Paris — Renault's Q1 sales rose 7.3%, beating expectations.
+
+Partner-channel sales to Nissan and [China](country:CN)'s Geely outpaced the market as Dacia — Renault's budget brand — faced a production halt.
+
+Renault gave no timeline for resolving the Dacia disruption.

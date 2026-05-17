@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Kinshasa — 1,000 US-allied Afghans routed to [Congo](country:CD), not [America](country:US). Washington's December 2025 minerals deal with Tshisekedi bundles Afghan resettlement into a cobalt-for-security exchange targeting [Rwanda](country:RW)-backed M23 rebels. Afghans remain in [Qatar](country:QA) transit camps after Kinshasa protesters opposing the deal were dispersed April 24.
+Kinshasa — 1,000 US-allied Afghans routed to [Congo](country:CD), not [America](country:US).
+
+Washington's December 2025 minerals deal with Tshisekedi bundles Afghan resettlement into a cobalt-for-security exchange targeting [Rwanda](country:RW)-backed M23 rebels.
+
+Afghans remain in [Qatar](country:QA) transit camps after Kinshasa protesters opposing the deal were dispersed April 24.

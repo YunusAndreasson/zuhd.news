@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Kuantan — [Malaysia](country:MY) processes Australian rare earths but captures little of the profit. A [US](country:US)-[Australia](country:AU) supply deal routes operations through Pahang, drawing Malaysia into US-[China](country:CN) tech competition, critics say. The US and Australia call it mineral security while opponents say Malaysia bears the environmental costs with no vote.
+Kuantan — [Malaysia](country:MY) processes Australian rare earths but captures little of the profit.
+
+A [US](country:US)-[Australia](country:AU) supply deal routes operations through Pahang, drawing Malaysia into US-[China](country:CN) tech competition, critics say.
+
+The US and Australia call it mineral security while opponents say Malaysia bears the environmental costs with no vote.

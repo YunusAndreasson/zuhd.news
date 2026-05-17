@@ -17,4 +17,8 @@ entities:
     kind: "stock"
 ---
 
-Brasília — A [Brazilian](country:BR) judge ruled Google AI Overviews retain user attention inside Google rather than routing it to publishers, altering search's economic function. [Brazil](country:BR) has opened an antitrust probe into Google. The Trump administration has warned countries against targeting American tech firms.
+Brasília — A [Brazilian](country:BR) judge ruled Google AI Overviews retain user attention inside Google rather than routing it to publishers, altering search's economic function.
+
+[Brazil](country:BR) has opened an antitrust probe into Google.
+
+The Trump administration has warned countries against targeting American tech firms.

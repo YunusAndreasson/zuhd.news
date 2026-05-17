@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Nabatieh — Israel has killed 88 medics in south Lebanon. In 2023-2024, Israel perpetrated 53% of global attacks on medical facilities and 67% of attacks on medics. Lebanon's Health Ministry documented 114 attacks on medical services; the ICC holds jurisdiction but no state has triggered it.
+Nabatieh — Israel has killed 88 medics in south Lebanon.
+
+In 2023-2024, Israel perpetrated 53% of global attacks on medical facilities and 67% of attacks on medics.
+
+Lebanon's Health Ministry documented 114 attacks on medical services; the ICC holds jurisdiction but no state has triggered it.

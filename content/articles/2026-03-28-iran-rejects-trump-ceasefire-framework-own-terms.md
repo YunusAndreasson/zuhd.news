@@ -16,4 +16,10 @@ concepts:
   - "Steve Witkoff"
 ---
 
-Tehran — Iran and the US submitted competing ceasefire frameworks. Tehran says the US cancelled scheduled Vienna talks by launching strikes Feb. 28, then insisted its own terms be the baseline. Iran had not responded to the US framework; Tehran suspects negotiations may be cover for a planned escalation.
+Tehran — Iran and the US submitted competing ceasefire frameworks.
+
+Tehran says the US cancelled scheduled Vienna talks by launching strikes Feb.
+
+28, then insisted its own terms be the baseline.
+
+Iran had not responded to the US framework; Tehran suspects negotiations may be cover for a planned escalation.

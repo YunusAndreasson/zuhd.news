@@ -17,4 +17,6 @@ concepts:
   - "Space Launch System"
 ---
 
-Kennedy Space Center — The US military is rehearsing lunar warfare. Space Command will track Artemis II near the Moon to practice tactics for what commanders call a "warfighting domain." The Air Force Research Laboratory is developing Oracle satellites to fill the gap, but none are yet in space.
+Kennedy Space Center — The US military is rehearsing lunar warfare.
+
+Space Command will track Artemis II near the Moon to practice tactics for what commanders call a "warfighting domain." The Air Force Research Laboratory is developing Oracle satellites to fill the gap, but none are yet in space.

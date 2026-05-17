@@ -25,4 +25,8 @@ concepts:
 entities: []
 ---
 
-New Delhi — $20 billion in projected investment; dairy stays protected. [India](country:IN) opens 95% of its market to [New Zealand](country:NZ) but excludes dairy — the sticking point since 2014 negotiations began. The deal targets $5 billion in bilateral trade within 5 years, up from $1.3 billion now.
+New Delhi — $20 billion in projected investment; dairy stays protected.
+
+[India](country:IN) opens 95% of its market to [New Zealand](country:NZ) but excludes dairy — the sticking point since 2014 negotiations began.
+
+The deal targets $5 billion in bilateral trade within 5 years, up from $1.3 billion now.

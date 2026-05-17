@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Ann Arbor — Makled beat regent Acker at Michigan's Democratic Sunday convention. Makled had defended pro-Palestinian students in court; Acker led the University of Michigan's legal campaign against them. Charges against 11 students were later dropped; both nominees face Republicans in November.
+Ann Arbor — Makled beat regent Acker at Michigan's Democratic Sunday convention.
+
+Makled had defended pro-Palestinian students in court; Acker led the University of Michigan's legal campaign against them.
+
+Charges against 11 students were later dropped; both nominees face Republicans in November.

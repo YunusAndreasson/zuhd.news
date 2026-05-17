@@ -26,4 +26,8 @@ entities:
     kind: "chokepoint"
 ---
 
-New York — $552 million in crypto longs were liquidated Friday. Brent crude above $105, tied to the Hormuz closure, pushed [US](country:US) 10-year Treasury yields above 4.5% and unwound crypto's rate-cut bet. Fed futures now price a 2026 rate hike; the central bank has not yet signalled a response.
+New York — $552 million in crypto longs were liquidated Friday.
+
+Brent crude above $105, tied to the Hormuz closure, pushed [US](country:US) 10-year Treasury yields above 4.5% and unwound crypto's rate-cut bet.
+
+Fed futures now price a 2026 rate hike; the central bank has not yet signalled a response.

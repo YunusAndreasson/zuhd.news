@@ -16,4 +16,8 @@ concepts:
   - "South Korea"
 ---
 
-Seoul — Korea imposed crypto delays on 99% of users. The Financial Services Commission standardized exchange rules to block voice phishing that coaches victims to convert cash to crypto in minutes. Other Asian markets facing the same fraud surge have no equivalent rule yet.
+Seoul — Korea imposed crypto delays on 99% of users.
+
+The Financial Services Commission standardized exchange rules to block voice phishing that coaches victims to convert cash to crypto in minutes.
+
+Other Asian markets facing the same fraud surge have no equivalent rule yet.

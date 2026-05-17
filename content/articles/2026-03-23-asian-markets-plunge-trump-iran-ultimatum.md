@@ -21,4 +21,8 @@ concepts:
   - "Stock market"
 ---
 
-Tokyo — Trump threatened to obliterate Iran's energy infrastructure. Oil prices have surged 50% since US-Israeli strikes began February 28, pushing Brent crude to $114 and South Korea's KOSPI down 4.5%. Trump then announced a 5-day diplomatic pause Monday, citing talks with Tehran, but the deadline expires this weekend.
+Tokyo — Trump threatened to obliterate Iran's energy infrastructure.
+
+Oil prices have surged 50% since US-Israeli strikes began February 28, pushing Brent crude to $114 and South Korea's KOSPI down 4.5%.
+
+Trump then announced a 5-day diplomatic pause Monday, citing talks with Tehran, but the deadline expires this weekend.

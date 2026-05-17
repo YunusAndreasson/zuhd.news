@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Mumbai — [India](country:IN)'s warehouse take-up fell 14% in Q1, Vestian found. Mumbai and Pune took 81% of demand; the Delhi region fell 57%, Bengaluru 87% — port markets stable, consumption hubs contracting. Vestian projects full-year absorption above 45 mn sq ft, but Delhi and Bengaluru declines signal uneven domestic demand.
+Mumbai — [India](country:IN)'s warehouse take-up fell 14% in Q1, Vestian found.
+
+Mumbai and Pune took 81% of demand; the Delhi region fell 57%, Bengaluru 87% — port markets stable, consumption hubs contracting.
+
+Vestian projects full-year absorption above 45 mn sq ft, but Delhi and Bengaluru declines signal uneven domestic demand.

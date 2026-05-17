@@ -18,4 +18,8 @@ concepts:
   - "Rehabilitation"
 ---
 
-London — Physiotherapy beats drugs for Parkinson balance. A 30-study review of 2,932 patients found balance-specific training produces moderate-to-strong improvements (SMD 0.64), while no pharmacological treatment achieves comparable postural control. No dose-response was found and the optimal training type remains undefined, leaving clinicians without prescription guidelines.
+London — Physiotherapy beats drugs for Parkinson balance.
+
+A 30-study review of 2,932 patients found balance-specific training produces moderate-to-strong improvements (SMD 0.64), while no pharmacological treatment achieves comparable postural control.
+
+No dose-response was found and the optimal training type remains undefined, leaving clinicians without prescription guidelines.

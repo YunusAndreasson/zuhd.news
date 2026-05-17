@@ -21,4 +21,8 @@ concepts:
 sentimentDivergence: 0.29
 ---
 
-Washington — Washington expanded visa bonds to 50 countries. Most are African nations; citizens pay $5,000–$15,000 upfront, yet 97% of the 1,000 bonds issued complied — undermining the overstay rationale. The State Department reserved the right to expand further; the US co-hosts the World Cup next year.
+Washington — Washington expanded visa bonds to 50 countries.
+
+Most are African nations; citizens pay $5,000–$15,000 upfront, yet 97% of the 1,000 bonds issued complied — undermining the overstay rationale.
+
+The State Department reserved the right to expand further; the US co-hosts the World Cup next year.

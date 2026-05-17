@@ -17,4 +17,8 @@ concepts:
   - "Shanghai"
 ---
 
-Unitree Robotics is profitable — rare for a humanoid maker. The company filed for a $608 million IPO in Shanghai, the first public test of investor appetite for China's humanoid robot sector. The IPO will determine whether China's embodied AI industry can raise institutional capital at the scale its manufacturing ambitions require.
+Unitree Robotics is profitable — rare for a humanoid maker.
+
+The company filed for a $608 million IPO in Shanghai, the first public test of investor appetite for China's humanoid robot sector.
+
+The IPO will determine whether China's embodied AI industry can raise institutional capital at the scale its manufacturing ambitions require.

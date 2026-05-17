@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-New York — A California class action claimed Forbes ad trackers violated the state's wiretapping law, settling for $10 million. California applies wiretapping statutes to ad trackers — a gap Congress has never closed with federal legislation. Publishers running third-party ad tags face the same exposure under California's statute.
+New York — A California class action claimed Forbes ad trackers violated the state's wiretapping law, settling for $10 million.
+
+California applies wiretapping statutes to ad trackers — a gap Congress has never closed with federal legislation.
+
+Publishers running third-party ad tags face the same exposure under California's statute.

@@ -18,4 +18,8 @@ concepts:
   - "Privacy"
 ---
 
-San Francisco — LLM-powered scrapers now defeat most email obfuscation techniques in use. CSS tricks and character encoding defeated rule-based bots because they were machine-unreadable; LLMs reconstruct addresses from context, nullifying that defense. Developers are mapping which techniques, if any, still hold.
+San Francisco — LLM-powered scrapers now defeat most email obfuscation techniques in use.
+
+CSS tricks and character encoding defeated rule-based bots because they were machine-unreadable; LLMs reconstruct addresses from context, nullifying that defense.
+
+Developers are mapping which techniques, if any, still hold.

@@ -16,4 +16,8 @@ concepts:
   - "Thin film"
 ---
 
-London — All-fiber polarization control via heat, no moving parts. A bismuth oxyselenide film modulates polarization when heated by a 980nm laser; azimuth rotates up to 28.44° without changing the wavelength. The compact design targets lidar and optical coherence tomography — imaging systems that require stable polarization across broad bandwidths.
+London — All-fiber polarization control via heat, no moving parts.
+
+A bismuth oxyselenide film modulates polarization when heated by a 980nm laser; azimuth rotates up to 28.44° without changing the wavelength.
+
+The compact design targets lidar and optical coherence tomography — imaging systems that require stable polarization across broad bandwidths.

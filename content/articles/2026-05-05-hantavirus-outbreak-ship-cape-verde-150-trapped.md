@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Cape Verde — 3 dead; [Cape Verde](country:CV) authorities turned away the ship. Hantavirus spreads via airborne rodent excreta; the cruise ship began its voyage in [Argentina](country:AR), where a strain with rare human-to-human spread is endemic. 150 passengers remain aboard; [Spain](country:ES) has not cleared the ship to dock.
+Cape Verde — 3 dead; [Cape Verde](country:CV) authorities turned away the ship.
+
+Hantavirus spreads via airborne rodent excreta; the cruise ship began its voyage in [Argentina](country:AR), where a strain with rare human-to-human spread is endemic.
+
+150 passengers remain aboard; [Spain](country:ES) has not cleared the ship to dock.

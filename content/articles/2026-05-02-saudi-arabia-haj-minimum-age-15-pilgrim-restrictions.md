@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Jeddah — From May 3, no Haj flight may carry a pilgrim under 15. [Saudi Arabia](country:SA) voided affected visas and barred underage pilgrims from flights departing any country. Saudi authorities promised full refunds to families facing deferred or cancelled travel.
+Jeddah — From May 3, no Haj flight may carry a pilgrim under 15.
+
+[Saudi Arabia](country:SA) voided affected visas and barred underage pilgrims from flights departing any country.
+
+Saudi authorities promised full refunds to families facing deferred or cancelled travel.

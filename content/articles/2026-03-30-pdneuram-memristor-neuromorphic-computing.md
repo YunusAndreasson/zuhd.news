@@ -17,4 +17,8 @@ concepts:
   - "Computing"
 ---
 
-London — Forming-free memristors solve neuromorphic computing's key manufacturing problem. Current memristors need a high-voltage initialization step that causes variability and failures; PdNeuRAM uses palladium to form conducting paths without it. The device cuts inference energy by 43%; chip-scale integration remains untested.
+London — Forming-free memristors solve neuromorphic computing's key manufacturing problem.
+
+Current memristors need a high-voltage initialization step that causes variability and failures; PdNeuRAM uses palladium to form conducting paths without it.
+
+The device cuts inference energy by 43%; chip-scale integration remains untested.

@@ -17,4 +17,8 @@ concepts:
   - "Competition Commission"
 ---
 
-Johannesburg — South Africa's electricity costs 85% more than 2020. With utilities up 70–85% since then, households have stopped cutting back and started restructuring finances around unavoidable costs. The resulting credit gap is pushing more South Africans into illegal lenders who skip affordability assessments entirely.
+Johannesburg — South Africa's electricity costs 85% more than 2020.
+
+With utilities up 70–85% since then, households have stopped cutting back and started restructuring finances around unavoidable costs.
+
+The resulting credit gap is pushing more South Africans into illegal lenders who skip affordability assessments entirely.

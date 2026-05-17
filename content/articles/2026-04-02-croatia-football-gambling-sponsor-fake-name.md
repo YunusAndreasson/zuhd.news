@@ -15,4 +15,8 @@ concepts:
   - "Gambling"
 ---
 
-Zagreb — A fake identity brokered Croatia's national team sponsorship. Branko Balon posed as "Alexander Smith" to sign Dragon Z6 as the team's exclusive Asian betting partner for the 2026 World Cup. The Croatian Football Federation has not explained how it accepted a sponsor whose agent used a false name.
+Zagreb — A fake identity brokered Croatia's national team sponsorship.
+
+Branko Balon posed as "Alexander Smith" to sign Dragon Z6 as the team's exclusive Asian betting partner for the 2026 World Cup.
+
+The Croatian Football Federation has not explained how it accepted a sponsor whose agent used a false name.

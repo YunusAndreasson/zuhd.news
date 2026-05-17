@@ -18,4 +18,8 @@ concepts:
   - "Drone journalism"
 ---
 
-Minneapolis — The US banned drone journalism above ICE operations. The FAA extended a nuclear-convoy restriction to unmarked DHS vehicles, making drone flights unplannable wherever ICE operates without advance warning. Journalist Rob Levine and the Reporters Committee are suing the FAA, arguing the rule violates First Amendment press rights.
+Minneapolis — The US banned drone journalism above ICE operations.
+
+The FAA extended a nuclear-convoy restriction to unmarked DHS vehicles, making drone flights unplannable wherever ICE operates without advance warning.
+
+Journalist Rob Levine and the Reporters Committee are suing the FAA, arguing the rule violates First Amendment press rights.

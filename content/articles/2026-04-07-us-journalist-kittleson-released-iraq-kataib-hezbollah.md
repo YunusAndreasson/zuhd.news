@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.16
 ---
 
-Baghdad — Iran-backed militia freed US journalist after 7 days. Kataib Hezbollah held Kittleson in Jurf al-Sakhar, where US airstrikes had halted the moment she disappeared. Iraq released detained militia members in exchange, and Kittleson was ordered to leave Iraq immediately.
+Baghdad — Iran-backed militia freed US journalist after 7 days.
+
+Kataib Hezbollah held Kittleson in Jurf al-Sakhar, where US airstrikes had halted the moment she disappeared.
+
+Iraq released detained militia members in exchange, and Kittleson was ordered to leave Iraq immediately.

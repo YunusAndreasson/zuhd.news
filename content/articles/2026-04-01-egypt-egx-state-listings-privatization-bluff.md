@@ -16,4 +16,8 @@ concepts:
   - "Privatization"
 ---
 
-Cairo — 10 state companies listed; none will trade. The IMF criticized stalled privatization last week; Cairo's listings carry no IPO timeline, no valuation, and no offering consultant appointed. Egypt awaits a $1.65 billion IMF tranche in July — the listings are its evidence of compliance.
+Cairo — 10 state companies listed; none will trade.
+
+The IMF criticized stalled privatization last week; Cairo's listings carry no IPO timeline, no valuation, and no offering consultant appointed.
+
+Egypt awaits a $1.65 billion IMF tranche in July — the listings are its evidence of compliance.

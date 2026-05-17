@@ -32,4 +32,8 @@ concepts:
 sentimentDivergence: 0.24
 ---
 
-Budapest — Audio caught Hungary's FM coordinating with Lavrov. Vsquare's recording has Szijjártó promising to delist oligarch Usmanov's sister from EU sanctions, closing with "I am always at your disposal"; she was removed 7 months later. Orbán faces his toughest election in 16 years on April 12, with opposition Tisza leading in independent polls.
+Budapest — Audio caught Hungary's FM coordinating with Lavrov.
+
+Vsquare's recording has Szijjártó promising to delist oligarch Usmanov's sister from EU sanctions, closing with "I am always at your disposal"; she was removed 7 months later.
+
+Orbán faces his toughest election in 16 years on April 12, with opposition Tisza leading in independent polls.

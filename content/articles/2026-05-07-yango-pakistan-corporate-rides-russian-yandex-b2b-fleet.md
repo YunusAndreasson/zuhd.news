@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Karachi — Yango claims 30% savings on corporate transport for [Pakistan](country:PK) businesses. Yandex's Yango, now in Karachi and Lahore, offers corporate clients fleets from 3-seat cars to 62-seat buses on one billing dashboard. Islamabad will go live next; Yango already operates consumer rides alongside Uber and Careem in Pakistani cities.
+Karachi — Yango claims 30% savings on corporate transport for [Pakistan](country:PK) businesses.
+
+Yandex's Yango, now in Karachi and Lahore, offers corporate clients fleets from 3-seat cars to 62-seat buses on one billing dashboard.
+
+Islamabad will go live next; Yango already operates consumer rides alongside Uber and Careem in Pakistani cities.

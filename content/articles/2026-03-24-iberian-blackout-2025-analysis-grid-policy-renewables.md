@@ -18,4 +18,8 @@ concepts:
   - "Voltage"
 ---
 
-Madrid — Spain's 2025 grid collapse was preventable, ENTSO-e found. Policy locked renewable plants at fixed reactive-power settings, preventing real-time voltage control when grid oscillations hit. The final report urges adaptive settings and grid compliance rules but notes 6.5 GW of Spanish rooftop solar has neither.
+Madrid — Spain's 2025 grid collapse was preventable, ENTSO-e found.
+
+Policy locked renewable plants at fixed reactive-power settings, preventing real-time voltage control when grid oscillations hit.
+
+The final report urges adaptive settings and grid compliance rules but notes 6.5 GW of Spanish rooftop solar has neither.

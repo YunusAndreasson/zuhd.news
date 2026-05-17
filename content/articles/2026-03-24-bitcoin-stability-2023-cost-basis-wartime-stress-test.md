@@ -16,4 +16,8 @@ concepts:
   - "Bull"
 ---
 
-New York — Bitcoin held at $60,000 — the 2023 cost basis. Anyone who bought in 2026 is underwater: the average 2026 buyer paid $77,000 for a coin now worth $70,000. If bitcoin falls below $54,300, every historical indicator will confirm a bear market.
+New York — Bitcoin held at $60,000 — the 2023 cost basis.
+
+Anyone who bought in 2026 is underwater: the average 2026 buyer paid $77,000 for a coin now worth $70,000.
+
+If bitcoin falls below $54,300, every historical indicator will confirm a bear market.

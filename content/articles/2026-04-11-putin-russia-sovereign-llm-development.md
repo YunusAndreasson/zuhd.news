@@ -16,4 +16,8 @@ concepts:
   - "Artificial intelligence"
 ---
 
-Moscow — Putin declared large language models essential national infrastructure. He told a government AI meeting only domestic LLMs can guarantee Russia's security and defence. Russia will build proprietary LLMs using open-source libraries; the decree names no ministry, budget, or deadline.
+Moscow — Putin declared large language models essential national infrastructure.
+
+He told a government AI meeting only domestic LLMs can guarantee Russia's security and defence.
+
+Russia will build proprietary LLMs using open-source libraries; the decree names no ministry, budget, or deadline.

@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-São Paulo — PTSD leaves a measurable blood signature in women. Longitudinal RNA-sequencing of women in [Brazil](country:BR) after sexual assault found persistent immune and metabolic dysregulation in blood over 12 months. Researchers say a blood marker could support diagnostic and disability claims for PTSD, which has no approved clinical blood test.
+São Paulo — PTSD leaves a measurable blood signature in women.
+
+Longitudinal RNA-sequencing of women in [Brazil](country:BR) after sexual assault found persistent immune and metabolic dysregulation in blood over 12 months.
+
+Researchers say a blood marker could support diagnostic and disability claims for PTSD, which has no approved clinical blood test.

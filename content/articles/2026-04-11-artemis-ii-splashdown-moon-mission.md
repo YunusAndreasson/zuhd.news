@@ -17,4 +17,8 @@ concepts:
   - "Moon"
 ---
 
-San Diego — 4 astronauts splashed down off San Diego Friday. Artemis II covered 252,756 miles on humanity's first crewed Moon mission in 54 years, farther than any humans have flown. NASA will inspect the heat shield that cracked on Artemis I in 2022; results are expected this week.
+San Diego — 4 astronauts splashed down off San Diego Friday.
+
+Artemis II covered 252,756 miles on humanity's first crewed Moon mission in 54 years, farther than any humans have flown.
+
+NASA will inspect the heat shield that cracked on Artemis I in 2022; results are expected this week.

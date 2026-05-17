@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Washington — Senate cleared $450M in Israeli arms. The bulldozer vote was the Senate's first; the highest-ever opposition came from Democrats who linked Caterpillar D9s to Palestinian home demolitions. All 5 Democratic 2028 presidential contenders voted to block both sales, making arms transfers a primary-season litmus test.
+Washington — Senate cleared $450M in Israeli arms.
+
+The bulldozer vote was the Senate's first; the highest-ever opposition came from Democrats who linked Caterpillar D9s to Palestinian home demolitions.
+
+All 5 Democratic 2028 presidential contenders voted to block both sales, making arms transfers a primary-season litmus test.

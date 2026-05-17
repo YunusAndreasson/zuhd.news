@@ -36,4 +36,9 @@ entities:
     indicatorId: "brent"
     kind: "commodity"
 ---
-New Delhi — [Iran](country:IR) fired on 2 Indian tankers in the Strait of Hormuz, [India](country:IN)'s government said. India summoned Tehran's ambassador in protest; India is among Iran's largest crude buyers. India called on Tehran to guarantee safe passage for its commercial vessels.
+
+New Delhi — [Iran](country:IR) fired on 2 Indian tankers in the Strait of Hormuz, [India](country:IN)'s government said.
+
+India summoned Tehran's ambassador in protest; India is among Iran's largest crude buyers.
+
+India called on Tehran to guarantee safe passage for its commercial vessels.

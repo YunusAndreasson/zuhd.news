@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Hama — [Syria](country:SY) arrested Tadamon's filmed executioner in rural Hama. Amjad Youssef shot 41 Tadamon civilians for Assad's Branch 227 in 2013, burned the bodies, then evaded capture for 13 years. Syria’s security forces tracked him 30 days; the transitional government faces dozens of outstanding war-crime warrants from Assad's era.
+Hama — [Syria](country:SY) arrested Tadamon's filmed executioner in rural Hama.
+
+Amjad Youssef shot 41 Tadamon civilians for Assad's Branch 227 in 2013, burned the bodies, then evaded capture for 13 years.
+
+Syria’s security forces tracked him 30 days; the transitional government faces dozens of outstanding war-crime warrants from Assad's era.

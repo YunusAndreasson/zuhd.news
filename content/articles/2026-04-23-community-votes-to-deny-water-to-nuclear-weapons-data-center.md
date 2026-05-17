@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Ypsilanti — Township denied water to $1.2B nuclear data center. The [US](country:US) facility would burn 500,000 gallons per day for nuclear-weapons AI; Ypsilanti's utilities board voted a 365-day moratorium. The utilities authority has 12 months to study supply; Los Alamos holds no approved alternative water source.
+Ypsilanti — Township denied water to $1.2B nuclear data center.
+
+The [US](country:US) facility would burn 500,000 gallons per day for nuclear-weapons AI; Ypsilanti's utilities board voted a 365-day moratorium.
+
+The utilities authority has 12 months to study supply; Los Alamos holds no approved alternative water source.

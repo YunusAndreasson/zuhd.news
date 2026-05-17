@@ -23,4 +23,8 @@ concepts:
 sentimentDivergence: 0.21
 ---
 
-Washington — Iran's war sent oil past $100 a barrel. [The US](country:US) extended a [Russia](country:RU) oil sanctions waiver to May 16 to offset Hormuz supply losses, Treasury Secretary Bessent told the Senate. Prices will fall when the [Iran](country:IR) conflict ends, Bessent said; the Senate Armed Services Committee called that timeline unlikely.
+Washington — Iran's war sent oil past $100 a barrel.
+
+[The US](country:US) extended a [Russia](country:RU) oil sanctions waiver to May 16 to offset Hormuz supply losses, Treasury Secretary Bessent told the Senate.
+
+Prices will fall when the [Iran](country:IR) conflict ends, Bessent said; the Senate Armed Services Committee called that timeline unlikely.

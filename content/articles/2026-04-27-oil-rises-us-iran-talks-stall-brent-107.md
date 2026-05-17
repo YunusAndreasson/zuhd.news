@@ -26,4 +26,8 @@ entities:
     kind: "commodity"
 ---
 
-London — The [US](country:US) cancelled Saturday's [Pakistan](country:PK)-hosted [Iran](country:IR) talks with no date rescheduled. Brent rose to $107.70; the International Energy Agency called the Hormuz standoff the biggest supply shock in history, as both sides blockade the strait. Trump said Tehran's proposal was "not enough."
+London — The [US](country:US) cancelled Saturday's [Pakistan](country:PK)-hosted [Iran](country:IR) talks with no date rescheduled.
+
+Brent rose to $107.70; the International Energy Agency called the Hormuz standoff the biggest supply shock in history, as both sides blockade the strait.
+
+Trump said Tehran's proposal was "not enough."

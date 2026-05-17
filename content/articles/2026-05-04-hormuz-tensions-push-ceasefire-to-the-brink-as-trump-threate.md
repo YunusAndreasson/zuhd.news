@@ -35,4 +35,8 @@ sentimentDivergence: 0.34
 entities: []
 ---
 
-Washington — The [US](country:US) sank 6 Iranian boats Monday. Trump threatened [Iran](country:IR)'s erasure; [Iran](country:IR) struck [UAE](country:AE) facilities at Fujairah the same day. [Israel](country:IL) signaled readiness to resume bombing, with no ceasefire agreement reached.
+Washington — The [US](country:US) sank 6 Iranian boats Monday.
+
+Trump threatened [Iran](country:IR)'s erasure; [Iran](country:IR) struck [UAE](country:AE) facilities at Fujairah the same day.
+
+[Israel](country:IL) signaled readiness to resume bombing, with no ceasefire agreement reached.

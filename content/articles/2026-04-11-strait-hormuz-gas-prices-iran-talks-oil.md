@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Dubai — Zero tankers crossed the Strait of Hormuz Wednesday. Only 6 passed Thursday despite the ceasefire; Iranian mines remain and shipping firms risk US sanctions to clear them. The Saudi bypass pipeline is cut by 10%; prices won't recover quickly even if talks succeed.
+Dubai — Zero tankers crossed the Strait of Hormuz Wednesday.
+
+Only 6 passed Thursday despite the ceasefire; Iranian mines remain and shipping firms risk US sanctions to clear them.
+
+The Saudi bypass pipeline is cut by 10%; prices won't recover quickly even if talks succeed.

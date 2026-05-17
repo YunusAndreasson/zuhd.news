@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Johannesburg — Parliament dodged Ramaphosa's impeachment for 2 years. [South Africa](country:ZA)'s Constitutional Court ruled Parliament's refusal unconstitutional; removal requires a 2/3 parliamentary vote — more than any single party controls. The Democratic Alliance holds the votes to reach that threshold; it has not said how it will vote.
+Johannesburg — Parliament dodged Ramaphosa's impeachment for 2 years.
+
+[South Africa](country:ZA)'s Constitutional Court ruled Parliament's refusal unconstitutional; removal requires a 2/3 parliamentary vote — more than any single party controls.
+
+The Democratic Alliance holds the votes to reach that threshold; it has not said how it will vote.

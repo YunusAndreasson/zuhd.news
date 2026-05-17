@@ -17,4 +17,8 @@ concepts:
   - "Lobbying"
 ---
 
-Washington — Grand Pharma escaped a US national security review. The Chinese firm paid $30,000 to lobbyists with Trump family ties; the US review panel then dismissed the case. FastWave, the US firm that raised the complaint, says it is now near bankruptcy.
+Washington — Grand Pharma escaped a US national security review.
+
+The Chinese firm paid $30,000 to lobbyists with Trump family ties; the US review panel then dismissed the case.
+
+FastWave, the US firm that raised the complaint, says it is now near bankruptcy.

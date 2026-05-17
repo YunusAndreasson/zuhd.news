@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Shark Bay — Scientists saw complex life's origin in real time. Shark Bay's stromatolite microbes were observed interacting with complex cells — the exchange theorized to have sparked eukaryotic life 2 billion years ago. The living mats remain active; researchers can now test which environmental triggers initiate the transition to complex life.
+Shark Bay — Scientists saw complex life's origin in real time.
+
+Shark Bay's stromatolite microbes were observed interacting with complex cells — the exchange theorized to have sparked eukaryotic life 2 billion years ago.
+
+The living mats remain active; researchers can now test which environmental triggers initiate the transition to complex life.

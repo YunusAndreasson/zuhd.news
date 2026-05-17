@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — A new solar still achieved 278% apparent thermal efficiency, researchers report. Reed-structured microchannels synchronize water supply, vapor escape, and salt rejection — the bottleneck that defeated previous passive designs. The system runs stably in 15% saline without crystallization; researchers say it scales for off-grid arid deployment.
+London — A new solar still achieved 278% apparent thermal efficiency, researchers report.
+
+Reed-structured microchannels synchronize water supply, vapor escape, and salt rejection — the bottleneck that defeated previous passive designs.
+
+The system runs stably in 15% saline without crystallization; researchers say it scales for off-grid arid deployment.

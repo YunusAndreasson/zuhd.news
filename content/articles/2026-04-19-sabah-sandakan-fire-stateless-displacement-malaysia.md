@@ -28,4 +28,8 @@ concepts:
   - "Anwar Ibrahim"
 ---
 
-Sandakan — Fire razed 1,000 stilt homes; 9,007 displaced. [Malaysia](country:MY)'s water villages are built on communal land by stateless, undocumented communities with no legal right to rebuild. Prime Minister Ibrahim has promised temporary relocation, but whether undocumented residents qualify for federal assistance is unresolved.
+Sandakan — Fire razed 1,000 stilt homes; 9,007 displaced.
+
+[Malaysia](country:MY)'s water villages are built on communal land by stateless, undocumented communities with no legal right to rebuild.
+
+Prime Minister Ibrahim has promised temporary relocation, but whether undocumented residents qualify for federal assistance is unresolved.

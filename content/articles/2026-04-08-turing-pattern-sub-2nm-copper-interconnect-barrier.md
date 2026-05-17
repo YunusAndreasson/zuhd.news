@@ -17,4 +17,8 @@ concepts:
   - "Atomic layer deposition"
 ---
 
-Nanjing — Leopard-spot math yields a 1.2-nm chip barrier. Tantalum sulfide via atomic layer deposition self-assembles into Turing stripes, forcing copper along longer paths than today's 3-5 nm TaN barriers. The technique targets the 15-angstrom node, where RC delay is the bottleneck for chip scaling.
+Nanjing — Leopard-spot math yields a 1.2-nm chip barrier.
+
+Tantalum sulfide via atomic layer deposition self-assembles into Turing stripes, forcing copper along longer paths than today's 3-5 nm TaN barriers.
+
+The technique targets the 15-angstrom node, where RC delay is the bottleneck for chip scaling.

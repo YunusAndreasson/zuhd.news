@@ -38,4 +38,8 @@ entities:
     kind: "chokepoint"
 ---
 
-[Iran](country:IR) offered to defer nuclear talks until war and Strait of Hormuz conditions were resolved; a US official said Trump rejected it. Iran proposed ceasefire first, enrichment last; the US demands nuclear terms upfront. [Pakistan](country:PK) brokered talks; Trump cancelled envoy Jared Kushner's Islamabad visit.
+[Iran](country:IR) offered to defer nuclear talks until war and Strait of Hormuz conditions were resolved; a US official said Trump rejected it.
+
+Iran proposed ceasefire first, enrichment last; the US demands nuclear terms upfront.
+
+[Pakistan](country:PK) brokered talks; Trump cancelled envoy Jared Kushner's Islamabad visit.

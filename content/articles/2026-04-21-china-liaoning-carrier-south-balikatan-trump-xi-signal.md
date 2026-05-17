@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Manila — Liaoning's carrier group is heading south. [China](country:CN) timed the deployment to overlap the Philippines-[US](country:US) Balikatan drills and precede the Trump-Xi summit by weeks. The summit's South China Sea agenda is unset; the Liaoning's route maps directly over disputed Philippine waters.
+Manila — Liaoning's carrier group is heading south.
+
+[China](country:CN) timed the deployment to overlap the Philippines-[US](country:US) Balikatan drills and precede the Trump-Xi summit by weeks.
+
+The summit's South China Sea agenda is unset; the Liaoning's route maps directly over disputed Philippine waters.

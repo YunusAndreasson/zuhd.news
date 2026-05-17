@@ -18,4 +18,10 @@ concepts:
 entities: []
 ---
 
-Zintan — Saif Gadhafi's killers are named in Tripoli's file. The Feb. 3 hit was solved forensically within weeks; suspects sit behind factions [Libya](country:LY)'s fragmented government cannot coerce. 15 years after NATO's intervention, no state body holds authority to prosecute across factional lines.
+Zintan — Saif Gadhafi's killers are named in Tripoli's file.
+
+The Feb.
+
+3 hit was solved forensically within weeks; suspects sit behind factions [Libya](country:LY)'s fragmented government cannot coerce.
+
+15 years after NATO's intervention, no state body holds authority to prosecute across factional lines.

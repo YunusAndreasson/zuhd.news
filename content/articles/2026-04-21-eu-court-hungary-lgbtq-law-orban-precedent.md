@@ -17,4 +17,8 @@ concepts:
   - "Peter Magyar"
 ---
 
-Luxembourg — EU court invalidates [Hungary](country:HU)'s 2021 LGBTQ content ban. The European Court of Justice — joined by 16 member states and the Parliament in the bloc's largest human-rights case — ruled the law violated EU founding values. Incoming PM Peter Magyar must implement the ruling to unblock €18 billion in frozen EU funds.
+Luxembourg — EU court invalidates [Hungary](country:HU)'s 2021 LGBTQ content ban.
+
+The European Court of Justice — joined by 16 member states and the Parliament in the bloc's largest human-rights case — ruled the law violated EU founding values.
+
+Incoming PM Peter Magyar must implement the ruling to unblock €18 billion in frozen EU funds.

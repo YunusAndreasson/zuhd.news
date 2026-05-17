@@ -14,4 +14,8 @@ concepts:
   - "Large language model"
 ---
 
-New York — AI now automates the pipeline for banning books. BLOCKADE scans ePUBs via commercial AI APIs and auto-generates removal petitions, defining content "offensive to conservative values" as inappropriate. Digital rights groups warn no legal obscenity standard governs what the tool flags for removal.
+New York — AI now automates the pipeline for banning books.
+
+BLOCKADE scans ePUBs via commercial AI APIs and auto-generates removal petitions, defining content "offensive to conservative values" as inappropriate.
+
+Digital rights groups warn no legal obscenity standard governs what the tool flags for removal.

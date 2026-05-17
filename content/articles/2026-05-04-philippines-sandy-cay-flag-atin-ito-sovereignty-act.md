@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Manila — Activists reached Sandy Cay past China's fleet. The Atin Ito coalition uses pre-dawn civilian landings to assert [Philippines](country:PH) presence — the mechanism by which Spratly sovereignty is actually contested. [China](country:CN) claims the entire South China Sea; the Philippines holds a 2016 arbitration ruling rejecting that claim.
+Manila — Activists reached Sandy Cay past China's fleet.
+
+The Atin Ito coalition uses pre-dawn civilian landings to assert [Philippines](country:PH) presence — the mechanism by which Spratly sovereignty is actually contested.
+
+[China](country:CN) claims the entire South China Sea; the Philippines holds a 2016 arbitration ruling rejecting that claim.

@@ -16,4 +16,8 @@ concepts:
   - "Initial public offering"
 ---
 
-San Francisco — $122 billion: OpenAI closed history's largest private round. The raise dwarfs all prior private funding records and comes with IPO plans attached, concentrating unprecedented capital in one AI lab. OpenAI has set no IPO date, and the deal's terms have not been disclosed.
+San Francisco — $122 billion: OpenAI closed history's largest private round.
+
+The raise dwarfs all prior private funding records and comes with IPO plans attached, concentrating unprecedented capital in one AI lab.
+
+OpenAI has set no IPO date, and the deal's terms have not been disclosed.

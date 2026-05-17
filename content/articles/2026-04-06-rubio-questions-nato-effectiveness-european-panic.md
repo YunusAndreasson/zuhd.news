@@ -17,4 +17,8 @@ concepts:
   - "European security"
 ---
 
-Washington — Rubio, the last NATO defender, turned. The Economist reports he was NATO's last defender in Trump's cabinet; a Finnish official now says this may be beyond repair. Former NATO ambassador Daalder calls this the alliance's worst moment; Europe is now preparing to run NATO without America.
+Washington — Rubio, the last NATO defender, turned.
+
+The Economist reports he was NATO's last defender in Trump's cabinet; a Finnish official now says this may be beyond repair.
+
+Former NATO ambassador Daalder calls this the alliance's worst moment; Europe is now preparing to run NATO without America.

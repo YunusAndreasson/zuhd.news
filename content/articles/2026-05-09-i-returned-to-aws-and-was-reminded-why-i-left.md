@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-Melbourne — AWS access controls drove out a 15-year user. Egress costs 9¢/GB; Identity and Access Management complexity grows with each added service, compounding the exit penalty. No provider discloses cloud reversibility costs.
+Melbourne — AWS access controls drove out a 15-year user.
+
+Egress costs 9¢/GB; Identity and Access Management complexity grows with each added service, compounding the exit penalty.
+
+No provider discloses cloud reversibility costs.

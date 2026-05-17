@@ -15,4 +15,8 @@ concepts:
   - "Moon"
 ---
 
-Cape Canaveral — First crewed moon flight since 1972 launches Wednesday. Artemis II won't land but will stress-test Orion's life support in deep space, clearing the path for a surface landing in 2028. The 2028 lunar landing depends on this test; no backup spacecraft exists if Orion fails.
+Cape Canaveral — First crewed moon flight since 1972 launches Wednesday.
+
+Artemis II won't land but will stress-test Orion's life support in deep space, clearing the path for a surface landing in 2028.
+
+The 2028 lunar landing depends on this test; no backup spacecraft exists if Orion fails.

@@ -10,4 +10,8 @@ sources:
     url: "https://www.972mag.com/anti-iran-war-protests-police-violence/"
 ---
 
-Tel Aviv — Israeli police are beating centrist anti-war protesters. Opposition to the Iran war has spread to Israel's political center; opposition lawmakers remain absent as police crack down on demonstrations. Netanyahu has not addressed the crackdowns, leaving the protest movement without institutional cover.
+Tel Aviv — Israeli police are beating centrist anti-war protesters.
+
+Opposition to the Iran war has spread to Israel's political center; opposition lawmakers remain absent as police crack down on demonstrations.
+
+Netanyahu has not addressed the crackdowns, leaving the protest movement without institutional cover.

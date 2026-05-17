@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Kinshasa — [Congo](country:CD)'s army attacked east after the U.S. sanctioned Kabila. Washington's December minerals deal gave the U.S. preferential cobalt access for security pressure on [Rwanda](country:RW), which backs M23. [China](country:CN) dominates Congo's mining sector and has challenged the deal's preferential terms; Rwanda has not withdrawn.
+Kinshasa — [Congo](country:CD)'s army attacked east after the U.S. sanctioned Kabila.
+
+Washington's December minerals deal gave the U.S. preferential cobalt access for security pressure on [Rwanda](country:RW), which backs M23.
+
+[China](country:CN) dominates Congo's mining sector and has challenged the deal's preferential terms; Rwanda has not withdrawn.

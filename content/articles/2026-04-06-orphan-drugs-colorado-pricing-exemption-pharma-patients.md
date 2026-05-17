@@ -15,4 +15,8 @@ concepts:
   - "Colorado"
 ---
 
-Denver — Rare-disease drugs cost $500,000 a year. For the 2nd year running, pharma and patient groups jointly lobby Colorado to exempt orphan drugs from the state's drug-pricing board. Opponents note many orphan-designated drugs treat common conditions; an exemption would shield them all from any price control.
+Denver — Rare-disease drugs cost $500,000 a year.
+
+For the 2nd year running, pharma and patient groups jointly lobby Colorado to exempt orphan drugs from the state's drug-pricing board.
+
+Opponents note many orphan-designated drugs treat common conditions; an exemption would shield them all from any price control.

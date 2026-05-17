@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Karachi — [Pakistan](country:PK)'s State Bank repurchased Rs309.5bn in government bonds. The 2nd buyback in 4 days retires floating-rate 5-year bonds due May 6, reducing interest costs and freeing bank balance sheets. The government plans Rs1.35tr in bond auctions from April 28 to June 10, the State Bank said.
+Karachi — [Pakistan](country:PK)'s State Bank repurchased Rs309.5bn in government bonds.
+
+The 2nd buyback in 4 days retires floating-rate 5-year bonds due May 6, reducing interest costs and freeing bank balance sheets.
+
+The government plans Rs1.35tr in bond auctions from April 28 to June 10, the State Bank said.

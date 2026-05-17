@@ -25,4 +25,8 @@ concepts:
 entities: []
 ---
 
-Chennai — Congress broke a three-decade Tamil Nadu alliance. The party abandoned the Dravida Munnetra Kazhagam to back actor Vijay, whose Tamilaga Vettri Kazhagam formed [India](country:IN)'s newest state government Sunday. Modi framed the split as Congress betrayal of allies, targeting Dravidian voters before the 2029 elections.
+Chennai — Congress broke a three-decade Tamil Nadu alliance.
+
+The party abandoned the Dravida Munnetra Kazhagam to back actor Vijay, whose Tamilaga Vettri Kazhagam formed [India](country:IN)'s newest state government Sunday.
+
+Modi framed the split as Congress betrayal of allies, targeting Dravidian voters before the 2029 elections.

@@ -17,4 +17,8 @@ concepts:
   - "Fibrin"
 ---
 
-London — Patient blood chemistry now predicts individual stroke risk. A new model couples each patient's coagulation assay with arterial fluid dynamics, simulating exactly where clots form in their specific vascular geometry. Validated on stroke patients, the framework still requires clinical trials before it can guide treatment decisions.
+London — Patient blood chemistry now predicts individual stroke risk.
+
+A new model couples each patient's coagulation assay with arterial fluid dynamics, simulating exactly where clots form in their specific vascular geometry.
+
+Validated on stroke patients, the framework still requires clinical trials before it can guide treatment decisions.

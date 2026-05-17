@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Gaza — [Israel](country:IL) killed al-Haddad — wife and daughter too. Qassam Brigades confirmed their commander-in-chief died in Friday's airstrike, calling it the highest-ranking targeted killing since the Sharm el-Sheikh ceasefire began. Hamas called it a flagrant violation; Israel has not responded and the ceasefire's future is now contested.
+Gaza — [Israel](country:IL) killed al-Haddad — wife and daughter too.
+
+Qassam Brigades confirmed their commander-in-chief died in Friday's airstrike, calling it the highest-ranking targeted killing since the Sharm el-Sheikh ceasefire began.
+
+Hamas called it a flagrant violation; Israel has not responded and the ceasefire's future is now contested.

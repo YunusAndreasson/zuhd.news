@@ -17,4 +17,8 @@ concepts:
   - "SpaceX"
 ---
 
-New York — Musk borrowed $500 m from SpaceX between 2018 and 2021 at under 3%, while banks charged executives closer to 5%. Sarbanes-Oxley bans such loans at public companies, but SpaceX is private. A planned initial public offering would require public disclosure of related-party transactions for the first time.
+New York — Musk borrowed $500 m from SpaceX between 2018 and 2021 at under 3%, while banks charged executives closer to 5%.
+
+Sarbanes-Oxley bans such loans at public companies, but SpaceX is private.
+
+A planned initial public offering would require public disclosure of related-party transactions for the first time.

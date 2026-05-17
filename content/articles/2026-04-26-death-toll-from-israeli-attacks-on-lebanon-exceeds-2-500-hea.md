@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Beirut — 13 died in [Lebanon](country:LB) Sunday despite the April 17 ceasefire. [Israel](country:IL)'s strikes on southern Lebanon have killed 2,509 and injured 7,755 since March 2, the health ministry said. Sunday's strikes on Nabatieh forced mass displacement to the north, the interior ministry said.
+Beirut — 13 died in [Lebanon](country:LB) Sunday despite the April 17 ceasefire.
+
+[Israel](country:IL)'s strikes on southern Lebanon have killed 2,509 and injured 7,755 since March 2, the health ministry said.
+
+Sunday's strikes on Nabatieh forced mass displacement to the north, the interior ministry said.

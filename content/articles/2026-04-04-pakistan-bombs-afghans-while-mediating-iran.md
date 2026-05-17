@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Khost — Pakistan struck Kunar and Nooristan border villages. Islamabad is hosting US-Iran ceasefire talks this week and frames its cross-border strikes against ethnic Gujjar communities as counterterrorism. US negotiators have not addressed the bombing; a second round of talks is pending.
+Khost — Pakistan struck Kunar and Nooristan border villages.
+
+Islamabad is hosting US-Iran ceasefire talks this week and frames its cross-border strikes against ethnic Gujjar communities as counterterrorism.
+
+US negotiators have not addressed the bombing; a second round of talks is pending.

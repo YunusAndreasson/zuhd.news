@@ -15,4 +15,8 @@ concepts:
   - "Bitcoin network"
 ---
 
-Washington — [US](country:US) Indo-Pacific Command runs a Bitcoin node. Admiral Paparo told Congress the node monitors for national security — the first confirmation of US military participation in the Bitcoin network. Paparo framed Bitcoin as power projection against [China](country:CN), but no policy decision has followed.
+Washington — [US](country:US) Indo-Pacific Command runs a Bitcoin node.
+
+Admiral Paparo told Congress the node monitors for national security — the first confirmation of US military participation in the Bitcoin network.
+
+Paparo framed Bitcoin as power projection against [China](country:CN), but no policy decision has followed.

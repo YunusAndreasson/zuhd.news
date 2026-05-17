@@ -23,4 +23,8 @@ sentimentDivergence: 0.54
 entities: []
 ---
 
-Borno — Abu-Bilal al-Mainuki, Islamic State's global deputy, is dead. [Nigeria](country:NG) officially co-credited the US airstrike; President Tinubu confirmed the joint operation publicly. No formal agreement governing future US military operations in Nigeria has been announced.
+Borno — Abu-Bilal al-Mainuki, Islamic State's global deputy, is dead.
+
+[Nigeria](country:NG) officially co-credited the US airstrike; President Tinubu confirmed the joint operation publicly.
+
+No formal agreement governing future US military operations in Nigeria has been announced.

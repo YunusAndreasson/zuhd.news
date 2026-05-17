@@ -17,4 +17,8 @@ concepts:
   - "Hong Kong dollar"
 ---
 
-Hong Kong — Hong Kong missed its stablecoin licensing deadline. The authority ran a months-long sandbox, named HSBC and Standard Chartered as likely first recipients, then went silent without explanation. Singapore and Dubai are accelerating crypto frameworks; Hong Kong's delay cedes ground in Asia's digital-finance hub race.
+Hong Kong — Hong Kong missed its stablecoin licensing deadline.
+
+The authority ran a months-long sandbox, named HSBC and Standard Chartered as likely first recipients, then went silent without explanation.
+
+Singapore and Dubai are accelerating crypto frameworks; Hong Kong's delay cedes ground in Asia's digital-finance hub race.

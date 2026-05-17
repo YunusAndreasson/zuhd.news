@@ -15,4 +15,8 @@ concepts:
   - "United States Armed Forces"
 ---
 
-Tehran — Iran's military vowed larger strikes on Tel Aviv. Iran warned Gulf states hosting US bases to expel Americans or face damage alongside American and Israeli energy targets. Trump's threatened strikes on Iranian bridges and power stations remain the stated trigger for escalation.
+Tehran — Iran's military vowed larger strikes on Tel Aviv.
+
+Iran warned Gulf states hosting US bases to expel Americans or face damage alongside American and Israeli energy targets.
+
+Trump's threatened strikes on Iranian bridges and power stations remain the stated trigger for escalation.

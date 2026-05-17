@@ -21,4 +21,8 @@ concepts:
   - "Gulf States"
 ---
 
-Dubai — Iran said 500 US troops were struck in Dubai. CENTCOM denied any attack occurred, calling the claim "lies" as both sides issue competing war narratives with no independent verification. Pezeshkian warned Gulf states against hosting US strikes; the Pentagon weighs 10,000 additional troop deployments.
+Dubai — Iran said 500 US troops were struck in Dubai.
+
+CENTCOM denied any attack occurred, calling the claim "lies" as both sides issue competing war narratives with no independent verification.
+
+Pezeshkian warned Gulf states against hosting US strikes; the Pentagon weighs 10,000 additional troop deployments.

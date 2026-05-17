@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Lagos — Nigeria's Olympic land is now a housing project. The [Nigeria](country:NG) Olympic Committee converts 40% of its Lagos land into apartments, using proceeds to build athlete facilities on the rest. Contractors broke ground this month; the target is 24 months, with the access road still unpaved.
+Lagos — Nigeria's Olympic land is now a housing project.
+
+The [Nigeria](country:NG) Olympic Committee converts 40% of its Lagos land into apartments, using proceeds to build athlete facilities on the rest.
+
+Contractors broke ground this month; the target is 24 months, with the access road still unpaved.

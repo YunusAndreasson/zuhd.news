@@ -18,4 +18,8 @@ concepts:
   - "Open source"
 ---
 
-San Francisco — Miasma traps AI crawlers in infinite poison pages. The open-source tool generates endless plausible-but-poisoned pages, exploiting crawlers' link-following to waste compute and corrupt training data. Whether labs filter poisoned pages depends on data pipelines detecting procedurally generated text.
+San Francisco — Miasma traps AI crawlers in infinite poison pages.
+
+The open-source tool generates endless plausible-but-poisoned pages, exploiting crawlers' link-following to waste compute and corrupt training data.
+
+Whether labs filter poisoned pages depends on data pipelines detecting procedurally generated text.

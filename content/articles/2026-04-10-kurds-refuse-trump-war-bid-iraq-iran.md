@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Sulaymaniyah — Kurdish parties rejected US weapons for Iran war. Trump said on Fox News he armed Kurdish groups to foment an uprising in Iran; every Kurdish party denied receiving weapons. The White House and all 6 Kurdish parties now give directly opposing accounts of the alliance.
+Sulaymaniyah — Kurdish parties rejected US weapons for Iran war.
+
+Trump said on Fox News he armed Kurdish groups to foment an uprising in Iran; every Kurdish party denied receiving weapons.
+
+The White House and all 6 Kurdish parties now give directly opposing accounts of the alliance.

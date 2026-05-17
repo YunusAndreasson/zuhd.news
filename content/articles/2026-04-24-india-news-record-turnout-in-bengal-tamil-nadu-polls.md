@@ -27,4 +27,8 @@ concepts:
 eventCoverage: 56
 ---
 
-New Delhi — Bengal recorded 92% turnout and Tamil Nadu 84%, both Election Commission records. Bengal's voter rolls shrank 12% after 91 lakh names were purged, which analysts say inflated the percentage. [India](country:IN)'s Bengal results come May 4; Phase 2 votes April 29.
+New Delhi — Bengal recorded 92% turnout and Tamil Nadu 84%, both Election Commission records.
+
+Bengal's voter rolls shrank 12% after 91 lakh names were purged, which analysts say inflated the percentage.
+
+[India](country:IN)'s Bengal results come May 4; Phase 2 votes April 29.

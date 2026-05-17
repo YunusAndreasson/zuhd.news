@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Washington — New model turns drone imagery into target lists. Researchers trained a neural-network model on 7,747 military images to classify tanks, helicopters, and artillery faster than human analysts can. The design removes humans from the classification stage, diffusing accountability for targeting errors across vendor, model, and commander.
+Washington — New model turns drone imagery into target lists.
+
+Researchers trained a neural-network model on 7,747 military images to classify tanks, helicopters, and artillery faster than human analysts can.
+
+The design removes humans from the classification stage, diffusing accountability for targeting errors across vendor, model, and commander.

@@ -26,4 +26,8 @@ entities:
     kind: "commodity"
 ---
 
-Tehran — [Iran](country:IR)'s crude reached $99 per barrel Thursday. Prices climbed 3% on the week as war-risk premium at the Strait of Hormuz widened. [Iran](country:IR)-[US](country:US) nuclear talks in Oman continue; no deal has been announced.
+Tehran — [Iran](country:IR)'s crude reached $99 per barrel Thursday.
+
+Prices climbed 3% on the week as war-risk premium at the Strait of Hormuz widened.
+
+[Iran](country:IR)-[US](country:US) nuclear talks in Oman continue; no deal has been announced.

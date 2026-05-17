@@ -11,4 +11,8 @@ sources:
     country: "EG"
 ---
 
-Bint Jbeil — 1,600 Debel residents stranded without fresh food. Israel has pushed 6 km into Lebanon since March, killing over 1,400; villagers who stay fear evacuation orders become demolition permits. Israeli forces moving to encircle Bint Jbeil advance through Debel as supplies run out.
+Bint Jbeil — 1,600 Debel residents stranded without fresh food.
+
+Israel has pushed 6 km into Lebanon since March, killing over 1,400; villagers who stay fear evacuation orders become demolition permits.
+
+Israeli forces moving to encircle Bint Jbeil advance through Debel as supplies run out.

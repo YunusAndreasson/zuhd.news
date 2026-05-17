@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Salt Lake City — Instructure confirmed attackers read private student messages. The [US](country:US) company's Canvas platform exposed names, email addresses, and student IDs across an undisclosed set of institutions. Which schools were affected has not been disclosed.
+Salt Lake City — Instructure confirmed attackers read private student messages.
+
+The [US](country:US) company's Canvas platform exposed names, email addresses, and student IDs across an undisclosed set of institutions.
+
+Which schools were affected has not been disclosed.

@@ -23,4 +23,8 @@ concepts:
   - "State Capture"
 ---
 
-Chișinău — $1bn left [Moldova](country:MD) in 2 days in 2014, routed through shell companies whose owners were unknown. Prosecutors say Vladimir Plahotniuc coordinated the heist through 3 banks — draining over 10% of GDP — while controlling courts, regulators, and parliament to suppress investigation. Arrested in Athens in July 2025 after 6 years as a fugitive, he was sentenced Wednesday to 19 years; his lawyers will appeal.
+Chișinău — $1bn left [Moldova](country:MD) in 2 days in 2014, routed through shell companies whose owners were unknown.
+
+Prosecutors say Vladimir Plahotniuc coordinated the heist through 3 banks — draining over 10% of GDP — while controlling courts, regulators, and parliament to suppress investigation.
+
+Arrested in Athens in July 2025 after 6 years as a fugitive, he was sentenced Wednesday to 19 years; his lawyers will appeal.

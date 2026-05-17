@@ -30,4 +30,8 @@ sentimentDivergence: 0.45
 entities: []
 ---
 
-Beirut — Hezbollah claimed victory; Netanyahu faced coalition pressure. Lebanese government figures show more than 2,100 killed and 1.2 million displaced over 46 days of strikes and a ground invasion. Lebanon has 10 days to demonstrate willingness to disarm Hezbollah — a condition Hezbollah has already rejected.
+Beirut — Hezbollah claimed victory; Netanyahu faced coalition pressure.
+
+Lebanese government figures show more than 2,100 killed and 1.2 million displaced over 46 days of strikes and a ground invasion.
+
+Lebanon has 10 days to demonstrate willingness to disarm Hezbollah — a condition Hezbollah has already rejected.

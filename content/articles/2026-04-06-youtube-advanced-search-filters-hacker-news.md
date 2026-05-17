@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-San Francisco — YouTube removed advanced search to push recommendations. A developer restored 4 YouTube search filters — duration, date, HD, license — the platform removed to maximize algorithmic watch time. Google has not restored the filters; the tool calls YouTube's API directly, which Google could revoke.
+San Francisco — YouTube removed advanced search to push recommendations.
+
+A developer restored 4 YouTube search filters — duration, date, HD, license — the platform removed to maximize algorithmic watch time.
+
+Google has not restored the filters; the tool calls YouTube's API directly, which Google could revoke.

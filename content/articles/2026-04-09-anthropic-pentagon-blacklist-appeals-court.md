@@ -18,4 +18,8 @@ concepts:
 eventCoverage: 63
 ---
 
-Washington — An appeals court upheld Anthropic's Pentagon blacklist. Hegseth designated Anthropic a supply chain risk after the company refused to lift Claude's restrictions on military surveillance and autonomous weapons. A California court ruled otherwise in March; a final ruling is still pending.
+Washington — An appeals court upheld Anthropic's Pentagon blacklist.
+
+Hegseth designated Anthropic a supply chain risk after the company refused to lift Claude's restrictions on military surveillance and autonomous weapons.
+
+A California court ruled otherwise in March; a final ruling is still pending.

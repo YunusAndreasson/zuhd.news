@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — Glucagon-like peptide-1 agonists cut lean mass, new research shows. Fat mass fell 8–8.5 kg versus lean mass 0.7–1.7 kg in semaglutide trials; no agent consistently preserved muscle better than others, the study found. Authors call for resistance training; liraglutide showed more pronounced lean-mass loss in one long-term cohort.
+London — Glucagon-like peptide-1 agonists cut lean mass, new research shows.
+
+Fat mass fell 8–8.5 kg versus lean mass 0.7–1.7 kg in semaglutide trials; no agent consistently preserved muscle better than others, the study found.
+
+Authors call for resistance training; liraglutide showed more pronounced lean-mass loss in one long-term cohort.

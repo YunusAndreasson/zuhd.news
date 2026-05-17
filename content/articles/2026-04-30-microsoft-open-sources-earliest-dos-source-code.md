@@ -26,4 +26,8 @@ entities:
     kind: "stock"
 ---
 
-Redmond — 86-DOS (Disk Operating System), Microsoft's $50,000 founding purchase, is now public. Microsoft licensed it from [US](country:US) startup Seattle Computer Products in 1981 to supply International Business Machines' first personal computer, then bought the rights outright. The code was transcribed from paper printouts — optical character recognition software failed on the decades-old pages.
+Redmond — 86-DOS (Disk Operating System), Microsoft's $50,000 founding purchase, is now public.
+
+Microsoft licensed it from [US](country:US) startup Seattle Computer Products in 1981 to supply International Business Machines' first personal computer, then bought the rights outright.
+
+The code was transcribed from paper printouts — optical character recognition software failed on the decades-old pages.

@@ -16,4 +16,8 @@ concepts:
   - "Saudi Arabia"
 ---
 
-Riyadh — Arabian Peninsula holds world-class wind resources. A 40-year high-resolution study found capacity factor hotspots in the Gulf of Aqaba, Suez Canal, Tokar Gap, and central-western Saudi Arabia. As tanker attacks expose oil infrastructure vulnerability, the map now quantifies where Gulf states can build wind farms.
+Riyadh — Arabian Peninsula holds world-class wind resources.
+
+A 40-year high-resolution study found capacity factor hotspots in the Gulf of Aqaba, Suez Canal, Tokar Gap, and central-western Saudi Arabia.
+
+As tanker attacks expose oil infrastructure vulnerability, the map now quantifies where Gulf states can build wind farms.

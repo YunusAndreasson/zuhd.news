@@ -18,4 +18,8 @@ concepts:
   - "Biosignatures"
 ---
 
-Pasadena — Curiosity found 3.5-billion-year-old organic matter preserved on Mars. The rover detected nitrogen-bearing molecules linked to DNA formation and benzothiophene — the study in Nature Communications said these preserve biosignature precursors. Researchers say rock samples returned to Earth are the only way to determine whether the compounds are biosignatures.
+Pasadena — Curiosity found 3.5-billion-year-old organic matter preserved on Mars.
+
+The rover detected nitrogen-bearing molecules linked to DNA formation and benzothiophene — the study in Nature Communications said these preserve biosignature precursors.
+
+Researchers say rock samples returned to Earth are the only way to determine whether the compounds are biosignatures.

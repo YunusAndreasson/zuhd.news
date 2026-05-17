@@ -18,4 +18,8 @@ concepts:
   - "Materials science"
 ---
 
-London — MnTe converts waste heat to electricity at 11% efficiency. Researchers delocalized electrons in ionic MnTe by introducing foreign atoms, raising its thermoelectric figure of merit to 1.6 — above the commercial threshold of 1.0. Bond engineering now opens ionic semiconductors as a new class for waste-heat recovery in vehicles and industrial furnaces.
+London — MnTe converts waste heat to electricity at 11% efficiency.
+
+Researchers delocalized electrons in ionic MnTe by introducing foreign atoms, raising its thermoelectric figure of merit to 1.6 — above the commercial threshold of 1.0.
+
+Bond engineering now opens ionic semiconductors as a new class for waste-heat recovery in vehicles and industrial furnaces.

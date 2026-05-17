@@ -15,4 +15,8 @@ concepts:
   - "Qatar"
 ---
 
-Islamabad — Pakistan imposed 2.25 hours of daily power cuts. Qatar declared force majeure on LNG shipments to Pakistan after attacks on its gas field, cutting the country's primary energy import. Tariffs will still rise Rs 1.5 per unit despite the cuts; Qatar has not set a resumption date.
+Islamabad — Pakistan imposed 2.25 hours of daily power cuts.
+
+Qatar declared force majeure on LNG shipments to Pakistan after attacks on its gas field, cutting the country's primary energy import.
+
+Tariffs will still rise Rs 1.5 per unit despite the cuts; Qatar has not set a resumption date.

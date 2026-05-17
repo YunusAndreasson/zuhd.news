@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-New Delhi — [India](country:IN) moved Aadhaar's verification layer to Google Wallet. The authority says biometric data stays on device; which services a citizen verifies to, and when, now routes through Google. What data Google retains from authentication events remains publicly unaddressed.
+New Delhi — [India](country:IN) moved Aadhaar's verification layer to Google Wallet.
+
+The authority says biometric data stays on device; which services a citizen verifies to, and when, now routes through Google.
+
+What data Google retains from authentication events remains publicly unaddressed.

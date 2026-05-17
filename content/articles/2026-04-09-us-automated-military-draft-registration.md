@@ -29,4 +29,8 @@ concepts:
 sentimentDivergence: 0.21
 ---
 
-Washington — US will draft men automatically using federal databases. The FY2026 defense bill shifted registration to the Selective Service, which will pull names from IRS and Social Security records. Implementation is set for December; an actual draft would still require separate Congressional authorization.
+Washington — US will draft men automatically using federal databases.
+
+The FY2026 defense bill shifted registration to the Selective Service, which will pull names from IRS and Social Security records.
+
+Implementation is set for December; an actual draft would still require separate Congressional authorization.

@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Sydney — Space data centres face no armed-conflict targeting rules. Lowy Institute warns the [US](country:US) and [China](country:CN) are racing to orbit data centres before international law can determine how to target them. The institute finds no forum negotiating space-infrastructure targeting rules — a gap it compares to the legal vacuum preceding 2010s armed-drone proliferation.
+Sydney — Space data centres face no armed-conflict targeting rules.
+
+Lowy Institute warns the [US](country:US) and [China](country:CN) are racing to orbit data centres before international law can determine how to target them.
+
+The institute finds no forum negotiating space-infrastructure targeting rules — a gap it compares to the legal vacuum preceding 2010s armed-drone proliferation.

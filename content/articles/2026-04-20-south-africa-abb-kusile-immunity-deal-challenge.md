@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Johannesburg — ABB paid R2.5bn to escape prosecution. [South Africa](country:ZA)'s National Prosecuting Authority settled under a statute that shields ABB from trial via a [US](country:US) conviction already on record. A high court hears Koko's challenge on 20 April; a win could void the immunity deal.
+Johannesburg — ABB paid R2.5bn to escape prosecution.
+
+[South Africa](country:ZA)'s National Prosecuting Authority settled under a statute that shields ABB from trial via a [US](country:US) conviction already on record.
+
+A high court hears Koko's challenge on 20 April; a win could void the immunity deal.

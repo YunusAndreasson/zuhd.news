@@ -19,4 +19,8 @@ concepts:
   - "Genocide"
 ---
 
-Dhaka — Pakistan killed up to 3 million Bangladeshis in 1971. Congressman Greg Landsman introduced a resolution on March 20 to formally designate Operation Searchlight genocide; Islamabad has never acknowledged the killings. The bill awaits committee action in the 119th Congress.
+Dhaka — Pakistan killed up to 3 million Bangladeshis in 1971.
+
+Congressman Greg Landsman introduced a resolution on March 20 to formally designate Operation Searchlight genocide; Islamabad has never acknowledged the killings.
+
+The bill awaits committee action in the 119th Congress.

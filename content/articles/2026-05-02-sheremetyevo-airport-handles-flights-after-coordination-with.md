@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Moscow — Every departure and arrival at Sheremetyevo requires individual government clearance. [Russia](country:RU)'s Federal Air Transport Agency confirmed flights continue under the measure but gave no cause or end date. Passengers face possible schedule changes.
+Moscow — Every departure and arrival at Sheremetyevo requires individual government clearance.
+
+[Russia](country:RU)'s Federal Air Transport Agency confirmed flights continue under the measure but gave no cause or end date.
+
+Passengers face possible schedule changes.

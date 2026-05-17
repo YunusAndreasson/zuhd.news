@@ -16,4 +16,8 @@ concepts:
   - "Agricultural autonomy"
 ---
 
-Irving — $250M raised, then layoffs; Monarch confirmed a sale. Monarch pivoted from making tractors to licensing its autonomy stack; Caterpillar counters Deere's self-driving line without building internally. Bloomberg reports Caterpillar as buyer; the autonomy stack could extend to construction and mining equipment.
+Irving — $250M raised, then layoffs; Monarch confirmed a sale.
+
+Monarch pivoted from making tractors to licensing its autonomy stack; Caterpillar counters Deere's self-driving line without building internally.
+
+Bloomberg reports Caterpillar as buyer; the autonomy stack could extend to construction and mining equipment.

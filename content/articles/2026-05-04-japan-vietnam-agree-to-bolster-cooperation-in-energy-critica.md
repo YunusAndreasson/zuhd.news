@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Hanoi — [Vietnam](country:VN) ranks second globally in rare earth reserves. [Japan](country:JP) signed a critical-minerals and energy pact in Hanoi to cut reliance on Chinese supply after Beijing imposed export curbs this year. Prime Minister Takaichi Sanae also relaunched Japan's "Free and Open Indo-Pacific" strategy as an alternative supply framework.
+Hanoi — [Vietnam](country:VN) ranks second globally in rare earth reserves.
+
+[Japan](country:JP) signed a critical-minerals and energy pact in Hanoi to cut reliance on Chinese supply after Beijing imposed export curbs this year.
+
+Prime Minister Takaichi Sanae also relaunched Japan's "Free and Open Indo-Pacific" strategy as an alternative supply framework.

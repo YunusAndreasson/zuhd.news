@@ -22,4 +22,8 @@ concepts:
 sentimentDivergence: 0.48
 ---
 
-Palm Beach — Trump voted by mail while calling mail voting cheating. Palm Beach in-person polling was open both weekends he visited, yet his SAVE America Act would ban the same option for most Americans. Trump has threatened to block all legislation unless mail-in voting is restricted before the November midterms.
+Palm Beach — Trump voted by mail while calling mail voting cheating.
+
+Palm Beach in-person polling was open both weekends he visited, yet his SAVE America Act would ban the same option for most Americans.
+
+Trump has threatened to block all legislation unless mail-in voting is restricted before the November midterms.

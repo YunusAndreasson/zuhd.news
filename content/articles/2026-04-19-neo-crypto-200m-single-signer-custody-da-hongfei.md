@@ -17,4 +17,8 @@ concepts:
   - "Multisig"
 ---
 
-Singapore — 1 private key controls $200M of NEO tokens. Da Hongfei said co-founder Zhang holds 85% of native tokens via single signature — worth $200M–$250M, more than the project's total market cap. Da's plan requires Zhang to voluntarily transfer to multisig; if he refuses, the community holds no enforcement mechanism.
+Singapore — 1 private key controls $200M of NEO tokens.
+
+Da Hongfei said co-founder Zhang holds 85% of native tokens via single signature — worth $200M–$250M, more than the project's total market cap.
+
+Da's plan requires Zhang to voluntarily transfer to multisig; if he refuses, the community holds no enforcement mechanism.

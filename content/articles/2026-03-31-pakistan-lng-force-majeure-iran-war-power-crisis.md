@@ -15,4 +15,8 @@ concepts:
   - "Electricity generation"
 ---
 
-Islamabad — Pakistan's LNG supplies are under force majeure. Qatar declared force majeure March 2, supplying 20% of global LNG; Pakistan's gas-fired plants have 4,500 megawatts of stranded capacity. Coal imports from South Africa and Indonesia are still moving, but officials gave no timeline for LNG resumption.
+Islamabad — Pakistan's LNG supplies are under force majeure.
+
+Qatar declared force majeure March 2, supplying 20% of global LNG; Pakistan's gas-fired plants have 4,500 megawatts of stranded capacity.
+
+Coal imports from South Africa and Indonesia are still moving, but officials gave no timeline for LNG resumption.

@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-International — Synthetic cells can now generate force on command. Researchers added light-triggered contractile elements to artificial cells that already have membranes and metabolic pathways. Drug delivery and cell division remain lab-stage proofs of concept.
+International — Synthetic cells can now generate force on command.
+
+Researchers added light-triggered contractile elements to artificial cells that already have membranes and metabolic pathways.
+
+Drug delivery and cell division remain lab-stage proofs of concept.

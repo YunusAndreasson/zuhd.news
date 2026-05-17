@@ -31,4 +31,8 @@ concepts:
 sentimentDivergence: 0.27
 ---
 
-Madrid — Spain closed its airspace to US war planes. Defence Minister Robles extended Spain's existing base denial to full airspace, rerouting US military flights around the peninsula. The US threatened trade sanctions over the base denials; Spain's full airspace closure tests whether Washington follows through.
+Madrid — Spain closed its airspace to US war planes.
+
+Defence Minister Robles extended Spain's existing base denial to full airspace, rerouting US military flights around the peninsula.
+
+The US threatened trade sanctions over the base denials; Spain's full airspace closure tests whether Washington follows through.

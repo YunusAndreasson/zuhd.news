@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.18
 ---
 
-Washington — Protests in every US congressional district, Saturday. After waves drawing 5 million and 7 million, organizers expect Saturday to be the largest protest in US history. A general strike is planned for May 1 as the movement's next escalation.
+Washington — Protests in every US congressional district, Saturday.
+
+After waves drawing 5 million and 7 million, organizers expect Saturday to be the largest protest in US history.
+
+A general strike is planned for May 1 as the movement's next escalation.

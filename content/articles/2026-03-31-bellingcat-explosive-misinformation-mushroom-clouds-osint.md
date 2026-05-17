@@ -18,4 +18,8 @@ concepts:
   - "Thermobaric weapons"
 ---
 
-Amsterdam — Mushroom clouds don't require nuclear weapons. Bellingcat published an OSINT guide after Iran strike posts falsely attributed conventional blasts to nuclear use. Misidentifying munitions — calling conventional weapons mystery WMDs — is the primary blame-shifting tactic in conflict zones.
+Amsterdam — Mushroom clouds don't require nuclear weapons.
+
+Bellingcat published an OSINT guide after Iran strike posts falsely attributed conventional blasts to nuclear use.
+
+Misidentifying munitions — calling conventional weapons mystery WMDs — is the primary blame-shifting tactic in conflict zones.

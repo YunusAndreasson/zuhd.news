@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Chihuahua — 2 Central Intelligence Agency officers died in [Mexico](country:MX). A 2025 [US](country:US) cartel terrorist designation triggered CIA operations there, where law requires central-government authorization for all foreign agents. President Sheinbaum opened a national security inquiry into whether Chihuahua's opposition governor authorized the CIA's presence.
+Chihuahua — 2 Central Intelligence Agency officers died in [Mexico](country:MX).
+
+A 2025 [US](country:US) cartel terrorist designation triggered CIA operations there, where law requires central-government authorization for all foreign agents.
+
+President Sheinbaum opened a national security inquiry into whether Chihuahua's opposition governor authorized the CIA's presence.

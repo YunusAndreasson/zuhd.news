@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Jakarta — [Vietnam](country:VN), [Indonesia](country:ID), and [Malaysia](country:MY) routed Chinese inputs through local assembly to qualify for US market access. Washington's new origin rules require local-content thresholds most regional factories cannot meet. Goods failing certification lose US preferential tariff rates.
+Jakarta — [Vietnam](country:VN), [Indonesia](country:ID), and [Malaysia](country:MY) routed Chinese inputs through local assembly to qualify for US market access.
+
+Washington's new origin rules require local-content thresholds most regional factories cannot meet.
+
+Goods failing certification lose US preferential tariff rates.

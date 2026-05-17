@@ -17,4 +17,8 @@ concepts:
   - "Kassala"
 ---
 
-El Gedaref — The city's water project is 90% built and frozen. Sudan's war has redirected water budgets for 3 years, leaving the contractor owed $7m and Kassala's Hameshkoreib without functioning wells as residents walk hours for water. Sudan's government must clear the $7m contractor debt before the rains return, or the project misses another season.
+El Gedaref — The city's water project is 90% built and frozen.
+
+Sudan's war has redirected water budgets for 3 years, leaving the contractor owed $7m and Kassala's Hameshkoreib without functioning wells as residents walk hours for water.
+
+Sudan's government must clear the $7m contractor debt before the rains return, or the project misses another season.

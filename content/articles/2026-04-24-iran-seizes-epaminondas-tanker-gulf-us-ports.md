@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Gulf of Oman — IRGC seized Epaminondas, citing 6 US port calls. [Iran](country:IR)'s Guard declared [US](country:US) port calls grounds for seizure, erasing the line between sanctioned and commercial shipping. [Greece](country:GR) denies a hijacking — its maritime ministry says the vessel is stationary and under its own captain.
+Gulf of Oman — IRGC seized Epaminondas, citing 6 US port calls.
+
+[Iran](country:IR)'s Guard declared [US](country:US) port calls grounds for seizure, erasing the line between sanctioned and commercial shipping.
+
+[Greece](country:GR) denies a hijacking — its maritime ministry says the vessel is stationary and under its own captain.

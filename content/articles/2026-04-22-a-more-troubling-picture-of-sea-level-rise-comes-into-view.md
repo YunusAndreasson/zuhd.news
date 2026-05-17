@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Washington — Tens of millions face new flood risk. 2 largely independent studies find sea levels higher and land sinking faster than measured. Their convergence strengthens confidence that prior flood-safety estimates were systematically too low.
+Washington — Tens of millions face new flood risk.
+
+2 largely independent studies find sea levels higher and land sinking faster than measured.
+
+Their convergence strengthens confidence that prior flood-safety estimates were systematically too low.

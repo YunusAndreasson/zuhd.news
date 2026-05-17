@@ -17,4 +17,8 @@ concepts:
   - "Chief executive officer"
 ---
 
-Sydney — 2,000 ABC journalists took Australia's public broadcaster off air Wednesday. Staff demanded pay above 3.8% inflation and a pledge against AI replacements — both rejected. Managing Director Marks said staff costs are 60% of the budget, leaving no path to a pay rise without job cuts.
+Sydney — 2,000 ABC journalists took Australia's public broadcaster off air Wednesday.
+
+Staff demanded pay above 3.8% inflation and a pledge against AI replacements — both rejected.
+
+Managing Director Marks said staff costs are 60% of the budget, leaving no path to a pay rise without job cuts.

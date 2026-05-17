@@ -36,4 +36,8 @@ eventCoverage: 98
 sentimentDivergence: 0.05
 ---
 
-Canberra — Australia's army appointed its first female chief. Lt Gen Susan Coyle's appointment comes as the Australian Defence Force faces a class action alleging systematic sexual assault against thousands of female officers. She takes command in July; women make up 21% of the force against a 2030 target of 25%.
+Canberra — Australia's army appointed its first female chief.
+
+Lt Gen Susan Coyle's appointment comes as the Australian Defence Force faces a class action alleging systematic sexual assault against thousands of female officers.
+
+She takes command in July; women make up 21% of the force against a 2030 target of 25%.

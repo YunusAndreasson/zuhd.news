@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Gaza City — [Israel](country:IL) has authorized no student exits from Gaza. Rafah reopened in February for medical cases only; hundreds rallied demanding student travel be added to humanitarian exceptions. No authority has agreed to classify students alongside medical cases.
+Gaza City — [Israel](country:IL) has authorized no student exits from Gaza.
+
+Rafah reopened in February for medical cases only; hundreds rallied demanding student travel be added to humanitarian exceptions.
+
+No authority has agreed to classify students alongside medical cases.

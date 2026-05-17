@@ -38,4 +38,8 @@ sentimentDivergence: 0.41
 entities: []
 ---
 
-Warsaw — Advance elements of the 4,000-strong brigade had already shipped to [Poland](country:PL) when the Pentagon reversed the order. The rotation was part of Operation Atlantic Resolve, running since Russia's 2014 Crimea annexation; officials said the Army faces a $4–6 billion shortfall. The Pentagon has not said if the halt is permanent.
+Warsaw — Advance elements of the 4,000-strong brigade had already shipped to [Poland](country:PL) when the Pentagon reversed the order.
+
+The rotation was part of Operation Atlantic Resolve, running since Russia's 2014 Crimea annexation; officials said the Army faces a $4–6 billion shortfall.
+
+The Pentagon has not said if the halt is permanent.

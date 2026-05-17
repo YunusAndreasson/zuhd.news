@@ -17,4 +17,8 @@ concepts:
   - "NPR"
 ---
 
-Washington — 80 troops sought discharge in March alone. Hotline calls rose 1,000% since the war began; many cited the US bombing of a Minab girls' school as their breaking point. Pentagon policy requires reassignment to non-combat duty during review; the Defense Secretary has not said whether that policy will hold.
+Washington — 80 troops sought discharge in March alone.
+
+Hotline calls rose 1,000% since the war began; many cited the US bombing of a Minab girls' school as their breaking point.
+
+Pentagon policy requires reassignment to non-combat duty during review; the Defense Secretary has not said whether that policy will hold.

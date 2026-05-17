@@ -36,4 +36,8 @@ concepts:
 sentimentDivergence: 0.24
 ---
 
-Rome — World food prices rose 2.4% in March. War-driven energy costs pushed sugar up 7.2% and vegetable oil 5.1% — FAO's index rose for a second consecutive month. FAO's chief economist warns farmers hit by input costs will plant less, cutting global yields through 2027.
+Rome — World food prices rose 2.4% in March.
+
+War-driven energy costs pushed sugar up 7.2% and vegetable oil 5.1% — FAO's index rose for a second consecutive month.
+
+FAO's chief economist warns farmers hit by input costs will plant less, cutting global yields through 2027.

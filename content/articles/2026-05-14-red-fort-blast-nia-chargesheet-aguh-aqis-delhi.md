@@ -23,4 +23,8 @@ concepts:
 entities: []
 ---
 
-New Delhi — [India](country:IN) charged 10 over Delhi's Red Fort car bombing. India's National Investigation Agency named bomb-maker Dr. Umer Un Nabi, now deceased, in the first case placing an al-Qaeda affiliate's cell inside Delhi. Trial at Patiala House courts will test whether Ansar Ghazwat-ul-Hind's network extends beyond the foiled module.
+New Delhi — [India](country:IN) charged 10 over Delhi's Red Fort car bombing.
+
+India's National Investigation Agency named bomb-maker Dr. Umer Un Nabi, now deceased, in the first case placing an al-Qaeda affiliate's cell inside Delhi.
+
+Trial at Patiala House courts will test whether Ansar Ghazwat-ul-Hind's network extends beyond the foiled module.

@@ -17,4 +17,8 @@ concepts:
   - "National security"
 ---
 
-Washington — The FCC banned all new foreign-made consumer routers. TP-Link holds 65% of the US home router market and relocated from China in 2024, but virtually no consumer router is built domestically. Waivers require a time-bound US manufacturing plan, but no major router maker currently manufactures domestically.
+Washington — The FCC banned all new foreign-made consumer routers.
+
+TP-Link holds 65% of the US home router market and relocated from China in 2024, but virtually no consumer router is built domestically.
+
+Waivers require a time-bound US manufacturing plan, but no major router maker currently manufactures domestically.

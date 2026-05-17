@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Moscow — [Nicaragua](country:NI) can now host Russian military trainers. Putin ratified the bilateral accord [Russia](country:RU) and Nicaragua signed in September 2022, covering joint training, counterterrorism, military education, and security research. Moscow has yet to announce a deployment timeline.
+Moscow — [Nicaragua](country:NI) can now host Russian military trainers.
+
+Putin ratified the bilateral accord [Russia](country:RU) and Nicaragua signed in September 2022, covering joint training, counterterrorism, military education, and security research.
+
+Moscow has yet to announce a deployment timeline.

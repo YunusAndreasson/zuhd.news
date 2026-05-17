@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Taipei — [China](country:CN) is blocking [Taiwan](country:TW)'s president from airspace transits. With [US](country:US) attention consumed by the Iran war, Beijing's cost of squeezing Taiwan's 12 remaining formal diplomatic partners is near zero, Lowy analysts argue. Airspace denial is new; each partner lost narrows Taiwan's room to operate as a de facto state.
+Taipei — [China](country:CN) is blocking [Taiwan](country:TW)'s president from airspace transits.
+
+With [US](country:US) attention consumed by the Iran war, Beijing's cost of squeezing Taiwan's 12 remaining formal diplomatic partners is near zero, Lowy analysts argue.
+
+Airspace denial is new; each partner lost narrows Taiwan's room to operate as a de facto state.

@@ -24,4 +24,8 @@ entities:
     kind: "stock"
 ---
 
-San Salvador — Google and xAI signed deals in [El Salvador](country:SV). President Bukele brands the country the "World's AI Sandbox"; the deals place AI tools across public schools and hospital systems. Whether patients in under-resourced facilities bear tool-error costs is a question the framework leaves unanswered.
+San Salvador — Google and xAI signed deals in [El Salvador](country:SV).
+
+President Bukele brands the country the "World's AI Sandbox"; the deals place AI tools across public schools and hospital systems.
+
+Whether patients in under-resourced facilities bear tool-error costs is a question the framework leaves unanswered.

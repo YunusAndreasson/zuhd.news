@@ -21,4 +21,8 @@ concepts:
   - "Cruise missile"
 ---
 
-Washington — 850 Tomahawks fired; Pentagon calls stockpile alarmingly low. With only 57 budgeted last year, the burn rate outpaces 2-year production cycles by an order of magnitude. Pentagon officials are weighing whether to strip Tomahawk stocks from the Indo-Pacific theater.
+Washington — 850 Tomahawks fired; Pentagon calls stockpile alarmingly low.
+
+With only 57 budgeted last year, the burn rate outpaces 2-year production cycles by an order of magnitude.
+
+Pentagon officials are weighing whether to strip Tomahawk stocks from the Indo-Pacific theater.

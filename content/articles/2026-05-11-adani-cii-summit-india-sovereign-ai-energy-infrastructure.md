@@ -26,4 +26,8 @@ eventCoverage: 20
 entities: []
 ---
 
-New Delhi — Adani reiterated $200B pledges in energy and AI. At the CII summit, Adani argued [India](country:IN) must own its AI infrastructure or "rent its intelligence future" to foreign cloud providers. Adani Group is a direct commercial beneficiary of the sovereign-AI and energy build-out it advocated on Monday.
+New Delhi — Adani reiterated $200B pledges in energy and AI.
+
+At the CII summit, Adani argued [India](country:IN) must own its AI infrastructure or "rent its intelligence future" to foreign cloud providers.
+
+Adani Group is a direct commercial beneficiary of the sovereign-AI and energy build-out it advocated on Monday.

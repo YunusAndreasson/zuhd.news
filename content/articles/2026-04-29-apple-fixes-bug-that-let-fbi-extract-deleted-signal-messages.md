@@ -17,4 +17,8 @@ entities:
     kind: "stock"
 ---
 
-Cupertino — iOS saved deleted Signal previews; FBI read them. Apple's notification database stored plaintext previews even after Signal was deleted; court records show the FBI leveraged the flaw multiple times. Apple's patch purges stored previews; Signal's end-to-end encryption cannot protect against operating-system forensic extraction.
+Cupertino — iOS saved deleted Signal previews; FBI read them.
+
+Apple's notification database stored plaintext previews even after Signal was deleted; court records show the FBI leveraged the flaw multiple times.
+
+Apple's patch purges stored previews; Signal's end-to-end encryption cannot protect against operating-system forensic extraction.

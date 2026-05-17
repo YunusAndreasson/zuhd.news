@@ -32,4 +32,8 @@ eventCoverage: 28
 sentimentDivergence: 0.33
 ---
 
-Beijing — China is sending Iran MANPADS within weeks. US intelligence assessed Beijing will route the missiles through third countries to hide their origin — its first direct transfer of the war. Vance arrives in Islamabad Saturday as the reported shipment threatens ceasefire talks.
+Beijing — China is sending Iran MANPADS within weeks.
+
+US intelligence assessed Beijing will route the missiles through third countries to hide their origin — its first direct transfer of the war.
+
+Vance arrives in Islamabad Saturday as the reported shipment threatens ceasefire talks.

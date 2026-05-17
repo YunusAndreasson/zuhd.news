@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — [Pakistan](country:PK) deployed jets to [Saudi Arabia](country:SA) on April 11 as US-Iran talks ran in Islamabad. Its nuclear deterrent and 600,000-strong military give Islamabad leverage no Gulf state can match — positioning it as a third security pillar alongside Riyadh and [Turkey](country:TR). [Qatar](country:QA) is negotiating a defense pact that would formalize the emerging bloc.
+Islamabad — [Pakistan](country:PK) deployed jets to [Saudi Arabia](country:SA) on April 11 as US-Iran talks ran in Islamabad.
+
+Its nuclear deterrent and 600,000-strong military give Islamabad leverage no Gulf state can match — positioning it as a third security pillar alongside Riyadh and [Turkey](country:TR).
+
+[Qatar](country:QA) is negotiating a defense pact that would formalize the emerging bloc.

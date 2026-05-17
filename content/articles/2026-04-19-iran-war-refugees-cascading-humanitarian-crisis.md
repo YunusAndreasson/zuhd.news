@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Tehran — Nearly 2 million Afghans lost their Iranian refuge. A US refugee agency finds the [Iran](country:IR) war exceeded worst-case projections, hitting populations displaced by earlier conflicts hardest. The [US](country:US) humanitarian bureau formed in March to coordinate the regional response has not yet become operational.
+Tehran — Nearly 2 million Afghans lost their Iranian refuge.
+
+A US refugee agency finds the [Iran](country:IR) war exceeded worst-case projections, hitting populations displaced by earlier conflicts hardest.
+
+The [US](country:US) humanitarian bureau formed in March to coordinate the regional response has not yet become operational.

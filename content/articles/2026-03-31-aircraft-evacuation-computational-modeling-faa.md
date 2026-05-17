@@ -16,4 +16,8 @@ concepts:
   - "Airbus A320"
 ---
 
-Calgary — Current planes cannot meet the FAA's 90-second evacuation rule. University of Calgary simulations of A320 dual-engine fire scenarios returned evacuation times of 141 to 218 seconds across 9 seating and age configurations — all exceeding the mandate. Congress introduced the EVAC Act in 2022 to update the standard; the bill has not passed.
+Calgary — Current planes cannot meet the FAA's 90-second evacuation rule.
+
+University of Calgary simulations of A320 dual-engine fire scenarios returned evacuation times of 141 to 218 seconds across 9 seating and age configurations — all exceeding the mandate.
+
+Congress introduced the EVAC Act in 2022 to update the standard; the bill has not passed.

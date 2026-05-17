@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Canary Islands — Spanish police seized 30 metric tons of cocaine — the largest bust on record — from vessel Arconian departing [Sierra Leone](country:SL). The [Colombia](country:CO)-sourced cargo, linked to the Dutch-Moroccan Mocro Maffia, was routed through West Africa to avoid Atlantic interdiction. [Spain](country:ES) is now Europe's primary cocaine landing point; a 2023 Algeciras bust found 30 organizations sharing one 9.5-ton load.
+Canary Islands — Spanish police seized 30 metric tons of cocaine — the largest bust on record — from vessel Arconian departing [Sierra Leone](country:SL).
+
+The [Colombia](country:CO)-sourced cargo, linked to the Dutch-Moroccan Mocro Maffia, was routed through West Africa to avoid Atlantic interdiction.
+
+[Spain](country:ES) is now Europe's primary cocaine landing point; a 2023 Algeciras bust found 30 organizations sharing one 9.5-ton load.

@@ -26,4 +26,8 @@ entities:
     kind: "stock"
 ---
 
-New York — $75 billion SpaceX IPO set for June listing. Bitcoin and [US](country:US) tech equities share a risk-on liquidity pool, market analysts warn; SpaceX's $22 billion retail tranche pulls from the same marginal buyers. Coinbase's April 2021 IPO coincided with bitcoin's $64,800 peak; a 50% drawdown followed within 6 weeks.
+New York — $75 billion SpaceX IPO set for June listing.
+
+Bitcoin and [US](country:US) tech equities share a risk-on liquidity pool, market analysts warn; SpaceX's $22 billion retail tranche pulls from the same marginal buyers.
+
+Coinbase's April 2021 IPO coincided with bitcoin's $64,800 peak; a 50% drawdown followed within 6 weeks.

@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Moscow — Moscow imposed a 3-week mobile internet blackout. The blackout followed artificial intelligence-guided Iran strikes by one week; Russia has since blocked virtual private networks and messaging apps. The Kremlin is testing internet whitelists on home and mobile connections, moving toward network isolation.
+Moscow — Moscow imposed a 3-week mobile internet blackout.
+
+The blackout followed artificial intelligence-guided Iran strikes by one week; Russia has since blocked virtual private networks and messaging apps.
+
+The Kremlin is testing internet whitelists on home and mobile connections, moving toward network isolation.

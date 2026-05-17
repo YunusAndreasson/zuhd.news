@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Orlando — Someone yelled "AI sucks!" at the University of Central Florida's humanities commencement. A speaker called AI "the next industrial revolution" and the crowd erupted in boos. The university has not commented on the choice of speaker.
+Orlando — Someone yelled "AI sucks!" at the University of Central Florida's humanities commencement.
+
+A speaker called AI "the next industrial revolution" and the crowd erupted in boos.
+
+The university has not commented on the choice of speaker.

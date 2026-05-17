@@ -17,4 +17,8 @@ concepts:
   - "GLP-1"
 ---
 
-New York — Lilly paid $2.75 billion for AI-discovered molecules. Insilico Medicine's platform generated oral GLP-1 candidates Lilly will commercialize, in the largest AI drug milestone deal on record. Whether the molecules survive clinical trials will determine if AI drug discovery delivers on its commercial promise.
+New York — Lilly paid $2.75 billion for AI-discovered molecules.
+
+Insilico Medicine's platform generated oral GLP-1 candidates Lilly will commercialize, in the largest AI drug milestone deal on record.
+
+Whether the molecules survive clinical trials will determine if AI drug discovery delivers on its commercial promise.

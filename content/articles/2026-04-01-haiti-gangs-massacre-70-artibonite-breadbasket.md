@@ -16,4 +16,8 @@ concepts:
   - "Artibonite"
 ---
 
-Artibonite — 70 dead Sunday in Haiti's Artibonite region. Gran Grif attacked Haiti's breadbasket and repositioned to a neighboring town the next day, having outgunned local self-defense brigades. The UN met Haiti's prime minister Tuesday to discuss expanding the only partially deployed international security force.
+Artibonite — 70 dead Sunday in Haiti's Artibonite region.
+
+Gran Grif attacked Haiti's breadbasket and repositioned to a neighboring town the next day, having outgunned local self-defense brigades.
+
+The UN met Haiti's prime minister Tuesday to discuss expanding the only partially deployed international security force.

@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Miami Beach — No wallet, no action: crypto's AI cold-start problem. Consumer wallets require a human click per transaction; Trust Wallet and Mesh are adding scoped delegation and on-chain identity for autonomous agents. CEO Felix Fan said Claude and rival AI labs could deploy their own on-chain wallets within days.
+Miami Beach — No wallet, no action: crypto's AI cold-start problem.
+
+Consumer wallets require a human click per transaction; Trust Wallet and Mesh are adding scoped delegation and on-chain identity for autonomous agents.
+
+CEO Felix Fan said Claude and rival AI labs could deploy their own on-chain wallets within days.

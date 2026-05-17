@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Peshawar — Islamabad absorbs diplomatic functions for Pakistan's Pashtun belt. The [US](country:US) State Department cited diplomat safety; the announcement gave no security threshold and no closure timeline. [Pakistan](country:PK) is mediating US-Iran peace talks while Washington closes its consulate in Khyber Pakhtunkhwa, the country's volatile province.
+Peshawar — Islamabad absorbs diplomatic functions for Pakistan's Pashtun belt.
+
+The [US](country:US) State Department cited diplomat safety; the announcement gave no security threshold and no closure timeline.
+
+[Pakistan](country:PK) is mediating US-Iran peace talks while Washington closes its consulate in Khyber Pakhtunkhwa, the country's volatile province.

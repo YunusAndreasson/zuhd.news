@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Washington — [China](country:CN) used tens of thousands of proxy accounts to distill US frontier artificial intelligence models via mass queries, the White House said. Model distillation copies behavior without source-code access; Anthropic logged 16 million fraudulent Claude exchanges from Chinese firms. Congress may classify model extraction as industrial espionage.
+Washington — [China](country:CN) used tens of thousands of proxy accounts to distill US frontier artificial intelligence models via mass queries, the White House said.
+
+Model distillation copies behavior without source-code access; Anthropic logged 16 million fraudulent Claude exchanges from Chinese firms.
+
+Congress may classify model extraction as industrial espionage.

@@ -17,4 +17,8 @@ concepts:
   - "Decision support system"
 ---
 
-London — Routine knee MRI now predicts joint replacement 4 years out. Researchers fine-tuned 3 AI segmentation models — SAM, SAM2, and MedSAM — on musculoskeletal datasets, reaching accuracy that matched specialist annotations without specialist review. The open-source tool can extend to other joints, offering risk scores to patients priced out of specialist imaging.
+London — Routine knee MRI now predicts joint replacement 4 years out.
+
+Researchers fine-tuned 3 AI segmentation models — SAM, SAM2, and MedSAM — on musculoskeletal datasets, reaching accuracy that matched specialist annotations without specialist review.
+
+The open-source tool can extend to other joints, offering risk scores to patients priced out of specialist imaging.

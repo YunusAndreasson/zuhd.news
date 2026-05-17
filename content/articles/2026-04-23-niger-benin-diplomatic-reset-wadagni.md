@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Niamey — Niger's sealed Benin border costs both sides. [Benin](country:BJ)'s president Romuald Wadagni, elected 12 April, pledged to rebuild regional ties; [Niger](country:NE) needs the southern trade route. African Union mediators are consulting both blocs; Cotonou's port has yet to recover its pre-crisis transit volume.
+Niamey — Niger's sealed Benin border costs both sides.
+
+[Benin](country:BJ)'s president Romuald Wadagni, elected 12 April, pledged to rebuild regional ties; [Niger](country:NE) needs the southern trade route.
+
+African Union mediators are consulting both blocs; Cotonou's port has yet to recover its pre-crisis transit volume.

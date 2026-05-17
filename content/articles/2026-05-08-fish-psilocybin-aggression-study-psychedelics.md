@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Wolfville — Fish dosed with psilocybin charged peers less often. The fish are self-fertilizing genetic clones, which isolates the psilocybin's behavioral effect from genetic variables — a first in any species. Lead researcher Forsyth said it opens the door to identifying what neural mechanism psilocybin targets in fish.
+Wolfville — Fish dosed with psilocybin charged peers less often.
+
+The fish are self-fertilizing genetic clones, which isolates the psilocybin's behavioral effect from genetic variables — a first in any species.
+
+Lead researcher Forsyth said it opens the door to identifying what neural mechanism psilocybin targets in fish.

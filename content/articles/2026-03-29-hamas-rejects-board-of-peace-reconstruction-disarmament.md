@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Gaza — Hamas rejected reconstruction conditioned on disarming first. The U.S. Board of Peace plan funds rebuilding only after weapons surrender, with no prior political settlement offered. Gaza stays rubble while $1.25 billion in diverted relief funds waits behind a disarmament condition Hamas has rejected.
+Gaza — Hamas rejected reconstruction conditioned on disarming first.
+
+The U.S. Board of Peace plan funds rebuilding only after weapons surrender, with no prior political settlement offered.
+
+Gaza stays rubble while $1.25 billion in diverted relief funds waits behind a disarmament condition Hamas has rejected.

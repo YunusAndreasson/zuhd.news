@@ -17,4 +17,8 @@ concepts:
   - "Intimate relationship"
 ---
 
-London — Met spy Rob Hastings was convicted of assault. The Special Demonstration Squad deployed him to infiltrate leftwing groups; he deceived 2 women into relationships while concealing his identity. The spycops inquiry found 50+ women deceived since the 1970s; no officer has faced charges for the deceptions.
+London — Met spy Rob Hastings was convicted of assault.
+
+The Special Demonstration Squad deployed him to infiltrate leftwing groups; he deceived 2 women into relationships while concealing his identity.
+
+The spycops inquiry found 50+ women deceived since the 1970s; no officer has faced charges for the deceptions.

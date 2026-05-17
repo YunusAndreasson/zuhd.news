@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-[US](country:US) Treasury sanctioned a sitting Cambodian senator. Treasury said Kok An and 28 associates ran scam compounds — the first senator targeted under this authority. [Cambodia](country:KH) has not indicated it will act; pig-butchering fraud compounds operate across Southeast Asia.
+[US](country:US) Treasury sanctioned a sitting Cambodian senator.
+
+Treasury said Kok An and 28 associates ran scam compounds — the first senator targeted under this authority.
+
+[Cambodia](country:KH) has not indicated it will act; pig-butchering fraud compounds operate across Southeast Asia.

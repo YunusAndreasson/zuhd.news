@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-Seoul — Washington told [South Korea](country:KR) to shield Coupang's CEO from prosecution or lose high-level defence talks, South Korean media reported. The retailer's 33.7 million-account breach in 2025 has stalled nuclear submarine talks and intelligence sharing. Five US investment firms have filed trade arbitration against Seoul.
+Seoul — Washington told [South Korea](country:KR) to shield Coupang's CEO from prosecution or lose high-level defence talks, South Korean media reported.
+
+The retailer's 33.7 million-account breach in 2025 has stalled nuclear submarine talks and intelligence sharing.
+
+Five US investment firms have filed trade arbitration against Seoul.

@@ -17,4 +17,8 @@ concepts:
   - "Cancer"
 ---
 
-San Francisco — Daraxonrasib hits KRAS, pancreatic cancer's near-50-year target. KRAS resisted all drugs because its smooth surface offered no binding site; researchers found a hidden pocket and daraxonrasib attacks multiple KRAS variants by surrounding the protein. Revolution Medicines is advancing the drug in trials for pancreatic, lung, and colorectal cancers with KRAS mutations.
+San Francisco — Daraxonrasib hits KRAS, pancreatic cancer's near-50-year target.
+
+KRAS resisted all drugs because its smooth surface offered no binding site; researchers found a hidden pocket and daraxonrasib attacks multiple KRAS variants by surrounding the protein.
+
+Revolution Medicines is advancing the drug in trials for pancreatic, lung, and colorectal cancers with KRAS mutations.

@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — Shipping's global carbon-pricing framework survived US opposition. 3 flag states backed stripping the carbon levy; Pacific islands and the EU held the framework by invoking IMO consensus rules. Adoption is set for December 2026; international shipping represents more than 2% of global emissions, excluded from Paris.
+London — Shipping's global carbon-pricing framework survived US opposition.
+
+3 flag states backed stripping the carbon levy; Pacific islands and the EU held the framework by invoking IMO consensus rules.
+
+Adoption is set for December 2026; international shipping represents more than 2% of global emissions, excluded from Paris.

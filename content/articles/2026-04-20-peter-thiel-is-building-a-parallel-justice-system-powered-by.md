@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-San Francisco — Thiel-backed Objection.ai charges $2,000 to investigate journalists. The [US](country:US) startup employs former intelligence officers and issues binding artificial-intelligence verdicts, cheaper than defamation suits. Targets include the New York Times, Wall Street Journal, and an Amazon warehouse reporter.
+San Francisco — Thiel-backed Objection.ai charges $2,000 to investigate journalists.
+
+The [US](country:US) startup employs former intelligence officers and issues binding artificial-intelligence verdicts, cheaper than defamation suits.
+
+Targets include the New York Times, Wall Street Journal, and an Amazon warehouse reporter.

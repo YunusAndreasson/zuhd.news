@@ -41,4 +41,8 @@ sentimentDivergence: 0.51
 entities: []
 ---
 
-Washington — 54-45: the narrowest Fed confirmation since 1977. A former inflation hawk, Warsh now backs rate cuts, inheriting a [US](country:US) central bank divided as inflation runs at 3.8% annually, a 3-year high. Warsh chairs his first Fed meeting June 16-17; futures markets price 97% odds on no rate change.
+Washington — 54-45: the narrowest Fed confirmation since 1977.
+
+A former inflation hawk, Warsh now backs rate cuts, inheriting a [US](country:US) central bank divided as inflation runs at 3.8% annually, a 3-year high.
+
+Warsh chairs his first Fed meeting June 16-17; futures markets price 97% odds on no rate change.

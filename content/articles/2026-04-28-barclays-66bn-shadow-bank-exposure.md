@@ -27,4 +27,8 @@ entities:
     kind: "stock"
 ---
 
-London — Barclays posted a £228m shadow-banking loss. The bank disclosed £66bn in non-bank exposure as regulators push European lenders to quantify shadow-lending stakes. Barclays' chief executive said the bank will constrain new shadow lending, citing recession risk from leveraged borrowers.
+London — Barclays posted a £228m shadow-banking loss.
+
+The bank disclosed £66bn in non-bank exposure as regulators push European lenders to quantify shadow-lending stakes.
+
+Barclays' chief executive said the bank will constrain new shadow lending, citing recession risk from leveraged borrowers.

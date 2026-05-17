@@ -18,4 +18,8 @@ concepts:
   - "Iran"
 ---
 
-Washington — Democrats will force a second Iran war vote as early as next Wednesday. The first failed 212-219 when Democratic hawks backed a rival bill designed to give Trump another 30 days of bombing authority. Rep. Gregory Meeks, who called the war unauthorized, has said he will wait 60 more days before bringing his own resolution.
+Washington — Democrats will force a second Iran war vote as early as next Wednesday.
+
+The first failed 212-219 when Democratic hawks backed a rival bill designed to give Trump another 30 days of bombing authority.
+
+Rep. Gregory Meeks, who called the war unauthorized, has said he will wait 60 more days before bringing his own resolution.

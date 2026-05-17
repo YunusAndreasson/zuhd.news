@@ -18,4 +18,8 @@ concepts:
   - "Ergonomics"
 ---
 
-San Francisco — A developer filed off their MacBook's sharp corners. The post drew 1,358 Hacker News votes, reflecting a wider frustration: Apple designed the aluminum unibody for visual precision, not wrist comfort. The author offers to help others file theirs; the next MacBook ships with the same corners.
+San Francisco — A developer filed off their MacBook's sharp corners.
+
+The post drew 1,358 Hacker News votes, reflecting a wider frustration: Apple designed the aluminum unibody for visual precision, not wrist comfort.
+
+The author offers to help others file theirs; the next MacBook ships with the same corners.

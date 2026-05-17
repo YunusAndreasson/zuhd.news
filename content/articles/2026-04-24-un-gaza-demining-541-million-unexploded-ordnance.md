@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Gaza — Unexploded ordnance surfaces every 600 meters across the territory. Clearing all ordnance will cost $541 million, the UN Mine Action Service said, as the debris blocks reconstruction across the territory. The ordnance has killed over 1,000 people since the conflict began — most of them children, the UN said.
+Gaza — Unexploded ordnance surfaces every 600 meters across the territory.
+
+Clearing all ordnance will cost $541 million, the UN Mine Action Service said, as the debris blocks reconstruction across the territory.
+
+The ordnance has killed over 1,000 people since the conflict began — most of them children, the UN said.

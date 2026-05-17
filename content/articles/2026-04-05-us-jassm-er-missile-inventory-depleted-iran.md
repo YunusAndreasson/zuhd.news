@@ -17,4 +17,8 @@ concepts:
   - "United States Armed Forces"
 ---
 
-Washington — US JASSM-ER stockpile now stands at 425 missiles. Iran operations consumed over 1,000 of the original 2,300; Lockheed Martin can replace only 400 per year at current production capacity. At that rate, restoring pre-war stockpiles takes until 2029, leaving Pacific Command's deterrence posture materially weakened in the interim.
+Washington — US JASSM-ER stockpile now stands at 425 missiles.
+
+Iran operations consumed over 1,000 of the original 2,300; Lockheed Martin can replace only 400 per year at current production capacity.
+
+At that rate, restoring pre-war stockpiles takes until 2029, leaving Pacific Command's deterrence posture materially weakened in the interim.

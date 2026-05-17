@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Rome — 80% of Italians polled said they are very worried. Defense Minister Crosetto was stranded in Dubai as flights canceled, revealing Washington had not informed Rome before the [US](country:US)-[Israel](country:IL) strikes on [Iran](country:IR). A March justice referendum became a vote on Meloni's complicity.
+Rome — 80% of Italians polled said they are very worried.
+
+Defense Minister Crosetto was stranded in Dubai as flights canceled, revealing Washington had not informed Rome before the [US](country:US)-[Israel](country:IL) strikes on [Iran](country:IR).
+
+A March justice referendum became a vote on Meloni's complicity.

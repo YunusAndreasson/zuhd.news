@@ -17,4 +17,8 @@ concepts:
   - "Phase modulation"
 ---
 
-London — Graphene modulator controls light amplitude and phase simultaneously. Conventional silicon photonics forces a trade-off; this graphene waveguide handles both functions in 105 μm at 20 Gbits/s. The capability enables photonic chip-to-chip interconnects and 6G backhaul, where light must carry both timing and intensity signals.
+London — Graphene modulator controls light amplitude and phase simultaneously.
+
+Conventional silicon photonics forces a trade-off; this graphene waveguide handles both functions in 105 μm at 20 Gbits/s.
+
+The capability enables photonic chip-to-chip interconnects and 6G backhaul, where light must carry both timing and intensity signals.

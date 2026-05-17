@@ -17,4 +17,8 @@ concepts:
   - "Security"
 ---
 
-Cupertino — macOS privacy controls lie about app permissions. Apple's Privacy & Security pane shows permissions the system doesn't enforce — the UI is a reporting layer disconnected from actual access controls. Apple has not responded; there is no published fix, leaving users no reliable way to audit app access.
+Cupertino — macOS privacy controls lie about app permissions.
+
+Apple's Privacy & Security pane shows permissions the system doesn't enforce — the UI is a reporting layer disconnected from actual access controls.
+
+Apple has not responded; there is no published fix, leaving users no reliable way to audit app access.

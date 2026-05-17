@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Bannu — A vehicle bomb hit Fateh Khel police station Saturday. Bannu, in [Pakistan](country:PK)'s Khyber Pakhtunkhwa, has faced repeated militant attacks on police infrastructure — a quadcopter drone explosion injured 8 people the previous day. Casualty figures are unconfirmed; emergency was declared in all 3 Bannu hospitals as a search operation began.
+Bannu — A vehicle bomb hit Fateh Khel police station Saturday.
+
+Bannu, in [Pakistan](country:PK)'s Khyber Pakhtunkhwa, has faced repeated militant attacks on police infrastructure — a quadcopter drone explosion injured 8 people the previous day.
+
+Casualty figures are unconfirmed; emergency was declared in all 3 Bannu hospitals as a search operation began.

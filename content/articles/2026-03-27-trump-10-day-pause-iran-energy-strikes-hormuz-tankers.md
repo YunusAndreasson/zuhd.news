@@ -32,4 +32,8 @@ eventCoverage: 76
 sentimentDivergence: 0.5
 ---
 
-Washington — Trump counts 10 tankers; trackers confirmed 2. Iran permitted a Pakistani-flagged vessel through Hormuz as a goodwill gesture; Islamabad relays messages while Tehran's factions deny any negotiations. The pause expires April 6 — Iran has not confirmed a negotiating partner, and IRGC commanders are still dying.
+Washington — Trump counts 10 tankers; trackers confirmed 2.
+
+Iran permitted a Pakistani-flagged vessel through Hormuz as a goodwill gesture; Islamabad relays messages while Tehran's factions deny any negotiations.
+
+The pause expires April 6 — Iran has not confirmed a negotiating partner, and IRGC commanders are still dying.

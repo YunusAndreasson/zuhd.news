@@ -14,4 +14,6 @@ sources:
 entities: []
 ---
 
-Amsterdam — Rights advocates call AI impersonation a consent violation. They argue users cannot meaningfully agree to data collection when AI poses as human, nor identify who is liable for harmful outputs. 'Anthropomorphism by design' is a proposed regulatory target; no government has moved to restrict it.
+Amsterdam — Rights advocates call AI impersonation a consent violation.
+
+They argue users cannot meaningfully agree to data collection when AI poses as human, nor identify who is liable for harmful outputs. 'Anthropomorphism by design' is a proposed regulatory target; no government has moved to restrict it.

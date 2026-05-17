@@ -17,4 +17,8 @@ concepts:
   - "Collusion"
 ---
 
-Singapore — Ellison's $22 FTT floor price triggered FTX's collapse. Professional traders immediately shorted through that level, collapsing the token to $5 as $6 billion exited FTX within 72 hours. A Signal group connecting Zhao, SBF, Coinbase, and Kraken during the collapse later drew DOJ and SEC collusion scrutiny.
+Singapore — Ellison's $22 FTT floor price triggered FTX's collapse.
+
+Professional traders immediately shorted through that level, collapsing the token to $5 as $6 billion exited FTX within 72 hours.
+
+A Signal group connecting Zhao, SBF, Coinbase, and Kraken during the collapse later drew DOJ and SEC collusion scrutiny.

@@ -40,4 +40,8 @@ sentimentDivergence: 0.78
 entities: []
 ---
 
-Bratislava — Robert Fico, [Slovakia](country:SK)'s prime minister, plans to visit Moscow for Russia's Victory Day on May 9. He told reporters Trump's decisions alone now determine European energy prices, not market forces. Both leaders agreed to meet May 4 in Yerevan; energy transit and war terms remain unresolved.
+Bratislava — Robert Fico, [Slovakia](country:SK)'s prime minister, plans to visit Moscow for Russia's Victory Day on May 9.
+
+He told reporters Trump's decisions alone now determine European energy prices, not market forces.
+
+Both leaders agreed to meet May 4 in Yerevan; energy transit and war terms remain unresolved.

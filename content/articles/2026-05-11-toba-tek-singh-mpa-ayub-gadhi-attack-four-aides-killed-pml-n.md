@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Toba Tek Singh — 4 aides died; lawmaker Gadhi survived critically wounded. 8 gunmen ambushed the [Pakistan](country:PK) Muslim League-N politician's estate; Zaigham Abbas, Nadim Noor, Khaliqdad and Haq Nawaz were killed. Police launched raids; no arrests confirmed Sunday night.
+Toba Tek Singh — 4 aides died; lawmaker Gadhi survived critically wounded.
+
+8 gunmen ambushed the [Pakistan](country:PK) Muslim League-N politician's estate; Zaigham Abbas, Nadim Noor, Khaliqdad and Haq Nawaz were killed.
+
+Police launched raids; no arrests confirmed Sunday night.

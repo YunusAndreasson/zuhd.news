@@ -17,4 +17,8 @@ concepts:
   - "2007–2008 financial crisis"
 ---
 
-New York — The Walmart Recession Signal hit its highest level since 2008. The measure tracks Walmart stock outperforming luxury retail as households trade down; Iran-driven oil prices compound the stress. Economist Jim Paulsen forecasts slowdown over recession, but flags hiring cracks and credit withdrawal as the window narrows.
+New York — The Walmart Recession Signal hit its highest level since 2008.
+
+The measure tracks Walmart stock outperforming luxury retail as households trade down; Iran-driven oil prices compound the stress.
+
+Economist Jim Paulsen forecasts slowdown over recession, but flags hiring cracks and credit withdrawal as the window narrows.

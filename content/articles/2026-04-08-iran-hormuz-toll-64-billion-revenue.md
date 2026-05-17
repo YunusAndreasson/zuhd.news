@@ -17,4 +17,6 @@ concepts:
   - "Ceasefire"
 ---
 
-Tehran — Iran floated a $64B annual toll on Hormuz. Iran's state broadcaster priced the strait at $2M per vessel; at 32,000 annual transits, the toll would yield $64B. April 10 talks in Islamabad will determine whether Iran's $2M toll becomes a permanent condition of Hormuz access.
+Tehran — Iran floated a $64B annual toll on Hormuz.
+
+Iran's state broadcaster priced the strait at $2M per vessel; at 32,000 annual transits, the toll would yield $64B. April 10 talks in Islamabad will determine whether Iran's $2M toll becomes a permanent condition of Hormuz access.

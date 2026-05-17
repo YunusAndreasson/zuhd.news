@@ -15,4 +15,8 @@ concepts:
   - "Artifact (archaeology)"
 ---
 
-Fort Collins — Native Americans were playing dice 12,000 years ago. 565 dice from 45 sites show structured, rule-based games 6,000 years before Bronze Age Mesopotamia recognized probability. The paper demands historians trace probability's origins to Ice Age North America, not the Bronze Age.
+Fort Collins — Native Americans were playing dice 12,000 years ago.
+
+565 dice from 45 sites show structured, rule-based games 6,000 years before Bronze Age Mesopotamia recognized probability.
+
+The paper demands historians trace probability's origins to Ice Age North America, not the Bronze Age.

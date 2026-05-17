@@ -33,4 +33,8 @@ concepts:
 sentimentDivergence: 0.59
 ---
 
-Istanbul — Russian strikes killed 5 civilians in Nikopol hours before Zelensky arrived for talks. Erdogan hosted Zelensky for 2 hours after speaking with Putin on Friday, pledging support for negotiations and Black Sea shipping. Ukraine is pushing for an Orthodox Easter ceasefire; Russia's response will test whether Erdogan's mediation holds.
+Istanbul — Russian strikes killed 5 civilians in Nikopol hours before Zelensky arrived for talks.
+
+Erdogan hosted Zelensky for 2 hours after speaking with Putin on Friday, pledging support for negotiations and Black Sea shipping.
+
+Ukraine is pushing for an Orthodox Easter ceasefire; Russia's response will test whether Erdogan's mediation holds.

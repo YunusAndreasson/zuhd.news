@@ -17,4 +17,8 @@ concepts:
   - "Freedom of expression"
 ---
 
-Cairo — Egypt extended Ahmed Douma's detention 15 more days. Egypt pardoned him in 2023 after 10 years in prison; he was re-arrested for writing about his own imprisonment. A judge will decide whether to free the man Cairo has summoned 7 times since his release.
+Cairo — Egypt extended Ahmed Douma's detention 15 more days.
+
+Egypt pardoned him in 2023 after 10 years in prison; he was re-arrested for writing about his own imprisonment.
+
+A judge will decide whether to free the man Cairo has summoned 7 times since his release.

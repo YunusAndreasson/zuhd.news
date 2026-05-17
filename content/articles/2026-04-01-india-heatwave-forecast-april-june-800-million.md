@@ -16,4 +16,8 @@ concepts:
   - "India Meteorological Department"
 ---
 
-New Delhi — India faces more heatwave days through June. India's meteorological office forecasts above-normal heatwave frequency through June; above-normal minimum temperatures will push up cooling demand across nearly the whole country. Peak cooling demand arrives as India's fuel costs from the Iran war have doubled since March.
+New Delhi — India faces more heatwave days through June.
+
+India's meteorological office forecasts above-normal heatwave frequency through June; above-normal minimum temperatures will push up cooling demand across nearly the whole country.
+
+Peak cooling demand arrives as India's fuel costs from the Iran war have doubled since March.

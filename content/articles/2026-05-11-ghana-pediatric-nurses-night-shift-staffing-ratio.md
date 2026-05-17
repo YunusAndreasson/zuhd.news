@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Tamale — 1 in 5 pediatric nurses has severe daytime sleepiness after night shifts. A study of 175 nurses in [Ghana](country:GH)'s Tamale Metropolis found shift-scheduling ratios are the dominant predictor of physiological harm. Researchers called on [Ghana](country:GH)'s Health Service to revise night-shift ratios — a change they say requires no new funding.
+Tamale — 1 in 5 pediatric nurses has severe daytime sleepiness after night shifts.
+
+A study of 175 nurses in [Ghana](country:GH)'s Tamale Metropolis found shift-scheduling ratios are the dominant predictor of physiological harm.
+
+Researchers called on [Ghana](country:GH)'s Health Service to revise night-shift ratios — a change they say requires no new funding.

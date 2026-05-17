@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Wukari — 98,000 have fled violence in [Nigeria](country:NG)'s southern Taraba State, the Catholic Diocese of Wukari documented. The diocese counted over 100 killed and 217 churches destroyed in attacks since September 2025. It called on Abuja to enable the displaced to return; armed groups have seized ancestral farmland.
+Wukari — 98,000 have fled violence in [Nigeria](country:NG)'s southern Taraba State, the Catholic Diocese of Wukari documented.
+
+The diocese counted over 100 killed and 217 churches destroyed in attacks since September 2025.
+
+It called on Abuja to enable the displaced to return; armed groups have seized ancestral farmland.

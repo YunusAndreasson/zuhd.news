@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-New York — Doron Zeilberger argues infinity is physically unreal. Ultrafinitism holds that numbers beyond feasible computation do not exist, a position quantum gravity researchers invoke when modeling discrete spacetime. Whether physics can replace continuous mathematics with finite models remains unresolved.
+New York — Doron Zeilberger argues infinity is physically unreal.
+
+Ultrafinitism holds that numbers beyond feasible computation do not exist, a position quantum gravity researchers invoke when modeling discrete spacetime.
+
+Whether physics can replace continuous mathematics with finite models remains unresolved.

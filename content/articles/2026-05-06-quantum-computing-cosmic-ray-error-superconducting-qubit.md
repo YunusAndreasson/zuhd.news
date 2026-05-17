@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — Ionizing radiation disrupts quantum chips despite error correction. Particles hit the silicon substrate, spawning quasiparticles that break qubits even under active error correction. The fix requires physical shielding or building processors underground — an architectural constraint that pushes back practical quantum-computing timelines.
+London — Ionizing radiation disrupts quantum chips despite error correction.
+
+Particles hit the silicon substrate, spawning quasiparticles that break qubits even under active error correction.
+
+The fix requires physical shielding or building processors underground — an architectural constraint that pushes back practical quantum-computing timelines.

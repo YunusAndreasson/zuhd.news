@@ -18,4 +18,8 @@ concepts:
   - "CMIP6"
 ---
 
-Islamabad — Pakistan's northern highlands face double the flood rain by 2100. CMIP6 models project monthly peak rainfall of 130-150 mm in northern zones by late century, nearly double the 1985-2014 baseline under high emissions. Central and southern zones face amplified flash floods; western coasts see declining totals but more intense bursts.
+Islamabad — Pakistan's northern highlands face double the flood rain by 2100.
+
+CMIP6 models project monthly peak rainfall of 130-150 mm in northern zones by late century, nearly double the 1985-2014 baseline under high emissions.
+
+Central and southern zones face amplified flash floods; western coasts see declining totals but more intense bursts.

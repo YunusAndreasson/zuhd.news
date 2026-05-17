@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — Autonomous labs have largely solved robotic movement; experiment-selection models are now the constraint. An npj Robotics review found actuation sufficient while closed-loop decision models remain unresolved. Reproducibility audits and cross-lab generalizability are the unsolved limits on autonomous-lab deployment.
+London — Autonomous labs have largely solved robotic movement; experiment-selection models are now the constraint.
+
+An npj Robotics review found actuation sufficient while closed-loop decision models remain unresolved.
+
+Reproducibility audits and cross-lab generalizability are the unsolved limits on autonomous-lab deployment.

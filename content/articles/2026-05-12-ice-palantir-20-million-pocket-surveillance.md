@@ -16,4 +16,8 @@ concepts: []
 entities: []
 ---
 
-Phoenix — A trade show exposed a 20-million-person phone database built for [US](country:US) immigration enforcement. An Immigration and Customs Enforcement official described it at the expo, not in congressional testimony. The Palantir-built dataset's composition and inclusion criteria have not been disclosed.
+Phoenix — A trade show exposed a 20-million-person phone database built for [US](country:US) immigration enforcement.
+
+An Immigration and Customs Enforcement official described it at the expo, not in congressional testimony.
+
+The Palantir-built dataset's composition and inclusion criteria have not been disclosed.

@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — 5 Islamabad High Court judges face forced transfer. [Pakistan](country:PK)'s 27th Constitutional Amendment stripped judges' right to refuse; the Judicial Commission can now rotate courts without overturning their rulings. The commission meets April 28; judges who refuse face removal proceedings under Article 209 of the constitution.
+Islamabad — 5 Islamabad High Court judges face forced transfer.
+
+[Pakistan](country:PK)'s 27th Constitutional Amendment stripped judges' right to refuse; the Judicial Commission can now rotate courts without overturning their rulings.
+
+The commission meets April 28; judges who refuse face removal proceedings under Article 209 of the constitution.

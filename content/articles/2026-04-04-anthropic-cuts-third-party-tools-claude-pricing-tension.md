@@ -18,4 +18,8 @@ concepts:
   - "OpenAI"
 ---
 
-San Francisco — Anthropic blocks third-party tools from Claude subscriptions. Agent-driven tools like OpenClaw hammer Claude with round-the-clock requests; flat-rate subscriptions assumed average usage patterns that agent systems blow apart. From April 5, external tool users must buy usage packages or supply their own API keys.
+San Francisco — Anthropic blocks third-party tools from Claude subscriptions.
+
+Agent-driven tools like OpenClaw hammer Claude with round-the-clock requests; flat-rate subscriptions assumed average usage patterns that agent systems blow apart.
+
+From April 5, external tool users must buy usage packages or supply their own API keys.

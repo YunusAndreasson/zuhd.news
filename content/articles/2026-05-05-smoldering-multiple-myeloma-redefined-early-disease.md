@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-London — Daratumumab won [US](country:US) approval for pre-symptomatic myeloma. Smoldering myeloma — long a "watch-and-wait" precursor — is reclassifying as active disease after clonal data showed early intervention extends survival. Researchers now ask whether any smoldering myeloma category survives, or splits into early myeloma and benign gammopathies.
+London — Daratumumab won [US](country:US) approval for pre-symptomatic myeloma.
+
+Smoldering myeloma — long a "watch-and-wait" precursor — is reclassifying as active disease after clonal data showed early intervention extends survival.
+
+Researchers now ask whether any smoldering myeloma category survives, or splits into early myeloma and benign gammopathies.

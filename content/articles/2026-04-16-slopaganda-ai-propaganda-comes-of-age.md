@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Washington — Trump posted AI-generated images of himself as Christ. AI propaganda no longer needs to convince skeptics — it reinforces believers at mass scale for near-zero cost. Iranian-sympathetic accounts massed millions of views mocking US losses; the same generation tools are available to any state.
+Washington — Trump posted AI-generated images of himself as Christ.
+
+AI propaganda no longer needs to convince skeptics — it reinforces believers at mass scale for near-zero cost.
+
+Iranian-sympathetic accounts massed millions of views mocking US losses; the same generation tools are available to any state.

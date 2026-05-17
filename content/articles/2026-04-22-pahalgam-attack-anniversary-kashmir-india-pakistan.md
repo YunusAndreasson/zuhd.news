@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.16
 ---
 
-Pahalgam — 26 tourists shot at Baisaran a year ago. That attack by Lashkar-e-Taiba triggered Operation Sindoor, escalating to 4 days of military exchanges before a May 10 ceasefire. [India](country:IN)'s Defence Minister Rajnath Singh warned of further force; [Pakistan](country:PK) has not resumed formal dialogue.
+Pahalgam — 26 tourists shot at Baisaran a year ago.
+
+That attack by Lashkar-e-Taiba triggered Operation Sindoor, escalating to 4 days of military exchanges before a May 10 ceasefire.
+
+[India](country:IN)'s Defence Minister Rajnath Singh warned of further force; [Pakistan](country:PK) has not resumed formal dialogue.

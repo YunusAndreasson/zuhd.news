@@ -25,4 +25,8 @@ concepts:
 sentimentDivergence: 0.01
 ---
 
-Paris — France bans new gas boilers; doubles electrification funding. Lecornu committed €10 billion yearly by 2030 to fund heat pumps, EVs, and social housing — diverting existing spending, not new debt. France's 2022 energy subsidies left it with the eurozone's largest deficit; Lecornu explicitly rejected repeating that mistake.
+Paris — France bans new gas boilers; doubles electrification funding.
+
+Lecornu committed €10 billion yearly by 2030 to fund heat pumps, EVs, and social housing — diverting existing spending, not new debt.
+
+France's 2022 energy subsidies left it with the eurozone's largest deficit; Lecornu explicitly rejected repeating that mistake.

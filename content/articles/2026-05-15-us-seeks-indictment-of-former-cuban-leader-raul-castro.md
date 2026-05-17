@@ -30,4 +30,6 @@ concepts:
 entities: []
 ---
 
-Washington — The Central Intelligence Agency offered [Cuba](country:CU) $100m before charges were filed. The Justice Department indicts Raúl Castro, 94, over the 1996 shootdown of 4 exile pilots as [the US](country:US) pushes a "friendly takeover." A grand jury must still approve; Castro's grandson has met Secretary Rubio.
+Washington — The Central Intelligence Agency offered [Cuba](country:CU) $100m before charges were filed.
+
+The Justice Department indicts Raúl Castro, 94, over the 1996 shootdown of 4 exile pilots as [the US](country:US) pushes a "friendly takeover." A grand jury must still approve; Castro's grandson has met Secretary Rubio.

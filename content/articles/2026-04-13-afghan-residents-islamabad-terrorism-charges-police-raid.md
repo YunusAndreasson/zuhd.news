@@ -17,4 +17,8 @@ concepts:
   - "Submachine gun"
 ---
 
-Islamabad — Pakistan charged 23 Afghan residents with terrorism Sunday. Section 7 of Pakistan's Anti-Terrorism Act — written for armed militants — was applied to civilians who resisted a neighborhood search operation. Counter-terrorism units pursued more suspects who fled; 23 remain held with no hearing date under the terrorism charges.
+Islamabad — Pakistan charged 23 Afghan residents with terrorism Sunday.
+
+Section 7 of Pakistan's Anti-Terrorism Act — written for armed militants — was applied to civilians who resisted a neighborhood search operation.
+
+Counter-terrorism units pursued more suspects who fled; 23 remain held with no hearing date under the terrorism charges.

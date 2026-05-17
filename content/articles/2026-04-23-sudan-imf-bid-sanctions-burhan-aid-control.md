@@ -11,4 +11,8 @@ sources:
     country: "EG"
 ---
 
-Khartoum — US sanctions barred Finance Minister Gibril Ibrahim from Washington. His delegation sought to unfreeze $1.8 billion in World Bank grants frozen since the 2021 coup. President Burhan flew to [Saudi Arabia](country:SA) to lobby against routing aid around the [Sudanese](country:SD) state.
+Khartoum — US sanctions barred Finance Minister Gibril Ibrahim from Washington.
+
+His delegation sought to unfreeze $1.8 billion in World Bank grants frozen since the 2021 coup.
+
+President Burhan flew to [Saudi Arabia](country:SA) to lobby against routing aid around the [Sudanese](country:SD) state.

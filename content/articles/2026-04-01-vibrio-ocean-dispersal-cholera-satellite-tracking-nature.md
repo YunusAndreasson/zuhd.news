@@ -16,4 +16,8 @@ concepts:
   - "Marine microorganisms"
 ---
 
-London — Cholera bacteria crosses oceans in under 18 months. Researchers mapped Vibrio's dispersal using 40 terabases of metagenomics and satellite data, finding microplankton governs transcontinental spread. Outbreaks in Yemen, Bangladesh, and East Africa may share corridors scientists can now trace.
+London — Cholera bacteria crosses oceans in under 18 months.
+
+Researchers mapped Vibrio's dispersal using 40 terabases of metagenomics and satellite data, finding microplankton governs transcontinental spread.
+
+Outbreaks in Yemen, Bangladesh, and East Africa may share corridors scientists can now trace.

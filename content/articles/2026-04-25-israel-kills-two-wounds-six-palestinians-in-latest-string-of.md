@@ -26,4 +26,8 @@ sentimentDivergence: 0.25
 entities: []
 ---
 
-Gaza — [Israel](country:IL) killed a child among 3 Palestinians Saturday. Strikes hit Sheikh Radwan, Jabalia, and Al-Dahyan School in 4 attacks, violating the October 2025 ceasefire. Medical sources count 72,585 Palestinians killed since October 2023; the ceasefire has no enforcement mechanism.
+Gaza — [Israel](country:IL) killed a child among 3 Palestinians Saturday.
+
+Strikes hit Sheikh Radwan, Jabalia, and Al-Dahyan School in 4 attacks, violating the October 2025 ceasefire.
+
+Medical sources count 72,585 Palestinians killed since October 2023; the ceasefire has no enforcement mechanism.

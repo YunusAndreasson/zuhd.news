@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Bajaur — 4 soldiers died repelling a militant assault on a [Pakistan](country:PK) army camp. The Tehreek-i-Taliban Pakistan claimed it — the 4th multi-casualty assault in Khyber Pakhtunkhwa this month. Provincial militant fatalities rose from 1,620 to 2,331 in 2025, a security research center reported; no reinforcements announced.
+Bajaur — 4 soldiers died repelling a militant assault on a [Pakistan](country:PK) army camp.
+
+The Tehreek-i-Taliban Pakistan claimed it — the 4th multi-casualty assault in Khyber Pakhtunkhwa this month.
+
+Provincial militant fatalities rose from 1,620 to 2,331 in 2025, a security research center reported; no reinforcements announced.

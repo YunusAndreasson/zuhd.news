@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Hawthorne — SpaceX filed for an initial public offering. The $350 billion company would expose its government launch contracts to public scrutiny — Musk directs federal space policy as a DOGE official. SEC filings will disclose SpaceX's revenue from classified Pentagon contracts for the first time, forcing conflict-of-interest scrutiny.
+Hawthorne — SpaceX filed for an initial public offering.
+
+The $350 billion company would expose its government launch contracts to public scrutiny — Musk directs federal space policy as a DOGE official.
+
+SEC filings will disclose SpaceX's revenue from classified Pentagon contracts for the first time, forcing conflict-of-interest scrutiny.

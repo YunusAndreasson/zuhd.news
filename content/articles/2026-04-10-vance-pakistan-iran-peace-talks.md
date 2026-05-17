@@ -25,4 +25,8 @@ concepts:
 sentimentDivergence: 0.38
 ---
 
-Islamabad — Vance arrived Friday for direct Iran talks. The mission, joined by Kushner and Witkoff, is the highest-level US-Iran engagement since Pakistan brokered the ceasefire last week. Trump warned Iran it is "alive only to negotiate" — a failed session restarts US strikes.
+Islamabad — Vance arrived Friday for direct Iran talks.
+
+The mission, joined by Kushner and Witkoff, is the highest-level US-Iran engagement since Pakistan brokered the ceasefire last week.
+
+Trump warned Iran it is "alive only to negotiate" — a failed session restarts US strikes.

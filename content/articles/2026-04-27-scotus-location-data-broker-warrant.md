@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Washington — The Supreme Court signaled geofence searches require a warrant. The 2018 Carpenter ruling required warrants for [US](country:US) carrier location records but left commercial brokers uncovered; justices' questions suggested that gap closes. A ruling against broker purchases would end warrantless location access by immigration agents and the Federal Bureau of Investigation.
+Washington — The Supreme Court signaled geofence searches require a warrant.
+
+The 2018 Carpenter ruling required warrants for [US](country:US) carrier location records but left commercial brokers uncovered; justices' questions suggested that gap closes.
+
+A ruling against broker purchases would end warrantless location access by immigration agents and the Federal Bureau of Investigation.

@@ -16,4 +16,8 @@ concepts:
   - "Surveillance"
 ---
 
-Philadelphia — Courts banned all smart eyewear starting next week. The ruling cites AI recording and facial recognition in Meta Ray-Bans and equivalents, banning the product category before any specific misuse occurred. No other US court has a matching ban; Philadelphia's ruling sets the first categorical precedent for wearable AI.
+Philadelphia — Courts banned all smart eyewear starting next week.
+
+The ruling cites AI recording and facial recognition in Meta Ray-Bans and equivalents, banning the product category before any specific misuse occurred.
+
+No other US court has a matching ban; Philadelphia's ruling sets the first categorical precedent for wearable AI.

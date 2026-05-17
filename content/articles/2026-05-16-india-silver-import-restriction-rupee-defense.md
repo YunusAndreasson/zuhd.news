@@ -31,4 +31,6 @@ entities:
     kind: "currency"
 ---
 
-New Delhi — [India](country:IN) reclassified silver imports from "free" to "restricted." The Directorate General of Foreign Trade notification, effective immediately, requires government licenses for silver bars as the rupee hits an all-time low. The Reserve Bank of India has also proposed reducing taxes on foreign bond investors to attract inflows.
+New Delhi — [India](country:IN) reclassified silver imports from "free" to "restricted." The Directorate General of Foreign Trade notification, effective immediately, requires government licenses for silver bars as the rupee hits an all-time low.
+
+The Reserve Bank of India has also proposed reducing taxes on foreign bond investors to attract inflows.

@@ -17,4 +17,8 @@ concepts:
   - "COVID-19 vaccine"
 ---
 
-Atlanta — BA.3.2 carries 75 spike-protein mutations. Current vaccines target JN.1; BA.3.2 evades those antibodies and has spread to 23 countries. A formulation decision is pending; if a surge hits, updated boosters cannot reach scale for months.
+Atlanta — BA.3.2 carries 75 spike-protein mutations.
+
+Current vaccines target JN.1; BA.3.2 evades those antibodies and has spread to 23 countries.
+
+A formulation decision is pending; if a surge hits, updated boosters cannot reach scale for months.

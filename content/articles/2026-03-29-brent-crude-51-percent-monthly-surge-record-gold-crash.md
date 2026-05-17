@@ -17,4 +17,8 @@ concepts:
   - "Iran"
 ---
 
-London — Brent crude rose 51% in March — a record. The Iran war knocked 9 million barrels per day off global supply, while gold fell 15% as investors covered margin calls. Hormuz reopening inside Trump's 10-day deadline is the next price signal.
+London — Brent crude rose 51% in March — a record.
+
+The Iran war knocked 9 million barrels per day off global supply, while gold fell 15% as investors covered margin calls.
+
+Hormuz reopening inside Trump's 10-day deadline is the next price signal.

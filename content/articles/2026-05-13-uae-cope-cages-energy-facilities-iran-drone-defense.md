@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Dubai — Steel cope cages, adapted from Russian tank armor, now protect fuel tanks near Dubai's airport. The [UAE](country:AE) has scaled the technique to cover entire refineries against drone attacks on energy facilities. The cages stop one-way attack drones but not ballistic missiles; [Iran](country:IR) retains both, intelligence assessments show.
+Dubai — Steel cope cages, adapted from Russian tank armor, now protect fuel tanks near Dubai's airport.
+
+The [UAE](country:AE) has scaled the technique to cover entire refineries against drone attacks on energy facilities.
+
+The cages stop one-way attack drones but not ballistic missiles; [Iran](country:IR) retains both, intelligence assessments show.

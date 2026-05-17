@@ -18,4 +18,8 @@ concepts:
   - "Strait of Hormuz"
 ---
 
-Islamabad — Qatar declared force majeure on all LNG contracts last month, cutting cargoes to [Pakistan](country:PK) already strained by Iran-war supply disruptions. [Azerbaijan](country:AZ)'s state energy company SOCAR says a 2025 framework agreement lets Islamabad request cargoes immediately under an accelerated procedure, offering a non-Gulf supply route via Turkey's LNG corridors. Pakistan has not yet submitted a formal request; Qatar discussions continue but require transit through the Strait of Hormuz.
+Islamabad — Qatar declared force majeure on all LNG contracts last month, cutting cargoes to [Pakistan](country:PK) already strained by Iran-war supply disruptions.
+
+[Azerbaijan](country:AZ)'s state energy company SOCAR says a 2025 framework agreement lets Islamabad request cargoes immediately under an accelerated procedure, offering a non-Gulf supply route via Turkey's LNG corridors.
+
+Pakistan has not yet submitted a formal request; Qatar discussions continue but require transit through the Strait of Hormuz.

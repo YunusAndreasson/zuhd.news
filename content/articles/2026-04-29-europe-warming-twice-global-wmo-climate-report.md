@@ -29,4 +29,8 @@ concepts:
 entities: []
 ---
 
-Brussels — Europe's 2025 heat broke continental records. The World Meteorological Organization said the continent has warmed at twice the global average since 1980, with 2025 adding record wildfires, glacial melt, and marine heatwaves. Renewables reached 46% of European electricity but emissions are not falling at the rate the organization says is needed.
+Brussels — Europe's 2025 heat broke continental records.
+
+The World Meteorological Organization said the continent has warmed at twice the global average since 1980, with 2025 adding record wildfires, glacial melt, and marine heatwaves.
+
+Renewables reached 46% of European electricity but emissions are not falling at the rate the organization says is needed.

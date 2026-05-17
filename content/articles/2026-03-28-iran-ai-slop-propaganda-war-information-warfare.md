@@ -17,4 +17,8 @@ concepts:
   - "Information warfare"
 ---
 
-Washington — Iran's AI propaganda is out-competing Washington's own. Iranian AI content resonates because it shows real destruction; US memes target a shrinking base, as 61% of Americans oppose the war. The same AI tools produce radically different information warfare outcomes depending on who controls the ground truth.
+Washington — Iran's AI propaganda is out-competing Washington's own.
+
+Iranian AI content resonates because it shows real destruction; US memes target a shrinking base, as 61% of Americans oppose the war.
+
+The same AI tools produce radically different information warfare outcomes depending on who controls the ground truth.

@@ -28,4 +28,8 @@ concepts:
 entities: []
 ---
 
-London — Primark generates over half of Associated British Foods' profit but trades at a discount to fashion peers. Food subsidiaries obscure its value, analysts said; the conglomerate will list Primark separately by end-2027. [UK](country:GB) shareholders will hold stakes in both entities after the demerger.
+London — Primark generates over half of Associated British Foods' profit but trades at a discount to fashion peers.
+
+Food subsidiaries obscure its value, analysts said; the conglomerate will list Primark separately by end-2027.
+
+[UK](country:GB) shareholders will hold stakes in both entities after the demerger.

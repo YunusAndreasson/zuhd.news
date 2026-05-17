@@ -19,4 +19,8 @@ concepts:
   - "Auvere Power Plant"
 ---
 
-Narva — Drones struck NATO territory on Wednesday: one hit the smokestack of Estonia's Auvere power plant, another crashed near Latvia's Russian border the same morning. KAPO, Estonia's security agency, assessed the Auvere drone drifted from Russia unintentionally — collateral from Ukraine's concurrent attack on Russia's Ust-Luga port, not a directed strike. KAPO chief Margo Palloson warned more such incidents should be expected; Estonia convened an emergency government session.
+Narva — Drones struck NATO territory on Wednesday: one hit the smokestack of Estonia's Auvere power plant, another crashed near Latvia's Russian border the same morning.
+
+KAPO, Estonia's security agency, assessed the Auvere drone drifted from Russia unintentionally — collateral from Ukraine's concurrent attack on Russia's Ust-Luga port, not a directed strike.
+
+KAPO chief Margo Palloson warned more such incidents should be expected; Estonia convened an emergency government session.

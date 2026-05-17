@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Capua — Engineers deliberately cracked Space Rider's heat shield. Italy's aerospace lab subjected a pre-damaged sample to 1,200°C plasma for 600 seconds; the impact hole held unchanged, validating ISiComp ceramic composite for debris-struck reentry. Space Rider's demonstration flight on Vega C is scheduled for 2028, with 18 customers signed on.
+Capua — Engineers deliberately cracked Space Rider's heat shield.
+
+Italy's aerospace lab subjected a pre-damaged sample to 1,200°C plasma for 600 seconds; the impact hole held unchanged, validating ISiComp ceramic composite for debris-struck reentry.
+
+Space Rider's demonstration flight on Vega C is scheduled for 2028, with 18 customers signed on.

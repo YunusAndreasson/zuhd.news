@@ -19,4 +19,8 @@ concepts:
 eventCoverage: 29
 ---
 
-Tehran — Iran executed 1,639 people in 2025. Drug offenses accounted for nearly half; Baluch and Kurdish minorities — both predominantly Sunni in a Shia-majority state — were disproportionately targeted among those hanged. Iran Human Rights warns hundreds of January protesters remain charged with capital offenses and face execution.
+Tehran — Iran executed 1,639 people in 2025.
+
+Drug offenses accounted for nearly half; Baluch and Kurdish minorities — both predominantly Sunni in a Shia-majority state — were disproportionately targeted among those hanged.
+
+Iran Human Rights warns hundreds of January protesters remain charged with capital offenses and face execution.

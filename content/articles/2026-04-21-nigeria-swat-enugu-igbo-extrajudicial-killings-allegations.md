@@ -17,4 +17,8 @@ concepts:
   - "EndSARS"
 ---
 
-Enugu — [Nigeria](country:NG)'s police allegedly executes Igbo detainees without trial. The Special Weapons and Tactics unit replaced SARS, disbanded after the 2020 EndSARS protests for the same pattern of unlawful killings. Enugu's police commissioner called the video "misleading and unverified"; no independent investigation has been announced.
+Enugu — [Nigeria](country:NG)'s police allegedly executes Igbo detainees without trial.
+
+The Special Weapons and Tactics unit replaced SARS, disbanded after the 2020 EndSARS protests for the same pattern of unlawful killings.
+
+Enugu's police commissioner called the video "misleading and unverified"; no independent investigation has been announced.

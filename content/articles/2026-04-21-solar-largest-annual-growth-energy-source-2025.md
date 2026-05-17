@@ -17,4 +17,8 @@ concepts:
   - "Battery storage"
 ---
 
-Washington — 2025 solar growth broke every prior energy record. [China](country:CN) drove 60% of renewable growth; the EIA found solar output reached 2,700 terawatt-hours — double 2022 — outpacing all new electricity demand. Battery additions hit 110 gigawatts in 2025, the EIA said — above natural gas's single-year peak.
+Washington — 2025 solar growth broke every prior energy record.
+
+[China](country:CN) drove 60% of renewable growth; the EIA found solar output reached 2,700 terawatt-hours — double 2022 — outpacing all new electricity demand.
+
+Battery additions hit 110 gigawatts in 2025, the EIA said — above natural gas's single-year peak.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Manila — Bato dela Rosa is barricading his Senate office. The ICC unsealed a warrant for the former police chief over extrajudicial killings in [the Philippines](country:PH)' Duterte-era drug war. President Marcos's government faces a decision on whether to execute the warrant against a sitting senator.
+Manila — Bato dela Rosa is barricading his Senate office.
+
+The ICC unsealed a warrant for the former police chief over extrajudicial killings in [the Philippines](country:PH)' Duterte-era drug war.
+
+President Marcos's government faces a decision on whether to execute the warrant against a sitting senator.

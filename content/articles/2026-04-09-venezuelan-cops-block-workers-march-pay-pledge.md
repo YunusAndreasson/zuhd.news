@@ -19,4 +19,8 @@ concepts:
 eventCoverage: 51
 ---
 
-Caracas — Police gassed pensioners marching toward Miraflores palace. Venezuela's minimum wage is 130 bolivars — under $0.30 a month — unchanged as inflation has erased public sector pay. Acting President Rodríguez promised a raise from May 1 without specifying the amount.
+Caracas — Police gassed pensioners marching toward Miraflores palace.
+
+Venezuela's minimum wage is 130 bolivars — under $0.30 a month — unchanged as inflation has erased public sector pay.
+
+Acting President Rodríguez promised a raise from May 1 without specifying the amount.

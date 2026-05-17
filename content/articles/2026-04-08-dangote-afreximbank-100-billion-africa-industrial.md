@@ -18,4 +18,8 @@ concepts:
   - "Nigeria"
 ---
 
-Lagos — Dangote targets $100 billion annual revenue by 2030. Afreximbank signed a $2.5 billion facility to expand the refinery from 650,000 to 1.4 million barrels daily. The $40 billion expansion would make Dangote the world's largest urea producer, backed by African capital.
+Lagos — Dangote targets $100 billion annual revenue by 2030.
+
+Afreximbank signed a $2.5 billion facility to expand the refinery from 650,000 to 1.4 million barrels daily.
+
+The $40 billion expansion would make Dangote the world's largest urea producer, backed by African capital.

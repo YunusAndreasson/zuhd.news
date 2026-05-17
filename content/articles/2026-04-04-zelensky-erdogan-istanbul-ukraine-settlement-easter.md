@@ -24,4 +24,8 @@ concepts:
 sentimentDivergence: 0.05
 ---
 
-Istanbul — Zelensky landed at Dolmabahce Palace on Orthodox Easter. Turkey is the only NATO member in direct contact with both Kyiv and Moscow — Erdogan had called Putin the day before. Kyiv wants an Easter energy infrastructure truce; Russia's foreign ministry had already dismissed any ceasefire proposal as a "PR stunt."
+Istanbul — Zelensky landed at Dolmabahce Palace on Orthodox Easter.
+
+Turkey is the only NATO member in direct contact with both Kyiv and Moscow — Erdogan had called Putin the day before.
+
+Kyiv wants an Easter energy infrastructure truce; Russia's foreign ministry had already dismissed any ceasefire proposal as a "PR stunt."

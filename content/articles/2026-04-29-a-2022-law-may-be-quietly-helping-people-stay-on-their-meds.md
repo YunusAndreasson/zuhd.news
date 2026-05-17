@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Washington — [US](country:US) pharma companies warned price caps would cut patient access; early data says the opposite. Medicare beneficiaries are skipping fewer doses since the Inflation Reduction Act capped drug costs, though no controlled trial has confirmed the effect. Whether Congress extends the cap is unresolved.
+Washington — [US](country:US) pharma companies warned price caps would cut patient access; early data says the opposite.
+
+Medicare beneficiaries are skipping fewer doses since the Inflation Reduction Act capped drug costs, though no controlled trial has confirmed the effect.
+
+Whether Congress extends the cap is unresolved.

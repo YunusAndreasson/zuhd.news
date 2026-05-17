@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Pangkor — Local fishermen rescued 23 before official search arrived. 37 undocumented migrants left [Indonesia](country:ID) on May 9 for [Malaysia](country:MY) on a boat that capsized off Pangkor; 14 remain missing. Malaysia's maritime enforcement has deployed 2 vessels and a helicopter; the 14 have not been found.
+Pangkor — Local fishermen rescued 23 before official search arrived.
+
+37 undocumented migrants left [Indonesia](country:ID) on May 9 for [Malaysia](country:MY) on a boat that capsized off Pangkor; 14 remain missing.
+
+Malaysia's maritime enforcement has deployed 2 vessels and a helicopter; the 14 have not been found.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — Portland cement generates 8% of global CO2, industry data show. A study finds slag activated with sodium carbonate gains 10-12% strength over 90 days and matches Portland cement — using non-corrosive activators. The study finds building codes, not chemistry, are the bottleneck to replacing Portland at scale.
+London — Portland cement generates 8% of global CO2, industry data show.
+
+A study finds slag activated with sodium carbonate gains 10-12% strength over 90 days and matches Portland cement — using non-corrosive activators.
+
+The study finds building codes, not chemistry, are the bottleneck to replacing Portland at scale.

@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Washington — US distillate stocks have fallen to their lowest since 2005 as the [Iran](country:IR) war cuts 10.8 million barrels per day of Middle East supply. The Energy Information Administration says industrial gas demand hit a record 23.6 billion cubic feet per day in 2025. The agency projects the record holds through 2027.
+Washington — US distillate stocks have fallen to their lowest since 2005 as the [Iran](country:IR) war cuts 10.8 million barrels per day of Middle East supply.
+
+The Energy Information Administration says industrial gas demand hit a record 23.6 billion cubic feet per day in 2025.
+
+The agency projects the record holds through 2027.

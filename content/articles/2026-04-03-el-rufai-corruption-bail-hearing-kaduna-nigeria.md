@@ -27,4 +27,8 @@ concepts:
 sentimentDivergence: 0.07
 ---
 
-Kaduna — Former Governor El-Rufai arrived in court under guard. He faces 10 charges of money laundering and conversion of public property, filed by Nigeria's ICPC after over a month in detention. His defense withdrew a recusal motion the same day, adjourning bail; El-Rufai remains in custody awaiting a new hearing date.
+Kaduna — Former Governor El-Rufai arrived in court under guard.
+
+He faces 10 charges of money laundering and conversion of public property, filed by Nigeria's ICPC after over a month in detention.
+
+His defense withdrew a recusal motion the same day, adjourning bail; El-Rufai remains in custody awaiting a new hearing date.

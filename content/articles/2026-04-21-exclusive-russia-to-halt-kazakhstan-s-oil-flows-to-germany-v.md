@@ -43,4 +43,8 @@ entities:
     kind: "commodity"
 ---
 
-Moscow — 43,000 barrels of Kazakh crude stop May 1. [Russia](country:RU) controls the Druzhba northern spur [Germany](country:DE) adopted as its Russian-crude replacement — transit rights give Moscow an on-off switch. [Kazakhstan](country:KZ) is rerouting to the Caspian Pipeline Consortium and [China](country:CN); Poland's state pipeline operator offers Schwedt via Gdańsk.
+Moscow — 43,000 barrels of Kazakh crude stop May 1.
+
+[Russia](country:RU) controls the Druzhba northern spur [Germany](country:DE) adopted as its Russian-crude replacement — transit rights give Moscow an on-off switch.
+
+[Kazakhstan](country:KZ) is rerouting to the Caspian Pipeline Consortium and [China](country:CN); Poland's state pipeline operator offers Schwedt via Gdańsk.

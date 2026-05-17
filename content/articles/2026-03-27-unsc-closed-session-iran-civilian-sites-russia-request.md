@@ -17,4 +17,8 @@ concepts:
   - "New York City"
 ---
 
-New York — 170 schoolgirls died in the Minab strike. Russia called a closed Security Council session Friday over US-Israeli strikes on Iranian civilian sites, including a school in Hormozgan province. All 15 council members meet Friday — a formal statement requires US approval, meaning civilian accountability remains blocked.
+New York — 170 schoolgirls died in the Minab strike.
+
+Russia called a closed Security Council session Friday over US-Israeli strikes on Iranian civilian sites, including a school in Hormozgan province.
+
+All 15 council members meet Friday — a formal statement requires US approval, meaning civilian accountability remains blocked.

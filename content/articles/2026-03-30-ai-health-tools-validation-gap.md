@@ -16,4 +16,8 @@ concepts:
   - "OpenAI"
 ---
 
-Cambridge — 50 million health questions reach AI tools daily. Tech companies launched health AI products without the randomized trial evidence required of drugs or medical devices. No AI health tool faces mandatory pre-deployment validation; regulatory frameworks have not caught up to what patients already use.
+Cambridge — 50 million health questions reach AI tools daily.
+
+Tech companies launched health AI products without the randomized trial evidence required of drugs or medical devices.
+
+No AI health tool faces mandatory pre-deployment validation; regulatory frameworks have not caught up to what patients already use.

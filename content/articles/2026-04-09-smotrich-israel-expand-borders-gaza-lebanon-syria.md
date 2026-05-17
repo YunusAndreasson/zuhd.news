@@ -17,4 +17,8 @@ concepts:
   - "Southern Lebanon"
 ---
 
-Jerusalem — Smotrich named 3 territories Israel will annex. At a West Bank settlement inauguration, Israel's finance minister cited security to justify expansion into Lebanon and Syria. The declaration came during a US-brokered ceasefire; no coalition partner has endorsed it.
+Jerusalem — Smotrich named 3 territories Israel will annex.
+
+At a West Bank settlement inauguration, Israel's finance minister cited security to justify expansion into Lebanon and Syria.
+
+The declaration came during a US-brokered ceasefire; no coalition partner has endorsed it.

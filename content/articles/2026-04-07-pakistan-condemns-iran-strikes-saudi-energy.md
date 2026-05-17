@@ -19,4 +19,8 @@ concepts:
   - "Jubail"
 ---
 
-Islamabad — Pakistan condemned Iran's missile strikes on Saudi Arabia. A 2025 bilateral pact commits Pakistan to treat any such attack as an attack on itself — a clause Islamabad invoked. The break leaves 9 million Pakistani workers in the Gulf exposed as Tehran, sharing Pakistan's western border, escalates.
+Islamabad — Pakistan condemned Iran's missile strikes on Saudi Arabia.
+
+A 2025 bilateral pact commits Pakistan to treat any such attack as an attack on itself — a clause Islamabad invoked.
+
+The break leaves 9 million Pakistani workers in the Gulf exposed as Tehran, sharing Pakistan's western border, escalates.

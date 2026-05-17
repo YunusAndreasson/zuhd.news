@@ -31,4 +31,8 @@ concepts:
 sentimentDivergence: 0.31
 ---
 
-Tehran — Iran set 10 terms Washington called workable. Demands include full sanctions relief, uranium enrichment rights, and 8 other concessions. Delegations meet in Islamabad Friday, with Trump calling a deal "close to resolution."
+Tehran — Iran set 10 terms Washington called workable.
+
+Demands include full sanctions relief, uranium enrichment rights, and 8 other concessions.
+
+Delegations meet in Islamabad Friday, with Trump calling a deal "close to resolution."

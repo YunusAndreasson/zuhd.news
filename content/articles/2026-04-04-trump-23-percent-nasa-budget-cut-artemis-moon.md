@@ -15,4 +15,8 @@ concepts:
   - "Moon"
 ---
 
-Washington — Trump proposed a 23% NASA budget cut. 2 days after Artemis II lifted off, the White House requested $5.6B in cuts targeting science programs for a near-50% reduction. Congress rejected identical cuts last year; 40 unnamed missions and ISS's 2030 retirement are now in play.
+Washington — Trump proposed a 23% NASA budget cut.
+
+2 days after Artemis II lifted off, the White House requested $5.6B in cuts targeting science programs for a near-50% reduction.
+
+Congress rejected identical cuts last year; 40 unnamed missions and ISS's 2030 retirement are now in play.

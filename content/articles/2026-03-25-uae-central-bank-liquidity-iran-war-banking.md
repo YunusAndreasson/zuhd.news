@@ -11,4 +11,8 @@ sources:
     country: "AE"
 ---
 
-Abu Dhabi — UAE cut bank liquidity buffers amid Iran war fears. The central bank reduced the minimum cash reserves banks must hold, freeing capital for emergency use under regional stress. No other Gulf central bank has announced matching action, leaving UAE lenders to manage the risk alone.
+Abu Dhabi — UAE cut bank liquidity buffers amid Iran war fears.
+
+The central bank reduced the minimum cash reserves banks must hold, freeing capital for emergency use under regional stress.
+
+No other Gulf central bank has announced matching action, leaving UAE lenders to manage the risk alone.

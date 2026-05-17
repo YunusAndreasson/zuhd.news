@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Tokyo — [Japan](country:JP)'s railways profit because operators own the land. Private companies own track and adjacent property; rising real-estate values around stations fund reliability, eliminating the state-subsidy cycle that hobbles European rail. [Indonesia](country:ID) and [Pakistan](country:PK) copy Japan's transit-oriented model but inherit the financing logic without the land rights.
+Tokyo — [Japan](country:JP)'s railways profit because operators own the land.
+
+Private companies own track and adjacent property; rising real-estate values around stations fund reliability, eliminating the state-subsidy cycle that hobbles European rail.
+
+[Indonesia](country:ID) and [Pakistan](country:PK) copy Japan's transit-oriented model but inherit the financing logic without the land rights.

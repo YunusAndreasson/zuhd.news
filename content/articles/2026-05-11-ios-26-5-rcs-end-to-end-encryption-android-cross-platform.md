@@ -28,4 +28,8 @@ entities:
     kind: "stock"
 ---
 
-Cupertino — Carrier-readable cross-platform texts ended Monday. Apple's iOS 26.5 enables end-to-end encrypted Rich Communication Services messages — carriers, governments, and the platforms themselves cannot read messages in transit. Encryption is on by default; a lock icon marks protected chats when both devices run updated software.
+Cupertino — Carrier-readable cross-platform texts ended Monday.
+
+Apple's iOS 26.5 enables end-to-end encrypted Rich Communication Services messages — carriers, governments, and the platforms themselves cannot read messages in transit.
+
+Encryption is on by default; a lock icon marks protected chats when both devices run updated software.

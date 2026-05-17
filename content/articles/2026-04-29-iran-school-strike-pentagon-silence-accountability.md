@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Tehran — A [US](country:US) missile struck an Iranian school. The Pentagon has not confirmed in 2 months whether the adjacent Islamic Revolutionary Guard Corps base was a pre-planned target — anomalous for US doctrine, former officials say. No inquiry has opened; former officials cite outdated intelligence coordinates as the likely cause.
+Tehran — A [US](country:US) missile struck an Iranian school.
+
+The Pentagon has not confirmed in 2 months whether the adjacent Islamic Revolutionary Guard Corps base was a pre-planned target — anomalous for US doctrine, former officials say.
+
+No inquiry has opened; former officials cite outdated intelligence coordinates as the likely cause.

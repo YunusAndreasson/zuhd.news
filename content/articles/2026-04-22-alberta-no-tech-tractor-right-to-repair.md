@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Edmonton — Ursa Ag sells 150-hp tractors for $95,000 USD. The [Canada](country:CA)-based startup uses remanufactured 1990s Cummins diesels: no engine computer, no software lockout, repairable by any mechanic. 400 [US](country:US) farmer inquiries poured in after a single interview; American distribution is pending.
+Edmonton — Ursa Ag sells 150-hp tractors for $95,000 USD.
+
+The [Canada](country:CA)-based startup uses remanufactured 1990s Cummins diesels: no engine computer, no software lockout, repairable by any mechanic.
+
+400 [US](country:US) farmer inquiries poured in after a single interview; American distribution is pending.

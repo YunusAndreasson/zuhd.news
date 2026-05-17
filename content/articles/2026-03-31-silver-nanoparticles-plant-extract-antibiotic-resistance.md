@@ -17,4 +17,8 @@ concepts:
   - "Nanotechnology"
 ---
 
-London — A houseplant extract kills drug-resistant Staphylococcus. Silver nanoparticles synthesized from Sempervivum tectorum leaf extract killed 2 drug-resistant strains, with minimum inhibitory concentrations of 18.6-90 μg/ml. Plant-based synthesis makes production cheap enough for low-resource settings where antibiotic failure rates are highest.
+London — A houseplant extract kills drug-resistant Staphylococcus.
+
+Silver nanoparticles synthesized from Sempervivum tectorum leaf extract killed 2 drug-resistant strains, with minimum inhibitory concentrations of 18.6-90 μg/ml.
+
+Plant-based synthesis makes production cheap enough for low-resource settings where antibiotic failure rates are highest.

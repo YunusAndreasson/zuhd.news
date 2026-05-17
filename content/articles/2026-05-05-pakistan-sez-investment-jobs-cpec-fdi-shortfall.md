@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — Only 4 of 9 development zones met targets. The China-Pakistan Economic Corridor zones aimed at $8 billion and 500,000 jobs by 2024, missing both, [Pakistan](country:PK)'s minister said. [China](country:CN) sends $20 billion a year to Pakistan against $3 billion back; Phase II targets Chinese factory relocation to reverse the gap.
+Islamabad — Only 4 of 9 development zones met targets.
+
+The China-Pakistan Economic Corridor zones aimed at $8 billion and 500,000 jobs by 2024, missing both, [Pakistan](country:PK)'s minister said.
+
+[China](country:CN) sends $20 billion a year to Pakistan against $3 billion back; Phase II targets Chinese factory relocation to reverse the gap.

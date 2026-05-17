@@ -37,4 +37,8 @@ entities:
     kind: "commodity"
 ---
 
-Tuapse — Tuapse's Rosneft refinery has burned 3 times. [Ukraine](country:UA) says its strike range has nearly tripled since 2022 to 1,750km, enabling repeated attacks on Black Sea oil infrastructure. Ukraine's Unmanned Systems Forces said prior strikes destroyed 24 storage tanks, limiting [Russia](country:RU)'s exports.
+Tuapse — Tuapse's Rosneft refinery has burned 3 times.
+
+[Ukraine](country:UA) says its strike range has nearly tripled since 2022 to 1,750km, enabling repeated attacks on Black Sea oil infrastructure.
+
+Ukraine's Unmanned Systems Forces said prior strikes destroyed 24 storage tanks, limiting [Russia](country:RU)'s exports.

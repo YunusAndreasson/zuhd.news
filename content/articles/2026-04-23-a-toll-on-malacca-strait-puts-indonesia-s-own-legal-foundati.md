@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Jakarta — [Indonesia](country:ID)'s Malacca toll plan would breach the UN maritime treaty that secured its 17,000-island sovereignty. The treaty grants archipelagic rights in exchange for free straits passage; a toll would void that deal. [China](country:CN) and [India](country:IN) rely on Malacca; either could use a violation to contest Indonesian territorial claims elsewhere.
+Jakarta — [Indonesia](country:ID)'s Malacca toll plan would breach the UN maritime treaty that secured its 17,000-island sovereignty.
+
+The treaty grants archipelagic rights in exchange for free straits passage; a toll would void that deal.
+
+[China](country:CN) and [India](country:IN) rely on Malacca; either could use a violation to contest Indonesian territorial claims elsewhere.

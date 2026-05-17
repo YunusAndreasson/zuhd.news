@@ -17,4 +17,8 @@ concepts:
   - "Petrochemical"
 ---
 
-Ruwais — Intercepted Iranian munitions set Borouge's petrochemical complex ablaze. Borouge — co-owned by ADNOC and Borealis — halted all polymer output after debris struck multiple units. European plastics supply chains now depend on Borealis sourcing alternatives to Borouge's shuttered output.
+Ruwais — Intercepted Iranian munitions set Borouge's petrochemical complex ablaze.
+
+Borouge — co-owned by ADNOC and Borealis — halted all polymer output after debris struck multiple units.
+
+European plastics supply chains now depend on Borealis sourcing alternatives to Borouge's shuttered output.

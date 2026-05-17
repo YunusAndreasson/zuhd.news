@@ -19,4 +19,8 @@ concepts:
   - "Gaza"
 ---
 
-Antalya — Turkey's FM: Israel is after land, not security. [Turkey](country:TR), a NATO member, said the same security rationale has driven Israeli expansion from Gaza to Lebanon to [Syria](country:SY). Fidan said [Israel](country:IL) is turning Turkey into its next named enemy — a posture he called state strategy.
+Antalya — Turkey's FM: Israel is after land, not security.
+
+[Turkey](country:TR), a NATO member, said the same security rationale has driven Israeli expansion from Gaza to Lebanon to [Syria](country:SY).
+
+Fidan said [Israel](country:IL) is turning Turkey into its next named enemy — a posture he called state strategy.

@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-The Hague — ICC judges confirmed Duterte will stand trial for crimes against humanity. A pre-trial panel found "substantial grounds" that [the Philippines](country:PH)' former president ordered drug-war killings — placing him among the few leaders to face confirmed ICC charges. No trial date is set; Duterte, 81, remains in ICC custody.
+The Hague — ICC judges confirmed Duterte will stand trial for crimes against humanity.
+
+A pre-trial panel found "substantial grounds" that [the Philippines](country:PH)' former president ordered drug-war killings — placing him among the few leaders to face confirmed ICC charges.
+
+No trial date is set; Duterte, 81, remains in ICC custody.

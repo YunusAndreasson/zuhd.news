@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Sells — $46.55 billion in federal funds drives border wall construction across [US](country:US) Tohono O'odham tribal land. A 2025 budget law appropriated funds through fiscal 2029, fragmenting wildlife corridors and dividing the community. No environmental review governs the buildout.
+Sells — $46.55 billion in federal funds drives border wall construction across [US](country:US) Tohono O'odham tribal land.
+
+A 2025 budget law appropriated funds through fiscal 2029, fragmenting wildlife corridors and dividing the community.
+
+No environmental review governs the buildout.

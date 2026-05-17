@@ -17,4 +17,8 @@ concepts:
   - "Hala Al-Karib"
 ---
 
-Khartoum — RSF enslaved women across El Gezira and Khartoum. 3 years of war erased decades of women's organizing; MSF treated 3,396 survivors in 22 months, calling it ethnic collective punishment. Documentation is only beginning in Blue Nile and Darfur, where RSF controls access.
+Khartoum — RSF enslaved women across El Gezira and Khartoum.
+
+3 years of war erased decades of women's organizing; MSF treated 3,396 survivors in 22 months, calling it ethnic collective punishment.
+
+Documentation is only beginning in Blue Nile and Darfur, where RSF controls access.

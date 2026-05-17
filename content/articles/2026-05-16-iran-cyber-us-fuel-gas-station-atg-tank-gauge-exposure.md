@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Washington — [US](country:US) fuel-tank gauges ran internet-connected, password-free. [Iran](country:IR)-linked actors exploited the unprotected gauges, manipulating display readings at stations across multiple US states, American officials said. Attackers could not alter actual fuel levels, officials confirmed; formal attribution and a government response remain pending.
+Washington — [US](country:US) fuel-tank gauges ran internet-connected, password-free.
+
+[Iran](country:IR)-linked actors exploited the unprotected gauges, manipulating display readings at stations across multiple US states, American officials said.
+
+Attackers could not alter actual fuel levels, officials confirmed; formal attribution and a government response remain pending.

@@ -17,4 +17,8 @@ concepts:
   - "Washington, D.C."
 ---
 
-Islamabad — US agreed to unfreeze Qatar-held Iranian assets. The assets, tied to Strait of Hormuz transit rights, represent Washington's first material concession 31 days into the war with Iran. The April 22 ceasefire expiry is the deadline; Islamabad talks this weekend will determine whether the release holds.
+Islamabad — US agreed to unfreeze Qatar-held Iranian assets.
+
+The assets, tied to Strait of Hormuz transit rights, represent Washington's first material concession 31 days into the war with Iran.
+
+The April 22 ceasefire expiry is the deadline; Islamabad talks this weekend will determine whether the release holds.

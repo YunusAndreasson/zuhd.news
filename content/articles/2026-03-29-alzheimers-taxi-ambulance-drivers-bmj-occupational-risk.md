@@ -16,4 +16,8 @@ concepts:
   - "Hippocampus"
 ---
 
-London — Professional drivers face elevated Alzheimer's mortality risk. A BMJ study found taxi and ambulance drivers have higher Alzheimer's mortality — the first large-scale link between professional navigation and neurodegeneration. Causality is unproven; the leading hypothesis is that constant spatial loading degrades the hippocampus over time.
+London — Professional drivers face elevated Alzheimer's mortality risk.
+
+A BMJ study found taxi and ambulance drivers have higher Alzheimer's mortality — the first large-scale link between professional navigation and neurodegeneration.
+
+Causality is unproven; the leading hypothesis is that constant spatial loading degrades the hippocampus over time.

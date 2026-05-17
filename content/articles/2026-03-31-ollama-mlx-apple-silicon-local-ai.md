@@ -17,4 +17,8 @@ concepts:
   - "Apple M1"
 ---
 
-San Francisco — Ollama runs models natively on Apple chips. Version 0.19 (preview) supports Alibaba's 35-billion-parameter Qwen3.5, requiring 32GB RAM, with additional gains from M5 Neural Accelerators. More models have no announced timeline; local inference now runs with no API key and no usage logs.
+San Francisco — Ollama runs models natively on Apple chips.
+
+Version 0.19 (preview) supports Alibaba's 35-billion-parameter Qwen3.5, requiring 32GB RAM, with additional gains from M5 Neural Accelerators.
+
+More models have no announced timeline; local inference now runs with no API key and no usage logs.

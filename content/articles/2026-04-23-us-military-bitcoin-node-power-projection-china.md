@@ -23,4 +23,8 @@ entities:
     kind: "crypto"
 ---
 
-Washington — [US](country:US) Indo-Pacific Command runs a live Bitcoin node. Admiral Paparo told Congress the node monitors and tests network security; he called Bitcoin a 'power projection' tool against [China](country:CN). The node is 1 of roughly 15,000-20,000 publicly reachable worldwide; no law governs military participation in cryptocurrency networks.
+Washington — [US](country:US) Indo-Pacific Command runs a live Bitcoin node.
+
+Admiral Paparo told Congress the node monitors and tests network security; he called Bitcoin a 'power projection' tool against [China](country:CN).
+
+The node is 1 of roughly 15,000-20,000 publicly reachable worldwide; no law governs military participation in cryptocurrency networks.

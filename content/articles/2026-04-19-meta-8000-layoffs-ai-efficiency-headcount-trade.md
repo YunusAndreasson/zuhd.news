@@ -28,4 +28,8 @@ eventCoverage: 72
 sentimentDivergence: 0.02
 ---
 
-Menlo Park — Meta cuts 8,000 on May 20. The layoffs — 10% of its 79,000-person workforce — redirect headcount toward $135 billion in AI capital spending the company has committed this year. Further rounds are expected in the second half; executives say scale depends on how fast AI tooling matures.
+Menlo Park — Meta cuts 8,000 on May 20.
+
+The layoffs — 10% of its 79,000-person workforce — redirect headcount toward $135 billion in AI capital spending the company has committed this year.
+
+Further rounds are expected in the second half; executives say scale depends on how fast AI tooling matures.

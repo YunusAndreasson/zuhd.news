@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Jerusalem — Guards raped [Germany](country:DE)'s Anna Liedtke in Israeli detention. [Israel](country:IL) seized her and journalist Noa Schnall in international waters — no charges, courts, or consular access — detainees said. The 22-vessel Global Sumud Flotilla was intercepted Thursday; 2 of 170 activists were taken to Israel for questioning.
+Jerusalem — Guards raped [Germany](country:DE)'s Anna Liedtke in Israeli detention.
+
+[Israel](country:IL) seized her and journalist Noa Schnall in international waters — no charges, courts, or consular access — detainees said.
+
+The 22-vessel Global Sumud Flotilla was intercepted Thursday; 2 of 170 activists were taken to Israel for questioning.

@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Beijing — [China](country:CN)'s grid carbon mapped hourly, province-by-province, to 2060. Hourly data across 31 provinces and 5 development scenarios lets firms and planners price the carbon cost of factory locations. The forecast runs to 2060 — China's carbon neutrality pledge year — validated against official data at sub-3% error.
+Beijing — [China](country:CN)'s grid carbon mapped hourly, province-by-province, to 2060.
+
+Hourly data across 31 provinces and 5 development scenarios lets firms and planners price the carbon cost of factory locations.
+
+The forecast runs to 2060 — China's carbon neutrality pledge year — validated against official data at sub-3% error.

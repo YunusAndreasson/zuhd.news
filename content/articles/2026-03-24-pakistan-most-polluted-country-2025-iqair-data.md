@@ -19,4 +19,8 @@ concepts:
   - "IQAir"
 ---
 
-Islamabad — Pakistan's air exceeded WHO limits 13-fold in 2025. Crop burning, unregulated industry, and cross-border smog from India's northern plains lock the entire South Asian subcontinent above safe levels. The US ended its embassy-based air monitoring program in March, and no government has announced a replacement.
+Islamabad — Pakistan's air exceeded WHO limits 13-fold in 2025.
+
+Crop burning, unregulated industry, and cross-border smog from India's northern plains lock the entire South Asian subcontinent above safe levels.
+
+The US ended its embassy-based air monitoring program in March, and no government has announced a replacement.

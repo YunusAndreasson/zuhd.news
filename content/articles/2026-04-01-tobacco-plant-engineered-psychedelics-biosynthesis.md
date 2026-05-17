@@ -18,4 +18,8 @@ concepts:
   - "Sonoran Desert toad"
 ---
 
-Rehovot — Tobacco plants now produce 5 psychedelic compounds simultaneously. Weizmann researchers spliced genes from mushrooms, toads, and plants to build all 5 pathways into one tobacco plant. Authors say production must stay clinical-only; Sonoran Desert toads face poaching for the same compounds.
+Rehovot — Tobacco plants now produce 5 psychedelic compounds simultaneously.
+
+Weizmann researchers spliced genes from mushrooms, toads, and plants to build all 5 pathways into one tobacco plant.
+
+Authors say production must stay clinical-only; Sonoran Desert toads face poaching for the same compounds.

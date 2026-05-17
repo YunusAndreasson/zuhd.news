@@ -18,4 +18,8 @@ concepts:
   - "Serum"
 ---
 
-Helsinki — 2 blood proteins predict gastric cancer survival. Researchers tested 48 biomarkers in 240 patients; CXCL12 and eotaxin emerged as independent predictors — diagnosable from blood, not biopsy. Gastric cancer is the 5th-deadliest cancer globally; the test scales to clinics without biopsy infrastructure.
+Helsinki — 2 blood proteins predict gastric cancer survival.
+
+Researchers tested 48 biomarkers in 240 patients; CXCL12 and eotaxin emerged as independent predictors — diagnosable from blood, not biopsy.
+
+Gastric cancer is the 5th-deadliest cancer globally; the test scales to clinics without biopsy infrastructure.

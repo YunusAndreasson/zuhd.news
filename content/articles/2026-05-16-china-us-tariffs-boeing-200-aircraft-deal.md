@@ -26,4 +26,8 @@ entities:
     kind: "stock"
 ---
 
-Beijing — 200 Boeing jets with GE engines anchor [China](country:CN)'s summit commitments. A new trade council will negotiate tariff cuts on products "of equal scale" on each side. The Peterson Institute puts [US](country:US) tariffs at 47.5%, up 26.8 points since January 2025; the council must specify which products qualify.
+Beijing — 200 Boeing jets with GE engines anchor [China](country:CN)'s summit commitments.
+
+A new trade council will negotiate tariff cuts on products "of equal scale" on each side.
+
+The Peterson Institute puts [US](country:US) tariffs at 47.5%, up 26.8 points since January 2025; the council must specify which products qualify.

@@ -18,4 +18,8 @@ concepts:
   - "mRNA"
 ---
 
-Cambridge — Moderna stopped calling its cancer vaccine a vaccine. The shot sequences tumor neoantigens into personalized mRNA, halving recurrence odds in advanced melanoma; it is mechanistically a vaccine. A Massachusetts General physician warned patients may refuse the treatment because it is a "vaccine" — a consent conflict.
+Cambridge — Moderna stopped calling its cancer vaccine a vaccine.
+
+The shot sequences tumor neoantigens into personalized mRNA, halving recurrence odds in advanced melanoma; it is mechanistically a vaccine.
+
+A Massachusetts General physician warned patients may refuse the treatment because it is a "vaccine" — a consent conflict.

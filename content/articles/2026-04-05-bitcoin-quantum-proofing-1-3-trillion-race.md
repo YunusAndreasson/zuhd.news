@@ -18,4 +18,8 @@ concepts:
   - "BIP 360"
 ---
 
-Mountain View — 1.7 million bitcoin sit in quantum-exposed addresses. P2PK addresses permanently expose public keys, leaving them crackable by a quantum computer in under 9 minutes. Hourglass V2 proposes capping exposed spending at 1 BTC per block; no fix has passed Bitcoin governance.
+Mountain View — 1.7 million bitcoin sit in quantum-exposed addresses.
+
+P2PK addresses permanently expose public keys, leaving them crackable by a quantum computer in under 9 minutes.
+
+Hourglass V2 proposes capping exposed spending at 1 BTC per block; no fix has passed Bitcoin governance.

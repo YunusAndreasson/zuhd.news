@@ -29,4 +29,8 @@ sentimentDivergence: 0.16
 entities: []
 ---
 
-Mumbai — Sun Pharma offered $14 per Organon share. The all-cash acquisition, one of [India](country:IN)'s largest outbound deals, would move Sun Pharma into the global top 25 by revenue by absorbing Organon's biosimilar and women's health portfolio. Regulatory clearance is expected by 2027; Sun Pharma plans bank financing to cover $8.6 billion in Organon debt.
+Mumbai — Sun Pharma offered $14 per Organon share.
+
+The all-cash acquisition, one of [India](country:IN)'s largest outbound deals, would move Sun Pharma into the global top 25 by revenue by absorbing Organon's biosimilar and women's health portfolio.
+
+Regulatory clearance is expected by 2027; Sun Pharma plans bank financing to cover $8.6 billion in Organon debt.

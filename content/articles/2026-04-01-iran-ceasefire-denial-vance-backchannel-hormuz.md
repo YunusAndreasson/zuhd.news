@@ -37,4 +37,8 @@ concepts:
 sentimentDivergence: 0.63
 ---
 
-Tehran — Iran denied Trump's ceasefire claim as false. Trump posted that Pezeshkian asked for a ceasefire, conditioning any halt on Hormuz reopening, as Vance runs quiet backchannel talks. Trump delivers a prime-time address to the nation Wednesday night; Hormuz remains closed, with no terms announced.
+Tehran — Iran denied Trump's ceasefire claim as false.
+
+Trump posted that Pezeshkian asked for a ceasefire, conditioning any halt on Hormuz reopening, as Vance runs quiet backchannel talks.
+
+Trump delivers a prime-time address to the nation Wednesday night; Hormuz remains closed, with no terms announced.

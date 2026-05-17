@@ -28,4 +28,6 @@ concepts:
 sentimentDivergence: 0.16
 ---
 
-Muscat — 1 French ship crossed Hormuz as thousands remain blocked. CMA CGM's Kribi transited Thursday — the first Western cargo vessel through since the strait closed February 28 — with its transponder broadcasting "owner France." France refused US airspace for Iran strikes; neither CMA CGM nor Paris explained how passage was secured.
+Muscat — 1 French ship crossed Hormuz as thousands remain blocked.
+
+CMA CGM's Kribi transited Thursday — the first Western cargo vessel through since the strait closed February 28 — with its transponder broadcasting "owner France." France refused US airspace for Iran strikes; neither CMA CGM nor Paris explained how passage was secured.

@@ -15,4 +15,8 @@ concepts:
   - "Dubai Evacuation"
 ---
 
-Dubai — De Telegraaf published a fake interview promoting €1,600 seats on a flight that never existed. The source was an AI-generated persona advertising nonexistent Dubai evacuation flights on an Airbus A321 that flight data confirms never flew. De Telegraaf removed the photo but kept the interview live, leaving false booking details accessible to stranded travelers.
+Dubai — De Telegraaf published a fake interview promoting €1,600 seats on a flight that never existed.
+
+The source was an AI-generated persona advertising nonexistent Dubai evacuation flights on an Airbus A321 that flight data confirms never flew.
+
+De Telegraaf removed the photo but kept the interview live, leaving false booking details accessible to stranded travelers.

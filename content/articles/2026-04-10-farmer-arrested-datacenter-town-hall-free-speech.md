@@ -18,4 +18,8 @@ concepts:
   - "Beale Infrastructure"
 ---
 
-Claremore — Oklahoma arrested a farmer for speaking over time. Blanchard exceeded his 3 minutes opposing Project Mustang — a datacenter deal signed under NDAs between Beale Infrastructure and city officials. He faces trespassing charges and will fight; community questions about water and power costs remain unanswered.
+Claremore — Oklahoma arrested a farmer for speaking over time.
+
+Blanchard exceeded his 3 minutes opposing Project Mustang — a datacenter deal signed under NDAs between Beale Infrastructure and city officials.
+
+He faces trespassing charges and will fight; community questions about water and power costs remain unanswered.

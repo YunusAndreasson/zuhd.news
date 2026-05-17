@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-Naivasha — Naivasha swapped roses for server racks. Microsoft and G42 have announced $1B for a Naivasha data center, using the same incentives that built [Kenya](country:KE)'s rose export industry. Activists warn data centers will repeat the pattern: poverty wages and strain on Lake Naivasha.
+Naivasha — Naivasha swapped roses for server racks.
+
+Microsoft and G42 have announced $1B for a Naivasha data center, using the same incentives that built [Kenya](country:KE)'s rose export industry.
+
+Activists warn data centers will repeat the pattern: poverty wages and strain on Lake Naivasha.

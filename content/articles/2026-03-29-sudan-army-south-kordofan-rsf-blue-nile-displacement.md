@@ -15,4 +15,8 @@ concepts:
   - "Sudan"
 ---
 
-Khartoum — RSF stormed Delling's city center in South Kordofan. SAF said it repelled the assault; local leaders warned Delling could fall like El Fasher as 425 families fled Geisan, Blue Nile state. Humanitarian access to both states remains blocked; no safe corridors are open as displacement counts rise.
+Khartoum — RSF stormed Delling's city center in South Kordofan.
+
+SAF said it repelled the assault; local leaders warned Delling could fall like El Fasher as 425 families fled Geisan, Blue Nile state.
+
+Humanitarian access to both states remains blocked; no safe corridors are open as displacement counts rise.

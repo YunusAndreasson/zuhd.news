@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Samarkand — The Asian Development Bank pledged $70bn to connect Asia-Pacific power grids and digital networks by 2035. Cross-border electricity trade requires regulatory alignment; [Pakistan](country:PK) holds surplus capacity it cannot export due to grid fragmentation. The bank targets 20 GW of cross-border renewables and broadband for 200 million new users.
+Samarkand — The Asian Development Bank pledged $70bn to connect Asia-Pacific power grids and digital networks by 2035.
+
+Cross-border electricity trade requires regulatory alignment; [Pakistan](country:PK) holds surplus capacity it cannot export due to grid fragmentation.
+
+The bank targets 20 GW of cross-border renewables and broadband for 200 million new users.

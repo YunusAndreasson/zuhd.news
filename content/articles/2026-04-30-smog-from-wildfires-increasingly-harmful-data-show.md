@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Washington — Wildfire ozone caused 2,045 estimated excess deaths yearly, a Science Advances study found. The study analyzed 2006–2023 data; wildfires' share of ozone mortality rose from a 6% average to 26% in 2023. Authors called for updated ozone warning systems; 2023 was the worst year in the study's 17-year span.
+Washington — Wildfire ozone caused 2,045 estimated excess deaths yearly, a Science Advances study found.
+
+The study analyzed 2006–2023 data; wildfires' share of ozone mortality rose from a 6% average to 26% in 2023.
+
+Authors called for updated ozone warning systems; 2023 was the worst year in the study's 17-year span.

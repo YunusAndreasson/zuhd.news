@@ -26,4 +26,8 @@ concepts:
   - "Masoud Pezeshkian"
 ---
 
-Tehran — Iran denied Trump's ceasefire claim. Trump's Truth Social post said Iran's president requested a ceasefire, conditional on the Strait of Hormuz reopening. Trump was scheduled to address the nation Wednesday night; White House sources expected weeks more of war.
+Tehran — Iran denied Trump's ceasefire claim.
+
+Trump's Truth Social post said Iran's president requested a ceasefire, conditional on the Strait of Hormuz reopening.
+
+Trump was scheduled to address the nation Wednesday night; White House sources expected weeks more of war.

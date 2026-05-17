@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-New York — Gödel's undecidability is now a cryptographic primitive. Existing post-quantum schemes rely on computationally hard problems; undecidability is absolute — no algorithm can ever resolve it. Whether undecidability-based primitives can run fast enough for practical deployment remains unproven.
+New York — Gödel's undecidability is now a cryptographic primitive.
+
+Existing post-quantum schemes rely on computationally hard problems; undecidability is absolute — no algorithm can ever resolve it.
+
+Whether undecidability-based primitives can run fast enough for practical deployment remains unproven.

@@ -16,4 +16,8 @@ concepts:
   - "Sudan"
 ---
 
-Tiné — Bomb fragments 650 metres from Sudan killed 17 Chadians. Amnesty International documented the UAE re-exporting this Chinese-made GB50A bomb type to Sudan's Rapid Support Forces, giving a non-state armed group cross-border strike capacity. The RSF denies involvement; Chad's public prosecutor visited the site but no international accountability mechanism exists for cross-border RSF strikes.
+Tiné — Bomb fragments 650 metres from Sudan killed 17 Chadians.
+
+Amnesty International documented the UAE re-exporting this Chinese-made GB50A bomb type to Sudan's Rapid Support Forces, giving a non-state armed group cross-border strike capacity.
+
+The RSF denies involvement; Chad's public prosecutor visited the site but no international accountability mechanism exists for cross-border RSF strikes.

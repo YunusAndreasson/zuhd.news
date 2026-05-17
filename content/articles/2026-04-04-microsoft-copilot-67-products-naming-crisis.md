@@ -17,4 +17,8 @@ concepts:
   - "Product strategy"
 ---
 
-Redmond — Microsoft now has 67 products named Copilot. Each division independently branded its AI product "Copilot," replicating the taxonomy failure of the Windows Live era at AI scale. Enterprise buyers now navigate 67 products sharing a single Copilot brand.
+Redmond — Microsoft now has 67 products named Copilot.
+
+Each division independently branded its AI product "Copilot," replicating the taxonomy failure of the Windows Live era at AI scale.
+
+Enterprise buyers now navigate 67 products sharing a single Copilot brand.

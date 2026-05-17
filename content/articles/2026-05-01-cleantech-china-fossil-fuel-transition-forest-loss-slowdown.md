@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Santa Marta — [UAE](country:AE) quit OPEC amid Iran-war discord. 57 countries at [Colombia](country:CO)'s Santa Marta summit adopted fossil-fuel phase-down roadmaps; [US](country:US) clean-energy output is on track for a record. Forest loss slowed in 2025, World Resources Institute data show, driven by [Brazil](country:BR)'s Amazon cuts.
+Santa Marta — [UAE](country:AE) quit OPEC amid Iran-war discord.
+
+57 countries at [Colombia](country:CO)'s Santa Marta summit adopted fossil-fuel phase-down roadmaps; [US](country:US) clean-energy output is on track for a record.
+
+Forest loss slowed in 2025, World Resources Institute data show, driven by [Brazil](country:BR)'s Amazon cuts.

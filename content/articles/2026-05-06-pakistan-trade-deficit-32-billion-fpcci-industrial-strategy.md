@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Karachi — $4.07 billion deficit in April: 46-month high. [Pakistan](country:PK)'s $32bn fiscal 2026 deficit rose 20% as imports hit $57bn and exports fell to $25bn, the trade chamber said. Industry demands energy tariff cuts and a lower policy rate; the trade ministry has not replied.
+Karachi — $4.07 billion deficit in April: 46-month high.
+
+[Pakistan](country:PK)'s $32bn fiscal 2026 deficit rose 20% as imports hit $57bn and exports fell to $25bn, the trade chamber said.
+
+Industry demands energy tariff cuts and a lower policy rate; the trade ministry has not replied.

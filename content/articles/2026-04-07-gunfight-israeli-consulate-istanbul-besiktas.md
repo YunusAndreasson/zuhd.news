@@ -35,4 +35,8 @@ concepts:
 sentimentDivergence: 0.38
 ---
 
-Istanbul — Gunmen hit the Israeli consulate in Levent. Turkish police killed 1 attacker and wounded 2 others at the consulate, which has had no Israeli staff for 2.5 years. Prosecutors assigned 3 investigators as Turkey withheld the group's identity, with media pointing to ISIS.
+Istanbul — Gunmen hit the Israeli consulate in Levent.
+
+Turkish police killed 1 attacker and wounded 2 others at the consulate, which has had no Israeli staff for 2.5 years.
+
+Prosecutors assigned 3 investigators as Turkey withheld the group's identity, with media pointing to ISIS.

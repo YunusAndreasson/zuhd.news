@@ -29,4 +29,8 @@ sentimentDivergence: 0.53
 entities: []
 ---
 
-Washington — DOJ targets 37 Biden commutations for reversal. The [US](country:US) Justice Department report recommends firing squads, electrocution, and gas alongside lethal injection, arguing federal law permits all 3 regardless of state bans. The report calls on Congress to expand eligible crimes; Pope Leo condemned capital punishment from the [Vatican](country:VA) the same day.
+Washington — DOJ targets 37 Biden commutations for reversal.
+
+The [US](country:US) Justice Department report recommends firing squads, electrocution, and gas alongside lethal injection, arguing federal law permits all 3 regardless of state bans.
+
+The report calls on Congress to expand eligible crimes; Pope Leo condemned capital punishment from the [Vatican](country:VA) the same day.

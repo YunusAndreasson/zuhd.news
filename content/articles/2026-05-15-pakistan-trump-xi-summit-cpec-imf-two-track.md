@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Islamabad — The Beijing summit left [Pakistan](country:PK)'s two-power bind intact. Islamabad services debt through [US](country:US)-controlled IMF credit while [China](country:CN) funds the China-Pakistan Economic Corridor anchoring its economy. No communiqué addressed how developing states maintain credit ties with both powers.
+Islamabad — The Beijing summit left [Pakistan](country:PK)'s two-power bind intact.
+
+Islamabad services debt through [US](country:US)-controlled IMF credit while [China](country:CN) funds the China-Pakistan Economic Corridor anchoring its economy.
+
+No communiqué addressed how developing states maintain credit ties with both powers.

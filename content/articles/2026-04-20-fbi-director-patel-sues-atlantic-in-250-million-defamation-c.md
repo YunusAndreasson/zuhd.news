@@ -30,4 +30,8 @@ sentimentDivergence: 0.24
 entities: []
 ---
 
-Washington — 24 anonymous sources drew a $250 million suit. [US](country:US) Federal Bureau of Investigation Director Kash Patel filed in federal court, alleging The Atlantic knowingly published false claims of alcohol-fuelled absences from duty. The Atlantic stands by its reporting; Patel must prove actual malice to prevail.
+Washington — 24 anonymous sources drew a $250 million suit.
+
+[US](country:US) Federal Bureau of Investigation Director Kash Patel filed in federal court, alleging The Atlantic knowingly published false claims of alcohol-fuelled absences from duty.
+
+The Atlantic stands by its reporting; Patel must prove actual malice to prevail.

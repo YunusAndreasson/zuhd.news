@@ -31,4 +31,8 @@ concepts:
 sentimentDivergence: 0.32
 ---
 
-Beirut — Israeli forces killed a child near Beirut. 3 died in Bchamoun as Israel's defence minister declared the Litani River its future military border — a line that would place nearly a tenth of Lebanon under occupation. Lebanon cannot move troops or aid across the Litani — Israel has demolished 5 bridges since March 13.
+Beirut — Israeli forces killed a child near Beirut.
+
+3 died in Bchamoun as Israel's defence minister declared the Litani River its future military border — a line that would place nearly a tenth of Lebanon under occupation.
+
+Lebanon cannot move troops or aid across the Litani — Israel has demolished 5 bridges since March 13.

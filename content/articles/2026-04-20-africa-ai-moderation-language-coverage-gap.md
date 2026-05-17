@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Nairobi — TikTok removed 592,000 videos from [Kenya](country:KE) last quarter. A 2025 study found only 4 of Africa's 2,000 languages handled consistently by major AI systems, leaving the rest invisible to moderation. No platform has set a deadline to expand African language coverage.
+Nairobi — TikTok removed 592,000 videos from [Kenya](country:KE) last quarter.
+
+A 2025 study found only 4 of Africa's 2,000 languages handled consistently by major AI systems, leaving the rest invisible to moderation.
+
+No platform has set a deadline to expand African language coverage.

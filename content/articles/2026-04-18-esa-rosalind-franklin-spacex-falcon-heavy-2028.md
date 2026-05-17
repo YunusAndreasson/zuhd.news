@@ -16,4 +16,8 @@ concepts:
   - "SpaceX Falcon Heavy"
 ---
 
-Cape Canaveral — SpaceX to launch ESA's Rosalind Franklin rover. [Russia](country:RU)'s Ukraine invasion severed the Roscosmos partnership; ESA replaced it with [US](country:US) NASA — launch services, braking engines, and heater units. The White House proposed cutting NASA's contribution in FY2027; ESA says European capability could fill the gap.
+Cape Canaveral — SpaceX to launch ESA's Rosalind Franklin rover.
+
+[Russia](country:RU)'s Ukraine invasion severed the Roscosmos partnership; ESA replaced it with [US](country:US) NASA — launch services, braking engines, and heater units.
+
+The White House proposed cutting NASA's contribution in FY2027; ESA says European capability could fill the gap.

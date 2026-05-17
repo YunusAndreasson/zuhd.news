@@ -18,4 +18,8 @@ concepts:
   - "Misinformation"
 ---
 
-Abuja — The ICRC denied supplying Boko Haram fighters in Nigeria. The Nigerian Red Cross jointly rejected the viral social media claims, warning the allegations endanger aid access for millions displaced by Nigeria's decade-long northeastern insurgency, where the two organisations are often the only humanitarian presence. The allegations follow President Tinubu's 2025 shutdown of the NGO safety network INSO over alleged USAID links — intensifying pressure on humanitarian organisations operating in Nigeria's northeast.
+Abuja — The ICRC denied supplying Boko Haram fighters in Nigeria.
+
+The Nigerian Red Cross jointly rejected the viral social media claims, warning the allegations endanger aid access for millions displaced by Nigeria's decade-long northeastern insurgency, where the two organisations are often the only humanitarian presence.
+
+The allegations follow President Tinubu's 2025 shutdown of the NGO safety network INSO over alleged USAID links — intensifying pressure on humanitarian organisations operating in Nigeria's northeast.

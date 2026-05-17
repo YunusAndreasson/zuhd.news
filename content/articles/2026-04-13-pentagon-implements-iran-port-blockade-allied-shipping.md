@@ -34,4 +34,8 @@ concepts:
 sentimentDivergence: 0.46
 ---
 
-Washington — US forces blockaded all Iranian ports Monday. Talks in Islamabad collapsed; US Central Command confirmed the order applies to vessels of all nations using the Strait carrying 20% of global energy. Brent crude crossed $100; Iran's Revolutionary Guard warned that approaching ships breach a ceasefire set to expire April 22.
+Washington — US forces blockaded all Iranian ports Monday.
+
+Talks in Islamabad collapsed; US Central Command confirmed the order applies to vessels of all nations using the Strait carrying 20% of global energy.
+
+Brent crude crossed $100; Iran's Revolutionary Guard warned that approaching ships breach a ceasefire set to expire April 22.

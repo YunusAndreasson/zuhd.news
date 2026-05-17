@@ -16,4 +16,8 @@ concepts:
   - "Magnetosphere"
 ---
 
-Cambridge — Earth has an unmapped void in cosmic rays. The cavity — absent from all magnetosphere models — shields a region from galactic radiation, offering a natural refuge for astronauts. No deep-space mission has been designed to account for this shielding structure.
+Cambridge — Earth has an unmapped void in cosmic rays.
+
+The cavity — absent from all magnetosphere models — shields a region from galactic radiation, offering a natural refuge for astronauts.
+
+No deep-space mission has been designed to account for this shielding structure.

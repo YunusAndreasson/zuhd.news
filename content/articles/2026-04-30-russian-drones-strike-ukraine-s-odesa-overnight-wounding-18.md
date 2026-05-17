@@ -38,4 +38,8 @@ sentimentDivergence: 0.24
 entities: []
 ---
 
-Odesa — 18 wounded as Russian drones hit a kindergarten, hotel and apartment towers — the port city's second strike this week. [Russia](country:RU) launched 206 drones overnight; [Ukraine](country:UA)'s air force downed 172, but 32 hit 22 locations, the military administration said. The toll may still rise, officials warned; Russia has not commented.
+Odesa — 18 wounded as Russian drones hit a kindergarten, hotel and apartment towers — the port city's second strike this week.
+
+[Russia](country:RU) launched 206 drones overnight; [Ukraine](country:UA)'s air force downed 172, but 32 hit 22 locations, the military administration said.
+
+The toll may still rise, officials warned; Russia has not commented.

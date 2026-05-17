@@ -20,4 +20,8 @@ entities:
     kind: "stock"
 ---
 
-San Francisco — Cloudflare cut 1,100 jobs, 20% of staff. Cloudflare routes roughly 20% of global web traffic, it has said; the company has not specified which roles were eliminated. No rehiring timeline was given; Cloudflare did not explain the restructuring rationale.
+San Francisco — Cloudflare cut 1,100 jobs, 20% of staff.
+
+Cloudflare routes roughly 20% of global web traffic, it has said; the company has not specified which roles were eliminated.
+
+No rehiring timeline was given; Cloudflare did not explain the restructuring rationale.

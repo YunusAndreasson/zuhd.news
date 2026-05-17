@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Washington — Frozen gametes now produce children after parents die. Legal systems have not kept pace: posthumous conception raises unsettled questions of consent, inheritance, and the child's identity rights. Reproductive medicine bodies face pressure to establish standards before courts are forced to resolve them case by case.
+Washington — Frozen gametes now produce children after parents die.
+
+Legal systems have not kept pace: posthumous conception raises unsettled questions of consent, inheritance, and the child's identity rights.
+
+Reproductive medicine bodies face pressure to establish standards before courts are forced to resolve them case by case.

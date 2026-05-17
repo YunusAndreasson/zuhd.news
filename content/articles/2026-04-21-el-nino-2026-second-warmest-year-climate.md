@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-London — 5 datasets rate 2026 second-warmest year on record. Q1 2026 ranked fourth-warmest despite La Niña; researchers project a super El Niño in autumn will push temperatures higher. 5 research groups give 2026 a 19% chance of beating 2024; they rate 2027 the likelier all-time record year.
+London — 5 datasets rate 2026 second-warmest year on record.
+
+Q1 2026 ranked fourth-warmest despite La Niña; researchers project a super El Niño in autumn will push temperatures higher.
+
+5 research groups give 2026 a 19% chance of beating 2024; they rate 2027 the likelier all-time record year.

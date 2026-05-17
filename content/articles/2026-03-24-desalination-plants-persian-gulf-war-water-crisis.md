@@ -17,4 +17,8 @@ concepts:
   - "Water security"
 ---
 
-Manama — Iran struck Bahrain's desalination plant in March. Gulf states produce over 90% of their freshwater through desalination, with no rivers or reservoirs as backup. Analysts say a coordinated attack on Gulf desalination plants would leave millions without water within hours — a vulnerability Gulf governments have not moved to address.
+Manama — Iran struck Bahrain's desalination plant in March.
+
+Gulf states produce over 90% of their freshwater through desalination, with no rivers or reservoirs as backup.
+
+Analysts say a coordinated attack on Gulf desalination plants would leave millions without water within hours — a vulnerability Gulf governments have not moved to address.

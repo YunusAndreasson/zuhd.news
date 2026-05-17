@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-South Lebanon — Israeli bombs reduced ByBee's 120 hives to 8. [Lebanon](country:LB)'s bee population has fallen 60% over two decades, a ByBee founder said; Israeli bombardments are now destroying remaining southern apiaries. Bees pollinate most of Lebanon's wild plants and fruit trees; no government support program exists for affected beekeepers.
+South Lebanon — Israeli bombs reduced ByBee's 120 hives to 8.
+
+[Lebanon](country:LB)'s bee population has fallen 60% over two decades, a ByBee founder said; Israeli bombardments are now destroying remaining southern apiaries.
+
+Bees pollinate most of Lebanon's wild plants and fruit trees; no government support program exists for affected beekeepers.

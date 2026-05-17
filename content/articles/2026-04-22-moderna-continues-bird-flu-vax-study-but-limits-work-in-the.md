@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-London — The [UK](country:GB) runs most of Moderna's H5N1 trial. Washington canceled Moderna's contracts; the Coalition for Epidemic Preparedness Innovations now funds 3,000 volunteers across 26 UK sites. Robert F. Kennedy Jr. leads [US](country:US) health authorities and has not signaled restored pandemic-preparedness support.
+London — The [UK](country:GB) runs most of Moderna's H5N1 trial.
+
+Washington canceled Moderna's contracts; the Coalition for Epidemic Preparedness Innovations now funds 3,000 volunteers across 26 UK sites.
+
+Robert F. Kennedy Jr. leads [US](country:US) health authorities and has not signaled restored pandemic-preparedness support.

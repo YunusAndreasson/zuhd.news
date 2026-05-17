@@ -18,4 +18,8 @@ concepts:
   - "Anthropic"
 ---
 
-Washington — A court blocked the Pentagon's 'supply chain risk' label on Anthropic. Hegseth ordered agencies off Anthropic AI after contract disputes, but the court found he skipped required legal steps and his posts showed intent to punish ideology, not manage risk. The government has 7 days to appeal; a second case is undecided.
+Washington — A court blocked the Pentagon's 'supply chain risk' label on Anthropic.
+
+Hegseth ordered agencies off Anthropic AI after contract disputes, but the court found he skipped required legal steps and his posts showed intent to punish ideology, not manage risk.
+
+The government has 7 days to appeal; a second case is undecided.

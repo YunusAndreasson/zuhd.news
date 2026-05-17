@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.11
 ---
 
-Brussels — Europe faces jet fuel shortage in 3 weeks. ACI Europe told the EU that 40% of its jet fuel transits Hormuz; prices hit $1,838 per tonne — double pre-war levels. If Hormuz reopens today, refineries still need 2-3 months to normalize; summer travel season starts in 6 weeks.
+Brussels — Europe faces jet fuel shortage in 3 weeks.
+
+ACI Europe told the EU that 40% of its jet fuel transits Hormuz; prices hit $1,838 per tonne — double pre-war levels.
+
+If Hormuz reopens today, refineries still need 2-3 months to normalize; summer travel season starts in 6 weeks.

@@ -15,4 +15,8 @@ concepts:
   - "Doxorubicin"
 ---
 
-London — An enzyme links doxorubicin to irreversible heart failure. Doxorubicin activates ALOX5, which triggers ferroptosis in heart cells; zileuton, an asthma drug, blocked it and restored function in mice. Doxorubicin's cardiac toxicity limits how much cancer patients can receive; Zileuton is now a candidate for human trial.
+London — An enzyme links doxorubicin to irreversible heart failure.
+
+Doxorubicin activates ALOX5, which triggers ferroptosis in heart cells; zileuton, an asthma drug, blocked it and restored function in mice.
+
+Doxorubicin's cardiac toxicity limits how much cancer patients can receive; Zileuton is now a candidate for human trial.

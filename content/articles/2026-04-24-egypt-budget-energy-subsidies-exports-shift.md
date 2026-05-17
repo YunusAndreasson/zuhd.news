@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Cairo — [Egypt](country:EG) shifts fuel subsidies toward export firms. Interest payments consume nearly half Egypt's budget; Finance Ministry data show health at 1.72% of GDP against a constitutionally mandated 6%. The draft budget faces parliament with the fiscal gap still widening.
+Cairo — [Egypt](country:EG) shifts fuel subsidies toward export firms.
+
+Interest payments consume nearly half Egypt's budget; Finance Ministry data show health at 1.72% of GDP against a constitutionally mandated 6%.
+
+The draft budget faces parliament with the fiscal gap still widening.

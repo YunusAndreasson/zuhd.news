@@ -18,4 +18,8 @@ concepts:
 eventCoverage: 48
 ---
 
-Tehran — Iran turned back 3 container ships at Hormuz. The IRGC directly contradicted Trump's claim the strait was open, banning ships linked to US-allied ports from all passage. The IRGC warned that any future movement through the strait will be "met with a harsh response."
+Tehran — Iran turned back 3 container ships at Hormuz.
+
+The IRGC directly contradicted Trump's claim the strait was open, banning ships linked to US-allied ports from all passage.
+
+The IRGC warned that any future movement through the strait will be "met with a harsh response."

@@ -17,4 +17,8 @@ concepts:
   - "Communal violence"
 ---
 
-Jos — Violence resumed the moment the curfew lifted. Sunday's attack on Angwan Rukuba killed at least 27; on Wednesday, gunshots resumed in Nassarawa Gwom before security forces arrived. The governor said he was reassessing the curfew — Jos has cycled through violence and lockdown since 2001.
+Jos — Violence resumed the moment the curfew lifted.
+
+Sunday's attack on Angwan Rukuba killed at least 27; on Wednesday, gunshots resumed in Nassarawa Gwom before security forces arrived.
+
+The governor said he was reassessing the curfew — Jos has cycled through violence and lockdown since 2001.

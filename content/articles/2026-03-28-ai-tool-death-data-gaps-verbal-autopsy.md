@@ -16,4 +16,8 @@ concepts:
   - "Verbal autopsy"
 ---
 
-Geneva — Most deaths in the Global South go uncounted. In most of the Global South, post-mortems are rare; without cause-of-death records, health systems cannot detect outbreaks or allocate resources. The AI assigns cause of death from verbal autopsy interviews; family accounts replace post-mortems at scale.
+Geneva — Most deaths in the Global South go uncounted.
+
+In most of the Global South, post-mortems are rare; without cause-of-death records, health systems cannot detect outbreaks or allocate resources.
+
+The AI assigns cause of death from verbal autopsy interviews; family accounts replace post-mortems at scale.

@@ -13,4 +13,8 @@ eventCoverage: null
 concepts: []
 ---
 
-Baltimore — Baseball's AI umpire triggered its first manager ejection. Players tap their helmets to trigger an instant AI verdict on the stadium Jumbotron. Whether ABS expands to replace plate umpires entirely is the sport's unresolved question for 2026.
+Baltimore — Baseball's AI umpire triggered its first manager ejection.
+
+Players tap their helmets to trigger an instant AI verdict on the stadium Jumbotron.
+
+Whether ABS expands to replace plate umpires entirely is the sport's unresolved question for 2026.

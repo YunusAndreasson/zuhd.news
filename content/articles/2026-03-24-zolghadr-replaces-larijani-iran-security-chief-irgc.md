@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.34
 ---
 
-Tehran — Iran replaced its assassinated security chief with a general. The replacement, Mohammad Bagher Zolghadr, is a retired IRGC commander under US, UK, and EU sanctions. His predecessor Ali Larijani was Iran's most credible channel to Trump; Larijani's killing removes the only figure US officials saw as a viable negotiating partner.
+Tehran — Iran replaced its assassinated security chief with a general.
+
+The replacement, Mohammad Bagher Zolghadr, is a retired IRGC commander under US, UK, and EU sanctions.
+
+His predecessor Ali Larijani was Iran's most credible channel to Trump; Larijani's killing removes the only figure US officials saw as a viable negotiating partner.

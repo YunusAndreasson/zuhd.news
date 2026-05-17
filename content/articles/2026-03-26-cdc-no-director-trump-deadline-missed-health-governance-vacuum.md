@@ -17,4 +17,8 @@ concepts:
   - "Robert F. Kennedy Jr."
 ---
 
-Atlanta — CDC has no director; Trump missed today's appointment deadline. The administration confirmed the miss; NIH Director Bhattacharya holds the part-time acting role but key "non-delegable" functions now pass to Kennedy. Monarez was fired 8 months ago for resisting Kennedy on vaccines; no nominee is in sight as Iran-war disease surveillance demands peak.
+Atlanta — CDC has no director; Trump missed today's appointment deadline.
+
+The administration confirmed the miss; NIH Director Bhattacharya holds the part-time acting role but key "non-delegable" functions now pass to Kennedy.
+
+Monarez was fired 8 months ago for resisting Kennedy on vaccines; no nominee is in sight as Iran-war disease surveillance demands peak.

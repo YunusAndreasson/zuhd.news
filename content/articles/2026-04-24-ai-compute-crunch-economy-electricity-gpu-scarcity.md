@@ -17,4 +17,8 @@ entities:
     kind: "stock"
 ---
 
-San Francisco — One SSD: $159 in 2025, $575 today. AI firms charged below cost for years on venture capital; scarcity ended the subsidy, spilling into chip and storage prices. Apple cannot secure iPhone chipmaking capacity; [US](country:US) towns are restricting new datacenters over electricity and water.
+San Francisco — One SSD: $159 in 2025, $575 today.
+
+AI firms charged below cost for years on venture capital; scarcity ended the subsidy, spilling into chip and storage prices.
+
+Apple cannot secure iPhone chipmaking capacity; [US](country:US) towns are restricting new datacenters over electricity and water.

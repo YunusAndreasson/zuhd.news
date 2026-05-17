@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Pakpattan — A canal wall failed, flooding 24 villages overnight. [Pakistan](country:PK)'s Pakpattan irrigation department arrived 15 hours late because it must rent heavy machinery from private contractors. 100 villagers tried to plug the breach while crop-loss estimates for 6 villages await canal closure.
+Pakpattan — A canal wall failed, flooding 24 villages overnight.
+
+[Pakistan](country:PK)'s Pakpattan irrigation department arrived 15 hours late because it must rent heavy machinery from private contractors.
+
+100 villagers tried to plug the breach while crop-loss estimates for 6 villages await canal closure.

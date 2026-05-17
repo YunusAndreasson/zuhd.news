@@ -21,4 +21,8 @@ concepts:
   - "High Court of Judicature at Hyderabad"
 ---
 
-New Delhi — India bars converted Dalits from caste protection laws. The 1950 constitutional order ties Scheduled Caste status to Hindu, Sikh, and Buddhist identity, stripping Christian and Muslim converts of legal standing against caste violence. Dalits seeking the right to convert without losing protections must now fight parliament to amend the 1950 order.
+New Delhi — India bars converted Dalits from caste protection laws.
+
+The 1950 constitutional order ties Scheduled Caste status to Hindu, Sikh, and Buddhist identity, stripping Christian and Muslim converts of legal standing against caste violence.
+
+Dalits seeking the right to convert without losing protections must now fight parliament to amend the 1950 order.

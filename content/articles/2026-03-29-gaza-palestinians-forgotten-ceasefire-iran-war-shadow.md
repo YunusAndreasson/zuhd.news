@@ -17,4 +17,8 @@ concepts:
   - "Gaza Strip"
 ---
 
-Gaza — 680 Palestinians killed since October's ceasefire. Attention shifted to Iran; Israel still strikes daily — 26 in the past week — and Kerem Shalom is the only open cargo crossing. 11,000 cancer patients await evacuation; Rafah reopened March 19 for departures only, as sewage floods displacement camps.
+Gaza — 680 Palestinians killed since October's ceasefire.
+
+Attention shifted to Iran; Israel still strikes daily — 26 in the past week — and Kerem Shalom is the only open cargo crossing.
+
+11,000 cancer patients await evacuation; Rafah reopened March 19 for departures only, as sewage floods displacement camps.

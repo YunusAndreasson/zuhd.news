@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Atacama — 836 tailings piles across Chile hold untapped minerals. [Chile](country:CL) wants to reprocess them for cobalt and rare earths critical to electric vehicles — but reprocessing competes for scarce desert water. Who owns tailings — original miner, the state, or host communities — remains legally unresolved.
+Atacama — 836 tailings piles across Chile hold untapped minerals.
+
+[Chile](country:CL) wants to reprocess them for cobalt and rare earths critical to electric vehicles — but reprocessing competes for scarce desert water.
+
+Who owns tailings — original miner, the state, or host communities — remains legally unresolved.

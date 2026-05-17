@@ -17,4 +17,8 @@ concepts:
   - "Coulomb's law"
 ---
 
-London — Copper frameworks may store methane without high pressure. Metal-organic frameworks trap methane in molecular pores; the copper HKUST-1 MOF's open metal sites act as diffusion hubs that concentrate adsorption. Mapping pathways guides MOF design to reduce the storage pressure needed for natural gas vehicles.
+London — Copper frameworks may store methane without high pressure.
+
+Metal-organic frameworks trap methane in molecular pores; the copper HKUST-1 MOF's open metal sites act as diffusion hubs that concentrate adsorption.
+
+Mapping pathways guides MOF design to reduce the storage pressure needed for natural gas vehicles.

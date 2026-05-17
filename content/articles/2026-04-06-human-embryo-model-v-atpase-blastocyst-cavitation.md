@@ -17,4 +17,8 @@ concepts:
   - "Fertility"
 ---
 
-A single proton pump controls blastocyst formation. Researchers using a simplified embryo model found V-ATPase — which acidifies vesicles — is required for the cavity formation that allows implantation. V-ATPase is druggable; the model lets fertility researchers test interventions without human embryos.
+A single proton pump controls blastocyst formation.
+
+Researchers using a simplified embryo model found V-ATPase — which acidifies vesicles — is required for the cavity formation that allows implantation.
+
+V-ATPase is druggable; the model lets fertility researchers test interventions without human embryos.

@@ -18,4 +18,8 @@ concepts:
   - "Pasteur Institute of Iran"
 ---
 
-Tehran — US-Israeli strikes hit Tehran's Pasteur Institute, a century-old medical research center. Targeting health infrastructure violates international humanitarian law; 88 million Iranians face collapsing supply chains. Khuzestan absorbed 3 more strikes Thursday as the health ministry reports critical shortages.
+Tehran — US-Israeli strikes hit Tehran's Pasteur Institute, a century-old medical research center.
+
+Targeting health infrastructure violates international humanitarian law; 88 million Iranians face collapsing supply chains.
+
+Khuzestan absorbed 3 more strikes Thursday as the health ministry reports critical shortages.

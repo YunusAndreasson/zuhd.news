@@ -35,4 +35,8 @@ concepts:
 sentimentDivergence: 0.22
 ---
 
-Islamabad — Pakistan drafted a 2-phase ceasefire framework Monday. Iran accepted Pakistan as sole channel but refused Hormuz reopening short of a permanent settlement, blocking the war's primary economic lever. Trump's Tuesday deadline expires as Tehran reviews the Islamabad Accord without committing.
+Islamabad — Pakistan drafted a 2-phase ceasefire framework Monday.
+
+Iran accepted Pakistan as sole channel but refused Hormuz reopening short of a permanent settlement, blocking the war's primary economic lever.
+
+Trump's Tuesday deadline expires as Tehran reviews the Islamabad Accord without committing.

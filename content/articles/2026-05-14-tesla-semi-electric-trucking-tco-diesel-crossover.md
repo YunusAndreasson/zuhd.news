@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-Reno — WattEV ordered 370 Tesla Semis for over $100 million. Heavy trucks are 8% of vehicles but 35% of road CO2; Tesla began serial Semi production in April as its car-EV market share collapsed. WattEV expects full fleet delivery by end 2027; cost crossover with diesel depends on local charging infrastructure.
+Reno — WattEV ordered 370 Tesla Semis for over $100 million.
+
+Heavy trucks are 8% of vehicles but 35% of road CO2; Tesla began serial Semi production in April as its car-EV market share collapsed.
+
+WattEV expects full fleet delivery by end 2027; cost crossover with diesel depends on local charging infrastructure.

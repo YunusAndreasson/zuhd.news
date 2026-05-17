@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-San Francisco — YC removed Delve from its alumni directory. The alumni network is YC's most durable asset; removal severs brand credibility, investor introductions, and lifetime access to 4,000 founders. What Delve did to earn removal remains undisclosed; 152 Hacker News comments investigate.
+San Francisco — YC removed Delve from its alumni directory.
+
+The alumni network is YC's most durable asset; removal severs brand credibility, investor introductions, and lifetime access to 4,000 founders.
+
+What Delve did to earn removal remains undisclosed; 152 Hacker News comments investigate.

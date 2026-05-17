@@ -32,4 +32,8 @@ concepts:
 sentimentDivergence: 0.24
 ---
 
-Tokyo — [Japan](country:JP) cleared jets, missiles and warships for export. Takaichi's cabinet scrapped the 1967 non-lethal rule, opening 17 nations including [the Philippines](country:PH) and [Indonesia](country:ID) to direct arms purchases. [China](country:CN) called it "new militarism"; cabinet exemptions for countries in active conflict remain the rule's only unresolved constraint.
+Tokyo — [Japan](country:JP) cleared jets, missiles and warships for export.
+
+Takaichi's cabinet scrapped the 1967 non-lethal rule, opening 17 nations including [the Philippines](country:PH) and [Indonesia](country:ID) to direct arms purchases.
+
+[China](country:CN) called it "new militarism"; cabinet exemptions for countries in active conflict remain the rule's only unresolved constraint.

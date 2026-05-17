@@ -18,4 +18,8 @@ concepts:
   - "Law enforcement technology"
 ---
 
-Seattle — BRINC's new drone chases vehicles at 60mph. Guardian packs built-in Starlink, 640x zoom from 1,000 feet, and a 130dB siren; BRINC already covers 900+ US cities at roughly $200K per year per drone. Analyst Greenwood called the specs "incremental, not a game-changer for police on the fence."
+Seattle — BRINC's new drone chases vehicles at 60mph.
+
+Guardian packs built-in Starlink, 640x zoom from 1,000 feet, and a 130dB siren; BRINC already covers 900+ US cities at roughly $200K per year per drone.
+
+Analyst Greenwood called the specs "incremental, not a game-changer for police on the fence."

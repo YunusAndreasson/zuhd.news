@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Dublin — [Ireland](country:IE) harbours the frog-killing chytrid fungus, eDNA shows. Batrachochytrium dendrobatidis has devastated amphibian populations globally; a single river scoop surfaced the finding alongside native frog DNA and human waste markers — all from one water sample. Ireland had no previous chytrid monitoring; eDNA makes routine water surveillance now feasible.
+Dublin — [Ireland](country:IE) harbours the frog-killing chytrid fungus, eDNA shows.
+
+Batrachochytrium dendrobatidis has devastated amphibian populations globally; a single river scoop surfaced the finding alongside native frog DNA and human waste markers — all from one water sample.
+
+Ireland had no previous chytrid monitoring; eDNA makes routine water surveillance now feasible.

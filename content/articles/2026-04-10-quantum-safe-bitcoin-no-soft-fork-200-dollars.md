@@ -18,4 +18,8 @@ concepts:
   - "Cryptography"
 ---
 
-Tel Aviv — Quantum-safe bitcoin transactions now possible, at $200 each. StarkWare replaced ECDSA signatures with hash-based proofs quantum computers cannot break, requiring heavy GPU computation outside Bitcoin's pipeline. BIP-360 won't reach Bitcoin Core for years; Taproot took 7.5 years from concept to activation.
+Tel Aviv — Quantum-safe bitcoin transactions now possible, at $200 each.
+
+StarkWare replaced ECDSA signatures with hash-based proofs quantum computers cannot break, requiring heavy GPU computation outside Bitcoin's pipeline.
+
+BIP-360 won't reach Bitcoin Core for years; Taproot took 7.5 years from concept to activation.

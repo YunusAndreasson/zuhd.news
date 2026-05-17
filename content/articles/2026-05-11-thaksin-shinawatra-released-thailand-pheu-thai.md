@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Bangkok — Thaksin left Klong Prem prison Monday, paroled after serving 2/3 of a king-commuted sentence. His daughter Paetongtarn lost the Prime Minister post last August as Pheu Thai posted its worst election result. [Thailand](country:TH)'s military now decides whether Thaksin's informal political role is tolerated as Pheu Thai enters its weakest parliament.
+Bangkok — Thaksin left Klong Prem prison Monday, paroled after serving 2/3 of a king-commuted sentence.
+
+His daughter Paetongtarn lost the Prime Minister post last August as Pheu Thai posted its worst election result.
+
+[Thailand](country:TH)'s military now decides whether Thaksin's informal political role is tolerated as Pheu Thai enters its weakest parliament.

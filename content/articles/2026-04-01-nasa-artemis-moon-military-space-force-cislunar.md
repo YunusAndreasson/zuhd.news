@@ -18,4 +18,8 @@ concepts:
   - "Space Launch System"
 ---
 
-Cape Canaveral — Artemis II is a Space Force rehearsal. Space Command will rehearse cislunar tracking during the mission; Trump signed an executive order in December extending threat-detection to the Moon. The Air Force is building Oracle — 2 cislunar surveillance satellites — while Space Force formally establishes lunar command structures.
+Cape Canaveral — Artemis II is a Space Force rehearsal.
+
+Space Command will rehearse cislunar tracking during the mission; Trump signed an executive order in December extending threat-detection to the Moon.
+
+The Air Force is building Oracle — 2 cislunar surveillance satellites — while Space Force formally establishes lunar command structures.

@@ -15,4 +15,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Gaza City — Israel killed a 3-year-old at a Gaza wedding. Six weeks of Iran war headlines have given Israel cover as it intensifies strikes on civilians, with Hormuz dominating news cycles. The ceasefire framework has collapsed and no enforcement body has acted.
+Gaza City — Israel killed a 3-year-old at a Gaza wedding.
+
+Six weeks of Iran war headlines have given Israel cover as it intensifies strikes on civilians, with Hormuz dominating news cycles.
+
+The ceasefire framework has collapsed and no enforcement body has acted.

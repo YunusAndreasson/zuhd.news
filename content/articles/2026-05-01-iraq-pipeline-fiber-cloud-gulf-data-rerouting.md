@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Basra — [US](country:US) hyperscalers are routing Gulf data through [Iraq](country:IQ). Gulf subsea cables face Iran-war disruption; Iraq's overland fiber has become the backup corridor for US cloud traffic. Baghdad's terms for hosting critical global internet infrastructure have not been reported.
+Basra — [US](country:US) hyperscalers are routing Gulf data through [Iraq](country:IQ).
+
+Gulf subsea cables face Iran-war disruption; Iraq's overland fiber has become the backup corridor for US cloud traffic.
+
+Baghdad's terms for hosting critical global internet infrastructure have not been reported.

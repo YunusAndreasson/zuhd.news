@@ -21,4 +21,8 @@ concepts:
   - "Plug-in hybrid"
 ---
 
-Brussels — Chinese automaker BYD outsold Tesla in Europe in February. Tesla's 11.8% gain came against a 27% drop in the same month last year; BYD grew 162% after entering European sales tracking last summer. BYD has expanded its European share every month since entering sales tracking; Tesla has not announced a new affordable model for the region.
+Brussels — Chinese automaker BYD outsold Tesla in Europe in February.
+
+Tesla's 11.8% gain came against a 27% drop in the same month last year; BYD grew 162% after entering European sales tracking last summer.
+
+BYD has expanded its European share every month since entering sales tracking; Tesla has not announced a new affordable model for the region.

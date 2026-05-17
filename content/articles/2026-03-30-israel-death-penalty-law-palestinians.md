@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.37
 ---
 
-Jerusalem — Israel codified hanging as default punishment for Palestinians. Military courts automatically try all West Bank Palestinians and must now impose death by hanging within 90 days. Every Palestinian in a military court now faces a death sentence; Israel's Supreme Court has not agreed to hear a challenge.
+Jerusalem — Israel codified hanging as default punishment for Palestinians.
+
+Military courts automatically try all West Bank Palestinians and must now impose death by hanging within 90 days.
+
+Every Palestinian in a military court now faces a death sentence; Israel's Supreme Court has not agreed to hear a challenge.

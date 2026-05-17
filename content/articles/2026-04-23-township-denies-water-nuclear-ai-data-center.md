@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Ypsilanti — Ypsilanti Township blocked water to a Los Alamos lab. The [US](country:US) $1.2 billion data center would consume 500,000 gallons daily for nuclear weapons research, University of Michigan figures show. The 365-day moratorium blocks ground-breaking scheduled for next week pending a water supply review.
+Ypsilanti — Ypsilanti Township blocked water to a Los Alamos lab.
+
+The [US](country:US) $1.2 billion data center would consume 500,000 gallons daily for nuclear weapons research, University of Michigan figures show.
+
+The 365-day moratorium blocks ground-breaking scheduled for next week pending a water supply review.

@@ -16,4 +16,8 @@ concepts:
   - "Freedom of the press"
 ---
 
-Cairo — Egypt jailed Ahmed Douma again for writing. Douma served 10 years for the 2011 protests before Egypt charged him with 'false news' for a Qatari article criticizing prisons. 10 rights groups demanded charges be dropped, his 7th state security summons since his 2023 release.
+Cairo — Egypt jailed Ahmed Douma again for writing.
+
+Douma served 10 years for the 2011 protests before Egypt charged him with 'false news' for a Qatari article criticizing prisons.
+
+10 rights groups demanded charges be dropped, his 7th state security summons since his 2023 release.

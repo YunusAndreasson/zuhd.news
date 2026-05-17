@@ -11,4 +11,8 @@ sources:
     country: "AU"
 ---
 
-Geneva — The Intergovernmental Panel on Climate Change is running out of money. Its reports are the evidence base Pacific Island nations use to unlock adaptation funds and press binding commitments at UN climate talks. Australia is positioned to push institutional reform but has not acted; no replacement funding mechanism has been proposed.
+Geneva — The Intergovernmental Panel on Climate Change is running out of money.
+
+Its reports are the evidence base Pacific Island nations use to unlock adaptation funds and press binding commitments at UN climate talks.
+
+Australia is positioned to push institutional reform but has not acted; no replacement funding mechanism has been proposed.

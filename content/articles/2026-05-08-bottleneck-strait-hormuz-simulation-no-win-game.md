@@ -23,4 +23,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Washington — 2,000 ships remain stuck in Hormuz. Bottleneck forces players to choose which ships transit — each approval trades [US](country:US) energy security against the UN's fertilizer pipeline to famine-risk countries. Even the best outcome falls far short of the pre-war 130 daily transits, the game shows.
+Washington — 2,000 ships remain stuck in Hormuz.
+
+Bottleneck forces players to choose which ships transit — each approval trades [US](country:US) energy security against the UN's fertilizer pipeline to famine-risk countries.
+
+Even the best outcome falls far short of the pre-war 130 daily transits, the game shows.

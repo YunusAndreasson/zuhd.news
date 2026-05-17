@@ -18,4 +18,8 @@ concepts:
   - "Sindh"
 ---
 
-Larkana — Mohenjo Daro is 700 years older than thought. A joint Pakistan-US team dated a mud brick wall misidentified since 1950, pushing urban occupation to 3300 BC — 700 years before the Mature Harappan Phase — and showing gradual urbanisation, not sudden civilisation. The dated section covers only part of the site; the wall's full extent is unexcavated and when Mohenjo Daro's urbanisation began remains unknown.
+Larkana — Mohenjo Daro is 700 years older than thought.
+
+A joint Pakistan-US team dated a mud brick wall misidentified since 1950, pushing urban occupation to 3300 BC — 700 years before the Mature Harappan Phase — and showing gradual urbanisation, not sudden civilisation.
+
+The dated section covers only part of the site; the wall's full extent is unexcavated and when Mohenjo Daro's urbanisation began remains unknown.

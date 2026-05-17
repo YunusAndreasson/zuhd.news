@@ -33,4 +33,8 @@ sentimentDivergence: 0.1
 entities: []
 ---
 
-Cupertino — Apple's chip shortages constrained iPhone and Mac sales. Apple held early talks with Intel and visited Samsung's [US](country:US) Texas plant as it seeks supply alternatives to Taiwan Semiconductor Manufacturing. No orders have been placed; Intel and Samsung can't yet match Taiwan Semiconductor's scale or yields at 3 nanometers.
+Cupertino — Apple's chip shortages constrained iPhone and Mac sales.
+
+Apple held early talks with Intel and visited Samsung's [US](country:US) Texas plant as it seeks supply alternatives to Taiwan Semiconductor Manufacturing.
+
+No orders have been placed; Intel and Samsung can't yet match Taiwan Semiconductor's scale or yields at 3 nanometers.

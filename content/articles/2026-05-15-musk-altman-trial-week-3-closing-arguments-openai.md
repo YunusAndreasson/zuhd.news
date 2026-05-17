@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-San Francisco — A jury begins deliberating OpenAI's 2025 restructuring Monday. Musk argues Altman violated a nonprofit-development pledge when OpenAI's for-profit arm converted to a public benefit corporation now valued near $1 trillion. An advisory verdict could come as early as next week; a ruling for Musk would block OpenAI's IPO.
+San Francisco — A jury begins deliberating OpenAI's 2025 restructuring Monday.
+
+Musk argues Altman violated a nonprofit-development pledge when OpenAI's for-profit arm converted to a public benefit corporation now valued near $1 trillion.
+
+An advisory verdict could come as early as next week; a ruling for Musk would block OpenAI's IPO.

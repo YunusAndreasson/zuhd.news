@@ -36,4 +36,8 @@ eventCoverage: 118
 sentimentDivergence: 0.3
 ---
 
-Tokyo — Japan's 1,000km missiles can now reach mainland China. Type-12 missiles in Kumamoto and hypersonic gliders at Camp Fuji mark Japan's first counterstrike capability, breaching its pacifist constitution. Residents near both bases are protesting; Tomahawk destroyers and Hokkaido deployments follow by 2028.
+Tokyo — Japan's 1,000km missiles can now reach mainland China.
+
+Type-12 missiles in Kumamoto and hypersonic gliders at Camp Fuji mark Japan's first counterstrike capability, breaching its pacifist constitution.
+
+Residents near both bases are protesting; Tomahawk destroyers and Hokkaido deployments follow by 2028.

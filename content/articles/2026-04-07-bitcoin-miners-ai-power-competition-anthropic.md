@@ -15,4 +15,8 @@ concepts:
   - "Anthropic"
 ---
 
-San Francisco — AI now outbids bitcoin miners for power. Anthropic's multi-gigawatt compute deal has already forced 3 mining firms to convert capacity to AI hosting. OpenAI raised $122 billion last week; the grid cannot grow fast enough to serve both industries.
+San Francisco — AI now outbids bitcoin miners for power.
+
+Anthropic's multi-gigawatt compute deal has already forced 3 mining firms to convert capacity to AI hosting.
+
+OpenAI raised $122 billion last week; the grid cannot grow fast enough to serve both industries.

@@ -24,4 +24,8 @@ concepts:
   - "Petroleum"
 ---
 
-Port Arthur — Fire shut Valero's largest US refinery Monday night. The city, majority-Black and bearing decades of refinery pollution, received shelter-in-place orders as a diesel hydrotreater burned. Texas deployed air quality monitors, but Port Arthur residents — already among the most pollution-exposed communities in the US — face days of health risk while Valero investigates the cause.
+Port Arthur — Fire shut Valero's largest US refinery Monday night.
+
+The city, majority-Black and bearing decades of refinery pollution, received shelter-in-place orders as a diesel hydrotreater burned.
+
+Texas deployed air quality monitors, but Port Arthur residents — already among the most pollution-exposed communities in the US — face days of health risk while Valero investigates the cause.

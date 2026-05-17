@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-Mountain View — Criminals deployed an AI-built zero-day exploit. Google's Threat Intelligence Group said AI identified an authentication logic flaw and built the exploit before Google patched the unnamed platform. Google warns that for every AI-traced zero-day, many more go unattributed and implementation errors won't persist.
+Mountain View — Criminals deployed an AI-built zero-day exploit.
+
+Google's Threat Intelligence Group said AI identified an authentication logic flaw and built the exploit before Google patched the unnamed platform.
+
+Google warns that for every AI-traced zero-day, many more go unattributed and implementation errors won't persist.

@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Seoul — Pyongyang welcomed Seoul's apology, then reversed course. Kim Jong Un says Seoul cannot advance talks without Washington first reopening nuclear negotiations. With US attention fixed on Iran, Pyongyang is watching whether Washington will open direct nuclear talks.
+Seoul — Pyongyang welcomed Seoul's apology, then reversed course.
+
+Kim Jong Un says Seoul cannot advance talks without Washington first reopening nuclear negotiations.
+
+With US attention fixed on Iran, Pyongyang is watching whether Washington will open direct nuclear talks.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — A 191-person study linked β2-adrenergic autoantibodies to Long COVID fatigue and heart-rate dysregulation in chronic fatigue syndrome. The unedited preprint points to a shared blood marker between both conditions. Confirmation would give millions of dismissed patients an objective diagnostic.
+London — A 191-person study linked β2-adrenergic autoantibodies to Long COVID fatigue and heart-rate dysregulation in chronic fatigue syndrome.
+
+The unedited preprint points to a shared blood marker between both conditions.
+
+Confirmation would give millions of dismissed patients an objective diagnostic.

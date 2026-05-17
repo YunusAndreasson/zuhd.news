@@ -30,4 +30,8 @@ entities:
     kind: "currency"
 ---
 
-Mumbai — [India](country:IN)'s rupee hit a record low on Tuesday. India's Sensex shed 3,400 points in 4 sessions as foreign investors exited, with Brent at $107 per barrel and no Hormuz ceasefire. India's April inflation print, due Tuesday, will shape Reserve Bank of India rate expectations amid a rising oil import bill.
+Mumbai — [India](country:IN)'s rupee hit a record low on Tuesday.
+
+India's Sensex shed 3,400 points in 4 sessions as foreign investors exited, with Brent at $107 per barrel and no Hormuz ceasefire.
+
+India's April inflation print, due Tuesday, will shape Reserve Bank of India rate expectations amid a rising oil import bill.

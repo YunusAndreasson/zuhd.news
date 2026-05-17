@@ -20,4 +20,6 @@ concepts:
 entities: []
 ---
 
-London — Tower Hamlets synagogue was set ablaze Tuesday. The fire is 1 of several attacks on Jewish sites since March in [Britain](country:GB), where the national threat level stands at "severe." PM Starmer called the wave a "crisis" and is fast-tracking legislation after two Jewish and one Muslim man were stabbed.
+London — Tower Hamlets synagogue was set ablaze Tuesday.
+
+The fire is 1 of several attacks on Jewish sites since March in [Britain](country:GB), where the national threat level stands at "severe." PM Starmer called the wave a "crisis" and is fast-tracking legislation after two Jewish and one Muslim man were stabbed.

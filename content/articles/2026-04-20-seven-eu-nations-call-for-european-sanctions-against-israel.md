@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Brussels — 7 EU states formally demanded sanctions on [Israel](country:IL). [France](country:FR) and Sweden joined 5 others backing a settler-product import ban, circulated before Tuesday's foreign ministers' meeting in Luxembourg. The EU Council has debated bloc sanctions for 2 years without reaching unanimity.
+Brussels — 7 EU states formally demanded sanctions on [Israel](country:IL).
+
+[France](country:FR) and Sweden joined 5 others backing a settler-product import ban, circulated before Tuesday's foreign ministers' meeting in Luxembourg.
+
+The EU Council has debated bloc sanctions for 2 years without reaching unanimity.

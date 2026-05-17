@@ -17,4 +17,8 @@ concepts:
   - "International Criminal Court"
 ---
 
-Kabul — Pakistan's airstrike killed 411 Afghans in Kabul. Forces struck a drug rehab center the government labeled a military target. The ICC requires a pattern of strikes to prosecute; no investigation has opened.
+Kabul — Pakistan's airstrike killed 411 Afghans in Kabul.
+
+Forces struck a drug rehab center the government labeled a military target.
+
+The ICC requires a pattern of strikes to prosecute; no investigation has opened.

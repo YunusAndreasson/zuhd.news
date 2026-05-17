@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Ikeja — Soldiers beat journalist Olalekan Fakoyejo on video. Footage shows 2 soldiers attempting to hit him with wood and then repeatedly striking him after he commented on traffic obstruction. [Nigeria](country:NG)'s army had not commented; a soldier also killed a National Youth Service Corps member in Abuja days before.
+Ikeja — Soldiers beat journalist Olalekan Fakoyejo on video.
+
+Footage shows 2 soldiers attempting to hit him with wood and then repeatedly striking him after he commented on traffic obstruction.
+
+[Nigeria](country:NG)'s army had not commented; a soldier also killed a National Youth Service Corps member in Abuja days before.

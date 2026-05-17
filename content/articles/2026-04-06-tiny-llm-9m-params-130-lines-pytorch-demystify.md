@@ -16,4 +16,8 @@ concepts:
   - "Hacker News"
 ---
 
-San Francisco — A 9M-parameter LLM now trains in 5 minutes. Guppylm: vanilla transformer, 60,000 conversations, 130 lines of PyTorch — runs free on Colab and exposes every LLM mechanism in one readable file. The repo invites contributors to swap the personality; 130 lines show why training data defines a model's worldview.
+San Francisco — A 9M-parameter LLM now trains in 5 minutes.
+
+Guppylm: vanilla transformer, 60,000 conversations, 130 lines of PyTorch — runs free on Colab and exposes every LLM mechanism in one readable file.
+
+The repo invites contributors to swap the personality; 130 lines show why training data defines a model's worldview.

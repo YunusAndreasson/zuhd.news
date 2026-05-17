@@ -18,4 +18,8 @@ concepts:
   - "Artificial intelligence"
 ---
 
-Riyadh — Saudi Aramco's venture arm invested in deepfake detection. Deepfake fraud cost $25 billion globally in 2024, projected to reach $40 billion by 2027, while Saudi Arabia recorded a 600% surge in incidents last year. Resemble AI will deploy detection systems on local Gulf infrastructure to meet regional data sovereignty requirements.
+Riyadh — Saudi Aramco's venture arm invested in deepfake detection.
+
+Deepfake fraud cost $25 billion globally in 2024, projected to reach $40 billion by 2027, while Saudi Arabia recorded a 600% surge in incidents last year.
+
+Resemble AI will deploy detection systems on local Gulf infrastructure to meet regional data sovereignty requirements.

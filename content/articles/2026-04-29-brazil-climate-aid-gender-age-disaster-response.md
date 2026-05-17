@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Maceió — 30% of [Brazil](country:BR)'s fisherwomen lost 80% of income after a 2019 spill, researchers found. Contaminated nearshore beds destroyed their shellfish harvests while men's offshore fishing remained viable. Researchers warn that aid systems ignoring demographic splits entrench poverty across climate disasters.
+Maceió — 30% of [Brazil](country:BR)'s fisherwomen lost 80% of income after a 2019 spill, researchers found.
+
+Contaminated nearshore beds destroyed their shellfish harvests while men's offshore fishing remained viable.
+
+Researchers warn that aid systems ignoring demographic splits entrench poverty across climate disasters.

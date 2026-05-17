@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Beirut — [Israel](country:IL) drew a "Yellow Line" free-fire buffer zone inside southern Lebanon. [Iran](country:IR)'s Legal Medicine Organization confirmed 3,375 deaths from the air war, including 383 children; the ceasefire nears expiry with no talks agreed. Trump said negotiators would arrive in [Pakistan](country:PK); Iran said no meeting was scheduled.
+Beirut — [Israel](country:IL) drew a "Yellow Line" free-fire buffer zone inside southern Lebanon.
+
+[Iran](country:IR)'s Legal Medicine Organization confirmed 3,375 deaths from the air war, including 383 children; the ceasefire nears expiry with no talks agreed.
+
+Trump said negotiators would arrive in [Pakistan](country:PK); Iran said no meeting was scheduled.

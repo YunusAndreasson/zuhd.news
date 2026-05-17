@@ -20,4 +20,8 @@ concepts:
   - "Al Otro Lado"
 ---
 
-Washington — 7 justices signaled they back the US asylum bar. The government argued that holding seekers in Mexico indefinitely — called metering — never triggers the US legal obligation to process their claims. A ruling for the government would strip asylum seekers at the US-Mexico border of the right to claim protection on US soil.
+Washington — 7 justices signaled they back the US asylum bar.
+
+The government argued that holding seekers in Mexico indefinitely — called metering — never triggers the US legal obligation to process their claims.
+
+A ruling for the government would strip asylum seekers at the US-Mexico border of the right to claim protection on US soil.

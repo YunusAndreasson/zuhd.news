@@ -27,4 +27,8 @@ sentimentDivergence: 0.02
 entities: []
 ---
 
-Reni — British jets downed Russian drones over Ukraine. Eurofighters from [Romania](country:RO) intercepted them 1.5 km inside [Ukraine](country:UA)'s border — the first NATO engagement of Russian munitions in Ukrainian airspace. [Russia](country:RU) has not responded; NATO holds no formal mandate for air-policing over Ukrainian territory.
+Reni — British jets downed Russian drones over Ukraine.
+
+Eurofighters from [Romania](country:RO) intercepted them 1.5 km inside [Ukraine](country:UA)'s border — the first NATO engagement of Russian munitions in Ukrainian airspace.
+
+[Russia](country:RU) has not responded; NATO holds no formal mandate for air-policing over Ukrainian territory.

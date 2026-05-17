@@ -20,4 +20,8 @@ entities:
     kind: "commodity"
 ---
 
-Jakarta — 80% of Hormuz oil flows east to Asia. The Lowy Institute notes the same fuel powering tankers drives the irrigation pumps and fertiliser plants that feed the continent. Governments unable to absorb the fuel price spike face food inflation within weeks, the institute warns.
+Jakarta — 80% of Hormuz oil flows east to Asia.
+
+The Lowy Institute notes the same fuel powering tankers drives the irrigation pumps and fertiliser plants that feed the continent.
+
+Governments unable to absorb the fuel price spike face food inflation within weeks, the institute warns.

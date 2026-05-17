@@ -18,4 +18,8 @@ concepts:
   - "Too big to fail"
 ---
 
-Bern — Swiss regulators demanded UBS add $20 billion in reserves. At 1.5× Swiss GDP, UBS is too large to rescue, so the new rules require full foreign-subsidiary capital backing, up from 60%, regulators said. Parliament votes May 4; UBS warned "key business decisions may become unavoidable."
+Bern — Swiss regulators demanded UBS add $20 billion in reserves.
+
+At 1.5× Swiss GDP, UBS is too large to rescue, so the new rules require full foreign-subsidiary capital backing, up from 60%, regulators said.
+
+Parliament votes May 4; UBS warned "key business decisions may become unavoidable."

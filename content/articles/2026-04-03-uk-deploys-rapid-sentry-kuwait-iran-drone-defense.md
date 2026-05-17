@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.19
 ---
 
-Kuwait City — Iranian drones hit Kuwait's water supply and oil. Overnight strikes struck the Mina al-Ahmadi refinery and a desalination plant; the UK deployed its Rapid Sentry counter-drone system hours later. Britain now has an active counter-drone presence in Kuwait as Iran expands strikes across the Gulf.
+Kuwait City — Iranian drones hit Kuwait's water supply and oil.
+
+Overnight strikes struck the Mina al-Ahmadi refinery and a desalination plant; the UK deployed its Rapid Sentry counter-drone system hours later.
+
+Britain now has an active counter-drone presence in Kuwait as Iran expands strikes across the Gulf.

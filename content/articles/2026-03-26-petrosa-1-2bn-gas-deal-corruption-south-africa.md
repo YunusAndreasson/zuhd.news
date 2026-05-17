@@ -18,4 +18,8 @@ concepts:
   - "South Africa"
 ---
 
-Johannesburg — Equator Holdings won South Africa's $1.2B gas contract. 4 months later, Equator was liquidated for failing to pay a soccer player R70,000 in salary. Equator's director Mulaudzi settled the debt to reverse the liquidation and is pressing PetroSA to honor the contract.
+Johannesburg — Equator Holdings won South Africa's $1.2B gas contract.
+
+4 months later, Equator was liquidated for failing to pay a soccer player R70,000 in salary.
+
+Equator's director Mulaudzi settled the debt to reverse the liquidation and is pressing PetroSA to honor the contract.

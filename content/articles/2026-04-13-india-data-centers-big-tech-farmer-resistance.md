@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-New Delhi — India's data center push is displacing farmers. Foreign firms receive tax exemptions unavailable to domestic investors; affected farmers are offered statutory minimums that communities say undervalue their land. No national framework governs what farmers are owed when farmland is acquired for foreign data centers.
+New Delhi — India's data center push is displacing farmers.
+
+Foreign firms receive tax exemptions unavailable to domestic investors; affected farmers are offered statutory minimums that communities say undervalue their land.
+
+No national framework governs what farmers are owed when farmland is acquired for foreign data centers.

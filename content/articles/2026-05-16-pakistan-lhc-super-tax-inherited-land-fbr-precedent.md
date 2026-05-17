@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Rawalpindi — Rs115 million super tax on ancestral land voided. The Lahore High Court held that zero-rate capital gains carry zero super-tax liability, barring [Pakistan](country:PK)'s revenue board from a broader reading of the levy. It follows a Federal Constitutional Court precedent, complicating Islamabad's IMF-driven revenue targets.
+Rawalpindi — Rs115 million super tax on ancestral land voided.
+
+The Lahore High Court held that zero-rate capital gains carry zero super-tax liability, barring [Pakistan](country:PK)'s revenue board from a broader reading of the levy.
+
+It follows a Federal Constitutional Court precedent, complicating Islamabad's IMF-driven revenue targets.

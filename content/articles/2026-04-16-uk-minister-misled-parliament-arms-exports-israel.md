@@ -14,4 +14,8 @@ concepts: []
 entities: []
 ---
 
-London — UK minister's briefing notes contradict his parliamentary testimony. Bryant told MPs in September that M-346 trainer parts wouldn't reach combat pilots fast enough; his classified briefing contained no such assessment. Parliament has documentary evidence the reasoning was fabricated; the government has not suspended the licence.
+London — UK minister's briefing notes contradict his parliamentary testimony.
+
+Bryant told MPs in September that M-346 trainer parts wouldn't reach combat pilots fast enough; his classified briefing contained no such assessment.
+
+Parliament has documentary evidence the reasoning was fabricated; the government has not suspended the licence.

@@ -11,4 +11,6 @@ sources:
     country: "LB"
 ---
 
-Beirut — Instagram is removing end-to-end encryption from DMs. Meta cites low usage to justify the May 8 change; in West Asia and North Africa, activists use Instagram DMs to evade government surveillance. WhatsApp remains encrypted but collects metadata; SMEX warns metadata alone reveals who dissidents and journalists communicate with.
+Beirut — Instagram is removing end-to-end encryption from DMs. Meta cites low usage to justify the May 8 change; in West Asia and North Africa, activists use Instagram DMs to evade government surveillance.
+
+WhatsApp remains encrypted but collects metadata; SMEX warns metadata alone reveals who dissidents and journalists communicate with.

@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Ankara — [Belgium](country:BE)'s Queen Mathilde opened a 5-day economic mission on Saturday. The mission covers defence, energy and logistics — Belgium's first major bilateral push to [Türkiye](country:TR) in 14 years. Talks run through Wednesday; Türkiye's ambassador called it the start of a new bilateral phase.
+Ankara — [Belgium](country:BE)'s Queen Mathilde opened a 5-day economic mission on Saturday.
+
+The mission covers defence, energy and logistics — Belgium's first major bilateral push to [Türkiye](country:TR) in 14 years.
+
+Talks run through Wednesday; Türkiye's ambassador called it the start of a new bilateral phase.

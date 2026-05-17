@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Seattle — Amazon added a 3.5% fuel surcharge for sellers. The charge, explicitly tied to Iran war fuel costs, hits 2 million marketplace sellers who cannot negotiate shipping rates or absorb new margin compression. Small sellers unable to absorb the cut will raise prices or exit the platform.
+Seattle — Amazon added a 3.5% fuel surcharge for sellers.
+
+The charge, explicitly tied to Iran war fuel costs, hits 2 million marketplace sellers who cannot negotiate shipping rates or absorb new margin compression.
+
+Small sellers unable to absorb the cut will raise prices or exit the platform.

@@ -17,4 +17,8 @@ concepts:
   - "Mar-a-Lago"
 ---
 
-Palm Beach — Democrats flipped Trump's Palm Beach district Tuesday. Emily Gregory, a first-time public health candidate, extended Democrats' post-2024 streak to 24 flipped Republican-held statehouse seats, with Republicans recapturing zero. Midterms in November will test whether the streak reflects durable anti-Trump realignment or protest volatility.
+Palm Beach — Democrats flipped Trump's Palm Beach district Tuesday.
+
+Emily Gregory, a first-time public health candidate, extended Democrats' post-2024 streak to 24 flipped Republican-held statehouse seats, with Republicans recapturing zero.
+
+Midterms in November will test whether the streak reflects durable anti-Trump realignment or protest volatility.

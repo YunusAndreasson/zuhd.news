@@ -23,4 +23,8 @@ concepts:
 sentimentDivergence: 0.17
 ---
 
-Washington — DOJ accidentally released a Jack Smith memo. It shows Trump kept documents "pertinent to business interests"; one aide uploaded classified scans to cloud storage. Rep. Raskin demanded the full file by April 14; the presiding judge has permanently blocked Smith's report.
+Washington — DOJ accidentally released a Jack Smith memo.
+
+It shows Trump kept documents "pertinent to business interests"; one aide uploaded classified scans to cloud storage.
+
+Rep. Raskin demanded the full file by April 14; the presiding judge has permanently blocked Smith's report.

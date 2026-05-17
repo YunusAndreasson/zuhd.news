@@ -22,4 +22,8 @@ concepts:
 sentimentDivergence: 0.28
 ---
 
-Berlin — Germany's president compared Trump's Iran war to Russia's invasion. Steinmeier said it was "politically disastrous" and violated international law; Germany had been Washington's most deferential EU partner on US military action. Chancellor Merz has not echoed the legal verdict, splitting Germany's government from its own head of state.
+Berlin — Germany's president compared Trump's Iran war to Russia's invasion.
+
+Steinmeier said it was "politically disastrous" and violated international law; Germany had been Washington's most deferential EU partner on US military action.
+
+Chancellor Merz has not echoed the legal verdict, splitting Germany's government from its own head of state.

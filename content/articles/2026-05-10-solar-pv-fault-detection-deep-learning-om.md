@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — An EfficientNet model scored 100% on physical solar-panel damage and 94% accuracy overall, the study found. The system replaces walk-the-array technicians at scale. For [Egypt](country:EG), [Morocco](country:MA) and [India](country:IN) — now installing solar fastest — automated inspection cuts per-megawatt operating costs.
+London — An EfficientNet model scored 100% on physical solar-panel damage and 94% accuracy overall, the study found.
+
+The system replaces walk-the-array technicians at scale.
+
+For [Egypt](country:EG), [Morocco](country:MA) and [India](country:IN) — now installing solar fastest — automated inspection cuts per-megawatt operating costs.

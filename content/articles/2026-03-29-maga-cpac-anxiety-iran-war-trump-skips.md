@@ -17,4 +17,8 @@ concepts:
   - "United States"
 ---
 
-Grapevine — Trump skipped CPAC, consumed by the Iran war. His base split: older supporters called the war "biblical" while Erik Prince predicted burning US warships and young conservatives feared a draft. Republicans defend Congress in November; approval ratings are at lows and a Florida seat already flipped to Democrats.
+Grapevine — Trump skipped CPAC, consumed by the Iran war.
+
+His base split: older supporters called the war "biblical" while Erik Prince predicted burning US warships and young conservatives feared a draft.
+
+Republicans defend Congress in November; approval ratings are at lows and a Florida seat already flipped to Democrats.

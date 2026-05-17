@@ -17,4 +17,8 @@ concepts:
   - "Kashmiris"
 ---
 
-Islamabad — Pakistan warns India is planning a false-flag attack. Dozens of Pakistanis including Kashmiris are held in Indian jails; security sources say they are being repositioned to fabricate a casus belli. A similar accusation preceded last year's 4-day India-Pakistan military exchange; it ended only after US intervention.
+Islamabad — Pakistan warns India is planning a false-flag attack.
+
+Dozens of Pakistanis including Kashmiris are held in Indian jails; security sources say they are being repositioned to fabricate a casus belli.
+
+A similar accusation preceded last year's 4-day India-Pakistan military exchange; it ended only after US intervention.

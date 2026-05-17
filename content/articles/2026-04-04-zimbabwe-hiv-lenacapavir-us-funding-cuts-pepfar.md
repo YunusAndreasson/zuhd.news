@@ -11,4 +11,8 @@ sources:
     country: "GB"
 ---
 
-US PEPFAR cuts threaten Zimbabwe's rollout of lenacapavir, an HIV drug requiring only 2 injections yearly. The shift from daily pills transforms rural adherence; frozen procurement has stalled delivery. Interruption risks drug-resistant strains in one of Africa's highest HIV-burden countries.
+US PEPFAR cuts threaten Zimbabwe's rollout of lenacapavir, an HIV drug requiring only 2 injections yearly.
+
+The shift from daily pills transforms rural adherence; frozen procurement has stalled delivery.
+
+Interruption risks drug-resistant strains in one of Africa's highest HIV-burden countries.

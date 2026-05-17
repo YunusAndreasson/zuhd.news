@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-New York — Governor Hochul proposes a surcharge on luxury second homes. The graduated tax — 3 brackets from $5 million upward — targets properties held through limited liability companies obscuring foreign ownership. New York's budget is 3 weeks overdue; the surcharge needs Assembly approval to raise $500 million annually.
+New York — Governor Hochul proposes a surcharge on luxury second homes.
+
+The graduated tax — 3 brackets from $5 million upward — targets properties held through limited liability companies obscuring foreign ownership.
+
+New York's budget is 3 weeks overdue; the surcharge needs Assembly approval to raise $500 million annually.

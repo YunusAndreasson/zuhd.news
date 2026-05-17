@@ -16,4 +16,8 @@ concepts:
   - "Somalia"
 ---
 
-Hargeisa — [Israel](country:IL) recognized Somaliland for a Red Sea foothold. Somaliland's security crisis and Gaza's reshaping of Red Sea shipping risk drove the timing, according to officials in Mogadishu and Hargeisa. [Somalia](country:SO) called it the "greatest" violation of its sovereignty; what Somaliland conceded in return remains undisclosed.
+Hargeisa — [Israel](country:IL) recognized Somaliland for a Red Sea foothold.
+
+Somaliland's security crisis and Gaza's reshaping of Red Sea shipping risk drove the timing, according to officials in Mogadishu and Hargeisa.
+
+[Somalia](country:SO) called it the "greatest" violation of its sovereignty; what Somaliland conceded in return remains undisclosed.

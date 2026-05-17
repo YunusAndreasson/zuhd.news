@@ -38,4 +38,8 @@ entities:
     kind: "commodity"
 ---
 
-Primorsk — Ukraine hit Russia's 1-million-barrel Baltic terminal. The strike opens a 2nd maritime front: [Russia](country:RU)'s Black Sea and Baltic export corridors are now both under [Ukraine](country:UA)'s fire. The Leningrad governor said no oil spill occurred; damage to a Karakurt missile carrier in port remains unverified.
+Primorsk — Ukraine hit Russia's 1-million-barrel Baltic terminal.
+
+The strike opens a 2nd maritime front: [Russia](country:RU)'s Black Sea and Baltic export corridors are now both under [Ukraine](country:UA)'s fire.
+
+The Leningrad governor said no oil spill occurred; damage to a Karakurt missile carrier in port remains unverified.

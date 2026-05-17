@@ -11,4 +11,8 @@ sources:
     country: "EG"
 ---
 
-Cairo — Egypt listed 10 state firms on its bourse. No share offerings are planned; the listings clear an IMF obligation without any timeline for actual trading. Egypt awaits a $1.65 billion IMF payout after a July review that requires demonstrated progress on privatization.
+Cairo — Egypt listed 10 state firms on its bourse.
+
+No share offerings are planned; the listings clear an IMF obligation without any timeline for actual trading.
+
+Egypt awaits a $1.65 billion IMF payout after a July review that requires demonstrated progress on privatization.

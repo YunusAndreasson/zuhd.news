@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-El Fasher — Rapid Support Forces (RSF) raids emptied villages across Tina, North Darfur. An unattributed drone strike destroyed a UN aid truck bound for Tawila; RSF also seized Keili in [Sudan](country:SD)'s Blue Nile state, pushing toward Kurmuk. A Darfur civilians' group has called for international investigation into continued targeting of humanitarian sites.
+El Fasher — Rapid Support Forces (RSF) raids emptied villages across Tina, North Darfur.
+
+An unattributed drone strike destroyed a UN aid truck bound for Tawila; RSF also seized Keili in [Sudan](country:SD)'s Blue Nile state, pushing toward Kurmuk.
+
+A Darfur civilians' group has called for international investigation into continued targeting of humanitarian sites.

@@ -19,4 +19,8 @@ eventCoverage: 35
 entities: []
 ---
 
-Abuja — [Nigeria](country:NG)'s food inflation reached 16.06% year-on-year in April, above the 15.69% headline rate, the National Bureau of Statistics reported. Two and a half years after President Tinubu removed the fuel subsidy, core prices eased to 1.03% monthly growth but food costs remain the binding constraint. Rural inflation ran at 16.36% versus 15.40% in cities.
+Abuja — [Nigeria](country:NG)'s food inflation reached 16.06% year-on-year in April, above the 15.69% headline rate, the National Bureau of Statistics reported.
+
+Two and a half years after President Tinubu removed the fuel subsidy, core prices eased to 1.03% monthly growth but food costs remain the binding constraint.
+
+Rural inflation ran at 16.36% versus 15.40% in cities.

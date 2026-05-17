@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Amsterdam — Bellingcat released an open-source research guide to Xiaohongshu. The [China](country:CN) platform hosts geotagged posts and censorship patterns unavailable on platforms barred from operating there. A 2024 [UK](country:GB) conviction traced to a rape victim's Xiaohongshu post that police used as evidence.
+Amsterdam — Bellingcat released an open-source research guide to Xiaohongshu.
+
+The [China](country:CN) platform hosts geotagged posts and censorship patterns unavailable on platforms barred from operating there.
+
+A 2024 [UK](country:GB) conviction traced to a rape victim's Xiaohongshu post that police used as evidence.

@@ -16,4 +16,8 @@ concepts:
   - "North Kordofan"
 ---
 
-North Darfur — A Sudanese drone killed 15 mourners in Chad. The Rapid Support Forces, a Sudanese paramilitary faction, retook Bara for the second time in 10 days, using drones to overwhelm positions left without air defenses. Doctors Without Borders said 123 wounded civilians crossed into Chad by Monday as RSF reinforcements mass near West Kordofan.
+North Darfur — A Sudanese drone killed 15 mourners in Chad.
+
+The Rapid Support Forces, a Sudanese paramilitary faction, retook Bara for the second time in 10 days, using drones to overwhelm positions left without air defenses.
+
+Doctors Without Borders said 123 wounded civilians crossed into Chad by Monday as RSF reinforcements mass near West Kordofan.

@@ -38,4 +38,6 @@ sentimentDivergence: 0.24
 entities: []
 ---
 
-Havana — [Cuba](country:CU) ran dry after [the US](country:US) cut Venezuela's fuel supply to the island. Washington imposed further sanctions on May 1, deepening island-wide power cuts as Trump announced "talks." Trump has not ruled out military action; no timeline or trigger has been given.
+Havana — [Cuba](country:CU) ran dry after [the US](country:US) cut Venezuela's fuel supply to the island.
+
+Washington imposed further sanctions on May 1, deepening island-wide power cuts as Trump announced "talks." Trump has not ruled out military action; no timeline or trigger has been given.

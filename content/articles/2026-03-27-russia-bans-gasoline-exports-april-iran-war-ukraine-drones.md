@@ -20,4 +20,8 @@ concepts:
   - "Export"
 ---
 
-Moscow — Russia bans all gasoline exports from April 1. Ukraine's drone strikes knocked out 10% of Russian refinery capacity; the Hormuz closure simultaneously restricts Gulf energy exports globally. Oil-importing nations in Africa and Asia face a supply squeeze from both chokepoints, with Brent crude at $111.
+Moscow — Russia bans all gasoline exports from April 1.
+
+Ukraine's drone strikes knocked out 10% of Russian refinery capacity; the Hormuz closure simultaneously restricts Gulf energy exports globally.
+
+Oil-importing nations in Africa and Asia face a supply squeeze from both chokepoints, with Brent crude at $111.

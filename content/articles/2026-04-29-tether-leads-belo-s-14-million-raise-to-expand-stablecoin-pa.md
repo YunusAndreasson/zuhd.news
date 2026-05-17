@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Buenos Aires — 3 million Latin Americans pay with stablecoins daily. Tether's $14 million investment consolidates its grip as de-facto dollar layer in [Argentina](country:AR), [Venezuela](country:VE), and [Bolivia](country:BO), where stablecoins have displaced local currencies. Belo will expand to 6 new markets in 2026; none has a stablecoin reserve framework.
+Buenos Aires — 3 million Latin Americans pay with stablecoins daily.
+
+Tether's $14 million investment consolidates its grip as de-facto dollar layer in [Argentina](country:AR), [Venezuela](country:VE), and [Bolivia](country:BO), where stablecoins have displaced local currencies.
+
+Belo will expand to 6 new markets in 2026; none has a stablecoin reserve framework.

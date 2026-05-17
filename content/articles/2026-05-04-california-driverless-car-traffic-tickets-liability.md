@@ -13,4 +13,8 @@ sources:
 entities: []
 ---
 
-Sacramento — No California law let police ticket a Waymo. [US](country:US) traffic law required a human recipient for citations; California now directs police to issue violation notices to manufacturers for moving violations, effective July 1. Operators must respond to police calls within 30 seconds; penalties apply if vehicles enter active emergency zones.
+Sacramento — No California law let police ticket a Waymo.
+
+[US](country:US) traffic law required a human recipient for citations; California now directs police to issue violation notices to manufacturers for moving violations, effective July 1.
+
+Operators must respond to police calls within 30 seconds; penalties apply if vehicles enter active emergency zones.

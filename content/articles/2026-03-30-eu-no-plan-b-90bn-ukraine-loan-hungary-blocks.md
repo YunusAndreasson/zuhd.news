@@ -16,4 +16,8 @@ concepts:
   - "Viktor Orbán"
 ---
 
-Brussels — Orbán's veto blocks €90 billion in Ukraine loans. EU unanimity rules give Budapest a legal veto, and no alternative disbursement channel exists despite Zelenskyy's calls. The veto stands until Hungarian elections; no EU mechanism can override Orbán's vote.
+Brussels — Orbán's veto blocks €90 billion in Ukraine loans.
+
+EU unanimity rules give Budapest a legal veto, and no alternative disbursement channel exists despite Zelenskyy's calls.
+
+The veto stands until Hungarian elections; no EU mechanism can override Orbán's vote.

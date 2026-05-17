@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Abuja — N59.9 million reclaimed by Nigeria's 774 healthcare field officers. The primary healthcare agency raised per-facility grants from N300,000 to N800,000 quarterly. A financial-monitoring app now runs in 14 states, with full national rollout planned before year-end.
+Abuja — N59.9 million reclaimed by Nigeria's 774 healthcare field officers.
+
+The primary healthcare agency raised per-facility grants from N300,000 to N800,000 quarterly.
+
+A financial-monitoring app now runs in 14 states, with full national rollout planned before year-end.

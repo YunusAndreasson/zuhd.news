@@ -29,4 +29,8 @@ sentimentDivergence: 0.24
 entities: []
 ---
 
-Kolkata — Bharatiya Janata Party leads 185 of 294 Bengal seats. Its win would end 14 years of Trinamool Congress rule in [India](country:IN); analysts cited electoral roll revision and communal polarisation as decisive factors. Repolling in Falta is scheduled May 21; final seat tallies expected Monday evening.
+Kolkata — Bharatiya Janata Party leads 185 of 294 Bengal seats.
+
+Its win would end 14 years of Trinamool Congress rule in [India](country:IN); analysts cited electoral roll revision and communal polarisation as decisive factors.
+
+Repolling in Falta is scheduled May 21; final seat tallies expected Monday evening.

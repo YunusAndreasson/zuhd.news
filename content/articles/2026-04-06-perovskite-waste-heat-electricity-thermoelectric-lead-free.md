@@ -15,4 +15,8 @@ concepts:
   - "Spin polarization"
 ---
 
-London — Lead-free crystals harvest waste heat at near-unity efficiency. Simulations predict Cs2MBr6 double perovskites score ZT 0.83-0.99 across 300-1,000 Kelvin, driven by spin-selective electron transport. ZT near 1 is the commercial threshold for waste-heat recovery; the crystals hit it without lead.
+London — Lead-free crystals harvest waste heat at near-unity efficiency.
+
+Simulations predict Cs2MBr6 double perovskites score ZT 0.83-0.99 across 300-1,000 Kelvin, driven by spin-selective electron transport.
+
+ZT near 1 is the commercial threshold for waste-heat recovery; the crystals hit it without lead.

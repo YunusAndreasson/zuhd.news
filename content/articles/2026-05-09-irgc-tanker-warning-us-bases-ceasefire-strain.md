@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Tehran — 2 Iranian tankers were disabled by US forces Friday. [Iran](country:IR)'s Revolutionary Guard navy threatened a heavy assault on US bases if tanker strikes continue; the blockade has turned back 58 ships since April 13. [Pakistan](country:PK) says it is mediating day and night; Trump threatened resumed bombing if Iran rejects a deal.
+Tehran — 2 Iranian tankers were disabled by US forces Friday.
+
+[Iran](country:IR)'s Revolutionary Guard navy threatened a heavy assault on US bases if tanker strikes continue; the blockade has turned back 58 ships since April 13.
+
+[Pakistan](country:PK) says it is mediating day and night; Trump threatened resumed bombing if Iran rejects a deal.

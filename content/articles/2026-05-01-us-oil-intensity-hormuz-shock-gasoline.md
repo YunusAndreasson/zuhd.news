@@ -18,4 +18,8 @@ entities:
     kind: "commodity"
 ---
 
-Washington — US gasoline averaged $4.24 per gallon in April. The [US](country:US) burns 2x more oil per dollar of GDP than the European Union, amplifying any global supply shock. US Energy Information Administration data show a 6.2-million-barrel drawdown through April 24; full impact has not arrived.
+Washington — US gasoline averaged $4.24 per gallon in April.
+
+The [US](country:US) burns 2x more oil per dollar of GDP than the European Union, amplifying any global supply shock.
+
+US Energy Information Administration data show a 6.2-million-barrel drawdown through April 24; full impact has not arrived.

@@ -11,4 +11,6 @@ sources:
     country: "US"
 ---
 
-San Francisco — EFF announced it is leaving X. The digital rights organization founded in 1990 cited X's direction as incompatible with its mission to defend online speech. The departure signals that the civil liberties infrastructure of online policy debate is migrating away from the platform.
+San Francisco — EFF announced it is leaving X. The digital rights organization founded in 1990 cited X's direction as incompatible with its mission to defend online speech.
+
+The departure signals that the civil liberties infrastructure of online policy debate is migrating away from the platform.

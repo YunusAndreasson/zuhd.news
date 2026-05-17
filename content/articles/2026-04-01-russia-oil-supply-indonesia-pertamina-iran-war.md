@@ -17,4 +17,8 @@ concepts:
   - "Pertamina"
 ---
 
-Jakarta — Russia offered Indonesia oil without being asked. Ambassador Tolchenov offered Pertamina a supply deal after Jakarta's energy minister raised the possibility amid Hormuz-disrupted Gulf imports. Indonesia has not requested a deal; a purchase would signal Western sanctions have lost their G20 reach.
+Jakarta — Russia offered Indonesia oil without being asked.
+
+Ambassador Tolchenov offered Pertamina a supply deal after Jakarta's energy minister raised the possibility amid Hormuz-disrupted Gulf imports.
+
+Indonesia has not requested a deal; a purchase would signal Western sanctions have lost their G20 reach.

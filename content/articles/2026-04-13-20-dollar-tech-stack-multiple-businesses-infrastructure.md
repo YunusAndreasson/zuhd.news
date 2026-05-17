@@ -11,4 +11,8 @@ sources:
     country: "CA"
 ---
 
-Toronto — $240 per year buys $120,000 in annual revenue. A single $10/month VPS running a Go binary handles what cloud providers say needs Kubernetes, managed databases, and a DevOps team. Investors rejected him for lacking a burn rate; 841 Hacker News votes and 468 comments in a week.
+Toronto — $240 per year buys $120,000 in annual revenue.
+
+A single $10/month VPS running a Go binary handles what cloud providers say needs Kubernetes, managed databases, and a DevOps team.
+
+Investors rejected him for lacking a burn rate; 841 Hacker News votes and 468 comments in a week.

@@ -17,4 +17,8 @@ sources:
 entities: []
 ---
 
-Bint Jbeil — Villages emptied; no political path back. [Israel](country:IL) struck north of the Litani and demolished homes in Beit Lif and Mays al-Jabal after [Lebanon](country:LB)'s April 17 ceasefire. Washington extended the ceasefire 3 weeks; UN food monitors report 1.24 million Lebanese in food insecurity, with no return mechanism set.
+Bint Jbeil — Villages emptied; no political path back.
+
+[Israel](country:IL) struck north of the Litani and demolished homes in Beit Lif and Mays al-Jabal after [Lebanon](country:LB)'s April 17 ceasefire.
+
+Washington extended the ceasefire 3 weeks; UN food monitors report 1.24 million Lebanese in food insecurity, with no return mechanism set.

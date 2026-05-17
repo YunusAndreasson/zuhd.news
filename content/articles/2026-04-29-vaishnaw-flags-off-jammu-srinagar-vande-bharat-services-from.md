@@ -30,4 +30,8 @@ sentimentDivergence: 0.09
 entities: []
 ---
 
-Jammu — Kashmir gets its first all-weather rail link to [India](country:IN)'s national grid. The 267km route crosses the Chenab bridge — the world's highest rail arch — through 36 tunnels in the Pir Panjal, the only land link that stays open through winter. Commercial services begin May 2; the line economically integrates Kashmir year-round for the first time.
+Jammu — Kashmir gets its first all-weather rail link to [India](country:IN)'s national grid.
+
+The 267km route crosses the Chenab bridge — the world's highest rail arch — through 36 tunnels in the Pir Panjal, the only land link that stays open through winter.
+
+Commercial services begin May 2; the line economically integrates Kashmir year-round for the first time.

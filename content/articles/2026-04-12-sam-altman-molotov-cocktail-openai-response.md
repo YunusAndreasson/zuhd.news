@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-San Francisco — Altman's home was firebombed at 3:45 a.m. Altman wrote that anti-AI backlash has moved from protest to arson and that he underestimated how displacement anxiety converts to violence. No one has been charged; police have not named a suspect.
+San Francisco — Altman's home was firebombed at 3:45 a.m.
+
+Altman wrote that anti-AI backlash has moved from protest to arson and that he underestimated how displacement anxiety converts to violence.
+
+No one has been charged; police have not named a suspect.

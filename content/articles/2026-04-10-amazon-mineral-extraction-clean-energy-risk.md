@@ -17,4 +17,8 @@ concepts:
   - "Indigenous Communities"
 ---
 
-Manaus — 8 Amazon nations lack Indigenous consent rules for mining. Iran war oil prices are pushing lithium, copper, and rare earth extraction into those territories faster than laws can follow. Energy targets give governments incentive to approve mines faster than communities can contest them.
+Manaus — 8 Amazon nations lack Indigenous consent rules for mining.
+
+Iran war oil prices are pushing lithium, copper, and rare earth extraction into those territories faster than laws can follow.
+
+Energy targets give governments incentive to approve mines faster than communities can contest them.

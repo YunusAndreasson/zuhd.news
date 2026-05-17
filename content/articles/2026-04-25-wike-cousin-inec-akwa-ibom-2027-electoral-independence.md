@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Uyo — Wike's cousin now runs Akwa Ibom's electoral commission. Anugbum Onuoha, a former Wike aide, assumed office April 17; Wike has openly campaigned to flip [Nigeria](country:NG)'s Akwa Ibom ahead of 2027. Tinubu nominated Onuoha in 2023 over civic objections; the general elections are 18 months away.
+Uyo — Wike's cousin now runs Akwa Ibom's electoral commission.
+
+Anugbum Onuoha, a former Wike aide, assumed office April 17; Wike has openly campaigned to flip [Nigeria](country:NG)'s Akwa Ibom ahead of 2027.
+
+Tinubu nominated Onuoha in 2023 over civic objections; the general elections are 18 months away.

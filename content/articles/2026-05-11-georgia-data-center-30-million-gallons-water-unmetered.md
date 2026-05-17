@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Georgia — 30 million gallons drawn before Fayette County noticed. 2 of Quality Technology Services' hookups weren't billed; one was installed without the utility's knowledge, during an active drought warning to residents. The county imposed no fine, calling it a "procedural mix-up"; Quality Technology Services is its largest customer.
+Georgia — 30 million gallons drawn before Fayette County noticed.
+
+2 of Quality Technology Services' hookups weren't billed; one was installed without the utility's knowledge, during an active drought warning to residents.
+
+The county imposed no fine, calling it a "procedural mix-up"; Quality Technology Services is its largest customer.

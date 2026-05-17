@@ -34,4 +34,8 @@ concepts:
 sentimentDivergence: 0.27
 ---
 
-Tehran — 2 Iranian universities bombed; IRGC threatens Gulf campuses. US-Israeli strikes hit Tehran's University of Science and Technology overnight Friday, extending the war's target list from military to academic infrastructure. Washington has until Monday noon: condemn the strikes or 2 named Gulf campuses face IRGC retaliation.
+Tehran — 2 Iranian universities bombed; IRGC threatens Gulf campuses.
+
+US-Israeli strikes hit Tehran's University of Science and Technology overnight Friday, extending the war's target list from military to academic infrastructure.
+
+Washington has until Monday noon: condemn the strikes or 2 named Gulf campuses face IRGC retaliation.

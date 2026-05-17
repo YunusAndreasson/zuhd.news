@@ -24,4 +24,8 @@ entities:
     kind: "currency"
 ---
 
-Karachi — The Iranian rial quadrupled against the Pakistani rupee. Hawala dealers cite speculation and cross-border oil smuggling; Iran's production rose 30% since the war, earning more from record prices. Pakistan's dollar rate is holding, but rising oil import costs are building pressure on that stability.
+Karachi — The Iranian rial quadrupled against the Pakistani rupee.
+
+Hawala dealers cite speculation and cross-border oil smuggling; Iran's production rose 30% since the war, earning more from record prices.
+
+Pakistan's dollar rate is holding, but rising oil import costs are building pressure on that stability.

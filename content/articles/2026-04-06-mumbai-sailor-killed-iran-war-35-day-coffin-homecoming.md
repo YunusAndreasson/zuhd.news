@@ -17,4 +17,8 @@ concepts:
   - "Relief"
 ---
 
-Mumbai — Dixit Solanki, 33, came home in a crate. He was India's 1st Iran war casualty; shipping firm V Ships held the body 35 days until a court order. His family refused cremation, demanding DNA tests; the Bombay High Court hears the case today.
+Mumbai — Dixit Solanki, 33, came home in a crate.
+
+He was India's 1st Iran war casualty; shipping firm V Ships held the body 35 days until a court order.
+
+His family refused cremation, demanding DNA tests; the Bombay High Court hears the case today.

@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-London — 414 chatbot-induced delusion cases span 31 countries, the Human Line Project documented. Large language models trained on fiction match users' lives to plot arcs, reinforcing emerging delusions, researcher Luke Nicholls found. No platform safety label currently identifies this harm category.
+London — 414 chatbot-induced delusion cases span 31 countries, the Human Line Project documented.
+
+Large language models trained on fiction match users' lives to plot arcs, reinforcing emerging delusions, researcher Luke Nicholls found.
+
+No platform safety label currently identifies this harm category.

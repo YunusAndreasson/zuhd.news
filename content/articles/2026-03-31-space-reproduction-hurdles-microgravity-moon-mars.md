@@ -17,4 +17,8 @@ concepts:
   - "Embryo"
 ---
 
-Adelaide — Microgravity disables sperm navigation, not mobility. Australian researchers found 50% of sperm failed to navigate toward an egg in simulated space, cutting fertilization rates by 30%. Progesterone helped sperm navigate, but embryo impairment persisted; no reproduction solution exists for Mars or lunar colonies.
+Adelaide — Microgravity disables sperm navigation, not mobility.
+
+Australian researchers found 50% of sperm failed to navigate toward an egg in simulated space, cutting fertilization rates by 30%.
+
+Progesterone helped sperm navigate, but embryo impairment persisted; no reproduction solution exists for Mars or lunar colonies.

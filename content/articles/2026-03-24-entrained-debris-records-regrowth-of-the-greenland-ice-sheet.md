@@ -17,4 +17,8 @@ concepts:
   - "Ice sheet"
 ---
 
-Nuuk — Greenland's ice nearly collapsed 120,000 years ago, then regrew. A Nature Geoscience study found the recovery took millennia — far longer than the decades of emissions needed to trigger comparable melt. Losing the ice sheet today would raise seas by up to 5 metres, with no recovery within any human timeline.
+Nuuk — Greenland's ice nearly collapsed 120,000 years ago, then regrew.
+
+A Nature Geoscience study found the recovery took millennia — far longer than the decades of emissions needed to trigger comparable melt.
+
+Losing the ice sheet today would raise seas by up to 5 metres, with no recovery within any human timeline.

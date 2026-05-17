@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Luanda — Leo in Angola, clash with Trump unresolved. The first US pope is on his first foreign trip Saturday; he has publicly broken with Trump over the Middle East war. Leo holds mass in Luanda Sunday; the breach with Washington over the Middle East remains open.
+Luanda — Leo in Angola, clash with Trump unresolved.
+
+The first US pope is on his first foreign trip Saturday; he has publicly broken with Trump over the Middle East war.
+
+Leo holds mass in Luanda Sunday; the breach with Washington over the Middle East remains open.

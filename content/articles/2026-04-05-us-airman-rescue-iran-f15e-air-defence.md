@@ -27,4 +27,8 @@ concepts:
 sentimentDivergence: 0.29
 ---
 
-Tehran — US rescued 2 airmen from Iran's mountains. Iran downed an F-15E and an A-10 — its first confirmed kills of US front-line fighters in the conflict. Trump's 48-hour ultimatum on Hormuz expires Monday as Iran launches fresh strikes on Israel and Kuwait.
+Tehran — US rescued 2 airmen from Iran's mountains.
+
+Iran downed an F-15E and an A-10 — its first confirmed kills of US front-line fighters in the conflict.
+
+Trump's 48-hour ultimatum on Hormuz expires Monday as Iran launches fresh strikes on Israel and Kuwait.

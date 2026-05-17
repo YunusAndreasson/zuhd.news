@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-Miami — x402 bills agents per web request. Coinbase engineer Erik Reppel told Consensus Miami that AI agents bypass ad rendering, collapsing the revenue model funding most web content. Reppel's x402 encodes payment in HTTP's unused 402 status code, settling in stablecoins.
+Miami — x402 bills agents per web request.
+
+Coinbase engineer Erik Reppel told Consensus Miami that AI agents bypass ad rendering, collapsing the revenue model funding most web content.
+
+Reppel's x402 encodes payment in HTTP's unused 402 status code, settling in stablecoins.

@@ -17,4 +17,8 @@ concepts:
   - "Board certification"
 ---
 
-London — AI outscored doctors on geriatrics board exams. GPT-4o scored 85.3% on 300 geriatrics board questions; all 4 models outscored average human candidates but misread question difficulty at moderate agreement. The models couldn't reliably flag uncertain answers; clinical deployment requires an AI that knows what it doesn't know.
+London — AI outscored doctors on geriatrics board exams.
+
+GPT-4o scored 85.3% on 300 geriatrics board questions; all 4 models outscored average human candidates but misread question difficulty at moderate agreement.
+
+The models couldn't reliably flag uncertain answers; clinical deployment requires an AI that knows what it doesn't know.

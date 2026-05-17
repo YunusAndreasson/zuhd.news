@@ -15,4 +15,8 @@ concepts:
   - "Vanderbilt University Medical Center"
 ---
 
-Nashville — 15 patients refused blood transfusions from vaccinated donors. Most were children; families cited RFK Jr.-fueled fears, delaying 2 surgeries and leaving 1 in shock. US donations fell 35% in January; Vanderbilt warns directed requests for unvaccinated blood are depleting reserves.
+Nashville — 15 patients refused blood transfusions from vaccinated donors.
+
+Most were children; families cited RFK Jr.-fueled fears, delaying 2 surgeries and leaving 1 in shock.
+
+US donations fell 35% in January; Vanderbilt warns directed requests for unvaccinated blood are depleting reserves.

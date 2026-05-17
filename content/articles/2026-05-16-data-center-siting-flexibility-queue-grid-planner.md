@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Austin — 12–18 months to first power, versus the conventional 5–8 years. A planner-initiated framework screens AI data centers for grid-flexibility commitments before queue entry, bypassing major transmission upgrades. System operators must decide whether to require flexibility commitments as a queue-entry condition.
+Austin — 12–18 months to first power, versus the conventional 5–8 years.
+
+A planner-initiated framework screens AI data centers for grid-flexibility commitments before queue entry, bypassing major transmission upgrades.
+
+System operators must decide whether to require flexibility commitments as a queue-entry condition.

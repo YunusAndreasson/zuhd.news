@@ -27,4 +27,8 @@ concepts:
 sentimentDivergence: 0.41
 ---
 
-Nabatieh — Israel killed 13 of Lebanon's state security forces. The strike hit the Nabatieh government complex hours after both sides agreed to hold ceasefire talks Tuesday in Washington under US auspices. Hezbollah continued retaliatory rocket fire Friday; Israel threatened Beirut's southern suburbs but had not struck by nightfall.
+Nabatieh — Israel killed 13 of Lebanon's state security forces.
+
+The strike hit the Nabatieh government complex hours after both sides agreed to hold ceasefire talks Tuesday in Washington under US auspices.
+
+Hezbollah continued retaliatory rocket fire Friday; Israel threatened Beirut's southern suburbs but had not struck by nightfall.

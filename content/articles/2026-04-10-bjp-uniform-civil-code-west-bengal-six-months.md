@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.49
 ---
 
-Kolkata — BJP vows uniform law for 25 million Muslims. Amit Shah promised UCC implementation within 6 months of a BJP election win, replacing Islamic personal law governing marriage, inheritance, and divorce. West Bengal elections will test whether the pledge mobilizes Hindu voters or consolidates the Muslim electorate behind Trinamool.
+Kolkata — BJP vows uniform law for 25 million Muslims.
+
+Amit Shah promised UCC implementation within 6 months of a BJP election win, replacing Islamic personal law governing marriage, inheritance, and divorce.
+
+West Bengal elections will test whether the pledge mobilizes Hindu voters or consolidates the Muslim electorate behind Trinamool.

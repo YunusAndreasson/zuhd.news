@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Taipei — [Taiwan](country:TW)'s chip fabs lie 180km from mainland [China](country:CN). The island controls advanced semiconductor supply; any escalation is an immediate supply shock to global tech. [China](country:CN) and [the US](country:US) meet in Beijing this week; access to Taiwan's foundries is the unresolved variable.
+Taipei — [Taiwan](country:TW)'s chip fabs lie 180km from mainland [China](country:CN).
+
+The island controls advanced semiconductor supply; any escalation is an immediate supply shock to global tech.
+
+[China](country:CN) and [the US](country:US) meet in Beijing this week; access to Taiwan's foundries is the unresolved variable.

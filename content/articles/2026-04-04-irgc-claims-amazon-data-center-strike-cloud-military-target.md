@@ -16,4 +16,8 @@ concepts:
   - "Cloud computing"
 ---
 
-Iran claims it struck AWS and Oracle data centers in the Gulf. The IRGC called it the first military strike on cloud infrastructure, exposing the physical layer "the cloud" pretends doesn't exist. Amazon has not confirmed damage; cloud infrastructure now sits in the military target set.
+Iran claims it struck AWS and Oracle data centers in the Gulf.
+
+The IRGC called it the first military strike on cloud infrastructure, exposing the physical layer "the cloud" pretends doesn't exist.
+
+Amazon has not confirmed damage; cloud infrastructure now sits in the military target set.

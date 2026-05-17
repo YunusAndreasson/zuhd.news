@@ -17,4 +17,8 @@ concepts:
   - "Palestinians"
 ---
 
-Jerusalem — Israel's Knesset advances hanging for "terrorism" convictions. The bill passed committee as a Palestinian teenager was reported starved to death in Israeli detention the same week. An anonymous trader separately won $1 million on Polymarket predicting Iran strikes; Senator Chris Murphy has flagged possible foreknowledge.
+Jerusalem — Israel's Knesset advances hanging for "terrorism" convictions.
+
+The bill passed committee as a Palestinian teenager was reported starved to death in Israeli detention the same week.
+
+An anonymous trader separately won $1 million on Polymarket predicting Iran strikes; Senator Chris Murphy has flagged possible foreknowledge.

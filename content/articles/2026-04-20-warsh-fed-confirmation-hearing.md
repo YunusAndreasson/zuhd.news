@@ -28,4 +28,8 @@ concepts:
 entities: []
 ---
 
-Washington — Thom Tillis threatened to block Warsh's confirmation vote. Warsh faces the Senate Banking Committee Tuesday and has argued presidential rate pressure doesn't threaten Fed independence. Tillis demands the Justice Department drop its criminal probe of outgoing chair Jerome Powell first.
+Washington — Thom Tillis threatened to block Warsh's confirmation vote.
+
+Warsh faces the Senate Banking Committee Tuesday and has argued presidential rate pressure doesn't threaten Fed independence.
+
+Tillis demands the Justice Department drop its criminal probe of outgoing chair Jerome Powell first.

@@ -13,4 +13,8 @@ eventCoverage: null
 concepts: []
 ---
 
-Moscow — War execution videos on Telegram earn 200,000 rubles monthly. Over 50 Russian channels, staffed by teenagers and factory workers, monetize front-line execution footage through advertising, subscriptions, and donations. IStories, a Russian investigative outlet, identified 4 of the channel administrators by name; Russia has not charged any of them.
+Moscow — War execution videos on Telegram earn 200,000 rubles monthly.
+
+Over 50 Russian channels, staffed by teenagers and factory workers, monetize front-line execution footage through advertising, subscriptions, and donations.
+
+IStories, a Russian investigative outlet, identified 4 of the channel administrators by name; Russia has not charged any of them.

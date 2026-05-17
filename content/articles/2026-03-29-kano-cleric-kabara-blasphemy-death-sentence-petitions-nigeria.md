@@ -15,4 +15,8 @@ concepts:
   - "Blasphemy law"
 ---
 
-Kano — Abduljabbar Kabara faces hanging for blasphemy in Kano. Sentenced in 2022 for misinterpreting Hadiths, Kabara claims the Kano state government orchestrated his prosecution to silence him. Nigeria's Supreme Court holds the petition; if appeals remain blocked, the 2022 death sentence stands.
+Kano — Abduljabbar Kabara faces hanging for blasphemy in Kano.
+
+Sentenced in 2022 for misinterpreting Hadiths, Kabara claims the Kano state government orchestrated his prosecution to silence him.
+
+Nigeria's Supreme Court holds the petition; if appeals remain blocked, the 2022 death sentence stands.

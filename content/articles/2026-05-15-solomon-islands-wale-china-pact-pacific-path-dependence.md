@@ -16,4 +16,8 @@ concepts: []
 entities: []
 ---
 
-Honiara — Matthew Wale won; [China](country:CN)'s infrastructure remains. China's 2022 security pact and China-built ports are non-negotiable fixtures no incoming Solomon Islands prime minister can undo. [Australia](country:AU) reads the vote as a geopolitical swing; analysts say Chinese-built dependencies outlast any election.
+Honiara — Matthew Wale won; [China](country:CN)'s infrastructure remains.
+
+China's 2022 security pact and China-built ports are non-negotiable fixtures no incoming Solomon Islands prime minister can undo.
+
+[Australia](country:AU) reads the vote as a geopolitical swing; analysts say Chinese-built dependencies outlast any election.

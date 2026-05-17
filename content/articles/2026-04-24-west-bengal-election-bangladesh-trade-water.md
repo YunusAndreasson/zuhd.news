@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Dhaka — West Bengal's election result will set the terms of [Bangladesh](country:BD)'s trade and water access with [India](country:IN). The state controls Dhaka's overland trade corridors and upstream Teesta river agreements; New Delhi cannot act on either without the chief minister's consent. A winner takes office within weeks; the Teesta deal has been stalled for over a decade.
+Dhaka — West Bengal's election result will set the terms of [Bangladesh](country:BD)'s trade and water access with [India](country:IN).
+
+The state controls Dhaka's overland trade corridors and upstream Teesta river agreements; New Delhi cannot act on either without the chief minister's consent.
+
+A winner takes office within weeks; the Teesta deal has been stalled for over a decade.

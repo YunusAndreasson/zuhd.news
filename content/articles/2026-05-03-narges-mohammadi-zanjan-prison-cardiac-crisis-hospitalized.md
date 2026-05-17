@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Zanjan — 2 blackouts sent Mohammadi to cardiac care Friday. Her foundation cited 140 days of medical neglect; [Iran](country:IR)'s prosecutors denied her hospital transfer after a March cardiac episode. A medical official recommended a 1-month sentence suspension; the public prosecutor referred the decision to Tehran.
+Zanjan — 2 blackouts sent Mohammadi to cardiac care Friday.
+
+Her foundation cited 140 days of medical neglect; [Iran](country:IR)'s prosecutors denied her hospital transfer after a March cardiac episode.
+
+A medical official recommended a 1-month sentence suspension; the public prosecutor referred the decision to Tehran.

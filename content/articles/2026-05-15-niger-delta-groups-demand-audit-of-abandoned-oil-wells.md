@@ -21,4 +21,8 @@ entities:
     kind: "commodity"
 ---
 
-Uyo — An Ondo State oil well has burned unattended since 2020. The Niger Delta Alternatives Convergence named the cause: oil companies sold onshore assets — and cleanup liabilities — to undercapitalised buyers. [Nigeria](country:NG)'s activists want decommissioning fund disclosures and the Petroleum Industry Act amended to hold acquirers liable.
+Uyo — An Ondo State oil well has burned unattended since 2020.
+
+The Niger Delta Alternatives Convergence named the cause: oil companies sold onshore assets — and cleanup liabilities — to undercapitalised buyers.
+
+[Nigeria](country:NG)'s activists want decommissioning fund disclosures and the Petroleum Industry Act amended to hold acquirers liable.

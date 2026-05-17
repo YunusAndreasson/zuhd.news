@@ -17,4 +17,8 @@ concepts:
   - "Sit-in"
 ---
 
-Khartoum — 12 million Sudanese are displaced. Civil parties marked the 7th sit-in anniversary with ceasefire demands Sudan's military hasn't accepted since seizing power in 2021. No talks are scheduled; Sudan's military commander invoked the sit-in's legacy to justify continued control.
+Khartoum — 12 million Sudanese are displaced.
+
+Civil parties marked the 7th sit-in anniversary with ceasefire demands Sudan's military hasn't accepted since seizing power in 2021.
+
+No talks are scheduled; Sudan's military commander invoked the sit-in's legacy to justify continued control.

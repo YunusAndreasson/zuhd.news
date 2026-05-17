@@ -17,4 +17,8 @@ concepts:
   - "Office software"
 ---
 
-Berlin — LibreOffice's foundation denied rumors about the project's future. LibreOffice is the only major open-source office suite; governance questions about it affect hundreds of millions of users globally. The foundation has not disclosed what the speculation was about or what structural changes are under consideration.
+Berlin — LibreOffice's foundation denied rumors about the project's future.
+
+LibreOffice is the only major open-source office suite; governance questions about it affect hundreds of millions of users globally.
+
+The foundation has not disclosed what the speculation was about or what structural changes are under consideration.

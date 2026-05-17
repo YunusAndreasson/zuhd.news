@@ -22,4 +22,8 @@ concepts:
 entities: []
 ---
 
-Bamako — Al-Qaeda affiliate JNIM seized Tessalit and ringed Bamako with checkpoints. [Mali](country:ML)'s Russian-backed junta expelled French forces to defeat this insurgency; 4 northern bases are now in rebel hands. The junta has not responded; [Russia](country:RU)'s African Corps disputes losing Hombori as JNIM calls for a nationwide uprising.
+Bamako — Al-Qaeda affiliate JNIM seized Tessalit and ringed Bamako with checkpoints.
+
+[Mali](country:ML)'s Russian-backed junta expelled French forces to defeat this insurgency; 4 northern bases are now in rebel hands.
+
+The junta has not responded; [Russia](country:RU)'s African Corps disputes losing Hombori as JNIM calls for a nationwide uprising.

@@ -18,4 +18,8 @@ entities:
     kind: "commodity"
 ---
 
-Suva — Pacific island economies depend entirely on imported fuel. The Hormuz blockade has driven oil prices up for nations where every litre of diesel is imported with no domestic alternative. China and Australia now compete to fill the energy vacuum; Pacific island governments cannot play one against the other.
+Suva — Pacific island economies depend entirely on imported fuel.
+
+The Hormuz blockade has driven oil prices up for nations where every litre of diesel is imported with no domestic alternative.
+
+China and Australia now compete to fill the energy vacuum; Pacific island governments cannot play one against the other.

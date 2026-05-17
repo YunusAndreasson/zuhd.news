@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Rome — [Italy](country:IT) fined Poste Italiane €12.5m for data violations. Italy's Garante fined the postal carrier (€6.6m) and Postepay digital payments arm (€5.9m) for illegally processing millions of customer records. The Garante is one of Europe's most active regulators; state-owned incumbents are now within its enforcement reach.
+Rome — [Italy](country:IT) fined Poste Italiane €12.5m for data violations.
+
+Italy's Garante fined the postal carrier (€6.6m) and Postepay digital payments arm (€5.9m) for illegally processing millions of customer records.
+
+The Garante is one of Europe's most active regulators; state-owned incumbents are now within its enforcement reach.

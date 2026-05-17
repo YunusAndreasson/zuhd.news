@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Cambridge — Oxygen metabolism traced 900m years earlier than assumed. Early organisms evolved the oxygen-using enzyme 3.2 billion years ago, consuming oxygen as fast as cyanobacteria produced it, MIT researchers found. The finding challenges how researchers interpret oxygen in exoplanet atmospheres as biosignatures.
+Cambridge — Oxygen metabolism traced 900m years earlier than assumed.
+
+Early organisms evolved the oxygen-using enzyme 3.2 billion years ago, consuming oxygen as fast as cyanobacteria produced it, MIT researchers found.
+
+The finding challenges how researchers interpret oxygen in exoplanet atmospheres as biosignatures.

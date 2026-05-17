@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-San Francisco — Tinder, Zoom, and Docusign adopted iris-scan identity verification. World ID — under regulatory challenge in [Kenya](country:KE), [Spain](country:ES), and Hong Kong — is now the default check on those 3 US consumer platforms. Data regulators in 3 countries are still probing World's iris-collection practices while it expands in the US.
+San Francisco — Tinder, Zoom, and Docusign adopted iris-scan identity verification.
+
+World ID — under regulatory challenge in [Kenya](country:KE), [Spain](country:ES), and Hong Kong — is now the default check on those 3 US consumer platforms.
+
+Data regulators in 3 countries are still probing World's iris-collection practices while it expands in the US.

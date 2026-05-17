@@ -20,4 +20,8 @@ concepts:
   - "Futures contract"
 ---
 
-Washington — White House warned staff on Iran insider trading. Before Trump's bombing pause, $760 million in oil futures changed hands in under 2 minutes — war decisions were being traded as signals. 3 Polymarket accounts earned $600,000 calling the ceasefire timing; Democratic lawmakers have proposed legislation to restrict prediction markets.
+Washington — White House warned staff on Iran insider trading.
+
+Before Trump's bombing pause, $760 million in oil futures changed hands in under 2 minutes — war decisions were being traded as signals.
+
+3 Polymarket accounts earned $600,000 calling the ceasefire timing; Democratic lawmakers have proposed legislation to restrict prediction markets.

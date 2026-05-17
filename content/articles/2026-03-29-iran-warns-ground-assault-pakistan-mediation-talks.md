@@ -24,4 +24,8 @@ concepts:
 sentimentDivergence: 0.09
 ---
 
-Tehran — Iran's parliament speaker vowed to burn US troops. Pentagon planners have drafted ground operation options for weeks, targeting Kharg Island through which 90% of Iran's crude exports pass. Saudi, Turkish, and Egyptian FMs convened in Pakistan Sunday — the first coordinated Muslim diplomatic track of the war.
+Tehran — Iran's parliament speaker vowed to burn US troops.
+
+Pentagon planners have drafted ground operation options for weeks, targeting Kharg Island through which 90% of Iran's crude exports pass.
+
+Saudi, Turkish, and Egyptian FMs convened in Pakistan Sunday — the first coordinated Muslim diplomatic track of the war.

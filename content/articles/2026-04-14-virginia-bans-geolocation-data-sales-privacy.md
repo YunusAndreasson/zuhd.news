@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Richmond — Virginia outlawed the sale of precise geolocation data. A 1,750-foot exclusion zone prevents identifying home, workplace, or place of worship — the tightest state-level geolocation limit in the US. Similar legislation is advancing in other states while Congress has passed no federal geolocation privacy standard.
+Richmond — Virginia outlawed the sale of precise geolocation data.
+
+A 1,750-foot exclusion zone prevents identifying home, workplace, or place of worship — the tightest state-level geolocation limit in the US.
+
+Similar legislation is advancing in other states while Congress has passed no federal geolocation privacy standard.

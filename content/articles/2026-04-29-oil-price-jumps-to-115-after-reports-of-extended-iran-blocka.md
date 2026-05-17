@@ -26,4 +26,8 @@ entities:
     kind: "commodity"
 ---
 
-Washington — Oil hit $115 as [Iran](country:IR) extended its Strait of Hormuz blockade into Q3. The strait carries 20% of global oil; [US](country:US) officials said Trump ruled out resuming airstrikes. Tehran said it is rerouting exports through alternative corridors.
+Washington — Oil hit $115 as [Iran](country:IR) extended its Strait of Hormuz blockade into Q3.
+
+The strait carries 20% of global oil; [US](country:US) officials said Trump ruled out resuming airstrikes.
+
+Tehran said it is rerouting exports through alternative corridors.

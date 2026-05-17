@@ -17,4 +17,8 @@ concepts:
   - "Exchange-traded fund"
 ---
 
-New York — Gold fell 27% over 10 straight losing sessions, its worst streak since February 1920. Bitcoin ETFs absorbed $2.5 billion in March inflows while gold ETFs shed comparable outflows, pushing the BTC-to-gold ratio to 16 oz per coin — up 30% since the Iran war began. Bitcoin holds above $70,000, putting the digital-gold thesis to its first live test in an active shooting war.
+New York — Gold fell 27% over 10 straight losing sessions, its worst streak since February 1920.
+
+Bitcoin ETFs absorbed $2.5 billion in March inflows while gold ETFs shed comparable outflows, pushing the BTC-to-gold ratio to 16 oz per coin — up 30% since the Iran war began.
+
+Bitcoin holds above $70,000, putting the digital-gold thesis to its first live test in an active shooting war.

@@ -28,4 +28,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Islamabad — Iran's Foreign Minister toured Oman and Pakistan Sunday. [Iran](country:IR)'s post-ceasefire tour skips the West — Oman, [Pakistan](country:PK), Moscow — while the impasse holds: Hormuz closure versus [US](country:US) port blockade and nuclear enrichment demands. Washington cancelled planned envoy travel after the first Islamabad round on April 11 ended without agreement.
+Islamabad — Iran's Foreign Minister toured Oman and Pakistan Sunday.
+
+[Iran](country:IR)'s post-ceasefire tour skips the West — Oman, [Pakistan](country:PK), Moscow — while the impasse holds: Hormuz closure versus [US](country:US) port blockade and nuclear enrichment demands.
+
+Washington cancelled planned envoy travel after the first Islamabad round on April 11 ended without agreement.

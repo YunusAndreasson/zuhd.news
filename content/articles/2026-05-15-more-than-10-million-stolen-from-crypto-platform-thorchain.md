@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-New York — 1 of THORChain's 6 vaults was breached Friday. THORChain markets itself as a decentralised cross-chain swap layer with vault redundancy; compromising 1 vault was enough to drain $10.7 million, officials said. The attack vector has not been disclosed; 5 remaining vaults continue handling live cross-chain swaps.
+New York — 1 of THORChain's 6 vaults was breached Friday.
+
+THORChain markets itself as a decentralised cross-chain swap layer with vault redundancy; compromising 1 vault was enough to drain $10.7 million, officials said.
+
+The attack vector has not been disclosed; 5 remaining vaults continue handling live cross-chain swaps.

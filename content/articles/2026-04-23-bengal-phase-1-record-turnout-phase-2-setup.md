@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Kolkata — Bengal phase 1 posts record 92.35% turnout. Phase 1's 152 seats span [India](country:IN)'s Bharatiya Janata Party-leaning north; phase 2's 142 include 4 districts Trinamool Congress held clean in 2021. Results announced May 4; phase 2 votes April 29 in constituencies with large Muslim and Matua communities.
+Kolkata — Bengal phase 1 posts record 92.35% turnout.
+
+Phase 1's 152 seats span [India](country:IN)'s Bharatiya Janata Party-leaning north; phase 2's 142 include 4 districts Trinamool Congress held clean in 2021.
+
+Results announced May 4; phase 2 votes April 29 in constituencies with large Muslim and Matua communities.

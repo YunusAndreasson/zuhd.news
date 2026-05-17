@@ -18,4 +18,6 @@ concepts:
   - "Use of force"
 ---
 
-Chicago — The same agents appeared in Bakersfield and Chicago. Bellingcat matched 85 hours of footage to identify masked Border Patrol agents who slashed tires in California and choked a man in Illinois — force a judge called "conscience-shocking." The restraining order was vacated on appeal this month, leaving the identified agents free to continue operating.
+Chicago — The same agents appeared in Bakersfield and Chicago.
+
+Bellingcat matched 85 hours of footage to identify masked Border Patrol agents who slashed tires in California and choked a man in Illinois — force a judge called "conscience-shocking." The restraining order was vacated on appeal this month, leaving the identified agents free to continue operating.

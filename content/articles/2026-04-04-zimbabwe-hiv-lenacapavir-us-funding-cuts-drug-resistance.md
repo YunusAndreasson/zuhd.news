@@ -11,4 +11,8 @@ sources:
     country: "ZW"
 ---
 
-Harare — US funding cuts are threatening Zimbabwe's lenacapavir rollout. The drug requires 1 injection every 6 months; aid cuts have halted supply before Zimbabwe's rollout can scale. If supply gaps persist, interrupted treatment risks creating drug-resistant HIV that will spread beyond Zimbabwe's borders.
+Harare — US funding cuts are threatening Zimbabwe's lenacapavir rollout.
+
+The drug requires 1 injection every 6 months; aid cuts have halted supply before Zimbabwe's rollout can scale.
+
+If supply gaps persist, interrupted treatment risks creating drug-resistant HIV that will spread beyond Zimbabwe's borders.

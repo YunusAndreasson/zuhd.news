@@ -18,4 +18,8 @@ concepts:
   - "Brent crude"
 ---
 
-Washington — US gasoline spiked $1 in 30 days. AAA recorded $3.98/gallon nationwide on March 28; Hormuz closure has cut 10 million barrels per day, nearly half of pre-war throughput. Brent crude is above $120/barrel; analysts warn it could reach $150 if the strait stays closed.
+Washington — US gasoline spiked $1 in 30 days.
+
+AAA recorded $3.98/gallon nationwide on March 28; Hormuz closure has cut 10 million barrels per day, nearly half of pre-war throughput.
+
+Brent crude is above $120/barrel; analysts warn it could reach $150 if the strait stays closed.

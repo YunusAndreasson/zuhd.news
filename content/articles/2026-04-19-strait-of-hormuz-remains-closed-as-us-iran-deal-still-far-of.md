@@ -32,4 +32,8 @@ concepts:
 sentimentDivergence: 0.36
 ---
 
-Tehran — [Iran](country:IR) keeps Hormuz closed; the ceasefire expires Wednesday. Ghalibaf, Iran's parliament speaker and lead negotiator, says talks show progress but nuclear demands and the [US](country:US) port blockade remain the core gaps. [Pakistan](country:PK) hosts a second round; unless the ceasefire is extended, the war could resume Wednesday.
+Tehran — [Iran](country:IR) keeps Hormuz closed; the ceasefire expires Wednesday.
+
+Ghalibaf, Iran's parliament speaker and lead negotiator, says talks show progress but nuclear demands and the [US](country:US) port blockade remain the core gaps.
+
+[Pakistan](country:PK) hosts a second round; unless the ceasefire is extended, the war could resume Wednesday.

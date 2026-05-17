@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Nyala — Sudan's military drones struck residential areas for a 4th day. The UN rights office said drones killed 880 civilians in [Sudan](country:SD) between January and April, over 80% of all conflict deaths. The Rapid Support Forces claimed to have shot down a Bayraktar Akinci drone over Dama; the claim is unverified.
+Nyala — Sudan's military drones struck residential areas for a 4th day.
+
+The UN rights office said drones killed 880 civilians in [Sudan](country:SD) between January and April, over 80% of all conflict deaths.
+
+The Rapid Support Forces claimed to have shot down a Bayraktar Akinci drone over Dama; the claim is unverified.

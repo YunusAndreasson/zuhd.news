@@ -18,4 +18,8 @@ concepts:
   - "Aurangzeb"
 ---
 
-Islamabad — Pakistan secured April fuel cargoes despite the Iran war shock. Finance Minister Aurangzeb confirmed the shipments days after the government raised petrol prices by Rs55 per litre, cut the work week to 4 days, and added a Rs200 levy on premium fuel. Pakistan is diversifying crude procurement and expanding storage against further disruption to Gulf shipping lanes.
+Islamabad — Pakistan secured April fuel cargoes despite the Iran war shock.
+
+Finance Minister Aurangzeb confirmed the shipments days after the government raised petrol prices by Rs55 per litre, cut the work week to 4 days, and added a Rs200 levy on premium fuel.
+
+Pakistan is diversifying crude procurement and expanding storage against further disruption to Gulf shipping lanes.

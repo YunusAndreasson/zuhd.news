@@ -17,4 +17,8 @@ concepts:
   - "Moscow Kremlin"
 ---
 
-Moscow — Kremlin called Saudi Arabia a "good friend" today. Spokesman Peskov told TASS that Russia aims to deepen bilateral cooperation with Saudi Arabia and all Gulf states. No specific initiative was named; the timing — as US forces operate across the Gulf — was the message.
+Moscow — Kremlin called Saudi Arabia a "good friend" today.
+
+Spokesman Peskov told TASS that Russia aims to deepen bilateral cooperation with Saudi Arabia and all Gulf states.
+
+No specific initiative was named; the timing — as US forces operate across the Gulf — was the message.

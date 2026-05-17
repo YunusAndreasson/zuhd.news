@@ -24,4 +24,8 @@ entities:
     kind: "index"
 ---
 
-New York — 50 firms including BlackRock shaped Depository Trust & Clearing Corporation's platform. The corporation, custodian of more than $114 trillion in US securities, said a July pilot tests on-chain settlement before an October launch. Nasdaq and the New York Stock Exchange's parent are building parallel programs.
+New York — 50 firms including BlackRock shaped Depository Trust & Clearing Corporation's platform.
+
+The corporation, custodian of more than $114 trillion in US securities, said a July pilot tests on-chain settlement before an October launch.
+
+Nasdaq and the New York Stock Exchange's parent are building parallel programs.

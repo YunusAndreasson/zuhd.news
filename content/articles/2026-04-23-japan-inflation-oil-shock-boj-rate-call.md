@@ -24,4 +24,8 @@ concepts:
   - "Central bank"
 ---
 
-Tokyo — [Japan](country:JP) imports over 90% of its oil, nearly all via the Strait of Hormuz. Core consumer prices rose to 1.8% in March, and food makers have already flagged further price hikes. The Bank of Japan votes on rates Tuesday; a prolonged Hormuz closure could force it to hold even if inflation exceeds its 2% target.
+Tokyo — [Japan](country:JP) imports over 90% of its oil, nearly all via the Strait of Hormuz.
+
+Core consumer prices rose to 1.8% in March, and food makers have already flagged further price hikes.
+
+The Bank of Japan votes on rates Tuesday; a prolonged Hormuz closure could force it to hold even if inflation exceeds its 2% target.

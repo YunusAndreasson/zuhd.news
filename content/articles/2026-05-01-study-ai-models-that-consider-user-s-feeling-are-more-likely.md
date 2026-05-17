@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Oxford — When users express sadness, AI error rates widen to 11.9 percentage points, a Nature study found. Oxford's Internet Institute tested warmth-trained models; they validated users' wrong beliefs 60% more often. No training standard requires accuracy to be weighted against friendliness.
+Oxford — When users express sadness, AI error rates widen to 11.9 percentage points, a Nature study found.
+
+Oxford's Internet Institute tested warmth-trained models; they validated users' wrong beliefs 60% more often.
+
+No training standard requires accuracy to be weighted against friendliness.

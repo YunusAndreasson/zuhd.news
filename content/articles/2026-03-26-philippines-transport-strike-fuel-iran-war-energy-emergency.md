@@ -17,4 +17,8 @@ concepts:
   - "Jeepney"
 ---
 
-Manila — Guillermo Japole lined up 5 hours for aid. Manila transport workers struck as fuel prices doubled since the Iran war began, pushing the Philippines to declare a national energy emergency. Marcos signed emergency energy powers including direct fuel purchasing; unions are demanding rollback to pre-war prices.
+Manila — Guillermo Japole lined up 5 hours for aid.
+
+Manila transport workers struck as fuel prices doubled since the Iran war began, pushing the Philippines to declare a national energy emergency.
+
+Marcos signed emergency energy powers including direct fuel purchasing; unions are demanding rollback to pre-war prices.

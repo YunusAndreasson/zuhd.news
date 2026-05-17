@@ -15,4 +15,8 @@ concepts:
   - "Software engineering"
 ---
 
-San Francisco — BitTorrent's creator called vibe coding a professional menace. Bram Cohen argues AI-generated code works in demos but fails in production: it cannot be debugged, maintained, or audited for security. Cohen contends vibe coding degrades software quality industry-wide; the 329-comment HN thread shows the profession is divided.
+San Francisco — BitTorrent's creator called vibe coding a professional menace.
+
+Bram Cohen argues AI-generated code works in demos but fails in production: it cannot be debugged, maintained, or audited for security.
+
+Cohen contends vibe coding degrades software quality industry-wide; the 329-comment HN thread shows the profession is divided.

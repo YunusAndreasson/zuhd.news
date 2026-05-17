@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Paris — Frontline ovarian cancer drugs may breed resistance. Gustave Roussy found CCNE1 amplification — a cell-cycle driver — more common in post-treatment tumors than in untreated samples. Patients relapsing after these drugs may need genetic screening to guide next-line therapy.
+Paris — Frontline ovarian cancer drugs may breed resistance.
+
+Gustave Roussy found CCNE1 amplification — a cell-cycle driver — more common in post-treatment tumors than in untreated samples.
+
+Patients relapsing after these drugs may need genetic screening to guide next-line therapy.

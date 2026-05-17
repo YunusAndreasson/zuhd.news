@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Tehran — US airstrikes have hit more than 30 Iranian universities. Iranian scientists warn of brain drain as research infrastructure is destroyed across [Iran](country:IR). No government or body has assessed how many researchers have fled or when work might resume.
+Tehran — US airstrikes have hit more than 30 Iranian universities.
+
+Iranian scientists warn of brain drain as research infrastructure is destroyed across [Iran](country:IR).
+
+No government or body has assessed how many researchers have fled or when work might resume.

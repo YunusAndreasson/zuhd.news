@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Gaza — Israeli strikes killed 9 across Gaza on Friday. [Israel](country:IL) carried out 3 strikes; 792 Palestinians have died since the October ceasefire began, the health ministry said. Neither party faces enforcement; a ceasefire monitoring mechanism with binding authority has never been agreed.
+Gaza — Israeli strikes killed 9 across Gaza on Friday.
+
+[Israel](country:IL) carried out 3 strikes; 792 Palestinians have died since the October ceasefire began, the health ministry said.
+
+Neither party faces enforcement; a ceasefire monitoring mechanism with binding authority has never been agreed.

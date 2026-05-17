@@ -27,4 +27,8 @@ sentimentDivergence: 0.64
 entities: []
 ---
 
-Tehran — [US](country:US) forces seized Iran's vessel Toska off Oman. [Iran](country:IR)'s UN ambassador called it 'piracy,' arguing the interdiction lacks Security Council authorization. Tehran said Washington signaled readiness to end seizures; Trump warned any concession eliminates negotiating leverage.
+Tehran — [US](country:US) forces seized Iran's vessel Toska off Oman.
+
+[Iran](country:IR)'s UN ambassador called it 'piracy,' arguing the interdiction lacks Security Council authorization.
+
+Tehran said Washington signaled readiness to end seizures; Trump warned any concession eliminates negotiating leverage.

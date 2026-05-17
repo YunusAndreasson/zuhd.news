@@ -17,4 +17,8 @@ concepts:
   - "Metabolite"
 ---
 
-London — Gut bacteria block protein gains in elderly people. Among 47 older adults at sarcopenia risk, high trimethylamine predicted no muscle response to leucine supplements that benefited others. No clinical trial has yet tested microbiome screening before protein prescriptions for elderly patients.
+London — Gut bacteria block protein gains in elderly people.
+
+Among 47 older adults at sarcopenia risk, high trimethylamine predicted no muscle response to leucine supplements that benefited others.
+
+No clinical trial has yet tested microbiome screening before protein prescriptions for elderly patients.

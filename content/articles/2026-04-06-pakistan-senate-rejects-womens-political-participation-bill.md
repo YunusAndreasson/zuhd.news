@@ -15,4 +15,8 @@ concepts:
   - "Pakistan"
 ---
 
-Islamabad — All parties united to reject women's quota bill. PTI's proposal required 33% women in party offices and 10% of funds for women's leadership training. The rejection leaves Pakistan's 5% women's quota on general seats unchanged, with no party supporting reform.
+Islamabad — All parties united to reject women's quota bill.
+
+PTI's proposal required 33% women in party offices and 10% of funds for women's leadership training.
+
+The rejection leaves Pakistan's 5% women's quota on general seats unchanged, with no party supporting reform.

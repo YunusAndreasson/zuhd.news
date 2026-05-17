@@ -24,4 +24,8 @@ concepts:
 entities: []
 ---
 
-Shahdara — Rescue teams pulled 12-20 survivors from a burning Vivek Vihar building overnight. [India](country:IN)'s Delhi Fire Service recovered at least 4 bodies; 1-2 families remained unaccounted for. Police said operations continued, with official toll accounts ranging from 4 to 9 dead.
+Shahdara — Rescue teams pulled 12-20 survivors from a burning Vivek Vihar building overnight.
+
+[India](country:IN)'s Delhi Fire Service recovered at least 4 bodies; 1-2 families remained unaccounted for.
+
+Police said operations continued, with official toll accounts ranging from 4 to 9 dead.

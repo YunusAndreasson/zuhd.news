@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Lagos — 600 million Africans cannot use artificial intelligence tools. In Sub-Saharan Africa, internet costs over a quarter of monthly salary; daily power cuts sever connections the technology requires. The International Energy Agency found electrification trails population growth, locking the region out.
+Lagos — 600 million Africans cannot use artificial intelligence tools.
+
+In Sub-Saharan Africa, internet costs over a quarter of monthly salary; daily power cuts sever connections the technology requires.
+
+The International Energy Agency found electrification trails population growth, locking the region out.

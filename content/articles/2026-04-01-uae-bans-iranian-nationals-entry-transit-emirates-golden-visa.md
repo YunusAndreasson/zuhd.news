@@ -19,4 +19,8 @@ concepts:
   - "Strait of Hormuz"
 ---
 
-Dubai — UAE barred all Iranians except Golden Visa holders. Emirates and flydubai split entry rights by wealth — 400,000 Iranians in Dubai suddenly sorted by visa tier. Iran had previously warned it would target UAE civilian infrastructure if the country joined the anti-Tehran coalition; no end date for the ban has been announced.
+Dubai — UAE barred all Iranians except Golden Visa holders.
+
+Emirates and flydubai split entry rights by wealth — 400,000 Iranians in Dubai suddenly sorted by visa tier.
+
+Iran had previously warned it would target UAE civilian infrastructure if the country joined the anti-Tehran coalition; no end date for the ban has been announced.

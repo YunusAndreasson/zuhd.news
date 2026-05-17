@@ -17,4 +17,8 @@ concepts:
   - "Islamabad"
 ---
 
-Islamabad — US and Iran exchanged notes in Islamabad. Pakistan mediated the first contact since the US-Israel attack on Iran in February broke off Oman-brokered nuclear talks. Netanyahu declared Israel will continue striking Iran; Washington's response determines whether Hormuz talks proceed.
+Islamabad — US and Iran exchanged notes in Islamabad.
+
+Pakistan mediated the first contact since the US-Israel attack on Iran in February broke off Oman-brokered nuclear talks.
+
+Netanyahu declared Israel will continue striking Iran; Washington's response determines whether Hormuz talks proceed.

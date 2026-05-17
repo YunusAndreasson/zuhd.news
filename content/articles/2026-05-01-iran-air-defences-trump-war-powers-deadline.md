@@ -19,4 +19,8 @@ eventCoverage: 24
 entities: []
 ---
 
-Tehran — Drones triggered Tehran's air shields for 20 minutes. Trump told Congress [Iran](country:IR)'s April 7 ceasefire paused the war-powers clock, cutting off the legislative route to end the campaign. Congress's authorisation deadline expired at midnight without a vote; Trump warned his naval blockade could last months.
+Tehran — Drones triggered Tehran's air shields for 20 minutes.
+
+Trump told Congress [Iran](country:IR)'s April 7 ceasefire paused the war-powers clock, cutting off the legislative route to end the campaign.
+
+Congress's authorisation deadline expired at midnight without a vote; Trump warned his naval blockade could last months.

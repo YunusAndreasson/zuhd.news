@@ -18,4 +18,8 @@ concepts:
   - "Luhansk Oblast"
 ---
 
-Kyiv — Russia claims full Luhansk control after 4 years. Moscow says its "West" grouping completed the oblast's seizure — the first entire Ukrainian region taken since the 2022 invasion. The Kremlin demands Kyiv withdraw from Donetsk within 2 months or it hardens its peace terms.
+Kyiv — Russia claims full Luhansk control after 4 years.
+
+Moscow says its "West" grouping completed the oblast's seizure — the first entire Ukrainian region taken since the 2022 invasion.
+
+The Kremlin demands Kyiv withdraw from Donetsk within 2 months or it hardens its peace terms.

@@ -31,4 +31,8 @@ sentimentDivergence: 0.31
 entities: []
 ---
 
-Brussels — Meta ran no effective age checks, the Commission found. The Digital Services Act classifies under-13 access as systemic risk — not a content-moderation case — binding TikTok, X and YouTube to the same standard. Meta may respond before a final decision; confirmed violations carry fines up to 6% of global revenue.
+Brussels — Meta ran no effective age checks, the Commission found.
+
+The Digital Services Act classifies under-13 access as systemic risk — not a content-moderation case — binding TikTok, X and YouTube to the same standard.
+
+Meta may respond before a final decision; confirmed violations carry fines up to 6% of global revenue.

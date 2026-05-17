@@ -17,4 +17,8 @@ concepts:
   - "Donald Trump"
 ---
 
-Copenhagen — Denmark called snap elections, riding the Greenland standoff. Prime Minister Mette Frederiksen's support climbed after she rejected Trump's push to seize Greenland; the sovereignty crisis became a national mandate for her government. The vote will be Europe's first democratic test of public will to resist US territorial pressure.
+Copenhagen — Denmark called snap elections, riding the Greenland standoff.
+
+Prime Minister Mette Frederiksen's support climbed after she rejected Trump's push to seize Greenland; the sovereignty crisis became a national mandate for her government.
+
+The vote will be Europe's first democratic test of public will to resist US territorial pressure.

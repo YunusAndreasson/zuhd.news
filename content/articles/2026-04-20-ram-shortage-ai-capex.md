@@ -24,4 +24,8 @@ entities:
     kind: "stock"
 ---
 
-Seoul — Datacenters outbid phones and laptops for dynamic RAM. South Korea's 2 major chipmakers and Micron shifted production to high-bandwidth AI memory, leaving consumer dynamic RAM short. Supply forecasts show only 60% of consumer demand met by end-2027; SK Group's chairman warns shortages persist to 2030.
+Seoul — Datacenters outbid phones and laptops for dynamic RAM.
+
+South Korea's 2 major chipmakers and Micron shifted production to high-bandwidth AI memory, leaving consumer dynamic RAM short.
+
+Supply forecasts show only 60% of consumer demand met by end-2027; SK Group's chairman warns shortages persist to 2030.

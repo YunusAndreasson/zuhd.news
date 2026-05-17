@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Zurich — FIFA cleared Israeli settlement clubs last week. The committee ruled West Bank status "legally unresolved" — contradicting the ICJ and 59 UN resolutions on settlement illegality. An ICC complaint now accuses the FIFA and UEFA presidents of aiding and abetting war crimes.
+Zurich — FIFA cleared Israeli settlement clubs last week.
+
+The committee ruled West Bank status "legally unresolved" — contradicting the ICJ and 59 UN resolutions on settlement illegality.
+
+An ICC complaint now accuses the FIFA and UEFA presidents of aiding and abetting war crimes.

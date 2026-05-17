@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Kyiv — [Ukraine](country:UA) converted 1980s An-28 turboprops to air-launch interceptor drones. The P1-Sun is a cheap 3D-printed interceptor; air-launching from existing inventory cuts the cost of each Shahed kill. The platform has 222 confirmed drone kills; commanders are now testing additional interceptor types.
+Kyiv — [Ukraine](country:UA) converted 1980s An-28 turboprops to air-launch interceptor drones.
+
+The P1-Sun is a cheap 3D-printed interceptor; air-launching from existing inventory cuts the cost of each Shahed kill.
+
+The platform has 222 confirmed drone kills; commanders are now testing additional interceptor types.

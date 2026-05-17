@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Brasília — [Brazil](country:BR)'s Serra Verde was acquired with [US](country:US) government backing. The deal targets [China](country:CN)'s dominance in rare earths — materials critical to defense and clean-energy supply chains. Whether the acquisition can actually break Chinese supply-chain control, as the US government intends, remains untested.
+Brasília — [Brazil](country:BR)'s Serra Verde was acquired with [US](country:US) government backing.
+
+The deal targets [China](country:CN)'s dominance in rare earths — materials critical to defense and clean-energy supply chains.
+
+Whether the acquisition can actually break Chinese supply-chain control, as the US government intends, remains untested.

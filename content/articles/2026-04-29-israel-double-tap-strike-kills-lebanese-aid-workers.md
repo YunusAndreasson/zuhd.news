@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Beirut — An [Israeli](country:IL) double-tap struck southern [Lebanon](country:LB)'s first responders. A 2nd missile fires timed to kill arriving rescuers — a tactic documented in [Syria](country:SY) and [Yemen](country:YE), now recorded in Lebanon. UN food monitors count 1.24 million Lebanese food-insecure; no Security Council session is scheduled on the ceasefire breach.
+Beirut — An [Israeli](country:IL) double-tap struck southern [Lebanon](country:LB)'s first responders.
+
+A 2nd missile fires timed to kill arriving rescuers — a tactic documented in [Syria](country:SY) and [Yemen](country:YE), now recorded in Lebanon.
+
+UN food monitors count 1.24 million Lebanese food-insecure; no Security Council session is scheduled on the ceasefire breach.

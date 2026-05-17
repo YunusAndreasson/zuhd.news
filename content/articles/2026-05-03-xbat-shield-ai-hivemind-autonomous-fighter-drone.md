@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-National Harbor — Shield AI's X-BAT stealth drone will begin vertical-takeoff-and-landing tests before year's end, pilotless. The Hivemind artificial intelligence flies and fights autonomously; its F-35-sized payload bays carry the same weapons as a crewed fighter. No air force has yet certified a closed-loop neural pilot for live-fire engagement.
+National Harbor — Shield AI's X-BAT stealth drone will begin vertical-takeoff-and-landing tests before year's end, pilotless.
+
+The Hivemind artificial intelligence flies and fights autonomously; its F-35-sized payload bays carry the same weapons as a crewed fighter.
+
+No air force has yet certified a closed-loop neural pilot for live-fire engagement.

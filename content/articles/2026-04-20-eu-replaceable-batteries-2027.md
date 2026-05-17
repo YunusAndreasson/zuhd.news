@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Brussels — EU bans glued phone batteries from February 2027. The 2023 Batteries Regulation bans adhesive and proprietary tools, mandates 5 years of spare parts, and is enforced at retail. Manufacturers missing the deadline face retail bans across the EU's 27 member states.
+Brussels — EU bans glued phone batteries from February 2027.
+
+The 2023 Batteries Regulation bans adhesive and proprietary tools, mandates 5 years of spare parts, and is enforced at retail.
+
+Manufacturers missing the deadline face retail bans across the EU's 27 member states.

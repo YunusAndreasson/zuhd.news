@@ -26,4 +26,8 @@ sentimentDivergence: 0.06
 entities: []
 ---
 
-Washington — Wright: $3 gas unlikely before 2027. The [US](country:US) energy secretary contradicted Treasury Secretary Bessent's summer forecast, tying any decline to resolving the [Iran](country:IR) war. A Quinnipiac poll found 65% of [US](country:US) voters blame Trump for the rise, with midterms in November.
+Washington — Wright: $3 gas unlikely before 2027.
+
+The [US](country:US) energy secretary contradicted Treasury Secretary Bessent's summer forecast, tying any decline to resolving the [Iran](country:IR) war.
+
+A Quinnipiac poll found 65% of [US](country:US) voters blame Trump for the rise, with midterms in November.

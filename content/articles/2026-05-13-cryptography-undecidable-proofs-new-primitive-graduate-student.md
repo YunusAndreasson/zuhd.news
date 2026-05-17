@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-New York — A new construction roots cryptographic hardness in Gödelian undecidability — problems provably unsolvable under any axiom system. Standard schemes rely on computational difficulty like factoring or lattices. The result opens a third cryptographic foundation distinct from the 2 families dominating post-quantum proposals.
+New York — A new construction roots cryptographic hardness in Gödelian undecidability — problems provably unsolvable under any axiom system.
+
+Standard schemes rely on computational difficulty like factoring or lattices.
+
+The result opens a third cryptographic foundation distinct from the 2 families dominating post-quantum proposals.

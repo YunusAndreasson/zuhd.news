@@ -28,4 +28,8 @@ eventCoverage: 25
 sentimentDivergence: 0.28
 ---
 
-Hanoi — 1 man now runs Vietnam's party and state. To Lam is Vietnam's first combined party-state leader since Ho Chi Minh; his rise came through anti-corruption purges. Vietnam faces US tariff investigations and fuel shortages; Lam targets 10% growth despite both.
+Hanoi — 1 man now runs Vietnam's party and state.
+
+To Lam is Vietnam's first combined party-state leader since Ho Chi Minh; his rise came through anti-corruption purges.
+
+Vietnam faces US tariff investigations and fuel shortages; Lam targets 10% growth despite both.

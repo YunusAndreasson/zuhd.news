@@ -16,4 +16,8 @@ concepts:
 entities: []
 ---
 
-Cairo — Syria's proposed ambassador to Cairo remains unconfirmed. Both governments confirmed high-level security and economic talks; [Egypt](country:EG) seeks labor markets, [Syria](country:SY) seeks recognition and regional normalization. The ambassador dispute is the unresolved test of whether the opening survives.
+Cairo — Syria's proposed ambassador to Cairo remains unconfirmed.
+
+Both governments confirmed high-level security and economic talks; [Egypt](country:EG) seeks labor markets, [Syria](country:SY) seeks recognition and regional normalization.
+
+The ambassador dispute is the unresolved test of whether the opening survives.

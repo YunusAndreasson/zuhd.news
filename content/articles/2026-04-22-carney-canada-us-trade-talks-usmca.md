@@ -29,4 +29,8 @@ concepts:
 sentimentDivergence: 0.2
 ---
 
-Ottawa — [Canada](country:CA) refused Washington's demand for pre-talk concessions. Prime Minister Carney said the [US](country:US) cannot dictate terms; the mandatory United States–Mexico–Canada Agreement review falls due July 1. Formal Canada-US talks have not begun; [Mexico](country:MX) starts bilateral rounds with Washington in May.
+Ottawa — [Canada](country:CA) refused Washington's demand for pre-talk concessions.
+
+Prime Minister Carney said the [US](country:US) cannot dictate terms; the mandatory United States–Mexico–Canada Agreement review falls due July 1.
+
+Formal Canada-US talks have not begun; [Mexico](country:MX) starts bilateral rounds with Washington in May.

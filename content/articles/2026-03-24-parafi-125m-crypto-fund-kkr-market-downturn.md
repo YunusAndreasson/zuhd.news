@@ -17,4 +17,8 @@ concepts:
   - "Bitcoin"
 ---
 
-New York — ParaFi raised $125M while bitcoin fell 26%. Founder Ben Forman said the fund targets stablecoins, tokenization, and on-chain institutional products — betting blockchain infrastructure will outlast token price cycles. ParaFi's $2 billion in assets now tests whether blockchain infrastructure can attract institutions through a wartime market.
+New York — ParaFi raised $125M while bitcoin fell 26%.
+
+Founder Ben Forman said the fund targets stablecoins, tokenization, and on-chain institutional products — betting blockchain infrastructure will outlast token price cycles.
+
+ParaFi's $2 billion in assets now tests whether blockchain infrastructure can attract institutions through a wartime market.

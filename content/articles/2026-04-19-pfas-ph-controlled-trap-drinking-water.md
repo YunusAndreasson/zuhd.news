@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Miami — Chemists built a reusable forever-chemical filter. Florida International University researchers designed it to capture per- and polyfluoroalkyl substances and release them on demand by adjusting pH, not incinerating. Lab-scale tests are the current stage; scaling to municipal systems remains unproven.
+Miami — Chemists built a reusable forever-chemical filter.
+
+Florida International University researchers designed it to capture per- and polyfluoroalkyl substances and release them on demand by adjusting pH, not incinerating.
+
+Lab-scale tests are the current stage; scaling to municipal systems remains unproven.

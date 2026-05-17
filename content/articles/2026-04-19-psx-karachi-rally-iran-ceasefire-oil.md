@@ -16,4 +16,6 @@ concepts:
   - "Ceasefire"
 ---
 
-Karachi — [Pakistan](country:PK)'s KSE-100 crossed its pre-war level. [Iran](country:IR)'s ceasefire reopened the Strait of Hormuz, reversing war pricing; the index gained 6,748 points in 2 weeks, per Arif Habib Ltd. The State Bank meets April 27; AKD Securities projects 263,800 by December if macro stability holds.
+Karachi — [Pakistan](country:PK)'s KSE-100 crossed its pre-war level.
+
+[Iran](country:IR)'s ceasefire reopened the Strait of Hormuz, reversing war pricing; the index gained 6,748 points in 2 weeks, per Arif Habib Ltd. The State Bank meets April 27; AKD Securities projects 263,800 by December if macro stability holds.

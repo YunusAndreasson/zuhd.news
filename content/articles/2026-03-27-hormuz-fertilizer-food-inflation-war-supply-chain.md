@@ -18,4 +18,8 @@ concepts:
 eventCoverage: 47
 ---
 
-Bandar Abbas — A quarter of global nitrogen fertilizer transits Hormuz. Nitrogen fertilizer is made from natural gas; Gulf producers supply a quarter of world trade through the now-closed strait. Goldman analysts warn reduced fertilizer supply will cut grain yields and raise food prices for months.
+Bandar Abbas — A quarter of global nitrogen fertilizer transits Hormuz.
+
+Nitrogen fertilizer is made from natural gas; Gulf producers supply a quarter of world trade through the now-closed strait.
+
+Goldman analysts warn reduced fertilizer supply will cut grain yields and raise food prices for months.

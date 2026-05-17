@@ -17,4 +17,8 @@ concepts:
   - "Israel"
 ---
 
-Beirut — [Lebanon](country:LB)'s dead since March: over 2,000, 130 children. Human Rights Watch counted 100+ [Israel](country:IL) strikes in one hour on 8 April — 300+ killed, the last bridge over the Litani River severed. A 10-day ceasefire took effect Friday; Lebanon says it will not negotiate Hezbollah's disarmament under fire.
+Beirut — [Lebanon](country:LB)'s dead since March: over 2,000, 130 children.
+
+Human Rights Watch counted 100+ [Israel](country:IL) strikes in one hour on 8 April — 300+ killed, the last bridge over the Litani River severed.
+
+A 10-day ceasefire took effect Friday; Lebanon says it will not negotiate Hezbollah's disarmament under fire.

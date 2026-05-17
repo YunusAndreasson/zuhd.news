@@ -25,4 +25,8 @@ eventCoverage: 112
 entities: []
 ---
 
-Dunmurry — Car bomb hit a Belfast-area police station Saturday. The New IRA's 2nd station attack in weeks — a March Lurgan device failed to detonate; Saturday's detonated after officers evacuated 2 families. Stormont and Monday's Troubles prosecution vote continue under what police call murderous intent.
+Dunmurry — Car bomb hit a Belfast-area police station Saturday.
+
+The New IRA's 2nd station attack in weeks — a March Lurgan device failed to detonate; Saturday's detonated after officers evacuated 2 families.
+
+Stormont and Monday's Troubles prosecution vote continue under what police call murderous intent.

@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — 3 cables serve [Pakistan](country:PK)'s entire internet. A fault in 1 throttles evening service; Pakistan Telecommunication Company's next repair window runs May 11-18. No backup connectivity exists; Pakistan ranked first globally in 2023 internet-outage losses, Top10VPN found.
+Islamabad — 3 cables serve [Pakistan](country:PK)'s entire internet.
+
+A fault in 1 throttles evening service; Pakistan Telecommunication Company's next repair window runs May 11-18.
+
+No backup connectivity exists; Pakistan ranked first globally in 2023 internet-outage losses, Top10VPN found.

@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — [Pakistan](country:PK)'s Federal Board of Revenue will deploy AI to cross-check bank, property and customs records against tax filings in fiscal 2027. Federal Board chairman Rashid Langrial said the system aims to minimize human interaction and detect false returns. Final proposals go to the budget announcement.
+Islamabad — [Pakistan](country:PK)'s Federal Board of Revenue will deploy AI to cross-check bank, property and customs records against tax filings in fiscal 2027.
+
+Federal Board chairman Rashid Langrial said the system aims to minimize human interaction and detect false returns.
+
+Final proposals go to the budget announcement.

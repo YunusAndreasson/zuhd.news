@@ -18,4 +18,8 @@ concepts:
   - "Bmi1"
 ---
 
-London — Nanocapsule defeats ovarian cancer's drug resistance. The nanocapsule silences Bmi1 — the gene cancer stem cells use to survive chemotherapy — while simultaneously delivering the drug cisplatin. In mouse xenograft models the treatment suppressed tumor growth without systemic toxicity; human trials have not been announced.
+London — Nanocapsule defeats ovarian cancer's drug resistance.
+
+The nanocapsule silences Bmi1 — the gene cancer stem cells use to survive chemotherapy — while simultaneously delivering the drug cisplatin.
+
+In mouse xenograft models the treatment suppressed tumor growth without systemic toxicity; human trials have not been announced.

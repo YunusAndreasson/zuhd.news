@@ -11,4 +11,8 @@ sources:
     country: "NG"
 ---
 
-Abuja — Tunji Disu redeployed Nigeria's entire senior police command. The reshuffle replaces Assistant Inspectors-General and Commissioners of Police across multiple states — the broadest command restructuring since Disu took office. Whether it signals genuine security reform or patronage realignment will be visible in insecurity statistics within months.
+Abuja — Tunji Disu redeployed Nigeria's entire senior police command.
+
+The reshuffle replaces Assistant Inspectors-General and Commissioners of Police across multiple states — the broadest command restructuring since Disu took office.
+
+Whether it signals genuine security reform or patronage realignment will be visible in insecurity statistics within months.

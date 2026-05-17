@@ -17,4 +17,8 @@ concepts:
   - "Cardinal Pierbattista Pizzaballa"
 ---
 
-Jerusalem — Israel barred the Holy Sepulchre on Palm Sunday. No Christian leader had been blocked from the site under Ottoman rule or the British Mandate until now. Netanyahu promised a partial reopening within days but gave no date or guarantee.
+Jerusalem — Israel barred the Holy Sepulchre on Palm Sunday.
+
+No Christian leader had been blocked from the site under Ottoman rule or the British Mandate until now.
+
+Netanyahu promised a partial reopening within days but gave no date or guarantee.

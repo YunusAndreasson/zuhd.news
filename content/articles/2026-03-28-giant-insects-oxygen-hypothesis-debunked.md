@@ -15,4 +15,8 @@ concepts:
   - "Oxygen"
 ---
 
-Pretoria — A 30-year textbook explanation for giant insects collapsed. Measuring 44 species across a 10,000-fold mass range, researchers found tracheal tubes scale too efficiently to have constrained ancient giant insect growth. What killed the giants is still open: candidates include aerial predators, heat dissipation limits, and molting failure.
+Pretoria — A 30-year textbook explanation for giant insects collapsed.
+
+Measuring 44 species across a 10,000-fold mass range, researchers found tracheal tubes scale too efficiently to have constrained ancient giant insect growth.
+
+What killed the giants is still open: candidates include aerial predators, heat dissipation limits, and molting failure.

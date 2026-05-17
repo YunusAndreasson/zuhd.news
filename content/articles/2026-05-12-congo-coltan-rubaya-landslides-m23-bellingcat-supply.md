@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Rubaya — 4 landslides killed hundreds at coltan mines since January. [Rwanda](country:RW)-backed M23 controls the Rubaya mines in [Congo](country:CD), where an estimated 11,000 miners extract coltan for smartphones and electric vehicles. M23 restricts journalist access; satellite imagery remains the only way to verify casualty counts.
+Rubaya — 4 landslides killed hundreds at coltan mines since January.
+
+[Rwanda](country:RW)-backed M23 controls the Rubaya mines in [Congo](country:CD), where an estimated 11,000 miners extract coltan for smartphones and electric vehicles.
+
+M23 restricts journalist access; satellite imagery remains the only way to verify casualty counts.

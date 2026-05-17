@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Abuja — [Nigeria](country:NG) rotates presidencies North to South each cycle. The NDC zoned its 2027 ticket South Saturday, positioning Peter Obi, a 2023 presidential finalist, as the likeliest candidate. The choice pits Nigeria's Igbo South-East against President Tinubu's Yoruba South-West, with Kwankwaso tipped for vice president.
+Abuja — [Nigeria](country:NG) rotates presidencies North to South each cycle.
+
+The NDC zoned its 2027 ticket South Saturday, positioning Peter Obi, a 2023 presidential finalist, as the likeliest candidate.
+
+The choice pits Nigeria's Igbo South-East against President Tinubu's Yoruba South-West, with Kwankwaso tipped for vice president.

@@ -17,4 +17,8 @@ concepts:
   - "Brittleness"
 ---
 
-London — Graphene additive cuts concrete water absorption by 64%. At 5-10% concentration by cement weight, compressive strength hits 47 MPa, sulphate expansion drops 70%, and chloride permeability falls to 650 coulombs. The results point toward field trials; commercial deployment requires scaling graphene production to construction volumes.
+London — Graphene additive cuts concrete water absorption by 64%.
+
+At 5-10% concentration by cement weight, compressive strength hits 47 MPa, sulphate expansion drops 70%, and chloride permeability falls to 650 coulombs.
+
+The results point toward field trials; commercial deployment requires scaling graphene production to construction volumes.

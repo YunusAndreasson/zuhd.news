@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Canberra — [Australia](country:AU) launched a no-fault cyber incident review board. No-fault reviews let operators report breaches honestly without liability — a structure the [US](country:US) abandoned when it disbanded its Cyber Safety Review Board. Whether Washington restores a similar body remains unannounced.
+Canberra — [Australia](country:AU) launched a no-fault cyber incident review board.
+
+No-fault reviews let operators report breaches honestly without liability — a structure the [US](country:US) abandoned when it disbanded its Cyber Safety Review Board.
+
+Whether Washington restores a similar body remains unannounced.

@@ -30,4 +30,8 @@ concepts:
 entities: []
 ---
 
-Fort Lauderdale — 115 fell sick on Caribbean Princess, CDC confirmed. Cruise ships concentrate norovirus risk through shared water, buffet surfaces, and close quarters — the [US](country:US) Centers for Disease Control tracked 18 shipboard outbreaks last year. Caribbean Princess docks at Port Canaveral on May 11 for full disinfection before its next voyage.
+Fort Lauderdale — 115 fell sick on Caribbean Princess, CDC confirmed.
+
+Cruise ships concentrate norovirus risk through shared water, buffet surfaces, and close quarters — the [US](country:US) Centers for Disease Control tracked 18 shipboard outbreaks last year.
+
+Caribbean Princess docks at Port Canaveral on May 11 for full disinfection before its next voyage.

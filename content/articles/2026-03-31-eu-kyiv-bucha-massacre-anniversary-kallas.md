@@ -20,4 +20,8 @@ concepts:
   - "Russia"
 ---
 
-Bucha — 4 years on, no commander has faced trial. EU foreign ministers visited Kyiv; Ukraine documented 1,400 killings in the Bucha district, including 637 in town and 37 children. Kallas pledged accountability; Russia has not surrendered any commander for trial and faces no enforcement mechanism.
+Bucha — 4 years on, no commander has faced trial.
+
+EU foreign ministers visited Kyiv; Ukraine documented 1,400 killings in the Bucha district, including 637 in town and 37 children.
+
+Kallas pledged accountability; Russia has not surrendered any commander for trial and faces no enforcement mechanism.

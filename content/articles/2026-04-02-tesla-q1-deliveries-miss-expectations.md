@@ -27,4 +27,8 @@ concepts:
 sentimentDivergence: 0.16
 ---
 
-Austin — Tesla delivered 358,023 vehicles, missing analyst targets. Tesla's second straight year of declining annual deliveries — unprecedented in its history — is driven by the $7,500 federal EV credit's expiry in September. Shares fell 4.5%; Cybercab production has yet to scale, and analysts warn of a third straight annual decline.
+Austin — Tesla delivered 358,023 vehicles, missing analyst targets.
+
+Tesla's second straight year of declining annual deliveries — unprecedented in its history — is driven by the $7,500 federal EV credit's expiry in September.
+
+Shares fell 4.5%; Cybercab production has yet to scale, and analysts warn of a third straight annual decline.

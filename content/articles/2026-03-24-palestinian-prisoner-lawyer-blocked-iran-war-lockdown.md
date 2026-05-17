@@ -17,4 +17,8 @@ concepts:
   - "Iran war"
 ---
 
-Jerusalem — Israel locked its prisons to lawyers when the Iran war began. A lawyer representing a Palestinian woman in Israeli detention cannot reach her client; the lockdown bars almost all visits, including legal representation. No end date for the lockdown has been announced, leaving an unknown number of Palestinian detainees without legal contact.
+Jerusalem — Israel locked its prisons to lawyers when the Iran war began.
+
+A lawyer representing a Palestinian woman in Israeli detention cannot reach her client; the lockdown bars almost all visits, including legal representation.
+
+No end date for the lockdown has been announced, leaving an unknown number of Palestinian detainees without legal contact.

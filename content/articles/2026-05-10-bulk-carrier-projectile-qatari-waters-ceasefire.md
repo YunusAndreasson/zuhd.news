@@ -29,4 +29,8 @@ concepts:
 entities: []
 ---
 
-Doha — First strike in [Qatar](country:QA)'s waters logged Sunday. UK Maritime Trade Operations classified the incident as an attack after a bulk carrier reported being struck by an unknown projectile 23 miles northeast of Doha; no casualties and no environmental damage. No group has claimed the strike and no attacker or projectile type has been identified.
+Doha — First strike in [Qatar](country:QA)'s waters logged Sunday.
+
+UK Maritime Trade Operations classified the incident as an attack after a bulk carrier reported being struck by an unknown projectile 23 miles northeast of Doha; no casualties and no environmental damage.
+
+No group has claimed the strike and no attacker or projectile type has been identified.

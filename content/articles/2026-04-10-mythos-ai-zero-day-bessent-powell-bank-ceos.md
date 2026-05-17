@@ -18,4 +18,8 @@ concepts:
   - "Cybersecurity"
 ---
 
-Washington — Mythos AI can find and weaponize zero-day exploits. Treasury Secretary Bessent and Fed Chair Powell convened 5 major bank CEOs after Anthropic's model raised security concerns. Anthropic sells Mythos under 'Project Glasswing'; the Pentagon flagged it a supply-chain risk, and Anthropic sued.
+Washington — Mythos AI can find and weaponize zero-day exploits.
+
+Treasury Secretary Bessent and Fed Chair Powell convened 5 major bank CEOs after Anthropic's model raised security concerns.
+
+Anthropic sells Mythos under 'Project Glasswing'; the Pentagon flagged it a supply-chain risk, and Anthropic sued.

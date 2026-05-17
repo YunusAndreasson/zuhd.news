@@ -18,4 +18,8 @@ concepts:
   - "Fertilizer"
 ---
 
-Doha — Nitrogen fertilizer prices are already up a third. Qatar supplies 50% of traded urea; the Hormuz blockade cuts that flow while fertilizer plants in 3 South Asian countries shut from lost Gulf gas. Prices doubling — if war continues — would raise global food costs 20–30%, hitting aid-dependent populations first.
+Doha — Nitrogen fertilizer prices are already up a third.
+
+Qatar supplies 50% of traded urea; the Hormuz blockade cuts that flow while fertilizer plants in 3 South Asian countries shut from lost Gulf gas.
+
+Prices doubling — if war continues — would raise global food costs 20–30%, hitting aid-dependent populations first.

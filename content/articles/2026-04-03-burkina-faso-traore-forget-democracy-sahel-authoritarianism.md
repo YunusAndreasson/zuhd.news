@@ -19,4 +19,8 @@ concepts:
   - "Political party"
 ---
 
-Ouagadougou — Ibrahim Traore told state TV to "forget" democracy. Traore dissolved 100+ political parties in January and cited Libya as proof democracy produces bloodshed — Mali and Niger's juntas echo the claim. 22 million Burkinabè now have no parliament, no parties, and no election date — and Traore has named none.
+Ouagadougou — Ibrahim Traore told state TV to "forget" democracy.
+
+Traore dissolved 100+ political parties in January and cited Libya as proof democracy produces bloodshed — Mali and Niger's juntas echo the claim.
+
+22 million Burkinabè now have no parliament, no parties, and no election date — and Traore has named none.

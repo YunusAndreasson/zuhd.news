@@ -19,4 +19,8 @@ concepts:
   - "Strait of Hormuz"
 ---
 
-Manama — Iran hit the world's largest aluminium smelter. Gulf producers supply 9% of global aluminium but cannot ship since Hormuz closed; Saturday's attack also hit UAE's Emirates Global Aluminium. With no export route open, prices will cascade through construction, auto, and aerospace supply chains.
+Manama — Iran hit the world's largest aluminium smelter.
+
+Gulf producers supply 9% of global aluminium but cannot ship since Hormuz closed; Saturday's attack also hit UAE's Emirates Global Aluminium.
+
+With no export route open, prices will cascade through construction, auto, and aerospace supply chains.

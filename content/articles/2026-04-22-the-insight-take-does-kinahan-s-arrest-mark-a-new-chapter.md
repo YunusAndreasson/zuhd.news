@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Dubai — $5M in [US](country:US) State Department bounties stood for years before [the UAE](country:AE) arrested Christopher Kinahan. Financial Action Task Force grey-listing and Treasury sanctions finally raised the cost of UAE protection. European law enforcement watches whether the network, spanning Colombia, Morocco, and the Balkans, survives his removal.
+Dubai — $5M in [US](country:US) State Department bounties stood for years before [the UAE](country:AE) arrested Christopher Kinahan.
+
+Financial Action Task Force grey-listing and Treasury sanctions finally raised the cost of UAE protection.
+
+European law enforcement watches whether the network, spanning Colombia, Morocco, and the Balkans, survives his removal.

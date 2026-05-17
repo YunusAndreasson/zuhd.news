@@ -17,4 +17,8 @@ concepts:
   - "Kristalina Georgieva"
 ---
 
-Washington — The IMF expects $50bn in war-spillover lending. Georgieva said food insecurity will hit 45 million people as Iran war disruptions ripple through low-income energy-importing economies. The IMF revises global growth forecasts this week; the lower $20bn estimate assumes Saturday's ceasefire talks succeed.
+Washington — The IMF expects $50bn in war-spillover lending.
+
+Georgieva said food insecurity will hit 45 million people as Iran war disruptions ripple through low-income energy-importing economies.
+
+The IMF revises global growth forecasts this week; the lower $20bn estimate assumes Saturday's ceasefire talks succeed.

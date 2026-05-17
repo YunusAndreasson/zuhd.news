@@ -30,4 +30,8 @@ entities:
     kind: "stock"
 ---
 
-Austin — Intel lands its first external 14A customer in Tesla's Terafab chip order. The deal anchors the [US](country:US) artificial intelligence buildout in a domestic fab against [Taiwan](country:TW)'s Taiwan Semiconductor Manufacturing Company. Intel's 14A is still in development; Musk said it should mature by the time Terafab scales.
+Austin — Intel lands its first external 14A customer in Tesla's Terafab chip order.
+
+The deal anchors the [US](country:US) artificial intelligence buildout in a domestic fab against [Taiwan](country:TW)'s Taiwan Semiconductor Manufacturing Company.
+
+Intel's 14A is still in development; Musk said it should mature by the time Terafab scales.

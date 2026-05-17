@@ -17,4 +17,8 @@ concepts:
   - "US Agriculture"
 ---
 
-Fargo — Urea jumped $210 per ton in 2 months. Nearly half of global urea exports transit the Strait of Hormuz, adding roughly $40 per acre to US corn and wheat costs. A quarter of US farmers hadn't ordered by early April; a 7-week shipping lag outlasts planting season.
+Fargo — Urea jumped $210 per ton in 2 months.
+
+Nearly half of global urea exports transit the Strait of Hormuz, adding roughly $40 per acre to US corn and wheat costs.
+
+A quarter of US farmers hadn't ordered by early April; a 7-week shipping lag outlasts planting season.

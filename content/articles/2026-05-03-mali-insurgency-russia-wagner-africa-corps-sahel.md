@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Bamako — April 25 Jama'at Nusrat al-Islam wal-Muslimeen attacks killed [Mali](country:ML)'s defense minister. Africa Corps — the Kremlin's Wagner successor — was routed from Kidal as the group and Tuareg rebels struck 5 cities at once. Junta leader Goïta claims the situation is "under control"; rebels are calling for a Bamako blockade.
+Bamako — April 25 Jama'at Nusrat al-Islam wal-Muslimeen attacks killed [Mali](country:ML)'s defense minister.
+
+Africa Corps — the Kremlin's Wagner successor — was routed from Kidal as the group and Tuareg rebels struck 5 cities at once.
+
+Junta leader Goïta claims the situation is "under control"; rebels are calling for a Bamako blockade.

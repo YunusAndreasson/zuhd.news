@@ -17,4 +17,8 @@ concepts:
   - "Aga Khan University Hospital"
 ---
 
-Khairpur — mpox killed 4 newborns in Pakistan. 7 neonates tested positive in Khairpur, Sindh — Pakistan's first domestic mpox transmission; Karachi has a suspected case. Aga Khan University experts warn the virus has entered healthcare settings, putting neonatal wards at risk.
+Khairpur — mpox killed 4 newborns in Pakistan.
+
+7 neonates tested positive in Khairpur, Sindh — Pakistan's first domestic mpox transmission; Karachi has a suspected case.
+
+Aga Khan University experts warn the virus has entered healthcare settings, putting neonatal wards at risk.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Hannover — EU law classifies industrial artificial intelligence as medium-to-high risk. Merz told Hannover Messe that Germany will press the European Commission for a formal carve-out covering predictive maintenance, robotics, and factory models. Berlin plans to quadruple artificial intelligence capacity by 2030.
+Hannover — EU law classifies industrial artificial intelligence as medium-to-high risk.
+
+Merz told Hannover Messe that Germany will press the European Commission for a formal carve-out covering predictive maintenance, robotics, and factory models.
+
+Berlin plans to quadruple artificial intelligence capacity by 2030.

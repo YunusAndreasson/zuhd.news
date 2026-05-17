@@ -35,4 +35,8 @@ concepts:
 entities: []
 ---
 
-Washington — Curiosity found 7 Mars organics, 5 never detected before. All survived 3.5bn years in clay-rich sediment, including a compound found in living cells. The Trump administration canceled Mars Sample Return; Europe's Rosalind Franklin rover, with a 2-metre drill, launches in 2028.
+Washington — Curiosity found 7 Mars organics, 5 never detected before.
+
+All survived 3.5bn years in clay-rich sediment, including a compound found in living cells.
+
+The Trump administration canceled Mars Sample Return; Europe's Rosalind Franklin rover, with a 2-metre drill, launches in 2028.

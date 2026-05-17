@@ -17,4 +17,8 @@ concepts:
   - "Heat wave"
 ---
 
-Geneva — Extreme heat now threatens food security for over 1 billion farmers and farm workers. A joint World Meteorological Organization–Food and Agriculture Organization report identified heat as agriculture's leading threat, driving yield losses, livestock deaths, and wildfires. No binding sectoral heat target exists in the Paris Agreement.
+Geneva — Extreme heat now threatens food security for over 1 billion farmers and farm workers.
+
+A joint World Meteorological Organization–Food and Agriculture Organization report identified heat as agriculture's leading threat, driving yield losses, livestock deaths, and wildfires.
+
+No binding sectoral heat target exists in the Paris Agreement.

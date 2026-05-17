@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Khimki — Drones killed 3 in Moscow suburb homes. [Ukraine](country:UA)'s drones struck Khimki, Mytishchi and Istra overnight — private homes hit — Moscow region governor Vorobyov said. Kyiv has not claimed the strikes; [Russia](country:RU)'s air defense reported additional drones intercepted over central Moscow.
+Khimki — Drones killed 3 in Moscow suburb homes.
+
+[Ukraine](country:UA)'s drones struck Khimki, Mytishchi and Istra overnight — private homes hit — Moscow region governor Vorobyov said.
+
+Kyiv has not claimed the strikes; [Russia](country:RU)'s air defense reported additional drones intercepted over central Moscow.

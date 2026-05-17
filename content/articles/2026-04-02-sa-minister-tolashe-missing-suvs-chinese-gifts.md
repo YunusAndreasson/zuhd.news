@@ -15,4 +15,8 @@ concepts:
   - "African National Congress Women's League"
 ---
 
-Cape Town — South Africa's Social Development Minister lied to Parliament. Tolashe told Parliament the 2 BAIC SUVs from Chinese officials were party donations; vehicle records show both were registered to her children. Tolashe remains in cabinet; the ANC has not indicated whether it will open an investigation.
+Cape Town — South Africa's Social Development Minister lied to Parliament.
+
+Tolashe told Parliament the 2 BAIC SUVs from Chinese officials were party donations; vehicle records show both were registered to her children.
+
+Tolashe remains in cabinet; the ANC has not indicated whether it will open an investigation.

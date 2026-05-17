@@ -24,4 +24,8 @@ entities:
     kind: "commodity"
 ---
 
-New Delhi — Fertilizer output fell 24.6% as [India](country:IN)'s core industries contracted 0.4% in March. The 8-sector index covers 40% of industrial output; coal fell 4% and crude oil 5.7%, government data show. [Iran](country:IR) war disruptions cut energy imports; a second consecutive contraction would prompt a growth forecast revision.
+New Delhi — Fertilizer output fell 24.6% as [India](country:IN)'s core industries contracted 0.4% in March.
+
+The 8-sector index covers 40% of industrial output; coal fell 4% and crude oil 5.7%, government data show.
+
+[Iran](country:IR) war disruptions cut energy imports; a second consecutive contraction would prompt a growth forecast revision.

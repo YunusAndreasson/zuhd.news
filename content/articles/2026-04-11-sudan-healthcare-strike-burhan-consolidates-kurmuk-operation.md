@@ -11,4 +11,8 @@ sources:
     country: "EG"
 ---
 
-Khartoum — Healthcare workers are on strike in Nyala. Burhan abolished deputy command posts and named hardliner Yasser al-Atta chief of staff, consolidating control as Darfur's civilian services collapse. The army launched a limited advance on Kurmuk — the Blue Nile city RSF captured in late March.
+Khartoum — Healthcare workers are on strike in Nyala.
+
+Burhan abolished deputy command posts and named hardliner Yasser al-Atta chief of staff, consolidating control as Darfur's civilian services collapse.
+
+The army launched a limited advance on Kurmuk — the Blue Nile city RSF captured in late March.

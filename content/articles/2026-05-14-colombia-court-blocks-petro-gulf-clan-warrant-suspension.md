@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Bogotá — Colombia's prosecutors blocked suspension of Gulf Clan arrest warrants, stalling Total Peace negotiations. They demanded evidence of talks progress before any suspension. [The US](country:US) separately seeks cartel leader Ávila Villadiego's extradition, which Colombia's peace commissioner cannot override.
+Bogotá — Colombia's prosecutors blocked suspension of Gulf Clan arrest warrants, stalling Total Peace negotiations.
+
+They demanded evidence of talks progress before any suspension.
+
+[The US](country:US) separately seeks cartel leader Ávila Villadiego's extradition, which Colombia's peace commissioner cannot override.

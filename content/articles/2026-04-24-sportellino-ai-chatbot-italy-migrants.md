@@ -15,4 +15,8 @@ concepts:
   - "Artificial intelligence"
 ---
 
-Rome — [Italy](country:IT)'s migrant bureaucracy now has a WhatsApp assistant. Built by a nonprofit at Sapienza University in 2025, Sportellino answers residency and healthcare questions in multiple languages, free and anonymous, 24/7. Italy's reception centers are overwhelmed; the creators say operators — not information access — are the real bottleneck.
+Rome — [Italy](country:IT)'s migrant bureaucracy now has a WhatsApp assistant.
+
+Built by a nonprofit at Sapienza University in 2025, Sportellino answers residency and healthcare questions in multiple languages, free and anonymous, 24/7.
+
+Italy's reception centers are overwhelmed; the creators say operators — not information access — are the real bottleneck.

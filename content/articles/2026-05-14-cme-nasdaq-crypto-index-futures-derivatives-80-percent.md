@@ -22,4 +22,8 @@ entities:
     kind: "index"
 ---
 
-Chicago — CME's crypto volume jumped 43% this year, the exchange said. CME and Nasdaq plan basket futures over 7 tokens for June 8; derivatives represent 80% of global crypto volume, CME said. Regulatory approval is required before launch; the suite has crossed $7.3 trillion in lifetime notional, CME said.
+Chicago — CME's crypto volume jumped 43% this year, the exchange said.
+
+CME and Nasdaq plan basket futures over 7 tokens for June 8; derivatives represent 80% of global crypto volume, CME said.
+
+Regulatory approval is required before launch; the suite has crossed $7.3 trillion in lifetime notional, CME said.

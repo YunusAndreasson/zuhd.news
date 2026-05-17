@@ -16,4 +16,8 @@ concepts:
   - "Steve Witkoff"
 ---
 
-Washington — Backchannel talks aim for a 45-day ceasefire. Pakistan, Egypt, and Turkey are mediating direct exchanges between US envoy Witkoff and Iran's foreign minister Araghchi. A deal within 48 hours is rated unlikely; Trump's Tuesday deadline threatens Iranian power plants and bridges.
+Washington — Backchannel talks aim for a 45-day ceasefire.
+
+Pakistan, Egypt, and Turkey are mediating direct exchanges between US envoy Witkoff and Iran's foreign minister Araghchi.
+
+A deal within 48 hours is rated unlikely; Trump's Tuesday deadline threatens Iranian power plants and bridges.

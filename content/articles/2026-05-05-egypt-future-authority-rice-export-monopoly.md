@@ -23,4 +23,8 @@ entities:
     kind: "commodity"
 ---
 
-Cairo — [Egypt](country:EG)'s Future of Egypt Authority seized sole rice-export rights. A decree hidden since August formalized the monopoly, displacing trader Ibrahim al-Argany as dominant exporter. The military has absorbed wheat and sugar exports since 2020; rice completes the staples portfolio.
+Cairo — [Egypt](country:EG)'s Future of Egypt Authority seized sole rice-export rights.
+
+A decree hidden since August formalized the monopoly, displacing trader Ibrahim al-Argany as dominant exporter.
+
+The military has absorbed wheat and sugar exports since 2020; rice completes the staples portfolio.

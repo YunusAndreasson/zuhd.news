@@ -18,4 +18,8 @@ concepts:
   - "Kennedy Space Center"
 ---
 
-No humans have orbited the Moon since 1972. NASA's Artemis II will send 4 astronauts to lunar orbit on April 1, after hydrogen leaks and helium blockages sent the rocket back to the assembly building. Engineers declared it flight-ready last week; another delay would be the mission's fourth.
+No humans have orbited the Moon since 1972.
+
+NASA's Artemis II will send 4 astronauts to lunar orbit on April 1, after hydrogen leaks and helium blockages sent the rocket back to the assembly building.
+
+Engineers declared it flight-ready last week; another delay would be the mission's fourth.

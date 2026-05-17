@@ -14,4 +14,8 @@ concepts:
   - "Mie scattering"
 ---
 
-Seoul — Researchers built a wound dressing that cools passively. A silica layer reflects 92% of sunlight and radiates heat to space; a drug underlayer delivers antibiotics — no electricity required. Simulations showed peak cooling in Cairo at 168 W/m²; the dressing works best where power infrastructure is unavailable.
+Seoul — Researchers built a wound dressing that cools passively.
+
+A silica layer reflects 92% of sunlight and radiates heat to space; a drug underlayer delivers antibiotics — no electricity required.
+
+Simulations showed peak cooling in Cairo at 168 W/m²; the dressing works best where power infrastructure is unavailable.

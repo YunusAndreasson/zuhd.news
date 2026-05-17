@@ -18,4 +18,8 @@ concepts:
   - "Data breach"
 ---
 
-Budapest — 795 Hungarian government passwords are circulating online. Bellingcat found credentials from 12 of 13 ministries, exposing counter-terrorism and hybrid-threat analysts. Passwords include 'Adolf'; Russia already penetrated the foreign ministry for a decade; Hungary votes Sunday.
+Budapest — 795 Hungarian government passwords are circulating online.
+
+Bellingcat found credentials from 12 of 13 ministries, exposing counter-terrorism and hybrid-threat analysts.
+
+Passwords include 'Adolf'; Russia already penetrated the foreign ministry for a decade; Hungary votes Sunday.

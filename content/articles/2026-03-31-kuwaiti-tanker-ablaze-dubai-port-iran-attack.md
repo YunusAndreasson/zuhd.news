@@ -18,4 +18,8 @@ concepts:
   - "Oil tanker"
 ---
 
-Dubai — Iran hit a tanker inside Dubai's port. The 2-million-barrel vessel was the first Iranian strike inside a UAE port since war began February 28. Crude surged to $115 before retreating when Trump signaled willingness to end the war without reopening Hormuz.
+Dubai — Iran hit a tanker inside Dubai's port.
+
+The 2-million-barrel vessel was the first Iranian strike inside a UAE port since war began February 28.
+
+Crude surged to $115 before retreating when Trump signaled willingness to end the war without reopening Hormuz.

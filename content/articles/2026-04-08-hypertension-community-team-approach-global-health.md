@@ -17,4 +17,8 @@ concepts:
   - "New England Journal of Medicine"
 ---
 
-New Orleans — Team care doubled hypertension control. A 1,200-patient NEJM trial at 36 clinics in 2 southern states achieved 47.7% control, vs. 22% nationally. At $762 per patient, researchers are pushing for health-system adoption across the US.
+New Orleans — Team care doubled hypertension control.
+
+A 1,200-patient NEJM trial at 36 clinics in 2 southern states achieved 47.7% control, vs. 22% nationally.
+
+At $762 per patient, researchers are pushing for health-system adoption across the US.

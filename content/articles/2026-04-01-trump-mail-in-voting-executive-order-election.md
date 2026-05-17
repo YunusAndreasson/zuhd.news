@@ -17,4 +17,8 @@ concepts:
   - "Birthright citizenship in the United States"
 ---
 
-Washington — Trump signed an executive order federalizing election administration. DHS must compile voter citizenship lists and USPS must add tracking barcodes to mail ballots — powers reserved to states under the Constitution. Courts blocked his NPR defunding the same week; this order faces the same boundary before the 2026 midterms.
+Washington — Trump signed an executive order federalizing election administration.
+
+DHS must compile voter citizenship lists and USPS must add tracking barcodes to mail ballots — powers reserved to states under the Constitution.
+
+Courts blocked his NPR defunding the same week; this order faces the same boundary before the 2026 midterms.

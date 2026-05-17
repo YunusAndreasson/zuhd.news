@@ -14,4 +14,6 @@ sources:
     country: "US"
 ---
 
-Tehran — $66,000 bounty: Iran hunts a downed US airman. Iran's Bavar-373 downed a US F-15E — the first over Iranian territory — 2 days after Trump said Iran had "no anti-aircraft equipment." US special forces entered Iran for rescue; ceasefire talks collapsed; Trump's April 6 Hormuz ultimatum is unresolved.
+Tehran — $66,000 bounty: Iran hunts a downed US airman.
+
+Iran's Bavar-373 downed a US F-15E — the first over Iranian territory — 2 days after Trump said Iran had "no anti-aircraft equipment." US special forces entered Iran for rescue; ceasefire talks collapsed; Trump's April 6 Hormuz ultimatum is unresolved.

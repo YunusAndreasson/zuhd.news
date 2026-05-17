@@ -25,4 +25,8 @@ entities:
     kind: "commodity"
 ---
 
-Tehran — Iran will never yield Hormuz control, a senior politician warned. The Islamic Revolutionary Guard Corps navy charges tolls on authorised routes; one-fifth of global oil passed through the strait before the war began in February. Islamabad talks open Tuesday with maritime sovereignty the demand no deal has bridged.
+Tehran — Iran will never yield Hormuz control, a senior politician warned.
+
+The Islamic Revolutionary Guard Corps navy charges tolls on authorised routes; one-fifth of global oil passed through the strait before the war began in February.
+
+Islamabad talks open Tuesday with maritime sovereignty the demand no deal has bridged.

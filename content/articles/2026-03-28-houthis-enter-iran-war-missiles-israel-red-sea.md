@@ -27,4 +27,8 @@ concepts:
 sentimentDivergence: 0.11
 ---
 
-Sanaa — Houthis broke 4 weeks of silence with missiles. Ballistic missiles targeted Israeli sites Saturday; Houthis warned they would also blockade Bab el-Mandeb, carrying 10% of world oil. USS Tripoli with 2,500 marines arrived; Washington is deciding whether to strike Yemen before both straits close.
+Sanaa — Houthis broke 4 weeks of silence with missiles.
+
+Ballistic missiles targeted Israeli sites Saturday; Houthis warned they would also blockade Bab el-Mandeb, carrying 10% of world oil.
+
+USS Tripoli with 2,500 marines arrived; Washington is deciding whether to strike Yemen before both straits close.

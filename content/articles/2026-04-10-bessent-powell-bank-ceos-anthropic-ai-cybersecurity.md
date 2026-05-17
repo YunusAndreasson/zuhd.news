@@ -29,4 +29,8 @@ concepts:
 sentimentDivergence: 0.27
 ---
 
-Washington — Anthropic AI can compromise any web browser. The Fed chair and Treasury secretary convened 5 systemically important bank CEOs on Tuesday to warn that Mythos-class attacks are imminent. Anthropic has restricted Mythos to Project Glasswing; a federal court declined to pause the Pentagon's supply-chain risk designation.
+Washington — Anthropic AI can compromise any web browser.
+
+The Fed chair and Treasury secretary convened 5 systemically important bank CEOs on Tuesday to warn that Mythos-class attacks are imminent.
+
+Anthropic has restricted Mythos to Project Glasswing; a federal court declined to pause the Pentagon's supply-chain risk designation.

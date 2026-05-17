@@ -24,4 +24,8 @@ eventCoverage: 46
 sentimentDivergence: 0.14
 ---
 
-Washington — Trump's Federal Reserve nominee Kevin Warsh disclosed $192 million in holdings. Warsh earned $10.2 million last year at Stanley Druckenmiller's hedge fund; the fund's returns depend on the interest rates he would now set. His Senate hearing is next week; his wife's $1.5 billion Estée Lauder stake is exempt from divestment pledges.
+Washington — Trump's Federal Reserve nominee Kevin Warsh disclosed $192 million in holdings.
+
+Warsh earned $10.2 million last year at Stanley Druckenmiller's hedge fund; the fund's returns depend on the interest rates he would now set.
+
+His Senate hearing is next week; his wife's $1.5 billion Estée Lauder stake is exempt from divestment pledges.

@@ -17,4 +17,8 @@ concepts:
   - "Oxygen"
 ---
 
-Pretoria — The oxygen hypothesis for giant insects is wrong. Insect tracheoles use 1% of muscle vs 10% in mammals; the breathing system had room to scale, and oxygen wasn't the ceiling. Why insects stopped growing at all remains unknown; leading candidates are avian predation pressure and overheating during flight.
+Pretoria — The oxygen hypothesis for giant insects is wrong.
+
+Insect tracheoles use 1% of muscle vs 10% in mammals; the breathing system had room to scale, and oxygen wasn't the ceiling.
+
+Why insects stopped growing at all remains unknown; leading candidates are avian predation pressure and overheating during flight.

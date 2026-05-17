@@ -17,4 +17,8 @@ concepts:
   - "Inflation"
 ---
 
-New York — Bitcoin fell 23.7% before stocks began to crack. Iran war energy disruptions pushed inflation expectations up; traders now price a 40% chance of zero Fed rate cuts, up from 3%. Bitwise says bitcoin's earlier reset leaves it less exposed than equities entering the next macro shock.
+New York — Bitcoin fell 23.7% before stocks began to crack.
+
+Iran war energy disruptions pushed inflation expectations up; traders now price a 40% chance of zero Fed rate cuts, up from 3%.
+
+Bitwise says bitcoin's earlier reset leaves it less exposed than equities entering the next macro shock.

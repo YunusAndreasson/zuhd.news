@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Baghdad — At least 100 died in [Iraq](country:IQ)'s militia-US exchanges since February, officials say. Iraq's Popular Mobilization Forces draw $3 billion annually; patron [Iran](country:IR) and its allies Hezbollah and Hamas have been decimated. PM Sudani controls neither faction as militias weigh state integration or escalation against US forces.
+Baghdad — At least 100 died in [Iraq](country:IQ)'s militia-US exchanges since February, officials say.
+
+Iraq's Popular Mobilization Forces draw $3 billion annually; patron [Iran](country:IR) and its allies Hezbollah and Hamas have been decimated.
+
+PM Sudani controls neither faction as militias weigh state integration or escalation against US forces.

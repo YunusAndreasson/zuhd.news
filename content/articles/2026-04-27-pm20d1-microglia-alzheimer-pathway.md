@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — PM20D1 drove microglia to clear plaques in mice. PM20D1 cleaves the lipid signal that activates microglia onto plaques; direct antibody approaches failed this target for a decade. Researchers confirmed the same mechanism in human Alzheimer's brains, with clinical trials the unresolved next step.
+London — PM20D1 drove microglia to clear plaques in mice.
+
+PM20D1 cleaves the lipid signal that activates microglia onto plaques; direct antibody approaches failed this target for a decade.
+
+Researchers confirmed the same mechanism in human Alzheimer's brains, with clinical trials the unresolved next step.

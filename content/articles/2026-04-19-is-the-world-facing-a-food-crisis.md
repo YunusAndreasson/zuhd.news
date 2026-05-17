@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Johannesburg — Northern hemisphere planting starts next month under fertiliser price and El Niño pressure. Middle East conflict has pushed fertiliser costs to levels hitting African and Asian importers hardest, [South Africa](country:ZA)'s agricultural envoy said. May planting decisions will determine whether a food crisis materialises by 2027.
+Johannesburg — Northern hemisphere planting starts next month under fertiliser price and El Niño pressure.
+
+Middle East conflict has pushed fertiliser costs to levels hitting African and Asian importers hardest, [South Africa](country:ZA)'s agricultural envoy said.
+
+May planting decisions will determine whether a food crisis materialises by 2027.

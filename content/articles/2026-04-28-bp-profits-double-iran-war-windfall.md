@@ -31,4 +31,8 @@ entities:
     kind: "commodity"
 ---
 
-London — BP earned $3.2 billion in Q1, more than doubling year-on-year. Its oil trading arm arbitraged pre-war contracts against $111 spot prices — the same level the World Bank said threatens 45 million people with acute food insecurity. [UK](country:GB) environmental groups are calling for parliament to expand the offshore windfall tax.
+London — BP earned $3.2 billion in Q1, more than doubling year-on-year.
+
+Its oil trading arm arbitraged pre-war contracts against $111 spot prices — the same level the World Bank said threatens 45 million people with acute food insecurity.
+
+[UK](country:GB) environmental groups are calling for parliament to expand the offshore windfall tax.

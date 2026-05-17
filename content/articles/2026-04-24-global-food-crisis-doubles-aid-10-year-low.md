@@ -22,4 +22,8 @@ concepts:
   - "Democratic Republic of the Congo"
 ---
 
-Rome — Food crisis hit 22.9% of countries — double 2016. The [US](country:US) drove three-quarters of the DAC donor decline, cutting 57%; for the first time [Germany](country:DE) overtook it as top donor. [Sudan](country:SD) and [Gaza](country:PS) entered simultaneous famine for the first time; Hormuz blocks food shipments to northeast Africa.
+Rome — Food crisis hit 22.9% of countries — double 2016.
+
+The [US](country:US) drove three-quarters of the DAC donor decline, cutting 57%; for the first time [Germany](country:DE) overtook it as top donor.
+
+[Sudan](country:SD) and [Gaza](country:PS) entered simultaneous famine for the first time; Hormuz blocks food shipments to northeast Africa.

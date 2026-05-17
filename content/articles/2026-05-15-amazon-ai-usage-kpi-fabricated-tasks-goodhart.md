@@ -17,4 +17,8 @@ entities:
     kind: "stock"
 ---
 
-Seattle — Amazon workers invented tasks to satisfy mandatory AI-use targets. Employees fed internal copilots fabricated work to hit usage quotas, decoupling measured adoption from productivity. Amazon has not confirmed the scale or announced changes to how it tracks AI returns.
+Seattle — Amazon workers invented tasks to satisfy mandatory AI-use targets.
+
+Employees fed internal copilots fabricated work to hit usage quotas, decoupling measured adoption from productivity.
+
+Amazon has not confirmed the scale or announced changes to how it tracks AI returns.

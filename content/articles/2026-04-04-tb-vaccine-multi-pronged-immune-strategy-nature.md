@@ -15,4 +15,8 @@ concepts:
   - "Mycobacterium tuberculosis"
 ---
 
-TB's only vaccine is a century old and no successor has been approved. A Nature review found single-target candidates fail because TB uses multiple immune evasion mechanisms — requiring multi-front responses targeting different infection stages. The review calls for combined multi-pronged trials against a pathogen killing 1.3 million yearly.
+TB's only vaccine is a century old and no successor has been approved.
+
+A Nature review found single-target candidates fail because TB uses multiple immune evasion mechanisms — requiring multi-front responses targeting different infection stages.
+
+The review calls for combined multi-pronged trials against a pathogen killing 1.3 million yearly.

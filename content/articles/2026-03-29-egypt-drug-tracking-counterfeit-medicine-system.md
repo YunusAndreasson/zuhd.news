@@ -17,4 +17,8 @@ concepts:
   - "Egyptian Drug Authority"
 ---
 
-Cairo — Egypt gave every medicine a serial number. The system tracks drugs from factory to pharmacy; experts warn 60% of counterfeits enter through informal channels it cannot reach. Phase 1 launched March 4; small pharmacies and smuggled imports remain outside the system's reach.
+Cairo — Egypt gave every medicine a serial number.
+
+The system tracks drugs from factory to pharmacy; experts warn 60% of counterfeits enter through informal channels it cannot reach.
+
+Phase 1 launched March 4; small pharmacies and smuggled imports remain outside the system's reach.

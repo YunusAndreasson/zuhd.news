@@ -17,4 +17,8 @@ concepts:
   - "Dubai"
 ---
 
-Dubai — Gulf tourism faces a $32 billion loss. The Iran war's airspace closures and security fears are severing the transit routes Gulf hub economies depend on. Those economies cannot meet their 2031 targets without the regional stability the conflict has destroyed.
+Dubai — Gulf tourism faces a $32 billion loss.
+
+The Iran war's airspace closures and security fears are severing the transit routes Gulf hub economies depend on.
+
+Those economies cannot meet their 2031 targets without the regional stability the conflict has destroyed.

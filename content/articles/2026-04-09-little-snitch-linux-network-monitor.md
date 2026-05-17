@@ -11,4 +11,8 @@ sources:
     country: "AT"
 ---
 
-Vienna — Little Snitch now runs on Linux. Objective Development ported the macOS network monitor to Linux, giving users per-connection visibility into every outgoing connection their machine makes. Pricing has not been announced; Linux had the kernel primitives for this for decades but no consumer interface.
+Vienna — Little Snitch now runs on Linux.
+
+Objective Development ported the macOS network monitor to Linux, giving users per-connection visibility into every outgoing connection their machine makes.
+
+Pricing has not been announced; Linux had the kernel primitives for this for decades but no consumer interface.

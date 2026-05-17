@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Karachi — Banned syringes are circulating across Pakistan's clinics. The Pakistan Medical Association blamed the Drug Regulatory Authority for "catastrophic failure"; [Pakistan](country:PK) carries the world's 2nd-highest hepatitis C burden. Its figures show 350,000 Pakistanis live with HIV; Sindh recorded 329 child infections in the first quarter alone.
+Karachi — Banned syringes are circulating across Pakistan's clinics.
+
+The Pakistan Medical Association blamed the Drug Regulatory Authority for "catastrophic failure"; [Pakistan](country:PK) carries the world's 2nd-highest hepatitis C burden.
+
+Its figures show 350,000 Pakistanis live with HIV; Sindh recorded 329 child infections in the first quarter alone.

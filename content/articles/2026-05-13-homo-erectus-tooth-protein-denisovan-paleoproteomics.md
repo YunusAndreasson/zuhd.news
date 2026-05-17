@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Beijing — Tooth proteins from 400,000-year-old Homo erectus teeth can reveal ancestry that DNA cannot. Chinese researchers matched a protein variant to Denisovan genomes, suggesting the two species interbred — evidence unreachable by ancient DNA. Over 20% of some [Philippines](country:PH) populations carry the variant, the study found.
+Beijing — Tooth proteins from 400,000-year-old Homo erectus teeth can reveal ancestry that DNA cannot.
+
+Chinese researchers matched a protein variant to Denisovan genomes, suggesting the two species interbred — evidence unreachable by ancient DNA.
+
+Over 20% of some [Philippines](country:PH) populations carry the variant, the study found.

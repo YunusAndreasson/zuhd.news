@@ -15,4 +15,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Muscat — Iran struck every Gulf Arab capital but Oman's. Oman and Iran occupy Hormuz's opposing shores — Muscat has brokered every major Iran back-channel including the 2015 nuclear deal and the 2023 Saudi-Iranian normalization. The US naval blockade of Iranian ports, completed last week, tests whether Iran keeps honoring Oman's exemption.
+Muscat — Iran struck every Gulf Arab capital but Oman's.
+
+Oman and Iran occupy Hormuz's opposing shores — Muscat has brokered every major Iran back-channel including the 2015 nuclear deal and the 2023 Saudi-Iranian normalization.
+
+The US naval blockade of Iranian ports, completed last week, tests whether Iran keeps honoring Oman's exemption.

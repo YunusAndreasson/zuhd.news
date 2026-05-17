@@ -16,4 +16,8 @@ concepts:
   - "Kyiv"
 ---
 
-Brussels — $70bn of the $106bn EU loan covers two-thirds of [Ukraine](country:UA)'s military costs through 2027, the Commission said. [US](country:US) aid to Ukraine fell 99% under Trump, the Kiel Institute found; the package was agreed after months of delay. The first tranche arrives late May.
+Brussels — $70bn of the $106bn EU loan covers two-thirds of [Ukraine](country:UA)'s military costs through 2027, the Commission said.
+
+[US](country:US) aid to Ukraine fell 99% under Trump, the Kiel Institute found; the package was agreed after months of delay.
+
+The first tranche arrives late May.

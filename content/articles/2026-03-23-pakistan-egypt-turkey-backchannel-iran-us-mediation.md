@@ -17,4 +17,8 @@ concepts:
   - "United States"
 ---
 
-An official confirmed tangible progress in US-Iran back-channel talks. Pakistan, Egypt, and Turkey are relaying messages between US envoy Steve Witkoff and Iranian Foreign Minister Abbas Araghchi during Trump's 5-day military pause. Iran confirmed receiving the messages but must respond before the pause expires.
+An official confirmed tangible progress in US-Iran back-channel talks.
+
+Pakistan, Egypt, and Turkey are relaying messages between US envoy Steve Witkoff and Iranian Foreign Minister Abbas Araghchi during Trump's 5-day military pause.
+
+Iran confirmed receiving the messages but must respond before the pause expires.

@@ -18,4 +18,8 @@ concepts:
   - "Trade-off"
 ---
 
-London — Planting trees cuts global wind power by 19.5%. A Nature Communications study finds max forestation sequesters 90.7 GtC but cuts onshore wind capacity 19.5% — trees slow surface wind. Tropics gain most carbon with least wind loss; Europe and the US face the steepest wind penalty.
+London — Planting trees cuts global wind power by 19.5%.
+
+A Nature Communications study finds max forestation sequesters 90.7 GtC but cuts onshore wind capacity 19.5% — trees slow surface wind.
+
+Tropics gain most carbon with least wind loss; Europe and the US face the steepest wind penalty.

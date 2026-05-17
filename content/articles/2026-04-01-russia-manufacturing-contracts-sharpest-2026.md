@@ -16,4 +16,8 @@ concepts:
   - "S&P Global"
 ---
 
-Moscow — Russia's factory PMI fell to 48.3 in March. Output fell at its fastest pace in 3 months; new orders hit their worst since October; business confidence sits at its lowest since April 2022. Input buying dropped at its steepest rate in 4 years as manufacturers face shrinking customer purchasing power and disruptions to logistics routes.
+Moscow — Russia's factory PMI fell to 48.3 in March.
+
+Output fell at its fastest pace in 3 months; new orders hit their worst since October; business confidence sits at its lowest since April 2022.
+
+Input buying dropped at its steepest rate in 4 years as manufacturers face shrinking customer purchasing power and disruptions to logistics routes.

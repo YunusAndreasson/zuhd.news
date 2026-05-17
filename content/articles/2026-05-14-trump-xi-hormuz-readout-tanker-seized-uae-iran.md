@@ -37,4 +37,6 @@ entities:
     kind: "chokepoint"
 ---
 
-Fujairah — Iran seized an anchored vessel and diverted it to its waters. [Iran](country:IR)'s new Persian Gulf Strait Authority vets Hormuz transits — hours after Trump and Xi declared the strait "must remain open." Washington demands Tehran surrender enriched uranium; Tehran demands sanctions lifted and Hormuz sovereignty recognized.
+Fujairah — Iran seized an anchored vessel and diverted it to its waters.
+
+[Iran](country:IR)'s new Persian Gulf Strait Authority vets Hormuz transits — hours after Trump and Xi declared the strait "must remain open." Washington demands Tehran surrender enriched uranium; Tehran demands sanctions lifted and Hormuz sovereignty recognized.

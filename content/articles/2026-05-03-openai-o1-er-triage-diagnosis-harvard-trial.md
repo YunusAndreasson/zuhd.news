@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Boston — OpenAI's o1 diagnosed 67% of emergency cases correctly. Human triage doctors scored 50-55% on the same patients; the model's edge comes from considering diagnoses clinicians overlook, Harvard researchers said. The study, published in Science, did not test visual patient assessment; clinical liability frameworks remain unresolved.
+Boston — OpenAI's o1 diagnosed 67% of emergency cases correctly.
+
+Human triage doctors scored 50-55% on the same patients; the model's edge comes from considering diagnoses clinicians overlook, Harvard researchers said.
+
+The study, published in Science, did not test visual patient assessment; clinical liability frameworks remain unresolved.

@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-San Francisco — Miasma traps AI scrapers in poisoned labyrinths. The open-source tool routes detected AI crawlers into procedurally generated pages that loop endlessly inward, poisoning training datasets rather than returning usable content. No scraper-detection standard exists; Miasma makes the defense cheaper to deploy than the crawl it defeats.
+San Francisco — Miasma traps AI scrapers in poisoned labyrinths.
+
+The open-source tool routes detected AI crawlers into procedurally generated pages that loop endlessly inward, poisoning training datasets rather than returning usable content.
+
+No scraper-detection standard exists; Miasma makes the defense cheaper to deploy than the crawl it defeats.

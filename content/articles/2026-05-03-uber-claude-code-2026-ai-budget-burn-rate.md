@@ -24,4 +24,8 @@ entities:
     kind: "stock"
 ---
 
-San Francisco — AI now writes 70% of Uber's committed code, the chief technology officer said. Monthly AI costs hit $500-$2,000 per engineer as usage doubled from December to April, burning the full 2026 budget. The executive is "back to the drawing board" on AI spend; no developer cap has been set.
+San Francisco — AI now writes 70% of Uber's committed code, the chief technology officer said.
+
+Monthly AI costs hit $500-$2,000 per engineer as usage doubled from December to April, burning the full 2026 budget.
+
+The executive is "back to the drawing board" on AI spend; no developer cap has been set.

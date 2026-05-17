@@ -19,4 +19,8 @@ concepts:
 eventCoverage: 32
 ---
 
-Tehran — Iran threatened Gulf-wide infrastructure strikes. Ghalibaf warned an unnamed regional country is backing an island seizure, with retaliation to hit oil terminals and desalination plants. The state backing the plot has not been named, leaving regional capitals to calculate their exposure.
+Tehran — Iran threatened Gulf-wide infrastructure strikes.
+
+Ghalibaf warned an unnamed regional country is backing an island seizure, with retaliation to hit oil terminals and desalination plants.
+
+The state backing the plot has not been named, leaving regional capitals to calculate their exposure.

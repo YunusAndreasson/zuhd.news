@@ -13,4 +13,8 @@ sources:
 entities: []
 ---
 
-Ottawa — [Canada](country:CA) proposed a telescope targeting 223 of 6,300 confirmed exoplanets. The Planetary Observations of Earth-sized Targets mission would characterize rocky planets' atmospheres rather than discover new ones. Atmospheric data on small rocky worlds is the primary gap before assessing Earth-like habitability, researchers said.
+Ottawa — [Canada](country:CA) proposed a telescope targeting 223 of 6,300 confirmed exoplanets.
+
+The Planetary Observations of Earth-sized Targets mission would characterize rocky planets' atmospheres rather than discover new ones.
+
+Atmospheric data on small rocky worlds is the primary gap before assessing Earth-like habitability, researchers said.

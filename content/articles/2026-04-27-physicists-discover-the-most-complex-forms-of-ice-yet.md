@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-New York — Ice has more than 20 known crystalline phases. Most require extreme conditions; the list includes ice stable while hot and ice that conducts electricity. Physicists say newly discovered forms are the most structurally complex yet, and the catalogue is not finished.
+New York — Ice has more than 20 known crystalline phases.
+
+Most require extreme conditions; the list includes ice stable while hot and ice that conducts electricity.
+
+Physicists say newly discovered forms are the most structurally complex yet, and the catalogue is not finished.

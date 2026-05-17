@@ -18,4 +18,6 @@ concepts:
   - "United Kingdom"
 ---
 
-London — 1 in 10 homes tested in the UK, Netherlands, and Italy had benzene leaks from gas cookers exceeding safety limits — even when the stove was off. Benzene concentrations in European gas were up to 66 times higher than US levels; PSE Healthy Energy researcher Drew Michanowicz described the exposure as "akin to living with a smoker." The leaks are mostly below detectable smell thresholds, meaning the only reliable fix is switching to induction.
+London — 1 in 10 homes tested in the UK, Netherlands, and Italy had benzene leaks from gas cookers exceeding safety limits — even when the stove was off.
+
+Benzene concentrations in European gas were up to 66 times higher than US levels; PSE Healthy Energy researcher Drew Michanowicz described the exposure as "akin to living with a smoker." The leaks are mostly below detectable smell thresholds, meaning the only reliable fix is switching to induction.

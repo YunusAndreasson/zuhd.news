@@ -28,4 +28,8 @@ concepts:
 entities: []
 ---
 
-London — Sacked Foreign Office head describes Downing Street pressure. Olly Robbins told lawmakers that [UK](country:GB) security vetting had advised against Peter Mandelson's Washington appointment, yet Downing Street pushed to fast-track it regardless. Calls for Starmer's resignation intensify with English local elections scheduled for May 6.
+London — Sacked Foreign Office head describes Downing Street pressure.
+
+Olly Robbins told lawmakers that [UK](country:GB) security vetting had advised against Peter Mandelson's Washington appointment, yet Downing Street pushed to fast-track it regardless.
+
+Calls for Starmer's resignation intensify with English local elections scheduled for May 6.

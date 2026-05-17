@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Berlin — Russia's agent photographed NATO convoys inside Germany. Post-2022 diplomat expulsions pushed [Russia](country:RU) to recruit post-Soviet nationals, who enter [Germany](country:DE) undetected by standard watchlists. [Kazakhstan](country:KZ) has not responded; prosecutors said Sergej K also offered to recruit additional agents inside Germany.
+Berlin — Russia's agent photographed NATO convoys inside Germany.
+
+Post-2022 diplomat expulsions pushed [Russia](country:RU) to recruit post-Soviet nationals, who enter [Germany](country:DE) undetected by standard watchlists.
+
+[Kazakhstan](country:KZ) has not responded; prosecutors said Sergej K also offered to recruit additional agents inside Germany.

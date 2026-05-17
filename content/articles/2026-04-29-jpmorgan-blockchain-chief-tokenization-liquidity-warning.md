@@ -23,4 +23,6 @@ entities:
     kind: "stock"
 ---
 
-New York — JPMorgan's blockchain chief: "Tokenization does not equal liquidity." Oliver Harris argues tokenizing creates no market; JPMorgan bets instead on a settlement layer merging money, assets, and data on one platform. Banks are spending billions on the tokenization thesis; Harris now leads the unit publicly walking it back.
+New York — JPMorgan's blockchain chief: "Tokenization does not equal liquidity." Oliver Harris argues tokenizing creates no market; JPMorgan bets instead on a settlement layer merging money, assets, and data on one platform.
+
+Banks are spending billions on the tokenization thesis; Harris now leads the unit publicly walking it back.

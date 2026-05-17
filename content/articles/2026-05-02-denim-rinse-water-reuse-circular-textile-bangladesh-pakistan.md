@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Dhaka — Denim rinse recycling also cuts mill pollution 70%, the study found. A Water Quality Index shows where rinse water safely cascades back, cutting freshwater use two-thirds. [Bangladesh](country:BD) and [Pakistan](country:PK) face acute water stress; neither government has mandated the framework.
+Dhaka — Denim rinse recycling also cuts mill pollution 70%, the study found.
+
+A Water Quality Index shows where rinse water safely cascades back, cutting freshwater use two-thirds.
+
+[Bangladesh](country:BD) and [Pakistan](country:PK) face acute water stress; neither government has mandated the framework.

@@ -16,4 +16,8 @@ concepts:
   - "Iran"
 ---
 
-New York — $600 million in crypto shorts liquidated on ceasefire. Bitcoin hit $72,699 as WTI crude fell more than 10% to $95, reversing 28 days of war-driven energy pricing in minutes. Iran's Hormuz reopening includes "technical limitations" under military management; whether oil traders price that caveat determines if the crash holds.
+New York — $600 million in crypto shorts liquidated on ceasefire.
+
+Bitcoin hit $72,699 as WTI crude fell more than 10% to $95, reversing 28 days of war-driven energy pricing in minutes.
+
+Iran's Hormuz reopening includes "technical limitations" under military management; whether oil traders price that caveat determines if the crash holds.

@@ -32,4 +32,8 @@ eventCoverage: 193
 sentimentDivergence: 0.49
 ---
 
-Asaluyeh — 85 percent of Iran's petrochemical exports are offline. Israel struck South Pars in Asaluyeh on Monday, completing a 2-facility campaign to sever the IRGC's main industrial revenue source. Trump's Hormuz deadline expires tonight; Iran fired missiles and Israel vowed more strikes.
+Asaluyeh — 85 percent of Iran's petrochemical exports are offline.
+
+Israel struck South Pars in Asaluyeh on Monday, completing a 2-facility campaign to sever the IRGC's main industrial revenue source.
+
+Trump's Hormuz deadline expires tonight; Iran fired missiles and Israel vowed more strikes.

@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Ibadan — [Nigeria](country:NG)'s All Progressives Congress controls most states and legislatures. Oyo Governor Seyi Makinde summoned opposition leaders to Ibadan, warning democracy fails without viable alternatives. Organisers aim to produce a unified strategy before Nigeria's 2027 elections.
+Ibadan — [Nigeria](country:NG)'s All Progressives Congress controls most states and legislatures.
+
+Oyo Governor Seyi Makinde summoned opposition leaders to Ibadan, warning democracy fails without viable alternatives.
+
+Organisers aim to produce a unified strategy before Nigeria's 2027 elections.

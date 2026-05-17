@@ -17,4 +17,8 @@ concepts:
   - "Manufacturing"
 ---
 
-China's export routes now run through an active war zone. The Iran conflict disrupted Western logistics routes that carry Chinese goods to their biggest buyers; whether that raises or lowers Chinese exports remains unknown. China's March data, due in April, will be the first measure of the damage.
+China's export routes now run through an active war zone.
+
+The Iran conflict disrupted Western logistics routes that carry Chinese goods to their biggest buyers; whether that raises or lowers Chinese exports remains unknown.
+
+China's March data, due in April, will be the first measure of the damage.

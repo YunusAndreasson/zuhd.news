@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-London — Shipping's first carbon price survived another negotiation round. The International Maritime Organization's framework charges ships $380 per tonne of CO2 over the easiest threshold, with revenue earmarked for developing states. November's vote requires two-thirds to adopt; the [US](country:US) and [Saudi Arabia](country:SA) still oppose.
+London — Shipping's first carbon price survived another negotiation round.
+
+The International Maritime Organization's framework charges ships $380 per tonne of CO2 over the easiest threshold, with revenue earmarked for developing states.
+
+November's vote requires two-thirds to adopt; the [US](country:US) and [Saudi Arabia](country:SA) still oppose.

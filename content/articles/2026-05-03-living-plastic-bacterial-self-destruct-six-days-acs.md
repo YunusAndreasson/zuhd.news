@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Washington, D.C. — A new polymer fully degrades in 6 days. 2 bacterial strains embedded in the polymer activate on command and consume it with no microplastic residue, researchers reported. Microplastics are now measurable in human placentas and blood; at-source degradation eliminates a contamination pathway that filtration cannot close.
+Washington, D.C. — A new polymer fully degrades in 6 days.
+
+2 bacterial strains embedded in the polymer activate on command and consume it with no microplastic residue, researchers reported.
+
+Microplastics are now measurable in human placentas and blood; at-source degradation eliminates a contamination pathway that filtration cannot close.

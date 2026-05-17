@@ -40,4 +40,8 @@ sentimentDivergence: 0.66
 entities: []
 ---
 
-Bannu — A militant coalition bombed a Bannu checkpoint Saturday. Ittehad-ul-Mujahideen — a 3-faction alliance formed April 2025 — detonated the car bomb, then deployed quadcopters against reinforcements, killing 15 police. No ceasefire holds on [Pakistan](country:PK)'s Afghan border; Islamabad blames Kabul for harboring the groups.
+Bannu — A militant coalition bombed a Bannu checkpoint Saturday.
+
+Ittehad-ul-Mujahideen — a 3-faction alliance formed April 2025 — detonated the car bomb, then deployed quadcopters against reinforcements, killing 15 police.
+
+No ceasefire holds on [Pakistan](country:PK)'s Afghan border; Islamabad blames Kabul for harboring the groups.

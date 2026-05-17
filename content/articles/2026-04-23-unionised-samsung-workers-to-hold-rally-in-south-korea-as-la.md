@@ -26,4 +26,8 @@ entities:
     kind: "stock"
 ---
 
-Pyeongtaek — 90,000 Samsung workers rally at Pyeongtaek plant Thursday. [South Korea](country:KR)'s largest chipmaker once crushed unions; membership tripled after rival SK Hynix conceded bonus reforms in 2024, exposing Samsung's pay gap. Samsung has until May 21 to deal; union leaders warn a strike would delay global AI chip shipments.
+Pyeongtaek — 90,000 Samsung workers rally at Pyeongtaek plant Thursday.
+
+[South Korea](country:KR)'s largest chipmaker once crushed unions; membership tripled after rival SK Hynix conceded bonus reforms in 2024, exposing Samsung's pay gap.
+
+Samsung has until May 21 to deal; union leaders warn a strike would delay global AI chip shipments.

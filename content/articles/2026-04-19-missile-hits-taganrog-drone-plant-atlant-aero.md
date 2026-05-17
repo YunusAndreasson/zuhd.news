@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Taganrog — [Russia](country:RU)'s governor confirmed 3 injured at Atlant Aero. A missile struck the plant for the third time in 4 months; it makes Molniya strike drones and Orion drone parts. Russia has not confirmed whether Molniya production resumed after prior strikes.
+Taganrog — [Russia](country:RU)'s governor confirmed 3 injured at Atlant Aero.
+
+A missile struck the plant for the third time in 4 months; it makes Molniya strike drones and Orion drone parts.
+
+Russia has not confirmed whether Molniya production resumed after prior strikes.

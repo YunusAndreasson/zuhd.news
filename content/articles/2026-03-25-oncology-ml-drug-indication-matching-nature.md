@@ -18,4 +18,8 @@ concepts:
   - "Drug development"
 ---
 
-London — An ML model retroactively predicted 70% of PD-1 approvals. INSPIRE, trained on real patient records before checkpoint inhibitors were established, ranked cancer types by analysing treatment events in patient medical histories to predict drug responsiveness. INSPIRE now faces validation on drug classes beyond checkpoint inhibitors, where the average approval costs $2.6 billion.
+London — An ML model retroactively predicted 70% of PD-1 approvals.
+
+INSPIRE, trained on real patient records before checkpoint inhibitors were established, ranked cancer types by analysing treatment events in patient medical histories to predict drug responsiveness.
+
+INSPIRE now faces validation on drug classes beyond checkpoint inhibitors, where the average approval costs $2.6 billion.

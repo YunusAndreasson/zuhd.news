@@ -15,4 +15,8 @@ concepts:
   - "Decentralized finance"
 ---
 
-Paris — $285 million vanished from Drift protocol this week. AI now compresses months of expert reverse-engineering and exploit-chaining into seconds. AI-generated code ships vulnerabilities faster than audits can catch them.
+Paris — $285 million vanished from Drift protocol this week.
+
+AI now compresses months of expert reverse-engineering and exploit-chaining into seconds.
+
+AI-generated code ships vulnerabilities faster than audits can catch them.

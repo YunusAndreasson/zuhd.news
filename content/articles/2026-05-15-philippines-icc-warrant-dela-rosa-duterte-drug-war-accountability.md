@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Manila — [Philippines](country:PH) confirmed it will serve the ICC warrant. Senator Ronald dela Rosa — former police chief who ran Duterte's drug killings — fled the Senate before dawn; his location is unknown. The Supreme Court is the "final arbiter," the Justice Secretary said; dela Rosa's jurisdiction appeal is pending.
+Manila — [Philippines](country:PH) confirmed it will serve the ICC warrant.
+
+Senator Ronald dela Rosa — former police chief who ran Duterte's drug killings — fled the Senate before dawn; his location is unknown.
+
+The Supreme Court is the "final arbiter," the Justice Secretary said; dela Rosa's jurisdiction appeal is pending.

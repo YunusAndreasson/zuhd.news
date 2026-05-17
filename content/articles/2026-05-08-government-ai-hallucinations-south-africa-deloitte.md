@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Pretoria — [South Africa](country:ZA)'s AI policy cited nonexistent research. The government withdrew the Draft National AI Policy 17 days after publication once the fabricated citations were identified. 4 more government documents from other states were found to contain AI-fabricated citations that went undetected.
+Pretoria — [South Africa](country:ZA)'s AI policy cited nonexistent research.
+
+The government withdrew the Draft National AI Policy 17 days after publication once the fabricated citations were identified.
+
+4 more government documents from other states were found to contain AI-fabricated citations that went undetected.

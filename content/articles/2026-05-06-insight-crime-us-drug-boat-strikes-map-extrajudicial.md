@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Washington — Southcom kills in international waters without releasing locations. A monitoring group mapped 56 strikes killing 188 people since September 2025; no case produced public evidence of drug cargo. April alone saw 8 strikes killing 23; a May 4 Caribbean strike killed 2 more.
+Washington — Southcom kills in international waters without releasing locations.
+
+A monitoring group mapped 56 strikes killing 188 people since September 2025; no case produced public evidence of drug cargo.
+
+April alone saw 8 strikes killing 23; a May 4 Caribbean strike killed 2 more.

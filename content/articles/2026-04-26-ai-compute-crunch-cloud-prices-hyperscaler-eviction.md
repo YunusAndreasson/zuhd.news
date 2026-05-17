@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-San Francisco — GitHub and peers have rationed AI compute. Hyperscalers redirected chips to AI training; a 2TB SSD that cost $159 now costs $575. Several US cities are blocking new data-centre construction over rising power and water costs.
+San Francisco — GitHub and peers have rationed AI compute.
+
+Hyperscalers redirected chips to AI training; a 2TB SSD that cost $159 now costs $575.
+
+Several US cities are blocking new data-centre construction over rising power and water costs.

@@ -17,4 +17,8 @@ concepts:
   - "Karakoram Highway"
 ---
 
-Gilgit — Pakistan's glaciers may burst in 10 days. Above-normal March temperatures in Gilgit-Baltistan have destabilized glacier termini; NDMA warns of outburst floods, landslides, and Karakoram Highway blockages from April 1-10. Rescue services across Gilgit-Baltistan and Khyber Pakhtunkhwa are on standby; tourists are warned off glacier sites.
+Gilgit — Pakistan's glaciers may burst in 10 days.
+
+Above-normal March temperatures in Gilgit-Baltistan have destabilized glacier termini; NDMA warns of outburst floods, landslides, and Karakoram Highway blockages from April 1-10.
+
+Rescue services across Gilgit-Baltistan and Khyber Pakhtunkhwa are on standby; tourists are warned off glacier sites.

@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Beirut — [Lebanon](country:LB) arrested a Mossad spy over database leaks to [Israel](country:IL). The records — electricity, telecom, health and vehicle data — let Israel match digital identities to physical airstrike targets, researchers said. Israeli drones have intercepted Lebanese signals for over 2 years; most government platforms lack basic data security.
+Beirut — [Lebanon](country:LB) arrested a Mossad spy over database leaks to [Israel](country:IL).
+
+The records — electricity, telecom, health and vehicle data — let Israel match digital identities to physical airstrike targets, researchers said.
+
+Israeli drones have intercepted Lebanese signals for over 2 years; most government platforms lack basic data security.

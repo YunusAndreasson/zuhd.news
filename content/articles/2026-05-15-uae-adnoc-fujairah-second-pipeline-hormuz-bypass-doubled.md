@@ -24,4 +24,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Abu Dhabi — Crown Prince Sheikh Khaled ordered a second Fujairah bypass pipeline. The existing Habshan-Fujairah route carries 1.8 million barrels per day, energy agency data show; the second doubles export capacity around Hormuz, which [Iran](country:IR) closed in February. The [UAE](country:AE) pipeline targets 2027; cost and construction start remain unannounced.
+Abu Dhabi — Crown Prince Sheikh Khaled ordered a second Fujairah bypass pipeline.
+
+The existing Habshan-Fujairah route carries 1.8 million barrels per day, energy agency data show; the second doubles export capacity around Hormuz, which [Iran](country:IR) closed in February.
+
+The [UAE](country:AE) pipeline targets 2027; cost and construction start remain unannounced.

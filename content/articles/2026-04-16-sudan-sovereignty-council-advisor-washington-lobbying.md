@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Washington — Sudan's Sovereignty Council sent its envoy to Washington. El Burhan's advisor met Senator Ted Cruz's team Tuesday, urging Republicans to cut weapons supply lines to the Rapid Support Forces. Washington has yet to respond; Sudan's war is entering its third year.
+Washington — Sudan's Sovereignty Council sent its envoy to Washington.
+
+El Burhan's advisor met Senator Ted Cruz's team Tuesday, urging Republicans to cut weapons supply lines to the Rapid Support Forces.
+
+Washington has yet to respond; Sudan's war is entering its third year.

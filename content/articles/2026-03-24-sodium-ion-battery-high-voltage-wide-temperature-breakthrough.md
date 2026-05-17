@@ -17,4 +17,6 @@ concepts:
   - "Solvation"
 ---
 
-Beijing — A sodium-ion battery retained 42% capacity at -70°C. Unlike lithium — concentrated in a handful of politically constrained countries — sodium is found globally, opening battery supply chains to most of the world. Before reaching market, sodium cells must scale well beyond the study's 1-Ah prototype to compete with lithium-ion packs.
+Beijing — A sodium-ion battery retained 42% capacity at -70°C. Unlike lithium — concentrated in a handful of politically constrained countries — sodium is found globally, opening battery supply chains to most of the world.
+
+Before reaching market, sodium cells must scale well beyond the study's 1-Ah prototype to compete with lithium-ion packs.

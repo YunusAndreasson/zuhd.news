@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Dhaka — Bangladesh imports 95% of its energy. The Hormuz blockade cut shipments to 170 million people with no domestic energy buffer; factory shutdowns and fuel queues began in March. The government holds no strategic reserve; emergency spot purchases are depleting foreign exchange as the fiscal deficit widens.
+Dhaka — Bangladesh imports 95% of its energy.
+
+The Hormuz blockade cut shipments to 170 million people with no domestic energy buffer; factory shutdowns and fuel queues began in March.
+
+The government holds no strategic reserve; emergency spot purchases are depleting foreign exchange as the fiscal deficit widens.

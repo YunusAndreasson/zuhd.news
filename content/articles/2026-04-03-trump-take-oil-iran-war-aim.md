@@ -23,4 +23,8 @@ eventCoverage: 44
 sentimentDivergence: 0.02
 ---
 
-Washington — Trump named Iran's oil his explicit war aim. His Truth Social post — "TAKE THE OIL, MAKE A FORTUNE" — describes pillage of sovereign resources, prohibited under the Fourth Geneva Convention. The US military is not ready to escort ships through Hormuz, where Iran still blocks passage.
+Washington — Trump named Iran's oil his explicit war aim.
+
+His Truth Social post — "TAKE THE OIL, MAKE A FORTUNE" — describes pillage of sovereign resources, prohibited under the Fourth Geneva Convention.
+
+The US military is not ready to escort ships through Hormuz, where Iran still blocks passage.

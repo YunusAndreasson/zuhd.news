@@ -17,4 +17,8 @@ concepts:
   - "Caribbean"
 ---
 
-Port-au-Prince — Haiti's first election in a decade is postponed. Gang-controlled territory covering most of the capital makes voter registration impossible; 1.4 million people — 12% of the population — remain displaced. No new date has been set; a new government decree is required before the council can reschedule.
+Port-au-Prince — Haiti's first election in a decade is postponed.
+
+Gang-controlled territory covering most of the capital makes voter registration impossible; 1.4 million people — 12% of the population — remain displaced.
+
+No new date has been set; a new government decree is required before the council can reschedule.

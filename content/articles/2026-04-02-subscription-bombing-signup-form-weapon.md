@@ -17,4 +17,8 @@ concepts:
   - "Rate limiting"
 ---
 
-San Francisco — Any signup form can be weaponized against strangers. Attackers submit a target's email to hundreds of newsletter services; the confirmation flood buries bank alerts and OTPs. Most developers have not added rate limiting or double opt-in to prevent it.
+San Francisco — Any signup form can be weaponized against strangers.
+
+Attackers submit a target's email to hundreds of newsletter services; the confirmation flood buries bank alerts and OTPs.
+
+Most developers have not added rate limiting or double opt-in to prevent it.

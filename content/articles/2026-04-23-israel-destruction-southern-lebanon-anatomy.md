@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Nabatieh — 2 paramedics died in an Israeli drone strike. [Israel](country:IL) killed 2,294 and displaced 1 million — one-fifth of [Lebanon](country:LB)'s population, the health ministry said — in 6 weeks of bombing. A 10-day ceasefire began April 17; forced evacuation orders remain south of the Zahrani River, blocking return.
+Nabatieh — 2 paramedics died in an Israeli drone strike.
+
+[Israel](country:IL) killed 2,294 and displaced 1 million — one-fifth of [Lebanon](country:LB)'s population, the health ministry said — in 6 weeks of bombing.
+
+A 10-day ceasefire began April 17; forced evacuation orders remain south of the Zahrani River, blocking return.

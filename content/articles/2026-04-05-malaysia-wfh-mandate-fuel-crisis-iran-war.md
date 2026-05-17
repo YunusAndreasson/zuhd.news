@@ -19,4 +19,8 @@ concepts:
   - "Remote work"
 ---
 
-Kuala Lumpur — Malaysia ordered 1.8 million public servants home. PM Anwar cut subsidized fuel quotas 33%, effective April 15, as Hormuz closures raised import costs. Iran promised Petronas exemptions but has set no date for safe passage.
+Kuala Lumpur — Malaysia ordered 1.8 million public servants home.
+
+PM Anwar cut subsidized fuel quotas 33%, effective April 15, as Hormuz closures raised import costs.
+
+Iran promised Petronas exemptions but has set no date for safe passage.

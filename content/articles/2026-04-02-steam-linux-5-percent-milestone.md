@@ -18,4 +18,8 @@ concepts:
   - "Steam Deck"
 ---
 
-San Francisco — Linux now runs 1 in 20 Steam users. The 5% share — crossed for the first time in March — is 5x higher than 5 years ago, driven by Valve's Proton making Windows games run on Linux. Steam Deck's Linux-only design proved commercial viability; hardware expansion now depends on Valve's next device generation.
+San Francisco — Linux now runs 1 in 20 Steam users.
+
+The 5% share — crossed for the first time in March — is 5x higher than 5 years ago, driven by Valve's Proton making Windows games run on Linux.
+
+Steam Deck's Linux-only design proved commercial viability; hardware expansion now depends on Valve's next device generation.

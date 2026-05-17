@@ -37,4 +37,8 @@ concepts:
 entities: []
 ---
 
-Leipzig — 2 dead, 2 severely injured when a car struck a central Leipzig shopping street. [Germany](country:DE) has seen multiple vehicle attacks since Magdeburg's Christmas market massacre in 2024; the motive for Monday's attack is unconfirmed and the driver detained. Eyewitnesses also described a stabbing near the scene; police have not confirmed that account.
+Leipzig — 2 dead, 2 severely injured when a car struck a central Leipzig shopping street.
+
+[Germany](country:DE) has seen multiple vehicle attacks since Magdeburg's Christmas market massacre in 2024; the motive for Monday's attack is unconfirmed and the driver detained.
+
+Eyewitnesses also described a stabbing near the scene; police have not confirmed that account.

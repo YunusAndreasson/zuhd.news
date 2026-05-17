@@ -18,4 +18,8 @@ concepts:
   - "Japan"
 ---
 
-Tokyo — A Japanese man breached China's Tokyo embassy. The intruder threatened to kill staff and claimed Japan Self-Defense Forces membership before being arrested, prompting Beijing to demand prosecution and tighter embassy security. Whether Tokyo complies will test the bilateral relationship, already strained by Japan's military expansion and Taiwan policy.
+Tokyo — A Japanese man breached China's Tokyo embassy.
+
+The intruder threatened to kill staff and claimed Japan Self-Defense Forces membership before being arrested, prompting Beijing to demand prosecution and tighter embassy security.
+
+Whether Tokyo complies will test the bilateral relationship, already strained by Japan's military expansion and Taiwan policy.

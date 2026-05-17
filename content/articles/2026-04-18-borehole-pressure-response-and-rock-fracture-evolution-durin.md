@@ -21,4 +21,8 @@ entities:
     kind: "commodity"
 ---
 
-London — Gas fracturing doubles crack count, lab tests show. Pipe-borehole acoustic resonance drives fracture branching — a second variable engineers must jointly control with pressure. Researchers proposed the technique for water-scarce regions where freshwater constrains oil, gas, and geothermal extraction.
+London — Gas fracturing doubles crack count, lab tests show.
+
+Pipe-borehole acoustic resonance drives fracture branching — a second variable engineers must jointly control with pressure.
+
+Researchers proposed the technique for water-scarce regions where freshwater constrains oil, gas, and geothermal extraction.

@@ -17,4 +17,8 @@ concepts:
   - "First information report"
 ---
 
-Rawalpindi — 400 PTI activists charged under anti-terrorism law. Police booked former PM Imran Khan's 3 sisters and hundreds of supporters on conspiracy and attempted murder charges over a road protest. 41 arrested workers face 8-day physical remand as Pakistan simultaneously hosts Iran-US peace talks in Islamabad.
+Rawalpindi — 400 PTI activists charged under anti-terrorism law.
+
+Police booked former PM Imran Khan's 3 sisters and hundreds of supporters on conspiracy and attempted murder charges over a road protest.
+
+41 arrested workers face 8-day physical remand as Pakistan simultaneously hosts Iran-US peace talks in Islamabad.

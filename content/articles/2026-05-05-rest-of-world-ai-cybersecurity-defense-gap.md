@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-San Francisco — Anthropic's Mythos found thousands of operating-system flaws. The newest Anthropic model shared findings with roughly 40 partner institutions across operating systems and browsers. Anthropic has not said which findings are publicly disclosed and which are patched privately.
+San Francisco — Anthropic's Mythos found thousands of operating-system flaws.
+
+The newest Anthropic model shared findings with roughly 40 partner institutions across operating systems and browsers.
+
+Anthropic has not said which findings are publicly disclosed and which are patched privately.

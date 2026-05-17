@@ -29,4 +29,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Frankfurt — Jet fuel costs doubled, Lufthansa CEO Spohr said. The Hormuz siege tightened European jet fuel supply; airlines hedge quarterly, not annually, so a months-long closure now shows in the schedule. Lufthansa has 3 asks of the EU Commission: Jet A imports, slot-rule suspension, and anti-tankering exemptions.
+Frankfurt — Jet fuel costs doubled, Lufthansa CEO Spohr said.
+
+The Hormuz siege tightened European jet fuel supply; airlines hedge quarterly, not annually, so a months-long closure now shows in the schedule.
+
+Lufthansa has 3 asks of the EU Commission: Jet A imports, slot-rule suspension, and anti-tankering exemptions.

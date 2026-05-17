@@ -11,4 +11,8 @@ sources:
     country: "NL"
 ---
 
-Amsterdam — Someone rendered Doom in 3D using only CSS. No JavaScript, no canvas, no WebGL — a raycasting engine built entirely from CSS custom properties, container queries, and Houdini worklets. The demo runs; whether browser CSS compute limits can contain a full Doom engine remains the open question.
+Amsterdam — Someone rendered Doom in 3D using only CSS.
+
+No JavaScript, no canvas, no WebGL — a raycasting engine built entirely from CSS custom properties, container queries, and Houdini worklets.
+
+The demo runs; whether browser CSS compute limits can contain a full Doom engine remains the open question.

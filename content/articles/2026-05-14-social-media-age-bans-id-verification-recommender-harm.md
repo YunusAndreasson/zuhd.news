@@ -16,4 +16,8 @@ concepts: []
 entities: []
 ---
 
-Washington — Age bans demand ID verification from everyone. Banning minors requires platforms to verify every user's age, expanding surveillance while algorithmic ranking — the documented harm source — goes unaddressed. [Australia](country:AU), Norway, and [Indonesia](country:ID) have enacted bans; no country has regulated recommendation algorithms directly.
+Washington — Age bans demand ID verification from everyone.
+
+Banning minors requires platforms to verify every user's age, expanding surveillance while algorithmic ranking — the documented harm source — goes unaddressed.
+
+[Australia](country:AU), Norway, and [Indonesia](country:ID) have enacted bans; no country has regulated recommendation algorithms directly.

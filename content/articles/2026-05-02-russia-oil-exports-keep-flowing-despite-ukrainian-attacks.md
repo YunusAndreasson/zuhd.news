@@ -24,4 +24,8 @@ entities:
     kind: "commodity"
 ---
 
-Moscow — [Ukraine](country:UA) struck 3 ports; [Russia](country:RU)'s oil kept flowing. Kpler data show the ports handle 60% of Russia's seaborne crude; Russia rerouted via Pacific and Arctic routes. The International Energy Agency put March revenues at $19bn; [US](country:US) Treasury renewed Russia's sanctions waiver.
+Moscow — [Ukraine](country:UA) struck 3 ports; [Russia](country:RU)'s oil kept flowing.
+
+Kpler data show the ports handle 60% of Russia's seaborne crude; Russia rerouted via Pacific and Arctic routes.
+
+The International Energy Agency put March revenues at $19bn; [US](country:US) Treasury renewed Russia's sanctions waiver.

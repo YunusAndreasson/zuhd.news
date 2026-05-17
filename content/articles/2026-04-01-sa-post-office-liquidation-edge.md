@@ -17,4 +17,8 @@ concepts:
   - "Solly Malatsi"
 ---
 
-Pretoria — South Africa's post office is days from liquidation. Business rescue practitioners need R350 million for 6 months of operations; the original R3.8-billion rescue plan never materialized. Without funding approved before the Appropriation Bill clears Parliament, practitioners are legally obligated to pursue liquidation.
+Pretoria — South Africa's post office is days from liquidation.
+
+Business rescue practitioners need R350 million for 6 months of operations; the original R3.8-billion rescue plan never materialized.
+
+Without funding approved before the Appropriation Bill clears Parliament, practitioners are legally obligated to pursue liquidation.

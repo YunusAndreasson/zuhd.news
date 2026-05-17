@@ -26,4 +26,8 @@ eventCoverage: 82
 sentimentDivergence: 0.42
 ---
 
-Tokyo — [China](country:CN) cited WWII disarmament terms against [Japan](country:JP). Beijing argues the Cairo Declaration and Potsdam Proclamation, binding since 1945, explicitly prohibited Japanese rearmament. Japan has not reversed the export revision; constitutional change requiring a national referendum is also on Takaichi's agenda.
+Tokyo — [China](country:CN) cited WWII disarmament terms against [Japan](country:JP).
+
+Beijing argues the Cairo Declaration and Potsdam Proclamation, binding since 1945, explicitly prohibited Japanese rearmament.
+
+Japan has not reversed the export revision; constitutional change requiring a national referendum is also on Takaichi's agenda.

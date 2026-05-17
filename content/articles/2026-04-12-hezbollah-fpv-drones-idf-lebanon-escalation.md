@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Southern Lebanon — Hezbollah drones hit 2 Merkava tanks this week. Fiber optic guidance, adapted from Ukraine, defeats electronic jamming — and as IDF pushes further south, more targets enter range. Namer IFVs — among Israel's most armored vehicles — also appeared in Hezbollah's drone footage for the first time.
+Southern Lebanon — Hezbollah drones hit 2 Merkava tanks this week.
+
+Fiber optic guidance, adapted from Ukraine, defeats electronic jamming — and as IDF pushes further south, more targets enter range.
+
+Namer IFVs — among Israel's most armored vehicles — also appeared in Hezbollah's drone footage for the first time.

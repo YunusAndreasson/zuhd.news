@@ -17,4 +17,8 @@ concepts:
   - "OctoMap"
 ---
 
-Multi-resolution mapping cuts robot exploration time and distance. OctoMap's layered voxels coarse-scan open space then zoom into complex zones — solving over-sampling without missing frontier detail. Simulation tests show improvement; real-world deployment in warehouses and rovers remains untested.
+Multi-resolution mapping cuts robot exploration time and distance.
+
+OctoMap's layered voxels coarse-scan open space then zoom into complex zones — solving over-sampling without missing frontier detail.
+
+Simulation tests show improvement; real-world deployment in warehouses and rovers remains untested.

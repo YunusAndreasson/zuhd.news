@@ -15,4 +15,8 @@ concepts:
   - "Chatbot"
 ---
 
-Denver — 2 weeks with AI replaced 2 years of research. Harvard physicist Matthew Schwartz finished a quantum field theory paper in 2 weeks using Claude and now refuses to mentor students who won't work with AI. The American Physical Society warned that AI-generated submissions are straining peer review before standards exist for evaluating or crediting them.
+Denver — 2 weeks with AI replaced 2 years of research.
+
+Harvard physicist Matthew Schwartz finished a quantum field theory paper in 2 weeks using Claude and now refuses to mentor students who won't work with AI.
+
+The American Physical Society warned that AI-generated submissions are straining peer review before standards exist for evaluating or crediting them.

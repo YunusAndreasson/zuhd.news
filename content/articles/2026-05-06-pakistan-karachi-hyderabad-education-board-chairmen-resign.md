@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Karachi — Both Sindh exam board chairmen resigned after a provincial probe named them in irregularities. The [Pakistan](country:PK) Karachi board chairman altered 170 exam centres mid-matric, the probe found; Hyderabad cycled through 6 chairmen in 30 months. The Hyderabad resignation has not been accepted pending ministerial action.
+Karachi — Both Sindh exam board chairmen resigned after a provincial probe named them in irregularities.
+
+The [Pakistan](country:PK) Karachi board chairman altered 170 exam centres mid-matric, the probe found; Hyderabad cycled through 6 chairmen in 30 months.
+
+The Hyderabad resignation has not been accepted pending ministerial action.

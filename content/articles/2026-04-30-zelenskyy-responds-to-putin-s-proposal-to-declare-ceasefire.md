@@ -35,4 +35,8 @@ sentimentDivergence: 0.16
 entities: []
 ---
 
-Kyiv — [Russia](country:RU) tied its ceasefire proposal to May 9. [Ukraine](country:UA)'s Zelenskyy contacted Trump — not Moscow — asking if the pause means "a few hours for a parade" or more. Kyiv countered with a permanent ceasefire; Russia has not responded, and May 9 is 9 days away.
+Kyiv — [Russia](country:RU) tied its ceasefire proposal to May 9.
+
+[Ukraine](country:UA)'s Zelenskyy contacted Trump — not Moscow — asking if the pause means "a few hours for a parade" or more.
+
+Kyiv countered with a permanent ceasefire; Russia has not responded, and May 9 is 9 days away.

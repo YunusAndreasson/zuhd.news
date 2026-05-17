@@ -32,4 +32,8 @@ concepts:
 sentimentDivergence: 0.28
 ---
 
-Kouvola — 2 drones fell inside Finland on Sunday. Ukraine's Baltic oil strikes have sent wayward drones into Estonia, Latvia, and Lithuania this week; Kouvola sits 45 miles from Russian territory. Finland's defence ministry is investigating; no government has confirmed the launch origin.
+Kouvola — 2 drones fell inside Finland on Sunday.
+
+Ukraine's Baltic oil strikes have sent wayward drones into Estonia, Latvia, and Lithuania this week; Kouvola sits 45 miles from Russian territory.
+
+Finland's defence ministry is investigating; no government has confirmed the launch origin.

@@ -17,4 +17,8 @@ concepts:
   - "Base pair"
 ---
 
-Beijing — CRISPR now treats β-thalassaemia in clinical trials. Chinese researchers developed an improved CRISPR system with fewer off-target DNA cuts to treat the faulty hemoglobin gene underlying the disease. Clinical data supports regulatory review; access for South Asian and Middle Eastern populations remains unresolved.
+Beijing — CRISPR now treats β-thalassaemia in clinical trials.
+
+Chinese researchers developed an improved CRISPR system with fewer off-target DNA cuts to treat the faulty hemoglobin gene underlying the disease.
+
+Clinical data supports regulatory review; access for South Asian and Middle Eastern populations remains unresolved.

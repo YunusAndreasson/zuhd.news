@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — Iran-war energy discord drove the [UAE](country:AE) from OPEC on Tuesday. 57 countries representing one-third of the global economy committed to fossil-fuel transition roadmaps at a summit in Santa Marta, [Colombia](country:CO). Tropical forest loss slowed last year, driven largely by [Brazil](country:BR)'s Amazon deforestation cuts, World Resources Institute data show.
+London — Iran-war energy discord drove the [UAE](country:AE) from OPEC on Tuesday.
+
+57 countries representing one-third of the global economy committed to fossil-fuel transition roadmaps at a summit in Santa Marta, [Colombia](country:CO).
+
+Tropical forest loss slowed last year, driven largely by [Brazil](country:BR)'s Amazon deforestation cuts, World Resources Institute data show.

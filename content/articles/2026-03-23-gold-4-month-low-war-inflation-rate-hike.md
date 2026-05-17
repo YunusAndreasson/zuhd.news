@@ -17,4 +17,8 @@ concepts:
   - "Federal Reserve"
 ---
 
-New York — Gold fell 10% last week, worst drop since 1983. The Iran war has pushed oil above $110, flipping market expectations from rate cuts to rate hikes that punish non-yielding gold. Gold now trades at $4,203, down 25% from January's record; if the Federal Reserve raises rates by October as futures markets expect, gold faces further losses.
+New York — Gold fell 10% last week, worst drop since 1983.
+
+The Iran war has pushed oil above $110, flipping market expectations from rate cuts to rate hikes that punish non-yielding gold.
+
+Gold now trades at $4,203, down 25% from January's record; if the Federal Reserve raises rates by October as futures markets expect, gold faces further losses.

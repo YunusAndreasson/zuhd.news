@@ -24,4 +24,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Muscat — An Indian dhow sank in Omani waters Wednesday after catching fire in an attack. [India](country:IN) called it unacceptable; no group claimed it, and Gulf attacks continue despite the Iran ceasefire. US and Chinese leaders agreed Hormuz must remain open; UK maritime monitors reported a vessel seized near the [UAE](country:AE) the same day.
+Muscat — An Indian dhow sank in Omani waters Wednesday after catching fire in an attack.
+
+[India](country:IN) called it unacceptable; no group claimed it, and Gulf attacks continue despite the Iran ceasefire.
+
+US and Chinese leaders agreed Hormuz must remain open; UK maritime monitors reported a vessel seized near the [UAE](country:AE) the same day.

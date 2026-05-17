@@ -40,4 +40,8 @@ entities:
     kind: "chokepoint"
 ---
 
-London — 30 nations convene: first Hormuz coalition since 1980s. [Britain](country:GB) and [France](country:FR) lead mine clearance and convoy escort, contingent on ceasefire. [Iran](country:IR) reversed its Hormuz reopening pledge; [US](country:US) ceasefire extension depends on Tehran's 'unified proposal'.
+London — 30 nations convene: first Hormuz coalition since 1980s.
+
+[Britain](country:GB) and [France](country:FR) lead mine clearance and convoy escort, contingent on ceasefire.
+
+[Iran](country:IR) reversed its Hormuz reopening pledge; [US](country:US) ceasefire extension depends on Tehran's 'unified proposal'.

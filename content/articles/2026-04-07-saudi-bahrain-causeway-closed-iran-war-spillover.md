@@ -29,4 +29,8 @@ concepts:
 sentimentDivergence: 0.25
 ---
 
-Dammam — Saudi Arabia closed the King Fahd Causeway. The 25km bridge is Bahrain's only land link; Iran has struck Saudi Arabia and 2 other US-allied states since February 28. Tehran threatened retaliation over civilian infrastructure; Trump's Tuesday deadline arrives hours later.
+Dammam — Saudi Arabia closed the King Fahd Causeway.
+
+The 25km bridge is Bahrain's only land link; Iran has struck Saudi Arabia and 2 other US-allied states since February 28.
+
+Tehran threatened retaliation over civilian infrastructure; Trump's Tuesday deadline arrives hours later.

@@ -18,4 +18,8 @@ concepts:
   - "Digital rights"
 ---
 
-Washington — ICE surveillance proved EFF right after 26 years. DHS attempted to unmask anonymous ICE critics on social media, confirming departing director Cindy Cohn's warning that private data becomes a state weapon. Incoming director Nicole Ozer plans to link digital rights to the civil rights movement as AI-powered surveillance expands.
+Washington — ICE surveillance proved EFF right after 26 years.
+
+DHS attempted to unmask anonymous ICE critics on social media, confirming departing director Cindy Cohn's warning that private data becomes a state weapon.
+
+Incoming director Nicole Ozer plans to link digital rights to the civil rights movement as AI-powered surveillance expands.

@@ -17,4 +17,8 @@ concepts:
   - "Monguno"
 ---
 
-Monguno — ISWAP killed Colonel Mohammed and 6 soldiers. Mohammed was moving to assess the attack when his vehicle hit an IED — ISWAP's 2nd senior officer kill in Borno in 4 days. Nigeria's military retained Monguno but has not disclosed whether ISWAP is targeting command-level officers systematically.
+Monguno — ISWAP killed Colonel Mohammed and 6 soldiers.
+
+Mohammed was moving to assess the attack when his vehicle hit an IED — ISWAP's 2nd senior officer kill in Borno in 4 days.
+
+Nigeria's military retained Monguno but has not disclosed whether ISWAP is targeting command-level officers systematically.

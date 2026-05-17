@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-London — TwinC achieved 80% accuracy predicting cross-chromosome contacts in heart tissue. Prior models handled only intra-chromosomal folding; TwinC extends across pairs, learning compartments and transcription factor clusters from DNA sequence alone. The authors say the approach may explain why rare-disease variants lack regulatory annotations.
+London — TwinC achieved 80% accuracy predicting cross-chromosome contacts in heart tissue.
+
+Prior models handled only intra-chromosomal folding; TwinC extends across pairs, learning compartments and transcription factor clusters from DNA sequence alone.
+
+The authors say the approach may explain why rare-disease variants lack regulatory annotations.

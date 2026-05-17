@@ -26,4 +26,10 @@ concepts:
 sentimentDivergence: 0.19
 ---
 
-Beijing — Trump rescheduled Beijing to May 14. The US and Israel bombed Iran on Feb. 28; the White House's own 4-6 week war estimate ends before May 14. Xi has not sent warships to Hormuz; Taiwan arms sales and trade tensions remain unresolved before the summit.
+Beijing — Trump rescheduled Beijing to May 14.
+
+The US and Israel bombed Iran on Feb.
+
+28; the White House's own 4-6 week war estimate ends before May 14.
+
+Xi has not sent warships to Hormuz; Taiwan arms sales and trade tensions remain unresolved before the summit.

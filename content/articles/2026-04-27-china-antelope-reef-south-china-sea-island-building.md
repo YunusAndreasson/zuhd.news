@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Beijing — [China](country:CN) resumed island-building at Antelope Reef. Under international maritime law, artificial structures confer no legal title; Beijing now controls physical access to a disputed shoal. A 2016 Hague ruling invalidated China's nine-dash line; the outpost tests whether that judgment retains operational force.
+Beijing — [China](country:CN) resumed island-building at Antelope Reef.
+
+Under international maritime law, artificial structures confer no legal title; Beijing now controls physical access to a disputed shoal.
+
+A 2016 Hague ruling invalidated China's nine-dash line; the outpost tests whether that judgment retains operational force.

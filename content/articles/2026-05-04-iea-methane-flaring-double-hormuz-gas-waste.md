@@ -23,4 +23,8 @@ entities:
     kind: "chokepoint"
 ---
 
-Paris — The International Energy Agency found global gas leaks and flaring waste 200 billion cubic metres annually. That is nearly double the 110 blocked by the Hormuz closure; 15 billion cubic metres could reach markets quickly, the agency said. The EU faces pressure to weaken methane import rules before January 2027.
+Paris — The International Energy Agency found global gas leaks and flaring waste 200 billion cubic metres annually.
+
+That is nearly double the 110 blocked by the Hormuz closure; 15 billion cubic metres could reach markets quickly, the agency said.
+
+The EU faces pressure to weaken methane import rules before January 2027.

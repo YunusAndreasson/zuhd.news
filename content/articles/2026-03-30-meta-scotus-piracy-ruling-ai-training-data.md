@@ -17,4 +17,8 @@ concepts:
   - "Class action"
 ---
 
-San Francisco — Meta built AI on 80TB of torrented books. Meta argues a SCOTUS ruling shielding ISPs from user piracy also means it cannot be liable for seeding the works. A contributory infringement claim now stands; if it clears summary judgment, internal communications approving the torrenting become discoverable.
+San Francisco — Meta built AI on 80TB of torrented books.
+
+Meta argues a SCOTUS ruling shielding ISPs from user piracy also means it cannot be liable for seeding the works.
+
+A contributory infringement claim now stands; if it clears summary judgment, internal communications approving the torrenting become discoverable.

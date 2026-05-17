@@ -18,4 +18,8 @@ concepts:
   - "Gujarat"
 ---
 
-New Delhi — India's $10 billion semiconductor bet targets Gujarat clusters. Indian engineers make up 20% of the global IC design workforce, but India currently imports nearly all of the chips it uses. Micron's Gujarat plant handles only packaging; full fabrication targets 2033, requiring a supplier ecosystem India hasn't built.
+New Delhi — India's $10 billion semiconductor bet targets Gujarat clusters.
+
+Indian engineers make up 20% of the global IC design workforce, but India currently imports nearly all of the chips it uses.
+
+Micron's Gujarat plant handles only packaging; full fabrication targets 2033, requiring a supplier ecosystem India hasn't built.

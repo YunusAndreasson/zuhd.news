@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Beirut — Hezbollah fired 40 rockets as ceasefire talks opened. Washington is pressing Israel to tie a Lebanon ceasefire to the Iran truce, their first direct talks in 40 years. Netanyahu ordered continued strikes on Bint Jbeil; truce duration is tied to whether the Iran ceasefire holds.
+Beirut — Hezbollah fired 40 rockets as ceasefire talks opened.
+
+Washington is pressing Israel to tie a Lebanon ceasefire to the Iran truce, their first direct talks in 40 years.
+
+Netanyahu ordered continued strikes on Bint Jbeil; truce duration is tied to whether the Iran ceasefire holds.

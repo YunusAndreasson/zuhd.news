@@ -16,4 +16,8 @@ concepts:
   - "China"
 ---
 
-Taipei — KMT chief Cheng Li-wun entered China Tuesday. Taiwan's opposition froze $40 billion in defense spending and began direct Beijing talks while Chinese warships deployed offshore. Xi has not confirmed a meeting as Cheng reaches Beijing Thursday, one month before a Trump-Xi summit.
+Taipei — KMT chief Cheng Li-wun entered China Tuesday.
+
+Taiwan's opposition froze $40 billion in defense spending and began direct Beijing talks while Chinese warships deployed offshore.
+
+Xi has not confirmed a meeting as Cheng reaches Beijing Thursday, one month before a Trump-Xi summit.

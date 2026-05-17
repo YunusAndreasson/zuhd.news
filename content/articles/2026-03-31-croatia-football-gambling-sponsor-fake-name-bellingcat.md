@@ -11,4 +11,6 @@ sources:
     country: "GB"
 ---
 
-Zagreb — A Croatian academic signed the deal as "Alexander Smith." Facial recognition identified him as Branko Balon, a Zagreb computer science lecturer who brokered the deal for opaque Asian bookmaker Dragon Z6. The agreement runs through the 2026 World Cup; Croatia's football federation has not disclosed whether it knew.
+Zagreb — A Croatian academic signed the deal as "Alexander Smith." Facial recognition identified him as Branko Balon, a Zagreb computer science lecturer who brokered the deal for opaque Asian bookmaker Dragon Z6.
+
+The agreement runs through the 2026 World Cup; Croatia's football federation has not disclosed whether it knew.

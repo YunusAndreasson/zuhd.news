@@ -11,4 +11,8 @@ sources:
     country: "GB"
 ---
 
-Liège — Belgium seized fire control systems and aircraft parts bound for Israel. The cargo traveled from Britain through Liège airport without a transit licence, which Belgian law requires and would have denied. Belgian prosecutors opened a criminal investigation; Moog, a US aerospace firm with factories across Britain, is the focus.
+Liège — Belgium seized fire control systems and aircraft parts bound for Israel.
+
+The cargo traveled from Britain through Liège airport without a transit licence, which Belgian law requires and would have denied.
+
+Belgian prosecutors opened a criminal investigation; Moog, a US aerospace firm with factories across Britain, is the focus.

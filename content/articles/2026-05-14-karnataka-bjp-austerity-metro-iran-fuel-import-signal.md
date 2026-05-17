@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Bengaluru — Karnataka opposition leader R. Ashok will take metro to work and cut his security convoy. Ashok cited [India](country:IN)'s ongoing West Asia conflict and rising fuel costs as the driver. He urged Chief Minister Siddaramaiah to require government officials to use public buses.
+Bengaluru — Karnataka opposition leader R. Ashok will take metro to work and cut his security convoy.
+
+Ashok cited [India](country:IN)'s ongoing West Asia conflict and rising fuel costs as the driver.
+
+He urged Chief Minister Siddaramaiah to require government officials to use public buses.

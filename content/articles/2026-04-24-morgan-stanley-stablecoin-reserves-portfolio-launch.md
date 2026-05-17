@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-New York — Morgan Stanley's new fund gives stablecoin issuers daily liquidity at $1 net asset value. The fund holds Treasury bills and repos, giving [US](country:US) dollar stablecoin issuers a regulated reserve vehicle. The GENIUS Act, moving through Congress, would legally require stablecoin issuers to hold reserves in regulated vehicles.
+New York — Morgan Stanley's new fund gives stablecoin issuers daily liquidity at $1 net asset value.
+
+The fund holds Treasury bills and repos, giving [US](country:US) dollar stablecoin issuers a regulated reserve vehicle.
+
+The GENIUS Act, moving through Congress, would legally require stablecoin issuers to hold reserves in regulated vehicles.

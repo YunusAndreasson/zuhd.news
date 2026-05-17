@@ -24,4 +24,8 @@ concepts:
   - "Handala"
 ---
 
-Washington — Handala hacked FBI Director Patel's personal email — again. The Iran-linked group said the breach retaliated for the US-Israeli Minab school strike, which killed 175 people, mostly children. The State Department posted a $10 million bounty on Handala the same day.
+Washington — Handala hacked FBI Director Patel's personal email — again.
+
+The Iran-linked group said the breach retaliated for the US-Israeli Minab school strike, which killed 175 people, mostly children.
+
+The State Department posted a $10 million bounty on Handala the same day.

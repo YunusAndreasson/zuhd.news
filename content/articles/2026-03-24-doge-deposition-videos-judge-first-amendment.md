@@ -16,4 +16,8 @@ concepts:
   - "Government transparency"
 ---
 
-Washington — DOGE filtered federal contracts for "Black" and "homosexual" but not "white," deposition videos show. A federal judge reinstated the videos Monday after civil liberties groups challenged a court-ordered takedown. The lawsuit seeks to restore federal humanities funding and restrict DOGE's access to government databases.
+Washington — DOGE filtered federal contracts for "Black" and "homosexual" but not "white," deposition videos show.
+
+A federal judge reinstated the videos Monday after civil liberties groups challenged a court-ordered takedown.
+
+The lawsuit seeks to restore federal humanities funding and restrict DOGE's access to government databases.

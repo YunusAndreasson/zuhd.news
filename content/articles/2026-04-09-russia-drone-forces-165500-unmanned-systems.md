@@ -19,4 +19,8 @@ concepts:
 eventCoverage: 32
 ---
 
-Kyiv — Russia targets 165,500 drone troops by year's end. Ukrainian commander Syrskyi said the current 101,000-strong force will grow 60%, larger than most national militaries. Ukraine says its drone units killed more Russian troops from December to March than Moscow recruited.
+Kyiv — Russia targets 165,500 drone troops by year's end.
+
+Ukrainian commander Syrskyi said the current 101,000-strong force will grow 60%, larger than most national militaries.
+
+Ukraine says its drone units killed more Russian troops from December to March than Moscow recruited.

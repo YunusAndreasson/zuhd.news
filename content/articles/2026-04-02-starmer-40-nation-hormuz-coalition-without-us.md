@@ -28,4 +28,8 @@ eventCoverage: 179
 sentimentDivergence: 0.24
 ---
 
-London — 41 nations convened on Hormuz — the US refused. Iran's blockade has pushed oil above $100 a barrel, 40% above pre-war levels; France called military reopening "unrealistic" without Tehran's cooperation. Military planners meet next week to assess naval assets; Iran is meanwhile drafting a toll protocol with Oman.
+London — 41 nations convened on Hormuz — the US refused.
+
+Iran's blockade has pushed oil above $100 a barrel, 40% above pre-war levels; France called military reopening "unrealistic" without Tehran's cooperation.
+
+Military planners meet next week to assess naval assets; Iran is meanwhile drafting a toll protocol with Oman.

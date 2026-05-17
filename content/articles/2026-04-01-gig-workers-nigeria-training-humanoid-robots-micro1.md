@@ -16,4 +16,8 @@ concepts:
   - "Tesla, Inc."
 ---
 
-Lagos — $15/hour: a Nigerian med student trains humanoid robots. Physical training data can't be simulated; Micro1 hired thousands across 50 countries to record chores for Tesla, Figure AI, and Agility Robotics. Workers aren't told which companies receive their footage; consent and privacy disclosures vary by country.
+Lagos — $15/hour: a Nigerian med student trains humanoid robots.
+
+Physical training data can't be simulated; Micro1 hired thousands across 50 countries to record chores for Tesla, Figure AI, and Agility Robotics.
+
+Workers aren't told which companies receive their footage; consent and privacy disclosures vary by country.

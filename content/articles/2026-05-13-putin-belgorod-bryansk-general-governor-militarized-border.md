@@ -29,4 +29,8 @@ sentimentDivergence: 0.2
 entities: []
 ---
 
-Moscow — A combat general now governs Belgorod. Putin replaced both Ukraine-border governors with combat veterans through a program that routes military officers into regional leadership. Both are interim; [Ukraine](country:UA) has repeatedly struck both regions.
+Moscow — A combat general now governs Belgorod.
+
+Putin replaced both Ukraine-border governors with combat veterans through a program that routes military officers into regional leadership.
+
+Both are interim; [Ukraine](country:UA) has repeatedly struck both regions.

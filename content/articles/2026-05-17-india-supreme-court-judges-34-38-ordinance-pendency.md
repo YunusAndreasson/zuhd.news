@@ -24,4 +24,8 @@ concepts:
 entities: []
 ---
 
-New Delhi — [India](country:IN) expanded its Supreme Court to 38 judges. President Murmu issued an ordinance — bypassing Parliament — adding 4 seats to address ~95,000 pending cases. Lawyers say structural case-management reform matters more than headcount; several sitting judges retire in 2026.
+New Delhi — [India](country:IN) expanded its Supreme Court to 38 judges.
+
+President Murmu issued an ordinance — bypassing Parliament — adding 4 seats to address ~95,000 pending cases.
+
+Lawyers say structural case-management reform matters more than headcount; several sitting judges retire in 2026.

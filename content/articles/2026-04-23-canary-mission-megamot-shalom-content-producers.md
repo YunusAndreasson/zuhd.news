@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Jerusalem — 5 Canary Mission writers are identified as employees of Megamot Shalom. The [Israel](country:IL)-registered nonprofit compiled dossiers the [US](country:US) administration used to select pro-Palestine students for detention and deportation. The 5 are Americans in [Israel](country:IL); Canary Mission leadership remains publicly unnamed.
+Jerusalem — 5 Canary Mission writers are identified as employees of Megamot Shalom.
+
+The [Israel](country:IL)-registered nonprofit compiled dossiers the [US](country:US) administration used to select pro-Palestine students for detention and deportation.
+
+The 5 are Americans in [Israel](country:IL); Canary Mission leadership remains publicly unnamed.

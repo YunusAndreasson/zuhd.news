@@ -27,4 +27,8 @@ concepts:
 sentimentDivergence: 0.41
 ---
 
-Tehran — US airstrike collapsed a highway bridge, killing 8. Trump then posted on Truth Social that US forces would destroy bridges, then power plants; targeting civilian infrastructure violates international law. Iran's foreign minister rejected talks; power plant strikes would cut electricity to Iran's civilian population.
+Tehran — US airstrike collapsed a highway bridge, killing 8.
+
+Trump then posted on Truth Social that US forces would destroy bridges, then power plants; targeting civilian infrastructure violates international law.
+
+Iran's foreign minister rejected talks; power plant strikes would cut electricity to Iran's civilian population.

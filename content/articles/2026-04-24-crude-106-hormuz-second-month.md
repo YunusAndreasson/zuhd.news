@@ -34,4 +34,8 @@ entities:
     kind: "commodity"
 ---
 
-Dubai — [Iran](country:IR)'s Hormuz closure is history's largest supply disruption. The International Energy Agency says the month-long blockade cuts one fifth of global oil flow, driving Brent to $106. Pakistan, [India](country:IN), and Egypt absorb the premium through subsidies and currency pressure with no ceasefire date set.
+Dubai — [Iran](country:IR)'s Hormuz closure is history's largest supply disruption.
+
+The International Energy Agency says the month-long blockade cuts one fifth of global oil flow, driving Brent to $106.
+
+Pakistan, [India](country:IN), and Egypt absorb the premium through subsidies and currency pressure with no ceasefire date set.

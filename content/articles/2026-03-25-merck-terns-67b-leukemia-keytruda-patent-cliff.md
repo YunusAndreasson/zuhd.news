@@ -18,4 +18,8 @@ concepts:
   - "Drug development"
 ---
 
-Rahway — Merck pays $6.7 billion for Terns Pharmaceuticals and its leukemia drug TERN-701. Phase 2 data sent Terns' stock up 6-fold in 6 months, and Merck needs the asset as Keytruda, its top cancer drug, approaches patent expiry. The deal carries a 6% premium to Tuesday's close and awaits regulatory clearance as pharma majors race to fill the same post-blockbuster revenue gap.
+Rahway — Merck pays $6.7 billion for Terns Pharmaceuticals and its leukemia drug TERN-701.
+
+Phase 2 data sent Terns' stock up 6-fold in 6 months, and Merck needs the asset as Keytruda, its top cancer drug, approaches patent expiry.
+
+The deal carries a 6% premium to Tuesday's close and awaits regulatory clearance as pharma majors race to fill the same post-blockbuster revenue gap.

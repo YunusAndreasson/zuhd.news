@@ -16,4 +16,8 @@ concepts:
   - "Food security"
 ---
 
-Cairo — Egyptian tomatoes hit LE60 per kilogram during Ramadan. Tuta absoluta wiped crops in 3 regions; farmers abandoned fields after 3 consecutive losing seasons as the pest outpaces pesticides. Climate change is lengthening the pest's breeding cycles — researchers say the disruption is structural, not seasonal.
+Cairo — Egyptian tomatoes hit LE60 per kilogram during Ramadan.
+
+Tuta absoluta wiped crops in 3 regions; farmers abandoned fields after 3 consecutive losing seasons as the pest outpaces pesticides.
+
+Climate change is lengthening the pest's breeding cycles — researchers say the disruption is structural, not seasonal.

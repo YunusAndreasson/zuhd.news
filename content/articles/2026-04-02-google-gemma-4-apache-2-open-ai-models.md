@@ -17,4 +17,8 @@ concepts:
   - "Apache License"
 ---
 
-Mountain View — Google's Gemma 4 drops its restrictive custom license. Apache 2.0 means unlimited commercial use — a concession to Meta's Llama and Alibaba's Qwen, which have dominated open-weight developer adoption. The 26B mixture-of-experts model runs on a single H100; the 2B mobile variant targets smartphones and edge devices.
+Mountain View — Google's Gemma 4 drops its restrictive custom license.
+
+Apache 2.0 means unlimited commercial use — a concession to Meta's Llama and Alibaba's Qwen, which have dominated open-weight developer adoption.
+
+The 26B mixture-of-experts model runs on a single H100; the 2B mobile variant targets smartphones and edge devices.

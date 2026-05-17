@@ -15,4 +15,8 @@ concepts:
   - "Cybersecurity"
 ---
 
-Budapest — 795 Hungarian government passwords are circulating online. Bellingcat found leaked credentials across 12 of 13 ministries — including a military officer responsible for information security and a counter-terrorism coordinator. Hungary votes Sunday on Orbán's 5th term; Russian intelligence previously breached the foreign ministry in 2022.
+Budapest — 795 Hungarian government passwords are circulating online.
+
+Bellingcat found leaked credentials across 12 of 13 ministries — including a military officer responsible for information security and a counter-terrorism coordinator.
+
+Hungary votes Sunday on Orbán's 5th term; Russian intelligence previously breached the foreign ministry in 2022.

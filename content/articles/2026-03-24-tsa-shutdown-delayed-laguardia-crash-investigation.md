@@ -17,4 +17,8 @@ concepts:
   - "Transportation Security Administration"
 ---
 
-New York — TSA security lines held an NTSB crash investigator for 3 hours after Air Canada's jet killed both pilots at LaGuardia on March 22. TSA workers are unpaid in the government's 5-week shutdown, driving resignations and hours-long queues at major airports. Airport leaders asked Congress Tuesday to end the funding standoff; the runway where the crash occurred will stay closed for days.
+New York — TSA security lines held an NTSB crash investigator for 3 hours after Air Canada's jet killed both pilots at LaGuardia on March 22.
+
+TSA workers are unpaid in the government's 5-week shutdown, driving resignations and hours-long queues at major airports.
+
+Airport leaders asked Congress Tuesday to end the funding standoff; the runway where the crash occurred will stay closed for days.

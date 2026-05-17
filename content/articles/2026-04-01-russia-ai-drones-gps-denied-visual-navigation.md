@@ -16,4 +16,8 @@ concepts:
   - "Unmanned aerial vehicle"
 ---
 
-Moscow — Russia builds GPS-free combat drones. The Moscow Aviation Institute is developing visual-inertial navigation using SLAM terrain mapping, now moving from robotics labs into military hardware. The goal is drones immune to GPS jamming, operating with no radio link.
+Moscow — Russia builds GPS-free combat drones.
+
+The Moscow Aviation Institute is developing visual-inertial navigation using SLAM terrain mapping, now moving from robotics labs into military hardware.
+
+The goal is drones immune to GPS jamming, operating with no radio link.

@@ -17,4 +17,8 @@ concepts:
   - "Naval mines"
 ---
 
-Manama — 3 US mine-hunting ships are converging on Hormuz. Iran's mine stockpile makes Hormuz impassable without clearance; Washington had pulled all minesweepers from Bahrain before the conflict started. Trump announced a blockade of all Iranian ports; CENTCOM says it is "setting conditions" to clear mines.
+Manama — 3 US mine-hunting ships are converging on Hormuz.
+
+Iran's mine stockpile makes Hormuz impassable without clearance; Washington had pulled all minesweepers from Bahrain before the conflict started.
+
+Trump announced a blockade of all Iranian ports; CENTCOM says it is "setting conditions" to clear mines.

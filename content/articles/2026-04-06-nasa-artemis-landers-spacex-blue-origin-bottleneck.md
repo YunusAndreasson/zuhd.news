@@ -17,4 +17,8 @@ concepts:
   - "Near-rectilinear halo orbit"
 ---
 
-Houston — Artemis II's rocket and capsule are working. SpaceX's next Starship test slipped to April or May, and Blue Origin's lander has never left a Houston vacuum chamber. SpaceX must demonstrate orbital propellant transfer this year; Blue Moon's first flight is the 2028 landing's last unknown.
+Houston — Artemis II's rocket and capsule are working.
+
+SpaceX's next Starship test slipped to April or May, and Blue Origin's lander has never left a Houston vacuum chamber.
+
+SpaceX must demonstrate orbital propellant transfer this year; Blue Moon's first flight is the 2028 landing's last unknown.

@@ -18,4 +18,8 @@ concepts:
   - "Investment"
 ---
 
-Rome — Italy fined Revolut €11.5mn for advertising free trading. Revolut's "0% commission" ads omitted fractional share restrictions — different ownership rights and undisclosed fees regulators said misled investors. Revolut will appeal; regulators in 2 jurisdictions now scrutinize the 70mn-user platform.
+Rome — Italy fined Revolut €11.5mn for advertising free trading.
+
+Revolut's "0% commission" ads omitted fractional share restrictions — different ownership rights and undisclosed fees regulators said misled investors.
+
+Revolut will appeal; regulators in 2 jurisdictions now scrutinize the 70mn-user platform.

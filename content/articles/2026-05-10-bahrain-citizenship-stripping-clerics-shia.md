@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Manama — [Bahrain](country:BH) stripped citizenship from infants by royal decree. The Interior Ministry said those denationalized had expressed support for [Iran](country:IR)'s retaliatory strikes online; no court issued the order — only the king. Iran's High Council for Human Rights called the inclusion of children "collective punishment" prohibited by UN monitoring bodies.
+Manama — [Bahrain](country:BH) stripped citizenship from infants by royal decree.
+
+The Interior Ministry said those denationalized had expressed support for [Iran](country:IR)'s retaliatory strikes online; no court issued the order — only the king.
+
+Iran's High Council for Human Rights called the inclusion of children "collective punishment" prohibited by UN monitoring bodies.

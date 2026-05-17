@@ -31,4 +31,8 @@ sentimentDivergence: 0.55
 entities: []
 ---
 
-Washington — Pentagon asked Ford and GM to build weapons. Firing 850 Tomahawks in 4 weeks, the Iran war has outpaced defense contractors' ability to replenish them. No automaker has committed; Congress has not authorized the war that is emptying the arsenal.
+Washington — Pentagon asked Ford and GM to build weapons.
+
+Firing 850 Tomahawks in 4 weeks, the Iran war has outpaced defense contractors' ability to replenish them.
+
+No automaker has committed; Congress has not authorized the war that is emptying the arsenal.

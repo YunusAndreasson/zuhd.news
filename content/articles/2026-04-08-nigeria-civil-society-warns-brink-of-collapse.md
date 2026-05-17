@@ -17,4 +17,8 @@ concepts:
   - "Collective action"
 ---
 
-Abuja — 6 civil society groups called Nigeria near collapse. North-central banditry destroyed food supply chains, driving inflation above 15%; petrol subsidy removal boosted revenues without improving lives. The coalition demands electoral reform and anti-corruption prosecutions before 2027 elections.
+Abuja — 6 civil society groups called Nigeria near collapse.
+
+North-central banditry destroyed food supply chains, driving inflation above 15%; petrol subsidy removal boosted revenues without improving lives.
+
+The coalition demands electoral reform and anti-corruption prosecutions before 2027 elections.

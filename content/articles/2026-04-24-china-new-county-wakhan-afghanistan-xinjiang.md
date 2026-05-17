@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Beijing — New Xinjiang county borders the Wakhan Corridor. Administrative redistricting is how [China](country:CN) pre-positions border infrastructure before expanding Central Asia trade links, without a policy announcement. The county sits on the sole overland route from Xinjiang into northern [Afghanistan](country:AF) and on to Tajikistan.
+Beijing — New Xinjiang county borders the Wakhan Corridor.
+
+Administrative redistricting is how [China](country:CN) pre-positions border infrastructure before expanding Central Asia trade links, without a policy announcement.
+
+The county sits on the sole overland route from Xinjiang into northern [Afghanistan](country:AF) and on to Tajikistan.

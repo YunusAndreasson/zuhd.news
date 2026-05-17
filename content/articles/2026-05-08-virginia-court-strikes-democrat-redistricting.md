@@ -34,4 +34,8 @@ sentimentDivergence: 0.17
 entities: []
 ---
 
-Richmond — 4 Democratic House gains voided Friday. Virginia's Supreme Court ruled the legislature bypassed the redistricting commission that 51.7% of voters created in 2020. Attorney General Jay Jones is evaluating options; [US](country:US) Republican remapping in Alabama, Louisiana, and Tennessee advances toward November.
+Richmond — 4 Democratic House gains voided Friday.
+
+Virginia's Supreme Court ruled the legislature bypassed the redistricting commission that 51.7% of voters created in 2020.
+
+Attorney General Jay Jones is evaluating options; [US](country:US) Republican remapping in Alabama, Louisiana, and Tennessee advances toward November.

@@ -16,4 +16,8 @@ concepts:
   - "GRU"
 ---
 
-Berlin — APT28 hacked thousands of routers, 30 in Germany. Germany's BfV and FBI attributed the campaign to GRU Unit 26165; some routers required hardware replacement. APT28 previously hit Germany's parliament and SPD; full targeting scope is undisclosed.
+Berlin — APT28 hacked thousands of routers, 30 in Germany.
+
+Germany's BfV and FBI attributed the campaign to GRU Unit 26165; some routers required hardware replacement.
+
+APT28 previously hit Germany's parliament and SPD; full targeting scope is undisclosed.

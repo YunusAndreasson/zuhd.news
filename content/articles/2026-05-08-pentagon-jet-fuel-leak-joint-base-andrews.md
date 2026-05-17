@@ -23,4 +23,8 @@ entities:
     kind: "commodity"
 ---
 
-Washington — Joint Base Andrews hid a 32,000-gallon fuel spill. The [US](country:US) base failed a December leak test but told Maryland only in late March, when oil appeared in Piscataway Creek, the Maryland Department of the Environment said. Volume reaching the Potomac tributary is unknown; Maryland lawmakers are demanding a full disclosure timeline.
+Washington — Joint Base Andrews hid a 32,000-gallon fuel spill.
+
+The [US](country:US) base failed a December leak test but told Maryland only in late March, when oil appeared in Piscataway Creek, the Maryland Department of the Environment said.
+
+Volume reaching the Potomac tributary is unknown; Maryland lawmakers are demanding a full disclosure timeline.

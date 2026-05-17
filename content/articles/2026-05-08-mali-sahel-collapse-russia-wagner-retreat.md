@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Bamako — [Russia](country:RU)'s Africa Corps abandoned Kidal on April 25, losing ground held only since November 2023. The same offensive killed Mali's defense minister, combining insurgent and separatist forces for the first time since 2012. Russia fights simultaneously in Ukraine; [Mali](country:ML)'s junta has named no replacement security partner.
+Bamako — [Russia](country:RU)'s Africa Corps abandoned Kidal on April 25, losing ground held only since November 2023.
+
+The same offensive killed Mali's defense minister, combining insurgent and separatist forces for the first time since 2012.
+
+Russia fights simultaneously in Ukraine; [Mali](country:ML)'s junta has named no replacement security partner.

@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Port Said — [Egypt](country:EG)'s first gender-discrimination conviction jailed a hotel manager. Journalist Alaa Saad's lawsuit applied Egypt's anti-discrimination law to a hotel for the first time; the manager was sentenced in absentia to one year. The manager can still appeal; an upheld verdict gives Egyptian women their first legal remedy for hotel refusals.
+Port Said — [Egypt](country:EG)'s first gender-discrimination conviction jailed a hotel manager.
+
+Journalist Alaa Saad's lawsuit applied Egypt's anti-discrimination law to a hotel for the first time; the manager was sentenced in absentia to one year.
+
+The manager can still appeal; an upheld verdict gives Egyptian women their first legal remedy for hotel refusals.

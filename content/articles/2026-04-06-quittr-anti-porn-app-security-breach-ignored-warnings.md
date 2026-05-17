@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Miami — Quittr ignored 3 researchers' Firebase security warnings. A misconfigured Firebase backend exposed users' ages, porn confessions, and minor-identified records for months until a journalist's repeated contact forced a fix. The founder was profiled driving supercars on app revenue; none of the 3 researchers received a bug bounty.
+Miami — Quittr ignored 3 researchers' Firebase security warnings.
+
+A misconfigured Firebase backend exposed users' ages, porn confessions, and minor-identified records for months until a journalist's repeated contact forced a fix.
+
+The founder was profiled driving supercars on app revenue; none of the 3 researchers received a bug bounty.

@@ -21,4 +21,6 @@ concepts:
 entities: []
 ---
 
-Ypsilanti — $1.2bn Michigan data center needs 200,000 gallons daily. Ypsilanti's utility authority imposed a 365-day moratorium for sustainability studies; the [US](country:US) University of Michigan called it "unlawfully discriminatory." The utility is proceeding with its sustainability study; the university has threatened legal action to force a connection.
+Ypsilanti — $1.2bn Michigan data center needs 200,000 gallons daily.
+
+Ypsilanti's utility authority imposed a 365-day moratorium for sustainability studies; the [US](country:US) University of Michigan called it "unlawfully discriminatory." The utility is proceeding with its sustainability study; the university has threatened legal action to force a connection.

@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Khabarovsk — [Russia](country:RU) opened drone electronics production in Khabarovsk. A new surface-mount line produces all electronic components in-house, ending reliance on external printed circuit boards for the Veles and Soyuz drone programs. The company updates designs from front-line feedback; capacity stands at tens of thousands of drones monthly.
+Khabarovsk — [Russia](country:RU) opened drone electronics production in Khabarovsk.
+
+A new surface-mount line produces all electronic components in-house, ending reliance on external printed circuit boards for the Veles and Soyuz drone programs.
+
+The company updates designs from front-line feedback; capacity stands at tens of thousands of drones monthly.

@@ -35,4 +35,8 @@ sentimentDivergence: 0.8
 entities: []
 ---
 
-Veracruz — Pemex reversed 2 months of government denial. A presidential science panel confirmed the Abkatun pipeline failed; Pemex said it fired 3 officials who concealed the breach. The spill fouled 600 km of coastline and 7 protected reserves, the panel found; total volume remains uncalculated.
+Veracruz — Pemex reversed 2 months of government denial.
+
+A presidential science panel confirmed the Abkatun pipeline failed; Pemex said it fired 3 officials who concealed the breach.
+
+The spill fouled 600 km of coastline and 7 protected reserves, the panel found; total volume remains uncalculated.

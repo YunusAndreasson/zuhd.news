@@ -17,4 +17,8 @@ concepts:
   - "Integrated circuit"
 ---
 
-Prayagraj — Ammonia killed 4 at Adarsh Cold Store on Monday. The 25-year-old facility had no maintenance technician, exceeded storage capacity, and received a 5-year license in 2024 without mandatory physical inspection. Owner Ansar Ahmed, a former state MP, and 11 others face murder charges, as does the engineer who certified the facility as safe.
+Prayagraj — Ammonia killed 4 at Adarsh Cold Store on Monday.
+
+The 25-year-old facility had no maintenance technician, exceeded storage capacity, and received a 5-year license in 2024 without mandatory physical inspection.
+
+Owner Ansar Ahmed, a former state MP, and 11 others face murder charges, as does the engineer who certified the facility as safe.

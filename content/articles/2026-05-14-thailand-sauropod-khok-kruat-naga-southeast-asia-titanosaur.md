@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Chaiyaphum — [Thailand](country:TH)'s Nagatitan named for the mythic water serpent. The sauropod, found in the Khok Kruat Formation, is Southeast Asia's first titanosauriform from the Lower Cretaceous, paleontologists said. Nagatitan is only the second sauropod described from Thailand, 30 years after Phuwiangosaurus.
+Chaiyaphum — [Thailand](country:TH)'s Nagatitan named for the mythic water serpent.
+
+The sauropod, found in the Khok Kruat Formation, is Southeast Asia's first titanosauriform from the Lower Cretaceous, paleontologists said.
+
+Nagatitan is only the second sauropod described from Thailand, 30 years after Phuwiangosaurus.

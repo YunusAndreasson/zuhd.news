@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Washington — DOJ filed to void the Presidential Records Act. The 1978 law — enacted after Watergate to make presidential documents public property — would fall if DOJ prevails in court. A DOJ victory would end mandatory disclosure for every future presidency.
+Washington — DOJ filed to void the Presidential Records Act.
+
+The 1978 law — enacted after Watergate to make presidential documents public property — would fall if DOJ prevails in court.
+
+A DOJ victory would end mandatory disclosure for every future presidency.

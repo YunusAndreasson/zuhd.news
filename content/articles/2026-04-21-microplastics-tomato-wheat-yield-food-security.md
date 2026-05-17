@@ -16,4 +16,8 @@ concepts:
   - "Griffith University"
 ---
 
-Brisbane — Micro- and nanoplastics stunted tomato and wheat growth. A Griffith University study placed particles in agricultural soil at realistic concentrations and measured uptake through roots into plant tissue. The findings reframe plastics as a food-security threat, expanding the regulatory case beyond ocean contamination.
+Brisbane — Micro- and nanoplastics stunted tomato and wheat growth.
+
+A Griffith University study placed particles in agricultural soil at realistic concentrations and measured uptake through roots into plant tissue.
+
+The findings reframe plastics as a food-security threat, expanding the regulatory case beyond ocean contamination.

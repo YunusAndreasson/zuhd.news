@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Kabul — UN confirmed 269 dead at Kabul's Omid clinic. [Pakistan](country:PK) struck [Afghanistan](country:AF)'s state drug rehabilitation hospital on March 16, maintaining it targeted military infrastructure. The UN says the toll is likely higher; Pakistan has not agreed to a war crimes inquiry.
+Kabul — UN confirmed 269 dead at Kabul's Omid clinic.
+
+[Pakistan](country:PK) struck [Afghanistan](country:AF)'s state drug rehabilitation hospital on March 16, maintaining it targeted military infrastructure.
+
+The UN says the toll is likely higher; Pakistan has not agreed to a war crimes inquiry.

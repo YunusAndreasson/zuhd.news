@@ -24,4 +24,8 @@ concepts:
 sentimentDivergence: 0.08
 ---
 
-Tehran — Iran offered 30 nations direct Hormuz passage deals. Each bilateral agreement grants access while keeping the strait closed to US- and Israel-linked vessels, splintering the UK-led 35-nation coalition. India has already transited the strait; the question is how many EU members follow before April 6.
+Tehran — Iran offered 30 nations direct Hormuz passage deals.
+
+Each bilateral agreement grants access while keeping the strait closed to US- and Israel-linked vessels, splintering the UK-led 35-nation coalition.
+
+India has already transited the strait; the question is how many EU members follow before April 6.

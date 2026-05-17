@@ -17,4 +17,8 @@ concepts:
   - "1959 revolution"
 ---
 
-Havana — Cuba paid 6 nations for 1959 seizures, not Washington. 6,000 Americans hold certified claims worth $9 billion with interest; Cuba has offered a settlement tied to the US lifting its trade blockade. The government says it lacks reserves to pay without trade revenue — the offer requires Washington to lift an embargo it has maintained for over 60 years.
+Havana — Cuba paid 6 nations for 1959 seizures, not Washington.
+
+6,000 Americans hold certified claims worth $9 billion with interest; Cuba has offered a settlement tied to the US lifting its trade blockade.
+
+The government says it lacks reserves to pay without trade revenue — the offer requires Washington to lift an embargo it has maintained for over 60 years.

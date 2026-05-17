@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — Cambridge AS-Level math paper leaked in [Pakistan](country:PK). Students received a solved version on social media before sitting the exam; Cambridge International confirmed the breach and postponed a follow-on paper. The government ordered an inquiry; Cambridge holds credentialing authority but has no local enforcement capacity.
+Islamabad — Cambridge AS-Level math paper leaked in [Pakistan](country:PK).
+
+Students received a solved version on social media before sitting the exam; Cambridge International confirmed the breach and postponed a follow-on paper.
+
+The government ordered an inquiry; Cambridge holds credentialing authority but has no local enforcement capacity.

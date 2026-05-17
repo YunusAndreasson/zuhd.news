@@ -18,4 +18,8 @@ concepts:
   - "Government contracts"
 ---
 
-Brussels — Europe petitions to block Palantir from government contracts. The US firm already holds European defense and intelligence contracts, accessing the continent's most sensitive infrastructure. No EU law bars US surveillance contractors from public procurement; the petition demands one.
+Brussels — Europe petitions to block Palantir from government contracts.
+
+The US firm already holds European defense and intelligence contracts, accessing the continent's most sensitive infrastructure.
+
+No EU law bars US surveillance contractors from public procurement; the petition demands one.

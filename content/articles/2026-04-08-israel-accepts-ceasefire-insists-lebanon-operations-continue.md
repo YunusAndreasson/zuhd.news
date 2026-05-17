@@ -30,4 +30,8 @@ concepts:
 sentimentDivergence: 0.16
 ---
 
-Beirut — Israeli forces struck Srifa after the ceasefire. Netanyahu declared the truce excluded Lebanon despite Pakistan's mediator saying it applied everywhere. A Lebanese lawmaker warned the truce collapses if Israeli strikes in Lebanon continue.
+Beirut — Israeli forces struck Srifa after the ceasefire.
+
+Netanyahu declared the truce excluded Lebanon despite Pakistan's mediator saying it applied everywhere.
+
+A Lebanese lawmaker warned the truce collapses if Israeli strikes in Lebanon continue.

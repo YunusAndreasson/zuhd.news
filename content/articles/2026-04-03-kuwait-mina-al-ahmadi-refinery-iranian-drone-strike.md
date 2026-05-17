@@ -18,4 +18,8 @@ concepts:
   - "Kuwait Petroleum Corporation"
 ---
 
-Al Ahmadi — Iranian drones struck Kuwait's Mina al-Ahmadi oil refinery. Refinery shutdowns halt oil production even if crude stays in the ground — restarting takes weeks; Brent crude trades at $109, up 50% since late February. A UN Security Council vote on Hormuz security is pending; Russia, China and France oppose authorizing force.
+Al Ahmadi — Iranian drones struck Kuwait's Mina al-Ahmadi oil refinery.
+
+Refinery shutdowns halt oil production even if crude stays in the ground — restarting takes weeks; Brent crude trades at $109, up 50% since late February.
+
+A UN Security Council vote on Hormuz security is pending; Russia, China and France oppose authorizing force.

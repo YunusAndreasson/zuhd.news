@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Pakistan bombs Afghan villages while brokering Iran peace. The campaign against TTP fighters destroyed villages in Kunar; no international monitors operate there. Areas under fire have no journalists, aid access, or accountability while Islamabad mediates US-Iran talks.
+Pakistan bombs Afghan villages while brokering Iran peace.
+
+The campaign against TTP fighters destroyed villages in Kunar; no international monitors operate there.
+
+Areas under fire have no journalists, aid access, or accountability while Islamabad mediates US-Iran talks.

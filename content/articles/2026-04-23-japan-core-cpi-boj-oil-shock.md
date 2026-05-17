@@ -31,4 +31,8 @@ entities:
     kind: "commodity"
 ---
 
-Tokyo — [Japan](country:JP)'s core consumer prices rose 1.8% in March — before Iran war oil costs reach consumers. Japan imports 90% of its oil through the Strait of Hormuz; ocean freight costs jumped 42.1% in March, central bank data show. The Bank of Japan meets Tuesday; analysts say a June rate hike depends on how long the strait stays closed.
+Tokyo — [Japan](country:JP)'s core consumer prices rose 1.8% in March — before Iran war oil costs reach consumers.
+
+Japan imports 90% of its oil through the Strait of Hormuz; ocean freight costs jumped 42.1% in March, central bank data show.
+
+The Bank of Japan meets Tuesday; analysts say a June rate hike depends on how long the strait stays closed.

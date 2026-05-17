@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Binduri — 3 civilians and 7 gunmen died at Binduri. The Ghana Armed Forces convoy was escorting 140 civilians from the Bawku chieftaincy conflict zone when gunmen ambushed it. 10 suspects are in custody; [Ghana](country:GH)'s military has not identified the attackers or a sponsoring group.
+Binduri — 3 civilians and 7 gunmen died at Binduri.
+
+The Ghana Armed Forces convoy was escorting 140 civilians from the Bawku chieftaincy conflict zone when gunmen ambushed it.
+
+10 suspects are in custody; [Ghana](country:GH)'s military has not identified the attackers or a sponsoring group.

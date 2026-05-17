@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Melbourne — Victoria forgoes $502 million in fares through year-end. [Australia](country:AU)'s Premier Jacinta Allan cited Gulf fuel costs; the extension covers all Victoria's public transport network. A state budget due in May must quantify the full structural cost.
+Melbourne — Victoria forgoes $502 million in fares through year-end.
+
+[Australia](country:AU)'s Premier Jacinta Allan cited Gulf fuel costs; the extension covers all Victoria's public transport network.
+
+A state budget due in May must quantify the full structural cost.

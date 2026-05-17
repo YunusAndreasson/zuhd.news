@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-London — 103 Filipinos sued Shell at [the UK](country:GB)'s Royal Courts over Typhoon Odette deaths. The case uses attribution science to link Shell's emissions to Odette's intensification, claiming compensation under the polluter-pays principle. Shell has not responded; a win would be the first court order compensating named typhoon victims.
+London — 103 Filipinos sued Shell at [the UK](country:GB)'s Royal Courts over Typhoon Odette deaths.
+
+The case uses attribution science to link Shell's emissions to Odette's intensification, claiming compensation under the polluter-pays principle.
+
+Shell has not responded; a win would be the first court order compensating named typhoon victims.

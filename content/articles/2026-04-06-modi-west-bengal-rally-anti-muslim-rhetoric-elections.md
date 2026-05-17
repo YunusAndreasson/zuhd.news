@@ -17,4 +17,8 @@ concepts:
   - "BJP"
 ---
 
-Kolkata — Modi named Muslims an existential threat to Bengal. At a West Bengal election rally, he invoked illegal immigration and CAA to claim only BJP can protect Bengali culture and identity. BJP won 30 north Bengal seats in 2021; the party now needs communal polarization to take the state.
+Kolkata — Modi named Muslims an existential threat to Bengal.
+
+At a West Bengal election rally, he invoked illegal immigration and CAA to claim only BJP can protect Bengali culture and identity.
+
+BJP won 30 north Bengal seats in 2021; the party now needs communal polarization to take the state.

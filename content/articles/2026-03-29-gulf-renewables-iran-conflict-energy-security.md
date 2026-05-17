@@ -11,4 +11,8 @@ sources:
     country: "AE"
 ---
 
-Riyadh — Hormuz's closure exposed the Gulf's single energy chokepoint. Gulf states that pipe all fuel through Hormuz watched it close; solar and wind cannot be blockaded. No Gulf state has committed a timeline; a second closure could hit before the grids change.
+Riyadh — Hormuz's closure exposed the Gulf's single energy chokepoint.
+
+Gulf states that pipe all fuel through Hormuz watched it close; solar and wind cannot be blockaded.
+
+No Gulf state has committed a timeline; a second closure could hit before the grids change.

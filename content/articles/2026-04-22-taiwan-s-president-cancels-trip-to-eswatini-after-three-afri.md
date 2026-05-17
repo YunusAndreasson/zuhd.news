@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Taipei — 3 African states closed their airspace to Taiwan's president. [China](country:CN) threatened the 3 states with debt-relief revocation to block President Lai's visit to Eswatini, [Taiwan](country:TW)'s only African ally. Lai has no rerouting plan; Eswatini's state visit has no new date.
+Taipei — 3 African states closed their airspace to Taiwan's president.
+
+[China](country:CN) threatened the 3 states with debt-relief revocation to block President Lai's visit to Eswatini, [Taiwan](country:TW)'s only African ally.
+
+Lai has no rerouting plan; Eswatini's state visit has no new date.

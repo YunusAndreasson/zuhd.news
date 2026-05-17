@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-London — A protein switch lets lung cancer evade Sotorasib. Aurora kinase A stabilizes Prohibitin 2, activating a bypass around the cancer gene Sotorasib was designed to block. Adding an Aurora kinase A inhibitor restored drug sensitivity in animal models; human trials are pending.
+London — A protein switch lets lung cancer evade Sotorasib.
+
+Aurora kinase A stabilizes Prohibitin 2, activating a bypass around the cancer gene Sotorasib was designed to block.
+
+Adding an Aurora kinase A inhibitor restored drug sensitivity in animal models; human trials are pending.

@@ -17,4 +17,8 @@ concepts:
   - "Open source hardware"
 ---
 
-San Francisco — Open-source builders assembled a 240-antenna moonbounce array. The array bounces radio signals off the lunar surface and back — eliminating any need for satellites, relays, or licensed infrastructure. Hardware designs are public; any team with antennas and a clear lunar sightline can now build one.
+San Francisco — Open-source builders assembled a 240-antenna moonbounce array.
+
+The array bounces radio signals off the lunar surface and back — eliminating any need for satellites, relays, or licensed infrastructure.
+
+Hardware designs are public; any team with antennas and a clear lunar sightline can now build one.

@@ -18,4 +18,8 @@ concepts:
   - "Brain"
 ---
 
-Guangzhou — Blocking DDR2 cleared amyloid from Alzheimer's mice. Unlike direct amyloid-removal drugs that failed in trials, this targets the brain's glymphatic drainage system, improving memory in mouse models. A clinical trial using DDR2 tracers is underway in human brains to direct the antibody.
+Guangzhou — Blocking DDR2 cleared amyloid from Alzheimer's mice.
+
+Unlike direct amyloid-removal drugs that failed in trials, this targets the brain's glymphatic drainage system, improving memory in mouse models.
+
+A clinical trial using DDR2 tracers is underway in human brains to direct the antibody.

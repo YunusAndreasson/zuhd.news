@@ -17,4 +17,8 @@ concepts:
   - "Predictive maintenance"
 ---
 
-London — BiGRU model predicts jet engine wear more accurately. The bidirectional recurrent network builds a health index from sensor degradation data using self-attention, outperforming genetic algorithm and particle swarm benchmarks. Researchers say testing under extreme operating conditions is needed before it enters maintenance protocols.
+London — BiGRU model predicts jet engine wear more accurately.
+
+The bidirectional recurrent network builds a health index from sensor degradation data using self-attention, outperforming genetic algorithm and particle swarm benchmarks.
+
+Researchers say testing under extreme operating conditions is needed before it enters maintenance protocols.

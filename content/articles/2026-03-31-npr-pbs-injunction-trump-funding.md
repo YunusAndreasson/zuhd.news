@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.2
 ---
 
-Washington — Judge Moss voided Trump's public media defunding order. Moss ruled that the First Amendment bars presidents from defunding broadcasters over editorial viewpoints, granting a permanent injunction. The White House called the ruling "ridiculous" and will appeal; Congress already eliminated separate CPB appropriations.
+Washington — Judge Moss voided Trump's public media defunding order.
+
+Moss ruled that the First Amendment bars presidents from defunding broadcasters over editorial viewpoints, granting a permanent injunction.
+
+The White House called the ruling "ridiculous" and will appeal; Congress already eliminated separate CPB appropriations.

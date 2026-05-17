@@ -18,4 +18,8 @@ concepts:
   - "Artemis IV"
 ---
 
-Houston — Helium valves leak aboard Orion in deep space. The in-flight leak rate is an order of magnitude above ground tests; engineers will redesign the valves before Artemis IV in 2028. 4 astronauts splash down Friday; the service module burns on reentry, taking the faulty hardware with it.
+Houston — Helium valves leak aboard Orion in deep space.
+
+The in-flight leak rate is an order of magnitude above ground tests; engineers will redesign the valves before Artemis IV in 2028.
+
+4 astronauts splash down Friday; the service module burns on reentry, taking the faulty hardware with it.

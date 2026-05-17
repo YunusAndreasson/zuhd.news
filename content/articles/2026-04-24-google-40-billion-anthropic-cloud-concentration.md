@@ -28,4 +28,8 @@ entities:
     kind: "stock"
 ---
 
-San Francisco — Google committed $40bn to Anthropic, joining Amazon. Both deals flow as cloud-compute credits: Anthropic receives capital, then spends it on the investors' own infrastructure, mirroring Microsoft-OpenAI. Any firm seeking AI capacity outside [US](country:US) hyperscalers now faces a frontier concentrated in 3 cloud-equity stacks.
+San Francisco — Google committed $40bn to Anthropic, joining Amazon.
+
+Both deals flow as cloud-compute credits: Anthropic receives capital, then spends it on the investors' own infrastructure, mirroring Microsoft-OpenAI.
+
+Any firm seeking AI capacity outside [US](country:US) hyperscalers now faces a frontier concentrated in 3 cloud-equity stacks.

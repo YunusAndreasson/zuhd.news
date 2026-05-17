@@ -14,4 +14,8 @@ concepts:
   - "Web traffic"
 ---
 
-San Francisco — Automated web traffic vastly exceeds published measurements. Standard analytics detect simple bots; sophisticated crawlers, ad fraud agents, and AI scrapers traverse the same paths as readers but evade detection. The web's trust infrastructure — analytics, ad pricing, recommendation — assumes a human majority it may no longer have.
+San Francisco — Automated web traffic vastly exceeds published measurements.
+
+Standard analytics detect simple bots; sophisticated crawlers, ad fraud agents, and AI scrapers traverse the same paths as readers but evade detection.
+
+The web's trust infrastructure — analytics, ad pricing, recommendation — assumes a human majority it may no longer have.

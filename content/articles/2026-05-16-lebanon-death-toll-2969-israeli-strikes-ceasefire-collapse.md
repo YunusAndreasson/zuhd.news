@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Beirut — Saturday: 18 Lebanese killed, 124 wounded in Nabatieh in Israeli strikes. [Israel](country:IL) resumed attacks on south [Lebanon](country:LB) on March 2, months after the November 2024 ceasefire. Lebanon's Health Ministry counts 2,969 killed and 9,112 wounded since escalation began; Israeli strikes continue across Nabatieh and Saida.
+Beirut — Saturday: 18 Lebanese killed, 124 wounded in Nabatieh in Israeli strikes.
+
+[Israel](country:IL) resumed attacks on south [Lebanon](country:LB) on March 2, months after the November 2024 ceasefire.
+
+Lebanon's Health Ministry counts 2,969 killed and 9,112 wounded since escalation began; Israeli strikes continue across Nabatieh and Saida.

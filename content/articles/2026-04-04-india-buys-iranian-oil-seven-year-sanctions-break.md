@@ -26,4 +26,8 @@ concepts:
 eventCoverage: 35
 ---
 
-New Delhi — India's oil ministry announced Iranian crude imports. Washington's temporary sanctions waiver last month — after Hormuz closed and oil hit $100 — gave India legal cover to resume. Whether Trump re-imposes pressure on India or acquiesces will test how far the Iran sanctions regime can hold.
+New Delhi — India's oil ministry announced Iranian crude imports.
+
+Washington's temporary sanctions waiver last month — after Hormuz closed and oil hit $100 — gave India legal cover to resume.
+
+Whether Trump re-imposes pressure on India or acquiesces will test how far the Iran sanctions regime can hold.

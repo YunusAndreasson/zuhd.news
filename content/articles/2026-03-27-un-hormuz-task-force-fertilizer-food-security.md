@@ -24,4 +24,8 @@ concepts:
   - "António Guterres"
 ---
 
-New York — The UN created a Hormuz fertilizer task force. Gulf states supply the raw materials for nitrogen fertilizers, and the Hormuz closure coincides with the global planting season. The WFP warned tens of millions more face acute hunger if the war runs to June.
+New York — The UN created a Hormuz fertilizer task force.
+
+Gulf states supply the raw materials for nitrogen fertilizers, and the Hormuz closure coincides with the global planting season.
+
+The WFP warned tens of millions more face acute hunger if the war runs to June.

@@ -24,4 +24,8 @@ entities:
     kind: "currency"
 ---
 
-Islamabad — [Pakistan](country:PK)'s reserves depend on continuous Gulf rollovers; each repayment is offset by a fresh tranche or IMF disbursement to sustain the rupee. The [UAE](country:AE) deposit of $2 billion was returned this week; the UAE is Islamabad's largest bilateral creditor. Terms for the next rollover have not been disclosed.
+Islamabad — [Pakistan](country:PK)'s reserves depend on continuous Gulf rollovers; each repayment is offset by a fresh tranche or IMF disbursement to sustain the rupee.
+
+The [UAE](country:AE) deposit of $2 billion was returned this week; the UAE is Islamabad's largest bilateral creditor.
+
+Terms for the next rollover have not been disclosed.

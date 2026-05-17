@@ -17,4 +17,8 @@ concepts:
   - "AI infrastructure"
 ---
 
-Augusta — Maine froze all datacenter construction through 2027. LD 307 targets facilities over 20 megawatts, after secretive deals left Lewiston and Wiscasset councils days to review billion-dollar proposals. Wisconsin and California vote on similar bans this week; Michigan's bill is pending.
+Augusta — Maine froze all datacenter construction through 2027.
+
+LD 307 targets facilities over 20 megawatts, after secretive deals left Lewiston and Wiscasset councils days to review billion-dollar proposals.
+
+Wisconsin and California vote on similar bans this week; Michigan's bill is pending.

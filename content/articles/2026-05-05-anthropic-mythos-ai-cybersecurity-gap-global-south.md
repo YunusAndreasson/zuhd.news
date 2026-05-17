@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-San Francisco — Export controls bar most countries from Anthropic's Mythos AI security tool. The Mythos Preview model found thousands of flaws across operating systems and browsers, shared with about 40 institutions. Institutions outside the [US](country:US) lack equivalent defensive AI as access remains export-controlled.
+San Francisco — Export controls bar most countries from Anthropic's Mythos AI security tool.
+
+The Mythos Preview model found thousands of flaws across operating systems and browsers, shared with about 40 institutions.
+
+Institutions outside the [US](country:US) lack equivalent defensive AI as access remains export-controlled.

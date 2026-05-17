@@ -16,4 +16,8 @@ concepts:
   - "Energy conservation"
 ---
 
-Quetta — 2 Pakistani provinces mandated 8pm market closures. Markets must close by 8pm and wedding halls by 10pm — both provinces blame fuel price spikes from Hormuz closure for the order. Traders in Balochistan rejected the order and threatened protests, warning the restrictions mirror Covid-era lockdowns.
+Quetta — 2 Pakistani provinces mandated 8pm market closures.
+
+Markets must close by 8pm and wedding halls by 10pm — both provinces blame fuel price spikes from Hormuz closure for the order.
+
+Traders in Balochistan rejected the order and threatened protests, warning the restrictions mirror Covid-era lockdowns.

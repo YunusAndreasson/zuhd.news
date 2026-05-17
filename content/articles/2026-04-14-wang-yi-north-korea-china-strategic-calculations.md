@@ -13,4 +13,8 @@ eventCoverage:
 concepts:
 ---
 
-Pyongyang — Wang Yi flew to Pyongyang this week. China's foreign minister activated the North Korea alliance before May's Trump-Xi summit, using Pyongyang as leverage while Washington manages Iran. Whether Kim Jong-un demands sanctions relief for restraint sets what Beijing can offer Trump.
+Pyongyang — Wang Yi flew to Pyongyang this week.
+
+China's foreign minister activated the North Korea alliance before May's Trump-Xi summit, using Pyongyang as leverage while Washington manages Iran.
+
+Whether Kim Jong-un demands sanctions relief for restraint sets what Beijing can offer Trump.

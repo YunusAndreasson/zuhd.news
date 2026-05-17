@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Durban — An annual HIV implant maintained therapeutic drug levels. Daily oral pre-exposure prophylaxis requires consistent dosing in [South Africa](country:ZA); the implant delivers full protection with one annual procedure. The CAPRISA 018 trial confirmed dosing targets; tissue tolerability issues remain before large-scale trials can proceed.
+Durban — An annual HIV implant maintained therapeutic drug levels.
+
+Daily oral pre-exposure prophylaxis requires consistent dosing in [South Africa](country:ZA); the implant delivers full protection with one annual procedure.
+
+The CAPRISA 018 trial confirmed dosing targets; tissue tolerability issues remain before large-scale trials can proceed.

@@ -34,4 +34,8 @@ sentimentDivergence: 0.37
 entities: []
 ---
 
-Zaragoza — 40,000 Leapmotor vehicles shipped in Europe in 2025. Stellantis-majority Leapmotor International now adds manufacturing at [Spain](country:ES)'s Zaragoza plant, using [China](country:CN)'s electric-vehicle supply chain to cut retail prices. The Madrid Villaverde plant may transfer to the venture from 2028, producing Leapmotor nameplates globally.
+Zaragoza — 40,000 Leapmotor vehicles shipped in Europe in 2025.
+
+Stellantis-majority Leapmotor International now adds manufacturing at [Spain](country:ES)'s Zaragoza plant, using [China](country:CN)'s electric-vehicle supply chain to cut retail prices.
+
+The Madrid Villaverde plant may transfer to the venture from 2028, producing Leapmotor nameplates globally.

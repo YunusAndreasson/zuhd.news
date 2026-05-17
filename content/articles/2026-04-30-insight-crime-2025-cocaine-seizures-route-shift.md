@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Bogotá — [Colombia](country:CO) seized 445.9 tons of cocaine in 2025. The 59.4% increase reflects enforcement pushing trafficking toward weaker-state corridors, with liquid cocaine increasingly evading modern scanners. Half of Latin American states saw seizures drop in 2025; the [US](country:US) designated Colombia a drug-war non-cooperation country.
+Bogotá — [Colombia](country:CO) seized 445.9 tons of cocaine in 2025.
+
+The 59.4% increase reflects enforcement pushing trafficking toward weaker-state corridors, with liquid cocaine increasingly evading modern scanners.
+
+Half of Latin American states saw seizures drop in 2025; the [US](country:US) designated Colombia a drug-war non-cooperation country.

@@ -15,4 +15,8 @@ concepts: []
 entities: []
 ---
 
-Beijing — Trump and Xi open a technology-heavy summit. Chip export licences, artificial intelligence model rules, electric-vehicle tariffs, and post-Iran-war supply chains dominate the [US](country:US)-[China](country:CN) agenda. No framework has been disclosed; both governments enter with active tariffs and chip-export controls in place.
+Beijing — Trump and Xi open a technology-heavy summit.
+
+Chip export licences, artificial intelligence model rules, electric-vehicle tariffs, and post-Iran-war supply chains dominate the [US](country:US)-[China](country:CN) agenda.
+
+No framework has been disclosed; both governments enter with active tariffs and chip-export controls in place.

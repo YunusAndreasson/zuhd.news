@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Mildenhall — A shrapnel-patched US tanker reached England. Iran struck Prince Sultan Air Base in Saudi Arabia last month, damaging at least 5 tankers — the aircraft that extend the air war's range. US Central Command has not disclosed how many aircraft Iran damaged; the image is the first public evidence of scale.
+Mildenhall — A shrapnel-patched US tanker reached England.
+
+Iran struck Prince Sultan Air Base in Saudi Arabia last month, damaging at least 5 tankers — the aircraft that extend the air war's range.
+
+US Central Command has not disclosed how many aircraft Iran damaged; the image is the first public evidence of scale.

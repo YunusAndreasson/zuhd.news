@@ -19,4 +19,8 @@ concepts:
   - "Eastern Province, Saudi Arabia"
 ---
 
-Jubail — Iranian missiles sparked fires in Jubail's petrochemical district. 7 ballistic missiles targeted the Eastern Province; intercept debris fell on the complex, which processes 7% of global petrochemicals. Aramco has not confirmed whether fires reached active production facilities.
+Jubail — Iranian missiles sparked fires in Jubail's petrochemical district.
+
+7 ballistic missiles targeted the Eastern Province; intercept debris fell on the complex, which processes 7% of global petrochemicals.
+
+Aramco has not confirmed whether fires reached active production facilities.

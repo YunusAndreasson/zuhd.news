@@ -25,4 +25,8 @@ concepts:
 sentimentDivergence: 0.31
 ---
 
-Beirut — Israel barred 300,000 displaced Lebanese from returning home. Defence Minister Israel Katz made their return conditional on security demands; the Litani River marks Israel's 1978–2000 occupation boundary. Finance Minister Smotrich has proposed the Litani as Israel's permanent border with Lebanon.
+Beirut — Israel barred 300,000 displaced Lebanese from returning home.
+
+Defence Minister Israel Katz made their return conditional on security demands; the Litani River marks Israel's 1978–2000 occupation boundary.
+
+Finance Minister Smotrich has proposed the Litani as Israel's permanent border with Lebanon.

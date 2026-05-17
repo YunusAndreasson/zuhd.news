@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Ithaca — ArXiv bans AI-slop submitters for one year. The repository underpins physics, math, and machine learning research; it is now forced into quality-filtering because journals haven't policed AI-generated work. Banned authors must subsequently publish at a peer-reviewed venue before resubmitting, computer science chair Thomas Dietterich said.
+Ithaca — ArXiv bans AI-slop submitters for one year.
+
+The repository underpins physics, math, and machine learning research; it is now forced into quality-filtering because journals haven't policed AI-generated work.
+
+Banned authors must subsequently publish at a peer-reviewed venue before resubmitting, computer science chair Thomas Dietterich said.

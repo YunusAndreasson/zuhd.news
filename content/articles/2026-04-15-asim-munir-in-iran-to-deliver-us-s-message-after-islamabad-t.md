@@ -25,4 +25,8 @@ sentimentDivergence: 0.29
 entities: []
 ---
 
-Tehran — Pakistan's Army Chief Asim Munir arrived in Tehran. 21 hours of US-Iran talks in Islamabad failed Sunday over enrichment red lines; Pakistan's civilian diplomatic track had stalled. The ceasefire expires April 22; Trump said a 2nd Islamabad round could happen "in the next 2 days."
+Tehran — Pakistan's Army Chief Asim Munir arrived in Tehran.
+
+21 hours of US-Iran talks in Islamabad failed Sunday over enrichment red lines; Pakistan's civilian diplomatic track had stalled.
+
+The ceasefire expires April 22; Trump said a 2nd Islamabad round could happen "in the next 2 days."

@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-8 Muslim states jointly condemned Al-Aqsa settler incursions. [Jordan](country:JO) and 7 other governments reaffirmed Hashemite custodianship of Al-Aqsa as the binding legal claim. [Israel](country:IL) has not responded; no enforcement mechanism was named in the statement.
+8 Muslim states jointly condemned Al-Aqsa settler incursions.
+
+[Jordan](country:JO) and 7 other governments reaffirmed Hashemite custodianship of Al-Aqsa as the binding legal claim.
+
+[Israel](country:IL) has not responded; no enforcement mechanism was named in the statement.

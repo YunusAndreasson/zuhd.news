@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-Cambridge — A single CRISPR dose cut swelling attacks 87%. Lonvo-z edits KLKB1 directly in patients' livers via lipid nanoparticles — the first in-vivo CRISPR therapy to reach Phase 3 success. Intellia has begun a rolling Food and Drug Administration submission; approval would make lonvo-z the second CRISPR medicine after Casgevy.
+Cambridge — A single CRISPR dose cut swelling attacks 87%.
+
+Lonvo-z edits KLKB1 directly in patients' livers via lipid nanoparticles — the first in-vivo CRISPR therapy to reach Phase 3 success.
+
+Intellia has begun a rolling Food and Drug Administration submission; approval would make lonvo-z the second CRISPR medicine after Casgevy.

@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-New York — Edtech investment has collapsed from a $16.7bn peak. Pandemic cohorts aged out, budgets contracted, and AI tutors commoditised the product as venture capital rotated to enterprise software. K-12 startups in [Pakistan](country:PK), [Indonesia](country:ID) and [Egypt](country:EG) are most exposed as the sector contracts.
+New York — Edtech investment has collapsed from a $16.7bn peak.
+
+Pandemic cohorts aged out, budgets contracted, and AI tutors commoditised the product as venture capital rotated to enterprise software.
+
+K-12 startups in [Pakistan](country:PK), [Indonesia](country:ID) and [Egypt](country:EG) are most exposed as the sector contracts.

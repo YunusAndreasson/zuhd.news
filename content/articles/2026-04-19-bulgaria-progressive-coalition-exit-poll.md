@@ -34,4 +34,8 @@ sentimentDivergence: 0.13
 entities: []
 ---
 
-Sofia — Progressive Bulgaria won 39.2% in Sunday's snap elections. [Bulgaria](country:BG) has held successive snap votes since 2021 as fragmented parliaments collapsed; the party projects 111 seats, 10 short of the 121 needed to govern. Coalition talks will determine whether it can reach the threshold without its stated opponents.
+Sofia — Progressive Bulgaria won 39.2% in Sunday's snap elections.
+
+[Bulgaria](country:BG) has held successive snap votes since 2021 as fragmented parliaments collapsed; the party projects 111 seats, 10 short of the 121 needed to govern.
+
+Coalition talks will determine whether it can reach the threshold without its stated opponents.

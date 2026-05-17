@@ -33,4 +33,8 @@ entities:
     kind: "stock"
 ---
 
-Beijing — Jensen Huang, Nvidia's chief executive, boarded Air Force One at Anchorage as a last-minute addition. [US](country:US) President Trump flies to [China](country:CN) with 12 CEOs; Nvidia restarted H200 chip production for China in March after Washington eased export controls. Trump says opening China's market to US firms is his first ask when he meets Xi.
+Beijing — Jensen Huang, Nvidia's chief executive, boarded Air Force One at Anchorage as a last-minute addition.
+
+[US](country:US) President Trump flies to [China](country:CN) with 12 CEOs; Nvidia restarted H200 chip production for China in March after Washington eased export controls.
+
+Trump says opening China's market to US firms is his first ask when he meets Xi.

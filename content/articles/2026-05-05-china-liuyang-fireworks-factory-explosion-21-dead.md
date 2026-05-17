@@ -28,4 +28,8 @@ sentimentDivergence: 0.24
 entities: []
 ---
 
-Liuyang — 21 died at [China](country:CN)'s largest fireworks hub. Liuyang produces 70% of China's fireworks exports, state data show; Xi Jinping ordered managers arrested and a sector-wide safety audit. 2 explosive-powder warehouses at the site remained high-risk Tuesday as rescuers searched for the missing.
+Liuyang — 21 died at [China](country:CN)'s largest fireworks hub.
+
+Liuyang produces 70% of China's fireworks exports, state data show; Xi Jinping ordered managers arrested and a sector-wide safety audit.
+
+2 explosive-powder warehouses at the site remained high-risk Tuesday as rescuers searched for the missing.

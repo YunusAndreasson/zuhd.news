@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-San Francisco — Vercel's Claude Code plugin reads users' AI prompts. The plugin transmits prompt content — including proprietary code and context — without disclosure, exposing developer secrets to a third party. Vercel has not disclosed the scope of data collection or which plugin versions are affected.
+San Francisco — Vercel's Claude Code plugin reads users' AI prompts.
+
+The plugin transmits prompt content — including proprietary code and context — without disclosure, exposing developer secrets to a third party.
+
+Vercel has not disclosed the scope of data collection or which plugin versions are affected.

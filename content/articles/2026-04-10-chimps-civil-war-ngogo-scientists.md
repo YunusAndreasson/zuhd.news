@@ -17,4 +17,8 @@ concepts:
   - "Warfare"
 ---
 
-Uganda — 24 chimps killed as Ngogo's largest group fractured. Ngogo's 200-individual group — the largest ever observed in the wild — split in 2015; former allies now stage lethal raids on each other. The civil war continues; it is the first documented case of decade-long coalition warfare among wild primates.
+Uganda — 24 chimps killed as Ngogo's largest group fractured.
+
+Ngogo's 200-individual group — the largest ever observed in the wild — split in 2015; former allies now stage lethal raids on each other.
+
+The civil war continues; it is the first documented case of decade-long coalition warfare among wild primates.

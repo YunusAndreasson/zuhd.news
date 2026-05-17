@@ -24,4 +24,8 @@ concepts:
   - "United Arab Emirates"
 ---
 
-Dubai — Iran struck a Kuwaiti tanker inside Dubai Port. The Al Salmi, carrying 2 million barrels of Saudi and Kuwaiti crude, is the first tanker hit within UAE waters. Kuwait, UAE, Saudi Arabia, Qatar, and Bahrain all intercepted missiles and drones overnight — Gulf ports no longer safe.
+Dubai — Iran struck a Kuwaiti tanker inside Dubai Port.
+
+The Al Salmi, carrying 2 million barrels of Saudi and Kuwaiti crude, is the first tanker hit within UAE waters.
+
+Kuwait, UAE, Saudi Arabia, Qatar, and Bahrain all intercepted missiles and drones overnight — Gulf ports no longer safe.

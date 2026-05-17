@@ -18,4 +18,8 @@ concepts:
   - "Supply chain"
 ---
 
-New Delhi — India raided 49 entities selling GLP-1 drugs without prescriptions. Unlicensed wellness and slimming clinics sold the drugs — approved only for diabetes by endocrinologists — as cosmetic weight-loss treatments. Regulators warned of license cancellations, penalties, and prosecution; surveillance will intensify in coming weeks.
+New Delhi — India raided 49 entities selling GLP-1 drugs without prescriptions.
+
+Unlicensed wellness and slimming clinics sold the drugs — approved only for diabetes by endocrinologists — as cosmetic weight-loss treatments.
+
+Regulators warned of license cancellations, penalties, and prosecution; surveillance will intensify in coming weeks.

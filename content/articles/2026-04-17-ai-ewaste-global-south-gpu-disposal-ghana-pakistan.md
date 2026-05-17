@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Accra — No law tracks where AI hardware is scrapped. AI infrastructure buildouts in the US and Europe route toxic hardware for informal dismantling in Ghana, Nigeria, Pakistan, and Vietnam. Data center operators bear no disposal cost; workers in receiving countries absorb it.
+Accra — No law tracks where AI hardware is scrapped.
+
+AI infrastructure buildouts in the US and Europe route toxic hardware for informal dismantling in Ghana, Nigeria, Pakistan, and Vietnam.
+
+Data center operators bear no disposal cost; workers in receiving countries absorb it.

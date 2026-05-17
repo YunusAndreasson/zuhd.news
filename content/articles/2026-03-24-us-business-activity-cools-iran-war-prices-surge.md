@@ -24,4 +24,8 @@ concepts:
   - "Manufacturing"
 ---
 
-Washington — Business input prices hit a 2-year high in March. S&P Global's composite Purchasing Managers' Index fell to an 11-month low of 51.4 as the Iran war pushed energy costs through supply chains into selling prices. S&P's price gauges forecast 4% consumer inflation — a problem for a Federal Reserve that projected only one rate cut this year.
+Washington — Business input prices hit a 2-year high in March.
+
+S&P Global's composite Purchasing Managers' Index fell to an 11-month low of 51.4 as the Iran war pushed energy costs through supply chains into selling prices.
+
+S&P's price gauges forecast 4% consumer inflation — a problem for a Federal Reserve that projected only one rate cut this year.

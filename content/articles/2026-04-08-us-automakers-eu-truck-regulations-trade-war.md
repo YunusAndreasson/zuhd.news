@@ -17,4 +17,8 @@ concepts:
   - "China–United States trade war"
 ---
 
-Brussels — Washington called EU pickup restrictions non-tariff trade barriers. EU Individual Vehicle Approval standards — being tightened next year — block US full-size pickups designed for wider American roads and lanes. The IVA review completes in 2027; Detroit's market access to Europe hinges on the outcome.
+Brussels — Washington called EU pickup restrictions non-tariff trade barriers.
+
+EU Individual Vehicle Approval standards — being tightened next year — block US full-size pickups designed for wider American roads and lanes.
+
+The IVA review completes in 2027; Detroit's market access to Europe hinges on the outcome.

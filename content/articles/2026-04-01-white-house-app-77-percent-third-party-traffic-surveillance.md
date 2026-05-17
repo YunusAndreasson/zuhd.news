@@ -17,4 +17,8 @@ concepts:
   - "Data privacy"
 ---
 
-Washington — White House app routes 77% of requests externally. Researchers intercepted requests to ad networks and analytics services — more than to government servers — from the administration that banned TikTok. The White House hasn't commented; the app remains in stores while routing user data to commercial networks.
+Washington — White House app routes 77% of requests externally.
+
+Researchers intercepted requests to ad networks and analytics services — more than to government servers — from the administration that banned TikTok.
+
+The White House hasn't commented; the app remains in stores while routing user data to commercial networks.

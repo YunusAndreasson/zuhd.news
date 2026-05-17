@@ -11,4 +11,8 @@ sources:
     country: "GB"
 ---
 
-Addis Ababa — AU: adaptation finance delivered in Benin, Namibia, Ethiopia. An AU report found flood defenses, drought-resistant crops, and early warning systems produced measurable results across all 3 countries. The gap between what adaptation costs and what donors fund remains the central obstacle for climate-vulnerable African nations.
+Addis Ababa — AU: adaptation finance delivered in Benin, Namibia, Ethiopia.
+
+An AU report found flood defenses, drought-resistant crops, and early warning systems produced measurable results across all 3 countries.
+
+The gap between what adaptation costs and what donors fund remains the central obstacle for climate-vulnerable African nations.

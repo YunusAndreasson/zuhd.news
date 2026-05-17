@@ -17,4 +17,8 @@ concepts:
   - "Massacre"
 ---
 
-Artibonite — Gran Grif killed 70 in Haiti's rice heartland. The gang attacked Jean-Denis — where most of Haiti's rice is grown — after police withdrew, leaving self-defense units outgunned. Armed men repositioned to Pont Benoit and are attempting to take Marchand Dessalines, 19 km north.
+Artibonite — Gran Grif killed 70 in Haiti's rice heartland.
+
+The gang attacked Jean-Denis — where most of Haiti's rice is grown — after police withdrew, leaving self-defense units outgunned.
+
+Armed men repositioned to Pont Benoit and are attempting to take Marchand Dessalines, 19 km north.

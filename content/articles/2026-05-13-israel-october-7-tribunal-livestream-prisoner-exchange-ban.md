@@ -12,4 +12,8 @@ sources:
 entities: []
 ---
 
-Jerusalem — 300 detained Palestinians face a special tribunal empowered to issue death sentences and permanently bar convicts from prisoner exchanges. [Israel](country:IL)'s Knesset voted 93-0 to create it under a law that requires presidential signature before taking effect. Lawyers say a Supreme Court constitutional challenge remains possible.
+Jerusalem — 300 detained Palestinians face a special tribunal empowered to issue death sentences and permanently bar convicts from prisoner exchanges.
+
+[Israel](country:IL)'s Knesset voted 93-0 to create it under a law that requires presidential signature before taking effect.
+
+Lawyers say a Supreme Court constitutional challenge remains possible.

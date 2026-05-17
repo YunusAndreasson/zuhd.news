@@ -17,4 +17,8 @@ concepts:
   - "Chanda Prescod-Weinstein"
 ---
 
-Cambridge — Dark matter fills 85% of the universe, still undetected. After decades of failed particle detectors, physicists are drawing on indigenous navigation, Vedic cosmology, and religious traditions to reframe the problem. No dark matter candidate has survived experimental scrutiny; the mechanism that holds galaxies together remains unknown.
+Cambridge — Dark matter fills 85% of the universe, still undetected.
+
+After decades of failed particle detectors, physicists are drawing on indigenous navigation, Vedic cosmology, and religious traditions to reframe the problem.
+
+No dark matter candidate has survived experimental scrutiny; the mechanism that holds galaxies together remains unknown.

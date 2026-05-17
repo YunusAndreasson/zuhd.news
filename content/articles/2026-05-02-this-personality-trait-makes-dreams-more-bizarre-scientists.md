@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Lucca — 207 adults tracked nightly dreams for 4 years. Mind-wanderers dreamed most bizarrely; daydreaming and sleep share neural roots, [Italy](country:IT)'s researchers found. Emotional intensity spiked during COVID lockdown and normalised over time; how ongoing conflict shapes dreams remains untested.
+Lucca — 207 adults tracked nightly dreams for 4 years.
+
+Mind-wanderers dreamed most bizarrely; daydreaming and sleep share neural roots, [Italy](country:IT)'s researchers found.
+
+Emotional intensity spiked during COVID lockdown and normalised over time; how ongoing conflict shapes dreams remains untested.

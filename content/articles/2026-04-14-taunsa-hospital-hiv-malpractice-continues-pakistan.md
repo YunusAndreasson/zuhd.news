@@ -17,4 +17,8 @@ concepts:
   - "Taunsa Sharif"
 ---
 
-Taunsa — 9 children dead after hospital spread HIV. Punjab suspended the medical superintendent in March 2025 after 331 children tested positive — then reappointed him to another children's clinic. BBC undercover footage from 2025 shows practice unchanged, with officials confirming 19 new cases in the past 4 months.
+Taunsa — 9 children dead after hospital spread HIV.
+
+Punjab suspended the medical superintendent in March 2025 after 331 children tested positive — then reappointed him to another children's clinic.
+
+BBC undercover footage from 2025 shows practice unchanged, with officials confirming 19 new cases in the past 4 months.

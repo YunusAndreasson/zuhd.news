@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Menlo Park — Meta banned ads for its own addiction lawsuits. Law firms suing Meta over child addiction cannot advertise on Meta's platform, cutting off a primary channel to reach affected families. Meta has not disclosed which legal ad categories the policy restricts or when it first took effect.
+Menlo Park — Meta banned ads for its own addiction lawsuits.
+
+Law firms suing Meta over child addiction cannot advertise on Meta's platform, cutting off a primary channel to reach affected families.
+
+Meta has not disclosed which legal ad categories the policy restricts or when it first took effect.

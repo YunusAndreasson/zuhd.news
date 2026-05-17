@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Khartoum — Sesame's canopy defeats standard weed-detection models. A hybrid R-CNN and Internet-of-Things model trained on 1,300 images achieved 99.7% accuracy on a crop that western agricultural benchmarks exclude. Sesame feeds Sahel smallholders; scaling requires labeled data from the regions that grow it.
+Khartoum — Sesame's canopy defeats standard weed-detection models.
+
+A hybrid R-CNN and Internet-of-Things model trained on 1,300 images achieved 99.7% accuracy on a crop that western agricultural benchmarks exclude.
+
+Sesame feeds Sahel smallholders; scaling requires labeled data from the regions that grow it.

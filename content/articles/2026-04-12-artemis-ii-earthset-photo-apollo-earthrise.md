@@ -18,4 +18,8 @@ concepts:
   - "Moon"
 ---
 
-Houston — Artemis II captured Earth setting behind the Moon. The flyby image — called Earthset — echoes Apollo 8's 1968 Earthrise: 58 years apart, the same perspective at lunar distance. Artemis II is a crewed test flight; the program's next mission, Artemis III, aims for a lunar landing.
+Houston — Artemis II captured Earth setting behind the Moon.
+
+The flyby image — called Earthset — echoes Apollo 8's 1968 Earthrise: 58 years apart, the same perspective at lunar distance.
+
+Artemis II is a crewed test flight; the program's next mission, Artemis III, aims for a lunar landing.

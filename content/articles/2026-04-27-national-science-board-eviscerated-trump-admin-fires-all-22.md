@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Washington — Trump fired all 22 National Science Board members Friday. The Truman-era board, which has never been dismissed wholesale, sets [US](country:US) National Science Foundation priorities and approves grants over $100m. The foundation faces a proposed 55% budget cut and a director nominee without scientific credentials.
+Washington — Trump fired all 22 National Science Board members Friday.
+
+The Truman-era board, which has never been dismissed wholesale, sets [US](country:US) National Science Foundation priorities and approves grants over $100m.
+
+The foundation faces a proposed 55% budget cut and a director nominee without scientific credentials.

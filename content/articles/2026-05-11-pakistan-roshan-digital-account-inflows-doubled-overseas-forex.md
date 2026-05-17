@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Lahore — Pakistan diaspora inflows hit $321M, a programme record. Pakistan Banks Association said the Roshan Digital Account doubled from $161M in July 2024 after a January 2026 expansion to foreign nationals and institutional investors. Cumulative inflows reach $12.75B, with 64% reinvested inside [Pakistan](country:PK), the association said.
+Lahore — Pakistan diaspora inflows hit $321M, a programme record.
+
+Pakistan Banks Association said the Roshan Digital Account doubled from $161M in July 2024 after a January 2026 expansion to foreign nationals and institutional investors.
+
+Cumulative inflows reach $12.75B, with 64% reinvested inside [Pakistan](country:PK), the association said.

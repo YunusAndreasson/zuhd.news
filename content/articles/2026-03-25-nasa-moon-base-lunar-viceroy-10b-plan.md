@@ -18,4 +18,8 @@ concepts:
   - "Space exploration"
 ---
 
-Washington — NASA killed Gateway to build a Moon base instead. Program executive Garcia-Galan budgets $10B per phase, demands 2 annual landings, and will audit supply chain chokepoints. 3 international partners endorsed the plan; integration begins once NASA maps the gaps.
+Washington — NASA killed Gateway to build a Moon base instead.
+
+Program executive Garcia-Galan budgets $10B per phase, demands 2 annual landings, and will audit supply chain chokepoints.
+
+3 international partners endorsed the plan; integration begins once NASA maps the gaps.

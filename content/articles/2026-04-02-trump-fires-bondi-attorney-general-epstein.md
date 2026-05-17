@@ -32,4 +32,8 @@ eventCoverage: 1450
 sentimentDivergence: 0.44
 ---
 
-Washington — Trump fired his own attorney general. Bondi mishandled the Epstein file release and failed to prosecute 2 Trump-designated targets, drawing bipartisan censure. Deputy AG Todd Blanche steps in as Trump eyes a permanent replacement.
+Washington — Trump fired his own attorney general.
+
+Bondi mishandled the Epstein file release and failed to prosecute 2 Trump-designated targets, drawing bipartisan censure.
+
+Deputy AG Todd Blanche steps in as Trump eyes a permanent replacement.

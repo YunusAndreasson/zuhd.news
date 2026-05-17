@@ -16,4 +16,8 @@ concepts:
   - "Hungary"
 ---
 
-Budapest — Vance admitted being "sad" that Orbán lost. Magyar's defeat of the 16-year incumbent marks the first democratic unseating of an entrenched European populist without external EU pressure. Magyar meets Orbán-appointed president Sulyok on Wednesday to begin government formation, despite publicly calling him illegitimate.
+Budapest — Vance admitted being "sad" that Orbán lost.
+
+Magyar's defeat of the 16-year incumbent marks the first democratic unseating of an entrenched European populist without external EU pressure.
+
+Magyar meets Orbán-appointed president Sulyok on Wednesday to begin government formation, despite publicly calling him illegitimate.

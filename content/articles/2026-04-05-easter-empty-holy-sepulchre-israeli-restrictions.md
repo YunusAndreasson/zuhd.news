@@ -24,4 +24,8 @@ concepts:
 sentimentDivergence: 0.71
 ---
 
-Jerusalem — Christianity's holiest church held Easter without a congregation. Israeli military orders sealed the Old City for a month, citing absent bomb shelters — protection no Palestinian neighborhood received. Muslim worshippers remain barred from Al-Aqsa; the city's Christian community, under 2% of the population, is accelerating emigration.
+Jerusalem — Christianity's holiest church held Easter without a congregation.
+
+Israeli military orders sealed the Old City for a month, citing absent bomb shelters — protection no Palestinian neighborhood received.
+
+Muslim worshippers remain barred from Al-Aqsa; the city's Christian community, under 2% of the population, is accelerating emigration.

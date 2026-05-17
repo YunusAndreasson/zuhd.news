@@ -22,4 +22,8 @@ entities:
     kind: "crypto"
 ---
 
-Thimphu — Bhutan's Druk Holding and Investments says it doesn't recall selling any bitcoin. Tracked wallets show a drop from 13,000 to 3,100 bitcoin since October 2024, per Arkham Intelligence. The kingdom pledged 10,000 bitcoin to the Gelephu economic zone but tracked wallets show only 3,100 remain.
+Thimphu — Bhutan's Druk Holding and Investments says it doesn't recall selling any bitcoin.
+
+Tracked wallets show a drop from 13,000 to 3,100 bitcoin since October 2024, per Arkham Intelligence.
+
+The kingdom pledged 10,000 bitcoin to the Gelephu economic zone but tracked wallets show only 3,100 remain.

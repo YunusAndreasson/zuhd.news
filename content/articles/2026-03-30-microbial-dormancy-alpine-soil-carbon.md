@@ -18,4 +18,8 @@ concepts:
   - "Tibetan Plateau"
 ---
 
-Lhasa — Alpine soil microbes have a hidden carbon thermostat. Tibetan Plateau experiments show dormancy cycles determine whether soils release or absorb carbon — missing from all current climate models. Warming adds 38 frost-free days; the sink flips to source if that mechanism fails.
+Lhasa — Alpine soil microbes have a hidden carbon thermostat.
+
+Tibetan Plateau experiments show dormancy cycles determine whether soils release or absorb carbon — missing from all current climate models.
+
+Warming adds 38 frost-free days; the sink flips to source if that mechanism fails.

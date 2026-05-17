@@ -17,4 +17,8 @@ concepts:
   - "Dauda Lawal"
 ---
 
-Gusau — All 24 Zamfara lawmakers joined Nigeria's ruling party. Governor Dauda Lawal defected from the opposition Peoples Democratic Party to the ruling All Progressives Congress; one commissioner resigned rather than switch. The defections hand APC control of Zamfara's legislature; Vice President Kashim Shettima is scheduled to lead the party's reception for the new members.
+Gusau — All 24 Zamfara lawmakers joined Nigeria's ruling party.
+
+Governor Dauda Lawal defected from the opposition Peoples Democratic Party to the ruling All Progressives Congress; one commissioner resigned rather than switch.
+
+The defections hand APC control of Zamfara's legislature; Vice President Kashim Shettima is scheduled to lead the party's reception for the new members.

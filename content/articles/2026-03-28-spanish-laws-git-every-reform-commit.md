@@ -11,4 +11,8 @@ sources:
     country: "ES"
 ---
 
-Madrid — 8,642 Spanish laws are now a Git repository. Developer Enrique López committed every reform, making it possible to diff and blame how any Spanish law changed over time. The model works for any country publishing machine-readable law; broader adoption depends on legislative transparency norms.
+Madrid — 8,642 Spanish laws are now a Git repository.
+
+Developer Enrique López committed every reform, making it possible to diff and blame how any Spanish law changed over time.
+
+The model works for any country publishing machine-readable law; broader adoption depends on legislative transparency norms.

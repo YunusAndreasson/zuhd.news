@@ -27,4 +27,8 @@ concepts:
 sentimentDivergence: 0.41
 ---
 
-Nabatieh — Israel killed 13 state security officers. The strike hit the city's government complex — the largest single death toll for Lebanese officials since the war began. Lebanon and Israel are set to meet at the State Department on Tuesday to negotiate a ceasefire.
+Nabatieh — Israel killed 13 state security officers.
+
+The strike hit the city's government complex — the largest single death toll for Lebanese officials since the war began.
+
+Lebanon and Israel are set to meet at the State Department on Tuesday to negotiate a ceasefire.

@@ -16,4 +16,8 @@ concepts:
   - "Industrialisation"
 ---
 
-Abuja — [Nigeria](country:NG) raises finished-goods tariffs to 70%; manufacturers gain. Nigeria's new framework cuts duties on industrial inputs while raising tariffs on 192 finished-goods lines, pushing manufacturers toward local supply chains. Muda Yusuf, the private-enterprise group's chief executive, warned import-dependent small businesses face rising costs.
+Abuja — [Nigeria](country:NG) raises finished-goods tariffs to 70%; manufacturers gain.
+
+Nigeria's new framework cuts duties on industrial inputs while raising tariffs on 192 finished-goods lines, pushing manufacturers toward local supply chains.
+
+Muda Yusuf, the private-enterprise group's chief executive, warned import-dependent small businesses face rising costs.

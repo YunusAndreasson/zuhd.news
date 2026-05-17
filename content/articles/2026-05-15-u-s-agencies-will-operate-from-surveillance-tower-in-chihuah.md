@@ -14,4 +14,8 @@ sources:
 entities: []
 ---
 
-Ciudad Juárez — 2 CIA agents died in Chihuahua in April. [Mexico](country:MX)'s 2020 security law bars foreign agents from operations; Chihuahua signed a live surveillance-sharing deal with US federal agencies after the deaths anyway. The Chihuahua governor declined to appear before the Senate committee probing how the 2020 ban was bypassed.
+Ciudad Juárez — 2 CIA agents died in Chihuahua in April.
+
+[Mexico](country:MX)'s 2020 security law bars foreign agents from operations; Chihuahua signed a live surveillance-sharing deal with US federal agencies after the deaths anyway.
+
+The Chihuahua governor declined to appear before the Senate committee probing how the 2020 ban was bypassed.

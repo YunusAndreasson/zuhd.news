@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — Netball builds stiffer Achilles tendons than distance running. In 22 female athletes, netballers showed higher Achilles stiffness and absolute tendon thickness than distance runners, the study found. Differences in tendon thickness disappeared when normalised to body mass, suggesting adaptations are body-mass dependent, researchers said.
+London — Netball builds stiffer Achilles tendons than distance running.
+
+In 22 female athletes, netballers showed higher Achilles stiffness and absolute tendon thickness than distance runners, the study found.
+
+Differences in tendon thickness disappeared when normalised to body mass, suggesting adaptations are body-mass dependent, researchers said.

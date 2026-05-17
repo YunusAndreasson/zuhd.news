@@ -18,4 +18,8 @@ concepts:
   - "Interactive Brokers"
 ---
 
-New York — Aave USDC yields 2.61%, below Interactive Brokers' 3.14%. DeFi's thesis inverts when risk-free rates stay elevated while on-chain borrowing collapses, leaving depositors with higher risk for lower return. A pending US Digital Asset bill would ban passive stablecoin yield, pushing returns back into regulated finance.
+New York — Aave USDC yields 2.61%, below Interactive Brokers' 3.14%.
+
+DeFi's thesis inverts when risk-free rates stay elevated while on-chain borrowing collapses, leaving depositors with higher risk for lower return.
+
+A pending US Digital Asset bill would ban passive stablecoin yield, pushing returns back into regulated finance.

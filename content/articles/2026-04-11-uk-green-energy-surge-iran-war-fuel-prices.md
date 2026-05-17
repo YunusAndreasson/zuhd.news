@@ -17,4 +17,8 @@ concepts:
   - "Heating oil"
 ---
 
-London — UK heat pump orders doubled last month. Octopus Energy's March solar installs rose 80% and EV leases 85%, as Britons front-load green upgrades against July's 18% bill increase. European gas prices climbed 50% since February; the war is accelerating what years of subsidy programs could not.
+London — UK heat pump orders doubled last month.
+
+Octopus Energy's March solar installs rose 80% and EV leases 85%, as Britons front-load green upgrades against July's 18% bill increase.
+
+European gas prices climbed 50% since February; the war is accelerating what years of subsidy programs could not.

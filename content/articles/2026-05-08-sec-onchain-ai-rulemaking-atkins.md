@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Washington — Atkins: SEC will regulate blockchain through rulemaking. Existing law covers separate brokers, exchanges, and clearinghouses; the Securities and Exchange Commission chair said protocols merge all three. The CLARITY Act in Congress would divide oversight between securities and commodities regulators.
+Washington — Atkins: SEC will regulate blockchain through rulemaking.
+
+Existing law covers separate brokers, exchanges, and clearinghouses; the Securities and Exchange Commission chair said protocols merge all three.
+
+The CLARITY Act in Congress would divide oversight between securities and commodities regulators.

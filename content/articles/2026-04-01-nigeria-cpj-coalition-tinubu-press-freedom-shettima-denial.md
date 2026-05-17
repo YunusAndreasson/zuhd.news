@@ -16,4 +16,8 @@ concepts:
   - "Freedom of the press"
 ---
 
-Abuja — Nigeria's VP claimed no journalist had been harassed. CPJ and 5 Nigerian groups wrote Tinubu after Shettima denied journalist harassment since 2023, contradicting 231 documented attacks. The letter demands accountability before the 2027 general elections, when press attacks historically spike.
+Abuja — Nigeria's VP claimed no journalist had been harassed.
+
+CPJ and 5 Nigerian groups wrote Tinubu after Shettima denied journalist harassment since 2023, contradicting 231 documented attacks.
+
+The letter demands accountability before the 2027 general elections, when press attacks historically spike.

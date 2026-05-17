@@ -36,4 +36,8 @@ concepts:
 entities: []
 ---
 
-Kyiv — 5 died in a Holosiivskyi district supermarket shooting. Prosecutor General Kravchenko confirmed the gunman, 58, was Moscow-born; he barricaded 4 hostages in the store before Ukraine's special police killed him. Zelensky ordered all verified findings published; motive and any coordination remain under investigation.
+Kyiv — 5 died in a Holosiivskyi district supermarket shooting.
+
+Prosecutor General Kravchenko confirmed the gunman, 58, was Moscow-born; he barricaded 4 hostages in the store before Ukraine's special police killed him.
+
+Zelensky ordered all verified findings published; motive and any coordination remain under investigation.

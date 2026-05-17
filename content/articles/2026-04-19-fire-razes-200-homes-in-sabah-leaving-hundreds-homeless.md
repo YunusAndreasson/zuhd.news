@@ -29,4 +29,8 @@ sentimentDivergence: 0.24
 entities: []
 ---
 
-Sandakan — 9,007 residents lost homes after fire swept a stilt-house water village in [Malaysia](country:MY)'s Sabah state. The blaze displaced stateless Bajau Laut and Suluk communities lacking documentation Malaysia requires for emergency relief. Prime Minister Anwar Ibrahim pledged federal coordination; undocumented residents cannot qualify for state assistance.
+Sandakan — 9,007 residents lost homes after fire swept a stilt-house water village in [Malaysia](country:MY)'s Sabah state.
+
+The blaze displaced stateless Bajau Laut and Suluk communities lacking documentation Malaysia requires for emergency relief.
+
+Prime Minister Anwar Ibrahim pledged federal coordination; undocumented residents cannot qualify for state assistance.

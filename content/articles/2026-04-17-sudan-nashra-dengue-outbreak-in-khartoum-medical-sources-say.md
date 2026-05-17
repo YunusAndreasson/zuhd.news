@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Khartoum — Measles kills children daily in North Darfur camps as dengue resurges in [Sudan](country:SD)'s capital. A military forced-return campaign added a million residents to Khartoum without rebuilding hospitals; camps lack healthcare, medical sources said. The Sudanese government has disclosed no relief timeline.
+Khartoum — Measles kills children daily in North Darfur camps as dengue resurges in [Sudan](country:SD)'s capital.
+
+A military forced-return campaign added a million residents to Khartoum without rebuilding hospitals; camps lack healthcare, medical sources said.
+
+The Sudanese government has disclosed no relief timeline.

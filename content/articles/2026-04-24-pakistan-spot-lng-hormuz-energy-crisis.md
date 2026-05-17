@@ -16,4 +16,8 @@ concepts:
   - "Pakistan"
 ---
 
-Islamabad — [Pakistan](country:PK) paid $18 per million British thermal units for emergency liquefied natural gas on the spot market. [Qatar](country:QA) declared force majeure on long-term contracts after the Strait of Hormuz closed, ending the arrangement Pakistan left in 2023. Summer peak demand reaches 28,000 megawatts; daily loadshedding runs 6–7 hours with no pipeline alternative.
+Islamabad — [Pakistan](country:PK) paid $18 per million British thermal units for emergency liquefied natural gas on the spot market.
+
+[Qatar](country:QA) declared force majeure on long-term contracts after the Strait of Hormuz closed, ending the arrangement Pakistan left in 2023.
+
+Summer peak demand reaches 28,000 megawatts; daily loadshedding runs 6–7 hours with no pipeline alternative.

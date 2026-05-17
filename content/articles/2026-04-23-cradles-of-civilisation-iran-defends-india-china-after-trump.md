@@ -23,4 +23,8 @@ concepts:
   - "United States"
 ---
 
-Tehran — [Iran](country:IR)'s Hyderabad consulate branded [India](country:IN) and [China](country:CN) 'cradles of civilisation'. Trump had amplified a broadcaster's call to end birthright citizenship for immigrants from both countries, labelling them 'hellholes'. New Delhi stayed silent; the [US](country:US) Supreme Court is deliberating birthright citizenship.
+Tehran — [Iran](country:IR)'s Hyderabad consulate branded [India](country:IN) and [China](country:CN) 'cradles of civilisation'.
+
+Trump had amplified a broadcaster's call to end birthright citizenship for immigrants from both countries, labelling them 'hellholes'.
+
+New Delhi stayed silent; the [US](country:US) Supreme Court is deliberating birthright citizenship.

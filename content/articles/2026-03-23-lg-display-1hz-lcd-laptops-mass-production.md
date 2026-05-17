@@ -17,4 +17,8 @@ concepts:
   - "OLED"
 ---
 
-Seoul — LG's new laptop screens deliver 48% longer battery life. Oxide semiconductors detect static content and drop the refresh rate to 1 Hz — matching OLED's power efficiency without burn-in risk. Dell's 2026 XPS ships Oxide 1Hz as a base option; LG plans an OLED version by 2027.
+Seoul — LG's new laptop screens deliver 48% longer battery life.
+
+Oxide semiconductors detect static content and drop the refresh rate to 1 Hz — matching OLED's power efficiency without burn-in risk.
+
+Dell's 2026 XPS ships Oxide 1Hz as a base option; LG plans an OLED version by 2027.

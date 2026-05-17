@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-London — Hospitals share AI model weights, never patient scans. A Nature paper integrates swarm-intelligence algorithms into the full federated pipeline — not bolted on, but embedded at client and server levels. The framework was validated across COVID X-rays, monkeypox, and breast cancer imaging; an expanded dataset is flagged as next-step work.
+London — Hospitals share AI model weights, never patient scans.
+
+A Nature paper integrates swarm-intelligence algorithms into the full federated pipeline — not bolted on, but embedded at client and server levels.
+
+The framework was validated across COVID X-rays, monkeypox, and breast cancer imaging; an expanded dataset is flagged as next-step work.

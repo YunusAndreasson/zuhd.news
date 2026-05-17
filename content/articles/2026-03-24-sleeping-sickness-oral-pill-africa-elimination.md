@@ -16,4 +16,8 @@ concepts:
   - "WHO"
 ---
 
-Kinshasa — Treatments for sleeping sickness killed up to 5% of patients. A new oral pill replaces those toxic infusions, making care accessible to 65 million people at risk across 36 endemic countries. WHO's 2030 elimination target depends on scaling pill distribution to remote communities in central and west Africa.
+Kinshasa — Treatments for sleeping sickness killed up to 5% of patients.
+
+A new oral pill replaces those toxic infusions, making care accessible to 65 million people at risk across 36 endemic countries.
+
+WHO's 2030 elimination target depends on scaling pill distribution to remote communities in central and west Africa.

@@ -16,4 +16,8 @@ concepts:
   - "Pakistan Mint"
 ---
 
-Quetta — Officers swapped 400 kg of silver with lead. The 36 sealed boxes traveled by Pakistan International Airlines from Quetta to Lahore; Pakistan Mint discovered the swap on unpacking. Security camera footage shows the officers deliberately switched the transport vehicle in Quetta; both are now in custody.
+Quetta — Officers swapped 400 kg of silver with lead.
+
+The 36 sealed boxes traveled by Pakistan International Airlines from Quetta to Lahore; Pakistan Mint discovered the swap on unpacking.
+
+Security camera footage shows the officers deliberately switched the transport vehicle in Quetta; both are now in custody.

@@ -17,4 +17,8 @@ entities:
     kind: "stock"
 ---
 
-Mountain View — F-Droid called Google's September developer-verification mandate existential. All Android apps must come from developers who register with Google, pay fees, and submit government ID. The EU's Digital Markets Act requires Android to allow open sideloading, and Google has not reconciled both rules.
+Mountain View — F-Droid called Google's September developer-verification mandate existential.
+
+All Android apps must come from developers who register with Google, pay fees, and submit government ID.
+
+The EU's Digital Markets Act requires Android to allow open sideloading, and Google has not reconciled both rules.

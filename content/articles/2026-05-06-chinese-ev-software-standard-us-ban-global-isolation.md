@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Washington — The [US](country:US) banned Chinese vehicle software March 17. Most of the world now runs that software, electric vehicle markets converging on [China](country:CN)'s stack. The divergence sets up incompatible export markets as China's standard hardens globally.
+Washington — The [US](country:US) banned Chinese vehicle software March 17.
+
+Most of the world now runs that software, electric vehicle markets converging on [China](country:CN)'s stack.
+
+The divergence sets up incompatible export markets as China's standard hardens globally.

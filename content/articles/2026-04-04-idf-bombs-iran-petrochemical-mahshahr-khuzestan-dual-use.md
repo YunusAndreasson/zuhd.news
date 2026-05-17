@@ -19,4 +19,8 @@ concepts:
   - "Israel"
 ---
 
-Israel struck Mahshahr Petrochemical Zone in Khuzestan, wounding 5. The IDF confirmed destroying the facilities — a week after leadership directed a shift toward "economic targets" to cause maximum financial damage. Chemical production has halted; Mahshahr hosts Iran's largest petrochemical concentration.
+Israel struck Mahshahr Petrochemical Zone in Khuzestan, wounding 5.
+
+The IDF confirmed destroying the facilities — a week after leadership directed a shift toward "economic targets" to cause maximum financial damage.
+
+Chemical production has halted; Mahshahr hosts Iran's largest petrochemical concentration.

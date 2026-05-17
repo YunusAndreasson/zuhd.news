@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-Karachi — 40,000 informal pickers recover 500 waste tonnes daily. [Pakistan](country:PK)'s new Extended Producer Responsibility bill shifts plastic costs to companies; it grants informal recyclers no status. [India](country:IN)'s 2022 rules saw 59% of producers miss targets within two years, a think-tank found.
+Karachi — 40,000 informal pickers recover 500 waste tonnes daily.
+
+[Pakistan](country:PK)'s new Extended Producer Responsibility bill shifts plastic costs to companies; it grants informal recyclers no status.
+
+[India](country:IN)'s 2022 rules saw 59% of producers miss targets within two years, a think-tank found.

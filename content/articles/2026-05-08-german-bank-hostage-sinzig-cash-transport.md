@@ -35,4 +35,8 @@ sentimentDivergence: 0.23
 entities: []
 ---
 
-Sinzig — Cash transport driver held hostage in bank vault. An armed man intercepted an arriving armored car, forced a bank employee inside; police say both are in the vault area. German police have sealed the town center while suspect count and weapons remain unconfirmed.
+Sinzig — Cash transport driver held hostage in bank vault.
+
+An armed man intercepted an arriving armored car, forced a bank employee inside; police say both are in the vault area.
+
+German police have sealed the town center while suspect count and weapons remain unconfirmed.

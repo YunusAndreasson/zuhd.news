@@ -17,4 +17,8 @@ concepts:
 entities: []
 ---
 
-Geneva — AI now sorts asylum claims ahead of caseworkers. The efficiency gain is real; the loss is discretionary mercy — the judgment that tips borderline cases toward protection and that an algorithmic denial cannot articulate. No legal standard yet requires an algorithm to explain a refusal to the applicant who received it.
+Geneva — AI now sorts asylum claims ahead of caseworkers.
+
+The efficiency gain is real; the loss is discretionary mercy — the judgment that tips borderline cases toward protection and that an algorithmic denial cannot articulate.
+
+No legal standard yet requires an algorithm to explain a refusal to the applicant who received it.

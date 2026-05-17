@@ -19,4 +19,8 @@ sources:
 entities: []
 ---
 
-Washington — 3 [US](country:US) carriers now patrol CENTCOM — first triple deployment since the 2003 Iraq War. George H.W. Bush joined Lincoln and Ford last week; the 3 groups carry 27 air squadrons and 846 vertical-launch missile tubes. Theodore Roosevelt is working up in 3rd Fleet and could deploy to theater later in 2026, the Navy said.
+Washington — 3 [US](country:US) carriers now patrol CENTCOM — first triple deployment since the 2003 Iraq War.
+
+George H.W. Bush joined Lincoln and Ford last week; the 3 groups carry 27 air squadrons and 846 vertical-launch missile tubes.
+
+Theodore Roosevelt is working up in 3rd Fleet and could deploy to theater later in 2026, the Navy said.

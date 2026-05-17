@@ -16,4 +16,8 @@ concepts: []
 entities: []
 ---
 
-Brussels — The European Commission has not used 5-year-old powers to restrict EU surveillance exports, Human Rights Watch found. The 2021 bloc-wide dual-use rules gave Brussels this authority; no enforcement action has been taken. Human Rights Watch called on the Commission to act; no response has been issued.
+Brussels — The European Commission has not used 5-year-old powers to restrict EU surveillance exports, Human Rights Watch found.
+
+The 2021 bloc-wide dual-use rules gave Brussels this authority; no enforcement action has been taken.
+
+Human Rights Watch called on the Commission to act; no response has been issued.

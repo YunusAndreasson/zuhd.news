@@ -18,4 +18,8 @@ concepts:
   - "ARM"
 ---
 
-Cupertino — Apple ended Nvidia's 5-year ARM GPU lockout. The approved driver restores external Nvidia compute for Mac ML workloads, lost when Apple switched to its own silicon in 2020. The support is external-only; Apple's built-in GPU architecture remains closed to Nvidia.
+Cupertino — Apple ended Nvidia's 5-year ARM GPU lockout.
+
+The approved driver restores external Nvidia compute for Mac ML workloads, lost when Apple switched to its own silicon in 2020.
+
+The support is external-only; Apple's built-in GPU architecture remains closed to Nvidia.

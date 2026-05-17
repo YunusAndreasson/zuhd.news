@@ -32,4 +32,8 @@ sentimentDivergence: 0.31
 entities: []
 ---
 
-London — Reform took 500 seats; Labour lost 300 councillors in English local elections. [Britain](country:GB)'s two-party dominance has fractured into five competing forces, with Reform, Greens, and Liberal Democrats cutting into both Labour and Conservative bases. Four union leaders and Labour MPs demand a leadership change before autumn.
+London — Reform took 500 seats; Labour lost 300 councillors in English local elections.
+
+[Britain](country:GB)'s two-party dominance has fractured into five competing forces, with Reform, Greens, and Liberal Democrats cutting into both Labour and Conservative bases.
+
+Four union leaders and Labour MPs demand a leadership change before autumn.

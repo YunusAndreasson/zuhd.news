@@ -17,4 +17,8 @@ concepts:
   - "World Health Organization"
 ---
 
-Dhaka — Bangladesh's measles outbreak has killed over 100 children. 2 successive governments let vaccine stockpiles lapse during political transitions, driving 7,500 suspected cases since March 15. WHO and GAVI are vaccinating children 6 months to 5 years in 18 districts, expanding nationwide from May.
+Dhaka — Bangladesh's measles outbreak has killed over 100 children.
+
+2 successive governments let vaccine stockpiles lapse during political transitions, driving 7,500 suspected cases since March 15.
+
+WHO and GAVI are vaccinating children 6 months to 5 years in 18 districts, expanding nationwide from May.

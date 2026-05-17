@@ -17,4 +17,8 @@ concepts:
   - "Stochastic"
 ---
 
-London — Physics equations now characterize finite neural network instability. Infinite-width theory guarantees smooth convergence, but every production AI runs at finite width — where instabilities emerge that existing theory cannot predict. The gauge-covariant framework gives ML engineers a tool to audit model instability before deployment.
+London — Physics equations now characterize finite neural network instability.
+
+Infinite-width theory guarantees smooth convergence, but every production AI runs at finite width — where instabilities emerge that existing theory cannot predict.
+
+The gauge-covariant framework gives ML engineers a tool to audit model instability before deployment.

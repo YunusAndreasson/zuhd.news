@@ -17,4 +17,8 @@ concepts:
   - "Petroleum"
 ---
 
-Sydney — Australia's fuel shock inverted the secondhand car market. Used Tesla Model Y prices rose 6% in 2 weeks, while some petrol and diesel vehicles fell up to 20%. Stock of used EVs at dealers is running low, and new electric models face months-long delivery queues.
+Sydney — Australia's fuel shock inverted the secondhand car market.
+
+Used Tesla Model Y prices rose 6% in 2 weeks, while some petrol and diesel vehicles fell up to 20%.
+
+Stock of used EVs at dealers is running low, and new electric models face months-long delivery queues.

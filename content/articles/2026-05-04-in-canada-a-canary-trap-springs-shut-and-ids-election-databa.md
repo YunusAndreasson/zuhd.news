@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-Edmonton — [Canada](country:CA)'s Alberta caught a voter-database leak via canary trap. Elections Alberta inserts unique fake entries in each party's copy; Republican Party data appeared in the Centurion separatist group's public tool. Both groups pledged compliance; how data moved from the party to the separatist group remains unexplained.
+Edmonton — [Canada](country:CA)'s Alberta caught a voter-database leak via canary trap.
+
+Elections Alberta inserts unique fake entries in each party's copy; Republican Party data appeared in the Centurion separatist group's public tool.
+
+Both groups pledged compliance; how data moved from the party to the separatist group remains unexplained.

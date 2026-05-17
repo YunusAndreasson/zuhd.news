@@ -21,4 +21,8 @@ entities:
     kind: "commodity"
 ---
 
-Washington — CME Group and Intercontinental Exchange warned [US](country:US) regulators that Hyperliquid's anonymous crypto platform could distort oil benchmarks and enable sanctions evasion. Hyperliquid now offers synthetic exposure to stocks and commodities, entering territory the two exchanges hold under strict federal oversight. The platform's HYPE token fell on the news, though remained 4% higher over 24 hours.
+Washington — CME Group and Intercontinental Exchange warned [US](country:US) regulators that Hyperliquid's anonymous crypto platform could distort oil benchmarks and enable sanctions evasion.
+
+Hyperliquid now offers synthetic exposure to stocks and commodities, entering territory the two exchanges hold under strict federal oversight.
+
+The platform's HYPE token fell on the news, though remained 4% higher over 24 hours.

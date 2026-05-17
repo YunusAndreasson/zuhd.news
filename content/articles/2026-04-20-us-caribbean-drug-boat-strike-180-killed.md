@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Miami — Southern Command uses armed-conflict rules against civilian vessels. 180 have been killed in [US](country:US) Caribbean strikes since September; the military provides no public evidence of drug cargo. Legal experts call the campaign illegal as strikes hit their highest pace.
+Miami — Southern Command uses armed-conflict rules against civilian vessels.
+
+180 have been killed in [US](country:US) Caribbean strikes since September; the military provides no public evidence of drug cargo.
+
+Legal experts call the campaign illegal as strikes hit their highest pace.

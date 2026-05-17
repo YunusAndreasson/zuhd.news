@@ -11,4 +11,8 @@ sources:
     country: "SG"
 ---
 
-Jakarta — Indonesia signed a US defense deal from Moscow. Prabowo Subianto was on a Russian state visit when the partnership was announced, upholding Jakarta's non-aligned foreign policy. The partnership's scope has not been disclosed.
+Jakarta — Indonesia signed a US defense deal from Moscow.
+
+Prabowo Subianto was on a Russian state visit when the partnership was announced, upholding Jakarta's non-aligned foreign policy.
+
+The partnership's scope has not been disclosed.

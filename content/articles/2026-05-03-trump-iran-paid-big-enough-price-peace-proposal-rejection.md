@@ -27,4 +27,8 @@ entities:
     kind: "commodity"
 ---
 
-Washington — Iran's 14-point proposal reached Trump via [Pakistan](country:PK). He rejected it, saying [Iran](country:IR) had not "paid a big enough price" in 47 years, while oil holds 50% above pre-war levels. Iran's deputy foreign minister said Tehran is "prepared for both paths" — diplomacy or confrontation — with Hormuz still blocked.
+Washington — Iran's 14-point proposal reached Trump via [Pakistan](country:PK).
+
+He rejected it, saying [Iran](country:IR) had not "paid a big enough price" in 47 years, while oil holds 50% above pre-war levels.
+
+Iran's deputy foreign minister said Tehran is "prepared for both paths" — diplomacy or confrontation — with Hormuz still blocked.

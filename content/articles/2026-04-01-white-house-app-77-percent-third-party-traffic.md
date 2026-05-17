@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-Washington — US official app routes 77% of requests to third parties. Security researchers found the White House app runs the same adtech stack as a free mobile game — analytics outnumber government server calls 3 to 1. No US law restricts what those third-party SDKs can collect from users.
+Washington — US official app routes 77% of requests to third parties.
+
+Security researchers found the White House app runs the same adtech stack as a free mobile game — analytics outnumber government server calls 3 to 1.
+
+No US law restricts what those third-party SDKs can collect from users.

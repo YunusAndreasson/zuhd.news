@@ -18,4 +18,8 @@ concepts:
   - "Pakistan"
 ---
 
-Islamabad — Trump endorsed Pakistan's offer to host US-Iran talks. Pakistan's FM Ishaq Dar held 5 calls with Iran's FM Abbas Araghchi before Army chief Asim Munir spoke directly with Trump. Iran has signaled it will demand Hormuz control, war compensation, and a no-attack guarantee — all US red lines.
+Islamabad — Trump endorsed Pakistan's offer to host US-Iran talks.
+
+Pakistan's FM Ishaq Dar held 5 calls with Iran's FM Abbas Araghchi before Army chief Asim Munir spoke directly with Trump.
+
+Iran has signaled it will demand Hormuz control, war compensation, and a no-attack guarantee — all US red lines.

@@ -23,4 +23,8 @@ entities:
     kind: "stock"
 ---
 
-San Francisco — Nvidia partner Span installs home compute nodes that pay owners in free electricity. Span says typical homes carry 80 unused amps; its nodes convert that capacity into AI cloud compute routed to providers on demand. 100 southwestern [US](country:US) homes host prototypes this fall; Span targets 1 gigawatt of capacity.
+San Francisco — Nvidia partner Span installs home compute nodes that pay owners in free electricity.
+
+Span says typical homes carry 80 unused amps; its nodes convert that capacity into AI cloud compute routed to providers on demand.
+
+100 southwestern [US](country:US) homes host prototypes this fall; Span targets 1 gigawatt of capacity.

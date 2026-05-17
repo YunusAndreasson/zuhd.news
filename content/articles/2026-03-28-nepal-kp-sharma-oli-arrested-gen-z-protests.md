@@ -16,4 +16,8 @@ concepts:
   - "Balen Shah"
 ---
 
-Kathmandu — Nepal's ex-PM Oli jailed over 76 protest deaths. A panel found him negligent for not stopping hours of lethal fire on Gen Z anti-corruption protesters in September 2025. Oli faces court Sunday, 1 day after rapper-turned-PM Balendra Shah took office on an accountability mandate.
+Kathmandu — Nepal's ex-PM Oli jailed over 76 protest deaths.
+
+A panel found him negligent for not stopping hours of lethal fire on Gen Z anti-corruption protesters in September 2025.
+
+Oli faces court Sunday, 1 day after rapper-turned-PM Balendra Shah took office on an accountability mandate.

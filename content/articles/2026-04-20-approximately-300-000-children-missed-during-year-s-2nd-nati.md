@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Islamabad — Security no-go zones and refusals left 300,000 Pakistani children unvaccinated this month. Khyber Pakhtunkhwa and Balochistan drove most misses among 45 million targeted, government data show. [Pakistan](country:PK) and [Afghanistan](country:AF) are the only 2 wild-poliovirus-endemic countries; peak transmission season begins in May.
+Islamabad — Security no-go zones and refusals left 300,000 Pakistani children unvaccinated this month.
+
+Khyber Pakhtunkhwa and Balochistan drove most misses among 45 million targeted, government data show.
+
+[Pakistan](country:PK) and [Afghanistan](country:AF) are the only 2 wild-poliovirus-endemic countries; peak transmission season begins in May.

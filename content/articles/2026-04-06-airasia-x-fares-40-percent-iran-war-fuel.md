@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.62
 ---
 
-Kuala Lumpur — AirAsia X raised fares 40% after fuel doubled. Average jet fuel costs rose from $90 to $200/barrel, threatening Southeast Asian supply across Vietnam, the Philippines, and Malaysia. AirAsia X's Bahrain hub launches June 26; fuel costs remain double pre-war levels.
+Kuala Lumpur — AirAsia X raised fares 40% after fuel doubled.
+
+Average jet fuel costs rose from $90 to $200/barrel, threatening Southeast Asian supply across Vietnam, the Philippines, and Malaysia.
+
+AirAsia X's Bahrain hub launches June 26; fuel costs remain double pre-war levels.

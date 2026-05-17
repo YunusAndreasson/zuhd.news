@@ -11,4 +11,8 @@ sources:
     country: "US"
 ---
 
-New York — Researchers identified a second brain plasticity mechanism that locks in lasting changes after one intense experience. Unlike Hebbian learning, which requires repetition, the new pathway activates after a single traumatic exposure. The team has not yet identified which neurons trigger the effect or how to modulate it clinically.
+New York — Researchers identified a second brain plasticity mechanism that locks in lasting changes after one intense experience.
+
+Unlike Hebbian learning, which requires repetition, the new pathway activates after a single traumatic exposure.
+
+The team has not yet identified which neurons trigger the effect or how to modulate it clinically.

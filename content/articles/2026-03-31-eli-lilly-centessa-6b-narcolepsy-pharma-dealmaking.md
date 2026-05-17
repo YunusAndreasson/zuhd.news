@@ -17,4 +17,8 @@ concepts:
   - "Medicine"
 ---
 
-Indianapolis — Eli Lilly buys narcolepsy startup for $6.3 billion. Lilly paid a 38% premium as pharma races to acquire sleep disorder pipelines — Biogen closed a $5.6 billion deal the same day. Cleminorexton still needs regulatory approval; milestones bring the total to $47 per share on full clearance.
+Indianapolis — Eli Lilly buys narcolepsy startup for $6.3 billion.
+
+Lilly paid a 38% premium as pharma races to acquire sleep disorder pipelines — Biogen closed a $5.6 billion deal the same day.
+
+Cleminorexton still needs regulatory approval; milestones bring the total to $47 per share on full clearance.

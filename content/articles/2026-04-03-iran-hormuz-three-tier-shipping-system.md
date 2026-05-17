@@ -17,4 +17,8 @@ concepts:
   - "Qatar"
 ---
 
-Tehran — Iran divided nations into 3 Hormuz access tiers. Hostile states are barred, neutral states pay substantial fees, friendly states transit free — making Hormuz a tiered toll system. Tehran withheld the country list; nearly all Gulf Arab states fall in the neutral or hostile tier.
+Tehran — Iran divided nations into 3 Hormuz access tiers.
+
+Hostile states are barred, neutral states pay substantial fees, friendly states transit free — making Hormuz a tiered toll system.
+
+Tehran withheld the country list; nearly all Gulf Arab states fall in the neutral or hostile tier.

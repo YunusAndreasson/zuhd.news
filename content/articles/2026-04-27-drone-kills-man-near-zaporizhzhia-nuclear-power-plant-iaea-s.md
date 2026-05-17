@@ -33,4 +33,8 @@ sentimentDivergence: 0.53
 entities: []
 ---
 
-Zaporizhzhia — [Russia](country:RU) said [Ukraine](country:UA) killed 1 plant worker in a drone strike. The IAEA confirmed the death and repeated that strikes near occupied nuclear sites must not occur. [Ukraine](country:UA)'s Energoatom counts 15 blackouts at the site since 2022, each raising radiation risk across Europe.
+Zaporizhzhia — [Russia](country:RU) said [Ukraine](country:UA) killed 1 plant worker in a drone strike.
+
+The IAEA confirmed the death and repeated that strikes near occupied nuclear sites must not occur.
+
+[Ukraine](country:UA)'s Energoatom counts 15 blackouts at the site since 2022, each raising radiation risk across Europe.

@@ -11,4 +11,8 @@ sources:
     country: "IL"
 ---
 
-Ramle — Her lawyer has not confirmed she is alive. Israel locked down all prisons when the Iran war began, barring legal visits for thousands of Palestinians held without charge. No authority has announced when lawyers or human rights monitors will be allowed access.
+Ramle — Her lawyer has not confirmed she is alive.
+
+Israel locked down all prisons when the Iran war began, barring legal visits for thousands of Palestinians held without charge.
+
+No authority has announced when lawyers or human rights monitors will be allowed access.

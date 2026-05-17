@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-London — 184 sanctioned ships passed through [UK](country:GB) waters unboarded. PM Starmer announced in March that armed forces could board sanctioned vessels; since then, 238 passages have gone unchallenged. The Ministry of Defence cites disruption but has provided no evidence; a former Royal Navy commander called the inaction "pathetic."
+London — 184 sanctioned ships passed through [UK](country:GB) waters unboarded.
+
+PM Starmer announced in March that armed forces could board sanctioned vessels; since then, 238 passages have gone unchallenged.
+
+The Ministry of Defence cites disruption but has provided no evidence; a former Royal Navy commander called the inaction "pathetic."

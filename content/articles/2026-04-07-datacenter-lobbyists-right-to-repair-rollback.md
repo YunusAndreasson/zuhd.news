@@ -18,4 +18,8 @@ concepts:
   - "Datacenter"
 ---
 
-Denver — Cisco lobbied Colorado to kill its repair law. A committee bill lets manufacturers self-designate any hardware as critical infrastructure, stripping it from all repair requirements. Researchers testified that the loophole leaves broken devices running, creating the cyber risk the bill purports to address.
+Denver — Cisco lobbied Colorado to kill its repair law.
+
+A committee bill lets manufacturers self-designate any hardware as critical infrastructure, stripping it from all repair requirements.
+
+Researchers testified that the loophole leaves broken devices running, creating the cyber risk the bill purports to address.

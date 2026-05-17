@@ -17,4 +17,8 @@ concepts:
   - "Pakistan"
 ---
 
-Kuwait — 5 Pakistanis died fleeing Kuwait by road. They were killed on March 30 when interceptor debris struck an oil tanker convoy — a hazard no government has acknowledged. Their relative in Toba Tek Singh has waited 10 days for the Pakistani embassy to respond.
+Kuwait — 5 Pakistanis died fleeing Kuwait by road.
+
+They were killed on March 30 when interceptor debris struck an oil tanker convoy — a hazard no government has acknowledged.
+
+Their relative in Toba Tek Singh has waited 10 days for the Pakistani embassy to respond.

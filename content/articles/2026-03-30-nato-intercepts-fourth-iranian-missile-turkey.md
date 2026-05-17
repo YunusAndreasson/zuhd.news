@@ -21,4 +21,8 @@ concepts:
   - "Iran"
 ---
 
-Ankara — 4th Iranian missile intercepted over Turkish airspace Monday. NATO deployed 2 extra Patriot systems after earlier interceptions; past targets include Incirlik Air Base, host to hundreds of US troops. Ankara bars its bases from use against Iran but cannot opt out of air defense.
+Ankara — 4th Iranian missile intercepted over Turkish airspace Monday.
+
+NATO deployed 2 extra Patriot systems after earlier interceptions; past targets include Incirlik Air Base, host to hundreds of US troops.
+
+Ankara bars its bases from use against Iran but cannot opt out of air defense.

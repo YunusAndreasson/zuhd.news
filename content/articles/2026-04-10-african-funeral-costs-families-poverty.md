@@ -17,4 +17,8 @@ concepts:
   - "Collective Action"
 ---
 
-Nairobi — African funerals can drain 6 months of income. Across sub-Saharan Africa, community norms compel families to borrow, sell assets, or pull children from school to fund burial ceremonies. Economists propose insurance cooperatives, but community leaders fear they undermine the social bonds families depend on.
+Nairobi — African funerals can drain 6 months of income.
+
+Across sub-Saharan Africa, community norms compel families to borrow, sell assets, or pull children from school to fund burial ceremonies.
+
+Economists propose insurance cooperatives, but community leaders fear they undermine the social bonds families depend on.

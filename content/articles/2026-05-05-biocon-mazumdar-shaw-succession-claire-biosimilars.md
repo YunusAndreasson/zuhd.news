@@ -29,4 +29,8 @@ sentimentDivergence: 0.16
 entities: []
 ---
 
-Bangalore — Biocon's succession plan has no formal start date. Claire Mazumdar, founder Kiran Mazumdar-Shaw's niece, will take over [India](country:IN)'s largest biosimilar maker of insulin and cancer drugs over 5 years. Mazumdar-Shaw calls herself Biocon's sole owner and has set no handover timeline.
+Bangalore — Biocon's succession plan has no formal start date.
+
+Claire Mazumdar, founder Kiran Mazumdar-Shaw's niece, will take over [India](country:IN)'s largest biosimilar maker of insulin and cancer drugs over 5 years.
+
+Mazumdar-Shaw calls herself Biocon's sole owner and has set no handover timeline.

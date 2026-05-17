@@ -17,4 +17,8 @@ concepts:
   - "Federal Reserve"
 ---
 
-New York — Bitcoin now front-runs Federal Reserve rate decisions. Spot ETF approval in January 2024 shifted buyers from retail to institutions; they position months ahead of central bank decisions. Rising oil prices are testing whether ETF-driven decoupling holds through a full commodity shock.
+New York — Bitcoin now front-runs Federal Reserve rate decisions.
+
+Spot ETF approval in January 2024 shifted buyers from retail to institutions; they position months ahead of central bank decisions.
+
+Rising oil prices are testing whether ETF-driven decoupling holds through a full commodity shock.

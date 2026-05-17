@@ -11,4 +11,8 @@ sources:
     country: "GB"
 ---
 
-Nairobi — Male births are falling across Africa's warming regions. A new study links first-trimester heat stress to selective fetal loss — male embryos are more vulnerable to temperature extremes than female. Africa contributed least to emissions but faces a growing cost — fewer boys born each generation as temperatures rise.
+Nairobi — Male births are falling across Africa's warming regions.
+
+A new study links first-trimester heat stress to selective fetal loss — male embryos are more vulnerable to temperature extremes than female.
+
+Africa contributed least to emissions but faces a growing cost — fewer boys born each generation as temperatures rise.

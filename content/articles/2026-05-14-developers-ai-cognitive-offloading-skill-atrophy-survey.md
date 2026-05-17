@@ -17,4 +17,8 @@ entities:
     kind: "stock"
 ---
 
-San Francisco — Google says 75% of its new code is AI-generated. Developers using mandated AI tools report skill atrophy — they can no longer reconstruct or debug their own code, multiple developers said. One warned of unsortable tech debt if AI costs spike; executives report AI writing 75–90% of company code.
+San Francisco — Google says 75% of its new code is AI-generated.
+
+Developers using mandated AI tools report skill atrophy — they can no longer reconstruct or debug their own code, multiple developers said.
+
+One warned of unsortable tech debt if AI costs spike; executives report AI writing 75–90% of company code.

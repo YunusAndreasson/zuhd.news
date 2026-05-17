@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Skopje — Russian gas lost half the [North Macedonia](country:MK) market. United Arab Emirates suppliers now hold 39% of Macedonian supply after [Russia](country:RU)'s share fell from 99% to 47% since 2021. Moscow's new Skopje ambassador called the shift "purely political" — and confirmed the figures in a first public interview.
+Skopje — Russian gas lost half the [North Macedonia](country:MK) market.
+
+United Arab Emirates suppliers now hold 39% of Macedonian supply after [Russia](country:RU)'s share fell from 99% to 47% since 2021.
+
+Moscow's new Skopje ambassador called the shift "purely political" — and confirmed the figures in a first public interview.

@@ -17,4 +17,8 @@ entities:
     kind: "stock"
 ---
 
-Taipei — Realtek's RTL8159 chip pushed 10-gigabit USB adapters to $80 — half the cost of Thunderbolt. Full throughput requires USB 3.2 Gen 2×2 ports that most laptops lack; tested machines reached 6-7 Gbps rather than 10. Home networks are no longer the bottleneck; last-mile fiber limits most users globally.
+Taipei — Realtek's RTL8159 chip pushed 10-gigabit USB adapters to $80 — half the cost of Thunderbolt.
+
+Full throughput requires USB 3.2 Gen 2×2 ports that most laptops lack; tested machines reached 6-7 Gbps rather than 10.
+
+Home networks are no longer the bottleneck; last-mile fiber limits most users globally.

@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Johannesburg — Brown Mogotsi's bid to oust commission investigator Matthew Chaskalson failed after he deleted WhatsApp records submitted as evidence. Adila Hassim called the deletions manipulated evidence and sought a perjury referral to police. Justice Madlanga returned Mogotsi to Chaskalson's questioning; [South Africa](country:ZA)'s police may open a criminal case.
+Johannesburg — Brown Mogotsi's bid to oust commission investigator Matthew Chaskalson failed after he deleted WhatsApp records submitted as evidence.
+
+Adila Hassim called the deletions manipulated evidence and sought a perjury referral to police.
+
+Justice Madlanga returned Mogotsi to Chaskalson's questioning; [South Africa](country:ZA)'s police may open a criminal case.

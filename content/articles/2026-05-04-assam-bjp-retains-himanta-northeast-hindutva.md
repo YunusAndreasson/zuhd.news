@@ -29,4 +29,8 @@ sentimentDivergence: 0.05
 entities: []
 ---
 
-Guwahati — National Democratic Alliance leads Assam early. Bharatiya Janata Party leader Himanta Biswa Sarma has governed [India](country:IN)'s Assam since 2016; exit polls gave the alliance 85-101 of 126 seats. A 3rd term would cement the alliance's hold across India's northeast ahead of 2029 federal elections.
+Guwahati — National Democratic Alliance leads Assam early.
+
+Bharatiya Janata Party leader Himanta Biswa Sarma has governed [India](country:IN)'s Assam since 2016; exit polls gave the alliance 85-101 of 126 seats.
+
+A 3rd term would cement the alliance's hold across India's northeast ahead of 2029 federal elections.

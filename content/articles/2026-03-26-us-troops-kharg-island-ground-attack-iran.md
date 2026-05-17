@@ -17,4 +17,8 @@ concepts:
   - "Tehran"
 ---
 
-Washington — Pentagon deployed 6,000 troops toward Iran's oil nexus. 2 Marine units and 1,000 paratroopers are now near Kharg Island, which handles 90% of Iran's crude exports. Congress has not been briefed on mission objectives as Trump's 5-day diplomacy window expires this weekend.
+Washington — Pentagon deployed 6,000 troops toward Iran's oil nexus.
+
+2 Marine units and 1,000 paratroopers are now near Kharg Island, which handles 90% of Iran's crude exports.
+
+Congress has not been briefed on mission objectives as Trump's 5-day diplomacy window expires this weekend.

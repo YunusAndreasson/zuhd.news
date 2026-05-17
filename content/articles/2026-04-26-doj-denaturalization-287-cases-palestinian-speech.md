@@ -13,4 +13,8 @@ sources:
 entities: []
 ---
 
-Washington — Political associations are now grounds for stripping [US](country:US) citizenship. The Justice Department is pursuing 384 denaturalization cases, alleging political sympathies were undisclosed at naturalization. Those stripped lose all immigration status and face removal; native-born citizens carry no equivalent risk.
+Washington — Political associations are now grounds for stripping [US](country:US) citizenship.
+
+The Justice Department is pursuing 384 denaturalization cases, alleging political sympathies were undisclosed at naturalization.
+
+Those stripped lose all immigration status and face removal; native-born citizens carry no equivalent risk.

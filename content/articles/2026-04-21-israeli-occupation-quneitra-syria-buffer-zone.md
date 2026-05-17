@@ -21,4 +21,8 @@ concepts:
 entities: []
 ---
 
-Quneitra — [Israel](country:IL) holds Syrian territory beyond its 1974 ceasefire line. After Assad fell in December 2024, Israeli forces crossed deep into the demilitarized buffer zone, voiding a 50-year disengagement agreement. Residents describe raids and arrests at will; [Syria](country:SY)'s transitional government has no military force to push back.
+Quneitra — [Israel](country:IL) holds Syrian territory beyond its 1974 ceasefire line.
+
+After Assad fell in December 2024, Israeli forces crossed deep into the demilitarized buffer zone, voiding a 50-year disengagement agreement.
+
+Residents describe raids and arrests at will; [Syria](country:SY)'s transitional government has no military force to push back.

@@ -17,4 +17,8 @@ concepts:
   - "Adhesion (medicine)"
 ---
 
-London — Uterine scar tissue dissolved from an IV drip. In rats with post-surgical adhesions — affecting 1 in 5 women — IV exosomes matched intrauterine injection results. Clinical adoption for infertile women depends on whether the result holds in human uterine tissue.
+London — Uterine scar tissue dissolved from an IV drip.
+
+In rats with post-surgical adhesions — affecting 1 in 5 women — IV exosomes matched intrauterine injection results.
+
+Clinical adoption for infertile women depends on whether the result holds in human uterine tissue.

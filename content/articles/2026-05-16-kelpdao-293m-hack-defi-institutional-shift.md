@@ -19,4 +19,8 @@ concepts:
 entities: []
 ---
 
-New York — $293 million stolen from KelpDAO via bridge vulnerability. Lido and Spark are repositioning toward "boring," low-yield designs, as Lido's Eugene Mamin said inherited infrastructure risk now exceeds smart-contract bugs. Deposits at Spark are rising as users rotate into simpler collateral structures, Phoenix Labs CEO Sam MacPherson said.
+New York — $293 million stolen from KelpDAO via bridge vulnerability.
+
+Lido and Spark are repositioning toward "boring," low-yield designs, as Lido's Eugene Mamin said inherited infrastructure risk now exceeds smart-contract bugs.
+
+Deposits at Spark are rising as users rotate into simpler collateral structures, Phoenix Labs CEO Sam MacPherson said.

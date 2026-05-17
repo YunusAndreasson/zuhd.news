@@ -31,4 +31,8 @@ sentimentDivergence: 0.11
 entities: []
 ---
 
-Washington — [US](country:US) gas hit its highest price since 2022. The American Automobile Association put the national average at $4.55/gal; Energy Secretary Chris Wright said Trump would consider suspending the federal 18.4¢/gal gas tax. No suspension bill has reached Congress; Wright declined to forecast whether prices hit $5.
+Washington — [US](country:US) gas hit its highest price since 2022.
+
+The American Automobile Association put the national average at $4.55/gal; Energy Secretary Chris Wright said Trump would consider suspending the federal 18.4¢/gal gas tax.
+
+No suspension bill has reached Congress; Wright declined to forecast whether prices hit $5.

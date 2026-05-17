@@ -18,4 +18,8 @@ concepts:
 entities: []
 ---
 
-Bannu — 2 Wazir tribesmen abducted and killed Thursday night. Armed men in [Pakistan](country:PK)'s Khyber Pakhtunkhwa stopped their vehicle, shot 1, and executed the other in captivity; bodies found at 2 locations. No group claimed the killings; the Hathi Khel tribe has seen repeated similar attacks over the past year.
+Bannu — 2 Wazir tribesmen abducted and killed Thursday night.
+
+Armed men in [Pakistan](country:PK)'s Khyber Pakhtunkhwa stopped their vehicle, shot 1, and executed the other in captivity; bodies found at 2 locations.
+
+No group claimed the killings; the Hathi Khel tribe has seen repeated similar attacks over the past year.

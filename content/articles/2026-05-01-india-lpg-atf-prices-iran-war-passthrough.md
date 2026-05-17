@@ -33,4 +33,8 @@ entities:
     kind: "chokepoint"
 ---
 
-New Delhi — [India](country:IN)'s commercial liquefied petroleum gas jumped 47.8% overnight. The 19-kg cylinder rose Rs 993, state oil companies said, sparing only retail petrol from the Hormuz price shock. India imports 88% of crude, government data show; Brent crude traded at $111 Friday as the closure continues.
+New Delhi — [India](country:IN)'s commercial liquefied petroleum gas jumped 47.8% overnight.
+
+The 19-kg cylinder rose Rs 993, state oil companies said, sparing only retail petrol from the Hormuz price shock.
+
+India imports 88% of crude, government data show; Brent crude traded at $111 Friday as the closure continues.

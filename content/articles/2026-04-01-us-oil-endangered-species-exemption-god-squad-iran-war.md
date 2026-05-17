@@ -17,4 +17,8 @@ concepts:
   - "Pete Hegseth"
 ---
 
-Washington — The God Squad just cleared Gulf oil drilling. The committee — last convened decades ago — exempted Gulf oil from Endangered Species Act protections, citing Iran war national security. Critics say the decision sets a precedent for using wartime authority to permanently waive conservation law.
+Washington — The God Squad just cleared Gulf oil drilling.
+
+The committee — last convened decades ago — exempted Gulf oil from Endangered Species Act protections, citing Iran war national security.
+
+Critics say the decision sets a precedent for using wartime authority to permanently waive conservation law.

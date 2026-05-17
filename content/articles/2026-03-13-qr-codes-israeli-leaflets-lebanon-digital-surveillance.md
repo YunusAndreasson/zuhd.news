@@ -13,4 +13,8 @@ eventCoverage: null
 concepts: []
 ---
 
-Beirut — Israeli leaflets in Lebanon scan residents' phones. SMEX, a Lebanese digital-rights organization, warned that scanning the codes routes devices to Israeli army social media pages and exposes phone number, device type, and network data to Israeli intelligence. Israeli forces are still dropping leaflets across southern Lebanon — anyone who scanned is already logged.
+Beirut — Israeli leaflets in Lebanon scan residents' phones.
+
+SMEX, a Lebanese digital-rights organization, warned that scanning the codes routes devices to Israeli army social media pages and exposes phone number, device type, and network data to Israeli intelligence.
+
+Israeli forces are still dropping leaflets across southern Lebanon — anyone who scanned is already logged.

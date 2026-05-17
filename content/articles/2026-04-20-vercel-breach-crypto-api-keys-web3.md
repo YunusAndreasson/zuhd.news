@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-San Francisco — Attackers compromised Vercel through an artificial intelligence vendor. They exposed application programming interface keys for crypto projects; Vercel hosts frontends for major decentralized finance protocols. A BreachForums post claims to sell Vercel source code for $2M; data exfiltration is unconfirmed.
+San Francisco — Attackers compromised Vercel through an artificial intelligence vendor.
+
+They exposed application programming interface keys for crypto projects; Vercel hosts frontends for major decentralized finance protocols.
+
+A BreachForums post claims to sell Vercel source code for $2M; data exfiltration is unconfirmed.

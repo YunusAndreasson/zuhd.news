@@ -26,4 +26,8 @@ sentimentDivergence: 0.09
 entities: []
 ---
 
-Moscow — [Ukraine](country:UA)'s drone hit Mosfilmovskaya tower's 36th floor. The strike, 4 miles from the Kremlin, came 5 days before Putin's Victory Day parade. Putin proposed a ceasefire for May 9; Ukraine demands broader talks, and no truce is in place.
+Moscow — [Ukraine](country:UA)'s drone hit Mosfilmovskaya tower's 36th floor.
+
+The strike, 4 miles from the Kremlin, came 5 days before Putin's Victory Day parade.
+
+Putin proposed a ceasefire for May 9; Ukraine demands broader talks, and no truce is in place.

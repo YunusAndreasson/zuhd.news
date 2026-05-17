@@ -21,4 +21,6 @@ eventCoverage: 23
 entities: []
 ---
 
-Seoul — Yoon's obstruction sentence rose to 7 years. The ruling came from [South Korea](country:KR)'s first special court division for martial law cases — established after Yoon's December 2024 emergency decree — which called his conduct "highly reprehensible." The primary trial on the martial law declaration itself has yet to begin.
+Seoul — Yoon's obstruction sentence rose to 7 years.
+
+The ruling came from [South Korea](country:KR)'s first special court division for martial law cases — established after Yoon's December 2024 emergency decree — which called his conduct "highly reprehensible." The primary trial on the martial law declaration itself has yet to begin.

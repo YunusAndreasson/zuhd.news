@@ -17,4 +17,8 @@ concepts:
   - "University of Edinburgh"
 ---
 
-Immune cell clusters drive Crohn's bowel scarring. Researchers found lymphoid aggregates trigger nearby cells to scar the bowel — the complication that leads to obstruction and surgery. No existing drug targets fibrosis; these are the first pathways identified for anti-scarring treatment.
+Immune cell clusters drive Crohn's bowel scarring.
+
+Researchers found lymphoid aggregates trigger nearby cells to scar the bowel — the complication that leads to obstruction and surgery.
+
+No existing drug targets fibrosis; these are the first pathways identified for anti-scarring treatment.

@@ -17,4 +17,8 @@ concepts:
   - "Cultural transmission"
 ---
 
-Kashgar — Chilli peppers are cold — in southern Xinjiang. A Nature study of Uyghur hot-cold food beliefs found people revise classifications through bodily experience rather than fixed cultural inheritance. The authors note the method could map cultural resilience in any community navigating tradition under external pressure.
+Kashgar — Chilli peppers are cold — in southern Xinjiang.
+
+A Nature study of Uyghur hot-cold food beliefs found people revise classifications through bodily experience rather than fixed cultural inheritance.
+
+The authors note the method could map cultural resilience in any community navigating tradition under external pressure.

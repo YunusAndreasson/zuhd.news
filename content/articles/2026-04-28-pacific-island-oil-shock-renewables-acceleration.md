@@ -15,4 +15,8 @@ entities:
     kind: "commodity"
 ---
 
-Suva — Pacific islands buckle under [Iran](country:IR)-war oil prices. States importing all liquid fuel have no price buffer, forcing rapid solar adoption. Whether governments can lock in grid capacity before oil prices ease is unresolved.
+Suva — Pacific islands buckle under [Iran](country:IR)-war oil prices.
+
+States importing all liquid fuel have no price buffer, forcing rapid solar adoption.
+
+Whether governments can lock in grid capacity before oil prices ease is unresolved.

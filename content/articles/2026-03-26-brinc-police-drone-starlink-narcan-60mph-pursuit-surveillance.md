@@ -18,4 +18,8 @@ concepts:
   - "Naloxone"
 ---
 
-Seattle — BRINC's new drone pursues cars at 60mph. BRINC's Guardian uses Starlink for infrastructure-free coverage and carries Narcan or defibrillator payloads; the company already operates in 900+ US cities. Analyst Faine Greenwood called it incremental; the drone's 130-decibel siren and 640x zoom at 1,000 feet extend police surveillance into any geography.
+Seattle — BRINC's new drone pursues cars at 60mph.
+
+BRINC's Guardian uses Starlink for infrastructure-free coverage and carries Narcan or defibrillator payloads; the company already operates in 900+ US cities.
+
+Analyst Faine Greenwood called it incremental; the drone's 130-decibel siren and 640x zoom at 1,000 feet extend police surveillance into any geography.

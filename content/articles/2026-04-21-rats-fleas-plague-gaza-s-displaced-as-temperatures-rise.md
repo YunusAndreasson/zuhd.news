@@ -17,4 +17,8 @@ concepts:
   - "Rodent"
 ---
 
-Gaza — Rats and fleas infest 1.7 million displaced Palestinians. UN field teams in March documented vermin infestations; Al-Aqsa Hospital treats scabies and skin infections daily with no sanitation available. [Israel](country:IL) controls all access points and has killed at least 777 since the ceasefire, Gaza's health ministry reports.
+Gaza — Rats and fleas infest 1.7 million displaced Palestinians.
+
+UN field teams in March documented vermin infestations; Al-Aqsa Hospital treats scabies and skin infections daily with no sanitation available.
+
+[Israel](country:IL) controls all access points and has killed at least 777 since the ceasefire, Gaza's health ministry reports.

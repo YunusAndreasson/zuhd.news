@@ -28,4 +28,8 @@ concepts:
 sentimentDivergence: 0.42
 ---
 
-Bushehr — 1 security guard killed in the 4th US-Israeli strike on Iran's only nuclear plant. IAEA confirmed no radiation increase but warned auxiliary buildings contain critical nuclear safety equipment; 198 Russian technicians evacuated. Iran's FM warned a nuclear accident would "end life" in Gulf Arab states allied to Washington.
+Bushehr — 1 security guard killed in the 4th US-Israeli strike on Iran's only nuclear plant.
+
+IAEA confirmed no radiation increase but warned auxiliary buildings contain critical nuclear safety equipment; 198 Russian technicians evacuated.
+
+Iran's FM warned a nuclear accident would "end life" in Gulf Arab states allied to Washington.

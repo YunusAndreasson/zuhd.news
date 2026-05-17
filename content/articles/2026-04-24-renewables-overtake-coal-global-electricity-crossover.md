@@ -20,4 +20,8 @@ concepts:
 entities: []
 ---
 
-London — Europe's AccelerateEU package cuts electricity taxes. Renewables overtook coal globally for the first time in 2025, Ember said; the package excludes gas price caps and windfall levies. Commissioner Dan Jørgensen warned gas prices stay elevated for years; tax changes need unanimous EU approval.
+London — Europe's AccelerateEU package cuts electricity taxes.
+
+Renewables overtook coal globally for the first time in 2025, Ember said; the package excludes gas price caps and windfall levies.
+
+Commissioner Dan Jørgensen warned gas prices stay elevated for years; tax changes need unanimous EU approval.
