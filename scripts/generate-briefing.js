@@ -119,12 +119,25 @@ try {
     '--effort', 'medium',
     '--no-session-persistence',
     '--max-turns', '1',
+    '--output-format', 'json',
+    '--exclude-dynamic-system-prompt-sections',
     '-p', prompt
-  ], { encoding: 'utf-8', timeout: 720_000, maxBuffer: 1024 * 1024, env })
+  ], { encoding: 'utf-8', timeout: 720_000, maxBuffer: 4 * 1024 * 1024, env })
   if (result.status !== 0) {
     throw new Error(result.stderr || `Exit code ${result.status}`)
   }
-  claudeOutput = result.stdout
+  // Briefing returns SSML text (not JSON), so unwrap the envelope manually
+  // instead of going through parseClaudeEnvelopeWithUsage which expects JSON.
+  const envelope = JSON.parse(result.stdout.trim())
+  if (envelope?.type !== 'result' || envelope.result == null) {
+    throw new Error(`unexpected claude envelope: ${result.stdout.slice(0, 200)}`)
+  }
+  claudeOutput = String(envelope.result)
+  if (envelope.total_cost_usd != null) {
+    const cacheRead = envelope.usage?.cache_read_input_tokens ?? 0
+    const cacheCreate = envelope.usage?.cache_creation_input_tokens ?? 0
+    console.log(`Claude usage: $${envelope.total_cost_usd.toFixed(4)} in ${envelope.duration_ms ?? '?'}ms (cache read ${cacheRead}, create ${cacheCreate})`)
+  }
 } catch (err) {
   console.error('Claude CLI failed:', err.message)
   process.exit(1)

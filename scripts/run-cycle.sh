@@ -723,7 +723,7 @@ if [ "$START_HOUR" = "22" ]; then
     # enough since the metric inputs are deterministic.
     # Timeout 600s (10min): Opus medium runs slower per turn than Sonnet
     # medium; doubling the budget keeps 15 max-turns comfortably in scope.
-    timeout 600 claude $CLAUDE_FLAGS --effort medium --model claude-opus-4-7 --allowedTools $TOOLS_TUNE --max-turns 15 -p "$TUNE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+    timeout 600 claude $CLAUDE_FLAGS --effort medium --model claude-opus-4-7 --allowedTools $TOOLS_TUNE --max-turns 15 --exclude-dynamic-system-prompt-sections -p "$TUNE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
     TUNE_EXIT=$?
     if [ "$TUNE_EXIT" = "124" ]; then
       echo "Tuning exit: 124 (TIMEOUT — exceeded 600s budget; bump if recurring) — $((SECONDS - T6))s" | tee -a "$LOG_FILE"

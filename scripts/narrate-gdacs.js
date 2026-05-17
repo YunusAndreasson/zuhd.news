@@ -342,6 +342,7 @@ Output ONLY the JSON object \`{ "narrative": "..." }\`. No markdown, no fences.`
       '1',
       '--output-format',
       'json',
+      '--exclude-dynamic-system-prompt-sections',
       '-p',
       fullPrompt,
     ],

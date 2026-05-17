@@ -194,6 +194,7 @@ Generate the educational context brief for this article. Output ONLY the JSON ob
     '--no-session-persistence',
     '--max-turns', '3',
     '--output-format', 'json',
+    '--exclude-dynamic-system-prompt-sections',
     '-p', fullPrompt,
   ], { encoding: 'utf-8', timeout: 300_000, maxBuffer: 2 * 1024 * 1024, env })
   const elapsedMs = Date.now() - t0
