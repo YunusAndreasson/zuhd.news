@@ -141,9 +141,27 @@ ${TODAY_COVERAGE}
 fi
 FALLBACK_FLAG=""
 [ "$CLAUDE_SELECTOR_MODEL" != "$CLAUDE_MODEL" ] && FALLBACK_FLAG="--fallback-model $CLAUDE_MODEL"
-timeout 1200 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_SELECTOR_MODEL $FALLBACK_FLAG --allowedTools $TOOLS_SELECTOR --max-turns 35 --exclude-dynamic-system-prompt-sections -p "$SELECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+
+run_selector() {
+  timeout 1200 claude $CLAUDE_FLAGS --effort medium --model $CLAUDE_SELECTOR_MODEL $FALLBACK_FLAG --allowedTools $TOOLS_SELECTOR --max-turns 35 --exclude-dynamic-system-prompt-sections -p "$SELECT_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+}
+
+run_selector
 SELECT_EXIT=$?
 echo "Selector exit: $SELECT_EXIT — $((SECONDS - T1))s" | tee -a "$LOG_FILE"
+
+# Retry once if the selector exited cleanly but wrote no selection file —
+# a recurring failure mode where the model hallucinates a sandbox restriction
+# and returns prose instead of running the task. Roughly 8% of cycles in the
+# week of 2026-05-10 to 2026-05-17 failed this way. The `<runtime>` preamble
+# in select-prompt.md is the primary defence; this retry catches the residual.
+if [ "$SELECT_EXIT" -eq 0 ] && [ ! -s /tmp/zuhd-selection.json ]; then
+  echo "Selector returned 0 but produced no selection file — retrying once" | tee -a "$LOG_FILE"
+  T1R=$SECONDS
+  run_selector
+  SELECT_EXIT=$?
+  echo "Selector retry exit: $SELECT_EXIT — $((SECONDS - T1R))s" | tee -a "$LOG_FILE"
+fi
 
 # Abort if selector failed or produced no selection
 if [ "$SELECT_EXIT" -ne 0 ]; then
@@ -151,7 +169,7 @@ if [ "$SELECT_EXIT" -ne 0 ]; then
   exit 1
 fi
 if [ ! -s /tmp/zuhd-selection.json ]; then
-  echo "No selection file produced — skipping writer and editor" | tee -a "$LOG_FILE"
+  echo "No selection file produced after retry — skipping writer and editor" | tee -a "$LOG_FILE"
   exit 0
 fi
 # Guard against empty JSON array (selector wrote [] with 0 stories)
