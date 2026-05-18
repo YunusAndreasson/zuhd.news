@@ -14,12 +14,6 @@ import { TimelineBlock } from './TimelineBlock';
 import { TreemapBlock } from './TreemapBlock';
 import { TrendBlock } from './TrendBlock';
 
-// Re-export so existing `components/blocks` consumers still get BlockVariant
-// and blockContainerStyle from the barrel. The source of truth lives in
-// ./shared to avoid the require cycle with individual block files.
-export type { BlockVariant } from './shared';
-export { blockContainerStyle } from './shared';
-
 interface RenderBlocksOptions {
   mdStyles: MarkdownStyles;
   fontSize?: number;

@@ -12,8 +12,6 @@ import type {
   ConflictSnapshot,
   ConflictSubEvent,
   ContextBrief,
-  Entity,
-  EntityKind,
   FeedResponse,
   GdacsAlert,
   GdacsDetail,
@@ -186,10 +184,10 @@ export const parseArticleBlocks = (v: unknown): ArticleBlock[] => {
   return out;
 };
 
-export const isCategory = (v: unknown): v is Category =>
+const isCategory = (v: unknown): v is Category =>
   v === 'politics' || v === 'economy' || v === 'science' || v === 'tech';
 
-export const isArticle = (v: unknown): v is Article => {
+const isArticle = (v: unknown): v is Article => {
   if (!isObject(v)) return false;
   return (
     typeof v.slug === 'string' &&
@@ -200,35 +198,6 @@ export const isArticle = (v: unknown): v is Article => {
     isStringArray(v.concepts) &&
     isStringArray(v.sentences)
   );
-};
-
-const isEntityKind = (v: unknown): v is EntityKind =>
-  v === 'commodity' ||
-  v === 'currency' ||
-  v === 'chokepoint' ||
-  v === 'crypto' ||
-  v === 'index' ||
-  v === 'stock';
-
-const isEntity = (v: unknown): v is Entity => {
-  if (!isObject(v)) return false;
-  return (
-    typeof v.mention === 'string' &&
-    v.mention.length > 0 &&
-    typeof v.indicatorId === 'string' &&
-    v.indicatorId.length > 0 &&
-    isEntityKind(v.kind)
-  );
-};
-
-/** Parse article `entities` field permissively. Missing / malformed → []. */
-export const parseEntities = (v: unknown): Entity[] => {
-  if (!Array.isArray(v)) return [];
-  const out: Entity[] = [];
-  for (const e of v) {
-    if (isEntity(e)) out.push(e);
-  }
-  return out;
 };
 
 export const isFeedResponse = (v: unknown): v is FeedResponse => {

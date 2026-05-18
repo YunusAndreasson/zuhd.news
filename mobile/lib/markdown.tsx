@@ -128,7 +128,7 @@ export function parseInline(line: string): Segment[] {
  *  per sentence wins — dedup happens via the outer pass. Non-text segments
  *  (bold, italic, link) pass through unchanged so an emphasised mention
  *  stays emphasised rather than flipping to accent. */
-export function splitSegmentsWithEntities(segments: Segment[], entities: Entity[]): Segment[] {
+function splitSegmentsWithEntities(segments: Segment[], entities: Entity[]): Segment[] {
   if (!entities.length) return segments;
   const out: Segment[] = [];
   for (const seg of segments) {

@@ -18,11 +18,9 @@ interface TopoWithObjects extends Topology {
 // reference the same arcs, so they overlap exactly.
 const countriesData = countriesTopo as unknown as TopoWithObjects;
 
-const landObj = countriesData.objects.land;
 const countriesObj = countriesData.objects.countries;
-if (!landObj || !countriesObj) throw new Error('missing topojson objects');
+if (!countriesObj) throw new Error('missing topojson objects');
 
-export const land = feature(countriesData, landObj);
 export const countries = feature(
   countriesData,
   countriesObj,

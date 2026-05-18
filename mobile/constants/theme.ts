@@ -196,7 +196,7 @@ export const BG_RGB: Record<'dark' | 'light', [number, number, number]> = {
 // ---------------------------------------------------------------------------
 
 /** Style subset produced by each font-set entry (fontFamily + optional fontWeight). */
-export type FontEntry = {
+type FontEntry = {
   fontFamily: string | undefined;
   fontWeight?: TextStyle['fontWeight'];
 };

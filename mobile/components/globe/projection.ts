@@ -264,7 +264,7 @@ export function findCountry(
  *  from 6× to ~3.9× tighter at the cost of slightly less "this nation is
  *  vast" framing. Also reduces per-frame land/country vertex draws at 1× for
  *  big countries (clipCircle keeps fewer points after the test). */
-export function clipAngleForArea(area: number): number {
+function clipAngleForArea(area: number): number {
   if (area < 0.002) return 25;
   if (area < 0.03) return 25 + ((area - 0.002) / (0.03 - 0.002)) * 45;
   return 70;

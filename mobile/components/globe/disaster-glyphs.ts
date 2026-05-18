@@ -6,7 +6,7 @@ import { Skia } from '@shopify/react-native-skia';
  *  to position. Stored as singleton SkPaths — Skia paths are immutable for
  *  drawing, so reuse is safe across frames and threads. */
 
-export const GLYPH_SIZE = 22;
+const GLYPH_SIZE = 22;
 export const GLYPH_HALF = GLYPH_SIZE / 2;
 
 type SkPath = ReturnType<typeof Skia.Path.Make>;

@@ -1,8 +1,8 @@
-export { Box, type BoxProps } from './Box';
-export { Icon, type IconProps } from './Icon';
-export { IconButton, type IconButtonProps } from './IconButton';
-export { Markdown, type MarkdownProps } from './Markdown';
-export { Pressable, type PressableProps } from './Pressable';
-export { Screen, type ScreenProps } from './Screen';
-export { Stack, type StackProps } from './Stack';
-export { Text, type TextProps } from './Text';
+export { Box } from './Box';
+export { Icon } from './Icon';
+export { IconButton } from './IconButton';
+export { Markdown } from './Markdown';
+export { Pressable } from './Pressable';
+export { Screen } from './Screen';
+export { Stack } from './Stack';
+export { Text } from './Text';
