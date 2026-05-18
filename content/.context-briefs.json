@@ -187939,5 +187939,1415 @@
     "label": "Carrier Deployments & Operational Tempo",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-18-aave-rseth-exploit-recovery-defi-backstop": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT AAVE ACTUALLY IS",
+        "body": "Aave is a pool-based lending protocol: users deposit assets into a smart contract, others borrow against collateral they've also deposited. There is no loan officer, no credit check — the collateral ratio is enforced by code, and if it falls below a threshold, anyone can trigger a liquidation and claim a fee.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The unit of trust is the **collateral ratio**, not the borrower. A loan in Aave is over-collateralized by design — typically 125–150% — because the protocol cannot pursue a defaulter, only seize what was pledged."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BRIDGES ARE THE WEAK LINK",
+        "body": "A bridge holds real assets on one chain and mints a derivative token on another, backed 1:1. If the minting logic is tricked, the derivative loses its backing instantly — but it still circulates as collateral across DeFi until the market notices. Bridges have lost more crypto to hacks than any other category: Ronin, Wormhole, Nomad, Harmony, all in the same playbook."
+      },
+      {
+        "heading": "THE LIQUID-RESTAKING WRINKLE",
+        "body": "rsETH is a liquid restaking token — ETH staked through EigenLayer, wrapped so it can be used elsewhere while still earning yield. Each layer of wrapping adds a contract that must be solvent for the token's peg to hold. Kelp's bridge was one such layer.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "eth",
+                "label": "ETH"
+              },
+              {
+                "id": "lst",
+                "label": "Liquid staking"
+              },
+              {
+                "id": "eigen",
+                "label": "EigenLayer restake"
+              },
+              {
+                "id": "kelp",
+                "label": "Kelp wrapper"
+              },
+              {
+                "id": "rseth",
+                "label": "rsETH"
+              },
+              {
+                "id": "aave",
+                "label": "Aave collateral"
+              }
+            ],
+            "links": [
+              {
+                "source": "eth",
+                "target": "lst",
+                "value": 100
+              },
+              {
+                "source": "lst",
+                "target": "eigen",
+                "value": 100
+              },
+              {
+                "source": "eigen",
+                "target": "kelp",
+                "value": 100
+              },
+              {
+                "source": "kelp",
+                "target": "rseth",
+                "value": 100
+              },
+              {
+                "source": "rseth",
+                "target": "aave",
+                "value": 100
+              }
+            ],
+            "label": "how rsETH is built"
+          }
+        ]
+      },
+      {
+        "heading": "HOW ON-CHAIN LIQUIDATION WORKS",
+        "body": "When unbacked rsETH was pledged as collateral and the price cratered, the loans went underwater within minutes. Bots monitoring Aave's contracts repaid the bad debt and seized the remaining collateral for a bounty. The same automation that makes DeFi brittle in a crisis is what limits the damage."
+      },
+      {
+        "heading": "THE MISSING BACKSTOP",
+        "body": "Traditional finance has the FDIC, the Fed's discount window, deposit insurance. DeFi has no lender of last resort — when a protocol takes a loss, either a token-holder vote socializes it, a peer-coalition steps in voluntarily, or the loss sits on user balances forever. The 'DeFi United' coalition covering most of this shortfall is an ad-hoc precedent, not a standing institution."
+      },
+      {
+        "heading": "THE LEGAL VOID",
+        "body": "Who owes the remaining 5,200 rsETH is a question with no court of competent jurisdiction. Aave is a Cayman foundation, Kelp is pseudonymous governance, the exploit happened on Ethereum mainnet. Smart contracts execute regardless of which national law would have applied; the residue is left to governance forums and Twitter.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In DeFi, when a smart contract loses user funds to an exploit, who is legally liable by default?",
+            "options": [
+              "The protocol's developers, like any software vendor",
+              "The DAO token holders, as shareholders",
+              "No one — code execution is not actionable in most jurisdictions",
+              "The blockchain validators who confirmed the transactions"
+            ],
+            "correct": 2,
+            "explanation": "Most jurisdictions have no settled doctrine on smart-contract liability; suits exist but rarely succeed. This is why governance backstops, not lawsuits, resolve DeFi losses."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-18T08:26:13.219Z",
+    "label": "DeFi Lending & Bridge Exploits",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-18-bytedance-tencent-china-ai-cuts": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY AI IS NOT MOBILE",
+        "body": "A mobile app's marginal cost per user approaches zero — servers scale, ads pay. Generative AI inverts this: every query burns GPU cycles, electricity, and cooling. Revenue scales linearly with usage; so do costs. The flywheel that made TikTok print money does not exist here.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "ByteDance's reported **RMB 8bn** inference bill in 2025 ran at **2.3× incremental revenue** — every yuan earned cost more than two to serve."
+          }
+        ]
+      },
+      {
+        "heading": "THE CONSOLIDATION PATTERN",
+        "body": "Chinese internet giants ran a \"hundred-model war\" through 2023-24, with every major platform shipping its own LLM. The economics forced a cull: keep one flagship, sunset the rest. Tencent's Pony Ma signaled the pivot first; ByteDance's 30% product cut is the same logic executed at scale.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Zhang Yiming",
+                "role": "ByteDance founder",
+                "years": "2012–",
+                "cc": "CN"
+              },
+              {
+                "name": "Pony Ma",
+                "role": "Tencent founder & CEO",
+                "years": "1998–",
+                "cc": "CN"
+              },
+              {
+                "name": "Eddie Wu",
+                "role": "Alibaba CEO",
+                "years": "2023–",
+                "cc": "CN"
+              },
+              {
+                "name": "Robin Li",
+                "role": "Baidu founder & CEO",
+                "years": "2000–",
+                "cc": "CN"
+              }
+            ],
+            "label": "the four that matter"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHIP CONSTRAINT",
+        "body": "US export controls since 2022 have blocked Nvidia's top-tier H100 and H200 chips from China. Domestic alternatives — Huawei Ascend, Cambricon — exist but trail in performance per watt. Inference at scale costs more in China than in the US for the same workload, which compresses margins before any pricing decision.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is large-scale AI inference structurally more expensive in China than in the US?",
+            "options": [
+              "Chinese electricity costs more than US electricity",
+              "US export controls block top-tier Nvidia chips, forcing less efficient alternatives",
+              "Chinese labor for data labeling is more expensive",
+              "Chinese cloud regulation requires redundant infrastructure"
+            ],
+            "correct": 1,
+            "explanation": "Since 2022, the US has restricted Nvidia H100/H200 exports to China — domestic chips work but use more watts per token, raising inference cost."
+          }
+        ]
+      },
+      {
+        "heading": "THE TENCENT PRECEDENT",
+        "body": "Pony Ma's \"switched ships\" remark echoes Tencent's 2011 pivot to mobile, when it killed PC-era products to bet WeChat. That ruthlessness — sunset what doesn't compound, even if it's working — is the playbook. The cost of running an underperforming AI product is now high enough that keeping it is a strategic mistake.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "ByteDance",
+                "value": "Doubao",
+                "cc": "CN"
+              },
+              {
+                "label": "Tencent",
+                "value": "Yuanbao, Hunyuan",
+                "cc": "CN"
+              },
+              {
+                "label": "Alibaba",
+                "value": "Qwen, Tongyi",
+                "cc": "CN"
+              },
+              {
+                "label": "Baidu",
+                "value": "Ernie",
+                "cc": "CN"
+              }
+            ],
+            "label": "China's big four AI portfolios"
+          }
+        ]
+      },
+      {
+        "heading": "THE GLOBAL ECHO",
+        "body": "This is not a China-specific problem. OpenAI, Anthropic, and Google all run inference at a loss on their consumer tiers; the bet is that model efficiency improves faster than usage grows. China's consolidation is the same equation forced earlier by tighter capital and a chip ceiling — a preview of what happens when the subsidy ends."
+      }
+    ],
+    "generatedAt": "2026-05-18T08:26:45.666Z",
+    "label": "AI Unit Economics",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-18-china-state-secrets-uyghur-codification": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A STATE SECRET IS IN CHINA",
+        "body": "China's State Secrets Law is unusually elastic: a matter becomes secret when an official says it is, and the designation can be applied retroactively. There is no independent review, and the defendant often cannot see the evidence against them because the evidence itself is classified.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2024 revision added a catch-all category — *work secrets* — covering information that is 'not a state secret but would cause adverse effects if leaked.' The vagueness is the point."
+          }
+        ]
+      },
+      {
+        "heading": "THE XINJIANG SYSTEM",
+        "body": "Since 2017, Xinjiang has functioned as the world's most instrumented surveillance environment: mandatory phone-spyware installation at checkpoints, DNA collection from millions, facial-recognition cameras at mosque entrances, and the Integrated Joint Operations Platform aggregating it all. Codifying religious practice as a secret closes the last reporting channel — what cameras already see, citizens may no longer describe.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "KZ",
+              "KG",
+              "TJ",
+              "AF",
+              "PK",
+              "MN"
+            ],
+            "label": "Xinjiang and its borders",
+            "markers": [
+              {
+                "lat": 43.8256,
+                "lng": 87.6168,
+                "label": "Urumqi"
+              },
+              {
+                "lat": 39.4704,
+                "lng": 75.9898,
+                "label": "Kashgar"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL ARC",
+        "body": "Xinjiang — 'new frontier' in Mandarin — was incorporated into the Qing empire in 1759 after the conquest of the Dzungar Khanate. Uyghurs briefly declared two short-lived East Turkestan Republics (1933, 1944) before the PLA absorbed the region in 1949. Han migration, encouraged from the 1950s and accelerated under the Xinjiang Production and Construction Corps, shifted the population balance from ~6% Han in 1949 to over 40% today.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1759",
+                "label": "Qing conquest of Dzungaria"
+              },
+              {
+                "year": "1864",
+                "label": "Yaqub Beg's emirate"
+              },
+              {
+                "year": "1933",
+                "label": "First East Turkestan Republic"
+              },
+              {
+                "year": "1944",
+                "label": "Second East Turkestan Republic"
+              },
+              {
+                "year": "1949",
+                "label": "PLA enters Xinjiang"
+              },
+              {
+                "year": "2009",
+                "label": "Urumqi riots"
+              },
+              {
+                "year": "2017",
+                "label": "Mass internment begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Revised State Secrets Law"
+              }
+            ],
+            "label": "Xinjiang under Beijing"
+          }
+        ]
+      },
+      {
+        "heading": "THE TURKIC MUSLIM WORLD",
+        "body": "Uyghurs speak a Turkic language closer to Uzbek than to Mandarin and have been Sunni Muslim since the 10th-century conversion of the Kara-Khanid Khanate. Kashgar was a major node on the Silk Road and a center of Islamic learning for centuries — Mahmud al-Kashgari compiled the first Turkic-Arabic dictionary there in 1072."
+      },
+      {
+        "heading": "THE SILENCE OF MUSLIM STATES",
+        "body": "In 2019, 22 mostly Western states signed a UN letter condemning Xinjiang policies; 50 states — including Saudi Arabia, Pakistan, UAE, Egypt, and Iran — signed a counter-letter praising China's 'counter-terrorism' work. Belt and Road financing, Chinese vaccine diplomacy, and shared interest in suppressing political Islam all weigh against solidarity. Turkey, which once hosted Uyghur exile communities openly, signed an extradition treaty with Beijing in 2017.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many states signed the 2019 UN letter defending China's Xinjiang policies?",
+            "options": [
+              "Around 10",
+              "Around 25",
+              "Around 50",
+              "Around 80"
+            ],
+            "correct": 2,
+            "explanation": "50 states signed the pro-China letter — more than double the 22 that signed the critical one. Most Muslim-majority states were among the signatories."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CODIFICATION MATTERS",
+        "body": "Mass surveillance and internment have operated in Xinjiang for years without explicit legal cover — much of the evidence reaching the outside world came from leaked internal documents (the China Cables, the Xinjiang Police Files) and survivor testimony. Reclassifying that same information as a state secret converts journalism and family contact into prosecutable offences, and gives Beijing a domestic-law basis to demand extradition of leakers abroad."
+      }
+    ],
+    "generatedAt": "2026-05-18T08:27:20.382Z",
+    "label": "State Secrets & Xinjiang",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-18-elliptic-ai-agents-crypto-compliance": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PSEUDONYMITY MYTH",
+        "body": "Bitcoin is not anonymous — it is pseudonymous. Every transaction is permanently public on the blockchain. The hard problem is linking a wallet address to a human identity, and once one link is made, the entire transaction history of that wallet becomes traceable backward and forward.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the inversion of traditional banking: in fiat, transactions are *private* but identities are *known*. On-chain, identities are *hidden* but transactions are **permanent and public**."
+          }
+        ]
+      },
+      {
+        "heading": "THE HEURISTIC THAT BROKE PRIVACY",
+        "body": "Chain-analysis firms cluster addresses using the common-input-ownership heuristic: if two addresses appear as inputs to the same transaction, the same entity controls both. Applied across billions of transactions, this collapses millions of supposedly distinct wallets into a few thousand real-world actors — exchanges, mixers, ransomware groups, state actors."
+      },
+      {
+        "heading": "THE TRAVEL RULE",
+        "body": "FATF's Recommendation 16, extended to crypto in 2019, requires Virtual Asset Service Providers to share originator and beneficiary information on transfers above $1,000 — the same rule banks have followed via SWIFT since 1996. Compliance software like Elliptic's exists primarily to operationalize this rule across jurisdictions that implement it differently or not at all."
+      },
+      {
+        "heading": "THE OFAC PRECEDENT",
+        "body": "In 2022 the US Treasury sanctioned Tornado Cash — not a person or company, but a piece of autonomous code on Ethereum. It was the first time a government sanctioned software itself. The legal theory remains contested, but the practical effect was immediate: every major compliance tool blacklists addresses that have ever touched the mixer.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did the US Treasury sanction in the 2022 Tornado Cash action?",
+            "options": [
+              "A Russian national who founded the project",
+              "An autonomous smart contract — code, not a person",
+              "A crypto exchange that processed the funds",
+              "A Cayman Islands holding company"
+            ],
+            "correct": 1,
+            "explanation": "OFAC sanctioned the smart contract addresses themselves — the first time a government added autonomous code to the SDN list."
+          }
+        ]
+      },
+      {
+        "heading": "THE ASYMMETRY",
+        "body": "Defensive AI must be right every time across billions of transactions; offensive AI only needs to succeed once per laundering chain. This is the classic defender's burden — and it is why compliance budgets at firms like Chainalysis and Elliptic have grown faster than the crypto market itself.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Chainalysis",
+                "value": "~$8.6bn val.",
+                "weight": 86
+              },
+              {
+                "label": "TRM Labs",
+                "value": "~$600m val.",
+                "weight": 6
+              },
+              {
+                "label": "Elliptic",
+                "value": "~$200m val.",
+                "weight": 2
+              },
+              {
+                "label": "Crystal Intel",
+                "value": "private",
+                "weight": 1
+              }
+            ],
+            "label": "on-chain forensics market (selected players)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BANKS CARE NOW",
+        "body": "BlackRock's spot Bitcoin ETF crossed $50bn in assets within a year of launch — the fastest-growing ETF in history. Once tokenized treasuries and stablecoins sit on bank balance sheets, every correspondent banking relationship inherits crypto-native compliance risk. The on-chain world is no longer a separate jurisdiction; it is a wing of the existing one."
+      }
+    ],
+    "generatedAt": "2026-05-18T08:27:48.982Z",
+    "label": "AI Compliance & Crypto Forensics",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-18-iran-6500-arrested-espionage-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PARALLEL STATE",
+        "body": "Iran has two armed forces. The regular military (Artesh) defends borders; the Islamic Revolutionary Guard Corps (IRGC) defends the revolution. Domestic security runs through a third layer — the police (FARAJA) under the Interior Ministry, the Basij paramilitary under the IRGC, and the Intelligence Ministry (MOIS) competing with IRGC Intelligence Organization.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The overlap is deliberate. After 1979, Khomeini built **parallel institutions** so no single security body could stage a coup — every domestic crackdown involves at least two competing chains of command."
+          }
+        ]
+      },
+      {
+        "heading": "THE ESPIONAGE CHARGE",
+        "body": "Under Iran's penal code, espionage (jasusi) and 'corruption on earth' (mofsed-fil-arz) are capital offenses tried in Revolutionary Courts — a parallel judiciary created in 1979, outside the regular criminal system. Evidence standards are lower, defense access is restricted, and verdicts are rarely overturned.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Iranian court system tries espionage cases?",
+            "options": [
+              "The regular criminal courts",
+              "The Revolutionary Courts",
+              "The Special Clerical Court",
+              "Military tribunals"
+            ],
+            "correct": 1,
+            "explanation": "Revolutionary Courts, established by Khomeini in 1979, handle national security and espionage cases with reduced procedural protections."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1980s PRECEDENT",
+        "body": "During the Iran-Iraq war, the regime executed thousands accused of spying for Iraq, the MEK, or foreign powers — culminating in the 1988 prison massacres where 2,800-5,000 political prisoners were killed in weeks. Wartime mobilization has historically been when Iran's security state casts its widest net."
+      },
+      {
+        "heading": "THE DUAL-NATIONAL PATTERN",
+        "body": "Iran does not recognize dual citizenship. Iranian-Americans, Iranian-Europeans, and Iranian-Israelis arrested on Iranian soil are treated solely as Iranian nationals — and are often the most visible espionage detainees because their foreign governments protest. The dual-national becomes a diplomatic bargaining chip."
+      },
+      {
+        "heading": "THE ECONOMIC LEVER",
+        "body": "Mass detention compounds Iran's economic squeeze. Sanctions already isolated the rial; security crackdowns deter the remaining foreign investment and accelerate brain drain among professionals who can leave.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              44.844405,
+              44.870503,
+              44.889801,
+              44.914199,
+              44.980798,
+              45.025177,
+              45.015003,
+              45.015003,
+              45.029197,
+              45.034201,
+              45.065837,
+              45.183781,
+              45.1469,
+              45.167301,
+              45.142499,
+              45.190601,
+              45.216799,
+              45.231614,
+              45.233899,
+              45.364747,
+              45.347503,
+              45.347503,
+              45.380101,
+              45.395703,
+              45.413499,
+              45.429402,
+              45.5443,
+              45.495196,
+              45.522506,
+              45.579503
+            ],
+            "periods": [
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18"
+            ],
+            "label": "Turkish lira",
+            "unit": "TRY / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE ISRAELI INFILTRATION ANXIETY",
+        "body": "Mossad's documented operations inside Iran — the 2018 nuclear archive heist from a Tehran warehouse, the 2020 assassination of nuclear scientist Mohsen Fakhrizadeh by remote-controlled gun, the 2024 killing of Hamas's Ismail Haniyeh in an IRGC guesthouse — have humiliated Iran's security services. Mass arrests are partly a response to a real penetration problem, partly a way to demonstrate vigilance."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-18"
+    ],
+    "generatedAt": "2026-05-18T08:28:17.995Z",
+    "label": "Iran's Security Apparatus",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-18-ml-procurement-fraud-detection-mexico": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LABEL PROBLEM",
+        "body": "Supervised learning needs labeled examples of both classes. Fraud datasets have a structural asymmetry: caught fraud is labeled, uncaught fraud sits silently in the 'clean' pile. A model trained naively learns to detect what auditors already catch — not what they miss.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the **positive-unlabeled** problem: you have confirmed positives (the debarment list) and a pool of unlabeled cases that mixes innocents with undetected fraud. Treating the unlabeled pool as 'negative' bakes the auditor's blind spots into the model."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DEBARMENT LISTS WORK",
+        "body": "A sanctioned-supplier registry is a rare gift: it is a government-curated list of firms that have been adjudicated as fraudulent. Most countries maintain one — the World Bank's debarred-firms list, the US System for Award Management exclusions, the EU's EDES database — and they share enough structural features that a method built on one transfers to others."
+      },
+      {
+        "heading": "THE TELLTALE SIGNATURES",
+        "body": "Two patterns dominate procurement fraud globally. Shared directors across nominally-independent bidders signal collusive bid-rigging — the same person controls multiple 'competitors'. Bid-clustering — prices suspiciously close to each other or to the reserve price — signals coordinated bidding where firms take turns winning.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Shared directors",
+                "value": "collusion ring",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Bid clustering",
+                "value": "rotation scheme",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Single-bidder lots",
+                "value": "steering",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Late entrant wins",
+                "value": "front company",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Repeat winners",
+                "value": "capture",
+                "tone": "neutral"
+              }
+            ],
+            "label": "common procurement-fraud signatures"
+          }
+        ]
+      },
+      {
+        "heading": "THE SCALE OF THE LEAK",
+        "body": "Public procurement is roughly 13–15% of global GDP. The OECD estimates 10–30% of procurement spend is lost to corruption and inefficiency in developing economies. For Mexico, that translates to tens of billions of dollars annually — a fiscal hole larger than most social programs."
+      },
+      {
+        "heading": "THE MEXICAN CONTEXT",
+        "body": "Mexico's procurement scandals have toppled administrations. The Estafa Maestra exposed in 2017 routed ~$400 million through shell universities. The 2014 Casa Blanca affair tied the presidency to a contractor's housing gift. Detection has historically been journalistic, not algorithmic — which is why training a model on the resulting debarment list is, in effect, learning from investigative reporting.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is a debarment list especially valuable as ML training data?",
+            "options": [
+              "It contains every fraudulent firm in the country",
+              "It provides confirmed positive examples in a domain where positives are usually hidden",
+              "It is updated in real time by auditors",
+              "It includes the dollar amounts stolen"
+            ],
+            "correct": 1,
+            "explanation": "Fraud detection's hardest problem is the absence of confirmed positives. A debarment list is a rare adjudicated-positive dataset."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT GENERALIZES",
+        "body": "Corruption mechanisms are structurally similar across jurisdictions because the underlying game — extracting rents from a competitive-bidding requirement — has the same solutions everywhere. A model that learns 'shared directors plus bid-clustering' in Mexico will flag the same pattern in Brazil, Nigeria, or Indonesia. The auditors change; the geometry of fraud does not."
+      }
+    ],
+    "generatedAt": "2026-05-18T08:28:49.346Z",
+    "label": "ML & Procurement Fraud",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-18-nanopore-sequencing-thalassemia-southern-china": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THALASSEMIA IS",
+        "body": "Thalassemia is an inherited blood disorder where the body underproduces one of hemoglobin's protein chains. Beta-thalassemia major patients require lifelong monthly transfusions; without them, most die in childhood from anemia and organ damage.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The name comes from the Greek *thalassa* (sea) — it was first described around the Mediterranean, where the carrier rate is highest. The disease and **malaria** share a geography because a single defective globin gene partially protects against malaria, giving carriers a survival edge in endemic regions."
+          }
+        ]
+      },
+      {
+        "heading": "THE MALARIA BARGAIN",
+        "body": "Thalassemia, sickle cell, and G6PD deficiency are all examples of balancing selection: one copy of the mutation protects against malaria, two copies cause disease. Evolution preserved the mutations because in malarial regions, the carrier advantage outweighed the homozygous cost.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "TH",
+              "VN",
+              "MY",
+              "ID",
+              "IN",
+              "PK",
+              "BD",
+              "GR",
+              "IT",
+              "CY"
+            ],
+            "label": "the thalassemia belt",
+            "caption": "highest carrier rates trace the historical malaria zone"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PCR MISSES VARIANTS",
+        "body": "PCR panels amplify and probe specific known mutations. If a patient carries a rare deletion, inversion, or a variant not on the panel, the test reports negative. In southern China alone, more than 100 distinct beta-globin mutations have been catalogued — no fixed panel covers them all.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can PCR-based genetic tests miss a real mutation in a patient?",
+            "options": [
+              "The DNA sample degrades during transport",
+              "The test only detects mutations included in its predefined panel",
+              "PCR cannot read DNA shorter than 1000 base pairs",
+              "Hemoglobin genes are too small to amplify"
+            ],
+            "correct": 1,
+            "explanation": "PCR panels are targeted — they look only for the specific variants designed into the assay. Novel or rare mutations outside the panel return as negative results."
+          }
+        ]
+      },
+      {
+        "heading": "HOW NANOPORE WORKS",
+        "body": "A single strand of DNA is pulled through a protein pore embedded in a membrane. Each base disrupts an electric current differently, and the sequence is read from the current trace. Unlike PCR or Illumina, there is no amplification step and no fixed read length — the molecule is read directly, end to end.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **MinION** is the size of a USB stick and runs off a laptop. Oxford Nanopore's breakthrough was making the sensing membrane stable enough for field use — earlier nanopore prototypes worked only in controlled labs. The same device has been used to sequence Ebola in West Africa and SARS-CoV-2 on the International Space Station."
+          }
+        ]
+      },
+      {
+        "heading": "THE CARRIER-SCREENING PRECEDENT",
+        "body": "Cyprus reduced its thalassemia birth rate to near zero through mandatory premarital carrier screening introduced in 1976, combined with genetic counseling. Sardinia, Greece, and Iran followed with similar programs. The disease is one of the clearest cases where population-scale genetic screening changed an entire country's disease burden.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Cyprus",
+                "value": "~14%",
+                "cc": "CY",
+                "weight": 14
+              },
+              {
+                "label": "Sardinia",
+                "value": "~12%",
+                "cc": "IT",
+                "weight": 12
+              },
+              {
+                "label": "Maldives",
+                "value": "~18%",
+                "cc": "MV",
+                "weight": 18
+              },
+              {
+                "label": "S. China",
+                "value": "~10%",
+                "cc": "CN",
+                "weight": 10
+              },
+              {
+                "label": "Pakistan",
+                "value": "~6%",
+                "cc": "PK",
+                "weight": 6
+              },
+              {
+                "label": "Iran",
+                "value": "~4%",
+                "cc": "IR",
+                "weight": 4
+              }
+            ],
+            "label": "thalassemia carrier rate (selected populations)"
+          }
+        ]
+      },
+      {
+        "heading": "THE DECENTRALIZATION SHIFT",
+        "body": "Genomic medicine has been gated by central labs with million-dollar sequencers and week-long turnarounds. A 3-hour run on a portable device pushes diagnosis to the point of care — the same structural shift that PCR enabled for infectious disease in the 1990s, now arriving for inherited disease."
+      }
+    ],
+    "generatedAt": "2026-05-18T08:29:22.989Z",
+    "label": "Nanopore Sequencing & Thalassemia",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-18-nigeria-budget-implementation-report-delay": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT AN APPROPRIATION ACT DOES",
+        "body": "An appropriation act is the legal instrument that authorizes the executive to spend money. Without it, the treasury cannot lawfully release a single naira — even for salaries already promised. The budget speech is theatre; the appropriation act is the cash key.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: a *budget* is a plan, an *appropriation* is a legal authorization. Spending without appropriation is unconstitutional in every Westminster-derived system, Nigeria included."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE FISCAL YEAR SLIPS",
+        "body": "Nigeria's constitution sets the fiscal year as January to December, but the National Assembly has repeatedly passed late budgets and then extended the implementation window by re-enactment. A January-December budget signed in March effectively becomes a March-March budget — and the calendar drifts.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2020",
+                "label": "Signed Dec 2019 — first on-time in a decade",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "Signed Dec 2020"
+              },
+              {
+                "year": "2022",
+                "label": "Signed Dec 2021"
+              },
+              {
+                "year": "2023",
+                "label": "Signed Jan 2023"
+              },
+              {
+                "year": "2024",
+                "label": "Signed Jan 2024"
+              },
+              {
+                "year": "2025",
+                "label": "Re-enacted, extended to June 2026"
+              }
+            ],
+            "label": "Nigeria budget signing dates"
+          }
+        ]
+      },
+      {
+        "heading": "THE QUARTERLY REPORT MECHANIC",
+        "body": "Nigeria's Fiscal Responsibility Act 2007 requires the Budget Office to publish quarterly implementation reports within 30 days of each quarter's close. The reports show what was actually spent versus what was appropriated — the only public window into whether ministries are executing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under Nigeria's Fiscal Responsibility Act, how soon after a quarter ends must budget implementation reports be published?",
+            "options": [
+              "Within 30 days",
+              "Within 90 days",
+              "Within 6 months",
+              "No statutory deadline"
+            ],
+            "correct": 0,
+            "explanation": "The 2007 act sets a 30-day window. Persistent breaches of that window have no enforcement mechanism — civil society litigates, but no minister has been sanctioned."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DELAYS COMPOUND",
+        "body": "When reports run months late, the next budget cycle begins before the last one is even audited. Legislators debate 2026 spending without knowing how 2024 actually closed. This is how recurrent overruns become structural — the feedback loop between authorization and accountability breaks."
+      },
+      {
+        "heading": "THE NAIRA CONTEXT",
+        "body": "Fiscal opacity and currency stress are linked. Markets that cannot see actual spending must assume the worst, and a naira that has lost over two-thirds of its value against the dollar since the 2023 float makes every delayed report a fresh question about whether the budget's revenue assumptions still hold.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              1345.790676,
+              1346.63,
+              1345.47,
+              1348.77,
+              1351.32,
+              1354.96,
+              1351.847873,
+              1351.847873,
+              1352.81,
+              1360.19,
+              1374.96,
+              1375.07,
+              1374.69,
+              1375.98,
+              1375.98,
+              1375.65,
+              1370.93,
+              1365.9,
+              1360.53,
+              1361.67,
+              1356.19465,
+              1356.19465,
+              1357.96,
+              1363.47,
+              1370.1,
+              1370.5,
+              1370.6,
+              1370.49,
+              1372.988035,
+              1372.74
+            ],
+            "periods": [
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18"
+            ],
+            "label": "Nigerian naira",
+            "unit": "NGN / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Buhari's 2020 budget — signed in December 2019 — was the first January-aligned Nigerian budget in over a decade and was treated as a reform milestone. The drift back to mid-year signings under successive governments shows how hard fiscal discipline is to institutionalize once political incentives favor delay."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-18"
+    ],
+    "generatedAt": "2026-05-18T08:29:49.823Z",
+    "label": "Appropriation & the Fiscal Year",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-18-oil-prices-iran-talks-stall-clock-ticking": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHOKEPOINT",
+        "body": "Roughly one-fifth of the world's seaborne oil passes through the Strait of Hormuz, a 33-km-wide channel between Iran and Oman. The deepwater shipping lanes hug the Iranian side, which is why Iranian naval positioning moves the global oil price more than any other single variable.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW",
+              "IQ"
+            ],
+            "label": "the Gulf chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 23.96,
+                "lng": 52.18,
+                "label": "Barakah nuclear plant"
+              },
+              {
+                "lat": 26.225,
+                "lng": 50.158,
+                "label": "Ras Tanura terminal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE PREMIUM MOVES BEFORE THE TANKERS DO",
+        "body": "Oil prices do not wait for actual disruption. Lloyd's of London war-risk insurance premiums spike on the threat alone, and once underwriters quote a higher rate for Gulf transits, every cargo on the water re-prices instantly. The financial chokepoint closes faster than the physical one.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In the **1984–88 Tanker War**, Iran and Iraq attacked over 400 ships. The actual oil-flow disruption was modest — but *insurance rates* did the work, briefly doubling Brent before reflagging under US escort restored normalcy."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BARAKAH MATTERS",
+        "body": "Barakah, on the UAE's western Gulf coast, is the Arab world's first operational nuclear power plant — four South Korean APR-1400 reactors providing roughly a quarter of Emirati electricity. A drone strike on the site is a step up the escalation ladder that pre-Tanker-War Gulf wars never reached: nuclear infrastructure is a civilian target with strategic-weapon optics."
+      },
+      {
+        "heading": "THE EXPIRATION TRAP",
+        "body": "Crude futures contracts settle on a fixed calendar date. As expiration approaches, holders who don't want physical delivery must roll forward — and in a tight market, that rolling itself bids the front-month price higher. A geopolitical shock landing on expiration day amplifies moves because liquidity is thinnest exactly when volatility is highest.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does an oil shock landing on futures expiration day amplify the price move?",
+            "options": [
+              "Exchanges raise margin requirements only at expiration",
+              "Liquidity is thinnest at expiration, so the same order size moves price further",
+              "Physical delivery becomes mandatory for all contract holders",
+              "OPEC meets on expiration days by convention"
+            ],
+            "correct": 1,
+            "explanation": "As contracts near expiry, most participants have already rolled out, leaving a thin book — shocks hit a market with fewer buyers and sellers to absorb them."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHINA IS THE SWING CALL",
+        "body": "China is Iran's largest oil customer, buying roughly 1.5 million barrels per day in sanctioned flows routed through ship-to-ship transfers and relabeled cargoes. Beijing's leverage over Tehran is commercial, not diplomatic — which is why a Trump-Xi call that produces nothing reads as a closed door, not an open negotiation.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~1.5 mb/d",
+                "cc": "CN",
+                "weight": 1.5,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Syria",
+                "value": "~0.1 mb/d",
+                "cc": "SY",
+                "weight": 0.1,
+                "tone": "neutral"
+              },
+              {
+                "label": "Venezuela swap",
+                "value": "~0.05 mb/d",
+                "cc": "VE",
+                "weight": 0.05,
+                "tone": "neutral"
+              }
+            ],
+            "label": "top buyers of Iranian crude (2024 est., mb/d)"
+          }
+        ]
+      },
+      {
+        "heading": "THE OPTIONS ON THE TABLE",
+        "body": "Iran rarely closes Hormuz outright — doing so would punish its own customers in China and India first. The historical pattern is harassment: mining narrow lanes, seizing individual tankers, GPS-spoofing commercial vessels. Each tactic raises insurance rates without triggering the full-spectrum naval response that closure would invite."
+      }
+    ],
+    "generatedAt": "2026-05-18T08:30:31.751Z",
+    "label": "Oil, Hormuz & the Risk Premium",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-18-pakpattan-prison-hiv-hepatitis-screening": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRANSMISSION VECTOR",
+        "body": "Prisons concentrate three things that drive HIV and hepatitis transmission: injection drug use with shared needles, unprotected sex, and unsterile tattooing. A single contaminated needle can seed an outbreak across a cellblock within months.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Hepatitis C survives on a used needle for up to **six weeks**; HIV degrades faster but transmits efficiently when reuse is rapid. The two viruses travel the same routes, which is why they cluster together in prison cohorts."
+          }
+        ]
+      },
+      {
+        "heading": "PAKISTAN'S BACKGROUND BURDEN",
+        "body": "Pakistan has roughly 10 million chronic hepatitis C cases — the second-largest national burden after China — and one of Asia's fastest-growing HIV epidemics. The driver is not sexual transmission; it is reused syringes in informal clinics, barber shops, and now prisons.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~10m",
+                "cc": "CN",
+                "weight": 10,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Pakistan",
+                "value": "~10m",
+                "cc": "PK",
+                "weight": 10,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": "~6m",
+                "cc": "IN",
+                "weight": 6,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Egypt",
+                "value": "~4m",
+                "cc": "EG",
+                "weight": 4,
+                "tone": "neutral"
+              },
+              {
+                "label": "Russia",
+                "value": "~3m",
+                "cc": "RU",
+                "weight": 3,
+                "tone": "neutral"
+              }
+            ],
+            "label": "chronic hepatitis C burden (millions)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY INTAKE SCREENING MATTERS",
+        "body": "Mandatory screening on entry serves two purposes: it identifies infected inmates for treatment, and it establishes a baseline so that infections acquired inside the prison can be distinguished from those imported from outside. Without intake testing, a facility cannot tell whether it is treating a cluster or hosting one."
+      },
+      {
+        "heading": "THE TREATMENT GAP",
+        "body": "Hepatitis C is curable. Direct-acting antivirals clear the virus in 8-12 weeks, and generic Indian-made courses cost under $100 — the same pricing dynamic that broke HIV treatment costs in the 2000s. The bottleneck in Pakistan is not drug price; it is finding cases before they progress to cirrhosis or liver cancer.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the approximate generic cost of a full hepatitis C cure today?",
+            "options": [
+              "Under $100",
+              "About $1,000",
+              "About $10,000",
+              "About $84,000"
+            ],
+            "correct": 0,
+            "explanation": "Generic direct-acting antivirals from Indian manufacturers cure hepatitis C for under $100 per course — down from the $84,000 US list price for Sovaldi when it launched in 2013."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2019 RATODERO PRECEDENT",
+        "body": "In 2019, over 1,100 people — most of them children — tested positive for HIV in Ratodero, Sindh, after a single doctor reused syringes. It became one of the largest pediatric HIV outbreaks ever recorded, and the investigation revealed that informal clinics across Pakistan routinely reuse needles. Pakpattan is not an anomaly; it is the same mechanism in a closed institution."
+      }
+    ],
+    "generatedAt": "2026-05-18T08:30:57.642Z",
+    "label": "Prisons & Blood-Borne Disease",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-18-russia-china-trade-47mt-border-crossings": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PIVOT TO ASIA",
+        "body": "Before 2022, roughly half of Russia's trade flowed west to Europe. Sanctions after the Ukraine invasion collapsed that corridor within eighteen months. China absorbed the redirect: bilateral trade jumped from $147bn in 2021 to over $240bn by 2024, settled increasingly in yuan rather than dollars.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shift is not just volume — it is *currency regime*. By 2024, over **90%** of Russia-China trade was settled in **rubles and yuan**, bypassing the SWIFT-dollar rails that sanctions weaponized."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY OF THE BORDER",
+        "body": "The Russia-China frontier runs 4,200 km, but commerce funnels through a handful of crossings. The Amur River separates the two for most of its length — historically a barrier, only recently bridged. Most freight still moves through rail crossings at Zabaikalsk-Manzhouli and Suifenhe-Pogranichny.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "CN",
+              "MN",
+              "KZ",
+              "KP"
+            ],
+            "label": "the corridor",
+            "markers": [
+              {
+                "lat": 49.6503,
+                "lng": 117.3289,
+                "label": "Zabaikalsk-Manzhouli rail"
+              },
+              {
+                "lat": 44.385,
+                "lng": 131.1517,
+                "label": "Suifenhe-Pogranichny"
+              },
+              {
+                "lat": 50.2769,
+                "lng": 127.5404,
+                "label": "Blagoveshchensk-Heihe bridge"
+              },
+              {
+                "lat": 45.7747,
+                "lng": 133.1239,
+                "label": "Harbin hub"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE BRIDGE TOOK 30 YEARS",
+        "body": "The Blagoveshchensk-Heihe road bridge across the Amur opened in 2022 — proposed in 1988, stalled for three decades by mutual suspicion. Moscow feared Chinese demographic pressure into the underpopulated Russian Far East; Beijing was unwilling to invest while Russia hedged toward Europe. Sanctions removed the hedge.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1988",
+                "label": "Bridge first proposed"
+              },
+              {
+                "year": "1995",
+                "label": "Bilateral agreement signed"
+              },
+              {
+                "year": "2016",
+                "label": "Construction finally begins"
+              },
+              {
+                "year": "2022",
+                "label": "Bridge opens; Ukraine invasion",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Russia-China trade hits $240bn"
+              }
+            ],
+            "label": "the slow bridge"
+          }
+        ]
+      },
+      {
+        "heading": "THE DEMOGRAPHIC ASYMMETRY",
+        "body": "The Russian Far East holds about 6 million people across an area twice the size of India. The three Chinese provinces directly across the border hold over 100 million. This 17-to-1 imbalance is the deep anxiety beneath every Russia-China infrastructure decision — and the reason rail and customs throughput, not settlement, define the relationship.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Russian Far East",
+                "value": "~6mn people",
+                "cc": "RU",
+                "weight": 6
+              },
+              {
+                "label": "Heilongjiang",
+                "value": "~31mn",
+                "cc": "CN",
+                "weight": 31
+              },
+              {
+                "label": "Jilin",
+                "value": "~24mn",
+                "cc": "CN",
+                "weight": 24
+              },
+              {
+                "label": "Liaoning",
+                "value": "~42mn",
+                "cc": "CN",
+                "weight": 42
+              }
+            ],
+            "label": "across the Amur"
+          }
+        ]
+      },
+      {
+        "heading": "THE UNEQUAL EXCHANGE",
+        "body": "Russia ships hydrocarbons, timber, and metals north-to-south; China ships machinery, electronics, and consumer goods south-to-north. This is the classic resource-for-manufactures pattern that historically defines a junior partner. Soviet ideologues once warned of exactly this dynamic with the West; it now describes Russia's posture toward Beijing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Russia-China trade is now settled in rubles and yuan rather than dollars or euros?",
+            "options": [
+              "Around 25%",
+              "Around 50%",
+              "Over 90%",
+              "Still under 10%"
+            ],
+            "correct": 2,
+            "explanation": "By 2024, over 90% of bilateral trade settled in national currencies — a direct response to SWIFT sanctions and dollar-system exclusion."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-18T08:31:28.261Z",
+    "label": "The Russia-China Land Bridge",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-18-ryanair-jet-fuel-iran-war-fares": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY AIRLINES HEDGE",
+        "body": "Fuel is 25-30% of an airline's operating cost — the single largest variable expense. A $10/barrel move in Brent shifts annual fuel spend by hundreds of millions for a carrier the size of Ryanair. Hedging locks forward prices via swaps or collars, trading upside for predictability.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Ryanair famously hedges further out than peers — typically **12-18 months forward at 80-90% coverage**, versus IAG and Lufthansa at closer to 60%. It's the structural reason O'Leary can undercut on fares: he knows next summer's fuel cost while competitors are still guessing."
+          }
+        ]
+      },
+      {
+        "heading": "THE CRACK SPREAD",
+        "body": "Jet fuel is not Brent. It's a refined product, and its price is Brent plus the 'crack spread' — the refining margin. When Hormuz risk spikes, the crack widens faster than crude itself because refineries near the Gulf supply much of Europe's jet.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of an airline's operating cost is typically fuel?",
+            "options": [
+              "5-10%",
+              "25-30%",
+              "50-60%",
+              "Under 5%"
+            ],
+            "correct": 1,
+            "explanation": "Fuel runs 25-30% of operating cost — the largest single variable. This is why hedging strategy is a top-three corporate decision for any airline."
+          }
+        ]
+      },
+      {
+        "heading": "WHO CAN'T HEDGE",
+        "body": "Hedging requires investment-grade credit. Counterparties demand collateral or a strong balance sheet before writing a 12-month fuel swap. Carriers in financial distress — most of the Gulf-exposed African and South Asian airlines — pay spot prices and absorb every spike directly.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ryanair",
+                "value": "~80%",
+                "cc": "IE",
+                "tone": "favorable",
+                "weight": 80
+              },
+              {
+                "label": "IAG",
+                "value": "~60%",
+                "cc": "GB",
+                "tone": "neutral",
+                "weight": 60
+              },
+              {
+                "label": "Lufthansa",
+                "value": "~65%",
+                "cc": "DE",
+                "tone": "neutral",
+                "weight": 65
+              },
+              {
+                "label": "easyJet",
+                "value": "~70%",
+                "cc": "GB",
+                "tone": "favorable",
+                "weight": 70
+              },
+              {
+                "label": "Turkish",
+                "value": "~50%",
+                "cc": "TR",
+                "tone": "neutral",
+                "weight": 50
+              },
+              {
+                "label": "Pakistan Intl",
+                "value": "~0%",
+                "cc": "PK",
+                "tone": "unfavorable",
+                "weight": 2
+              }
+            ],
+            "label": "jet fuel hedge coverage, next 12 months"
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ PASS-THROUGH",
+        "body": "One-fifth of global oil and roughly a quarter of LNG transits the Strait. Iran's coastline runs the entire northern edge; the deep channel hugs the Iranian side. A risk premium appears in Brent within hours of any escalation, and there is no overland pipeline route that can replace seaborne Gulf volumes at scale.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.2867,
+                "lng": 51.5333,
+                "label": "Ras Laffan LNG"
+              },
+              {
+                "lat": 26.6,
+                "lng": 56.2667,
+                "label": "Bandar Abbas"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 1980s PRECEDENT",
+        "body": "During the 1984-88 Tanker War, Iran and Iraq hit over 400 commercial vessels in the Gulf. Oil spiked, then markets adapted: tankers reflagged under US and Kuwaiti flags, warships escorted convoys, and insurance rates settled at a new — higher — baseline. The disruption was real, but containable, and that's the historical pattern markets price."
+      },
+      {
+        "heading": "WHY FARES MOVE SLOWLY",
+        "body": "European short-haul fares are set months ahead via yield-management systems. A fuel spike today shows up in pricing for next summer's flights, not tomorrow's. This is why O'Leary's guidance of 'broadly flat' fares signals the hedge held — if it hadn't, summer 2026 prices would already be visibly higher."
+      }
+    ],
+    "generatedAt": "2026-05-18T08:32:04.005Z",
+    "label": "Jet Fuel Hedging & the Hormuz Premium",
+    "category": "economy",
+    "articleCount": 1
   }
 }
