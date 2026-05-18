@@ -3,7 +3,6 @@
 // the API / generator / mobile fetch path. Unreachable in production builds.
 
 import type { ArticleBlock } from '@shared/types';
-import { Stack } from 'expo-router';
 import { Fragment, useMemo } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { renderBlocks } from '../../components/blocks';
@@ -444,54 +443,45 @@ export default function BlockGalleryScreen() {
   const openLink = useOpenLink();
 
   return (
-    <>
-      <Stack.Screen
-        options={{
-          title: 'Block Gallery',
-          headerStyle: { backgroundColor: colors.bg },
-          headerTintColor: colors.textEmphasis,
-        }}
-      />
-      <ScrollView
-        style={{ flex: 1, backgroundColor: colors.bg }}
-        contentContainerStyle={styles.scroll}
-      >
-        <Text variant="title" tone="emphasis" style={[styles.title, font.bold]}>
-          Block Gallery
-        </Text>
-        <Text variant="caption" tone="secondary" style={styles.intro}>
-          Every block type, every variant, hand-crafted fixtures. Dev-only route — not reachable in
-          production. Edit `mobile/app/__dev/blocks.tsx` to add cases.
-        </Text>
+    <ScrollView
+      style={{ flex: 1, backgroundColor: colors.bg }}
+      contentContainerStyle={styles.scroll}
+    >
+      <Text variant="title" tone="emphasis" style={[styles.title, font.bold]}>
+        Block Gallery
+      </Text>
+      <Text variant="caption" tone="secondary" style={styles.intro}>
+        Every block type, every variant, hand-crafted fixtures. Dev-only route — not reachable in
+        production. Edit `mobile/app/__dev/blocks.tsx` to add cases.
+      </Text>
 
-        {SECTIONS.map((section, idx) => (
-          <Fragment key={section.title}>
-            <View style={styles.sectionHeader}>
-              <Text variant="labelXs" tone="accent" style={styles.sectionLabel}>
-                {`§${idx + 1} · ${section.title.toUpperCase()}`}
+      {SECTIONS.map((section, idx) => (
+        <Fragment key={section.title}>
+          <View style={styles.sectionHeader}>
+            <Text variant="labelXs" tone="accent" style={styles.sectionLabel}>
+              {`§${idx + 1} · ${section.title.toUpperCase()}`}
+            </Text>
+            {section.subtitle ? (
+              <Text variant="caption" tone="secondary" style={styles.sectionSubtitle}>
+                {section.subtitle}
               </Text>
-              {section.subtitle ? (
-                <Text variant="caption" tone="secondary" style={styles.sectionSubtitle}>
-                  {section.subtitle}
-                </Text>
-              ) : null}
-            </View>
-            {renderBlocks(section.blocks, {
-              mdStyles,
-              openLink,
-              variant: 'article',
-              sources: FIXTURE_SOURCES,
-            })}
-          </Fragment>
-        ))}
+            ) : null}
+          </View>
+          {renderBlocks(section.blocks, {
+            mdStyles,
+            openLink,
+            variant: 'article',
+            sources: FIXTURE_SOURCES,
+          })}
+        </Fragment>
+      ))}
 
-        <View style={styles.footer}>
-          <Text variant="labelXs" tone="secondary">
-            END · {SECTIONS.length} sections rendered
-          </Text>
-        </View>
-      </ScrollView>
-    </>
+      <View style={styles.footer}>
+        <Text variant="labelXs" tone="secondary">
+          END · {SECTIONS.length} sections rendered
+        </Text>
+      </View>
+    </ScrollView>
   );
 }
 

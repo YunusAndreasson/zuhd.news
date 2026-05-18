@@ -17,6 +17,7 @@ import {
   clearLegacyScheduledNotifications,
   enableNotifications,
   registerPushToken,
+  setupNotificationChannels,
 } from '../lib/notifications';
 import {
   setBriefing as setPendingBriefing,
@@ -67,6 +68,9 @@ export default function RootLayout() {
   useEffect(() => {
     registerBackgroundTask();
     clearLegacyScheduledNotifications();
+    // Set up Android channels at startup so they exist before any push, even
+    // if the user grants notification permission later via OS settings.
+    setupNotificationChannels();
     const stashResponse = (response: Notifications.NotificationResponse) => {
       const data = response.notification.request.content.data;
       // Daily-briefing pushes carry `kind: 'briefing'` — they have no article

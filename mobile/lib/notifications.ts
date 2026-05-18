@@ -7,10 +7,14 @@ import { API_BASE } from '../constants/theme';
 const CHANNEL_ID = 'briefing';
 
 // ---------------------------------------------------------------------------
-// Android channel (idempotent, no-op on iOS)
+// Android channels (idempotent, no-op on iOS)
 // ---------------------------------------------------------------------------
 
-async function setupChannel() {
+// Channels must exist before any push arrives so the OS can route it with the
+// right importance/sound. Call at app startup (independent of permission flow):
+// if a user later grants permission in OS settings, the channels are already
+// configured.
+export async function setupNotificationChannels(): Promise<void> {
   if (!IS_ANDROID) return;
   await Notifications.setNotificationChannelAsync(CHANNEL_ID, {
     name: 'Daily Briefing',
@@ -33,7 +37,7 @@ export async function enableNotifications(): Promise<boolean> {
   try {
     const { granted } = await Notifications.requestPermissionsAsync();
     if (!granted) return false;
-    await setupChannel();
+    await setupNotificationChannels();
     return true;
   } catch {
     return false;
