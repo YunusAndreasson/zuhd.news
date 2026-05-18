@@ -1,112 +1,5 @@
 [
   {
-    "timestamp": "2026-04-23T12:35:37.897Z",
-    "candidateCount": 12,
-    "candidates": [
-      {
-        "slug": "2026-04-22-bengal-murshidabad-polling-eve-tmc-cpim-clash",
-        "title": "Bengal Vote Marred by Clashes",
-        "category": "politics",
-        "eventCoverage": 83,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-23-khairpur-drone-strike-4-killed-shos-suspended",
-        "title": "Drone Kills 4 in Sindh",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-23-niger-benin-diplomatic-reset-wadagni",
-        "title": "Benin Vote Reopens Niger Talks",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-23-duterte-icc-confirms-crimes-against-humanity-trial",
-        "title": "ICC Confirms Duterte Trial",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-23-israel-destruction-southern-lebanon-anatomy",
-        "title": "Israel Clears Southern Lebanon Villages",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-23-us-missile-stockpiles-depleted-iran-war-rebuild",
-        "title": "Iran War Drains US Arsenal",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-23-btc-perpetual-futures-rally-pentagon-inflation",
-        "title": "Hormuz Mines Stall Bitcoin Rally",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-22-vietnam-nuclear-plant-2031-ninh-thuan-villagers",
-        "title": "Vietnam Nuclear Push Displaces Villagers",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-23-chile-mining-tailings-reprocessing-transition-minerals",
-        "title": "Chile Eyes Tailings for Minerals",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-23-us-military-bitcoin-node-power-projection-china",
-        "title": "US Military Joins Bitcoin Network",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-23-edtech-funding-collapse-global-south-k12",
-        "title": "Edtech Boom Ends, Learners Stranded",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-22-ai-anthropomorphism-rights-advocacy-feminist-critique",
-        "title": "Anthropomorphic AI Evades Accountability",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-04-22-bengal-murshidabad-polling-eve-tmc-cpim-clash",
-      "title": "Bengal Vote Marred by Clashes",
-      "category": "politics",
-      "body": "Trinamool and CPI(M) workers clashed overnight, 4 injured. 152",
-      "eventCoverage": 83,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "TMC and CPI(M) workers clash in Murshidabad ahead of Bengal polls, 4 injured",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 16
-    }
-  },
-  {
     "timestamp": "2026-04-23T17:32:37.461Z",
     "candidateCount": 13,
     "candidates": [
@@ -9690,5 +9583,42 @@
       "skipped": 0,
       "tokens": 24
     }
+  },
+  {
+    "timestamp": "2026-05-18T04:29:59.384Z",
+    "candidateCount": 4,
+    "candidates": [
+      {
+        "slug": "2026-05-18-pakistan-us-iran-mediator-shehbaz-sharif",
+        "title": "Pakistan Brokers US-Iran War Talks",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-18-uss-ford-carrier-326-day-deployment-home",
+        "title": "Ford Returns After Record Deployment",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-18-pakistan-used-car-import-drop-auto-parts-industrial-policy",
+        "title": "Pakistan Cuts Used Car Imports 96%",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-18-mumbai-railway-fine-accountability-compensation-gap",
+        "title": "Railways Driver Fined Rs 25,000 for Disabled Teen",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": null,
+    "skipReason": "all 4 candidates below coverage threshold 1",
+    "sent": false
   }
 ]
