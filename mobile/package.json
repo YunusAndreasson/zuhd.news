@@ -12,6 +12,9 @@
     "bump": "node scripts/bump.js",
     "icons": "node scripts/generate-icons.mjs",
     "test": "jest",
+    "bench": "tsx perf/run-bench.ts",
+    "bench:update": "tsx perf/run-bench.ts --update-baseline",
+    "bundle:check": "./scripts/check-bundle-size.sh",
     "test:ios": "./scripts/release.sh test ios",
     "test:android": "./scripts/release.sh test android",
     "release:ios": "./scripts/release.sh release ios",
@@ -79,6 +82,7 @@
     "@types/topojson-specification": "^1.0.5",
     "jest": "~29.7.0",
     "jest-environment-jsdom": "^30.4.1",
+    "tsx": "^4.22.2",
     "typescript": "~5.9.2"
   },
   "optionalDependencies": {
