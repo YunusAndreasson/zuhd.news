@@ -1,5 +1,5 @@
 import type { Entity } from '@shared/types';
-import type { ReactNode } from 'react';
+import { Fragment, type ReactNode } from 'react';
 import { Linking, StyleSheet, Text, type TextStyle } from 'react-native';
 import { ANDROID_TEXT_BASE } from '../constants/platform';
 import {
@@ -404,7 +404,10 @@ export function renderSentences(
       const segmentsForRender = entities?.length
         ? splitSegmentsWithEntities(baseSegments, consume(baseSegments))
         : baseSegments;
-      // Show dateline (e.g. time ago) in small-caps before first sentence.
+      // Dateline (e.g. time ago) in small-caps, on its own line above the
+      // first sentence, sharing the body's left margin. Keeps the body
+      // flush-left with no first-line inset; pays ~13px vertical (small-
+      // caps height) instead of pushing the body's first wrap.
       // One step above `sizeSm` (labelSm) so the time-ago glyphs sit firmly
       // in the section-heading family without dipping to the labelXs whisper
       // tier — was `size * 0.9` which scaled with the body and read as
@@ -412,17 +415,20 @@ export function renderSentences(
       if (dateline) {
         const datelineSize = typography.sizeSm + 1;
         return (
-          <Text
-            key={i}
-            style={[mdStyles.sentence, sizeStyle]}
-            maxFontSizeMultiplier={MAX_FONT_SCALE.body}
-          >
-            <Text style={[mdStyles.dateline, { fontSize: datelineSize }]} onPress={onDatelinePress}>
+          <Fragment key={i}>
+            <Text
+              style={[mdStyles.dateline, { fontSize: datelineSize }]}
+              onPress={onDatelinePress}
+            >
               {dateline}
             </Text>
-            {'\u2002'}
-            {renderSegments(segmentsForRender, mdStyles, openLink, onEntityPress)}
-          </Text>
+            <Text
+              style={[mdStyles.sentence, sizeStyle]}
+              maxFontSizeMultiplier={MAX_FONT_SCALE.body}
+            >
+              {renderSegments(segmentsForRender, mdStyles, openLink, onEntityPress)}
+            </Text>
+          </Fragment>
         );
       }
       return (
