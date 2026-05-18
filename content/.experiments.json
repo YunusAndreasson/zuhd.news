@@ -1,7 +1,131 @@
 {
   "version": 1,
-  "activeExperiments": [],
-  "activeExperiment": null,
+  "activeExperiments": [
+    {
+      "id": "2026-05-18-editor-effort-low",
+      "startDate": "2026-05-18",
+      "evaluateAfter": "2026-05-25",
+      "prNumber": null,
+      "hypothesis": "Editor is the slowest and highest-variance stage (mean 762s, median 633s, p75 1036s, p90 1447s, n=30 successful cycles 2026-05-10→2026-05-18, plus 2 hard timeouts at 1800s in that window). Editor task is checklist-driven (body-length trim, title-echo, acronym expansion, attribution, frontmatter preservation per scripts/check-prompt.md) — minimal open-ended reasoning required. Lowering effort medium→low on Sonnet 4.6 should cut editor wall-time ~30–40% and reduce sonnet token usage proportionally, while leaving writing-quality metrics flat. Writing-cluster RVS is already 92/100 (sourcing at 44 is the binding quality constraint, and editor does not touch sourcing). The mechanical editor-influenced metrics (charOver350Pct, titleEchoRatePct, passiveHookRatePct, causalClaimHits, hedgeRatePct) are at or near floor with no signal that more reasoning depth would push them lower — so headroom exists to spend less compute without losing quality. Slow tail (>1400s) reflects open-ended rewriting, which low effort should naturally cap.",
+      "parameter": "Editor stage effort level",
+      "file": "scripts/run-cycle.sh",
+      "oldValue": "--effort medium (editor invocation, line 269)",
+      "newValue": "--effort low (editor invocation, line 269)",
+      "targetMetric": "Editor stage wall-time median + p90 (parsed from cycle logs, \"Editor exit: 0 — Xs\"); secondary: zero hard timeouts (exit 124)",
+      "targetDirection": "decrease",
+      "baseline": {
+        "editorTimingWindow": "2026-05-10 → 2026-05-18 (logs/cycle-2026-05-1[0-8]_*.log)",
+        "editorSuccessN": 30,
+        "editorMeanS": 762,
+        "editorMedianS": 633,
+        "editorP25S": 427,
+        "editorP75S": 1036,
+        "editorP90S": 1447,
+        "editorMaxS": 1765,
+        "editorMinS": 236,
+        "editorHardTimeouts1800s": 2,
+        "qualityTrendLatest": {
+          "week": "2026-05-16",
+          "articleCount": 313,
+          "charOver350Pct": 25.6,
+          "titleEchoRatePct": 25.2,
+          "passiveHookRatePct": 0.3,
+          "causalClaimHits": 0,
+          "hedgeRatePct": 0.3,
+          "wordInRangePct": 70
+        },
+        "qualityTrendPrior": {
+          "week": "2026-05-10",
+          "charOver350Pct": 23.5,
+          "titleEchoRatePct": 26.7,
+          "passiveHookRatePct": 0.3,
+          "causalClaimHits": 0,
+          "hedgeRatePct": 0,
+          "wordInRangePct": 78.7
+        },
+        "diagnosticScript": "logs grep \"Editor exit: 0\" then awk percentile; content/.quality-trend.json for guardrail metrics"
+      },
+      "target": {
+        "editorMedianS": 450,
+        "editorP90S": 1000,
+        "editorHardTimeouts1800s": 0,
+        "stretchEditorMedianS": 380,
+        "stretchEditorP90S": 850
+      },
+      "guardrails": {
+        "charOver350PctMax": 28,
+        "titleEchoRatePctMax": 33,
+        "passiveHookRatePctMax": 1,
+        "causalClaimHitsMax": 2,
+        "hedgeRatePctMax": 1.5,
+        "wordInRangePctMin": 65,
+        "note": "Compare to 7-day window ending 2026-05-25. Trip any guardrail → revert to medium. Note charOver350Pct trend was already drifting up (21.1 → 25.6) pre-experiment, so threshold set generously to detect a step change rather than continued drift."
+      },
+      "concurrentExperimentInteraction": "None active. Editor stage only — does not touch selector floors, feed params, or build params, so orthogonal to any future sourcing/feed experiment if one starts before this evaluates."
+    }
+  ],
+  "activeExperiment": {
+    "id": "2026-05-18-editor-effort-low",
+    "startDate": "2026-05-18",
+    "evaluateAfter": "2026-05-25",
+    "prNumber": null,
+    "hypothesis": "Editor is the slowest and highest-variance stage (mean 762s, median 633s, p75 1036s, p90 1447s, n=30 successful cycles 2026-05-10→2026-05-18, plus 2 hard timeouts at 1800s in that window). Editor task is checklist-driven (body-length trim, title-echo, acronym expansion, attribution, frontmatter preservation per scripts/check-prompt.md) — minimal open-ended reasoning required. Lowering effort medium→low on Sonnet 4.6 should cut editor wall-time ~30–40% and reduce sonnet token usage proportionally, while leaving writing-quality metrics flat. Writing-cluster RVS is already 92/100 (sourcing at 44 is the binding quality constraint, and editor does not touch sourcing). The mechanical editor-influenced metrics (charOver350Pct, titleEchoRatePct, passiveHookRatePct, causalClaimHits, hedgeRatePct) are at or near floor with no signal that more reasoning depth would push them lower — so headroom exists to spend less compute without losing quality. Slow tail (>1400s) reflects open-ended rewriting, which low effort should naturally cap.",
+    "parameter": "Editor stage effort level",
+    "file": "scripts/run-cycle.sh",
+    "oldValue": "--effort medium (editor invocation, line 269)",
+    "newValue": "--effort low (editor invocation, line 269)",
+    "targetMetric": "Editor stage wall-time median + p90 (parsed from cycle logs, \"Editor exit: 0 — Xs\"); secondary: zero hard timeouts (exit 124)",
+    "targetDirection": "decrease",
+    "baseline": {
+      "editorTimingWindow": "2026-05-10 → 2026-05-18 (logs/cycle-2026-05-1[0-8]_*.log)",
+      "editorSuccessN": 30,
+      "editorMeanS": 762,
+      "editorMedianS": 633,
+      "editorP25S": 427,
+      "editorP75S": 1036,
+      "editorP90S": 1447,
+      "editorMaxS": 1765,
+      "editorMinS": 236,
+      "editorHardTimeouts1800s": 2,
+      "qualityTrendLatest": {
+        "week": "2026-05-16",
+        "articleCount": 313,
+        "charOver350Pct": 25.6,
+        "titleEchoRatePct": 25.2,
+        "passiveHookRatePct": 0.3,
+        "causalClaimHits": 0,
+        "hedgeRatePct": 0.3,
+        "wordInRangePct": 70
+      },
+      "qualityTrendPrior": {
+        "week": "2026-05-10",
+        "charOver350Pct": 23.5,
+        "titleEchoRatePct": 26.7,
+        "passiveHookRatePct": 0.3,
+        "causalClaimHits": 0,
+        "hedgeRatePct": 0,
+        "wordInRangePct": 78.7
+      },
+      "diagnosticScript": "logs grep \"Editor exit: 0\" then awk percentile; content/.quality-trend.json for guardrail metrics"
+    },
+    "target": {
+      "editorMedianS": 450,
+      "editorP90S": 1000,
+      "editorHardTimeouts1800s": 0,
+      "stretchEditorMedianS": 380,
+      "stretchEditorP90S": 850
+    },
+    "guardrails": {
+      "charOver350PctMax": 28,
+      "titleEchoRatePctMax": 33,
+      "passiveHookRatePctMax": 1,
+      "causalClaimHitsMax": 2,
+      "hedgeRatePctMax": 1.5,
+      "wordInRangePctMin": 65,
+      "note": "Compare to 7-day window ending 2026-05-25. Trip any guardrail → revert to medium. Note charOver350Pct trend was already drifting up (21.1 → 25.6) pre-experiment, so threshold set generously to detect a step change rather than continued drift."
+    },
+    "concurrentExperimentInteraction": "None active. Editor stage only — does not touch selector floors, feed params, or build params, so orthogonal to any future sourcing/feed experiment if one starts before this evaluates."
+  },
   "history": [
     {
       "id": "2026-05-09-multi-source-floor-3",
@@ -18,7 +142,7 @@
       "baseline": {
         "multiSourceRatePctWeekly": {
           "weekOf2026_04_17": 21.9,
-          "weekOf2026_04_19": 21.0,
+          "weekOf2026_04_19": 21,
           "weekOf2026_04_26": 22.7,
           "weekOf2026_05_07": 21.5
         },
@@ -34,9 +158,9 @@
         "diagnosticScript": "scripts/autoresearch/score.js (sourcing cluster), scripts/measure-quality.js (multiSourceRatePct)"
       },
       "target": {
-        "multiSourceRatePct": 28.0,
+        "multiSourceRatePct": 28,
         "sourcingClusterMedian": 52,
-        "stretchMultiSourceRatePct": 32.0,
+        "stretchMultiSourceRatePct": 32,
         "stretchSourcingClusterMedian": 56
       },
       "guardrails": {
@@ -50,7 +174,7 @@
       "concurrentExperimentInteraction": "no other experiments active. OIC source-floor closed 2026-05-09 as kept-confounded; title-echo and fabrication-gate concluded earlier this week. Note: the noNewExperimentsUntil 2026-05-12 self-imposed gate (per .daily-audit.json 2026-05-08) was overridden deliberately by operator on 2026-05-09 — the rationale for the gate was to baseline the post-2026-05-02 model lineup, but the sourcing cluster's 27-point gap below writing is too large to leave unaddressed for 3 more days. If the post-05-02 model lineup independently moves multi-source rate, the lift over baseline will overstate this experiment's effect — note that risk in the eval but proceed.",
       "result": "reverted",
       "evaluatedOn": "2026-05-16",
-      "notes": "Evaluated on the 7-day quality snapshot ending 2026-05-16 (313 articles, fully post-experiment). Target metric multiSourceRatePct: 21.5 (baseline week 2026-05-07) → 24.8 (intermediate snapshot 2026-05-10, only 1 day of post-experiment data) → 20.8 (week 2026-05-16, full window). The early bump faded and the rate settled at 20.8% — slightly below the 21.5 baseline and well short of the 28% target. Sourcing cluster did not improve as hypothesized. Guardrails: topOutletSharePct 14.3% (<20 ✓), throughput ~11/cycle (≥9 ✓). Reverted floors to politics ≥2, economy ≥2 in scripts/select-prompt.md. Learning: the feed's per-cycle multi-source supply (~9/cycle) caps the published multi-source rate near ~22% under current selector behavior — pushing floors higher does not unlock more genuine multi-source coverage; it just moves rejections around. Future sourcing-cluster experiments should target the upstream feed (Event Registry clustering coverage, regional outlet inclusion in events) rather than the selector floor lever, which appears tapped. Note: charOver350Pct continues to drift (17.1 → 21.1 → 23.5 → 25.6) — orthogonal to this experiment but worth a dedicated lead-length tightening experiment next."
+      "notes": "Evaluated on the 7-day quality snapshot ending 2026-05-16 (313 articles, fully post-experiment). Target metric multiSourceRatePct: 21.5 (baseline week 2026-05-07) → 24.8 (intermediate snapshot 2026-05-10, only 1 day of post-experiment data) → 20.8 (week 2026-05-16, full window). The early bump faded and the rate settled at 20.8% — slightly below the 21.5 baseline and well short of the 28% target. Sourcing cluster did not improve as hypothesized. Guardrails: topOutletSharePct 14.3% (<20 ✓), throughput ~11/cycle (≥9 ✓). Reverted floors to politics ≥2, economy ≥2 in scripts/select-prompt.md. Learning: the feed's per-cycle multi-source supply (~9/cycle) caps the published multi-source rate near ~22% under current selector behavior — pushing floors higher does not unlock more genuine multi-source coverage; it just moves rejections around. Future sourcing-cluster experiments should target the upstream feed (Event Registry clustering coverage, regional outlet inclusion in events) rather than the selector floor lever, which appears tapped."
     },
     {
       "id": "2026-05-01-oic-regional-source-floor",
@@ -70,14 +194,14 @@
         "oicTaggedArticles": 257,
         "oicWithAtLeastOneRegional": 132,
         "oicAtLeastOneSharePct": 51.4,
-        "oicMedianRegionalSharePct": 20.0,
+        "oicMedianRegionalSharePct": 20,
         "regionalOicTierShareCorpusPct": 20.1,
         "westernGlobalTierShareCorpusPct": 49.7,
         "diagnosticScript": "scripts/audience-tests.js"
       },
       "target": {
-        "oicAtLeastOneSharePct": 80.0,
-        "oicMedianRegionalSharePct": 40.0
+        "oicAtLeastOneSharePct": 80,
+        "oicMedianRegionalSharePct": 40
       },
       "guardrails": {
         "throughput": "articles/cycle must not drop below 9 (current ~10–13).",
@@ -133,11 +257,11 @@
       "targetMetric": "titleEchoRatePct (.quality-trend.json weekly snapshot)",
       "targetDirection": "decrease",
       "baseline": {
-        "weekOf2026_04_26": 40.0,
+        "weekOf2026_04_26": 40,
         "weekOf2026_04_19": 49.1,
         "weekOf2026_04_17": 53.8,
-        "trendPpPerWeek": -9.0,
-        "target": 10.0
+        "trendPpPerWeek": -9,
+        "target": 10
       },
       "guardrails": {
         "wordInRangePct": "must stay ≥75% (currently 79.5%) — over-rewriting could break length",
@@ -403,7 +527,7 @@
         "scorerScript": "scripts/lib/quality-score.js"
       },
       "target": {
-        "specificityMean": 11.0,
+        "specificityMean": 11,
         "specificityStretch": 12.5
       },
       "guardrails": {

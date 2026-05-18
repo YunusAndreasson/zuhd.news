@@ -1,28 +1,28 @@
 {
-  "date": "2026-05-13",
+  "date": "2026-05-18",
   "metrics": {
-    "articles": { "value": 30, "detail": "5 cycles scheduled, 3 completed at audit time, avg 7/cycle" },
-    "freshness": { "median": 0.9, "p90": 1.4, "max": 1.4, "target": 1.0, "met": true },
-    "categories": { "politics": 11, "economy": 8, "science": 5, "tech": 6 },
-    "multiSource": { "value": 7, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "ME": 11, "EU": 6, "AM": 6, "AS": 5, "AF": 1, "OC": 1 } },
-    "sciTech": { "ratio": 37, "target": 25, "met": true },
-    "topSourceShare": { "source": "Nature", "pct": 13, "target": 20, "met": true },
-    "uniqueSources": 39,
+    "articles": { "value": 29, "detail": "5 cycles (3 completed), avg 7/cycle" },
+    "freshness": { "median": 0.2, "p90": 0.2, "max": 0.2, "target": 1.0, "met": true },
+    "categories": { "politics": 9, "economy": 10, "science": 4, "tech": 6 },
+    "multiSource": { "value": 6, "target": 4, "met": true },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "EU": 5, "AM": 10, "AS": 5, "ME": 7, "AF": 2 } },
+    "sciTech": { "ratio": 34, "target": 25, "met": true },
+    "topSourceShare": { "source": "Al Jazeera Online / Nature / Dawn (tied)", "pct": 10, "target": 20, "met": true },
+    "uniqueSources": 31,
     "duplicates": 0,
-    "avgCycleDuration": 1024
+    "avgCycleDuration": 1218
   },
-  "experiment": "Active: 2026-05-09-multi-source-floor-3 (politics/economy multi-source floor 2→3 in select-prompt.md). evaluateAfter 2026-05-16 — not yet ready. Today's multiSource=7 on partial-day output is encouraging vs ~21–22% weekly baseline. The expired noNewExperimentsUntil:2026-05-12 gate has been dropped. No new experiment proposed — all daily-audit metrics within targets and one active experiment is occupying the sourcing-cluster dimension.",
-  "weakestArea": "AF/OC representation: 1 article each today, against an ME-heavy distribution (11/30 = 37%). Regions target (≥4 unique) is comfortably met, but AF coverage has been thin two days running (6 yesterday → 1 today). Likely a feed-side cluster gap rather than a selector flaw — worth watching, not yet actionable.",
+  "experiment": "Active: 2026-05-18-editor-effort-low (started today, evaluateAfter 2026-05-25). No new experiment proposed — the active experiment is mid-window and any concurrent feed/selector change risks confounding the editor wall-time signal via knock-on load on the editor stage.",
+  "weakestArea": "Science count at 4/day vs the ≥5 target — the binding miss today. Only three distinct science-attributed outlets appear (NBC News, Nature, Dawn), and two of those are general-interest, not science specialists; Phys.org, STAT, and Ars Technica all dropped out vs yesterday. Throughput also fell (29 vs 50) with 2 of 5 cycles incomplete, so part of the science miss is throughput-driven rather than a clean selector signal.",
   "watching": [
-    "Multi-source floor experiment: 4 cycles in, partial-day multiSource=7/30 (~23%) tracks toward the +28% target.",
-    "ME concentration (11/30 today): Israel/Gaza and Egypt/Mada Masr stories driving the share — natural if the news week stays Levant-heavy, but check Friday's snapshot for AF rebalance.",
-    "Briefing/audio pipeline: 04:00 and 16:00 cycles ran clean; no audio-stage errors flagged in metrics."
+    "Editor-effort-low experiment day 1 — first post-change cycles ran today; track editor wall-time median/p90 and guardrail metrics (charOver350Pct, titleEchoRatePct) across the 7-day window ending 2026-05-25.",
+    "Cycle completion: only 3 of 5 cycles completed today vs 4 of 5 yesterday — if this persists it will mask the editor experiment's wall-time signal and reduce article volume.",
+    "Daily throughput dropped 50 → 29; verify in tomorrow's audit whether this was a one-day artifact or sustained."
   ],
   "coverageGaps": [
-    "Africa: 1 article today (Daily Maverick) — Sub-Saharan economic and political stories under-represented vs feed availability.",
-    "Oceania: 1 article today — typical baseline, but a New Zealand or Pacific island lens absent across this week.",
-    "Latin America: AM bucket today (6) is North-America-skewed; check whether Bloomberg/Yahoo dominance is crowding LatAm regional outlets."
+    "Science slipped below floor (4 vs ≥5) with no Phys.org / STAT / Ars Technica picks today.",
+    "Oceania (OC) absent from the region breakdown; AF down to 2 picks vs 12 yesterday.",
+    "Specialist science outlets underused — counting Dawn and NBC News as science sources inflates the apparent science source list."
   ],
-  "context": "Day 4 of the multi-source floor experiment (2→3 on politics+economy). The post-2026-05-02 model lineup (Opus 4.7 high on reflect, Opus medium on tune, editorial-memo consumed at every cycle) is now stable and the noNewExperimentsUntil gate has lapsed as expected. With one active experiment still occupying the sourcing-cluster dimension and three days until its evaluation window, the prudent call is to hold and let it settle — proposing an orthogonal experiment now would only be justified by a metric breach, which today's data does not show."
+  "context": "Today is the start day of the editor-effort-low experiment (medium → low on Sonnet 4.6 editor stage in scripts/run-cycle.sh), evaluating 2026-05-25. Per experiment-design rules, no new variable should be introduced until that one resolves unless it is provably orthogonal in file, stage, and target metric — science-floor or feed changes would touch upstream stages whose load feeds back into editor wall-time, so they are not cleanly orthogonal. Today's science miss and throughput dip are noted for context, not actioned."
 }
