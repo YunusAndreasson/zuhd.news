@@ -5,13 +5,15 @@
       "id": "ryanair-jet-fuel-iran-war-fares",
       "label": "Ryanair says costs will increase as price of jet fuel has 'spiked'",
       "firstSeen": "2026-05-18T08:07:12.526Z",
-      "lastCovered": "2026-05-18T08:07:12.526Z",
-      "coverageCount": 1,
+      "lastCovered": "2026-05-18T22:06:00.933Z",
+      "coverageCount": 3,
       "category": "economy",
       "importance": 6,
-      "arc": "breaking",
+      "arc": "developing",
       "articles": [
-        "2026-05-18-ryanair-jet-fuel-iran-war-fares"
+        "2026-05-18-ryanair-jet-fuel-iran-war-fares",
+        "2026-05-18-kenya-fuel-protest-deaths-iran-war-spillover",
+        "2026-05-18-iran-war-africa-fuel-prices-spillover"
       ],
       "eventUri": "eng-11655272",
       "summary": "Europe's largest budget carrier is now openly pricing the Iran war into fares — jet fuel up, consumer demand suppressed, fiscal-year guidance trimmed. Lead with the specific number Ryanair gave for the cost hit, then the mechanism: even airlines that don't fly the Gulf corridor pay the Hormuz risk premium on Brent. The reader insight: this is how a war 4,500km from Dublin lands as a €5 surcharge on a Manchester-Malaga ticket.",
@@ -23,8 +25,464 @@
         "http://en.wikipedia.org/wiki/Airline",
         "http://en.wikipedia.org/wiki/Middle_East",
         "http://en.wikipedia.org/wiki/Jet_fuel",
-        "http://en.wikipedia.org/wiki/Fiscal_year"
+        "http://en.wikipedia.org/wiki/Fiscal_year",
+        "http://en.wikipedia.org/wiki/Strike_action",
+        "http://en.wikipedia.org/wiki/Kenya"
       ]
+    },
+    {
+      "id": "pakistan-jf17-troops-saudi-arabia-deployment",
+      "label": "Pakistan Sends Troops, Fighters to Saudi Arabia, Reuters Reports",
+      "firstSeen": "2026-05-18T17:07:33.674Z",
+      "lastCovered": "2026-05-18T22:06:00.933Z",
+      "coverageCount": 2,
+      "category": "politics",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-05-18-pakistan-jf17-troops-saudi-arabia-deployment",
+        "2026-05-18-pakistan-troops-jets-saudi-arabia-iran-war"
+      ],
+      "eventUri": "eng-11663836",
+      "summary": "Pakistan has deployed roughly 8,000 troops, 16 JF-17 fighter jets and an air defence battery to Saudi Arabia under a mutual defence pact — the largest Pakistani military commitment to the Gulf in decades, activated as the Iran war widens. Lead with the numbers and the platform: the JF-17 is a Pakistan-China co-production, so Riyadh is now hosting Chinese-derived combat aircraft on its territory. The mechanism: a nuclear-armed Sunni power has formally extended its umbrella over Saudi airspace, which changes the deterrence math against Iran in a way US security guarantees no longer can. Note the absence of any Pakistani regional outlet in our feed — only Bloomberg covered this.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Pakistan",
+        "http://en.wikipedia.org/wiki/Saudi_Arabia",
+        "http://en.wikipedia.org/wiki/Fighter_aircraft",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Anti-aircraft_warfare",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Squadron_(aviation)",
+        "http://en.wikipedia.org/wiki/Islamabad"
+      ]
+    },
+    {
+      "id": "us-extends-russian-oil-sanctions-waiver-30-days",
+      "label": "US extends Russian oil waiver - media",
+      "firstSeen": "2026-05-18T17:07:33.674Z",
+      "lastCovered": "2026-05-18T22:06:00.933Z",
+      "coverageCount": 2,
+      "category": "economy",
+      "importance": 6,
+      "arc": "developing",
+      "articles": [
+        "2026-05-18-us-extends-russian-oil-sanctions-waiver-30-days",
+        "2026-05-18-us-russian-oil-sanctions-waiver-hormuz"
+      ],
+      "eventUri": "eng-11662608",
+      "summary": "Washington quietly extended the sanctions waiver allowing Russian crude already loaded onto tankers to be delivered and sold — a 30-day reprieve specifically aimed at cooling prices spiked by the Iran war. The angle: the sanctions architecture the US built against Russia is being temporarily unwound to compensate for the supply Iran is no longer reliably delivering through Hormuz. India is the named beneficiary — its refiners get to keep processing discounted Russian barrels. The mechanism to highlight: 'sanctions' are not a fixed object — they are a dial that gets turned when Western consumers feel the price.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Petroleum",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Oil_refinery",
+        "http://en.wikipedia.org/wiki/Economic_sanctions",
+        "http://en.wikipedia.org/wiki/Moscow",
+        "http://en.wikipedia.org/wiki/Energy_security",
+        "http://en.wikipedia.org/wiki/United_States_Department_of_the_Treasury",
+        "http://en.wikipedia.org/wiki/Iran"
+      ]
+    },
+    {
+      "id": "trump-calls-off-iran-strike-gulf-allies",
+      "label": "Trump says he has called off planned Iran strike at request of Gulf allies",
+      "firstSeen": "2026-05-18T22:06:00.933Z",
+      "lastCovered": "2026-05-18T22:06:00.933Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-18-trump-calls-off-iran-strike-gulf-allies"
+      ],
+      "eventUri": "spa-4201871",
+      "summary": "Trump publicly cancelled a Tuesday strike on Iran 'at the request of Gulf allies' — Qatar, Saudi Arabia, UAE — after threatening it on Truth Social hours earlier. Lead with the named Gulf states: this is the second time in this Iran cycle that GCC capitals have visibly pulled the US back from a strike, which inverts the usual framing that the Gulf shelters US offensive operations. Pair with the disclosure that Iranian planners now openly war-game data-centre strikes inside the UAE as retaliation — the deterrent is mutual, and Abu Dhabi knows it. Note the absence of any Iranian or Arab regional outlet covering this specific announcement in our feed; SCMP is the only carrier.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Qatar",
+        "http://en.wikipedia.org/wiki/Saudi_Arabia",
+        "http://en.wikipedia.org/wiki/United_Arab_Emirates",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/Nuclear_weapon"
+      ]
+    },
+    {
+      "id": "san-diego-islamic-center-shooting-children-mosque",
+      "label": "San Diego Islamic Center: Two suspects, mosque member dead in active-shooter attack",
+      "firstSeen": "2026-05-18T22:06:00.933Z",
+      "lastCovered": "2026-05-18T22:06:00.933Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-18-san-diego-islamic-center-shooting-children-mosque"
+      ],
+      "eventUri": "eng-11660933",
+      "summary": "Two shooters and a mosque member are dead after an attack on the San Diego Islamic Center; school children were inside the building at the time. Lead with the children-in-the-building fact and the mosque member killed — name them when names are released. The mechanism to highlight: this is the seventh US-mosque attack with fatalities since 2017; the FBI's hate-crime tracking systematically undercounts these because most local PDs don't classify mosque shootings as anti-Muslim hate by default. Avoid the 'lone wolf' framing wires will reach for. Anchor on Al Jazeera's reporting rather than NY Post's.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/San_Diego",
+        "http://en.wikipedia.org/wiki/Islam",
+        "http://en.wikipedia.org/wiki/Mosque",
+        "http://en.wikipedia.org/wiki/Police",
+        "http://en.wikipedia.org/wiki/San_Diego_Police_Department",
+        "http://en.wikipedia.org/wiki/Clairemont,_San_Diego",
+        "http://en.wikipedia.org/wiki/California",
+        "http://en.wikipedia.org/wiki/San_Diego_County,_California"
+      ]
+    },
+    {
+      "id": "trump-irs-settlement-anti-weaponisation-fund",
+      "label": "Trump drops $10bn IRS lawsuit, sets up $1.7bn 'anti-weaponisation' fund",
+      "firstSeen": "2026-05-18T22:06:00.933Z",
+      "lastCovered": "2026-05-18T22:06:00.933Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-18-trump-irs-settlement-anti-weaponisation-fund"
+      ],
+      "eventUri": "eng-11662109",
+      "summary": "Trump dropped his $10 billion personal lawsuit against the IRS and Treasury in exchange for a $1.7 billion taxpayer-funded 'anti-weaponisation' fund that will pay legal fees for him and political allies prosecuted under prior administrations. Lead with the swap: a private grievance has been converted into a public reimbursement scheme controlled by Justice. The accountability angle is the structural one — the precedent that a sitting president can settle his own suit against the government by directing the government to compensate him going forward. Hindustan Times has Hillary Clinton's pointed framing; use it sparingly.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Internal_Revenue_Service",
+        "http://en.wikipedia.org/wiki/Lawsuit",
+        "http://en.wikipedia.org/wiki/United_States_Department_of_Justice",
+        "http://en.wikipedia.org/wiki/Democratic_Party_(United_States)",
+        "http://en.wikipedia.org/wiki/Settlement_(litigation)",
+        "http://en.wikipedia.org/wiki/Presidency_of_Joe_Biden",
+        "http://en.wikipedia.org/wiki/The_Trump_Organization"
+      ]
+    },
+    {
+      "id": "iran-hormuz-transit-insurance-bitcoin",
+      "label": "Iran plans to offer insurance for Hormuz transit",
+      "firstSeen": "2026-05-18T22:06:00.933Z",
+      "lastCovered": "2026-05-18T22:06:00.933Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-18-iran-hormuz-transit-insurance-bitcoin"
+      ],
+      "eventUri": "eng-11663059",
+      "summary": "Iran's Supreme National Security Council formalised the body that will sell transit insurance for ships passing through Hormuz — and is signalling it will accept bitcoin as payment to bypass US correspondent banks. Lead with the mechanism, not the politics: this turns a chokepoint into a fee-revenue line item and reframes Iran's leverage from threat-of-closure to rent-extraction. Tehran is effectively pricing a P&I product against the same risk Lloyd's of London prices — and Lloyd's currently has Hormuz on its 'breach' list. The structural shift: if a single major hull underwriter accepts Iran's certificate, that's a parallel maritime-insurance system born this week.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Insurance",
+        "http://en.wikipedia.org/wiki/Bitcoin",
+        "http://en.wikipedia.org/wiki/Fars_province",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/Cryptocurrency",
+        "http://en.wikipedia.org/wiki/Persian_Gulf"
+      ]
+    },
+    {
+      "id": "trump-cms-aca-skimpy-plans-essential-benefits",
+      "label": "Trump's CMS to allow skimpier plans on ACA exchanges",
+      "firstSeen": "2026-05-18T22:06:00.933Z",
+      "lastCovered": "2026-05-18T22:06:00.933Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-18-trump-cms-aca-skimpy-plans-essential-benefits"
+      ],
+      "eventUri": null,
+      "summary": "CMS is opening ACA exchanges to short-term, catastrophic-style plans that drop ACA-mandated essential benefits — maternity, mental health, prescription drug ceilings. Lead with what gets dropped, not what the plans 'add.' The mechanism: by allowing skimpy plans onto the same risk pool as standard ACA silver plans, healthy enrollees migrate down, sicker enrollees stay, and silver-plan premiums rise — the same adverse-selection cascade that pre-ACA 'mini-med' plans produced. STAT names the specific essential-benefit categories the rule weakens. This is a structural rewrite, sold as choice.",
+      "conceptUris": []
+    },
+    {
+      "id": "asteroid-closer-than-moon-neo-detection-gap",
+      "label": "Newly discovered asteroid to pass closer to Earth than the Moon",
+      "firstSeen": "2026-05-18T22:06:00.933Z",
+      "lastCovered": "2026-05-18T22:06:00.933Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-18-asteroid-closer-than-moon-neo-detection-gap"
+      ],
+      "eventUri": "eng-11661767",
+      "summary": "A previously unknown asteroid will pass inside the lunar distance Monday evening US time — discovered only days before closest approach by JPL's automated survey. Lead with the discovery-to-approach interval (days, not years): this is what near-Earth-object tracking looks like for small bodies, and the existence of the gap is itself the story. The mechanism: most sub-50m NEOs are still found only when they're already inbound because survey-cadence depth doesn't reach their absolute magnitude until they're close. Use this to teach the reader why DART-class mitigation has a structural ceiling without the Rubin Observatory's coming cadence.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Earth",
+        "http://en.wikipedia.org/wiki/Asteroid",
+        "http://en.wikipedia.org/wiki/Moon",
+        "http://en.wikipedia.org/wiki/Astronomer",
+        "http://en.wikipedia.org/wiki/Planet",
+        "http://en.wikipedia.org/wiki/Telescope",
+        "http://en.wikipedia.org/wiki/Astronomy",
+        "http://en.wikipedia.org/wiki/NASA"
+      ]
+    },
+    {
+      "id": "fbi-nationwide-alpr-flock-motorola-procurement",
+      "label": "The FBI Wants to Buy Nationwide Access to License Plate Readers",
+      "firstSeen": "2026-05-18T22:06:00.933Z",
+      "lastCovered": "2026-05-18T22:06:00.933Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-18-fbi-nationwide-alpr-flock-motorola-procurement"
+      ],
+      "eventUri": null,
+      "summary": "404 Media obtained the FBI procurement document: the Bureau is soliciting a single contract for nationwide ALPR access — a market only Flock and Motorola can fulfil. Lead with the structural point: ALPR data has historically been a state-and-local product, contractually scoped to specific investigations. A single federal subscription against Flock's 40,000+ camera network collapses that scoping and creates a de facto national vehicle-movement database without statutory authorisation. The mechanism: federal access bypasses state-level audit logging that Flock customers (city PDs) are bound by. Teach the reader who 'data sharing' actually flows to.",
+      "conceptUris": []
+    },
+    {
+      "id": "interpol-200-arrests-middle-east-scams-proxy-networks",
+      "label": "More than 200 arrested in Interpol cyber raids targeting Middle East scam networks",
+      "firstSeen": "2026-05-18T22:06:00.933Z",
+      "lastCovered": "2026-05-18T22:06:00.933Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-18-interpol-200-arrests-middle-east-scams-proxy-networks"
+      ],
+      "eventUri": null,
+      "summary": "Interpol-coordinated raids across multiple countries seized hundreds of compromised devices used to run investment- and impersonation-scam operations targeting victims across the Gulf and Levant. Lead with the device-compromise mechanism: most arrested operators were not building botnets — they were buying access to consumer routers and IoT cameras that had been silently enrolled in residential-proxy networks, which is what let them present 'local' IPs to banks during account-takeover calls. The accountability angle: the proxy resellers themselves were not raided. Teach the reader why a Dubai victim's bank fraud appears to come from a Dubai IP.",
+      "conceptUris": []
+    },
+    {
+      "id": "ai-fabricated-citations-sanctions-doxing-facebook",
+      "label": "Legal fail: Don't use AI to sue Facebook users for calling you a bad date",
+      "firstSeen": "2026-05-18T22:06:00.933Z",
+      "lastCovered": "2026-05-18T22:06:00.933Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-18-ai-fabricated-citations-sanctions-doxing-facebook"
+      ],
+      "eventUri": null,
+      "summary": "A Chicago lawyer faces sanctions after filing AI-fabricated case citations in a takedown action aimed at unmasking women who critiqued his client in the 'Are We Dating the Same Guy' Facebook group. Lead with the doxing angle, not the comedy: the suit was an attempt to weaponise defamation procedure to identify anonymous posters, and AI hallucinated the precedents that propped it up. The mechanism — and why developers should care — is that fabricated citations now form a procedural attack surface: each one a judge has to spend court time disproving, which makes nuisance suits cheaper to file and more expensive to defend. The Section 230 ruling against Meta dismissed the case, but the AI sanctions are the precedent that matters.",
+      "conceptUris": []
+    },
+    {
+      "id": "knowledge-attitudes-and-practices-regarding-childhood-epilep",
+      "label": "Knowledge, attitudes, and practices regarding childhood epilepsy among parents of children with epilepsy: a questionnaire-based study - Scientific Reports",
+      "firstSeen": "2026-05-18T22:06:00.933Z",
+      "lastCovered": "2026-05-18T22:06:00.933Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-18-knowledge-attitudes-and-practices-regarding-childhood-epilep"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for science floor] This study examined the knowledge, attitudes, and practices (KAP) among caregivers of children with epilepsy. A cross-sectional survey was conducted from September 2024 to February 2025 in two hospitals in Zibo, China. Structural equation modeling (SEM) was applied to explore the relationships among",
+      "conceptUris": []
+    },
+    {
+      "id": "israel-intercepts-gaza-aid-flotilla-international-waters",
+      "label": "Israeli forces intercept Gaza-bound aid flotilla",
+      "firstSeen": "2026-05-18T17:07:33.674Z",
+      "lastCovered": "2026-05-18T17:07:33.674Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-18-israel-intercepts-gaza-aid-flotilla-international-waters"
+      ],
+      "eventUri": "eng-11662477",
+      "summary": "Israeli forces boarded an aid flotilla in international waters near Cyprus, detaining civilian volunteers — including the sister of Ireland's president and other Irish, Turkish, and Arab nationals. Lead with the location: this happened outside Israeli territorial waters, which makes the seizure a question of maritime law, not security. The mechanism to highlight is the contradiction between siege enforcement and the legal status of the ships' route. Name the people held, name what they were carrying, name the country whose navy intercepted them.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Israel",
+        "http://en.wikipedia.org/wiki/Gaza_City",
+        "http://en.wikipedia.org/wiki/Gaza_Strip",
+        "http://en.wikipedia.org/wiki/Turkey",
+        "http://en.wikipedia.org/wiki/International_waters",
+        "http://en.wikipedia.org/wiki/Israel_Defense_Forces",
+        "http://en.wikipedia.org/wiki/Flotilla",
+        "http://en.wikipedia.org/wiki/Cyprus"
+      ]
+    },
+    {
+      "id": "russia-belarus-joint-tactical-nuclear-drills",
+      "label": "Russia and Belarus stage joint nuclear weapons drills",
+      "firstSeen": "2026-05-18T17:07:33.674Z",
+      "lastCovered": "2026-05-18T17:07:33.674Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-18-russia-belarus-joint-tactical-nuclear-drills"
+      ],
+      "eventUri": "rus-2067418",
+      "summary": "Moscow and Minsk launched joint tactical-nuclear drills in Belarus, with the Belarusian defense ministry specifying that the exercise rehearses concealed deployment and launches from unscheduled locations. Lead with the doctrinal point: the drill is built around hiding where the warheads are, not where they're aimed. This is signalling to NATO that Russian tactical nukes are now mobile, dispersed, and forward-deployed on Belarusian soil — a posture shift, not a routine exercise. Note Zelensky's recent warning of strikes on Ukraine/NATO as the proximate trigger.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Belarus",
+        "http://en.wikipedia.org/wiki/Nuclear_weapon",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Minsk",
+        "http://en.wikipedia.org/wiki/Ukraine",
+        "http://en.wikipedia.org/wiki/NATO",
+        "http://en.wikipedia.org/wiki/Ministry_of_Defence_(Russia)"
+      ]
+    },
+    {
+      "id": "iran-hormuz-passage-permit-authority",
+      "label": "Iran warns unauthorised Strait of Hormuz passage will be illegal",
+      "firstSeen": "2026-05-18T17:07:33.674Z",
+      "lastCovered": "2026-05-18T17:07:33.674Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-18-iran-hormuz-passage-permit-authority"
+      ],
+      "eventUri": "eng-11663756",
+      "summary": "Iran's newly-formed Persian Gulf Strait Authority announced that any vessel transiting Hormuz without its approval will be treated as unlawful — a unilateral legal claim over a waterway the rest of the world considers an international strait. Lead with the institution: Iran built a new agency specifically to issue passage permits. The mechanism is administrative escalation — Tehran is not closing the strait, it is putting a permit window in front of it. Through Hormuz flow roughly 20% of global oil and the LNG that powers Pakistan, Bangladesh, India and Japan. Name the precedent: this is the legal architecture for selective interdiction.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Persian_Gulf",
+        "http://en.wikipedia.org/wiki/Tehran",
+        "http://en.wikipedia.org/wiki/Strait",
+        "http://en.wikipedia.org/wiki/Supreme_National_Security_Council",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/Press_TV"
+      ]
+    },
+    {
+      "id": "aschenbrenner-crypto-miners-ai-chip-short",
+      "label": "Ex-OpenAI whistleblower bets big on crypto miners for his $13.6B AI play",
+      "firstSeen": "2026-05-18T17:07:33.674Z",
+      "lastCovered": "2026-05-18T17:07:33.674Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-18-aschenbrenner-crypto-miners-ai-chip-short"
+      ],
+      "eventUri": null,
+      "summary": "Leopold Aschenbrenner — the former OpenAI safety researcher whose 'Situational Awareness' essay went viral last year — has built a $13.6B portfolio that is long crypto miners and short the semiconductor industry, with $7.46B in put options against Nvidia, Broadcom, Oracle and the VanEck semiconductor ETF. Lead with the trade structure: he is betting AI infrastructure runs out of grid capacity before it runs out of chips, so the scarce asset is power-plus-cooling (which bitcoin miners already have), not silicon. The mechanism: crypto miners pivoting to AI hosting is now consuming so much electricity that chipmakers may not be the bottleneck winners they appear.",
+      "conceptUris": []
+    },
+    {
+      "id": "uae-private-sector-salary-deadline-wps",
+      "label": "UAE standardises deadline for payments of private-sector salaries",
+      "firstSeen": "2026-05-18T17:07:33.674Z",
+      "lastCovered": "2026-05-18T17:07:33.674Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-18-uae-private-sector-salary-deadline-wps"
+      ],
+      "eventUri": "eng-11663761",
+      "summary": "The UAE has made it law that private-sector salaries must hit workers' accounts on the first day of every month, with employer penalties for delay — codified through the Wage Protection System. The angle: this is wage-theft regulation in a country whose private sector is overwhelmingly migrant labour from Pakistan, Bangladesh, India, the Philippines and Egypt. Lead with the population affected — millions of remittance-sending workers whose late paychecks ripple into household budgets across South Asia. The mechanism: WPS uses banking-rails enforcement (the central bank can fine employers and freeze their files) rather than labour-court enforcement, which is why this version has teeth previous attempts lacked.",
+      "conceptUris": []
+    },
+    {
+      "id": "guangxi-liuzhou-5-2-earthquake-intraplate",
+      "label": "3 missing after 5.2-magnitude earthquake hits south China's Guangxi",
+      "firstSeen": "2026-05-18T17:07:33.674Z",
+      "lastCovered": "2026-05-18T17:07:33.674Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-18-guangxi-liuzhou-5-2-earthquake-intraplate"
+      ],
+      "eventUri": "eng-11662588",
+      "summary": "A 5.2-magnitude quake struck Liuzhou in Guangxi, killing two, leaving three missing, and forcing the evacuation of more than 7,000 residents. Lead with the unusual geology: Guangxi is not a known active-seismic province — it sits well off the Tibetan-plateau collision zone that drives most Chinese quakes. The mechanism to highlight is intraplate seismicity in karst terrain, which is rare and harder for building codes to anticipate. Context: this is the second 5.2 in the same area in a single day, suggesting an aftershock sequence on a previously-unmapped fault.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Earthquake",
+        "http://en.wikipedia.org/wiki/Guangxi",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Liuzhou",
+        "http://en.wikipedia.org/wiki/Xinhua_News_Agency",
+        "http://en.wikipedia.org/wiki/Moment_magnitude_scale",
+        "http://en.wikipedia.org/wiki/Epicenter",
+        "http://en.wikipedia.org/wiki/China_Central_Television"
+      ]
+    },
+    {
+      "id": "us-iran-only-major-emitters-no-net-zero",
+      "label": "Factcheck: US and Iran are world's only major emitters without net-zero targets",
+      "firstSeen": "2026-05-18T17:07:33.674Z",
+      "lastCovered": "2026-05-18T17:07:33.674Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-18-us-iran-only-major-emitters-no-net-zero"
+      ],
+      "eventUri": null,
+      "summary": "Of the top-20 global emitters, only two — the United States and Iran — have no net-zero target on the books. Lead with the pairing: the two countries currently fighting a war are also the two holdouts on the Paris architecture, and both for the same reason (fossil-fuel revenue is non-negotiable for the regime). The mechanism to highlight is what a 'net-zero target' actually is — a legal or executive commitment that constrains future budgets and pipeline approvals — and why these two governments have refused to take it on. Note that China, India, Saudi Arabia and Russia all have targets, however weak. Useful for puncturing the UK-is-an-outlier rhetoric Carbon Brief is responding to.",
+      "conceptUris": []
+    },
+    {
+      "id": "preschool-teacher-cam-ai-training-data",
+      "label": "Researchers Wanted Preschool Teachers to Wear Cameras to Train AI",
+      "firstSeen": "2026-05-18T17:07:33.674Z",
+      "lastCovered": "2026-05-18T17:07:33.674Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-18-preschool-teacher-cam-ai-training-data"
+      ],
+      "eventUri": null,
+      "summary": "A US university research project asked preschool teachers to wear body cameras capturing their first-person view of three-and-four-year-olds in the classroom — to generate training data for AI. Lead with the consent structure: parents got a one-page document, not informed-consent paperwork, and the children themselves cannot consent at all. The mechanism to highlight is the data pipeline — teacher-worn cams generate the rarest and most valuable training corpus (early-childhood interaction footage) and the children's faces and voices end up in datasets they will never be able to extract themselves from. This is the new shape of biometric scraping: institutional, consented-by-adjacency, and aimed at the youngest subjects available.",
+      "conceptUris": []
+    },
+    {
+      "id": "anduril-meta-warfare-smart-glasses-army",
+      "label": "Inside Anduril and Meta's quest to make smart glasses for warfare",
+      "firstSeen": "2026-05-18T17:07:33.674Z",
+      "lastCovered": "2026-05-18T17:07:33.674Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-18-anduril-meta-warfare-smart-glasses-army"
+      ],
+      "eventUri": null,
+      "summary": "Anduril and Meta are co-developing a US Army headset that fuses drone feeds, friendly-unit positions and target overlays into a soldier's field of view — the program's VP says the goal is 'to optimize the human as a weapons system.' Lead with that phrasing, which the executive used on the record. The mechanism: Meta's Reality Labs hardware (the same lineage that produced the consumer Quest) is now in the prime contract for ground-combat HMDs, blurring what was once a hard line between consumer and military computing. Note the casualty: Microsoft's IVAS, the previous Army goggle program, was killed in 2025 — Meta inherits the contract and the lessons.",
+      "conceptUris": []
+    },
+    {
+      "id": "filipino-virtual-assistants-linkedin-ai-content",
+      "label": "The Filipino virtual assistants behind LinkedIn's thought leadership content mill",
+      "firstSeen": "2026-05-18T17:07:33.674Z",
+      "lastCovered": "2026-05-18T17:07:33.674Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 5,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-18-filipino-virtual-assistants-linkedin-ai-content"
+      ],
+      "eventUri": null,
+      "summary": "Filipino virtual assistants paid $7 an hour use ChatGPT and similar tools to write LinkedIn posts and comments in the voices of Western executives — manufacturing the 'thought leadership' that drives B2B sales and personal brands. Lead with the price: a US CEO's authoritative-sounding industry takes are produced offshore for less than American minimum wage. The mechanism: AI lowered the writing cost so far that the bottleneck became plausible authorship, which is what the VAs supply. The structural point is how much of what looks like 'AI replacing labour' is actually a longer pipeline — Western executive + AI tool + Filipino VA — where the human cost has moved jurisdictions, not disappeared.",
+      "conceptUris": []
     },
     {
       "id": "oil-prices-iran-talks-stall-clock-ticking",
@@ -33,7 +491,7 @@
       "lastCovered": "2026-05-18T08:07:12.526Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-18-oil-prices-iran-talks-stall-clock-ticking"
@@ -58,7 +516,7 @@
       "lastCovered": "2026-05-18T08:07:12.526Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-18-iran-6500-arrested-espionage-war"
@@ -79,7 +537,7 @@
       "lastCovered": "2026-05-18T08:07:12.526Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-18-china-state-secrets-uyghur-codification"
@@ -95,7 +553,7 @@
       "lastCovered": "2026-05-18T08:07:12.526Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-18-nigeria-budget-implementation-report-delay"
@@ -115,7 +573,7 @@
       "lastCovered": "2026-05-18T08:07:12.526Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-18-russia-china-trade-47mt-border-crossings"
@@ -135,7 +593,7 @@
       "lastCovered": "2026-05-18T08:07:12.526Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-18-aave-rseth-exploit-recovery-defi-backstop"
@@ -154,7 +612,7 @@
       "lastCovered": "2026-05-18T08:07:12.526Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-18-nanopore-sequencing-thalassemia-southern-china"
@@ -170,7 +628,7 @@
       "lastCovered": "2026-05-18T08:07:12.526Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-18-pakpattan-prison-hiv-hepatitis-screening"
@@ -191,7 +649,7 @@
       "lastCovered": "2026-05-18T08:07:12.526Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-18-bytedance-tencent-china-ai-cuts"
@@ -211,7 +669,7 @@
       "lastCovered": "2026-05-18T08:07:12.526Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-18-ml-procurement-fraud-detection-mexico"
@@ -227,7 +685,7 @@
       "lastCovered": "2026-05-18T08:07:12.526Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-18-elliptic-ai-agents-crypto-compliance"
@@ -247,7 +705,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-18-keppel-m1-telco-sale-singapore-imda-pause"
@@ -272,7 +730,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-18-australia-neo-nazi-hate-ban-constitutional-challenge"
@@ -294,7 +752,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-18-pakistan-us-iran-mediator-shehbaz-sharif"
@@ -310,7 +768,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-18-uss-ford-carrier-326-day-deployment-home"
@@ -326,7 +784,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-18-brazil-steel-prices-lead-global-china-output-drop"
@@ -348,7 +806,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-18-pakistan-used-car-import-drop-auto-parts-industrial-policy"
@@ -370,7 +828,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-18-mumbai-railway-fine-accountability-compensation-gap"
@@ -392,7 +850,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-18-biomass-household-air-pollution-global-south-stoves"
@@ -408,7 +866,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-18-fluorescent-rna-aptamer-sensor-water-contaminants"
@@ -424,7 +882,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-18-iron-mesopelagic-bacteria-ocean-carbon-cycle"
@@ -440,7 +898,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-18-enterprise-ai-saas-subscription-unit-economics"
@@ -456,7 +914,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-16-scientists-discover-strange-new-crystal-formed-by-nuclear-bl"
@@ -472,7 +930,7 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-17-france-epstein-probe-ten-new-victims"
@@ -497,7 +955,7 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-17-peru-fujimori-sanchez-presidential-runoff"
@@ -522,7 +980,7 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-17-balochistan-section-144-month-long-assembly-ban"
@@ -538,7 +996,7 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-17-egypt-marei-filmmaker-state-security-disappearance"
@@ -554,7 +1012,7 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-17-south-africa-abrahams-trc-prosecutions-khampepe-inquiry"
@@ -570,7 +1028,7 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-17-sars-montana-prasa-tall-trains-tax-trail"
@@ -586,7 +1044,7 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-17-nigeria-dispenser-water-shortage-utility-privatisation"
@@ -602,7 +1060,7 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-17-johannesburg-lower-houghton-municipal-collapse-property"
@@ -618,7 +1076,7 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-17-drc-ebola-american-exposure-pheic-contact-tracing"
@@ -634,7 +1092,7 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-17-hipsc-osteoclast-m-csf-priming-reproducibility"
@@ -650,7 +1108,7 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-17-ibm-quantum-rng-nist-sp-800-22-superconducting"
@@ -666,7 +1124,7 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-17-space-debris-survivability-reentry-risk-global-south"
@@ -682,7 +1140,7 @@
       "lastCovered": "2026-05-17T17:07:00.616Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-uae-barakah-nuclear-drone-strike-gulf-escalation"
@@ -707,7 +1165,7 @@
       "lastCovered": "2026-05-17T17:07:00.616Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-trump-netanyahu-call-iran-war-cabinet"
@@ -731,7 +1189,7 @@
       "lastCovered": "2026-05-17T17:07:00.616Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-eureka-egyptian-crew-ransom-somalia-uae-tanker"
@@ -747,7 +1205,7 @@
       "lastCovered": "2026-05-17T17:07:00.616Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-odili-efcc-appeal-court-immunity-precedent"
@@ -763,7 +1221,7 @@
       "lastCovered": "2026-05-17T17:07:00.616Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-pakistan-centcom-is-k-counterterrorism-partner"
@@ -779,7 +1237,7 @@
       "lastCovered": "2026-05-17T17:07:00.616Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-prudential-bharti-life-india-insurance-deal"
@@ -804,7 +1262,7 @@
       "lastCovered": "2026-05-17T17:07:00.616Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-nigeria-cppe-cbn-mpc-monetary-tightening-warning"
@@ -820,7 +1278,7 @@
       "lastCovered": "2026-05-17T17:07:00.616Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-serbia-azerbaijan-gas-turbine-military-cooperation"
@@ -836,7 +1294,7 @@
       "lastCovered": "2026-05-17T17:07:00.616Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-ai-confidence-calibration-gap-human-perception"
@@ -852,7 +1310,7 @@
       "lastCovered": "2026-05-17T17:07:00.616Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-nature-based-solutions-community-led-climate-adaptation"
@@ -868,7 +1326,7 @@
       "lastCovered": "2026-05-17T17:07:00.616Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-japan-sbi-rakuten-crypto-etf-fsa-framework"
@@ -884,7 +1342,7 @@
       "lastCovered": "2026-05-17T17:07:00.616Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-verifiedx-bitcoin-programmable-private-defi"
@@ -900,459 +1358,13 @@
       "lastCovered": "2026-05-17T17:07:00.616Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-pakistan-dgip-passport-home-delivery-chatbot"
       ],
       "eventUri": null,
       "summary": "Pakistan's DGIP will roll out nationwide passport home-delivery plus a citizen-facing chatbot, the first end-to-end digitisation of a federal travel-document service in the country. Lead with what changes for the applicant (no more agent middlemen at NADRA-adjacent passport offices), and the accountability angle — DGIP is one of the most corruption-prone interfaces between Pakistanis and the state.",
-      "conceptUris": []
-    },
-    {
-      "id": "record-drone-attack-moscow-refinery-three-killed",
-      "label": "Record Drone Attack on Moscow Kills Three, Targets Refinery",
-      "firstSeen": "2026-05-17T12:06:29.852Z",
-      "lastCovered": "2026-05-17T12:06:29.852Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-record-drone-attack-moscow-refinery-three-killed"
-      ],
-      "eventUri": "eng-11661156",
-      "summary": "A record overnight Ukrainian drone raid on Moscow Region killed three civilians and targeted a refinery, with air defenses engaged from 3:00 AM. Lead with the scale shift — drones are now hitting refining infrastructure inside Moscow Oblast, not just border regions — and the civilian toll in Khimki. Multi-source coverage (RT, Bloomberg, Al Jazeera, SCMP, TRT) lets us hold the symmetry between Russian civilian deaths and the ongoing Ukrainian civilian toll from Russian strikes. Continuation of an escalating arc covered earlier this week.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Moscow",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Ukraine",
-        "http://en.wikipedia.org/wiki/Moscow_Oblast",
-        "http://en.wikipedia.org/wiki/Khimki"
-      ]
-    },
-    {
-      "id": "icc-secret-arrest-warrants-five-israeli-officials",
-      "label": "International Criminal Court reportedly issues secret arrest warrants against five Israeli officials",
-      "firstSeen": "2026-05-17T12:06:29.852Z",
-      "lastCovered": "2026-05-17T12:06:29.852Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-icc-secret-arrest-warrants-five-israeli-officials"
-      ],
-      "eventUri": "eng-11661537",
-      "summary": "Per Israeli media reports surfaced by TRT World, the ICC has issued sealed arrest warrants against five Israeli officials — three politicians and two military commanders — extending the November 2024 Netanyahu/Gallant warrants. Lead with the accountability mechanism: secret warrants restrict the named officials' travel before they know they are named, and the widening list signals the prosecutor is building structural responsibility for Gaza war crimes beyond the political summit. Frame against the 72,757 Palestinian dead and note this is a single-source report awaiting confirmation, but from an OIC-region outlet directly engaged with the Israeli press it cites.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/International_Criminal_Court",
-        "http://en.wikipedia.org/wiki/Benjamin_Netanyahu",
-        "http://en.wikipedia.org/wiki/Haaretz",
-        "http://en.wikipedia.org/wiki/War_crime",
-        "http://en.wikipedia.org/wiki/The_Hague",
-        "http://en.wikipedia.org/wiki/Crimes_against_humanity",
-        "http://en.wikipedia.org/wiki/Gaza_City"
-      ]
-    },
-    {
-      "id": "us-iran-five-conditions-400kg-uranium-nuclear-talks",
-      "label": "US sets Iran five conditions for continuing peace process — Fars news agency",
-      "firstSeen": "2026-05-17T12:06:29.852Z",
-      "lastCovered": "2026-05-17T12:06:29.852Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-us-iran-five-conditions-400kg-uranium-nuclear-talks"
-      ],
-      "eventUri": null,
-      "summary": "Washington has tabled five demands to Tehran — including a 400kg uranium ceiling and broad nuclear limits — while refusing to compensate Iran for damage from US bombings, per Iranian sources surfaced by Fars/Mehr and confirmed via TASS readout. Lead with the asymmetry: the US is asking Iran to concede at the table what it failed to take by war, while the Iranian preconditions (compensation, sanctions relief) are dismissed. This is the structural shape of the post-war negotiation — diplomatic terms reproducing battlefield aims. Add the Velayati framing that Trump returned 'empty-handed' from Beijing as backdrop.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Uranium",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/United_States",
-        "http://en.wikipedia.org/wiki/TASS"
-      ]
-    },
-    {
-      "id": "sudan-nashra-ethiopia-credentials-juba-cairo-rsf-defections",
-      "label": "Sudan Nashra: Ethiopia revokes Sudanese ambassador-designate's credentials; Juba asks Cairo to evacuate base; another Mahamid commander defects from RSF",
-      "firstSeen": "2026-05-17T12:06:29.852Z",
-      "lastCovered": "2026-05-17T12:06:29.852Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-15-sudan-nashra-ethiopia-credentials-juba-cairo-rsf-defections"
-      ],
-      "eventUri": null,
-      "summary": "Sudan's war is regionalising fast: Addis Ababa retaliated diplomatically against Khartoum's claim that strikes were launched from Ethiopian soil, Juba asked Cairo to pull its base back from the Ethiopian border, and another Mahamid commander defected from the RSF — while the RSF set up a parallel aid-coordination authority Khartoum is telling NGOs to ignore. Lead with the regionalisation mechanism: each move re-aligns a neighbour, and the parallel-aid push is how the RSF tries to convert military control into international legitimacy. Ground reporting from Mada Masr — single regional source but the only outlet covering this weekly granularity.",
-      "conceptUris": []
-    },
-    {
-      "id": "philippines-dynastic-politics-dependency",
-      "label": "Family Business: Dynastic Politics in the Philippines",
-      "firstSeen": "2026-05-17T12:06:29.852Z",
-      "lastCovered": "2026-05-17T12:06:29.852Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-philippines-dynastic-politics-dependency"
-      ],
-      "eventUri": null,
-      "summary": "Pressure is building inside the Philippines for structural reform of the political dynasties that monopolise national and provincial office. Lead with the concentration statistic — what share of seats sit inside a handful of family franchises — and the mechanism by which dependency on dynastic patronage suppresses competitive politics. A structural piece, not a personality piece: tell the reader why Marcos/Duterte/Estrada are categories, not anomalies.",
-      "conceptUris": []
-    },
-    {
-      "id": "jigawa-apc-primary-four-reps-lose-2027-nigeria",
-      "label": "2027: Four APC Reps from Jigawa will not return",
-      "firstSeen": "2026-05-17T12:06:29.852Z",
-      "lastCovered": "2026-05-17T12:06:29.852Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-jigawa-apc-primary-four-reps-lose-2027-nigeria"
-      ],
-      "eventUri": null,
-      "summary": "Four sitting APC members of Nigeria's House of Representatives lost their party primaries in Jigawa State — Hadejia/Auyo/Kafin-Hausa and three other federal constituencies — across primaries held in 287 wards. Lead with the local mechanism: who beat them, what local grievance translated into the primary loss, and what this signals about the APC machine's fragmentation ahead of 2027. Different angle from the Lagos/Agege primaries we covered earlier: this is the periphery rejecting incumbents in a northern state often treated as APC heartland.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/All_Progressives_Congress",
-        "http://en.wikipedia.org/wiki/House_of_Representatives_(Nigeria)",
-        "http://en.wikipedia.org/wiki/Jigawa_State"
-      ]
-    },
-    {
-      "id": "mv-symi-lpg-vessel-hormuz-kandla-gujarat-india",
-      "label": "Vessel carrying 20,000 tonnes of LPG reaches Gujarat after crossing Strait of Hormuz",
-      "firstSeen": "2026-05-17T12:06:29.852Z",
-      "lastCovered": "2026-05-17T12:06:29.852Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-mv-symi-lpg-vessel-hormuz-kandla-gujarat-india"
-      ],
-      "eventUri": "eng-11661093",
-      "summary": "The Marshall Islands-flagged MV SYMI delivered 20,000 metric tonnes of Qatari LPG to Kandla, Gujarat, after transiting the Strait of Hormuz under the new Iran-declared transit regime. Lead with what changed: this is one of the first commercial LPG cargoes to clear Hormuz since the toll/route-designation mechanism was imposed — note the route, the insurance and re-flagging implications, and what it means for the 40% of LPG imports India sources through Hormuz. The mechanism (designated routes + toll) is the story; the cargo is the evidence it is operating.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Strait_of_Hormuz",
-        "http://en.wikipedia.org/wiki/Oman",
-        "http://en.wikipedia.org/wiki/Freedom_of_navigation"
-      ]
-    },
-    {
-      "id": "a7a5-ruble-stablecoin-sanctions-russia-post-sanctions",
-      "label": "Ruble-pegged stablecoin A7A5 says it has a business even if sanctions end",
-      "firstSeen": "2026-05-17T12:06:29.852Z",
-      "lastCovered": "2026-05-17T12:06:29.852Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-a7a5-ruble-stablecoin-sanctions-russia-post-sanctions"
-      ],
-      "eventUri": null,
-      "summary": "A7A5, the ruble-pegged stablecoin built explicitly to route around Western sanctions, claims it has a post-sanctions business model — even though Trump told reporters this week sanctions on Russia could end. Lead with the mechanism A7A5 actually replaces: SWIFT-cleared correspondent banking. Tell the reader why a sanctions-evasion rail acquires its own institutional gravity (Hong Kong intermediaries, draft Russian crypto regs, foreign-trade settlement plumbing) and would not simply unwind if sanctions lift. This is how parallel financial systems become permanent.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Stablecoin",
-        "http://en.wikipedia.org/wiki/International_sanctions_during_the_Russo-Ukrainian_War",
-        "http://en.wikipedia.org/wiki/Russia",
-        "http://en.wikipedia.org/wiki/Hong_Kong"
-      ]
-    },
-    {
-      "id": "iran-fm-energy-market-stability-lie-baghaei",
-      "label": "Maintaining energy market stability is the next lie for warmongering — Iran FM",
-      "firstSeen": "2026-05-17T12:06:29.852Z",
-      "lastCovered": "2026-05-17T12:06:29.852Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-iran-fm-energy-market-stability-lie-baghaei"
-      ],
-      "eventUri": null,
-      "summary": "Iran's foreign ministry spokesman Esmaeil Baghaei dismissed the 'energy market stability' framing of further Western pressure on Iran as the next pretext for a 'war of choice.' Lead with the structural argument Baghaei is actually making: that the post-war oil-price narrative converts Iranian exports into a hostage of US domestic energy politics, and that the same rhetorical playbook ('stability') preceded the bombing campaign. Note this is single-sourced from Iranian state media — the feed offered no non-Iranian regional outlet covering the FM statement, which is itself a data point about how OIC-region channels are treating the post-war diplomatic phase.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Ministry_of_Foreign_Affairs_(Iran)",
-        "http://en.wikipedia.org/wiki/Tehran",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/War_of_aggression"
-      ]
-    },
-    {
-      "id": "car-t-autoimmune-multiple-sclerosis-immunotherapy",
-      "label": "A revolutionary cancer treatment could transform autoimmune disease",
-      "firstSeen": "2026-05-17T12:06:29.852Z",
-      "lastCovered": "2026-05-17T12:06:29.852Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-car-t-autoimmune-multiple-sclerosis-immunotherapy"
-      ],
-      "eventUri": null,
-      "summary": "CAR-T cell therapy — built for blood cancers — is being repurposed against autoimmune diseases like multiple sclerosis, with early patients reporting dramatic functional recovery. Lead with the patient story (Jan Janisch-Hanzlik regaining mobility) then the mechanism: CAR-T wipes the rogue B-cell population that drives the autoimmune attack, in principle resetting the disease rather than managing it. Note the open questions — cost (CAR-T is ~$500k/dose today), side effects, durability — and what 'cure-grade' immunotherapy would mean for the global MS/lupus burden if cost falls.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/CAR_T_cell",
-        "http://en.wikipedia.org/wiki/Autoimmunity",
-        "http://en.wikipedia.org/wiki/Multiple_sclerosis",
-        "http://en.wikipedia.org/wiki/Antibody"
-      ]
-    },
-    {
-      "id": "global-burden-mental-disorders-pregnancy-meta-analysis",
-      "label": "The global burden and risk factors of common mental disorders in pregnant women: a systematic review and meta-analysis",
-      "firstSeen": "2026-05-17T12:06:29.852Z",
-      "lastCovered": "2026-05-17T12:06:29.852Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-global-burden-mental-disorders-pregnancy-meta-analysis"
-      ],
-      "eventUri": null,
-      "summary": "A new Nature Scientific Reports meta-analysis quantifies how widespread depression, anxiety and other common mental disorders are among pregnant women globally, and which risk factors carry the most weight. Lead with the headline prevalence figure and the gradient between high- and low-income settings — perinatal mental health is a measured driver of maternal and neonatal mortality and is systematically under-treated in low-resource health systems. Frame for our reader: this is structural global health, not lifestyle.",
-      "conceptUris": []
-    },
-    {
-      "id": "bacteriophage-streptococcus-bovis-rumen-livestock",
-      "label": "Characterization of a temperate bacteriophage isolated from the ruminant-derived Streptococcus bovis/equinus complex",
-      "firstSeen": "2026-05-17T12:06:29.852Z",
-      "lastCovered": "2026-05-17T12:06:29.852Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 2,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-bacteriophage-streptococcus-bovis-rumen-livestock"
-      ],
-      "eventUri": null,
-      "summary": "Researchers isolated and characterised a temperate bacteriophage living inside the Streptococcus bovis/equinus complex — bacteria that sit in the rumen of cattle, sheep and goats and that surface in human bloodstream infections linked to colorectal cancer. Lead with what the phage is and where it lives, then the practical handle: phages that target ruminant streptococci are candidate tools for both livestock health (a real concern for the Muslim-world halal supply chain) and for human anti-S. bovis therapy as antibiotic resistance climbs. This is foundational microbiology with downstream agricultural and clinical reach.",
-      "conceptUris": []
-    },
-    {
-      "id": "pakistan-kp-polio-drive-bannu-waziristan-militant-districts",
-      "label": "Polio drive to begin in high-risk districts of KP tomorrow",
-      "firstSeen": "2026-05-17T08:06:16.118Z",
-      "lastCovered": "2026-05-17T08:06:16.118Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-pakistan-kp-polio-drive-bannu-waziristan-militant-districts"
-      ],
-      "eventUri": null,
-      "summary": "Pakistan launches a 4-day, 4.6-million-child immunisation drive across 23 KP districts including Bannu and North Waziristan — the same militant-contested terrain where TTP attacks have escalated (Bannu car bomb, drone-integrated tactics). The angle: polio in 2026 persists only where the state cannot reach, and KP's polio map is now the KP insurgency map. Vaccinators have been killed campaigning here; this is health logistics as counterinsurgency.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/North_Waziristan_District",
-        "http://en.wikipedia.org/wiki/Polio",
-        "http://en.wikipedia.org/wiki/Bannu",
-        "http://en.wikipedia.org/wiki/Khyber_Pakhtunkhwa"
-      ]
-    },
-    {
-      "id": "tredegar-labour-zero-delegates-senedd-plaid-cymru-bevan",
-      "label": "'It was always the way to vote Labour here': party's proud Welsh heartland makes a clean break of it",
-      "firstSeen": "2026-05-17T08:06:16.118Z",
-      "lastCovered": "2026-05-17T08:06:16.118Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-tredegar-labour-zero-delegates-senedd-plaid-cymru-bevan"
-      ],
-      "eventUri": "eng-11661250",
-      "summary": "Tredegar — birthplace of Aneurin Bevan and Neil Kinnock, Labour's safest UK seat for generations — sent zero Labour delegates to the new Senedd after Plaid Cymru's historic win. The angle: this is not Westminster mood-music; it's a structural realignment in a constituency that built the NHS. Lead with the Bevan-Kinnock-zero-delegates arc — the symbolism is the story. Pair the Plaid result with what this signals for Labour's UK base.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Member_of_the_Senedd",
-        "http://en.wikipedia.org/wiki/Neil_Kinnock",
-        "http://en.wikipedia.org/wiki/Plaid_Cymru",
-        "http://en.wikipedia.org/wiki/Aneurin_Bevan",
-        "http://en.wikipedia.org/wiki/Labour_Party_(UK)"
-      ]
-    },
-    {
-      "id": "nigeria-obasa-apc-unopposed-agege-tinubu-lagos-machine",
-      "label": "Lagos speaker Obasa wins APC ticket for Reps seat",
-      "firstSeen": "2026-05-17T08:06:16.118Z",
-      "lastCovered": "2026-05-17T08:06:16.118Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-nigeria-obasa-apc-unopposed-agege-tinubu-lagos-machine"
-      ],
-      "eventUri": "eng-11660683",
-      "summary": "Mudashiru Obasa — Lagos State Assembly speaker, briefly removed in a 2025 leadership feud and then restored — secures the APC ticket unopposed for Agege federal constituency, signalling his clean rehabilitation inside Tinubu's home-state machine. Lead with the 'unopposed' detail: in APC's Lagos primaries, contested races are rare; the absence of a challenger is the story. This is how Nigeria's ruling party manages federal succession.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/All_Progressives_Congress",
-        "http://en.wikipedia.org/wiki/Agege",
-        "http://en.wikipedia.org/wiki/House_of_Representatives_(Nigeria)",
-        "http://en.wikipedia.org/wiki/Lagos"
-      ]
-    },
-    {
-      "id": "argentina-a4-skyhawk-retirement-f16-falklands-legacy",
-      "label": "Argentina Retires Its A-4 Fightinghawks",
-      "firstSeen": "2026-05-17T08:06:16.118Z",
-      "lastCovered": "2026-05-17T08:06:16.118Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-15-argentina-a4-skyhawk-retirement-f16-falklands-legacy"
-      ],
-      "eventUri": null,
-      "summary": "Argentina — the first export operator of the A-4 Skyhawk, the jet that bombed British ships at San Carlos in 1982 — has stood down its Fightinghawks after 60 years, transitioning to F-16s. The angle: this is the South American shift from Cold-War-surplus hand-me-downs to NATO-standard kit, mirroring similar moves by Brazil (Gripen) and Colombia. Lead with the 1982 Falklands link — that's what makes this aircraft's retirement consequential beyond a routine fleet decision.",
-      "conceptUris": []
-    },
-    {
-      "id": "samsung-union-strike-talks-korea-pm-memory-supply-chain",
-      "label": "Samsung, Labor Union to Meet in 'Last Chance' to Avert Strike",
-      "firstSeen": "2026-05-17T08:06:16.118Z",
-      "lastCovered": "2026-05-17T08:06:16.118Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-samsung-union-strike-talks-korea-pm-memory-supply-chain"
-      ],
-      "eventUri": "eng-11661079",
-      "summary": "Samsung Electronics and its largest union resume Monday talks the South Korean prime minister has publicly warned could 'wreak havoc on the economy' if they fail. Lead with the PM intervention — it's the unusual signal here. A strike at the world's largest memory chipmaker propagates through DRAM and NAND prices globally within weeks; this is supply-chain risk inside a single negotiating room. Frame what arbitration would mean if talks collapse.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Samsung_Electronics",
-        "http://en.wikipedia.org/wiki/Strike_action",
-        "http://en.wikipedia.org/wiki/Trade_union",
-        "http://en.wikipedia.org/wiki/South_Korea",
-        "http://en.wikipedia.org/wiki/Semiconductor"
-      ]
-    },
-    {
-      "id": "china-hormuz-resolution-veto-open-toll-definition-parsi",
-      "label": "China's position on the Hormuz Strait: What 'open' really means",
-      "firstSeen": "2026-05-17T08:06:16.118Z",
-      "lastCovered": "2026-05-17T08:06:16.118Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-16-china-hormuz-resolution-veto-open-toll-definition-parsi"
-      ],
-      "eventUri": null,
-      "summary": "Trita Parsi's analysis (republished via Responsible Statecraft) unpacks why China is opposing the US-Bahraini UN draft on Hormuz despite supposedly telling Trump in Beijing it wanted the Strait reopened: Beijing reads 'open' as 'traffic flows even with a regional transit fee', not as 'no toll permitted'. The frame: this is the source being the story — an analyst close to Chinese diplomats spelling out the definitional gap that doomed the resolution, plus the Venezuela-92%-oil-collapse precedent driving Chinese veto logic. Note source is analytical opinion, not a wire — write accordingly.",
-      "conceptUris": []
-    },
-    {
-      "id": "nigeria-olympic-city-private-sports-infrastructure-privatisation",
-      "label": "INTERVIEW: Olympic City project can redefine sports infrastructure in Nigeria — Omowunmi Olalere",
-      "firstSeen": "2026-05-17T08:06:16.118Z",
-      "lastCovered": "2026-05-17T08:06:16.118Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-nigeria-olympic-city-private-sports-infrastructure-privatisation"
-      ],
-      "eventUri": null,
-      "summary": "A private-investor 'Olympic City' mixed-use development is being pitched as the answer to Nigeria's collapsing public sports infrastructure and the patronage-driven athlete-welfare system. The angle: this is the privatisation-of-public-goods pattern visible across Lagos (housing, transit) now reaching national sports — a structural shift in how Nigeria funds non-oil infrastructure. Lead with what 'private investor takes over national-team facility' actually transfers — land, naming rights, gate revenue, athlete-selection influence.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Nigeria_Olympic_Committee",
-        "http://en.wikipedia.org/wiki/Mixed-use_development"
-      ]
-    },
-    {
-      "id": "grace-fo-hunan-groundwater-2024-flood-dongting-satellite-gravimetry",
-      "label": "Quantifying groundwater storage dynamics during the 2024 flood season using GRACE-FO and multi-source hydrological data in Hunan Province, China",
-      "firstSeen": "2026-05-17T08:06:16.118Z",
-      "lastCovered": "2026-05-17T08:06:16.118Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-grace-fo-hunan-groundwater-2024-flood-dongting-satellite-gravimetry"
-      ],
-      "eventUri": null,
-      "summary": "GRACE-FO satellite gravimetry plus reservoir/lake gauging reconstructs how Hunan's groundwater storage shifted across the catastrophic 2024 April-September flood season — a method that turns satellite mass-anomaly data into actionable basin-level water-management signals. The angle: this is the first time GRACE-FO has been used at provincial scale in southern China to disambiguate flood-driven surface vs subsurface recharge. Lead with what changed in the Dongting Lake basin and why it matters for the next flood cycle.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Groundwater",
-        "http://en.wikipedia.org/wiki/Dongting_Lake",
-        "http://en.wikipedia.org/wiki/Water_cycle"
-      ]
-    },
-    {
-      "id": "cnn-ensemble-diabetic-retinopathy-fundus-screening-low-resource",
-      "label": "RDE-DR: robust deep ensemble CNNs for automated diabetic retinopathy detection from fundus images",
-      "firstSeen": "2026-05-17T08:06:16.118Z",
-      "lastCovered": "2026-05-17T08:06:16.118Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-cnn-ensemble-diabetic-retinopathy-fundus-screening-low-resource"
-      ],
-      "eventUri": null,
-      "summary": "A new CNN ensemble framework for diabetic-retinopathy screening from retinal fundus images, designed to be robust enough for deployment in low-resource clinics where ophthalmologists are scarce. The angle: diabetic retinopathy is a leading cause of preventable blindness across the Global South where IDDM/T2DM rates are climbing fastest; automated fundus screening is one of the rare clinical AI applications with a clear, measurable benefit. Lead with the deployment context, not the architecture — the reader cares about reach, not transfer learning.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Convolutional_neural_network",
-        "http://en.wikipedia.org/wiki/Transfer_learning"
-      ]
-    },
-    {
-      "id": "us-resolution-on-hormuz-strait-not-right-ulyanov",
-      "label": "US resolution on Hormuz Strait 'not right': Ulyanov",
-      "firstSeen": "2026-05-17T08:06:16.118Z",
-      "lastCovered": "2026-05-17T08:06:16.118Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-us-resolution-on-hormuz-strait-not-right-ulyanov"
-      ],
-      "eventUri": "eng-11658973",
-      "summary": "[Auto-backfill for tech floor] TEHRAN, May 17 (MNA) - Russia's Permanent Representative to the International Organizations in Vienna Mikhail Ulyanov has stated that the US resolution on the Strait of Hormuz is not right, echoing China's criticism of the draft measure.\n\nIn a post on his X account on Saturday, he wrote that Moscow ",
-      "conceptUris": []
-    },
-    {
-      "id": "everyone-else-owns-subsea-cables-why-doesn-t-lebanon",
-      "label": "Everyone else owns subsea cables. Why doesn’t Lebanon?",
-      "firstSeen": "2026-05-17T08:06:16.118Z",
-      "lastCovered": "2026-05-17T08:06:16.118Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-15-everyone-else-owns-subsea-cables-why-doesn-t-lebanon"
-      ],
-      "eventUri": null,
-      "summary": "[Auto-backfill for tech floor] Subsea cables are the hidden infrastructure of the internet. They are fiber-optic systems laid across seabeds, carrying around 98 percent...\nThe post Everyone else owns subsea cables. Why doesn’t Lebanon? appeared first on SMEX.",
       "conceptUris": []
     }
   ]

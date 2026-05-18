@@ -189349,5 +189349,1535 @@
     "label": "Jet Fuel Hedging & the Hormuz Premium",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-05-18-ai-fabricated-citations-sanctions-doxing-facebook": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HALLUCINATION PROBLEM",
+        "body": "Large language models predict plausible-sounding text, not true text. When asked for case citations, they generate strings that look exactly like real citations — correct reporter format, plausible court, plausible judge — but reference cases that do not exist. The model is not lying; it has no concept of truth to lie about.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *confabulation* — filling gaps with fluent invention. It is a **feature** of how transformers generate text, not a bug to be patched away with better prompts."
+          }
+        ]
+      },
+      {
+        "heading": "RULE 11",
+        "body": "Federal Rule of Civil Procedure 11 requires that every filing be backed by a reasonable inquiry into facts and law. Signing a brief is a personal certification by the attorney. Citing cases that do not exist is the textbook violation — judges have imposed sanctions for it since the rule was tightened in 1983.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "By presenting to the court a pleading, written motion, or other paper, an attorney certifies that to the best of the person's knowledge, formed after an inquiry reasonable under the circumstances, the legal contentions are warranted by existing law.",
+            "speaker": "Fed. R. Civ. P. 11(b)"
+          }
+        ]
+      },
+      {
+        "heading": "THE MATA PRECEDENT",
+        "body": "In June 2023, a Manhattan federal judge sanctioned two lawyers in Mata v. Avianca $5,000 each for submitting a ChatGPT-generated brief with six fabricated cases. It became the canonical warning shot — and a steady stream of copycat sanctions has followed in courts from Texas to Colorado to the UK.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2023-06",
+                "label": "Mata v. Avianca — first major sanction",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-11",
+                "label": "Cohen lawyer cites fake cases in NY"
+              },
+              {
+                "year": "2024-02",
+                "label": "Canada — Zhang v. Chen sanctions"
+              },
+              {
+                "year": "2024-06",
+                "label": "Colorado attorney suspended"
+              },
+              {
+                "year": "2025",
+                "label": "Standing orders proliferate in federal courts"
+              }
+            ],
+            "label": "AI-citation sanctions, selected"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SECTION 230 IS THE BACKDROP",
+        "body": "Doxing suits against review platforms typically die at the threshold: Section 230 of the Communications Decency Act immunizes interactive computer services from liability for user-posted content. To get past it, a plaintiff must usually unmask the user and sue them directly — which is what the subpoena fight in this kind of case is really about.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does Section 230 actually shield platforms from?",
+            "options": [
+              "Liability for content posted by their users",
+              "Liability for their own editorial choices",
+              "All defamation claims, including against the speaker",
+              "Antitrust enforcement"
+            ],
+            "correct": 0,
+            "explanation": "Section 230(c)(1) immunizes platforms from being treated as the publisher of third-party content — it does not shield the user who posted it."
+          }
+        ]
+      },
+      {
+        "heading": "DISMISSED WITH PREJUDICE",
+        "body": "A dismissal with prejudice is final — the plaintiff cannot refile the same claim. Courts reserve it for cases where amendment would be futile or where the plaintiff's conduct (frivolous filings, fabricated evidence, bad-faith litigation) forfeits the chance. Pairing it with a sanctions order signals the court viewed the misconduct as severe."
+      }
+    ],
+    "generatedAt": "2026-05-18T22:29:10.470Z",
+    "label": "AI Hallucinations in Court",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-18-asteroid-closer-than-moon-neo-detection-gap": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SIZE GAP",
+        "body": "NASA was congressionally mandated in 2005 to catalog 90% of near-Earth objects 140 meters and larger. For objects smaller than that — city-killers, not civilization-enders — there is no mandate and no complete catalog. Most are found after they have already passed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The threshold matters: a **140m** rock releases ~300 megatons on impact. A **20m** rock — the Chelyabinsk class — releases ~500 kilotons, more than thirty Hiroshimas, and the surveys routinely miss them."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THEY ARRIVE UNSEEN",
+        "body": "Asteroids on Earth-approach trajectories are often coming from the direction of the sun. Ground telescopes cannot point at the daytime sky; the object is lost in solar glare until it has swept past Earth and is visible against the night sky on the way out. Chelyabinsk in 2013 was detected zero seconds before it exploded over Russia."
+      },
+      {
+        "heading": "THE DEFLECTION WINDOW",
+        "body": "Nudging an asteroid off course requires years of warning, not days. The change in velocity needed is tiny — centimeters per second — but it must be applied early enough that the small shove compounds into a miss-distance of thousands of kilometers by the time the rock reaches Earth's orbit. Days-out detection means deflection is physically impossible; only evacuation remains.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How much warning does a kinetic-impactor deflection mission realistically need to nudge an asteroid clear of Earth?",
+            "options": [
+              "A few days",
+              "A few months",
+              "Several years to a decade",
+              "Centuries"
+            ],
+            "correct": 2,
+            "explanation": "The DART mission against Dimorphos in 2022 took 10 months to fly there. Real deflection requires finding the rock years out so the tiny velocity change has time to compound into a clean miss."
+          }
+        ]
+      },
+      {
+        "heading": "THE TUNGUSKA PRECEDENT",
+        "body": "In 1908, an object roughly 50-60 meters across exploded above the Siberian taiga, flattening 2,000 km² of forest. Had it arrived four hours later, Earth's rotation would have placed St. Petersburg under it. No telescope of the era saw it coming; no telescope of today's network would have either.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1908",
+                "label": "Tunguska airburst, ~50m, Siberia",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1947",
+                "label": "Sikhote-Alin iron meteorite, Russia"
+              },
+              {
+                "year": "2013",
+                "label": "Chelyabinsk airburst, ~20m, 1500 injured"
+              },
+              {
+                "year": "2022",
+                "label": "DART hits Dimorphos — first deflection test"
+              },
+              {
+                "year": "2029",
+                "label": "Apophis flyby at 31,000 km (closer than GEO sats)"
+              }
+            ],
+            "label": "the impact record we have"
+          }
+        ]
+      },
+      {
+        "heading": "APOPHIS AND OSIRIS-APEX",
+        "body": "Apophis is a 340-meter asteroid that will pass beneath geostationary satellite altitude in April 2029 — visible to the naked eye from Europe and Africa. OSIRIS-APEX is the repurposed Bennu sample-return craft sent to rendezvous with it. Cancelling the mission forfeits the only close-up study of a hazard-class object humans will get this century."
+      },
+      {
+        "heading": "THE NEO SURVEYOR GAP",
+        "body": "The single fix for the sunward blind spot is an infrared space telescope at the Sun-Earth L1 Lagrange point — looking back toward Earth, it sees objects glowing in infrared regardless of solar glare. NEO Surveyor, designed for exactly this, has been deferred and rescoped repeatedly since 2005. Each launch slip extends the detection gap by another orbit's worth of close approaches we don't see."
+      }
+    ],
+    "generatedAt": "2026-05-18T22:29:43.139Z",
+    "label": "Near-Earth Objects & the Detection Gap",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-18-fbi-nationwide-alpr-flock-motorola-procurement": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT AN ALPR ACTUALLY CAPTURES",
+        "body": "An automated license plate reader photographs every passing vehicle, OCRs the plate, and timestamps the location. The output is not a snapshot — it's a continuous movement log. A dense network turns public roads into a passive tracking grid where every car becomes a beacon whether its driver is suspected of anything or not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Flock markets the cameras as solving crime, but the product is a **persistent location database**, not the individual photograph. The asset is the *retention window* — typically 30 days — multiplied by the camera count."
+          }
+        ]
+      },
+      {
+        "heading": "THE THIRD-PARTY DOCTRINE",
+        "body": "The Supreme Court has long held that information voluntarily exposed to a third party — phone numbers dialed, bank records — loses Fourth Amendment protection. Flock is privately owned; its database is a commercial third party. A federal subscription sidesteps the warrant requirement that would apply if the FBI tried to build the same network itself.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The Government's acquisition of the cell-site records was a search within the meaning of the Fourth Amendment.",
+            "speaker": "Carpenter v. United States",
+            "year": "2018"
+          }
+        ]
+      },
+      {
+        "heading": "THE CARPENTER LIMIT",
+        "body": "In Carpenter (2018), the Court ruled 5-4 that seven days of cell-site location data required a warrant — long-term location tracking is qualitatively different from a single data point. ALPR aggregation tests whether that logic extends to license plates, which courts have historically treated as exposed-in-public.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many days of cell-site location data did Carpenter v. United States hold required a warrant?",
+            "options": [
+              "24 hours",
+              "7 days",
+              "30 days",
+              "Any duration"
+            ],
+            "correct": 1,
+            "explanation": "The Court held seven days of CSLI crossed the line into a search. The threshold for ALPR aggregation has not been ruled on."
+          }
+        ]
+      },
+      {
+        "heading": "WHY STATE AUDITS MATTERED",
+        "body": "Most ALPR deployments live under state procurement contracts that require search-reason logging, audit trails, and retention caps. Illinois, California, and Virginia have all sanctioned departments caught running unlogged queries. A direct federal subscription routes around the state log entirely — the query is invisible to the jurisdiction whose camera captured the plate."
+      },
+      {
+        "heading": "THE DUOPOLY",
+        "body": "Flock Safety and Motorola Solutions (which acquired Vigilant in 2019) effectively split the US ALPR market. Sole-source procurement language — \"only Flock or Motorola can fulfill\" — is what allows a federal agency to skip competitive bidding when the market has consolidated to two vendors with proprietary data formats.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Flock Safety",
+                "value": "~80,000 cameras",
+                "tone": "unfavorable",
+                "weight": 80
+              },
+              {
+                "label": "Motorola/Vigilant",
+                "value": "billions of reads",
+                "tone": "unfavorable",
+                "weight": 60
+              },
+              {
+                "label": "All others",
+                "value": "fragmented",
+                "tone": "neutral",
+                "weight": 10
+              }
+            ],
+            "label": "the US ALPR market"
+          }
+        ]
+      },
+      {
+        "heading": "THE COINTELPRO ECHO",
+        "body": "From 1956 to 1971, the FBI ran COINTELPRO — surveillance and disruption of civil rights groups, anti-war activists, and the Nation of Islam. The Church Committee's 1976 findings produced the modern warrant framework precisely because warrantless aggregation had been weaponized against lawful dissent. Every expansion of federal location-tracking capability is read against that history.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1956",
+                "label": "COINTELPRO begins",
+                "emphasis": "start"
+              },
+              {
+                "year": "1971",
+                "label": "Media, PA FBI office burglary exposes program",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1976",
+                "label": "Church Committee final report"
+              },
+              {
+                "year": "1978",
+                "label": "FISA enacted"
+              },
+              {
+                "year": "2013",
+                "label": "Snowden discloses bulk metadata"
+              },
+              {
+                "year": "2018",
+                "label": "Carpenter ruling"
+              },
+              {
+                "year": "2026",
+                "label": "FBI seeks nationwide ALPR access"
+              }
+            ],
+            "label": "federal surveillance & its limits"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-18T22:30:15.397Z",
+    "label": "ALPR & the Fourth Amendment",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-18-interpol-200-arrests-middle-east-scams-proxy-networks": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT INTERPOL ACTUALLY IS",
+        "body": "Interpol is not a police force. It cannot make arrests, conduct raids, or compel testimony. It is a coordination secretariat in Lyon that runs shared databases and issues notices — the actual policing is done by the 196 member states' own forces.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The famous **Red Notice** is not an arrest warrant. It is a *request* to locate and provisionally detain — each receiving country decides whether to honor it under its own law."
+          }
+        ]
+      },
+      {
+        "heading": "THE NOTICE SYSTEM",
+        "body": "Interpol's color-coded notices are the backbone of its work. Red for wanted persons, Blue for information, Green for warnings about likely offenders, Yellow for missing persons, Black for unidentified bodies, Orange for imminent threats, Purple for criminal modus operandi.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Interpol notice is a request to locate and provisionally arrest a wanted person?",
+            "options": [
+              "Red Notice",
+              "Blue Notice",
+              "Orange Notice",
+              "Green Notice"
+            ],
+            "correct": 0,
+            "explanation": "Red Notices request provisional arrest pending extradition; Blue gathers information, Orange warns of imminent threats, Green flags habitual offenders."
+          }
+        ]
+      },
+      {
+        "heading": "THE PROXY NETWORK ECONOMY",
+        "body": "Modern scam operations rent residential IP addresses — real consumer connections re-sold as proxies — to make fraudulent logins look like they come from the victim's own city. A device infected with proxyware silently routes a stranger's traffic; the owner usually never notices.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is *residential proxy*. Networks like these are sold openly to marketing firms and covertly to fraud rings — the same infrastructure, two customer bases."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY OF THE SCAM BELT",
+        "body": "Industrial-scale online fraud — pig-butchering, romance scams, fake investment platforms — clusters in compounds across Southeast Asia (Cambodia, Myanmar, Laos) but targets victims worldwide. The Gulf is a high-value target market: dollar-pegged currencies, large expatriate populations, heavy smartphone penetration.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SA",
+              "AE",
+              "QA",
+              "BH",
+              "KW",
+              "OM"
+            ],
+            "label": "the GCC scam target market",
+            "caption": "dollar-pegged currencies and high smartphone penetration make the Gulf a premium victim pool"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ABUSE OF INTERPOL IS A SEPARATE PROBLEM",
+        "body": "Authoritarian states have repeatedly tried to file Red Notices against dissidents and journalists abroad. Interpol's Constitution Article 3 forbids political, military, religious or racial cases — but enforcement is slow, and a wrongly-issued notice can ground a refugee at any border for months before review.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "It is strictly forbidden for the Organization to undertake any intervention or activities of a political, military, religious or racial character.",
+            "speaker": "Interpol Constitution, Article 3",
+            "year": "1956"
+          }
+        ]
+      },
+      {
+        "heading": "THE ATTRIBUTION PROBLEM",
+        "body": "Cyber fraud rarely respects the borders of any one jurisdiction. The victim is in Dubai, the call center in Sihanoukville, the proxy server in Mumbai, the crypto wallet on a Seychelles exchange, the cash-out in Lagos. Every leg requires a different country's cooperation — which is precisely the gap Interpol exists to bridge, and precisely where it most often fails."
+      }
+    ],
+    "generatedAt": "2026-05-18T22:30:42.775Z",
+    "label": "Interpol & Transnational Cyber Fraud",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-18-iran-hormuz-transit-insurance-bitcoin": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHOKEPOINT",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 20 million barrels of oil pass through daily, about a fifth of global consumption. The deepest channel hugs the Iranian side.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the Gulf's only exit",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 29.0667,
+                "lng": 50.7833,
+                "label": "Kharg Island terminal"
+              },
+              {
+                "lat": 25.1167,
+                "lng": 56.3333,
+                "label": "Fujairah (UAE bypass)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE LAYER",
+        "body": "When Hormuz tensions rise, Lloyd's of London reclassifies the Gulf as a war-risk zone. Premiums on tankers can jump from 0.03% to 3% of cargo value overnight — effectively a tax on global oil that kicks in before a single shot is fired. Iran's move is to insert itself between the shipper and that premium.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is older than it looks: in the **Tanker War** of 1984–88, reflagging ships under US or Kuwaiti flags to access naval escort was itself an insurance product — sovereign protection priced into the freight rate."
+          }
+        ]
+      },
+      {
+        "heading": "THE SANCTIONS TRIPWIRE",
+        "body": "OFAC's secondary sanctions regime means any non-US entity that knowingly transacts with sanctioned Iranian bodies can be cut off from the dollar system. A shipper paying Tehran for Hormuz transit — in any currency — triggers the same exposure as buying Iranian crude. This is why no major operator has signed on.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why would Iran demand payment in Bitcoin rather than dollars or euros?",
+            "options": [
+              "Bitcoin transactions bypass the SWIFT messaging system that enforces sanctions",
+              "Bitcoin is the most stable currency available to Iran",
+              "Iran's central bank holds large Bitcoin reserves",
+              "Shipping companies prefer crypto for speed"
+            ],
+            "correct": 0,
+            "explanation": "Sanctions enforcement runs through dollar-clearing banks and SWIFT. Bitcoin settles peer-to-peer on a public ledger, which is why sanctioned states experiment with it — though chain analysis still makes large flows traceable."
+          }
+        ]
+      },
+      {
+        "heading": "THE BYPASS GEOGRAPHY",
+        "body": "Saudi Arabia's East-West Pipeline (5 million bbl/day) and the UAE's Habshan-Fujairah line together reroute maybe a third of Gulf exports around Hormuz. The rest — Qatari LNG, Kuwaiti crude, Iraqi southern exports, Iran's own Kharg loadings — has no alternative route. The chokepoint cannot be engineered away.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "~5m bpd bypass",
+                "cc": "SA",
+                "tone": "favorable"
+              },
+              {
+                "label": "UAE",
+                "value": "~1.5m bpd bypass",
+                "cc": "AE",
+                "tone": "favorable"
+              },
+              {
+                "label": "Iraq",
+                "value": "no bypass",
+                "cc": "IQ",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Kuwait",
+                "value": "no bypass",
+                "cc": "KW",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Qatar (LNG)",
+                "value": "no bypass",
+                "cc": "QA",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Iran",
+                "value": "Jask line stalled",
+                "cc": "IR",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Gulf exporters with vs without Hormuz bypass"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BITCOIN, WHY NOW",
+        "body": "Iran has been the world's most isolated major economy from dollar clearing since 2018. Bitcoin offers settlement without correspondent banks — but chain analysis firms now trace flows well enough that large counterparties still face exposure. The toll is less a revenue mechanism than a sovereignty claim: Tehran asserting jurisdiction over a strait UNCLOS treats as international transit.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              75728.46,
+              73856.06,
+              75874.55,
+              76350.25,
+              78194.78,
+              78260.62,
+              77444.8,
+              77619.14,
+              78645.13,
+              77361.3,
+              76345.23,
+              75774.89,
+              76286.58,
+              78172.07,
+              78655.35,
+              78562.55,
+              79823.89,
+              80925.09,
+              81425,
+              80022.04,
+              80189.07,
+              80678.03,
+              82145.66,
+              81725.21,
+              80480.89,
+              79277.8,
+              81051.98,
+              79068.82,
+              78135.01,
+              77425.72,
+              77122.95
+            ],
+            "periods": [
+              "Apr 19",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 18"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL POSTURE",
+        "body": "Under UNCLOS Article 38, ships have a right of transit passage through international straits — coastal states cannot suspend passage or charge for it. Iran signed UNCLOS in 1982 but never ratified, and has long argued Hormuz is governed by Iranian domestic law. A transit toll is the most concrete test yet of that position."
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-18"
+    ],
+    "generatedAt": "2026-05-18T22:31:17.255Z",
+    "label": "Hormuz Transit Tolls & Sanctions Geography",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-18-iran-war-africa-fuel-prices-spillover": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRANSMISSION BELT",
+        "body": "Sub-Saharan Africa refines almost nothing it consumes. Nigeria has crude but ships it abroad and imports the refined product back; East Africa has neither. A Hormuz shock reaches a Nairobi pump within weeks because the chain is short and inelastic.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KE",
+              "ZA",
+              "MG",
+              "MW",
+              "TZ",
+              "MZ"
+            ],
+            "label": "states hit by the spillover",
+            "markers": [
+              {
+                "lat": -4.0435,
+                "lng": 39.6682,
+                "label": "Mombasa port"
+              },
+              {
+                "lat": -29.8587,
+                "lng": 31.0218,
+                "label": "Durban port"
+              },
+              {
+                "lat": -18.1492,
+                "lng": 49.4023,
+                "label": "Toamasina port"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY HORMUZ REACHES NAIROBI",
+        "body": "East Africa buys most of its diesel and jet fuel from Indian and Gulf refineries, which run on Persian Gulf crude. When the Strait closes, those refineries throttle and reroute output to premium buyers in Europe and Asia first. African importers are at the back of the queue.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Kenya",
+                "value": "~100%",
+                "cc": "KE",
+                "tone": "unfavorable",
+                "weight": 100
+              },
+              {
+                "label": "Madagascar",
+                "value": "~100%",
+                "cc": "MG",
+                "tone": "unfavorable",
+                "weight": 100
+              },
+              {
+                "label": "Malawi",
+                "value": "~100%",
+                "cc": "MW",
+                "tone": "unfavorable",
+                "weight": 100
+              },
+              {
+                "label": "South Africa",
+                "value": "~70%",
+                "cc": "ZA",
+                "tone": "unfavorable",
+                "weight": 70
+              },
+              {
+                "label": "Nigeria",
+                "value": "~80%",
+                "cc": "NG",
+                "tone": "unfavorable",
+                "weight": 80
+              }
+            ],
+            "label": "fuel import dependency, % of consumption"
+          }
+        ]
+      },
+      {
+        "heading": "THE FERTILIZER LINK",
+        "body": "Modern nitrogen fertilizer is made from natural gas via the Haber-Bosch process — roughly 3-5% of global gas demand goes into urea and ammonia production. When energy prices spike, fertilizer prices spike on a one-month lag. Malawi's planting calendar does not wait.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The chain runs **natural gas → ammonia → urea → soil**. A landlocked importer like Malawi sits at the end of a 6,000 km logistics tail; *every* link compounds the shock."
+          }
+        ]
+      },
+      {
+        "heading": "THE FISCAL BUFFER",
+        "body": "Wealthy oil importers cushion shocks with fuel subsidies or strategic reserves. Kenya's stabilization fund was drained by the 2022 shock; Malawi never had one. The same global price reaches every country, but the political damage is a function of how much the state can absorb before passing it to the pump.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does an oil shock cause famine risk in Malawi specifically?",
+            "options": [
+              "Malawi imports most of its food directly",
+              "Fertilizer prices track natural gas, and Malawi's harvest depends on imported urea",
+              "Malawi's currency is pegged to oil-exporter currencies",
+              "Malawi's main crop is biofuel feedstock"
+            ],
+            "correct": 1,
+            "explanation": "Smallholder maize yields in Malawi collapse without urea topdressing; urea production runs on natural gas, so an energy shock is a fertilizer shock is a harvest shock."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1973 PRECEDENT",
+        "body": "The OPEC embargo quadrupled oil prices in months and triggered the African debt cycle that defined the 1980s. Countries borrowed in dollars to keep buying fuel, then watched the dollar surge under Volcker. Half the continent ended up in IMF structural adjustment by 1985. Every Hormuz crisis is read against that memory.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1973",
+                "label": "OPEC embargo",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1979",
+                "label": "Iranian revolution, second shock"
+              },
+              {
+                "year": "1982",
+                "label": "Mexico defaults, capital flight"
+              },
+              {
+                "year": "1985",
+                "label": "Structural adjustment era begins"
+              },
+              {
+                "year": "2022",
+                "label": "Ukraine war fuel spike"
+              },
+              {
+                "year": "2026",
+                "label": "Hormuz closure"
+              }
+            ],
+            "label": "Africa's oil-shock cycle"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-18T22:31:48.876Z",
+    "label": "Africa's Fuel Import Trap",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-18-knowledge-attitudes-and-practices-regarding-childhood-epilep": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OLDEST MISCONCEPTION",
+        "body": "Hippocrates wrote 'On the Sacred Disease' around 400 BCE arguing epilepsy was a brain condition, not divine possession. Twenty-four centuries later, the supernatural framing still shapes care decisions across most of the world.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Greek word *epilepsia* means *to seize hold of* — the disease was named for the spirit believed to seize the body, not for the neurology."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A SEIZURE ACTUALLY IS",
+        "body": "A seizure is a burst of synchronized electrical activity across neurons that normally fire independently. The brain has roughly 86 billion neurons; when even a small cluster locks into rhythm, motor control, awareness, or sensation cuts out depending on which region misfires."
+      },
+      {
+        "heading": "THE TONGUE MYTH",
+        "body": "Inserting an object into a seizing person's mouth is the single most dangerous folk practice in epilepsy care. The tongue cannot be swallowed — it is anchored. What objects actually do is break teeth, lacerate the airway, or get aspirated into the lungs. Modern first aid is the exact opposite: clear the area, turn the person on their side, time the seizure.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What should a bystander do when someone has a tonic-clonic seizure?",
+            "options": [
+              "Put a wallet or spoon in their mouth to prevent tongue-swallowing",
+              "Hold them down to stop the convulsions",
+              "Turn them on their side and time the seizure",
+              "Pour cold water on their face to wake them"
+            ],
+            "correct": 2,
+            "explanation": "The tongue is anchored and cannot be swallowed. Side-lying clears the airway of saliva; timing matters because seizures over 5 minutes are a medical emergency (status epilepticus)."
+          }
+        ]
+      },
+      {
+        "heading": "KNOWLEDGE-ATTITUDE-PRACTICE",
+        "body": "The KAP model in public health assumes knowledge drives attitudes drives practice — teach the facts and behavior follows. Decades of field data, including this Zibo study, show the chain often breaks at the attitude link. People who can recite the science still act on the stigma.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Structural equation modeling, the statistical tool used in the Zibo study, lets researchers test whether knowledge influences practice **directly** or only **through** attitude — and consistently finds attitude is the binding constraint."
+          }
+        ]
+      },
+      {
+        "heading": "THE EMPLOYMENT PENALTY",
+        "body": "Caregiver fear of career stigma is grounded in evidence. Adults with epilepsy face unemployment rates roughly 2–3× the general population in most countries surveyed, even when seizures are fully controlled. The diagnosis follows the medical record into hiring decisions.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Sub-Saharan Africa",
+                "value": "~14",
+                "weight": 14,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Latin America",
+                "value": "~12",
+                "weight": 12,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "South Asia",
+                "value": "~10",
+                "weight": 10,
+                "tone": "neutral"
+              },
+              {
+                "label": "East Asia",
+                "value": "~7",
+                "weight": 7,
+                "tone": "neutral"
+              },
+              {
+                "label": "High-income",
+                "value": "~5",
+                "weight": 5,
+                "tone": "favorable"
+              }
+            ],
+            "label": "adult epilepsy prevalence by region (per 1,000)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TREATMENT GAP",
+        "body": "The WHO estimates 50 million people worldwide have epilepsy; about 70% would become seizure-free on inexpensive first-line drugs like phenobarbital (off-patent since 1912, costs pennies per dose). In low-income settings, three in four go untreated — not because the medicine is unavailable but because families either don't seek care or stop attending once seizures pause."
+      }
+    ],
+    "generatedAt": "2026-05-18T22:32:15.348Z",
+    "label": "Epilepsy, Stigma & Care",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-18-pakistan-troops-jets-saudi-arabia-iran-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PACT",
+        "body": "Pakistan and Saudi Arabia signed a mutual defence agreement in September 2025 declaring an attack on one an attack on both. It formalized a half-century of informal security cooperation that began when Pakistani pilots flew Saudi jets in the 1969 Yemen war.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1967",
+                "label": "First Pakistani military advisors arrive"
+              },
+              {
+                "year": "1969",
+                "label": "Pakistani pilots fly Saudi jets vs. South Yemen"
+              },
+              {
+                "year": "1979",
+                "label": "Pakistani troops help retake Grand Mosque",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1982",
+                "label": "Bilateral defence protocol signed"
+              },
+              {
+                "year": "2015",
+                "label": "Pakistan declines Yemen war deployment"
+              },
+              {
+                "year": "2025",
+                "label": "Mutual defence pact signed"
+              }
+            ],
+            "label": "Pakistan–Saudi security ties"
+          }
+        ]
+      },
+      {
+        "heading": "THE NUCLEAR SUBTEXT",
+        "body": "Saudi Arabia funded a significant portion of Pakistan's nuclear weapons program in the 1970s and 80s under an unwritten understanding: when Riyadh needed the umbrella, Islamabad would provide it. Pakistan is the only Muslim-majority nuclear state, and the only one whose warheads were partly Saudi-financed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Western analysts have long called this the **'Sunni bomb'** thesis — the idea that Saudi Arabia did not need its own enrichment program because it had effectively prepaid for Pakistan's."
+          }
+        ]
+      },
+      {
+        "heading": "THE HQ-9 SYSTEM",
+        "body": "The HQ-9 is China's long-range surface-to-air missile system, broadly comparable to the Russian S-300 and the American Patriot. Its appearance in Saudi Arabia alongside US Patriots and THAAD batteries is the first time Chinese and American air defence have operated on the same soil in the Gulf.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Patriot PAC-3",
+                "value": "~160 km",
+                "cc": "US",
+                "weight": 160
+              },
+              {
+                "label": "S-400",
+                "value": "~400 km",
+                "cc": "RU",
+                "weight": 400
+              },
+              {
+                "label": "HQ-9B",
+                "value": "~260 km",
+                "cc": "CN",
+                "weight": 260
+              },
+              {
+                "label": "THAAD",
+                "value": "~200 km",
+                "cc": "US",
+                "weight": 200
+              }
+            ],
+            "label": "long-range SAM systems in service"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2015 REFUSAL",
+        "body": "When Saudi Arabia asked Pakistan to join its Yemen coalition in 2015, Pakistan's parliament voted unanimously to stay out — citing the risk of being drawn into a Sunni-Shia proxy war and the danger to Pakistan's own Shia minority. The 2025 deployment to Saudi Arabia for an Iran scenario reverses that posture.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did Pakistan refuse Saudi Arabia's 2015 request to join the Yemen war?",
+            "options": [
+              "Parliament feared sectarian blowback at home",
+              "The US pressured Islamabad to stay neutral",
+              "Pakistan lacked deployable forces at the time",
+              "Iran threatened economic retaliation"
+            ],
+            "correct": 0,
+            "explanation": "Pakistan's ~15% Shia population and a border with Iran made a Sunni-coalition war politically untenable; parliament voted unanimously against deployment."
+          }
+        ]
+      },
+      {
+        "heading": "THE REGIONAL GEOMETRY",
+        "body": "Pakistani troops in Saudi Arabia sit between Iran's western flank and the US Fifth Fleet at Bahrain. The Strait of Hormuz is roughly 1,000 km from the likely basing areas — within range of the HQ-9 if positioned forward.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SA",
+              "PK",
+              "IR",
+              "BH",
+              "AE",
+              "OM",
+              "YE"
+            ],
+            "label": "the Pakistani deployment theatre",
+            "markers": [
+              {
+                "lat": 26.2285,
+                "lng": 50.586,
+                "label": "US Fifth Fleet (Bahrain)"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 24.7136,
+                "lng": 46.6753,
+                "label": "Riyadh"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE MUSLIM-WORLD DIMENSION",
+        "body": "Both kingdoms host the holiest sites of Islam — Makkah and Madinah are in Saudi Arabia, and the custodianship of the Two Holy Mosques is the central legitimating title of the Saudi monarchy. A Pakistani deployment framed as protection of the Haramayn carries religious weight that pure strategic logic does not capture."
+      }
+    ],
+    "generatedAt": "2026-05-18T22:32:46.386Z",
+    "label": "Pakistan–Saudi Defence Pact",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-18-san-diego-islamic-center-shooting-children-mosque": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY MOSQUES ARE TARGETS",
+        "body": "Mosques are soft targets by design — open to all, unarmed, with predictable prayer times that concentrate worshippers. The same accessibility that defines a house of worship makes it geographically and temporally easy to attack.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In Islamic law, a *masjid* is literally \"place of prostration\" — any clean ground qualifies. The building is incidental; the congregational rhythm of five daily prayers is what gathers the community."
+          }
+        ]
+      },
+      {
+        "heading": "THE POST-9/11 BASELINE",
+        "body": "FBI hate-crime data shows anti-Muslim incidents jumped roughly fivefold after September 2001 and never returned to pre-2001 levels. They spike again during Gaza escalations, with mosque vandalism and threats running well above the population-share baseline for two decades.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2012",
+                "label": "Wisconsin Sikh temple (mistaken for mosque), 6 killed"
+              },
+              {
+                "year": "2015",
+                "label": "Chapel Hill, NC — 3 Muslim students killed"
+              },
+              {
+                "year": "2017-01",
+                "label": "Quebec City mosque, 6 killed"
+              },
+              {
+                "year": "2019-03",
+                "label": "Christchurch, NZ — 51 killed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-10",
+                "label": "Plainfield, IL — 6-year-old Wadea Al-Fayoume killed"
+              },
+              {
+                "year": "2025",
+                "label": "rise in US mosque threats during Gaza war"
+              }
+            ],
+            "label": "mosque attacks in the Western world"
+          }
+        ]
+      },
+      {
+        "heading": "WHO TRACKS IT",
+        "body": "CAIR — the Council on American-Islamic Relations, founded 1994 — runs the largest US database of anti-Muslim incidents. Its annual civil-rights report consistently records more complaints than the FBI's hate-crime statistics because most incidents never get classified as hate crimes by local police.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Anti-Jewish",
+                "value": "~1,830 incidents",
+                "tone": "unfavorable",
+                "weight": 1830
+              },
+              {
+                "label": "Anti-Muslim",
+                "value": "~240 incidents",
+                "tone": "unfavorable",
+                "weight": 240
+              },
+              {
+                "label": "Anti-Sikh",
+                "value": "~180 incidents",
+                "tone": "neutral",
+                "weight": 180
+              },
+              {
+                "label": "Anti-Catholic",
+                "value": "~100 incidents",
+                "tone": "neutral",
+                "weight": 100
+              }
+            ],
+            "label": "2023 anti-religious hate crimes (FBI, US)"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHRISTCHURCH TEMPLATE",
+        "body": "The 2019 Christchurch shooter livestreamed the attack and posted a manifesto online. Subsequent mosque and synagogue attackers — Poway, El Paso, Buffalo, Halle — cited him directly. The replication pattern is now a documented feature of how attacks on houses of worship propagate.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Researchers call this the *stochastic terrorism* model: online radicalization produces unpredictable individual actors operating on a shared script, without a command structure to disrupt."
+          }
+        ]
+      },
+      {
+        "heading": "THE SAN DIEGO CONTEXT",
+        "body": "San Diego County hosts one of the larger Muslim populations on the US West Coast — roughly 120,000 people, anchored by Somali, Iraqi, and South Asian communities. El Cajon, just east of the city, has been a primary US resettlement site for Iraqi Christians and Iraqi Muslims since the 2003 war.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which US metropolitan area has historically received the largest share of Iraqi refugee resettlement?",
+            "options": [
+              "Detroit/Dearborn, MI",
+              "San Diego/El Cajon, CA",
+              "Houston, TX",
+              "Minneapolis, MN"
+            ],
+            "correct": 0,
+            "explanation": "Dearborn, Michigan has the largest Arab-American concentration in the US, but San Diego County (especially El Cajon) is the second-largest Iraqi resettlement site."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-18T22:33:15.017Z",
+    "label": "Mosques & Attacks on Worship",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-18-trump-calls-off-iran-strike-gulf-allies": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE GULF GETS A VETO",
+        "body": "US Central Command's forward presence sits on the soil of the very monarchies in Iran's missile range. Any strike on Iran is also a strike launched from — and retaliated against — Qatar, Bahrain, the UAE, and Saudi Arabia. The hosts hold a quiet veto because they would be the first targets.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "SA",
+              "AE",
+              "QA",
+              "BH",
+              "KW",
+              "OM"
+            ],
+            "label": "US bases inside Iran's missile arc",
+            "markers": [
+              {
+                "lat": 25.1173,
+                "lng": 51.3151,
+                "label": "Al Udeid AB (Qatar)"
+              },
+              {
+                "lat": 26.2666,
+                "lng": 50.65,
+                "label": "5th Fleet HQ (Bahrain)"
+              },
+              {
+                "lat": 24.4439,
+                "lng": 54.5478,
+                "label": "Al Dhafra AB (UAE)"
+              },
+              {
+                "lat": 27.8348,
+                "lng": 45.5286,
+                "label": "Prince Sultan AB (Saudi)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 2019 PRECEDENT",
+        "body": "Trump pulled back from a strike on Iran in June 2019 ten minutes before launch after Iran shot down a US Global Hawk. He cited expected Iranian casualties; the structural reason was the same as today — Gulf hosts feared the return fire would land on their refineries before it landed on Tehran."
+      },
+      {
+        "heading": "WHAT IRAN ALREADY DEMONSTRATED",
+        "body": "In September 2019, cruise missiles and drones hit Saudi Aramco's Abqaiq facility — the world's largest oil processing plant — and briefly knocked out 5% of global supply. The strike was attributed to Iran. US air defenses on Saudi soil did not stop it. That single morning rewrote every Gulf capital's threat model.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Abqaiq processes roughly **7 million barrels per day**. A successful repeat — or a strike on Ras Tanura — would dwarf any Hormuz scare; the chokepoint isn't only the strait, it's the **processing nodes** the strait carries oil away from."
+          }
+        ]
+      },
+      {
+        "heading": "THE GULF PIVOT TO TEHRAN",
+        "body": "Saudi Arabia restored diplomatic ties with Iran in March 2023, brokered by China. The UAE returned its ambassador in 2022. Qatar has mediated between Washington and Tehran for years. The bloc that Washington assumed would cheer a strike spent the last three years insuring against one."
+      },
+      {
+        "heading": "WAR-RISK PRICES THE THREAT",
+        "body": "Markets don't wait for missiles. Lloyd's of London war-risk premiums on Gulf tankers can jump from 0.03% to over 0.5% of hull value within hours of a credible threat — a tax on global oil that kicks in long before any actual disruption.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of global oil consumption transits the Strait of Hormuz daily?",
+            "options": [
+              "About 5%",
+              "About 12%",
+              "About 21%",
+              "About 40%"
+            ],
+            "correct": 2,
+            "explanation": "Around 21 million barrels per day move through Hormuz — close to 21% of global consumption — with no full bypass for the majority of it."
+          }
+        ]
+      },
+      {
+        "heading": "THE CAST",
+        "body": "The three monarchies that intervened are not symmetrically exposed: Qatar hosts CENTCOM's forward HQ, the UAE hosts the F-22 and tanker fleet, Saudi Arabia hosts Prince Sultan Air Base — rebuilt after 2019 specifically as a hedge against Qatar.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Mohammed bin Salman",
+                "role": "Saudi Crown Prince & PM",
+                "years": "2017–",
+                "cc": "SA"
+              },
+              {
+                "name": "Mohammed bin Zayed",
+                "role": "UAE President",
+                "years": "2022–",
+                "cc": "AE"
+              },
+              {
+                "name": "Tamim bin Hamad",
+                "role": "Emir of Qatar",
+                "years": "2013–",
+                "cc": "QA"
+              }
+            ],
+            "label": "the Gulf hosts"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-18T22:33:48.743Z",
+    "label": "Gulf Bases & the Iran Veto",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-18-trump-cms-aca-skimpy-plans-essential-benefits": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TEN CATEGORIES",
+        "body": "The 2010 Affordable Care Act required individual and small-group plans to cover ten essential health benefits: ambulatory care, emergency services, hospitalization, maternity, mental health, prescription drugs, rehab, lab work, preventive care, and pediatric services including dental and vision.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Before the ACA, **62%** of individual-market plans excluded maternity coverage and **34%** excluded substance-abuse treatment — the categories insurers dropped first when they wanted to underprice competitors."
+          }
+        ]
+      },
+      {
+        "heading": "THE DEATH SPIRAL",
+        "body": "Insurance pools depend on healthy enrollees subsidizing sick ones. When healthy people are allowed to buy cheaper plans that exclude expensive benefits, they exit the comprehensive pool. Premiums rise for those who stay, pushing more healthy people out, until only the sickest remain and the pool collapses.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the technical name for the cycle where healthy enrollees exit an insurance pool, driving premiums up and forcing more exits?",
+            "options": [
+              "Adverse selection",
+              "Moral hazard",
+              "Crowding out",
+              "Information asymmetry"
+            ],
+            "correct": 0,
+            "explanation": "Adverse selection describes the asymmetric exit of low-risk participants from a pooled market — the foundational problem insurance regulation tries to solve."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRE-ACA BASELINE",
+        "body": "Before 2014, insurers in most states could deny coverage for pre-existing conditions, charge women more than men, impose lifetime caps, and rescind policies after a claim. Essential benefits were one piece of a package designed to make these practices unworkable in a guaranteed-issue market."
+      },
+      {
+        "heading": "WHO BUYS WHAT",
+        "body": "Roughly 24 million Americans buy ACA marketplace plans; another 156 million get coverage through employers, which is governed by separate ERISA rules. The skimpy-plan rule reshapes the individual market only — but that market is where the self-employed, early retirees, and gig workers live.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Employer",
+                "value": "~156M",
+                "weight": 156,
+                "tone": "neutral"
+              },
+              {
+                "label": "Medicaid",
+                "value": "~80M",
+                "weight": 80,
+                "tone": "neutral"
+              },
+              {
+                "label": "Medicare",
+                "value": "~67M",
+                "weight": 67,
+                "tone": "neutral"
+              },
+              {
+                "label": "ACA marketplace",
+                "value": "~24M",
+                "weight": 24,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Uninsured",
+                "value": "~26M",
+                "weight": 26,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "US health coverage, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Trump's first term expanded short-term limited-duration plans — exempt from ACA rules — from 3 months to 12. Biden reversed it. The current rule goes further: it lets ACA-marketplace plans themselves shed essential benefits, blurring the line that short-term plans were supposed to police."
+      },
+      {
+        "heading": "WHY NO LAWSUIT YET",
+        "body": "The ACA's essential-benefits list was set by HHS regulation, not written into the statute itself. Congress delegated the definition. That delegation cuts both ways — it lets a future administration narrow benefits without Congress, which is why courts are likely to defer under post-Chevron administrative-law doctrine.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2024 *Loper Bright* decision overturned **Chevron deference** — but it cuts unpredictably here. Courts now decide statutory meaning themselves rather than deferring to agencies, which could either entrench or unwind the rule depending on how a judge reads the ACA's delegation language."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-18T22:34:15.309Z",
+    "label": "ACA Essential Benefits",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-18-trump-irs-settlement-anti-weaponisation-fund": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE JUDGMENT FUND",
+        "body": "The Justice Department pays most settlements out of a permanent, indefinite Treasury account created in 1956. Congress does not vote on individual payouts — once DOJ signs, the Treasury writes the check. The fund exists so judgments against the US can be paid without a fresh appropriation for each one."
+      },
+      {
+        "heading": "THE CONSTITUTIONAL FRICTION",
+        "body": "Article I §9 reserves spending power to Congress. A settlement that routes nearly $2bn to politically aligned claimants tests whether the Judgment Fund — designed for routine torts — can be used as a discretionary disbursement channel by the executive.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "No Money shall be drawn from the Treasury, but in Consequence of Appropriations made by Law.",
+            "speaker": "US Constitution, Article I §9"
+          }
+        ]
+      },
+      {
+        "heading": "THE WEAPONIZATION FRAME",
+        "body": "Claims of a politicized IRS have a long pedigree. Nixon's enemies list directed audits at opponents; the 2013 Lois Lerner controversy alleged extra scrutiny of Tea Party groups. The pattern matters because it shapes what counts as a credible 'unlawful prosecution' claim.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1971",
+                "label": "Nixon enemies list directs IRS audits"
+              },
+              {
+                "year": "1998",
+                "label": "IRS Restructuring Act curbs collection abuses"
+              },
+              {
+                "year": "2013",
+                "label": "Lerner / Tea Party targeting probe"
+              },
+              {
+                "year": "2022",
+                "label": "Trump tax returns released by Ways & Means"
+              },
+              {
+                "year": "2026",
+                "label": "$1.76bn settlement fund",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "the politicized-IRS lineage"
+          }
+        ]
+      },
+      {
+        "heading": "WHO POLICES A SETTLEMENT",
+        "body": "Once DOJ signs, courts rarely reopen a settled case — the parties consented. The remaining check is congressional: oversight hearings, Government Accountability Office audits, and, in theory, rescission of the appropriating authority. The 93 House filings are the first of those levers, not the last.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Anti-Deficiency Act bars federal officers from spending beyond appropriated authority — but *the Judgment Fund is itself a standing appropriation*, which is why it sits in a gray zone the framers never anticipated."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT RISK",
+        "body": "Settlements set baselines. Once a fund of this size pays a class defined by alignment with a sitting administration, future administrations inherit both the mechanism and the political incentive to use it. The dollar figure is small against federal outlays; the procedural innovation is not.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which fund pays most US government legal settlements without needing a fresh congressional vote?",
+            "options": [
+              "The Judgment Fund (Treasury, since 1956)",
+              "The General Services Administration reserve",
+              "DOJ's annual operating appropriation",
+              "The Federal Tort Claims trust"
+            ],
+            "correct": 0,
+            "explanation": "The Judgment Fund is a permanent, indefinite appropriation — Treasury pays out automatically once DOJ certifies the settlement."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-18T22:34:42.258Z",
+    "label": "Settlements & the Appropriations Power",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-18-us-russian-oil-sanctions-waiver-hormuz": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY WAIVERS EXIST",
+        "body": "Sanctions on a top-three oil producer cannot be absolute without spiking global prices. Treasury issues general licenses and waivers as pressure valves — the sanction stays on the books, but specific transactions are exempted to keep barrels flowing.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical instrument is an **OFAC General License** — a standing carve-out that lets named counterparties keep transacting without violating the underlying executive order."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRICE CAP MECHANIC",
+        "body": "Since December 2022, G7 buyers can lift Russian crude only if it sold below a cap (originally $60/bbl). The cap was designed to keep Russian oil on the market while compressing the Kremlin's margin. Waivers extend this logic — preserve supply, squeeze revenue.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "~13.2",
+                "cc": "US",
+                "weight": 13.2
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~9.6",
+                "cc": "SA",
+                "weight": 9.6
+              },
+              {
+                "label": "Russia",
+                "value": "~9.5",
+                "cc": "RU",
+                "weight": 9.5
+              },
+              {
+                "label": "Canada",
+                "value": "~4.9",
+                "cc": "CA",
+                "weight": 4.9
+              },
+              {
+                "label": "Iraq",
+                "value": "~4.3",
+                "cc": "IQ",
+                "weight": 4.3
+              },
+              {
+                "label": "China",
+                "value": "~4.2",
+                "cc": "CN",
+                "weight": 4.2
+              }
+            ],
+            "label": "world's largest crude producers (2024, mn bbl/day)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY US PUMP PRICES DON'T FALL",
+        "body": "American gasoline is priced off Brent, the global benchmark, not US production cost. Even when domestic output rises or a friendly waiver adds barrels, refineries pay the world price and pass it through. The pump is a window onto the global market, not the local one."
+      },
+      {
+        "heading": "THE HORMUZ HEDGE",
+        "body": "Roughly a fifth of the world's oil transits the Strait of Hormuz daily. Russian barrels move via Baltic and Pacific ports, geographically independent of the Gulf. Keeping Russian flow open is the only readily available hedge if Hormuz traffic is interrupted — there is no equivalent spare capacity elsewhere.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA"
+            ],
+            "label": "Russia's exports bypass the Gulf entirely",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 59.6359,
+                "lng": 30.2,
+                "label": "Primorsk (Baltic)"
+              },
+              {
+                "lat": 42.7339,
+                "lng": 132.81,
+                "label": "Kozmino (Pacific)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 30-DAY RHYTHM",
+        "body": "Short waivers are a feature, not a bug. Each renewal forces counterparties to keep cooperating; each expiry threat is leverage. The Iran sanctions architecture used the same cadence — 180-day SRE waivers under JCPOA-era policy, then 30-day rolls when pressure escalated."
+      },
+      {
+        "heading": "QUICK CHECK",
+        "body": "Sanctions design always trades off two goals — punishing the target and avoiding self-inflicted economic damage. Waivers sit in that gap.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did the G7 set a price cap on Russian oil rather than a full embargo?",
+            "options": [
+              "To keep Russian barrels on the global market while compressing Moscow's revenue",
+              "Because WTO rules forbid full embargoes on member states",
+              "To favor European refiners over Asian buyers",
+              "Because Russia threatened retaliation against pipeline infrastructure"
+            ],
+            "correct": 0,
+            "explanation": "A full embargo would have removed ~10% of world supply and spiked prices globally. The cap preserves supply while attacking margin."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-18T22:35:12.720Z",
+    "label": "Oil Sanctions & Waivers",
+    "category": "economy",
+    "articleCount": 1
   }
 }
