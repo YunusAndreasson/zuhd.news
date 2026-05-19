@@ -192739,5 +192739,1244 @@
     "label": "Urban Behavioral Evolution",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-05-19-ai-process-speed-bottleneck-developer-essay": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CORE LAW",
+        "body": "Eliyahu Goldratt's Theory of Constraints (1984) states that any system's throughput is determined by a single bottleneck. Improvements anywhere else are illusions — the queue just shifts upstream or downstream of the real constraint.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Goldratt's original formulation: *an hour lost at the bottleneck is an hour lost for the entire system; an hour saved at a non-bottleneck is a mirage*."
+          }
+        ]
+      },
+      {
+        "heading": "LITTLE'S LAW",
+        "body": "In any stable queue, average cycle time equals work-in-progress divided by throughput. Doubling coding speed without reducing the requirements backlog just grows the WIP pile — features sit longer waiting for clarification, review, or deployment."
+      },
+      {
+        "heading": "WHERE SOFTWARE TIME ACTUALLY GOES",
+        "body": "Multiple industry studies (Forrester, McKinsey, DORA) consistently find developers spend 20-30% of time writing new code. The rest is meetings, requirements clarification, code review, testing, debugging, and deployment coordination.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Meetings & comms",
+                "value": 24,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Code review",
+                "value": 15,
+                "tone": "neutral"
+              },
+              {
+                "label": "Writing new code",
+                "value": 22,
+                "tone": "favorable"
+              },
+              {
+                "label": "Debugging",
+                "value": 15,
+                "tone": "neutral"
+              },
+              {
+                "label": "Testing",
+                "value": 10,
+                "tone": "neutral"
+              },
+              {
+                "label": "Deployment & ops",
+                "value": 6,
+                "tone": "neutral"
+              }
+            ],
+            "label": "where a developer's week goes (typical knowledge-worker survey averages)"
+          }
+        ]
+      },
+      {
+        "heading": "THE BROOKS PRECEDENT",
+        "body": "Fred Brooks made the same argument in 1975's The Mythical Man-Month: the hard part of software is not writing code but deciding precisely what to build. He called requirements specification the task where conceptual errors are most expensive and most common."
+      },
+      {
+        "heading": "THE MEASUREMENT GAP",
+        "body": "Enterprises track lines-of-code, PR velocity, and commit frequency because those metrics are easy to instrument. Requirements-cycle time — from idea raised to specification frozen — is rarely measured at all, so AI's effect on the actual bottleneck remains invisible.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "According to queueing theory, what happens to total cycle time when you speed up a non-bottleneck stage?",
+            "options": [
+              "Cycle time decreases proportionally",
+              "Cycle time is unchanged; queue shifts to the bottleneck",
+              "Cycle time increases due to coordination overhead",
+              "Cycle time decreases but only for small batches"
+            ],
+            "correct": 1,
+            "explanation": "Throughput is gated by the slowest stage; accelerating upstream or downstream stages only changes where work piles up, not how fast it exits the system."
+          }
+        ]
+      },
+      {
+        "heading": "WHY AI TARGETS CODE ANYWAY",
+        "body": "Code is text with a formal grammar, abundant training data, and verifiable outputs — ideal for LLMs. Requirements elicitation is tacit, political, and cross-functional, which is exactly why it remains the constraint and why no tool has automated it in fifty years."
+      }
+    ],
+    "generatedAt": "2026-05-19T08:30:57.484Z",
+    "label": "Theory of Constraints in Software",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-19-india-childhood-myopia-outdoor-light-guidelines": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT MYOPIA ACTUALLY IS",
+        "body": "Myopia is not a focusing weakness — it is an eyeball that has grown too long front-to-back. Light converges in front of the retina instead of on it. Once the eye elongates, it does not shrink back; the structural change is permanent.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The clinical term is *axial elongation* — the **axial length** of the eye, normally ~24mm, stretches past that in myopic children and keeps growing through adolescence."
+          }
+        ]
+      },
+      {
+        "heading": "THE DOPAMINE MECHANISM",
+        "body": "Bright outdoor light triggers retinal dopamine release, which inhibits axial elongation. Indoor light — even seemingly bright office lighting — delivers a tiny fraction of outdoor lux levels. The eye reads dim ambient light as a signal to grow longer.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Direct sunlight",
+                "value": "100,000 lux",
+                "weight": 100000,
+                "tone": "favorable"
+              },
+              {
+                "label": "Overcast outdoor",
+                "value": "10,000 lux",
+                "weight": 10000,
+                "tone": "neutral"
+              },
+              {
+                "label": "Bright office",
+                "value": "500 lux",
+                "weight": 500,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Living room",
+                "value": "150 lux",
+                "weight": 150,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "illuminance, typical"
+          }
+        ]
+      },
+      {
+        "heading": "NOT THE SCREENS, THE INDOORS",
+        "body": "The screen-time correlation is real but the mechanism is indirect. What screens displace is time outside. Studies in Taiwan and Australia found that adding 40-80 minutes of outdoor recess slowed myopia onset regardless of how much near-work children did afterward."
+      },
+      {
+        "heading": "THE EAST ASIA PRECEDENT",
+        "body": "Singapore, Taiwan, South Korea, and urban China hit 80-90% myopia rates among young adults over the past two generations — the fastest population-level vision change ever recorded. The driver was not genetics but a shift: intensive schooling, dense cities, less daylight. India's urban trajectory rhymes with theirs at a 20-year lag.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Myopia prevalence, young adults (%)",
+            "peers": [
+              {
+                "value": 83,
+                "cc": "SG"
+              },
+              {
+                "value": 84,
+                "cc": "KR"
+              },
+              {
+                "value": 85,
+                "cc": "TW"
+              },
+              {
+                "value": 78,
+                "cc": "CN"
+              },
+              {
+                "value": 65,
+                "cc": "JP"
+              },
+              {
+                "value": 36,
+                "cc": "IN"
+              },
+              {
+                "value": 42,
+                "cc": "US"
+              },
+              {
+                "value": 30,
+                "cc": "AU"
+              }
+            ],
+            "subjectCc": "IN",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT MATTERS BEYOND GLASSES",
+        "body": "Mild myopia is a glasses problem. High myopia — beyond about -6 diopters — is a disease risk: the elongated eye raises lifetime odds of retinal detachment, myopic maculopathy, and glaucoma. Every diopter of childhood myopia prevented compounds into adult sight saved."
+      },
+      {
+        "heading": "TEST YOURSELF",
+        "body": "Active recall locks the mechanism in.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does time outdoors slow childhood myopia?",
+            "options": [
+              "It rests the focusing muscles",
+              "Bright light triggers retinal dopamine, which inhibits eye elongation",
+              "UV exposure strengthens the cornea",
+              "It reduces screen time by default"
+            ],
+            "correct": 1,
+            "explanation": "The protective effect is light-intensity driven — dopamine released under high lux levels suppresses the axial growth that causes myopia."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T08:31:25.866Z",
+    "label": "Childhood Myopia & Light",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-19-pakistan-digital-bank-fintech-gap": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RAILS VS THE CREDIT",
+        "body": "Payment rails and credit systems are different problems. Rails move money between people who already have it; credit creates new purchasing power. Pakistan built world-class rails (Raast clearing in seconds, near-zero fees) but its banks still won't lend to anyone without collateral or a salary slip.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**Raast** is the State Bank's instant payment system, modeled on India's *UPI* and Brazil's *Pix*. It solved the plumbing — not the underwriting."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CREDIT IS HARD HERE",
+        "body": "Pakistan's credit bureau (eCIB) only covers formal-sector borrowers. For the 70% of workers in the informal economy — street vendors, day laborers, smallholders — there is no salary record, no tax filing, no rent history. A lender has nothing to underwrite against, so the loan never gets made."
+      },
+      {
+        "heading": "WHAT BANGLADESH DID DIFFERENTLY",
+        "body": "bKash launched in 2011 as a mobile wallet, then layered nano-loans on top once it had years of transaction data on each user. The transaction history became the credit score. Pakistan's banks treat payment data and credit decisions as separate businesses; bKash treated them as the same product.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Indonesia",
+                "value": "~52%",
+                "cc": "ID",
+                "weight": 52,
+                "tone": "favorable"
+              },
+              {
+                "label": "Bangladesh",
+                "value": "~45%",
+                "cc": "BD",
+                "weight": 45,
+                "tone": "favorable"
+              },
+              {
+                "label": "India",
+                "value": "~78%",
+                "cc": "IN",
+                "weight": 78,
+                "tone": "favorable"
+              },
+              {
+                "label": "Pakistan",
+                "value": "~2%",
+                "cc": "PK",
+                "weight": 2,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "adults with formal credit access (% of adults, 2024 est.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE COLLATERAL TRAP",
+        "body": "Pakistani banks prefer lending to the government (zero risk weight under Basel rules) over lending to small businesses. Roughly two-thirds of bank assets sit in government securities. The state borrows cheaply from the banks it owns, crowding out private credit. This is structural, not cyclical."
+      },
+      {
+        "heading": "THE DIGITAL BANK BET",
+        "body": "The State Bank licensed five digital banks in 2023, betting that a clean-sheet entrant — no branches, no legacy core, machine-learning underwriting — could profitably serve customers a traditional bank cannot. The same bet succeeded in Brazil (Nubank) and India (Jio Financial). It has not yet succeeded at scale anywhere in South Asia.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Pakistan's bank assets sits in government securities rather than private loans?",
+            "options": [
+              "About 15%",
+              "About 35%",
+              "About 65%",
+              "About 90%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly two-thirds. Basel zero-risk-weights on sovereign debt plus a hungry government make crowding-out the default outcome, not the exception."
+          }
+        ]
+      },
+      {
+        "heading": "THE DEMOGRAPHIC CLOCK",
+        "body": "Pakistan adds roughly 4 million people to working age every year. Without formal credit, that cohort cannot start businesses, buy productive equipment, or smooth income shocks. The fintech gap is not a banking problem — it is a growth-model problem with a deadline.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258
+            ],
+            "periods": [
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-19"
+    ],
+    "generatedAt": "2026-05-19T08:31:54.733Z",
+    "label": "Pakistan's Financial Inclusion Gap",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-19-pakistan-di-khan-tank-police-fc-attack": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DURAND LINE",
+        "body": "The 2,640km border between Pakistan and Afghanistan was drawn in 1893 by a British colonial officer, slicing the Pashtun homeland in two. No Afghan government — monarchy, communist, mujahideen, or Taliban — has ever formally recognized it.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF"
+            ],
+            "label": "the KP–Afghan frontier",
+            "markers": [
+              {
+                "lat": 31.8313,
+                "lng": 70.9019,
+                "label": "Dera Ismail Khan"
+              },
+              {
+                "lat": 32.2148,
+                "lng": 70.3817,
+                "label": "Tank"
+              },
+              {
+                "lat": 33.9911,
+                "lng": 71.4687,
+                "label": "Peshawar"
+              },
+              {
+                "lat": 30.1798,
+                "lng": 66.975,
+                "label": "Quetta"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHO THE TTP ARE",
+        "body": "Tehrik-i-Taliban Pakistan formed in 2007 from a coalition of militant factions in the tribal belt. They share ideology with the Afghan Taliban but target the Pakistani state — the army, police, and Frontier Corps — for what they call apostasy from sharia rule.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Pakistanis distinguish carefully between the **Afghan Taliban** (in power in Kabul) and the **TTP** or *Pakistani Taliban* — allied but politically distinct movements with opposing relationships to Islamabad."
+          }
+        ]
+      },
+      {
+        "heading": "THE FRONTIER CORPS",
+        "body": "The FC is a paramilitary force recruited largely from the Pashtun tribes it polices, commanded by regular Pakistan Army officers. It inherited its structure from the British-era Khyber Rifles and South Waziristan Scouts — the same colonial model of using local tribesmen to police their own."
+      },
+      {
+        "heading": "WHY DI KHAN AND TANK",
+        "body": "Both districts sit on the edge of the former FATA tribal agencies, merged into Khyber Pakhtunkhwa in 2018. They are the natural exit corridors from South Waziristan toward Punjab — the geography that made them militant transit routes in the 2000s and again today.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2007",
+                "label": "TTP founded under Baitullah Mehsud",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2009",
+                "label": "Operation Rah-e-Nijat in S. Waziristan"
+              },
+              {
+                "year": "2014",
+                "label": "APS Peshawar school massacre"
+              },
+              {
+                "year": "2014",
+                "label": "Operation Zarb-e-Azb"
+              },
+              {
+                "year": "2018",
+                "label": "FATA merged into KP"
+              },
+              {
+                "year": "2021",
+                "label": "Afghan Taliban retake Kabul"
+              },
+              {
+                "year": "2022",
+                "label": "TTP ends ceasefire, attacks surge"
+              }
+            ],
+            "label": "the KP insurgency arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE SHAHEED FRAME",
+        "body": "Security personnel killed in the line of duty are formally designated *shaheed* — martyrs. The term carries Quranic weight (Surah Aal-Imran on those slain in God's path) and confers state benefits to families: pensions, housing, schooling. It also frames the conflict as religiously legitimate from the state's side, contesting the militants' own claim to that vocabulary."
+      },
+      {
+        "heading": "THE KABUL DIMENSION",
+        "body": "Pakistan spent decades sheltering the Afghan Taliban, expecting a friendly Kabul would suppress the TTP. The opposite happened: after 2021, TTP leaders moved openly inside Afghanistan, and cross-border attacks roughly tripled. Islamabad's strategic depth doctrine produced strategic blowback.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What happened to TTP attacks on Pakistani security forces after the Afghan Taliban retook Kabul in 2021?",
+            "options": [
+              "They declined sharply as Kabul cracked down on the TTP",
+              "They roughly tripled as TTP leaders operated openly from Afghan soil",
+              "They stayed flat — the change of government had no effect",
+              "They shifted entirely to Balochistan, sparing KP"
+            ],
+            "correct": 1,
+            "explanation": "Pakistan expected a friendly Taliban government would suppress the TTP; instead the TTP gained sanctuary and attacks surged across the KP and Balochistan border districts."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T08:32:27.665Z",
+    "label": "KP Border & the TTP Insurgency",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-19-playstation-plus-global-price-hike-market-conditions": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "RAZOR AND BLADES, INVERTED",
+        "body": "Console makers historically sold hardware at a loss and earned it back on software royalties and accessories. The PS5's $100 hike in March flipped this — Sony now wants the box itself profitable, with services as recurring upside on top.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The classic model traces to **King Gillette** in 1901: give away the razor, sell the blades forever. Sony, Microsoft, and Nintendo ran the same playbook for two decades — until *component inflation* and a weak yen made the loss leader unsustainable."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ONLINE PLAY IS PAYWALLED",
+        "body": "PS Plus is required to play most games online — a gate Sony introduced in 2013 with the PS4, copying Microsoft's Xbox Live Gold from 2002. Online multiplayer servers cost almost nothing per user; the subscription is pure margin extraction from network effects players themselves create."
+      },
+      {
+        "heading": "THE THREE DIVERGE",
+        "body": "In a single quarter the three console makers picked different strategies: Sony raised hardware and services, Nintendo raised hardware on the new Switch 2, Microsoft cut Game Pass. The split reveals how each reads its own moat.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Sony",
+                "value": "raise both",
+                "tone": "unfavorable",
+                "cc": "JP"
+              },
+              {
+                "label": "Nintendo",
+                "value": "raise hardware",
+                "tone": "neutral",
+                "cc": "JP"
+              },
+              {
+                "label": "Microsoft",
+                "value": "cut Game Pass",
+                "tone": "favorable",
+                "cc": "US"
+              }
+            ],
+            "label": "console maker pricing moves, 2026"
+          }
+        ]
+      },
+      {
+        "heading": "THE YEN PROBLEM",
+        "body": "Sony books revenue globally but reports in yen. The yen sits near multi-decade lows against the dollar, which inflates reported earnings but raises the dollar cost of components — chips, GDDR memory, displays — almost all priced in USD.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              158.8855,
+              158.9865,
+              159.3964,
+              159.76253049,
+              159.3556875,
+              159.36496265,
+              159.375,
+              159.22516667,
+              159.0765,
+              159.6181,
+              160.4253125,
+              157.18971875,
+              157.07501212,
+              157.073,
+              156.20242308,
+              157.2685625,
+              157.7777619,
+              156.4195,
+              156.8352,
+              156.63498084,
+              156.66504012,
+              157.15828261,
+              157.61505556,
+              157.68214286,
+              157.973,
+              158.5739,
+              158.73393827,
+              158.6955,
+              159.04191667,
+              158.957
+            ],
+            "periods": [
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19"
+            ],
+            "label": "Japanese yen",
+            "unit": "JPY / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE SWITCHING COST",
+        "body": "A PlayStation library is non-portable: games, saves, trophies, and friend lists are bound to the PSN account and the platform. Once a player has spent a few hundred dollars on titles, a $12/year subscription bump is trivially smaller than the cost of rebuilding a library elsewhere — which is exactly why the hike works."
+      },
+      {
+        "heading": "QUICK CHECK",
+        "body": "Subscription pricing power comes from lock-in, not from the service itself.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What gives PS Plus its pricing power despite minimal per-user server cost?",
+            "options": [
+              "Exclusive AAA game development",
+              "Account-bound libraries that don't transfer to other platforms",
+              "Lower latency than competitors",
+              "Government subsidies in Japan"
+            ],
+            "correct": 1,
+            "explanation": "Games, saves, and progression are tied to the PSN account. Leaving means abandoning a sunk library — a switching cost far larger than any annual fee increase."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-19"
+    ],
+    "generatedAt": "2026-05-19T08:32:57.081Z",
+    "label": "Console Economics & Subscription Lock-in",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-19-smile-spacecraft-esa-china-earth-magnetosphere": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY EARTH KEPT ITS AIR",
+        "body": "Mars and Earth started with comparable atmospheres. Mars lost its magnetic dynamo about 4 billion years ago and the solar wind stripped its air to near-vacuum. Earth's molten iron core still convects, generating the field that deflects that same wind.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The boundary where solar plasma meets Earth's field is the **magnetopause** — typically ~10 Earth radii sunward, but compressible to 6 during severe storms."
+          }
+        ]
+      },
+      {
+        "heading": "THE CARRINGTON EVENT",
+        "body": "In September 1859, a coronal mass ejection induced currents so strong that telegraph operators reported sparks from their equipment and were able to send messages with batteries disconnected. Auroras were seen as far south as the Caribbean.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1859",
+                "label": "Carrington Event — telegraph fires",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1921",
+                "label": "New York Railroad storm"
+              },
+              {
+                "year": "1989",
+                "label": "Quebec grid collapse, 9 hours dark"
+              },
+              {
+                "year": "2003",
+                "label": "Halloween storms — satellites lost"
+              },
+              {
+                "year": "2012",
+                "label": "near-miss CME crosses Earth's orbit"
+              }
+            ],
+            "label": "major geomagnetic storms"
+          }
+        ]
+      },
+      {
+        "heading": "WHY GRIDS FAIL",
+        "body": "A geomagnetic storm induces slow direct currents in long conductors — high-voltage transmission lines, pipelines, rail. AC transformers were never designed for DC; the cores saturate, overheat, and can melt. The 1989 Quebec storm took out the entire provincial grid in 90 seconds."
+      },
+      {
+        "heading": "THE X-RAY TRICK",
+        "body": "Solar wind ions charge-exchange with neutral hydrogen in Earth's exosphere, emitting soft X-rays. This was discovered by accident in 1996 when ROSAT saw X-rays from comet Hyakutake. SMILE turns that nuisance signal into a global imaging method — the first wide-field movie of the magnetosphere itself.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Until now the magnetopause has been mapped by *in situ* point measurements — a single spacecraft tasting the boundary as it crosses. SMILE will image the **whole shield** at once, like switching from a thermometer to an infrared camera."
+          }
+        ]
+      },
+      {
+        "heading": "AN UNUSUAL PARTNERSHIP",
+        "body": "ESA-China space cooperation is rare. NASA is statutorily barred by the 2011 Wolf Amendment from bilateral work with Chinese space agencies. ESA operates under no such restriction, making it the principal Western partner for Chinese science missions.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What protects Earth's atmosphere from being stripped by the solar wind?",
+            "options": [
+              "The ozone layer",
+              "Earth's magnetic field, generated by its molten iron core",
+              "The thickness of the atmosphere itself",
+              "Gravity alone"
+            ],
+            "correct": 1,
+            "explanation": "Mars has similar gravity and once had a thick atmosphere, but lost its magnetic dynamo ~4 billion years ago — the solar wind then stripped most of its air."
+          }
+        ]
+      },
+      {
+        "heading": "THE FORECAST GAP",
+        "body": "Weather satellites give days of warning for hurricanes. Space weather warnings are typically 15-60 minutes — the travel time of a CME from the L1 Lagrange point to Earth. Grid operators cannot reposition transformers in an hour; the value of better physics is in pre-positioning spares and load-shedding playbooks."
+      }
+    ],
+    "generatedAt": "2026-05-19T08:33:28.471Z",
+    "label": "Earth's Magnetic Shield",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-19-stellantis-mini-ev-pomigliano-europe-china": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PREMIUM TRAP",
+        "body": "European automakers spent the 2010s chasing margin upward — SUVs, luxury trims, performance EVs — because each unit earned more. The bottom of the market was abandoned as unprofitable. Chinese makers walked into an empty room.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is *trading up*: shifting the model mix toward higher-margin trims rather than defending volume. It works until a competitor proves the **low end is still a market**, not a charity."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHINA WON THE LOW END",
+        "body": "China's EV cost advantage is not subsidy alone — it is vertical integration. CATL and BYD make their own cells; BYD makes its own chips and motors. A European maker buying a battery pack from a Korean supplier starts the price race already losing.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~75%",
+                "cc": "CN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "South Korea",
+                "value": "~13%",
+                "cc": "KR",
+                "tone": "neutral"
+              },
+              {
+                "label": "Japan",
+                "value": "~4%",
+                "cc": "JP",
+                "tone": "neutral"
+              },
+              {
+                "label": "Europe",
+                "value": "~4%",
+                "cc": "EU",
+                "tone": "favorable"
+              },
+              {
+                "label": "USA",
+                "value": "~3%",
+                "cc": "US",
+                "tone": "favorable"
+              }
+            ],
+            "label": "Global EV battery cell production share, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2035 MANDATE",
+        "body": "The EU's 2035 rule does not ban combustion engines outright — it requires new cars sold to emit zero CO2 at the tailpipe. The mandate sets the destination; it does not pick the winner between European and Chinese suppliers of the cars that meet it.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2009",
+                "label": "First fleet CO2 limits (130 g/km)"
+              },
+              {
+                "year": "2020",
+                "label": "95 g/km — diesel-gate aftermath"
+              },
+              {
+                "year": "2023",
+                "label": "2035 zero-emission mandate adopted",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2025",
+                "label": "15% CO2 cut milestone"
+              },
+              {
+                "year": "2030",
+                "label": "55% CO2 cut milestone"
+              },
+              {
+                "year": "2035",
+                "label": "100% — no new ICE car sales"
+              }
+            ],
+            "label": "EU CO2 fleet rules"
+          }
+        ]
+      },
+      {
+        "heading": "POMIGLIANO AND ITALY'S AUTO ATROPHY",
+        "body": "Italian car production peaked near 2 million units in 1989 and fell below 500,000 by 2024 — a four-fold collapse. Pomigliano, once Alfa Romeo's flagship plant, became a symbol of capacity sitting idle while Stellantis built Fiats in Morocco and Serbia.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IT",
+              "FR",
+              "DE",
+              "ES",
+              "MA",
+              "RS"
+            ],
+            "label": "Stellantis European footprint vs low-cost hubs",
+            "markers": [
+              {
+                "lat": 40.8625,
+                "lng": 14.3856,
+                "label": "Pomigliano d'Arco"
+              },
+              {
+                "lat": 33.5731,
+                "lng": -7.5898,
+                "label": "Kenitra (Fiat 500)"
+              },
+              {
+                "lat": 44.2667,
+                "lng": 21.9333,
+                "label": "Kragujevac (Serbia)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "SELLING THE FACTORIES",
+        "body": "When a Western automaker sells an underused plant to a Chinese rival, it converts a fixed cost into cash but trades away its industrial base. The 1980s Japanese transplants in Tennessee and Ohio became permanent — once a foreign maker owns the line, the local supplier ecosystem reorients around it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did the first wave of Japanese auto transplants in the US (Honda Marysville, Nissan Smyrna) reveal about foreign factory ownership?",
+            "options": [
+              "The plants stayed loyal to home-country suppliers and rarely localized",
+              "Local supplier ecosystems eventually reoriented around the foreign maker, making the presence permanent",
+              "US import tariffs forced the plants to close within a decade",
+              "The transplants used inferior technology and lost to Detroit"
+            ],
+            "correct": 1,
+            "explanation": "By the 2000s, Honda and Toyota US plants sourced over 70% of parts from North American suppliers — the foreign presence had become structurally embedded, not provisional."
+          }
+        ]
+      },
+      {
+        "heading": "THE TARIFF PATCH",
+        "body": "In late 2024 the EU imposed countervailing duties of up to 35% on Chinese-built EVs, citing state subsidies. Tariffs buy time but do not fix the cost gap; Chinese makers responded by accelerating European factory plans — BYD in Hungary, Chery in Spain — to manufacture inside the wall.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the **tariff-jumping** playbook Japan ran in the 1980s and Korea in the 2000s. The destination changes; the script does not."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T08:34:10.161Z",
+    "label": "Europe's Affordable EV Gap",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-19-trump-xi-summit-nuclear-shadow-asia": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE UMBRELLA",
+        "body": "Extended deterrence means the US promises to use its own nuclear weapons to defend a non-nuclear ally. Japan, South Korea, and Australia all rely on this guarantee — a posture invented in the 1950s when the Soviet arsenal was the only peer threat and China had no warheads at all.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrinal term is **extended deterrence**; the ally-facing version Washington uses is the *nuclear umbrella*. They mean the same thing — a promise to risk San Francisco for Seoul."
+          }
+        ]
+      },
+      {
+        "heading": "THE ARITHMETIC SHIFT",
+        "body": "For decades China kept a minimum deterrent of roughly 200–300 warheads — enough for retaliation, not parity. The Pentagon now projects China is on track for ~1,000 warheads by 2030, a fourfold expansion in under a decade and the fastest buildup since the early Cold War.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Estimated nuclear warheads, 2024",
+            "peers": [
+              {
+                "value": 5580,
+                "label": "Russia"
+              },
+              {
+                "value": 5044,
+                "label": "United States"
+              },
+              {
+                "value": 500,
+                "label": "China"
+              },
+              {
+                "value": 290,
+                "label": "France"
+              },
+              {
+                "value": 225,
+                "label": "UK"
+              },
+              {
+                "value": 172,
+                "label": "India"
+              },
+              {
+                "value": 170,
+                "label": "Pakistan"
+              },
+              {
+                "value": 90,
+                "label": "Israel"
+              },
+              {
+                "value": 50,
+                "label": "North Korea"
+              }
+            ],
+            "subjectLabel": "China",
+            "unit": "warheads"
+          }
+        ]
+      },
+      {
+        "heading": "THE CREDIBILITY PROBLEM",
+        "body": "Extended deterrence works only if the adversary believes the US would actually trade a US city for an allied one. When China had 200 warheads and no ability to reach the US mainland reliably, the answer was obvious. With ICBM parity approaching, the answer becomes a question — and de Gaulle's 1960s line about Washington never trading New York for Paris suddenly applies in Asia."
+      },
+      {
+        "heading": "THE ALLIES IN QUESTION",
+        "body": "Three US treaty partners sit under the umbrella in the Pacific theatre. Each has the latent capability to build its own bomb within months to a few years; each has held back because the US guarantee was credible. That assumption is now openly debated in Tokyo and Seoul.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "JP",
+              "KR",
+              "AU",
+              "CN",
+              "KP",
+              "TW"
+            ],
+            "label": "the Pacific umbrella",
+            "caption": "US treaty allies (JP, KR, AU) facing China's buildup"
+          }
+        ]
+      },
+      {
+        "heading": "THE LATENT BOMB",
+        "body": "Japan possesses ~45 tonnes of separated plutonium — enough for thousands of warheads — and the rocket technology to deliver them. South Korea operates 25 reactors and has, twice in its history (1970s, 1980s), secretly pursued enrichment before US pressure shut it down. The technical barrier is essentially zero; the barrier is the alliance.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How long would Japan need to build a nuclear weapon from a standing start, by most expert estimates?",
+            "options": [
+              "A few weeks to a few months",
+              "About 2 years",
+              "About 5 years",
+              "About a decade"
+            ],
+            "correct": 0,
+            "explanation": "Japan's plutonium stockpile and delivery technology mean the timeline is operational, not technical — a political decision, not a science project."
+          }
+        ]
+      },
+      {
+        "heading": "THE NPT BARGAIN",
+        "body": "The 1968 Non-Proliferation Treaty rests on a trade: non-nuclear states forgo the bomb, nuclear states reduce their arsenals, and umbrella allies trust US extended deterrence instead of going independent. If Seoul or Tokyo crosses the threshold, the entire bargain — and the precedent it sets for every threshold state from Riyadh to Ankara — collapses simultaneously.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *cascade proliferation* — the worry that one threshold crossing triggers the next, because each state's calculation depends on what its neighbours do."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T08:34:41.491Z",
+    "label": "Extended Deterrence in Asia",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-19-uk-unemployment-5pct-iran-war-wage-shock": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BEVERIDGE CURVE",
+        "body": "Economists map unemployment against job vacancies — the Beveridge curve. When both rise together, it signals a structural mismatch: jobs exist but workers can't fill them. The UK has been on the wrong side of this curve since Brexit cut off EU labour supply in hospitality, agriculture, and care work.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The post-2016 UK labour market has been described as a **tight-but-broken** economy: tight enough to generate wage pressure, broken enough that vacancies and unemployment rise in tandem."
+          }
+        ]
+      },
+      {
+        "heading": "WHY OIL HITS BRITAIN HARDER",
+        "body": "The UK is a net energy importer despite the North Sea. Its electricity grid is gas-heavy — roughly 35% of generation — and wholesale power prices track the Dutch TTF gas benchmark, which moves with Brent. An Iran-driven oil spike feeds into UK household bills within one billing cycle, faster than in most G7 economies.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "UK",
+                "value": "~35%",
+                "cc": "GB",
+                "weight": 35,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Italy",
+                "value": "~45%",
+                "cc": "IT",
+                "weight": 45,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Germany",
+                "value": "~15%",
+                "cc": "DE",
+                "weight": 15,
+                "tone": "neutral"
+              },
+              {
+                "label": "France",
+                "value": "~7%",
+                "cc": "FR",
+                "weight": 7,
+                "tone": "favorable"
+              },
+              {
+                "label": "USA",
+                "value": "~43%",
+                "cc": "US",
+                "weight": 43,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Gas share of electricity generation, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1973 RHYME",
+        "body": "The Yom Kippur war and the OPEC embargo pushed UK unemployment from 2% in 1973 to 5.5% by 1976 — the first time in the post-war era Britain abandoned full employment as a policy goal. Every subsequent Middle East oil shock has translated into UK joblessness with a 12-18 month lag.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1973",
+                "label": "OPEC embargo",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1976",
+                "label": "UK unemployment hits 5.5%"
+              },
+              {
+                "year": "1979",
+                "label": "Iranian Revolution oil shock"
+              },
+              {
+                "year": "1982",
+                "label": "UK unemployment peaks at 12%"
+              },
+              {
+                "year": "1990",
+                "label": "Gulf War spike"
+              },
+              {
+                "year": "2008",
+                "label": "$147 oil, recession follows"
+              },
+              {
+                "year": "2022",
+                "label": "Ukraine gas shock"
+              }
+            ],
+            "label": "oil shocks and UK unemployment"
+          }
+        ]
+      },
+      {
+        "heading": "THE BANK'S DILEMMA",
+        "body": "An oil shock is a supply shock — it raises prices and lowers output simultaneously. Raising rates to fight inflation deepens unemployment; cutting rates to support jobs entrenches inflation. This is the classic stagflation trap that broke the Phillips curve consensus in the 1970s.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In a supply-shock-driven inflation episode, what is the central bank's core dilemma?",
+            "options": [
+              "Raising rates worsens unemployment without addressing the supply cause",
+              "Cutting rates causes deflation",
+              "Rates have no effect during supply shocks",
+              "The dilemma only exists in fixed-exchange-rate regimes"
+            ],
+            "correct": 0,
+            "explanation": "Supply shocks raise prices and lower output together — interest rates can address demand but not the underlying supply constraint, forcing a choice between two bad outcomes."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 5% MATTERS POLITICALLY",
+        "body": "The UK Treasury's fiscal forecasts assume a long-run unemployment rate of 4.1%. Every 0.1 percentage point above that costs roughly £2bn in higher benefits and lower tax receipts. A move from 4% to 5% blows a £20bn hole in the public finances — independent of any policy choice."
+      }
+    ],
+    "generatedAt": "2026-05-19T08:35:09.142Z",
+    "label": "UK Labour Market & Oil Shocks",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-19-wlfi-aifc-sec-going-concern-trump-crypto": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 'GOING CONCERN' MEANS",
+        "body": "Going concern is an accounting doctrine: auditors must assume a company will operate for the next twelve months. When they cannot, they issue a 'substantial doubt' warning in the financial statements — a formal signal that without new capital or asset sales, the firm may not survive the year.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phrase carries legal weight. Once an auditor flags **substantial doubt**, lenders can call loans, customers can demand collateral, and directors face heightened fiduciary scrutiny for any decision that prefers insiders over creditors."
+          }
+        ]
+      },
+      {
+        "heading": "THE LOCKED-TOKEN PROBLEM",
+        "body": "Locked tokens are crypto holdings subject to a vesting schedule — they exist on the balance sheet but cannot be sold until contractually released. An accountant marks them at market price; a treasurer cannot actually access that value. The gap between book equity and usable liquidity is where treasury companies die."
+      },
+      {
+        "heading": "THE TREASURY-COMPANY MODEL",
+        "body": "A 'crypto treasury' is a public company whose primary asset is a token, financed by issuing equity above net asset value. MicroStrategy pioneered the template with Bitcoin in 2020. The model only works while the share price trades at a premium to the underlying tokens — once it flips to a discount, the company cannot raise new capital and the flywheel reverses.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do crypto treasury companies collapse when their stock trades below net asset value?",
+            "options": [
+              "They are legally required to liquidate",
+              "They can no longer issue equity to buy more tokens at accretive prices",
+              "Custodians automatically seize the holdings",
+              "Tax law forces a mark-to-market sale"
+            ],
+            "correct": 1,
+            "explanation": "The model depends on selling new shares above NAV to fund token purchases. Once shares trade at a discount, every issuance dilutes existing holders rather than adding value — the flywheel stops."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CUSTODIANS MATTER",
+        "body": "A qualified custodian holds client assets in segregated accounts, audited and bonded — the SEC requires one for most regulated funds. Without a custodian, tokens sit in wallets controlled by company insiders, exposing holders to theft, key loss, or self-dealing. The absence of a custodian is itself a red flag in any disclosure filing."
+      },
+      {
+        "heading": "THE RELATED-PARTY PROBLEM",
+        "body": "When an insider holds 46% equity and is also the issuer of the underlying token, every transaction between the two entities is a related-party transaction — disclosed separately in filings and scrutinized by auditors. US securities law does not forbid the arrangement, but it requires that the controlled company's board prove each deal was on arm's-length terms.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "MicroStrategy",
+                "value": "~$40bn BTC",
+                "tone": "neutral"
+              },
+              {
+                "label": "Marathon Digital",
+                "value": "~$3bn BTC",
+                "tone": "neutral"
+              },
+              {
+                "label": "Metaplanet",
+                "value": "~$1.5bn BTC",
+                "tone": "neutral"
+              },
+              {
+                "label": "AI Financial",
+                "value": "$706m locked",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "public-company treasuries by primary asset"
+          }
+        ]
+      },
+      {
+        "heading": "THE HOWEY SHADOW",
+        "body": "The SEC's 1946 Howey test asks whether a token is sold as an investment contract — money invested in a common enterprise with profits expected from others' efforts. Tokens controlled by a single founder with promotional ties to a public figure sit closer to the 'security' end of the spectrum than decentralized protocols, making every disclosure choice legally consequential."
+      }
+    ],
+    "generatedAt": "2026-05-19T08:35:39.276Z",
+    "label": "Going Concern & Crypto Treasuries",
+    "category": "tech",
+    "articleCount": 1
   }
 }
