@@ -2,13 +2,272 @@
   "version": 1,
   "stories": [
     {
+      "id": "putin-xi-power-of-siberia-2-gas-pipeline",
+      "label": "Putin Aims to Unlock Gas Pipeline Project to China in Xi Talks",
+      "firstSeen": "2026-05-19T04:07:06.361Z",
+      "lastCovered": "2026-05-19T04:07:06.361Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-19-putin-xi-power-of-siberia-2-gas-pipeline"
+      ],
+      "eventUri": "eng-11656663",
+      "summary": "Putin lands in Beijing with one concrete ask: unlock Power of Siberia 2, the long-stalled 50bcm/yr gas pipeline that would lock Russian gas exports into China for decades after Europe walked away. Lead with the dependency inversion — sanctions pushed Russia from being Europe's swing supplier to being a price-taker negotiating with Beijing. Note Chinese willingness has hinged on getting gas near domestic prices, which is what Moscow is now signaling it will accept.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Vladimir_Putin",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Xi_Jinping",
+        "http://en.wikipedia.org/wiki/Beijing",
+        "http://en.wikipedia.org/wiki/Donald_Trump",
+        "http://en.wikipedia.org/wiki/Moscow_Kremlin",
+        "http://en.wikipedia.org/wiki/Moscow"
+      ]
+    },
+    {
+      "id": "pope-leo-ai-encyclical-anthropic",
+      "label": "Pope Leo to address rise of AI in first major text on May 25",
+      "firstSeen": "2026-05-19T04:07:06.361Z",
+      "lastCovered": "2026-05-19T04:07:06.361Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-19-pope-leo-ai-encyclical-anthropic"
+      ],
+      "eventUri": "eng-11661746",
+      "summary": "The first encyclical of Leo XIV's papacy will be about AI, presented at the Vatican alongside Anthropic co-founder Chris Olah. Lead with the choice of co-presenter — a frontier AI lab whose own leadership has warned about existential risk now sharing the stage with the Holy See's defining doctrinal document. The structural angle for the reader: a 1.4-billion-member institution is consciously borrowing legitimacy from, and lending legitimacy to, the AI safety camp at exactly the moment governments are deferring AI governance to the labs themselves.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Pope",
+        "http://en.wikipedia.org/wiki/Encyclical",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Pope_Leo_XIII",
+        "http://en.wikipedia.org/wiki/Holy_See",
+        "http://en.wikipedia.org/wiki/Cardinal_(Catholic_Church)",
+        "http://en.wikipedia.org/wiki/Rerum_novarum",
+        "http://en.wikipedia.org/wiki/Catholic_Church"
+      ]
+    },
+    {
+      "id": "putin-xi-multipolar-world-declaration",
+      "label": "Putin and Xi to adopt declaration on multipolar world during Beijing visit, Kremlin aide says",
+      "firstSeen": "2026-05-19T04:07:06.361Z",
+      "lastCovered": "2026-05-19T04:07:06.361Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-19-putin-xi-multipolar-world-declaration"
+      ],
+      "eventUri": "rus-2067623",
+      "summary": "Separate from the gas pipeline track, the Kremlin says Putin and Xi will sign a joint declaration on a 'multipolar world' — Moscow's preferred shorthand for ending US hegemony. The angle: the two leaders are putting their names to an explicit ideological text, not just a trade deal, in the same week Trump is meeting Xi separately and threatening Iran. For the reader, this is the political envelope that gives the energy deals their meaning — Russia and China branding their partnership as a global alternative, and Turkey's state wire treating it as such.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Vladimir_Putin",
+        "http://en.wikipedia.org/wiki/Russia",
+        "http://en.wikipedia.org/wiki/Xi_Jinping",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Beijing",
+        "http://en.wikipedia.org/wiki/Moscow_Kremlin",
+        "http://en.wikipedia.org/wiki/Yuri_Ushakov",
+        "http://en.wikipedia.org/wiki/President_of_China"
+      ]
+    },
+    {
+      "id": "google-blackstone-ai-cloud-jv",
+      "label": "Google to Create AI Cloud Business With Blackstone, WSJ Says",
+      "firstSeen": "2026-05-19T04:07:06.361Z",
+      "lastCovered": "2026-05-19T04:07:06.361Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-19-google-blackstone-ai-cloud-jv"
+      ],
+      "eventUri": "eng-11665674",
+      "summary": "Google and Blackstone are forming a joint venture for AI compute — $5bn in equity from Blackstone, GPUs and TPUs supplied by Google, aimed squarely at CoreWeave. Lead with the structural shift: hyperscalers are increasingly relying on outside private capital to fund the data-center buildout because the cap-ex no longer fits on a single balance sheet. For the reader, this is how AI infrastructure is starting to look like the oil-majors-plus-PE model — sovereign-scale financing arrangements, with all the systemic-risk implications that come with debt-financed compute.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Google",
+        "http://en.wikipedia.org/wiki/Artificial_intelligence",
+        "http://en.wikipedia.org/wiki/Cloud_computing",
+        "http://en.wikipedia.org/wiki/Tensor_Processing_Unit",
+        "http://en.wikipedia.org/wiki/Data_center",
+        "http://en.wikipedia.org/wiki/Equity_(finance)",
+        "http://en.wikipedia.org/wiki/Computing",
+        "http://en.wikipedia.org/wiki/Software"
+      ]
+    },
+    {
+      "id": "japan-q1-gdp-iran-war-boj",
+      "label": "Japan's economy grows at solid pace in Q1, but Iran war set to upend momentum",
+      "firstSeen": "2026-05-19T04:07:06.361Z",
+      "lastCovered": "2026-05-19T04:07:06.361Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-19-japan-q1-gdp-iran-war-boj"
+      ],
+      "eventUri": "eng-11665699",
+      "summary": "Japan's Q1 GDP beat forecasts on exports and consumption — but the data is already obsolete. The energy shock from the Iran war is now filtering through to businesses and households, and the BOJ's interest-rate hike path depends on it. Lead with the calendar gap: this is the last clean print before the war's macro impact appears in the data, and Tokyo policymakers know it. For the reader, the angle is how a war 8,000km away is the dominant variable in the world's third-largest economy's monetary policy.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Economy_of_Japan",
+        "http://en.wikipedia.org/wiki/Japan",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/Bank_of_Japan",
+        "http://en.wikipedia.org/wiki/Gross_domestic_product",
+        "http://en.wikipedia.org/wiki/Real_gross_domestic_product",
+        "http://en.wikipedia.org/wiki/Interest_rate",
+        "http://en.wikipedia.org/wiki/Consumption_(economics)"
+      ]
+    },
+    {
+      "id": "pakistan-exports-middle-east-fall-iran-war",
+      "label": "Exports to Middle East fall 8pc in April",
+      "firstSeen": "2026-05-19T04:07:06.361Z",
+      "lastCovered": "2026-05-19T04:07:06.361Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-19-pakistan-exports-middle-east-fall-iran-war"
+      ],
+      "eventUri": null,
+      "summary": "Pakistan's April exports to its Gulf trading partners — UAE, Qatar, Kuwait, Bahrain, Jordan — dropped 8% year-on-year to $230 million, the first hard trade-data confirmation that the Iran war is cutting Pakistan off from its closest export market. Lead with the country mix: every Gulf partner declined except Saudi Arabia, where Pakistan has troops on the ground. For the reader, the angle is how war makes itself visible in customs data weeks before it shows up in GDP — and how an exporter without alternative markets absorbs the loss directly.",
+      "conceptUris": []
+    },
+    {
+      "id": "standard-chartered-ai-job-cuts",
+      "label": "Standard Chartered to cut thousands of roles as AI use increases",
+      "firstSeen": "2026-05-19T04:07:06.361Z",
+      "lastCovered": "2026-05-19T04:07:06.361Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-19-standard-chartered-ai-job-cuts"
+      ],
+      "eventUri": null,
+      "summary": "Standard Chartered will eliminate 7,800 back-office jobs — over 15% of headcount — by 2030 and explicitly attributes the cuts to AI adoption. Lead with the bank's footprint: StanChart's back-office is heavily concentrated in India, Malaysia, the Philippines, and the UAE, so 'AI replacing back office' here means tens of thousands of middle-class jobs in Asian financial-services hubs. The accountability angle: a UK-headquartered bank is the named actor; the workers absorbing the displacement are 5,000 miles away.",
+      "conceptUris": []
+    },
+    {
+      "id": "uganda-drc-rare-ebola-cross-border",
+      "label": "Uganda, DRC race to contain rare Ebola outbreak",
+      "firstSeen": "2026-05-19T04:07:06.361Z",
+      "lastCovered": "2026-05-19T04:07:06.361Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-19-uganda-drc-rare-ebola-cross-border"
+      ],
+      "eventUri": null,
+      "summary": "A rare Ebola strain has crossed from DRC into Uganda; Uganda has cancelled a major pilgrimage and is racing to do contact tracing. Lead with the cross-border vector — the strain is rare enough that the existing vaccine and monoclonal-antibody stockpile may not match it. For the reader, the structural point is how DRC's chronic outbreak surveillance functions as the early-warning system for the rest of East Africa, and what happens when that capacity is degraded by USAID's dismantling.",
+      "conceptUris": []
+    },
+    {
+      "id": "indonesia-nemesis-ai-procurement-watchdog",
+      "label": "Indonesia's Nemesis is the AI watchdog that cries wolf",
+      "firstSeen": "2026-05-19T04:07:06.361Z",
+      "lastCovered": "2026-05-19T04:07:06.361Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-19-indonesia-nemesis-ai-procurement-watchdog"
+      ],
+      "eventUri": null,
+      "summary": "Indonesian citizens built Nemesis, an AI-driven procurement tracker that scans state contracts for waste — and it's surfacing real corruption while also generating false positives that the government uses to discredit the whole project. Lead with the design trade-off: civic-tech accountability tools need precision to retain political legitimacy, and Nemesis is now a case study in what happens when an LLM-based watchdog scales faster than its ground-truth verification. The reader gets a glimpse of what bottom-up AI governance actually looks like in a Muslim-majority democracy.",
+      "conceptUris": []
+    },
+    {
+      "id": "musk-openai-lawsuit-verdict-mission-drift",
+      "label": "Here's why Elon Musk lost his suit against OpenAI",
+      "firstSeen": "2026-05-19T04:07:06.361Z",
+      "lastCovered": "2026-05-19T04:07:06.361Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-19-musk-openai-lawsuit-verdict-mission-drift"
+      ],
+      "eventUri": "eng-11660239",
+      "summary": "A jury rejected Musk's claim that OpenAI breached its founding nonprofit mission — but on a calendar technicality (statute of limitations), not on the merits. Lead with what the verdict does and doesn't decide: it leaves the substantive question (can a non-profit AI lab convert to for-profit without breaching its charitable trust?) unresolved, and it pushes that question onto state attorneys general in California and Delaware who are running parallel investigations. For the reader, this is the legal scaffolding around the largest mission-drift case in tech history.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/OpenAI",
+        "http://en.wikipedia.org/wiki/Nonprofit_organization",
+        "http://en.wikipedia.org/wiki/Charitable_trust",
+        "http://en.wikipedia.org/wiki/Sam_Altman",
+        "http://en.wikipedia.org/wiki/Statute_of_limitations"
+      ]
+    },
+    {
+      "id": "syrians-libya-uncertain-return-post-assad",
+      "label": "Syrians in Libya Face Uncertain Road Home to Post-Assad Syria",
+      "firstSeen": "2026-05-19T04:07:06.361Z",
+      "lastCovered": "2026-05-19T04:07:06.361Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-19-syrians-libya-uncertain-return-post-assad"
+      ],
+      "eventUri": null,
+      "summary": "A ground report on Syrian refugees in Libya weighing whether to return to a post-Assad Syria that is physically destroyed but politically transformed. Lead with the individual calculation — conscription is gone, but the home is gone too — and use it to surface the harder structural question: with Assad fallen, the legal architecture that justified Syrian refugee protection across host countries (Libya, Turkey, Lebanon, Jordan, Germany) is being quietly unwound, even as conditions for return are not yet there. For the reader, the angle is how 'the war is over' becomes a policy lever for forced returns.",
+      "conceptUris": []
+    },
+    {
+      "id": "colombia-armed-groups-tiktok-child-recruitment",
+      "label": "How Armed Groups in Colombia Use Social Media To Recruit Children",
+      "firstSeen": "2026-05-19T04:07:06.361Z",
+      "lastCovered": "2026-05-19T04:07:06.361Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-19-colombia-armed-groups-tiktok-child-recruitment"
+      ],
+      "eventUri": null,
+      "summary": "Colombian armed groups are recruiting minors on TikTok and other platforms with content that promises belonging, money, and adventure. Lead with the platform mechanic — recruitment videos are tagged, algorithmically promoted, and reach kids before any state outreach does. The accountability angle: this is happening on US-owned platforms that have moderation infrastructure for ISIS-style content but treat narco-paramilitary recruitment as a local crime story. For the reader, this is what 'platform governance' means in countries where the state is not the most powerful armed actor.",
+      "conceptUris": []
+    },
+    {
+      "id": "urban-animals-bolder-aggressive-133-species",
+      "label": "Urban life makes animals bolder, more aggressive across 133 species, analysis finds",
+      "firstSeen": "2026-05-19T04:07:06.361Z",
+      "lastCovered": "2026-05-19T04:07:06.361Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-19-urban-animals-bolder-aggressive-133-species"
+      ],
+      "eventUri": null,
+      "summary": "A global meta-analysis covering 133 species — fish, birds, mammals, reptiles, insects — finds urban populations are consistently bolder, more aggressive, more exploratory, and more active than their rural counterparts. Lead with the cross-taxa consistency: this is convergent behavioral evolution playing out in real time as cities reshape selection pressures. For the reader, the angle is that 'urbanization' is now a measurable evolutionary force on the same shortlist as climate and habitat loss — and the data set is large enough that the effect can no longer be dismissed as anecdote.",
+      "conceptUris": []
+    },
+    {
       "id": "ryanair-jet-fuel-iran-war-fares",
       "label": "Ryanair says costs will increase as price of jet fuel has 'spiked'",
       "firstSeen": "2026-05-18T08:07:12.526Z",
       "lastCovered": "2026-05-18T22:06:00.933Z",
       "coverageCount": 3,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-05-18-ryanair-jet-fuel-iran-war-fares",
@@ -37,7 +296,7 @@
       "lastCovered": "2026-05-18T22:06:00.933Z",
       "coverageCount": 2,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-05-18-pakistan-jf17-troops-saudi-arabia-deployment",
@@ -63,7 +322,7 @@
       "lastCovered": "2026-05-18T22:06:00.933Z",
       "coverageCount": 2,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "developing",
       "articles": [
         "2026-05-18-us-extends-russian-oil-sanctions-waiver-30-days",
@@ -91,7 +350,7 @@
       "lastCovered": "2026-05-18T22:06:00.933Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-18-trump-calls-off-iran-strike-gulf-allies"
@@ -116,7 +375,7 @@
       "lastCovered": "2026-05-18T22:06:00.933Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-18-san-diego-islamic-center-shooting-children-mosque"
@@ -141,7 +400,7 @@
       "lastCovered": "2026-05-18T22:06:00.933Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-18-trump-irs-settlement-anti-weaponisation-fund"
@@ -166,7 +425,7 @@
       "lastCovered": "2026-05-18T22:06:00.933Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-18-iran-hormuz-transit-insurance-bitcoin"
@@ -191,7 +450,7 @@
       "lastCovered": "2026-05-18T22:06:00.933Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-18-trump-cms-aca-skimpy-plans-essential-benefits"
@@ -207,7 +466,7 @@
       "lastCovered": "2026-05-18T22:06:00.933Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-18-asteroid-closer-than-moon-neo-detection-gap"
@@ -232,7 +491,7 @@
       "lastCovered": "2026-05-18T22:06:00.933Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-18-fbi-nationwide-alpr-flock-motorola-procurement"
@@ -248,7 +507,7 @@
       "lastCovered": "2026-05-18T22:06:00.933Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-18-interpol-200-arrests-middle-east-scams-proxy-networks"
@@ -264,7 +523,7 @@
       "lastCovered": "2026-05-18T22:06:00.933Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-18-ai-fabricated-citations-sanctions-doxing-facebook"
@@ -280,7 +539,7 @@
       "lastCovered": "2026-05-18T22:06:00.933Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-18-knowledge-attitudes-and-practices-regarding-childhood-epilep"
@@ -296,7 +555,7 @@
       "lastCovered": "2026-05-18T17:07:33.674Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-18-israel-intercepts-gaza-aid-flotilla-international-waters"
@@ -321,7 +580,7 @@
       "lastCovered": "2026-05-18T17:07:33.674Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-18-russia-belarus-joint-tactical-nuclear-drills"
@@ -345,7 +604,7 @@
       "lastCovered": "2026-05-18T17:07:33.674Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-18-iran-hormuz-passage-permit-authority"
@@ -370,7 +629,7 @@
       "lastCovered": "2026-05-18T17:07:33.674Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-18-aschenbrenner-crypto-miners-ai-chip-short"
@@ -386,7 +645,7 @@
       "lastCovered": "2026-05-18T17:07:33.674Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-18-uae-private-sector-salary-deadline-wps"
@@ -402,7 +661,7 @@
       "lastCovered": "2026-05-18T17:07:33.674Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-18-guangxi-liuzhou-5-2-earthquake-intraplate"
@@ -427,7 +686,7 @@
       "lastCovered": "2026-05-18T17:07:33.674Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-18-us-iran-only-major-emitters-no-net-zero"
@@ -443,7 +702,7 @@
       "lastCovered": "2026-05-18T17:07:33.674Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-18-preschool-teacher-cam-ai-training-data"
@@ -459,7 +718,7 @@
       "lastCovered": "2026-05-18T17:07:33.674Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-18-anduril-meta-warfare-smart-glasses-army"
@@ -475,7 +734,7 @@
       "lastCovered": "2026-05-18T17:07:33.674Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-18-filipino-virtual-assistants-linkedin-ai-content"
@@ -491,7 +750,7 @@
       "lastCovered": "2026-05-18T08:07:12.526Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-18-oil-prices-iran-talks-stall-clock-ticking"
@@ -516,7 +775,7 @@
       "lastCovered": "2026-05-18T08:07:12.526Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-18-iran-6500-arrested-espionage-war"
@@ -537,7 +796,7 @@
       "lastCovered": "2026-05-18T08:07:12.526Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-18-china-state-secrets-uyghur-codification"
@@ -553,7 +812,7 @@
       "lastCovered": "2026-05-18T08:07:12.526Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-18-nigeria-budget-implementation-report-delay"
@@ -573,7 +832,7 @@
       "lastCovered": "2026-05-18T08:07:12.526Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-18-russia-china-trade-47mt-border-crossings"
@@ -593,7 +852,7 @@
       "lastCovered": "2026-05-18T08:07:12.526Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-18-aave-rseth-exploit-recovery-defi-backstop"
@@ -612,7 +871,7 @@
       "lastCovered": "2026-05-18T08:07:12.526Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-18-nanopore-sequencing-thalassemia-southern-china"
@@ -628,7 +887,7 @@
       "lastCovered": "2026-05-18T08:07:12.526Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-18-pakpattan-prison-hiv-hepatitis-screening"
@@ -649,7 +908,7 @@
       "lastCovered": "2026-05-18T08:07:12.526Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-18-bytedance-tencent-china-ai-cuts"
@@ -669,7 +928,7 @@
       "lastCovered": "2026-05-18T08:07:12.526Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-18-ml-procurement-fraud-detection-mexico"
@@ -685,7 +944,7 @@
       "lastCovered": "2026-05-18T08:07:12.526Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-18-elliptic-ai-agents-crypto-compliance"
@@ -705,7 +964,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-18-keppel-m1-telco-sale-singapore-imda-pause"
@@ -730,7 +989,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-18-australia-neo-nazi-hate-ban-constitutional-challenge"
@@ -752,7 +1011,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-18-pakistan-us-iran-mediator-shehbaz-sharif"
@@ -768,7 +1027,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-18-uss-ford-carrier-326-day-deployment-home"
@@ -784,7 +1043,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-18-brazil-steel-prices-lead-global-china-output-drop"
@@ -806,7 +1065,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-18-pakistan-used-car-import-drop-auto-parts-industrial-policy"
@@ -828,7 +1087,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-18-mumbai-railway-fine-accountability-compensation-gap"
@@ -850,7 +1109,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-18-biomass-household-air-pollution-global-south-stoves"
@@ -866,7 +1125,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-18-fluorescent-rna-aptamer-sensor-water-contaminants"
@@ -882,7 +1141,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-18-iron-mesopelagic-bacteria-ocean-carbon-cycle"
@@ -898,7 +1157,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-18-enterprise-ai-saas-subscription-unit-economics"
@@ -914,7 +1173,7 @@
       "lastCovered": "2026-05-18T04:05:35.494Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-16-scientists-discover-strange-new-crystal-formed-by-nuclear-bl"
@@ -930,7 +1189,7 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-france-epstein-probe-ten-new-victims"
@@ -955,7 +1214,7 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-peru-fujimori-sanchez-presidential-runoff"
@@ -980,7 +1239,7 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-balochistan-section-144-month-long-assembly-ban"
@@ -996,7 +1255,7 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-egypt-marei-filmmaker-state-security-disappearance"
@@ -1012,7 +1271,7 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-south-africa-abrahams-trc-prosecutions-khampepe-inquiry"
@@ -1028,7 +1287,7 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-sars-montana-prasa-tall-trains-tax-trail"
@@ -1044,7 +1303,7 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-nigeria-dispenser-water-shortage-utility-privatisation"
@@ -1060,7 +1319,7 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-johannesburg-lower-houghton-municipal-collapse-property"
@@ -1076,7 +1335,7 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-drc-ebola-american-exposure-pheic-contact-tracing"
@@ -1092,7 +1351,7 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-hipsc-osteoclast-m-csf-priming-reproducibility"
@@ -1108,7 +1367,7 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-ibm-quantum-rng-nist-sp-800-22-superconducting"
@@ -1124,247 +1383,13 @@
       "lastCovered": "2026-05-17T22:08:21.276Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-17-space-debris-survivability-reentry-risk-global-south"
       ],
       "eventUri": null,
       "summary": "The materials that let modern spacecraft survive reentry — refractory composites, heat-resistant tank assemblies — are precisely what now keeps debris intact long enough to reach the ground. Lead with the inversion: better engineering is producing more, not less, surviving debris. Structural angle is who lives under the falling: orbital-shell physics concentrates reentry footprints between roughly ±53° latitude, which means equatorial and global-south populations carry risk for satellites operated mostly from the global north. Frame as the casualty-attribution gap in commercial spaceflight liability — the 1972 Liability Convention was written for an era when nothing made it down.",
-      "conceptUris": []
-    },
-    {
-      "id": "uae-barakah-nuclear-drone-strike-gulf-escalation",
-      "label": "Drone strike sparks fire at UAE's Barakah nuclear power plant",
-      "firstSeen": "2026-05-17T17:07:00.616Z",
-      "lastCovered": "2026-05-17T17:07:00.616Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-uae-barakah-nuclear-drone-strike-gulf-escalation"
-      ],
-      "eventUri": "eng-11661499",
-      "summary": "A drone hit the Barakah nuclear plant's electrical generator hall during the fragile Iran–US ceasefire. The story is the precedent: the first known drone strike on an operational Gulf nuclear facility — Abu Dhabi has opened an investigation but named no actor. Lead with what was hit, who lives within plume range (Abu Dhabi, Doha, Dammam, Manama), and why Gulf nuclear infrastructure is now a contested target.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/United_Arab_Emirates",
-        "http://en.wikipedia.org/wiki/Unmanned_aerial_vehicle",
-        "http://en.wikipedia.org/wiki/Abu_Dhabi",
-        "http://en.wikipedia.org/wiki/Nuclear_power_plant",
-        "http://en.wikipedia.org/wiki/Barakah_nuclear_power_plant",
-        "http://en.wikipedia.org/wiki/Electric_generator",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Conflagration"
-      ]
-    },
-    {
-      "id": "trump-netanyahu-call-iran-war-cabinet",
-      "label": "Donald Trump Briefs Benjamin Netanyahu on Iran, China in 30-Min Phone Call",
-      "firstSeen": "2026-05-17T17:07:00.616Z",
-      "lastCovered": "2026-05-17T17:07:00.616Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-trump-netanyahu-call-iran-war-cabinet"
-      ],
-      "eventUri": "tur-1318839",
-      "summary": "Immediately after the call Netanyahu summoned an Israeli war cabinet meeting on Iran. Lead with the sequencing: a 30-minute brief from Trump → cabinet within hours. The structural angle is that Tel Aviv is acting on Washington's read of Beijing's posture on Iran, with the Barakah strike and the stalled 400kg-uranium talks as the backdrop the writer should anchor in.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Benjamin_Netanyahu",
-        "http://en.wikipedia.org/wiki/Iran",
-        "http://en.wikipedia.org/wiki/Israel",
-        "http://en.wikipedia.org/wiki/Donald_Trump",
-        "http://en.wikipedia.org/wiki/China",
-        "http://en.wikipedia.org/wiki/Prime_Minister_of_Israel",
-        "http://en.wikipedia.org/wiki/Ceasefire"
-      ]
-    },
-    {
-      "id": "eureka-egyptian-crew-ransom-somalia-uae-tanker",
-      "label": "Eight Egyptians held for ransom on UAE-registered oil tanker off Somali coast",
-      "firstSeen": "2026-05-17T17:07:00.616Z",
-      "lastCovered": "2026-05-17T17:07:00.616Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-eureka-egyptian-crew-ransom-somalia-uae-tanker"
-      ],
-      "eventUri": null,
-      "summary": "Eight Egyptian and four Indian crew on the Emirati-owned M/T Eureka are being held for ransom after the tanker was hijacked off Somalia after leaving Fujairah. The Egyptian engineer's family says Cairo has not intervened. Lead with the workers — migrant Egyptian and Indian seafarers absorb the risk of a Gulf-routed oil trade — and the silence of the flag state and the home state.",
-      "conceptUris": []
-    },
-    {
-      "id": "odili-efcc-appeal-court-immunity-precedent",
-      "label": "Appeal Court upholds order stopping EFCC from probing, prosecuting ex-governor Odili",
-      "firstSeen": "2026-05-17T17:07:00.616Z",
-      "lastCovered": "2026-05-17T17:07:00.616Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-odili-efcc-appeal-court-immunity-precedent"
-      ],
-      "eventUri": null,
-      "summary": "Nigeria's Court of Appeal in Port Harcourt has reaffirmed a 2007 high-court order permanently barring the EFCC from probing or charging former Rivers governor Peter Odili. The ruling says the anti-graft agency's establishment act cannot override a subsisting constitutional injunction — a precedent that effectively grants lifetime immunity to a single ex-governor. Lead with what the ruling forecloses, not the legal mechanics.",
-      "conceptUris": []
-    },
-    {
-      "id": "pakistan-centcom-is-k-counterterrorism-partner",
-      "label": "Pakistan 'critical counter-terrorism partner' in US fight against IS-K: Centcom",
-      "firstSeen": "2026-05-17T17:07:00.616Z",
-      "lastCovered": "2026-05-17T17:07:00.616Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-pakistan-centcom-is-k-counterterrorism-partner"
-      ],
-      "eventUri": null,
-      "summary": "Centcom commander Adm. Bradford Cooper told the Senate Armed Services Committee that Pakistan is 'central' to the US fight against IS-Khorasan — the most explicit US security re-engagement with Islamabad since the 2021 Afghan withdrawal. Lead with the policy reversal and what Pakistan's army gets in return; situate against the parallel KP polio-drive militant attacks already in our coverage.",
-      "conceptUris": []
-    },
-    {
-      "id": "prudential-bharti-life-india-insurance-deal",
-      "label": "Prudential To Buy Majority Stake in Bharti Life For $365 Million",
-      "firstSeen": "2026-05-17T17:07:00.616Z",
-      "lastCovered": "2026-05-17T17:07:00.616Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-prudential-bharti-life-india-insurance-deal"
-      ],
-      "eventUri": "eng-11661691",
-      "summary": "Prudential takes 75% of Bharti Life for ₹35bn ($365m), a foothold deal aimed at India's vast underinsured middle class. Lead with the demographic bet — UK insurer buying access to a market where life-insurance penetration sits at ~3% of GDP — and what Sunil Mittal's Bharti gets from cashing out the controlling stake.",
-      "conceptUris": [
-        "http://en.wikipedia.org/wiki/Prudential_plc",
-        "http://en.wikipedia.org/wiki/Insurance",
-        "http://en.wikipedia.org/wiki/Sunil_Mittal",
-        "http://en.wikipedia.org/wiki/India",
-        "http://en.wikipedia.org/wiki/Bharti_Enterprises",
-        "http://en.wikipedia.org/wiki/Life_insurance",
-        "http://en.wikipedia.org/wiki/Shareholder",
-        "http://en.wikipedia.org/wiki/Indian_rupee"
-      ]
-    },
-    {
-      "id": "nigeria-cppe-cbn-mpc-monetary-tightening-warning",
-      "label": "CPPE cautions CBN against monetary tightening ahead of the MPC meeting",
-      "firstSeen": "2026-05-17T17:07:00.616Z",
-      "lastCovered": "2026-05-17T17:07:00.616Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-nigeria-cppe-cbn-mpc-monetary-tightening-warning"
-      ],
-      "eventUri": null,
-      "summary": "Nigeria's private-sector lobby is warning the central bank not to hike rates again at next week's MPC, arguing the existing 27.5% MPR has already throttled credit to manufacturers and SMEs. Lead with the trade-off — inflation control vs. industrial collapse — and what the CPPE's case reveals about who currently bears the cost of CBN's disinflation programme.",
-      "conceptUris": []
-    },
-    {
-      "id": "serbia-azerbaijan-gas-turbine-military-cooperation",
-      "label": "Serbia to develop military-technical, energy cooperation with Azerbaijan — Vucic",
-      "firstSeen": "2026-05-17T17:07:00.616Z",
-      "lastCovered": "2026-05-17T17:07:00.616Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-serbia-azerbaijan-gas-turbine-military-cooperation"
-      ],
-      "eventUri": "eng-11662025",
-      "summary": "Vucic says Belgrade and Baku will jointly build a 500MW gas-turbine plant near Niš starting 2027 and expand military-technical ties — a Serbian pivot from Russian to Azerbaijani gas for new generation capacity. Lead with the energy-substitution mechanism: SOCAR-routed gas displacing Gazprom on the Balkan grid, with arms sales as the package sweetener.",
-      "conceptUris": []
-    },
-    {
-      "id": "ai-confidence-calibration-gap-human-perception",
-      "label": "People overestimate how confident AI systems are in their responses, experiments reveal",
-      "firstSeen": "2026-05-17T17:07:00.616Z",
-      "lastCovered": "2026-05-17T17:07:00.616Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-ai-confidence-calibration-gap-human-perception"
-      ],
-      "eventUri": null,
-      "summary": "New experimental work finds humans systematically over-estimate the confidence of LLM outputs, even when the model itself signals uncertainty. Lead with the calibration gap — users read hedged answers as definitive — and what that means for fields (medicine, law, journalism) now routing decisions through chatbots. Tie back to recent diabetic-retinopathy AI-screening coverage where calibration directly affects patient outcomes.",
-      "conceptUris": []
-    },
-    {
-      "id": "nature-based-solutions-community-led-climate-adaptation",
-      "label": "How nature-based solutions can help vulnerable and marginalized communities overcome climate injustice",
-      "firstSeen": "2026-05-17T17:07:00.616Z",
-      "lastCovered": "2026-05-17T17:07:00.616Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-nature-based-solutions-community-led-climate-adaptation"
-      ],
-      "eventUri": null,
-      "summary": "Synthesis of indigenous- and community-led nature-based adaptation projects — mangrove restoration, agroforestry, watershed-managed grazing — showing measurable disaster-risk reduction at a fraction of grey-infrastructure cost. Lead with one concrete project and its numbers; frame as the structural alternative to the donor-driven adaptation finance debate.",
-      "conceptUris": []
-    },
-    {
-      "id": "japan-sbi-rakuten-crypto-etf-fsa-framework",
-      "label": "Japan's SBI Securities, Rakuten Securities to offer crypto investment trusts, ETFs",
-      "firstSeen": "2026-05-17T17:07:00.616Z",
-      "lastCovered": "2026-05-17T17:07:00.616Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-japan-sbi-rakuten-crypto-etf-fsa-framework"
-      ],
-      "eventUri": "eng-11661668",
-      "summary": "Japan's two largest retail brokerages will launch crypto investment trusts and ETFs once the FSA finalises its framework — with 11 more firms surveyed saying they'll follow. Lead with the regulatory mechanism: Japan is shifting crypto from a payments asset to a securities asset under the FIEA, which is the opposite of the US ETF-first approach. Why it matters: retail Japan = the largest single national crypto demand pool after the US.",
-      "conceptUris": []
-    },
-    {
-      "id": "verifiedx-bitcoin-programmable-private-defi",
-      "label": "Bitcoin DeFi's new front: VerifiedX bets BTC's next chapter is programmable and private",
-      "firstSeen": "2026-05-17T17:07:00.616Z",
-      "lastCovered": "2026-05-17T17:07:00.616Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-verifiedx-bitcoin-programmable-private-defi"
-      ],
-      "eventUri": null,
-      "summary": "As institutional Bitcoin settles into a reserve-asset role, a wave of L2-style projects (VerifiedX, alongside Zcash's institutional revival) is trying to graft programmability and on-chain privacy onto BTC settlement. Lead with the architectural choice — UTXO + ZK proofs vs Ethereum-style account abstraction — and why privacy-preserving Bitcoin DeFi is now where the engineering attention is.",
-      "conceptUris": []
-    },
-    {
-      "id": "pakistan-dgip-passport-home-delivery-chatbot",
-      "label": "Applicants will soon have the option to get passports delivered to their doorsteps, says official",
-      "firstSeen": "2026-05-17T17:07:00.616Z",
-      "lastCovered": "2026-05-17T17:07:00.616Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-17-pakistan-dgip-passport-home-delivery-chatbot"
-      ],
-      "eventUri": null,
-      "summary": "Pakistan's DGIP will roll out nationwide passport home-delivery plus a citizen-facing chatbot, the first end-to-end digitisation of a federal travel-document service in the country. Lead with what changes for the applicant (no more agent middlemen at NADRA-adjacent passport offices), and the accountability angle — DGIP is one of the most corruption-prone interfaces between Pakistanis and the state.",
       "conceptUris": []
     }
   ]

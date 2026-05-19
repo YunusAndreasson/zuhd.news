@@ -190879,5 +190879,1865 @@
     "label": "Oil Sanctions & Waivers",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-05-19-colombia-armed-groups-tiktok-child-recruitment": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL FLOOR",
+        "body": "Recruiting anyone under 18 into an armed group is a war crime under the Rome Statute and Additional Protocol II to the Geneva Conventions. Colombia ratified both, and its own Penal Code criminalizes it specifically — yet enforcement runs through a justice system that struggles to reach the rural municipalities where recruitment happens.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The threshold is **15 in customary international law** but **18 under the Optional Protocol** Colombia signed in 2005 — the stricter standard governs."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE 2016 PEACE DEAL DIDN'T END IT",
+        "body": "The accord with the FARC demobilized roughly 13,000 fighters, but the territory they vacated was not occupied by the state. ELN, FARC dissidents (the Estado Mayor Central and Segunda Marquetalia), the Clan del Golfo, and dozens of smaller outfits moved into the vacuum. Recruitment of minors is now spread across more groups in more places than during the FARC era.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "ELN",
+                "role": "Marxist guerrilla, est. 1964",
+                "cc": "CO"
+              },
+              {
+                "name": "Estado Mayor Central",
+                "role": "FARC dissident bloc",
+                "cc": "CO"
+              },
+              {
+                "name": "Segunda Marquetalia",
+                "role": "Márquez-led FARC splinter",
+                "cc": "CO"
+              },
+              {
+                "name": "Clan del Golfo",
+                "role": "Paramilitary-narco hybrid",
+                "cc": "CO"
+              }
+            ],
+            "label": "who recruits today"
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "Recruitment concentrates where the state never fully arrived: Cauca, Nariño, Putumayo, Arauca, Catatumbo, and the Pacific coast around Chocó. These are coca-growing, gold-mining, and corridor regions — the same places that funded the FARC for fifty years now fund its successors.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CO",
+              "VE",
+              "EC",
+              "PA",
+              "PE"
+            ],
+            "label": "recruitment heartland",
+            "markers": [
+              {
+                "lat": 2.4448,
+                "lng": -76.6147,
+                "label": "Cauca"
+              },
+              {
+                "lat": 1.2136,
+                "lng": -77.2811,
+                "label": "Nariño"
+              },
+              {
+                "lat": 7.0903,
+                "lng": -70.7617,
+                "label": "Arauca"
+              },
+              {
+                "lat": 5.6947,
+                "lng": -76.6611,
+                "label": "Chocó"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY TIKTOK WORKS",
+        "body": "Algorithmic feeds reward novelty and aspiration. A 13-year-old in Tumaco sees a recruiter's clip — a teenager his age on a new motorcycle, AR-15 across the lap, stack of pesos — surfaced not because he searched for it but because the platform inferred it would hold his attention. The recruitment funnel that used to require a cousin in the group now runs through a For You page.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shift mirrors what ISIS did with Twitter in 2014 — what counter-terror analysts call **stochastic recruitment**: cast the lure wide, let the algorithm find the susceptible."
+          }
+        ]
+      },
+      {
+        "heading": "THE SCALE",
+        "body": "The ombudsperson's 651 figure is a floor, not a ceiling. Families in armed-group territory rarely report — doing so can mean reprisals against the child or the household.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "2021",
+                "value": "43 cases",
+                "weight": 43
+              },
+              {
+                "label": "2022",
+                "value": "~150",
+                "weight": 150
+              },
+              {
+                "label": "2023",
+                "value": "~400",
+                "weight": 400,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "2024",
+                "value": "651",
+                "weight": 651,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Children recruited, Colombia (ombudsperson)"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT HAPPENS NEXT",
+        "body": "Children recruited into armed groups in Colombia face high mortality, sexual violence (especially girls), and — if they survive to demobilize — a reintegration system designed for adult fighters. The 2016 accord created a special pathway for child ex-combatants, but funding has been cut repeatedly and the new recruits of 2024 will age into a system already strained.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the Rome Statute, recruiting children into armed groups is a war crime below what age?",
+            "options": [
+              "12",
+              "15",
+              "18",
+              "No specified threshold"
+            ],
+            "correct": 2,
+            "explanation": "The Rome Statute sets 15 as the floor, but Colombia is bound by the stricter Optional Protocol threshold of 18 — and its own law criminalizes recruitment of any minor."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T04:40:42.896Z",
+    "label": "Child Recruitment in Colombia",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-19-google-blackstone-ai-cloud-jv": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY A JOINT VENTURE",
+        "body": "Google has the chips and the software stack; Blackstone has the balance sheet and the appetite for infrastructure-style returns. AI data centers cost $30-50bn each at hyperscale — even Google prefers to share the capital risk rather than carry it alone.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The structure mirrors how **toll roads** and **pipelines** get built: an operator with technical expertise pairs with an infrastructure fund that turns *equity* into *leveraged debt* to multiply deployable capital. $5bn equity → $25bn capacity is a classic 5× infra leverage ratio."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A TPU ACTUALLY IS",
+        "body": "A Tensor Processing Unit is Google's custom silicon for matrix multiplication — the one operation that dominates neural network training and inference. Unlike Nvidia GPUs, TPUs are not sold; Google rents access. This JV is the first time TPU capacity has been spun into a separately-owned vehicle."
+      },
+      {
+        "heading": "THE NVIDIA MOAT IT BYPASSES",
+        "body": "Nvidia's lock on AI compute is not just the H100 chip — it is CUDA, the software layer every researcher learned on. TPUs require JAX or TensorFlow instead of PyTorch+CUDA. Google has spent a decade building this parallel stack precisely so its compute economics do not run through Nvidia's 75% gross margins."
+      },
+      {
+        "heading": "500 MEGAWATTS, IN CONTEXT",
+        "body": "A single 500MW data center campus draws as much power as a mid-sized city — roughly what 400,000 US homes consume. The constraint on AI build-out in 2026 is no longer chips or capital; it is grid interconnection queues, which now run 4-7 years in most US regions.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "500MW AI campus",
+                "value": "500 MW",
+                "tone": "unfavorable",
+                "weight": 500
+              },
+              {
+                "label": "Avg US nuclear reactor",
+                "value": "~1,000 MW",
+                "tone": "neutral",
+                "weight": 1000
+              },
+              {
+                "label": "Hoover Dam",
+                "value": "~2,000 MW",
+                "tone": "favorable",
+                "weight": 2000
+              },
+              {
+                "label": "Mid-size US city",
+                "value": "~500 MW",
+                "tone": "neutral",
+                "weight": 500
+              }
+            ],
+            "label": "power draw, for scale"
+          }
+        ]
+      },
+      {
+        "heading": "THE COREWEAVE PRECEDENT",
+        "body": "CoreWeave started as an Ethereum mining outfit, pivoted to GPU rental in 2019, and IPO'd in 2025 with Nvidia as both supplier and equity holder. Its rise proved that 'neoclouds' — pure AI compute providers without the legacy enterprise baggage of AWS or Azure — can capture share from hyperscalers when supply is the binding constraint."
+      },
+      {
+        "heading": "WHY BLACKSTONE",
+        "body": "Blackstone manages over $1tn in assets and has spent the past three years pivoting its infrastructure arm toward data centers — it acquired QTS in 2021 for $10bn and AirTrunk in 2024 for A$24bn. AI compute is the natural extension: same physical footprint, same long-duration cash flows, higher rents.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was Blackstone's largest data center acquisition before this JV?",
+            "options": [
+              "QTS Realty Trust ($10bn, 2021)",
+              "AirTrunk (A$24bn, 2024)",
+              "Equinix (never acquired)",
+              "CyrusOne ($15bn, 2021 — that was KKR)"
+            ],
+            "correct": 1,
+            "explanation": "AirTrunk, an Asia-Pacific hyperscale operator, was Blackstone's biggest data-center deal — signaling its pivot from US-centric infra to global AI capacity."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T04:41:17.671Z",
+    "label": "AI Cloud & TPUs",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-19-indonesia-nemesis-ai-procurement-watchdog": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BASE RATE PROBLEM",
+        "body": "Even a 99%-accurate fraud detector run against millions of clean transactions will surface thousands of false positives — usually swamping the true hits. This is why algorithmic audit tools fail politically long before they fail technically: defenders only need to point at the noise.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Statisticians call this the *base rate fallacy* — when genuine fraud is rare, even a highly accurate test produces more **false alarms than real catches**."
+          }
+        ]
+      },
+      {
+        "heading": "THE DISCRETIONARY SHIELD",
+        "body": "Procurement law in most countries gives officials wide discretion on contract awards — 'best value', 'national interest', emergency exceptions. Discretion is the substrate corruption hides in, and the same discretion lets officials reject any algorithmic flag as a misreading of context the machine can't see.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What feature of public procurement law most often shields graft from algorithmic detection?",
+            "options": [
+              "Sealed-bid auctions",
+              "Wide official discretion in award criteria",
+              "Mandatory open-data publication",
+              "Independent audit offices"
+            ],
+            "correct": 1,
+            "explanation": "Discretionary 'best value' or emergency clauses give officials legal cover to override or dismiss any flag — algorithmic or human."
+          }
+        ]
+      },
+      {
+        "heading": "INDONESIA'S CORRUPTION ARC",
+        "body": "The Corruption Eradication Commission (KPK), founded in 2002 after the fall of Suharto, was once Southeast Asia's most aggressive anti-graft body — convicting ministers, generals, and Speakers of parliament. A 2019 law stripped its independence; conviction rates and high-profile prosecutions collapsed afterward.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1998",
+                "label": "Suharto falls; reformasi begins"
+              },
+              {
+                "year": "2002",
+                "label": "KPK founded",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2015",
+                "label": "'Cicak vs Buaya' — police push back"
+              },
+              {
+                "year": "2019",
+                "label": "Law revision strips KPK independence"
+              },
+              {
+                "year": "2024",
+                "label": "Prabowo elected; Nemesis deployed"
+              }
+            ],
+            "label": "Indonesian anti-graft institutions"
+          }
+        ]
+      },
+      {
+        "heading": "THE OVERSIGHT-CAPTURE PATTERN",
+        "body": "Anti-corruption tools tend to fail the same way: an independent body is created, scores early wins, then the same political class it polices rewrites its mandate or appoints its leadership. Romania's DNA, Guatemala's CICIG, and Brazil's Lava Jato task force all followed this arc.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Guatemala CICIG",
+                "value": "shut down 2019",
+                "cc": "GT",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Brazil Lava Jato",
+                "value": "dismantled 2021",
+                "cc": "BR",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Romania DNA",
+                "value": "powers curtailed",
+                "cc": "RO",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Indonesia KPK",
+                "value": "neutered 2019",
+                "cc": "ID",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "anti-graft bodies, post-capture"
+          }
+        ]
+      },
+      {
+        "heading": "THE AUTOMATION BIND",
+        "body": "An automated flag is only useful if a process exists to adjudicate it. Without a correction loop — appeals, human review, published outcomes — every false positive becomes evidence against the system, and every true positive becomes a 'glitch' to be filed away."
+      }
+    ],
+    "generatedAt": "2026-05-19T04:41:51.105Z",
+    "label": "Algorithmic Audit & the False Positive Trap",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-19-japan-q1-gdp-iran-war-boj": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IMPORT DEPENDENCY",
+        "body": "Japan imports roughly 90% of its crude oil, and about 95% of that crude transits the Strait of Hormuz. No major economy is more exposed to a Gulf shock — the islands have no domestic oilfields, no pipeline alternatives, and limited refining flexibility for non-Gulf grades.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "JP",
+              "SA",
+              "AE",
+              "QA",
+              "KW",
+              "IR",
+              "OM"
+            ],
+            "label": "Japan's crude lifeline",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 35.6762,
+                "lng": 139.6503,
+                "label": "Tokyo"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LOST DECADES",
+        "body": "From the 1990 asset-bubble collapse through the 2010s, Japan ran near-zero growth and chronic deflation. A 2.1% annualised print is not unusual globally, but in the Japanese context it is the kind of number that gives the central bank political cover to act.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term economists use is *secular stagnation* — a structural shortfall of demand that monetary policy alone cannot fix. Japan was the original case study; the eurozone became the second."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A RATE HIKE IS HARD",
+        "body": "The Bank of Japan held its policy rate at or below zero for most of the period from 1999 to 2024. It lifted rates above zero only in March 2024 — the first hike in 17 years. Each subsequent move is politically delicate because Japanese households, firms, and the government itself have organised their balance sheets around the assumption that money is free."
+      },
+      {
+        "heading": "THE FISCAL TRAP",
+        "body": "Japan's government debt is roughly 250% of GDP — the highest in the developed world. Most of it is held domestically by the BoJ, banks, and pension funds, which is why a sovereign crisis has not materialised. But it also means every 1% rise in interest rates eventually adds enormous interest costs to the budget — a structural reason the BoJ moves slowly.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Government debt-to-GDP",
+            "peers": [
+              {
+                "value": 250,
+                "cc": "JP"
+              },
+              {
+                "value": 160,
+                "cc": "GR"
+              },
+              {
+                "value": 135,
+                "cc": "IT"
+              },
+              {
+                "value": 122,
+                "cc": "US"
+              },
+              {
+                "value": 110,
+                "cc": "FR"
+              },
+              {
+                "value": 100,
+                "cc": "GB"
+              },
+              {
+                "value": 63,
+                "cc": "DE"
+              }
+            ],
+            "subjectCc": "JP",
+            "unit": "% of GDP"
+          }
+        ]
+      },
+      {
+        "heading": "THE YEN CARRY TRADE",
+        "body": "For two decades, global investors borrowed yen at near-zero rates and bought higher-yielding assets abroad. This 'carry trade' is unwound violently whenever the BoJ surprises hawkishly — August 2024 saw the Nikkei fall 12% in a single session as carry positions liquidated. A Gulf-driven inflation spike forcing the BoJ's hand could trigger the same dynamic.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              158.8855,
+              158.9865,
+              159.3964,
+              159.76253049,
+              159.3556875,
+              159.36496265,
+              159.375,
+              159.22516667,
+              159.0765,
+              159.6181,
+              160.4253125,
+              157.18971875,
+              157.07501212,
+              157.073,
+              156.20242308,
+              157.2685625,
+              157.7777619,
+              156.4195,
+              156.8352,
+              156.63498084,
+              156.66504012,
+              157.15828261,
+              157.61505556,
+              157.68214286,
+              157.973,
+              158.5739,
+              158.73393827,
+              158.6955,
+              159.04191667,
+              158.957
+            ],
+            "periods": [
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19"
+            ],
+            "label": "Japanese yen",
+            "unit": "JPY / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE SUBSIDY REFLEX",
+        "body": "Tokyo's first response to oil shocks since 2022 has been fuel subsidies — direct payments to refiners to cap gasoline prices. The subsidies suppress headline inflation, which gives the BoJ less reason to hike, which weakens the yen, which raises import costs, which requires more subsidies. The loop is well-understood and politically irresistible.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of Japan's crude oil imports transits the Strait of Hormuz?",
+            "options": [
+              "About 40%",
+              "About 65%",
+              "About 95%",
+              "About 25%"
+            ],
+            "correct": 2,
+            "explanation": "Japan sources almost all its crude from Gulf producers — Saudi Arabia, UAE, Qatar, Kuwait — every barrel of which moves through Hormuz."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-19"
+    ],
+    "generatedAt": "2026-05-19T04:42:23.712Z",
+    "label": "Japan, Oil & the BoJ",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-19-musk-openai-lawsuit-verdict-mission-drift": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHARITABLE TRUST DOCTRINE",
+        "body": "When a donor gives money to a nonprofit for a specific purpose, the law treats that money as held in trust for that purpose. The nonprofit cannot redirect it elsewhere without violating the donor's intent — even decades later, even if the board votes unanimously.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the *cy-près* doctrine: when the original purpose becomes impossible, courts may approve a 'nearest equivalent' use — but only with judicial sign-off, not unilateral board action."
+          }
+        ]
+      },
+      {
+        "heading": "THE STATUTE OF LIMITATIONS",
+        "body": "Every legal claim has a clock. For breach of charitable trust in California, the clock typically starts when the donor knew or should have known of the breach. Musk's suit failed because the jury found he waited too long after OpenAI's 2019 capped-profit conversion to sue — not because the conversion was lawful."
+      },
+      {
+        "heading": "OPENAI'S UNUSUAL STRUCTURE",
+        "body": "OpenAI began in 2015 as a nonprofit. In 2019 it created a capped-profit subsidiary to raise capital while keeping the charity in control. The nonprofit board can, in theory, shut down the for-profit arm if safety demands it — a structure tested and nearly broken in the November 2023 firing of Sam Altman.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2015",
+                "label": "Founded as nonprofit"
+              },
+              {
+                "year": "2019",
+                "label": "Capped-profit subsidiary created",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-11",
+                "label": "Altman fired, then reinstated"
+              },
+              {
+                "year": "2024",
+                "label": "Musk files suit"
+              },
+              {
+                "year": "2026-05",
+                "label": "Jury verdict on timing"
+              }
+            ],
+            "label": "OpenAI's structural arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY MISSION DRIFT IS HARD TO POLICE",
+        "body": "State attorneys general — not donors — hold primary enforcement authority over charitable trusts. They rarely sue major nonprofits. Donors can sue only if they retained explicit standing in the gift agreement, which most do not. The result: nonprofits face weak external discipline on mission drift.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Who has primary legal authority to enforce a charitable trust's mission?",
+            "options": [
+              "The original donors",
+              "The state attorney general",
+              "The IRS",
+              "The nonprofit's board"
+            ],
+            "correct": 1,
+            "explanation": "State AGs hold parens patriae authority over charitable assets. Donors typically lose standing once the gift is made unless explicitly preserved in writing."
+          }
+        ]
+      },
+      {
+        "heading": "THE $38M QUESTION",
+        "body": "Musk contributed roughly $44m to OpenAI between 2016 and 2020, with $38m at issue in the suit. The legal question — unresolved by this verdict — is whether those donations carried an implicit restriction to nonprofit, open-source AI research, or whether they were unrestricted gifts the board could redirect."
+      },
+      {
+        "heading": "THE FOR-PROFIT CONVERSION RACE",
+        "body": "OpenAI is not alone: Anthropic is a public benefit corporation, xAI is for-profit from inception, and OpenAI itself is now restructuring to remove the nonprofit's control entirely. The capped-profit model proved too restrictive for the capital needs of frontier-model training, where a single training run can cost hundreds of millions.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "OpenAI",
+                "value": "Capped-profit",
+                "tone": "neutral"
+              },
+              {
+                "label": "Anthropic",
+                "value": "Public benefit corp",
+                "tone": "neutral"
+              },
+              {
+                "label": "xAI",
+                "value": "For-profit",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "DeepMind",
+                "value": "Alphabet subsidiary",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Meta AI",
+                "value": "Corporate division",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "frontier AI lab governance structures"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T04:42:49.846Z",
+    "label": "Charitable Trust & Mission Drift",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-19-pakistan-exports-middle-east-fall-iran-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ENERGY DEPENDENCY",
+        "body": "Pakistan imports nearly all its crude and most of its LNG. Saudi Arabia and the UAE together supply roughly 90% of that energy bill — a concentration that means any Gulf disruption transmits directly into Pakistani fuel queues, power tariffs, and the current-account deficit.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The dependency runs deeper than oil: Saudi Arabia routinely parks **deferred-payment facilities** worth several billion dollars at the State Bank, effectively financing Pakistan's import cover when reserves run thin."
+          }
+        ]
+      },
+      {
+        "heading": "THE REMITTANCE PIPELINE",
+        "body": "Beyond trade, the Gulf is Pakistan's labor market. Roughly 2.5 million Pakistanis work in Saudi Arabia and the UAE, sending home the largest share of the $30bn+ annual remittance flow that keeps the rupee from collapsing.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "~2.6m",
+                "cc": "SA",
+                "weight": 2600
+              },
+              {
+                "label": "UAE",
+                "value": "~1.7m",
+                "cc": "AE",
+                "weight": 1700
+              },
+              {
+                "label": "Oman",
+                "value": "~230k",
+                "cc": "OM",
+                "weight": 230
+              },
+              {
+                "label": "Qatar",
+                "value": "~150k",
+                "cc": "QA",
+                "weight": 150
+              },
+              {
+                "label": "Kuwait",
+                "value": "~110k",
+                "cc": "KW",
+                "weight": 110
+              },
+              {
+                "label": "Bahrain",
+                "value": "~90k",
+                "cc": "BH",
+                "weight": 90
+              }
+            ],
+            "label": "Pakistani diaspora in the Gulf (rough est.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY OF THE SHOCK",
+        "body": "Pakistani exports to the Gulf — rice, textiles, meat, cement — move almost entirely through Karachi and Port Qasim, then across the Arabian Sea past the Strait of Hormuz. An Iran-Israel war reshapes shipping insurance and routing for exactly the corridor Pakistan's trade depends on.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "Pakistan's Gulf trade corridor",
+            "markers": [
+              {
+                "lat": 24.8607,
+                "lng": 67.0011,
+                "label": "Karachi"
+              },
+              {
+                "lat": 24.7833,
+                "lng": 67.35,
+                "label": "Port Qasim"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE RUPEE UNDER STRESS",
+        "body": "When the import bill rises faster than exports and remittances, the State Bank burns reserves defending the rupee — or lets it slide. Pakistan has cycled through this pattern repeatedly, with each IMF program imposing a sharper float than the last.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              279.757081,
+              278.536876,
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258
+            ],
+            "periods": [
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE SHIA BALANCE",
+        "body": "Pakistan has the world's second-largest Shia population after Iran — roughly 15-20% of 240 million people. This is why Islamabad has historically refused to join Saudi-led coalitions against Iran (notably declining troops for Yemen in 2015), even as Riyadh remains its largest creditor and Gulf patron.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country has the world's second-largest Shia Muslim population?",
+            "options": [
+              "Iraq",
+              "Pakistan",
+              "Lebanon",
+              "Bahrain"
+            ],
+            "correct": 1,
+            "explanation": "Pakistan's ~40 million Shia outnumber Iraq's, making Islamabad's neutrality between Riyadh and Tehran a domestic necessity, not just a diplomatic choice."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1979 INFLECTION",
+        "body": "The Gulf became Pakistan's economic lifeline after Zia-ul-Haq sent troops to guard Saudi Arabia in the late 1970s and oil-boom labor demand absorbed millions of Pakistani workers. The Iranian Revolution the same year set the regional rivalry whose latest flare-up now disrupts the trade lane Zia's bargain created.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1973",
+                "label": "Gulf oil boom begins"
+              },
+              {
+                "year": "1979",
+                "label": "Iranian Revolution",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1979",
+                "label": "Zia sends troops to Saudi Arabia"
+              },
+              {
+                "year": "1991",
+                "label": "Gulf War — remittances spike"
+              },
+              {
+                "year": "2015",
+                "label": "Pakistan refuses Yemen coalition"
+              },
+              {
+                "year": "2024",
+                "label": "Saudi $5bn SBP deposit rollover"
+              }
+            ],
+            "label": "Pakistan-Gulf economic arc"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-19"
+    ],
+    "generatedAt": "2026-05-19T04:43:20.168Z",
+    "label": "Pakistan & the Gulf Economy",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-19-pope-leo-ai-encyclical-anthropic": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT AN ENCYCLICAL IS",
+        "body": "An encyclical is the highest form of routine papal teaching — a circular letter binding the global Church on matters of faith, morals, or social doctrine. Unlike speeches or exhortations, encyclicals enter the magisterium: Catholics owe them religious assent even when they are not declared infallible.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The name comes from the Greek *enkyklios* — *circular*, in the sense of a letter sent around to all the bishops rather than to one diocese."
+          }
+        ]
+      },
+      {
+        "heading": "THE SOCIAL DOCTRINE LINEAGE",
+        "body": "Modern Catholic social teaching begins with Leo XIII's Rerum Novarum (1891), which confronted industrial capitalism and the condition of workers. Successive popes extended it — Pius XI on subsidiarity, John XXIII on nuclear arms, John Paul II on the dignity of labor, Francis on ecology. An AI encyclical sits in this lineage: the Church reads each new technological order through the same lens of human dignity and the common good.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1891",
+                "label": "Rerum Novarum — labor & capital",
+                "emphasis": "start"
+              },
+              {
+                "year": "1931",
+                "label": "Quadragesimo Anno — subsidiarity"
+              },
+              {
+                "year": "1963",
+                "label": "Pacem in Terris — nuclear age"
+              },
+              {
+                "year": "1981",
+                "label": "Laborem Exercens — dignity of work"
+              },
+              {
+                "year": "2015",
+                "label": "Laudato Si' — ecology"
+              },
+              {
+                "year": "2025",
+                "label": "Leo XIV on AI",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "Catholic social teaching, the major encyclicals"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE NAME LEO",
+        "body": "A pope's regnal name is a thesis statement. Choosing Leo signals continuity with Leo XIII, who wrote the foundational text on labor in an age of machines. The implication is deliberate: as Leo XIII framed industrial capitalism, Leo XIV intends to frame the machine-intelligence economy."
+      },
+      {
+        "heading": "THE JUST-WAR FRAMEWORK",
+        "body": "Catholic teaching on weapons runs through just-war doctrine, refined by Augustine and Aquinas: force must be proportionate, discriminate between combatants and civilians, and remain under responsible human authority. Autonomous weapons systems strain all three criteria — particularly the requirement of a human moral agent answerable for each killing decision.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which of these is NOT one of the classical just-war criteria a Catholic moral theologian would apply to autonomous weapons?",
+            "options": [
+              "Proportionality of force",
+              "Discrimination between combatants and civilians",
+              "Responsible human authority over the act",
+              "Technological superiority of the deploying state"
+            ],
+            "correct": 3,
+            "explanation": "Just-war doctrine constrains how force may be used; it is indifferent to whether the user is technologically dominant. That indifference is precisely why it bites against autonomous weapons."
+          }
+        ]
+      },
+      {
+        "heading": "THE CORPORATE CO-SPONSOR PROBLEM",
+        "body": "A pope sharing a stage with an AI lab founder is institutionally unusual. Encyclicals are typically launched by curial cardinals, not industry partners. The arrangement signals that the Vatican views frontier AI labs as moral interlocutors rather than mere subjects of regulation — a posture closer to its Cold War engagement with nuclear physicists than to its arms-length stance toward arms manufacturers.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Carlo Maria Martini",
+                "role": "Cardinal, bioethics dialogues",
+                "years": "1980s–2000s",
+                "cc": "VA"
+              },
+              {
+                "name": "Paul Tighe",
+                "role": "Sec., Dicastery for Culture",
+                "years": "2017–",
+                "cc": "VA"
+              },
+              {
+                "name": "Paolo Benanti",
+                "role": "Vatican AI ethics advisor",
+                "years": "2023–",
+                "cc": "VA"
+              },
+              {
+                "name": "Dario Amodei",
+                "role": "Anthropic co-founder",
+                "years": "2021–",
+                "cc": "US"
+              }
+            ],
+            "label": "recent Vatican moral interlocutors on technology"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1.4 BILLION FIGURE",
+        "body": "The Church's claim of binding teaching authority extends, on paper, to every baptized Catholic worldwide. In practice the reach is uneven — but no other single institution issues moral guidance to a comparably-sized constituency in one act. Laudato Si' (2015) measurably moved Catholic opinion on climate policy; the AI text is being launched with that precedent in mind.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Catholic Church",
+                "value": "1.4bn",
+                "weight": 1400,
+                "cc": "VA"
+              },
+              {
+                "label": "Sunni Islam",
+                "value": "~1.6bn",
+                "weight": 1600
+              },
+              {
+                "label": "Hindu traditions",
+                "value": "~1.2bn",
+                "weight": 1200
+              },
+              {
+                "label": "Anglican Communion",
+                "value": "~85m",
+                "weight": 85,
+                "cc": "GB"
+              },
+              {
+                "label": "Russian Orthodox",
+                "value": "~110m",
+                "weight": 110,
+                "cc": "RU"
+              }
+            ],
+            "label": "reach of major moral authorities (adherents, est.)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T04:43:55.098Z",
+    "label": "Papal Encyclicals & AI Doctrine",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-19-putin-xi-multipolar-world-declaration": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 'MULTIPOLAR' MEANS",
+        "body": "In international relations, polarity counts the number of great powers that can act independently. The Cold War was bipolar; the 1990s were unipolar under US primacy. 'Multipolar' is the explicit rejection of that unipolar moment — and it is the organizing word of Russian and Chinese foreign policy doctrine.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Russian phrase is *mnogopolyarnyy mir*; the Chinese is **多极化** (*duojihua*, 'multipolarization'). Both entered official doctrine in the **1997** Yeltsin–Jiang joint declaration — the direct ancestor of every text since."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1997 PRECEDENT",
+        "body": "Yeltsin and Jiang Zemin signed a joint declaration on a multipolar world in April 1997 in Moscow. It explicitly criticized 'hegemonism' — diplomatic code for US primacy after the Soviet collapse. Every Sino-Russian joint text since, including the February 2022 'no limits' partnership signed weeks before the Ukraine invasion, builds on that document.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1969",
+                "label": "Sino-Soviet border clashes at Zhenbao"
+              },
+              {
+                "year": "1989",
+                "label": "Gorbachev–Deng normalization"
+              },
+              {
+                "year": "1997",
+                "label": "Yeltsin–Jiang multipolar declaration",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2001",
+                "label": "Treaty of Good-Neighborliness"
+              },
+              {
+                "year": "2014",
+                "label": "$400bn gas deal post-Crimea"
+              },
+              {
+                "year": "2022",
+                "label": "'No limits' partnership"
+              },
+              {
+                "year": "2026",
+                "label": "47-page declaration"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1960",
+                "to": "1989",
+                "label": "Sino-Soviet split",
+                "tone": "unfavorable"
+              },
+              {
+                "from": "2014",
+                "to": "2026",
+                "label": "Post-Crimea convergence",
+                "tone": "neutral"
+              }
+            ],
+            "label": "the Sino-Russian alignment arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE ASYMMETRY",
+        "body": "The partnership is not between equals. China's economy is roughly ten times Russia's; Russian exports to China are dominated by discounted energy while Chinese exports to Russia span the full industrial stack. Beijing sets the terms; Moscow takes what is offered because the alternative is isolation.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "GDP nominal",
+                "value": "CN $18tn vs RU $2tn",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Population",
+                "value": "1.4bn vs 144mn",
+                "tone": "neutral"
+              },
+              {
+                "label": "Defense spending",
+                "value": "$296bn vs $109bn",
+                "tone": "neutral"
+              },
+              {
+                "label": "Bilateral trade",
+                "value": "$240bn (record)",
+                "tone": "favorable"
+              },
+              {
+                "label": "RU oil to CN",
+                "value": "~2mn bbl/day",
+                "tone": "favorable"
+              }
+            ],
+            "label": "Russia and China by the numbers (2024 est.)"
+          }
+        ]
+      },
+      {
+        "heading": "BRICS AS THE VEHICLE",
+        "body": "BRICS began in 2009 as Brazil, Russia, India, China; South Africa joined in 2010; Iran, UAE, Egypt, Ethiopia in 2024. It is the institutional shell multipolarity travels in — a forum without binding rules, where members coordinate against dollar dependence without committing to any alternative framework.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BR",
+              "RU",
+              "IN",
+              "CN",
+              "ZA",
+              "IR",
+              "AE",
+              "EG",
+              "ET"
+            ],
+            "label": "BRICS+ as of 2024"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DECLARATIONS MATTER",
+        "body": "Joint declarations are not treaties — they bind nothing. But they are the public scaffolding diplomats use to signal alignment to third parties: to Tehran that Moscow has cover, to Pyongyang that Beijing has cover, to the Global South that an alternative pole exists. The text is the message; the 40 bilateral documents underneath are the substance."
+      },
+      {
+        "heading": "QUIZ",
+        "body": "The vocabulary of 'multipolarity' has a specific intellectual lineage worth knowing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When did 'multipolar world' first enter Sino-Russian joint doctrine?",
+            "options": [
+              "1997 Yeltsin–Jiang declaration",
+              "2001 Treaty of Good-Neighborliness",
+              "2014 post-Crimea pivot",
+              "2022 'no limits' partnership"
+            ],
+            "correct": 0,
+            "explanation": "The April 1997 Moscow declaration was the first joint text framing the post-Cold-War order as needing to move from unipolar to multipolar. Every later text builds on it."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T04:44:29.005Z",
+    "label": "Multipolarity & the Sino-Russian Axis",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-19-putin-xi-power-of-siberia-2-gas-pipeline": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LOST MARKET",
+        "body": "Before 2022, Gazprom sent roughly 150 bcm/yr to Europe through Nord Stream, Yamal-Europe, and the Ukraine corridor. That market collapsed almost overnight after the Ukraine invasion and the Nord Stream sabotage. China is the only buyer large enough to absorb anything close to that volume — and Beijing knows it.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Europe (pre-2022)",
+                "value": "~150 bcm/yr",
+                "tone": "unfavorable",
+                "weight": 150
+              },
+              {
+                "label": "Power of Siberia 1",
+                "value": "38 bcm/yr",
+                "tone": "neutral",
+                "cc": "CN",
+                "weight": 38
+              },
+              {
+                "label": "Turkey (TurkStream)",
+                "value": "~16 bcm/yr",
+                "tone": "neutral",
+                "cc": "TR",
+                "weight": 16
+              },
+              {
+                "label": "Power of Siberia 2",
+                "value": "50 bcm/yr (planned)",
+                "tone": "favorable",
+                "cc": "CN",
+                "weight": 50
+              }
+            ],
+            "label": "Gazprom's pipeline export markets"
+          }
+        ]
+      },
+      {
+        "heading": "THE MONOPSONY PROBLEM",
+        "body": "A monopsony is one buyer facing many sellers — the mirror image of a monopoly. When Russia lost Europe, it became a seller with one viable customer. Economic theory and every historical precedent agree: the monopsonist captures most of the surplus. China's leverage in this negotiation is structural, not tactical.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Gazprom reportedly accepted prices near Russia's *domestic* tariff — roughly **$60/tcm** versus the **$300–400/tcm** Europe paid at peak. That is the monopsony discount, made visible."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE PIPELINE STALLED",
+        "body": "Power of Siberia 2 was announced in 2014 — the same year Crimea was annexed and Western financing for Russian energy began to tighten. For a decade the project sat in limbo: Moscow wanted European-style pricing, Beijing offered domestic-Chinese pricing, and neither side needed it enough to compromise. Sanctions changed the math on Moscow's side, not Beijing's.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2014",
+                "label": "POS-2 announced; Crimea annexed",
+                "emphasis": "start"
+              },
+              {
+                "year": "2019",
+                "label": "Power of Siberia 1 opens"
+              },
+              {
+                "year": "2022",
+                "label": "Ukraine invasion; Europe exit",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-09",
+                "label": "Nord Stream pipelines sabotaged"
+              },
+              {
+                "year": "2024",
+                "label": "Mongolia drops POS-2 from 5-yr plan"
+              },
+              {
+                "year": "2026",
+                "label": "Russia offers near-domestic pricing"
+              }
+            ],
+            "label": "the long stall"
+          }
+        ]
+      },
+      {
+        "heading": "THE MONGOLIA ROUTE",
+        "body": "The pipeline crosses Mongolia rather than running direct Russia–China for engineering and cost reasons — the terrain is friendlier and the route is ~1,000 km shorter. But it adds a third sovereign to every transit dispute, and Ulaanbaatar quietly dropped the project from its 2024–2028 national development plan, signaling it doesn't believe the deal is close.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "MN",
+              "CN"
+            ],
+            "label": "Power of Siberia 2 corridor",
+            "markers": [
+              {
+                "lat": 55.0415,
+                "lng": 82.9346,
+                "label": "Novosibirsk gas hub"
+              },
+              {
+                "lat": 47.9184,
+                "lng": 106.9177,
+                "label": "Ulaanbaatar transit"
+              },
+              {
+                "lat": 39.9042,
+                "lng": 116.4074,
+                "label": "Beijing delivery"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE STRATEGIC ASYMMETRY",
+        "body": "China imports gas from Turkmenistan, Kazakhstan, Uzbekistan, Myanmar, Qatar (LNG), Australia (LNG), and the US (LNG). Russia would be one supplier among many. Russia, by contrast, has no other pipeline customer of comparable scale. A buyer with many alternatives sets terms; a seller with one buyer accepts them.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did Russia finally accept near-domestic gas prices for Power of Siberia 2?",
+            "options": [
+              "China threatened sanctions on Russian banks",
+              "Sanctions destroyed Russia's European market, leaving China as the only large pipeline buyer",
+              "Mongolia demanded lower prices as a transit condition",
+              "Gazprom discovered new low-cost fields in Siberia"
+            ],
+            "correct": 1,
+            "explanation": "Losing 150 bcm/yr of European demand left Gazprom with one viable replacement market — a textbook monopsony, with pricing power flowing to the single buyer."
+          }
+        ]
+      },
+      {
+        "heading": "GAS DOES NOT TRAVEL LIKE OIL",
+        "body": "Oil is fungible: a tanker can redirect mid-voyage. Pipeline gas is not — it flows where the steel goes, and rerouting takes years and billions. LNG offers some flexibility, but Russia's Arctic LNG projects depend on Western turbine technology now under sanction. Once Europe was lost, Moscow had no spot market to fall back on.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why the Saudis can pivot oil cargoes to Asia in weeks while Russia spent *four years* trying to redirect gas — and still had to accept Beijing's price."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T04:45:03.417Z",
+    "label": "Power of Siberia 2 & the Pricing Squeeze",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-19-standard-chartered-ai-job-cuts": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY BACK OFFICES MOVED EAST FIRST",
+        "body": "From the 1990s, global banks offshored reconciliation, KYC checks, and report generation to India, Manila, and Kuala Lumpur. The arbitrage was wage, not skill — a Mumbai analyst cost a fifth of a London one. AI now collapses the same arbitrage further: a model costs a fraction of the Mumbai analyst.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pattern is called **the second offshoring** — first labor moved to cheaper geographies, now it moves to cheaper *substrates*. The wage floor that protected even low-cost workers has no equivalent for inference compute."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT BACK-OFFICE WORK ACTUALLY IS",
+        "body": "Reconciliation matches trades against settlements. KYC reviews verify customer identity documents. Sanctions screening flags counterparties against watchlists. Trade finance checks letters of credit against shipping documents. Each task is rules-based, text-heavy, and high-volume — exactly the shape large language models handle well.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which back-office function is hardest to automate with current LLMs?",
+            "options": [
+              "KYC document verification",
+              "Trade reconciliation",
+              "Resolving novel counterparty disputes",
+              "Sanctions list screening"
+            ],
+            "correct": 2,
+            "explanation": "Disputes require judgment, negotiation, and accountability — areas where models still fail. The other three are pattern-matching tasks well-suited to automation."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY OF THE CUT",
+        "body": "Standard Chartered's back offices run from Chennai and Bengaluru in India, Tianjin in China, Kuala Lumpur in Malaysia, and Warsaw in Poland. These cities built entire economic ecosystems around banking-services outsourcing over two decades. AI displacement concentrates in exactly those hubs.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "CN",
+              "MY",
+              "PL",
+              "GB",
+              "SG"
+            ],
+            "label": "the offshoring map",
+            "markers": [
+              {
+                "lat": 13.0827,
+                "lng": 80.2707,
+                "label": "Chennai"
+              },
+              {
+                "lat": 12.9716,
+                "lng": 77.5946,
+                "label": "Bengaluru"
+              },
+              {
+                "lat": 3.139,
+                "lng": 101.6869,
+                "label": "Kuala Lumpur"
+              },
+              {
+                "lat": 52.2297,
+                "lng": 21.0122,
+                "label": "Warsaw"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BANK CONSOLIDATION WAVE",
+        "body": "DBS announced 4,000 cuts in February 2026. Citigroup, HSBC, and Barclays have flagged similar restructurings. The cuts cluster because banks watch each other — once one major moves, the market demands the rest justify why they haven't.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Standard Chartered",
+                "value": "7,800",
+                "cc": "GB",
+                "weight": 7800,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "DBS",
+                "value": "4,000",
+                "cc": "SG",
+                "weight": 4000,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Citigroup",
+                "value": "~20,000",
+                "cc": "US",
+                "weight": 20000,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Barclays",
+                "value": "~5,000",
+                "cc": "GB",
+                "weight": 5000,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "announced bank workforce cuts citing AI/restructuring"
+          }
+        ]
+      },
+      {
+        "heading": "WHY 2030, NOT NOW",
+        "body": "Banks rarely announce cuts as immediate. Multi-year horizons let them absorb attrition (people leaving voluntarily), avoid severance spikes, and signal strategy to investors without triggering union backlash or regulatory scrutiny. A 2030 deadline is also conveniently past the next CEO contract cycle."
+      },
+      {
+        "heading": "THE LUDDITE PRECEDENT",
+        "body": "The Luddites of 1810s England were not anti-technology — they were skilled textile workers protesting the use of new machines by unapprenticed laborers at lower wages. Their actual grievance was distributional: who captures the productivity gains. That question — does AI productivity flow to shareholders, customers, or workers — is the one back-office cuts force open."
+      }
+    ],
+    "generatedAt": "2026-05-19T04:45:38.626Z",
+    "label": "Back-Office Automation & Banking Labor",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-19-syrians-libya-uncertain-return-post-assad": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SCALE OF DISPLACEMENT",
+        "body": "Syria's war produced the largest refugee crisis since WWII. Roughly half the prewar population of 22 million was displaced — about 6.8 million abroad and 7 million internally — concentrated in Turkey, Lebanon, Jordan, and onward to Europe and North Africa.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Turkey",
+                "value": "~3.1m",
+                "cc": "TR",
+                "weight": 3100
+              },
+              {
+                "label": "Lebanon",
+                "value": "~775k",
+                "cc": "LB",
+                "weight": 775
+              },
+              {
+                "label": "Jordan",
+                "value": "~660k",
+                "cc": "JO",
+                "weight": 660
+              },
+              {
+                "label": "Germany",
+                "value": "~715k",
+                "cc": "DE",
+                "weight": 715
+              },
+              {
+                "label": "Iraq",
+                "value": "~280k",
+                "cc": "IQ",
+                "weight": 280
+              },
+              {
+                "label": "Egypt",
+                "value": "~155k",
+                "cc": "EG",
+                "weight": 155
+              }
+            ],
+            "label": "Syrian refugees by host country (UNHCR, 2024)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY LIBYA",
+        "body": "Libya was never a destination — it was a transit corridor to Europe across the central Mediterranean. After the 2011 NATO intervention and the collapse of state authority, smuggling networks operating out of Zawiya, Sabratha, and Misrata became the primary route. Many Syrians who paid for passage were stranded when EU-funded interceptions tightened after 2017.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SY",
+              "LY",
+              "TR",
+              "LB",
+              "JO",
+              "EG",
+              "IT",
+              "GR"
+            ],
+            "label": "the central Mediterranean route",
+            "markers": [
+              {
+                "lat": 32.7571,
+                "lng": 12.7286,
+                "label": "Zawiya — smuggling hub"
+              },
+              {
+                "lat": 32.7933,
+                "lng": 12.4842,
+                "label": "Sabratha"
+              },
+              {
+                "lat": 32.3754,
+                "lng": 15.0925,
+                "label": "Misrata"
+              },
+              {
+                "lat": 35.8989,
+                "lng": 14.5146,
+                "label": "Malta SAR zone"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BLESSED LAND",
+        "body": "In Islamic tradition, al-Sham — Greater Syria, encompassing modern Syria, Lebanon, Jordan, and Palestine — holds particular significance. A hadith in Sahih al-Bukhari describes the people of al-Sham as being under divine protection, and classical scholars including Ibn Kathir identified the region as central to end-times events. For returning Syrians, the pull is not only national but scriptural — to leave al-Sham permanently is theologically weighted in a way the modern refugee framework does not capture."
+      },
+      {
+        "heading": "THE FORCIBLY DISAPPEARED",
+        "body": "Over 160,000 Syrians passed through Assad's detention archipelago and were never seen again. Sednaya prison alone — what Amnesty called a 'human slaughterhouse' — processed thousands. For a returning family, the question is not whether a missing brother is alive but whether any record of his fate will ever surface.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Caesar files — 53,000 photographs smuggled out by a military defector in 2014 — document systematic torture deaths in Assad's prisons. They became evidence in the *Koblenz trial* in Germany, the first conviction of a regime official under **universal jurisdiction**."
+          }
+        ]
+      },
+      {
+        "heading": "WHY RETURN IS STILL HARD",
+        "body": "The draft is gone but the rubble isn't. UN-Habitat estimated reconstruction at $250–400 billion — multiples of Syria's prewar GDP. Western sanctions, only partially eased after Assad's fall, still bar most international financing. Housing, water, electricity, and schools in cities like Homs and Aleppo remain at fractions of capacity.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Syria's prewar schools were damaged or destroyed by 2019, according to UN figures?",
+            "options": [
+              "About 1 in 20",
+              "About 1 in 10",
+              "About 1 in 3",
+              "About 1 in 2"
+            ],
+            "correct": 2,
+            "explanation": "UNICEF documented that roughly one in three Syrian schools had been damaged, destroyed, or repurposed by 2019 — a generation-scale loss of educational infrastructure."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Mass refugee returns rarely happen at scale without a political settlement and a financing package. Bosnia after Dayton saw roughly half of displaced civilians return over a decade with billions in international reconstruction aid. Afghanistan after 2002 saw returns reverse within years. Syria has neither the settlement nor the financing yet — which is why most refugees are watching, not moving.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011",
+                "label": "Daraa uprising",
+                "emphasis": "start"
+              },
+              {
+                "year": "2013",
+                "label": "Refugee count crosses 2 million"
+              },
+              {
+                "year": "2015",
+                "label": "European 'migration crisis' peaks",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2016",
+                "label": "Aleppo falls to regime"
+              },
+              {
+                "year": "2020",
+                "label": "Idlib ceasefire freezes front lines"
+              },
+              {
+                "year": "2024-12",
+                "label": "Assad regime collapses"
+              }
+            ],
+            "spans": [
+              {
+                "from": "2011",
+                "to": "2024",
+                "label": "Assad-era forced conscription",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "the Syrian displacement arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T04:46:15.450Z",
+    "label": "Syrian Return & Reconstruction",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-19-uganda-drc-rare-ebola-cross-border": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE VIRUS FAMILY",
+        "body": "Ebola is a filovirus with six known species. Zaire ebolavirus is the deadliest (up to 90% case fatality); Sudan, Bundibugyo, and Taï Forest cause smaller outbreaks; Reston infects primates but not humans; Bombali was found in bats and has never caused a human case.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The *Zaire* strain drove the 2014–16 West Africa epidemic and the 2018–20 eastern DRC outbreak. The *Sudan* strain has no licensed vaccine — only *Zaire* does (**Ervebo**, approved 2019)."
+          }
+        ]
+      },
+      {
+        "heading": "THE RESERVOIR",
+        "body": "Fruit bats of the family Pteropodidae are the suspected natural reservoir. Spillover happens when humans handle bushmeat or enter caves where bats roost. Once in humans, transmission is through direct contact with bodily fluids — not airborne — which is why funeral rites that involve washing the dead are repeat amplifiers.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How does Ebola primarily transmit between humans?",
+            "options": [
+              "Airborne droplets, like influenza",
+              "Direct contact with infected bodily fluids",
+              "Mosquito bites",
+              "Contaminated drinking water"
+            ],
+            "correct": 1,
+            "explanation": "Ebola requires direct contact with blood, vomit, sweat, or other fluids — which is why caregivers and funeral attendants are the most common secondary cases."
+          }
+        ]
+      },
+      {
+        "heading": "THE BORDER PROBLEM",
+        "body": "The DRC–Uganda border runs through the Rwenzori mountains and the Great Lakes region, with dense cross-border trade, shared languages (Lugbara, Alur), and refugee flows from eastern DRC's M23 conflict. Containment requires cooperation between two health systems with very different capacities.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CD",
+              "UG",
+              "RW",
+              "BI",
+              "SS",
+              "TZ"
+            ],
+            "label": "the Great Lakes spillover zone",
+            "markers": [
+              {
+                "lat": 0.3476,
+                "lng": 32.5825,
+                "label": "Kampala"
+              },
+              {
+                "lat": 0.0469,
+                "lng": 29.8739,
+                "label": "Beni (past outbreak hub)"
+              },
+              {
+                "lat": -1.6792,
+                "lng": 29.2228,
+                "label": "Goma"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY UGANDA RESPONDS FAST",
+        "body": "Uganda has faced Ebola outbreaks in 2000, 2007, 2011, 2012, and 2022 — more than any country except DRC. The 2000 Gulu outbreak killed 224, including the renowned physician Matthew Lukwiya. Each cycle built institutional muscle: contact-tracing teams, isolation wards, and the political will to cancel mass gatherings before case counts explode."
+      },
+      {
+        "heading": "THE PILGRIMAGE CALCULUS",
+        "body": "Uganda hosts the Martyrs' Day pilgrimage at Namugongo every June 3 — drawing roughly two million pilgrims from across East Africa. Cancelling or restricting it is economically costly and politically sensitive, but a single super-spreading event at a religious gathering can multiply an outbreak's R-number for weeks. Public-health authorities learned this from the 2014 West Africa wave."
+      },
+      {
+        "heading": "THE VACCINE GAP",
+        "body": "Ervebo protects against Zaire ebolavirus only. For Sudan and Bundibugyo strains — both of which have struck Uganda — there is no licensed vaccine, only experimental candidates released under emergency-use protocols. Which strain crossed the border determines whether vaccination is a tool or a bystander.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Zaire",
+                "value": "Ervebo licensed",
+                "tone": "favorable"
+              },
+              {
+                "label": "Sudan",
+                "value": "trial-stage only",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Bundibugyo",
+                "value": "no vaccine",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Taï Forest",
+                "value": "no vaccine",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Ebola strains & countermeasures"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T04:46:46.023Z",
+    "label": "Ebola & Cross-Border Outbreaks",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-19-urban-animals-bolder-aggressive-133-species": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SELECTION PRESSURE",
+        "body": "Cities are not just habitats — they are filters. Shy animals that flee every passing human burn calories and miss feeding opportunities; bold ones eat the discarded sandwich. Across generations, the timid genotypes get outcompeted in urban patches.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Ecologists call this the **flight initiation distance** — how close a human can approach before the animal flees. In urban populations it shrinks dramatically, sometimes to *zero*."
+          }
+        ]
+      },
+      {
+        "heading": "THE TIMESCALE SURPRISE",
+        "body": "Classical evolution was thought to operate over millennia. But measurable behavioral and morphological shifts in urban populations occur in decades — sometimes just tens of generations. Cities are among the fastest evolutionary laboratories ever documented."
+      },
+      {
+        "heading": "THE LONDON UNDERGROUND MOSQUITO",
+        "body": "Culex pipiens molestus, the mosquito that colonized the London Tube during construction in the 1860s, is now reproductively isolated from its above-ground ancestor. It bites mammals instead of birds, breeds without a blood meal, and stays active year-round. A new species, effectively, in 150 years.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How long did it take for the London Underground mosquito to become reproductively isolated from its surface ancestor?",
+            "options": [
+              "About 150 years",
+              "About 5,000 years",
+              "About 50,000 years",
+              "It is not actually isolated"
+            ],
+            "correct": 0,
+            "explanation": "Culex pipiens molestus diverged from the surface population after the Tube was built in the 1860s — fewer than 200 years, demonstrating how compressed urban evolution can be."
+          }
+        ]
+      },
+      {
+        "heading": "THE BOLDNESS SYNDROME",
+        "body": "Bolder animals are also more aggressive, more exploratory, and more willing to try novel foods. These traits cluster — selecting for one drags the others along. Urban great tits sing at higher pitches to cut through traffic noise AND attack intruders more readily than rural ones.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Great tits",
+                "value": "higher-pitch song",
+                "tone": "neutral"
+              },
+              {
+                "label": "Blackbirds",
+                "value": "sing before dawn",
+                "tone": "neutral"
+              },
+              {
+                "label": "Coyotes",
+                "value": "smaller home range",
+                "tone": "neutral"
+              },
+              {
+                "label": "House finches",
+                "value": "bigger beaks",
+                "tone": "neutral"
+              },
+              {
+                "label": "White-footed mice",
+                "value": "altered metabolism",
+                "tone": "neutral"
+              }
+            ],
+            "label": "documented urban shifts across taxa"
+          }
+        ]
+      },
+      {
+        "heading": "THE COST",
+        "body": "Boldness is not free. Urban birds have shorter telomeres — markers of cellular aging — and elevated stress hormones at baseline. The animals winning the city are also burning out faster. Selection optimizes for reproductive success in the current generation, not for long lives."
+      },
+      {
+        "heading": "THE HOMOGENIZATION PROBLEM",
+        "body": "Cities worldwide select for the same traits, so urban pigeons in Mumbai behave like urban pigeons in São Paulo. Biologists call this biotic homogenization — global urbanization is producing a convergent, planet-wide subset of bold generalists while specialist species vanish from the landscape between cities."
+      }
+    ],
+    "generatedAt": "2026-05-19T04:47:13.566Z",
+    "label": "Urban Behavioral Evolution",
+    "category": "science",
+    "articleCount": 1
   }
 }
