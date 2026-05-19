@@ -1,98 +1,5 @@
 [
   {
-    "timestamp": "2026-04-24T12:26:18.399Z",
-    "candidateCount": 10,
-    "candidates": [
-      {
-        "slug": "2026-04-24-russia-fsb-roskomnadzor-bomb-plot-ukraine",
-        "title": "Russia Foils Censor Bomb Plot",
-        "category": "politics",
-        "eventCoverage": 112,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-24-china-s-deepseek-rolls-out-a-long-anticipated-update-of-its",
-        "title": "DeepSeek V4 Challenges US Models",
-        "category": "tech",
-        "eventCoverage": 109,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-24-ryanair-abandons-berlin-germany-aviation-fees",
-        "title": "Ryanair Quits Berlin Base",
-        "category": "economy",
-        "eventCoverage": 40,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-24-us-pentagon-spain-nato-iran-war-punishment",
-        "title": "Pentagon Floats Spain Expulsion",
-        "category": "politics",
-        "eventCoverage": 32,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-24-duterte-icc-trial-confirmed-drug-war",
-        "title": "Duterte Faces ICC Trial",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-24-un-gaza-demining-541-million-unexploded-ordnance",
-        "title": "Gaza Demining Costs $541 Million",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-24-iran-crude-99-per-barrel-war-premium",
-        "title": "Iran Crude Hits $99 Barrel",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-24-pakistan-plastic-epr-karachi-informal-recyclers",
-        "title": "Pakistan Plastic Law Omits Pickers",
-        "category": "economy",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-24-amoc-atlantic-circulation-tipping-point",
-        "title": "AMOC Weakens, Collapse Disputed",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-24-saildrone-spectre-navy-unmanned-warship-dual-use",
-        "title": "Saildrone Fields Armed Warship",
-        "category": "tech",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-04-24-russia-fsb-roskomnadzor-bomb-plot-ukraine",
-      "title": "Russia Foils Censor Bomb Plot",
-      "category": "politics",
-      "body": "[Russia](country:RU)'s internet censor was the assassination target. Russia's",
-      "eventCoverage": 112,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "FSB foils car-bomb plot targeting Russia's internet regulator, 7 detained",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 16
-    }
-  },
-  {
     "timestamp": "2026-04-24T17:34:53.544Z",
     "candidateCount": 8,
     "candidates": [
@@ -9510,6 +9417,106 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Sony raises PlayStation Plus subscription prices globally, citing market conditions",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 24
+    }
+  },
+  {
+    "timestamp": "2026-05-19T12:37:52.680Z",
+    "candidateCount": 11,
+    "candidates": [
+      {
+        "slug": "2026-05-19-spain-zapatero-airline-bailout-graft-suspect",
+        "title": "Spain Ex-PM Named Suspect",
+        "category": "politics",
+        "eventCoverage": 116,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-19-estonia-downs-ukrainian-drone-nato-airspace",
+        "title": "Estonia Downs Alleged Ukrainian Drone",
+        "category": "politics",
+        "eventCoverage": 70,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-19-sweden-naval-group-fdi-frigate-5b",
+        "title": "Sweden Orders French Frigates",
+        "category": "economy",
+        "eventCoverage": 40,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-19-sweida-syria-captagon-israel-backed",
+        "title": "Captagon Trade Survives Assad",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-19-hondurasgate-leaked-audio-earshot-authentic",
+        "title": "Hondurasgate Audio Likely Authentic",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-19-indonesia-rupiah-record-low-oil-msci",
+        "title": "Indonesia Rupiah Hits Record Low",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-19-drc-ebola-undercount-who-ancia",
+        "title": "Congo Ebola Spreads Undercounted",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-19-colossal-moa-artificial-eggshell",
+        "title": "Colossal Claims Synthetic Moa Eggshell",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-19-iran-hormuz-undersea-cable-toll-bigtech",
+        "title": "Iran Claims Hormuz Cable Tolls",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-19-bsc-post-quantum-throughput-40pct",
+        "title": "BNB Quantum Test Cuts Throughput",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-19-silicon-valley-china-peer-not-enemy",
+        "title": "Silicon Valley Splits on China",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-05-19-spain-zapatero-airline-bailout-graft-suspect",
+      "title": "Spain Ex-PM Named Suspect",
+      "category": "politics",
+      "body": "[Spain](country:ES)'s first former premier faces criminal suspect",
+      "eventCoverage": 116,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Spain ex-PM Zapatero named suspect in €53M airline bailout corruption probe",
     "response": {
       "pushed": 1,
       "skipped": 0,
