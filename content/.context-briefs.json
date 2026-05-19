@@ -197117,5 +197117,1444 @@
     "label": "Uzbekistan's Auto Pivot",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-05-19-ai-co-scientist-drug-retargeting-nature-google-openai": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT REPOSITIONING IS",
+        "body": "Drug repositioning means finding a new disease for an already-approved drug. The molecule has already passed toxicity trials, so a hit can reach patients in years rather than the decade-plus a novel compound needs.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The canonical case: **sildenafil** was developed for angina, flopped in cardiac trials, and was repositioned as Viagra after trial subjects reported a striking side effect. **Thalidomide**, infamous for birth defects in the 1960s, was repositioned decades later as a multiple myeloma treatment."
+          }
+        ]
+      },
+      {
+        "heading": "THE LITERATURE PROBLEM",
+        "body": "PubMed indexes over 36 million biomedical papers and adds roughly a million a year. No human can read across oncology, ophthalmology, neurology and cardiology at once — yet the connections that yield repositioning hits often sit precisely in those gaps between fields.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many new biomedical papers are added to PubMed each year?",
+            "options": [
+              "About 100,000",
+              "About 500,000",
+              "About 1 million",
+              "About 10 million"
+            ],
+            "correct": 2,
+            "explanation": "PubMed adds roughly a million indexed papers annually — far past any human's reading capacity, which is why cross-field retrieval is where AI earns its keep."
+          }
+        ]
+      },
+      {
+        "heading": "WHY RETRIEVAL, NOT GENERATION",
+        "body": "Both Robin and Co-Scientist constrain the model to curated literature rather than letting it invent hypotheses freely. This is deliberate: open-ended generation hallucinates plausible-sounding mechanisms that don't exist. Retrieval over real papers keeps every claim traceable to a citation."
+      },
+      {
+        "heading": "THE VALLEY OF DEATH",
+        "body": "A drug candidate that works in a petri dish has cleared the easiest test in pharmacology. Roughly 90% of compounds that show activity in cell culture fail in animal models; of those that reach human trials, only about one in ten gets approved. The papers describe hits, not drugs.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Cell-culture hit",
+                "value": "~10% advance",
+                "tone": "unfavorable",
+                "weight": 100
+              },
+              {
+                "label": "Animal model",
+                "value": "~10% advance",
+                "tone": "unfavorable",
+                "weight": 10
+              },
+              {
+                "label": "Phase 1 trial",
+                "value": "~63% advance",
+                "tone": "neutral",
+                "weight": 1
+              },
+              {
+                "label": "Approved drug",
+                "value": "~10% of Phase 1",
+                "tone": "favorable",
+                "weight": 0.63
+              }
+            ],
+            "label": "attrition through drug development"
+          }
+        ]
+      },
+      {
+        "heading": "THE INCENTIVE GAP",
+        "body": "Repositioning an off-patent drug yields little exclusivity, so big pharma rarely funds the trials. Most repositioning candidates that survive cell culture die in this incentive gap — not from biology, from economics. AI surfacing more candidates does not by itself solve who pays to test them.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why repositioning research clusters in *academic labs* and *rare-disease nonprofits* rather than in big pharma pipelines — the institutions that can afford a small trial without needing patent protection on the back end."
+          }
+        ]
+      },
+      {
+        "heading": "THE NATURE BAR",
+        "body": "Nature publishes roughly 8% of submissions, and validation papers — claiming an AI system did something useful — face harder review than pure-method papers. Two Nature papers on the same week is the field signaling that retrieval-based scientific assistants have crossed from demo to publishable result."
+      }
+    ],
+    "generatedAt": "2026-05-19T22:21:12.240Z",
+    "label": "AI & Drug Repositioning",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-19-delulu-realtime-deepfake-streamer-mrbeast-moderation-gap": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LATENCY GAP",
+        "body": "Content moderation runs on a review pipeline measured in seconds to hours. Real-time face-swap now runs at video framerate — under 40 milliseconds per frame. The attacker outpaces the defender by three orders of magnitude.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The moderation industry calls this the **time-to-takedown** problem: by the time a livestream is flagged, reviewed, and pulled, the audience has already seen it. With pre-recorded video the gap is annoying; with **live deepfakes** it is structural."
+          }
+        ]
+      },
+      {
+        "heading": "WHY FACE-SWAP GOT FAST",
+        "body": "Until 2023, deepfakes required minutes of GPU time per second of output. Diffusion-based and GAN-distilled models now run in a single forward pass on consumer hardware. The same compression that made image generation instant made impersonation instant."
+      },
+      {
+        "heading": "THE DETECTION ARMS RACE",
+        "body": "Deepfake detectors are themselves neural networks trained on examples of fake video. Every public detector becomes a training signal for the next generation of generators — adversaries fine-tune until they pass the classifier. This is why no detector stays accurate for long.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do deepfake detectors lose accuracy within months of release?",
+            "options": [
+              "Hardware improvements make fakes higher resolution",
+              "Generators are fine-tuned against the detector itself",
+              "Training data for detectors becomes outdated",
+              "Users learn to spot fakes and stop reporting them"
+            ],
+            "correct": 1,
+            "explanation": "Once a detector is public, attackers use it as a loss signal during training — the generator learns to produce outputs the detector scores as real."
+          }
+        ]
+      },
+      {
+        "heading": "SECTION 230 AND THE LIABILITY SHIELD",
+        "body": "Under US law, platforms like Kick are not liable for user-generated content. The 1996 Communications Decency Act §230 was written for text forums; it now shields a livestream platform from a real-time impersonation of a real person to millions of viewers.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "No provider or user of an interactive computer service shall be treated as the publisher or speaker of any information provided by another information content provider.",
+            "speaker": "Communications Decency Act, 47 U.S.C. §230(c)(1)",
+            "year": "1996"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE LAW BITES BACK",
+        "body": "Right-of-publicity statutes (varying by state) and the EU AI Act's deepfake-disclosure rules sit outside §230. Tennessee's ELVIS Act (2024) made unauthorized AI vocal cloning actionable; California's AB 2655 targets election deepfakes. The legal pincer is forming, but unevenly.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "EU",
+                "value": "AI Act, 2024",
+                "cc": "EU",
+                "tone": "favorable"
+              },
+              {
+                "label": "Tennessee",
+                "value": "ELVIS Act, 2024",
+                "cc": "US",
+                "tone": "favorable"
+              },
+              {
+                "label": "California",
+                "value": "AB 2655, 2024",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "China",
+                "value": "Deep Synthesis Rules, 2023",
+                "cc": "CN",
+                "tone": "neutral"
+              },
+              {
+                "label": "UK",
+                "value": "Online Safety Act partial",
+                "cc": "GB",
+                "tone": "neutral"
+              },
+              {
+                "label": "US federal",
+                "value": "none",
+                "cc": "US",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "deepfake-specific laws on the books"
+          }
+        ]
+      },
+      {
+        "heading": "THE VC CALCULUS",
+        "body": "Sequoia and Benchmark backing Decart at $450M signals that frontier investors expect real-time generative video to be a category, not a feature. The same firms funded the underlying model labs whose outputs the moderation systems cannot keep up with — the capital stack funds both sides of the arms race."
+      }
+    ],
+    "generatedAt": "2026-05-19T22:21:41.734Z",
+    "label": "Real-Time Deepfakes & Moderation",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-19-eu-fertiliser-subsidy-hormuz-urea-iran-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY NITROGEN",
+        "body": "Nitrogen is the bottleneck for plant growth. Air is 78% nitrogen, but plants cannot use N2 gas — the triple bond is one of the strongest in chemistry. Breaking it industrially requires 400°C, 200 atmospheres of pressure, and enormous quantities of natural gas as both fuel and feedstock.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Fritz Haber's 1909 process now produces ~150 million tonnes of ammonia per year. Without it, Earth could feed roughly **4 billion** people. The other 4 billion exist because of this single chemical reaction."
+          }
+        ]
+      },
+      {
+        "heading": "THE GAS-TO-FOOD PIPELINE",
+        "body": "Natural gas is roughly 80% of urea production cost. Fertilizer plants cluster near cheap gas fields — Qatar, Iran, Russia, Trinidad, Egypt. A gas supply disruption is, mechanically, a food supply disruption.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Russia",
+                "value": 16,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Qatar",
+                "value": 12,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": 10,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Iran",
+                "value": 9,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "UAE",
+                "value": 8,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Oman",
+                "value": 6,
+                "tone": "neutral"
+              },
+              {
+                "label": "Egypt",
+                "value": 6,
+                "tone": "neutral"
+              },
+              {
+                "label": "Algeria",
+                "value": 5,
+                "tone": "neutral"
+              },
+              {
+                "label": "Indonesia",
+                "value": 4,
+                "tone": "favorable"
+              },
+              {
+                "label": "Others",
+                "value": 24,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global urea export share, approx"
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ EXPOSURE",
+        "body": "Most Gulf urea plants sit on the Arabian Peninsula coast and ship out through Hormuz. The lanes are 3 km wide each, the deepest channel hugs the Iranian side, and there is no pipeline alternative for bulk fertilizer cargo — unlike crude, urea cannot be rerouted via the Saudi East-West pipeline or Habshan-Fujairah.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "QA",
+              "SA",
+              "BH",
+              "KW"
+            ],
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.2854,
+                "lng": 51.531,
+                "label": "Qatar urea cluster (Mesaieed)"
+              },
+              {
+                "lat": 27.0967,
+                "lng": 49.6,
+                "label": "Saudi Al-Jubail plants"
+              },
+              {
+                "lat": 24.1667,
+                "lng": 52.6,
+                "label": "UAE Ruwais"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "EUROPE'S DEPENDENCE",
+        "body": "EU urea production collapsed after 2022 when Russian gas was cut and TTF prices made European ammonia plants uncompetitive. Roughly half of EU nitrogen fertilizer is now imported — much of it priced off Middle Eastern benchmarks. Brussels swapped one gas-import dependency for another, denominated in finished fertilizer.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Urea (N)",
+                "value": "~50% imported",
+                "tone": "unfavorable",
+                "weight": 50
+              },
+              {
+                "label": "Ammonia",
+                "value": "~40% imported",
+                "tone": "unfavorable",
+                "weight": 40
+              },
+              {
+                "label": "Potash",
+                "value": "~30% imported",
+                "tone": "neutral",
+                "weight": 30
+              },
+              {
+                "label": "Phosphate",
+                "value": "~85% imported",
+                "tone": "unfavorable",
+                "weight": 85
+              }
+            ],
+            "label": "EU fertilizer import reliance, post-2022"
+          }
+        ]
+      },
+      {
+        "heading": "THE CRISIS RESERVE",
+        "body": "The EU's Agricultural Reserve was created in the 2021 CAP reform — a standing fund (~€450m/year, indexed) that the Commission can disburse for market shocks without unanimous Council approval. It was tapped for Ukrainian grain disruption in 2022-23 and for Mediterranean drought in 2024. It is small relative to a continent-wide input shock.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is urea price more gas-sensitive than crude oil price?",
+            "options": [
+              "Urea is made from natural gas — gas is both the fuel and the feedstock",
+              "Urea ships only on LNG-fueled vessels",
+              "Urea is taxed as a petroleum derivative in the EU",
+              "Urea trades on the same exchange as natural gas"
+            ],
+            "correct": 0,
+            "explanation": "The Haber-Bosch process uses methane to provide hydrogen for ammonia, then converts ammonia to urea — gas typically accounts for ~80% of production cost."
+          }
+        ]
+      },
+      {
+        "heading": "WHO EATS THE SHOCK",
+        "body": "Fertilizer is roughly 15-20% of arable crop input costs. When urea doubles, smaller farms with thin margins fold first; large operators with hedging desks ride it out. EU subsidy design therefore decides not just whether farmers survive, but which farmers survive — every fertilizer crisis since 1973 has accelerated consolidation."
+      }
+    ],
+    "generatedAt": "2026-05-19T22:22:18.153Z",
+    "label": "Urea, Gas & the Hormuz Squeeze",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-19-google-io-2026-tokenmaxxing-capex-gemini-cloud-agent": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CAPEX ARMS RACE",
+        "body": "Google's $190B 2026 capex would exceed the entire annual GDP of Hungary. Four hyperscalers — Google, Microsoft, Meta, Amazon — are collectively spending over $500B/year on AI infrastructure, the largest concentrated industrial buildout since the postwar interstate highway system.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Google",
+                "value": "~$190bn",
+                "cc": "US",
+                "weight": 190,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Microsoft",
+                "value": "~$120bn",
+                "cc": "US",
+                "weight": 120
+              },
+              {
+                "label": "Meta",
+                "value": "~$105bn",
+                "cc": "US",
+                "weight": 105
+              },
+              {
+                "label": "Amazon",
+                "value": "~$125bn",
+                "cc": "US",
+                "weight": 125
+              }
+            ],
+            "label": "hyperscaler AI capex, 2026 guidance"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A TOKEN IS",
+        "body": "A token is roughly three-quarters of an English word — the atomic unit a language model reads and writes. 3.2 quadrillion tokens per month means Google's models are processing the equivalent of every book ever published, several times over, every day.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry calls the strategy of maximizing throughput-per-dollar **tokenmaxxing** — squeezing more inference out of each watt and each chip, because at hyperscaler volumes a *fractional* cost-per-token improvement compounds into billions."
+          }
+        ]
+      },
+      {
+        "heading": "THE INFERENCE ECONOMY",
+        "body": "Training a frontier model is a one-time cost of hundreds of millions. Serving it — inference — is a recurring cost that scales with users. The economic gravity has flipped: by 2026, inference is roughly 80% of compute spend at the major labs, not training. Whoever serves tokens cheapest wins.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              24898.87,
+              24797.34,
+              25012.62,
+              24708.94,
+              24977.04,
+              25329.04,
+              25034.37,
+              24960.04,
+              24992.6,
+              24720.08,
+              25093.68,
+              25020.41,
+              24643.01,
+              24967.25,
+              24956.47,
+              24965.01,
+              24533.58,
+              24380.73,
+              24655.34,
+              24780.42,
+              24425.09,
+              24355.28,
+              23898.15,
+              24188.59,
+              24002.45,
+              24162.98,
+              23586.99,
+              23132.77,
+              22953.38,
+              23740.19,
+              24019.99,
+              24045.53,
+              24192.17,
+              24202.37,
+              24903.17,
+              25082.09,
+              25116.34,
+              25383.72,
+              25842,
+              26204.58,
+              26333,
+              26672.43,
+              26590.34,
+              26479.47,
+              26937.27,
+              26782.62,
+              27303.67,
+              27305.68,
+              27029.01,
+              27186.99,
+              27452.12,
+              27710.36,
+              27651.82,
+              28015.06,
+              28599.17,
+              28563.95,
+              29234.99,
+              29320.66,
+              29064.8,
+              29366.94,
+              29580.3,
+              29125.2,
+              28994.37
+            ],
+            "periods": [
+              "Feb 18",
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 18"
+            ],
+            "label": "NASDAQ-100",
+            "unit": "index",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE MCP STANDARD",
+        "body": "Model Context Protocol, introduced by Anthropic in late 2024, is an open standard that lets an AI agent connect to external tools — databases, APIs, file systems — through a uniform interface. It is becoming the USB-C of agentic AI: every major lab now supports it, breaking the walled-garden lock-in that defined the first wave of chatbots."
+      },
+      {
+        "heading": "THE POWER CONSTRAINT",
+        "body": "A single Nvidia GB200 rack draws 120 kilowatts — roughly 100 homes. Google's planned datacenter expansion will require an estimated 15 GW of new electricity capacity by 2030, equivalent to fifteen nuclear reactors. The bottleneck is no longer chips or capital; it is the grid.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the primary bottleneck for scaling AI datacenters through 2030?",
+            "options": [
+              "GPU manufacturing capacity",
+              "Electrical grid capacity and power generation",
+              "Capital availability",
+              "Software engineering talent"
+            ],
+            "correct": 1,
+            "explanation": "Nvidia can produce chips faster than utilities can build substations and generators; the 5-7 year lead time on grid infrastructure is the binding constraint."
+          }
+        ]
+      },
+      {
+        "heading": "THE BUBBLE QUESTION",
+        "body": "Comparisons to the 1999 telecom buildout are unavoidable: WorldCom and Global Crossing laid millions of miles of dark fiber on the bet that demand would absorb it. Most went bankrupt; the fiber was eventually used. The question for AI capex is not whether the infrastructure gets used, but whether the companies building it survive long enough to monetize it.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1996",
+                "label": "Telecom Act deregulates"
+              },
+              {
+                "year": "2000",
+                "label": "Dot-com peak",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2002",
+                "label": "WorldCom bankruptcy"
+              },
+              {
+                "year": "2022",
+                "label": "ChatGPT launch"
+              },
+              {
+                "year": "2026",
+                "label": "$500B+ AI capex year"
+              }
+            ],
+            "label": "infrastructure buildouts and their reckonings"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · NASDAQ · as of 2026-05-18"
+    ],
+    "generatedAt": "2026-05-19T22:22:45.500Z",
+    "label": "AI Capex & the Token Economy",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-19-huawei-zero-day-luxembourg-telecom-outage-postmortem": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A ZERO-DAY IS",
+        "body": "A zero-day is a vulnerability the vendor has had zero days to patch — known to an attacker (or a researcher) before the maker. Its value lies in the asymmetry: defenders cannot block what they do not know exists.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The grey market price for a remote, no-click telecom **zero-day** routinely clears *seven figures* — Zerodium has publicly listed payouts up to $2.5M for Android chains. State buyers pay more, quietly."
+          }
+        ]
+      },
+      {
+        "heading": "THE MONOCULTURE PROBLEM",
+        "body": "When one vendor supplies the core, switch, and access layers of a national network, a single flaw becomes a national outage. Diversity in infrastructure is expensive and operationally painful, which is why most small countries do not bother — until they do.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does single-vendor telecom infrastructure amplify a zero-day's blast radius?",
+            "options": [
+              "Vendors collude to delay patches",
+              "One flaw propagates across every layer of the network with no fallback path",
+              "Zero-days only target market leaders",
+              "Encryption keys are shared across vendors"
+            ],
+            "correct": 1,
+            "explanation": "In a monoculture there is no independent equipment to fall back on; the same vulnerable code runs end-to-end."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HUAWEI IS EVERYWHERE",
+        "body": "Huawei undercut Ericsson and Nokia on price by 20-30% through the 2000s and 2010s, backed by state credit lines from China Development Bank. Small European states without strategic-vendor screening took the discount; the UK, US, Australia, and Sweden later excluded Huawei from cores on security grounds.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LU",
+              "BE",
+              "NL",
+              "DE",
+              "FR",
+              "GB"
+            ],
+            "label": "Huawei core-network footprint in NW Europe",
+            "caption": "Excluded in GB; deeply embedded in LU, NL, DE"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2019 EU TOOLBOX",
+        "body": "After US pressure, the EU published the 5G Cybersecurity Toolbox in 2020, urging members to restrict 'high-risk vendors' from core networks. It was non-binding. Compliance has been uneven — Germany only committed to a phased rip-out in 2024, with deadlines extending to 2029.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2012",
+                "label": "US House report flags Huawei as security risk"
+              },
+              {
+                "year": "2019",
+                "label": "Trump executive order bans Huawei from US networks",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020",
+                "label": "EU 5G Toolbox published (non-binding)"
+              },
+              {
+                "year": "2020-07",
+                "label": "UK orders Huawei removal from 5G by 2027"
+              },
+              {
+                "year": "2024",
+                "label": "Germany commits to phased core removal by 2029"
+              }
+            ],
+            "label": "Europe's slow Huawei reckoning"
+          }
+        ]
+      },
+      {
+        "heading": "THE DISCLOSURE NORM",
+        "body": "Responsible disclosure conventions ask vendors to acknowledge a flaw, issue a CVE, and patch within 90 days (Google Project Zero's standard). Silence after a confirmed exploit breaks the norm — and in EU jurisdictions can trigger NIS2 reporting obligations on the operator, not the vendor."
+      },
+      {
+        "heading": "WHY LUXEMBOURG MATTERS",
+        "body": "Luxembourg hosts the EU Court of Justice, the European Investment Bank, and one of Europe's densest financial data-center clusters. A telecom outage there is not a provincial event — it is a continental settlement-and-clearing risk.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Luxembourg",
+                "value": "~$5.5tn",
+                "cc": "LU",
+                "weight": 5500
+              },
+              {
+                "label": "Ireland",
+                "value": "~$4.0tn",
+                "cc": "IE",
+                "weight": 4000
+              },
+              {
+                "label": "Switzerland",
+                "value": "~$8.0tn",
+                "cc": "CH",
+                "weight": 8000
+              },
+              {
+                "label": "Singapore",
+                "value": "~$4.0tn",
+                "cc": "SG",
+                "weight": 4000
+              }
+            ],
+            "label": "Financial assets under custody / administration"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T22:23:22.246Z",
+    "label": "Zero-days & Vendor Concentration",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-19-mali-junta-jnim-tuareg-bamako-collapse": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COLONIAL BORDER",
+        "body": "French Sudan became Mali in 1960 with borders drawn in Paris, stapling the Tuareg north — pastoralist, Berber, oriented toward the Sahara trade — onto a Bambara-majority south oriented toward the Atlantic. Every Tuareg rebellion since 1963 (1990, 2006, 2012) has been the same border refusing to settle.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ML",
+              "DZ",
+              "MR",
+              "SN",
+              "BF",
+              "NE",
+              "CI",
+              "GN"
+            ],
+            "label": "Mali and its neighbors",
+            "markers": [
+              {
+                "lat": 12.6392,
+                "lng": -8.0029,
+                "label": "Bamako"
+              },
+              {
+                "lat": 16.7666,
+                "lng": -3.0026,
+                "label": "Timbuktu"
+              },
+              {
+                "lat": 14.6928,
+                "lng": -17.4467,
+                "label": "Dakar (trade corridor)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 2012 RUPTURE",
+        "body": "When Gaddafi fell in 2011, Tuareg fighters in his army returned to northern Mali with Libyan weapons and declared the state of Azawad. Within weeks, al-Qaeda-linked groups hijacked the rebellion, imposed harsh rule on Timbuktu and Gao, and pushed south. France's Operation Serval (2013) drove them back; they never left, they dispersed.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1960",
+                "label": "Mali independence"
+              },
+              {
+                "year": "2011",
+                "label": "Libya collapses, weapons flow south"
+              },
+              {
+                "year": "2012",
+                "label": "Tuareg rebellion, jihadist takeover",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2013",
+                "label": "France's Operation Serval"
+              },
+              {
+                "year": "2017",
+                "label": "JNIM forms from al-Qaeda merger"
+              },
+              {
+                "year": "2020",
+                "label": "First Mali coup"
+              },
+              {
+                "year": "2021",
+                "label": "Second coup, junta consolidates"
+              },
+              {
+                "year": "2022",
+                "label": "France expelled, Wagner arrives"
+              }
+            ],
+            "spans": [
+              {
+                "from": "2013",
+                "to": "2022",
+                "label": "French military presence",
+                "tone": "neutral"
+              }
+            ],
+            "label": "the Sahel arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT JNIM IS",
+        "body": "Jama'at Nasr al-Islam wal Muslimin formed in 2017 by merging four Sahel jihadist groups under Iyad Ag Ghaly, a former Tuareg rebel leader. It is the formal al-Qaeda franchise for the Sahel, distinct from Islamic State Sahel Province — the two are rivals and fight each other as often as they fight the state.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The name translates as **Group for the Support of Islam and Muslims** — the *nusra* framing matters: JNIM positions itself as defender of Muslims against a secular junta, which is how it recruits across Fulani, Tuareg, and Arab communities the Bamako state has alienated."
+          }
+        ]
+      },
+      {
+        "heading": "THE FUEL CHOKE",
+        "body": "Landlocked Mali imports nearly all refined fuel through the Dakar–Bamako corridor (1,250 km of road and a derelict rail line). JNIM does not need to take Bamako — it just needs to burn tankers. A fuel-strangled capital cannot move troops, run generators, or pump water.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "gulf",
+                "label": "Gulf refineries"
+              },
+              {
+                "id": "dakar",
+                "label": "Dakar port"
+              },
+              {
+                "id": "abidjan",
+                "label": "Abidjan port"
+              },
+              {
+                "id": "corridor",
+                "label": "Road corridor"
+              },
+              {
+                "id": "bamako",
+                "label": "Bamako"
+              }
+            ],
+            "links": [
+              {
+                "source": "gulf",
+                "target": "dakar",
+                "value": 70
+              },
+              {
+                "source": "gulf",
+                "target": "abidjan",
+                "value": 30
+              },
+              {
+                "source": "dakar",
+                "target": "corridor",
+                "value": 70
+              },
+              {
+                "source": "abidjan",
+                "target": "corridor",
+                "value": 30
+              },
+              {
+                "source": "corridor",
+                "target": "bamako",
+                "value": 100,
+                "label": "tanker convoys"
+              }
+            ],
+            "label": "how fuel reaches Bamako"
+          }
+        ]
+      },
+      {
+        "heading": "THE WAGNER PIVOT",
+        "body": "After expelling France in 2022, the junta brought in Russia's Wagner Group (rebranded Africa Corps after Prigozhin's 2023 death). Wagner specializes in regime protection, not counterinsurgency — its presence keeps the colonels in power but does nothing to clear roads. The July 2024 Tinzaouaten ambush killed dozens of Wagner fighters in a single Tuareg-JNIM joint operation.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Mali",
+                "value": "2022",
+                "cc": "ML"
+              },
+              {
+                "label": "Burkina Faso",
+                "value": "2023",
+                "cc": "BF"
+              },
+              {
+                "label": "Niger",
+                "value": "2023",
+                "cc": "NE"
+              }
+            ],
+            "label": "Sahel juntas that expelled France"
+          }
+        ]
+      },
+      {
+        "heading": "THE QUIZ",
+        "body": "The Sahel jihadist landscape is often flattened into 'al-Qaeda affiliates' but the internal fault lines drive the war.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "JNIM and Islamic State Sahel Province are best described as:",
+            "options": [
+              "Allies coordinating attacks on the junta",
+              "Rivals who fight each other as well as the state",
+              "The same group under two names",
+              "A junta-created front to justify Wagner's presence"
+            ],
+            "correct": 1,
+            "explanation": "JNIM (al-Qaeda) and ISSP split in 2020 and have fought a brutal turf war across the Mali–Burkina–Niger tri-border ever since — a key reason neither has consolidated territory."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T22:24:01.332Z",
+    "label": "Mali, JNIM & the Sahel Collapse",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-19-nigeria-us-joint-strikes-175-islamic-state-killed": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SPLIT FROM BOKO HARAM",
+        "body": "Islamic State – West Africa Province broke from Boko Haram in 2016 over a doctrinal dispute: Abubakar Shekau permitted attacks on Muslim civilians and the use of child suicide bombers; ISWAP's leadership, backed by ISIS central, ruled this haram. The faction that condemned indiscriminate killing became the more dangerous insurgency.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "ISWAP's pitch to villagers in Borno is governance: protection from bandits, *zakat* collection, sharia courts — a parallel state in the marshes of Lake Chad. This is why it outlasted Boko Haram's collapse."
+          }
+        ]
+      },
+      {
+        "heading": "THE LAKE CHAD GEOGRAPHY",
+        "body": "The insurgency operates across a four-country basin where colonial borders dissolve into reed-choked wetlands. Fighters move between Nigeria, Niger, Chad, and Cameroon by canoe; national militaries cannot pursue across boundaries without permission that rarely comes in time.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "NE",
+              "TD",
+              "CM"
+            ],
+            "label": "the four-country basin",
+            "markers": [
+              {
+                "lat": 13.15,
+                "lng": 14.05,
+                "label": "Lake Chad islands"
+              },
+              {
+                "lat": 11.8333,
+                "lng": 13.15,
+                "label": "Maiduguri"
+              },
+              {
+                "lat": 12.1167,
+                "lng": 15.05,
+                "label": "N'Djamena"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE LAKE SHRANK THE STATE",
+        "body": "Lake Chad has lost roughly 90% of its surface area since the 1960s — from 25,000 km² to under 2,500. Fishermen and herders displaced by the collapse became a recruitment pool for whoever offered structure. Climate collapse and insurgency are the same story told twice."
+      },
+      {
+        "heading": "AFRICOM'S FOOTPRINT",
+        "body": "US Africa Command, stood up in 2007, runs from Stuttgart — no African country wanted to host its headquarters. Its largest forward base, Agadez in Niger, was abandoned after the 2023 junta expelled US forces. Operations in the Sahel since have relied on partner-nation strikes and discreet ISR rather than declared American footprint.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2007",
+                "label": "AFRICOM established",
+                "emphasis": "start"
+              },
+              {
+                "year": "2013",
+                "label": "Agadez drone base construction"
+              },
+              {
+                "year": "2017",
+                "label": "Tongo Tongo ambush kills 4 US troops"
+              },
+              {
+                "year": "2023",
+                "label": "Niger junta expels US forces",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Agadez handover complete"
+              }
+            ],
+            "label": "AFRICOM in the Sahel"
+          }
+        ]
+      },
+      {
+        "heading": "THE BODY COUNT PROBLEM",
+        "body": "Announced kill figures from joint strikes in remote terrain are almost never independently verified. The Nigerian military has historically conflated insurgents with displaced villagers; AFRICOM's own 2017 strike claims in Somalia were later revised downward by the Pentagon after journalist investigations.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Lake Chad's 1960s surface area remains today?",
+            "options": [
+              "About half",
+              "About 25%",
+              "About 10%",
+              "About 60%"
+            ],
+            "correct": 2,
+            "explanation": "The lake has lost roughly 90% of its area since the 1960s due to drought, irrigation diversions, and rising temperatures — destroying the livelihoods that fed Boko Haram and ISWAP recruitment."
+          }
+        ]
+      },
+      {
+        "heading": "TINUBU'S CALCULATION",
+        "body": "Calling publicly for more joint US strikes is a reversal of decades of Nigerian doctrine — Abuja traditionally resisted foreign military presence as a sovereignty matter. The shift signals that the Nigerian Armed Forces, which absorb roughly 12% of the federal budget, are no longer believed capable of finishing the insurgency alone.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              1346.63,
+              1345.47,
+              1348.77,
+              1351.32,
+              1354.96,
+              1351.847873,
+              1351.847873,
+              1352.81,
+              1360.19,
+              1374.96,
+              1375.07,
+              1374.69,
+              1375.98,
+              1375.98,
+              1375.65,
+              1370.93,
+              1365.9,
+              1360.53,
+              1361.67,
+              1356.19465,
+              1356.19465,
+              1357.96,
+              1363.47,
+              1370.1,
+              1370.5,
+              1370.6,
+              1370.49,
+              1372.988035,
+              1372.74,
+              1371.26
+            ],
+            "periods": [
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19"
+            ],
+            "label": "Nigerian naira",
+            "unit": "NGN / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-19"
+    ],
+    "generatedAt": "2026-05-19T22:24:32.393Z",
+    "label": "ISWAP & the Lake Chad Insurgency",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-19-no-surprises-act-arbitration-spine-surgery-34k-payout": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ORIGINAL PROBLEM",
+        "body": "Before 2022, patients who went to in-network hospitals could still get billed thousands by out-of-network anesthesiologists, radiologists, or ER doctors they never chose. These 'surprise bills' bankrupted families even with good insurance.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A 2020 study found roughly **1 in 5** emergency room visits at in-network hospitals generated an out-of-network bill — usually from a physician group the hospital had quietly outsourced to a staffing firm."
+          }
+        ]
+      },
+      {
+        "heading": "THE FIX",
+        "body": "The No Surprises Act took effect January 2022. Patients pay only their in-network cost-sharing. The provider and insurer then fight over the actual price through an Independent Dispute Resolution process — baseball-style arbitration where each side submits an offer and the arbiter picks one."
+      },
+      {
+        "heading": "WHY BASEBALL ARBITRATION",
+        "body": "In final-offer arbitration, the arbiter cannot split the difference — they must pick one number. The theory is that this forces both sides toward reasonable offers, since extreme bids lose. The mechanism was pioneered in Major League Baseball salary disputes in 1974.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In baseball-style arbitration, what can the arbiter do?",
+            "options": [
+              "Pick either side's number, with no compromise",
+              "Split the difference between the two offers",
+              "Set any number they think is fair",
+              "Send the dispute back for renegotiation"
+            ],
+            "correct": 0,
+            "explanation": "The arbiter must choose one of the two submitted offers in full — the asymmetry is supposed to push both parties toward moderate bids."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT BROKE",
+        "body": "The arbiter is supposed to anchor on the Qualifying Payment Amount — the median in-network rate. But court rulings in 2023 (TMA v. HHS) weakened that anchor, letting arbiters weigh provider 'training, experience, and complexity' instead. The median became one factor among many, not the benchmark."
+      },
+      {
+        "heading": "WHO FILES",
+        "body": "Private-equity-backed staffing firms — Envision, TeamHealth, Radiology Partners — file the overwhelming majority of arbitration claims. These firms acquired physician practices in the 2010s on a thesis that out-of-network billing leverage was a durable revenue source. The NSA was designed to kill that thesis; arbitration handed it back.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Envision",
+                "value": "~25k clinicians",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "TeamHealth",
+                "value": "~15k clinicians",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Radiology Partners",
+                "value": "~3.7k radiologists",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "US Anesthesia Partners",
+                "value": "~4.5k anesthesiologists",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "PE rollups built on out-of-network billing"
+          }
+        ]
+      },
+      {
+        "heading": "WHO PAYS",
+        "body": "Arbitration awards do not come from patients directly — but insurers fold the cost into next year's premiums. A RAND analysis estimates the inflated awards add billions annually to commercial premiums, a hidden tax on everyone with employer-sponsored coverage to fund the spread between $1,400 and $34,000."
+      }
+    ],
+    "generatedAt": "2026-05-19T22:24:57.682Z",
+    "label": "No Surprises Act Arbitration",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-19-stablecoin-liquidity-tether-circle-tbill-mark-to-market": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PEG IS A PROMISE, NOT A LAW",
+        "body": "A stablecoin is worth $1 because the issuer promises to redeem it for $1 — and because arbitrageurs believe the promise. When belief wobbles, the token trades at whatever the secondary market will pay, regardless of what reserves sit in the vault.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The peg is enforced by *arbitrage*, not by law. If USDC trades at $0.87, someone must buy it cheap and redeem it at par to close the gap. If redemption is slow or gated, the arbitrage **breaks** — and so does the peg."
+          }
+        ]
+      },
+      {
+        "heading": "WHY T-BILLS AREN'T CASH",
+        "body": "Treasury bills are the safest dollar instrument that exists, but safe is not the same as liquid. In a stressed market, selling $10bn of T-bills in a single session moves the price against you — the issuer eats a loss, and the reserve no longer covers the float dollar-for-dollar."
+      },
+      {
+        "heading": "THE 2023 PRECEDENT",
+        "body": "USDC depegged to $0.87 in March 2023 after Circle disclosed $3.3bn of reserves stuck at the collapsing Silicon Valley Bank. The reserves were real and recoverable — but redemption was frozen over a weekend, and that was enough for the market to repudiate the peg until Monday's FDIC backstop.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2023-03-10",
+                "label": "SVB seized by FDIC"
+              },
+              {
+                "year": "2023-03-11",
+                "label": "Circle discloses $3.3bn stuck at SVB",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-03-11",
+                "label": "USDC trades to $0.87"
+              },
+              {
+                "year": "2023-03-13",
+                "label": "FDIC backstop; peg restored"
+              }
+            ],
+            "label": "USDC depeg, March 2023"
+          }
+        ]
+      },
+      {
+        "heading": "THE BANK-RUN MECHANIC",
+        "body": "Stablecoins replicate the structure that the 1933 Glass-Steagall reforms were designed to end: demand liabilities (instantly redeemable tokens) backed by longer-dated assets (T-bills, repo, commercial paper). Banks solved this with deposit insurance and a lender of last resort. Stablecoin issuers have neither.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes a stablecoin structurally similar to a 1930s bank?",
+            "options": [
+              "It pays interest to holders",
+              "Demand liabilities backed by longer-dated assets",
+              "It is run by former bankers",
+              "It holds gold reserves"
+            ],
+            "correct": 1,
+            "explanation": "Instant redemption (demand liability) funded by assets that take time to sell at par is the classic maturity-mismatch that produces bank runs."
+          }
+        ]
+      },
+      {
+        "heading": "THE MARKET STRUCTURE",
+        "body": "Two issuers dominate: Tether (USDT) at roughly $140bn outstanding and Circle (USDC) at roughly $60bn. Together they are larger than most money-market funds, but operate under fragmentary regulation — Tether is incorporated in El Salvador, Circle in the US, and each jurisdiction sees only a slice of the reserve.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Tether (USDT)",
+                "value": "~$140bn",
+                "weight": 140,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Circle (USDC)",
+                "value": "~$60bn",
+                "weight": 60,
+                "tone": "neutral"
+              },
+              {
+                "label": "Fidelity Govt MMF",
+                "value": "~$310bn",
+                "weight": 310,
+                "tone": "favorable"
+              },
+              {
+                "label": "JPMorgan Prime MMF",
+                "value": "~$280bn",
+                "weight": 280,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Stablecoin float vs. money-market peers, 2025 est."
+          }
+        ]
+      },
+      {
+        "heading": "WHY EU REGULATORS MOVED FIRST",
+        "body": "The EU's MiCA regulation, in force since 2024, caps non-euro stablecoin daily transactions at €200m per issuer and requires reserves held in EU banks. Brussels treats stablecoins as a monetary-sovereignty issue: a dollar-denominated token circulating freely in the eurozone is, mechanically, dollarization by software."
+      }
+    ],
+    "generatedAt": "2026-05-19T22:25:26.917Z",
+    "label": "Stablecoins & the T-bill Trap",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-19-trump-blanche-18b-anti-weaponization-slush-fund-jan-6": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PURSE STRINGS",
+        "body": "Article I §9 of the US Constitution forbids any money leaving the Treasury except through a law passed by Congress. The executive branch can spend only what the legislature authorizes — this is the single oldest check in the constitutional structure, predating the Bill of Rights.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "No Money shall be drawn from the Treasury, but in Consequence of Appropriations made by Law",
+            "speaker": "US Constitution, Article I §9"
+          }
+        ]
+      },
+      {
+        "heading": "THE IMPOUNDMENT FIGHT",
+        "body": "Nixon tried to refuse spending Congress had ordered; Congress responded with the Impoundment Control Act of 1974, which forces the president to spend appropriated funds unless Congress agrees to rescind. The reverse problem — spending without an appropriation — is governed by the Antideficiency Act, which makes it a federal crime.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **Antideficiency Act** carries criminal penalties of up to two years' imprisonment for any federal officer who obligates funds Congress did not appropriate. Prosecutions are rare; the statute's real bite is political."
+          }
+        ]
+      },
+      {
+        "heading": "THE SLUSH-FUND PATTERN",
+        "body": "A discretionary fund with vague criteria, hand-picked commissioners, and an at-will removal power is the textbook structure that the post-Watergate reforms were designed to prevent. Iran-Contra, the Nixon White House Special Investigations Unit, and the Teapot Dome scandal all turned on the same mechanic: money or favors routed outside the normal appropriations and oversight chain.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1921",
+                "label": "Teapot Dome leases bypass Congress"
+              },
+              {
+                "year": "1973",
+                "label": "Nixon impoundments challenged"
+              },
+              {
+                "year": "1974",
+                "label": "Impoundment Control Act",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1987",
+                "label": "Iran-Contra hearings"
+              },
+              {
+                "year": "2019",
+                "label": "Ukraine aid hold (first impeachment)"
+              }
+            ],
+            "label": "executive money-control fights"
+          }
+        ]
+      },
+      {
+        "heading": "PARDON VS PAYMENT",
+        "body": "A pardon erases criminal liability; it cannot order the Treasury to pay the pardoned person. Compensation for wrongful federal conviction exists under the Unjust Conviction Act of 1948, but requires a court finding of actual innocence — not a presidential declaration. Paying Jan. 6 defendants without that finding would route around the statute.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under existing US law, what does a federal pardon actually do?",
+            "options": [
+              "Erases the conviction from the record",
+              "Removes the legal consequences but not the underlying record",
+              "Entitles the recipient to compensation from the Treasury",
+              "Restores the right to sue the government for damages"
+            ],
+            "correct": 1,
+            "explanation": "A pardon removes punishment and most civil disabilities but the conviction remains a historical fact; it does not create any entitlement to money."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE SENATE MATTERS",
+        "body": "Even a Republican-controlled Senate has structural reasons to defend appropriations authority — the power of the purse is the legislative branch's leverage over every future executive, regardless of party. Senators who acquiesce to one administration's slush fund hand the same tool to the next administration that may use it against their own coalition."
+      }
+    ],
+    "generatedAt": "2026-05-19T22:25:53.408Z",
+    "label": "The Appropriations Power",
+    "category": "politics",
+    "articleCount": 1
   }
 }
