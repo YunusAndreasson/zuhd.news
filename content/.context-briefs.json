@@ -193978,5 +193978,1449 @@
     "label": "Going Concern & Crypto Treasuries",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-05-19-bsc-post-quantum-throughput-40pct": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT BREAKS",
+        "body": "Every Bitcoin and Ethereum address is secured by ECDSA over the secp256k1 curve. Shor's algorithm (1994) turns the underlying discrete-logarithm problem from intractable to tractable on a sufficiently large quantum computer — meaning a future machine could derive a private key from any public key it sees on-chain.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The exposure is asymmetric: addresses that have *never spent* hide their public key behind a hash, but the moment a wallet broadcasts a transaction, its **public key is revealed** to every node forever."
+          }
+        ]
+      },
+      {
+        "heading": "THE SIGNATURE BLOAT",
+        "body": "ECDSA signatures are 64–72 bytes because elliptic curves pack a lot of security into small numbers. Lattice-based post-quantum schemes like Dilithium and Falcon get their hardness from high-dimensional math that does not compress — signatures balloon by 20–40x, which is what blew up BNB's transaction size from 110 bytes to 2.5 KB.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "ECDSA (secp256k1)",
+                "value": "~71 B",
+                "weight": 71,
+                "tone": "favorable"
+              },
+              {
+                "label": "Ed25519",
+                "value": "~64 B",
+                "weight": 64,
+                "tone": "favorable"
+              },
+              {
+                "label": "Falcon-512",
+                "value": "~666 B",
+                "weight": 666,
+                "tone": "neutral"
+              },
+              {
+                "label": "Dilithium2",
+                "value": "~2.4 KB",
+                "weight": 2400,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "SPHINCS+",
+                "value": "~8 KB",
+                "weight": 8000,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "signature size by scheme (bytes)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BANDWIDTH IS THE CEILING",
+        "body": "A blockchain's throughput is bounded by block size divided by average transaction size, times block frequency. Verification speed rarely binds — gossip propagation across thousands of geographically dispersed nodes does. Make each transaction 20x larger and you either cut throughput proportionally or raise the block size and lose validators on slow links."
+      },
+      {
+        "heading": "HARVEST NOW, DECRYPT LATER",
+        "body": "Adversaries are assumed to be archiving the entire chain today. Any address that has ever spent has its public key sitting in that archive, waiting for the day a cryptographically-relevant quantum computer exists. Migration is not a future problem — coins that don't move to PQ addresses before Q Day are exposed retroactively.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Bitcoin addresses are most at risk from a future quantum computer?",
+            "options": [
+              "Addresses that have never been used",
+              "Addresses that have already spent at least once",
+              "Cold-storage addresses on hardware wallets",
+              "Multisig addresses"
+            ],
+            "correct": 1,
+            "explanation": "Spending reveals the public key on-chain. Unspent addresses still hide behind a hash, giving them a one-time window to migrate."
+          }
+        ]
+      },
+      {
+        "heading": "THE UPGRADE PATHS DIVERGE",
+        "body": "Bitcoin's culture favors a soft fork adding a new PQ-signature opcode (BIP-360 style), letting users opt in by moving coins. Ethereum, with account abstraction already shipped, can let each wallet swap its own signature scheme without a chain-wide hard fork. BNB's test points to the third path: rebuild the base layer and absorb the throughput hit."
+      },
+      {
+        "heading": "NIST'S WINNERS",
+        "body": "After an eight-year competition, NIST standardized three post-quantum signature schemes in 2024: ML-DSA (Dilithium), SLH-DSA (SPHINCS+), and FN-DSA (Falcon). Each trades differently between signature size, verification speed, and the cryptographic assumption it leans on — there is no single winner, which is why blockchains are testing different ones."
+      }
+    ],
+    "generatedAt": "2026-05-19T12:29:51.467Z",
+    "label": "Post-Quantum Blockchain",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-19-colossal-moa-artificial-eggshell": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE MOA WAS",
+        "body": "Nine species of flightless ratite birds endemic to New Zealand, the tallest standing 3.6 meters. Hunted to extinction by Māori settlers within roughly 150 years of arrival around 1300 CE — one of the fastest megafaunal collapses in the human record.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Moa had **no wings at all** — not reduced wings like an ostrich, but no wing bones whatsoever. The only known bird in history with this trait."
+          }
+        ]
+      },
+      {
+        "heading": "THE YOLK CONSTRAINT",
+        "body": "A bird's yolk is a single cell — the largest single cell produced by any vertebrate. Scaling it up means the cell membrane must hold against its own internal pressure, which rises faster than surface tension can compensate. Above a certain volume the membrane ruptures before fertilization completes."
+      },
+      {
+        "heading": "WHY IT'S NEVER A REAL MOA",
+        "body": "De-extinction edits the genome of a living relative — for moa, the emu — toward extinct traits. The mitochondrial DNA, gut microbiome, and developmental environment remain the surrogate's. The result is a chimera marketed under the extinct species' name, not a resurrected lineage.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does Colossal's \"de-extinction\" pipeline actually produce?",
+            "options": [
+              "A clone of the extinct species",
+              "A gene-edited version of a living relative",
+              "A specimen grown from preserved extinct DNA",
+              "A hybrid embryo of two extinct species"
+            ],
+            "correct": 1,
+            "explanation": "No intact extinct genome survives; editing a living relative's genome toward extinct traits is the only viable path, and the surrogate's biology stays dominant."
+          }
+        ]
+      },
+      {
+        "heading": "THE MĀORI OBJECTION",
+        "body": "Under the Treaty of Waitangi (1840), Māori iwi retain rangatiratanga — chieftainship — over taonga, treasured things, which includes ancestral species and their remains. Reviving moa without iwi consent treats a taonga as corporate IP, bypassing the legal and customary framework that governs every other moa bone in New Zealand."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Colossal has previously claimed milestones for the woolly mammoth (a gene-edited Asian elephant project) and the thylacine. In April 2025 the company announced \"dire wolves\" — three gene-edited gray wolf pups with ~20 edits against a genome that diverges from gray wolves by millions of base pairs. Naming, not biology, did the resurrection work.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2021",
+                "label": "Company founded; mammoth project announced"
+              },
+              {
+                "year": "2022",
+                "label": "Thylacine project added"
+              },
+              {
+                "year": "2024",
+                "label": "Northern white rhino & dodo added"
+              },
+              {
+                "year": "2025-04",
+                "label": "\"Dire wolves\" unveiled",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026-05",
+                "label": "Synthetic moa eggshell claim"
+              }
+            ],
+            "label": "Colossal's de-extinction announcements"
+          }
+        ]
+      },
+      {
+        "heading": "THE CONSERVATION CRITIQUE",
+        "body": "Biologists argue de-extinction spending — Colossal has raised over $400M — competes with funding for living endangered species whose habitats are collapsing now. A revived moa would have no intact ecosystem to return to; New Zealand's lowland forests are 70% gone since human arrival.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Colossal raised",
+                "value": "~$435M",
+                "tone": "unfavorable",
+                "weight": 435
+              },
+              {
+                "label": "NZ DOC annual",
+                "value": "~$450M",
+                "tone": "neutral",
+                "weight": 450
+              },
+              {
+                "label": "IUCN annual",
+                "value": "~$140M",
+                "tone": "favorable",
+                "weight": 140
+              },
+              {
+                "label": "Kākāpō recovery",
+                "value": "~$5M/yr",
+                "tone": "favorable",
+                "weight": 5
+              }
+            ],
+            "label": "de-extinction funding vs. comparable conservation budgets"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T12:30:20.656Z",
+    "label": "De-extinction & the Egg Problem",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-19-drc-ebola-undercount-who-ancia": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PATHOGEN",
+        "body": "Ebola is a filovirus with case-fatality rates of 25-90% depending on strain and care quality. It spreads through direct contact with bodily fluids — not airborne — which is why funeral rituals washing the dead have repeatedly seeded outbreaks across Central and West Africa.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The reservoir host is almost certainly **fruit bats** of the Pteropodidae family. Spillover to humans typically begins with bushmeat handling or contact with infected primates that ate bat-contaminated fruit."
+          }
+        ]
+      },
+      {
+        "heading": "WHY UNDERCOUNTS ARE STRUCTURAL",
+        "body": "Official counts capture only patients who reach a treatment unit and test positive. In conflict zones with weak rural health systems, families hide cases — fear of stigma, fear of armed groups, distrust of foreign medics — and burials happen before any swab is taken. Modelers reconstruct true incidence from secondary signals: funeral clusters, healthcare worker deaths, downstream transmission chains."
+      },
+      {
+        "heading": "THE EASTERN CONGO PROBLEM",
+        "body": "Ituri and North Kivu host dozens of armed groups, including M23 and ADF. Vaccination teams travel under military escort; clinics are attacked; contact tracing breaks when populations flee. The 2018-2020 outbreak — the second-largest in history at 3,470 cases — became uncontrollable for exactly this reason, not because the virus mutated.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CD",
+              "UG",
+              "RW",
+              "BI",
+              "SS",
+              "TZ"
+            ],
+            "label": "Ebola's Great Lakes corridor",
+            "caption": "Cross-border spillover risk runs through dense trade routes",
+            "markers": [
+              {
+                "lat": 1.56,
+                "lng": 30.24,
+                "label": "Bunia (Ituri)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE VACCINE EXISTS",
+        "body": "Merck's rVSV-ZEBOV vaccine, approved in 2019, is roughly 97% effective against the Zaire strain and was used to ring-vaccinate over 300,000 people in the 2018-2020 outbreak. The bottleneck is no longer biology — it is reaching cases fast enough, in places where reaching cases is the hardest part.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the main reason Ebola outbreaks in eastern Congo are hard to stop, despite an effective vaccine?",
+            "options": [
+              "The vaccine doesn't work against the local strain",
+              "Armed conflict prevents contact tracing and vaccination",
+              "The virus mutates too fast for vaccines to keep up",
+              "Cold-chain storage fails in tropical climates"
+            ],
+            "correct": 1,
+            "explanation": "rVSV-ZEBOV is ~97% effective and cold-chain logistics are solved. The binding constraint is security — vaccinators cannot reach contacts in zones controlled by armed groups."
+          }
+        ]
+      },
+      {
+        "heading": "THE OUTBREAK ARC",
+        "body": "DRC has now faced more Ebola outbreaks than any other country. Each one tests the same system; each one reveals the same gap between detection capacity and the rural reality.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1976",
+                "label": "First-ever outbreak, Yambuku",
+                "emphasis": "start"
+              },
+              {
+                "year": "1995",
+                "label": "Kikwit outbreak, 315 cases"
+              },
+              {
+                "year": "2014",
+                "label": "West Africa epidemic (separate)"
+              },
+              {
+                "year": "2018",
+                "label": "North Kivu outbreak begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020",
+                "label": "10th outbreak declared over"
+              },
+              {
+                "year": "2022",
+                "label": "Equateur resurgence"
+              },
+              {
+                "year": "2025",
+                "label": "Current Ituri chains"
+              }
+            ],
+            "label": "DRC Ebola outbreaks"
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'R0' MISLEADS HERE",
+        "body": "Ebola's basic reproduction number is around 1.5-2.5 — far lower than measles (12-18) or COVID's early variants. But R0 averages out the superspreaders. A single unsafe burial can infect 20 people; one infected healthcare worker without PPE can seed a whole ward. Outbreaks are driven by tail events, not the average.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Measles",
+                "value": "12-18",
+                "weight": 15,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "COVID (Delta)",
+                "value": "5-8",
+                "weight": 6.5,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Smallpox",
+                "value": "3.5-6",
+                "weight": 4.7,
+                "tone": "neutral"
+              },
+              {
+                "label": "Ebola",
+                "value": "1.5-2.5",
+                "weight": 2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Seasonal flu",
+                "value": "1.3",
+                "weight": 1.3,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Basic reproduction number (R0), selected pathogens"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T12:30:57.556Z",
+    "label": "Ebola & Outbreak Undercounting",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-19-estonia-downs-ukrainian-drone-nato-airspace": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FRONTLINE STATE",
+        "body": "Estonia shares a 294 km border with Russia and was annexed by the Soviet Union from 1940 to 1991. Of the three Baltic states, it is the most digitally integrated with NATO command structures — and the most exposed if Article 5 is ever tested by ambiguous incursion.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "EE",
+              "LV",
+              "LT",
+              "RU",
+              "BY",
+              "FI"
+            ],
+            "label": "the Baltic frontline",
+            "markers": [
+              {
+                "lat": 58.2667,
+                "lng": 26,
+                "label": "Lake Võrtsjärv"
+              },
+              {
+                "lat": 59.437,
+                "lng": 24.7536,
+                "label": "Tallinn"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "ARTICLE 5'S AMBIGUITY",
+        "body": "The North Atlantic Treaty commits members to treat an armed attack on one as an attack on all — but leaves each member to decide what response is appropriate. A drone of uncertain origin landing in Estonian territory is precisely the gray-zone scenario the treaty was never designed to adjudicate.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "an armed attack against one or more of them in Europe or North America shall be considered an attack against them all",
+            "speaker": "North Atlantic Treaty, Article 5",
+            "year": "1949"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ATTRIBUTION IS HARD",
+        "body": "Modern drones use commercial components — DJI motors, civilian GPS, off-the-shelf flight controllers. Both Russia and Ukraine field Shahed-derivative and Western-parts UAVs. Without recovered serial-numbered telemetry or guidance modules, claims of origin rest on trajectory analysis, which is contestable."
+      },
+      {
+        "heading": "THE INFORMATION VECTOR",
+        "body": "This story originated in Russian state media citing an Estonian minister. The framing — Ukrainian drone violates NATO airspace — is precisely the wedge narrative Moscow has cultivated since 2022: that Kyiv is reckless and that Western support carries hidden costs. Whether the incident occurred as described or not, its propagation is the story.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Russia's information doctrine treats *every* incident — real, distorted, or fabricated — as raw material for the **wedge narrative**: NATO unity is a facade, and any crack proves it."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT PROBLEM",
+        "body": "In November 2022, a Ukrainian air-defense missile crossed into Poland and killed two farmers. NATO took 72 hours to confirm the missile was Ukrainian, not Russian — and Warsaw quietly declined to invoke Article 4 consultations. The episode established a template: allied-origin incidents get absorbed, not escalated."
+      },
+      {
+        "heading": "QUIZ",
+        "body": "What Cold War-era institution still governs Baltic airspace policing today?",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Who patrols Estonian airspace day-to-day?",
+            "options": [
+              "Estonia's own air force",
+              "NATO Baltic Air Policing rotation",
+              "A joint EU air command",
+              "Finnish and Swedish fighters under bilateral pact"
+            ],
+            "correct": 1,
+            "explanation": "Estonia, Latvia, and Lithuania have no fighter jets of their own; NATO allies rotate squadrons through Ämari and Šiauliai airbases on four-month tours."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T12:31:28.318Z",
+    "label": "NATO Airspace & Drone Intercepts",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-19-google-blackstone-5b-ai-cloud-tpu": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY TPUs EXIST",
+        "body": "Google built the Tensor Processing Unit in 2015 because GPUs were too general-purpose for the matrix multiplications that dominate neural networks. A TPU strips out graphics circuitry and dedicates silicon to systolic arrays — grids of multiply-accumulate units that pump tensors through in lockstep.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "GPUs are *general* parallel processors; TPUs are **application-specific integrated circuits** (ASICs) tuned for one math operation. The tradeoff: less flexibility, more throughput per watt."
+          }
+        ]
+      },
+      {
+        "heading": "TRAINING VS INFERENCE",
+        "body": "Training a model happens once and costs billions; inference happens billions of times and costs a fraction per call. The economics of AI are increasingly inference-bound — which is why Google is selling inference-optimized TPUs, not the training behemoths that grab headlines."
+      },
+      {
+        "heading": "THE POWER BOTTLENECK",
+        "body": "A modern AI data center campus draws 100-500 megawatts — comparable to a small city. The constraint on AI growth in 2026 is not chips or capital but grid interconnection: utilities quote 4-7 year wait times for new substations in Virginia, Texas, and Arizona.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "AI campus (500 MW)",
+                "value": "~400k homes",
+                "weight": 500
+              },
+              {
+                "label": "Nuclear reactor (avg)",
+                "value": "~1,000 MW",
+                "weight": 1000
+              },
+              {
+                "label": "Hoover Dam",
+                "value": "~2,080 MW",
+                "weight": 2080
+              },
+              {
+                "label": "Iceland total grid",
+                "value": "~3,000 MW",
+                "weight": 3000
+              }
+            ],
+            "label": "500 MW in context"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BLACKSTONE",
+        "body": "Hyperscalers used to build their own data centers. As capital intensity exploded, private equity stepped in: Blackstone bought QTS for $10B in 2021 and has since become one of the largest data-center landlords on earth. The pattern is the cloud equivalent of asset-light retail — Google owns the silicon and the software; Blackstone owns the concrete and the substations."
+      },
+      {
+        "heading": "THE OLIGOPOLY BENEATH THE OLIGOPOLY",
+        "body": "Only three companies design competitive AI accelerators at scale: Nvidia (GPUs), Google (TPUs), and AMD. All three depend on TSMC to fabricate them, and TSMC's leading-edge nodes run on ASML's EUV lithography machines — of which fewer than 200 exist globally. The AI stack narrows to a handful of choke points.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Who actually manufactures Google's TPU chips?",
+            "options": [
+              "Google (in-house fabs)",
+              "Intel",
+              "TSMC",
+              "Samsung"
+            ],
+            "correct": 2,
+            "explanation": "Google designs TPUs but fabricates them at TSMC in Taiwan — the same foundry that makes Nvidia's GPUs and Apple's silicon."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2027 LAG",
+        "body": "500 MW scheduled for 2027 reflects how slow physical infrastructure is relative to model release cycles. A frontier model trains in months; the data center that serves it took years to permit, build, and energize. The gap is why compute capacity, not algorithmic progress, increasingly sets the pace of AI deployment."
+      }
+    ],
+    "generatedAt": "2026-05-19T12:31:55.462Z",
+    "label": "TPUs, Power, and the AI Buildout",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-19-hondurasgate-leaked-audio-earshot-authentic": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT EARSHOT ACTUALLY DOES",
+        "body": "Earshot is a nonprofit audio forensics lab that uses spectral analysis to detect splices, compression artifacts, and background-noise inconsistencies. A 'moderately confident' rating means the lab found no evidence of manipulation but cannot rule out sophisticated editing — the standard ceiling for any leaked recording without access to the original device.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Forensic audio analysis distinguishes **authenticity** (was this recorded as a single continuous event?) from **attribution** (is that really the named speaker?). The two questions require different techniques — and a positive answer on one tells you nothing about the other."
+          }
+        ]
+      },
+      {
+        "heading": "THE PARDON",
+        "body": "Juan Orlando Hernández was extradited to the US in 2022 and convicted in 2024 on drug trafficking and weapons charges — prosecutors said he turned Honduras into a 'narco-state' and accepted millions from cartels including the Sinaloa group. Trump pardoned him in late 2025, freeing a former head of state mid-sentence in a US federal prison.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Juan Orlando Hernández",
+                "role": "Ex-president, pardoned 2025",
+                "years": "2014–2022",
+                "cc": "HN"
+              },
+              {
+                "name": "Xiomara Castro",
+                "role": "Current Honduran president",
+                "years": "2022–",
+                "cc": "HN"
+              },
+              {
+                "name": "Claudia Sheinbaum",
+                "role": "Mexican president",
+                "years": "2024–",
+                "cc": "MX"
+              },
+              {
+                "name": "Gustavo Petro",
+                "role": "Colombian president",
+                "years": "2022–",
+                "cc": "CO"
+              }
+            ],
+            "label": "the cast"
+          }
+        ]
+      },
+      {
+        "heading": "THE PINK TIDE, RETURNED",
+        "body": "Mexico, Colombia, Honduras, Brazil, Chile, and Bolivia all elected left or center-left governments between 2018 and 2024 — the second 'pink tide' after the 2000s wave receded. For the regional right, the strategic problem is that these victories came through ballots, not coups, which makes traditional destabilization playbooks harder to justify.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MX",
+              "HN",
+              "CO",
+              "AR",
+              "US"
+            ],
+            "label": "the alleged network",
+            "caption": "leftist targets (MX, CO) and the figures said to coordinate against them"
+          }
+        ]
+      },
+      {
+        "heading": "THE MILEI AXIS",
+        "body": "Argentina's Javier Milei, elected 2023, made common cause with Trump, Bolsonaro's circle, and Spain's Vox as a self-styled international anti-left front. Argentine operatives showing up in a Honduran destabilization tape would fit the pattern — what's new is not the ideology but the alleged operational coordination across borders."
+      },
+      {
+        "heading": "WHY LEAKED AUDIO IS POLITICALLY DECISIVE",
+        "body": "Even 'moderately confident' authenticity is enough to drive a news cycle, because the alternative — that someone fabricated convincing multi-party recordings of named officials — is itself a major story. The asymmetry favors the leaker: the target must prove a negative while the public has already heard the words.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does 'moderately confident' typically mean in forensic audio analysis?",
+            "options": [
+              "The lab is certain the recording is authentic",
+              "No manipulation detected, but sophisticated editing cannot be ruled out",
+              "The speaker has been positively identified by voiceprint",
+              "The recording was made with the speaker's consent"
+            ],
+            "correct": 1,
+            "explanation": "Audio forensics tests for splices and artifacts; absence of evidence of tampering is not the same as proof of authenticity, hence the hedged rating."
+          }
+        ]
+      },
+      {
+        "heading": "THE NARCO-STATE FINDING",
+        "body": "During Hernández's US trial, prosecutors and cooperating witnesses described a system in which the Honduran state itself moved cocaine — with the president's brother Tony Hernández already serving a life sentence for the same conspiracy. The pardon did not vacate the conviction; the underlying factual record stands."
+      }
+    ],
+    "generatedAt": "2026-05-19T12:32:24.759Z",
+    "label": "Audio Forensics & Latin America's Right-Wing Network",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-19-indonesia-rupiah-record-low-oil-msci": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWIN-DEFICIT TRAP",
+        "body": "Indonesia runs a current-account deficit (imports more than it exports) and depends on foreign portfolio inflows to plug the gap. When sentiment turns, the currency and the stock market fall together — each accelerating the other.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call this the **twin-deficit** problem: a current-account gap funded by *hot money* rather than long-term FDI is structurally fragile."
+          }
+        ]
+      },
+      {
+        "heading": "WHY OIL HURTS JAKARTA",
+        "body": "Indonesia was a net oil exporter until 2004 and left OPEC in 2008. Subsidized domestic fuel keeps demand inelastic, so every dollar rise in Brent widens the import bill before any policy can respond.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              17171.403531,
+              17141.082458,
+              17180.328876,
+              17336.25,
+              17240.466306,
+              17252.7,
+              17252.7,
+              17228.007972,
+              17236.681076,
+              17324.672615,
+              17371.597196,
+              17314.260734,
+              17334.35,
+              17334.35,
+              17362.585908,
+              17436.647182,
+              17412.201352,
+              17361.080817,
+              17385.703914,
+              17377.353843,
+              17377.618201,
+              17400.566668,
+              17511.802396,
+              17505.236906,
+              17504.5,
+              17587.255411,
+              17605.317993,
+              17605.317993,
+              17667.923364,
+              17730.273506
+            ],
+            "periods": [
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19"
+            ],
+            "label": "Indonesian rupiah",
+            "unit": "IDR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE MSCI MECHANISM",
+        "body": "MSCI indices are the benchmarks trillions of passive emerging-market dollars track. A weight cut or downgrade is not an opinion — it is an automatic sell order executed by every fund mirroring the index, regardless of fundamentals.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does an MSCI downgrade trigger forced selling?",
+            "options": [
+              "MSCI directly manages the funds",
+              "Passive funds must mirror index weights mechanically",
+              "Regulators require divestment after downgrades",
+              "It signals fraud at listed companies"
+            ],
+            "correct": 1,
+            "explanation": "Index-tracking funds are contractually bound to replicate the index. When MSCI cuts a weight, billions exit on the rebalance date — no discretion involved."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1998 GHOST",
+        "body": "The rupiah collapsed from 2,400 to 16,000 per dollar during the Asian Financial Crisis, wiping out the middle class and toppling Suharto's 32-year rule. Every Indonesian finance minister since governs in the shadow of that memory — capital controls are taboo, defending the currency is reflexive.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1997",
+                "label": "Asian crisis begins"
+              },
+              {
+                "year": "1998",
+                "label": "Rupiah collapse, Suharto falls",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2008",
+                "label": "GFC outflows, IMF swap line"
+              },
+              {
+                "year": "2013",
+                "label": "Taper tantrum, 'Fragile Five'"
+              },
+              {
+                "year": "2026",
+                "label": "Record low vs USD"
+              }
+            ],
+            "label": "Indonesian currency stress"
+          }
+        ]
+      },
+      {
+        "heading": "THE FRAGILE FIVE LEGACY",
+        "body": "In 2013, Morgan Stanley grouped Indonesia with Brazil, India, South Africa, and Turkey as the 'Fragile Five' — emerging markets most exposed to a Fed taper. The label stuck because the underlying vulnerability — dollar-funded growth without dollar-earning exports — never structurally resolved.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Indonesia",
+                "value": "17,730 IDR",
+                "cc": "ID",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Turkey",
+                "value": "45.6 TRY",
+                "cc": "TR",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": "96.4 INR",
+                "cc": "IN",
+                "tone": "neutral"
+              },
+              {
+                "label": "Brazil",
+                "value": "5.01 BRL",
+                "cc": "BR",
+                "tone": "neutral"
+              },
+              {
+                "label": "South Africa",
+                "value": "16.6 ZAR",
+                "cc": "ZA",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Fragile Five: currency vs USD, today"
+          }
+        ]
+      },
+      {
+        "heading": "THE DEFENSE TOOLKIT",
+        "body": "Bank Indonesia has three levers: burn reserves to buy rupiah, hike rates to attract carry trades, or impose informal export-proceeds rules forcing exporters to convert dollars. Each works briefly; none addresses the structural import dependence underneath."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-19"
+    ],
+    "generatedAt": "2026-05-19T12:32:53.409Z",
+    "label": "Rupiah, MSCI & the Capital Flow Trap",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-19-iran-hormuz-undersea-cable-toll-bigtech": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INVISIBLE INFRASTRUCTURE",
+        "body": "Roughly 99% of intercontinental data — banking, video, cloud sync, military command traffic — moves through about 550 submarine fiber-optic cables, not satellites. Each cable is the diameter of a garden hose, armored only in shallow water, and lies on the seabed where any anchor, trawler, or state actor can reach it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phrase *the cloud* obscures a hard fact: the internet is a **wet, physical thing** lying on continental shelves."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HORMUZ IS A DATA CHOKEPOINT TOO",
+        "body": "Hormuz is famous for the 21 million barrels of oil that pass through daily, but the same 33-km gap funnels nearly all fiber between Europe and the Gulf states, India, and East Africa. FALCON loops around the Arabian Peninsula touching Iran's coast; Gulf Bridge stitches together every GCC capital. The deepwater channel hugs the Iranian side — which is why Tehran can credibly claim the cables sit in its waters.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW",
+              "IQ"
+            ],
+            "label": "where the fiber and the oil share a lane",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.276987,
+                "lng": 55.296249,
+                "label": "Dubai landing"
+              },
+              {
+                "lat": 26.2235,
+                "lng": 50.5876,
+                "label": "Manama landing"
+              },
+              {
+                "lat": 27.1832,
+                "lng": 56.2666,
+                "label": "Bandar Abbas"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "HOW A CABLE GETS FIXED",
+        "body": "There are roughly 60 cable repair ships in the world. A break is located by sending a test pulse and timing the reflection; the ship grapnels the cable, hauls both ends to the surface, splices in a new section, and lowers it back. The job takes one to four weeks — and the ship needs the coastal state's permission to enter territorial waters.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "About how many cable repair ships exist worldwide?",
+            "options": [
+              "~20",
+              "~60",
+              "~200",
+              "~500"
+            ],
+            "correct": 1,
+            "explanation": "Roughly 60 specialized vessels handle every fault on every submarine cable on Earth — a tiny, aging fleet that becomes the global bottleneck whenever a region goes hot."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL GREY ZONE",
+        "body": "UNCLOS Article 113 obliges states to criminalize breaking cables, and Article 79 grants the right to lay them on the continental shelf. But the convention is silent on whether a coastal state can charge a transit fee for cables already in its waters. Iran ratified UNCLOS in 1982 but never deposited it, leaving Tehran free to argue domestic law governs the seabed off Bandar Abbas.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Iran's position mirrors its long-standing claim that Hormuz transit is governed by *Iranian* law, not UNCLOS — the same argument now extended from hulls to **fiber**."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Egypt has quietly charged transit fees on Red Sea cables landing at Suez for decades — by some industry estimates, a meaningful share of every Europe-Asia packet pays Cairo en route. The Egyptian model is the template Tehran is now invoking: not seizure, not sabotage, just a toll booth on a route nobody can avoid.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Egypt",
+                "value": "Suez landings",
+                "cc": "EG",
+                "tone": "neutral"
+              },
+              {
+                "label": "Singapore",
+                "value": "Malacca hub",
+                "cc": "SG",
+                "tone": "favorable"
+              },
+              {
+                "label": "Djibouti",
+                "value": "Bab el-Mandeb",
+                "cc": "DJ",
+                "tone": "neutral"
+              },
+              {
+                "label": "Iran",
+                "value": "Hormuz (claimed)",
+                "cc": "IR",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "chokepoint states that monetize the seabed"
+          }
+        ]
+      },
+      {
+        "heading": "THE HARVEST RISK",
+        "body": "A cable that lands on a hostile coast can be tapped, not just taxed. The 1971 Ivy Bells operation showed the US Navy splicing onto Soviet undersea military cables in the Sea of Okhotsk; the technology has only become easier since. Tech firms paying Iran for repair access are also implicitly accepting whatever monitoring sits on the splice."
+      },
+      {
+        "heading": "WHO LOSES FIRST",
+        "body": "GCC banks, Indian outsourcers, and East African mobile networks route most traffic through these cables. Big Tech can degrade gracefully — rerouting via the Mediterranean adds latency but keeps services running. The Gulf landing economies cannot reroute themselves; their entire digital economy sits on the same few strands."
+      }
+    ],
+    "generatedAt": "2026-05-19T12:33:31.419Z",
+    "label": "Submarine Cables & Sovereign Tolls",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-19-silicon-valley-china-peer-not-enemy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SPLIT",
+        "body": "US tech firms divide on China by revenue exposure, not ideology. Companies selling into China or sourcing from it lobby for engagement; companies locked out by the Great Firewall back decoupling.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Tesla",
+                "value": "~22%",
+                "cc": "US",
+                "weight": 22,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Apple",
+                "value": "~17%",
+                "cc": "US",
+                "weight": 17,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Qualcomm",
+                "value": "~46%",
+                "cc": "US",
+                "weight": 46,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Nvidia",
+                "value": "~13%",
+                "cc": "US",
+                "weight": 13,
+                "tone": "neutral"
+              },
+              {
+                "label": "Meta",
+                "value": "~0%",
+                "cc": "US",
+                "weight": 1,
+                "tone": "favorable"
+              },
+              {
+                "label": "Google",
+                "value": "~0%",
+                "cc": "US",
+                "weight": 1,
+                "tone": "favorable"
+              }
+            ],
+            "label": "China revenue exposure, FY2024 (approx share of total)"
+          }
+        ]
+      },
+      {
+        "heading": "THE GREAT FIREWALL",
+        "body": "China blocked Google in 2010, Facebook in 2009, Twitter in 2009, and most US consumer platforms since. The firms that lost the Chinese market built no constituency there to defend. The firms that kept access — through hardware sales, manufacturing, or app-store presence — did."
+      },
+      {
+        "heading": "THE 2017 PRECEDENT",
+        "body": "Trump's first Beijing visit in November 2017 produced $250bn in announced deals — most of them MOUs that quietly evaporated. The CEO delegation pattern is older than the policy: presidents travel with executives whose order books need stabilizing, not whose strategies need rethinking.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2001",
+                "label": "China joins WTO"
+              },
+              {
+                "year": "2017",
+                "label": "Trump Beijing visit, $250bn deals"
+              },
+              {
+                "year": "2018",
+                "label": "Section 301 tariffs begin",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Huawei entity-listed"
+              },
+              {
+                "year": "2022",
+                "label": "CHIPS Act + export controls"
+              },
+              {
+                "year": "2025",
+                "label": "Tariff escalation"
+              },
+              {
+                "year": "2026",
+                "label": "Second Beijing CEO delegation"
+              }
+            ],
+            "label": "the decoupling arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE MANUFACTURING ANCHOR",
+        "body": "Apple assembles roughly 90% of iPhones in China. Tesla's Shanghai gigafactory produces over half its global vehicles. These are not supplier relationships — they are organ transplants. You cannot decouple a heart you have already grown into another body.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is *China + 1* — keep China, add Vietnam or India as a hedge. Almost no one says *China − 1*."
+          }
+        ]
+      },
+      {
+        "heading": "WHO STAYED HOME",
+        "body": "Meta, Google, and most pure-software firms have near-zero China revenue and no factories there. Their lobbying in Washington pushes the opposite direction — tighter export controls on AI chips, stricter outbound investment screening — because a decoupled world favors the players already decoupled.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which US tech giant has the highest share of revenue from greater China?",
+            "options": [
+              "Apple",
+              "Tesla",
+              "Qualcomm",
+              "Nvidia"
+            ],
+            "correct": 2,
+            "explanation": "Qualcomm derives roughly 46% of revenue from China — the highest exposure among major US tech firms, because nearly every Android phone shipped globally uses its modems."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEVERAGE INVERSION",
+        "body": "In 2017 Washington had the leverage: market access, dollar clearing, advanced chips. By 2026 Beijing has built counter-leverage in rare earths, battery supply chains, and consumer market size. The CEOs who flew in know which side of that inversion their balance sheets sit on."
+      }
+    ],
+    "generatedAt": "2026-05-19T12:34:03.139Z",
+    "label": "Silicon Valley & China",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-19-spain-zapatero-airline-bailout-graft-suspect": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COURT",
+        "body": "The Audiencia Nacional is Spain's specialized high court for terrorism, organized crime, and grand corruption — created in 1977 to replace Franco-era public order tribunals. Cases involving senior officials, cross-border money laundering, or politically connected fraud route here rather than to ordinary provincial courts.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does this case land at the Audiencia Nacional rather than a Madrid court?",
+            "options": [
+              "Because ex-prime ministers retain parliamentary immunity",
+              "Because it specializes in grand corruption and cross-border laundering",
+              "Because the EU mandates a single court for bailout disputes",
+              "Because civil suits against ministers go there by default"
+            ],
+            "correct": 1,
+            "explanation": "The Audiencia Nacional has exclusive jurisdiction over major corruption and cross-border financial crime — the alleged €10M commission route via a linked firm fits both."
+          }
+        ]
+      },
+      {
+        "heading": "TRÁFICO DE INFLUENCIAS",
+        "body": "Spanish penal code distinguishes bribery (cohecho) from influence peddling (tráfico de influencias) — the latter does not require proving a bribe changed hands, only that an official used position or personal pressure to shape a public decision for private gain. It carries lower sentences but a lower evidentiary bar.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Spanish term *tráfico de influencias* covers pressure exerted **through** office, even after leaving it — which is why an ex-PM lobbying sitting ministers can be charged on this count where a pure bribery case would fail."
+          }
+        ]
+      },
+      {
+        "heading": "THE PLUS ULTRA BAILOUT",
+        "body": "The €53M rescue came from SEPI, a state holding company that ran a pandemic-era fund for strategic firms. Plus Ultra was a small Venezuelan-linked carrier with negative equity — auditors had flagged going-concern doubts — and its inclusion was politically contested from the day the grant was approved in March 2021."
+      },
+      {
+        "heading": "NO IMMUNITY FOR EX-PMS",
+        "body": "Spain's aforamiento doctrine grants sitting MPs, ministers, and the prime minister the right to be tried only by the Supreme Court. The shield evaporates the day they leave office; ex-premiers are ordinary defendants. This is why Spanish criminal cases against former leaders typically move faster than against incumbents.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Felipe González",
+                "role": "PSOE PM, GAL death-squad probe",
+                "years": "1982–1996",
+                "cc": "ES"
+              },
+              {
+                "name": "José María Aznar",
+                "role": "PP PM, Gürtel trial witness",
+                "years": "1996–2004",
+                "cc": "ES"
+              },
+              {
+                "name": "Mariano Rajoy",
+                "role": "PP PM, testified Gürtel 2017",
+                "years": "2011–2018",
+                "cc": "ES"
+              },
+              {
+                "name": "José Luis R. Zapatero",
+                "role": "PSOE PM, current suspect",
+                "years": "2004–2011",
+                "cc": "ES"
+              }
+            ],
+            "label": "Spanish premiers who faced courts after leaving office"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THIS HITS THE LEFT",
+        "body": "Zapatero was PSOE — the Socialist party that currently governs under Pedro Sánchez. Spanish corruption cases have historically punished whichever party was in power when alleged acts occurred; the 2018 Gürtel verdict against the People's Party triggered the no-confidence vote that installed Sánchez. A suspect hearing against a PSOE elder lands inside Sánchez's own coalition fault lines."
+      }
+    ],
+    "generatedAt": "2026-05-19T12:34:37.718Z",
+    "label": "Spain's Anti-Corruption Court",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-19-sweden-naval-group-fdi-frigate-5b": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE END OF 200 YEARS",
+        "body": "Sweden's NATO accession in March 2024 ended a non-alignment posture that had held since 1814 — through two world wars, the Cold War, and the Soviet collapse. The Russian invasion of Ukraine broke the doctrine in months.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1814",
+                "label": "Last Swedish war ends (Norway)",
+                "emphasis": "start"
+              },
+              {
+                "year": "1939",
+                "label": "Neutral in WWII"
+              },
+              {
+                "year": "1949",
+                "label": "Declines NATO founding membership"
+              },
+              {
+                "year": "1995",
+                "label": "Joins EU, retains military neutrality"
+              },
+              {
+                "year": "2022",
+                "label": "Applies to NATO after Russian invasion",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Accession ratified"
+              }
+            ],
+            "label": "Swedish neutrality, and its end"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE BALTIC IS A NATO LAKE",
+        "body": "With Sweden and Finland inside the alliance, every Baltic coastline except Russia's Kaliningrad exclave and the St. Petersburg approach is NATO territory. Russia's Baltic Fleet must transit waters surrounded by alliance airfields and sensors.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SE",
+              "FI",
+              "EE",
+              "LV",
+              "LT",
+              "PL",
+              "DE",
+              "DK",
+              "RU"
+            ],
+            "label": "the Baltic littoral after 2024",
+            "caption": "only Kaliningrad and the Gulf of Finland coast remain Russian"
+          }
+        ]
+      },
+      {
+        "heading": "WHY OFF-THE-SHELF",
+        "body": "Custom warship programs run a decade from contract to commissioning. Sweden's own Visby-class corvette took 14 years. Buying the French FDI — already cutting steel for the French and Greek navies — compresses delivery to roughly half that. Wartime urgency is rewriting NATO procurement orthodoxy.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine being abandoned is *juste retour* — the European convention that defense spending should return to domestic industry. Sweden has a world-class naval yard at **Kockums**; choosing French steel over Swedish is the tell."
+          }
+        ]
+      },
+      {
+        "heading": "THE FRIGATE TIER",
+        "body": "Frigates sit between corvettes (coastal patrol) and destroyers (blue-water power projection). At 4,500 tonnes the FDI carries anti-air, anti-submarine, and land-attack missiles — the multi-role workhorse of a modern fleet. Sweden previously operated only corvettes and submarines.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Germany",
+                "value": "F125 + F126",
+                "cc": "DE"
+              },
+              {
+                "label": "Denmark",
+                "value": "Iver Huitfeldt",
+                "cc": "DK"
+              },
+              {
+                "label": "Poland",
+                "value": "Miecznik (Arrowhead)",
+                "cc": "PL"
+              },
+              {
+                "label": "Finland",
+                "value": "Pohjanmaa corvette",
+                "cc": "FI"
+              },
+              {
+                "label": "Sweden (new)",
+                "value": "FDI (French)",
+                "cc": "SE"
+              }
+            ],
+            "label": "Baltic NATO surface combatants (principal classes)"
+          }
+        ]
+      },
+      {
+        "heading": "THE SUBMARINE LEGACY",
+        "body": "Sweden's naval reputation rests not on surface ships but on Stirling-engine submarines so quiet that a Gotland-class boat famously 'sank' the USS Ronald Reagan in 2005 exercises. The frigate order fills the gap above the waterline that Swedish industry never built out.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In a 2005 NATO exercise, what did Sweden's Gotland-class submarine do to a US carrier strike group?",
+            "options": [
+              "Was detected and 'sunk' within hours",
+              "Slipped past escorts and 'torpedoed' the USS Ronald Reagan",
+              "Refused to participate over neutrality concerns",
+              "Collided with a destroyer during night maneuvers"
+            ],
+            "correct": 1,
+            "explanation": "The Gotland's air-independent Stirling propulsion let it loiter silently — the US leased the boat and its crew for two years afterward to study the gap."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T12:35:09.071Z",
+    "label": "Sweden, NATO & the Baltic",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-19-sweida-syria-captagon-israel-backed": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT CAPTAGON IS",
+        "body": "Captagon is the street name for counterfeit fenethylline pills — a stimulant cocktail typically built around amphetamine, caffeine, and theophylline. The original pharmaceutical was banned in most of the world by the 1980s; the name survived because the brand recognition did.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pills usually carry the **two crescents** logo stamped on one side — a counterfeit of the original *Degussa* mark, now a black-market trust signal."
+          }
+        ]
+      },
+      {
+        "heading": "THE ASSAD-ERA INDUSTRY",
+        "body": "Under Bashar al-Assad, Captagon production scaled from a cottage trade into Syria's largest export by value — estimated in the multi-billions annually. The Fourth Armoured Division, commanded by Maher al-Assad, ran industrial-scale labs out of Latakia and the Qalamoun. Sanctions had collapsed the formal economy; the pills were what was left.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Captagon (illicit)",
+                "value": "~$5bn/yr",
+                "tone": "unfavorable",
+                "weight": 5000
+              },
+              {
+                "label": "All legal exports",
+                "value": "~$0.8bn/yr",
+                "tone": "neutral",
+                "weight": 800
+              },
+              {
+                "label": "Phosphates",
+                "value": "~$0.1bn/yr",
+                "tone": "neutral",
+                "weight": 100
+              }
+            ],
+            "label": "Syria's Captagon trade vs official exports (peak years, est.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SWEIDA",
+        "body": "Sweida is the Druze heartland in southern Syria, perched on volcanic highlands above the Jordanian border. Smuggling routes here are old — the Hauran plateau funneled grain, then hashish, then weapons, now pills. The terrain is broken basalt: easy to cross on foot, impossible to fence.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SY",
+              "JO",
+              "IL",
+              "LB"
+            ],
+            "label": "the southern corridor",
+            "markers": [
+              {
+                "lat": 32.7094,
+                "lng": 36.5694,
+                "label": "Sweida"
+              },
+              {
+                "lat": 32.5556,
+                "lng": 35.85,
+                "label": "Jordan border"
+              },
+              {
+                "lat": 33.2706,
+                "lng": 35.8939,
+                "label": "Golan Heights"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DRUZE COMPACT",
+        "body": "The Druze are a heterodox offshoot of Ismaili Shi'ism, esoteric enough that their full theology is restricted to initiates. Spread across Syria, Lebanon, Israel, and the Israeli-occupied Golan, the community has survived by playing every regional power against the next — serving in the IDF in Israel, the SAA in Syria, the LAF in Lebanon. Loyalty runs to the community, not the state.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In which armed forces do Druze men serve under a mandatory conscription arrangement?",
+            "options": [
+              "Israel Defense Forces",
+              "Lebanese Armed Forces",
+              "Jordanian Armed Forces",
+              "Iranian Revolutionary Guard"
+            ],
+            "correct": 0,
+            "explanation": "Since 1956, Israeli Druze (excluding those in the Golan) have served under the same conscription law as Jewish citizens — a unique arrangement among Arabic-speaking communities in Israel."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ISRAEL BACKS THEM",
+        "body": "After Assad's fall in December 2024, Israel moved to prevent any successor — Islamist or otherwise — from consolidating southern Syria. Backing the Druze militias creates a buffer along the Golan that no Damascus government can easily dislodge. The same playbook Israel ran in southern Lebanon from 1976 to 2000 with the South Lebanon Army."
+      },
+      {
+        "heading": "JORDAN'S BIND",
+        "body": "Captagon flows hit Jordan first — the kingdom has lost soldiers in firefights with smugglers along the border and now carries out airstrikes inside Syrian territory. But Jordan cannot pressure the militias politically: the militias' patron is Israel, with which Amman holds a cold but binding 1994 peace treaty. The trade is structurally protected by the same architecture that keeps the regional peace.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011",
+                "label": "Syrian war begins; labs scale up"
+              },
+              {
+                "year": "2018",
+                "label": "Fourth Division consolidates production",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "Arab League readmits Assad partly on drug pledges"
+              },
+              {
+                "year": "2024-12",
+                "label": "Assad falls; production fragments"
+              },
+              {
+                "year": "2025",
+                "label": "Sweida emerges as southern hub"
+              }
+            ],
+            "label": "the Captagon arc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T12:35:43.053Z",
+    "label": "Captagon & the Sweida Corridor",
+    "category": "politics",
+    "articleCount": 1
   }
 }
