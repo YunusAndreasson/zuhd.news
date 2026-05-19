@@ -1,28 +1,28 @@
 {
-  "date": "2026-05-18",
+  "date": "2026-05-19",
   "metrics": {
-    "articles": { "value": 29, "detail": "5 cycles (3 completed), avg 7/cycle" },
-    "freshness": { "median": 0.2, "p90": 0.2, "max": 0.2, "target": 1.0, "met": true },
-    "categories": { "politics": 9, "economy": 10, "science": 4, "tech": 6 },
-    "multiSource": { "value": 6, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "EU": 5, "AM": 10, "AS": 5, "ME": 7, "AF": 2 } },
-    "sciTech": { "ratio": 34, "target": 25, "met": true },
-    "topSourceShare": { "source": "Al Jazeera Online / Nature / Dawn (tied)", "pct": 10, "target": 20, "met": true },
-    "uniqueSources": 31,
+    "articles": { "value": 47, "detail": "5 cycles completed, avg 10/cycle" },
+    "freshness": { "median": 0.3, "p90": 1.5, "max": 1.5, "target": 1.0, "met": true },
+    "categories": { "politics": 14, "economy": 11, "science": 9, "tech": 13 },
+    "multiSource": { "value": 9, "target": 4, "met": true },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "EU": 14, "AS": 10, "AM": 11, "AF": 3, "ME": 9 } },
+    "sciTech": { "ratio": 47, "target": 25, "met": true },
+    "topSourceShare": { "source": "The Diplomat", "pct": 9, "target": 20, "met": true },
+    "uniqueSources": 44,
     "duplicates": 0,
-    "avgCycleDuration": 1218
+    "avgCycleDuration": 1944
   },
-  "experiment": "Active: 2026-05-18-editor-effort-low (started today, evaluateAfter 2026-05-25). No new experiment proposed — the active experiment is mid-window and any concurrent feed/selector change risks confounding the editor wall-time signal via knock-on load on the editor stage.",
-  "weakestArea": "Science count at 4/day vs the ≥5 target — the binding miss today. Only three distinct science-attributed outlets appear (NBC News, Nature, Dawn), and two of those are general-interest, not science specialists; Phys.org, STAT, and Ars Technica all dropped out vs yesterday. Throughput also fell (29 vs 50) with 2 of 5 cycles incomplete, so part of the science miss is throughput-driven rather than a clean selector signal.",
+  "experiment": "Active: 2026-05-18-editor-effort-low (Sonnet editor medium→low). Evaluates 2026-05-25. No new experiment proposed — all daily metrics within targets and an experiment is already in flight.",
+  "weakestArea": "Regional balance — Africa is at 3 articles (≈6% of output) while EU/AM/AS each clear 10. Not a target miss (5 regions ≥ 4), but AF coverage has been thin all week and is the most likely area to slip below the floor on a quiet news day.",
   "watching": [
-    "Editor-effort-low experiment day 1 — first post-change cycles ran today; track editor wall-time median/p90 and guardrail metrics (charOver350Pct, titleEchoRatePct) across the 7-day window ending 2026-05-25.",
-    "Cycle completion: only 3 of 5 cycles completed today vs 4 of 5 yesterday — if this persists it will mask the editor experiment's wall-time signal and reduce article volume.",
-    "Daily throughput dropped 50 → 29; verify in tomorrow's audit whether this was a one-day artifact or sustained."
+    "Editor-effort-low experiment (started 2026-05-18) — first full day on the new setting; today's avg editor time 313s is well under the 633s baseline median. Early positive signal but n=5 cycles.",
+    "charOver350Pct quality drift (21.1 → 25.6 across the last two weekly snapshots) — independent of today's experiment but a known issue; the next weekly snapshot on 2026-05-23 will show whether lower editor effort accelerates the drift past the 28% guardrail.",
+    "The Diplomat at 4 articles today (top single outlet) — well under the 20% concentration cap but worth noting given the recurring Asia-Pacific tilt from that source."
   ],
   "coverageGaps": [
-    "Science slipped below floor (4 vs ≥5) with no Phys.org / STAT / Ars Technica picks today.",
-    "Oceania (OC) absent from the region breakdown; AF down to 2 picks vs 12 yesterday.",
-    "Specialist science outlets underused — counting Dawn and NBC News as science sources inflates the apparent science source list."
+    "Africa: only 3 articles, no sub-Saharan domestic outlets beyond Radio Dabanga, IGN Africa — Lusophone and Francophone Africa absent.",
+    "Latin America: AM region count is 11 but heavily US-weighted (NYT, NBC, WSJ, Bloomberg, Yahoo); no Brazilian, Mexican, or Andean outlets in today's mix.",
+    "Oceania: 0 OC region articles today despite ABC Australia being credited in the source list (the one ABC piece tagged non-OC)."
   ],
-  "context": "Today is the start day of the editor-effort-low experiment (medium → low on Sonnet 4.6 editor stage in scripts/run-cycle.sh), evaluating 2026-05-25. Per experiment-design rules, no new variable should be introduced until that one resolves unless it is provably orthogonal in file, stage, and target metric — science-floor or feed changes would touch upstream stages whose load feeds back into editor wall-time, so they are not cleanly orthogonal. Today's science miss and throughput dip are noted for context, not actioned."
+  "context": "Healthy day across all goal metrics with strong throughput (47 articles, 5/5 cycles completed) and sci-tech share at 47% — well above the 25% floor. The editor-effort-low experiment is the only active variable; per rules, no concurrent experiment is being proposed even though several would be orthogonal (build params, feed params), because all metrics are within targets and the editor experiment needs a clean 7-day window to evaluate."
 }
