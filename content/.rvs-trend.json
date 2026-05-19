@@ -1595,5 +1595,28 @@
     "briefCount": 13,
     "guardrailFailures": [],
     "degenerate": false
+  },
+  {
+    "ts": "2026-05-19T04:49:15.454Z",
+    "cycleId": "2026-05-19T04-49",
+    "cycleHour": "04",
+    "rvs": 52,
+    "clusters": {
+      "picking": null,
+      "writing": 75,
+      "briefing": 73.62,
+      "sourcing": 0,
+      "coverage": 44.5
+    },
+    "articleCount": 1,
+    "briefCount": 1,
+    "guardrailFailures": [
+      "publish count 1 below floor 8",
+      "category politics below floor 3 (got 0)",
+      "category economy below floor 3 (got 0)",
+      "category science below floor 2 (got 0)",
+      "category tech below floor 2 (got 1)"
+    ],
+    "degenerate": true
   }
 ]
