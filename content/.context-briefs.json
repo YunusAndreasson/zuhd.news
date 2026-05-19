@@ -195422,5 +195422,1700 @@
     "label": "Captagon & the Sweida Corridor",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-19-china-ai-grid-structural-flexibility-ceiling": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY GRIDS NEED DISPATCH",
+        "body": "Electricity cannot be stored at grid scale cheaply. Supply must match demand second-by-second, or frequency drifts and equipment trips offline. Dispatch is the continuous decision of which plants to run, at what output, in what order — the nervous system beneath every wall socket.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The traditional ordering is the **merit order**: cheapest marginal-cost plants run first (nuclear, then coal, then gas), peakers run last. Renewables broke this — their marginal cost is *zero*, but their output is not dispatchable."
+          }
+        ]
+      },
+      {
+        "heading": "THE FLEXIBILITY CEILING",
+        "body": "A grid built around coal baseload can absorb only so much intermittent solar and wind before stability breaks. Coal plants take hours to ramp; solar can drop 80% in minutes when clouds pass. The mismatch is why China curtails (wastes) tens of TWh of renewable output every year — the grid physically cannot accept it."
+      },
+      {
+        "heading": "WHAT AI ACTUALLY DOES",
+        "body": "Machine-learning dispatch forecasts load and renewable output minutes-to-hours ahead, then pre-positions thermal plants and battery storage to absorb the swings. The gain is not invention — it is reaction speed. Human dispatchers update schedules every 15 minutes; AI updates continuously."
+      },
+      {
+        "heading": "THE JEVONS PROBLEM",
+        "body": "Every efficiency gain in energy history has been swallowed by rising demand. Watt's steam engine used less coal per horsepower and Britain's coal use exploded. LED lighting cut bulb wattage 80% and global lighting electricity rose. AI optimising the grid while AI data centres consume the grid is the same pattern, compressed.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ireland",
+                "value": "~32%",
+                "cc": "IE",
+                "weight": 32,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "USA",
+                "value": "~9%",
+                "cc": "US",
+                "weight": 9,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "China",
+                "value": "3–5%",
+                "cc": "CN",
+                "weight": 4,
+                "tone": "neutral"
+              },
+              {
+                "label": "EU avg",
+                "value": "~5%",
+                "cc": "EU",
+                "weight": 5,
+                "tone": "neutral"
+              },
+              {
+                "label": "Global",
+                "value": "~3%",
+                "cc": "",
+                "weight": 3,
+                "tone": "favorable"
+              }
+            ],
+            "label": "projected data-centre share of national electricity, 2030"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHINA MOVES FIRST",
+        "body": "China owns the world's largest grid by load (over 2.5x the US), the largest installed solar and wind capacity, and a centralised State Grid Corporation that can mandate national protocols. Western grids are fragmented across regulators and private utilities; a single AI dispatch standard takes years of approvals. Beijing can decree one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how much of China's electricity still comes from coal?",
+            "options": [
+              "About 20%",
+              "About 40%",
+              "About 60%",
+              "About 85%"
+            ],
+            "correct": 2,
+            "explanation": "Coal still generates roughly 60% of China's power despite record renewable buildout — which is exactly why AI dispatch matters: the coal fleet is what must ramp around intermittent solar and wind."
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL ECHO",
+        "body": "The 1965 Northeast Blackout cascaded across eight US states in 13 minutes because relays acted faster than humans could coordinate. The response was SCADA — supervisory control and data acquisition — the first generation of automated grid control. AI dispatch is the third generation, after SCADA and the 2000s-era smart grid."
+      }
+    ],
+    "generatedAt": "2026-05-19T17:38:00.210Z",
+    "label": "AI & the Power Grid",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-19-egypt-tunnels-off-budget-borrowing-defaults": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 'OFF-BUDGET' MEANS",
+        "body": "A state-owned entity borrows in its own name, with an implicit or explicit sovereign guarantee. The debt does not appear in the headline budget deficit, but the government pays if the entity defaults. The liability is real; the disclosure is not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **contingent liability** — a debt that becomes the sovereign's only if the borrower fails. In practice, for entities the state cannot let collapse, *contingent* is a fiction."
+          }
+        ]
+      },
+      {
+        "heading": "THE EGYPTIAN VEHICLE",
+        "body": "The National Authority for Tunnels was created in 1983 to build the Cairo Metro. It now borrows for road tunnels, bridges, and rail — projects that would otherwise sit on the Finance Ministry's books. When it cannot service the loans, the Treasury absorbs the default."
+      },
+      {
+        "heading": "WHY THE IMF MISSES IT",
+        "body": "IMF programs target the general government deficit and public debt-to-GDP. State-owned enterprises sit outside that perimeter unless explicitly consolidated. Egypt has resisted consolidation in every program since 2016 — the military-linked and infrastructure SOEs are where the off-books fiscal action lives.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              51.970698,
+              51.9993,
+              51.7463,
+              52.6215,
+              52.619542,
+              52.572404,
+              52.572404,
+              52.6099,
+              52.5498,
+              52.8295,
+              53.0206,
+              53.623047,
+              53.639736,
+              53.639736,
+              53.5567,
+              53.5362,
+              53.6199,
+              52.703434,
+              52.7193,
+              52.72,
+              52.74469,
+              52.7376,
+              52.8269,
+              52.9233,
+              52.9288,
+              52.897,
+              52.8709,
+              52.834473,
+              53.0759,
+              53.3218
+            ],
+            "periods": [
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19"
+            ],
+            "label": "Egyptian pound",
+            "unit": "EGP / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE FX TRAP",
+        "body": "Foreign-currency borrowing by an entity that earns Egyptian pounds creates a currency mismatch. Every devaluation enlarges the local-currency cost of servicing the debt. Egypt has devalued the pound four times since 2022; each round made the existing FX stock harder to service before any new borrowing.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the *original sin* of emerging-market finance — the structural inability to borrow long-term in your own currency, forcing FX exposure onto entities with no FX revenue."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Greece's pre-2010 statistics famously hid debt through off-budget vehicles and swap arrangements with Goldman Sachs. The IMF and EU only discovered the true deficit after the crisis broke. The pattern — sovereign uses SOEs and derivatives to flatter headline numbers — recurs because the incentive recurs.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does the IMF's budget audit miss tunnel-authority borrowing in Egypt?",
+            "options": [
+              "The IMF only audits central bank reserves, not fiscal accounts",
+              "State-owned enterprises sit outside the general government perimeter unless explicitly consolidated",
+              "Egyptian law forbids foreign auditors from reviewing infrastructure projects",
+              "The loans are denominated in foreign currency, which the IMF cannot track"
+            ],
+            "correct": 1,
+            "explanation": "IMF programs target general government metrics; SOE debt is only captured when consolidation is negotiated into the program — which Egypt has resisted."
+          }
+        ]
+      },
+      {
+        "heading": "WHO HOLDS THE PAPER",
+        "body": "Egyptian SOE debt is held mostly by domestic state banks — NBE, Banque Misr, Banque du Caire — which are themselves majority state-owned. A default does not trigger external creditor action; it shifts losses from one state pocket to another, ultimately landing on the Treasury or on depositors via bank recapitalization.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "IMF programs",
+                "value": "$20bn+",
+                "tone": "neutral"
+              },
+              {
+                "label": "Gulf deposits at CBE",
+                "value": "$30bn+",
+                "cc": "SA",
+                "tone": "neutral"
+              },
+              {
+                "label": "Eurobond issuance",
+                "value": "$35bn+",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Ras El-Hekma (UAE)",
+                "value": "$35bn",
+                "cc": "AE",
+                "tone": "favorable"
+              }
+            ],
+            "label": "Egypt's external financial lifelines since 2016"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-19"
+    ],
+    "generatedAt": "2026-05-19T17:38:29.302Z",
+    "label": "Off-Budget Borrowing & the IMF",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-19-gulf-cybercrime-laws-iran-war-information-crackdown": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL ARCHITECTURE",
+        "body": "Gulf cybercrime statutes share a common template: broad clauses criminalizing content that 'harms national unity,' 'damages the state's reputation,' or 'disturbs public order.' The vagueness is the feature, not a drafting flaw — it lets prosecutors reach any post after the fact without needing to specify the offense in advance.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The UAE's **Federal Decree-Law No. 34 of 2021** carries penalties up to life imprisonment for content deemed to threaten state security — one of the harshest cyber regimes in the world."
+          }
+        ]
+      },
+      {
+        "heading": "THE ARRESTS",
+        "body": "The crackdown spans four Gulf monarchies that share a security posture toward Iran and a common toolkit for policing the information space. Sentences for sharing footage routinely exceed those for violent crimes.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AE",
+              "KW",
+              "QA",
+              "BH",
+              "IR"
+            ],
+            "label": "the crackdown's geography",
+            "caption": "prosecutions cluster in states with the closest US security ties"
+          }
+        ]
+      },
+      {
+        "heading": "WHY FOOTAGE IS THE TARGET",
+        "body": "Authoritarian information control historically required suppressing journalists. Smartphones inverted the problem: every citizen is a potential publisher, and a single 30-second clip can reach millions before any takedown order is served. The legal response is to criminalize the act of sharing itself, shifting enforcement from publishers to audiences."
+      },
+      {
+        "heading": "THE STATELESS DEFENDANT",
+        "body": "Bahrain's Shia majority includes tens of thousands of *Bidoon* — stateless residents whose families were denied citizenship at independence. Without passports they cannot flee prosecution, cannot access consular protection, and cannot appeal to a home country. Photographers from this community face the harshest sentences because they have nowhere to go.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Gulf state has the largest proportional Shia population, making information control around Iran-related events especially sensitive?",
+            "options": [
+              "United Arab Emirates",
+              "Bahrain",
+              "Qatar",
+              "Kuwait"
+            ],
+            "correct": 1,
+            "explanation": "Bahrain is roughly 60-70% Shia ruled by a Sunni monarchy — the demographic inversion that drove the 2011 uprising and shapes every information-control decision since."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEO-BLOCK MECHANISM",
+        "body": "Gulf states do not need to physically seize servers to silence accounts. Platforms comply with government takedown and geo-restriction requests under local regulatory pressure — a license to operate in the market is the leverage. The account still exists globally; it simply vanishes inside the jurisdiction that asked.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *geo-fencing* — the same infrastructure platforms use for copyright and age-gating, repurposed for political censorship at the request of host governments."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2011 PRECEDENT",
+        "body": "After the Arab Spring, every GCC state rewrote its cybercrime laws between 2012 and 2016 — the UAE in 2012, Saudi Arabia in 2007 then expanded 2017, Bahrain in 2014, Kuwait in 2015. The pattern: a brief moment of digital openness, then a permanent legal architecture built to ensure it cannot happen again.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011",
+                "label": "Arab Spring protests sweep region",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2012",
+                "label": "UAE Cybercrime Law (Decree No. 5)"
+              },
+              {
+                "year": "2014",
+                "label": "Bahrain expands cyber penalties"
+              },
+              {
+                "year": "2015",
+                "label": "Kuwait cybercrime law passed"
+              },
+              {
+                "year": "2017",
+                "label": "Saudi anti-terror law broadens scope"
+              },
+              {
+                "year": "2021",
+                "label": "UAE rewrites law (Decree 34)"
+              },
+              {
+                "year": "2026",
+                "label": "Iran-footage prosecutions begin"
+              }
+            ],
+            "label": "the post-Arab-Spring cyber-law buildout"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T17:39:01.806Z",
+    "label": "Gulf Cybercrime Laws",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-19-india-bangladesh-teesta-deal-mamata-veto-gone": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RIVER",
+        "body": "The Teesta rises in Sikkim, cuts through North Bengal, and crosses into Bangladesh's Rangpur division before joining the Brahmaputra. It irrigates roughly 14% of Bangladesh's cropped area and sustains the livelihoods of about 10 million people on the lower basin.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "BD",
+              "BT",
+              "NP",
+              "CN"
+            ],
+            "label": "the Teesta basin",
+            "markers": [
+              {
+                "lat": 27.3389,
+                "lng": 88.6065,
+                "label": "Teesta headwaters (Sikkim)"
+              },
+              {
+                "lat": 26.7271,
+                "lng": 88.555,
+                "label": "Gajoldoba barrage (WB)"
+              },
+              {
+                "lat": 25.75,
+                "lng": 89.25,
+                "label": "Dalia barrage (BD)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE FEDERAL VETO",
+        "body": "India's Constitution puts water in the State List but treats interstate and international rivers under the Union. In practice, New Delhi cannot sign a transboundary river treaty over the objection of the riparian state government — a political convention hardened after the 1996 Ganges Treaty with Bangladesh required Jyoti Basu's West Bengal to assent.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the doctrine of *cooperative federalism* — formally optional, politically binding. A central government that ignored a coastal state's veto on a river treaty would face a constitutional crisis it cannot win."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2011 COLLAPSE",
+        "body": "A draft Teesta accord — proposing a roughly 42.5% / 37.5% split of dry-season flow between India and Bangladesh — was ready for signing during Manmohan Singh's Dhaka visit in September 2011. Mamata Banerjee withdrew from the delegation at the airport. The treaty has sat unsigned ever since.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1983",
+                "label": "ad-hoc Teesta sharing arrangement lapses"
+              },
+              {
+                "year": "1996",
+                "label": "Ganges Treaty signed (30-year term)"
+              },
+              {
+                "year": "2011",
+                "label": "Mamata vetoes draft Teesta accord",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2014",
+                "label": "Land Boundary Agreement ratified"
+              },
+              {
+                "year": "2024",
+                "label": "Hasina ouster; Yunus interim government in Dhaka"
+              },
+              {
+                "year": "2026",
+                "label": "WB political shift reopens Delhi's offer"
+              }
+            ],
+            "label": "the long wait"
+          }
+        ]
+      },
+      {
+        "heading": "THE DRY-SEASON ARITHMETIC",
+        "body": "In the monsoon the Teesta carries more water than either country can use; the fight is over December–April flow, when discharge at the Gajoldoba barrage in West Bengal falls below 500 cubic metres per second. India diverts upstream for the Teesta Mahananda canal system; what reaches Bangladesh's Dalia barrage is often under 200 cumecs.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Pre-barrage natural",
+                "value": "~500",
+                "tone": "neutral"
+              },
+              {
+                "label": "India's WB diversion",
+                "value": "~300",
+                "tone": "unfavorable",
+                "cc": "IN"
+              },
+              {
+                "label": "Reaching Dalia (BD)",
+                "value": "~150–200",
+                "tone": "unfavorable",
+                "cc": "BD"
+              },
+              {
+                "label": "BD irrigation need",
+                "value": "~450",
+                "tone": "favorable",
+                "cc": "BD"
+              }
+            ],
+            "label": "Teesta lean-season flow (cumecs, indicative)"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHINA LEVER",
+        "body": "In 2020 Bangladesh accepted a roughly $1bn Chinese proposal for a comprehensive Teesta river-management project on its side of the border — dredging, embankments, reservoirs. Delhi reads any Chinese infrastructure within 100km of the Siliguri Corridor — the 22km-wide 'Chicken's Neck' connecting India to its northeast — as a strategic threat. The treaty is now also a counter-bid.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "BD",
+              "NP",
+              "BT",
+              "CN"
+            ],
+            "caption": "the 22km corridor that makes Teesta a security file"
+          }
+        ]
+      },
+      {
+        "heading": "THE 54-RIVER PROBLEM",
+        "body": "India and Bangladesh share 54 transboundary rivers. Only one — the Ganges — has a formal sharing treaty, and that expires in 2026. Every other river runs on goodwill, draft MoUs, or silence. Teesta is the bellwether: if Delhi cannot sign Teesta, the post-Ganges architecture collapses into 53 bilateral disputes.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many rivers cross the India–Bangladesh border, and how many are governed by a formal water-sharing treaty?",
+            "options": [
+              "12 rivers, 4 treaties",
+              "54 rivers, 1 treaty",
+              "54 rivers, 7 treaties",
+              "27 rivers, 2 treaties"
+            ],
+            "correct": 1,
+            "explanation": "Only the 1996 Ganges Treaty formally allocates flow. The other 53 rivers — Teesta included — operate without a binding sharing agreement."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T17:39:40.564Z",
+    "label": "The Teesta & India's Federal Veto",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-19-nanoplastics-chemistry-not-size-regulation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SIZE THRESHOLD",
+        "body": "Microplastics are conventionally defined as fragments under 5mm; nanoplastics under 1 micrometer (1000 nanometers). The cutoffs are administrative, not biological — no membrane or enzyme system in the body switches behavior at exactly 1000nm.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A human red blood cell is ~7,000nm across. A *nanoplastic* particle can be a hundred times smaller — small enough to cross the **gut–blood barrier** and the **blood–brain barrier**, which microplastics cannot."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHEMISTRY DOMINATES",
+        "body": "A plastic particle is rarely just polymer. It carries a cocktail of additives — phthalate plasticizers, brominated flame retardants, bisphenols, stabilizers — plus whatever it adsorbed from the environment. Two particles of identical size can differ in toxicity by orders of magnitude depending on what is bonded to or leaching from them."
+      },
+      {
+        "heading": "THE CORONA EFFECT",
+        "body": "Once a nanoparticle enters a biological fluid, proteins immediately adsorb onto its surface forming a protein corona. The corona — not the underlying plastic — is what cells actually 'see' and respond to. Surface chemistry determines which proteins stick, which determines the biological response.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "PVC",
+                "value": "high (phthalates)",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Polystyrene",
+                "value": "med (styrene monomer)",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Polycarbonate",
+                "value": "high (BPA)",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "PET",
+                "value": "low (antimony)",
+                "tone": "neutral"
+              },
+              {
+                "label": "HDPE",
+                "value": "low",
+                "tone": "favorable"
+              }
+            ],
+            "label": "common plastic polymers and their additive load"
+          }
+        ]
+      },
+      {
+        "heading": "THE REGULATORY LAG",
+        "body": "The EU, US EPA, and WHO drinking-water guidelines all express plastic exposure as particles per liter or mass per liter. Neither captures additive identity, surface charge, or weathering state — the variables this study says actually drive harm. Counting particles is cheap and reproducible; characterizing chemistry is neither.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do regulators measure plastic exposure by particle count rather than chemistry?",
+            "options": [
+              "Particle count correlates best with toxicity",
+              "Counting is cheap, reproducible, and standardizable across labs",
+              "Chemistry analysis was banned by industry lobbying",
+              "Particle count is required by the Stockholm Convention"
+            ],
+            "correct": 1,
+            "explanation": "Particle counts can be done with optical or electron microscopy in any lab; full chemical characterization requires mass spectrometry per sample, which is orders of magnitude more expensive."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Asbestos regulation made the same mistake in reverse. Early rules counted fibers above a certain length; later research showed thin, biopersistent fibers — regardless of count — were the carcinogenic ones. The metric shaped the policy for thirty years before the science caught up.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The lesson: a **measurable proxy** becomes the regulation, and the regulation becomes the science. What you can count is what you control — even when it isn't what matters."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T17:40:09.853Z",
+    "label": "Nanoplastics & the Wrong Metric",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-19-nato-saceur-drawdown-cap-hormuz-redirect": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO SACEUR ACTUALLY IS",
+        "body": "Supreme Allied Commander Europe has been a US four-star general since the post was created for Eisenhower in 1951. The dual-hatting is structural: the same officer commands US European Command and NATO's military forces, which means Washington's force posture decisions and Brussels' alliance posture are routed through one person.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "By convention, **SACEUR is always American** and **DSACEUR is always European** (usually British or German). The arrangement encodes the alliance's founding bargain — US nuclear umbrella, European theater."
+          }
+        ]
+      },
+      {
+        "heading": "THE PERMANENT FOOTPRINT",
+        "body": "Roughly 80,000 US troops are stationed in Europe, concentrated in Germany, Italy, and the UK, with rotational armored brigades pushed forward to Poland and the Baltics after 2014. The numbers ratchet on crises (Crimea, the 2022 invasion) and rarely ratchet down — every drawdown becomes a political fight because basing decisions are sticky local economies, not just strategy.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Germany",
+                "value": "~38,000",
+                "cc": "DE",
+                "weight": 38
+              },
+              {
+                "label": "Italy",
+                "value": "~13,000",
+                "cc": "IT",
+                "weight": 13
+              },
+              {
+                "label": "UK",
+                "value": "~10,000",
+                "cc": "GB",
+                "weight": 10
+              },
+              {
+                "label": "Poland",
+                "value": "~10,000",
+                "cc": "PL",
+                "weight": 10
+              },
+              {
+                "label": "Spain",
+                "value": "~3,000",
+                "cc": "ES",
+                "weight": 3
+              },
+              {
+                "label": "Romania",
+                "value": "~2,000",
+                "cc": "RO",
+                "weight": 2
+              }
+            ],
+            "label": "US troops in Europe by host (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE DRAWDOWN PRECEDENT",
+        "body": "In 2020 the first Trump administration ordered 12,000 troops out of Germany, citing burden-sharing disputes; the order was reversed by Biden in 2021 before most units moved. Mansfield Amendments in the late 1960s tried the same thing from the Senate side. The cycle is older than the alliance's current shape.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1953",
+                "label": "Peak ~450,000 troops"
+              },
+              {
+                "year": "1989",
+                "label": "Berlin Wall falls",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2013",
+                "label": "Last US tanks leave Germany"
+              },
+              {
+                "year": "2014",
+                "label": "Crimea — rotational brigades return"
+              },
+              {
+                "year": "2020",
+                "label": "Trump orders 12,000 cut"
+              },
+              {
+                "year": "2022",
+                "label": "Surge to ~100,000 after invasion"
+              },
+              {
+                "year": "2025",
+                "label": "New drawdown announced"
+              }
+            ],
+            "label": "US troops in Europe — the long ratchet"
+          }
+        ]
+      },
+      {
+        "heading": "OUT-OF-AREA, AN OLD ARGUMENT",
+        "body": "NATO's 1949 treaty bound the alliance to the North Atlantic. Operations beyond that — Bosnia (1995), Kosovo (1999), Afghanistan (2003-2021), Libya (2011), counter-piracy off Somalia (2008-2016) — each required a fresh political fight over what 'out-of-area' means. The Hormuz question is the same argument with a new map."
+      },
+      {
+        "heading": "WHY HORMUZ IS DIFFERENT",
+        "body": "NATO has run Mediterranean maritime missions for two decades (Active Endeavour, Sea Guardian) but never deployed inside the Persian Gulf. The Strait sits in CENTCOM's area, not EUCOM's, and any NATO flag there would overlap with the US-led Combined Maritime Forces — a separate 40-nation coalition headquartered in Bahrain that already runs the escort missions.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW",
+              "IQ"
+            ],
+            "label": "the gap between EUCOM and CENTCOM",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 26.2235,
+                "lng": 50.5876,
+                "label": "CMF HQ, Manama"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BURDEN-SHARING METRIC",
+        "body": "NATO's 2% of GDP defense spending target, set in 2014, was hit by 23 of 32 members by 2024. Trump's pressure raised the bar to 5% — a threshold no member, including the US, currently meets. The drawdown is leverage on a number, not just a posture.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of NATO's combined defense spending does the US account for?",
+            "options": [
+              "About 40%",
+              "About 55%",
+              "About 70%",
+              "About 85%"
+            ],
+            "correct": 2,
+            "explanation": "The US spends roughly $880bn vs. ~$380bn for all other allies combined — about 70% of alliance defense spending, against ~25% of the alliance's GDP."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T17:40:49.564Z",
+    "label": "SACEUR & NATO's Out-of-Area Question",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-19-philippines-negros-farmers-militarization-named-dead": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ISLAND",
+        "body": "Negros is the Philippines' sugar bowl — a single-crop economy dominated by haciendas since Spanish colonial rule. Land concentration here is among the most extreme in Asia: a few hundred families own most of the arable land, while seasonal cane workers (sacadas) live near subsistence.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PH"
+            ],
+            "label": "Negros Island",
+            "markers": [
+              {
+                "lat": 10.677,
+                "lng": 122.95,
+                "label": "Bacolod"
+              },
+              {
+                "lat": 9.65,
+                "lng": 123.0833,
+                "label": "Negros Oriental"
+              },
+              {
+                "lat": 10.4,
+                "lng": 123,
+                "label": "Negros Occidental sugar belt"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE NPA INSURGENCY",
+        "body": "The Communist Party of the Philippines' armed wing, the New People's Army, has waged Asia's longest-running Maoist insurgency since 1969. Its base is rural — landless peasants, indigenous Lumad, sugar workers — and Negros has been a stronghold for over fifty years because the land question never got resolved.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1969",
+                "label": "NPA founded",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1972",
+                "label": "Marcos declares martial law"
+              },
+              {
+                "year": "1985",
+                "label": "Escalante massacre, Negros"
+              },
+              {
+                "year": "1986",
+                "label": "People Power, peace talks open"
+              },
+              {
+                "year": "2017",
+                "label": "Duterte ends talks, declares NPA terrorist"
+              },
+              {
+                "year": "2019",
+                "label": "Sagay massacre, 9 farmers killed"
+              },
+              {
+                "year": "2021",
+                "label": "Bloody Sunday raids, 9 activists killed"
+              }
+            ],
+            "label": "the long war"
+          }
+        ]
+      },
+      {
+        "heading": "RED-TAGGING",
+        "body": "Philippine security doctrine labels activists, journalists, lawyers, and clergy as communist fronts — *red-tagging*. Once tagged, a person becomes a legitimate target in counterinsurgency operations. The UN human rights office has repeatedly flagged the practice as a precursor to extrajudicial killing.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Anti-Terrorism Act of 2020 codified what was previously informal: a designation by the **Anti-Terrorism Council** — not a court — can freeze assets and authorize warrantless arrest for up to 24 days."
+          }
+        ]
+      },
+      {
+        "heading": "\"LEGITIMATE ENCOUNTER\"",
+        "body": "The phrase is a term of art. Under Philippine military doctrine, an encounter killing requires the deceased to have fired first or been armed when engaged. The classification short-circuits civilian investigation — the military's own board reviews itself — and has been applied to scenes where the dead were later found unarmed."
+      },
+      {
+        "heading": "THE DRUG WAR PRECEDENT",
+        "body": "Between 2016 and 2022, Duterte's anti-drug campaign produced at least 6,200 police-acknowledged killings and likely 27,000+ counting vigilante deaths. The template — official cover, no prosecutions, victims labeled threats post-mortem — migrated from urban drug suspects to rural activists with little institutional friction.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the Philippines' International Criminal Court status as of 2026?",
+            "options": [
+              "A member state cooperating with investigations",
+              "Withdrawn in 2019, but ICC retains jurisdiction over prior crimes",
+              "Never joined the Rome Statute",
+              "Suspended by the ICC for non-cooperation"
+            ],
+            "correct": 1,
+            "explanation": "Duterte withdrew the Philippines from the ICC in 2019, but the court retains jurisdiction over crimes committed while it was a member — which is why the drug-war investigation continues."
+          }
+        ]
+      },
+      {
+        "heading": "THE JOURNALIST RISK",
+        "body": "The Philippines consistently ranks among the world's deadliest countries for journalists outside active war zones. The 2009 Maguindanao massacre killed 32 journalists in a single day — still the largest single-event killing of media workers on record. Most provincial reporters work without institutional protection.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Journalists killed since 1992 (CPJ data)",
+            "peers": [
+              {
+                "value": 297,
+                "cc": "IQ"
+              },
+              {
+                "value": 167,
+                "cc": "SY"
+              },
+              {
+                "value": 146,
+                "cc": "MX"
+              },
+              {
+                "value": 104,
+                "cc": "PH"
+              },
+              {
+                "value": 68,
+                "cc": "PK"
+              },
+              {
+                "value": 75,
+                "cc": "SO"
+              },
+              {
+                "value": 60,
+                "cc": "IN"
+              },
+              {
+                "value": 59,
+                "cc": "RU"
+              }
+            ],
+            "subjectCc": "PH",
+            "unit": "killed"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T17:41:22.897Z",
+    "label": "Negros & the Counterinsurgency Playbook",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-19-six-months-llms-five-minute-distillation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A CODING AGENT IS",
+        "body": "A coding agent is a language model wrapped in a loop: it reads a task, edits files, runs tests, reads errors, and tries again. The model is the engine; the scaffolding around it — tool use, file I/O, terminal access — is what turns chat into work.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The key shift is from *autocomplete* (suggest the next token) to *agency* (take an action, observe the result, decide what to do next). The same underlying model behaves very differently depending on the **harness** around it."
+          }
+        ]
+      },
+      {
+        "heading": "WHY RL ON CODE WORKS",
+        "body": "Code is one of the only domains with a built-in oracle: the compiler and the test suite tell you immediately whether the output is correct. That lets reinforcement learning generate near-infinite training signal without human labelers — the same property that made AlphaGo possible.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does reinforcement learning work better for code than for, say, essay writing?",
+            "options": [
+              "Code is shorter than prose",
+              "Tests give an automatic correct/incorrect signal at scale",
+              "Programmers are more patient labelers",
+              "Code has fewer possible outputs"
+            ],
+            "correct": 1,
+            "explanation": "RL needs a reward signal. Test suites and compilers provide one for free; essay quality requires a human to judge each attempt."
+          }
+        ]
+      },
+      {
+        "heading": "THE BENCHMARK TRAP",
+        "body": "SWE-bench, the dominant coding benchmark, draws from real GitHub issues with known fixes. Labs train against it, scores climb, but the benchmark distribution drifts from production work — long-lived codebases, ambiguous specs, flaky tests, legacy dependencies. Vendor numbers describe a sanitized slice of the job.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Benchmark task",
+                "value": "~hours of work",
+                "tone": "favorable"
+              },
+              {
+                "label": "Test suite",
+                "value": "clean, passing",
+                "tone": "favorable"
+              },
+              {
+                "label": "Spec",
+                "value": "written in the issue",
+                "tone": "favorable"
+              },
+              {
+                "label": "Production task",
+                "value": "days to weeks",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Test suite",
+                "value": "partial, flaky",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Spec",
+                "value": "in someone's head",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "SWE-bench Verified vs production reality"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEAPFROG DYNAMIC",
+        "body": "Frontier labs release on overlapping cycles — Anthropic, OpenAI, Google, and now several Chinese labs. When training runs take months but inference improvements ship weekly, the leaderboard reorders constantly without any single model being decisively ahead.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Anthropic",
+                "role": "Claude / Claude Code",
+                "years": "2021–",
+                "cc": "US"
+              },
+              {
+                "name": "OpenAI",
+                "role": "GPT / Codex",
+                "years": "2015–",
+                "cc": "US"
+              },
+              {
+                "name": "Google DeepMind",
+                "role": "Gemini",
+                "years": "2023– (merged)",
+                "cc": "US"
+              },
+              {
+                "name": "DeepSeek",
+                "role": "open-weight coding models",
+                "years": "2023–",
+                "cc": "CN"
+              }
+            ],
+            "label": "the labs competing on coding"
+          }
+        ]
+      },
+      {
+        "heading": "THE ABANDONMENT PATTERN",
+        "body": "Software built on a rapidly moving model substrate inherits the model's flaws and obsolescence. A 2025-era agent wrapper that worked around specific failure modes becomes dead weight when the next model fixes them natively. The graveyard of LLM startups is mostly thin wrappers outrun by the underlying model.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Paul Buchheit called this being **in the model's path**: if your product is the gap between what the model can do today and what users need, you live or die by how fast that gap closes — and it closes faster than most product roadmaps."
+          }
+        ]
+      },
+      {
+        "heading": "THE COST CURVE",
+        "body": "Token prices for frontier coding models fell roughly 10× per year from 2023 to 2026. An agent run that cost $20 in early 2024 costs cents today. This is the quiet structural force behind the usability threshold — capability per dollar crossed a line where running an agent overnight became cheaper than a developer's coffee."
+      }
+    ],
+    "generatedAt": "2026-05-19T17:41:53.746Z",
+    "label": "Coding Agents & the Benchmark Race",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-19-smotrich-icc-arrest-warrant-settlement-mechanism": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COURT'S JURISDICTION",
+        "body": "The ICC was established by the 1998 Rome Statute and began work in 2002. It prosecutes individuals — not states — for genocide, crimes against humanity, war crimes, and aggression. Israel signed but never ratified the statute; Palestine acceded in 2015, which is the hook the Court uses to assert jurisdiction over conduct in the occupied territories.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Court's authority over a non-member's nationals rests on **territorial jurisdiction** — the crime occurred on the territory of a member state (Palestine), so the nationality of the accused is irrelevant."
+          }
+        ]
+      },
+      {
+        "heading": "THE CIVIL ADMINISTRATION",
+        "body": "Created in 1981, the Civil Administration is the Israeli military body that governs Area C of the West Bank — 60% of the territory, where all settlements sit. It issues building permits, demolition orders, and land allocations. In 2023 Smotrich was given ministerial authority over it, transferring powers traditionally held by the army to an elected settler politician — a structural shift the ICC application reportedly treats as direct civilian command responsibility."
+      },
+      {
+        "heading": "THE LEGAL THEORY",
+        "body": "Article 49(6) of the Fourth Geneva Convention forbids an occupying power from transferring its own civilian population into occupied territory. The Rome Statute codifies this as a war crime. Every settlement built since 1967 — now housing roughly 700,000 Israelis across the West Bank and East Jerusalem — falls under this prohibition in the view of the ICJ, the UN, and every state except Israel and a handful of allies.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The Occupying Power shall not deport or transfer parts of its own civilian population into the territory it occupies.",
+            "speaker": "Fourth Geneva Convention, Article 49(6)",
+            "year": "1949"
+          }
+        ]
+      },
+      {
+        "heading": "KHAN AL-AHMAR",
+        "body": "A Bedouin village of about 180 people east of Jerusalem, sitting in the E1 corridor that would link Ma'ale Adumim settlement to Jerusalem and bisect the West Bank. Israel's Supreme Court approved its demolition in 2018; international pressure has delayed execution for seven years. Forcible transfer of a protected population is itself a war crime under the Rome Statute — which is why Smotrich's vow to expel it on hearing of the warrant reads, legally, as an admission.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "PS",
+              "JO",
+              "EG",
+              "LB",
+              "SY"
+            ],
+            "label": "the E1 corridor",
+            "markers": [
+              {
+                "lat": 31.8167,
+                "lng": 35.3333,
+                "label": "Khan al-Ahmar"
+              },
+              {
+                "lat": 31.7767,
+                "lng": 35.2345,
+                "label": "Jerusalem"
+              },
+              {
+                "lat": 31.7833,
+                "lng": 35.3,
+                "label": "Ma'ale Adumim"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHO MUST ARREST",
+        "body": "All 124 ICC member states are treaty-bound to execute warrants on persons entering their territory. The test case was Putin's March 2023 warrant: Mongolia hosted him anyway in 2024 and faces ongoing non-compliance proceedings; South Africa engineered his absence from the 2023 BRICS summit to avoid the choice. For Smotrich, the binding states include most of Europe, Australia, Canada, Japan, and Brazil — but not the US, Russia, China, India, or Israel itself.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "UK",
+                "value": "member — must arrest",
+                "cc": "GB",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Australia",
+                "value": "member — must arrest",
+                "cc": "AU",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Germany",
+                "value": "member — must arrest",
+                "cc": "DE",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "United States",
+                "value": "not a member",
+                "cc": "US",
+                "tone": "favorable"
+              },
+              {
+                "label": "Russia",
+                "value": "withdrew 2016",
+                "cc": "RU",
+                "tone": "favorable"
+              },
+              {
+                "label": "Israel",
+                "value": "signed, not ratified",
+                "cc": "IL",
+                "tone": "favorable"
+              }
+            ],
+            "label": "ICC posture, selected states"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "In November 2024 the ICC issued warrants for Netanyahu and former defense minister Gallant over Gaza. France floated a 'sitting head of state' immunity argument the Court explicitly rejects; Germany said it would 'find it hard to imagine' arresting Netanyahu. Enforcement against a sitting Israeli minister has never happened — but the warrants reshape travel, banking, and diplomatic protocol regardless of whether a single arrest occurs.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which legal instrument is the primary basis for treating settlement-building as a war crime?",
+            "options": [
+              "UN Security Council Resolution 242",
+              "Fourth Geneva Convention, Article 49(6)",
+              "The Oslo Accords",
+              "The Balfour Declaration"
+            ],
+            "correct": 1,
+            "explanation": "Article 49(6) prohibits an occupying power from transferring its civilian population into occupied territory; the Rome Statute codifies this as a prosecutable war crime."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T17:42:27.265Z",
+    "label": "ICC & the Settlement Enterprise",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-19-sudan-energy-charter-fragmentation-grid-map": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COLONIAL BLUEPRINT",
+        "body": "Sudan's grid was built by the Anglo-Egyptian administration to serve cotton exports from the Gezira scheme and the Khartoum-Port Sudan rail corridor. Independence in 1956 inherited the map; every government since has extended lines along the same Nile-and-rail spine.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "SS",
+              "EG",
+              "ET",
+              "TD",
+              "ER"
+            ],
+            "label": "the Nile-rail spine vs the periphery",
+            "markers": [
+              {
+                "lat": 15.5007,
+                "lng": 32.5599,
+                "label": "Khartoum"
+              },
+              {
+                "lat": 19.6158,
+                "lng": 37.2164,
+                "label": "Port Sudan"
+              },
+              {
+                "lat": 13.6306,
+                "lng": 25.35,
+                "label": "El Fasher (Darfur)"
+              },
+              {
+                "lat": 13.183,
+                "lng": 30.2176,
+                "label": "El Obeid (Kordofan)"
+              },
+              {
+                "lat": 17.9333,
+                "lng": 33.9667,
+                "label": "Merowe Dam"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE MEROWE BARGAIN",
+        "body": "The 2009 Merowe Dam doubled Sudan's generation overnight — and displaced 50,000+ Manasir, Amri, and Hamdab residents whose protests were met with live fire. The power flowed to Khartoum's air-conditioned ministries; the displaced were resettled to land without irrigation. Infrastructure as patronage, not service.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Bashir called Merowe a *gift to the nation*. The Manasir called it **al-tahjir** — forced displacement. Both descriptions were accurate; they described different nations."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE PERIPHERY REVOLTED",
+        "body": "Darfur's 2003 uprising began over land and water, but the deeper grievance was decades of zero infrastructure investment. A 2011 World Bank survey found electrification rates of 35% in Khartoum state versus under 5% across Darfur and Kordofan. The state existed for its citizens only along a thin spine.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Khartoum",
+                "value": "~35%",
+                "tone": "favorable",
+                "weight": 35
+              },
+              {
+                "label": "River Nile",
+                "value": "~28%",
+                "tone": "favorable",
+                "weight": 28
+              },
+              {
+                "label": "Red Sea",
+                "value": "~22%",
+                "tone": "neutral",
+                "weight": 22
+              },
+              {
+                "label": "Kordofan",
+                "value": "~5%",
+                "tone": "unfavorable",
+                "weight": 5
+              },
+              {
+                "label": "Darfur",
+                "value": "<5%",
+                "tone": "unfavorable",
+                "weight": 4
+              }
+            ],
+            "label": "Sudan electrification by region, ~2011"
+          }
+        ]
+      },
+      {
+        "heading": "THE RSF'S RECRUITMENT POOL",
+        "body": "The Rapid Support Forces grew out of Janjaweed militias drawn from camel-herding Arab tribes in Darfur and Kordofan — exactly the regions the grid never reached. Hemedti, a former camel trader, built a personal army from young men with no electricity, no schools, and no formal-sector jobs. State neglect created the labor pool that now besieges the state.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Abdel Fattah al-Burhan",
+                "role": "SAF commander, head of state",
+                "years": "2019–",
+                "cc": "SD"
+              },
+              {
+                "name": "Mohamed Hamdan 'Hemedti' Dagalo",
+                "role": "RSF commander",
+                "years": "2013–",
+                "cc": "SD"
+              }
+            ],
+            "label": "the two generals fighting over the spine"
+          }
+        ]
+      },
+      {
+        "heading": "THE ENERGY CHARTER IDEA",
+        "body": "Binding peace settlements to infrastructure-distribution formulas is not new — Lebanon's Taif Accord (1989) and Iraq's post-2003 oil-revenue sharing both tried it. The track record is mixed: formulas without enforcement become aspirations, and central authorities skim whenever the periphery cannot audit.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which of these post-conflict frameworks bound a peace settlement to a specific resource-distribution formula?",
+            "options": [
+              "Lebanon's Taif Accord (1989)",
+              "South Africa's TRC (1995)",
+              "Northern Ireland's Good Friday Agreement (1998)",
+              "Colombia's FARC peace deal (2016)"
+            ],
+            "correct": 0,
+            "explanation": "Taif allocated cabinet, parliament, and civil-service posts by confessional quota — a distribution formula that froze the war's balance into the state, with mixed results decades later."
+          }
+        ]
+      },
+      {
+        "heading": "THE HYDRO ARITHMETIC",
+        "body": "Sudan's Nile hydro potential is real but politically loaded — every new upstream dam reopens negotiations with Egypt, which treats Nile flow as an existential issue. The GERD dispute with Ethiopia is the regional template: hydro promises capacity but delivers diplomatic crises.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "EG",
+              "ET",
+              "SS"
+            ],
+            "label": "the Nile dam corridor",
+            "markers": [
+              {
+                "lat": 11.215,
+                "lng": 35.0928,
+                "label": "GERD (Ethiopia)"
+              },
+              {
+                "lat": 17.9333,
+                "lng": 33.9667,
+                "label": "Merowe Dam"
+              },
+              {
+                "lat": 23.9706,
+                "lng": 32.8775,
+                "label": "Aswan High Dam"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-19T17:43:07.246Z",
+    "label": "Sudan's Grid & the Geography of Power",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-19-trumprx-generics-pbm-disintermediation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A PBM ACTUALLY DOES",
+        "body": "Pharmacy benefit managers sit between insurers, drugmakers, and pharmacies. They negotiate rebates from manufacturers, set formularies (which drugs get covered), and decide what pharmacies are paid. They don't make drugs and don't dispense them — they manage the flow of money around both.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Three PBMs — **CVS Caremark**, **Express Scripts**, and **OptumRx** — process roughly **80%** of US prescriptions. Each is owned by a vertically integrated giant that also owns an insurer and, in two cases, a pharmacy chain."
+          }
+        ]
+      },
+      {
+        "heading": "THE REBATE GAME",
+        "body": "PBMs take a cut of the rebate a manufacturer pays to get a drug on the formulary. A higher list price funds a bigger rebate, which funds a bigger PBM cut — so the incentive runs toward higher sticker prices, not lower ones. The patient at the counter pays a copay based on the list price, not the post-rebate net.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do US drug list prices keep rising even when manufacturer net revenue is flat?",
+            "options": [
+              "Manufacturers are colluding on prices",
+              "Rebates to PBMs grow with the list price, so higher list funds bigger rebates",
+              "FDA approval costs are rising",
+              "Patent extensions force prices up"
+            ],
+            "correct": 1,
+            "explanation": "The rebate is a percentage of list. Raise the list price and you can pay a bigger rebate while netting the same — the patient and uninsured pay the gap."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GENERICS ARE DIFFERENT",
+        "body": "A generic drug is chemically identical to its branded original but sold after patent expiry by any qualified manufacturer. Competition typically drives generic prices to within a few percent of production cost — often pennies per pill. Roughly 90% of US prescriptions are now filled with generics, but they account for under 20% of drug spending.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Generics",
+                "value": "~90% of scripts",
+                "segments": [
+                  {
+                    "value": 90,
+                    "tone": "favorable",
+                    "label": "share of prescriptions"
+                  },
+                  {
+                    "value": 18,
+                    "tone": "neutral",
+                    "label": "share of spend"
+                  }
+                ]
+              },
+              {
+                "label": "Branded",
+                "value": "~10% of scripts",
+                "segments": [
+                  {
+                    "value": 10,
+                    "tone": "unfavorable",
+                    "label": "share of prescriptions"
+                  },
+                  {
+                    "value": 82,
+                    "tone": "neutral",
+                    "label": "share of spend"
+                  }
+                ]
+              }
+            ],
+            "label": "US prescription market, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE SPREAD PRICING TRICK",
+        "body": "On generics, PBMs often charge the insurer one price and reimburse the pharmacy a lower one, pocketing the difference. The patient, the pharmacist, and even the insurer's HR department typically can't see the spread. Several state Medicaid audits found PBMs netting 20-30% on this gap alone."
+      },
+      {
+        "heading": "THE MARK CUBAN PRECEDENT",
+        "body": "Cost Plus Drugs launched in 2022 selling generics at manufacturer cost plus a flat 15% markup and a small dispensing fee. Imatinib (leukemia) that retailed for $2,500/month at PBM-mediated pharmacies sold for around $30. The arithmetic exposed how much of the US generic price was intermediation, not medicine.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The model works only because it *bypasses insurance entirely* — no PBM in the loop means no rebate game, no spread, no formulary tier. The tradeoff: the customer pays cash, and the spend doesn't count toward their deductible."
+          }
+        ]
+      },
+      {
+        "heading": "THE HATCH-WAXMAN BARGAIN",
+        "body": "The 1984 Hatch-Waxman Act created the modern generics industry by letting manufacturers piggyback on the originator's FDA safety data once patents expired. In exchange, branded drugmakers got patent-term restoration for time lost in trials. The deal birthed both the cheap-generic market and the patent-extension games (evergreening, pay-for-delay) that still shape US drug pricing today."
+      }
+    ],
+    "generatedAt": "2026-05-19T17:43:40.759Z",
+    "label": "PBMs & Generic Drugs",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-19-uk-ofcom-deepfake-nudification-takedown-duty": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL SHIFT",
+        "body": "Until recently, UK law required prosecutors to prove intent to cause distress before charging someone for sharing intimate imagery. The 2023 Online Safety Act flipped this — sharing non-consensual intimate images is now an offence regardless of motive, and creating them was criminalised in 2024.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The shift from *intent-based* to *conduct-based* liability is the structural change. Prosecutors no longer need to read the defendant's mind — possession and distribution alone trigger the offence."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT NUDIFICATION APPS ACTUALLY DO",
+        "body": "These tools use diffusion models fine-tuned on nude imagery to inpaint clothed photos. The underlying technology is identical to mainstream image generators — the difference is the training data and the removal of safety filters. A single app can process thousands of images per day at near-zero marginal cost."
+      },
+      {
+        "heading": "WHY OFCOM AND NOT THE POLICE",
+        "body": "Criminal prosecution targets the perpetrator, one case at a time. Ofcom's duty-of-care regime targets the platform — forcing it to build systems that detect and remove content at scale. The theory: you cannot arrest your way out of a problem that produces millions of images; you have to make hosting them uneconomic.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does Ofcom's takedown duty require platforms to do?",
+            "options": [
+              "Remove flagged non-consensual intimate imagery or face enforcement",
+              "Verify the age of every user uploading images",
+              "Ban all AI-generated content from their platforms",
+              "Report users who upload deepfakes to the police"
+            ],
+            "correct": 0,
+            "explanation": "The Online Safety Act creates platform liability for hosting, not user liability for uploading — the enforcement target is the company, not the individual."
+          }
+        ]
+      },
+      {
+        "heading": "THE EXTRATERRITORIAL REACH",
+        "body": "The Online Safety Act binds any platform with UK users, regardless of where it is incorporated. This mirrors the EU's Digital Services Act and the GDPR — Brussels and London have converged on the principle that jurisdiction follows the user, not the server.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "UK",
+                "value": "Online Safety Act",
+                "cc": "GB",
+                "tone": "neutral"
+              },
+              {
+                "label": "EU",
+                "value": "Digital Services Act",
+                "cc": "EU",
+                "tone": "neutral"
+              },
+              {
+                "label": "US",
+                "value": "Section 230 immunity",
+                "cc": "US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Australia",
+                "value": "eSafety Commissioner",
+                "cc": "AU",
+                "tone": "neutral"
+              }
+            ],
+            "label": "platform-liability regimes"
+          }
+        ]
+      },
+      {
+        "heading": "THE VICTIMS",
+        "body": "Studies of deepfake imagery consistently find that the overwhelming majority — roughly 95% or more — depicts women, with a disproportionate share targeting schoolgirls and public figures. The Online Safety Act's gendered-harm clause was written specifically to name this asymmetry rather than treat it as incidental."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "South Korea criminalised deepfake pornography in 2020 after the Nth Room scandal exposed industrial-scale exploitation rings on Telegram. Convictions followed but the platforms — Telegram in particular — proved nearly impossible to compel. The UK's approach learns from this: hold the accessible intermediaries (app stores, hosting providers, search engines) liable, not just the elusive source platforms."
+      }
+    ],
+    "generatedAt": "2026-05-19T17:44:06.766Z",
+    "label": "Deepfakes & the Online Safety Act",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-19-uzbekistan-vw-foton-jac-auto-plants-hub": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DOUBLE-LANDLOCKED PROBLEM",
+        "body": "Uzbekistan is one of only two double-landlocked countries on Earth — every export must cross at least two borders to reach a port. This geography has historically priced its manufactured goods out of global markets and is the constraint any auto export strategy has to beat.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The other double-landlocked state is **Liechtenstein**. Every Uzbek-made car bound for a seaport transits Kazakhstan, Russia, Iran, or Turkmenistan — each a separate customs regime and political risk."
+          }
+        ]
+      },
+      {
+        "heading": "THE GM MONOPOLY THAT WAS",
+        "body": "For two decades, UzAuto Motors — a state-owned joint venture with GM — held a near-total monopoly on the domestic car market, protected by import tariffs that doubled the price of foreign cars. Quality stagnated, waitlists ran years long, and a black market in delivery slots flourished.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UZ",
+              "KZ",
+              "TM",
+              "KG",
+              "TJ",
+              "AF"
+            ],
+            "label": "Uzbekistan and its neighbors",
+            "caption": "double-landlocked — every export crosses two borders"
+          }
+        ]
+      },
+      {
+        "heading": "THE MIRZIYOYEV OPENING",
+        "body": "After Karimov's death in 2016, Mirziyoyev began dismantling the closed economy his predecessor built — currency convertibility in 2017, tariff cuts, and active courting of foreign capital. The auto sector, long the symbol of protected inefficiency, became a showcase for the new posture.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Shavkat Mirziyoyev",
+                "role": "Uzbek president, reform architect",
+                "years": "2016–",
+                "cc": "UZ"
+              },
+              {
+                "name": "Islam Karimov",
+                "role": "prior president, closed economy",
+                "years": "1991–2016",
+                "cc": "UZ"
+              }
+            ],
+            "label": "the cast"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHINESE AUTOMAKERS GO ABROAD",
+        "body": "China produces more cars than the US, Japan, and Germany combined, with vast domestic overcapacity. Foton and JAC are part of a wave of mid-tier Chinese OEMs setting up assembly in third countries to dodge EU and US tariffs on China-origin vehicles and to access markets where Chinese brands are still unknown.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~31mn",
+                "weight": 31,
+                "cc": "CN"
+              },
+              {
+                "label": "USA",
+                "value": "~10mn",
+                "weight": 10,
+                "cc": "US"
+              },
+              {
+                "label": "Japan",
+                "value": "~9mn",
+                "weight": 9,
+                "cc": "JP"
+              },
+              {
+                "label": "India",
+                "value": "~6mn",
+                "weight": 6,
+                "cc": "IN"
+              },
+              {
+                "label": "Germany",
+                "value": "~4mn",
+                "weight": 4,
+                "cc": "DE"
+              }
+            ],
+            "label": "global vehicle production, 2024 (mn units)"
+          }
+        ]
+      },
+      {
+        "heading": "THE FREE ECONOMIC ZONE PLAYBOOK",
+        "body": "Angren and similar zones offer tax holidays, customs exemptions on imported components, and simplified labor rules. The model is borrowed from China's own special economic zones of the 1980s — and from Morocco's Tangier corridor, which turned a peripheral country into Africa's largest car exporter in fifteen years.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country became Africa's largest car exporter by using free-zone assembly to host Renault and Stellantis?",
+            "options": [
+              "South Africa",
+              "Morocco",
+              "Egypt",
+              "Algeria"
+            ],
+            "correct": 1,
+            "explanation": "Morocco's Tangier Med free zone passed South Africa around 2023, exporting roughly 500,000 vehicles a year — the template Tashkent is now copying."
+          }
+        ]
+      },
+      {
+        "heading": "THE EXPORT MATH",
+        "body": "A landlocked assembler can only compete on regional sales — Central Asia, Russia, and possibly Iran and Pakistan via overland corridors. The presidential decree's silence on target markets and volumes is the signal: the plants are real, but the export thesis is still being negotiated with the partners who actually control the brands."
+      }
+    ],
+    "generatedAt": "2026-05-19T17:44:38.475Z",
+    "label": "Uzbekistan's Auto Pivot",
+    "category": "economy",
+    "articleCount": 1
   }
 }
