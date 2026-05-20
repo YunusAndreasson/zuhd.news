@@ -1,28 +1,27 @@
 {
-  "date": "2026-05-19",
+  "date": "2026-05-20",
   "metrics": {
-    "articles": { "value": 47, "detail": "5 cycles completed, avg 10/cycle" },
-    "freshness": { "median": 0.3, "p90": 1.5, "max": 1.5, "target": 1.0, "met": true },
-    "categories": { "politics": 14, "economy": 11, "science": 9, "tech": 13 },
-    "multiSource": { "value": 9, "target": 4, "met": true },
-    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "EU": 14, "AS": 10, "AM": 11, "AF": 3, "ME": 9 } },
-    "sciTech": { "ratio": 47, "target": 25, "met": true },
-    "topSourceShare": { "source": "The Diplomat", "pct": 9, "target": 20, "met": true },
-    "uniqueSources": 44,
+    "articles": { "value": 49, "detail": "5 cycles, avg 7/cycle (4 completed at audit time)" },
+    "freshness": { "median": 0.4, "p90": 1.6, "max": 1.6, "target": 1.0, "met": true },
+    "categories": { "politics": 16, "economy": 12, "science": 9, "tech": 12 },
+    "multiSource": { "value": 6, "target": 4, "met": true },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 14, "ME": 15, "OC": 1, "AS": 10, "EU": 9, "AF": 0 } },
+    "sciTech": { "ratio": 43, "target": 25, "met": true },
+    "topSourceShare": { "source": "Dawn / The Diplomat (tied)", "pct": 8, "target": 20, "met": true },
+    "uniqueSources": 39,
     "duplicates": 0,
-    "avgCycleDuration": 1944
+    "avgCycleDuration": 1238
   },
-  "experiment": "Active: 2026-05-18-editor-effort-low (Sonnet editor medium→low). Evaluates 2026-05-25. No new experiment proposed — all daily metrics within targets and an experiment is already in flight.",
-  "weakestArea": "Regional balance — Africa is at 3 articles (≈6% of output) while EU/AM/AS each clear 10. Not a target miss (5 regions ≥ 4), but AF coverage has been thin all week and is the most likely area to slip below the floor on a quiet news day.",
+  "experiment": "Active: 2026-05-18-editor-effort-low (evaluateAfter 2026-05-25). No new experiment proposed — one active, all top-level metrics within targets, and a concurrent change risks confounding the editor-timing signal.",
+  "weakestArea": "Africa coverage collapsed to zero today (AF=0 of 49 articles) despite five cycles. Yesterday had only 3 AF articles; the regions count target (≥4 distinct) is still met via AM/ME/OC/AS/EU, but continental balance is the furthest-from-ideal axis and the only one trending the wrong way.",
   "watching": [
-    "Editor-effort-low experiment (started 2026-05-18) — first full day on the new setting; today's avg editor time 313s is well under the 633s baseline median. Early positive signal but n=5 cycles.",
-    "charOver350Pct quality drift (21.1 → 25.6 across the last two weekly snapshots) — independent of today's experiment but a known issue; the next weekly snapshot on 2026-05-23 will show whether lower editor effort accelerates the drift past the 28% guardrail.",
-    "The Diplomat at 4 articles today (top single outlet) — well under the 20% concentration cap but worth noting given the recurring Asia-Pacific tilt from that source."
+    "Editor-effort-low experiment (started 2026-05-18) — two days of data, evaluate 2026-05-25 against baseline editor median 633s / p90 1447s.",
+    "Top sources Dawn (4) and The Diplomat (4) both at 8% — well under 20% cap but worth watching if either climbs while AF stays empty.",
+    "OC at 1 article — single-source thinness, not yet a target miss but fragile."
   ],
   "coverageGaps": [
-    "Africa: only 3 articles, no sub-Saharan domestic outlets beyond Radio Dabanga, IGN Africa — Lusophone and Francophone Africa absent.",
-    "Latin America: AM region count is 11 but heavily US-weighted (NYT, NBC, WSJ, Bloomberg, Yahoo); no Brazilian, Mexican, or Andean outlets in today's mix.",
-    "Oceania: 0 OC region articles today despite ABC Australia being credited in the source list (the one ABC piece tagged non-OC)."
+    "Africa: zero articles today across all five cycles — Daily Maverick, Mada Masr, Radio Dabanga, IGN Africa all absent from today's output despite some appearing yesterday.",
+    "Oceania: single article (OC=1) — recurring thinness pattern."
   ],
-  "context": "Healthy day across all goal metrics with strong throughput (47 articles, 5/5 cycles completed) and sci-tech share at 47% — well above the 25% floor. The editor-effort-low experiment is the only active variable; per rules, no concurrent experiment is being proposed even though several would be orthogonal (build params, feed params), because all metrics are within targets and the editor experiment needs a clean 7-day window to evaluate."
+  "context": "All four primary targets (freshness, multi-source, sci/tech ratio, top-source share) are met with comfortable margins, so the tuner has no metric-driven reason to intervene. The one live experiment (editor effort medium→low) is mid-evaluation and any concurrent change to selector or fetch parameters could confound its editor-timing signal. The Africa gap is a single-day observation against a multi-day rolling target — flag it for tomorrow's audit before treating as actionable."
 }
