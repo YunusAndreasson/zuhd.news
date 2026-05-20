@@ -201625,5 +201625,1572 @@
     "label": "OPEC Quotas & the Compute Pivot",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-05-20-afghan-deportation-returns-climate-collapse": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FORTY-YEAR EXODUS",
+        "body": "Afghanistan has been one of the world's largest refugee-producing countries since the Soviet invasion of 1979. Each successive war pushed another wave across the Khyber and into eastern Iran; by the 1990s, Pakistan and Iran together hosted the largest protracted refugee population on earth.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Soviet invasion",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1989",
+                "label": "Soviet withdrawal"
+              },
+              {
+                "year": "1992",
+                "label": "Najibullah falls; civil war"
+              },
+              {
+                "year": "1996",
+                "label": "Taliban takes Kabul"
+              },
+              {
+                "year": "2001",
+                "label": "US invasion"
+              },
+              {
+                "year": "2021",
+                "label": "Taliban returns; airlift"
+              },
+              {
+                "year": "2023",
+                "label": "Pakistan IFRP expulsions"
+              },
+              {
+                "year": "2025",
+                "label": "3m pushed home"
+              }
+            ],
+            "label": "waves of Afghan displacement"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE DIASPORA SAT",
+        "body": "Before the 2023–2025 expulsion drives, Iran and Pakistan each hosted roughly three to four million Afghans — far more than Germany, the US, or any Western country that draws headlines for Afghan resettlement. The two neighbors carried the load for forty years with minimal international cost-sharing.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Iran",
+                "value": "~3.8m",
+                "cc": "IR",
+                "weight": 38
+              },
+              {
+                "label": "Pakistan",
+                "value": "~3.7m",
+                "cc": "PK",
+                "weight": 37
+              },
+              {
+                "label": "Germany",
+                "value": "~430k",
+                "cc": "DE",
+                "weight": 4.3
+              },
+              {
+                "label": "Turkey",
+                "value": "~300k",
+                "cc": "TR",
+                "weight": 3
+              },
+              {
+                "label": "USA",
+                "value": "~200k",
+                "cc": "US",
+                "weight": 2
+              }
+            ],
+            "label": "Afghan diaspora by host country (pre-2023, est.)"
+          }
+        ]
+      },
+      {
+        "heading": "PAKISTAN'S IFRP",
+        "body": "Islamabad's Illegal Foreigners Repatriation Plan, launched late 2023, ended the de facto tolerance that had governed undocumented Afghans since the 1980s. The trigger was officially security — TTP attacks Pakistan blames on Afghan-based militants — but the timing tracked an IMF program demanding fiscal contraction and a domestic politics in which Afghans had become a useful scapegoat.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The policy targets even Afghans born in Pakistan: *jus soli* citizenship was never on offer, so a thirty-year-old who has never seen Kabul is legally a foreigner subject to deportation."
+          }
+        ]
+      },
+      {
+        "heading": "IRAN'S TURN",
+        "body": "Iran's expulsion drive accelerated in 2024–2025 as sanctions tightened the subsidy regime and water shortages made Afghan labour a visible competitor in border provinces. Tehran had long used Afghan recruits in the Fatemiyoun Brigade in Syria; the post-Assad collapse of that deployment removed a key reason to keep the population on side.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AF",
+              "IR",
+              "PK"
+            ],
+            "label": "the two return corridors",
+            "markers": [
+              {
+                "lat": 34.5553,
+                "lng": 69.2075,
+                "label": "Kabul"
+              },
+              {
+                "lat": 34.0011,
+                "lng": 71.5249,
+                "label": "Torkham crossing"
+              },
+              {
+                "lat": 29.3956,
+                "lng": 60.8628,
+                "label": "Islam Qala crossing"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE CLIMATE CEILING",
+        "body": "Afghanistan is one of the most climate-vulnerable countries on earth. Three consecutive drought years have collapsed wheat yields; the Helmand and Kabul river basins are losing snowpack; flash floods in 2024 killed hundreds in regions that had not seen rain in months. Returnees arrive into villages whose carrying capacity has already fallen.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Afghanistan's population already needed humanitarian assistance before the 2025 return wave?",
+            "options": [
+              "About 10%",
+              "About 25%",
+              "Roughly half",
+              "Over 70%"
+            ],
+            "correct": 2,
+            "explanation": "OCHA assessments put roughly half of Afghans — ~23 million — in need of humanitarian assistance even before the latest deportations; the IRC's 'no absorption capacity' line reflects this baseline."
+          }
+        ]
+      },
+      {
+        "heading": "THE WOMEN'S WORK BAN",
+        "body": "Taliban decrees since 2022 have barred women from most NGO work, secondary and university education, and public-facing employment. In a household where the male earner is a returnee with no land and no network, the female earner is legally prohibited from filling the gap — a structural amplifier of poverty unique among major refugee-return contexts."
+      }
+    ],
+    "generatedAt": "2026-05-20T17:20:38.723Z",
+    "label": "Afghan Returns & the Long Exodus",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-20-aiken-south-carolina-plutonium-pit-referendum": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A PIT IS",
+        "body": "A plutonium pit is the grapefruit-sized hollow sphere of plutonium-239 at the core of every modern thermonuclear warhead. Implosion lenses crush it to supercriticality; that fission spark ignites the fusion secondary. No pit, no warhead.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The US stockpile runs on roughly **3,700** pits built between **1952 and 1989**. Plutonium-239 has a 24,100-year half-life, but the *gallium-stabilized alpha-phase* alloy ages unpredictably — voids, helium bubbles, and lattice damage accumulate. Lab studies suggest 100+ year lifetimes; the weapons labs do not trust the extrapolation."
+          }
+        ]
+      },
+      {
+        "heading": "THE ROCKY FLATS COLLAPSE",
+        "body": "Every American pit from 1952 to 1989 was machined at Rocky Flats, Colorado. The FBI raided the plant in 1989 over illegal waste burning; production halted and never restarted there. The US has not built a war-reserve pit in 35 years — the longest production gap of any nuclear power.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1952",
+                "label": "Rocky Flats opens"
+              },
+              {
+                "year": "1989",
+                "label": "FBI raid halts production",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1996",
+                "label": "Stockpile Stewardship Program begins"
+              },
+              {
+                "year": "2018",
+                "label": "NNSA splits pit mission: LANL + SRS"
+              },
+              {
+                "year": "2030",
+                "label": "80 pits/yr target (delayed from 2026)"
+              }
+            ],
+            "label": "the production gap"
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO-SITE STRATEGY",
+        "body": "In 2018 the NNSA split production: Los Alamos would build 30 pits a year, Savannah River 50, for a combined 80 by 2030. Aiken got the larger share because Los Alamos lacks the floor space, and a single-site failure (the lesson of Rocky Flats) would again paralyze the stockpile."
+      },
+      {
+        "heading": "THE CONTAMINATION LEGACY",
+        "body": "Savannah River produced tritium and weapons plutonium from 1953 to 1988. Roughly 36 million gallons of high-level radioactive waste sit in 43 underground tanks, several of which have leaked. The site is the single largest environmental liability in the DOE complex — bigger than Hanford in dollar terms.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "DOE cleanup cost estimate (selected sites)",
+            "peers": [
+              {
+                "value": 300,
+                "label": "Hanford, WA"
+              },
+              {
+                "value": 110,
+                "label": "Savannah River"
+              },
+              {
+                "value": 28,
+                "label": "Oak Ridge, TN"
+              },
+              {
+                "value": 22,
+                "label": "Idaho National Lab"
+              },
+              {
+                "value": 9,
+                "label": "Los Alamos, NM"
+              },
+              {
+                "value": 7,
+                "label": "Rocky Flats (closed)"
+              }
+            ],
+            "subjectLabel": "Savannah River",
+            "unit": "$bn"
+          }
+        ]
+      },
+      {
+        "heading": "WHY NEPA HEARINGS MATTER",
+        "body": "The National Environmental Policy Act (1970) requires federal agencies to study environmental impact and accept public comment before major actions. Watchdog suits rarely stop a weapons program outright — but they force the record. Every claim the NNSA makes at these hearings becomes admissible evidence in the next lawsuit.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When did the United States last build a war-reserve plutonium pit?",
+            "options": [
+              "1989, at Rocky Flats",
+              "2007, at Los Alamos",
+              "2011, at Savannah River",
+              "1995, at Pantex"
+            ],
+            "correct": 0,
+            "explanation": "Rocky Flats was the sole production site; the 1989 FBI raid ended its operations and no replacement facility has yet produced war-reserve pits."
+          }
+        ]
+      },
+      {
+        "heading": "THE STRATEGIC PRESSURE",
+        "body": "China's arsenal is projected to roughly triple by 2035; Russia is modernizing every leg of its triad. The Sentinel ICBM and the W93 warhead both require new pits. The hearings in Aiken are formally about groundwater and tank integrity — but the clock behind them is geopolitical."
+      }
+    ],
+    "generatedAt": "2026-05-20T17:21:14.470Z",
+    "label": "Plutonium Pits & Savannah River",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-20-cuba-castro-indictment-starlink-invasion-prep": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "BROTHERS TO THE RESCUE",
+        "body": "On February 24, 1996, Cuban MiG-29s shot down two Cessnas flown by the Miami-based exile group Brothers to the Rescue over the Florida Straits, killing four. Havana said the planes had violated its airspace; the US said they were in international waters. Congress passed the Helms-Burton Act weeks later, codifying the embargo into law so no president could lift it unilaterally.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1960",
+                "label": "Initial US trade embargo"
+              },
+              {
+                "year": "1962",
+                "label": "Embargo formalized by JFK",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1996",
+                "label": "Brothers to the Rescue shootdown"
+              },
+              {
+                "year": "1996",
+                "label": "Helms-Burton codifies embargo"
+              },
+              {
+                "year": "2014",
+                "label": "Obama-Castro thaw"
+              },
+              {
+                "year": "2021",
+                "label": "Cuba returned to terror-sponsor list"
+              },
+              {
+                "year": "2026",
+                "label": "Castro indictment"
+              }
+            ],
+            "label": "Cuba sanctions arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE MADURO PRECEDENT",
+        "body": "In March 2020, the DOJ indicted Venezuelan president Nicolás Maduro on narco-terrorism charges and put a $15 million bounty on him. The legal theory — that a sitting foreign leader can be charged in US federal court — was novel and remains contested under customary international law's head-of-state immunity doctrine. Maduro is still in power five years later; the indictment functioned as sanctions pressure, not a path to trial.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Justice Department's working doctrine is that **head-of-state immunity does not attach to commercial or criminal acts** unrelated to sovereign function — a narrow reading most European courts reject."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CUBA FEARS DECAPITATION",
+        "body": "The Venezuela playbook ran: indict the leader, recognize a parallel government (Juan Guaidó, 2019), choke off oil revenue, wait for the military to defect. It did not work in Caracas because the army held. Cuba's military is smaller, the island geography offers no retreat, and the regime's legitimacy rests on a single family lineage now in its final biological window.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CU",
+              "US",
+              "VE",
+              "MX"
+            ],
+            "label": "the Florida Straits theater",
+            "markers": [
+              {
+                "lat": 23.1136,
+                "lng": -82.3666,
+                "label": "Havana"
+              },
+              {
+                "lat": 19.9028,
+                "lng": -75.1144,
+                "label": "Guantánamo Bay"
+              },
+              {
+                "lat": 25.7617,
+                "lng": -80.1918,
+                "label": "Miami"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "ENERGY STARVATION",
+        "body": "Cuba imports roughly two-thirds of its fuel, historically subsidized by Venezuela in exchange for medical personnel. Venezuelan crude shipments have collapsed since 2019; Russia and Mexico have filled gaps unevenly. Cuba's grid runs on Soviet-era thermal plants that need imported fuel oil — when tankers stop, the lights go out across Havana within 72 hours, as happened in October 2024.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "ve",
+                "label": "Venezuela"
+              },
+              {
+                "id": "ru",
+                "label": "Russia"
+              },
+              {
+                "id": "mx",
+                "label": "Mexico"
+              },
+              {
+                "id": "cu",
+                "label": "Cuban refineries"
+              },
+              {
+                "id": "grid",
+                "label": "Power grid"
+              },
+              {
+                "id": "transport",
+                "label": "Transport / industry"
+              }
+            ],
+            "links": [
+              {
+                "source": "ve",
+                "target": "cu",
+                "value": 50,
+                "label": "doctors-for-oil"
+              },
+              {
+                "source": "ru",
+                "target": "cu",
+                "value": 25,
+                "label": "spot cargoes"
+              },
+              {
+                "source": "mx",
+                "target": "cu",
+                "value": 15,
+                "label": "Pemex shipments"
+              },
+              {
+                "source": "cu",
+                "target": "grid",
+                "value": 55
+              },
+              {
+                "source": "cu",
+                "target": "transport",
+                "value": 35
+              }
+            ],
+            "label": "Cuba's fuel lifeline (approx., recent years)"
+          }
+        ]
+      },
+      {
+        "heading": "HELMS-BURTON",
+        "body": "The 1996 law lets US nationals sue foreign companies that 'traffic' in property confiscated by Castro after 1959 — including European hotels on what were once American sugar estates. Every president from Clinton to Biden suspended Title III of the act under a six-month waiver to avoid blowing up trade with the EU. Trump let the waiver lapse in 2019, and the lawsuits resumed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does Helms-Burton's Title III allow that no other US sanctions law does?",
+            "options": [
+              "Private lawsuits against foreign firms using confiscated Cuban property",
+              "Direct military action against Cuban naval vessels",
+              "Sanctions on countries that vote against the US at the UN",
+              "Seizure of remittances from US-based Cubans"
+            ],
+            "correct": 0,
+            "explanation": "Title III creates a private right of action — any US national whose Cuban property was nationalized after 1959 can sue any foreign company profiting from it in US federal court."
+          }
+        ]
+      },
+      {
+        "heading": "WHY NOW",
+        "body": "Raúl Castro stepped down from the Communist Party leadership in 2021 but remains the regime's living symbol. Charging him at 94 is less about prosecution than about signaling — to Cuban-American voters in Florida, to the military officers who would have to choose sides in any crisis, and to the Castro family that the post-Raúl transition will not be negotiated.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Raúl Castro",
+                "role": "First Secretary emeritus",
+                "years": "2011–2021",
+                "cc": "CU"
+              },
+              {
+                "name": "Miguel Díaz-Canel",
+                "role": "President, First Secretary",
+                "years": "2018–",
+                "cc": "CU"
+              },
+              {
+                "name": "Salvador Valdés Mesa",
+                "role": "Vice President",
+                "years": "2018–",
+                "cc": "CU"
+              }
+            ],
+            "label": "the Cuban succession"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T17:21:58.796Z",
+    "label": "Indicting a Foreign Head of State",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-20-deir-al-balah-yellow-line-militia-displacement": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE YELLOW LINE",
+        "body": "The yellow line is the internal ceasefire boundary inside Gaza established under the January 2025 phase-one truce — not an international border. Israeli forces hold positions east of it; Palestinians are nominally permitted to return west of it. Marker placements, not maps, define it on the ground, which is why a few hundred metres of orange paint can redraw who lives where.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "PS",
+              "EG",
+              "JO"
+            ],
+            "label": "Gaza ceasefire geometry",
+            "markers": [
+              {
+                "lat": 31.4181,
+                "lng": 34.3514,
+                "label": "Deir al-Balah"
+              },
+              {
+                "lat": 31.5017,
+                "lng": 34.4668,
+                "label": "Yellow line (east)"
+              },
+              {
+                "lat": 31.2204,
+                "lng": 34.2655,
+                "label": "Rafah crossing"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 60% CLAIM",
+        "body": "Netanyahu's stated figure that Israel controls 60% of Gaza describes ground held, not population. The strip's 2.2 million residents are compressed into the remaining 40% — predominantly the central and coastal corridor. Control of land and control of people have become inverse measures.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "IDF-held zone",
+                "value": "~60% land",
+                "tone": "unfavorable",
+                "weight": 60
+              },
+              {
+                "label": "Civilian zone",
+                "value": "~40% land",
+                "tone": "neutral",
+                "weight": 40
+              }
+            ],
+            "label": "Gaza Strip after phase-one truce (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE PROXY PLAYBOOK",
+        "body": "Backing local armed clans to police territory the occupying army does not want to garrison is a colonial-era technique — France in Algeria's harkis, the US-backed Sons of Iraq during the 2007 surge, the South Lebanon Army under Israeli sponsorship from 1978 to 2000. The contractor handles the population; the patron handles the contractor.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The term of art is *indigénat* — letting a local strongman do the work the regular army would be condemned for. The SLA collapsed within hours of Israel's withdrawal in 2000; proxy militias rarely outlive their patron."
+          }
+        ]
+      },
+      {
+        "heading": "THE ABOUL AJIN CLAN",
+        "body": "Gaza's pre-1948 social fabric was built around hamulas — extended patrilineal clans that owned land, settled disputes, and intermarried within. The Nakba shattered the geographic basis but the clan structure survived in the refugee camps. Targeting a single hamula for displacement is not random; it removes a coherent unit of resistance and replaces it with atomised families."
+      },
+      {
+        "heading": "THE LEGAL FRAME",
+        "body": "Under the Fourth Geneva Convention (Article 49), forcible transfer of a protected population within occupied territory is prohibited and listed as a grave breach. The 1998 Rome Statute classifies it as a war crime. Whether displacement is conducted by uniformed soldiers or by a militia operating under their drone cover does not change the legal category — command responsibility attaches to the patron.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Individual or mass forcible transfers, as well as deportations of protected persons from occupied territory… are prohibited, regardless of their motive.",
+            "speaker": "Fourth Geneva Convention, Article 49",
+            "year": "1949"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT THAT FAILED",
+        "body": "Israel's Village Leagues experiment in the West Bank (1978-1984) tried to install Palestinian collaborators as an alternative to the PLO. The leagues collapsed under boycott, assassination, and social ostracism. Every subsequent attempt to manufacture a compliant Palestinian counter-elite — from Dahlan's Preventive Security to today's clan militias — has carried the same structural weakness: the patron's protection ends at the patron's convenience.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which historical proxy force collapsed within hours when its patron withdrew?",
+            "options": [
+              "The South Lebanon Army, when Israel withdrew in 2000",
+              "The Sons of Iraq, after the 2011 US drawdown",
+              "Algeria's harkis, after French withdrawal in 1962",
+              "All of the above"
+            ],
+            "correct": 3,
+            "explanation": "Every patron-dependent militia in modern Arab history has collapsed at withdrawal — the SLA in hours, the Sons of Iraq into ISIS recruits, the harkis into a massacre. Proxy forces rarely outlive their sponsor."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T17:22:35.076Z",
+    "label": "The Yellow Line & Proxy Militias",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-20-fda-turnover-rare-disease-drug-pipeline-freeze": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT COUNTS AS RARE",
+        "body": "In the US, a rare disease is one affecting fewer than 200,000 Americans. There are roughly 7,000 such conditions, collectively affecting 25-30 million people — but each individual disease has too few patients to run a conventional trial.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The threshold comes from the **Orphan Drug Act of 1983**, which created tax credits, fee waivers, and seven years of market exclusivity to make economically unviable drugs viable."
+          }
+        ]
+      },
+      {
+        "heading": "THE STATISTICAL PROBLEM",
+        "body": "A standard Phase 3 trial enrolls thousands of patients across two arms to detect modest effects. For a disease with 500 patients worldwide, this is mathematically impossible. Rare-disease trials rely on single-arm studies, historical controls, surrogate endpoints, and natural-history registries — none of which fit the default regulatory template."
+      },
+      {
+        "heading": "WHY REGULATOR DISCRETION MATTERS",
+        "body": "Each rare-disease trial design is negotiated case-by-case with FDA review divisions. There is no checklist; senior reviewers exercise judgment on whether a 12-patient open-label study with a biomarker endpoint is acceptable. Lose the reviewers who built that institutional knowledge and you lose the willingness to approve anything non-standard.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many rare diseases currently have an FDA-approved treatment?",
+            "options": [
+              "About 5%",
+              "About 25%",
+              "About 60%",
+              "Nearly all"
+            ],
+            "correct": 0,
+            "explanation": "Of ~7,000 rare diseases, only around 5% have any FDA-approved therapy. The rest rely on off-label use or have nothing at all."
+          }
+        ]
+      },
+      {
+        "heading": "THE ACCELERATED APPROVAL LEVER",
+        "body": "Since 1992, FDA can approve drugs based on a surrogate endpoint — a biomarker reasonably likely to predict clinical benefit — with confirmatory trials required post-approval. Most rare-disease approvals run through this pathway. It depends entirely on reviewers agreeing the surrogate is meaningful, which is a judgment call, not a formula."
+      },
+      {
+        "heading": "WHY INVESTORS PANIC FIRST",
+        "body": "Biotech valuations are option values on regulatory outcomes. A single FDA meeting can move a small-cap biotech by 50% in a session. When the people on the other side of the table are unknown — or absent — the option becomes unpriceable, and capital flees to later-stage assets with clearer paths.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why CEOs describe approval timing as a *roller coaster*: the underlying science hasn't changed, but the **regulatory counterparty risk** has spiked."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "The 2017 Trump-era hiring freeze briefly slowed FDA reviews until user-fee funding (PDUFA) was clarified as exempt. The agency runs on industry fees, not appropriations, for most drug review — but the staff doing the reviewing are still federal employees, subject to every personnel action that hits the broader civil service."
+      }
+    ],
+    "generatedAt": "2026-05-20T17:23:01.315Z",
+    "label": "FDA & Rare Disease Approvals",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-20-indonesia-palm-oil-coal-state-export-monopoly": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MARKET SHARE",
+        "body": "Indonesia supplies roughly 55% of global palm oil and is the world's largest thermal-coal exporter. Few countries hold near-monopoly positions in two unrelated commodities at once — the leverage is structural, not cyclical.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Indonesia",
+                "value": 47,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Malaysia",
+                "value": 19,
+                "tone": "neutral"
+              },
+              {
+                "label": "Thailand",
+                "value": 3.4,
+                "tone": "favorable"
+              },
+              {
+                "label": "Colombia",
+                "value": 1.9,
+                "tone": "favorable"
+              },
+              {
+                "label": "Nigeria",
+                "value": 1.4,
+                "tone": "favorable"
+              },
+              {
+                "label": "Guatemala",
+                "value": 0.9,
+                "tone": "favorable"
+              },
+              {
+                "label": "Honduras",
+                "value": 0.7,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global palm oil production share, 2024 (mn tonnes)"
+          }
+        ]
+      },
+      {
+        "heading": "THE CARTEL PLAYBOOK",
+        "body": "Routing exports through a single state firm is the standard cartel-pricing tool: one seller, one price, no domestic competitor undercutting the floor. Saudi Aramco does this for crude; Codelco for Chilean copper; the old International Tin Council tried and collapsed in 1985 when it could not defend its price band.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is a **single-desk exporter** — a structure Australia used for wheat (AWB) until 2008 and Canada for wheat until 2012. Both were dismantled under WTO pressure; Indonesia's move runs the other direction."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2022 PRECEDENT",
+        "body": "Jakarta banned palm oil exports outright in April 2022 to control domestic cooking-oil prices. Global edible-oil markets spiked within days; the ban lasted three weeks before the revenue loss forced a reversal. The episode proved Indonesia can move the world market, but also that it cannot easily absorb the fiscal cost of doing so.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2014",
+                "label": "Raw nickel ore export ban"
+              },
+              {
+                "year": "2020",
+                "label": "Nickel ban reinstated"
+              },
+              {
+                "year": "2022-04",
+                "label": "Palm oil export ban",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-05",
+                "label": "Palm oil ban lifted"
+              },
+              {
+                "year": "2023",
+                "label": "Bauxite export ban"
+              },
+              {
+                "year": "2026",
+                "label": "Palm + coal state export monopoly"
+              }
+            ],
+            "label": "Indonesia's commodity-export interventions"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PRABOWO",
+        "body": "Prabowo Subianto, inaugurated October 2024, comes from the Suharto-era military-business complex where state-owned enterprises were instruments of patronage and national power, not commercial entities. Centralizing commodity flows through one BUMN is consistent with that worldview — and gives the presidency direct control over the country's two largest export revenue streams."
+      },
+      {
+        "heading": "THE RUPIAH FEEDBACK LOOP",
+        "body": "Foreign investors price political risk into the currency before it shows up in trade data. A unilateral export monopoly signals contract risk for everyone selling Indonesian commodities — and the rupiah falling to historic lows raises the cost of imported fuel, food, and dollar-denominated debt service, exactly when fiscal pressure is mounting.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              17141.082458,
+              17180.328876,
+              17336.25,
+              17240.466306,
+              17252.7,
+              17252.7,
+              17228.007972,
+              17236.681076,
+              17324.672615,
+              17371.597196,
+              17314.260734,
+              17334.35,
+              17334.35,
+              17362.585908,
+              17436.647182,
+              17412.201352,
+              17361.080817,
+              17385.703914,
+              17377.353843,
+              17377.618201,
+              17400.566668,
+              17511.802396,
+              17505.236906,
+              17504.5,
+              17587.255411,
+              17605.317993,
+              17605.317993,
+              17667.923364,
+              17730.273506,
+              17695.992614
+            ],
+            "periods": [
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20"
+            ],
+            "label": "Indonesian rupiah",
+            "unit": "IDR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE DUTCH DISEASE PARADOX",
+        "body": "Commodity-export windfalls strengthen the currency, which makes manufacturing uncompetitive — the classic resource-curse mechanism. Indonesia is now attempting the opposite trick: capture more of the commodity rent for the state while the currency weakens. Whether the math works depends on whether buyers in China and India accept the higher prices or substitute toward Malaysian palm and Australian coal.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country is Indonesia's closest competitor in palm oil supply?",
+            "options": [
+              "Malaysia",
+              "Thailand",
+              "Nigeria",
+              "Brazil"
+            ],
+            "correct": 0,
+            "explanation": "Malaysia produces ~19m tonnes annually to Indonesia's ~47m — together the two countries supply about 85% of world palm oil."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-20"
+    ],
+    "generatedAt": "2026-05-20T17:23:35.129Z",
+    "label": "State Export Monopolies & Commodity Power",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-20-irgc-hormuz-submarine-cable-permits": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INVISIBLE INFRASTRUCTURE",
+        "body": "Roughly 99% of intercontinental data — finance, voice, video, military comms — moves through submarine fiber-optic cables, not satellites. A cable the diameter of a garden hose can carry hundreds of terabits per second; no satellite constellation comes close.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term of art is **landing station** — the shore facility where the cable surfaces and connects to terrestrial networks. Whoever controls the landing station controls the traffic."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HORMUZ IS A CABLE CHOKEPOINT TOO",
+        "body": "The same narrow, shallow waters that make Hormuz an oil chokepoint make it a fiber chokepoint. Cables from Europe to Asia funnel through the Gulf because the alternative — overland through Russia or around Africa — adds latency that arbitrage traders and cloud providers will not accept.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "QA",
+              "SA",
+              "BH",
+              "KW"
+            ],
+            "label": "Gulf cable corridor",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.2854,
+                "lng": 51.531,
+                "label": "Doha (AAE-1 landing)"
+              },
+              {
+                "lat": 25.276987,
+                "lng": 55.296249,
+                "label": "Dubai landing cluster"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "AAE-1",
+        "body": "The Asia-Africa-Europe-1 cable runs 25,000 km from Marseille to Hong Kong with branches into 19 countries. Commissioned in 2017, it is one of the longest active cables in the world and carries a disproportionate share of Gulf-to-Asia traffic. Qatar's landing makes Doha a transit hub well above its population weight.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Cable consortia are unusual creatures: AAE-1's owners include *China Unicom*, *Etisalat*, *Ooredoo*, *PCCW*, and *Vodafone* — competitors who co-finance because no single carrier can absorb the $700M+ build cost alone."
+          }
+        ]
+      },
+      {
+        "heading": "WHY REPAIR IS THE REAL CHOKE",
+        "body": "There are only ~60 cable-repair ships worldwide, and just one — the Niwa, based in Oman — services the entire Gulf and northwest Indian Ocean. A single anchor drag or trawler hit can sever a cable; repair requires hauling the cable to the surface, splicing fiber by fiber, and resinking it. Days of work, weeks of scheduling.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many cable-repair vessels routinely service the Persian Gulf region?",
+            "options": [
+              "About one",
+              "Around ten",
+              "Roughly thirty",
+              "Over fifty"
+            ],
+            "correct": 0,
+            "explanation": "Repair capacity is the global submarine cable system's tightest constraint — a single vessel covers the Gulf, and permits to operate it are the actual leverage Iran is asserting."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL POSITION",
+        "body": "Under UNCLOS Articles 58 and 79, all states have the right to lay and maintain submarine cables on the continental shelf of another state, and coastal states cannot impede repair. Iran ratified UNCLOS in 1982 but never deposited the instrument, leaving its legal posture ambiguous — useful when asserting jurisdiction the convention denies."
+      },
+      {
+        "heading": "THE RED SEA RHYME",
+        "body": "In February 2024, three cables in the Red Sea were severed near Yemen, disrupting 25% of Europe-Asia traffic for months. Houthi forces denied responsibility but a sunken cargo ship's dragging anchor — itself sunk by a Houthi missile — was the proximate cause. The Hormuz cable threat sits on top of an already-degraded southern alternative.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2008-01",
+                "label": "Mediterranean cuts isolate Egypt, Gulf"
+              },
+              {
+                "year": "2013-03",
+                "label": "Divers arrested cutting SEA-ME-WE-4 off Alexandria"
+              },
+              {
+                "year": "2024-02",
+                "label": "Red Sea cables severed near Yemen",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2025",
+                "label": "Baltic cable cuts linked to shadow-fleet anchors"
+              }
+            ],
+            "label": "recent cable disruptions on the Europe-Asia spine"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T17:24:13.186Z",
+    "label": "Submarine Cables & the Hormuz Chokepoint",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-20-italy-india-modi-mattarella-critical-minerals-imec": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CORRIDOR BEHIND THE DEAL",
+        "body": "The India–Middle East–Europe Economic Corridor (IMEC), announced at the G20 in Delhi in September 2023, routes goods from western Indian ports through the UAE, Saudi Arabia, Jordan and Israel, then by sea to southern European ports. Italy's Trieste and Genoa are the natural European terminals — which is why Rome, not Berlin or Paris, has become IMEC's loudest European champion.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "AE",
+              "SA",
+              "JO",
+              "IL",
+              "IT"
+            ],
+            "label": "the IMEC route",
+            "markers": [
+              {
+                "lat": 19.076,
+                "lng": 72.8777,
+                "label": "Mumbai"
+              },
+              {
+                "lat": 24.4539,
+                "lng": 54.3773,
+                "label": "Abu Dhabi"
+              },
+              {
+                "lat": 29.5581,
+                "lng": 34.9482,
+                "label": "Eilat"
+              },
+              {
+                "lat": 32.0853,
+                "lng": 34.7818,
+                "label": "Haifa"
+              },
+              {
+                "lat": 45.6495,
+                "lng": 13.7768,
+                "label": "Trieste"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY CRITICAL MINERALS",
+        "body": "Lithium, cobalt, nickel, rare earths and graphite are the inputs of EV batteries, wind turbines and precision-guided munitions. China refines roughly 60–90% of global supply depending on the mineral. Every G7 country is now hunting bilateral mineral deals to break that single-supplier exposure — Italy and India are simply joining a queue.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The vocabulary matters: *extraction* (mining the ore), *processing* (refining to battery-grade), and *components* (cathodes, magnets) are three distinct chokepoints. China's grip is on **processing**, not extraction — which is the harder link to replace."
+          }
+        ]
+      },
+      {
+        "heading": "ITALY'S BELT AND ROAD EXIT",
+        "body": "Italy was the only G7 country to join China's Belt and Road Initiative, signing in 2019 under the first Conte government. Meloni's coalition let the memorandum lapse in December 2023. The Italy–India strategic partnership is part of the replacement architecture — IMEC and bilateral deals filling the diplomatic space the BRI exit left.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2019-03",
+                "label": "Italy joins BRI (only G7 member)"
+              },
+              {
+                "year": "2022-10",
+                "label": "Meloni government takes office"
+              },
+              {
+                "year": "2023-09",
+                "label": "IMEC announced at G20 Delhi",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-12",
+                "label": "Italy lets BRI lapse"
+              },
+              {
+                "year": "2026-05",
+                "label": "India strategic partnership"
+              }
+            ],
+            "label": "Rome's pivot"
+          }
+        ]
+      },
+      {
+        "heading": "THE €20BN TARGET IN CONTEXT",
+        "body": "India's bilateral trade with Germany is roughly €30bn and with France €15bn. Italy's €14bn base puts it third in the EU; the €20bn target by 2029 would close the Germany gap meaningfully. Defence is the swing category — India is the world's largest arms importer and Italy's Leonardo, Fincantieri, and Iveco have products that fit India's diversification away from Russian platforms.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Germany",
+                "value": "€30bn",
+                "cc": "DE",
+                "weight": 30
+              },
+              {
+                "label": "Netherlands",
+                "value": "€20bn",
+                "cc": "NL",
+                "weight": 20
+              },
+              {
+                "label": "Italy",
+                "value": "€14bn",
+                "cc": "IT",
+                "weight": 14
+              },
+              {
+                "label": "Belgium",
+                "value": "€13bn",
+                "cc": "BE",
+                "weight": 13
+              },
+              {
+                "label": "France",
+                "value": "€15bn",
+                "cc": "FR",
+                "weight": 15
+              }
+            ],
+            "label": "India's trade with EU partners (2024, €bn)"
+          }
+        ]
+      },
+      {
+        "heading": "THE GAZA SHADOW ON IMEC",
+        "body": "IMEC's Levantine leg runs through Israel and Jordan — the corridor was unveiled days before October 7, 2023. The war has frozen the most politically delicate stretch of the route. Saudi normalization with Israel, which was the diplomatic precondition for the rail link's middle segment, has receded indefinitely. Bilateral deals like Italy–India are how the corridor's endpoints stay warm while the middle waits."
+      },
+      {
+        "heading": "QUIZ",
+        "body": "Test yourself on the IMEC backstory.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Italy was unique among G7 countries in one foreign-policy move during 2019–2023. Which?",
+            "options": [
+              "Recognizing Palestinian statehood",
+              "Joining China's Belt and Road Initiative",
+              "Vetoing EU sanctions on Russia",
+              "Withdrawing from the JCPOA"
+            ],
+            "correct": 1,
+            "explanation": "Italy joined BRI in March 2019 under Conte — the only G7 member to do so — and Meloni's government let the memorandum lapse in December 2023."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T17:24:47.099Z",
+    "label": "Italy–India & IMEC",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-20-karachi-cleric-madrasah-abuse-sentencing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SCALE",
+        "body": "Pakistan has more than 35,000 registered madrasahs educating several million students, mostly from poor families who cannot afford state or private schools. Boarding is common, oversight is minimal, and the cleric-student relationship carries near-absolute authority — the structural conditions under which abuse goes unreported for decades.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Five federations — collectively the **Ittehad-e-Tanzeemat-e-Madaris** — register the vast majority of seminaries, the largest being the Deobandi **Wifaq ul Madaris al-Arabia**. The boards set curricula and award degrees; they are not safeguarding bodies."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PROSECUTIONS ARE RARE",
+        "body": "Reporting a cleric carries triple cost in Pakistan: religious authority insulates the accused, the victim's family fears social ostracism, and witnesses inside the madrasah are children dependent on the institution. Most cases that surface end in 'reconciliation' — a cash settlement and quiet transfer of the cleric to another seminary.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which 2018 case in Punjab triggered Pakistan's first dedicated child-abuse law?",
+            "options": [
+              "The Zainab Ansari case in Kasur",
+              "The Tayyaba case in Islamabad",
+              "The Mukhtar Mai case in Muzaffargarh",
+              "The Malala Yousafzai case in Swat"
+            ],
+            "correct": 0,
+            "explanation": "Seven-year-old Zainab Ansari's rape and murder in Kasur sparked nationwide protests and led to the Zainab Alert, Response and Recovery Act in 2020."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL FRAMEWORK",
+        "body": "Section 377 of the Pakistan Penal Code — inherited verbatim from British India's 1860 code — long served as the default charge, carrying up to life imprisonment. The 2016 Criminal Law amendment added specific child sexual abuse offences (Section 377A/B), and the 2020 Zainab Alert Act created a federal response authority. The Karachi 15-year sentence sits within the post-2016 regime, not the colonial holdover."
+      },
+      {
+        "heading": "THE REGISTRATION FIGHT",
+        "body": "Musharraf tried to register and audit madrasah finances after 2002 and largely failed. The 2014 Peshawar school massacre revived the push under the National Action Plan, with mixed compliance from the boards. Each attempt at oversight runs into the same wall: the boards argue regulation is a back-door secularisation, and successive governments back down rather than fight the clergy.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2002",
+                "label": "Musharraf's Madrasah Reforms Ordinance"
+              },
+              {
+                "year": "2014",
+                "label": "Peshawar school massacre"
+              },
+              {
+                "year": "2015",
+                "label": "National Action Plan: madrasah audit"
+              },
+              {
+                "year": "2018",
+                "label": "Zainab Ansari case, Kasur",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Madrasahs to come under Education Ministry"
+              },
+              {
+                "year": "2020",
+                "label": "Zainab Alert Act passed"
+              },
+              {
+                "year": "2024",
+                "label": "26th Amendment shifts registration to Industries Ministry"
+              }
+            ],
+            "label": "madrasah oversight, the long arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE KARACHI SITS",
+        "body": "Sindh — and Karachi specifically — has more registered madrasahs than any single city in the country, a legacy of Partition-era migration that placed the largest Deobandi seminaries in the port city. The provincial sessions court is the first tier for serious criminal trials; appeals run to the Sindh High Court and then the Supreme Court, a path that can take a decade.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF",
+              "IN",
+              "IR"
+            ],
+            "label": "the Pakistani madrasah belt",
+            "markers": [
+              {
+                "lat": 24.8607,
+                "lng": 67.0011,
+                "label": "Karachi"
+              },
+              {
+                "lat": 31.1167,
+                "lng": 74.45,
+                "label": "Kasur (Zainab case)"
+              },
+              {
+                "lat": 33.6844,
+                "lng": 73.0479,
+                "label": "Islamabad"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T17:25:33.937Z",
+    "label": "Madrasah Abuse & Pakistani Prosecution",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-20-openai-stargate-township-treasurer-threats": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT STARGATE IS",
+        "body": "Stargate is a $500bn joint venture announced in January 2025 between OpenAI, Oracle, SoftBank, and MGX to build US AI datacenters at unprecedented scale. The flagship cluster in Abilene, Texas alone is sized for around 1.2 gigawatts — roughly the load of a million American homes.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The name borrows from a **1990s film franchise**; the build target is a **10-gigawatt national footprint** by 2029, larger than the entire power consumption of Switzerland."
+          }
+        ]
+      },
+      {
+        "heading": "WHY TOWNSHIPS DECIDE",
+        "body": "US land use is governed locally. A datacenter the size of a small city can be approved or blocked by a township board of five elected residents, often part-time and unpaid. There is no federal siting authority for private compute infrastructure, unlike for nuclear plants or interstate pipelines.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Who has primary legal authority to approve a hyperscale datacenter's zoning in the US?",
+            "options": [
+              "The Department of Energy",
+              "The state governor's office",
+              "The local township or county board",
+              "The Federal Energy Regulatory Commission"
+            ],
+            "correct": 2,
+            "explanation": "Zoning is a municipal power in the US — even multi-billion-dollar datacenters clear the same boards that approve barns and subdivisions."
+          }
+        ]
+      },
+      {
+        "heading": "THE LOAD PROBLEM",
+        "body": "A single training-scale AI datacenter draws 100–500 megawatts continuously and consumes millions of gallons of water daily for evaporative cooling. Local grids and aquifers built for farmland and suburbs cannot absorb that without upgrades residents pay for through rate cases and well-table drawdowns."
+      },
+      {
+        "heading": "THE TAR-AND-FEATHER REFERENCE",
+        "body": "Tarring and feathering was a vigilante punishment used in 18th-century America against tax collectors and loyalists during the run-up to the Revolution. Invoking it against a township treasurer reaches for a specifically anti-state, anti-tax-collector iconography — the official as foreign occupier."
+      },
+      {
+        "heading": "THE PATTERN",
+        "body": "Saline is not isolated. Meta's Newton County, Georgia build triggered well-water lawsuits; a Chesterton, Indiana datacenter referendum unseated incumbents in 2024; Loudoun County, Virginia — \"data center alley\" — passed moratoriums after years of waving projects through. Local opposition is now a routine variable in hyperscaler site selection.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Loudoun, VA",
+                "value": "moratorium 2024",
+                "cc": "US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Newton, GA",
+                "value": "water lawsuit",
+                "cc": "US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Chesterton, IN",
+                "value": "board flipped",
+                "cc": "US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Saline, MI",
+                "value": "threats, resignation",
+                "cc": "US",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "datacenter pushback flashpoints"
+          }
+        ]
+      },
+      {
+        "heading": "THE TENSION",
+        "body": "Stargate is framed nationally as strategic infrastructure — the compute base that decides whether US or Chinese models lead the next decade. Locally, it is a 24/7 industrial facility that arrives with a tax abatement, a transformer yard, and a cooling-tower plume. Federal narrative and municipal experience point in opposite directions."
+      }
+    ],
+    "generatedAt": "2026-05-20T17:26:04.863Z",
+    "label": "Datacenter Siting Battles",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-20-rcp8-5-trump-ipcc-scenario-not-forecast": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT RCP8.5 ACTUALLY IS",
+        "body": "RCP8.5 is a Representative Concentration Pathway — a stress-test scenario where atmospheric forcing reaches 8.5 watts per square meter by 2100. It was designed as a high-end reference case for modelers to compare against, not a prediction of what will happen.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The number **8.5** refers to *radiative forcing* in watts per square meter — the extra energy trapped per unit area. For comparison, pre-industrial forcing was zero by definition; today's value sits near **2.7**."
+          }
+        ]
+      },
+      {
+        "heading": "THE SCENARIO FAMILY",
+        "body": "The IPCC uses four pathways spanning plausible futures, from aggressive mitigation to unchecked emissions. Each one isolates a different policy world so the physics can be compared cleanly.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "RCP2.6",
+                "value": "~1.6°C",
+                "tone": "favorable"
+              },
+              {
+                "label": "RCP4.5",
+                "value": "~2.4°C",
+                "tone": "neutral"
+              },
+              {
+                "label": "RCP6.0",
+                "value": "~2.8°C",
+                "tone": "neutral"
+              },
+              {
+                "label": "RCP8.5",
+                "value": "~4.3°C",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Representative Concentration Pathways"
+          }
+        ]
+      },
+      {
+        "heading": "WHY HIGH-END SCENARIOS EXIST",
+        "body": "Engineers don't design bridges for average wind — they design for the hundred-year storm. Climate scenarios work the same way: the high-end pathway is the load case, the thing you stress-test infrastructure and insurance models against. Calling it disproven misreads what reference scenarios are for."
+      },
+      {
+        "heading": "THE CURRENT TRAJECTORY",
+        "body": "Stated policies put the world near 2.7°C of warming by 2100; pledged but unimplemented policies bring it closer to 2.4°C. Neither is RCP8.5, but neither is the 1.5°C Paris target either. The middle pathways are where reality is tracking.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the warming target set by the 2015 Paris Agreement?",
+            "options": [
+              "Well below 2°C, pursuing 1.5°C",
+              "Below 3°C by 2100",
+              "Net zero emissions by 2030",
+              "Cap CO2 at 450 ppm"
+            ],
+            "correct": 0,
+            "explanation": "The Paris Agreement commits signatories to holding warming well below 2°C and pursuing efforts to limit it to 1.5°C above pre-industrial levels."
+          }
+        ]
+      },
+      {
+        "heading": "THE OVERSHOOT PROBLEM",
+        "body": "The newer SSP scenarios drop RCP8.5 as implausible but introduce a harder truth: staying at 1.5°C now requires temporarily exceeding it, then pulling carbon back out of the atmosphere at scale. The technology to do that at gigaton scale doesn't yet exist commercially.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is called *overshoot* — and it assumes large-scale **negative emissions** through reforestation, direct air capture, or bioenergy with carbon storage. None of these have been demonstrated at the **billions-of-tons-per-year** scale the math requires."
+          }
+        ]
+      },
+      {
+        "heading": "THE IRREVERSIBILITY THRESHOLD",
+        "body": "Several climate systems have tipping points that don't reverse on human timescales — the West Antarctic Ice Sheet, Amazon dieback, permafrost carbon release. Once crossed, they continue regardless of subsequent emissions cuts. This is why the difference between 1.5°C and 2°C matters more than the numbers suggest."
+      }
+    ],
+    "generatedAt": "2026-05-20T17:26:31.345Z",
+    "label": "RCP8.5 & Climate Scenarios",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-20-scholze-clausen-condensed-mathematics-topology": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT TOPOLOGY DOES",
+        "body": "Topology is the mathematics of continuity — what stays the same when you stretch, bend, or deform a shape without tearing it. It is the substrate beneath calculus, geometry, and most of modern physics. A coffee cup and a donut are the same topological object; a sphere and a torus are not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The field's standard joke: a topologist is someone who *can't tell their coffee cup from their donut* — both have exactly one hole."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1850s FOUNDATION",
+        "body": "Since Riemann and later Hausdorff in 1914, topology has been built on one primitive: the open set. A space is defined by declaring which of its subsets count as open, and continuity is defined as the property that preimages of open sets are open. Every undergraduate topology course starts here."
+      },
+      {
+        "heading": "WHERE IT BREAKS",
+        "body": "The open-set framework works beautifully in pure geometry but fractures at the seam between algebra and analysis. Categories like topological abelian groups fail to be abelian — basic operations like taking cokernels produce objects that escape the framework. For 70 years this was treated as a technical nuisance to work around.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical sin: the category of topological abelian groups is **not abelian** — a structural defect that forced decades of workarounds in algebraic geometry and number theory."
+          }
+        ]
+      },
+      {
+        "heading": "THE CONDENSED MOVE",
+        "body": "Scholze and Clausen replace the open set with the condensed set — roughly, a space defined by how compact probes map into it, rather than by which of its subsets are open. The reformulation lets topological and algebraic structures live in the same well-behaved category, dissolving the seam."
+      },
+      {
+        "heading": "WHO SCHOLZE IS",
+        "body": "Peter Scholze won the Fields Medal in 2018 at age 30 for inventing perfectoid spaces, which rewrote large parts of arithmetic geometry. He is widely regarded as the most influential mathematician of his generation; when he proposes rebuilding a foundation, the field pays attention.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Peter Scholze",
+                "role": "Bonn; Fields Medal 2018",
+                "years": "b. 1987",
+                "cc": "DE"
+              },
+              {
+                "name": "Dustin Clausen",
+                "role": "IHÉS; algebraic topology",
+                "years": "b. 1984",
+                "cc": "FR"
+              }
+            ],
+            "label": "the authors"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ADOPTION IS SLOW",
+        "body": "Mathematical foundations rarely get replaced — they get layered over. Cantor's set theory took 40 years to settle; category theory, introduced in 1945, is still not universal. A new foundation must offer enough proven payoff that thousands of working mathematicians choose to relearn their tools.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How long did it take for Cantor's set theory to become the accepted foundation of mathematics?",
+            "options": [
+              "About 5 years",
+              "About 15 years",
+              "About 40 years",
+              "It was accepted immediately"
+            ],
+            "correct": 2,
+            "explanation": "Cantor published in the 1870s; set theory faced fierce opposition (Kronecker, Poincaré) and was only widely adopted after Zermelo-Fraenkel axiomatization in the 1920s."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T17:26:57.635Z",
+    "label": "Condensed Mathematics",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-20-ukraine-teen-california-e-commerce-skimmer": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A SKIMMER ACTUALLY IS",
+        "body": "Modern e-commerce skimmers are not physical devices on ATMs. They are a few lines of JavaScript injected into a checkout page that quietly copy card numbers as shoppers type them, then exfiltrate to an attacker-controlled server. The shopper completes the purchase normally; nothing breaks.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technique is called **Magecart** after the Magento e-commerce platform where it was first catalogued in 2015. Today it covers any *form-jacking* attack against a payment page, regardless of platform."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE CHECKOUT PAGE IS SOFT",
+        "body": "A typical checkout loads scripts from a dozen third parties — analytics, chat widgets, fraud-scoring, A/B testing. Each one runs with full access to the page's DOM, including the card field. Compromise any one vendor and you compromise every site that embeds them."
+      },
+      {
+        "heading": "THE BUDAPEST CONVENTION",
+        "body": "The 2001 Council of Europe Convention on Cybercrime is the only binding multilateral framework for cross-border cyber investigations. It lets a US prosecutor hand digital evidence to Ukrainian counterparts under defined procedures. Russia and China never signed; Ukraine ratified in 2006, which is why Washington-to-Kyiv handoffs like this one are routine."
+      },
+      {
+        "heading": "WHY UKRAINE, SPECIFICALLY",
+        "body": "Ukrainian-speaking forums have been the center of the Russian-language carding economy since the early 2000s — CarderPlanet was founded in Odesa in 2001. Prosecutions surged after 2014 as Kyiv aligned with Western law enforcement; the FBI now has a permanent liaison office in Kyiv handling exactly this kind of referral.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "US",
+              "RU",
+              "RO",
+              "MD"
+            ],
+            "label": "the carding belt",
+            "caption": "forums and money-mule networks cluster along this corridor"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY EATS THE LOSS",
+        "body": "Under US card-network rules, the merchant — not the cardholder, not the bank — absorbs fraudulent card-not-present charges via chargebacks. This is why merchants pay for fraud-detection vendors, and why a skimmer that hits a thousand shops costs the shops, not the consumers whose data was stolen.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When stolen card data is used online, who legally bears the loss in the US?",
+            "options": [
+              "The cardholder",
+              "The issuing bank",
+              "The merchant who accepted the charge",
+              "The card network (Visa/Mastercard)"
+            ],
+            "correct": 2,
+            "explanation": "Card-not-present chargebacks flow to the merchant under network rules — the cardholder is protected by Regulation E, and the bank passes the loss downstream."
+          }
+        ]
+      },
+      {
+        "heading": "THE AGE PATTERN",
+        "body": "Carding crews skew young because the technical barrier is low and the social infrastructure — Telegram channels, Discord servers, tutorial videos — is built for teenagers. The 2017 indictment of Roman Seleznev showed the senior tier; the steady churn of teenage arrests since shows the recruitment funnel still works."
+      }
+    ],
+    "generatedAt": "2026-05-20T17:27:25.714Z",
+    "label": "Card Skimming & Cross-Border Cybercrime",
+    "category": "tech",
+    "articleCount": 1
   }
 }
