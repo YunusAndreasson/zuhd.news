@@ -200059,5 +200059,1571 @@
     "label": "China's Two-Bloc Diplomacy",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-20-ai-capex-halo-club-obsolescence": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ACCOUNTING LEVER",
+        "body": "Depreciation schedules are an assumption, not a fact. Stretching a server's useful life from 4 to 6 years lifts reported earnings without changing a dollar of cash flow — Microsoft, Google, Meta, and Amazon all extended schedules between 2020 and 2023, adding tens of billions to combined operating income.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *useful life* — and when hyperscalers move it from **4 → 6 years**, the savings flow straight to the bottom line until the hardware actually fails."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CHIPS ARE NOT RAILROADS",
+        "body": "A rail line laid in 1880 still carries freight in 2026. A GPU bought in 2023 is already a generation behind Blackwell, and two behind whatever ships in 2027. Long-lived infrastructure assets compound; rapidly-obsoleted ones depreciate against a moving frontier.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Rail track",
+                "value": "30–50 yrs",
+                "tone": "favorable",
+                "weight": 40
+              },
+              {
+                "label": "Power turbine",
+                "value": "25–40 yrs",
+                "tone": "favorable",
+                "weight": 32
+              },
+              {
+                "label": "Data center shell",
+                "value": "20–30 yrs",
+                "tone": "neutral",
+                "weight": 25
+              },
+              {
+                "label": "Server / GPU",
+                "value": "4–6 yrs",
+                "tone": "unfavorable",
+                "weight": 5
+              }
+            ],
+            "label": "useful-life assumption by asset class"
+          }
+        ]
+      },
+      {
+        "heading": "THE HALO CLUB",
+        "body": "Four companies — Microsoft, Alphabet, Meta, Amazon — account for the vast majority of frontier AI capex. Their combined 2025 capex run-rate is roughly $400–500bn, larger than the entire annual capex of the US oil & gas industry at its 2014 peak.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Microsoft",
+                "value": 105,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Alphabet",
+                "value": 95,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Meta",
+                "value": 90,
+                "tone": "neutral"
+              },
+              {
+                "label": "Amazon",
+                "value": 110,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Oracle",
+                "value": 25,
+                "tone": "favorable"
+              },
+              {
+                "label": "Other",
+                "value": 40,
+                "tone": "favorable"
+              }
+            ],
+            "label": "hyperscaler capex, 2025 est. ($bn)"
+          }
+        ]
+      },
+      {
+        "heading": "THE STRANDED-ASSET PRECEDENT",
+        "body": "The 1999–2001 telecom buildout laid 80 million miles of fiber on the assumption that internet traffic would double every 100 days. When demand grew slower, two-thirds of that fiber sat dark for a decade — written down at pennies on the dollar. The cable was fine; the discounted cash flows were not.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              24797.34,
+              25012.62,
+              24708.94,
+              24977.04,
+              25329.04,
+              25034.37,
+              24960.04,
+              24992.6,
+              24720.08,
+              25093.68,
+              25020.41,
+              24643.01,
+              24967.25,
+              24956.47,
+              24965.01,
+              24533.58,
+              24380.73,
+              24655.34,
+              24780.42,
+              24425.09,
+              24355.28,
+              23898.15,
+              24188.59,
+              24002.45,
+              24162.98,
+              23586.99,
+              23132.77,
+              22953.38,
+              23740.19,
+              24019.99,
+              24045.53,
+              24192.17,
+              24202.37,
+              24903.17,
+              25082.09,
+              25116.34,
+              25383.72,
+              25842,
+              26204.58,
+              26333,
+              26672.43,
+              26590.34,
+              26479.47,
+              26937.27,
+              26782.62,
+              27303.67,
+              27305.68,
+              27029.01,
+              27186.99,
+              27452.12,
+              27710.36,
+              27651.82,
+              28015.06,
+              28599.17,
+              28563.95,
+              29234.99,
+              29320.66,
+              29064.8,
+              29366.94,
+              29580.3,
+              29125.2,
+              28994.37,
+              28818.84
+            ],
+            "periods": [
+              "Feb 19",
+              "Feb 20",
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 18",
+              "May 19"
+            ],
+            "label": "NASDAQ-100",
+            "unit": "index",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHO BEARS THE RISK",
+        "body": "Cloud customers rent GPU-hours; the hyperscaler owns the depreciating box. If a 2024 H100 cluster becomes uncompetitive when 2027 silicon ships at 4× the performance-per-watt, the customer migrates and the hardware stays on the balance sheet. This is the inverse of the railroad model, where the asset and the demand both compound.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What fraction of the late-1990s US fiber buildout sat unused (\"dark\") through the 2000s?",
+            "options": [
+              "About 10%",
+              "About a third",
+              "Roughly two-thirds",
+              "Nearly all of it"
+            ],
+            "correct": 2,
+            "explanation": "Industry estimates put dark fiber at ~65% of installed strand-miles by 2002 — the canonical case study for capex built against extrapolated demand curves."
+          }
+        ]
+      },
+      {
+        "heading": "THE MOORE-LAW SQUEEZE",
+        "body": "Nvidia's generational cadence — Ampere 2020, Hopper 2022, Blackwell 2024, Rubin 2026 — means each cluster faces a successor with materially better economics within 24 months. The depreciation question is whether revenue per chip can outrun the price collapse of the chip itself."
+      }
+    ],
+    "sources": [
+      "FRED · NASDAQ · as of 2026-05-19"
+    ],
+    "generatedAt": "2026-05-20T12:31:30.472Z",
+    "label": "AI Capex & Depreciation",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-20-bhutanese-deported-refugees-statelessness-toll": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO THE LHOTSHAMPA ARE",
+        "body": "Nepali-speaking Hindus who migrated to southern Bhutan in the late 19th and early 20th centuries to clear malarial lowlands for cultivation. By the 1980s they were perhaps a sixth of Bhutan's population — a demographic share the Drukpa Buddhist monarchy came to read as an existential threat.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Lhotshampa* literally means **'people of the south'** in Dzongkha — a geographic label that became an ethnic one once the citizenship laws made southerners legally suspect by default."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1985 CITIZENSHIP ACT",
+        "body": "Bhutan rewrote its nationality law to require proof of residence before 1958 and adherence to Drukpa cultural norms — driglam namzha dress and Dzongkha language. A 1988 census applied the rules retroactively in the south, reclassifying tens of thousands of long-settled families as illegal immigrants overnight."
+      },
+      {
+        "heading": "THE EXPULSION",
+        "body": "Between 1990 and 1993, roughly 100,000 Lhotshampa were forced across the border into Nepal — about a sixth of Bhutan's total population. They spent nearly two decades in seven UNHCR camps in eastern Nepal while Thimphu and Kathmandu held 15 rounds of bilateral talks that produced no repatriation.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BT",
+              "NP",
+              "IN",
+              "BD"
+            ],
+            "label": "the expulsion corridor",
+            "caption": "Bhutan expelled south; Nepal hosted the camps; India controlled every road between them."
+          }
+        ]
+      },
+      {
+        "heading": "WHY INDIA MATTERS",
+        "body": "Bhutan is landlocked and bound to India by the 1949 Treaty of Friendship; Nepal sits on India's other flank. Delhi refused to let the refugees transit its territory back to Bhutan, and refused to grant them status itself. Without Indian consent, neither repatriation nor regional resettlement was ever physically possible."
+      },
+      {
+        "heading": "THE THIRD-COUNTRY SOLUTION",
+        "body": "Starting 2007, the US, Canada, Australia, and Nordic states resettled over 113,000 Lhotshampa — one of the largest UNHCR programs in history. The US took roughly 96,000. Resettlement granted refugee status and a path to citizenship, but those who never naturalized remained legally Bhutanese on paper while barred from Bhutan in practice."
+      },
+      {
+        "heading": "WHAT STATELESSNESS MEANS",
+        "body": "The 1954 UN Convention defines a stateless person as one not considered a national by any state under operation of its law. Statelessness blocks legal work, banking, property registration, marriage, and movement. Deportees returned to South Asia have no document any government will honor — and no country obligated to take them.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many people worldwide are estimated to be stateless today?",
+            "options": [
+              "About 500,000",
+              "About 4.4 million",
+              "About 15 million",
+              "About 50 million"
+            ],
+            "correct": 2,
+            "explanation": "UNHCR's mapped caseload is ~4.4M, but the agency estimates the true figure including unmapped populations — Rohingya, Bidoon, Dominican-born Haitians — is closer to 15M."
+          }
+        ]
+      },
+      {
+        "heading": "THE ROHINGYA PARALLEL",
+        "body": "Myanmar's 1982 Citizenship Law used the same instrument: a list of officially recognized 'national races' that excluded the Rohingya, retroactively stripping nationality from a population that had lived on the land for generations. The Lhotshampa case is the earlier, smaller-scale template — same legal mechanism, same regional immobility, decades before the world noticed."
+      }
+    ],
+    "generatedAt": "2026-05-20T12:31:59.305Z",
+    "label": "The Lhotshampa & Statelessness",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-20-clarity-act-crypto-money-laundering": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A STABLECOIN ACTUALLY IS",
+        "body": "A stablecoin is a token pegged 1:1 to a fiat currency, backed by reserves the issuer claims to hold in cash and short-dated Treasuries. Tether (USDT) and USD Coin (USDC) together circulate over $200bn — larger than the money supply of most countries.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The peg is a *promise*, not a mechanism — it holds only as long as redemptions are honored. **TerraUSD** broke its peg in May 2022 and erased $40bn in days; it was algorithmic, not reserve-backed, but the episode reshaped how regulators view the category."
+          }
+        ]
+      },
+      {
+        "heading": "THE BANK SECRECY ACT",
+        "body": "Passed in 1970, the BSA forces US financial institutions to file Suspicious Activity Reports and Currency Transaction Reports above $10,000. It is the spine of US anti-money-laundering enforcement and the legal hook for sanctions screening on dollar flows worldwide.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1970",
+                "label": "Bank Secrecy Act"
+              },
+              {
+                "year": "1989",
+                "label": "FATF founded"
+              },
+              {
+                "year": "2001",
+                "label": "USA PATRIOT Act extends BSA",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2013",
+                "label": "FinCEN guidance: crypto exchanges = MSBs"
+              },
+              {
+                "year": "2020",
+                "label": "AMLA modernizes beneficial ownership"
+              },
+              {
+                "year": "2025",
+                "label": "GENIUS Act stablecoin framework"
+              }
+            ],
+            "label": "the AML perimeter"
+          }
+        ]
+      },
+      {
+        "heading": "WHY EXEMPTIONS MATTER",
+        "body": "Once an asset class sits outside BSA reporting, transactions can move at scale without the SAR trail that lets Treasury reconstruct illicit flows after the fact. The reporting itself rarely stops a transaction in real time — but it builds the evidentiary record sanctions cases are built on."
+      },
+      {
+        "heading": "THE IRGC'S WORKAROUND",
+        "body": "Iran's Revolutionary Guards have routed oil revenue through front companies, hawala networks, and increasingly Tether on the Tron blockchain. Chainalysis tracked over $8bn in USDT moving through Iran-linked exchanges in 2022-2023 alone — the dollar's reach, without the dollar's enforcement.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "oil",
+                "label": "Iranian oil sales"
+              },
+              {
+                "id": "ch",
+                "label": "Chinese teapot refineries"
+              },
+              {
+                "id": "shell",
+                "label": "UAE/HK shell cos"
+              },
+              {
+                "id": "usdt",
+                "label": "USDT (Tron)"
+              },
+              {
+                "id": "irgc",
+                "label": "IRGC procurement"
+              },
+              {
+                "id": "proxy",
+                "label": "Regional proxies"
+              }
+            ],
+            "links": [
+              {
+                "source": "oil",
+                "target": "ch",
+                "value": 40
+              },
+              {
+                "source": "ch",
+                "target": "shell",
+                "value": 35
+              },
+              {
+                "source": "shell",
+                "target": "usdt",
+                "value": 25
+              },
+              {
+                "source": "usdt",
+                "target": "irgc",
+                "value": 15
+              },
+              {
+                "source": "usdt",
+                "target": "proxy",
+                "value": 10
+              }
+            ],
+            "label": "sanctioned oil revenue, stylized flow"
+          }
+        ]
+      },
+      {
+        "heading": "THE TRAVEL RULE",
+        "body": "FATF's Recommendation 16 requires financial institutions to pass sender and recipient identity with every wire above $1,000. Extending it to crypto has been the central AML fight of the last five years — exchanges complied, but self-hosted wallets and stablecoin issuers largely did not.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which jurisdiction hosts the largest share of stablecoin transaction volume linked to sanctioned entities?",
+            "options": [
+              "Russia",
+              "Iran",
+              "Venezuela",
+              "North Korea"
+            ],
+            "correct": 1,
+            "explanation": "Chainalysis and TRM Labs consistently rank Iran first — sanctions are tighter, the rial is weaker, and USDT on Tron is the path of least resistance."
+          }
+        ]
+      },
+      {
+        "heading": "THE REGULATORY DIVERGENCE",
+        "body": "The EU's MiCA framework (effective 2024) treats stablecoin issuers as regulated e-money institutions with full AML obligations. The UK is moving similarly. A US carve-out would create the largest regulatory arbitrage in global finance — issuers would migrate, dollar-pegged tokens would proliferate, and enforcement would fragment.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "EU (MiCA)",
+                "value": "Full BSA-equivalent",
+                "tone": "favorable",
+                "cc": "EU"
+              },
+              {
+                "label": "UK",
+                "value": "FCA-supervised",
+                "tone": "favorable",
+                "cc": "GB"
+              },
+              {
+                "label": "Singapore",
+                "value": "MAS-licensed",
+                "tone": "favorable",
+                "cc": "SG"
+              },
+              {
+                "label": "US (CLARITY)",
+                "value": "Exempt",
+                "tone": "unfavorable",
+                "cc": "US"
+              },
+              {
+                "label": "UAE",
+                "value": "Light-touch",
+                "tone": "neutral",
+                "cc": "AE"
+              }
+            ],
+            "label": "stablecoin AML regimes"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T12:32:34.401Z",
+    "label": "Stablecoins & the AML Perimeter",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-20-germany-patriot-turkey-deployment": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY TURKEY LACKS AIR DEFENSE",
+        "body": "Turkey holds NATO's second-largest army by personnel but has no domestically produced long-range air defense system in service. The gap traces to a 2017 decision to buy Russia's S-400 instead of US Patriots — which triggered US sanctions under CAATSA and Turkey's expulsion from the F-35 program.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The S-400s sit in storage at *Mürted air base* near Ankara, never integrated into NATO's air picture — Turkey cannot legally network a Russian radar with allied systems."
+          }
+        ]
+      },
+      {
+        "heading": "HOW PATRIOT WORKS",
+        "body": "The MIM-104 Patriot pairs a phased-array radar with hit-to-kill interceptors (PAC-3) that destroy incoming missiles by direct collision rather than blast fragmentation. A single battery covers a footprint of roughly 15-20 km against ballistic threats — small enough that defending a country requires many batteries, not one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How does a PAC-3 Patriot interceptor destroy an incoming ballistic missile?",
+            "options": [
+              "Proximity-fused blast fragmentation",
+              "Direct kinetic collision (hit-to-kill)",
+              "Electromagnetic pulse disruption",
+              "Laser-guided cluster munition"
+            ],
+            "correct": 1,
+            "explanation": "PAC-3 interceptors hit the target body-to-body at closing speeds above Mach 5; the kinetic energy alone destroys the warhead, including chemical payloads that a blast warhead might disperse."
+          }
+        ]
+      },
+      {
+        "heading": "THE THREAT GEOMETRY",
+        "body": "Southeast Turkey sits within range of Iranian medium-range ballistic missiles and short-range systems held by Iran-aligned groups in Iraq and Syria. Incirlik air base — which hosts US tactical nuclear weapons under NATO sharing — is roughly 500 km from the Iranian border.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TR",
+              "IR",
+              "IQ",
+              "SY"
+            ],
+            "label": "the southeastern flank",
+            "markers": [
+              {
+                "lat": 37.0017,
+                "lng": 35.4258,
+                "label": "Incirlik air base"
+              },
+              {
+                "lat": 37.0662,
+                "lng": 37.3833,
+                "label": "Gaziantep"
+              },
+              {
+                "lat": 35.6892,
+                "lng": 51.389,
+                "label": "Tehran"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY GERMANY DEPLOYS",
+        "body": "Germany has rotated Patriot batteries into Turkey three times since 2013 — first against Syrian Scuds, then against ISIS, now against the Iranian threat axis. Berlin keeps roughly a dozen Patriot batteries; deploying one abroad means one fewer defending German airspace, a tradeoff the Bundestag must approve.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "~60",
+                "cc": "US",
+                "weight": 60
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~24",
+                "cc": "SA",
+                "weight": 24
+              },
+              {
+                "label": "Germany",
+                "value": "~12",
+                "cc": "DE",
+                "weight": 12
+              },
+              {
+                "label": "Japan",
+                "value": "~24",
+                "cc": "JP",
+                "weight": 24
+              },
+              {
+                "label": "Poland",
+                "value": "~8",
+                "cc": "PL",
+                "weight": 8
+              },
+              {
+                "label": "Turkey",
+                "value": "0",
+                "cc": "TR",
+                "weight": 0,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Patriot batteries by operator (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE S-400 STALEMATE",
+        "body": "Reintegrating Turkey into the F-35 program — Ankara's strategic prize — requires resolving the S-400. Options floated include transferring the system to a third country, mothballing it under US monitoring, or quietly leaving it boxed. None has happened in eight years, which is why Turkey still rents air defense from allies.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2013",
+                "label": "First German Patriot rotation (anti-Scud)"
+              },
+              {
+                "year": "2017",
+                "label": "Turkey orders Russian S-400",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "S-400 delivered; Turkey expelled from F-35"
+              },
+              {
+                "year": "2020",
+                "label": "US CAATSA sanctions imposed"
+              },
+              {
+                "year": "2026-05",
+                "label": "German Patriot replaces US battery"
+              }
+            ],
+            "label": "Turkey's air defense saga"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T12:33:06.497Z",
+    "label": "Patriot & Turkey's Air Defense Gap",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-20-github-vs-code-extension-repo-exfiltration": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PRIVILEGE MODEL",
+        "body": "VS Code extensions run in the same Node.js process as the editor itself, with full filesystem access, network access, and the ability to spawn child processes. There is no sandbox, no permission prompt, no manifest of capabilities. Installing an extension is functionally equivalent to running an arbitrary binary on your machine.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Compare to a browser extension, which runs in a *sandboxed* renderer and must declare permissions in a manifest. VS Code's model is closer to **`npm install`** than to Chrome's web store — trust is implicit, not enforced."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SOURCE CODE IS THE TARGET",
+        "body": "Most developer machines hold cloned repositories with embedded git credentials, .env files with API keys, cloud CLI tokens cached on disk, and SSH keys. A single compromised laptop yields not just the code but the keys to deploy, the keys to the database, and the keys to every downstream system the developer can reach.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Git credentials",
+                "value": "~/.git-credentials",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Cloud tokens",
+                "value": "~/.aws, ~/.config/gcloud",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "SSH keys",
+                "value": "~/.ssh/id_*",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Env files",
+                "value": ".env across repos",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Browser sessions",
+                "value": "OAuth cookies",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "what's typically sitting on a dev laptop"
+          }
+        ]
+      },
+      {
+        "heading": "THE MARKETPLACE GAP",
+        "body": "The VS Code Marketplace performs automated malware scanning but no human review of extension behavior. Typosquatting (publishing an extension named close to a popular one) and account takeovers of legitimate publishers are the two dominant attack patterns. Microsoft removes malicious extensions reactively, often after thousands of installs.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which is the most common way malicious VS Code extensions reach developer machines?",
+            "options": [
+              "A zero-day in VS Code itself",
+              "Typosquatting popular extension names",
+              "Compromised Microsoft signing keys",
+              "Side-loading from untrusted ZIPs"
+            ],
+            "correct": 1,
+            "explanation": "Typosquatting and publisher account takeovers dominate. Zero-days in the editor and signing-key compromises are rare; the marketplace itself is the soft layer."
+          }
+        ]
+      },
+      {
+        "heading": "THE SHINYHUNTERS PLAYBOOK",
+        "body": "Extortion groups like ShinyHunters don't encrypt — they exfiltrate and threaten publication. Source code commands a premium because it exposes hardcoded secrets, internal architecture, and unpatched vulnerabilities. Backups don't help: the data is already gone.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The structural lesson from a decade of breaches: *exfiltration* and *encryption* are different threat models. Ransomware victims can restore from backup; extortion victims cannot un-leak."
+          }
+        ]
+      },
+      {
+        "heading": "THE STRUCTURAL FIX",
+        "body": "Hardware-backed keys (YubiKey, Secure Enclave) that never touch disk, short-lived OIDC tokens instead of long-lived PATs, and signed extension provenance attestations would each blunt this class of attack. Adoption across the developer ecosystem remains uneven — convenience still beats security at the install step."
+      }
+    ],
+    "generatedAt": "2026-05-20T12:33:38.639Z",
+    "label": "VS Code Extensions & Supply Chain",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-20-godel-incompleteness-theorems-explained": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT HILBERT WANTED",
+        "body": "In 1900, David Hilbert challenged mathematicians to put all of mathematics on a complete, consistent, finitely-axiomatized foundation. Every true statement would be provable; no contradiction would ever appear. Gödel's 1931 paper killed the program in 25 pages.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Hilbert's slogan was *Wir müssen wissen — wir werden wissen* ('We must know — we will know'). It is engraved on his tombstone in Göttingen, dated 1943 — twelve years after Gödel proved the opposite."
+          }
+        ]
+      },
+      {
+        "heading": "THE FIRST THEOREM",
+        "body": "Any consistent formal system strong enough to express basic arithmetic contains true statements it cannot prove. Gödel constructed one explicitly: a sentence G that effectively says 'this sentence is not provable in this system.' If the system proves G, it is inconsistent; if it doesn't, G is true but unprovable."
+      },
+      {
+        "heading": "THE SECOND THEOREM",
+        "body": "No such system can prove its own consistency. To know arithmetic is contradiction-free, you must step outside arithmetic into a stronger system — whose consistency then requires a stronger system still. The regress never terminates."
+      },
+      {
+        "heading": "THE PRECONDITIONS PEOPLE FORGET",
+        "body": "The theorem requires three things: the system must be **formal** (mechanically checkable proofs), **consistent** (no contradictions), and **strong enough to encode arithmetic** (specifically, to represent the natural numbers with addition and multiplication). Euclidean geometry alone fails the third condition — and is provably complete. Propositional logic is complete too.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The arithmetic threshold is surprisingly low: **Robinson arithmetic** (Q), with just seven axioms about successor, addition, and multiplication, is already strong enough for Gödel's proof to apply."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT IT DOES NOT SAY",
+        "body": "It does not say humans can see truths machines cannot (Penrose's argument is contested by most logicians). It does not say mathematics is broken — working mathematicians prove things daily. It does not apply to physics, neuroscience, AI alignment, or any system that isn't a formal arithmetic-capable theory. The rhetorical reach exceeds the technical claim by orders of magnitude.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which system is NOT subject to Gödel's incompleteness theorems?",
+            "options": [
+              "Peano arithmetic",
+              "ZFC set theory",
+              "Euclidean geometry",
+              "Robinson arithmetic"
+            ],
+            "correct": 2,
+            "explanation": "Tarski proved in 1951 that the first-order theory of Euclidean geometry is complete and decidable — it cannot encode arithmetic, so Gödel does not apply."
+          }
+        ]
+      },
+      {
+        "heading": "THE DESCENDANTS",
+        "body": "Gödel's diagonal trick — building a sentence that refers to its own provability — was the template for Turing's 1936 proof that the halting problem is undecidable, and for Tarski's theorem that arithmetical truth cannot be defined within arithmetic. The three results are the same idea wearing different clothes.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1900",
+                "label": "Hilbert's program announced"
+              },
+              {
+                "year": "1931",
+                "label": "Gödel's incompleteness theorems",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1933",
+                "label": "Tarski: truth is undefinable"
+              },
+              {
+                "year": "1936",
+                "label": "Turing: halting problem undecidable"
+              },
+              {
+                "year": "1936",
+                "label": "Church: lambda calculus, Entscheidungsproblem"
+              },
+              {
+                "year": "1963",
+                "label": "Cohen: continuum hypothesis independent of ZFC"
+              }
+            ],
+            "label": "the incompleteness lineage"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T12:34:05.956Z",
+    "label": "Gödel's Incompleteness Theorems",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-20-internet-shutdowns-journalist-workarounds": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE KILL SWITCH",
+        "body": "Most national internets route through a small number of licensed ISPs, each holding a government-issued license that conditions service on compliance. A single ministerial order to those operators — sometimes a phone call — severs a country from the global network within minutes.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **BGP withdrawal**: the country's networks stop announcing their routes to the global routing table, and packets simply have nowhere to go."
+          }
+        ]
+      },
+      {
+        "heading": "THE EGYPTIAN PRECEDENT",
+        "body": "On January 27, 2011, Egypt withdrew its BGP routes during the Tahrir uprising — the first time a country had taken itself entirely offline. The blackout lasted five days and cost an estimated $90 million, but the regime fell anyway. The lesson autocrats took was not that shutdowns fail, but that they must come earlier and last longer.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011-01",
+                "label": "Egypt's five-day blackout",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2016",
+                "label": "Access Now starts global tally"
+              },
+              {
+                "year": "2019-11",
+                "label": "Iran kills internet during fuel protests"
+              },
+              {
+                "year": "2021-02",
+                "label": "Myanmar coup, rolling blackouts"
+              },
+              {
+                "year": "2023-04",
+                "label": "Sudan civil war, near-total blackout"
+              },
+              {
+                "year": "2024",
+                "label": "283 shutdowns — annual record"
+              },
+              {
+                "year": "2025",
+                "label": "Iran's wartime blackout"
+              }
+            ],
+            "label": "shutdowns as crisis tool"
+          }
+        ]
+      },
+      {
+        "heading": "WHO PULLS THE SWITCH MOST",
+        "body": "India leads the world in shutdowns by a wide margin, most concentrated in Jammu & Kashmir and during farmer protests. Pakistan, Myanmar, Iran, and Ethiopia round out the top five. The pattern is democracies and autocracies converging on the same instrument — exam cheating, protests, communal violence, elections.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Internet shutdowns, 2024",
+            "peers": [
+              {
+                "value": 84,
+                "cc": "IN"
+              },
+              {
+                "value": 21,
+                "cc": "PK"
+              },
+              {
+                "value": 15,
+                "cc": "MM"
+              },
+              {
+                "value": 11,
+                "cc": "IR"
+              },
+              {
+                "value": 7,
+                "cc": "ET"
+              },
+              {
+                "value": 6,
+                "cc": "RU"
+              },
+              {
+                "value": 5,
+                "cc": "BD"
+              }
+            ],
+            "subjectCc": "IR",
+            "unit": "incidents"
+          }
+        ]
+      },
+      {
+        "heading": "THE WORKAROUNDS",
+        "body": "Satellite phones (Thuraya, Iridium) bypass terrestrial networks entirely but are illegal to possess in Iran, Cuba, North Korea, and several other shutdown-prone states. Starlink terminals smuggled across borders worked in Iran's 2022 protests until the regime began geolocating the uplinks. Mesh networks like Bridgefy fail above a few city blocks.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The cat-and-mouse term of art is *circumvention* — and every successful tool eventually becomes the next thing the censor blocks. Tor, VPNs, Psiphon, Snowflake — each had its moment before pattern-matching caught up."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THERE IS NO PENALTY",
+        "body": "The ITU, the UN agency that governs telecoms, treats network sovereignty as absolute — a state can do what it wants inside its borders. No binding international instrument prohibits shutdowns; UN Human Rights Council resolutions condemning them are non-binding and routinely ignored. The economic cost (Top10VPN estimates $7.7 billion globally in 2024) falls on citizens and businesses, not on the officials who order the cut.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country has imposed the most internet shutdowns since Access Now began tracking in 2016?",
+            "options": [
+              "Iran",
+              "China",
+              "India",
+              "Myanmar"
+            ],
+            "correct": 2,
+            "explanation": "India accounts for over half of all documented shutdowns globally — most in Jammu & Kashmir, where an 18-month blackout from 2019-2021 was the longest in any democracy."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T12:34:39.909Z",
+    "label": "Internet Shutdowns as Governance",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-20-israeli-strikes-iran-steel-industry-osint": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY ISFAHAN",
+        "body": "Isfahan is Iran's industrial heart — Mobarakeh Steel alone produces over half the country's steel and sits 65km south of the city. The same metro area hosts the Natanz enrichment satellite facilities and the Isfahan Nuclear Technology Center, which is why strikes here are never read as purely economic.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "IQ",
+              "SA",
+              "AE",
+              "IL"
+            ],
+            "label": "the Isfahan industrial cluster",
+            "markers": [
+              {
+                "lat": 32.0668,
+                "lng": 51.5066,
+                "label": "Mobarakeh Steel"
+              },
+              {
+                "lat": 32.6539,
+                "lng": 51.666,
+                "label": "Isfahan"
+              },
+              {
+                "lat": 33.7248,
+                "lng": 51.7263,
+                "label": "Natanz enrichment"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DUAL-USE PROBLEM",
+        "body": "Under the Geneva Conventions' Additional Protocol I, a civilian object becomes a lawful military target only when its nature, location, purpose, or use makes an effective contribution to military action. Steel mills produce rebar and rolled coil for construction — but the same plant rolls armor plate and shell casings. The legal fight is always about which output dominated."
+      },
+      {
+        "heading": "THE PROPORTIONALITY TEST",
+        "body": "Even a lawful target cannot be struck if the expected civilian harm — jobs lost, downstream economic collapse, services degraded — is excessive relative to the concrete military advantage. The Rutgers professor's point is the protocol's actual language: revenue is not advantage, and a sector employing 1.2 million workers raises the proportionality bar steeply.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction has a name: **war-sustaining** versus **war-fighting** targets. The US has long argued the former is fair game; most other states, and the ICRC, hold that only direct war-fighting contribution justifies attack."
+          }
+        ]
+      },
+      {
+        "heading": "IRAN'S STEEL FOOTPRINT",
+        "body": "Iran is the world's tenth-largest steel producer despite a decade of sanctions — a deliberate import-substitution achievement built since the 1980s war with Iraq. Output funds the state, employs the bazaar's industrial base, and gives the regime a domestic constituency that is harder to disentangle from the security apparatus than oil revenue.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "China",
+                "value": 1000,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": 140
+              },
+              {
+                "label": "Japan",
+                "value": 84
+              },
+              {
+                "label": "USA",
+                "value": 79
+              },
+              {
+                "label": "Russia",
+                "value": 71
+              },
+              {
+                "label": "South Korea",
+                "value": 64
+              },
+              {
+                "label": "Germany",
+                "value": 37
+              },
+              {
+                "label": "Turkey",
+                "value": 36
+              },
+              {
+                "label": "Brazil",
+                "value": 32
+              },
+              {
+                "label": "Iran",
+                "value": 30,
+                "tone": "favorable"
+              }
+            ],
+            "label": "world crude steel production, 2024 (mn tonnes, approx)"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Industrial bombing has a long pedigree: the Combined Bomber Offensive's 1943 Schweinfurt raids targeted German ball-bearing plants on the theory that one chokepoint input could halt the whole war economy. Postwar surveys found the strategy mostly failed — German production dispersed and recovered within months. The lesson planners keep relearning: industrial bases are more resilient than they look from the air."
+      },
+      {
+        "heading": "ESCALATION WITHOUT A CEASEFIRE",
+        "body": "Striking petrochemicals after steel signals a campaign moving down the economic spine rather than discrete deterrent action. Without a ceasefire architecture — backchannel, third-party mediator, or face-saving exit — each strike narrows the off-ramp for both sides.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under Additional Protocol I, what makes a civilian factory a lawful military target?",
+            "options": [
+              "Generating revenue that funds the state",
+              "Making an effective contribution to military action",
+              "Being state-owned rather than private",
+              "Employing military-aged men"
+            ],
+            "correct": 1,
+            "explanation": "The protocol's test is effective contribution to military action — funding the government generally is not enough; the link must be to war-fighting, not war-sustaining activity."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T12:35:16.014Z",
+    "label": "Steel, Dual-Use & the Laws of War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-20-modi-toffee-meloni-parle-stock-rally-mistake": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RECURRING MISTAKE",
+        "body": "Traders mis-pricing one company on news about a similarly-named one is a documented pattern, not a freak event. The classic case: in 2013, Tweeter Home Entertainment (ticker TWTRQ), a bankrupt stereo retailer, surged 1,800% on the day Twitter filed to go public — months before Twitter even traded.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Tweeter (TWTRQ)",
+                "value": "+1,800%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Zoom Tech (ZOOM)",
+                "value": "+900%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Signal Advance",
+                "value": "+5,100%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Nikola (truck)",
+                "value": "+30%",
+                "tone": "neutral"
+              }
+            ],
+            "label": "famous ticker-confusion rallies"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PRIVATE BEATS LISTED",
+        "body": "Parle Products — maker of Parle-G, the world's best-selling biscuit by volume — has stayed family-owned since 1929. Going public means quarterly disclosure, activist shareholders, and short-term earnings pressure; many of India's most enduring consumer brands (Amul, Haldiram's, Nirma in its prime) deliberately avoided listing.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Parle-G sells roughly **a billion packets a month** in India, yet the family has turned down public offerings for nearly a century. *Permanent capital* — the founder's own balance sheet — buys patience the public market punishes."
+          }
+        ]
+      },
+      {
+        "heading": "THE RETAIL SURGE",
+        "body": "India added over 100 million new demat (brokerage) accounts between 2020 and 2024 — more than the entire population of most countries. The flood of first-time retail traders, often executing on mobile apps with one-tap order entry, has made name-collision rallies far more frequent on the NSE and BSE than a decade ago."
+      },
+      {
+        "heading": "DILIGENCE IN ONE FIELD",
+        "body": "Every brokerage order ticket shows the ISIN — a 12-character global identifier unique to each security. Parle Industries' ISIN begins INE; an actual Parle Products listing would have a different INE code entirely. The information needed to avoid the mistake is on the same screen as the buy button.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which identifier uniquely distinguishes two similarly-named listed securities globally?",
+            "options": [
+              "Ticker symbol",
+              "ISIN (International Securities Identification Number)",
+              "Company registered name",
+              "Stock exchange listing code"
+            ],
+            "correct": 1,
+            "explanation": "Tickers and names can collide or be reused across exchanges; ISIN is the 12-character globally unique identifier assigned per security."
+          }
+        ]
+      },
+      {
+        "heading": "THE DIPLOMATIC GIFT",
+        "body": "Parle-G as a state gift is itself a signal — the biscuit is a symbol of mass-market India, not luxury craft. Modi's choice fits a pattern: leaders increasingly use everyday consumer goods (Putin's honey, Xi's tea, Erdogan's baklava) as soft-power vehicles, signaling identity through the ordinary rather than the ornate."
+      }
+    ],
+    "generatedAt": "2026-05-20T12:35:45.806Z",
+    "label": "Ticker Confusion & Name Collisions",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-20-prabowo-indonesia-tech-track-corruptors-assets": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COMMISSION THAT WAS",
+        "body": "The Komisi Pemberantasan Korupsi (KPK), founded in 2002 after Suharto's fall, was once the most feared anti-graft body in Southeast Asia. It could investigate, wiretap, and prosecute independently — bypassing a police and prosecutor's office that were themselves frequent targets.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Indonesians simply call it the **KPK**. At its peak it ran a 100% conviction rate — every case it brought, it won."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2019 GUTTING",
+        "body": "A revised KPK law, passed in days over mass student protests, placed the commission under an executive supervisory board, restricted wiretaps to board approval, and stripped its independent prosecutorial autonomy. Conviction rates and high-profile arrests collapsed within two years.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2002",
+                "label": "KPK founded post-Suharto",
+                "emphasis": "start"
+              },
+              {
+                "year": "2009",
+                "label": "\"Gecko vs Crocodile\" — police push back"
+              },
+              {
+                "year": "2015",
+                "label": "Investigators criminalized by police"
+              },
+              {
+                "year": "2019",
+                "label": "Revision law guts independence",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Prabowo elected"
+              }
+            ],
+            "label": "the KPK arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ASSET TRACKING IS THE SOFT PROMISE",
+        "body": "Tracking hidden wealth is the part of anti-graft work that does not require prosecutorial power — financial intelligence units already do it. The hard part, indicting a sitting minister or general, still requires the mandate the 2019 law removed. A tech pledge sidesteps the structural question.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In Indonesian political shorthand, the missing piece is *penuntutan* — the power to prosecute. Without it, investigators build files that prosecutors elsewhere may or may not act on."
+          }
+        ]
+      },
+      {
+        "heading": "THE OLIGARCHIC SUBSTRATE",
+        "body": "Indonesia's post-1998 democracy preserved the business empires of the Suharto era largely intact. A handful of conglomerates — many tied to families that prospered under the New Order — remain entwined with party financing, mining concessions, and palm oil licensing. Anti-corruption work in Indonesia is never abstract; it touches the people who fund the politics."
+      },
+      {
+        "heading": "PRABOWO'S OWN POSITION",
+        "body": "Prabowo is Suharto's former son-in-law and a Kopassus commander dismissed in 1998 over human-rights allegations he denies. His coalition includes parties whose figures the pre-2019 KPK actively pursued. A genuine restoration of KPK power would cut against the political base that elected him.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Prabowo Subianto",
+                "role": "President",
+                "years": "2024–",
+                "cc": "ID"
+              },
+              {
+                "name": "Gibran Rakabuming",
+                "role": "VP, Jokowi's son",
+                "years": "2024–",
+                "cc": "ID"
+              },
+              {
+                "name": "Setyo Budiyanto",
+                "role": "KPK chair",
+                "years": "2024–",
+                "cc": "ID"
+              }
+            ],
+            "label": "who sits where"
+          }
+        ]
+      },
+      {
+        "heading": "THE REGIONAL PEER GROUP",
+        "body": "Corruption perception across Southeast Asia tracks closely with the independence of investigative bodies. Singapore's CPIB and Hong Kong's ICAC — both with full prosecutorial autonomy — anchor the clean end; jurisdictions where graft bodies answer to the executive cluster near the bottom.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Singapore",
+                "value": "84",
+                "cc": "SG",
+                "weight": 84,
+                "tone": "favorable"
+              },
+              {
+                "label": "Malaysia",
+                "value": "50",
+                "cc": "MY",
+                "weight": 50,
+                "tone": "neutral"
+              },
+              {
+                "label": "Vietnam",
+                "value": "40",
+                "cc": "VN",
+                "weight": 40,
+                "tone": "neutral"
+              },
+              {
+                "label": "Indonesia",
+                "value": "37",
+                "cc": "ID",
+                "weight": 37,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Thailand",
+                "value": "34",
+                "cc": "TH",
+                "weight": 34,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Philippines",
+                "value": "33",
+                "cc": "PH",
+                "weight": 33,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Corruption Perceptions Index 2024 (higher = cleaner)"
+          },
+          {
+            "type": "quiz",
+            "question": "What did Indonesia's 2019 KPK revision law primarily change?",
+            "options": [
+              "Abolished the commission entirely",
+              "Placed it under executive oversight and curtailed independent wiretaps and prosecution",
+              "Merged it with the national police",
+              "Expanded its mandate to private-sector graft"
+            ],
+            "correct": 1,
+            "explanation": "The 2019 revision kept the KPK alive in name but stripped the operational independence — wiretaps, investigators' civil-servant status, and autonomous prosecution — that made it effective."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T12:36:23.803Z",
+    "label": "KPK & Indonesia's Graft Architecture",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-20-retinal-ai-multi-disease-screening-nature-medicine": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE RETINA",
+        "body": "The retina is the only place in the body where blood vessels can be observed directly, without cutting. A standard fundus camera captures arterioles and venules at micron resolution through the natural lens of the pupil.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Ophthalmologists call it the *fundus* — Latin for **bottom** — the back wall of the eye where light lands. It is embryologically an outgrowth of the brain, which is why neurological disease shows up there first."
+          }
+        ]
+      },
+      {
+        "heading": "THE MICROVASCULAR HYPOTHESIS",
+        "body": "Diabetes, hypertension, and chronic kidney disease all damage small blood vessels before they damage organs. The retina shows that damage years before symptoms — narrowed arterioles, leaking capillaries, micro-aneurysms — because its vessels are the smallest the body has."
+      },
+      {
+        "heading": "WHY AI BEAT THE OPHTHALMOLOGISTS",
+        "body": "Human graders trained for decades to spot diabetic retinopathy lesions. Neural networks trained on millions of paired retina-plus-outcome images learned to see signals no clinician was told to look for — age, sex, smoking status, even five-year cardiovascular risk — from pixels alone."
+      },
+      {
+        "heading": "THE SCREENING ECONOMICS",
+        "body": "A blood draw needs a phlebotomist, a centrifuge, a cold chain, and a lab. A fundus photo needs a camera and a power outlet. For the roughly 2 billion people who live more than an hour from a clinical lab, the difference is whether screening exists at all.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Blood panel",
+                "value": "lab + cold chain",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Retinal scan",
+                "value": "camera + power",
+                "tone": "favorable"
+              },
+              {
+                "label": "Biopsy",
+                "value": "surgeon + theatre",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "what each screen requires"
+          }
+        ]
+      },
+      {
+        "heading": "THE GROUND-TRUTH PROBLEM",
+        "body": "A model is only as good as the labels it trained on. Most retinal datasets come from European and East Asian clinics; African and South Asian eyes are underrepresented. A model that performs at 95% accuracy in London can collapse to coin-flip performance in Lagos if the training distribution didn't include those retinas."
+      },
+      {
+        "heading": "THE REGULATORY GAP",
+        "body": "The FDA approved the first autonomous diagnostic AI — IDx-DR, for diabetic retinopathy — in 2018. Seven years on, no autonomous AI is approved to diagnose conditions outside the eye from a retinal image. Real-world validation, not benchmark accuracy, is what regulators still want.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was the first autonomous AI diagnostic device the FDA approved?",
+            "options": [
+              "A retinal scanner for diabetic retinopathy",
+              "A skin-lesion classifier for melanoma",
+              "A chest X-ray reader for tuberculosis",
+              "An ECG interpreter for atrial fibrillation"
+            ],
+            "correct": 0,
+            "explanation": "IDx-DR, cleared in 2018, was the first AI cleared to make a diagnostic call without physician review — and it read retinal photos."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T12:36:48.660Z",
+    "label": "The Eye as Systemic Window",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-20-uae-opec-exit-ai-infrastructure-bet": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT OPEC ACTUALLY DOES",
+        "body": "OPEC is a production cartel: members agree to quotas that withhold barrels from the market to support prices. The cost of membership is leaving oil in the ground; the benefit is a higher price on what you do sell.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The arithmetic: a member accepts a lower **quota** in exchange for a higher **price per barrel**. Leaving means more volume at whatever price the cartel can still hold without you."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHEATING PROBLEM",
+        "body": "Every cartel faces the same incentive: each member wants others to cut while it pumps freely. OPEC has expelled, suspended, or watched members walk repeatedly — Ecuador (twice), Indonesia (twice), Qatar in 2019, Angola in 2024. Exits are the rule, not the exception.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2016",
+                "label": "Indonesia suspended (again)"
+              },
+              {
+                "year": "2019",
+                "label": "Qatar exits for LNG focus"
+              },
+              {
+                "year": "2020",
+                "label": "Ecuador exits"
+              },
+              {
+                "year": "2024",
+                "label": "Angola exits over quota dispute",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "recent OPEC departures"
+          }
+        ]
+      },
+      {
+        "heading": "WHY GAS IS THE REAL STORY",
+        "body": "Crude oil wells produce associated natural gas as a byproduct. Under OPEC quotas, that gas is constrained too — you cannot pump the oil to get it. Unleashing oil output unleashes a flood of cheap gas with nowhere profitable to ship: perfect feedstock for stranded-power applications like data centers."
+      },
+      {
+        "heading": "THE COMPUTE-AS-SOVEREIGN-ASSET THESIS",
+        "body": "The UAE has spent a decade positioning compute alongside oil and sovereign wealth as a third pillar. G42, the Abu Dhabi AI conglomerate, took a $1.5B Microsoft investment in 2024 and signed deals with Nvidia, OpenAI, and Cerebras. The Stargate UAE project announced 2025 targets gigawatt-scale capacity — among the largest planned outside the US.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "UAE",
+                "value": "~5 GW planned",
+                "cc": "AE",
+                "tone": "favorable",
+                "weight": 5
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~2 GW (HUMAIN)",
+                "cc": "SA",
+                "weight": 2
+              },
+              {
+                "label": "Qatar",
+                "value": "sub-GW",
+                "cc": "QA",
+                "weight": 0.5
+              },
+              {
+                "label": "Kuwait",
+                "value": "none announced",
+                "cc": "KW",
+                "weight": 0.1
+              }
+            ],
+            "label": "announced sovereign AI compute commitments"
+          }
+        ]
+      },
+      {
+        "heading": "THE ENERGY ARBITRAGE",
+        "body": "A modern AI training cluster consumes 100-500 MW continuously — comparable to a small city. Whoever owns the cheapest stranded power wins the build-out. Gulf states with associated gas, Iceland with geothermal, Quebec with hydro, and Texas with shale gas are the four global zones where the math actually works.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AE",
+              "SA",
+              "QA",
+              "OM",
+              "KW",
+              "BH"
+            ],
+            "label": "GCC: oil quotas, gas surplus",
+            "markers": [
+              {
+                "lat": 24.4539,
+                "lng": 54.3773,
+                "label": "Abu Dhabi (G42, Stargate UAE)"
+              },
+              {
+                "lat": 24.7136,
+                "lng": 46.6753,
+                "label": "Riyadh (HUMAIN)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE UAE GIVES UP",
+        "body": "OPEC discipline is the only mechanism preventing a price war among low-cost Gulf producers. An exit signals the UAE believes its long-run revenue is better served by pumping more at lower prices today — and converting that volume into compute infrastructure — than defending the cartel's price floor for another decade.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does leaving OPEC enable a data center build-out, not just an oil revenue bump?",
+            "options": [
+              "Data centers run directly on crude oil",
+              "Lifting quotas releases associated gas, the actual power source",
+              "OPEC bans members from building data centers",
+              "Oil revenue is taxed; AI revenue is not"
+            ],
+            "correct": 1,
+            "explanation": "Crude oil pumping produces associated natural gas as a byproduct — that gas, not the oil itself, fuels the turbines powering compute clusters."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T12:37:22.242Z",
+    "label": "OPEC Quotas & the Compute Pivot",
+    "category": "tech",
+    "articleCount": 1
   }
 }
