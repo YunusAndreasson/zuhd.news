@@ -198556,5 +198556,1508 @@
     "label": "The Appropriations Power",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-20-23andme-healthex-dna-medical-records-ai-summary": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY DNA IS DIFFERENT",
+        "body": "A leaked password can be rotated; a leaked genome cannot. It also implicates relatives who never consented — a sibling shares ~50% of your sequence, a first cousin ~12.5%. One person's submission discloses a probabilistic dossier on an entire family tree.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why genetic data is treated as *familial* property in EU law but as *individual* property under most US frameworks — a gap **23andMe**'s consent forms quietly exploit."
+          }
+        ]
+      },
+      {
+        "heading": "THE GINA GAP",
+        "body": "The Genetic Information Nondiscrimination Act (2008) bars health insurers and employers from using genetic data — but explicitly excludes life insurance, disability insurance, and long-term care insurance. The three policies most sensitive to genetic risk are the three GINA does not touch.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which of these is NOT protected by GINA from using your genetic data?",
+            "options": [
+              "Health insurance pricing",
+              "Employment hiring decisions",
+              "Life insurance underwriting",
+              "Group health plan eligibility"
+            ],
+            "correct": 2,
+            "explanation": "GINA covers health insurance and employment but explicitly exempts life, disability, and long-term care insurance — the markets where genetic risk matters most."
+          }
+        ]
+      },
+      {
+        "heading": "THE BANKRUPTCY LOOPHOLE",
+        "body": "Consent given to one corporate entity does not bind a successor in bankruptcy the same way. Under Section 363 of the US Bankruptcy Code, assets — including customer data — can be sold to satisfy creditors. Courts have repeatedly allowed data transfers that violate the original privacy policy, with the FTC negotiating only partial restrictions.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2006",
+                "label": "Founded by Anne Wojcicki"
+              },
+              {
+                "year": "2013",
+                "label": "FDA halts health reports"
+              },
+              {
+                "year": "2021",
+                "label": "SPAC IPO at $3.5bn valuation"
+              },
+              {
+                "year": "2023",
+                "label": "Breach exposes 6.9m profiles",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2025",
+                "label": "Chapter 11 filing"
+              },
+              {
+                "year": "2026",
+                "label": "HealthEx fusion launches"
+              }
+            ],
+            "label": "the 23andMe arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE TOYSMART PRECEDENT",
+        "body": "When toy retailer Toysmart went bankrupt in 2000, its attempt to sell customer data triggered an FTC settlement that birthed the modern doctrine: a buyer must honor the original privacy policy or get explicit re-consent. The doctrine has been eroded steadily since — most data sales now proceed with notice rather than consent."
+      },
+      {
+        "heading": "WHY AI SUMMARIES CHANGE THE STAKES",
+        "body": "Raw genome data is unreadable to non-specialists. An AI-generated health narrative converts the same data into actionable predictions — disease risk percentages, drug response, ancestry inference — that an insurer's underwriting model or an employer's wellness program can consume directly. The interpretation layer is where genomic data becomes economically dangerous.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Email address",
+                "value": "low",
+                "tone": "favorable"
+              },
+              {
+                "label": "Browsing history",
+                "value": "medium",
+                "tone": "neutral"
+              },
+              {
+                "label": "Medical records",
+                "value": "high",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Genome + AI readout",
+                "value": "irreversible",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "sensitivity of common data categories"
+          }
+        ]
+      },
+      {
+        "heading": "THE FAMILIAL DRAGNET",
+        "body": "Investigators identified the Golden State Killer in 2018 by uploading crime-scene DNA to GEDmatch and finding distant cousins. Roughly 60% of Americans of European descent can already be identified through a third-cousin match in existing databases, even if they never submitted DNA themselves. The threshold for universal identifiability is a database covering ~2% of a population."
+      }
+    ],
+    "generatedAt": "2026-05-20T04:22:15.528Z",
+    "label": "Genomic Data & Bankruptcy",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-20-ai-attorney-fabricated-citations-dating-lawsuit": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HALLUCINATION MECHANISM",
+        "body": "Large language models predict plausible next tokens; they do not retrieve from a database of real cases. A fabricated citation like 'Smith v. Jones, 412 F.3d 891' looks correct because the model learned the SHAPE of citations, not their content. The format is real; the case is not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why LLM fabrications cluster in **structured formats** — case citations, DOIs, ISBNs, statute numbers. The more rigid the template, the more confidently the model fills it with invented specifics."
+          }
+        ]
+      },
+      {
+        "heading": "RULE 11",
+        "body": "Federal Rule of Civil Procedure 11 requires that every filing be signed by an attorney certifying that claims are 'warranted by existing law' after 'reasonable inquiry.' Citing a case you never read — AI-generated or not — has been sanctionable since 1983. The AI era did not create the duty; it created a faster way to violate it."
+      },
+      {
+        "heading": "THE MATA PRECEDENT",
+        "body": "In Mata v. Avianca (SDNY, 2023), two attorneys submitted a brief with six fabricated cases generated by ChatGPT, including invented quotations and fake docket numbers. Judge Castel fined them $5,000 and required notification of every judge falsely cited. It became the canonical warning, cited in nearly every subsequent AI-hallucination sanction.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Six of the submitted cases appear to be bogus judicial decisions with bogus quotes and bogus internal citations.",
+            "speaker": "Judge P. Kevin Castel, Mata v. Avianca order",
+            "year": "2023"
+          }
+        ]
+      },
+      {
+        "heading": "WHY APPELLATE IS WORSE",
+        "body": "Trial courts have discovery and live witnesses; errors surface. Appellate courts decide purely on the written record and cited precedent. A fake citation in an appeal brief can shape the legal reasoning a panel applies — and appellate opinions become precedent themselves, meaning a hallucination uncaught at this level can propagate into future case law.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes a fabricated citation in an appellate brief especially dangerous?",
+            "options": [
+              "Appellate judges rarely read briefs in full",
+              "Appellate decisions become binding precedent that future courts cite",
+              "Appellate courts cannot impose sanctions",
+              "Appellate filings are not public record"
+            ],
+            "correct": 1,
+            "explanation": "Trial errors stay in one case; appellate opinions bind every lower court in the circuit, so a hallucination that influences the opinion can poison future case law."
+          }
+        ]
+      },
+      {
+        "heading": "THE VERIFICATION GAP",
+        "body": "Westlaw and LexisNexis charge per-search fees that solo practitioners avoid; free AI tools fill the gap. The result: the lawyers most likely to use unverified AI output are those serving clients least able to afford a second opinion. The technology lowers the cost of producing a brief faster than it lowers the cost of checking one."
+      }
+    ],
+    "generatedAt": "2026-05-20T04:22:42.639Z",
+    "label": "AI Hallucinations in Court",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-20-chile-atacama-lithium-race-water-indigenous": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRIANGLE",
+        "body": "Roughly half the world's identified lithium sits in the salt flats where Chile, Bolivia, and Argentina meet. The Salar de Atacama is the densest, driest, and most accessible piece — and the one already at industrial scale.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CL",
+              "BO",
+              "AR"
+            ],
+            "label": "the lithium triangle",
+            "markers": [
+              {
+                "lat": -23.5,
+                "lng": -68.2,
+                "label": "Salar de Atacama"
+              },
+              {
+                "lat": -20.13,
+                "lng": -67.62,
+                "label": "Salar de Uyuni"
+              },
+              {
+                "lat": -23.62,
+                "lng": -66.7,
+                "label": "Salar del Hombre Muerto"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "BRINE VS HARD ROCK",
+        "body": "Chile and Argentina pump lithium-rich brine from beneath salt flats into evaporation ponds — cheap but slow, taking 12–18 months per batch. Australia mines spodumene rock — faster, capital-intensive, energy-hungry. The two methods set the floor and ceiling of global supply.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The brine method consumes roughly *500,000 litres of water per tonne* of lithium carbonate produced — in one of the driest deserts on Earth."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRODUCERS",
+        "body": "Australia leads on volume from hard-rock mines; Chile leads on reserves and runs second on output. China dominates the next step — refining — regardless of where the rock or brine was extracted.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Australia",
+                "value": 86
+              },
+              {
+                "label": "Chile",
+                "value": 44
+              },
+              {
+                "label": "China",
+                "value": 33
+              },
+              {
+                "label": "Argentina",
+                "value": 9.6
+              },
+              {
+                "label": "Brazil",
+                "value": 4.9
+              },
+              {
+                "label": "Zimbabwe",
+                "value": 3.4
+              }
+            ],
+            "label": "lithium production share, 2024 (mn tonnes LCE-equiv.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2023 PIVOT",
+        "body": "Boric's government announced a partial-nationalization model in April 2023: future lithium concessions would require public-private partnerships with state miner Codelco or SQM holding majority stakes. Kast's reversal undoes that framework before most of the joint ventures had even been signed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which state-owned company was tapped to lead Chile's 2023 lithium nationalization?",
+            "options": [
+              "Codelco, the copper miner",
+              "Petrobras",
+              "YPF",
+              "ENAP, the oil company"
+            ],
+            "correct": 0,
+            "explanation": "Codelco, the world's largest copper producer, was assigned the lithium role despite having no prior lithium operations — a bet on institutional capacity over sector expertise."
+          }
+        ]
+      },
+      {
+        "heading": "THE WATER QUESTION",
+        "body": "The Atacama is the driest non-polar desert on Earth. Lithium brine extraction draws from the same aquifers that feed Lickanantay (Atacameño) communities and the lagoons supporting Andean flamingo breeding. Hydrologists disagree on whether brine and freshwater aquifers are connected — the dispute that has stalled environmental approvals for a decade."
+      },
+      {
+        "heading": "WHO REFINES IT",
+        "body": "Extracting lithium and refining it into battery-grade lithium hydroxide are different industries. China processes the majority of global supply regardless of origin — Australian spodumene ships to Chinese refineries before becoming a cathode. Whoever owns the Chilean mine, the value chain still runs through China.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "cl",
+                "label": "Chile brine"
+              },
+              {
+                "id": "au",
+                "label": "Australia rock"
+              },
+              {
+                "id": "ar",
+                "label": "Argentina brine"
+              },
+              {
+                "id": "cn-ref",
+                "label": "China refining"
+              },
+              {
+                "id": "other-ref",
+                "label": "Other refining"
+              },
+              {
+                "id": "batt",
+                "label": "Battery cells"
+              }
+            ],
+            "links": [
+              {
+                "source": "au",
+                "target": "cn-ref",
+                "value": 75
+              },
+              {
+                "source": "au",
+                "target": "other-ref",
+                "value": 11
+              },
+              {
+                "source": "cl",
+                "target": "cn-ref",
+                "value": 25
+              },
+              {
+                "source": "cl",
+                "target": "other-ref",
+                "value": 19
+              },
+              {
+                "source": "ar",
+                "target": "cn-ref",
+                "value": 7
+              },
+              {
+                "source": "ar",
+                "target": "other-ref",
+                "value": 3
+              },
+              {
+                "source": "cn-ref",
+                "target": "batt",
+                "value": 107
+              },
+              {
+                "source": "other-ref",
+                "target": "batt",
+                "value": 33
+              }
+            ],
+            "label": "lithium value chain (illustrative shares)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T04:23:14.915Z",
+    "label": "Lithium & the Atacama",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-20-filipino-virtual-assistants-linkedin-ai-content-mill": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STACK",
+        "body": "AI drafts the post, a Filipino VA edits and schedules it, the executive's account publishes it. Each layer launders the one beneath — by the time it hits the feed, it reads as a human leader's voice.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "llm",
+                "label": "LLM draft"
+              },
+              {
+                "id": "va",
+                "label": "VA in Manila"
+              },
+              {
+                "id": "exec",
+                "label": "Executive account"
+              },
+              {
+                "id": "feed",
+                "label": "LinkedIn feed"
+              }
+            ],
+            "links": [
+              {
+                "source": "llm",
+                "target": "va",
+                "value": 40,
+                "label": "raw drafts"
+              },
+              {
+                "source": "va",
+                "target": "exec",
+                "value": 40,
+                "label": "polished posts"
+              },
+              {
+                "source": "exec",
+                "target": "feed",
+                "value": 40,
+                "label": "published"
+              }
+            ],
+            "label": "how one post reaches the feed"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE PHILIPPINES",
+        "body": "English fluency, US-aligned timezones for scheduling, and a BPO industry that has trained two generations on Western corporate idiom. The country exports roughly $35bn/yr in business-process services — VA work is the long tail of that machine.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "US copywriter",
+                "value": "$45/hr",
+                "cc": "US",
+                "weight": 45,
+                "tone": "neutral"
+              },
+              {
+                "label": "India VA",
+                "value": "$10/hr",
+                "cc": "IN",
+                "weight": 10,
+                "tone": "neutral"
+              },
+              {
+                "label": "Philippines VA",
+                "value": "$7/hr",
+                "cc": "PH",
+                "weight": 7,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Kenya VA",
+                "value": "$5/hr",
+                "cc": "KE",
+                "weight": 5,
+                "tone": "neutral"
+              }
+            ],
+            "label": "hourly wages for remote knowledge work"
+          }
+        ]
+      },
+      {
+        "heading": "THE AUTHENTICATION GAP",
+        "body": "LinkedIn verifies that an account belongs to a real person via government ID, but never that the person operating the account on a given day is the named holder. The platform's trust model assumes the account *is* the executive — a holdover from the era when typing a post took longer than delegating it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The professional network treats **identity** and **authorship** as the same field. They have not been the same thing since the first executive hired a *ghostwriter* — what changed is the **scale**: one VA can now run **40** voices at once."
+          }
+        ]
+      },
+      {
+        "heading": "THE GHOSTWRITING PRECEDENT",
+        "body": "Ghostwriting is older than print — speeches, memoirs, op-eds, CEO letters have always been written by staff. What's new is the medium pretending otherwise: LinkedIn's feed is engineered to feel like first-person thinking, and the parasocial trust that builds is what advertisers and recruiters pay for."
+      },
+      {
+        "heading": "THE ECONOMICS OF FAKE THOUGHT LEADERSHIP",
+        "body": "A LinkedIn post from a VP with 50k followers can generate inbound leads worth tens of thousands of dollars. The VA costs $7/hr; the AI costs cents per post; the executive's reputation is the asset being monetized. Margin on manufactured authority is higher than on almost any other content.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What's the upper bound on how many executive LinkedIn accounts a single VA reportedly operates?",
+            "options": [
+              "About 5",
+              "About 15",
+              "About 40",
+              "About 100"
+            ],
+            "correct": 2,
+            "explanation": "Industry reporting puts the ceiling around 40 — AI drafting collapsed the per-post time enough that one human can plausibly voice dozens of executives."
+          }
+        ]
+      },
+      {
+        "heading": "THE MOSAIC RISK",
+        "body": "Every ghostwritten post is training data. LLMs scraping LinkedIn learn that this *is* how executives think and write — flattening corporate prose toward a single AI-mediated style. The feedback loop is already running: AI writes the post, the post trains the next model, the next model writes the next post.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phenomenon has a name in linguistics: **model collapse**. When generated text re-enters the training corpus, rare phrasings and minority voices fade first; the median style gets *louder*."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T04:23:47.740Z",
+    "label": "The LinkedIn Ghost Mill",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-20-iran-ahmadinejad-regime-change-plot-nyt-report": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO AHMADINEJAD IS",
+        "body": "Mahmoud Ahmadinejad served two terms as Iran's president (2005–2013), running as a working-class populist against the clerical establishment. His holocaust denial and nuclear defiance made him the West's archetypal Iranian villain — yet by 2017 the Guardian Council barred him from running again, and he has been under intermittent house arrest since openly attacking Khamenei.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Mahmoud Ahmadinejad",
+                "role": "Former president, populist",
+                "years": "2005–2013",
+                "cc": "IR"
+              },
+              {
+                "name": "Mir-Hossein Mousavi",
+                "role": "2009 Green candidate, house arrest",
+                "years": "2011–present",
+                "cc": "IR"
+              },
+              {
+                "name": "Mehdi Karroubi",
+                "role": "Cleric reformist, house arrest",
+                "years": "2011–present",
+                "cc": "IR"
+              }
+            ],
+            "label": "Iran's outsider opposition"
+          }
+        ]
+      },
+      {
+        "heading": "NARMAK, THE SYMBOL",
+        "body": "Ahmadinejad never moved out of his modest two-story house in Narmak, the working-class east-Tehran neighborhood where he grew up. The address was the entire brand — a president who refused the presidential palace, ate with his bodyguards, and kept the same wool coat for a decade.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In Iranian political shorthand, **Narmak** signals authentic populism the way **Queens** once signaled it in American politics — a postcode that does the rhetorical work of a thousand campaign ads."
+          },
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "IL",
+              "IQ",
+              "SY",
+              "TR"
+            ],
+            "label": "the Tehran theater",
+            "markers": [
+              {
+                "lat": 35.7448,
+                "lng": 51.4961,
+                "label": "Narmak (Ahmadinejad)"
+              },
+              {
+                "lat": 35.6892,
+                "lng": 51.389,
+                "label": "Tehran"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE HOUSE ARREST TRADITION",
+        "body": "Iran rarely executes its dissident insiders — it freezes them. Mousavi and Karroubi, the 2009 Green Movement candidates, have been under house arrest since 2011 without trial. The arrangement keeps a politically inconvenient figure alive but invisible; it also keeps the option of rehabilitation open if regime calculations shift."
+      },
+      {
+        "heading": "THE MOSSADEGH PRECEDENT",
+        "body": "In 1953, the CIA and MI6 overthrew Iran's elected Prime Minister Mohammad Mossadegh after he nationalized Anglo-Iranian Oil, installing the Shah as autocrat. The blowback arrived 26 years later in the Islamic Revolution — and the operation remains the foundational grievance in every Iranian negotiation with the West.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1953",
+                "label": "CIA/MI6 oust Mossadegh",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1979",
+                "label": "Islamic Revolution"
+              },
+              {
+                "year": "1980",
+                "label": "Iran–Iraq war begins"
+              },
+              {
+                "year": "2009",
+                "label": "Green Movement crackdown"
+              },
+              {
+                "year": "2011",
+                "label": "Mousavi, Karroubi arrested"
+              },
+              {
+                "year": "2025",
+                "label": "Israel–Iran 12-day war"
+              }
+            ],
+            "label": "Iran regime-change arc"
+          },
+          {
+            "type": "quiz",
+            "question": "What triggered the 1953 CIA-MI6 coup against Mossadegh?",
+            "options": [
+              "Soviet alignment treaty",
+              "Nationalization of Anglo-Iranian Oil",
+              "Attempted abolition of the monarchy",
+              "Refusal to recognize Israel"
+            ],
+            "correct": 1,
+            "explanation": "Mossadegh nationalized the British-controlled oil company in 1951; the coup followed two years of failed sanctions and embargo."
+          }
+        ]
+      },
+      {
+        "heading": "WHY EXTERNAL INSTALLATIONS FAIL",
+        "body": "The Karzai pattern: a foreign-backed leader inherits the legitimacy of his sponsor, not the country. Once the patron leaves or weakens, the local power structure that was bypassed reasserts itself. Ahmed Chalabi in Iraq, Hamid Karzai in Afghanistan, even the Shah after 1953 — installed figures govern only as long as the installer stays."
+      },
+      {
+        "heading": "THE IRGC AS PARALLEL STATE",
+        "body": "The Islamic Revolutionary Guard Corps is not a branch of the military — it is a separate armed force answering directly to the Supreme Leader, with its own ground, naval, air, and intelligence wings, plus a business empire estimated at a fifth of Iran's economy. Any regime-change calculus that ignores the IRGC is solving the wrong equation; it is the institution that would have to be defeated, not bypassed."
+      }
+    ],
+    "generatedAt": "2026-05-20T04:24:30.675Z",
+    "label": "Regime Change & the Outsider President",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-20-pakistan-ml1-railway-cpec-displacement-resettlement": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT ML-1 ACTUALLY IS",
+        "body": "ML-1 is the 1,733 km mainline from Karachi to Peshawar — the spine of Pakistan Railways since the British built it in the 1860s as the Karachi-to-Khyber military supply route. The CPEC upgrade doubles the track, raises speeds from ~65 to 160 km/h, and is the single largest project in the entire China-Pakistan Economic Corridor.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "CN",
+              "AF",
+              "IN",
+              "IR"
+            ],
+            "label": "the CPEC spine",
+            "markers": [
+              {
+                "lat": 24.8607,
+                "lng": 67.0011,
+                "label": "Karachi (ML-1 start)"
+              },
+              {
+                "lat": 31.5204,
+                "lng": 74.3587,
+                "label": "Lahore"
+              },
+              {
+                "lat": 33.6844,
+                "lng": 73.0479,
+                "label": "Islamabad"
+              },
+              {
+                "lat": 34.0151,
+                "lng": 71.5249,
+                "label": "Peshawar (ML-1 end)"
+              },
+              {
+                "lat": 25.1264,
+                "lng": 62.3225,
+                "label": "Gwadar port"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE FINANCING SQUEEZE",
+        "body": "ML-1's price tag has been negotiated down from $8.2bn to roughly $6.7bn as Pakistan's dollar reserves collapsed and the IMF refused new sovereign guarantees on Chinese debt. Beijing now insists on commercial-rate loans rather than the concessional terms used for earlier CPEC projects — a tightening that mirrors China's posture across the Belt and Road since 2022.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Pakistan's external debt service in FY25 exceeded **$25bn** — more than its entire tax revenue net of provincial transfers. Every CPEC tranche now competes with **IMF** repayments for the same scarce dollars."
+          }
+        ]
+      },
+      {
+        "heading": "RIGHT-OF-WAY AS A LAND TOOL",
+        "body": "Pakistan Railways holds roughly 167,000 acres — the country's largest single landowner after the army. Colonial-era right-of-way statutes let it clear anything within a fixed corridor (typically 100-200 feet from the centerline) without paying market compensation, on the theory that the occupiers were never lawful tenants to begin with."
+      },
+      {
+        "heading": "WHY SLUMS SIT ON THE TRACK",
+        "body": "Karachi's katchi abadis — informal settlements — house roughly half the city's 20 million people. They cluster along rail corridors, drainage nullahs, and port-access roads because those are the only strips of land the state never formally allocated to private owners. The same legal vacuum that let families settle there is what now lets the state remove them.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Karachi's population lives in informal settlements (katchi abadis)?",
+            "options": [
+              "About 15%",
+              "About 30%",
+              "About 50%",
+              "About 75%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly half of Karachi's ~20 million residents live in katchi abadis — a legacy of partition-era migration that the state never formally absorbed into the land registry."
+          }
+        ]
+      },
+      {
+        "heading": "THE EIA GAP",
+        "body": "Pakistan's 1997 environmental law requires an Environmental Impact Assessment, including a resettlement plan, before any major infrastructure project breaks ground. CPEC projects have repeatedly been granted retroactive clearances — the Orange Line metro in Lahore was halfway built before its EIA was published. The pattern is procedural, not accidental."
+      },
+      {
+        "heading": "THE DISPLACEMENT PRECEDENT",
+        "body": "The Lyari Expressway, built 2002-2017, displaced an estimated 25,000 families in Karachi alone. Compensation averaged around PKR 50,000 per household — roughly $300 at the time — and resettlement plots in Taiser Town sat 40 km from the city with no transport, schools, or sewage for years. Most original recipients sold and returned to new informal settlements.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Lyari Expressway",
+                "value": "~25,000 families",
+                "cc": "PK",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Diamer-Bhasha dam",
+                "value": "~30,000 people",
+                "cc": "PK",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Orange Line metro",
+                "value": "~10,000 affected",
+                "cc": "PK",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "ML-1 (est.)",
+                "value": "unreleased",
+                "cc": "PK",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Pakistan infrastructure displacement, selected"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T04:25:04.649Z",
+    "label": "CPEC & the ML-1 Corridor",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-20-pakistan-sana-yousaf-tiktok-femicide-death-sentence": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL GAP",
+        "body": "Until 2016, Pakistani law allowed the family of a murder victim to legally 'forgive' the killer under qisas and diyat provisions. Since most honor killings are committed by relatives, families forgave themselves — and walked free. The 2016 Anti-Honor Killing Act removed this loophole for honor cases specifically, mandating life imprisonment regardless of forgiveness.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The relevant doctrines are **qisas** (retribution) and **diyat** (blood money) — Islamic legal categories incorporated into Pakistan's penal code in 1990, which made murder a private matter between families rather than a crime against the state."
+          }
+        ]
+      },
+      {
+        "heading": "THE SCALE",
+        "body": "Pakistan's Human Rights Commission records roughly 1,000 honor killings per year, and researchers estimate the true figure is several times higher because rural cases go unreported. The killings cluster in Punjab and Sindh but occur across all four provinces and all income brackets.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of women killed in Pakistan each year are killed by a family member or intimate partner?",
+            "options": [
+              "Roughly 20%",
+              "Roughly 50%",
+              "Roughly 80%",
+              "Roughly 95%"
+            ],
+            "correct": 2,
+            "explanation": "Pakistan's own crime statistics and HRCP reporting consistently show ~80% of female homicide victims are killed by relatives or partners — the same pattern global femicide studies find worldwide."
+          }
+        ]
+      },
+      {
+        "heading": "THE DEATH PENALTY MORATORIUM",
+        "body": "Pakistan paused executions from 2008 to 2014, then resumed them after the Peshawar school massacre. Since 2014, more than 500 people have been executed and over 4,000 sit on death row — one of the largest condemned populations in the world. Yet honor and femicide cases rarely reach the gallows; most defendants are acquitted or 'pardoned' before sentencing.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Death row population",
+            "peers": [
+              {
+                "value": 4200,
+                "cc": "PK"
+              },
+              {
+                "value": 2200,
+                "cc": "US"
+              },
+              {
+                "value": 1800,
+                "cc": "BD"
+              },
+              {
+                "value": 540,
+                "cc": "IN"
+              },
+              {
+                "value": 900,
+                "cc": "EG"
+              },
+              {
+                "value": 3400,
+                "cc": "NG"
+              }
+            ],
+            "subjectCc": "PK",
+            "unit": "prisoners"
+          }
+        ]
+      },
+      {
+        "heading": "THE APPEALS LADDER",
+        "body": "A death sentence from a trial court must be confirmed by the High Court, then survives appeal to the Supreme Court, then a mercy petition to the President. Each stage takes years. The average time from conviction to execution in Pakistan is roughly a decade; some prisoners have sat on death row for over twenty years.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2026",
+                "label": "Trial court verdict",
+                "emphasis": "start"
+              },
+              {
+                "year": "2028",
+                "label": "High Court confirmation"
+              },
+              {
+                "year": "2031",
+                "label": "Supreme Court appeal"
+              },
+              {
+                "year": "2033",
+                "label": "Presidential mercy petition"
+              },
+              {
+                "year": "2035",
+                "label": "Execution or commutation",
+                "emphasis": "end"
+              }
+            ],
+            "label": "a Pakistani death sentence, typical path"
+          }
+        ]
+      },
+      {
+        "heading": "THE TIKTOK GENERATION",
+        "body": "Roughly 65 million Pakistanis use TikTok, and a disproportionate share of its creators are young women from conservative households where public visibility itself is contested. Several have been killed in recent years — Qandeel Baloch in 2016, Hareem Shah threats, others — by relatives or rejected suitors who treat online presence as provocation.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF",
+              "IR",
+              "IN"
+            ],
+            "label": "Pakistan and its neighbors",
+            "caption": "Honor-killing legal frameworks differ sharply across the region — India prosecutes as ordinary murder; Iran retains qisas-style forgiveness."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T04:25:34.069Z",
+    "label": "Femicide & Honor Killing in Pakistan",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-20-png-hiremen-highlands-violence-economy-patronage": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WANTOK SYSTEM",
+        "body": "PNG politics runs on wantok — literally 'one talk,' the obligation to one's language group. With over 800 languages across 10 million people, no national identity overrides clan loyalty. An MP who fails to deliver to his wantok loses the seat; one who delivers via violence keeps it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The word *wantok* is Tok Pisin pidgin for **'one talk'** — kin defined by shared language, not blood. It is simultaneously a welfare system, a patronage machine, and a constraint on the modern state."
+          }
+        ]
+      },
+      {
+        "heading": "LIMITED PREFERENTIAL VOTING",
+        "body": "PNG uses LPV: voters rank three candidates. In districts with 20+ candidates, no one wins on first preferences. The arithmetic rewards candidates who can either deliver bloc votes from their wantok or intimidate rivals' supporters from showing up. Hiremen do both."
+      },
+      {
+        "heading": "THE RESOURCE CURSE, LOCAL EDITION",
+        "body": "The Highlands hold the Porgera and Ok Tedi mines and the PNG LNG project — billions in royalties flow to provincial governments and landowner companies. The cash funds patronage networks directly; mineral rents arrive in the same wallets that contract the gunmen.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PG",
+              "ID",
+              "AU",
+              "SB"
+            ],
+            "label": "PNG Highlands resource belt",
+            "markers": [
+              {
+                "lat": -5.4667,
+                "lng": 143.1333,
+                "label": "Porgera gold mine"
+              },
+              {
+                "lat": -5.2,
+                "lng": 141.2167,
+                "label": "Ok Tedi copper mine"
+              },
+              {
+                "lat": -7.95,
+                "lng": 142.7,
+                "label": "PNG LNG plant"
+              },
+              {
+                "lat": -9.4438,
+                "lng": 147.1803,
+                "label": "Port Moresby"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "FROM BOWS TO M16s",
+        "body": "Highlands tribal fighting predates the state — payback killings between clans are centuries old. What changed in the 2000s was the weapons: assault rifles leaked from the Bougainville civil war and the Indonesian border replaced bows and axes. A feud that killed three now kills thirty.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What changed Highlands tribal warfare from a low-casualty ritual to mass-killing events?",
+            "options": [
+              "The arrival of Christian missionaries",
+              "The influx of assault rifles after Bougainville and from Indonesia",
+              "Climate-driven competition for arable land",
+              "The collapse of the kiap colonial patrol system"
+            ],
+            "correct": 1,
+            "explanation": "Payback killings are ancient, but until modern automatic weapons leaked in from the 1988–98 Bougainville war and across the Indonesian border, casualties were limited by the range of bows and bush knives."
+          }
+        ]
+      },
+      {
+        "heading": "THE ABSENT STATE",
+        "body": "PNG has roughly one police officer per 1,100 citizens — about a third of the global median. Highlands provinces sit days from a sealed road. When the Royal PNG Constabulary cannot reach a valley, the wantok with the most rifles becomes the local government by default.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Papua New Guinea",
+                "value": "~90",
+                "cc": "PG",
+                "tone": "unfavorable",
+                "weight": 90
+              },
+              {
+                "label": "Indonesia",
+                "value": "~160",
+                "cc": "ID",
+                "weight": 160
+              },
+              {
+                "label": "Australia",
+                "value": "~220",
+                "cc": "AU",
+                "weight": 220
+              },
+              {
+                "label": "Philippines",
+                "value": "~210",
+                "cc": "PH",
+                "weight": 210
+              },
+              {
+                "label": "global median",
+                "value": "~300",
+                "weight": 300,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Police officers per 100,000 (selected)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY REFORM IS HARD",
+        "body": "Every PNG government since independence in 1975 has pledged to disarm the Highlands. None has. The MPs who would have to vote the budget to do it are the same patrons funding the militias — asking parliament to dismantle the system that elects it."
+      }
+    ],
+    "generatedAt": "2026-05-20T04:26:08.593Z",
+    "label": "PNG Highlands & Patronage Violence",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-20-tibet-erasure-trump-xi-summit-end-of-human-rights-leverage": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ANNEXATION",
+        "body": "The People's Liberation Army entered Tibet in 1950, a year after the PRC's founding. The 1951 Seventeen Point Agreement, signed under military pressure, formalized Beijing's sovereignty while nominally preserving the Dalai Lama's authority. That autonomy collapsed by 1959.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1950",
+                "label": "PLA enters Tibet"
+              },
+              {
+                "year": "1951",
+                "label": "Seventeen Point Agreement"
+              },
+              {
+                "year": "1959",
+                "label": "Lhasa uprising; Dalai Lama flees",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1965",
+                "label": "Tibet Autonomous Region created"
+              },
+              {
+                "year": "1989",
+                "label": "Martial law; Panchen Lama dies"
+              },
+              {
+                "year": "2008",
+                "label": "Pre-Olympics protests crushed"
+              },
+              {
+                "year": "2020",
+                "label": "Boarding-school system expanded"
+              }
+            ],
+            "label": "Tibet under Beijing"
+          }
+        ]
+      },
+      {
+        "heading": "THE DHARAMSALA EXILE",
+        "body": "The 14th Dalai Lama fled to India in 1959 after the failed Lhasa uprising. He has run a government-in-exile from Dharamsala ever since — the longest-sustained stateless administration of the modern era, funded for decades partly through the CIA and later through Western parliamentary stipends.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "IN",
+              "NP",
+              "BT"
+            ],
+            "label": "the Himalayan frontier",
+            "markers": [
+              {
+                "lat": 29.65,
+                "lng": 91.1,
+                "label": "Lhasa"
+              },
+              {
+                "lat": 32.219,
+                "lng": 76.3234,
+                "label": "Dharamsala (exile govt)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LEVERAGE TOOLKIT",
+        "body": "Congress built a stack of Tibet-specific tools across four decades: the 1992 designation as an 'occupied country' in State Department reports, the 2002 Tibetan Policy Act, the special coordinator post created under Clinton, and the 2020 Reciprocal Access Act sanctioning Chinese officials who block US diplomats from Tibet."
+      },
+      {
+        "heading": "WHY PRESIDENTS RAISED IT",
+        "body": "Tibet was the cheapest human-rights item on the agenda. Unlike Taiwan, it carried no military commitment; unlike Xinjiang (post-2017), it predated current sanctions law. Raising it signaled values without forcing a policy. Dropping it signals the opposite.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The cost of raising Tibet was a stiff press conference. The cost of dropping it is the entire **predictability** of US human-rights diplomacy — every future omission becomes negotiable."
+          }
+        ]
+      },
+      {
+        "heading": "THE SUCCESSION QUESTION",
+        "body": "The Dalai Lama is 90. Beijing claims sole authority to recognize his reincarnation via the Qing-era Golden Urn ritual; the exile community insists the choice rests with the Dalai Lama himself, who has hinted his successor may be born outside Chinese territory. The next decade will likely see two rival recognitions — one in Lhasa, one in Dharamsala.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Qing-dynasty ritual does Beijing cite to claim authority over the Dalai Lama's reincarnation?",
+            "options": [
+              "The Mandate of Heaven",
+              "The Golden Urn lottery",
+              "The Kowtow ceremony",
+              "The Tribute system"
+            ],
+            "correct": 1,
+            "explanation": "The Golden Urn, imposed by the Qianlong Emperor in 1793, draws lots from a gold vessel to select reincarnated lamas — a mechanism Beijing revived as legal basis for vetting Tibetan Buddhist succession."
+          }
+        ]
+      },
+      {
+        "heading": "THE PANCHEN PRECEDENT",
+        "body": "In 1995 the Dalai Lama recognized a 6-year-old boy, Gedhun Choekyi Nyima, as the 11th Panchen Lama — Tibetan Buddhism's second-highest figure. Chinese authorities detained him within days; he has not been seen publicly since. Beijing installed its own Panchen Lama, who now sits on the CPPCC. The same playbook is staged for the next Dalai Lama."
+      }
+    ],
+    "generatedAt": "2026-05-20T04:26:42.966Z",
+    "label": "Tibet & US Leverage",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-20-uk-ccc-adaptation-cheaper-than-climate-damages": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STERN INSIGHT",
+        "body": "The 2006 Stern Review, commissioned by the UK Treasury, was the first major government study to argue that the cost of acting on climate change is a fraction of the cost of inaction. Every subsequent adaptation economics report — including the CCC's — descends from this framing.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Stern put the cost of inaction at **5–20% of global GDP per year**, versus roughly **1%** to stabilize emissions. The ratio reframed climate from an environmental issue into a fiscal one."
+          }
+        ]
+      },
+      {
+        "heading": "WHO THE CCC IS",
+        "body": "The Climate Change Committee is a statutory independent advisor created by the 2008 Climate Change Act — the world's first legally binding national emissions framework. It sets five-year carbon budgets that Parliament must accept or reject; it cannot be ignored without a vote."
+      },
+      {
+        "heading": "MITIGATION VS ADAPTATION",
+        "body": "Mitigation reduces emissions to prevent future warming. Adaptation accepts the warming that is already locked in and hardens against it — seawalls, cooling centers, drought-resistant crops. The two budgets are separate and historically mitigation has dwarfed adaptation spending globally.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What distinguishes climate adaptation from mitigation?",
+            "options": [
+              "Adaptation cuts emissions; mitigation prepares for impacts",
+              "Adaptation prepares for warming already locked in; mitigation prevents future warming",
+              "They are synonyms used in different jurisdictions",
+              "Adaptation is private-sector; mitigation is public-sector"
+            ],
+            "correct": 1,
+            "explanation": "Mitigation addresses the cause (emissions); adaptation addresses the consequences (heat, floods, drought) that are already inevitable from past emissions."
+          }
+        ]
+      },
+      {
+        "heading": "THE THAMES BARRIER PRECEDENT",
+        "body": "The UK has done this before. The Thames Barrier, opened in 1984 after the 1953 North Sea flood killed 307 people in England, cost £534m and has closed over 220 times. Each closure averts damages that would have dwarfed the build cost — the canonical adaptation success story.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GB",
+              "NL",
+              "BE",
+              "FR",
+              "DE"
+            ],
+            "label": "North Sea flood defenses",
+            "caption": "The 1953 storm surge that triggered both projects killed 1,836 in the Netherlands.",
+            "markers": [
+              {
+                "lat": 51.4979,
+                "lng": 0.0364,
+                "label": "Thames Barrier"
+              },
+              {
+                "lat": 51.8125,
+                "lng": 4.1167,
+                "label": "Maeslantkering (NL)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DISCOUNT RATE PROBLEM",
+        "body": "Adaptation economics hinges on how heavily future damages are discounted against present spending. Stern used a near-zero discount rate (treating future generations equally); critics like William Nordhaus used 3–5%. The choice of rate, more than any physical assumption, determines whether adaptation 'pays.'"
+      },
+      {
+        "heading": "WHY MOSTLY PRIVATE",
+        "body": "The CCC's £11bn figure is overwhelmingly private capital because the assets at risk — homes, factories, data centers, farms — are privately owned. Government's role is to mandate building codes, price flood insurance correctly, and signal that beachfront property will not be bailed out. The state sets the rules; the balance sheet sits with owners.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The UK's **Flood Re** scheme, launched 2016, is a reinsurance pool that caps premiums on flood-prone homes — but is scheduled to wind down by **2039**, forcing market-rate pricing and the migration decisions that follow."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T04:27:11.656Z",
+    "label": "Climate Adaptation Economics",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-20-us-researchers-trump-science-policy-brain-drain": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE POSTWAR BARGAIN",
+        "body": "Vannevar Bush's 1945 report Science, the Endless Frontier convinced Washington that federal dollars should fund university basic research, with scientists choosing the questions. The NIH, NSF, and DARPA grew out of that compact — a deliberate inversion of the European model where research lived inside government institutes.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bargain rested on one word: ***autonomy***. Congress funds, peer review allocates, scientists choose. Break any leg and the stool falls."
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY DOES THE WORK",
+        "body": "Roughly 40% of US doctoral researchers in STEM are foreign-born, and over half of postdocs in top biomedical labs hold non-immigrant visas. The visa pipeline isn't a side input — it's the workforce.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Computer science",
+                "value": "~60%",
+                "weight": 60,
+                "tone": "neutral"
+              },
+              {
+                "label": "Engineering",
+                "value": "~57%",
+                "weight": 57,
+                "tone": "neutral"
+              },
+              {
+                "label": "Math/stats",
+                "value": "~52%",
+                "weight": 52,
+                "tone": "neutral"
+              },
+              {
+                "label": "Physical sci.",
+                "value": "~45%",
+                "weight": 45,
+                "tone": "neutral"
+              },
+              {
+                "label": "Life sciences",
+                "value": "~38%",
+                "weight": 38,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Foreign-born share of US STEM PhD workforce"
+          }
+        ]
+      },
+      {
+        "heading": "THE PREVIOUS BRAIN DRAIN — IN REVERSE",
+        "body": "In the 1930s, Nazi laws purged Jewish scientists from German universities. Einstein, Fermi, Szilard, von Neumann, Bethe, Wigner — the physicists who built the Manhattan Project — were refugees. Göttingen, then the world's mathematical capital, never recovered. Talent flows are sticky once they reverse.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1925",
+                "label": "Heisenberg formulates matrix mechanics at Göttingen"
+              },
+              {
+                "year": "1933",
+                "label": "Law for Restoration of Civil Service purges Jewish faculty",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1935",
+                "label": "Born, Franck, Courant emigrate"
+              },
+              {
+                "year": "1939",
+                "label": "Manhattan Project begins recruiting émigrés"
+              },
+              {
+                "year": "1945",
+                "label": "Trinity test — Göttingen alumni dominate the science team"
+              }
+            ],
+            "label": "how Göttingen lost its physics"
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE TALENT GOES",
+        "body": "Researchers rarely return to origin countries — they go where labs, grants, and instruments are. The EU's ERC grants, Germany's Max Planck institutes, and China's Thousand Talents successor programs have all expanded recruitment budgets since 2024.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "DE",
+              "FR",
+              "CH",
+              "NL",
+              "GB",
+              "CN",
+              "SG",
+              "JP",
+              "CA",
+              "AU"
+            ],
+            "label": "the receiving institutions",
+            "caption": "ERC, Max Planck, ETH, CAS, A*STAR, RIKEN actively recruiting US-based PIs"
+          }
+        ]
+      },
+      {
+        "heading": "WHY GRANTS ARE LOAD-BEARING",
+        "body": "An NIH R01 typically runs four to five years. A canceled or paused grant doesn't just delay a project — it terminates postdoc contracts, breaks animal colonies, and abandons longitudinal datasets that can't be restarted. The damage is non-linear in the funding cut.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of US biomedical research is funded by the NIH versus private industry?",
+            "options": [
+              "NIH funds the majority of basic biomedical research; industry dominates late-stage trials",
+              "Industry funds the majority at every stage",
+              "NIH and industry split basic research evenly",
+              "Universities self-fund most basic research from endowments"
+            ],
+            "correct": 0,
+            "explanation": "NIH funds ~60% of US basic biomedical research; industry concentrates on Phase II/III trials where IP is defensible. Cutting NIH has no private substitute."
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPOUNDING LOSS",
+        "body": "Science is a network effect: a top lab attracts top students, who become PIs who start more top labs. Once a hub loses critical mass — as Göttingen did, as the Soviet physics establishment did after 1991 — rebuilding takes generations, not budget cycles."
+      }
+    ],
+    "generatedAt": "2026-05-20T04:27:45.826Z",
+    "label": "US Science Base & Brain Drain",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-20-xi-putin-beijing-meeting-after-trump-visit": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MIDDLE KINGDOM POSTURE",
+        "body": "China's classical self-conception is zhongguo — the center to which others come. Hosting rival powers in sequence is not neutrality; it is a deliberate performance of centrality, where Beijing becomes the fixed point and Washington and Moscow the orbiting visitors.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The character **中** in *zhongguo* literally means **center** — a line through a box. The diplomatic choreography of back-to-back summits enacts the etymology."
+          }
+        ]
+      },
+      {
+        "heading": "THE NO-LIMITS PARTNERSHIP",
+        "body": "Xi and Putin declared a partnership with 'no limits' in February 2022, weeks before the Ukraine invasion. The phrase was Russian-drafted; China has since quietly qualified it. Trade has tripled to roughly $240bn, but Beijing has refused to supply lethal aid and has not recognized annexed Ukrainian territories.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1969",
+                "label": "Sino-Soviet border clashes"
+              },
+              {
+                "year": "1989",
+                "label": "Gorbachev visits Beijing, normalization"
+              },
+              {
+                "year": "2001",
+                "label": "Treaty of Good-Neighborliness"
+              },
+              {
+                "year": "2014",
+                "label": "Crimea annexation, gas pivot east"
+              },
+              {
+                "year": "2022",
+                "label": "'no limits' declaration",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "trade hits ~$240bn"
+              }
+            ],
+            "label": "the Sino-Russian axis"
+          }
+        ]
+      },
+      {
+        "heading": "THE GAS ROUTING QUESTION",
+        "body": "Power of Siberia 1 delivers Russian gas to China since 2019. Power of Siberia 2 — through Mongolia, potentially 50 bcm/year — has been negotiated for over a decade. China has refused Russia's pricing, knowing that with European markets closed, Moscow has nowhere else to sell. The buyer sets the terms.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "ru",
+                "label": "Russia"
+              },
+              {
+                "id": "eu",
+                "label": "Europe"
+              },
+              {
+                "id": "cn",
+                "label": "China"
+              },
+              {
+                "id": "tr",
+                "label": "Turkey"
+              },
+              {
+                "id": "lng",
+                "label": "LNG (global)"
+              }
+            ],
+            "links": [
+              {
+                "source": "ru",
+                "target": "eu",
+                "value": 25,
+                "label": "residual pipeline"
+              },
+              {
+                "source": "ru",
+                "target": "cn",
+                "value": 38,
+                "label": "PoS-1"
+              },
+              {
+                "source": "ru",
+                "target": "tr",
+                "value": 21,
+                "label": "TurkStream"
+              },
+              {
+                "source": "ru",
+                "target": "lng",
+                "value": 33,
+                "label": "Yamal LNG"
+              }
+            ],
+            "label": "Russian gas flows, post-2022 (bcm/yr, approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE JUNIOR PARTNER",
+        "body": "Russia's economy is roughly one-tenth of China's. In 1990 it was larger. The relationship has inverted within a single lifetime, and Moscow's elite — schooled in Soviet primacy — is still adjusting to a posture in which Beijing decides the price of Siberian gas and the yuan increasingly settles bilateral trade.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "$18.5tn",
+                "cc": "CN",
+                "weight": 18.5,
+                "tone": "favorable"
+              },
+              {
+                "label": "Russia",
+                "value": "$2.0tn",
+                "cc": "RU",
+                "weight": 2,
+                "tone": "neutral"
+              }
+            ],
+            "label": "GDP, nominal 2024 ($tn)"
+          }
+        ]
+      },
+      {
+        "heading": "THE TRIANGLE",
+        "body": "Kissinger's 1972 opening to Beijing exploited the Sino-Soviet split to isolate Moscow. The current alignment is the inverse — a Beijing-Moscow axis that Washington has not found a wedge to split. Hosting Trump and Putin in the same week signals China believes it no longer needs to choose.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was the strategic logic of Nixon and Kissinger's 1972 opening to China?",
+            "options": [
+              "Build economic ties to lift Chinese living standards",
+              "Exploit the Sino-Soviet split to pressure Moscow",
+              "Contain Maoist revolution by integrating China into trade",
+              "Secure Chinese support for ending the Vietnam War"
+            ],
+            "correct": 1,
+            "explanation": "The opening was a triangulation play — by aligning with the weaker communist power, Washington forced Moscow to negotiate from a weaker position. Today's alignment runs the other way."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T04:28:17.374Z",
+    "label": "China's Two-Bloc Diplomacy",
+    "category": "politics",
+    "articleCount": 1
   }
 }
