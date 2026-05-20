@@ -203192,5 +203192,1581 @@
     "label": "Card Skimming & Cross-Border Cybercrime",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-05-20-anthropic-spacex-colossus-1-25b-monthly-ai-compute": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NUMBER IN CONTEXT",
+        "body": "$1.25 billion monthly is $15 billion annually — larger than the entire global cloud spend of most Fortune 500 companies. A single AI lab now consumes more compute than entire industries did a decade ago.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Anthropic→SpaceX",
+                "value": "$15bn/yr",
+                "weight": 15,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Netflix R&D",
+                "value": "~$3bn/yr",
+                "weight": 3,
+                "tone": "neutral"
+              },
+              {
+                "label": "NASA science budget",
+                "value": "~$7bn/yr",
+                "weight": 7,
+                "tone": "neutral"
+              },
+              {
+                "label": "Pakistan defence budget",
+                "value": "~$10bn/yr",
+                "weight": 10,
+                "tone": "neutral"
+              }
+            ],
+            "label": "annual compute spend, rough scale"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SPACEX SELLS COMPUTE",
+        "body": "SpaceX runs one of the largest private satellite constellations on earth; Starlink ground stations and the data pipelines behind them gave it industrial-scale power, cooling, and networking expertise. The same logistics that put 7,000 satellites in orbit translate directly into running GPU campuses.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pivot mirrors what **Amazon** did in 2006: a retailer's internal infrastructure team became **AWS** because the muscle was already built. SpaceX is monetizing capability overhang."
+          }
+        ]
+      },
+      {
+        "heading": "THE 90-DAY EXIT",
+        "body": "Either side can walk in 90 days. For a contract this size, that clause is unusual — it signals neither party trusts the multi-year price of compute to stay rational. Nvidia margins, power costs, and model efficiency could each invalidate the deal's economics within a quarter.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why would a $15bn-per-year buyer accept a 90-day exit clause?",
+            "options": [
+              "Because GPU prices may collapse and they want flexibility",
+              "Because regulators require short-term contracts",
+              "Because the contract is a placeholder for an acquisition",
+              "Because compute is a commodity with no switching cost"
+            ],
+            "correct": 0,
+            "explanation": "Model efficiency gains and falling GPU prices can make today's compute deal look like overpayment within months. The exit clause prices that risk in."
+          }
+        ]
+      },
+      {
+        "heading": "THE NVIDIA CHALLENGE",
+        "body": "SpaceX joins Google (TPU), Amazon (Trainium), Meta (MTIA), and Microsoft (Maia) in building custom AI chips. Nvidia commands ~90% of the AI training market and ~75% gross margins on its top GPUs — margins that high are an open invitation for every major buyer to design around them.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Custom AI silicon programs (approx. annual capex)",
+            "peers": [
+              {
+                "value": 20,
+                "label": "Google TPU"
+              },
+              {
+                "value": 15,
+                "label": "Amazon Trainium"
+              },
+              {
+                "value": 12,
+                "label": "Meta MTIA"
+              },
+              {
+                "value": 10,
+                "label": "Microsoft Maia"
+              },
+              {
+                "value": 5,
+                "label": "SpaceX (new)"
+              },
+              {
+                "value": 3,
+                "label": "Tesla Dojo"
+              }
+            ],
+            "subjectLabel": "SpaceX (new)",
+            "unit": "$bn"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE IPO REVEALED IT",
+        "body": "Private companies disclose what they choose. An S-1 filing forces audited line items: top customers, related-party transactions, customer concentration risk. Anthropic-SpaceX was the kind of arrangement that stays invisible until securities law makes invisibility illegal.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The relevant rule is **Regulation S-K Item 101(c)** — if a single customer represents 10%+ of revenue, the issuer must name them. Concentration risk is what investors are pricing, not flattery."
+          }
+        ]
+      },
+      {
+        "heading": "THE CIRCULAR CAPITAL",
+        "body": "Anthropic raises from investors, pays SpaceX for compute, SpaceX uses revenue to build chips that compete with Nvidia, whose stock is held by the same investors funding Anthropic. AI compute economics increasingly resemble a closed loop where the same dollars circulate through three or four balance sheets.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "investors",
+                "label": "Institutional investors"
+              },
+              {
+                "id": "anthropic",
+                "label": "Anthropic"
+              },
+              {
+                "id": "spacex",
+                "label": "SpaceX compute"
+              },
+              {
+                "id": "nvidia",
+                "label": "Nvidia GPUs"
+              },
+              {
+                "id": "power",
+                "label": "Power & land"
+              }
+            ],
+            "links": [
+              {
+                "source": "investors",
+                "target": "anthropic",
+                "value": 20,
+                "label": "equity"
+              },
+              {
+                "source": "anthropic",
+                "target": "spacex",
+                "value": 15,
+                "label": "compute fees"
+              },
+              {
+                "source": "spacex",
+                "target": "nvidia",
+                "value": 8,
+                "label": "GPU purchases"
+              },
+              {
+                "source": "spacex",
+                "target": "power",
+                "value": 4,
+                "label": "utilities"
+              },
+              {
+                "source": "investors",
+                "target": "nvidia",
+                "value": 10,
+                "label": "equity"
+              }
+            ],
+            "label": "AI capital loop (illustrative)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T22:23:55.049Z",
+    "label": "AI Compute as Infrastructure",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-20-balochistan-khuzdar-by-election-ecp-impossible": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PROVINCE",
+        "body": "Balochistan is Pakistan's largest province by area — nearly 44% of the landmass — but holds under 6% of the population. It contains Gwadar port, the Reko Diq copper-gold deposit, and most of Pakistan's gas reserves, yet posts the country's lowest literacy and highest infant mortality.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IR",
+              "AF"
+            ],
+            "label": "Balochistan & its borders",
+            "markers": [
+              {
+                "lat": 27.8,
+                "lng": 66.6167,
+                "label": "Khuzdar"
+              },
+              {
+                "lat": 25.1216,
+                "lng": 62.3254,
+                "label": "Gwadar port"
+              },
+              {
+                "lat": 30.1798,
+                "lng": 66.975,
+                "label": "Quetta"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "FIVE INSURGENCIES",
+        "body": "This is the fifth Baloch insurgency since Pakistan's founding — 1948, 1958, 1962, 1973-77, and the current wave that began in 2004 after the killing of tribal leader Nawab Akbar Bugti by the Musharraf government. Each cycle has been longer and more lethal than the last.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1948",
+                "label": "Khan of Kalat accession revolt"
+              },
+              {
+                "year": "1958",
+                "label": "Nauroz Khan uprising"
+              },
+              {
+                "year": "1962",
+                "label": "Parari movement"
+              },
+              {
+                "year": "1973",
+                "label": "Bhutto-era operation"
+              },
+              {
+                "year": "2006",
+                "label": "Bugti killed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2004",
+                "label": "Current insurgency begins"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1973",
+                "to": "1977",
+                "label": "Bhutto operation",
+                "tone": "unfavorable"
+              },
+              {
+                "from": "2004",
+                "to": "2026",
+                "label": "Ongoing insurgency",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Baloch insurgencies"
+          }
+        ]
+      },
+      {
+        "heading": "THE ACCESSION DISPUTE",
+        "body": "The Khanate of Kalat — the largest Baloch princely state — declared independence on 12 August 1947, a day before Pakistan itself. After eight months of negotiation, the Pakistani army marched in and the Khan signed the instrument of accession in March 1948. Baloch nationalists treat that signature as coerced, not consensual.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The grievance is **structural, not episodic**: every insurgency cycle reopens the question of whether the 1948 accession was legitimate."
+          }
+        ]
+      },
+      {
+        "heading": "THE CPEC OVERLAY",
+        "body": "The China-Pakistan Economic Corridor terminates at Gwadar on the Makran coast. Beijing has invested over $60 billion across CPEC; Baloch separatists view it as resource extraction without consent and have repeatedly attacked Chinese engineers and convoys. Khuzdar sits on the corridor route north from Gwadar.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Pakistani province contains the Gwadar deepwater port — terminus of the China-Pakistan Economic Corridor?",
+            "options": [
+              "Sindh",
+              "Balochistan",
+              "Khyber Pakhtunkhwa",
+              "Punjab"
+            ],
+            "correct": 1,
+            "explanation": "Gwadar sits on Balochistan's Makran coast, which is why the province's insurgency directly threatens China's flagship Belt and Road project."
+          }
+        ]
+      },
+      {
+        "heading": "THE CONSTITUTIONAL TRAP",
+        "body": "Article 224 of Pakistan's Constitution requires by-elections within 60 days of a seat falling vacant. The Election Commission has no power to indefinitely postpone — only to delay for specific security reasons. A constituency that cannot vote becomes a standing admission that the state's writ does not run there."
+      }
+    ],
+    "generatedAt": "2026-05-20T22:24:22.881Z",
+    "label": "Balochistan & the Insurgency",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-20-europe-wero-payment-system-visa-mastercard-alternative": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEPENDENCY",
+        "body": "Roughly two-thirds of card payments inside the eurozone are routed through Visa and Mastercard — both US-incorporated and ultimately subject to US sanctions law. Every cappuccino bought in Lisbon with a Portuguese card on a Portuguese terminal touches a server governed by a foreign jurisdiction.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **extraterritorial reach**: a US sanctions designation can force Visa to cut off a counterparty anywhere in the world, because Visa cannot afford to lose access to the dollar clearing system."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2014 WAKE-UP",
+        "body": "After Crimea, Visa and Mastercard cut off several Russian banks within days of US Treasury designations. Moscow responded by building Mir, a domestic card scheme now mandatory for state salaries. Brussels watched and learned: a payment rail you do not control is a foreign policy lever someone else holds.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2014",
+                "label": "Russia cut off → Mir launched",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2017",
+                "label": "SEPA Instant Credit Transfer goes live"
+              },
+              {
+                "year": "2020",
+                "label": "European Payments Initiative founded"
+              },
+              {
+                "year": "2023",
+                "label": "Wero brand announced"
+              },
+              {
+                "year": "2026",
+                "label": "P2P launch, 13 countries"
+              },
+              {
+                "year": "2027",
+                "label": "In-store and e-commerce rollout"
+              }
+            ],
+            "label": "Europe's sovereign-payments arc"
+          }
+        ]
+      },
+      {
+        "heading": "HOW ACCOUNT-TO-ACCOUNT DIFFERS",
+        "body": "A card payment is a loan: the network advances funds, then settles with your bank days later, skimming interchange fees of 1–3%. Account-to-account moves money directly between bank accounts in seconds over SEPA Instant rails — no intermediary, no interchange, settlement final on the spot."
+      },
+      {
+        "heading": "THE MERCHANT MATH",
+        "body": "European merchants pay an estimated 20+ billion euros a year in card fees, most flowing to US networks and issuing banks. Account-to-account rails can clear the same transaction for fractions of a cent. The political coalition behind Wero is therefore not just banks — retail lobbies have pushed Brussels for a decade.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Brazil (Pix)",
+                "value": "~5bn tx/mo",
+                "cc": "BR",
+                "tone": "favorable"
+              },
+              {
+                "label": "India (UPI)",
+                "value": "~16bn tx/mo",
+                "cc": "IN",
+                "tone": "favorable"
+              },
+              {
+                "label": "China (Alipay/WeChat)",
+                "value": "dominant",
+                "cc": "CN",
+                "tone": "favorable"
+              },
+              {
+                "label": "Eurozone (Wero)",
+                "value": "launching",
+                "cc": "EU",
+                "tone": "neutral"
+              },
+              {
+                "label": "USA",
+                "value": "card-dominant",
+                "cc": "US",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Sovereign retail payment rails"
+          }
+        ]
+      },
+      {
+        "heading": "THE INDIA PRECEDENT",
+        "body": "India's UPI launched in 2016 and now processes more monthly transactions than Visa and Mastercard combined globally. It was built as public infrastructure with zero merchant fees, mandated interoperability, and a regulator willing to cap the market share of any single app. Brazil's Pix replicated the model in 2020 and hit similar scale within two years."
+      },
+      {
+        "heading": "WHY IT MIGHT STILL FAIL",
+        "body": "Europe has tried this before — Monnet, PayFair, EAPS all collapsed because national banks would not cede control. Wero's predecessor consortium EPI shrank from 31 banks to a handful when French and German lenders disagreed on governance. The technology is the easy part; getting the BNP Paribas and Deutsche Banks of the continent to share a profit pool is the hard part.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why have previous European card-network alternatives like Monnet and PayFair failed?",
+            "options": [
+              "The technology was not mature enough",
+              "National banks refused to cede control to a shared scheme",
+              "The European Central Bank blocked them on competition grounds",
+              "Consumers preferred US-branded cards for prestige"
+            ],
+            "correct": 1,
+            "explanation": "Every prior attempt died from governance disputes between national banking blocs, not technical limits or consumer demand."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T22:24:55.904Z",
+    "label": "European Payment Sovereignty",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-20-google-chromium-browser-fetch-exploit-unpatched": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A SERVICE WORKER IS",
+        "body": "A service worker is JavaScript that runs in the background even after you close the tab. It was designed to let web apps work offline and receive push notifications — the same property that makes it useful for offline Gmail makes it a persistence mechanism for an attacker.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The key property is *persistence without a tab*: a service worker registered on one visit can wake up on a schedule, fetch from any URL the browser allows, and run code — all with **no open window** to alert the user."
+          }
+        ]
+      },
+      {
+        "heading": "THE BACKGROUND FETCH API",
+        "body": "Background Fetch was added to Chromium in 2018 to let sites download large files (podcasts, video) after the user navigates away. It runs on the browser's network stack with the user's cookies and IP. Firefox and Safari never shipped it, citing exactly this abuse surface."
+      },
+      {
+        "heading": "WHY CHROMIUM'S MONOCULTURE MATTERS",
+        "body": "Chrome, Edge, Brave, Opera, Samsung Internet, and Arc all share the same Chromium engine. A single upstream bug ships to roughly 70% of the world's browsers. The Mozilla/Apple holdouts are not just diversity for its own sake — they are the only independent code review of the dominant engine.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Chromium",
+                "value": "~71%",
+                "tone": "unfavorable",
+                "weight": 71
+              },
+              {
+                "label": "WebKit (Safari)",
+                "value": "~19%",
+                "tone": "neutral",
+                "weight": 19
+              },
+              {
+                "label": "Gecko (Firefox)",
+                "value": "~3%",
+                "tone": "favorable",
+                "weight": 3
+              }
+            ],
+            "label": "global browser engine share (rough, 2025)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY 29 MONTHS",
+        "body": "Google's Project Zero gives external vendors 90 days to patch before disclosure. Internal Chromium bugs have no such clock. Severity triage weighs exploitability and user impact — a bug that requires the user to visit a malicious page is routinely deprioritized below memory-corruption bugs, even when the malicious-page bar is trivially low."
+      },
+      {
+        "heading": "THE BROWSER-AS-BOTNET PRECEDENT",
+        "body": "In 2013, researchers showed that a malicious ad served through a normal ad network could turn every viewer's browser into a DDoS node for the duration of the ad impression. The technique was called puppetnets. Background Fetch removes the duration limit — the browser keeps working after the tab closes.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes a service-worker botnet harder to defend against than a traditional malware botnet?",
+            "options": [
+              "The nodes have valid TLS certificates and residential IPs from real users",
+              "The code runs faster than native malware",
+              "It can mine cryptocurrency more efficiently",
+              "Antivirus software cannot scan JavaScript"
+            ],
+            "correct": 0,
+            "explanation": "Every node looks like a normal user browsing from a home connection — there is no malicious binary on disk for antivirus to find, and IP-based blocking would cut off legitimate traffic."
+          }
+        ]
+      },
+      {
+        "heading": "THE DISCLOSURE DILEMMA",
+        "body": "Publishing a working exploit forces a vendor to prioritize, but until the patch ships, every Chromium user is exposed. Researchers who sit on bugs indefinitely lose leverage; researchers who publish too early are blamed for the attacks that follow. The 90-day norm is a compromise neither side fully accepts."
+      }
+    ],
+    "generatedAt": "2026-05-20T22:25:24.213Z",
+    "label": "Browser Background Fetch & Botnets",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-20-grothendieck-schemes-topoi-algebraic-geometry": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OLD OBJECT",
+        "body": "Classical algebraic geometry studied varieties: sets of points satisfying polynomial equations over the complex numbers. The points were primary; the functions on them were derived. This worked beautifully over ℂ and broke everywhere else — over the integers, over finite fields, anywhere the geometry refused to behave like a smooth manifold.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A *variety* is the zero-set of polynomials; a **scheme** is the ring of functions, with the points reconstructed from it. Grothendieck reversed the priority — and the subject reorganized around the inversion."
+          }
+        ]
+      },
+      {
+        "heading": "THE INVERSION",
+        "body": "Grothendieck took the ring of functions as primitive and defined the space as the set of prime ideals of that ring — the spectrum. Every commutative ring becomes a geometric object automatically, including rings with no classical points at all. The integers ℤ became a one-dimensional scheme; arithmetic became geometry."
+      },
+      {
+        "heading": "WHY IT UNBLOCKED EVERYTHING",
+        "body": "Problems that were hopeless in the variety language — counting points on curves over finite fields, lifting solutions from mod-p to characteristic zero, gluing local data into global invariants — became routine once the same machinery applied uniformly across all base rings. The Weil conjectures, open since 1949, fell to Deligne in 1974 using étale cohomology, a Grothendieck construction with no classical analogue."
+      },
+      {
+        "heading": "THE TOPOS",
+        "body": "Grothendieck pushed further: a topos is a category that behaves like the category of sheaves on a space, even when no space exists underneath. It gave him a notion of \"geometry\" general enough to host logic itself — Lawvere later showed every model of set theory is a topos. The site became the space.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did Grothendieck take as the primary object of a scheme?",
+            "options": [
+              "The set of points",
+              "The ring of functions",
+              "The tangent bundle",
+              "The Euler characteristic"
+            ],
+            "correct": 1,
+            "explanation": "Schemes are built from commutative rings via Spec; points are recovered as prime ideals of the ring, not posited first."
+          }
+        ]
+      },
+      {
+        "heading": "THE METHOD",
+        "body": "Grothendieck's signature move was to dissolve a hard problem by enlarging the category it lived in until the problem became trivial — the rising sea, as he called it, that submerges the rock rather than breaking it. EGA and SGA, the two multi-thousand-page seminar series he co-wrote in the 1960s, are the foundational texts modern algebraic geometers still consult.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Alexander Grothendieck",
+                "role": "architect of schemes & topoi",
+                "years": "1958–1970",
+                "cc": "FR"
+              },
+              {
+                "name": "Jean-Pierre Serre",
+                "role": "sheaf cohomology in algebraic geometry",
+                "years": "1955–",
+                "cc": "FR"
+              },
+              {
+                "name": "Pierre Deligne",
+                "role": "proved the Weil conjectures",
+                "years": "1974",
+                "cc": "BE"
+              },
+              {
+                "name": "Michael Artin",
+                "role": "étale cohomology, algebraic spaces",
+                "years": "1960s",
+                "cc": "US"
+              }
+            ],
+            "label": "the IHÉS circle"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGACY",
+        "body": "Wiles's proof of Fermat's Last Theorem (1995), the Langlands program, perfectoid spaces (Scholze, 2012, Fields Medal 2018), and most of modern arithmetic geometry are downstream of Grothendieck's reframing. The lesson the field absorbed: when a problem resists, do not attack it — change what counts as the object."
+      }
+    ],
+    "generatedAt": "2026-05-20T22:25:54.433Z",
+    "label": "Grothendieck & Scheme Theory",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-20-india-gdp-methodology-revision-explained": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT REBASING DOES",
+        "body": "GDP is measured against a base year's price and structure of the economy. Every few years statisticians refresh the base to reflect new sectors — e-commerce, ride-hailing, streaming — that barely existed in the old one. The revision almost always raises the reported level, because the new economy is bigger than the old weights captured.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *base year revision*; the political term is **'GDP rebasing'**. The IMF recommends doing it every **5 years** — India's current base is from **2011-12**."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2015 PRECEDENT",
+        "body": "India last rebased in January 2015, shifting from 2004-05 to 2011-12 base year and switching from factor cost to market prices. The reported FY14 growth rate jumped from 4.7% to 6.9% overnight. Economists including a former Chief Statistician questioned whether the new series matched ground-truth indicators like electricity consumption, freight, and credit growth."
+      },
+      {
+        "heading": "THE INDEPENDENCE PROBLEM",
+        "body": "India's national accounts are produced by the Ministry of Statistics — a government department, not an independent agency. Most OECD countries house statistics in arms-length bodies (UK's ONS, Germany's Destatis) precisely because the temptation to flatter the incumbent is structural. When the statistician reports to the minister whose record is being measured, every methodology choice becomes political.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "UK",
+                "value": "ONS (independent)",
+                "cc": "GB",
+                "tone": "favorable"
+              },
+              {
+                "label": "Germany",
+                "value": "Destatis (federal agency)",
+                "cc": "DE",
+                "tone": "favorable"
+              },
+              {
+                "label": "US",
+                "value": "BEA (Commerce Dept)",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "China",
+                "value": "NBS (State Council)",
+                "cc": "CN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": "MoSPI (ministry)",
+                "cc": "IN",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "who produces the GDP number"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE RBI CARES",
+        "body": "The Reserve Bank of India sets rates against an output gap — the distance between actual and potential GDP. Rebase the level higher and the output gap shifts; the same inflation print now looks like overheating rather than slack. Methodology revisions ripple through monetary policy for years.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              93.348804,
+              93.775164,
+              94.11314,
+              94.143557,
+              94.0666,
+              94.0666,
+              94.257338,
+              94.420855,
+              94.762974,
+              95.171392,
+              94.951559,
+              94.89165,
+              94.910513,
+              94.951346,
+              95.361112,
+              95.029174,
+              94.729612,
+              94.62293,
+              94.425498,
+              94.425498,
+              94.8754,
+              95.576514,
+              95.55195,
+              95.719988,
+              95.829548,
+              96.003,
+              96.027,
+              96.13634,
+              96.389098,
+              96.875003
+            ],
+            "periods": [
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE INFORMAL SECTOR PUZZLE",
+        "body": "Roughly half of India's economy is informal — street vendors, unregistered workshops, casual labor. Statisticians estimate it using surveys conducted years apart, then extrapolate. The 2015 revision changed how informal activity was projected from formal-sector proxies; critics argued this overstated growth precisely when small businesses were struggling after demonetization.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of India's workforce is in the informal sector?",
+            "options": [
+              "About 20%",
+              "About 40%",
+              "About 60%",
+              "Over 80%"
+            ],
+            "correct": 3,
+            "explanation": "Over 80% of Indian workers are informal — without contracts, benefits, or tax records. This is why GDP measurement depends so heavily on indirect estimation."
+          }
+        ]
+      },
+      {
+        "heading": "THE GOODHART RISK",
+        "body": "Once a number becomes a political target, the incentive to refine the measurement in flattering directions compounds. Economists call this Goodhart's Law: when a measure becomes a target, it ceases to be a good measure. China's provincial GDP figures historically summed to more than the national total — every governor optimizing for his own number."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-20"
+    ],
+    "generatedAt": "2026-05-20T22:26:22.109Z",
+    "label": "GDP Rebasing & Measurement",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-20-india-tata-asml-chip-deal-china-inputs-bottleneck": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT ASML ACTUALLY SELLS",
+        "body": "ASML is the only company on Earth that makes extreme ultraviolet (EUV) lithography machines — the photolithography tools that pattern transistors below 7nm. A single EUV machine costs around $200M, weighs 180 tonnes, and ships in 40 freight containers. No EUV, no leading-edge chips.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The light source inside an EUV machine vaporizes tin droplets with a laser **50,000 times per second** to produce 13.5nm wavelength light — a feat of physics that took *Cymer*, *Zeiss*, and ASML two decades to industrialize."
+          }
+        ]
+      },
+      {
+        "heading": "THE DUTCH EXPORT LEASH",
+        "body": "ASML's most advanced EUV tools have never been sold to China — blocked by Dutch export controls aligned with US pressure since 2019. Older DUV (deep ultraviolet) tools were also restricted in 2023. The Netherlands now decides, machine by machine, which countries get which generation of lithography."
+      },
+      {
+        "heading": "THE MINERAL BOTTLENECK",
+        "body": "Chip fabrication consumes gallium, germanium, tungsten, and rare earths at every stage — gallium for compound semiconductors, tungsten for interconnects, rare earths for magnets and polishing slurries. China controls the refining of all four categories, regardless of where the ore is mined.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Gallium",
+                "value": "~98%",
+                "cc": "CN",
+                "weight": 98,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Germanium",
+                "value": "~60%",
+                "cc": "CN",
+                "weight": 60,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Rare earths",
+                "value": "~90%",
+                "cc": "CN",
+                "weight": 90,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Tungsten",
+                "value": "~80%",
+                "cc": "CN",
+                "weight": 80,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "China's share of global refining capacity"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2023 PRECEDENT",
+        "body": "In July 2023, China imposed export licensing on gallium and germanium in direct response to US chip controls. Gallium prices doubled within months; Western buyers scrambled for non-Chinese sources and largely failed. The episode proved Beijing can answer a tooling embargo with a feedstock embargo — asymmetrically, since refining capacity takes a decade to rebuild."
+      },
+      {
+        "heading": "WHY INDIA, WHY NOW",
+        "body": "India approved its $10B semiconductor incentive scheme in 2021 and has since courted Tata, Micron, and Foxconn for fabs in Gujarat and Assam. Washington's Quad framework treats Indian fab capacity as the swing vote in any future Asia-Pacific chip war — but only if the upstream mineral problem gets solved in parallel.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "CN",
+              "NL",
+              "US",
+              "TW",
+              "JP",
+              "KR"
+            ],
+            "label": "the chip supply chain's geography",
+            "markers": [
+              {
+                "lat": 23.2156,
+                "lng": 72.6369,
+                "label": "Dholera fab site (Gujarat)"
+              },
+              {
+                "lat": 51.4416,
+                "lng": 5.4697,
+                "label": "ASML HQ, Veldhoven"
+              },
+              {
+                "lat": 24.7136,
+                "lng": 120.9675,
+                "label": "TSMC Hsinchu"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE INPUT THAT CAN'T BE SUBSTITUTED",
+        "body": "Gallium has no economic substitute in gallium-nitride power chips or gallium-arsenide RF chips used in radar and 5G base stations. Unlike oil, you cannot drill a new gallium well — it is a byproduct of aluminum and zinc refining, which means production is locked to those primary industries.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can't the West quickly replace Chinese gallium supply?",
+            "options": [
+              "Gallium deposits exist only in China",
+              "Gallium is a byproduct of aluminum refining — output is locked to that industry",
+              "The element is too radioactive to handle safely",
+              "ASML machines require Chinese-refined gallium specifically"
+            ],
+            "correct": 1,
+            "explanation": "Gallium isn't mined directly; it's extracted from bauxite during aluminum production. Without a parallel aluminum industry at scale, you can't ramp gallium output independently."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T22:26:54.169Z",
+    "label": "Chip Sovereignty & Mineral Chokepoints",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-20-knesset-110-vote-dissolve-parliament-netanyahu-haredi": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 61-SEAT MATH",
+        "body": "The Knesset has 120 seats; a government needs 61 to survive a confidence vote. No single Israeli party has ever won an outright majority since 1948 — every government has been a coalition, and every coalition has been hostage to its smallest faction.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why **Haredi parties** with 7-8 seats wield power disproportionate to their vote share — they are the marginal votes that determine which bloc forms a government."
+          }
+        ]
+      },
+      {
+        "heading": "THE TAL LAW LINEAGE",
+        "body": "Haredi exemption from military service dates to a 1948 agreement between Ben-Gurion and Agudat Yisrael covering roughly 400 yeshiva students. That informal arrangement scaled to over 60,000 exempted men by the 2010s. The Supreme Court struck down the formalized exemption (the Tal Law) in 2012 as unconstitutional; every Knesset since has failed to pass a replacement.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1948",
+                "label": "Ben-Gurion exempts 400 yeshiva students"
+              },
+              {
+                "year": "2002",
+                "label": "Tal Law formalizes the exemption"
+              },
+              {
+                "year": "2012",
+                "label": "Supreme Court strikes down Tal Law",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2017",
+                "label": "Court strikes down replacement law"
+              },
+              {
+                "year": "2024",
+                "label": "Court orders conscription begin"
+              },
+              {
+                "year": "2026",
+                "label": "Coalition collapses over draft bill"
+              }
+            ],
+            "label": "the conscription standoff"
+          }
+        ]
+      },
+      {
+        "heading": "THE COALITION ARITHMETIC",
+        "body": "Netanyahu's 2022 government rests on 64 seats — Likud plus Religious Zionism plus two Haredi parties (Shas, United Torah Judaism). Lose either Haredi party and the coalition falls below 61. This is why the conscription bill is existential: the Haredi parties cannot accept a draft law, and the secular right cannot accept further exemptions.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Likud",
+                "value": "32 seats",
+                "weight": 32
+              },
+              {
+                "label": "Religious Zionism",
+                "value": "14 seats",
+                "weight": 14
+              },
+              {
+                "label": "Shas",
+                "value": "11 seats",
+                "weight": 11
+              },
+              {
+                "label": "United Torah Judaism",
+                "value": "7 seats",
+                "weight": 7
+              }
+            ],
+            "label": "Netanyahu's coalition (2022)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY 110-0 IS MISLEADING",
+        "body": "A preliminary reading is not dissolution. An Israeli dissolution bill needs four readings — preliminary plus three more — and the coalition can stall between readings. Netanyahu has survived multiple preliminary dissolution votes by negotiating Haredi concessions before the final reading. The 110-0 signals leverage, not finality."
+      },
+      {
+        "heading": "THE TRIAL CLOCK",
+        "body": "Netanyahu has been on trial for bribery, fraud, and breach of trust since 2020 — the first sitting Israeli prime minister to face criminal charges. Israeli law does not require a prime minister to resign while under indictment, only after final conviction. Early elections do not pause the trial, but a returned premiership extends the political shield around it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under Israeli law, when must a prime minister resign over criminal charges?",
+            "options": [
+              "Upon indictment",
+              "Upon conviction at trial",
+              "Only after final conviction (all appeals exhausted)",
+              "Never — the office has no automatic trigger"
+            ],
+            "correct": 2,
+            "explanation": "Israel's Basic Law: The Government requires resignation only after a final conviction with no further appeals — a process that can take a decade."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T22:27:21.345Z",
+    "label": "The Knesset & Coalition Collapse",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-20-melanesian-ocean-summit-deforestation-roadmap-cop": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MELANESIAN SPEARHEAD",
+        "body": "Papua New Guinea, Fiji, Vanuatu, Solomon Islands, and Kanaky/New Caledonia's FLNKS form the Melanesian Spearhead Group, founded in 1986. It is the only sub-regional bloc in the Pacific built explicitly around shared anti-colonial identity rather than aid dependency.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PG",
+              "FJ",
+              "VU",
+              "SB",
+              "NC"
+            ],
+            "label": "the Melanesian Spearhead"
+          }
+        ]
+      },
+      {
+        "heading": "WHY EEZs ARE THE LEVERAGE",
+        "body": "Under UNCLOS, a coastal state controls fishing, mining, and scientific research within 200 nautical miles of its shore. Pacific island states are tiny on land but enormous at sea — Vanuatu's land area is 12,000 km², its EEZ is 680,000 km². Sovereignty here is measured in ocean.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Vanuatu",
+                "value": "57× EEZ",
+                "cc": "VU"
+              },
+              {
+                "label": "Fiji",
+                "value": "71× EEZ",
+                "cc": "FJ"
+              },
+              {
+                "label": "Kiribati",
+                "value": "4,700× EEZ",
+                "cc": "KI"
+              },
+              {
+                "label": "Papua N.G.",
+                "value": "7× EEZ",
+                "cc": "PG"
+              }
+            ],
+            "label": "land vs. EEZ (km²)"
+          }
+        ]
+      },
+      {
+        "heading": "THE DISTANT-WATER FLEETS",
+        "body": "Roughly 60% of the world's tuna catch comes from the western and central Pacific. The fleets harvesting it are mostly Chinese, Taiwanese, Japanese, Korean, and increasingly Spanish — paying licence fees that for some Pacific states constitute a meaningful share of government revenue. A fishing ban is a fiscal choice, not just an environmental one.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The regional licensing cartel — the **Parties to the Nauru Agreement** — pioneered the *vessel-day scheme* in 2007, charging by access-day rather than catch. It quadrupled Pacific fishing revenue without raising a single quota."
+          }
+        ]
+      },
+      {
+        "heading": "THE NUCLEAR MEMORY",
+        "body": "Vanuatu's 'solidarity over colonial rule' framing draws on a specific history: France tested 193 nuclear devices in French Polynesia between 1966 and 1996; the US tested 67 at Bikini and Enewetak. Pacific states have spent decades arguing the ocean was treated as someone else's laboratory.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1946",
+                "label": "US begins Bikini tests"
+              },
+              {
+                "year": "1954",
+                "label": "Castle Bravo fallout on Rongelap",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1966",
+                "label": "France begins Mururoa tests"
+              },
+              {
+                "year": "1985",
+                "label": "Rarotonga Treaty — nuclear-free zone"
+              },
+              {
+                "year": "1996",
+                "label": "France's final test"
+              }
+            ],
+            "label": "the Pacific nuclear era"
+          }
+        ]
+      },
+      {
+        "heading": "THE ENFORCEMENT PROBLEM",
+        "body": "A 'no-take zone' is only as real as the patrol boats that police it. Pacific states have historically relied on Australian and US Coast Guard surveillance flights, plus satellite tracking through the Forum Fisheries Agency. Joint enforcement zones matter because no single Melanesian state has the hulls to cover its own EEZ.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of the world's tuna catch comes from the western and central Pacific?",
+            "options": [
+              "About 20%",
+              "About 40%",
+              "About 60%",
+              "About 85%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 60% — which is why distant-water fleet licensing is the central fiscal lever Pacific states hold over China, Taiwan, Japan, Korea, and the EU."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T22:27:49.780Z",
+    "label": "Melanesian Marine Sovereignty",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-20-nvidia-earnings-china-excluded-guidance": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE H20 STORY",
+        "body": "Nvidia designed the H20 specifically for China after the 2022 export controls — a chip throttled to fall just under the performance threshold Washington set. In 2025, that workaround itself was restricted, leaving Nvidia with a product line built for a market it can no longer legally serve.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Each tightening cycle follows the same pattern: US sets a *performance threshold*, Nvidia designs to **just under** it, Washington lowers the threshold. The chips Nvidia can ship to Beijing get worse with every iteration."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GPUS ARE DUAL-USE",
+        "body": "Modern AI training and nuclear weapons simulation use the same matrix multiplication primitives at scale. A datacenter GPU cluster that trains a language model can also model fluid dynamics in a warhead. This is why export controls treat compute density — FLOPS per chip, interconnect bandwidth — as the regulated variable, not the software.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What metric do US export controls primarily use to classify a GPU as restricted?",
+            "options": [
+              "Memory capacity in gigabytes",
+              "Compute density (FLOPS and interconnect bandwidth)",
+              "Manufacturing process node in nanometers",
+              "Total power consumption in watts"
+            ],
+            "correct": 1,
+            "explanation": "The Commerce Department's thresholds target FLOPS and chip-to-chip bandwidth — the variables that determine how fast a cluster can train a frontier model."
+          }
+        ]
+      },
+      {
+        "heading": "CHINA'S DOMESTIC STACK",
+        "body": "Huawei's Ascend 910C, Cambricon's MLU series, and Biren's BR100 are the leading domestic substitutes. Each lags Nvidia's frontier chip by roughly one generation in raw performance and considerably more in software ecosystem — CUDA's 18-year head start is harder to clone than the silicon itself.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Nvidia B200",
+                "value": "~2250 TFLOPS",
+                "cc": "US",
+                "weight": 2250,
+                "tone": "favorable"
+              },
+              {
+                "label": "Nvidia H100",
+                "value": "~990 TFLOPS",
+                "cc": "US",
+                "weight": 990,
+                "tone": "neutral"
+              },
+              {
+                "label": "Huawei 910C",
+                "value": "~800 TFLOPS",
+                "cc": "CN",
+                "weight": 800,
+                "tone": "neutral"
+              },
+              {
+                "label": "Nvidia H20",
+                "value": "~148 TFLOPS",
+                "cc": "US",
+                "weight": 148,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "frontier accelerators, rough peak FP16 throughput"
+          }
+        ]
+      },
+      {
+        "heading": "THE TSMC CHOKEPOINT",
+        "body": "Nvidia designs chips; TSMC in Taiwan fabricates them. The advanced nodes (3nm, 2nm) that yield frontier GPUs exist at exactly one company on exactly one island 180km from the Chinese coast. Every export-control debate sits downstream of this single point of failure.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TW",
+              "CN",
+              "KR",
+              "JP",
+              "US"
+            ],
+            "label": "the silicon chokepoint",
+            "markers": [
+              {
+                "lat": 24.7736,
+                "lng": 120.9974,
+                "label": "TSMC Hsinchu (fab)"
+              },
+              {
+                "lat": 24.4493,
+                "lng": 120.7831,
+                "label": "TSMC Fab 18 (3nm)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE REVENUE MATH",
+        "body": "China was roughly a fifth of Nvidia's datacenter revenue before the latest restrictions. Losing it would have crushed any other company; Nvidia absorbed the hit because hyperscaler demand from US, Europe, and the Gulf grew faster than China shrank. The export controls worked because the rest of the world is buying every chip TSMC can fabricate.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Saudi Arabia's **Humain** and UAE's **G42** have each committed to multi-billion-dollar Nvidia clusters in 2024–2025. The Gulf is now where China was three years ago — the marginal buyer that determines whether US controls actually cost Nvidia revenue or merely redirect it."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T22:28:20.698Z",
+    "label": "Export Controls & GPU Sovereignty",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-20-russia-su27-raf-rivet-joint-black-sea-intercept": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT AN RC-135 ACTUALLY DOES",
+        "body": "The Rivet Joint is a flying SIGINT platform — converted 1960s Boeing 707 airframes packed with antennas that vacuum radar emissions, radio chatter, and datalink signals from hundreds of kilometres away. It does not need to enter hostile airspace to map an adversary's electronic order of battle; loitering over international waters is the entire mission.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The RAF flies just **three** RC-135W airframes from Waddington — every Black Sea sortie is a scarce, deliberate tasking, not a routine patrol."
+          }
+        ]
+      },
+      {
+        "heading": "THE 12-MILE LINE",
+        "body": "Under UNCLOS, a state's sovereign airspace ends 12 nautical miles from its coast. Beyond that is international airspace where any aircraft — military or civilian — may transit freely. Russia treats the Black Sea's northern arc as a de facto exclusion zone anyway, intercepting NATO flights that never approach the 12-mile boundary.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU",
+              "TR",
+              "RO",
+              "BG",
+              "GE"
+            ],
+            "label": "the Black Sea littoral",
+            "markers": [
+              {
+                "lat": 40.7989,
+                "lng": 29.5181,
+                "label": "Incirlik-Konya NATO airspace"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY 6 METRES IS THE STORY",
+        "body": "Fighter intercepts of surveillance aircraft are routine — both sides did it throughout the Cold War. The convention is a visual pass at 30-100 metres: close enough to identify and photograph, far enough that wake turbulence from the fighter can't flip the larger plane. Six metres is inside the wingtip vortex zone of a Su-27; a control input or a gust at that range can cause a collision the pilot cannot recover from.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is flying 6 metres from a larger aircraft uniquely dangerous?",
+            "options": [
+              "The fighter's radar can damage avionics at that range",
+              "Wake turbulence from the fighter can flip the larger plane",
+              "The larger plane's engines can ingest the fighter",
+              "Missile lock-on requires that proximity"
+            ],
+            "correct": 1,
+            "explanation": "A fighter's wingtip vortices extend several wingspans behind and below it; a heavy aircraft caught inside that envelope can lose control before the pilots can react."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2023 REAPER PRECEDENT",
+        "body": "In March 2023, a Russian Su-27 dumped fuel on a US MQ-9 Reaper drone over the Black Sea and clipped its propeller, forcing the US to ditch the aircraft. It was the first direct contact between Russian and American military hardware since the invasion of Ukraine — and established that Moscow was willing to escalate intercepts from harassment to physical contact.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2014",
+                "label": "Crimea annexation; NATO Black Sea surveillance begins"
+              },
+              {
+                "year": "2018",
+                "label": "Su-27 buzzes US EP-3 within 1.5m"
+              },
+              {
+                "year": "2022-02",
+                "label": "Full-scale Ukraine invasion",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-03",
+                "label": "Su-27 downs US MQ-9 Reaper"
+              },
+              {
+                "year": "2024-09",
+                "label": "Russian missile passed near RAF Rivet Joint"
+              },
+              {
+                "year": "2025-04",
+                "label": "Su-27 flies 6m from RAF RC-135"
+              }
+            ],
+            "label": "Black Sea air incidents"
+          }
+        ]
+      },
+      {
+        "heading": "WHY LONDON DISCLOSED IT",
+        "body": "NATO has flown Black Sea surveillance since 2014 without publicising near-misses — disclosure is itself a signal. Naming the incident publicly raises the diplomatic cost of a repeat, locks allied capitals into a shared narrative, and pre-positions the alliance to respond proportionately if the next intercept ends badly. Silence preserves options; disclosure narrows them deliberately.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The MoD framing — *\"most dangerous Russian air action since 2022\"* — is a *deterrence-by-publicity* move, borrowed from the Cold War playbook where the US periodically released intercept photos to constrain Soviet behaviour."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1988 PRECEDENT",
+        "body": "In February 1988, a Soviet Krivak-class frigate deliberately rammed the USS Yorktown in the Black Sea to push it out of waters Moscow claimed as territorial. Washington's response was to keep sailing the same route. The pattern — provocative contact, public protest, unchanged operations — is the template NATO inherited and is now applying in the air.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "John Healey",
+                "role": "UK Defence Secretary",
+                "years": "2024–",
+                "cc": "GB"
+              },
+              {
+                "name": "Sir Rich Knighton",
+                "role": "RAF Chief of Air Staff",
+                "years": "2023–",
+                "cc": "GB"
+              },
+              {
+                "name": "Sergei Shoigu",
+                "role": "Russian Security Council Sec.",
+                "years": "2024–",
+                "cc": "RU"
+              },
+              {
+                "name": "Viktor Afzalov",
+                "role": "Russian Aerospace Forces head",
+                "years": "2023–",
+                "cc": "RU"
+              }
+            ],
+            "label": "the chain of command"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-20T22:29:01.407Z",
+    "label": "Unsafe Intercepts & the Black Sea",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-20-us-marines-board-iranian-tanker-gulf-of-oman-blockade": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL THRESHOLD",
+        "body": "Under customary international law and the 1909 Declaration of London, a naval blockade is an act of war. States avoid the word — preferring 'quarantine' (Kennedy, 1962) or 'interdiction' — to dodge the legal trigger. What Iran calls piracy, Washington calls maritime interdiction.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Kennedy's staff specifically chose *quarantine* over *blockade* in 1962 because the latter would have legally constituted war against Cuba — and by extension, the Soviet Union."
+          }
+        ]
+      },
+      {
+        "heading": "VBSS, THE TACTIC",
+        "body": "Visit, Board, Search, and Seizure operations are run by Marines and Navy boarding teams who fast-rope or RHIB onto a target vessel, secure the bridge, inspect cargo manifests, and either release or redirect. The doctrine was refined during the 1990s Iraq oil-for-food embargo and the post-9/11 Maritime Interdiction Operations in the Gulf.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "YE",
+              "QA"
+            ],
+            "label": "the interdiction zone",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 24.4667,
+                "lng": 54.3667,
+                "label": "Fujairah anchorage"
+              },
+              {
+                "lat": 29.0667,
+                "lng": 50.5,
+                "label": "Kharg Island"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. The US reflagged Kuwaiti tankers under American colors (Operation Earnest Will) and escorted them through Hormuz. The lesson then and now: oil flows through the strait survive harassment but not closure.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1987",
+                "label": "Operation Earnest Will reflagging"
+              },
+              {
+                "year": "1988-04",
+                "label": "Operation Praying Mantis",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1988-07",
+                "label": "Iran Air 655 shootdown"
+              },
+              {
+                "year": "2019",
+                "label": "Gulf of Oman tanker attacks"
+              },
+              {
+                "year": "2023",
+                "label": "USS Stethem seizes Iranian oil"
+              },
+              {
+                "year": "2026-04",
+                "label": "Naval blockade imposed"
+              }
+            ],
+            "label": "US naval engagement with Iran"
+          }
+        ]
+      },
+      {
+        "heading": "WHY 91 AND NO RETALIATION",
+        "body": "Iran's calculus: military retaliation invites a wider war it cannot win at sea; legal protest preserves the moral position without escalation. The asymmetry of US carrier groups versus Iranian fast boats and mines means Tehran fights through proxies and pricing, not direct confrontation.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which body of water is the largest US carrier strike group typically positioned in to enforce Gulf operations?",
+            "options": [
+              "The Persian Gulf itself",
+              "The Gulf of Oman, outside Hormuz",
+              "The Red Sea",
+              "The Arabian Sea south of Karachi"
+            ],
+            "correct": 1,
+            "explanation": "Carriers stay east of Hormuz in the Gulf of Oman — the strait is too narrow and shallow for safe carrier operations within Iranian missile range."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRICING CHANNEL",
+        "body": "Blockades work financially before they work militarily. Lloyd's of London war-risk premiums spike on the first boarding; charterers add surcharges; refiners discount Iranian crude; sanctions-evasion fleets ('dark fleet' tankers running with transponders off) absorb the rest. The 91 boardings matter less than what insurers do next week.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4807.83,
+              4729.84,
+              4714.79,
+              4689.13,
+              4697.32,
+              4693.28,
+              4674.15,
+              4683.94,
+              4584.13,
+              4551.29,
+              4619.17,
+              4603.98,
+              4597.48,
+              4606.7,
+              4515.48,
+              4580.98,
+              4684.25,
+              4695.85,
+              4706.72,
+              4711.53,
+              4692.03,
+              4753.28,
+              4711.77,
+              4685.25,
+              4650.57,
+              4540.65,
+              4535.45,
+              4535.69,
+              4575.14,
+              4491.98,
+              4528.3
+            ],
+            "periods": [
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 20"
+            ],
+            "label": "Gold (PAX Gold)",
+            "unit": "$/oz",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE STRAIT IRAN COULD CLOSE",
+        "body": "One-fifth of the world's oil and most of Qatar's LNG passes through Hormuz, 33 km wide at its narrowest. Iran has never formally closed it — even during the Tanker War — because doing so would invite a coalition response and cut off its own exports. The threat is more valuable than the act.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Iran ratified UNCLOS in 1982 but argues Hormuz is governed by its **domestic law**, not the convention's *transit passage* guarantee. The legal ambiguity is itself a deterrent."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · PAXG (gold-backed) · as of 2026-05-20"
+    ],
+    "generatedAt": "2026-05-20T22:29:35.637Z",
+    "label": "Naval Blockade & VBSS",
+    "category": "economy",
+    "articleCount": 1
   }
 }
