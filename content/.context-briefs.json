@@ -205650,5 +205650,1420 @@
     "label": "China-DPRK Axis",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-21-binance-spacex-pre-ipo-perps-2-trillion-synthetic": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A PERP ACTUALLY IS",
+        "body": "A perpetual future never expires. Instead of converging to spot at settlement like a traditional future, it uses a funding rate paid every eight hours between longs and shorts to tether the contract price to a reference. The reference is the price the contract is supposed to track.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Perps were proposed by economist **Robert Shiller** in 1993 for real estate. Nobody used them. **BitMEX** revived the design for Bitcoin in 2016 — it is now the most-traded instrument in crypto history."
+          }
+        ]
+      },
+      {
+        "heading": "THE SYNTHETIC TWIST",
+        "body": "A normal perp tracks a liquid spot market — BTC, ETH, oil. A pre-IPO perp has no spot to track. The reference is an over-the-counter valuation estimate stitched together from secondary tender offers, 409A filings, and private trades. The contract is a bet on a number the issuer constructs.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What tethers a pre-IPO perpetual future to SpaceX's actual value?",
+            "options": [
+              "A live secondary market price",
+              "An OTC valuation estimate set by the issuer",
+              "SpaceX's audited quarterly filings",
+              "A peg to the last primary round"
+            ],
+            "correct": 1,
+            "explanation": "Private companies have no continuous price. The issuer picks a reference — typically blending secondary tender data and dealer marks — and the funding rate enforces it."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT EXISTS",
+        "body": "Private companies stay private longer. SpaceX, Stripe, and OpenAI together hold more value than most national stock exchanges, yet retail cannot touch them. Synthetic perps are the gray-market answer — exposure without equity, settled in stablecoins, available to anyone with a wallet.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "SpaceX",
+                "value": "~$400bn",
+                "cc": "US",
+                "weight": 400
+              },
+              {
+                "label": "OpenAI",
+                "value": "~$300bn",
+                "cc": "US",
+                "weight": 300
+              },
+              {
+                "label": "ByteDance",
+                "value": "~$300bn",
+                "cc": "CN",
+                "weight": 300
+              },
+              {
+                "label": "Stripe",
+                "value": "~$90bn",
+                "cc": "US",
+                "weight": 90
+              },
+              {
+                "label": "Databricks",
+                "value": "~$60bn",
+                "cc": "US",
+                "weight": 60
+              }
+            ],
+            "label": "largest private companies by valuation"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL GRAY ZONE",
+        "body": "In the US, selling derivatives on a specific company's equity to retail without registration runs into securities law. Binance, OKX, and Hyperliquid offer these contracts offshore and geofence US IPs. The contracts are not SpaceX shares; SpaceX has not authorized them; holders have no claim on the company at IPO."
+      },
+      {
+        "heading": "THE IPO RECKONING",
+        "body": "Once SpaceX lists, the perp's reference becomes a real, continuously-quoted public price. The funding rate will have to absorb the gap between the synthetic mark and the opening tape. Pre-IPO perps that mispriced their references at listing have historically seen violent funding spikes as arbitrageurs close the gap.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              31,
+              18,
+              18,
+              17,
+              48,
+              100,
+              100
+            ],
+            "periods": [
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 21"
+            ],
+            "label": "Trump kiss by May 31?",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "31%"
+              },
+              {
+                "atIndex": 6,
+                "label": "100%"
+              }
+            ],
+            "link": "https://polymarket.com/event/trump-kiss-by-may-31",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY $2 TRILLION IS THE NUMBER",
+        "body": "A $2 trillion debut would put SpaceX above Saudi Aramco at its 2019 IPO and second only to the largest US megacaps on day one. Most of that value is Starlink, not launch — recurring subscription revenue commands tech multiples, while rocket cadence commands aerospace multiples.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Largest IPO debut valuations",
+            "peers": [
+              {
+                "value": 1700,
+                "label": "Saudi Aramco (2019)"
+              },
+              {
+                "value": 231,
+                "label": "Alibaba (2014)"
+              },
+              {
+                "value": 104,
+                "label": "Facebook (2012)"
+              },
+              {
+                "value": 2000,
+                "label": "SpaceX (target)"
+              },
+              {
+                "value": 18,
+                "label": "Visa (2008)"
+              },
+              {
+                "value": 77,
+                "label": "Rivian (2021)"
+              }
+            ],
+            "subjectLabel": "SpaceX (target)",
+            "unit": "$bn"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-21"
+    ],
+    "generatedAt": "2026-05-21T08:32:38.369Z",
+    "label": "Pre-IPO Synthetic Equity",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-21-fentanyl-corridors-mexico-precursor-chemicals-map": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY FENTANYL DISPLACED HEROIN",
+        "body": "Fentanyl is roughly 50 times more potent than heroin and 100 times more potent than morphine. A kilogram can be synthesized in a garage from precursor chemicals — no poppy fields, no harvest season, no acres of land. The economics killed heroin as a wholesale product within a decade.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A lethal dose is about **2 milligrams** — a few grains of salt. A kilogram of pure fentanyl contains roughly **500,000** lethal doses, which is why interdiction seizures are measured in kilos, not tons."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECURSOR PIPELINE",
+        "body": "The synthesis route runs from Chinese chemical suppliers shipping precursors (NPP, 4-ANPP, and substitutes that mutate each time one is scheduled) to Mexican Pacific ports — Manzanillo, Lázaro Cárdenas, Mazatlán — where cartels operate clandestine labs in Sinaloa and Jalisco, then move finished product north through border plazas to US street markets.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "china",
+                "label": "Chinese suppliers"
+              },
+              {
+                "id": "ports",
+                "label": "Pacific ports"
+              },
+              {
+                "id": "labs",
+                "label": "Clandestine labs"
+              },
+              {
+                "id": "border",
+                "label": "Border plazas"
+              },
+              {
+                "id": "us",
+                "label": "US street markets"
+              }
+            ],
+            "links": [
+              {
+                "source": "china",
+                "target": "ports",
+                "value": 100,
+                "label": "precursors"
+              },
+              {
+                "source": "ports",
+                "target": "labs",
+                "value": 95,
+                "label": "smuggled inland"
+              },
+              {
+                "source": "labs",
+                "target": "border",
+                "value": 90,
+                "label": "finished pills/powder"
+              },
+              {
+                "source": "border",
+                "target": "us",
+                "value": 85,
+                "label": "retail distribution"
+              }
+            ],
+            "label": "Fentanyl supply chain"
+          }
+        ]
+      },
+      {
+        "heading": "THE CARTEL DUOPOLY",
+        "body": "Two organizations dominate the trade: the Sinaloa Cartel — fragmented after the 2023 arrest of Ovidio Guzmán and the 2024 capture of Ismael 'El Mayo' Zambada — and the Jalisco New Generation Cartel (CJNG), which has used the rival's weakness to expand into ports and border crossings it never previously controlled.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MX",
+              "US"
+            ],
+            "label": "Mexican production and crossing geography",
+            "markers": [
+              {
+                "lat": 19.0537,
+                "lng": -104.3158,
+                "label": "Manzanillo port"
+              },
+              {
+                "lat": 17.9426,
+                "lng": -102.2003,
+                "label": "Lázaro Cárdenas port"
+              },
+              {
+                "lat": 24.8091,
+                "lng": -107.394,
+                "label": "Culiacán (Sinaloa)"
+              },
+              {
+                "lat": 20.6597,
+                "lng": -103.3496,
+                "label": "Guadalajara (CJNG)"
+              },
+              {
+                "lat": 32.5149,
+                "lng": -117.0382,
+                "label": "Tijuana plaza"
+              },
+              {
+                "lat": 31.6904,
+                "lng": -106.4245,
+                "label": "Ciudad Juárez plaza"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE KINGPIN STRATEGY'S TRACK RECORD",
+        "body": "US drug policy since the 1990s has prioritized removing top traffickers — the 'kingpin strategy.' Every major takedown (Pablo Escobar 1993, the Arellano-Félix brothers in the 2000s, El Chapo 2016) has been followed by more violence, not less, as deputies fight over the inheritance. Fragmentation, not consolidation, has been the consistent result.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What has historically followed the capture of a major cartel leader?",
+            "options": [
+              "A sustained drop in drug supply to the US",
+              "A spike in violence as factions fight for control",
+              "Voluntary surrender of the rest of the organization",
+              "Long-term reduction in cartel revenue"
+            ],
+            "correct": 1,
+            "explanation": "Every major kingpin removal since Escobar has triggered succession wars. Supply has rarely dipped for long because the market — not the leader — drives the trade."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE BORDER ITSELF NOW RETAILS",
+        "body": "Historically Mexican cartels wholesaled to US distributors and avoided street-level sales, which attract local law enforcement. The emergence of retail markets in border cities like Tijuana and Mexicali reflects two changes: a domestic Mexican user base that barely existed a decade ago, and US deportees with US distribution experience returning south. The border is becoming a consumption zone, not just a transit corridor."
+      }
+    ],
+    "generatedAt": "2026-05-21T08:33:11.426Z",
+    "label": "Fentanyl Supply Chain",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-21-france-new-caledonia-voter-rolls-kanak-decolonization": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LAST COLONY",
+        "body": "New Caledonia has been French since 1853, annexed under Napoleon III as a penal colony. It remains on the UN list of 17 non-self-governing territories — the formal register of places still to be decolonized — alongside Western Sahara, Gibraltar, and the Falklands.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "FR",
+              "NC",
+              "AU",
+              "VU",
+              "NZ"
+            ],
+            "label": "a French territory in Melanesia",
+            "caption": "3,200 km from Sydney, 16,800 km from Paris",
+            "markers": [
+              {
+                "lat": -22.2758,
+                "lng": 166.4581,
+                "label": "Nouméa"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE KANAK",
+        "body": "The Kanak are the indigenous Melanesian people of the archipelago, present for roughly 3,000 years before French annexation. By 1921, settler arrivals and disease had reduced them to a minority in their own land — a demographic fact that has shaped every subsequent political settlement.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 1980s independence struggle was led by the **FLNKS** — Front de Libération Nationale Kanak et Socialiste — and ended in the 1988 hostage crisis at *Ouvéa*, where French gendarmes were taken by Kanak militants and the assault to free them killed 19 Kanaks and 2 soldiers."
+          }
+        ]
+      },
+      {
+        "heading": "THE NOUMÉA ACCORD",
+        "body": "The 1998 Nouméa Accord ended decades of violence with a remarkable compromise: it froze the electoral roll for provincial elections to residents present in 1998 and their descendants. The logic was that only those with a stake in the colonial-era settlement should vote on its dissolution — a deliberate restriction of universal suffrage to protect the indigenous voice.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1853",
+                "label": "French annexation"
+              },
+              {
+                "year": "1878",
+                "label": "Ataï revolt crushed"
+              },
+              {
+                "year": "1984",
+                "label": "Kanak boycott, 'Events' begin"
+              },
+              {
+                "year": "1988",
+                "label": "Ouvéa hostage crisis",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1998",
+                "label": "Nouméa Accord signed"
+              },
+              {
+                "year": "2021",
+                "label": "Third referendum (Kanak boycott)"
+              },
+              {
+                "year": "2024",
+                "label": "Riots over voter roll unfreezing"
+              }
+            ],
+            "label": "the long arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE THREE REFERENDA",
+        "body": "The Accord mandated up to three independence referenda. All three (2018, 2020, 2021) returned No — but the third, held during COVID with the Kanak in mourning, was boycotted by the independence movement and is considered illegitimate by most Kanaks. Paris counts it; Nouméa's pro-independence camp does not."
+      },
+      {
+        "heading": "WHY THE ROLL MATTERS",
+        "body": "Unfreezing the roll adds roughly 25,000 mostly non-Kanak voters — enough to flip several provincial assemblies. To loyalists, it restores 'one person, one vote.' To Kanaks, it dilutes the indigenous electorate at the exact moment self-determination is being decided. The 2024 attempt triggered riots that killed 14 and caused €2bn in damage.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did the 1998 Nouméa Accord freeze?",
+            "options": [
+              "The price of nickel exports",
+              "The provincial electoral roll to 1998 residents",
+              "French military presence at 1988 levels",
+              "Land titles held by settler families"
+            ],
+            "correct": 1,
+            "explanation": "The frozen roll was the Accord's central concession — restricting provincial-election voting to long-term residents to protect the Kanak share of the electorate."
+          }
+        ]
+      },
+      {
+        "heading": "THE NICKEL DIMENSION",
+        "body": "New Caledonia holds roughly a quarter of the world's known nickel reserves — critical for stainless steel and EV batteries. Paris's reluctance to let go is not only about prestige; it is about resource sovereignty in a metal China currently dominates downstream."
+      }
+    ],
+    "generatedAt": "2026-05-21T08:33:42.736Z",
+    "label": "New Caledonia & the Nouméa Accord",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-21-japan-covid-suicide-unemployment-time-series": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LONG BASELINE",
+        "body": "Japan's suicide rate climbed sharply after the 1997 Asian financial crisis and stayed elevated for over a decade, peaking near 34,000 deaths in 2003. A sustained decline followed from 2010 through 2019 — until the pandemic reversed the trend, especially among women.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1997",
+                "label": "Asian financial crisis"
+              },
+              {
+                "year": "1998",
+                "label": "Suicides jump past 30,000",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2003",
+                "label": "Peak near 34,000 deaths"
+              },
+              {
+                "year": "2010",
+                "label": "Sustained decline begins"
+              },
+              {
+                "year": "2019",
+                "label": "Lowest level in decades"
+              },
+              {
+                "year": "2020",
+                "label": "Pandemic reversal — women rise"
+              }
+            ],
+            "label": "Japan suicide deaths, key inflection points"
+          }
+        ]
+      },
+      {
+        "heading": "WHY WOMEN, WHY NOW",
+        "body": "Men have historically died by suicide at 2-3x the rate of women in Japan, driven by mid-life economic shocks. The pandemic flipped the pattern: female suicides rose sharply while male rates moved less. Researchers point to non-regular employment — disproportionately female — collapsing first, plus caregiving burdens that closed schools shifted onto mothers.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Japanese term *karōshi* (death from overwork) captures one mode of male occupational stress; the pandemic surfaced a different pattern — **isolation deaths** among women in service-sector and contract roles that lacked the lifetime-employment protections of *seishain* (regular employees)."
+          }
+        ]
+      },
+      {
+        "heading": "THE HIKIKOMORI SUBSTRATE",
+        "body": "Before COVID, Japan's health ministry estimated over 1.5 million hikikomori — people, mostly young, who withdraw from society for six months or more. Lockdowns accelerated withdrawal patterns that were already structural, removing the school and workplace anchors that pulled some back into circulation."
+      },
+      {
+        "heading": "EXCESS MORTALITY, EXPLAINED",
+        "body": "Excess mortality measures deaths above a pre-pandemic baseline — it captures total societal stress, not just the virus. Japan's COVID death toll was among the lowest in the OECD, yet its excess suicide count was substantial. The two numbers measure different things: one counts a pathogen, the other counts a society under strain.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does excess mortality often exceed confirmed COVID deaths?",
+            "options": [
+              "Undercounted COVID cases plus deaths from delayed care, isolation, and economic stress",
+              "Statistical artifact from population aging",
+              "Vaccine side effects accumulating over time"
+            ],
+            "correct": 0,
+            "explanation": "Excess mortality captures the full societal cost — missed cancer screenings, deferred surgeries, isolation-driven suicides, and economic despair, alongside undercounted infections."
+          }
+        ]
+      },
+      {
+        "heading": "THE UNEMPLOYMENT DECOUPLING",
+        "body": "The Durkheim-era assumption that suicide tracks joblessness held through Japan's 1998 spike — that crisis was unambiguously economic. The pandemic broke the link: unemployment explains less than 10% of the 2020-22 excess. Whatever drove the surge — isolation, caregiving collapse, online amplification of distress — operated through channels the unemployment rate cannot see."
+      },
+      {
+        "heading": "THE WERTHER EFFECT",
+        "body": "Media coverage of high-profile suicides reliably triggers copycat clusters — documented since Goethe's 1774 novel prompted a wave of imitative deaths across Europe. Japan saw measurable spikes after celebrity suicides in 2020. The WHO publishes media guidelines specifically to dampen this contagion; Japanese broadcasters have adopted them unevenly."
+      }
+    ],
+    "generatedAt": "2026-05-21T08:34:14.614Z",
+    "label": "Japan's Suicide Epidemiology",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-21-landslide-hit-karakoram-highway-reopens-to-traffic-in-upper": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EIGHTH WONDER",
+        "body": "The Karakoram Highway took 20 years to build (1959–1979) and killed over 800 Pakistani and 200 Chinese workers — roughly one life per kilometer. It crosses the Khunjerab Pass at 4,693m, the highest paved international border crossing on Earth.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Locals call it the **KKH**. The Chinese side calls it the *China–Pakistan Friendship Highway* — the road is infrastructure and diplomatic monument in one."
+          }
+        ]
+      },
+      {
+        "heading": "THE ONLY LAND BRIDGE",
+        "body": "The KKH is the sole overland route between China and Pakistan. Every other border is sealed by the Karakoram, Hindu Kush, or Himalaya ranges. When the road closes, the China–Pakistan relationship has no Plan B except air freight or the long sea route through the Malacca Strait.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "CN",
+              "AF",
+              "IN",
+              "TJ"
+            ],
+            "label": "the only road from China to Pakistan",
+            "markers": [
+              {
+                "lat": 36.8511,
+                "lng": 75.4181,
+                "label": "Khunjerab Pass"
+              },
+              {
+                "lat": 35.9208,
+                "lng": 74.3144,
+                "label": "Gilgit"
+              },
+              {
+                "lat": 35.5,
+                "lng": 73,
+                "label": "Upper Kohistan"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE SLOPES FAIL",
+        "body": "The Karakoram is the youngest, fastest-rising mountain range on Earth — the Indian plate still pushes north at ~4 cm per year. The rock is fractured, the slopes are steep, and seasonal melt saturates loose scree. Landslides are not anomalies on the KKH; they are the operating environment.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how fast is the Karakoram range still rising as the Indian plate collides with Asia?",
+            "options": [
+              "A few millimeters per century",
+              "About 4 cm per year",
+              "Around 1 meter per year",
+              "It stopped rising in the Pleistocene"
+            ],
+            "correct": 1,
+            "explanation": "The collision that built the Himalaya and Karakoram is ongoing — the ranges rise several centimeters per year, which is why their slopes are unstable and prone to landslide."
+          }
+        ]
+      },
+      {
+        "heading": "THE ATTABAD PRECEDENT",
+        "body": "In January 2010, a massive landslide near Attabad in Hunza buried 20 people and dammed the Hunza River, creating a lake that submerged 19 km of the KKH for nearly five years. Traffic crossed by boat until China financed five tunnels to reroute the road above the new lake."
+      },
+      {
+        "heading": "WHY CPEC RUNS THROUGH HERE",
+        "body": "The China–Pakistan Economic Corridor — Beijing's $62bn flagship of the Belt and Road — uses the KKH alignment for its northern leg, terminating at Gwadar port on the Arabian Sea. Every weather closure on a Kohistan switchback is a closure on the most strategically advertised overland trade route in Asia.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Karakoram Highway",
+                "value": "~1,300 km",
+                "tone": "neutral"
+              },
+              {
+                "label": "Via Iran/Turkey",
+                "value": "~5,000 km",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Sea via Malacca",
+                "value": "~14,000 km",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Pakistan's overland trade routes north"
+          }
+        ]
+      },
+      {
+        "heading": "GILGIT-BALTISTAN'S STATUS",
+        "body": "Gilgit-Baltistan is administered by Pakistan but is not a constitutional province — it sits in a legal limbo tied to the unresolved Kashmir dispute. The KKH is its only road link to the rest of the country, which makes every closure not just an economic event but a political one for a region already arguing for full provincial rights."
+      }
+    ],
+    "generatedAt": "2026-05-21T08:34:45.396Z",
+    "label": "The Karakoram Highway & CPEC",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-21-merz-ukraine-eu-associate-membership-two-tier": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COPENHAGEN CRITERIA",
+        "body": "Since 1993, any EU candidate must meet three benchmarks: stable democratic institutions, a functioning market economy, and the ability to adopt the acquis communautaire — the ~80,000 pages of accumulated EU law. Ukraine opened formal accession talks in June 2024; full compliance typically takes a decade or more.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The full body of EU law a candidate must absorb is called the ***acquis communautaire*** — divided into 35 negotiating chapters, each closed only when Brussels certifies compliance."
+          }
+        ]
+      },
+      {
+        "heading": "THE UNANIMITY TRAP",
+        "body": "Accession requires unanimous ratification by all 27 member states plus the European Parliament. Hungary has used this veto repeatedly against Ukraine; Cyprus blocked Turkey's chapters for two decades. Any one capital can freeze the process indefinitely — which is why Merz reaches for a route that bypasses ratification.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Viktor Orbán",
+                "role": "Hungarian Prime Minister",
+                "years": "2010–present",
+                "cc": "HU"
+              },
+              {
+                "name": "Robert Fico",
+                "role": "Slovak Prime Minister",
+                "years": "2023–present",
+                "cc": "SK"
+              },
+              {
+                "name": "Friedrich Merz",
+                "role": "German Chancellor",
+                "years": "2025–present",
+                "cc": "DE"
+              },
+              {
+                "name": "Volodymyr Zelenskyy",
+                "role": "Ukrainian President",
+                "years": "2019–present",
+                "cc": "UA"
+              }
+            ],
+            "label": "the veto players Kyiv must clear"
+          }
+        ]
+      },
+      {
+        "heading": "ARTICLE 42(7)",
+        "body": "The EU's own mutual-defence clause, hidden in the Lisbon Treaty, obliges members to aid any member under armed aggression 'by all the means in their power.' It is stronger on paper than NATO's Article 5, but has only been invoked once — by France after the 2015 Paris attacks. Extending it to a non-member without voting rights would be unprecedented.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "If a Member State is the victim of armed aggression on its territory, the other Member States shall have towards it an obligation of aid and assistance by all the means in their power.",
+            "speaker": "Treaty on European Union, Article 42(7)",
+            "year": "2009"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENTS FOR TIERS",
+        "body": "Europe has built half-memberships before: the European Economic Area (Norway, Iceland, Liechtenstein) gives single-market access without voting rights; Switzerland runs on 120+ bilateral treaties; the UK post-Brexit invented yet another tier. Each was sold as transitional; each became permanent.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Full EU member",
+                "value": "Vote + market + defence",
+                "tone": "favorable"
+              },
+              {
+                "label": "EEA (Norway)",
+                "value": "Market, no vote",
+                "cc": "NO",
+                "tone": "neutral"
+              },
+              {
+                "label": "Swiss bilaterals",
+                "value": "Sectoral access",
+                "cc": "CH",
+                "tone": "neutral"
+              },
+              {
+                "label": "UK (post-Brexit)",
+                "value": "Trade deal only",
+                "cc": "GB",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Candidate (Ukraine)",
+                "value": "Talks, no rights",
+                "cc": "UA",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Europe's tiered memberships"
+          }
+        ]
+      },
+      {
+        "heading": "THE TURKISH GHOST",
+        "body": "Turkey opened accession talks in 2005. Twenty-one years later, only one of 35 chapters has been provisionally closed. Ankara was offered 'privileged partnership' — a tier short of membership — and rejected it as a permanent demotion. Kyiv watches this precedent closely.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1963",
+                "label": "Ankara Agreement signed"
+              },
+              {
+                "year": "1999",
+                "label": "Granted candidate status"
+              },
+              {
+                "year": "2005",
+                "label": "Accession talks open",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2016",
+                "label": "Talks effectively frozen"
+              },
+              {
+                "year": "2026",
+                "label": "1 of 35 chapters closed"
+              }
+            ],
+            "label": "Turkey's accession track"
+          }
+        ]
+      },
+      {
+        "heading": "WHY MERZ MOVES NOW",
+        "body": "Germany's CDU returned to the chancellery in May 2025 after three years of SPD-led coalition. Merz built his campaign on a harder Ukraine line than his predecessor, and the EU's December 2025 enlargement summit is the next forcing function. Acting before then lets Berlin shape the framework rather than inherit one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which EU treaty article contains the mutual-defence clause Merz wants to extend to Ukraine?",
+            "options": [
+              "Article 5 of the North Atlantic Treaty",
+              "Article 42(7) of the Treaty on European Union",
+              "Article 2 of the Treaty on European Union",
+              "Article 50 of the Treaty on European Union"
+            ],
+            "correct": 1,
+            "explanation": "Article 42(7), added by the Lisbon Treaty in 2009, is the EU's own mutual-defence clause — separate from NATO's Article 5. Article 50 is the exit clause; Article 2 lists EU values."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-21T08:35:18.488Z",
+    "label": "EU Enlargement & Two-Tier Membership",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-21-ofcom-tiktok-youtube-children-online-safety-act": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE REGULATOR",
+        "body": "Ofcom began as a broadcast regulator — television, radio, spectrum licensing. The Online Safety Act of 2023 handed it jurisdiction over global internet platforms overnight, transforming a domestic media watchdog into one of the world's most powerful content regulators.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Ofcom's full name is the *Office of Communications*; before 2023 its biggest fines targeted **British broadcasters**, not Silicon Valley."
+          }
+        ]
+      },
+      {
+        "heading": "THE 10% RULE",
+        "body": "The Act's maximum fine — 10% of global annual revenue or £18 million, whichever is higher — deliberately mirrors the GDPR and EU Digital Services Act penalty structure. The logic is that fines must scale with company size, or trillion-dollar platforms treat them as a cost of doing business.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Alphabet (YouTube)",
+                "value": "~$35bn cap",
+                "tone": "unfavorable",
+                "cc": "US",
+                "weight": 350
+              },
+              {
+                "label": "Meta",
+                "value": "~$16bn cap",
+                "tone": "unfavorable",
+                "cc": "US",
+                "weight": 160
+              },
+              {
+                "label": "ByteDance (TikTok)",
+                "value": "~$12bn cap",
+                "tone": "unfavorable",
+                "cc": "CN",
+                "weight": 120
+              },
+              {
+                "label": "Snap",
+                "value": "~$0.5bn cap",
+                "tone": "neutral",
+                "cc": "US",
+                "weight": 5
+              },
+              {
+                "label": "Roblox",
+                "value": "~$0.35bn cap",
+                "tone": "neutral",
+                "cc": "US",
+                "weight": 3.5
+              }
+            ],
+            "label": "what 10% of global turnover looks like (2024 revenue)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY RECOMMENDATION FEEDS",
+        "body": "The Act targets algorithmic amplification, not user posts. A teenager who searches for harmful content is one problem; a feed that infers their vulnerability from watch-time and serves more is a different problem. Ofcom's draft codes treat the recommender as the regulated product."
+      },
+      {
+        "heading": "THE BRUSSELS EFFECT, REVERSED",
+        "body": "For two decades the EU set global tech rules and the UK followed. The Online Safety Act is the first major post-Brexit divergence: stricter than the EU's Digital Services Act on children, broader in scope, and enforced by a regulator with no equivalent on the continent."
+      },
+      {
+        "heading": "THE AUSTRALIAN PRECEDENT",
+        "body": "Australia passed a world-first under-16 social media ban in November 2024, enforced on platforms rather than parents. The UK consultation closing next week is the first serious test of whether the model travels. If London follows Canberra, Brussels and Washington face pressure to match.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GB",
+              "AU",
+              "FR",
+              "NO",
+              "IE"
+            ],
+            "label": "countries moving on under-16 social media access",
+            "caption": "Australia banned in 2024; France, Norway, Ireland are in legislative stages."
+          }
+        ]
+      },
+      {
+        "heading": "TEST YOURSELF",
+        "body": "The Online Safety Act applies to any platform with UK users, regardless of where the company is headquartered.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the Online Safety Act, what is Ofcom's maximum fine for a platform that ignores its child-safety duties?",
+            "options": [
+              "£18 million flat",
+              "10% of UK revenue",
+              "10% of global revenue or £18 million, whichever is higher",
+              "Criminal prosecution of the CEO only"
+            ],
+            "correct": 2,
+            "explanation": "The global-turnover cap is the teeth — a UK-only cap would let trillion-dollar platforms absorb fines as a cost of doing business."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-21T08:35:45.133Z",
+    "label": "Ofcom & the Online Safety Act",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-21-openai-model-disproves-discrete-geometry-conjecture": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A CONJECTURE IS",
+        "body": "In mathematics a conjecture is a statement believed true but unproven. It graduates to a theorem when proved, or dies when a single counterexample is found. Disproof by counterexample is logically cheaper than proof — one ugly fact kills an infinity of expected behavior.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The asymmetry is fundamental: a proof must cover *every* case; a counterexample needs only *one*. This is why brute-force search is a natural fit for disproof and a hopeless one for proof."
+          }
+        ]
+      },
+      {
+        "heading": "THE FOUR COLOR PRECEDENT",
+        "body": "The 1976 four color theorem was the first major result whose proof depended on a computer — Appel and Haken reduced the problem to 1,936 configurations and let a machine check each one. Mathematicians initially refused to accept it; some still consider it less satisfying than a proof a human can read end-to-end.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1976",
+                "label": "Four color theorem (Appel–Haken)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1998",
+                "label": "Kepler conjecture (Hales, sphere packing)"
+              },
+              {
+                "year": "2016",
+                "label": "Boolean Pythagorean triples (200 TB proof)"
+              },
+              {
+                "year": "2021",
+                "label": "Lean/Coq formal verification mainstream"
+              },
+              {
+                "year": "2026",
+                "label": "LLM-guided counterexample search"
+              }
+            ],
+            "label": "compute enters pure mathematics"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DISCRETE GEOMETRY",
+        "body": "Discrete geometry studies finite or countable arrangements — points, lines, polytopes, packings — rather than smooth curves. Its conjectures often reduce to combinatorial search over configurations, which makes them unusually exposed to machine attack: the search space is large but enumerable."
+      },
+      {
+        "heading": "VERIFIED VS PROVED",
+        "body": "Human-verified means a mathematician checked the counterexample's arithmetic and confirmed it violates the conjecture's claim. Formally proved would mean machine-checked in a proof assistant like Lean or Coq, where every inference step is mechanically validated. The distinction matters: verification trusts the human reader; formal proof trusts only the kernel.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Peer-reviewed",
+                "value": "human-checked",
+                "tone": "neutral"
+              },
+              {
+                "label": "Human-verified counterexample",
+                "value": "arithmetic confirmed",
+                "tone": "neutral"
+              },
+              {
+                "label": "Computer-assisted",
+                "value": "case enumeration",
+                "tone": "favorable"
+              },
+              {
+                "label": "Formally proved",
+                "value": "kernel-checked",
+                "tone": "favorable"
+              }
+            ],
+            "label": "levels of mathematical certainty"
+          }
+        ]
+      },
+      {
+        "heading": "THE NEW ROLE FOR MODELS",
+        "body": "Earlier compute-aided maths used hand-written programs to exhaust a finite case list. An LLM-guided search instead proposes parameterizations a human would not think to try, then evaluates them. The model is not proving anything; it is a creative search heuristic over the configuration space."
+      },
+      {
+        "heading": "WHAT IT DOES NOT MEAN",
+        "body": "A counterexample to one conjecture is not a general claim that machines now do mathematics. The Riemann Hypothesis, P vs NP, and the abc conjecture remain untouched by this class of method — they resist enumeration because their counterexample, if one exists, lives somewhere unbounded.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is disproving a conjecture often easier than proving one?",
+            "options": [
+              "Computers can only handle disproofs",
+              "A single counterexample suffices, but a proof must cover every case",
+              "Conjectures are usually false",
+              "Disproofs do not require peer review"
+            ],
+            "correct": 1,
+            "explanation": "Logically, refutation needs one instance; proof needs universal coverage. That asymmetry is why brute-force search fits disproof and not proof."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-21T08:36:16.444Z",
+    "label": "Compute-Aided Mathematics",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-21-petrodollar-iran-war-de-dollarization-mbridge-yuan": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BRETTON WOODS BREAK",
+        "body": "From 1944 to 1971, dollars were redeemable for gold at $35/oz. Nixon closed the window when foreign claims exceeded US reserves. The dollar should have collapsed — instead, Washington engineered a replacement anchor.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1944",
+                "label": "Bretton Woods: dollar pegged to gold"
+              },
+              {
+                "year": "1971",
+                "label": "Nixon shock: gold window closed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1974",
+                "label": "US–Saudi petrodollar agreement"
+              },
+              {
+                "year": "2022",
+                "label": "Russian reserves frozen post-Ukraine"
+              },
+              {
+                "year": "2023",
+                "label": "BRICS+ expansion; mBridge live pilot"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1944",
+                "to": "1971",
+                "label": "gold-anchored dollar",
+                "tone": "neutral"
+              },
+              {
+                "from": "1974",
+                "to": "2022",
+                "label": "petrodollar consensus",
+                "tone": "neutral"
+              }
+            ],
+            "label": "the dollar's two anchors"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1974 BARGAIN",
+        "body": "Treasury Secretary William Simon flew to Riyadh and struck a deal with King Faisal: Saudi Arabia would price oil exclusively in dollars and recycle surpluses into US Treasuries, in exchange for American security guarantees. Every oil importer on Earth then needed dollars to fill their tank.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The arrangement created what economists call **exorbitant privilege** — the US could run permanent trade deficits because global demand for dollars was structurally locked in by the oil trade."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 2022 BROKE THE SPELL",
+        "body": "When the G7 froze $300bn of Russian central bank reserves after the Ukraine invasion, every non-aligned central banker learned the same lesson: dollar reserves are not property, they are a permission. Gold cannot be frozen by a sanctions order in Washington.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of global central bank reserves was held in dollars at the petrodollar peak (1999) vs. today?",
+            "options": [
+              "72% then, ~58% now",
+              "85% then, 80% now",
+              "60% then, 70% now",
+              "50% then, 30% now"
+            ],
+            "correct": 0,
+            "explanation": "IMF COFER data shows dollar reserves fell from ~72% in 1999 to under 60% by 2024 — a slow, steady drift, not a collapse."
+          }
+        ]
+      },
+      {
+        "heading": "THE GOLD BID",
+        "body": "Central bank gold buying doubled from the long-run average of ~500 tons/year to over 1,000 tons/year after 2022. China, Turkey, India, and Poland led the buying. This is the cleanest signal of reserve-manager intent — gold pays no yield, so accumulating it means you are paying to escape counterparty risk.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China (PBoC)",
+                "value": "316 t",
+                "cc": "CN",
+                "weight": 316,
+                "tone": "favorable"
+              },
+              {
+                "label": "Turkey",
+                "value": "198 t",
+                "cc": "TR",
+                "weight": 198,
+                "tone": "favorable"
+              },
+              {
+                "label": "India (RBI)",
+                "value": "173 t",
+                "cc": "IN",
+                "weight": 173,
+                "tone": "favorable"
+              },
+              {
+                "label": "Poland",
+                "value": "167 t",
+                "cc": "PL",
+                "weight": 167,
+                "tone": "favorable"
+              },
+              {
+                "label": "Singapore",
+                "value": "76 t",
+                "cc": "SG",
+                "weight": 76,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Top central bank gold buyers, 2022–2024 (tons added)"
+          }
+        ]
+      },
+      {
+        "heading": "MBRIDGE & THE RAILS PROBLEM",
+        "body": "Replacing the dollar requires replacing the plumbing: SWIFT for messaging, CHIPS for settlement, correspondent banks for clearing. Project mBridge — a BIS-incubated CBDC platform built by the central banks of China, Hong Kong, Thailand, and the UAE — moved its first real cross-border transactions in 2023. It is the first credible alternative rail.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "HK",
+              "TH",
+              "AE",
+              "SA"
+            ],
+            "label": "mBridge founding participants (Saudi Arabia joined 2024)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE CROWN HOLDS",
+        "body": "Network effects are sticky. The dollar's role in invoicing, FX markets, and trade finance is roughly 80–90% — far above its reserve share. Until someone offers deep, liquid, freely convertible bond markets at the scale of Treasuries, the dollar declines slowly, not suddenly. The yuan is not convertible; the euro has no unified bond market.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call this *incumbency by inertia* — sterling kept its reserve-currency role for **forty years** after Britain ceased to be the dominant economy. Currency regimes outlive the empires that built them."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-21T08:36:51.616Z",
+    "label": "The Petrodollar System",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-21-tp53-li-fraumeni-breast-cancer-genomic-trajectory": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GUARDIAN OF THE GENOME",
+        "body": "TP53 encodes p53, a transcription factor that halts cell division when DNA damage is detected and triggers apoptosis if repair fails. It is mutated in roughly half of all human cancers — the single most commonly disrupted gene in oncology.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Lab shorthand calls p53 *the guardian of the genome* — a phrase coined by David Lane in **1992** that stuck because it captures the gatekeeping role precisely."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT LI-FRAUMENI IS",
+        "body": "Li-Fraumeni syndrome is a rare autosomal-dominant disorder where one TP53 allele is mutated in every cell from birth. Carriers face a near-100% lifetime cancer risk, with sarcomas, brain tumors, adrenocortical carcinoma, and early-onset breast cancer dominating the spectrum.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "At what age does breast cancer risk in Li-Fraumeni carriers typically begin to rise sharply?",
+            "options": [
+              "Late teens",
+              "Twenties",
+              "Forties",
+              "Sixties"
+            ],
+            "correct": 1,
+            "explanation": "LFS breast cancers commonly appear in a woman's 20s and 30s — decades earlier than sporadic disease, which is why annual breast MRI screening starts at age 20 for known carriers."
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO-HIT MECHANISM",
+        "body": "Knudson's 1971 two-hit hypothesis explains why one inherited mutation is enough: every cell already carries the first hit, so a single somatic event knocks out the remaining functional copy. Tumors arise stochastically wherever that second hit lands."
+      },
+      {
+        "heading": "WHY HER2 KEEPS APPEARING",
+        "body": "HER2 is a growth-factor receptor on chromosome 17 — the same chromosome that carries TP53. In LFS breast tumors, HER2 amplification dominates the oncogene landscape, possibly because loss of p53 surveillance lets HER2-driven proliferation run unchecked from an early age."
+      },
+      {
+        "heading": "THE COLD-TUMOR PROBLEM",
+        "body": "Low CD8+ T-cell infiltration marks a tumor as immunologically cold — the immune system is not engaging it. Checkpoint inhibitors like pembrolizumab work best in hot tumors with abundant T cells. An LFS-specific immune profile implies these patients may need different therapies than the sporadic-disease playbook assumes.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Oncologists divide tumors into **hot** (T-cell infiltrated, immunotherapy-responsive) and **cold** (immune-excluded, requiring chemotherapy or targeted agents). The distinction now drives trial-arm assignment as much as histology does."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SEPARATE TRIALS MATTER",
+        "body": "Clinical trials enroll for the average patient. When a subpopulation has distinct biology — different drivers, different immune context, different age at onset — pooling them with sporadic cases dilutes the signal in both directions. The history of HER2-positive disease itself is the precedent: separating it from HER2-negative trials in the 1990s is what made trastuzumab's benefit visible."
+      }
+    ],
+    "generatedAt": "2026-05-21T08:37:17.010Z",
+    "label": "TP53 & Li-Fraumeni Syndrome",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-21-venezuela-delcy-rodriguez-organized-crime-post-maduro": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PETROSTATE TRAP",
+        "body": "Venezuela sits on the world's largest proven oil reserves — larger than Saudi Arabia's. Yet output collapsed from 3.2 million barrels/day in 2008 to under 800,000 by the early 2020s. The collapse was not geological; it was the predictable result of expropriating service contractors, purging PDVSA's engineers in 2003, and using the company as a patronage machine.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Proven oil reserves",
+            "peers": [
+              {
+                "value": 303,
+                "cc": "VE"
+              },
+              {
+                "value": 267,
+                "cc": "SA"
+              },
+              {
+                "value": 209,
+                "cc": "IR"
+              },
+              {
+                "value": 170,
+                "cc": "CA"
+              },
+              {
+                "value": 145,
+                "cc": "IQ"
+              },
+              {
+                "value": 111,
+                "cc": "AE"
+              },
+              {
+                "value": 80,
+                "cc": "RU"
+              }
+            ],
+            "subjectCc": "VE",
+            "unit": "bn barrels"
+          }
+        ]
+      },
+      {
+        "heading": "THE CARTEL OF THE SUNS",
+        "body": "US prosecutors use the name **Cartel de los Soles** for a network of Venezuelan military officers — the 'suns' refer to the rank insignia on a general's epaulette — accused of moving Colombian cocaine through Venezuelan territory since the 1990s. Unlike Mexican cartels, it is not a hierarchical organization but a protection franchise run from inside the armed forces.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In July 2025 the US Treasury formally designated *Cartel de los Soles* as a **Specially Designated Global Terrorist** entity — the first time a foreign government's own military leadership was sanctioned as a terrorist organization rather than a criminal one."
+          }
+        ]
+      },
+      {
+        "heading": "THE COLECTIVOS",
+        "body": "Beneath the military sit the **colectivos** — armed neighborhood groups in Caracas barrios originally formed under Chávez as civilian defense committees. Over two decades they evolved into a parallel security force: they police pro-government zones, suppress protests the National Guard cannot be seen suppressing, and run local extortion economies. Dismantling them would remove the regime's street-level enforcement arm."
+      },
+      {
+        "heading": "THE NEGOTIATION TEMPLATE",
+        "body": "Every Latin American democratic transition since the 1980s — Argentina 1983, Chile 1990, Brazil 1985 — included some form of amnesty or guarantee for the outgoing security apparatus. Pinochet wrote his own immunity into the 1980 constitution before stepping down. The Venezuelan calculus is the same: the people who would need to leave power are the same people who would face prosecution if they did.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1983",
+                "label": "Argentina: Alfonsín, junta tried"
+              },
+              {
+                "year": "1985",
+                "label": "Brazil: military steps down"
+              },
+              {
+                "year": "1990",
+                "label": "Chile: Pinochet exits, retains immunity",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1999",
+                "label": "Chávez takes office in Venezuela"
+              },
+              {
+                "year": "2013",
+                "label": "Maduro succeeds Chávez"
+              },
+              {
+                "year": "2024",
+                "label": "Disputed election, González in exile"
+              }
+            ],
+            "label": "Latin American democratic transitions"
+          }
+        ]
+      },
+      {
+        "heading": "WHO RODRÍGUEZ IS",
+        "body": "Delcy Rodríguez and her brother Jorge are the regime's diplomatic and parliamentary faces — fluent, polished, and personally sanctioned by the US, EU, Canada, and UK since 2017–2018 for human rights abuses and corruption. She ran the 2017 Constituent Assembly that sidelined the elected opposition-led legislature; he negotiates with the opposition in Oslo and Mexico City.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Nicolás Maduro",
+                "role": "President",
+                "years": "2013–",
+                "cc": "VE"
+              },
+              {
+                "name": "Delcy Rodríguez",
+                "role": "Vice President",
+                "years": "2018–",
+                "cc": "VE"
+              },
+              {
+                "name": "Jorge Rodríguez",
+                "role": "National Assembly president",
+                "years": "2021–",
+                "cc": "VE"
+              },
+              {
+                "name": "Vladimir Padrino",
+                "role": "Defense Minister",
+                "years": "2014–",
+                "cc": "VE"
+              }
+            ],
+            "label": "the inner circle"
+          }
+        ]
+      },
+      {
+        "heading": "THE DIASPORA SIGNAL",
+        "body": "Roughly 7.7 million Venezuelans have left the country since 2015 — the largest displacement crisis in the Western Hemisphere's history, larger than Syria's at its peak. Colombia hosts about 2.9 million, Peru 1.5 million, the US around 770,000. The exit rate is the clearest referendum on the regime's economic management; no statistic Caracas publishes about GDP recovery matters more than this one.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "VE",
+              "CO",
+              "PE",
+              "EC",
+              "CL",
+              "BR",
+              "US"
+            ],
+            "label": "Venezuelan diaspora, top hosts",
+            "values": [
+              {
+                "cc": "CO",
+                "value": 2900000
+              },
+              {
+                "cc": "PE",
+                "value": 1500000
+              },
+              {
+                "cc": "US",
+                "value": 770000
+              },
+              {
+                "cc": "EC",
+                "value": 475000
+              },
+              {
+                "cc": "CL",
+                "value": 444000
+              },
+              {
+                "cc": "BR",
+                "value": 510000
+              },
+              {
+                "cc": "VE",
+                "value": 0
+              }
+            ],
+            "valueLabel": "Venezuelans hosted"
+          }
+        ]
+      },
+      {
+        "heading": "QUIZ",
+        "body": "A quick check on the scale of the exodus.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many Venezuelans have left the country since 2015?",
+            "options": [
+              "About 2 million",
+              "About 4 million",
+              "About 7-8 million",
+              "About 12 million"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 7.7 million — larger than Syria's displacement at its peak, and the biggest in the Western Hemisphere's history."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-21T08:37:53.643Z",
+    "label": "Venezuela's Criminalized State",
+    "category": "politics",
+    "articleCount": 1
   }
 }
