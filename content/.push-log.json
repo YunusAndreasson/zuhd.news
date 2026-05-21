@@ -1,56 +1,5 @@
 [
   {
-    "timestamp": "2026-04-26T08:23:57.034Z",
-    "candidateCount": 4,
-    "candidates": [
-      {
-        "slug": "2026-04-26-india-new-zealand-fta-dairy-20-billion-investment",
-        "title": "India Seals New Zealand Deal",
-        "category": "economy",
-        "eventCoverage": 39,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-26-iran-turkey-araghchi-fidan-ceasefire-call-sunni-perimeter",
-        "title": "Iran Tours Gulf, Briefs Turkey",
-        "category": "politics",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-26-glaucoma-multimodal-ai-oct-visual-field-screening",
-        "title": "AI Matches Specialists on Glaucoma",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      },
-      {
-        "slug": "2026-04-26-rat-hypertension-diabetes-diet-models-preclinical-validity",
-        "title": "Salt-Fed Rats Outgrow Hypertension",
-        "category": "science",
-        "eventCoverage": 0,
-        "importance": 6
-      }
-    ],
-    "selected": {
-      "slug": "2026-04-26-india-new-zealand-fta-dairy-20-billion-investment",
-      "title": "India Seals New Zealand Deal",
-      "category": "economy",
-      "body": "$20 billion in projected investment; dairy stays protected. [India](country:IN)",
-      "eventCoverage": 39,
-      "importance": 6
-    },
-    "skipReason": null,
-    "sent": true,
-    "pushTitle": "Breaking News",
-    "pushBody": "India, New Zealand sign free trade agreement targeting $20B investment",
-    "response": {
-      "pushed": 1,
-      "skipped": 0,
-      "tokens": 16
-    }
-  },
-  {
     "timestamp": "2026-04-26T18:03:33.226Z",
     "candidateCount": 5,
     "candidates": [
@@ -9671,6 +9620,106 @@
     "sent": true,
     "pushTitle": "Breaking News",
     "pushBody": "Germany's Merz proposes EU associate membership for Ukraine as peace incentive",
+    "response": {
+      "pushed": 1,
+      "skipped": 0,
+      "tokens": 24
+    }
+  },
+  {
+    "timestamp": "2026-05-21T12:38:03.780Z",
+    "candidateCount": 11,
+    "candidates": [
+      {
+        "slug": "2026-05-21-eurozone-pmi-contracts-iran-war-stagflation",
+        "title": "Iran War Hits Eurozone Growth",
+        "category": "economy",
+        "eventCoverage": 124,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-21-samara-syzran-rosneft-refinery-ukraine-drones",
+        "title": "Ukraine Drones Hit Rosneft Refinery",
+        "category": "economy",
+        "eventCoverage": 88,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-21-taiwan-matsu-submarine-cable-cut-china-grey-zone",
+        "title": "Matsu Cable Cut Twice",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-21-philippines-duterte-senator-icc-warrant-supreme-court",
+        "title": "Philippines Upholds ICC Warrant",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-21-sudan-kassala-youth-leader-detained-blast",
+        "title": "Sudan Detains Blast Witness",
+        "category": "politics",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-21-egypt-electricity-tariff-hike-industrial-users",
+        "title": "Egypt Hikes Industrial Power Rates",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-21-pakistan-food-trade-balance-imports-exports",
+        "title": "Pakistan Food Trade Gap Widens",
+        "category": "economy",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-21-pakistan-eid-heatwave-50c-pmd-forecast",
+        "title": "Pakistan Forecasts 50°C Eid Heat",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-21-alzheimers-women-verbal-memory-diagnosis-delay",
+        "title": "Women's Memory Masks Alzheimer's",
+        "category": "science",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-21-africa-ai-sovereignty-big-tech-cloud-dependency",
+        "title": "Africa Leases Its AI Sovereignty",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      },
+      {
+        "slug": "2026-05-21-xi-putin-ai-satellite-cyberspace-cooperation",
+        "title": "Moscow Beijing Pledge Tech Stack",
+        "category": "tech",
+        "eventCoverage": 0,
+        "importance": 6
+      }
+    ],
+    "selected": {
+      "slug": "2026-05-21-eurozone-pmi-contracts-iran-war-stagflation",
+      "title": "Iran War Hits Eurozone Growth",
+      "category": "economy",
+      "body": "[Iran](country:IR) war drove eurozone to 2.5-year PMI",
+      "eventCoverage": 124,
+      "importance": 6
+    },
+    "skipReason": null,
+    "sent": true,
+    "pushTitle": "Breaking News",
+    "pushBody": "Eurozone activity hits 2.5-year low as Iran war drives energy costs higher",
     "response": {
       "pushed": 1,
       "skipped": 0,
