@@ -207065,5 +207065,1460 @@
     "label": "Venezuela's Criminalized State",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-21-africa-ai-sovereignty-big-tech-cloud-dependency": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 'SOVEREIGNTY' ACTUALLY MEANS HERE",
+        "body": "Compute sovereignty is the ability to decide which models run, on whose hardware, under whose law. When workloads sit in AWS Cape Town or Azure Johannesburg, the data is physically in Africa but the control plane — billing, identity, model allowlists, takedown authority — sits in Seattle and Redmond under US jurisdiction.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: **data residency** (where bytes live) is not **operational sovereignty** (who can pull the plug)."
+          }
+        ]
+      },
+      {
+        "heading": "THE CLOUD ACT REACH",
+        "body": "The 2018 US CLOUD Act lets US authorities compel American providers to hand over customer data regardless of where the servers physically sit. An African government hosting citizen data on AWS Cape Town has no legal mechanism to block a US subpoena — the contract is with a Delaware corporation."
+      },
+      {
+        "heading": "THE TWO REGIONS",
+        "body": "Sub-Saharan Africa has exactly two hyperscaler cloud regions: AWS in Cape Town (opened 2020) and Microsoft Azure in Johannesburg (2019). Google Cloud's Johannesburg region opened 2024. Every other African country routes through Europe — typically Frankfurt or Dublin — adding 100-200ms of latency that breaks real-time AI inference.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ZA",
+              "KE",
+              "NG",
+              "EG",
+              "MA",
+              "CI",
+              "SN",
+              "ET"
+            ],
+            "label": "Sub-Saharan hyperscaler footprint",
+            "caption": "two cities host the continent's regulated AI compute",
+            "markers": [
+              {
+                "lat": -33.9249,
+                "lng": 18.4241,
+                "label": "AWS Cape Town"
+              },
+              {
+                "lat": -26.2041,
+                "lng": 28.0473,
+                "label": "Azure / GCP Johannesburg"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LICENSE GATE",
+        "body": "Frontier models like Claude, GPT-4, and Gemini are not sold — they are licensed via API or marketplace listings (Bedrock, Azure OpenAI, Vertex). The hyperscaler's acceptable-use policy and the model provider's export restrictions both apply. An African fintech cannot deploy a model the US Commerce Department has flagged for a country on its watch list, even on a server in Lagos.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which entity ultimately decides whether a frontier AI model can be used in a given African country?",
+            "options": [
+              "The African Union's digital authority",
+              "The host country's telecom regulator",
+              "The US-based model provider and its cloud distributor",
+              "The data centre operator"
+            ],
+            "correct": 2,
+            "explanation": "Model access flows through US export controls and provider terms — the cloud region is the delivery mechanism, not the gatekeeper."
+          }
+        ]
+      },
+      {
+        "heading": "THE THIRD-OPTION TRAP",
+        "body": "Russia's GLONASS and China's BeiDou-linked satellite internet pitches offer an alternative stack — but routing African AI workloads through Moscow or Beijing replaces US extraterritorial reach with Russian or Chinese extraterritorial reach. China's 2017 Cybersecurity Law and 2021 Data Security Law require Chinese cloud providers to hand data to state authorities on request, with no judicial intermediary.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "US hyperscalers",
+                "value": "CLOUD Act subpoena",
+                "tone": "unfavorable",
+                "cc": "US"
+              },
+              {
+                "label": "Chinese cloud",
+                "value": "DSL Art. 35 demand",
+                "tone": "unfavorable",
+                "cc": "CN"
+              },
+              {
+                "label": "Russian stack",
+                "value": "FSB SORM access",
+                "tone": "unfavorable",
+                "cc": "RU"
+              },
+              {
+                "label": "EU (GAIA-X model)",
+                "value": "court order, GDPR",
+                "tone": "neutral",
+                "cc": "EU"
+              }
+            ],
+            "label": "who can compel disclosure under each stack"
+          }
+        ]
+      },
+      {
+        "heading": "THE NON-ALIGNMENT PRECEDENT",
+        "body": "This is the 1960s Non-Aligned Movement problem in a new register. Then it was military bases and arms supply; now it is GPUs and inference endpoints. The structural pattern repeats: small states with no domestic capability must rent the capability from a great power, and the rent is paid in policy alignment.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2019",
+                "label": "Azure Johannesburg opens"
+              },
+              {
+                "year": "2020",
+                "label": "AWS Cape Town opens",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "Cassava / Nvidia AI factory announced"
+              },
+              {
+                "year": "2024",
+                "label": "Google Cloud Johannesburg opens"
+              },
+              {
+                "year": "2026",
+                "label": "Russia–China satellite pitch"
+              }
+            ],
+            "label": "Africa's hosted-AI footprint"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-21T12:30:51.024Z",
+    "label": "Cloud Sovereignty & Africa",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-21-alzheimers-women-verbal-memory-diagnosis-delay": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE VERBAL MEMORY ADVANTAGE",
+        "body": "Women outperform men on verbal memory tests across the lifespan — recalling word lists, stories, and names. The gap appears in childhood and persists into old age, and it is one of the most robust sex differences in cognitive psychology.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The advantage is specifically *verbal* — spatial and mathematical reasoning show the opposite or no gap. It's a domain effect, not a general intelligence effect."
+          }
+        ]
+      },
+      {
+        "heading": "THE MASKING MECHANISM",
+        "body": "Standard Alzheimer's screening leans heavily on verbal memory tasks like word-list recall. A woman with significant hippocampal atrophy can still score in the normal range because she started from a higher baseline — the disease eats into her reserve before it crosses the diagnostic cutoff."
+      },
+      {
+        "heading": "COGNITIVE RESERVE",
+        "body": "The brain compensates for damage until it can't. Education, bilingualism, and social engagement build reserve that delays symptoms even as pathology accumulates. The 1986 Nun Study autopsied sisters who tested cognitively normal in life yet had brains full of Alzheimer's plaques — reserve had hidden the disease entirely."
+      },
+      {
+        "heading": "WHO GETS ALZHEIMER'S",
+        "body": "Nearly two-thirds of Alzheimer's patients are women. Part of this is longevity — women live longer, and age is the dominant risk factor — but lifetime risk remains higher even after adjusting for survival. The APOE4 risk allele also confers a steeper risk increase in women than in men.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of Alzheimer's patients in the US are women?",
+            "options": [
+              "About one-third",
+              "About half",
+              "About two-thirds",
+              "About 90%"
+            ],
+            "correct": 2,
+            "explanation": "Women make up about two-thirds of US Alzheimer's cases — driven by longevity and a steeper APOE4 effect, not just by living longer."
+          }
+        ]
+      },
+      {
+        "heading": "WHY EARLY MATTERS NOW",
+        "body": "The new amyloid-clearing drugs — lecanemab and donanemab — only slow decline in early-stage disease. Once neurons are gone, clearing the plaque does nothing. A 2.7-year diagnostic delay is the difference between a treatable window and a closed door."
+      },
+      {
+        "heading": "THE CUTOFF PROBLEM",
+        "body": "Medicine has a long history of male-default reference ranges — cardiac troponin, creatinine, even heart-attack symptom checklists were calibrated on male cohorts. Sex-specific thresholds in cardiology took decades to adopt; cognitive screening is on the same path, a generation behind."
+      }
+    ],
+    "generatedAt": "2026-05-21T12:31:13.588Z",
+    "label": "Sex Differences in Alzheimer's",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-21-egypt-electricity-tariff-hike-industrial-users": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IMF CONDITION",
+        "body": "Egypt's $8bn IMF program, expanded in March 2024 after the pound's devaluation, requires phasing out energy subsidies that historically consumed roughly a fifth of state spending. Tariff hikes for industry and households are not policy choices — they are program benchmarks tied to disbursement tranches.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical name is **cost-recovery pricing**: the tariff must cover the *delivered* cost of generation plus transmission, not the politically-set floor that's prevailed for decades."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GAS DRIVES THE TARIFF",
+        "body": "Roughly 80% of Egypt's electricity comes from natural gas. Domestic production from the offshore Zohr field has been declining since 2022, forcing Egypt to import LNG at world prices. The tariff hike is downstream of the gas bill — when imports are priced in dollars and the pound has halved, the subsidy gap explodes."
+      },
+      {
+        "heading": "WHY FERTILIZER IS THE PRESSURE POINT",
+        "body": "Ammonia and urea production is the most gas-intensive industry on earth — natural gas is both fuel and feedstock. Egypt is one of the world's larger urea exporters; when domestic energy costs rise, producers chase dollar revenue abroad. The squeeze on summer planting is the predictable second-order effect.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Russia",
+                "value": "~7.0 mt",
+                "cc": "RU",
+                "weight": 7
+              },
+              {
+                "label": "Qatar",
+                "value": "~4.5 mt",
+                "cc": "QA",
+                "weight": 4.5
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~4.0 mt",
+                "cc": "SA",
+                "weight": 4
+              },
+              {
+                "label": "Egypt",
+                "value": "~3.5 mt",
+                "cc": "EG",
+                "weight": 3.5,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Oman",
+                "value": "~2.2 mt",
+                "cc": "OM",
+                "weight": 2.2
+              },
+              {
+                "label": "Algeria",
+                "value": "~2.0 mt",
+                "cc": "DZ",
+                "weight": 2
+              }
+            ],
+            "label": "top urea exporters (mn tonnes, recent)"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1977 SHADOW",
+        "body": "Every Egyptian government since Sadat has had to weigh subsidy cuts against the memory of the 1977 Bread Intifada — riots that erupted within hours of subsidy cuts on bread, sugar, and cooking oil, killing at least 79 and forcing reversal within 48 hours. The current playbook — hike industrial rates first, household rates incrementally — exists to avoid that detonation.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The price of bread is the price of stability.",
+            "speaker": "Egyptian fiscal proverb, post-1977"
+          }
+        ]
+      },
+      {
+        "heading": "THE POUND PASS-THROUGH",
+        "body": "Industrial electricity is denominated in Egyptian pounds, but the LNG cargoes that fuel the grid are paid in dollars. The pound's collapse from ~30 to over 50 per dollar in March 2024 means the same import bill is now ~70% more pounds — the tariff is doing arithmetic the currency already did.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              51.7463,
+              52.6215,
+              52.619542,
+              52.572404,
+              52.572404,
+              52.6099,
+              52.5498,
+              52.8295,
+              53.0206,
+              53.623047,
+              53.639736,
+              53.639736,
+              53.5567,
+              53.5362,
+              53.6199,
+              52.703434,
+              52.7193,
+              52.72,
+              52.74469,
+              52.7376,
+              52.8269,
+              52.9233,
+              52.9288,
+              52.897,
+              52.8709,
+              52.834473,
+              53.0759,
+              53.3218,
+              53.1117,
+              53.41957
+            ],
+            "periods": [
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21"
+            ],
+            "label": "Egyptian pound",
+            "unit": "EGP / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHO ABSORBS THE COST",
+        "body": "Heavy industry — iron, cement, fertilizer, aluminum — runs on thin margins where energy is 30-60% of production cost. They have three options: pass the hike to domestic buyers (inflation), export more to earn dollars (shortage), or curtail output (unemployment). Each route hands the government a different political problem.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does an industrial electricity tariff hike tend to TIGHTEN domestic fertilizer supply?",
+            "options": [
+              "Producers shut down to protest the hike",
+              "Producers export more to earn dollars that offset the higher pound costs",
+              "The grid can no longer supply fertilizer plants reliably",
+              "The IMF requires reduced domestic fertilizer use"
+            ],
+            "correct": 1,
+            "explanation": "When local costs rise but global urea prices are set in dollars, exporting becomes the rational hedge — leaving less for the domestic market."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-21"
+    ],
+    "generatedAt": "2026-05-21T12:31:46.398Z",
+    "label": "Egypt's Energy Subsidy Unwind",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-21-eurozone-pmi-contracts-iran-war-stagflation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 50 LINE",
+        "body": "The Purchasing Managers Index surveys procurement officers — the people who place factory orders before output shows up in GDP. A reading above 50 means expansion, below 50 contraction. At 47.5, the eurozone's composite is signalling that activity is shrinking now, months before the official quarterly numbers can confirm it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "PMI is a **diffusion index**: it counts the share of firms reporting *better* conditions minus those reporting *worse*. It measures breadth of change, not magnitude — which is why it leads GDP by 3–6 months but can't tell you how deep a slump goes."
+          }
+        ]
+      },
+      {
+        "heading": "STAGFLATION'S TEMPLATE",
+        "body": "Stagflation — rising prices alongside falling output — broke the post-war consensus that you could trade a little inflation for a little growth. The 1973 OPEC embargo quadrupled crude in six months; by 1975 every major European economy was simultaneously in recession and double-digit inflation. The textbooks had no model for it; the policy response took a decade.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1973-10",
+                "label": "OPEC oil embargo",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1974",
+                "label": "Brent quadruples"
+              },
+              {
+                "year": "1975",
+                "label": "OECD-wide recession"
+              },
+              {
+                "year": "1979",
+                "label": "Iran revolution, 2nd oil shock"
+              },
+              {
+                "year": "1981",
+                "label": "Volcker pushes Fed to 20%"
+              },
+              {
+                "year": "1983",
+                "label": "Inflation finally breaks"
+              }
+            ],
+            "label": "the original stagflation"
+          }
+        ]
+      },
+      {
+        "heading": "THE ECB'S SINGLE MANDATE",
+        "body": "The European Central Bank, modelled on the Bundesbank, has one statutory target: price stability, defined as 2% inflation. The Federal Reserve has two — price stability and maximum employment. In a stagflation, that legal difference becomes decisive: the Fed can rationalise tolerating inflation to protect jobs; the ECB legally cannot.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "ECB",
+                "value": "price stability only",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "US Fed",
+                "value": "dual mandate",
+                "tone": "neutral"
+              },
+              {
+                "label": "Bank of England",
+                "value": "price + financial stability",
+                "tone": "neutral"
+              },
+              {
+                "label": "Bank of Japan",
+                "value": "price stability",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "central bank mandates"
+          }
+        ]
+      },
+      {
+        "heading": "WHY EUROPE FEELS IT FIRST",
+        "body": "Europe imports roughly 90% of its crude and most of its natural gas. After cutting Russian pipeline gas in 2022, the bloc rebuilt around LNG cargoes — many routed through the Strait of Hormuz and the Suez–Bab el-Mandeb corridor. A Middle East war hits Europe's input costs before it shows up in American or Chinese inflation prints.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "EG",
+              "YE",
+              "DJ"
+            ],
+            "label": "Europe's energy chokepoints",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 30,
+                "lng": 32.55,
+                "label": "Suez Canal"
+              },
+              {
+                "lat": 12.583,
+                "lng": 43.333,
+                "label": "Bab el-Mandeb"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE EURO AS SHOCK ABSORBER",
+        "body": "A weaker euro magnifies imported inflation — every barrel of oil and tonne of LNG is invoiced in dollars. When the ECB is forced to choose growth over inflation, the currency typically weakens, which feeds back into the very price pressures it was trying to ignore. The June rate decision is, in effect, also a currency decision.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              0.851902,
+              0.855896,
+              0.853401,
+              0.853097,
+              0.853024,
+              0.852591,
+              0.853706,
+              0.854264,
+              0.857195,
+              0.852427,
+              0.852799,
+              0.852624,
+              0.851959,
+              0.855884,
+              0.853399,
+              0.851144,
+              0.85156,
+              0.848284,
+              0.848284,
+              0.850576,
+              0.850597,
+              0.852186,
+              0.853764,
+              0.859724,
+              0.8604,
+              0.860067,
+              0.860446,
+              0.859008,
+              0.8619,
+              0.860661
+            ],
+            "periods": [
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21"
+            ],
+            "label": "Euro",
+            "unit": "EUR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE TRAP",
+        "body": "There is no clean answer to stagflation. Raise rates to fight imported inflation and you deepen the recession; cut rates to support growth and you entrench the inflation. Volcker's 1981 solution worked but cost the deepest US recession since the 1930s. No European policymaker has been willing to repeat it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In a stagflation, what does the textbook Phillips Curve predict?",
+            "options": [
+              "Higher unemployment lowers inflation",
+              "Inflation and unemployment rise together",
+              "Inflation falls as growth slows"
+            ],
+            "correct": 0,
+            "explanation": "The Phillips Curve predicts a tradeoff — more jobs, more inflation. Stagflation broke it: both rose at once, which is why the 1970s forced economists to rebuild the model around inflation expectations."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-21"
+    ],
+    "generatedAt": "2026-05-21T12:32:26.871Z",
+    "label": "PMI, Stagflation & the ECB",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-21-pakistan-eid-heatwave-50c-pmd-forecast": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WET-BULB CEILING",
+        "body": "Healthy humans cannot survive sustained wet-bulb temperatures above 35°C — the body cannot shed metabolic heat once the air is as wet and hot as your skin. Dry 50°C with low humidity is survivable in shade with water; 40°C at high humidity is not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The threshold is set by physics, not fitness: at **35°C wet-bulb**, sweat stops evaporating. Core temperature climbs roughly **0.1°C per minute** with no recovery path short of active cooling."
+          }
+        ]
+      },
+      {
+        "heading": "WHY NIGHTS MATTER MORE THAN DAYS",
+        "body": "The human body tolerates daytime extremes if it can dump accumulated heat overnight. When minimums stay above 30°C, that recovery window closes. Mortality data from the 2003 European heatwave, the 2010 Russian heatwave, and the 2015 Karachi heatwave all track nighttime temperature more tightly than daytime peaks."
+      },
+      {
+        "heading": "THE 2015 KARACHI PRECEDENT",
+        "body": "A June 2015 heatwave killed more than 1,200 people in Karachi over five days. It coincided with Ramadan — fasting workers lost their hydration window — and with grid failures that knocked out fans and pumps. The morgue at Edhi overflowed; bodies were stacked in cold storage trucks. Every variable that drove that toll is present again.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What made the June 2015 Karachi heatwave so deadly compared to similar temperatures elsewhere?",
+            "options": [
+              "Higher absolute peak temperatures than ever recorded in South Asia",
+              "Overlap with Ramadan fasting plus rolling power cuts to fans and water pumps",
+              "A novel virus that amplified heat-stress mortality",
+              "Unusually low humidity that dehydrated victims faster"
+            ],
+            "correct": 1,
+            "explanation": "Ramadan removed the daytime hydration window; load-shedding removed fans and pumped water — the two compounding stressors drove deaths far above what the raw temperature predicted."
+          }
+        ]
+      },
+      {
+        "heading": "WHO IS EXPOSED",
+        "body": "Heat mortality clusters among outdoor laborers, the elderly, and those without air conditioning. In Pakistan roughly 60% of the workforce is in agriculture or construction — outdoors, during peak heat, with no practical option to stop working."
+      },
+      {
+        "heading": "THE GRID FEEDBACK LOOP",
+        "body": "Extreme heat drives AC demand, which overloads Pakistan's chronically under-supplied grid, which triggers load-shedding, which removes fans and water pumps from the homes that needed them most. The grid fails hardest exactly when survival depends on it.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IN",
+              "AF",
+              "IR"
+            ],
+            "label": "the Indus heat belt",
+            "markers": [
+              {
+                "lat": 28.4212,
+                "lng": 70.2989,
+                "label": "Jacobabad (frequent 50°C)"
+              },
+              {
+                "lat": 24.8607,
+                "lng": 67.0011,
+                "label": "Karachi (2015 heatwave)"
+              },
+              {
+                "lat": 31.5497,
+                "lng": 74.3436,
+                "label": "Lahore"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "JACOBABAD, EARTH'S FRONTIER",
+        "body": "Jacobabad in upper Sindh has crossed the 35°C wet-bulb threshold multiple times in the last decade — one of only a handful of inhabited places on Earth to do so. Climate models projected such crossings for mid-century; they began arriving in the 2010s.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2003",
+                "label": "European heatwave: ~70,000 deaths"
+              },
+              {
+                "year": "2010",
+                "label": "Russian heatwave: ~55,000 deaths"
+              },
+              {
+                "year": "2015-06",
+                "label": "Karachi: 1,200+ deaths",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-05",
+                "label": "Jacobabad hits 51°C"
+              },
+              {
+                "year": "2024-05",
+                "label": "Indus belt: weeks above 45°C"
+              },
+              {
+                "year": "2026-05",
+                "label": "Eid 3-day heat holiday"
+              }
+            ],
+            "label": "South Asia's heat ratchet"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-21T12:32:59.287Z",
+    "label": "Wet-Bulb Heat & Human Limits",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-21-pakistan-food-trade-balance-imports-exports": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STRUCTURAL DEFICIT",
+        "body": "Pakistan grows enough wheat and rice in normal years but imports nearly all its edible oil, pulses, and increasingly sugar. A bad domestic harvest does not just dent supply — it forces dollar outflows the central bank can barely spare.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Pakistan is the world's **fourth-largest palm oil importer**, sourcing nearly all of it from *Indonesia* and *Malaysia*. Edible oil alone runs $3–4bn a year — more than the country's entire textile machinery import bill."
+          }
+        ]
+      },
+      {
+        "heading": "THE SUGAR REVERSAL",
+        "body": "Pakistan was a sugar exporter as recently as the 2010s, with government-backed cane support prices producing structural surpluses. A 100-fold jump in sugar imports in one year signals not a market move but a policy and harvest failure stacking on top of each other.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "2024 imports",
+                "value": "3,000 t",
+                "tone": "favorable",
+                "weight": 3
+              },
+              {
+                "label": "2025 imports",
+                "value": "309,000 t",
+                "tone": "unfavorable",
+                "weight": 309
+              }
+            ],
+            "label": "Pakistan sugar trade swing"
+          }
+        ]
+      },
+      {
+        "heading": "THE DENOMINATION PROBLEM",
+        "body": "Pakistan borrows in both rupees and dollars. Rupee debt can theoretically be inflated away, but that destroys domestic purchasing power. Dollar debt cannot — a falling rupee makes every imported tonne of palm oil or sugar more expensive in local currency, feeding food inflation that hits the poorest hardest.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              279.179895,
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258,
+              278.560406,
+              278.634377
+            ],
+            "periods": [
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE IMF CARES",
+        "body": "Pakistan's IMF program is built around a primary surplus target and reserve floors. Food imports of $7.85bn are roughly half the State Bank's gross reserves at a typical IMF-review snapshot — meaning the food trade gap is not a side issue, it is the binding constraint on the program.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "ID",
+              "MY",
+              "IN",
+              "AE"
+            ],
+            "label": "where Pakistan's food dollars go",
+            "caption": "Palm oil from Indonesia/Malaysia; pulses and sugar via India and Gulf re-exporters."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1977 RHYME",
+        "body": "Bhutto's last months in office saw flour shortages that Zia's coup later cited as evidence of administrative collapse. Bread and sugar prices in Karachi and Lahore predate the IMF era as a recurring stress test of state legitimacy — every Pakistani government since has treated atta and cheeni prices as politically untouchable.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Pakistan's sugar imports jumped from 3,000 tonnes to 309,000 tonnes in one year. What does this most directly signal?",
+            "options": [
+              "A normal commodity price swing",
+              "A collapse in the domestic support-price/harvest system",
+              "A shift in consumer preferences",
+              "An IMF-mandated import liberalization"
+            ],
+            "correct": 1,
+            "explanation": "A 100x swing reflects domestic supply failure plus policy mismanagement — Pakistan had been structurally self-sufficient in sugar via cane support prices."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-21"
+    ],
+    "generatedAt": "2026-05-21T12:33:25.953Z",
+    "label": "Pakistan's Food Import Dependence",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-21-philippines-duterte-senator-icc-warrant-supreme-court": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WITHDRAWAL LOOPHOLE THAT WASN'T",
+        "body": "Article 127 of the Rome Statute lets a state quit the ICC with one year's notice, but explicitly preserves jurisdiction over crimes committed while membership was active. Duterte announced withdrawal in March 2018; it took effect March 2019. Every killing before that date remains prosecutable forever.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The drafters anticipated exactly this scenario — a leader committing atrocities, then trying to *withdraw retroactively*. Article **127(2)** closes the door."
+          }
+        ]
+      },
+      {
+        "heading": "THE DRUG WAR AS POLICY",
+        "body": "From 2016 to 2022, Philippine police acknowledged killing roughly 6,000 people in anti-drug operations; human rights groups put the true total above 30,000 once vigilante killings are counted. The ICC investigation focuses on whether the killings constituted a state policy of murder — the threshold for crimes against humanity.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Police-acknowledged",
+                "value": "~6,200",
+                "weight": 6200,
+                "tone": "neutral"
+              },
+              {
+                "label": "UN OHCHR estimate",
+                "value": "8,600+",
+                "weight": 8600,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "HRW / domestic NGOs",
+                "value": "27,000+",
+                "weight": 27000,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "official vs estimated drug war deaths, 2016–2022"
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPLEMENTARITY PRINCIPLE",
+        "body": "The ICC is a court of last resort. It can only act when national courts are 'unwilling or unable' to prosecute. The Marcos government's argument that domestic remedies suffice has now been rejected by the Philippine Supreme Court itself — making the jurisdictional question politically harder to contest."
+      },
+      {
+        "heading": "WHY SENATORS ARE HARD TO ARREST",
+        "body": "Philippine senators enjoy parliamentary immunity for offenses punishable by under six years — not a shield here, since crimes against humanity carry no such ceiling. The harder barrier is political: the Senate has historically resisted surrendering its own, and ICC arrests depend entirely on cooperative national police.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "The ICC has no police force of its own. How does it actually arrest suspects?",
+            "options": [
+              "Interpol Red Notice combined with state police cooperation",
+              "ICC marshals deployed from The Hague",
+              "UN peacekeepers under Chapter VII",
+              "Bounty hunters licensed by the Assembly of States Parties"
+            ],
+            "correct": 0,
+            "explanation": "The ICC depends entirely on member-state police forces — which is why suspects can remain at large for years in cooperative or uncooperative jurisdictions."
+          }
+        ]
+      },
+      {
+        "heading": "THE REGIONAL CONTEXT",
+        "body": "Southeast Asia is the world's least-ICC-aligned region. The Philippines was the only ASEAN founding member of the court; its 2019 exit left zero current members in the bloc. Domestic accountability for state violence is correspondingly thin across the region.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PH",
+              "ID",
+              "MY",
+              "TH",
+              "VN",
+              "MM",
+              "KH",
+              "LA",
+              "SG",
+              "BN"
+            ],
+            "label": "ASEAN: ICC membership status",
+            "caption": "None currently members; only the Philippines (2011–2019) ever joined"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT THAT MATTERS",
+        "body": "Only one sitting head of state has ever been transferred to The Hague during their term — Côte d'Ivoire's Laurent Gbagbo in 2011, after losing an election and a civil war. Every other indicted leader (Bashir, Putin, Netanyahu) has remained at large. A senator-rank target is unusual precisely because mid-tier officials are politically cheaper to surrender than presidents."
+      }
+    ],
+    "generatedAt": "2026-05-21T12:33:57.799Z",
+    "label": "ICC Jurisdiction & Withdrawal",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-21-samara-syzran-rosneft-refinery-ukraine-drones": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY REFINERIES, NOT WELLS",
+        "body": "Crude oil is useless to an army. Tanks, jets, and trucks need diesel, kerosene, and gasoline — products only refineries make. Striking a wellhead halts future export revenue; striking a refinery starves the front line within weeks.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Ukraine's doctrine inverts the Allied WWII playbook: the **Oil Campaign of 1944** bombed Ploiești's refineries, not Romania's wells, and Wehrmacht fuel stocks collapsed within months."
+          }
+        ]
+      },
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Russia has roughly 30 major refineries concentrated in European Russia and the Volga basin. Each is a sprawling, fixed installation of cracking towers, hydrotreaters, and distillation columns — bespoke equipment with multi-year lead times, much of it Western-built and now sanctioned.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "UA",
+              "BY",
+              "KZ"
+            ],
+            "label": "Volga refining cluster",
+            "markers": [
+              {
+                "lat": 53.1583,
+                "lng": 48.4667,
+                "label": "Syzran refinery"
+              },
+              {
+                "lat": 53.2,
+                "lng": 50.15,
+                "label": "Novokuibyshevsk refinery"
+              },
+              {
+                "lat": 53.5,
+                "lng": 49.42,
+                "label": "Samara refinery (Kuibyshev)"
+              },
+              {
+                "lat": 51.6608,
+                "lng": 39.2003,
+                "label": "Voronezh"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE RANGE PROBLEM",
+        "body": "Syzran sits roughly 850 km from the Ukrainian border. Hitting it requires long-range strike drones — Ukrainian designs like the Liutyi and modified An-196 with ranges of 1,000+ km, built indigenously after Western partners declined to supply equivalent missiles.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why has Ukraine built its own long-range strike drones rather than buying Western cruise missiles?",
+            "options": [
+              "Cost — drones are 50× cheaper per shot",
+              "Western partners refused to supply weapons that strike deep inside Russia",
+              "Drones evade Russian air defenses better",
+              "All of the above"
+            ],
+            "correct": 3,
+            "explanation": "Each factor matters: Storm Shadow and ATACMS came with range restrictions on Russian territory, a Shahed-class drone costs ~$50k vs. millions for a cruise missile, and slow low-flying drones often slip under radar coverage tuned for jets."
+          }
+        ]
+      },
+      {
+        "heading": "THE REVENUE LINK",
+        "body": "Russia's federal budget draws roughly a third of revenue from oil and gas. Refined product exports — diesel especially — were a major workaround after the EU's crude embargo, sold to refining-short buyers in Turkey, Brazil, and India. Disabling refineries hits both domestic supply and export earnings at once."
+      },
+      {
+        "heading": "THE REPAIR CYCLE",
+        "body": "After each strike Russia patches damaged units, but sanctioned catalyst and Western spare parts force cannibalization across sites. Strikes in 2024 took roughly 14% of Russian refining capacity offline at the peak; gasoline shortages forced an export ban that summer.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Refinery throughput (selected Russian sites)",
+            "peers": [
+              {
+                "value": 21,
+                "label": "Omsk"
+              },
+              {
+                "value": 20,
+                "label": "Kirishi"
+              },
+              {
+                "value": 17,
+                "label": "Ryazan"
+              },
+              {
+                "value": 15,
+                "label": "Volgograd"
+              },
+              {
+                "value": 8.8,
+                "label": "Novokuibyshevsk"
+              },
+              {
+                "value": 8.5,
+                "label": "Syzran"
+              },
+              {
+                "value": 12,
+                "label": "Tuapse"
+              }
+            ],
+            "subjectLabel": "Syzran",
+            "unit": "mn tonnes/yr"
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL ECHO",
+        "body": "In 1941 Stalin evacuated entire factories east of the Volga to put them beyond German bomber range. The Volga refineries — Syzran, Samara, Novokuibyshevsk — were built or expanded in that strategic depth. Drone warfare has now collapsed the geography that protected them for eighty years."
+      }
+    ],
+    "generatedAt": "2026-05-21T12:34:27.696Z",
+    "label": "Refineries as War Targets",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-21-sudan-kassala-youth-leader-detained-blast": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHERE KASSALA SITS",
+        "body": "Kassala lies in Sudan's far east, against the Eritrean border and far from the Khartoum-Omdurman war front. Its relative distance from the main RSF-SAF battles has made it a refuge city — and a sensitive one, because the army controls it and tolerates little dissent about how it's run.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "ER",
+              "ET",
+              "EG",
+              "SS",
+              "TD"
+            ],
+            "label": "Sudan's eastern front",
+            "markers": [
+              {
+                "lat": 15.451,
+                "lng": 36.4,
+                "label": "Kassala"
+              },
+              {
+                "lat": 15.5007,
+                "lng": 32.5599,
+                "label": "Khartoum"
+              },
+              {
+                "lat": 19.6158,
+                "lng": 37.2164,
+                "label": "Port Sudan"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO ARMIES",
+        "body": "Sudan's war is between two generals who once partnered to overthrow a civilian government. The SAF under Burhan and the RSF under Hemedti jointly crushed the 2019 democracy movement, then turned on each other in April 2023 when a transition deal collapsed.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Abdel Fattah al-Burhan",
+                "role": "SAF commander, de facto head of state",
+                "years": "2019–",
+                "cc": "SD"
+              },
+              {
+                "name": "Mohamed Hamdan Dagalo (Hemedti)",
+                "role": "RSF commander",
+                "years": "2013–",
+                "cc": "SD"
+              }
+            ],
+            "label": "the generals"
+          }
+        ]
+      },
+      {
+        "heading": "THE RSF'S ORIGINS",
+        "body": "The RSF evolved from the Janjaweed militias that carried out the Darfur genocide beginning in 2003. Bashir armed Arab militias to fight non-Arab rebels, then formalized them as the Rapid Support Forces in 2013. Hemedti, a former camel trader, rose from militia commander to the second most powerful man in Sudan — with troops loyal to him personally, not the state."
+      },
+      {
+        "heading": "THE INFORMATION WAR",
+        "body": "In civil wars where both sides claim legitimacy, the first casualty is forensic truth. A *landmine* implies RSF infiltration eastward; a *drone strike* implies a specific actor with specific capabilities. Detaining a witness within 24 hours is less about the witness than about which narrative is allowed to set.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: **landmines** suggest territory contested or recently passed through; **drones** point to a deliberate, attributable strike from a known operator — Sudan's war now sees both Turkish-supplied SAF drones and UAE-linked RSF drones."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL VEHICLE",
+        "body": "Sudan's 1996 Press and Publications Act and the 2020 Cybercrimes Law both criminalize 'spreading false news' — vague enough to cover almost any post a security service dislikes. Detentions are typically incommunicado and rarely produce a trial; the punishment is the process."
+      },
+      {
+        "heading": "WHY IT WORKS",
+        "body": "Authoritarian regimes don't suppress dissent by convincing the population — they suppress it by raising the personal cost of a single Facebook post until silence becomes rational. One arrest broadcast through a community deters thousands of unwritten posts.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does the Sudanese army gain most from arresting a witness who disputed the official blast account?",
+            "options": [
+              "A criminal conviction that establishes the official version as legal truth",
+              "Deterrence — making other potential witnesses self-censor before posting",
+              "Intelligence about a specific opposition cell",
+              "Compliance with the 2020 Cybercrimes Law's reporting requirements"
+            ],
+            "correct": 1,
+            "explanation": "The arrest's value is the chilling effect on everyone else who saw the blast, not the case against the individual — which is why trials rarely follow."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-21T12:34:58.446Z",
+    "label": "Sudan, Kassala & the Information War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-21-taiwan-matsu-submarine-cable-cut-china-grey-zone": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "Matsu is a Taiwanese archipelago lying just 10 km off China's Fujian coast — closer to Fuzhou than to Taipei. Its 14,000 residents depend on two submarine cables snaking across one of the world's busiest fishing grounds for everything from banking to hospital records.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TW",
+              "CN"
+            ],
+            "label": "Matsu sits 10km off Fujian",
+            "markers": [
+              {
+                "lat": 26.1608,
+                "lng": 119.9489,
+                "label": "Matsu (Nangan)"
+              },
+              {
+                "lat": 26.0745,
+                "lng": 119.2965,
+                "label": "Fuzhou"
+              },
+              {
+                "lat": 25.033,
+                "lng": 121.5654,
+                "label": "Taipei"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY CABLES, NOT SATELLITES",
+        "body": "Roughly 99% of intercontinental data moves through ~500 submarine cables, not satellites. A single fiber pair carries terabits per second; even Starlink's entire constellation cannot match one modern cable's capacity. Cables are also a hundred times cheaper per bit — which is why every island, every continent, every financial center is wired, not beamed.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **landing station** — the coastal facility where a cable terminates. Cut the cable offshore and the landing station goes dark; there is no wireless fallback at carrier scale."
+          }
+        ]
+      },
+      {
+        "heading": "GREY-ZONE COERCION",
+        "body": "Grey-zone tactics sit deliberately below the threshold of armed conflict: actions damaging enough to coerce but ambiguous enough to deny. A fishing trawler dragging an anchor across a cable is plausibly an accident; the same vessel doing it twice, in the same place, to the same cable, is not. Attribution is the entire battlefield.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What makes 'grey-zone' actions strategically valuable to the actor using them?",
+            "options": [
+              "They cause more damage than conventional strikes",
+              "They stay below the threshold that triggers a treaty response",
+              "They are cheaper than diplomatic pressure",
+              "They cannot be detected by the targeted state"
+            ],
+            "correct": 1,
+            "explanation": "Grey-zone tactics work precisely because they're ambiguous — clear enough to coerce, deniable enough to avoid triggering Article 5-style obligations or formal sanctions."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2023 PRECEDENT",
+        "body": "In February 2023, both Matsu cables were severed within six days — one by a Chinese fishing vessel, one by a Chinese cargo ship, per Taiwan's Coast Guard. Repairs took over 50 days because the world's small fleet of cable-repair ships was booked elsewhere; the Pacific has fewer than 60 such vessels and most are leased years in advance.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Asia-Pacific",
+                "value": "~22 ships",
+                "weight": 22
+              },
+              {
+                "label": "Atlantic",
+                "value": "~18 ships",
+                "weight": 18
+              },
+              {
+                "label": "Indian Ocean",
+                "value": "~10 ships",
+                "weight": 10
+              },
+              {
+                "label": "Mediterranean",
+                "value": "~8 ships",
+                "weight": 8
+              }
+            ],
+            "label": "Global cable-repair ship fleet"
+          }
+        ]
+      },
+      {
+        "heading": "THE ATTRIBUTION GAME",
+        "body": "International law on subsea cables traces to the 1884 Convention for the Protection of Submarine Cables — written for telegraph lines and never meaningfully updated. It criminalizes 'wilful or culpably negligent' cable damage but provides no enforcement mechanism in another state's EEZ. Taiwan logging vessel AIS data, hull photos, and anchor scars is building the only kind of case that can be made: evidentiary, public, slow.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2017",
+                "label": "Cable cut, repaired in weeks"
+              },
+              {
+                "year": "2018",
+                "label": "Cable cut, repaired in weeks"
+              },
+              {
+                "year": "2019",
+                "label": "Cable cut"
+              },
+              {
+                "year": "2020",
+                "label": "Cable cut"
+              },
+              {
+                "year": "2021",
+                "label": "Cable cut"
+              },
+              {
+                "year": "2023-02",
+                "label": "Both cables cut in 6 days",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026-05",
+                "label": "Two cuts, weeks apart"
+              }
+            ],
+            "label": "Matsu's cable incidents"
+          }
+        ]
+      },
+      {
+        "heading": "THE TAIWAN STRESS TEST",
+        "body": "Matsu is widely read as a live-fire rehearsal. If China can sever an outer island's connectivity without consequence, the same playbook scales to the 14 international cables landing on Taiwan proper. A pre-invasion blackout — banks frozen, command-and-control degraded, social media silenced — is a doctrine, not a hypothetical; it appears in PLA writings on 'informationized warfare.'"
+      }
+    ],
+    "generatedAt": "2026-05-21T12:35:34.010Z",
+    "label": "Subsea Cables & Grey-Zone Coercion",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-21-xi-putin-ai-satellite-cyberspace-cooperation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY A PARALLEL STACK",
+        "body": "US export controls under the Foreign Direct Product Rule reach any chip, software, or satellite component touched by American technology — even when built abroad. A parallel stack is the only way for sanctioned states to escape that extraterritorial reach.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine is called *extraterritoriality*: a US-origin transistor in a Dutch lithography machine makes the **entire downstream product** subject to Washington's licensing regime."
+          }
+        ]
+      },
+      {
+        "heading": "THE SATELLITE INTERNET RACE",
+        "body": "Low Earth Orbit constellations need thousands of satellites to provide continuous coverage. SpaceX's Starlink has launched the bulk of all active satellites; China's Guowang and Qianfan projects together target similar scale by the 2030s. Russia's Sfera has slipped repeatedly and orbits a fraction of what was promised.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Starlink",
+                "value": "~7,000",
+                "cc": "US",
+                "weight": 7000,
+                "tone": "neutral"
+              },
+              {
+                "label": "OneWeb",
+                "value": "~650",
+                "cc": "GB",
+                "weight": 650,
+                "tone": "neutral"
+              },
+              {
+                "label": "Qianfan (G60)",
+                "value": "~90",
+                "cc": "CN",
+                "weight": 90,
+                "tone": "neutral"
+              },
+              {
+                "label": "Guowang",
+                "value": "~30",
+                "cc": "CN",
+                "weight": 30,
+                "tone": "neutral"
+              },
+              {
+                "label": "Sfera",
+                "value": "<10",
+                "cc": "RU",
+                "weight": 8,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "LEO broadband constellations (approx. operational sats)"
+          }
+        ]
+      },
+      {
+        "heading": "THE STARLINK PROBLEM FOR MOSCOW",
+        "body": "Ukraine's battlefield dependence on Starlink — and Elon Musk's unilateral authority to switch it off — made every adversary of the US realize that orbital comms are a strategic vulnerability. Russia and China both want sovereign alternatives; neither can build one alone at competitive cost."
+      },
+      {
+        "heading": "WHY OPEN-SOURCE MATTERS",
+        "body": "GitHub, owned by Microsoft, complies with US sanctions and has restricted access for users in Iran, Crimea, and parts of Russia. China's Gitee and Russia's GitFlic are the domestic mirrors — but the world's developers, libraries, and CI tooling still orbit GitHub. A genuine alternative requires not just a server but an entire ecosystem.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country had the largest GitHub user base affected by US sanctions restrictions?",
+            "options": [
+              "Iran",
+              "Russia",
+              "Cuba",
+              "Syria"
+            ],
+            "correct": 0,
+            "explanation": "GitHub restricted Iranian accounts in 2019 under OFAC sanctions; the policy was partially reversed in 2021 after developer protests, but the precedent stuck."
+          }
+        ]
+      },
+      {
+        "heading": "THE BLOC GEOGRAPHY",
+        "body": "The target market is the Global South — countries that want connectivity and code repositories without accepting US licensing terms. Iran, Cuba, Myanmar, and most recently the Sahel juntas have all sought alternatives to Western digital infrastructure.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "CN",
+              "IR",
+              "KP",
+              "CU",
+              "VE",
+              "MM"
+            ],
+            "label": "the alternative-stack customer base"
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL RHYME",
+        "body": "The Soviet bloc built parallel standards for everything — Comecon computers ran clones of IBM mainframes, the OGAS network was a proposed Soviet internet that Brezhnev killed in 1970. Every tech bifurcation in history has produced two viable stacks only when the smaller bloc had genuine industrial depth. Russia today does not; China does."
+      }
+    ],
+    "generatedAt": "2026-05-21T12:36:01.702Z",
+    "label": "The Sino-Russian Tech Stack",
+    "category": "tech",
+    "articleCount": 1
   }
 }
