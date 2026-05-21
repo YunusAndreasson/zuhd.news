@@ -204768,5 +204768,887 @@
     "label": "Naval Blockade & VBSS",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-05-20-caribbean-coastal-land-grab-barbuda-foreign-developers": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "COMMUNAL TENURE",
+        "body": "Barbuda's 62 square miles have been held in common since emancipation in 1834. No individual owns land; residents apply to the Barbuda Council for use rights to build a house, farm a plot, or graze livestock. The system survived 180 years of British colonial law and independence.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal term is **usufruct** — the right to use and enjoy land without owning the underlying title. It is older than freehold and common in indigenous and post-emancipation Caribbean tenure."
+          }
+        ]
+      },
+      {
+        "heading": "WHY EMANCIPATION MATTERS",
+        "body": "When slavery ended across the British Caribbean, planters on most islands kept their estates and the freed labor force became wage workers. Barbuda was different — the Codrington family had used it mainly to provision their Antiguan sugar plantations, and the freed population was small enough to claim the whole island collectively. The absence of a sugar economy is why communal tenure took root here and not in Antigua.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AG",
+              "KN",
+              "DM",
+              "LC",
+              "VC"
+            ],
+            "label": "the Leeward chain",
+            "markers": [
+              {
+                "lat": 17.6266,
+                "lng": -61.7714,
+                "label": "Codrington, Barbuda"
+              },
+              {
+                "lat": 17.1175,
+                "lng": -61.8456,
+                "label": "St John's, Antigua"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "IRMA AS A LEGAL EVENT",
+        "body": "Hurricane Irma made landfall on Barbuda as a Category 5 in September 2017, destroying 95% of structures and forcing the entire population of ~1,800 to evacuate to Antigua. Within months the Antigua and Barbuda parliament passed amendments that allow individual freehold title on Barbuda — converting communal land into something a developer can buy."
+      },
+      {
+        "heading": "THE DISASTER-CAPITALISM PATTERN",
+        "body": "The sequence — catastrophe, mass evacuation, emergency legislation, foreign capital — is not unique to Barbuda. New Orleans schools after Katrina, Aceh coastal land after the 2004 tsunami, and Puerto Rico's Act 60 tax regime after Maria all show the same shape: the window when residents are displaced is when the legal regime governing their property gets rewritten."
+      },
+      {
+        "heading": "THE PEEPLES CASE",
+        "body": "In 2019 the High Court ruled in favor of resident John Mussington and the Barbuda Council, finding the airport construction at the heart of the Peace Love and Happiness (PLH) resort project unlawful for lack of environmental assessment. The Privy Council in London — still Antigua and Barbuda's final court of appeal — heard the case in 2024; the ruling is pending and would set the precedent for all subsequent developer claims.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does a London court still rule on Antigua and Barbuda's property disputes?",
+            "options": [
+              "It is a British Overseas Territory",
+              "The Judicial Committee of the Privy Council remains its final court of appeal",
+              "UK courts have jurisdiction under the Commonwealth charter",
+              "The PLH developers are British and chose the venue"
+            ],
+            "correct": 1,
+            "explanation": "Like several Caribbean states, Antigua and Barbuda kept the Privy Council as final appellate court after independence in 1981 rather than join the CCJ."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT IS BEING OFFERED",
+        "body": "Resort-scale buyers offer cash sums that dwarf any local Barbudan income — a beachfront plot might fetch six or seven figures USD against a national GDP per capita around $20,000. The pressure is not only on individuals; the Barbuda Council depends on land-lease revenue, and every refusal forecloses a budget line."
+      }
+    ],
+    "generatedAt": "2026-05-21T04:23:10.234Z",
+    "label": "Barbuda's Communal Land",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-20-coal-plants-built-2025-output-fell-capacity-reserve-decoupling": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DECOUPLING",
+        "body": "Capacity is what a plant could produce if run flat-out; generation is what it actually produced. For most of the 20th century the two moved together. Since roughly 2015 they have split — fleets grow while output flatlines or falls — because renewables now meet marginal demand and coal slides down the merit order.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical name is the **capacity factor** — actual output divided by theoretical maximum. Chinese coal capacity factors have fallen from ~60% in 2011 to *below 50%* today; new plants often open at 40% or less."
+          }
+        ]
+      },
+      {
+        "heading": "THE MERIT ORDER",
+        "body": "Grids dispatch the cheapest marginal-cost generator first. Wind and solar have near-zero marginal cost — the fuel is free — so they always clear first when they're producing. Coal, with fuel and emissions costs, gets pushed to the back of the queue and only runs when renewables can't cover demand."
+      },
+      {
+        "heading": "WHY BUILD IT ANYWAY",
+        "body": "In China and India, coal is no longer a baseload bet — it is a capacity reserve and an industrial-policy instrument. Provincial governments approve plants for local employment, steel and cement demand, and grid reliability during renewables droughts. The plant earns capacity payments even when it barely generates.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~80%",
+                "cc": "CN",
+                "tone": "unfavorable",
+                "weight": 80
+              },
+              {
+                "label": "India",
+                "value": "~15%",
+                "cc": "IN",
+                "tone": "neutral",
+                "weight": 15
+              },
+              {
+                "label": "Rest of world",
+                "value": "~5%",
+                "tone": "favorable",
+                "weight": 5
+              }
+            ],
+            "label": "share of 2025 coal builds"
+          }
+        ]
+      },
+      {
+        "heading": "THE RETIREMENT PROBLEM",
+        "body": "70% of units scheduled to retire in 2025 stayed open. Closing a coal plant strands assets, eliminates union jobs, and removes dispatchable capacity that grids increasingly need on still, dark winter evenings. Once a plant is built, the political economy of keeping it idling beats the economics of demolition.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "IN"
+            ],
+            "label": "where the 2025 build clustered",
+            "caption": "~95% of new coal capacity opened in these two countries"
+          }
+        ]
+      },
+      {
+        "heading": "THE PARIS ARITHMETIC",
+        "body": "The IEA's net-zero pathway requires unabated coal generation to fall by roughly three-quarters between 2020 and 2030. A growing fleet running at falling capacity factors can — mathematically — be consistent with that, but only if the falling factors keep falling fast enough to outrun the new construction. So far they have, just barely.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does building a coal plant in 2025 not necessarily raise emissions much?",
+            "options": [
+              "New plants use carbon capture by default",
+              "Renewables fill demand first, so the new plant runs at a low capacity factor",
+              "Modern coal plants emit roughly half as much CO2 per kWh",
+              "China taxes coal generation but not coal capacity"
+            ],
+            "correct": 1,
+            "explanation": "On a renewables-heavy grid, coal sits at the back of the merit order — capacity grows but each plant runs fewer hours, so emissions track output, not nameplate."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-21T04:23:39.056Z",
+    "label": "Coal: Capacity vs Output",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-20-texas-flock-alpr-ban-councilmember-internet-prohibition": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT FLOCK ACTUALLY IS",
+        "body": "Flock Safety sells automated license plate readers (ALPRs) — solar-powered cameras that photograph every passing vehicle, run optical character recognition on the plate, and upload the read to a searchable cloud database. By 2024 Flock had deployed in 5,000+ US communities, building one of the largest private surveillance networks in the country.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The product is not the camera — it's the **searchable national database** of plate reads, queryable by any subscribing department across jurisdictions."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL HOLE",
+        "body": "The Fourth Amendment restricts government searches, not private companies. Flock is a private vendor that collects the data and sells access to police, which has historically let ALPR networks operate without the warrant requirements that would govern a police-owned camera. Courts are only now beginning to test whether aggregated plate data crosses into a constitutionally protected search.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why have ALPR networks largely avoided Fourth Amendment challenges?",
+            "options": [
+              "License plates are public, so reading them isn't a search",
+              "A private company collects the data and sells access to police",
+              "Congress passed a 2018 statute authorizing ALPR sharing",
+              "The Supreme Court ruled vehicles have no privacy interest"
+            ],
+            "correct": 1,
+            "explanation": "The Fourth Amendment binds government actors. Routing collection through a private vendor has been the structural workaround — though Carpenter v. United States (2018) signals courts may treat aggregated location data differently."
+          }
+        ]
+      },
+      {
+        "heading": "THE CARPENTER PRECEDENT",
+        "body": "In Carpenter v. United States (2018), the Supreme Court held that police need a warrant to obtain seven days of cell-site location data, because the aggregate reveals a person's movements in a way any single data point does not. The same logic — that the whole is more invasive than the parts — is what ALPR challenges now invoke against Flock's persistent, cross-jurisdictional plate history."
+      },
+      {
+        "heading": "THE THIRD-PARTY DOCTRINE",
+        "body": "For decades, US law held that information voluntarily shared with a third party (a bank, a phone company) loses its expectation of privacy. This 1979 doctrine is what made warrantless data collection routine. Carpenter punched the first major hole in it; ALPR cases are testing how wide that hole becomes."
+      },
+      {
+        "heading": "BANDERA IN CONTEXT",
+        "body": "A town of 900 banning Flock is unusual but not unique — communities from Seattle suburbs to Norfolk, Virginia have rolled back ALPR deployments after public backlash. The councilmember's counter-proposal — ban the internet, phones, GPS — is a reductio: every modern convenience is also a surveillance vector, so why single out cameras?",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The argument has a name in privacy scholarship: *surveillance realism* — the claim that opting out is already impossible, so resistance to any single system is performative."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-21T04:24:06.393Z",
+    "label": "ALPRs & the Surveillance Tradeoff",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-21-brain-tumor-cnn-transformer-explainability-dual-score-radiology": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BLACK BOX PROBLEM",
+        "body": "A convolutional network can classify a tumor with high accuracy but cannot say why. In radiology, an unexplained correct answer is nearly useless — the doctor still bears liability and needs to understand the reasoning before acting on it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why medical AI lives or dies on *interpretability*, not just **accuracy**. A 99% accurate black box that flags one wrong patient in a hundred — without explanation — is harder to deploy than a 95% model that shows its work."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A SALIENCY MAP IS",
+        "body": "A heatmap overlays the scan with the regions the network 'looked at' most. Techniques like Grad-CAM trace the gradient of the prediction back to the input pixels — bright spots mean those pixels moved the output most."
+      },
+      {
+        "heading": "THE CLEVER HANS PROBLEM",
+        "body": "Models often achieve high accuracy by latching onto spurious features — a scanner watermark, a ruler in the corner, patient-positioning artifacts. Saliency maps exposed this in dermatology AI that 'learned' to detect surgical skin markings rather than melanoma. Auditing where the model looks is how you catch it.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did an early skin-cancer CNN appear to outperform dermatologists in 2017?",
+            "options": [
+              "It learned to detect surgical ink markings on biopsied lesions",
+              "It memorized rare cases from training data",
+              "It used multispectral imaging unavailable to humans",
+              "It was trained on more images than any human sees in a career"
+            ],
+            "correct": 0,
+            "explanation": "The model 'learned' that lesions photographed with rulers and ink marks were more often malignant — clinicians had pre-selected them for biopsy. Classic shortcut learning."
+          }
+        ]
+      },
+      {
+        "heading": "SHAPE VS FAITHFULNESS",
+        "body": "Two failure modes need separate scores. Shape asks: does the highlighted region match the tumor's actual boundary? Faithfulness asks: if we mask that region, does the prediction actually change? A map can score well on one and badly on the other — pretty pictures that don't reflect the model's real reasoning."
+      },
+      {
+        "heading": "WHY TRANSFORMERS CHANGED RADIOLOGY",
+        "body": "Vision Transformers (2020) replaced the convolutional sliding window with global attention — every patch of the image can attend to every other patch. For tumors whose context matters (edema around the mass, midline shift, ventricle compression) this beats CNN's local receptive field. Most state-of-the-art medical imaging models are now hybrids."
+      },
+      {
+        "heading": "THE 87% CEILING",
+        "body": "Expert agreement with AI explanations rarely crosses ~90% in published studies. The residual gap is rarely the model being 'wrong' outright — it is the model attending to features radiologists don't weight, or weighting features radiologists consider incidental. Closing it requires either retraining on radiologist-annotated saliency or accepting that the model and the human reason differently."
+      }
+    ],
+    "generatedAt": "2026-05-21T04:24:34.066Z",
+    "label": "Explainable Medical AI",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-21-delhi-cab-auto-strike-iran-war-fuel-app-commissions": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 2011 FARE SCHEME",
+        "body": "Delhi's auto-rickshaw and taxi fares are set by a state-government committee, not the market. The current meter rates — ₹25 flagfall, ₹9.50/km for autos — were fixed in 2011 and have been revised only once since. Every fuel shock since then has been absorbed by the driver, not the passenger.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is a classic **price ceiling**: the state caps what drivers can charge but cannot cap what they pay for fuel, EMIs, or app commissions. The wedge shows up as driver income, then as strikes."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CNG, NOT PETROL",
+        "body": "A 1998 Supreme Court order — responding to Delhi's catastrophic air pollution — forced the entire commercial transport fleet onto compressed natural gas by 2002. Delhi was the first megacity in the world to mandate CNG for public transport. The fleet has run on it ever since.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN"
+            ],
+            "label": "the CNG mandate zone",
+            "markers": [
+              {
+                "lat": 28.6139,
+                "lng": 77.209,
+                "label": "Delhi-NCR"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE IMPORT CHAIN",
+        "body": "India imports roughly 50% of its natural gas as LNG, priced off oil-linked contracts and the Dutch TTF benchmark. When Brent moves, Indian city-gas distributors like IGL reset CNG pump prices within weeks. A Persian Gulf scare in crude markets becomes a Delhi auto-driver's pay cut by the next month.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              93.775164,
+              94.11314,
+              94.143557,
+              94.0666,
+              94.0666,
+              94.257338,
+              94.420855,
+              94.762974,
+              95.171392,
+              94.951559,
+              94.89165,
+              94.910513,
+              94.951346,
+              95.361112,
+              95.029174,
+              94.729612,
+              94.62293,
+              94.425498,
+              94.425498,
+              94.8754,
+              95.576514,
+              95.55195,
+              95.719988,
+              95.829548,
+              96.003,
+              96.027,
+              96.13634,
+              96.389098,
+              96.875003,
+              96.376027
+            ],
+            "periods": [
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE APP COMMISSION LAYER",
+        "body": "Ola and Uber take 20–30% of each fare as commission, layered on top of the regulated meter. The driver bears the fuel cost, the EMI on the vehicle, and the platform cut — but cannot raise the fare. The aggregator model imported Silicon Valley's take rate into a price-controlled market.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "passenger",
+                "label": "Passenger"
+              },
+              {
+                "id": "app",
+                "label": "App platform"
+              },
+              {
+                "id": "driver",
+                "label": "Driver"
+              },
+              {
+                "id": "fuel",
+                "label": "CNG (IGL)"
+              },
+              {
+                "id": "emi",
+                "label": "Vehicle EMI"
+              },
+              {
+                "id": "takehome",
+                "label": "Take-home"
+              }
+            ],
+            "links": [
+              {
+                "source": "passenger",
+                "target": "app",
+                "value": 100
+              },
+              {
+                "source": "app",
+                "target": "driver",
+                "value": 75,
+                "label": "after commission"
+              },
+              {
+                "source": "driver",
+                "target": "fuel",
+                "value": 35
+              },
+              {
+                "source": "driver",
+                "target": "emi",
+                "value": 20
+              },
+              {
+                "source": "driver",
+                "target": "takehome",
+                "value": 20
+              }
+            ],
+            "label": "where a ₹100 Delhi auto fare goes"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "Delhi's auto-rickshaw unions struck in 2012, 2018, and 2022 — each time after a fuel spike outpaced the fare. Each strike ended with a partial revision or a CNG subsidy, never a structural fix. The committee meets, defers, and the wedge reopens at the next oil shock.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What forced Delhi's entire commercial transport fleet onto CNG by 2002?",
+            "options": [
+              "A World Bank loan condition",
+              "A 1998 Supreme Court order on air pollution",
+              "A WTO emissions ruling",
+              "A Modi-era industrial policy"
+            ],
+            "correct": 1,
+            "explanation": "The Supreme Court, ruling on a public-interest petition about Delhi's air quality, ordered the conversion — making Delhi the first megacity to mandate CNG for public transport."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-21"
+    ],
+    "generatedAt": "2026-05-21T04:25:03.957Z",
+    "label": "Delhi's Fare Cartel & the CNG Trap",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-21-drc-ebola-outbreak-uk-funding-uganda-spillover": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PATHOGEN",
+        "body": "Ebola is a filovirus with case-fatality rates historically between 25% and 90% depending on strain and care quality. It spreads through direct contact with bodily fluids — not airborne — which is why outbreaks burn hottest in hospitals and at funerals where bodies are washed by hand.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The reservoir host is almost certainly the **African fruit bat**; humans catch it from bats, primates, or duikers and then transmit it to each other. The *index case* — patient zero in any outbreak — is usually a hunter, a forager, or a child who handled bushmeat."
+          }
+        ]
+      },
+      {
+        "heading": "THE RESERVOIR & THE BORDER",
+        "body": "Congo's eastern provinces share a porous border with Uganda through dense forest and active trade routes. The 2018-2020 Kivu outbreak killed 2,287 people and crossed into Uganda twice. Geography, not policy, makes spillover near-inevitable once an outbreak takes hold in eastern DRC.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CD",
+              "UG",
+              "RW",
+              "BI",
+              "SS",
+              "TZ"
+            ],
+            "label": "the Great Lakes spillover corridor",
+            "markers": [
+              {
+                "lat": -1.6792,
+                "lng": 29.2228,
+                "label": "Goma (DRC)"
+              },
+              {
+                "lat": 0.3476,
+                "lng": 32.5825,
+                "label": "Kampala"
+              },
+              {
+                "lat": -0.6111,
+                "lng": 29.7178,
+                "label": "Bwera border crossing"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY CASE FATALITY VARIES",
+        "body": "Untreated Ebola Zaire kills roughly 80-90% of those infected. With aggressive IV fluid resuscitation and two monoclonal antibody therapies (Inmazeb and Ebanga, approved 2020), mortality drops to around 35% — and below 10% for patients treated within days of symptom onset. The treatment gap, not the virus, drives most deaths."
+      },
+      {
+        "heading": "THE VACCINE",
+        "body": "Merck's rVSV-ZEBOV vaccine, approved in 2019, uses ring vaccination: when a case is confirmed, every contact and every contact-of-a-contact is vaccinated within days. This strategy contained the 2018-2020 Kivu outbreak's worst flares and is the single biggest reason modern Ebola response looks nothing like the 2014 West Africa catastrophe that killed 11,000.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What changed most between the 2014 West Africa outbreak (11,000 deaths) and outbreaks since 2019?",
+            "options": [
+              "A licensed vaccine and ring-vaccination protocol",
+              "Genetic mutation made the virus less deadly",
+              "Antibiotics became more effective against Ebola",
+              "Climate cooling reduced bat populations"
+            ],
+            "correct": 0,
+            "explanation": "rVSV-ZEBOV was approved in 2019; ring vaccination of contacts and their contacts now contains outbreaks that previously spread unchecked. Antibiotics do not work on viruses."
+          }
+        ]
+      },
+      {
+        "heading": "WHO PAYS",
+        "body": "Outbreak response in low-income states runs on donor pledges, not domestic budgets. The UK's $26.87M is large but covers weeks, not months — and the US, historically the largest funder of WHO and global health security, has cut multilateral health contributions sharply since 2025. Surveillance gaps in eastern DRC are not a technical problem; they are a financing one.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "W. Africa",
+                "value": "11,325 deaths",
+                "cc": "LR",
+                "weight": 11325,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Kivu (DRC)",
+                "value": "2,287 deaths",
+                "cc": "CD",
+                "weight": 2287,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Uganda 2022",
+                "value": "55 deaths",
+                "cc": "UG",
+                "weight": 55,
+                "tone": "neutral"
+              },
+              {
+                "label": "DRC 2025-26",
+                "value": "139 suspected",
+                "cc": "CD",
+                "weight": 139,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "recent major Ebola outbreaks"
+          }
+        ]
+      },
+      {
+        "heading": "THE FUNERAL PROBLEM",
+        "body": "Traditional burial practices across Central and East Africa involve washing and touching the body — exactly when viral load is highest. Roughly 60% of transmission chains in the 2014 outbreak traced back to funerals. Safe-burial teams in protective equipment, negotiated village by village, are the single most effective non-pharmaceutical intervention — and the most culturally fraught."
+      }
+    ],
+    "generatedAt": "2026-05-21T04:25:37.103Z",
+    "label": "Ebola & Cross-Border Spillover",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-21-unama-750-afghan-civilian-casualties-pakistan-airstrikes-unsc": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DURAND LINE",
+        "body": "The 2,640-km border between Pakistan and Afghanistan was drawn in 1893 by British colonial administrator Mortimer Durand. No Afghan government — monarchy, republic, communist, mujahideen, or Taliban — has ever formally recognized it. Islamabad treats it as a settled international frontier; Kabul treats it as a colonial imposition that cuts the Pashtun homeland in half.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF"
+            ],
+            "label": "the contested line",
+            "markers": [
+              {
+                "lat": 34.0151,
+                "lng": 71.5249,
+                "label": "Peshawar"
+              },
+              {
+                "lat": 34.5553,
+                "lng": 69.2075,
+                "label": "Kabul"
+              },
+              {
+                "lat": 31.6133,
+                "lng": 65.71,
+                "label": "Kandahar"
+              },
+              {
+                "lat": 29.3956,
+                "lng": 71.6836,
+                "label": "Bahawalpur"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PASHTUN BELT",
+        "body": "Roughly 50 million Pashtuns live astride the line — more inside Pakistan than inside Afghanistan. Tribes like the Wazir, Mehsud, and Afridi straddle the border by family. The TTP (Tehrik-i-Taliban Pakistan) draws sanctuary from this, and so does Islamabad's claim that any Afghan-side militant base is a legitimate strike target.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **TTP** is distinct from the Afghan Taliban: it wages war against the *Pakistani* state, but the Afghan Taliban — bound by Pashtunwali codes of *melmastia* (hospitality) and *nanawatai* (asylum) — will not hand over fellow Pashtuns. That refusal is the proximate cause of the airstrikes."
+          }
+        ]
+      },
+      {
+        "heading": "THE STRIKE DOCTRINE",
+        "body": "Pakistan's posture since 2024 has been that TTP safe havens inside Afghanistan are an act of war by omission, justifying cross-border strikes under the customary law doctrine of 'unwilling or unable' — the same logic the US used for drone strikes in FATA from 2004 to 2018. The doctrine is contested in international law; it is invoked anyway because there is no enforcement mechanism that says otherwise."
+      },
+      {
+        "heading": "THE UNSC PARADOX",
+        "body": "The Security Council can debate a UNAMA report but cannot act against a member state without nine affirmative votes and no P5 veto. Pakistan is currently a non-permanent member (2025–26 term); China, its closest strategic partner, holds a permanent veto. The structural arithmetic of the Council is why findings of 750 casualties produce statements rather than sanctions.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why has the UN Security Council not acted on UNAMA's findings about Pakistani airstrikes?",
+            "options": [
+              "UNAMA reports are classified and cannot be cited at the Council",
+              "Pakistan is a P5 member with veto power",
+              "China holds a P5 veto and is Pakistan's closest strategic partner",
+              "Afghanistan's Taliban government is not UN-recognized, so it cannot file a complaint"
+            ],
+            "correct": 2,
+            "explanation": "Pakistan is a non-permanent member without a veto; China's P5 veto, paired with the Beijing-Islamabad alignment, is what blocks Council action."
+          }
+        ]
+      },
+      {
+        "heading": "UNAMA'S MANDATE",
+        "body": "The UN Assistance Mission in Afghanistan was established in 2002 and is one of the few UN bodies that kept operating after the Taliban's 2021 return. It does not recognize the Taliban government but reports on civilian harm regardless of which side inflicts it — a posture that has drawn criticism from both Kabul and Islamabad at different moments.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1893",
+                "label": "Durand Line drawn",
+                "emphasis": "start"
+              },
+              {
+                "year": "1947",
+                "label": "Pakistan inherits the line; Afghanistan rejects it"
+              },
+              {
+                "year": "2002",
+                "label": "UNAMA established"
+              },
+              {
+                "year": "2007",
+                "label": "TTP founded in Waziristan"
+              },
+              {
+                "year": "2021",
+                "label": "Taliban returns; TTP gains sanctuary",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "First major Pakistani airstrikes in Afghanistan"
+              },
+              {
+                "year": "2026",
+                "label": "UNAMA logs 750 Q1 casualties"
+              }
+            ],
+            "label": "the cross-border strike arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE HOSPITAL PRECEDENT",
+        "body": "Strikes on medical facilities are governed by the Fourth Geneva Convention and its 1977 Additional Protocols — hospitals lose protected status only if used for 'acts harmful to the enemy,' and even then a warning must precede attack. The Kunduz hospital bombing by US forces in 2015, which killed 42 MSF staff and patients, became the modern benchmark case; no individual was prosecuted, and MSF's call for an independent fact-finding commission under the Geneva framework was never honored."
+      }
+    ],
+    "generatedAt": "2026-05-21T04:26:44.148Z",
+    "label": "The Durand Line & Cross-Border Strikes",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-21-xi-pyongyang-visit-china-russia-dprk-axis": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BUFFER STATE LOGIC",
+        "body": "China's support for North Korea has never been about ideology. A collapsed DPRK means a unified US-allied Korea with American bases on China's border — the Yalu River is 800 km from Beijing. The Kim regime's survival is a geographic buffer, not a political preference.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "KP",
+              "KR",
+              "RU",
+              "JP"
+            ],
+            "label": "the buffer geography",
+            "markers": [
+              {
+                "lat": 39.0392,
+                "lng": 125.7625,
+                "label": "Pyongyang"
+              },
+              {
+                "lat": 41.7937,
+                "lng": 126.1869,
+                "label": "Yalu River crossing"
+              },
+              {
+                "lat": 42.4408,
+                "lng": 130.6736,
+                "label": "Tumen tri-border"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 1961 TREATY",
+        "body": "China and North Korea signed a Treaty of Friendship, Cooperation and Mutual Assistance in 1961 — the only formal mutual-defense treaty Beijing maintains with any country. It has been quietly renewed every 20 years; the next renewal is 2041. Russia signed its own comprehensive partnership with Pyongyang in 2024, the first such pact since the Soviet collapse.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1950",
+                "label": "Chinese 'volunteers' enter Korean War"
+              },
+              {
+                "year": "1961",
+                "label": "China-DPRK mutual defense treaty",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1992",
+                "label": "China normalizes with Seoul"
+              },
+              {
+                "year": "2019",
+                "label": "Xi's last Pyongyang visit"
+              },
+              {
+                "year": "2024",
+                "label": "Russia-DPRK comprehensive partnership"
+              },
+              {
+                "year": "2026",
+                "label": "Xi return trip planned"
+              }
+            ],
+            "label": "the DPRK alliance arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE 2019 GAP MATTERS",
+        "body": "Xi has not set foot in Pyongyang in nearly seven years — an unusually long gap for treaty allies. During that window, Kim met Putin twice and sent troops and shells to the Russian front in Ukraine. A 2026 Xi visit signals Beijing wants to pull Pyongyang back into China's orbit before Moscow becomes the senior patron.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Xi Jinping",
+                "role": "CCP General Secretary",
+                "years": "2012–",
+                "cc": "CN"
+              },
+              {
+                "name": "Kim Jong Un",
+                "role": "DPRK Supreme Leader",
+                "years": "2011–",
+                "cc": "KP"
+              },
+              {
+                "name": "Vladimir Putin",
+                "role": "Russian President",
+                "years": "2000–",
+                "cc": "RU"
+              }
+            ],
+            "label": "the triangle"
+          }
+        ]
+      },
+      {
+        "heading": "THE SANCTIONS WORKAROUND",
+        "body": "UN Security Council sanctions on North Korea require Chinese and Russian votes to enforce. Since 2022, Moscow has openly broken the arms-embargo provisions; Beijing has not formally followed but has stopped policing border trade with the same vigor. The sanctions regime exists on paper while the underlying compliance has quietly collapsed."
+      },
+      {
+        "heading": "WHO TRADES WITH PYONGYANG",
+        "body": "Roughly 95% of North Korea's recorded external trade flows through China — fuel, food, machinery in; coal, textiles, seafood out. Russia is a distant second, and rising fast on munitions exchanges. Everyone else combined is a rounding error.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~$2.3bn",
+                "cc": "CN",
+                "weight": 95,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Russia",
+                "value": "~$100mn",
+                "cc": "RU",
+                "weight": 4,
+                "tone": "neutral"
+              },
+              {
+                "label": "All others",
+                "value": "~$25mn",
+                "weight": 1,
+                "tone": "favorable"
+              }
+            ],
+            "label": "DPRK external trade by partner (2024 est.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE MEDIATION GAMBIT",
+        "body": "Seoul's intelligence floating that Beijing may mediate between Pyongyang and Washington is itself a signal — South Korea would rather China brokered talks than Russia did. A Chinese-mediated track keeps the DPRK file inside the older Six-Party framework that ran 2003–2009, where Seoul had a seat. A Russian-mediated track would not.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many parties sat at the Six-Party Talks on North Korean denuclearization?",
+            "options": [
+              "Four: US, China, North Korea, South Korea",
+              "Six: US, China, Russia, Japan, North Korea, South Korea",
+              "Five: UN Security Council permanent members plus North Korea",
+              "Three: US, China, North Korea"
+            ],
+            "correct": 1,
+            "explanation": "The Six-Party Talks (2003–2009) included the two Koreas, China, the US, Russia, and Japan — the format Seoul prefers because it has a seat at the table."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-21T04:27:16.796Z",
+    "label": "China-DPRK Axis",
+    "category": "politics",
+    "articleCount": 1
   }
 }
