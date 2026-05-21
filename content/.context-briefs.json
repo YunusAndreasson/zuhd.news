@@ -208520,5 +208520,1448 @@
     "label": "The Sino-Russian Tech Stack",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-05-21-air-france-airbus-manslaughter-af447": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A PITOT TUBE DOES",
+        "body": "A pitot tube is a forward-facing probe that measures airspeed by comparing ram air pressure against static pressure. Every fixed-wing aircraft since the 1930s relies on it. When it ices over, the airspeed reading goes wrong — sometimes to zero, sometimes frozen at the last valid value.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The instrument is named for *Henri Pitot*, the 18th-century French engineer who built the first version to measure river current speed in the Seine."
+          }
+        ]
+      },
+      {
+        "heading": "THE THALES AA MODEL",
+        "body": "AF447's Airbus A330 used Thales AA-model pitot probes. By 2008, Airbus and Air France had logged multiple in-flight icing incidents at high altitude with that specific model. A replacement program to the Thales BA model was underway but not yet mandatory when the aircraft went down on June 1, 2009."
+      },
+      {
+        "heading": "THE HANDOFF PROBLEM",
+        "body": "When the airspeed reading failed mid-Atlantic, the A330's autopilot disengaged and handed control to pilots cruising at 35,000 feet at night over the ocean. The crew had never trained for unreliable-airspeed recovery at cruise altitude — simulator scenarios at the time covered the maneuver near the ground, where the aerodynamics are different.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "FR",
+              "BR"
+            ],
+            "label": "the 11-hour route, lost 3.5 hours in",
+            "markers": [
+              {
+                "lat": 3.0367,
+                "lng": -30.5567,
+                "label": "AF447 crash site"
+              },
+              {
+                "lat": -22.8089,
+                "lng": -43.2436,
+                "label": "Rio (departure)"
+              },
+              {
+                "lat": 49.0097,
+                "lng": 2.5479,
+                "label": "Paris CDG (destination)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE STALL THAT FOLLOWED",
+        "body": "The pilot flying pulled back on the sidestick and held nose-up inputs for nearly the entire descent. The A330 stalled and fell 38,000 feet in 3 minutes 30 seconds, wings level, into the Atlantic. Cockpit voice recorders, recovered two years later from 3,900 metres of seawater, captured a crew that never identified the stall."
+      },
+      {
+        "heading": "WHY THE VERDICT IS UNUSUAL",
+        "body": "French courts had acquitted both firms in 2023; this appeals reversal is the first time a Western manufacturer and a flag carrier have been jointly convicted of corporate manslaughter over a commercial crash. Aviation safety jurisprudence has historically treated crashes as systemic learning events, not criminal ones — the fear being that criminal exposure suppresses the candid reporting that makes aviation safe.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the standard global framework for investigating commercial aviation crashes?",
+            "options": [
+              "ICAO Annex 13 — no-blame safety investigation",
+              "Interpol criminal-evidence protocol",
+              "UN Security Council referral",
+              "WTO arbitration"
+            ],
+            "correct": 0,
+            "explanation": "ICAO Annex 13 mandates that crash investigations focus on prevention, not liability — evidence gathered cannot normally be used in criminal proceedings. The French case ran in parallel under domestic criminal law."
+          }
+        ]
+      },
+      {
+        "heading": "THE BLACK BOX RECOVERY",
+        "body": "The flight data and cockpit voice recorders sat on the mid-Atlantic ridge for 23 months before a fourth search, using autonomous underwater vehicles, located them in May 2011. Without that recovery, the icing-induced airspeed failure would likely have remained a leading hypothesis but never a proven chain — and this verdict would not have been possible."
+      }
+    ],
+    "generatedAt": "2026-05-21T17:28:22.879Z",
+    "label": "AF447 & the Pitot Tube",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-21-burhan-hamza-pulwama-mastermind-killed-pok": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT PULWAMA WAS",
+        "body": "On 14 February 2019, a convoy of 78 buses carrying Indian paramilitary police was struck by a vehicle-borne suicide bomber on the Jammu-Srinagar highway. Forty CRPF personnel died — the deadliest attack on Indian security forces in Kashmir's three-decade insurgency. Jaish-e-Mohammed claimed responsibility within hours.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "PK"
+            ],
+            "label": "the Kashmir corridor",
+            "markers": [
+              {
+                "lat": 33.8716,
+                "lng": 74.9012,
+                "label": "Pulwama (attack site)"
+              },
+              {
+                "lat": 34.37,
+                "lng": 73.4711,
+                "label": "Muzaffarabad (AJK capital)"
+              },
+              {
+                "lat": 31.826,
+                "lng": 70.9046,
+                "label": "Bahawalpur (JeM HQ)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BALAKOT REPLY",
+        "body": "Twelve days after Pulwama, Indian Mirage 2000s crossed the Line of Control and struck what India said was a JeM training camp at Balakot — the first Indian airstrike inside undisputed Pakistani territory since 1971. Pakistan responded the next day; an Indian MiG-21 was downed and its pilot captured, then released within 60 hours. The episode rewrote the unwritten rules between two nuclear states.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2019-02-14",
+                "label": "Pulwama convoy bombing",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019-02-26",
+                "label": "Indian airstrike on Balakot"
+              },
+              {
+                "year": "2019-02-27",
+                "label": "Pakistani air response, Abhinandan downed"
+              },
+              {
+                "year": "2019-03-01",
+                "label": "Abhinandan returned"
+              },
+              {
+                "year": "2019-08-05",
+                "label": "India revokes Article 370"
+              }
+            ],
+            "label": "the Pulwama crisis"
+          }
+        ]
+      },
+      {
+        "heading": "WHO JAISH-E-MOHAMMED IS",
+        "body": "JeM was founded in 2000 by Masood Azhar, released by India a year earlier in the IC-814 hijacking exchange. The group is headquartered in Bahawalpur, Punjab, and was designated a terrorist organization by the UN in 2001 — though Azhar himself was only listed in 2019 after years of Chinese vetoes at the Security Council were withdrawn.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "JeM is doctrinally distinct from **Lashkar-e-Taiba**: Lashkar grew out of the Ahl-e-Hadith tradition, JeM out of the *Deobandi* madrassa network, which gives it deeper recruitment reach into Pakistani Punjab."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MUZAFFARABAD",
+        "body": "Muzaffarabad is the capital of Azad Jammu and Kashmir, the slice of Kashmir Pakistan administers. It has long hosted militant infrastructure — training camps, safehouses, organizational headquarters — at distances from the Line of Control measured in tens of kilometers. Targeted killings of militant figures inside AJK, attributed to unknown gunmen, have become a recognizable pattern since roughly 2023."
+      },
+      {
+        "heading": "THE PATTERN OF UNCLAIMED KILLINGS",
+        "body": "Since 2023, at least a dozen India-designated militants — figures from JeM, Lashkar, and Hizbul Mujahideen — have been shot dead inside Pakistan by unidentified gunmen, often outside mosques or homes. India denies involvement; Pakistan has publicly accused Indian intelligence of running a covert assassination program on its soil, echoing accusations leveled by Canada and the United States in the same period.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was India's most consequential domestic response to the Pulwama attack?",
+            "options": [
+              "Withdrawal from the Indus Waters Treaty",
+              "Revocation of Article 370, ending Kashmir's special autonomous status",
+              "Closure of the Wagah border crossing",
+              "Suspension of cricket ties with Pakistan"
+            ],
+            "correct": 1,
+            "explanation": "On 5 August 2019, six months after Pulwama, India abrogated Article 370 of its constitution, stripping Jammu & Kashmir of statehood and the special autonomy it had held since 1949."
+          }
+        ]
+      },
+      {
+        "heading": "THE NUCLEAR FLOOR",
+        "body": "India and Pakistan have fought four wars and maintained one of the world's most active militarized borders, yet neither has crossed the threshold to general war since both went overtly nuclear in 1998. The Pulwama-Balakot exchange tested how much conventional escalation that floor permits — and the answer, so far, has been: more than analysts assumed, but less than either side's rhetoric suggests.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Pakistan",
+                "value": "~170",
+                "cc": "PK",
+                "weight": 170,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": "~172",
+                "cc": "IN",
+                "weight": 172,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "China",
+                "value": "~500",
+                "cc": "CN",
+                "weight": 500,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "South Asian nuclear arsenals (est. warheads, 2024)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-21T17:29:04.517Z",
+    "label": "Pulwama & the Kashmir Shadow War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-21-central-asia-africa-relations-kyrgyzstan-2026": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BROKER PROBLEM",
+        "body": "For most of the 20th century, Central Asian states reached Africa through Moscow's diplomatic networks, and Francophone Africa reached Asia through Paris. Both regions inherited foreign ministries shaped around metropoles, not peer-to-peer ties.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **hub-and-spoke diplomacy** — capitals talk to the former imperial center, not to each other. Decolonizing the network means building *direct* embassies, which is exactly what Bishkek is doing now."
+          }
+        ]
+      },
+      {
+        "heading": "WHY KYRGYZSTAN, NOT KAZAKHSTAN",
+        "body": "Kazakhstan has the oil, Uzbekistan has the population, but Kyrgyzstan has the smallest stake in Russian or Chinese alignment and the most freedom to experiment. Small states in multipolar moments often move first precisely because they have the least to lose.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Kazakhstan",
+                "value": "20m · $260bn",
+                "cc": "KZ",
+                "weight": 260
+              },
+              {
+                "label": "Uzbekistan",
+                "value": "36m · $90bn",
+                "cc": "UZ",
+                "weight": 90
+              },
+              {
+                "label": "Turkmenistan",
+                "value": "7m · $55bn",
+                "cc": "TM",
+                "weight": 55
+              },
+              {
+                "label": "Tajikistan",
+                "value": "10m · $12bn",
+                "cc": "TJ",
+                "weight": 12
+              },
+              {
+                "label": "Kyrgyzstan",
+                "value": "7m · $14bn",
+                "cc": "KG",
+                "weight": 14
+              }
+            ],
+            "label": "Central Asian republics by size"
+          }
+        ]
+      },
+      {
+        "heading": "THE TURKIC BRIDGE",
+        "body": "Kyrgyzstan is a member of the Organization of Turkic States, which since 2009 has linked Ankara, Astana, Tashkent, Baku, and Bishkek. Turkey's own pivot into Africa — embassies grew from 12 in 2002 to over 44 today — gives the Turkic bloc a ready-made template and existing logistical rails to plug into.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TR",
+              "AZ",
+              "KZ",
+              "UZ",
+              "KG",
+              "TM"
+            ],
+            "label": "the Turkic states",
+            "caption": "Bishkek's nearest diplomatic neighborhood"
+          }
+        ]
+      },
+      {
+        "heading": "THE NON-ALIGNED ECHO",
+        "body": "The 1955 Bandung Conference brought 29 Asian and African states together to articulate a third path between Washington and Moscow. The Soviet republics were absent — they were on one side of the Cold War, not seeking exits from it. Today's Central Asia–Africa overture is, in a real sense, the conversation that 1955 excluded.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which conference, in 1955, first formally linked Asian and African states outside the two Cold War blocs?",
+            "options": [
+              "The Bandung Conference",
+              "The Belgrade Conference",
+              "The Algiers Conference",
+              "The Tashkent Conference"
+            ],
+            "correct": 0,
+            "explanation": "Bandung (Indonesia, 1955) gathered 29 newly independent Asian and African states and became the founding moment of the Non-Aligned Movement."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT AFRICA OFFERS",
+        "body": "54 UN votes — more than any other continental bloc — plus critical minerals (cobalt, lithium, manganese) that Central Asia's nascent processing industries want to source outside Chinese supply chains. The relationship is not yet about trade volume; it is about voting blocs and raw-material optionality.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Africa's *54 UN General Assembly votes* are the single largest regional bloc — larger than Asia's 47 or Europe's 43. For small states seeking visibility on resolutions about sovereignty, sanctions, or great-power competition, that bloc is the most valuable asset on the diplomatic map."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-21T17:29:40.758Z",
+    "label": "Central Asia–Africa Ties",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-21-eu-eurozone-2026-growth-cut-mideast-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY EUROPE IS UNUSUALLY EXPOSED",
+        "body": "The Eurozone imports roughly 90% of its crude and over 80% of its natural gas. Unlike the US, which became a net energy exporter in 2019, Europe has no domestic cushion — every dollar of oil above trend is a direct transfer out of the bloc.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Eurozone",
+                "value": "~90% net",
+                "cc": "EU",
+                "tone": "unfavorable",
+                "weight": 90
+              },
+              {
+                "label": "Japan",
+                "value": "~88% net",
+                "cc": "JP",
+                "tone": "unfavorable",
+                "weight": 88
+              },
+              {
+                "label": "China",
+                "value": "~70% oil",
+                "cc": "CN",
+                "tone": "neutral",
+                "weight": 70
+              },
+              {
+                "label": "United States",
+                "value": "net exporter",
+                "cc": "US",
+                "tone": "favorable",
+                "weight": 5
+              }
+            ],
+            "label": "energy import dependency, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE STAGFLATION TRAP",
+        "body": "An oil shock raises prices and cuts growth simultaneously — the textbook stagflation pattern. Central banks face an impossible choice: hike to defend the currency and crush demand further, or hold to support growth and let inflation expectations unmoor.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The term *stagflation* was coined in 1965 by UK politician Iain Macleod and entered the economic canon after the **1973 OPEC embargo** broke the post-war Phillips-curve consensus that inflation and unemployment moved in opposite directions."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1973 PRECEDENT",
+        "body": "When OPEC quadrupled oil prices after the Yom Kippur war, West German growth collapsed from 5% to under 1% within a year, and the Bundesbank tightened into the recession. The episode shaped the ECB's founding charter: a single mandate of price stability, even at the cost of growth.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1973",
+                "label": "OPEC embargo quadruples oil",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1979",
+                "label": "Iranian Revolution, 2nd oil shock"
+              },
+              {
+                "year": "1990",
+                "label": "Iraq invades Kuwait"
+              },
+              {
+                "year": "2008",
+                "label": "Brent peaks near $147"
+              },
+              {
+                "year": "2022",
+                "label": "Russia invades Ukraine, gas crisis"
+              },
+              {
+                "year": "2026",
+                "label": "Hormuz closure"
+              }
+            ],
+            "label": "European energy shocks"
+          }
+        ]
+      },
+      {
+        "heading": "WHY HORMUZ MATTERS TO BRUSSELS",
+        "body": "Roughly a fifth of the world's seaborne oil and a third of global LNG transits the Strait of Hormuz. Europe's marginal barrel — the one that sets the price — comes from the Gulf even when the average barrel does not.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA"
+            ],
+            "label": "the chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.2854,
+                "lng": 51.531,
+                "label": "Qatar LNG (Ras Laffan)"
+              },
+              {
+                "lat": 26.6396,
+                "lng": 49.6233,
+                "label": "Saudi Ras Tanura"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE ECB'S CONSTRAINT",
+        "body": "Unlike the Fed, the ECB has only an inflation mandate — no employment mandate. When energy lifts headline CPI above target, the legal framework pushes toward hiking even into a slowdown. The euro's weakness against the dollar compounds the imported-inflation problem.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              0.851902,
+              0.855896,
+              0.853401,
+              0.853097,
+              0.853024,
+              0.852591,
+              0.853706,
+              0.854264,
+              0.857195,
+              0.852427,
+              0.852799,
+              0.852624,
+              0.851959,
+              0.855884,
+              0.853399,
+              0.851144,
+              0.85156,
+              0.848284,
+              0.848284,
+              0.850576,
+              0.850597,
+              0.852186,
+              0.853764,
+              0.859724,
+              0.8604,
+              0.860067,
+              0.860446,
+              0.859008,
+              0.8619,
+              0.860661
+            ],
+            "periods": [
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21"
+            ],
+            "label": "Euro",
+            "unit": "EUR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE FISCAL ASYMMETRY",
+        "body": "Energy shocks hit Eurozone members unevenly — Germany's industrial base bleeds more than France's nuclear-powered grid, and Italy's debt-to-GDP leaves little room to subsidize bills. Brussels-level forecasts mask divergences that strain the common currency.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was novel about the ECB's mandate when it was founded in 1998?",
+            "options": [
+              "It had a dual mandate for inflation and employment, like the Fed",
+              "It had a single mandate for price stability, modeled on the Bundesbank",
+              "It targeted exchange-rate stability against the dollar",
+              "It explicitly included financial stability as a co-equal goal"
+            ],
+            "correct": 1,
+            "explanation": "The ECB inherited the Bundesbank's single-mandate model — a legacy of Weimar hyperinflation and the 1970s oil shocks that prioritized inflation control above all else."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-21"
+    ],
+    "generatedAt": "2026-05-21T17:30:16.655Z",
+    "label": "Energy Shocks & Eurozone Stagflation",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-21-eu-google-meta-tiktok-financial-scam-complaints": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DSA ARCHITECTURE",
+        "body": "The Digital Services Act, in force since 2024, designates platforms with over 45 million EU users as Very Large Online Platforms — VLOPs — subject to systemic risk audits, researcher data access, and fines up to 6% of global turnover. Google, Meta, and TikTok all qualify.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "For Meta, 6% of 2024 global turnover is roughly **$10 billion** per violation — an order of magnitude above any GDPR fine ever levied."
+          }
+        ]
+      },
+      {
+        "heading": "THE NOTICE-AND-ACTION REGIME",
+        "body": "DSA Article 16 requires platforms to remove illegal content 'expeditiously' once notified. The 27% removal rate the consumer groups reported is the operative number — it converts a complaint into evidence that the notice-and-action system is failing at scale, which is itself a DSA violation independent of the ads.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the DSA, what triggers platform liability for illegal content?",
+            "options": [
+              "Hosting it at any point",
+              "Failing to act expeditiously after notification",
+              "Algorithmically recommending it",
+              "Profiting from advertising around it"
+            ],
+            "correct": 1,
+            "explanation": "The DSA preserves the hosting safe harbor from the e-Commerce Directive — liability attaches only when a platform fails to act on a valid notice."
+          }
+        ]
+      },
+      {
+        "heading": "THE COUNTRY-OF-ORIGIN PROBLEM",
+        "body": "Most US platforms route their EU operations through Ireland for tax reasons, which historically made Ireland's Data Protection Commission the lead regulator for GDPR complaints — and a notorious bottleneck. The DSA breaks this: enforcement against VLOPs sits with the European Commission directly, not the host-country regulator.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IE",
+              "BE",
+              "DE",
+              "FR",
+              "NL",
+              "LU"
+            ],
+            "label": "where EU tech enforcement actually happens",
+            "markers": [
+              {
+                "lat": 50.8503,
+                "lng": 4.3517,
+                "label": "Brussels (Commission DSA team)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY SCAM ADS PERSIST",
+        "body": "Programmatic advertising auctions buyers in milliseconds across thousands of demand-side platforms. The platform serving the ad often does not know the advertiser's true identity until after the impression — by design. KYC for advertisers exists on paper; in practice, shell entities and stolen payment cards route around it routinely."
+      },
+      {
+        "heading": "THE FINE THAT MATTERS",
+        "body": "GDPR's 4% cap produced headline fines but rarely changed behavior — most were appealed for years and settled lower. The DSA's 6% applies to global, not European, turnover and is paired with the threat of temporary service suspension in the EU. The deterrent is the suspension, not the cash.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Google (Alphabet)",
+                "value": "~$21bn",
+                "weight": 21,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Meta",
+                "value": "~$10bn",
+                "weight": 10,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "TikTok (ByteDance)",
+                "value": "~$8bn",
+                "weight": 8,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Maximum fine exposure (6% of 2024 global revenue)"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT OF BEUC",
+        "body": "The European Consumer Organisation — BEUC — is a federation of 45 national consumer groups across 32 countries. Its complaints have historically seeded major EU actions: the 2018 Google Android antitrust case, the 2022 dark-patterns guidelines, and several DSA risk-assessment audits all traced back to BEUC filings."
+      }
+    ],
+    "generatedAt": "2026-05-21T17:30:46.452Z",
+    "label": "The DSA & Platform Liability",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-21-food-preservatives-hypertension-cvd-cohort": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY PRESERVATIVES EXIST",
+        "body": "Before refrigeration, salt, sugar, and smoke were the only ways to stop microbial growth. Industrial preservatives — nitrites, sorbates, benzoates — emerged in the early 20th century to extend shelf life across global supply chains. The same compounds that prevent botulism in cured meats are now suspected of cardiovascular harm at chronic doses.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**Sodium nitrite** does two jobs in cured meat: it blocks *Clostridium botulinum* and fixes the pink color consumers associate with freshness. Removing it is harder than it sounds — the alternative is botulism risk."
+          }
+        ]
+      },
+      {
+        "heading": "THE COHORT METHOD",
+        "body": "NutriNet-Santé is a French prospective cohort — volunteers log dietary intake repeatedly over years while researchers track health outcomes. Unlike a randomized trial, cohorts cannot prove causation, but they can detect associations across populations large enough to control for confounders like smoking, exercise, and income."
+      },
+      {
+        "heading": "WHY 29% MATTERS",
+        "body": "In epidemiology, a 29% relative risk increase across a population of 112,400 is a substantial signal — large enough to survive adjustment for diet quality, BMI, and lifestyle. For comparison, the relative risk of hypertension from high sodium intake sits around 20-30%. Preservatives may be operating in the same magnitude class as salt itself.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In nutritional epidemiology, what does a 'prospective cohort study' do that a retrospective study cannot?",
+            "options": [
+              "Prove direct causation between exposure and outcome",
+              "Track exposures before outcomes occur, reducing recall bias",
+              "Eliminate the need for control groups",
+              "Test interventions in a controlled setting"
+            ],
+            "correct": 1,
+            "explanation": "Prospective cohorts log exposures in real time, so participants who later develop disease cannot misremember their diet — a major flaw in retrospective designs."
+          }
+        ]
+      },
+      {
+        "heading": "THE NITRITE PARADOX",
+        "body": "Sodium nitrite is the most studied compound on the list. It prevents botulism, a paralytic disease that killed thousands before industrial curing. The WHO classified processed meats as Group 1 carcinogens in 2015 largely because of nitrite-derived nitrosamines. Regulators have known about the tradeoff for decades; the political question is whether cardiovascular risk shifts the calculus."
+      },
+      {
+        "heading": "THE ASCORBIC ACID SURPRISE",
+        "body": "Ascorbic acid is vitamin C — the same compound in oranges. As an additive, it functions as an antioxidant that prevents fats from going rancid. Its appearance on a hypertension-risk list is the study's most counterintuitive finding and the one most likely to be a confounder: foods that need ascorbic acid added are often the same ultra-processed foods that drive blood pressure through other mechanisms.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the *correlation-vs-causation* trap in nutritional science: the additive may be a **marker** of ultra-processing rather than the **cause** of the harm."
+          }
+        ]
+      },
+      {
+        "heading": "THE REGULATORY ASYMMETRY",
+        "body": "The EU operates on the precautionary principle — additives must be proven safe before approval, and re-evaluations can restrict them on emerging evidence. The US FDA largely grandfathers compounds under the GRAS (Generally Recognized As Safe) designation, where manufacturers self-certify safety. The same compound can carry different legal status on either side of the Atlantic.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "EU (EFSA)",
+                "value": "precautionary",
+                "cc": "EU",
+                "tone": "favorable"
+              },
+              {
+                "label": "US (FDA)",
+                "value": "GRAS self-cert",
+                "cc": "US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "UK (FSA)",
+                "value": "post-Brexit drift",
+                "cc": "GB",
+                "tone": "neutral"
+              }
+            ],
+            "label": "how each system handles a suspect additive"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-21T17:31:19.695Z",
+    "label": "Food Preservatives & Blood Pressure",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-21-iss-russia-segment-leaking-again": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "TWO STATIONS BOLTED TOGETHER",
+        "body": "The ISS is functionally two stations sharing a truss: the US Orbital Segment (with European, Japanese, and Canadian modules) and the Russian Orbital Segment. They use different software, different docking standards, and different atmospheric pressures historically — a Cold War compromise frozen into orbiting hardware.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Russian segment provides *propulsion and reboost*; the US segment provides *power and attitude control*. Neither half can fly alone — separation has been studied and rejected as infeasible without years of refit."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE LEAK IS",
+        "body": "The cracks are in the PrK transfer tunnel connecting the Zvezda service module to a docking port. Zvezda launched in 2000 and was already a decade old at launch — built in the 1980s as a backup for the Soviet Mir-2 program that never flew.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1985",
+                "label": "Zvezda hull fabricated for Mir-2"
+              },
+              {
+                "year": "1993",
+                "label": "Repurposed for ISS after USSR collapse"
+              },
+              {
+                "year": "2000",
+                "label": "Zvezda launched",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "First PrK cracks detected"
+              },
+              {
+                "year": "2024",
+                "label": "NASA rates leak risk '5/5'"
+              },
+              {
+                "year": "2030",
+                "label": "Current planned ISS retirement"
+              }
+            ],
+            "label": "the Russian segment's long life"
+          }
+        ]
+      },
+      {
+        "heading": "THE RISK MATRIX",
+        "body": "NASA's 5x5 risk matrix scores likelihood and consequence each 1-5. A '5' in both axes is the agency's highest category — reserved for events that are both probable and catastrophic. The Columbia foam strike, in hindsight, would have scored similarly."
+      },
+      {
+        "heading": "WHY NOTHING REPLACES IT",
+        "body": "Commercial successors — Axiom, Orbital Reef, Starlab, Vast's Haven — exist on paper and in early hardware. None has flown a crewed module. The ISS retirement date has slipped repeatedly because the gap between 'ISS works' and 'commercial station ready' keeps widening.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Axiom Station",
+                "value": "first module ~2027",
+                "tone": "neutral"
+              },
+              {
+                "label": "Orbital Reef",
+                "value": "delayed, unfunded",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Starlab",
+                "value": "target 2029",
+                "tone": "neutral"
+              },
+              {
+                "label": "Vast Haven-1",
+                "value": "target 2026, small",
+                "tone": "favorable"
+              },
+              {
+                "label": "China Tiangong",
+                "value": "operational since 2022",
+                "tone": "favorable",
+                "cc": "CN"
+              }
+            ],
+            "label": "proposed commercial successors"
+          }
+        ]
+      },
+      {
+        "heading": "THE DEORBIT PROBLEM",
+        "body": "The ISS masses 420 tonnes. Letting it fall uncontrolled would scatter debris across hundreds of kilometers. NASA awarded SpaceX an $843M contract in 2024 to build a deorbit vehicle — a one-shot tug that will push the station into a Pacific reentry corridor known as Point Nemo, the spacecraft graveyard farthest from any inhabited land."
+      },
+      {
+        "heading": "WHO STAYS, WHO GOES",
+        "body": "Russia has announced it will leave the ISS partnership after 2028 to build its own station, ROSS. The US-Russian crew-swap agreement — each side flies the other's astronauts as insurance against a single-vehicle failure — survived the Ukraine war as one of the last functioning bilateral programs.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country operates the only other crewed space station currently in orbit?",
+            "options": [
+              "India",
+              "China",
+              "Japan",
+              "UAE"
+            ],
+            "correct": 1,
+            "explanation": "China's Tiangong has been continuously crewed since 2022 — making it the second operational crewed station after the ISS."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-21T17:31:50.309Z",
+    "label": "ISS & the Russian Segment",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-21-korea-parkinson-dementia-incidence-2003-2023": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "TWO DISEASES, TWO MECHANISMS",
+        "body": "Dementia (mostly Alzheimer's) is driven by amyloid plaques and tau tangles in the cortex — memory and reasoning erode first. Parkinson's begins in the substantia nigra, where dopamine-producing neurons die — movement fails before cognition. They share an aging substrate but progress through different brain regions on different timelines.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The two are sometimes confused because late-stage Parkinson's can develop dementia (*Lewy body dementia*) and late Alzheimer's can produce motor symptoms — but the **first decade** of each disease looks nothing like the other."
+          }
+        ]
+      },
+      {
+        "heading": "WHY INCIDENCE CAN FALL WHILE PREVALENCE RISES",
+        "body": "Incidence is new cases per year. Prevalence is people currently living with the disease. Better treatment of heart disease and stroke means more people survive to ages where dementia would once have killed them indirectly — so prevalence rises even as age-adjusted incidence drops. The same arithmetic has played out across the UK, US, and Nordic registries since the 2000s."
+      },
+      {
+        "heading": "THE DIAGNOSIS WAVE",
+        "body": "A sudden tripling of dementia rarely reflects a biological surge. It usually means the health system started looking — new screening protocols, insurance reimbursement for cognitive testing, public awareness campaigns. Korea launched its National Dementia Plan in 2008 and expanded free screening through public health centers in the 2010s. The 2018 peak likely marks the moment detection caught up with reality.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When a country's dementia incidence triples then falls, what most often explains the curve?",
+            "options": [
+              "An environmental toxin that was identified and removed",
+              "A new screening program that first detected, then saturated, the existing pool of cases",
+              "A genetic shift in the population",
+              "A change in the definition of dementia by the WHO"
+            ],
+            "correct": 1,
+            "explanation": "Once a screening program reaches everyone it can reach, the apparent incidence drops back toward the true underlying rate — the curve reflects measurement, not biology."
+          }
+        ]
+      },
+      {
+        "heading": "THE FASTEST-AGING COUNTRY ON EARTH",
+        "body": "Korea's fertility rate is roughly 0.75 — the lowest ever recorded for a major economy. The share of Koreans over 65 has doubled in 17 years. Any age-related disease will rise in raw counts for decades regardless of what age-adjusted rates do, because the denominator is shifting.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Share of population aged 65+",
+            "peers": [
+              {
+                "value": 30,
+                "cc": "JP"
+              },
+              {
+                "value": 24,
+                "cc": "IT"
+              },
+              {
+                "value": 22,
+                "cc": "DE"
+              },
+              {
+                "value": 19,
+                "cc": "KR"
+              },
+              {
+                "value": 21,
+                "cc": "FR"
+              },
+              {
+                "value": 17,
+                "cc": "US"
+              },
+              {
+                "value": 14,
+                "cc": "CN"
+              }
+            ],
+            "subjectCc": "KR",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "THE RURAL SURVIVAL GAP",
+        "body": "Once diagnosed, where you live shapes how long you live. Rural Korean counties have fewer neurologists per capita, longer drives to memory clinics, and thinner home-care networks. The survival gap between Seoul and a depopulating southern county can run several years for the same diagnosis at the same age — a pattern mirrored in rural Japan, Appalachian US, and the German Länder."
+      },
+      {
+        "heading": "WHY PARKINSON'S FELL",
+        "body": "Parkinson's incidence has dropped quietly across several high-income countries, and no one is sure why. Leading hypotheses: declining smoking rates correlate paradoxically with rising Parkinson's (nicotine appears mildly protective of dopamine neurons), reduced pesticide exposure in agriculture, and better treatment of vascular risk factors that mimic or trigger parkinsonian symptoms."
+      }
+    ],
+    "generatedAt": "2026-05-21T17:32:24.217Z",
+    "label": "Korea's Neurodegenerative Curve",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-21-nigeria-alaoji-power-plant-restored": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STRANDED CAPACITY PARADOX",
+        "body": "Nigeria has roughly 13,000MW of installed generation capacity but typically dispatches only 4,000-5,000MW. The gap is not a shortage of plants — it is a shortage of working gas pipelines, functioning transmission lines, and creditworthy buyers downstream.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Nigeria's per-capita electricity consumption is **~150 kWh/year** — roughly *one-twentieth* of South Africa's and less than a single American refrigerator uses in a year."
+          }
+        ]
+      },
+      {
+        "heading": "THE CIRCULAR DEBT LOOP",
+        "body": "Generators sell power to the national grid operator, which sells to DISCOs, which bill consumers. Each link underpays the next. When generators cannot pay gas suppliers, supply gets cut — which is exactly what stranded Alaoji for three years.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "gas",
+                "label": "Gas suppliers"
+              },
+              {
+                "id": "gencos",
+                "label": "Generators"
+              },
+              {
+                "id": "tcn",
+                "label": "Transmission (TCN)"
+              },
+              {
+                "id": "discos",
+                "label": "DISCOs"
+              },
+              {
+                "id": "consumers",
+                "label": "Consumers"
+              }
+            ],
+            "links": [
+              {
+                "source": "consumers",
+                "target": "discos",
+                "value": 60,
+                "label": "collected"
+              },
+              {
+                "source": "discos",
+                "target": "tcn",
+                "value": 45,
+                "label": "remitted"
+              },
+              {
+                "source": "tcn",
+                "target": "gencos",
+                "value": 40,
+                "label": "paid"
+              },
+              {
+                "source": "gencos",
+                "target": "gas",
+                "value": 25,
+                "label": "settled"
+              }
+            ],
+            "label": "Nigeria's power-sector payment chain"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRIVATIZATION THAT WASN'T",
+        "body": "Nigeria broke up the state monopoly NEPA in 2013, selling generation and distribution to private investors while keeping transmission state-owned. The reform assumed tariffs would rise to cost-recovery levels. Politically, they never could — so the unbundled system inherited the old deficits in new packaging."
+      },
+      {
+        "heading": "WHY GAS-FIRED, NOT HYDRO",
+        "body": "Nigeria sits on Africa's largest proven natural gas reserves — about 209 trillion cubic feet. Most plants in the south, including Alaoji, are gas-fired and clustered near Niger Delta wellheads. The constraint has never been fuel availability; it is the pipeline network and the willingness of producers to deliver without prepayment.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG"
+            ],
+            "label": "southern Nigeria's gas-power corridor",
+            "markers": [
+              {
+                "lat": 5.1167,
+                "lng": 7.3667,
+                "label": "Alaoji plant (Abia)"
+              },
+              {
+                "lat": 4.7833,
+                "lng": 7.0167,
+                "label": "Port Harcourt gas hub"
+              },
+              {
+                "lat": 6.335,
+                "lng": 5.6037,
+                "label": "Benin transmission node"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE NAIRA SQUEEZE",
+        "body": "Tinubu's 2023 float roughly tripled the naira-dollar rate. Gas contracts and plant maintenance are dollar-denominated; tariffs are naira-denominated. Every devaluation widens the gap the federal budget must absorb to keep generators solvent.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              1348.77,
+              1351.32,
+              1354.96,
+              1351.847873,
+              1351.847873,
+              1352.81,
+              1360.19,
+              1374.96,
+              1375.07,
+              1374.69,
+              1375.98,
+              1375.98,
+              1375.65,
+              1370.93,
+              1365.9,
+              1360.53,
+              1361.67,
+              1356.19465,
+              1356.19465,
+              1357.96,
+              1363.47,
+              1370.1,
+              1370.5,
+              1370.6,
+              1370.49,
+              1372.988035,
+              1372.74,
+              1371.26,
+              1372.34,
+              1371.25
+            ],
+            "periods": [
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21"
+            ],
+            "label": "Nigerian naira",
+            "unit": "NGN / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "QUICK CHECK",
+        "body": "Most of Nigeria's power crisis is not about building more plants.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the main reason Nigeria dispatches less than half its installed power capacity?",
+            "options": [
+              "Not enough generation plants built",
+              "Payment failures and gas/transmission bottlenecks",
+              "Insufficient natural gas reserves",
+              "Lack of skilled engineers"
+            ],
+            "correct": 1,
+            "explanation": "Nigeria has ~13,000MW installed but dispatches 4-5,000MW. The binding constraint is the payment chain — gas suppliers and transmission, not generation hardware."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-21"
+    ],
+    "generatedAt": "2026-05-21T17:32:53.269Z",
+    "label": "Nigeria's Power Sector",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-21-radnor-high-school-deepfake-csam-response": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FEDERAL GAP",
+        "body": "US federal CSAM law (18 USC §2252) requires an actual minor depicted. The 2002 Supreme Court ruling Ashcroft v. Free Speech Coalition struck down a 1996 law that had banned synthetic child imagery, holding that without a real victim, the speech is protected.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The controlling precedent is *Ashcroft v. Free Speech Coalition* — synthetic imagery without an identifiable minor falls outside the **Miller** obscenity test and outside §2252."
+          }
+        ]
+      },
+      {
+        "heading": "THE MORPH EXCEPTION",
+        "body": "Courts have carved one narrow path: if a real child's face is grafted onto a synthetic body, prosecutors can charge under §2256(8)(C) — the 'morphed image' clause upheld in US v. Anderson (2014). Most school deepfake cases fit here, but charging requires the victim be identifiable, which not every case provides."
+      },
+      {
+        "heading": "THE STATE PATCHWORK",
+        "body": "By 2026, roughly 30 states have criminalized non-consensual deepfake imagery, but statutes vary wildly — some are misdemeanors, some felonies, some require intent to harass, some cover only adults. A student crossing a state line, or using a server hosted elsewhere, can land outside any single statute's reach.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Louisiana",
+                "value": "felony, 5–20 yrs",
+                "tone": "favorable",
+                "cc": "US"
+              },
+              {
+                "label": "Washington",
+                "value": "class C felony",
+                "tone": "favorable",
+                "cc": "US"
+              },
+              {
+                "label": "Pennsylvania",
+                "value": "felony (2024 law)",
+                "tone": "favorable",
+                "cc": "US"
+              },
+              {
+                "label": "Texas",
+                "value": "state jail felony",
+                "tone": "neutral",
+                "cc": "US"
+              },
+              {
+                "label": "~20 states",
+                "value": "no specific law",
+                "tone": "unfavorable",
+                "cc": "US"
+              }
+            ],
+            "label": "how states treat minor-victim deepfakes"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE APPS EXIST",
+        "body": "'Nudify' apps run on open-weight diffusion models — Stable Diffusion derivatives fine-tuned on explicit imagery and wrapped in a consumer UI. Once weights are released publicly, takedown is effectively impossible; the model propagates through torrents, Hugging Face mirrors, and Telegram channels faster than any platform can moderate.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pivotal release was **Stable Diffusion 1.5** in late 2022 — the first high-quality image model with *fully open weights*. Every consumer nudify app since traces back to that lineage."
+          }
+        ]
+      },
+      {
+        "heading": "SECTION 230 AND THE APP STORES",
+        "body": "App stores host these tools under Section 230 immunity for third-party content. Apple and Google have removed individual apps after press attention, but the same developers re-list under new names within days. The bottleneck isn't legal — it's that no platform faces liability for hosting the distribution layer.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why doesn't federal CSAM law cover AI-generated images of fictional minors?",
+            "options": [
+              "Congress exempted AI explicitly in 2023",
+              "The Supreme Court ruled in 2002 that synthetic imagery without a real victim is protected speech",
+              "The FBI lacks jurisdiction over digital files",
+              "Section 230 preempts CSAM statutes"
+            ],
+            "correct": 1,
+            "explanation": "Ashcroft v. Free Speech Coalition (2002) struck down the 1996 Child Pornography Prevention Act's ban on virtual CSAM, holding it swept in protected speech."
+          }
+        ]
+      },
+      {
+        "heading": "THE SCHOOL DISCIPLINE GAP",
+        "body": "Schools can suspend or expel under student conduct codes, but Title IX coverage of deepfake harassment remains untested. The 2024 final rule under Biden expanded sex-based harassment definitions; the 2025 rollback narrowed them again. Districts are writing policy in real time without clear federal guidance."
+      }
+    ],
+    "generatedAt": "2026-05-21T17:33:25.187Z",
+    "label": "Deepfake CSAM & the Legal Vacuum",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-21-trump-epa-refrigerant-rollback-groceries": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MOLECULE PROBLEM",
+        "body": "Hydrofluorocarbons cool efficiently but trap heat thousands of times more effectively than CO2 per molecule. A leaking supermarket rack can emit the climate equivalent of hundreds of cars in a single year.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A common supermarket refrigerant, **R-404A**, has a global warming potential of roughly *3,900* — meaning one kilogram leaked equals nearly four tonnes of CO2."
+          }
+        ]
+      },
+      {
+        "heading": "THE GENERATIONAL CASCADE",
+        "body": "Refrigerants have been swapped out roughly every generation as each chemistry revealed a new harm. CFCs were banned for destroying the ozone layer; HCFCs were interim; HFCs solved ozone but proved to be extreme greenhouse gases; HFOs and natural refrigerants are the next step.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1928",
+                "label": "Freon (CFC) invented at GM"
+              },
+              {
+                "year": "1987",
+                "label": "Montreal Protocol bans CFCs",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1996",
+                "label": "CFC production ends in US"
+              },
+              {
+                "year": "2010",
+                "label": "HCFC-22 phase-down begins"
+              },
+              {
+                "year": "2016",
+                "label": "Kigali Amendment targets HFCs"
+              },
+              {
+                "year": "2020",
+                "label": "AIM Act passed by US Congress"
+              }
+            ],
+            "label": "the refrigerant ladder"
+          }
+        ]
+      },
+      {
+        "heading": "THE KIGALI AMENDMENT",
+        "body": "The 2016 Kigali Amendment to the Montreal Protocol committed nations to cut HFC production 85% by 2047. The US ratified it under bipartisan Senate vote in 2022 — one of the rare climate treaties to clear that bar — because the chemical industry itself backed it, having already patented the replacements."
+      },
+      {
+        "heading": "WHY INDUSTRY WANTED THE BAN",
+        "body": "Honeywell and Chemours hold the patents on HFO replacements. A phase-out of off-patent HFCs forces every supermarket and AC manufacturer onto the new, patented chemistry. The ban was less environmental imposition than market reset — which is why the rollback splits the industry, not unites it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the **Montreal Protocol** template: regulation accelerates when incumbents already own the substitute. It is why ozone diplomacy succeeded where carbon diplomacy stalled."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GROCERIES",
+        "body": "Supermarket refrigeration is the single largest stationary HFC source in the US economy — long racks of open cases, hundreds of fittings per store, leak rates averaging 25% of charge per year. A typical store leaks more refrigerant in a year than a fleet of delivery trucks emits in fuel.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of its refrigerant charge does a typical US supermarket leak each year?",
+            "options": [
+              "About 2%",
+              "About 10%",
+              "About 25%",
+              "About 50%"
+            ],
+            "correct": 2,
+            "explanation": "EPA's GreenChill program documents average leak rates near 25% annually — the reason supermarkets dominate stationary HFC emissions."
+          }
+        ]
+      },
+      {
+        "heading": "THE COST CLAIM",
+        "body": "Compliance costs for HFC transitions are real but concentrated in capital equipment, not in the per-item margin that sets shelf prices. Grocery markups are set by labor, real estate, and supply chain — refrigerant chemistry sits below the threshold where consumers would notice."
+      }
+    ],
+    "generatedAt": "2026-05-21T17:33:53.995Z",
+    "label": "HFCs & the Refrigerant Cascade",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-21-uk-cybercrime-law-reform-researcher-protections": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ORIGINAL SIN",
+        "body": "The Computer Misuse Act was drafted in 1990 after the Gold and Schifreen case, where two hackers accessed Prince Philip's Prestel mailbox and were acquitted because no law fit. Parliament wrote the statute around 'unauthorised access' as a binary — you either had permission or you didn't. The category of researcher testing without prior permission did not exist in the drafters' minds.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 1990 law predates the **public web** by a year and **Google** by eight. Every ambiguity in modern security research traces back to a statute written when the internet had ~313,000 hosts."
+          }
+        ]
+      },
+      {
+        "heading": "THE VERIFICATION PROBLEM",
+        "body": "Finding a vulnerability and proving it is exploitable are different acts. A scanner might flag a misconfigured server; confirming an attacker could actually read data requires sending a crafted request and observing the response. Under a 'stop at first suspicion' rule, the second step — the one that distinguishes a real flaw from a false positive — becomes a crime."
+      },
+      {
+        "heading": "THE JURISDICTION ARBITRAGE",
+        "body": "Belgium legalised good-faith research in 2023. The Netherlands has a coordinated disclosure framework backed by prosecutorial guidelines. France's 2016 Digital Republic Act protects researchers who report to ANSSI. A UK flaw found by a Brussels researcher is legal to verify; the same flaw found by a Londoner is not.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GB",
+              "BE",
+              "NL",
+              "FR",
+              "DE"
+            ],
+            "label": "the European patchwork",
+            "caption": "researcher protections vary by border"
+          }
+        ]
+      },
+      {
+        "heading": "THE DISCLOSURE ASYMMETRY",
+        "body": "Vulnerabilities get found either way. The question is whether the finder is a domestic researcher who reports to the vendor, a foreign researcher who publishes on a conference stage, or a criminal who sells to a broker. Criminalising domestic verification doesn't reduce discovery — it shifts the discoverer."
+      },
+      {
+        "heading": "THE BUG BOUNTY ECONOMY",
+        "body": "Legitimate vulnerability markets pay $5,000 to $250,000 per finding through programs like HackerOne and Bugcrowd. Grey-market brokers like Zerodium pay up to $2.5 million for a zero-click iPhone exploit. The price gap between disclosure and exploitation is the real policy lever — and it widens whenever legal risk pushes researchers toward anonymous channels.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "HackerOne bounty",
+                "value": "up to $250k",
+                "tone": "favorable"
+              },
+              {
+                "label": "Apple Security",
+                "value": "up to $1m",
+                "tone": "favorable"
+              },
+              {
+                "label": "Zerodium grey",
+                "value": "up to $2.5m",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Criminal broker",
+                "value": "$5m+",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "what a critical exploit pays"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHILLING EFFECT",
+        "body": "The CMA has been used against researchers before. In 2018, Robert Riley was prosecuted for testing a council's website after reporting flaws. The TalkTalk breach prosecutions saw teenagers charged for actions adjacent to the kind of probing a professional pentester does daily. The law's vagueness is itself the deterrent — researchers self-censor long before a charge is filed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does the UK's Computer Misuse Act 1990 require to establish 'unauthorised access'?",
+            "options": [
+              "Proof the access caused financial damage",
+              "Lack of permission from the system owner, regardless of intent",
+              "Evidence the access was malicious",
+              "A formal complaint from the affected party"
+            ],
+            "correct": 1,
+            "explanation": "The Act is strict-liability on authorisation: intent, harm, and disclosure don't enter the offence definition — only whether the owner consented."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-21T17:34:26.814Z",
+    "label": "The Computer Misuse Act",
+    "category": "tech",
+    "articleCount": 1
   }
 }
