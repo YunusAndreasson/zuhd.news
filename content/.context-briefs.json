@@ -214591,5 +214591,1508 @@
     "label": "Royal Accountability & the Epstein Network",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-22-ai-synthetic-quotes-rosenbaum-book-fact-check-gap": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY MODELS FABRICATE QUOTES",
+        "body": "Large language models are trained to predict plausible next tokens, not to retrieve verified text. A quote that sounds like something an expert would say scores high on plausibility — the model has no separate machinery checking whether the words were ever actually uttered.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **hallucination**: confidently-generated output with no grounding in the training data or the real world. It is not a bug to be patched but a structural property of *autoregressive generation*."
+          }
+        ]
+      },
+      {
+        "heading": "THE FACT-CHECKER'S WORKFLOW",
+        "body": "Traditional book fact-checking verifies claims against named sources — call the expert, check the cited paper, confirm the dated speech. A fabricated quote attributed to a real, reachable expert breaks this workflow only if the checker actually contacts them. Many checks are document-based: if the manuscript cites a plausible source, the checker confirms the source exists, not that the quote within it does."
+      },
+      {
+        "heading": "THE NEW YORKER STANDARD",
+        "body": "The New Yorker's fact-checking department, founded in 1927, is the industry benchmark: every assertion, including overheard dialogue, is independently verified, often by recontacting the speaker. Most book publishers operate nothing like this — fact-checking is typically the author's contractual responsibility, with the publisher providing legal review for libel risk, not source verification.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "New Yorker",
+                "value": "every claim",
+                "tone": "favorable"
+              },
+              {
+                "label": "Major magazines",
+                "value": "most claims",
+                "tone": "neutral"
+              },
+              {
+                "label": "Newspapers",
+                "value": "reporter-led",
+                "tone": "neutral"
+              },
+              {
+                "label": "Trade books",
+                "value": "author's job",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "fact-checking intensity by format"
+          }
+        ]
+      },
+      {
+        "heading": "THE LAWYER PRECEDENT",
+        "body": "In Mata v. Avianca (2023), a New York attorney filed a brief citing six federal cases that did not exist — ChatGPT had invented them, complete with realistic citation numbers and fabricated judicial reasoning. The judge sanctioned the lawyers. The pattern — confident, well-formatted, internally consistent fabrication — is the same failure mode now appearing in non-fiction publishing."
+      },
+      {
+        "heading": "RETRIEVAL VS GENERATION",
+        "body": "The fix that actually works is retrieval-augmented generation: the model is forced to pull from a verified corpus and cite the passage it used. A quote without a retrievable source then visibly has no source. Pure chat interfaces don't do this by default — the user has to verify externally, which is exactly the step Rosenbaum's checkers skipped.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do AI-fabricated quotes pass fact-checkers more easily than fabricated statistics?",
+            "options": [
+              "Quotes are shorter than statistics",
+              "Named experts are real and reachable, so the source 'exists' even if the words don't",
+              "Fact-checkers don't verify quotes",
+              "AI models are better at quotes than numbers"
+            ],
+            "correct": 1,
+            "explanation": "A document-based check confirms the expert is real; only a phone call confirms they said it. The fabrication exploits this gap."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-22T17:26:42.542Z",
+    "label": "AI Hallucination & Fact-Checking",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-22-china-us-ai-worlds-interwoven-not-decoupled": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TALENT PIPELINE",
+        "body": "Roughly a third of top-tier US AI researchers were born in China, and most trained at a Chinese university before graduate school in the US. The chip embargo cannot touch this flow without dismantling the American university system that produces the researchers in the first place.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The MacroPolo *Global AI Talent Tracker* found that **38%** of top-tier AI researchers working in the US did their undergrad in China — more than the share born in the US itself."
+          }
+        ]
+      },
+      {
+        "heading": "THE CO-AUTHORSHIP GRAPH",
+        "body": "US–China is the single largest bilateral research-collaboration pair in AI, larger than US–UK or US–EU. A paper with authors on both sides of the Pacific is the median NeurIPS submission, not the exception.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "~40%",
+                "cc": "CN",
+                "weight": 40,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "United States",
+                "value": "~37%",
+                "cc": "US",
+                "weight": 37,
+                "tone": "neutral"
+              },
+              {
+                "label": "Europe",
+                "value": "~12%",
+                "cc": "EU",
+                "weight": 12,
+                "tone": "favorable"
+              },
+              {
+                "label": "UK",
+                "value": "~4%",
+                "cc": "GB",
+                "weight": 4,
+                "tone": "favorable"
+              },
+              {
+                "label": "Rest",
+                "value": "~7%",
+                "weight": 7,
+                "tone": "favorable"
+              }
+            ],
+            "label": "AI research output, share of top-cited papers (2023)"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT EXPORT CONTROLS ACTUALLY DO",
+        "body": "The October 2022 and 2023 BIS rules block advanced GPUs, EUV lithography, and the chip-design software that targets them. They do not — and under the First Amendment cannot — block the publication of weights, papers, or pre-prints. The frontier model leaks through PDF, not through customs."
+      },
+      {
+        "heading": "THE FUNDAMENTAL-RESEARCH CARVE-OUT",
+        "body": "National Security Decision Directive 189, signed by Reagan in 1985 and reaffirmed by every administration since, declares that the products of fundamental research shall remain unrestricted to the maximum extent possible. Restricting researcher mobility runs directly into this 40-year-old doctrine.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "To the maximum extent possible, the products of fundamental research remain unrestricted.",
+            "speaker": "NSDD-189, Reagan administration",
+            "year": "1985"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHINA INITIATIVE PRECEDENT",
+        "body": "DOJ's 2018–2022 China Initiative prosecuted dozens of US-based academics for undisclosed China ties. It produced few convictions, several high-profile acquittals, and a measurable chilling effect — Chinese-born scientists leaving the US accelerated, many to Chinese institutions. Restriction tools aimed at people, unlike those aimed at machines, generate the opposite of their intended effect.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What ended the DOJ's China Initiative in 2022?",
+            "options": [
+              "A series of failed prosecutions and accusations of racial profiling",
+              "A Supreme Court ruling striking it down",
+              "A bilateral US–China research agreement",
+              "Congressional defunding"
+            ],
+            "correct": 0,
+            "explanation": "DOJ wound it down in Feb 2022 after acquittals (notably MIT's Gang Chen) and sustained criticism that it was profiling Asian-American scientists rather than catching espionage."
+          }
+        ]
+      },
+      {
+        "heading": "THE DIASPORA RETURN",
+        "body": "For decades the flow ran one way: Chinese students came to the US and stayed. Since roughly 2018 the return rate has climbed sharply — driven by visa friction, the China Initiative, and Beijing's Thousand Talents recruitment. Each returnee carries tacit knowledge that no export-control list can intercept."
+      }
+    ],
+    "generatedAt": "2026-05-22T17:27:16.641Z",
+    "label": "US–China AI Entanglement",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-22-gaza-flotilla-israeli-custody-abuse-accounts": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BLOCKADE",
+        "body": "Israel has imposed a naval blockade on Gaza since 2007, enforced by the Israeli Navy out to roughly 20 nautical miles from the coast. Under the San Remo Manual, a blockade is lawful only if it does not have the sole purpose of starving the civilian population — a test multiple UN bodies have said the Gaza blockade fails.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "PS",
+              "EG",
+              "CY",
+              "TR"
+            ],
+            "label": "the eastern Mediterranean corridor",
+            "markers": [
+              {
+                "lat": 31.5,
+                "lng": 34.45,
+                "label": "Gaza coast"
+              },
+              {
+                "lat": 34.7,
+                "lng": 33,
+                "label": "Larnaca (typical departure)"
+              },
+              {
+                "lat": 36.85,
+                "lng": 30.7,
+                "label": "Antalya"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE MAVI MARMARA PRECEDENT",
+        "body": "In May 2010, Israeli commandos boarded the Turkish-flagged Mavi Marmara in international waters and killed nine activists; a tenth died of wounds years later. The UN Human Rights Council's fact-finding mission concluded the interception was unlawful and that detainees were subjected to physical abuse, strip searches, and denial of medical care.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2007",
+                "label": "Israel imposes naval blockade"
+              },
+              {
+                "year": "2008",
+                "label": "First Free Gaza boats reach Gaza"
+              },
+              {
+                "year": "2010-05",
+                "label": "Mavi Marmara raid, 10 killed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011",
+                "label": "Palmer Report; Turkey-Israel rupture"
+              },
+              {
+                "year": "2015",
+                "label": "Marianne intercepted"
+              },
+              {
+                "year": "2018",
+                "label": "Al Awda, Freedom intercepted"
+              },
+              {
+                "year": "2025",
+                "label": "Madleen, Conscience intercepted"
+              },
+              {
+                "year": "2026",
+                "label": "Global Sumud Flotilla detentions"
+              }
+            ],
+            "label": "fifteen years of flotillas"
+          }
+        ]
+      },
+      {
+        "heading": "INTERNATIONAL WATERS",
+        "body": "Under UNCLOS, a flag state has exclusive jurisdiction over its vessels on the high seas. Boarding a foreign-flagged ship outside territorial waters without consent is generally unlawful except in narrow cases — piracy, slave trading, unflagged vessels. Israel argues a blockade permits interception of blockade-runners on the high seas; the UN Palmer Report split this question, accepting the blockade's legality but criticising the use of force.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal hinge is whether the *San Remo Manual* — a non-binding restatement of the law of naval warfare — turns a blockade into a license to board neutral-flagged civilian vessels in international waters. Most maritime-law scholars say **no**."
+          }
+        ]
+      },
+      {
+        "heading": "WHO POLICES DETENTION",
+        "body": "The Geneva Conventions and the UN Convention Against Torture require detaining powers to permit independent monitoring — typically by the International Committee of the Red Cross. Israel routinely denies ICRC access to security detainees, including those held under administrative detention without charge. Without an independent monitor inside the facility, abuse allegations rest on detainee testimony alone.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which body has a treaty-based right to visit detainees in armed conflict?",
+            "options": [
+              "UN Human Rights Council",
+              "International Committee of the Red Cross",
+              "Amnesty International",
+              "International Criminal Court"
+            ],
+            "correct": 1,
+            "explanation": "The ICRC's mandate under the Geneva Conventions includes confidential visits to detainees; the others are advocacy or judicial bodies without on-site access rights."
+          }
+        ]
+      },
+      {
+        "heading": "THE DIPLOMATIC RITUAL",
+        "body": "Summoning an ambassador is the lowest formal step on the diplomatic protest ladder — above a statement, below recalling an envoy, far below severing relations. After Mavi Marmara, Turkey recalled its ambassador and downgraded ties for six years; the Palmer Report and a 2016 reconciliation deal eventually closed the file with a $20m Israeli compensation payment to victims' families.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Statement",
+                "value": "verbal/press",
+                "tone": "neutral"
+              },
+              {
+                "label": "Summon ambassador",
+                "value": "formal protest",
+                "tone": "neutral"
+              },
+              {
+                "label": "Recall envoy",
+                "value": "downgrade signal",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Expel ambassador",
+                "value": "near-rupture",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Sever relations",
+                "value": "full break",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "diplomatic protest ladder, weakest to strongest"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-22T17:28:14.989Z",
+    "label": "Gaza Flotillas & the Blockade",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-22-iran-irgc-hormuz-35-vessels-transit-count": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a buffer. The deepest channel hugs the Iranian side, which is why IRGC fast-boat positioning matters disproportionately.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 27.1833,
+                "lng": 56.2833,
+                "label": "Bandar Abbas (IRGCN HQ)"
+              },
+              {
+                "lat": 26.5228,
+                "lng": 53.9794,
+                "label": "Bandar Lengeh"
+              },
+              {
+                "lat": 25.1167,
+                "lng": 56.3417,
+                "label": "Fujairah (UAE bypass terminal)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL CLAIM",
+        "body": "Under UNCLOS Article 38, ships have a right of transit passage through international straits — coastal states cannot suspend it or impose conditions. Iran signed UNCLOS in 1982 but never ratified, and argues Hormuz is governed by its own domestic law. Publishing a daily transit count is part of that argument: we counted you, therefore we authorized you.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal posture matters: *transit passage* (UNCLOS) is non-suspendable; *innocent passage* (which Iran prefers as the framing) can be regulated by the coastal state."
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO NAVIES",
+        "body": "Iran runs two parallel naval forces. The regular Islamic Republic of Iran Navy (IRIN) handles blue-water operations and the Caspian. The IRGC Navy (IRGCN) — a separate service answering to the Supreme Leader, not the defense ministry — owns the Persian Gulf, including Hormuz. The transit count comes from IRGCN because the strait is their turf.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "IRGC Navy (IRGCN)",
+                "role": "Persian Gulf, Hormuz, fast boats",
+                "years": "since 1985",
+                "cc": "IR"
+              },
+              {
+                "name": "Regular Navy (IRIN)",
+                "role": "Gulf of Oman, blue-water, submarines",
+                "years": "since 1923",
+                "cc": "IR"
+              },
+              {
+                "name": "US 5th Fleet",
+                "role": "Bahrain-based, Hormuz patrols",
+                "years": "since 1995",
+                "cc": "US"
+              },
+              {
+                "name": "CTF-153 (multinational)",
+                "role": "Red Sea / Bab el-Mandeb",
+                "years": "since 2022",
+                "cc": "US"
+              }
+            ],
+            "label": "who controls what water"
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships in Operation Earnest Will. The lesson planners took: harassment is easier to sustain than full closure, and the reputational cost is paid in insurance premiums, not battles."
+      },
+      {
+        "heading": "WHY IT CAN'T BE BYPASSED",
+        "body": "Saudi Arabia's East-West Pipeline (5 mbd capacity) and the UAE's Habshan–Fujairah line (1.5 mbd) together reroute maybe a third of Gulf exports around Hormuz. The remaining two-thirds — Iraqi, Kuwaiti, Qatari, Bahraini, and most Iranian crude — has no alternative path to a buyer.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Qatar (LNG + oil)",
+                "value": "~100%",
+                "cc": "QA",
+                "tone": "unfavorable",
+                "weight": 100
+              },
+              {
+                "label": "Kuwait",
+                "value": "~100%",
+                "cc": "KW",
+                "tone": "unfavorable",
+                "weight": 100
+              },
+              {
+                "label": "Iraq",
+                "value": "~98%",
+                "cc": "IQ",
+                "tone": "unfavorable",
+                "weight": 98
+              },
+              {
+                "label": "Iran",
+                "value": "~90%",
+                "cc": "IR",
+                "tone": "unfavorable",
+                "weight": 90
+              },
+              {
+                "label": "UAE",
+                "value": "~60%",
+                "cc": "AE",
+                "tone": "neutral",
+                "weight": 60
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~75%",
+                "cc": "SA",
+                "tone": "neutral",
+                "weight": 75
+              }
+            ],
+            "label": "Gulf oil exports — Hormuz dependence"
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "It is Lloyd's of London war-risk premiums — not mines or missiles — that close a shipping lane. Once premiums spike past a threshold, commercial vessels reroute regardless of whether a single shot has been fired. The financial chokepoint is tighter than the physical one, which is why daily counts and rhetoric matter: they move the premium before they move a ship.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of globally traded oil moves through the Strait of Hormuz daily?",
+            "options": [
+              "About 5%",
+              "About 20%",
+              "About 40%",
+              "About 60%"
+            ],
+            "correct": 1,
+            "explanation": "Around 20 million barrels per day — roughly a fifth of global consumption and about a third of all seaborne oil trade."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-22T17:28:52.086Z",
+    "label": "Hormuz & Transit Sovereignty",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-22-israel-lebanon-paramedics-hospitals-strikes": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PRINCIPLE",
+        "body": "Medical neutrality is the rule that medics, ambulances, and hospitals are protected from attack regardless of which side they treat. It is one of the oldest codified norms in modern warfare, predating the UN by nearly a century.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine traces to Henry Dunant's *Un Souvenir de Solférino* (1862), which led directly to the founding of the **Red Cross** and the first **Geneva Convention** in 1864."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL TEXT",
+        "body": "The First Geneva Convention (1949) and Additional Protocol I (1977) make medical personnel and transports inviolable. Deliberately attacking them is a grave breach — a war crime under the Rome Statute, prosecutable at the ICC.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Medical units shall be respected and protected at all times and shall not be the object of attack.",
+            "speaker": "Geneva Convention Additional Protocol I, Article 12",
+            "year": "1977"
+          }
+        ]
+      },
+      {
+        "heading": "THE EROSION",
+        "body": "In the past decade, attacks on healthcare have moved from anomaly to pattern. Syria's hospitals were systematically bombed from 2012 onward; Yemen, Sudan, and Gaza followed. The WHO's Surveillance System for Attacks on Health Care logs hundreds of incidents annually, with near-zero prosecutions.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SY",
+              "YE",
+              "SD",
+              "PS",
+              "LB",
+              "UA"
+            ],
+            "label": "theaters where attacks on healthcare have become routine"
+          }
+        ]
+      },
+      {
+        "heading": "LEBANON'S MEDICAL INFRASTRUCTURE",
+        "body": "Lebanon's emergency response is unusually decentralized: the Lebanese Red Cross runs most ambulances, but Hezbollah-affiliated Islamic Health Authority and the Amal-linked Risala Scouts also operate parallel networks. Each is recognized as a civil-protection body under Lebanese law, which is why their personnel claim — and are owed — medical-neutrality protections.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Lebanese Red Cross",
+                "role": "primary national EMS, ICRC-affiliated",
+                "years": "founded 1945",
+                "cc": "LB"
+              },
+              {
+                "name": "Islamic Health Authority",
+                "role": "Hezbollah-affiliated medical body",
+                "years": "founded 1984",
+                "cc": "LB"
+              },
+              {
+                "name": "Risala Scouts",
+                "role": "Amal Movement civil-protection arm",
+                "years": "founded 1985",
+                "cc": "LB"
+              },
+              {
+                "name": "Civil Defense",
+                "role": "state firefighting and rescue",
+                "years": "founded 1976",
+                "cc": "LB"
+              }
+            ],
+            "label": "Lebanon's parallel medical networks"
+          }
+        ]
+      },
+      {
+        "heading": "THE DUAL-USE ARGUMENT",
+        "body": "Attackers usually justify hospital and ambulance strikes by claiming the facility was being used for military purposes — command posts, weapons storage, fighter transport. Protocol I says such use forfeits protection, but only after warning and only when the military advantage is proportionate. The burden of proof sits with the attacker, not the medic."
+      },
+      {
+        "heading": "THE CEASEFIRE THAT ISN'T",
+        "body": "The November 2024 ceasefire formally ended major hostilities, but Israel retained the right to strike what it deems threats — a posture extended through the April 2026 renewal. The result is a legal grey zone: not war by treaty, yet over 120 rescue workers killed since March 2 alone.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the Geneva Conventions, when does a hospital lose its protected status?",
+            "options": [
+              "When enemy fighters are treated inside",
+              "When it is used for acts harmful to the enemy, after a warning is ignored",
+              "When it is located near a military target",
+              "When the attacking state declares it a legitimate target"
+            ],
+            "correct": 1,
+            "explanation": "Protocol I Article 13 requires both that the facility be used for harmful acts AND that a warning with reasonable time to comply has gone unheeded. Treating enemy wounded is explicitly protected, not a forfeiture."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-22T17:29:23.524Z",
+    "label": "Medical Neutrality & the Laws of War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-22-open-source-poisoning-unprecedented-scale-no-cooldown": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRUST INVERSION",
+        "body": "Modern software is mostly other people's code. A typical Node.js project pulls in hundreds of transitive dependencies — packages that depend on packages that depend on packages. You audit the one you installed; you trust the rest by default.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is the **transitive dependency** — code you never chose, running with the same privileges as code you did."
+          }
+        ]
+      },
+      {
+        "heading": "WHY AUTO-UPDATE IS THE WEAPON",
+        "body": "Auto-update was designed to push security patches faster than attackers could exploit known bugs. Reversed, it becomes the attacker's distribution channel: once a malicious version ships to the registry, it propagates to every installed user within hours — before human reviewers notice anything is wrong.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does an extension 'cooldown' do?",
+            "options": [
+              "Delays a new release reaching users so anomalies can be detected first",
+              "Throttles how often an extension can call the network",
+              "Limits CPU usage of background extensions",
+              "Requires the publisher to wait between version bumps"
+            ],
+            "correct": 0,
+            "explanation": "A publish cooldown holds new releases for a window — often 24–72 hours — so the registry, security researchers, and downstream tools have time to flag malicious code before millions auto-update."
+          }
+        ]
+      },
+      {
+        "heading": "THE EVENT-STREAM PRECEDENT",
+        "body": "In 2018, the maintainer of event-stream — a widely used npm package — handed control to a stranger who offered to help. The new maintainer published a release that quietly stole bitcoin wallets. The package had two million weekly downloads. The compromise was invisible until a user noticed an unexplained build warning.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2018-11",
+                "label": "event-stream npm wallet stealer",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020-12",
+                "label": "SolarWinds Orion backdoor"
+              },
+              {
+                "year": "2021-12",
+                "label": "Log4Shell — Log4j RCE"
+              },
+              {
+                "year": "2022-03",
+                "label": "node-ipc 'protestware' wipes disks"
+              },
+              {
+                "year": "2024-03",
+                "label": "xz-utils sshd backdoor caught"
+              },
+              {
+                "year": "2024-07",
+                "label": "Polyfill.io CDN takeover"
+              }
+            ],
+            "label": "the canonical supply-chain incidents"
+          }
+        ]
+      },
+      {
+        "heading": "WHY EXTENSIONS ARE WORSE THAN PACKAGES",
+        "body": "An npm package runs inside whatever app installs it. A VS Code extension runs inside the editor — with access to every file the developer opens, the integrated terminal, environment variables, SSH keys, and any cloud credentials the developer is logged into. Compromising one developer's editor often means compromising their employer's source code and production secrets."
+      },
+      {
+        "heading": "THE MARKETPLACE PROBLEM",
+        "body": "Microsoft's VS Code Marketplace publishes extensions with minimal review. Publisher identity is verified by email; code is scanned for known malware signatures but not deeply audited. A novel attack — new payload, new technique — passes through. The economic logic is unavoidable: thousands of new releases per day, and human review at that scale is impossibly expensive.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "VS Code Marketplace",
+                "value": "auto-publish"
+              },
+              {
+                "label": "npm",
+                "value": "auto-publish"
+              },
+              {
+                "label": "PyPI",
+                "value": "auto-publish"
+              },
+              {
+                "label": "Chrome Web Store",
+                "value": "manual + auto"
+              },
+              {
+                "label": "Apple App Store",
+                "value": "full review"
+              }
+            ],
+            "label": "review posture across major code registries"
+          }
+        ]
+      },
+      {
+        "heading": "THE STRUCTURAL FIX",
+        "body": "Reproducible builds, signed releases, and Sigstore-style transparency logs make tampering detectable after the fact. Publish cooldowns and staged rollouts buy time for detection before millions are affected. None of these are technically hard; all of them slow down the release pipeline, which is why adoption has lagged the threat by a decade."
+      }
+    ],
+    "generatedAt": "2026-05-22T17:30:06.718Z",
+    "label": "Software Supply Chain Attacks",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-22-pakistan-lucky-motors-gac-ev-fuel-shock-bet": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FUEL-PRICE TRIGGER",
+        "body": "Petrol price spikes do more to shift consumers toward EVs than any subsidy. Norway crossed 50% EV share only after fuel duties pushed pump prices above $7/gallon. Pakistan's pump prices have roughly doubled in four years as the rupee weakened and import parity reset higher.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.802622,
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258,
+              278.560406,
+              278.634377,
+              278.485848
+            ],
+            "periods": [
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY SOLAR CHANGES THE MATH",
+        "body": "An EV plugged into a coal grid still emits carbon — the tailpipe just moves to the power plant. An EV charged at home from rooftop solar bypasses both the fuel-import bill and the grid tariff. Pakistan's rooftop solar boom — driven by net-metering and collapsing panel prices — is what makes the EV case work at the household level.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Pakistan added more solar capacity in 2024 than the prior decade combined. Imported Chinese panels now cost roughly **$0.10/W** at the port — cheaper than the diesel generators they replace."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHINESE EV PLAYBOOK",
+        "body": "China's EV makers — BYD, GAC, Geely, Chery — are running the same export strategy Japan ran in the 1970s: enter via local assembly partnerships, undercut incumbents on price, then dominate the segment. Pakistan, Thailand, Brazil, and Indonesia are the early markets where this is already visible.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Thailand",
+                "value": "~80%",
+                "cc": "TH",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Brazil",
+                "value": "~45%",
+                "cc": "BR",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Indonesia",
+                "value": "~35%",
+                "cc": "ID",
+                "tone": "neutral"
+              },
+              {
+                "label": "Mexico",
+                "value": "~25%",
+                "cc": "MX",
+                "tone": "neutral"
+              },
+              {
+                "label": "Pakistan",
+                "value": "early",
+                "cc": "PK",
+                "tone": "favorable"
+              }
+            ],
+            "label": "Chinese EV export beachheads (2024 sales share, rough)"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHARGING DEPLOYMENT GAP",
+        "body": "Public charging is the chicken-and-egg problem of EV rollout. Norway hit 1 charger per 25 EVs before adoption took off; China runs roughly 1 per 8 EVs. Pakistan's pledged 3,000 chargers by 2030 is meaningful only if EV sales stay under ~75,000 units — beyond that, the network becomes the bottleneck.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was the biggest single driver of Norway's EV adoption crossing 50% market share?",
+            "options": [
+              "Generous purchase subsidies",
+              "High fuel duties keeping petrol above $7/gallon",
+              "A domestic EV manufacturer",
+              "Mandatory ICE bans"
+            ],
+            "correct": 1,
+            "explanation": "Norway never banned ICE cars or built a domestic EV industry. It taxed petrol heavily for decades, then exempted EVs from VAT and tolls — making the running-cost gap impossible to ignore."
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ EXPOSURE",
+        "body": "Pakistan imports roughly 80% of its crude and refined product, most of it via tankers transiting the Strait of Hormuz. Every dollar on Brent passes through to the pump within weeks, and there is no domestic buffer — the strategic reserve covers less than a month of consumption."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-22"
+    ],
+    "generatedAt": "2026-05-22T17:30:36.678Z",
+    "label": "EVs & the Fuel-Shock Pivot",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-22-samsung-korea-union-ai-profit-share-demand": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NO-UNION DOCTRINE",
+        "body": "Samsung founder Lee Byung-chul famously said he would allow a union 'over my dead body.' For five decades the group enforced this through surveillance, blacklists, and shell HR firms. Samsung Electronics formally recognized its first union only in 2020, after a court convicted executives of systematic union-busting.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The internal slogan was *mu-nojo gyeongyeong* — **'union-free management'** — taught as doctrine to managers through the 1990s and 2000s."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHAEBOL STRUCTURE",
+        "body": "Samsung is not a company; it is a chaebol — a family-controlled conglomerate that spans electronics, shipbuilding, insurance, and construction. The Lee family controls the group through a web of cross-shareholdings while owning a small direct stake. Labor demands at one affiliate echo through the entire structure.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Samsung",
+                "value": "~$310bn",
+                "cc": "KR",
+                "weight": 310,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Hyundai Motor",
+                "value": "~$130bn",
+                "cc": "KR",
+                "weight": 130,
+                "tone": "neutral"
+              },
+              {
+                "label": "SK",
+                "value": "~$110bn",
+                "cc": "KR",
+                "weight": 110,
+                "tone": "neutral"
+              },
+              {
+                "label": "LG",
+                "value": "~$90bn",
+                "cc": "KR",
+                "weight": 90,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Korean chaebol revenue, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "WHY AI CHANGED THE BARGAIN",
+        "body": "Samsung's memory division supplies HBM — high-bandwidth memory stacked directly on AI accelerators. A single Nvidia H100 carries 80GB of HBM; one server rack uses more memory than a thousand laptops. The AI buildout transformed memory from a commodity cycle into a structural windfall, and the union noticed."
+      },
+      {
+        "heading": "THE PROFIT-SHARE PRECEDENT",
+        "body": "Korean labor law does not require profit sharing, but Hyundai Motor's union has negotiated a formula-based bonus tied to operating profit since 1987. The Samsung union is reaching for the same structural claim — not a one-time bonus but a permanent share of the AI rent.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When did Samsung Electronics formally recognize its first labor union?",
+            "options": [
+              "1987, after Korea's democratic transition",
+              "1997, after the Asian financial crisis",
+              "2020, after an executive union-busting conviction",
+              "2024, in the current AI cycle"
+            ],
+            "correct": 2,
+            "explanation": "Samsung resisted unionization for 51 years. Recognition came only after Korean prosecutors convicted senior executives of systematically sabotaging organizing drives."
+          }
+        ]
+      },
+      {
+        "heading": "THE MEMORY CYCLE",
+        "body": "Memory chips have always been brutally cyclical — fabs cost $20bn+ and take three years to build, so supply lags demand by years. Booms produce extraordinary profits; busts produce losses that wipe out smaller rivals. Samsung survived every prior bust by outspending competitors through the trough. The AI cycle is the first where demand may have outrun the cycle entirely."
+      }
+    ],
+    "generatedAt": "2026-05-22T17:31:03.361Z",
+    "label": "Samsung & Korean Labor",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-22-shadow-fleet-pollution-global-south-coastlines": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE SHADOW FLEET IS",
+        "body": "After the 2022 G7 price cap on Russian oil, Moscow assembled a parallel fleet of aging tankers held by opaque shell companies, registered under permissive flags, and insured outside the Western P&I clubs. By 2025 it numbered roughly 600 vessels — about 10% of the global crude tanker fleet.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The defining feature is not the ship but the **insurance gap**: a Western-insured tanker carries up to **$1 billion** in pollution liability cover through the International Group of P&I Clubs. A shadow tanker typically carries a certificate from an unknown mutual — often worth nothing when a claim is filed."
+          }
+        ]
+      },
+      {
+        "heading": "FLAG OF CONVENIENCE",
+        "body": "Under UNCLOS, a ship's flag state holds primary jurisdiction over its conduct on the high seas. Flag-of-convenience registries — Panama, Liberia, the Marshall Islands historically, joined by Gabon, Cameroon, San Marino, and Comoros for the shadow fleet — sell flags by mail with minimal inspection. The flag state is supposed to enforce safety and insurance standards. Most do not.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Panama",
+                "value": "~16%",
+                "cc": "PA",
+                "weight": 16,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Liberia",
+                "value": "~15%",
+                "cc": "LR",
+                "weight": 15,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Marshall Is.",
+                "value": "~13%",
+                "cc": "MH",
+                "weight": 13,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Hong Kong",
+                "value": "~8%",
+                "cc": "HK",
+                "weight": 8,
+                "tone": "neutral"
+              },
+              {
+                "label": "Singapore",
+                "value": "~6%",
+                "cc": "SG",
+                "weight": 6,
+                "tone": "neutral"
+              }
+            ],
+            "label": "world's largest ship registries (deadweight tonnage)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY LNG SPILLS DIFFERENTLY",
+        "body": "Liquefied natural gas is methane chilled to -162°C. It doesn't form an oil slick — on contact with water it flash-vaporizes, expanding 600-fold to a flammable cloud. The hazard is not pollution in the crude-oil sense; it's a vapor cloud that can ignite kilometers from the hull. This is why a drifting LNG carrier is treated as a floating bomb, not a leaking tanker."
+      },
+      {
+        "heading": "THE LIABILITY HOLE",
+        "body": "The 1992 Civil Liability Convention and the IOPC Funds provide up to roughly $1 billion per oil spill, paid by the cargo owners through a global levy. Crucially, the regime covers persistent oil — not LNG, and not HNS (hazardous and noxious substances). The 2010 HNS Convention that would close this gap has still not entered force; not enough states have ratified.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Who pays when a flag-of-convenience LNG tanker spills off a Global South coast?",
+            "options": [
+              "The flag state's treasury",
+              "The IOPC oil-spill fund",
+              "The coastal state itself",
+              "The cargo owner's P&I club"
+            ],
+            "correct": 2,
+            "explanation": "IOPC covers persistent oil only. LNG falls under the HNS Convention, which isn't in force. Flag states like Gabon won't pay. The coast bears the cost."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHY OF DUMPING RISK",
+        "body": "Shadow tankers cluster in three corridors: the Baltic exits past Denmark, the Black Sea–Turkish Straits, and ship-to-ship transfer zones off Ceuta, Kalamata, and the Libyan coast. These STS transfer points exist specifically to launder cargo origin — and the Eastern Mediterranean has become the most active, partly because nearby coastal states lack the navy and salvage tugs to intervene.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LY",
+              "MT",
+              "GR",
+              "TR",
+              "EG",
+              "TN",
+              "IT"
+            ],
+            "label": "Eastern Mediterranean STS transfer zones",
+            "markers": [
+              {
+                "lat": 35.8997,
+                "lng": 14.5147,
+                "label": "Malta — strike zone"
+              },
+              {
+                "lat": 36.8083,
+                "lng": 22.555,
+                "label": "Laconian Gulf STS"
+              },
+              {
+                "lat": 32.7,
+                "lng": 13,
+                "label": "Libyan coast — drift"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY COASTAL STATES BEAR IT",
+        "body": "An uninsured spill creates what economists call externalized cost: the polluter pays nothing, the cargo owner is judgment-proof through layers of shell companies, and the flag state disclaims responsibility. The bill — cleanup, fisheries loss, tourism collapse — falls on whichever coast the currents push it toward. The shadow fleet has effectively moved the marine pollution risk of Russian energy exports from Western coastlines (where insurance worked) to Mediterranean and African ones (where it doesn't)."
+      }
+    ],
+    "generatedAt": "2026-05-22T17:31:41.375Z",
+    "label": "The Shadow Fleet & Flag of Convenience",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-22-slovenia-jansa-fourth-term-eu-pivot": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TEN-DAY WAR",
+        "body": "Slovenia broke from Yugoslavia in June 1991 after a brief armed conflict — ten days, fewer than 70 deaths — that ended when the Yugoslav People's Army withdrew. It was the cleanest exit from Yugoslavia; the wars in Croatia, Bosnia, and Kosovo dragged on for the rest of the decade. Slovenia's homogeneity (over 80% ethnic Slovene) is the structural reason.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SI",
+              "HR",
+              "AT",
+              "IT",
+              "HU"
+            ],
+            "label": "Slovenia and its neighbors"
+          }
+        ]
+      },
+      {
+        "heading": "THE FAST-TRACK MEMBER",
+        "body": "Slovenia joined the EU in 2004, adopted the euro in 2007 (first post-communist state to do so), and entered the Schengen Area the same year. With 2.1 million people it is one of the smallest member states by population — smaller than Riyadh — but its GDP per capita exceeds Spain's."
+      },
+      {
+        "heading": "WHO IS JANSA",
+        "body": "A Yugoslav-era dissident jailed in 1988 for publishing military secrets, Jansa rode that credibility into politics and has led the SDS (Slovenian Democratic Party) since 1993. This is his fourth term as premier across three decades — a longevity unmatched in Slovenian politics.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1988",
+                "label": "Jailed by Yugoslav military court",
+                "emphasis": "start"
+              },
+              {
+                "year": "2004",
+                "label": "First term as PM"
+              },
+              {
+                "year": "2012",
+                "label": "Second term"
+              },
+              {
+                "year": "2020",
+                "label": "Third term (COVID era)"
+              },
+              {
+                "year": "2022",
+                "label": "Loses to Golob's Freedom Movement"
+              },
+              {
+                "year": "2026",
+                "label": "Returns for fourth term",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "Jansa's terms in office"
+          }
+        ]
+      },
+      {
+        "heading": "THE ORBAN ORBIT",
+        "body": "Jansa is the closest ideological ally of Hungary's Viktor Orban inside the EU — sharing a politics built on media consolidation, judicial reshaping, and hostility to Brussels migration policy. His return shifts the EU's illiberal bloc from a single voice to a coordinated two.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Hungarian state-linked capital bought up Slovenian media outlets during Jansa's third term — the same **media capture** playbook that Fidesz ran in Hungary after 2010. Critics call it the *Orbanization* of Slovenian public life."
+          }
+        ]
+      },
+      {
+        "heading": "THE PALESTINE RECOGNITION",
+        "body": "Golob's outgoing government recognized the State of Palestine in June 2024, joining Spain, Ireland, and Norway in a coordinated European move. Slovenia became the 147th UN member to do so. Jansa opposed the move at the time and aligns with Israel; whether he formally reverses recognition or simply lets it sit unenforced is the immediate diplomatic question.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many UN member states recognize the State of Palestine?",
+            "options": [
+              "About 60",
+              "About 100",
+              "About 145",
+              "All 193"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 145–150 of the 193 UN member states recognize Palestine. The holdouts are concentrated in North America, Western Europe (though Spain, Ireland, Norway, and Slovenia broke ranks in 2024), and Oceania."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-22T17:32:10.480Z",
+    "label": "Slovenia & the Jansa Era",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-22-turkey-bilgi-university-shut-presidential-decree": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DECREE MECHANISM",
+        "body": "Since the 2017 constitutional referendum abolished the prime ministership, Erdogan governs by presidential decree (Cumhurbaşkanlığı Kararnamesi). Decrees carry the force of law in areas where parliament has not legislated — including, after a 2018 omnibus law, the power to open or close higher-education institutions.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Turkish term is *kararname* — literally \"decision-document.\" After 2017 it replaced cabinet decrees and many parliamentary functions."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2016 PRECEDENT",
+        "body": "After the July 2016 coup attempt, emergency decrees closed 15 universities overnight, dismissed 6,000+ academics, and revoked the passports of thousands more. The Bilgi closure reuses that playbook outside the emergency framework — normalizing what was once exceptional.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2016-07",
+                "label": "Coup attempt",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2016-07",
+                "label": "15 universities closed by decree"
+              },
+              {
+                "year": "2017",
+                "label": "Referendum: presidential system"
+              },
+              {
+                "year": "2018",
+                "label": "Emergency ends; decree powers retained"
+              },
+              {
+                "year": "2024",
+                "label": "Bilgi seized in fraud probe"
+              },
+              {
+                "year": "2026-05",
+                "label": "Bilgi closed mid-semester"
+              }
+            ],
+            "label": "Turkey's academic purge arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT BILGI WAS",
+        "body": "Founded 1996, Bilgi was one of Turkey's most prominent liberal-arts private universities — Laureate Education-affiliated until 2020, known for hosting the 2005 Ottoman-Armenian conference that broke a state taboo on discussing the 1915 genocide. Its faculty signed the 2016 \"Academics for Peace\" petition that triggered mass dismissals across Turkish higher education."
+      },
+      {
+        "heading": "THE SEIZURE-THEN-CLOSURE PATTERN",
+        "body": "Turkey's Savings Deposit Insurance Fund (TMSF) has seized hundreds of companies and several universities since 2016 on fraud or terror-financing grounds. Once under trusteeship, institutions are restructured, sold, or — as with Bilgi — wound down. The legal vehicle is administrative, not criminal, so due-process protections are thinner.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**TMSF** was created in 1983 to handle failed banks. After 2016 its mandate expanded to seize any asset linked to alleged Gülenist or terror financing — a category courts have interpreted broadly."
+          }
+        ]
+      },
+      {
+        "heading": "THE BRAIN-DRAIN BACKDROP",
+        "body": "Turkey's net academic emigration accelerated after 2016. German universities alone absorbed thousands of dismissed Turkish scholars under the Philipp Schwartz Initiative. Each high-profile closure reinforces the outflow — and the lira's collapse means even those who stay earn salaries worth a fraction of their 2013 value.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              44.980798,
+              45.025177,
+              45.015003,
+              45.015003,
+              45.029197,
+              45.034201,
+              45.065837,
+              45.183781,
+              45.1469,
+              45.167301,
+              45.142499,
+              45.190601,
+              45.216799,
+              45.231614,
+              45.233899,
+              45.364747,
+              45.347503,
+              45.347503,
+              45.380101,
+              45.395703,
+              45.413499,
+              45.429402,
+              45.5443,
+              45.495196,
+              45.522506,
+              45.579503,
+              45.58333,
+              45.588899,
+              45.6156,
+              45.717002
+            ],
+            "periods": [
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22"
+            ],
+            "label": "Turkish lira",
+            "unit": "TRY / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL CEILING",
+        "body": "Article 130 of Turkey's constitution guarantees universities \"scientific autonomy.\" The Constitutional Court has occasionally struck down decrees that breached it — but rulings arrive years after the fact, by which point the institution is gone. The remedy lags the harm by design.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Turkish academics dismissed by post-2016 decrees were ever reinstated by courts?",
+            "options": [
+              "Roughly half",
+              "Under 10%",
+              "About a third",
+              "Nearly all, after appeal"
+            ],
+            "correct": 1,
+            "explanation": "Of ~6,000 academics dismissed by emergency decree, fewer than 10% were reinstated even after the Inquiry Commission and constitutional appeals — most rulings came years too late to restore careers."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-22"
+    ],
+    "generatedAt": "2026-05-22T17:32:43.261Z",
+    "label": "Turkey's University Decree Power",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-22-western-nations-israel-settlement-tender-warning": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "E1 is a 12 sq km corridor east of Jerusalem linking the city to the Ma'ale Adumim settlement bloc. Building it fuses Ma'ale Adumim into Jerusalem and slices the West Bank into a northern half (around Nablus and Ramallah) and a southern half (around Bethlehem and Hebron), with Palestinian movement between them funneled onto narrow detour roads.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "PS",
+              "JO"
+            ],
+            "label": "E1 bisects the West Bank",
+            "markers": [
+              {
+                "lat": 31.7857,
+                "lng": 35.2007,
+                "label": "Jerusalem"
+              },
+              {
+                "lat": 31.7725,
+                "lng": 35.2975,
+                "label": "Ma'ale Adumim"
+              },
+              {
+                "lat": 31.7833,
+                "lng": 35.2667,
+                "label": "E1 corridor"
+              },
+              {
+                "lat": 31.9038,
+                "lng": 35.2034,
+                "label": "Ramallah"
+              },
+              {
+                "lat": 31.7054,
+                "lng": 35.2024,
+                "label": "Bethlehem"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT KILLS TWO-STATE",
+        "body": "Every two-state map since Oslo assumed a contiguous Palestinian territory in the West Bank linked to Gaza. E1 makes contiguity geographically impossible without tunnels or overpasses Israel retains the right to close. The diplomatic objection is not aesthetic — it is that the line on the map disappears.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Successive US administrations from **Bush** to **Biden** quietly pressured Israel to freeze E1 for exactly this reason. The current Washington silence is itself the news."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL BASELINE",
+        "body": "The Fourth Geneva Convention (Article 49) bars an occupying power from transferring its civilian population into occupied territory. The ICJ's 2004 advisory opinion on the separation wall, and its 2024 opinion on the occupation itself, both treat West Bank settlements as unlawful. Israel disputes the territory's classification as occupied; nearly every other state, including close allies, does not.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The Occupying Power shall not deport or transfer parts of its own civilian population into the territory it occupies.",
+            "speaker": "Fourth Geneva Convention, Article 49(6)",
+            "year": "1949"
+          }
+        ]
+      },
+      {
+        "heading": "THE CONTRACTOR LEVER",
+        "body": "States rarely sanction settlement construction directly — the diplomatic cost is high and Israeli law shields the projects. Warning contractors is the indirect lever: an EU or UK firm that builds in E1 risks domestic procurement bans, pension-fund divestment, and ICC exposure under the 2024 arrest-warrant doctrine that extends to civilians materially supporting unlawful transfer.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "United Kingdom",
+                "role": "lead drafter",
+                "cc": "GB"
+              },
+              {
+                "name": "France",
+                "role": "Quai d'Orsay co-sign",
+                "cc": "FR"
+              },
+              {
+                "name": "Germany",
+                "role": "shift from abstention",
+                "cc": "DE"
+              },
+              {
+                "name": "Spain",
+                "role": "recognised Palestine 2024",
+                "cc": "ES"
+              },
+              {
+                "name": "Ireland",
+                "role": "recognised Palestine 2024",
+                "cc": "IE"
+              },
+              {
+                "name": "Norway",
+                "role": "recognised Palestine 2024",
+                "cc": "NO"
+              }
+            ],
+            "label": "the nine signatories"
+          }
+        ]
+      },
+      {
+        "heading": "THE US ABSENCE",
+        "body": "Washington's name on a settlement démarche has historically been the one that mattered — Israeli planning committees pause when the US objects, and proceed when it does not. The current absence is the operative signal to bidders that the project will move regardless of European pressure.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many Israeli settlers live in the West Bank (excluding East Jerusalem) today?",
+            "options": [
+              "About 50,000",
+              "About 200,000",
+              "About 500,000",
+              "About 1.2 million"
+            ],
+            "correct": 2,
+            "explanation": "Around half a million settlers live across roughly 130 official settlements and 100+ outposts — a population that has roughly doubled since the Oslo Accords were signed in 1993."
+          }
+        ]
+      },
+      {
+        "heading": "THE QURANIC FRAME",
+        "body": "Jerusalem is named in Surah al-Isra as the destination of the Prophet's night journey; the land surrounding al-Aqsa is described as blessed. For Muslims worldwide, the question of who builds where in this specific stretch of land is not a planning dispute — it is a matter rooted in revelation, which is why protests over E1 mobilize from Jakarta to Rabat regardless of any peace process."
+      }
+    ],
+    "generatedAt": "2026-05-22T17:33:19.350Z",
+    "label": "E1 & the West Bank",
+    "category": "politics",
+    "articleCount": 1
   }
 }
