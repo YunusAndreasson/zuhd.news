@@ -1863,5 +1863,25 @@
       "category economy below floor 3 (got 0)"
     ],
     "degenerate": false
+  },
+  {
+    "ts": "2026-05-22T08:26:32.565Z",
+    "cycleId": "2026-05-22T08-26",
+    "cycleHour": "08",
+    "rvs": 76.16,
+    "clusters": {
+      "picking": null,
+      "writing": 96.88,
+      "briefing": 77.58,
+      "sourcing": 29.72,
+      "coverage": 93.08
+    },
+    "articleCount": 8,
+    "briefCount": 8,
+    "guardrailFailures": [
+      "category politics below floor 3 (got 0)",
+      "category tech below floor 2 (got 1)"
+    ],
+    "degenerate": false
   }
 ]
