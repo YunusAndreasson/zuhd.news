@@ -212396,5 +212396,1181 @@
     "label": "CISA's KEV Catalog",
     "category": "tech",
     "articleCount": 1
+  },
+  "2026-05-20-afghan-returnees-climate-drought-instability": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EXPULSION PIPELINE",
+        "body": "Pakistan and Iran together host the world's largest Afghan refugee population — accumulated across four decades of war beginning with the 1979 Soviet invasion. Both states began mass expulsions in 2023 after decades of de facto tolerance, citing security and economic strain.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AF",
+              "PK",
+              "IR"
+            ],
+            "label": "the return corridor",
+            "markers": [
+              {
+                "lat": 34.1559,
+                "lng": 71.5249,
+                "label": "Torkham crossing"
+              },
+              {
+                "lat": 31.6076,
+                "lng": 61.8839,
+                "label": "Islam Qala crossing"
+              },
+              {
+                "lat": 34.5553,
+                "lng": 69.2075,
+                "label": "Kabul"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'RETURN' IS A MISNOMER",
+        "body": "Most expelled Afghans were born in Pakistan or Iran. The 1951 Refugee Convention's principle of non-refoulement forbids sending people back to places where they face serious harm — but neither Pakistan nor Iran is a signatory, so the legal floor that protects most refugees worldwide does not apply here.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine is called ***non-refoulement*** — literally 'no return.' It is the single most important protection in refugee law, and the one most easily bypassed by simply not signing the treaty."
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPOUND-CRISIS CONCEPT",
+        "body": "Humanitarian agencies use 'compound crisis' to describe overlapping shocks that each would individually overwhelm a fragile state: conflict, climate, displacement, economic collapse. The damage is not additive but multiplicative — drought destroys the harvest that would have absorbed returnees, who then crowd cities that cannot supply water that the drought already constrained."
+      },
+      {
+        "heading": "AFGHANISTAN'S CLIMATE EXPOSURE",
+        "body": "Afghanistan ranks among the world's most climate-vulnerable countries despite contributing roughly 0.06% of global emissions. Its agriculture depends on snowmelt from the Hindu Kush; warming has shifted the melt curve earlier in the year, leaving rivers dry by harvest season. Three of the last five years have been drought years.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "ND-GAIN climate vulnerability rank (higher = more vulnerable)",
+            "peers": [
+              {
+                "value": 176,
+                "cc": "AF"
+              },
+              {
+                "value": 150,
+                "cc": "PK"
+              },
+              {
+                "value": 162,
+                "cc": "BD"
+              },
+              {
+                "value": 171,
+                "cc": "YE"
+              },
+              {
+                "value": 181,
+                "cc": "SO"
+              },
+              {
+                "value": 183,
+                "cc": "TD"
+              },
+              {
+                "value": 177,
+                "cc": "NE"
+              }
+            ],
+            "subjectCc": "AF",
+            "unit": "rank"
+          }
+        ]
+      },
+      {
+        "heading": "THE FROZEN RESERVES",
+        "body": "After the August 2021 Taliban return to Kabul, the US froze roughly $7 billion of Afghan central bank reserves held at the New York Fed; another $2 billion sat in European banks. Half was later designated for a Swiss-based trust fund for humanitarian use. The Afghani currency has held surprisingly stable since — but the banking system that would normally absorb returnees' remittances and savings barely functions."
+      },
+      {
+        "heading": "WHO HOSTS WHOM",
+        "body": "Iran and Pakistan have each hosted multi-generational Afghan populations larger than most European refugee crises combined. The asymmetry between media attention and actual burden is one of the most consistent features of global displacement.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Iran",
+                "value": "~3.8M",
+                "cc": "IR",
+                "weight": 3.8,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Pakistan",
+                "value": "~1.7M",
+                "cc": "PK",
+                "weight": 1.7,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Germany",
+                "value": "~430k",
+                "cc": "DE",
+                "weight": 0.43,
+                "tone": "neutral"
+              },
+              {
+                "label": "Turkey",
+                "value": "~300k",
+                "cc": "TR",
+                "weight": 0.3,
+                "tone": "neutral"
+              },
+              {
+                "label": "USA",
+                "value": "~200k",
+                "cc": "US",
+                "weight": 0.2,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Afghan refugee / migrant population by host (2024 est.)"
+          }
+        ]
+      },
+      {
+        "heading": "A TEST OF MEMORY",
+        "body": "The pattern of expulsion is older than most readers remember — Pakistan's first mass push-back attempts predate the current Taliban government.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When did Pakistan first attempt large-scale expulsion of Afghan refugees?",
+            "options": [
+              "After the 2021 Taliban return",
+              "After the 2014 Peshawar school attack",
+              "After the 2008 Mumbai attacks",
+              "After the 2001 US invasion"
+            ],
+            "correct": 1,
+            "explanation": "Pakistan announced its first major repatriation drive after the 2014 Peshawar Army Public School attack, blaming Afghan sanctuary for TTP militants. The 2023 push was the third major wave, not the first."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-22T08:21:26.816Z",
+    "label": "Afghan Returnees & Compound Crisis",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-20-wero-epi-european-sovereign-payments-130m": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEPENDENCY",
+        "body": "Two American companies — Visa and Mastercard — clear the overwhelming majority of card payments in the European Union. Every swipe in Berlin or Madrid routes through processing infrastructure governed by US law, US sanctions regimes, and US court orders.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Visa and Mastercard together hold roughly **two-thirds** of EU card transactions; domestic schemes like France's *Cartes Bancaires* survive only inside national borders and fall back to the US networks the moment a card crosses one."
+          }
+        ]
+      },
+      {
+        "heading": "THE SEPA RAIL",
+        "body": "The Single Euro Payments Area, completed in 2014, harmonized euro bank transfers across 36 countries so a transfer from Helsinki to Lisbon costs the same as a domestic one. SEPA Instant, launched in 2017, settles in under ten seconds. Wero is built on top of this — it is a user interface for rails the EU already owns.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "FR",
+              "DE",
+              "BE",
+              "NL",
+              "LU",
+              "AT",
+              "FI",
+              "ES",
+              "IT",
+              "PT"
+            ],
+            "label": "the 13-country EPI footprint"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENTS",
+        "body": "Europe has tried this before. The Monnet Project (2011) and PayFair both collapsed when major banks withdrew. The current attempt — the European Payments Initiative — survived only after the original 31 banks shrank to a French-German-Benelux core willing to commit capital without consensus from the rest.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011",
+                "label": "Monnet Project collapses"
+              },
+              {
+                "year": "2014",
+                "label": "SEPA completed"
+              },
+              {
+                "year": "2017",
+                "label": "SEPA Instant launches"
+              },
+              {
+                "year": "2020",
+                "label": "EPI founded (31 banks)"
+              },
+              {
+                "year": "2022",
+                "label": "EPI shrinks to core group",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Wero launches"
+              },
+              {
+                "year": "2026",
+                "label": "Cross-border P2P live in 13 countries"
+              }
+            ],
+            "label": "Europe's payment-sovereignty attempts"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SANCTIONS POLICY DROVE THIS",
+        "body": "When the US sanctioned Iran in 2018, European companies that had legal contracts under EU law could not execute payments because the dollar clearing system refused them. The ECB and Commission concluded that monetary sovereignty without payments sovereignty is fictional — you do not control your economy if a foreign regulator can switch off your merchants."
+      },
+      {
+        "heading": "THE NETWORK EFFECT PROBLEM",
+        "body": "Payment networks are the textbook two-sided market: consumers won't carry a card no merchant accepts, merchants won't install a terminal no consumer uses. Visa took 50 years to build its acceptance network. Wero's bet is that bank-account integration — every EPI bank pre-enrolls its customers — short-circuits the consumer side, leaving only merchants to recruit.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which payment network broke the two-sided market problem the fastest in modern history?",
+            "options": [
+              "M-Pesa in Kenya — built on mobile phone airtime accounts",
+              "Apple Pay — leveraged existing card rails",
+              "China's Alipay — bootstrapped from Taobao escrow",
+              "PayPal — grew on eBay listings"
+            ],
+            "correct": 0,
+            "explanation": "M-Pesa reached 70% of Kenyan adults within four years by piggybacking on Safaricom's existing SIM base — sidestepping both the card network and the bank account. It remains the canonical case study for bypassing entrenched payment incumbents."
+          }
+        ]
+      },
+      {
+        "heading": "THE INTERCHANGE STAKES",
+        "body": "Every card transaction pays an interchange fee — typically 0.2–0.3% in the EU after the 2015 cap, versus 1.5–2% in the US. That fee flows to the issuing bank, but the network sets the rate. A sovereign European network means European banks negotiate with European regulators, not with Visa's San Francisco headquarters.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "EU (EEA)",
+                "value": "0.20%",
+                "cc": "EU",
+                "tone": "favorable",
+                "weight": 0.2
+              },
+              {
+                "label": "UK",
+                "value": "0.20%",
+                "cc": "GB",
+                "tone": "favorable",
+                "weight": 0.2
+              },
+              {
+                "label": "Australia",
+                "value": "0.50%",
+                "cc": "AU",
+                "tone": "neutral",
+                "weight": 0.5
+              },
+              {
+                "label": "US",
+                "value": "~1.50%",
+                "cc": "US",
+                "tone": "unfavorable",
+                "weight": 1.5
+              }
+            ],
+            "label": "card interchange caps, debit (regulator-set)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-22T08:22:01.412Z",
+    "label": "European Payments Sovereignty",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-22-ai-surveillance-african-governments-2bn": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EXPORT MODEL",
+        "body": "China's Safe City packages — bundled cameras, facial recognition servers, command centers, and the financing to buy them — first deployed in Nairobi in 2014. Huawei and CEIEC since exported the model to dozens of African capitals, typically funded by Chinese policy bank loans repaid in resource concessions or budget guarantees.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **dual-use infrastructure** — the same fiber, cameras, and data centers that run a 'smart city' run the security state. The procurement contract rarely separates the two."
+          }
+        ]
+      },
+      {
+        "heading": "THE ISRAELI SIDE",
+        "body": "Where Chinese vendors sell breadth — citywide camera grids — Israeli vendors sell depth. NSO's Pegasus, Cellebrite's phone extraction, and Cognyte's interception kit have been documented across at least a dozen African governments. The two supply chains are complementary, not competing: cameras identify, phones implicate.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "KE",
+              "ET",
+              "UG",
+              "ZW",
+              "EG",
+              "MA",
+              "RW",
+              "ZA",
+              "AO",
+              "TZ"
+            ],
+            "label": "documented Safe City / spyware deployments"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CAMERAS CLUSTER WHERE OPPOSITION ORGANIZES",
+        "body": "The pattern researchers describe is not new. East Germany's Stasi concentrated informants in universities, churches, and dissident neighborhoods — not in working-class districts with higher street crime. Surveillance infrastructure follows the regime's threat model, and for most autocratic governments the threat is political organization, not theft.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When researchers map authoritarian surveillance density, what does it correlate with most strongly?",
+            "options": [
+              "Crime rates in the surveilled area",
+              "Population density",
+              "Opposition organizing and protest history",
+              "Tourist and foreign investment zones"
+            ],
+            "correct": 2,
+            "explanation": "Across Stasi archives, post-Soviet cases, and now African Safe City deployments, camera and informant density tracks political dissent, not crime."
+          }
+        ]
+      },
+      {
+        "heading": "THE LAW-ON-PAPER PROBLEM",
+        "body": "Most of these countries have data protection acts modeled on the EU's GDPR — Kenya 2019, Nigeria 2023, South Africa's POPIA. The statutes look strong; the enforcement bodies are underfunded, politically appointed, or simply never constituted. The gap between text and enforcement is the operating space the surveillance grid lives in.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Legal scholars call this *de jure* versus *de facto* protection — the law as written versus the law as practiced. The wider that gap, the more useful the law becomes to the state: it can point to the statute while ignoring it."
+          }
+        ]
+      },
+      {
+        "heading": "THE ACCURACY ASYMMETRY",
+        "body": "Commercial facial recognition systems are demonstrably less accurate on darker-skinned and female faces — a 2018 NIST evaluation found error rates up to 100 times higher for some demographic groups. Deploying the same off-the-shelf models across African cities means the false-positive rate falls disproportionately on the policed population, not the policymakers procuring the system."
+      },
+      {
+        "heading": "THE FINANCING LOOP",
+        "body": "Safe City contracts are rarely paid in cash. The standard structure: a Chinese policy bank lends the host government the procurement amount, the vendor delivers the kit, and repayment comes from future revenues — port fees, mineral royalties, or a sovereign guarantee. The surveillance state and the debt stack are built together.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "exim",
+                "label": "China Exim Bank"
+              },
+              {
+                "id": "govt",
+                "label": "Host government"
+              },
+              {
+                "id": "vendor",
+                "label": "Chinese vendor"
+              },
+              {
+                "id": "kit",
+                "label": "Cameras & servers"
+              },
+              {
+                "id": "revenue",
+                "label": "Resource / fee revenue"
+              }
+            ],
+            "links": [
+              {
+                "source": "exim",
+                "target": "govt",
+                "value": 200,
+                "label": "concessional loan"
+              },
+              {
+                "source": "govt",
+                "target": "vendor",
+                "value": 200,
+                "label": "procurement"
+              },
+              {
+                "source": "vendor",
+                "target": "kit",
+                "value": 200,
+                "label": "delivery"
+              },
+              {
+                "source": "revenue",
+                "target": "exim",
+                "value": 200,
+                "label": "loan repayment"
+              },
+              {
+                "source": "govt",
+                "target": "revenue",
+                "value": 200,
+                "label": "concession pledge"
+              }
+            ],
+            "label": "how a Safe City deal is financed"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-22T08:22:34.916Z",
+    "label": "AI Surveillance & the African State",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-22-bitcoin-75k-support-treasury-yields-iran": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 'DURATION' MEANS",
+        "body": "Duration measures how sensitive an asset's price is to interest rate changes. Long-dated Treasuries have high duration — a 1% yield move can swing prices 15-20%. Calling Bitcoin a duration asset means it now trades like a 30-year bond: rate-sensitive, not inflation-sensitive.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Bitcoin was originally pitched as *digital gold* — a hedge against fiat debasement. Markets now treat it as a **long-duration tech bet**, correlated with Nasdaq and inversely with real yields. The narrative shifted, even if the protocol didn't."
+          }
+        ]
+      },
+      {
+        "heading": "WHY REAL YIELDS KILL BITCOIN",
+        "body": "Bitcoin pays no interest, no dividend, no coupon. When real yields are negative, holding cash is a guaranteed loss, so capital flows to anything scarce. When real yields turn positive, Treasury bonds offer a risk-free real return, and the opportunity cost of holding a zero-yield asset becomes measurable."
+      },
+      {
+        "heading": "THE 5% THRESHOLD",
+        "body": "The 30-year Treasury yield crossing 5% is a psychological line markets have respected since the 2008 crisis. It was last sustained above that level in 2007. Above 5%, pension funds and insurers rebalance toward bonds, draining liquidity from risk assets including crypto.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              78194.78,
+              78260.62,
+              77444.8,
+              77619.14,
+              78645.13,
+              77361.3,
+              76345.23,
+              75774.89,
+              76286.58,
+              78172.07,
+              78655.35,
+              78562.55,
+              79823.89,
+              80925.09,
+              81425,
+              80022.04,
+              80189.07,
+              80678.03,
+              82145.66,
+              81725.21,
+              80480.89,
+              79277.8,
+              81051.98,
+              79068.82,
+              78135.01,
+              77425.72,
+              76952.21,
+              76808.81,
+              77459.94,
+              77546.34,
+              77431.79
+            ],
+            "periods": [
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 22"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE IRAN PREMIUM",
+        "body": "Iran tensions push oil higher, which feeds into US headline inflation, which forces the Fed to hold rates higher for longer, which lifts long-end Treasury yields. The chain runs from Hormuz to the 30-year — a four-step transmission that prediction markets price in real time.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "US invade by 2027",
+                "value": "25%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Diplomatic meeting",
+                "value": "22%",
+                "tone": "neutral"
+              },
+              {
+                "label": "Peace deal by May",
+                "value": "16%",
+                "tone": "favorable"
+              },
+              {
+                "label": "Airspace closes May 24",
+                "value": "10%",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Iran-linked prediction markets"
+          }
+        ]
+      },
+      {
+        "heading": "THE LEVERAGE FLUSH",
+        "body": "Perpetual futures let traders take leveraged positions without expiry. When funding rates turn negative and forced liquidations cascade, leveraged longs get wiped out in hours — a 'flush' that often marks local bottoms because weak hands exit and supply stabilizes.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What instrument was invented by economist Robert Shiller in 1993 but only adopted by crypto in 2016?",
+            "options": [
+              "Perpetual futures",
+              "Credit default swaps",
+              "Inverse ETFs",
+              "Options on futures"
+            ],
+            "correct": 0,
+            "explanation": "Shiller proposed perpetual futures for real estate. Nobody used them until BitMEX adapted the concept for Bitcoin, creating the most-traded instrument in crypto history."
+          }
+        ]
+      },
+      {
+        "heading": "WHO OWNS BITCOIN NOW",
+        "body": "The ETF approval in January 2024 changed Bitcoin's holder base. Roughly a quarter of supply now sits with institutions — ETF issuers, corporate treasuries, sovereign funds. These holders rebalance against bond yields the same way they rebalance any asset class, which is precisely why Bitcoin now tracks the 30-year.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Long-term retail",
+                "value": 55,
+                "tone": "neutral"
+              },
+              {
+                "label": "ETFs & institutions",
+                "value": 25,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Exchanges",
+                "value": 10,
+                "tone": "favorable"
+              },
+              {
+                "label": "Lost / dormant",
+                "value": 10,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Bitcoin supply by holder type (approx, 2026)"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-22"
+    ],
+    "generatedAt": "2026-05-22T08:23:03.676Z",
+    "label": "Bitcoin as a Duration Asset",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-22-dhaka-cholera-genomic-climate-drivers-1996-2024": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DELTA AS RESERVOIR",
+        "body": "Vibrio cholerae is not just a human pathogen — it lives natively in brackish estuarine water, attached to copepods and plankton. The Ganges-Brahmaputra delta is the world's most studied natural reservoir, which is why every cholera pandemic since 1817 has either started here or been traced back to a strain that did.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BD",
+              "IN",
+              "MM",
+              "NP",
+              "BT"
+            ],
+            "label": "the Bay of Bengal cholera basin",
+            "markers": [
+              {
+                "lat": 23.8103,
+                "lng": 90.4125,
+                "label": "Dhaka"
+              },
+              {
+                "lat": 22.3569,
+                "lng": 91.7832,
+                "label": "Chittagong"
+              },
+              {
+                "lat": 22.5726,
+                "lng": 88.3639,
+                "label": "Kolkata"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SEVEN PANDEMICS",
+        "body": "Cholera has produced seven recognized pandemics since 1817, six of them originating in the Ganges delta. The current seventh pandemic began in Sulawesi in 1961 with the El Tor biotype, which displaced the classical strain that caused the previous six. El Tor is milder per case but survives longer in water — a tradeoff that made it the more successful pathogen.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1817",
+                "label": "1st pandemic — Jessore, Bengal",
+                "emphasis": "start"
+              },
+              {
+                "year": "1829",
+                "label": "2nd — reaches Europe & Americas"
+              },
+              {
+                "year": "1852",
+                "label": "3rd — Snow maps Broad Street"
+              },
+              {
+                "year": "1863",
+                "label": "4th pandemic"
+              },
+              {
+                "year": "1881",
+                "label": "5th — Koch isolates V. cholerae"
+              },
+              {
+                "year": "1899",
+                "label": "6th pandemic"
+              },
+              {
+                "year": "1961",
+                "label": "7th — El Tor, Sulawesi",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "the seven cholera pandemics"
+          }
+        ]
+      },
+      {
+        "heading": "THE SNOW MOMENT",
+        "body": "In 1854 London, John Snow mapped cholera deaths around the Broad Street pump and removed its handle — the founding act of modern epidemiology. He was right about waterborne transmission three decades before Robert Koch isolated the bacterium itself in 1883. The disease taught medicine how to think in populations, not patients.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Snow's insight was that the pattern of *where* people died — clustered around one pump — proved the *how* of transmission, even without knowing the **agent**. Germ theory caught up to the map, not the other way around."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MONSOONS MATTER",
+        "body": "Cholera in Bengal follows a bimodal seasonal pattern — a spring peak before the monsoon and a larger autumn peak after. Pre-monsoon heat concentrates bacteria in shrinking water bodies; post-monsoon flooding spreads contaminated water into wells and latrines. Shifts in monsoon onset and intensity reshape both peaks, which is what 28 years of Dhaka genomes now let researchers calibrate."
+      },
+      {
+        "heading": "THE GENOMIC LENS",
+        "body": "Whole-genome sequencing reveals that the V. cholerae population in Dhaka is not one strain but a churning mix of lineages, with new variants periodically sweeping the old ones aside. Each sweep often coincides with a surge year. Tracking which lineage is dominant is now as predictive as tracking rainfall — climate and evolution arrive together.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did the El Tor biotype displace the classical V. cholerae after 1961?",
+            "options": [
+              "It causes more severe disease per case",
+              "It survives longer in environmental water",
+              "It is resistant to oral rehydration therapy",
+              "It evades the cholera vaccine"
+            ],
+            "correct": 1,
+            "explanation": "El Tor causes milder illness on average but persists far longer in brackish water and on plankton — a transmission advantage that outweighs its lower per-case severity."
+          }
+        ]
+      },
+      {
+        "heading": "THE TREATMENT REVOLUTION",
+        "body": "Oral rehydration solution — sugar, salt, and clean water in the right ratio — was developed in Dhaka and Kolkata in the 1960s and proven during the 1971 Bangladesh war, when refugee camps faced cholera with no IV supplies. It cut cholera mortality from ~50% to under 1%. The Lancet called it 'potentially the most important medical advance of the 20th century.' It was invented in the country the disease keeps returning to."
+      }
+    ],
+    "generatedAt": "2026-05-22T08:23:40.362Z",
+    "label": "Cholera, the Ganges Delta & Genomic Surveillance",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-22-europe-gas-storage-may-historic-low": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MANDATE",
+        "body": "After Russia cut pipeline flows in 2022, the EU made winter preparation a legal duty: storage facilities must be 90% full by November 1 each year. The rule replaces what used to be commercial discretion with a hard deadline backed by Brussels enforcement.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The regulation is known informally as the **gas storage obligation** — Article 6a of Regulation (EU) 2017/1938, added in 2022. Member states without storage on their territory must still secure capacity in a neighbouring state."
+          }
+        ]
+      },
+      {
+        "heading": "WHY 90%",
+        "body": "European winter gas demand exceeds pipeline and LNG import capacity during cold snaps. Storage is the buffer — withdrawn through the winter, refilled through the summer. The 90% threshold is calibrated to cover a cold winter even if Russian flows go to zero."
+      },
+      {
+        "heading": "THE INJECTION ECONOMICS",
+        "body": "Refilling storage is only profitable when summer prices sit below winter futures — the 'summer-winter spread'. When that spread collapses or inverts, traders lose money injecting gas, and storage sits empty regardless of the political mandate.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              0.855896,
+              0.853401,
+              0.853097,
+              0.853024,
+              0.852591,
+              0.853706,
+              0.854264,
+              0.857195,
+              0.852427,
+              0.852799,
+              0.852624,
+              0.851959,
+              0.855884,
+              0.853399,
+              0.851144,
+              0.85156,
+              0.848284,
+              0.848284,
+              0.850576,
+              0.850597,
+              0.852186,
+              0.853764,
+              0.859724,
+              0.8604,
+              0.860067,
+              0.860446,
+              0.859008,
+              0.8619,
+              0.860661,
+              0.861183
+            ],
+            "periods": [
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22"
+            ],
+            "label": "Euro",
+            "unit": "EUR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE LNG SQUEEZE",
+        "body": "Europe replaced roughly 150 bcm of annual Russian pipeline gas largely with seaborne LNG — putting it in direct competition with Japan, South Korea and China for the same cargoes. Whenever Asian buyers pay up, European storage refill slows.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "QA",
+              "US",
+              "DZ",
+              "NG",
+              "RU",
+              "NO"
+            ],
+            "label": "top LNG/pipeline suppliers to Europe",
+            "caption": "Qatar and the US Gulf Coast now anchor what Russia once did via pipeline"
+          }
+        ]
+      },
+      {
+        "heading": "THE STARTING POINT",
+        "body": "Storage levels at the end of winter set the size of the summer task. A mild winter leaves stocks high and refill easy; a cold winter or heavy withdrawals leave a deeper hole. May is the month when the gap between this year and last becomes legible.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "This year",
+                "value": "68 bcm",
+                "tone": "unfavorable",
+                "weight": 68
+              },
+              {
+                "label": "Last year",
+                "value": "55 bcm",
+                "tone": "neutral",
+                "weight": 55
+              }
+            ],
+            "label": "EU storage refill required this summer"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHOKEPOINT NOBODY DISCUSSES",
+        "body": "The EU's largest storage facilities sit in Germany, the Netherlands, Italy and Austria — countries that historically depended most on Russian gas. The infrastructure was built around pipeline geography, not LNG geography, which is why regasification terminals on the Atlantic coast became the new bottleneck.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country hosts the EU's largest gas storage capacity?",
+            "options": [
+              "France",
+              "Germany",
+              "Italy",
+              "Netherlands"
+            ],
+            "correct": 1,
+            "explanation": "Germany's storage capacity (~24 bcm) is the largest in the EU — a legacy of its position as the main terminus of Russian pipeline gas via Nord Stream and Yamal."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-22"
+    ],
+    "generatedAt": "2026-05-22T08:24:08.669Z",
+    "label": "EU Gas Storage & the Winter Mandate",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-22-india-bans-polymarket-prediction-markets": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IDEA",
+        "body": "Prediction markets let people buy contracts that pay $1 if an event happens and $0 if not. The price becomes a real-time probability — a contract at $0.30 means the market collectively assigns a 30% chance.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism rests on **Hayek's 1945 insight**: prices aggregate dispersed knowledge no single person holds. A trader with private information has a financial incentive to act on it, moving the price toward truth without anyone identifying who knows what."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL FORK",
+        "body": "Every jurisdiction must decide: is a contract on 'will X happen' a derivative (regulate as finance), gambling (regulate or ban), or speech (leave alone)? The same product gets all three labels depending on where the server sits.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "derivative",
+                "tone": "favorable",
+                "cc": "US"
+              },
+              {
+                "label": "United Kingdom",
+                "value": "betting",
+                "tone": "neutral",
+                "cc": "GB"
+              },
+              {
+                "label": "EU (most)",
+                "value": "gambling",
+                "tone": "neutral",
+                "cc": "EU"
+              },
+              {
+                "label": "India",
+                "value": "banned",
+                "tone": "unfavorable",
+                "cc": "IN"
+              },
+              {
+                "label": "China",
+                "value": "banned",
+                "tone": "unfavorable",
+                "cc": "CN"
+              }
+            ],
+            "label": "how major jurisdictions classify prediction markets"
+          }
+        ]
+      },
+      {
+        "heading": "THE CFTC PRECEDENT",
+        "body": "In the US, the Commodity Futures Trading Commission regulates prediction markets as event derivatives. Kalshi won a federal court ruling in 2024 forcing the CFTC to allow election contracts — the first time a US court held that betting on elections was a legitimate financial instrument, not gambling."
+      },
+      {
+        "heading": "INDIA'S GAMING TURN",
+        "body": "India's Online Gaming Act 2025 drew a hard line between 'skill' games (permitted) and 'money games of chance' (banned). The ministry's reading folds prediction markets into the second bucket, sidestepping the harder question of whether forecasting is a skill.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Indian agency issued the Polymarket block?",
+            "options": [
+              "Reserve Bank of India",
+              "SEBI (securities regulator)",
+              "Ministry of Electronics and Information Technology",
+              "Ministry of Finance"
+            ],
+            "correct": 2,
+            "explanation": "MeitY enforces the IT Act's blocking powers under Section 69A — the same mechanism used against TikTok and PUBG. Financial regulators were bypassed entirely."
+          }
+        ]
+      },
+      {
+        "heading": "THE BLOCKING MECHANISM",
+        "body": "India's Section 69A of the IT Act lets the executive order ISPs to block any URL on national-interest grounds, with no prior judicial review. The list of blocked sites is itself classified. This is why a ministry directive — not a court ruling, not a parliamentary vote — can erase a platform overnight."
+      },
+      {
+        "heading": "THE MANIPULATION PARADOX",
+        "body": "Critics argue prediction markets can be manipulated by deep-pocketed traders. The empirical finding is counterintuitive: manipulation attempts usually improve accuracy, because they create profit opportunities for informed traders who push the price back. The manipulator loses money; the market self-corrects."
+      }
+    ],
+    "generatedAt": "2026-05-22T08:24:33.114Z",
+    "label": "Prediction Markets & the Law",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-22-uk-borrowing-april-iran-war-fiscal-blow": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY APRIL HURTS MORE",
+        "body": "UK debt interest peaks in April and October because index-linked gilts reset against the Retail Prices Index with a lag. A spring inflation print months earlier shows up as a cash payment now — the Treasury can't smooth it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The UK is unusually exposed: roughly **a quarter** of gilts outstanding are *index-linked*, versus ~8% in the US and near-zero in Germany. Inflation shocks pass through to the budget faster here than in any other G7 economy."
+          }
+        ]
+      },
+      {
+        "heading": "THE INDEX-LINKED EXPERIMENT",
+        "body": "Britain pioneered inflation-linked sovereign debt in 1981 under Geoffrey Howe, when double-digit inflation made nominal gilts unsellable at tolerable yields. Investors got inflation protection; the Treasury got cheaper headline coupons. The bet was that inflation would stay low. For thirty years it did.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1981",
+                "label": "UK issues first index-linked gilt",
+                "emphasis": "start"
+              },
+              {
+                "year": "1997",
+                "label": "BoE granted operational independence"
+              },
+              {
+                "year": "2009",
+                "label": "QE begins; linkers rally"
+              },
+              {
+                "year": "2022",
+                "label": "Truss mini-budget; gilt crisis",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026",
+                "label": "Iran war pushes yields to multi-decade highs"
+              }
+            ],
+            "label": "the linker era"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IRAN MOVES GILTS",
+        "body": "A Persian Gulf shock raises oil, which raises headline inflation, which raises RPI, which raises the cash coupon on every linker in issue. The transmission from a strait halfway around the world to the Chancellor's interest bill is mechanical, not sentimental.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GB",
+              "IR",
+              "SA",
+              "AE",
+              "OM"
+            ],
+            "label": "the transmission belt",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 29.0667,
+                "lng": 50.3333,
+                "label": "Kharg Island terminal"
+              },
+              {
+                "lat": 51.5074,
+                "lng": -0.1278,
+                "label": "HM Treasury, London"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE DURATION TRAP",
+        "body": "UK gilts have the longest average maturity in the G7 — roughly 14 years versus ~6 in the US. That was meant to be a strength: less refinancing risk. With linkers, it became a weakness — a long book means the inflation pass-through compounds for years before rolling off.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "UK",
+                "value": "~14 yrs",
+                "cc": "GB",
+                "weight": 14,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "France",
+                "value": "~8 yrs",
+                "cc": "FR",
+                "weight": 8
+              },
+              {
+                "label": "Germany",
+                "value": "~7 yrs",
+                "cc": "DE",
+                "weight": 7
+              },
+              {
+                "label": "Japan",
+                "value": "~9 yrs",
+                "cc": "JP",
+                "weight": 9
+              },
+              {
+                "label": "US",
+                "value": "~6 yrs",
+                "cc": "US",
+                "weight": 6,
+                "tone": "favorable"
+              },
+              {
+                "label": "Canada",
+                "value": "~7 yrs",
+                "cc": "CA",
+                "weight": 7
+              },
+              {
+                "label": "Italy",
+                "value": "~7 yrs",
+                "cc": "IT",
+                "weight": 7
+              }
+            ],
+            "label": "average sovereign debt maturity, G7 (years)"
+          }
+        ]
+      },
+      {
+        "heading": "THE OBR'S JOB",
+        "body": "The Office for Budget Responsibility, created in 2010 to end Treasury self-marking, publishes the forecasts the Chancellor's fiscal rules are scored against. When the OBR moves debt-interest assumptions up by £15bn, the Chancellor must either cut spending, raise tax, or break the rule — there is no fourth option built into the framework.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why was the OBR created in 2010?",
+            "options": [
+              "To set interest rates independently of the Bank of England",
+              "To replace Treasury-produced fiscal forecasts with independent ones",
+              "To manage the UK's gilt issuance programme",
+              "To regulate the City after the financial crisis"
+            ],
+            "correct": 1,
+            "explanation": "The OBR was set up to end the practice of the Treasury producing — and grading — its own fiscal forecasts, a credibility problem after the 2008 crisis."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1976 GHOST",
+        "body": "Britain last lost control of its borrowing costs in 1976, when Chancellor Denis Healey turned back at Heathrow to negotiate an IMF bailout. The episode still shapes Treasury orthodoxy: bond markets, not voters, set the binding constraint on a sterling-denominated state."
+      }
+    ],
+    "generatedAt": "2026-05-22T08:25:04.403Z",
+    "label": "UK Debt Interest & Index-Linked Gilts",
+    "category": "economy",
+    "articleCount": 1
   }
 }
