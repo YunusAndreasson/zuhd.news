@@ -1,6 +1,6 @@
 {
   "name": "mobile",
-  "version": "1447.11.19+253",
+  "version": "1447.12.5+255",
   "main": "expo-router/entry",
   "scripts": {
     "start": "expo start",
@@ -23,7 +23,7 @@
     "release:all": "./scripts/release.sh release all"
   },
   "dependencies": {
-    "@expo/vector-icons": "^15.0.2",
+    "@expo/vector-icons": "^15.1.1",
     "@gorhom/bottom-sheet": "^5.2.14",
     "@shopify/react-native-skia": "2.6.2",
     "d3-array": "^3.2.4",
@@ -85,7 +85,7 @@
     "@types/topojson-specification": "^1.0.5",
     "jest": "~29.7.0",
     "jest-environment-jsdom": "^30.4.1",
-    "react-dom": "^19.2.3",
+    "react-dom": "19.2.3",
     "tsx": "^4.22.3",
     "typescript": "~6.0.3"
   },
