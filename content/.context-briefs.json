@@ -213572,5 +213572,1024 @@
     "label": "UK Debt Interest & Index-Linked Gilts",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-05-22-alex-saab-deportation-venezuela-sanctions-witness": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO SAAB IS",
+        "body": "A Colombian-born businessman, Saab was designated by the US Treasury in 2019 as Maduro's primary procurement agent — the man who moved Venezuelan oil revenue through layered front companies in Turkey, the UAE, and Hong Kong to buy food, fuel, and gold around US sanctions. He was arrested in Cabo Verde in 2020, extradited to Miami in 2021, then released in a December 2023 prisoner swap that freed ten Americans held in Caracas.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Nicolás Maduro",
+                "role": "Venezuelan president (deposed)",
+                "years": "2013–2026",
+                "cc": "VE"
+              },
+              {
+                "name": "Alex Saab",
+                "role": "financial fixer, CLAP procurement",
+                "years": "2016–2023",
+                "cc": "CO"
+              },
+              {
+                "name": "Tareck El Aissami",
+                "role": "oil minister, sanctioned",
+                "years": "2017–2023",
+                "cc": "VE"
+              },
+              {
+                "name": "Delcy Rodríguez",
+                "role": "VP, oil revenue oversight",
+                "years": "2018–2025",
+                "cc": "VE"
+              }
+            ],
+            "label": "the cast around Saab"
+          }
+        ]
+      },
+      {
+        "heading": "HOW THE FRONT-COMPANY LAYER WORKS",
+        "body": "Sanctioned regimes don't sell oil to themselves. They sell to a shell in a permissive jurisdiction, which sells to a second shell, which sells to the eventual refinery. Each hop launders the origin. Money returns through invoice-mispricing on imported food and medicine — the CLAP food program was the canonical case, with Saab's companies billing the Venezuelan state above market for boxes assembled in Mexico.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "pdvsa",
+                "label": "PDVSA oil"
+              },
+              {
+                "id": "shell1",
+                "label": "Turkey/UAE shells"
+              },
+              {
+                "id": "buyer",
+                "label": "Asian refiners"
+              },
+              {
+                "id": "food",
+                "label": "CLAP food contracts"
+              },
+              {
+                "id": "state",
+                "label": "Venezuelan state"
+              },
+              {
+                "id": "insiders",
+                "label": "Regime insiders"
+              }
+            ],
+            "links": [
+              {
+                "source": "pdvsa",
+                "target": "shell1",
+                "value": 100,
+                "label": "discounted crude"
+              },
+              {
+                "source": "shell1",
+                "target": "buyer",
+                "value": 100,
+                "label": "resold at market"
+              },
+              {
+                "source": "shell1",
+                "target": "food",
+                "value": 40,
+                "label": "food procurement"
+              },
+              {
+                "source": "food",
+                "target": "state",
+                "value": 40,
+                "label": "overpriced boxes"
+              },
+              {
+                "source": "state",
+                "target": "insiders",
+                "value": 30,
+                "label": "margin skim"
+              }
+            ],
+            "label": "the CLAP food procurement loop (illustrative)"
+          }
+        ]
+      },
+      {
+        "heading": "THE MAXIMUM-PRESSURE PRECEDENT",
+        "body": "The US imposed oil sanctions on Venezuela in 2019, froze government assets, recognized Juan Guaidó as president, and waited for the regime to collapse. It didn't. Maduro retained military loyalty, pivoted oil sales to China and India at steep discounts, and survived. The Venezuela case became the standard cautionary tale every time Washington debates sanctioning Iran, Russia, or anyone else with an oil book.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2017",
+                "label": "First Trump sanctions on PDVSA debt"
+              },
+              {
+                "year": "2019-01",
+                "label": "Oil embargo; Guaidó recognized",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020",
+                "label": "Saab arrested in Cabo Verde"
+              },
+              {
+                "year": "2022",
+                "label": "Chevron license — partial thaw"
+              },
+              {
+                "year": "2023-12",
+                "label": "Saab released in prisoner swap"
+              },
+              {
+                "year": "2026",
+                "label": "Maduro out; Saab returned to US custody"
+              }
+            ],
+            "label": "the maximum-pressure arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE WITNESS PROBLEM",
+        "body": "A cooperating financial fixer is more dangerous to a regime than any opposition politician. Saab can name the bankers, the routings, the front-company directors, and the recipients of the skim. This is why Maduro fought his extradition for three years and traded ten Americans to get him back — and why his return to US custody now signals the new government is offering the receipts as the price of sanctions relief.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Sanctions relief negotiations almost always run on **named individuals and documents**, not policy concessions. The witness *is* the bargaining chip."
+          }
+        ]
+      },
+      {
+        "heading": "WHY VENEZUELA'S OIL STILL MATTERS",
+        "body": "Even at sanctioned-era output of ~800,000 barrels/day — a quarter of its 1998 peak — Venezuela sits on the world's largest proven oil reserves. The Orinoco belt holds heavy crude that US Gulf Coast refineries are uniquely configured to process. A normalization deal isn't charity; it's a structural fit between Venezuelan supply and American refining capacity that no other producer fills as cleanly.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Proven oil reserves",
+            "peers": [
+              {
+                "value": 303,
+                "cc": "VE"
+              },
+              {
+                "value": 267,
+                "cc": "SA"
+              },
+              {
+                "value": 209,
+                "cc": "IR"
+              },
+              {
+                "value": 170,
+                "cc": "CA"
+              },
+              {
+                "value": 145,
+                "cc": "IQ"
+              },
+              {
+                "value": 111,
+                "cc": "AE"
+              },
+              {
+                "value": 80,
+                "cc": "RU"
+              },
+              {
+                "value": 48,
+                "cc": "US"
+              }
+            ],
+            "subjectCc": "VE",
+            "unit": "bn barrels"
+          },
+          {
+            "type": "quiz",
+            "question": "What share of its 1998 peak oil output was Venezuela producing under sanctions?",
+            "options": [
+              "About three-quarters",
+              "About half",
+              "About a quarter",
+              "Roughly unchanged"
+            ],
+            "correct": 2,
+            "explanation": "Output collapsed from ~3.5 mb/d in 1998 to under 800,000 b/d under sanctions and chronic underinvestment in PDVSA."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-22T12:20:36.928Z",
+    "label": "Sanctions, Shell Companies & Venezuela's Oil",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-22-australia-diphtheria-outbreak-indigenous-vaccination": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISEASE",
+        "body": "Diphtheria is a bacterial infection (Corynebacterium diphtheriae) that produces a toxin paralyzing the heart and nerves. Before vaccination, it killed roughly 1 in 10 infected children — and was the leading cause of childhood death in industrialized countries in the early 20th century.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The signature lesion is the *pseudomembrane* — a thick grey sheet that grows across the throat and can suffocate the patient. The toxin itself, not the bacterium, does the killing."
+          }
+        ]
+      },
+      {
+        "heading": "THE THRESHOLD",
+        "body": "Diphtheria requires roughly 80-85% population immunity to prevent sustained transmission — lower than measles, but still demanding. The Northern Territory's 67% adolescent booster rate sits well below that line, which is why a single imported case can seed an outbreak.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of a population must be immune to stop sustained diphtheria transmission?",
+            "options": [
+              "About 50%",
+              "About 70%",
+              "About 80-85%",
+              "About 95%"
+            ],
+            "correct": 2,
+            "explanation": "Diphtheria's herd-immunity threshold is ~80-85%. Below that, the bacterium circulates; 95% is the measles threshold."
+          }
+        ]
+      },
+      {
+        "heading": "THE SOVIET COLLAPSE PRECEDENT",
+        "body": "After the USSR dissolved, vaccination programs broke down. Between 1990 and 1998, the former Soviet states saw 150,000+ diphtheria cases and 5,000 deaths — the largest outbreak in the developed world since WWII. It demonstrated how quickly a controlled disease returns when coverage slips.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1923",
+                "label": "Toxoid vaccine developed"
+              },
+              {
+                "year": "1980",
+                "label": "Near-elimination in West"
+              },
+              {
+                "year": "1991",
+                "label": "Soviet collapse, coverage crashes",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1995",
+                "label": "Peak: 50,000 cases in one year"
+              },
+              {
+                "year": "2017",
+                "label": "Rohingya camp outbreak, Bangladesh"
+              },
+              {
+                "year": "2023",
+                "label": "European resurgence among migrants"
+              }
+            ],
+            "label": "diphtheria's modern arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY REMOTE COMMUNITIES",
+        "body": "Australia's remote Indigenous communities face a stacked set of barriers: long distances to clinics, cold-chain logistics over thousands of kilometers, a transient health workforce, and historical mistrust rooted in the Stolen Generations and decades of coercive medical policy. Coverage gaps are structural, not attitudinal."
+      },
+      {
+        "heading": "THE HEALTH GAP",
+        "body": "Indigenous Australians live roughly 8 years less than non-Indigenous Australians. The 'Closing the Gap' framework, formalized in 2008, set targets across health, education, and employment — most of which remain unmet two decades on.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Non-Indigenous AU",
+                "value": "83.2 yrs",
+                "cc": "AU",
+                "tone": "favorable"
+              },
+              {
+                "label": "Indigenous AU",
+                "value": "75.6 yrs",
+                "cc": "AU",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Māori (NZ)",
+                "value": "77.1 yrs",
+                "cc": "NZ",
+                "tone": "neutral"
+              },
+              {
+                "label": "First Nations (CA)",
+                "value": "73.0 yrs",
+                "cc": "CA",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "life expectancy gap (years, 2023)"
+          }
+        ]
+      },
+      {
+        "heading": "THE BOOSTER PROBLEM",
+        "body": "Diphtheria immunity from childhood vaccination wanes after about 10 years. Adult and adolescent boosters are essential — but they're the easiest dose for any health system to miss, because the recipient is no longer in routine pediatric care. Coverage that looks fine at age 5 quietly collapses by age 15."
+      }
+    ],
+    "generatedAt": "2026-05-22T12:21:06.349Z",
+    "label": "Diphtheria & Herd Immunity",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-22-china-csrc-tiger-futu-longbridge-crackdown": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CLOSED CAPITAL ACCOUNT",
+        "body": "China runs one of the world's largest economies with a closed capital account — citizens cannot freely move money abroad. Each mainland resident faces a $50,000 annual forex conversion quota, enforced through the State Administration of Foreign Exchange. Every offshore brokerage account is, by design, a workaround.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The wall is called the **Great Firewall** for information, but the parallel structure governing money is the **closed capital account** — equally consequential, far less discussed."
+          }
+        ]
+      },
+      {
+        "heading": "THE GREY-ZONE BROKERS",
+        "body": "Tiger Brokers, Futu, and Longbridge built billion-dollar businesses serving mainland Chinese who wanted exposure to US and Hong Kong stocks. None held a mainland securities licence; all routed clients through Hong Kong or Singapore entities. The CSRC tolerated them for years, then declared the entire model illegal in 2022. This week's enforcement closes the wind-down.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Futu",
+                "value": "~$30bn mkt cap",
+                "cc": "HK"
+              },
+              {
+                "label": "Tiger Brokers",
+                "value": "~$1.5bn",
+                "cc": "SG"
+              },
+              {
+                "label": "Longbridge",
+                "value": "private",
+                "cc": "SG"
+              }
+            ],
+            "label": "the three named brokers"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2015 PRECEDENT",
+        "body": "After the 2015 Shanghai stock crash, capital flight hit $1 trillion in twelve months. Beijing tightened forex enforcement, banned UnionPay overseas insurance purchases, and froze outbound M&A. The lesson learned: when domestic confidence cracks, retail money tries to leave first. Every subsequent control tightens that exit valve.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2015-08",
+                "label": "Shanghai crash, yuan devaluation",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2016",
+                "label": "UnionPay overseas limits"
+              },
+              {
+                "year": "2017",
+                "label": "Outbound M&A frozen"
+              },
+              {
+                "year": "2022",
+                "label": "CSRC declares offshore brokers illegal"
+              },
+              {
+                "year": "2026",
+                "label": "Tiger/Futu/Longbridge wind-down"
+              }
+            ],
+            "label": "China's capital-control tightening"
+          }
+        ]
+      },
+      {
+        "heading": "THE WIND-DOWN MECHANIC",
+        "body": "Sell-only means clients can liquidate positions but cannot add funds or open new ones. This is gentler than the 2021 Didi-style shutdown, where apps were yanked overnight. Beijing learned that abrupt closures trigger the panic-selling the controls exist to prevent. A two-year glide path lets positions exit without crashing the order book or embarrassing the regulator.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does a 'sell-only' wind-down let existing brokerage clients do?",
+            "options": [
+              "Add new funds and trade freely",
+              "Liquidate existing positions but not add funds",
+              "Transfer accounts to a licensed broker",
+              "Nothing — accounts freeze immediately"
+            ],
+            "correct": 1,
+            "explanation": "Sell-only preserves an orderly exit: clients can close positions on their schedule, but no new money enters the grey-zone channel."
+          }
+        ]
+      },
+      {
+        "heading": "THE EIGHT-AGENCY SIGNAL",
+        "body": "When CSRC coordinates with the People's Bank of China, SAFE, and six other regulators, the message is not just 'these brokers broke rules.' It signals that cross-border retail flows are now a financial-stability concern, not a securities-licensing one. Eight-agency campaigns in China typically precede broader structural moves — the 2020 fintech crackdown started the same way.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In Chinese regulatory language, *联合* (joint action) across this many agencies is reserved for issues the leadership has flagged as systemic — not enforcement housekeeping."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-22T12:21:36.343Z",
+    "label": "China's Capital Controls & Offshore Brokers",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-22-hungary-mol-tiszaujvaros-petrochemical-explosion": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A STEAM CRACKER DOES",
+        "body": "A steam cracker heats naphtha or ethane to roughly 850°C for a fraction of a second, then quenches it instantly. The thermal shock breaks long hydrocarbon chains into ethylene and propylene — the two molecules from which roughly half of all plastics descend.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Ethylene is the single largest-volume organic chemical on earth. **Polyethylene** — shopping bags, pipes, milk jugs — is downstream of crackers like Olefin 1. No cracker, no plastic."
+          }
+        ]
+      },
+      {
+        "heading": "WHY RESTARTS ARE THE DANGEROUS MOMENT",
+        "body": "Steam crackers run continuously for years. The dangerous moments are startup and shutdown: pipes that held vapor at 850°C must be purged, repressurised, and reheated through temperature gradients that stress welds and seals. Most petrochemical accidents cluster around these transitions, not steady-state operation."
+      },
+      {
+        "heading": "THE COMPANY",
+        "body": "MOL is Hungary's national oil and gas champion, privatised in the 1990s but with the state retaining a golden share. It refines Russian Urals crude at Százhalombatta, operates the Druzhba pipeline's southern leg, and runs the petrochemical complex at Tiszaújváros — making it both a strategic asset and a political lever.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Zsolt Hernádi",
+                "role": "MOL chairman-CEO",
+                "years": "2001–",
+                "cc": "HU"
+              },
+              {
+                "name": "István Kapitány",
+                "role": "Hungarian energy minister",
+                "years": "2024–",
+                "cc": "HU"
+              }
+            ],
+            "label": "MOL leadership at the scene"
+          }
+        ]
+      },
+      {
+        "heading": "THE DRUZHBA DEPENDENCY",
+        "body": "Hungary is one of the last EU states still importing Russian crude via the Druzhba pipeline, exempted from the 2022 seaborne sanctions because it is landlocked. MOL's Tiszaújváros and Százhalombatta complexes are calibrated for the heavier Urals blend — switching feedstock would require capex Orbán's government has resisted for political as much as technical reasons.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "HU",
+              "SK",
+              "CZ",
+              "AT",
+              "UA"
+            ],
+            "label": "MOL's Central European footprint",
+            "markers": [
+              {
+                "lat": 47.9333,
+                "lng": 21.05,
+                "label": "Tiszaújváros (Olefin 1)"
+              },
+              {
+                "lat": 47.3167,
+                "lng": 18.9333,
+                "label": "Százhalombatta refinery"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE FEEDSTOCK SQUEEZE",
+        "body": "European petrochemicals are caught between US shale-ethane crackers (cheap feedstock, scale) and Middle Eastern producers (subsidised gas, integrated upstream). A 370,000-tonne cracker like Olefin 1 is small by global standards — Saudi Arabia's PetroRabigh runs at 3 million tonnes — which is why every European unplanned outage tightens the regional ethylene balance immediately."
+      },
+      {
+        "heading": "RETRIEVAL",
+        "body": "What makes a steam cracker dangerous to restart isn't the heat itself — it's the transition.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do most petrochemical accidents cluster around startup and shutdown rather than normal operation?",
+            "options": [
+              "Operators are less experienced during transitions",
+              "Pipes and seals are stressed by rapid temperature and pressure changes",
+              "Safety systems are switched off during restarts",
+              "Feedstock quality varies more during startup"
+            ],
+            "correct": 1,
+            "explanation": "Equipment that ran steady-state at extreme temperatures must be repressurised and reheated through gradients that stress welds and seals — the mechanical failure mode, not human error, drives the pattern."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-22T12:22:10.538Z",
+    "label": "Steam Crackers & MOL",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-22-india-cockroach-janata-party-youth-satire": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEMOGRAPHIC PRESSURE",
+        "body": "India has roughly 600 million people under 25 — the largest youth cohort in human history. Formal-sector job creation has lagged the labor force entering it for over a decade, and youth unemployment runs at multiples of the headline rate.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "India",
+                "value": "~17%",
+                "cc": "IN",
+                "tone": "unfavorable",
+                "weight": 17
+              },
+              {
+                "label": "Bangladesh",
+                "value": "~13%",
+                "cc": "BD",
+                "tone": "neutral",
+                "weight": 13
+              },
+              {
+                "label": "China",
+                "value": "~15%",
+                "cc": "CN",
+                "tone": "neutral",
+                "weight": 15
+              },
+              {
+                "label": "Pakistan",
+                "value": "~11%",
+                "cc": "PK",
+                "tone": "neutral",
+                "weight": 11
+              },
+              {
+                "label": "Indonesia",
+                "value": "~14%",
+                "cc": "ID",
+                "tone": "neutral",
+                "weight": 14
+              }
+            ],
+            "label": "youth unemployment rate, 2024 est."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SATIRE, NOT PROTEST",
+        "body": "India's penal code criminalizes sedition, defamation, and 'promoting enmity' with vague thresholds and pre-trial detention. Satire occupies the narrow legal gap where a court must first decide whether a joke is also a crime — which buys organizing time that a march does not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The British-era **Section 124A** sedition law was used against Gandhi in 1922; it still sat on the books until the Supreme Court paused it in 2022, and the successor **BNS Section 152** revived broadly similar reach in 2024."
+          }
+        ]
+      },
+      {
+        "heading": "SECTION 69A AND THE TAKEDOWN ORDER",
+        "body": "Under the IT Act's Section 69A, the government can order platforms to block content on national-security or public-order grounds, with the order itself confidential. X (formerly Twitter) has fought these orders in Karnataka High Court since 2022 — losing in 2023, appealing since. 'Withheld in India' is the geofenced compromise: the account survives globally, vanishes locally.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does X label suppressed Indian accounts 'withheld' rather than removing them?",
+            "options": [
+              "The orders apply only to Indian IP addresses, so the content stays live elsewhere",
+              "Indian law requires the user be notified before deletion",
+              "X has not yet complied with the takedown — withheld is temporary"
+            ],
+            "correct": 0,
+            "explanation": "Section 69A blocking orders are jurisdictional. Geo-blocking satisfies the order while preserving the account for users outside India — and for anyone using a VPN."
+          }
+        ]
+      },
+      {
+        "heading": "THE COCKROACH AS SYMBOL",
+        "body": "Calling protestors insects has a dark precedent — Rwanda's Radio Mille Collines called Tutsis 'inyenzi' (cockroaches) before the 1994 genocide. Reclaiming a slur as a movement name (queer, suffragette, Tory) is a recurring tactic: it strips the word of its sting by making the target wear it proudly.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Suffragette",
+                "role": "coined as mockery by Daily Mail",
+                "years": "1906",
+                "cc": "GB"
+              },
+              {
+                "name": "Tory",
+                "role": "originally 'Irish bandit'",
+                "years": "1670s",
+                "cc": "GB"
+              },
+              {
+                "name": "Queer",
+                "role": "reclaimed by activists",
+                "years": "1990s",
+                "cc": "US"
+              },
+              {
+                "name": "Cockroach Janata",
+                "role": "Indian youth parody party",
+                "years": "2026",
+                "cc": "IN"
+              }
+            ],
+            "label": "reclaimed slurs as movement names"
+          }
+        ]
+      },
+      {
+        "heading": "INSTAGRAM AS OPPOSITION INFRASTRUCTURE",
+        "body": "India has roughly 360 million Instagram users — more than the US population. With most legacy Indian newsrooms owned by conglomerates tied to ruling-party patronage, Meta's platforms have become the de facto opposition press, ungoverned by editorial gatekeepers and harder to pressure than a newspaper proprietor."
+      }
+    ],
+    "generatedAt": "2026-05-22T12:22:42.733Z",
+    "label": "Satire, Censorship & India's Youth",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-22-india-ladakh-five-districts-buddhist-muslim-split": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TERRAIN",
+        "body": "Ladakh is a high-altitude desert plateau between the Karakoram and Himalayan ranges, bordering both China's Aksai Chin and Pakistan's Gilgit-Baltistan. Its two historic regions split cleanly: Leh district is majority Buddhist, Kargil district is majority Shia Muslim.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "PK",
+              "CN",
+              "AF",
+              "TJ"
+            ],
+            "label": "Ladakh and its disputed borders",
+            "markers": [
+              {
+                "lat": 34.1526,
+                "lng": 77.5771,
+                "label": "Leh"
+              },
+              {
+                "lat": 34.5539,
+                "lng": 76.1349,
+                "label": "Kargil"
+              },
+              {
+                "lat": 35.2,
+                "lng": 78.5,
+                "label": "Aksai Chin (disputed)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 2019 BREAK",
+        "body": "India revoked Article 370 in August 2019, stripping Jammu & Kashmir of autonomy and splitting it into two union territories. Ladakh was severed from J&K and placed under direct Delhi rule — with no legislature of its own, unlike every other UT that contains a population center of comparable size.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Ladakh became one of only two union territories without a legislative assembly, alongside **Chandigarh** — but Chandigarh has 1.1 million people on 114 km². Ladakh has *roughly 300,000 people spread across 59,000 km²*, an area larger than Croatia."
+          }
+        ]
+      },
+      {
+        "heading": "DIVIDE-AND-RULE, THE CLASSIC PLAYBOOK",
+        "body": "Splitting a restive territory along sectarian lines is the oldest colonial administrative move — the British used it in Bengal (1905), in Punjab (1947), and across the Levant under the mandate system. Communities that might unite against the center are reorganized into separate administrative units that compete with each other for resources.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was the stated British rationale for the 1905 Partition of Bengal?",
+            "options": [
+              "Administrative efficiency for a province of 78 million",
+              "Economic development of eastern districts",
+              "Religious harmony between Hindus and Muslims",
+              "Military defense against Russian expansion"
+            ],
+            "correct": 0,
+            "explanation": "Curzon framed it as efficiency, but the boundary cleanly separated Hindu-majority west from Muslim-majority east — sparking the Swadeshi movement and reversal in 1911."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEH-KARGIL ALLIANCE",
+        "body": "Since 2019, Leh's Buddhist Apex Body and the Kargil Democratic Alliance — historically opponents — have jointly demanded statehood and Sixth Schedule tribal protections. The unprecedented Buddhist-Shia coalition led to Sonam Wangchuk's hunger strikes drawing global attention in 2024. Subdividing the territory dilutes that joint front.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Sonam Wangchuk",
+                "role": "Engineer, climate activist",
+                "years": "2023–present",
+                "cc": "IN"
+              },
+              {
+                "name": "Thupstan Chhewang",
+                "role": "Leh Apex Body convenor",
+                "years": "2020–present",
+                "cc": "IN"
+              },
+              {
+                "name": "Asgar Ali Karbalai",
+                "role": "Kargil Democratic Alliance",
+                "years": "2020–present",
+                "cc": "IN"
+              }
+            ],
+            "label": "the unlikely alliance"
+          }
+        ]
+      },
+      {
+        "heading": "THE SIXTH SCHEDULE QUESTION",
+        "body": "India's Sixth Schedule grants tribal areas autonomous district councils with powers over land, forests, and custom. It currently covers parts of the northeast — Assam, Meghalaya, Tripura, Mizoram. Ladakh's demand for inclusion would protect against demographic engineering through outside settlement, the same fear that drove Kashmiri opposition to the 2019 domicile rules."
+      },
+      {
+        "heading": "THE BORDER STAKES",
+        "body": "Ladakh shares a 1,597-km Line of Actual Control with China. The 2020 Galwan clash, where 20 Indian and 4 Chinese soldiers died in hand-to-hand combat, happened here. Delhi's interest in direct administrative control is not only domestic — it is also about a frontier where Beijing has built road networks across territory India claims."
+      }
+    ],
+    "generatedAt": "2026-05-22T12:23:15.415Z",
+    "label": "Ladakh & Administrative Partition",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-22-near-protocol-dynamic-resharding-l1-scaling": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SCALING TRILEMMA",
+        "body": "Vitalik Buterin's framing: a blockchain can optimize at most two of decentralization, security, and scalability. Bitcoin and Ethereum L1 chose the first two; high-throughput chains like Solana traded decentralization for speed. Sharding is the attempt to escape the trilemma rather than pick two.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The trilemma is descriptive, not a proven theorem — but every L1 architecture choice since 2017 has been a bet on which corner to sacrifice. Sharding bets you can keep all three by splitting the work."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT SHARDING ACTUALLY DOES",
+        "body": "A monolithic blockchain forces every validator to process every transaction. Sharding partitions the network into parallel sub-chains (shards), each handling a subset of transactions. Throughput scales roughly linearly with shard count — four shards, four times the capacity — without raising hardware requirements per validator."
+      },
+      {
+        "heading": "THE CROSS-SHARD PROBLEM",
+        "body": "Splitting state is easy; letting shards talk to each other is hard. A transaction that touches two shards must be atomic across both — either it commits everywhere or nowhere. Most sharding designs use asynchronous messaging with receipts, which adds latency and creates new failure modes when a destination shard is congested."
+      },
+      {
+        "heading": "DYNAMIC VS STATIC RESHARDING",
+        "body": "Static sharding fixes the shard count at genesis; capacity increases require a hard fork or coordinated validator vote. Dynamic resharding lets the protocol itself split a hot shard when load crosses a threshold, the same way a database splits a hot partition. The tradeoff is protocol complexity: the consensus layer now has to safely migrate state mid-flight.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Bitcoin",
+                "value": "~7 tps",
+                "cc": "US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Ethereum L1",
+                "value": "~15 tps",
+                "cc": "US",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Solana",
+                "value": "~3,000 tps",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "NEAR (sharded)",
+                "value": "~10,000+ tps",
+                "cc": "US",
+                "tone": "favorable"
+              }
+            ],
+            "label": "L1 scaling approaches"
+          }
+        ]
+      },
+      {
+        "heading": "THE QUANTUM THREAT",
+        "body": "Blockchain signatures rely on elliptic curve cryptography (ECDSA, Ed25519). Shor's algorithm, run on a sufficiently large quantum computer, breaks these in polynomial time — meaning a future attacker could derive private keys from public ones and drain any address that has ever signed a transaction. Estimates for when this becomes practical range from a decade to never, but the migration to post-quantum signatures has to start years before the threat arrives.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why must blockchains migrate to post-quantum signatures long before quantum computers can break ECDSA?",
+            "options": [
+              "Post-quantum signatures are faster, so the upgrade improves performance immediately",
+              "Once a quantum attack is possible, every public key ever exposed on-chain is permanently vulnerable",
+              "Regulators require it under new crypto compliance rules",
+              "Quantum computers will replace classical validators"
+            ],
+            "correct": 1,
+            "explanation": "On a public ledger, every signed transaction reveals a public key. A future quantum attacker could harvest those keys today and derive private keys later — 'harvest now, decrypt later.'"
+          }
+        ]
+      },
+      {
+        "heading": "WHY VALIDATOR VOTES MATTERED",
+        "body": "On-chain governance votes to raise capacity sound democratic but in practice gate upgrades on the slowest, most conservative validator. Removing the vote trades governance friction for protocol autonomy — the chain scales itself, but holders lose a veto over when and how."
+      }
+    ],
+    "generatedAt": "2026-05-22T12:23:46.085Z",
+    "label": "Sharding & Blockchain Scaling",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-22-neuroprotective-effect-of-astrocytic-dopamine-drd2-receptor": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT PARKINSON'S ACTUALLY IS",
+        "body": "Parkinson's is the death of a specific population of dopamine-producing neurons in the substantia nigra, a small region deep in the midbrain. By the time tremor appears, roughly 60-80% of those neurons are already gone — the brain compensates until it can't.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The cell loss happens in the **substantia nigra pars compacta** — Latin for *black substance*, named for the dark neuromelanin pigment its dopamine neurons accumulate over a lifetime. Pathologists could see the disease on autopsy slides a century before they understood it."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DOPAMINE NEURONS DIE FIRST",
+        "body": "Substantia nigra dopamine neurons are unusually metabolically demanding — long, branching axons, constant calcium cycling, and dopamine itself oxidizes into toxic byproducts. They run their mitochondria hotter than almost any other neuron, which makes them the first to fail when energy supply or waste clearance falters."
+      },
+      {
+        "heading": "WHAT ASTROCYTES ACTUALLY DO",
+        "body": "Astrocytes outnumber neurons in the human brain and were dismissed for a century as passive glue (the Greek root *astro-glia* literally means star-shaped glue). They now appear to regulate neurotransmitter recycling, blood flow, ion balance, and metabolic support — neurons cannot function without them."
+      },
+      {
+        "heading": "THE DRD2 SURPRISE",
+        "body": "Drd2 is the dopamine receptor that antipsychotic drugs target — haloperidol, risperidone, olanzapine all block it. It was assumed to live almost entirely on neurons. Finding it on astrocytes, and finding that astrocyte Drd2 matters for neuron survival, redraws the map of what these drugs are actually doing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What kind of drug is best known for blocking the Drd2 dopamine receptor?",
+            "options": [
+              "SSRIs (antidepressants)",
+              "Antipsychotics",
+              "Statins",
+              "Beta blockers"
+            ],
+            "correct": 1,
+            "explanation": "First- and second-generation antipsychotics work primarily by blocking Drd2 — which is why long-term use can cause Parkinson's-like motor side effects."
+          }
+        ]
+      },
+      {
+        "heading": "THE FEEDBACK LOOP",
+        "body": "Dopamine released by a neuron now appears to bind back onto neighboring astrocytes, telling them to ramp up metabolic support. Remove that signal and the support collapses — which accelerates the loss of the very neurons sending the signal. The dying tissue speeds its own death."
+      },
+      {
+        "heading": "THE THERAPEUTIC OPENING",
+        "body": "Every Parkinson's drug since L-DOPA in 1967 has targeted neurons — replacing dopamine, blocking its breakdown, or stimulating remaining receptors. None slow the underlying neuronal death. An astrocyte-targeting drug would be the first to attack the support system rather than the symptom.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1817",
+                "label": "James Parkinson describes 'shaking palsy'"
+              },
+              {
+                "year": "1957",
+                "label": "Carlsson identifies dopamine as a neurotransmitter"
+              },
+              {
+                "year": "1967",
+                "label": "L-DOPA enters clinical use",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1997",
+                "label": "First MAO-B inhibitors approved"
+              },
+              {
+                "year": "2002",
+                "label": "Deep brain stimulation FDA-approved"
+              },
+              {
+                "year": "2024",
+                "label": "GLP-1 trials show possible neuroprotection"
+              }
+            ],
+            "label": "Parkinson's therapeutics, by mechanism"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-22T12:24:13.410Z",
+    "label": "Astrocytes & Parkinson's",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-22-uk-andrew-mountbatten-windsor-misconduct-investigation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EPSTEIN PROBLEM",
+        "body": "Jeffrey Epstein's network has ended more political careers than any single scandal of the post-2000 era — Prince Andrew lost his royal duties, Bill Gates's reputation never recovered, Leon Black stepped down from Apollo. Vetting systems flag Epstein associations precisely because the political survival rate is near zero once documents surface.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2019 BBC *Newsnight* interview — in which Andrew denied a sweat condition and recalled a Pizza Express alibi — is studied in PR schools as the **single most damaging on-camera appearance** by a member of the British royal family in the television era."
+          }
+        ]
+      },
+      {
+        "heading": "WHY UK LIBEL LAW MATTERS",
+        "body": "England's libel regime placed the burden of proof on defendants until the 2013 Defamation Act, and even after reform, costs run far higher than US equivalents. This is why Epstein's UK network — Andrew, Peter Mandelson, finance and academic figures — survived journalistic scrutiny long after the US press had moved.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "England & Wales",
+                "value": "~£1m+",
+                "tone": "unfavorable",
+                "cc": "GB"
+              },
+              {
+                "label": "United States",
+                "value": "~£100k",
+                "tone": "favorable",
+                "cc": "US"
+              },
+              {
+                "label": "Germany",
+                "value": "~£50k",
+                "tone": "favorable",
+                "cc": "DE"
+              }
+            ],
+            "label": "libel cost asymmetry (typical defense, GBP equivalent)"
+          }
+        ]
+      },
+      {
+        "heading": "THE SOVEREIGN'S SHIELD",
+        "body": "The British monarch is personally immune from civil and criminal proceedings under common law — the Sovereign Immunity doctrine traceable to the medieval maxim that the King can do no wrong. Immunity does not extend to other royals; Andrew was stripped of his HRH style and military affiliations in 2022 precisely so the institution could be insulated from his legal exposure."
+      },
+      {
+        "heading": "HOW MLAT WORKS",
+        "body": "The UK-US Mutual Legal Assistance Treaty (1994) is the formal channel through which DOJ evidence reaches British investigators. Requests move through the National Crime Agency, get reviewed by the Home Office, and are subject to dual-criminality tests. The process routinely takes 18-24 months — which is why detectives flag 2027 as a realistic charging window."
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "No son of a reigning British monarch has faced criminal charges in the modern era. The closest precedent is the 1890 Tranby Croft baccarat scandal, where the future Edward VII was compelled to testify in a civil libel trial — a sovereign embarrassment that Victoria's court managed by accelerating Edward's public rehabilitation rather than confronting the underlying conduct.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When was the last time a son of a reigning British monarch faced compelled testimony in open court?",
+            "options": [
+              "1936, the abdication crisis",
+              "1890, the Tranby Croft baccarat scandal",
+              "1953, the Townsend affair",
+              "1992, the 'annus horribilis'"
+            ],
+            "correct": 1,
+            "explanation": "Edward VII (then Prince of Wales) testified in the 1891 libel trial arising from the Tranby Croft cheating scandal — the only such instance in modern British history until the current proceedings."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-22T12:24:40.290Z",
+    "label": "Royal Accountability & the Epstein Network",
+    "category": "politics",
+    "articleCount": 1
   }
 }
