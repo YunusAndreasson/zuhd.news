@@ -211453,5 +211453,948 @@
     "label": "Pocket Listings & MLS Antitrust",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-05-21-acurite-iot-app-shutdown-cloud-dependency": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BRICKING PATTERN",
+        "body": "When a connected-hardware vendor shuts down its cloud, the physical device often becomes inert — even if its sensors and radios still work perfectly. The hardware you own depends on a server you don't.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Revolv Hub",
+                "value": "2016, Nest/Google",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Insteon",
+                "value": "2022, sudden exit",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Spectrum smart home",
+                "value": "2024, ADT pivot",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Pebble watches",
+                "value": "2018, Fitbit buy",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "AcuRite Access",
+                "value": "2026, app sunset",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "hardware bricked by vendor cloud shutdowns"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE CLOUD AT ALL",
+        "body": "A weather station could in principle stream straight to a local screen. Vendors route it through their servers because the cloud is where the *recurring revenue*, the firmware-update channel, and the data telemetry live — even when the user paid once for a sealed device.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is **forced obsolescence by cloud dependency** — the device works, the *service contract* doesn't, and there is no legal distinction between the two."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL GAP",
+        "body": "US consumer law treats software as licensed, not sold. The Magnuson-Moss Warranty Act covers physical defects but says nothing about a manufacturer turning off the server that makes the hardware function. The EU's 2024 Right-to-Repair directive is the first major framework to address this; the US has no federal equivalent."
+      },
+      {
+        "heading": "THE LOCAL-FIRST ALTERNATIVE",
+        "body": "A small open-source ecosystem — Home Assistant, rtl_433, Weewx — captures the radio signals AcuRite stations broadcast and stores readings on the user's own machine. The sensors transmit on 433 MHz in the clear; no cloud is technically required to read them.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What frequency do most consumer weather-station sensors broadcast on, allowing third-party software to receive them directly?",
+            "options": [
+              "433 MHz, an unlicensed ISM band",
+              "2.4 GHz, the WiFi band",
+              "Bluetooth Low Energy only",
+              "Encrypted cellular, vendor-locked"
+            ],
+            "correct": 0,
+            "explanation": "433 MHz is an unlicensed ISM band used by most low-power telemetry — which is why open-source receivers like rtl_433 can decode AcuRite, Oregon Scientific, and LaCrosse sensors without vendor cooperation."
+          }
+        ]
+      },
+      {
+        "heading": "THE DATA QUESTION",
+        "body": "A decade of personal weather readings — frost dates, rainfall totals, microclimate records — lives on AcuRite's servers under their terms. When the app dies, the export path dies with it. The pattern repeats across fitness trackers, smart scales, and home-energy monitors: the user generated the data, the vendor controls the egress."
+      }
+    ],
+    "generatedAt": "2026-05-22T04:28:14.178Z",
+    "label": "IoT & the Cloud Dependency Trap",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-21-china-power-emissions-two-province-decline": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SCALE PROBLEM",
+        "body": "China generates more electricity than the US, EU, and India combined. Even a 1% shift in its power mix moves global emissions more than most countries' entire economies. This is why two provinces can determine whether global CO2 rises or falls.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "China",
+                "value": 31,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "United States",
+                "value": 15,
+                "tone": "neutral"
+              },
+              {
+                "label": "India",
+                "value": 7,
+                "tone": "neutral"
+              },
+              {
+                "label": "EU",
+                "value": 9,
+                "tone": "neutral"
+              },
+              {
+                "label": "Russia",
+                "value": 4,
+                "tone": "favorable"
+              },
+              {
+                "label": "Japan",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Rest of world",
+                "value": 31,
+                "tone": "favorable"
+              }
+            ],
+            "label": "share of global electricity generation, 2024 (%)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY INNER MONGOLIA AND SHANDONG",
+        "body": "These are China's two largest coal-power provinces. Inner Mongolia hosts the country's biggest open-pit mines and exports power east via ultra-high-voltage lines; Shandong is a heavy-industry corridor running steel, aluminum, and chemicals. Cutting fossil output there moves the national needle in a way that decarbonizing a southern services province cannot.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "MN",
+              "KP",
+              "KR",
+              "JP"
+            ],
+            "label": "the two provinces that bent the curve",
+            "markers": [
+              {
+                "lat": 40.8175,
+                "lng": 111.7656,
+                "label": "Hohhot (Inner Mongolia)"
+              },
+              {
+                "lat": 36.6512,
+                "lng": 117.1201,
+                "label": "Jinan (Shandong)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE CURTAILMENT TAX",
+        "body": "Curtailment is renewable energy generated but not used — wind farms told to stop spinning, solar panels disconnected — because the transmission grid cannot move the power to where demand is. A 13% curtailment rate means roughly one in eight clean electrons is wasted at the source.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "China's curtailment problem is geographic: the best wind sits in the northwest *(Xinjiang, Gansu, Inner Mongolia)*, the best solar in the Tibetan plateau, but **70%+ of demand** is on the eastern seaboard 2,000–3,000 km away."
+          }
+        ]
+      },
+      {
+        "heading": "THE UHV ANSWER",
+        "body": "China has built the world's only at-scale ultra-high-voltage DC grid — power lines running at 800kV-1100kV that move electricity across continental distances with under 5% loss. Over 30 UHV lines now connect western generation to eastern load centers. The remaining curtailment reflects what hasn't been wired yet, not what can't be."
+      },
+      {
+        "heading": "THE PEAK QUESTION",
+        "body": "Beijing pledged in 2020 to peak emissions before 2030 and reach net-zero by 2060. The unresolved question is whether 2024-25 was the peak or a plateau. A two-province decline suggests the curve is bending; thirteen provinces still rising suggests the plateau still has years to run.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When did China commit to peaking CO2 emissions and reaching carbon neutrality?",
+            "options": [
+              "Paris Agreement, 2015 — peak by 2025, neutral by 2050",
+              "Xi's UN speech, 2020 — peak before 2030, neutral by 2060",
+              "Glasgow COP26, 2021 — peak by 2028, neutral by 2055",
+              "Beijing Declaration, 2023 — peak by 2030, neutral by 2070"
+            ],
+            "correct": 1,
+            "explanation": "Xi announced the '30/60' targets in a video address to the UN General Assembly in September 2020 — a unilateral commitment that surprised both Western capitals and China's own energy ministries."
+          }
+        ]
+      },
+      {
+        "heading": "THE COAL FLOOR",
+        "body": "Even as renewables surge, China approved more new coal capacity in 2022-23 than the rest of the world combined. The doctrine is energy security first: coal stays as a 'support role' baseload, dispatched less but kept available. Decarbonization in China is additive — clean power layered on top — not substitutive in the way Europe forced its grid to shift."
+      }
+    ],
+    "generatedAt": "2026-05-22T04:29:02.751Z",
+    "label": "China's Power Sector Decarbonization",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-21-china-vocational-internship-child-labor": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO-TRACK SYSTEM",
+        "body": "China sorts students at age 15 via the zhongkao exam. Roughly half are routed into academic high schools toward university; the other half into secondary vocational schools (zhongzhuan) feeding directly into factory labor. The split is near-irreversible and falls hardest on rural students.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The exam is called the **zhongkao** (中考); the vocational track is **zhongzhuan** (中专). The Ministry of Education has held the vocational share near *50%* for two decades as industrial policy, not student choice."
+          }
+        ]
+      },
+      {
+        "heading": "THE MANDATORY PLACEMENT",
+        "body": "Since 2016, vocational diplomas require a 6-month dingang shixi — a 'post internship' at an actual employer. Schools partner with manufacturers (Foxconn is the largest recipient) and bus students in cohorts. Refusing the placement means no diploma; the leverage is total.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How long is the mandatory internship vocational students must complete to receive their diploma?",
+            "options": [
+              "6 weeks",
+              "3 months",
+              "6 months",
+              "1 year"
+            ],
+            "correct": 2,
+            "explanation": "The dingang shixi is a 6-month placement at a partnered employer, structured as a graduation requirement rather than employment — which is precisely how it sidesteps labor law."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL FICTION",
+        "body": "Interns are classified as students, not workers. This means no minimum wage, no overtime cap under the 1995 Labor Law, no workplace injury insurance, and no right to refuse hazardous assignments. The fiction transfers the cost of a labor shortage onto teenagers without giving them labor protections."
+      },
+      {
+        "heading": "THE DEMOGRAPHIC SQUEEZE",
+        "body": "China's working-age population peaked in 2014 and is now shrinking by millions per year. Coastal factories that built the export boom on rural migrant labor face a structural shortfall. Vocational interns — captive, cheap, replaceable on six-month cycles — fill the gap that demographics opened."
+      },
+      {
+        "heading": "THE FOXCONN PRECEDENT",
+        "body": "Investigations from 2010 onward documented Foxconn's Zhengzhou iPhone plant using interns on night shifts and assembly lines indistinguishable from regular workers, sometimes during exam periods. Apple's own supplier audits flagged the practice repeatedly; the placements continued because local governments counted them toward employment targets.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN"
+            ],
+            "label": "the intern-receiving plants",
+            "markers": [
+              {
+                "lat": 22.5431,
+                "lng": 114.0579,
+                "label": "Shenzhen (Foxconn HQ)"
+              },
+              {
+                "lat": 30.5728,
+                "lng": 104.0668,
+                "label": "Chengdu (Foxconn iPad)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPARATIVE FRAME",
+        "body": "Germany's dual-education system — the model often cited as inspiration — pairs classroom learning with apprenticeships under contracts that pay wages, accrue pension credits, and are governed by chambers of commerce. China imported the structure (school + workplace) without the protections (contract + wage + oversight) that make it work.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Germany",
+                "value": "paid apprentice",
+                "cc": "DE",
+                "tone": "favorable"
+              },
+              {
+                "label": "Japan",
+                "value": "paid trainee",
+                "cc": "JP",
+                "tone": "favorable"
+              },
+              {
+                "label": "South Korea",
+                "value": "paid intern",
+                "cc": "KR",
+                "tone": "neutral"
+              },
+              {
+                "label": "China",
+                "value": "unpaid student",
+                "cc": "CN",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "vocational placements compared"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-22T04:29:48.608Z",
+    "label": "China's Vocational Internship System",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-21-jwst-wasp-94ab-weather-map": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "HOW YOU 'SEE' AN ATMOSPHERE 690 LIGHT-YEARS AWAY",
+        "body": "When a planet transits its star, a sliver of starlight filters through the planet's atmosphere on its way to us. Molecules in that atmosphere absorb specific wavelengths, carving fingerprints into the spectrum. The planet itself is never resolved — only the shadow it casts in color.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This technique is called **transmission spectroscopy**. The atmospheric signal is roughly one part in ten thousand of the starlight — which is why JWST, with its 6.5-meter mirror, sees what Hubble could not."
+          }
+        ]
+      },
+      {
+        "heading": "WHY HOT JUPITERS ARE THE LAB RATS",
+        "body": "WASP-94A b is a 'hot Jupiter' — a gas giant orbiting closer to its star than Mercury does to ours, with a year lasting under four Earth days. They are tidally locked, so one hemisphere bakes permanently while the other faces eternal night. The temperature contrast across the terminator drives some of the most violent weather in the known universe."
+      },
+      {
+        "heading": "THE TERMINATOR ASYMMETRY",
+        "body": "The terminator is the boundary between day and night. On a tidally locked planet, super-rotating winds drag hot daytime air eastward — meaning the evening limb (just leaving the dayside) runs hotter and clearer than the morning limb (just entering the dayside), where cooled gas condenses into clouds. Splitting the transit into ingress and egress halves separates these two limbs.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does the morning limb of a hot Jupiter form clouds while the evening limb stays clear?",
+            "options": [
+              "Sunlight strikes it more directly",
+              "It's cooler — gas condenses there before crossing to the dayside",
+              "It rotates faster than the evening limb",
+              "Stellar wind strips clouds from the evening side"
+            ],
+            "correct": 1,
+            "explanation": "Super-rotating winds carry heat eastward, so the morning terminator is the cold side where condensation happens — exactly what JWST resolved on WASP-94A b."
+          }
+        ]
+      },
+      {
+        "heading": "THE 100× ERROR",
+        "body": "When you average a clouded morning and a clear evening into a single spectrum, the clouds mute some absorption features and the clear side amplifies others. Fitting one atmospheric model to that blended signal had been producing oxygen abundances roughly 100× the true value — a systematic bias hidden inside every hot-Jupiter measurement made the old way."
+      },
+      {
+        "heading": "WHY OXYGEN ENRICHMENT MATTERS",
+        "body": "The ratio of heavy elements (oxygen, carbon) to hydrogen in a gas giant's atmosphere is a fingerprint of where the planet formed in its protoplanetary disk and how much icy material it swept up while migrating inward. A 100-fold correction rewrites the formation history inferred for dozens of catalogued hot Jupiters."
+      },
+      {
+        "heading": "THE BIOSIGNATURE STAKES",
+        "body": "Hot Jupiters are uninhabitable, but the same morning-evening asymmetry exists on the temperate, Earth-sized planets JWST's successors will scan for life. If a single-sphere model can fake a 100× oxygen signal on a hot Jupiter, it can fake — or erase — a biosignature on a cooler world. Separating the limbs is now a prerequisite for any claim about alien atmospheres."
+      }
+    ],
+    "generatedAt": "2026-05-22T04:30:50.510Z",
+    "label": "Transmission Spectroscopy & Hot Jupiters",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-21-oldest-animal-sex-locomotion-fossil-canada": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "BEFORE ANIMALS",
+        "body": "For roughly three billion years, life on Earth was microbial — bacteria, archaea, and eventually single-celled eukaryotes. The Ediacaran period (635–538 million years ago) is when that changed: the first large, soft-bodied multicellular organisms appear in the rock record, looking nothing like anything alive today."
+      },
+      {
+        "heading": "WHY SEX IS A BIG DEAL",
+        "body": "Sexual reproduction shuffles genes between two parents instead of cloning one. It is metabolically expensive and halves each parent's genetic contribution — but it accelerates adaptation dramatically. Every multicellular animal alive today inherits this machinery from a common ancestor; dating its first appearance dates the foundation of animal evolution itself.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The puzzle is called the **twofold cost of sex**: an asexual lineage should out-reproduce a sexual one 2:1 per generation. That sex won anyway is evidence its long-run advantage — outpacing parasites and purging mutations — is enormous."
+          }
+        ]
+      },
+      {
+        "heading": "FUNISIA AND THE EVIDENCE",
+        "body": "Funisia dorothea grew as dense clusters of rope-like tubes that appear to have settled simultaneously — the signature of synchronized spawning, where many individuals release gametes at once. Modern corals do the same thing on a single night each year. The pattern, not a preserved gamete, is what dates sexual reproduction.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do scientists infer sexual reproduction from Funisia fossils?",
+            "options": [
+              "Preserved sperm cells were found in the rock",
+              "Colonies show synchronized settlement, like modern coral spawning",
+              "DNA was extracted from the fossils",
+              "The fossils contain visible reproductive organs"
+            ],
+            "correct": 1,
+            "explanation": "Soft-tissue gametes don't fossilize. Synchronized settlement patterns — many individuals founding a colony at the same moment — are the indirect signature of broadcast spawning."
+          }
+        ]
+      },
+      {
+        "heading": "DICKINSONIA AND MOVEMENT",
+        "body": "Dickinsonia was a flat, oval, quilted creature up to a metre long. It left trackways — feeding traces showing it grazed microbial mats and then moved on. That makes it one of the earliest known animals to locomote under its own power, a capability that defines animals against plants and fungi.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "In 2018, *cholesterol biomarkers* extracted from Dickinsonia fossils settled a long debate: it was an animal, not a fungus or a lichen. The Mackenzie find extends the locomotion record back to a creature whose biological kingdom is now firmly established."
+          }
+        ]
+      },
+      {
+        "heading": "THE GEOGRAPHIC GAP",
+        "body": "Until now, Ediacaran fossil sites clustered in three places: the White Sea coast of Russia, the Flinders Ranges of Australia, and Newfoundland. The Mackenzie Mountains assemblage is the first major site in northwestern North America, expanding the geographic range of the Ediacaran biota across a fourth continental fragment.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CA",
+              "RU",
+              "AU"
+            ],
+            "label": "major Ediacaran fossil sites",
+            "markers": [
+              {
+                "lat": 64.5,
+                "lng": -129.5,
+                "label": "Mackenzie Mtns (new)"
+              },
+              {
+                "lat": 66,
+                "lng": 40,
+                "label": "White Sea, Russia"
+              },
+              {
+                "lat": -31.5,
+                "lng": 138.6,
+                "label": "Flinders, Australia"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY 567 MILLION MATTERS",
+        "body": "The Cambrian Explosion at ~538 million years ago is when most modern animal body plans appear. Pushing sex and locomotion back to 567 million widens the runway — giving the machinery of animal life nearly 30 million years to evolve before the Cambrian burst, rather than emerging in lockstep with it."
+      }
+    ],
+    "generatedAt": "2026-05-22T04:31:29.843Z",
+    "label": "The Ediacaran World",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-22-mass-general-brigham-mortality-metric-dispute": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE METRIC",
+        "body": "Observed-to-expected mortality (O/E) divides actual inpatient deaths by a risk-adjusted prediction. A ratio below 1.0 means fewer patients died than expected given their diagnoses. It is the single most cited quality number in US hospital marketing.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The denominator is built from *coded* diagnoses on the chart. Sicker-looking charts raise expected deaths, which mechanically lowers the **O/E ratio** without anyone treating a single patient differently."
+          }
+        ]
+      },
+      {
+        "heading": "THE CODING LEVER",
+        "body": "Hospitals can lower O/E by documenting more comorbidities — acute kidney injury, encephalopathy, malnutrition — that raise the predicted mortality. The industry term is clinical documentation improvement, and large systems employ hundreds of CDI specialists whose job is to surface codable conditions physicians left implicit."
+      },
+      {
+        "heading": "THE HOSPICE LOOPHOLE",
+        "body": "Patients formally enrolled in hospice before death are typically excluded from inpatient mortality counts. Expanding hospice referrals — even by a day before a foreseeable death — moves the same death out of the numerator. The patient outcome is identical; the metric improves.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "A hospital halves its inpatient mortality ratio in two years. Which is the LEAST likely explanation?",
+            "options": [
+              "Expanded same-day hospice transfers before death",
+              "More aggressive coding of comorbidities",
+              "A genuine halving of in-hospital deaths from better care",
+              "Reclassifying observation-unit deaths out of the inpatient denominator"
+            ],
+            "correct": 2,
+            "explanation": "Real clinical mortality moves slowly; metric-level halvings in 24 months almost always reflect denominator or exclusion changes, not care improvements."
+          }
+        ]
+      },
+      {
+        "heading": "GOODHART'S LAW",
+        "body": "When a measure becomes a target, it ceases to be a good measure. CMS tied reimbursement and public ratings to mortality ratios in the 2010s; within a decade, national O/E ratios drifted downward across nearly every system while raw mortality moved far less."
+      },
+      {
+        "heading": "THE PARTNERS MERGER",
+        "body": "Mass General and Brigham & Women's merged in 1994 to form Partners HealthCare, rebranded Mass General Brigham in 2019. The system now controls roughly a quarter of Massachusetts inpatient beds. Integration claims — shared protocols, unified EHR — are central to its case for the market concentration regulators have repeatedly scrutinized.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Anne Klibanski",
+                "role": "MGB CEO",
+                "years": "2019–",
+                "cc": "US"
+              },
+              {
+                "name": "Elizabeth Nabel",
+                "role": "former BWH president",
+                "years": "2010–2021",
+                "cc": "US"
+              },
+              {
+                "name": "David Torchiana",
+                "role": "former Partners CEO",
+                "years": "2015–2019",
+                "cc": "US"
+              }
+            ],
+            "label": "the integrated system"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THIS RECURS",
+        "body": "Every major academic system — Cleveland Clinic, Hopkins, NYU — has faced versions of this dispute. The structural issue is that the people who measure quality, code the charts, and benefit from the ratings all sit inside the same institution. External audit of risk-adjustment inputs is rare and expensive."
+      }
+    ],
+    "generatedAt": "2026-05-22T04:32:09.303Z",
+    "label": "Observed-to-Expected Mortality",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-22-spacex-starship-v3-scrub-launch-tower": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY HOLDS HAPPEN LATE",
+        "body": "Most launch aborts cluster in the final minute because that is when the vehicle transitions from ground-controlled systems to autonomous flight. Umbilicals retract, tanks pressurize to flight levels, and the flight computer takes command — any sensor disagreement triggers an automatic hold.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is **terminal count** — the last ~10 minutes when holds become expensive because cryogenic propellants are already boiling off and must be topped up or detanked."
+          }
+        ]
+      },
+      {
+        "heading": "THE UMBILICAL PROBLEM",
+        "body": "Launch towers connect to rockets through swing arms carrying fuel, power, and data. These arms must release cleanly at T-0 or the rocket tears itself apart on liftoff. Hydraulic pins hold them in place against vehicle sway and wind loads — a stuck pin is a known failure mode dating back to Saturn V."
+      },
+      {
+        "heading": "WHY STARSHIP IS DIFFERENT",
+        "body": "Starship is the first orbital-class rocket designed to be caught by its launch tower rather than landing on legs. The Mechazilla arms that catch the returning booster are the same structure handling pre-launch umbilicals — a level of mechanical reuse no previous vehicle has attempted."
+      },
+      {
+        "heading": "THE ARTEMIS DEPENDENCY",
+        "body": "NASA selected a modified Starship as the lunar lander for Artemis III, the first crewed Moon landing since 1972. The architecture requires roughly a dozen tanker Starships to refuel a depot in low Earth orbit before the lander departs — a cadence SpaceX has never demonstrated.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many Starship launches are estimated to fuel a single Artemis lunar landing?",
+            "options": [
+              "1 launch — the lander flies direct",
+              "3-4 launches — one depot fill",
+              "10-15 launches — multiple tanker flights",
+              "30+ launches — full orbital refueling"
+            ],
+            "correct": 2,
+            "explanation": "NASA and SpaceX estimates put the tanker count at roughly 10-15 flights per lunar mission, because Starship burns most of its propellant just reaching orbit."
+          }
+        ]
+      },
+      {
+        "heading": "THE STARLINK STAKES",
+        "body": "V3 is sized to deploy the next-generation Starlink satellites, which are too large to fit inside Falcon 9's fairing. Until Starship flies operationally, Starlink's constellation growth is capped by Falcon 9's payload geometry, not its launch cadence."
+      },
+      {
+        "heading": "THE SCRUB ECONOMY",
+        "body": "A scrubbed launch is not a failure — it is the system working. The Space Shuttle averaged roughly one scrub per two launches across its 135-mission program. Modern flight rules treat a clean hold as cheaper than a marginal launch; the Challenger disaster in 1986 was the canonical lesson in overriding that instinct."
+      }
+    ],
+    "generatedAt": "2026-05-22T04:32:38.376Z",
+    "label": "Starship & Launch Holds",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-22-us-arrests-gaesa-cuba-sister-florida": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT GAESA IS",
+        "body": "Grupo de Administración Empresarial S.A. is the holding company of Cuba's armed forces. It runs hotels, retail chains, remittance processors, the container port at Mariel, and the dollar shops where Cubans spend hard currency. The military is not just a security force in Cuba — it is the largest corporate group on the island.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The conglomerate emerged in the **Special Period** of the 1990s, after Soviet subsidies collapsed and Raúl Castro — then defense minister — was tasked with making the army self-financing. The pivot from soldiers to *empresarios* became the template for the whole state."
+          }
+        ]
+      },
+      {
+        "heading": "THE 40% CLAIM",
+        "body": "US estimates put GAESA's share of the Cuban economy at roughly 40%, though Havana publishes no consolidated accounts. The figure is a structural estimate — sum the dollar retail network, tourism receipts, port operations, and remittance fees — rather than an audited number. The opacity is the point: a holding company answerable only to the armed forces' general staff does not file annual reports.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Tourism / hotels",
+                "value": 35,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Dollar retail (TRD)",
+                "value": 25,
+                "tone": "neutral"
+              },
+              {
+                "label": "Remittance processing",
+                "value": 15,
+                "tone": "favorable"
+              },
+              {
+                "label": "Mariel port / logistics",
+                "value": 15,
+                "tone": "neutral"
+              }
+            ],
+            "label": "GAESA's footprint (rough composition)"
+          }
+        ]
+      },
+      {
+        "heading": "THE MONROE DOCTRINE",
+        "body": "In 1823, President Monroe declared the Western Hemisphere closed to European interference. Over two centuries it evolved into a justification for US intervention across Latin America — Guatemala 1954, Dominican Republic 1965, Grenada 1983, Panama 1989. Cuba sits 90 miles from Florida and has been the doctrine's most persistent flashpoint since 1898."
+      },
+      {
+        "heading": "HOW THE SANCTION ACTUALLY BITES",
+        "body": "OFAC does not seize assets — it lists names. Once GAESA's subsidiaries are on the Specially Designated Nationals list, every bank that touches the dollar system must refuse their transactions or lose its US correspondent account. Because over 88% of global FX involves the dollar, the listing is functionally an exclusion from world trade.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When OFAC sanctions a foreign company, what physically happens to that company's money in a US-correspondent bank?",
+            "options": [
+              "It is transferred to the US Treasury",
+              "It stays in the account but cannot move",
+              "It is converted to gold and held in Fort Knox",
+              "It is paid to victims as compensation"
+            ],
+            "correct": 1,
+            "explanation": "Sanctioned funds are frozen in place — the account becomes a cage. Forfeiture requires a separate court process; the freeze itself does not transfer ownership."
+          }
+        ]
+      },
+      {
+        "heading": "THE FAMILY-NETWORK ANGLE",
+        "body": "Sanctioning regimes increasingly target relatives of designated officials who hold assets abroad. The legal hook is not the relationship itself but the use of family members as nominees — buying real estate, opening shell companies, or managing dollar flows that the principal cannot touch directly. Treasury and ICE have built parallel pipelines: OFAC freezes the assets, immigration enforcement removes the human node.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal term is *straw ownership* — title sits with a relative but beneficial control rests with the sanctioned principal. Florida real estate has been the dominant vehicle for Venezuelan, Cuban, and Russian variants of the same pattern."
+          }
+        ]
+      },
+      {
+        "heading": "WHY FLORIDA",
+        "body": "Greater Miami holds the largest Cuban diaspora outside the island — roughly 1.5 million people. The community is simultaneously the political base of the hardest US line on Havana and the layer through which Cuban elite money has historically been laundered into condos, shell LLCs, and small businesses. Marco Rubio's prominence on the Cuba file reflects both facts.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CU",
+              "US",
+              "MX",
+              "BS"
+            ],
+            "label": "90 miles across the Florida Strait",
+            "markers": [
+              {
+                "lat": 25.7617,
+                "lng": -80.1918,
+                "label": "Miami"
+              },
+              {
+                "lat": 23.1136,
+                "lng": -82.3666,
+                "label": "Havana"
+              },
+              {
+                "lat": 22.9519,
+                "lng": -82.8511,
+                "label": "Mariel port"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-22T04:33:15.219Z",
+    "label": "GAESA & the Cuban Military Economy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-22-us-sanctions-hezbollah-aligned-lebanon-officials": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CONFESSIONAL SYSTEM",
+        "body": "Lebanon's 1943 National Pact divides power by sect: a Maronite Christian president, a Sunni prime minister, a Shia speaker of parliament. Cabinet seats, army commands, and civil service posts are all apportioned by confession. This makes 'embedding' a faction in state institutions less a corruption story than the system's design — every seat has a sectarian owner.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The arrangement is called *muhasasa* — quota-sharing. It ended the 1975–1990 civil war by formalising what the war was fought over."
+          }
+        ]
+      },
+      {
+        "heading": "THE STATE-WITHIN-A-STATE",
+        "body": "Hezbollah is the only militia that was never disarmed after the Taif Agreement ended the civil war in 1989. Its justification — resistance against Israeli occupation of south Lebanon — became permanent after Israel's 2000 withdrawal. Today it commands a parallel army, telecom network, financial system, and social services arm that out-resource the Lebanese state."
+      },
+      {
+        "heading": "WHY UNIFORMED OFFICERS NOW",
+        "body": "Previous US sanctions hit Hezbollah financiers, MPs, and ministers — never serving officers of the Lebanese Armed Forces or General Security. The LAF receives over $3bn in cumulative US military aid since 2006 on the theory that strengthening the state weakens Hezbollah. Sanctioning a brigadier general inverts that bet.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hezbollah",
+                "value": "~100k fighters",
+                "tone": "unfavorable",
+                "weight": 100
+              },
+              {
+                "label": "LAF (army)",
+                "value": "~80k troops",
+                "tone": "neutral",
+                "weight": 80
+              },
+              {
+                "label": "General Security",
+                "value": "~5k",
+                "tone": "neutral",
+                "weight": 5
+              },
+              {
+                "label": "ISF (police)",
+                "value": "~30k",
+                "tone": "neutral",
+                "weight": 30
+              }
+            ],
+            "label": "Lebanese armed forces, by allegiance"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2006 PRECEDENT",
+        "body": "Bint Jbeil was the fiercest battle of the 2006 Lebanon War. Israel sent elite Golani Brigade units to capture the town; Hezbollah fighters held it for days in close urban combat. Israel withdrew without holding ground. In Hezbollah's narrative, this is the proof that Israeli forces can be fought to a standstill — and the source of its claim to permanent arms.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL",
+              "SY"
+            ],
+            "caption": "South Lebanon — buffer zone since 1978",
+            "markers": [
+              {
+                "lat": 33.1206,
+                "lng": 35.4283,
+                "label": "Bint Jbeil"
+              },
+              {
+                "lat": 33.2733,
+                "lng": 35.1939,
+                "label": "Litani River"
+              },
+              {
+                "lat": 33.8938,
+                "lng": 35.5018,
+                "label": "Beirut (Dahiyeh)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "HOW OFAC SANCTIONS BITE",
+        "body": "Assets aren't physically seized. Treasury adds names to the Specially Designated Nationals list; every bank touching the dollar system must then refuse to move those funds. Over 88% of global FX transactions involve the dollar, so even a Lebanese officer paid in lira cannot easily hold savings, buy property abroad, or send children to school overseas without a US-correspondent bank somewhere in the chain.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              89558.210208,
+              89527.619636,
+              89404.207128,
+              89404.207128,
+              89433.365702,
+              89323.19805,
+              89553.511635,
+              89549.093885,
+              89550,
+              89550,
+              89550,
+              89550,
+              89432.68024,
+              89537.3852,
+              89526.788262,
+              89549.674385,
+              89318.69055,
+              89318.69055,
+              89364.95244,
+              89708.074869,
+              89566.197135,
+              89716.997863,
+              89576.831791,
+              89741.204119,
+              89725.774869,
+              89690.619895,
+              89550.663635,
+              89550,
+              89501.859951,
+              89565.531408
+            ],
+            "periods": [
+              "Apr 23",
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22"
+            ],
+            "label": "Lebanese pound",
+            "unit": "LBP / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE BOUNTY MECHANIC",
+        "body": "The $10 million reward comes from the State Department's Rewards for Justice program, founded in 1984. The same program paid for tips leading to the capture of Ramzi Yousef and information on Osama bin Laden. Offering it for Hezbollah financial intelligence — rather than a specific person — signals that the target is the network itself."
+      },
+      {
+        "heading": "QUIZ",
+        "body": "Lebanon's currency has been one of the worst-performing in modern monetary history.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how much value has the Lebanese pound lost against the US dollar since 2019?",
+            "options": [
+              "About 50%",
+              "About 90%",
+              "About 98%",
+              "About 70%"
+            ],
+            "correct": 2,
+            "explanation": "The pound traded at 1,500 to the dollar for decades; the parallel-market rate is now near 90,000 — a loss of roughly 98% of its value, one of the steepest currency collapses ever recorded in peacetime."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-22"
+    ],
+    "generatedAt": "2026-05-22T04:33:49.155Z",
+    "label": "Hezbollah & the Lebanese State",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-23-cisa-kev-external-nominations-researcher-form": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT KEV IS",
+        "body": "The Known Exploited Vulnerabilities catalog is a list of software flaws CISA has confirmed are being actively exploited in the wild. Inclusion is not theoretical — it requires evidence of real-world attacks, not just a high CVSS score.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "KEV is the **\"patch this now\"** list — distinct from the **NVD** (every known CVE) and the **EPSS** score (probability of exploitation). KEV says: *it's already happening*."
+          }
+        ]
+      },
+      {
+        "heading": "THE MANDATE",
+        "body": "Binding Operational Directive 22-01, issued November 2021, requires every federal civilian agency to patch KEV entries within deadlines — typically two weeks. It was the first time CISA used its BOD authority to compel patching based on a living list rather than a static rule."
+      },
+      {
+        "heading": "WHY THE BACKLOG MATTERS",
+        "body": "The average CVE sits unpatched in enterprise networks for over 200 days. KEV's deadlines collapse that window to days for the flaws attackers actually use. The catalog's value is signal extraction — under 5% of CVEs are ever exploited, and KEV names them."
+      },
+      {
+        "heading": "WHO FOUND THEM BEFORE",
+        "body": "Until now, entries came from CISA's internal sources: federal incident response, intelligence partners, and trusted vendors. Researchers who saw exploitation in private-sector networks had no formal channel — their evidence reached KEV only if a vendor or government partner relayed it."
+      },
+      {
+        "heading": "THE SIGNAL PROBLEM",
+        "body": "Opening nominations to the public expands the funnel but inverts the trust model. A nomination is a claim that exploitation is occurring; verifying it requires telemetry the nominator may not share. With no published review criteria, the catalog's authority depends entirely on CISA's filtering.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of known CVEs are ever exploited in the wild?",
+            "options": [
+              "Under 5%",
+              "About 20%",
+              "About half",
+              "Nearly all"
+            ],
+            "correct": 0,
+            "explanation": "Studies of CVE-to-exploitation rates consistently find under 5% of published vulnerabilities are ever weaponized — which is why a curated list like KEV is more useful than a raw CVE feed."
+          }
+        ]
+      },
+      {
+        "heading": "THE LIVING-OFF-THE-LAND CONTEXT",
+        "body": "Modern intrusions rarely drop custom malware. Attackers chain known, unpatched vulnerabilities with built-in admin tools — PowerShell, WMI, scheduled tasks — to blend into normal traffic. KEV exists because the bottleneck in defense is not detection of novel exploits; it is closing the doors that are already documented as open."
+      }
+    ],
+    "generatedAt": "2026-05-22T04:34:14.969Z",
+    "label": "CISA's KEV Catalog",
+    "category": "tech",
+    "articleCount": 1
   }
 }
