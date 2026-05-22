@@ -10,10 +10,23 @@ const os = require('node:os');
 const path = require('node:path');
 
 const sharedDir = path.resolve(__dirname, '..', '..', 'shared');
+// Marker file — `shared/` may exist as an empty placeholder (EAS-CLI's monorepo
+// detection creates one when metro.config references ../shared). Skip only if
+// the actual source files are there.
+const markerFile = path.join(sharedDir, 'countries', 'country-data.ts');
+
+if (fs.existsSync(markerFile)) {
+  console.log(`[eas-fetch-shared] shared/ already populated at ${sharedDir} — skipping`);
+  process.exit(0);
+}
 
 if (fs.existsSync(sharedDir)) {
-  console.log(`[eas-fetch-shared] shared/ already present at ${sharedDir} — skipping`);
-  process.exit(0);
+  const entries = fs.readdirSync(sharedDir);
+  console.log(
+    `[eas-fetch-shared] shared/ exists at ${sharedDir} but marker file missing; ` +
+      `contents: [${entries.join(', ') || '<empty>'}] — re-fetching from GitHub`,
+  );
+  fs.rmSync(sharedDir, { recursive: true, force: true });
 }
 
 if (!process.env.EAS_BUILD) {
