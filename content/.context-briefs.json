@@ -216094,5 +216094,1557 @@
     "label": "E1 & the West Bank",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-21-ecotypes-genetic-memory-supergenes-adaptation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MECHANISM",
+        "body": "A chromosomal inversion flips a chunk of DNA end-for-end. Because inverted segments cannot recombine cleanly with their non-inverted counterparts during meiosis, every allele inside the inversion travels as a single locked package across generations.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Geneticists call these locked packages **supergenes** — co-adapted allele bundles that behave like one inherited unit, immune to the reshuffling that normally breaks favorable combinations apart."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT MATTERS FOR ADAPTATION",
+        "body": "Without inversions, beneficial allele combinations dissolve every generation as recombination shuffles the deck. Inversions preserve the winning hand intact, so an ecotype adapted to drought or cold can be reassembled instantly when conditions return — no need to re-evolve it from scratch."
+      },
+      {
+        "heading": "THE CLASSIC CASES",
+        "body": "Heliconius butterflies carry wing-pattern supergenes that toggle entire mimicry phenotypes. Ruff sandpipers have three male mating strategies — territorial, satellite, faeder — each encoded by a different inversion haplotype on the same chromosome. Seaweed flies, monkeyflowers, and stickleback fish all show the same architecture."
+      },
+      {
+        "heading": "THE CONSERVATION TWIST",
+        "body": "Standard conservation math treats genetic diversity as roughly proportional to population size. Supergenes break that assumption: a small population carrying multiple inversion haplotypes holds more adaptive options than a large population that has gone monomorphic. Headcount understates resilience in one direction and overstates it in the other.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do alleles inside a chromosomal inversion stay bundled across generations?",
+            "options": [
+              "The inverted DNA replicates faster than the rest of the chromosome",
+              "Recombination cannot pair the inverted segment cleanly with its counterpart",
+              "Natural selection actively rejects any recombinant offspring",
+              "The inversion silences nearby genes through methylation"
+            ],
+            "correct": 1,
+            "explanation": "Inverted segments misalign during meiosis, so crossovers inside the inversion produce unviable gametes — the bundle is preserved by mechanical constraint, not selection."
+          }
+        ]
+      },
+      {
+        "heading": "THE DEEP TIME ANGLE",
+        "body": "Some inversion polymorphisms are older than the species that carry them — trans-species haplotypes that survived speciation events intact. The genome is, in this sense, a layered archive: ancient solutions to ancient problems, still loaded and ready to fire when the climate cycles back."
+      }
+    ],
+    "generatedAt": "2026-05-22T22:32:32.474Z",
+    "label": "Supergenes & Genetic Memory",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-21-google-direct-offers-search-ads-open-web-traffic": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE REFERRAL BARGAIN",
+        "body": "For two decades the implicit deal was: publishers let Google crawl their content; Google sent users back via links. The whole open-web economy — ad-supported journalism, niche blogs, e-commerce reviews — was built on that click flowing outward.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *referral traffic* — visits where the **referer** HTTP header points back to a search engine. When Google keeps the user inside its own surface, that header never fires for the publisher."
+          }
+        ]
+      },
+      {
+        "heading": "ZERO-CLICK SEARCH",
+        "body": "By 2024, industry trackers estimated that the majority of Google searches ended without a click to any external site — answered by featured snippets, knowledge panels, local packs, or shopping modules. Native checkout extends the same logic from information to transactions.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of Google searches in 2024 ended without a click to an external website?",
+            "options": [
+              "Around 15%",
+              "Around 30%",
+              "Around 60%",
+              "Around 90%"
+            ],
+            "correct": 2,
+            "explanation": "Multiple independent trackers (SparkToro, Similarweb) converged on roughly 60% zero-click by 2024 — answers, panels, and ads kept users inside Google."
+          }
+        ]
+      },
+      {
+        "heading": "THE AI OVERVIEW SHOCK",
+        "body": "Google's AI Overviews, rolled out broadly in 2024, summarize answers above the blue links. Publisher studies showed click-through rates on informational queries collapsing once an Overview appeared — often by half or more. Non-English sites were hit harder because their substitutes (local competitors, social referrals) are thinner."
+      },
+      {
+        "heading": "WHY NATIVE CHECKOUT MATTERS",
+        "body": "Commerce queries were the last reliable click. A user searching 'best running shoes' eventually clicked to a retailer, where the publisher's affiliate link earned a cut. If Google completes the purchase in-surface, the affiliate breadcrumb breaks and the review site monetizes nothing.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "user",
+                "label": "Searcher"
+              },
+              {
+                "id": "google",
+                "label": "Google Search"
+              },
+              {
+                "id": "review",
+                "label": "Review site"
+              },
+              {
+                "id": "retailer",
+                "label": "Retailer"
+              },
+              {
+                "id": "checkout",
+                "label": "Google Checkout"
+              }
+            ],
+            "links": [
+              {
+                "source": "user",
+                "target": "google",
+                "value": 100,
+                "label": "query"
+              },
+              {
+                "source": "google",
+                "target": "review",
+                "value": 35,
+                "label": "old path"
+              },
+              {
+                "source": "review",
+                "target": "retailer",
+                "value": 35,
+                "label": "affiliate click"
+              },
+              {
+                "source": "google",
+                "target": "checkout",
+                "value": 65,
+                "label": "new path"
+              }
+            ],
+            "label": "shoe purchase: where the click used to go vs. now"
+          }
+        ]
+      },
+      {
+        "heading": "THE ANTITRUST BACKDROP",
+        "body": "A US federal court ruled in 2024 that Google holds an illegal monopoly in general search. Remedies are still being argued. Every product move that further locks users inside Google's surface — Overviews, native checkout, agentic shopping — is now also evidence in the remedies phase.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1998",
+                "label": "Google founded; ten blue links"
+              },
+              {
+                "year": "2007",
+                "label": "Universal Search adds news, images, video"
+              },
+              {
+                "year": "2012",
+                "label": "Knowledge Graph panels launch"
+              },
+              {
+                "year": "2020",
+                "label": "Featured snippets dominate informational queries"
+              },
+              {
+                "year": "2024",
+                "label": "AI Overviews roll out broadly",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "US court rules Google an illegal search monopoly"
+              },
+              {
+                "year": "2026",
+                "label": "Native checkout in Search"
+              }
+            ],
+            "label": "Google's enclosure of the search result page"
+          }
+        ]
+      },
+      {
+        "heading": "THE LANGUAGE ASYMMETRY",
+        "body": "English-language publishers have alternative discovery channels — Apple News, Reddit, X, newsletter ecosystems. Most non-English web ecosystems never developed those substitutes; Google is 90%+ of their inbound traffic. When Search absorbs the click, there is nowhere else for readers to arrive from.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Germany",
+                "value": "~92%",
+                "cc": "DE",
+                "weight": 92
+              },
+              {
+                "label": "Brazil",
+                "value": "~96%",
+                "cc": "BR",
+                "weight": 96
+              },
+              {
+                "label": "India",
+                "value": "~98%",
+                "cc": "IN",
+                "weight": 98
+              },
+              {
+                "label": "Indonesia",
+                "value": "~97%",
+                "cc": "ID",
+                "weight": 97
+              },
+              {
+                "label": "USA",
+                "value": "~87%",
+                "cc": "US",
+                "weight": 87
+              },
+              {
+                "label": "China",
+                "value": "~3%",
+                "cc": "CN",
+                "weight": 3
+              }
+            ],
+            "label": "Google's share of search, selected markets (2024 est.)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-22T22:33:06.237Z",
+    "label": "Search, Referral Traffic & the Open Web",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-21-memory-shortage-ai-cheap-smartphone-repricing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COMMODITY UNDERNEATH",
+        "body": "DRAM and NAND flash are the most cyclical commodities in technology. Three firms — Samsung, SK Hynix, Micron — make nearly all the world's DRAM. When demand shifts, they cannot bring new fabs online for 18-24 months, so prices swing 50% or more in a single year.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Samsung",
+                "value": 42,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "SK Hynix",
+                "value": 34,
+                "tone": "neutral"
+              },
+              {
+                "label": "Micron",
+                "value": 22,
+                "tone": "favorable"
+              },
+              {
+                "label": "Others",
+                "value": 2
+              }
+            ],
+            "label": "global DRAM market share, 2025 (%)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY HBM CHANGES EVERYTHING",
+        "body": "AI accelerators need High Bandwidth Memory — DRAM dies stacked vertically and wired through silicon vias. HBM uses 3× the wafer area of regular DRAM for the same gigabyte, so every HBM order quietly subtracts capacity from the commodity pool that feeds phones, laptops, and cars.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "An H100 GPU ships with **80GB** of HBM3 — roughly the memory of *eighty* mid-range smartphones. A single hyperscaler order can absorb a quarter's worth of a fab's output."
+          }
+        ]
+      },
+      {
+        "heading": "WHO PAYS WHAT",
+        "body": "Hyperscalers sign long-term contracts at premium prices to lock in supply; phone OEMs buy on shorter cycles and lose the bidding war. The same DRAM die earns the fab 3-4× more revenue when it is sold as HBM into a Nvidia GPU than as LPDDR into a budget Android.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "HBM3 (AI)",
+                "value": "~4.0×",
+                "tone": "unfavorable",
+                "weight": 4
+              },
+              {
+                "label": "DDR5 (server)",
+                "value": "~1.6×",
+                "tone": "neutral",
+                "weight": 1.6
+              },
+              {
+                "label": "LPDDR5 (phone)",
+                "value": "1.0×",
+                "tone": "favorable",
+                "weight": 1
+              },
+              {
+                "label": "DDR4 (legacy)",
+                "value": "~0.7×",
+                "tone": "favorable",
+                "weight": 0.7
+              }
+            ],
+            "label": "memory revenue per wafer, indexed"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1988 PRECEDENT",
+        "body": "Memory shortages have repriced electronics before. In 1988, a DRAM shortage triggered by Japanese export quotas doubled chip prices in months and forced PC makers to ship machines with half the advertised RAM. The pattern — capacity-constrained suppliers, one demand shock, downstream consumers absorb the loss — is the same arc playing out now."
+      },
+      {
+        "heading": "WHO LOSES FIRST",
+        "body": "When the sub-$150 smartphone disappears, the marginal user in Lagos or Karachi doesn't upgrade — they stay on a feature phone or share a household device. The digital divide widens at exactly the moment AI services assume universal mobile access.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "ET",
+              "PK",
+              "BD",
+              "EG",
+              "ID",
+              "KE",
+              "TZ"
+            ],
+            "label": "where the cheap smartphone matters most",
+            "caption": "regions where >60% of new smartphones sold are under $150"
+          }
+        ]
+      },
+      {
+        "heading": "TEST YOURSELF",
+        "body": "The memory market's structure is what makes AI capex bleed into consumer prices.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does AI demand for HBM raise the price of regular smartphone memory?",
+            "options": [
+              "HBM and smartphone DRAM are made on the same wafers in the same fabs",
+              "Phone makers buy HBM directly for on-device AI features",
+              "HBM contains rare earths that are also used in phone screens",
+              "Cloud providers resell unused HBM into the phone market"
+            ],
+            "correct": 0,
+            "explanation": "HBM is stacked DRAM produced on the same fab lines as LPDDR — every wafer turned into HBM is a wafer not turned into commodity phone memory."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-22T22:33:39.871Z",
+    "label": "The Memory Cycle & AI Capex",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-22-congo-ebola-bundibugyo-no-vaccine-orphan-strain": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "FIVE SPECIES, NOT ONE",
+        "body": "Ebola is not a single virus. It is a genus with five known species — Zaire, Sudan, Bundibugyo, Taï Forest, and Reston. Each has different lethality and immunology. A vaccine that trains the immune system against one species does not reliably cross-protect against the others.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Zaire",
+                "value": "~50%",
+                "tone": "unfavorable",
+                "weight": 50
+              },
+              {
+                "label": "Sudan",
+                "value": "~50%",
+                "tone": "unfavorable",
+                "weight": 50
+              },
+              {
+                "label": "Bundibugyo",
+                "value": "~30%",
+                "tone": "unfavorable",
+                "weight": 30
+              },
+              {
+                "label": "Taï Forest",
+                "value": "1 known case",
+                "tone": "neutral",
+                "weight": 5
+              },
+              {
+                "label": "Reston",
+                "value": "0 human deaths",
+                "tone": "favorable",
+                "weight": 2
+              }
+            ],
+            "label": "Ebola species — case fatality rate (historical avg.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ONLY ZAIRE HAS A VACCINE",
+        "body": "Ervebo, the only WHO-prequalified Ebola vaccine, was rushed through trials during the 2014–2016 West Africa outbreak — a Zaire-strain epidemic that killed over 11,000 people. The commercial and humanitarian incentive aligned around Zaire. The rarer species never generated the case numbers needed to power an efficacy trial.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2014 outbreak that produced Ervebo also produced the **ring vaccination** protocol — vaccinate the contacts of a case, then the contacts of contacts. Without a licensed Bundibugyo vaccine, that entire toolkit collapses back to *contact tracing alone*, the same playbook used in 1976."
+          }
+        ]
+      },
+      {
+        "heading": "THE BUNDIBUGYO DEBUT",
+        "body": "Bundibugyo was first identified in 2007 in western Uganda's Bundibugyo District, near the Congolese border. Sequencing showed it was a distinct species, not a Zaire variant. Until then, virologists believed they knew the Ebola family tree — the discovery was a reminder that filoviruses circulate silently in bat reservoirs and emerge on their own schedule.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CD",
+              "UG",
+              "RW",
+              "BI",
+              "CG"
+            ],
+            "label": "Bundibugyo's known range",
+            "caption": "All prior outbreaks: DRC–Uganda border forests.",
+            "markers": [
+              {
+                "lat": 0.7167,
+                "lng": 30.0667,
+                "label": "Bundibugyo (2007 index)"
+              },
+              {
+                "lat": -4.3217,
+                "lng": 15.3125,
+                "label": "Kinshasa"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE RESERVOIR",
+        "body": "Ebola's natural host is widely believed to be fruit bats — particularly the hammer-headed bat and the Egyptian fruit bat — which carry the virus without symptoms. Spillover happens when humans handle bushmeat, enter caves, or eat fruit a bat has bitten. This is why Ebola outbreaks cluster in the Congo Basin's forest belt, not in the savanna or the cities."
+      },
+      {
+        "heading": "WHAT CONTACT TRACING ACTUALLY DOES",
+        "body": "Without a vaccine, the only tool is breaking the transmission chain by hand. Every confirmed case generates a list of contacts; each contact is monitored for 21 days (one incubation period); any who develop fever are isolated before they become infectious. It works — 1976 Zaire was contained this way — but it requires trust, fuel, phones, and trained tracers, all of which Congo's North Kivu has in chronically short supply.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How long is an Ebola contact monitored after exposure?",
+            "options": [
+              "7 days",
+              "14 days",
+              "21 days",
+              "42 days"
+            ],
+            "correct": 2,
+            "explanation": "21 days is the maximum incubation period — the WHO declares an outbreak over only after 42 days (two incubation cycles) with no new cases."
+          }
+        ]
+      },
+      {
+        "heading": "THE ORPHAN-PATHOGEN PROBLEM",
+        "body": "Bundibugyo is what pharma calls an orphan pathogen — too rare to support a commercial vaccine program, too lethal to ignore. The same problem applies to Marburg, Sudan ebolavirus, Lassa, and Nipah. Without public funding (BARDA, CEPI, the EU's HERA), these candidates sit on university shelves at Phase 1 for years, ready to scale only after an outbreak is already burning."
+      }
+    ],
+    "generatedAt": "2026-05-22T22:34:14.352Z",
+    "label": "Bundibugyo & Orphan Ebola Strains",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-22-gabbard-resigns-iran-war-intelligence-dissent": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OFFICE",
+        "body": "The Director of National Intelligence was created in 2004 after the 9/11 Commission found that 17 spy agencies — CIA, NSA, DIA, and more — had no single coordinator. The DNI sits atop them all, controls the President's Daily Brief, and is statutorily the President's principal intelligence advisor.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The DNI's real power is **agenda-setting**: deciding which assessments reach the Oval Office, and in what order. A DNI who is frozen out of the NSC still holds the title, but the pipeline runs around them."
+          }
+        ]
+      },
+      {
+        "heading": "THE IRAQ PRECEDENT",
+        "body": "In 2002, the National Intelligence Estimate on Iraq's WMD program included dissents from State's INR bureau and the Department of Energy — buried in footnotes. The public case for war cited the majority view; the dissents proved correct. Every subsequent intelligence-vs-policy fight is read against this template.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1964",
+                "label": "Gulf of Tonkin: second attack never happened"
+              },
+              {
+                "year": "2002",
+                "label": "Iraq NIE buries INR/DOE dissents",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2003",
+                "label": "Powell UN speech on aluminum tubes"
+              },
+              {
+                "year": "2007",
+                "label": "Iran NIE: no active weapons program"
+              },
+              {
+                "year": "2019",
+                "label": "Coats forced out after Iran/NK dissent"
+              },
+              {
+                "year": "2026",
+                "label": "Gabbard resigns over Iran"
+              }
+            ],
+            "label": "intelligence dissent in US war-making"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2007 ESTIMATE",
+        "body": "A 2007 National Intelligence Estimate concluded Iran halted its nuclear weapons program in 2003. The finding blindsided the Bush White House mid-pressure-campaign and effectively killed the case for military strikes that year. It remains the canonical example of intelligence stopping a war.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did the 2007 Iran NIE conclude that derailed Bush-era strike plans?",
+            "options": [
+              "Iran had already built a working warhead",
+              "Iran halted its weapons program in 2003",
+              "Iran's enrichment was purely civilian",
+              "Iran was 90 days from breakout"
+            ],
+            "correct": 1,
+            "explanation": "The judgment that Iran halted weaponization work in 2003 — made with 'high confidence' — undercut the public case for military action and is the textbook case of intel constraining policy."
+          }
+        ]
+      },
+      {
+        "heading": "NSC ACCESS AS LEVERAGE",
+        "body": "The National Security Council's Principals Committee is where war decisions are made. A cabinet officer who keeps their title but loses their seat at that table has been demoted without being fired — a maneuver used against Dan Coats in 2019 after he publicly contradicted Trump on Iran and North Korea. The pattern is institutional, not personal.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Dennis Blair",
+                "role": "DNI under Obama",
+                "years": "2009–2010",
+                "cc": "US"
+              },
+              {
+                "name": "Dan Coats",
+                "role": "DNI under Trump",
+                "years": "2017–2019",
+                "cc": "US"
+              },
+              {
+                "name": "Avril Haines",
+                "role": "DNI under Biden",
+                "years": "2021–2025",
+                "cc": "US"
+              },
+              {
+                "name": "Tulsi Gabbard",
+                "role": "DNI under Trump",
+                "years": "2025–2026",
+                "cc": "US"
+              }
+            ],
+            "label": "DNIs who broke with their presidents"
+          }
+        ]
+      },
+      {
+        "heading": "THE WAR POWERS GAP",
+        "body": "The 1973 War Powers Resolution requires the president to seek congressional authorization within 60 days of hostilities. Every president since Nixon has treated it as advisory. With Congress's vote blocked this week, the only intra-executive check on an Iran war is whoever the vice president sides with in the Situation Room.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "The President shall in every possible instance consult with Congress before introducing United States Armed Forces into hostilities.",
+            "speaker": "War Powers Resolution, §3",
+            "year": "1973"
+          }
+        ]
+      },
+      {
+        "heading": "THE VICE PRESIDENT'S SWING",
+        "body": "Under the National Security Act, the VP is a statutory NSC member — one of only four, alongside the President, Secretary of State, and Secretary of Defense. When the DNI is sidelined and Congress is blocked, the VP becomes the last principal with standing to formally object inside the room. Cheney used this position to expand war powers; the same seat can constrain them."
+      }
+    ],
+    "generatedAt": "2026-05-22T22:34:48.104Z",
+    "label": "DNI & Intelligence Dissent",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-22-gaza-trump-board-peace-disarmament-occupation-conditions": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SEQUENCING PROBLEM",
+        "body": "Every modern peace process turns on one question: who acts first. Disarm-then-withdraw asks the weaker party to surrender its only leverage on a promise. Withdraw-then-disarm asks the stronger party to surrender its physical control on a promise. Wars often end not because the parties trust each other, but because a third-party guarantor is credible enough to bridge the gap.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical name for this is the **commitment problem** — Fearon's 1995 paper argued most wars persist not over what the parties want, but over the impossibility of either side credibly promising to honor a deal once the other has disarmed."
+          }
+        ]
+      },
+      {
+        "heading": "THE IRA PRECEDENT",
+        "body": "Northern Ireland's Good Friday Agreement (1998) deliberately decoupled disarmament from political participation. Sinn Féin took seats in government while the IRA still held weapons; decommissioning was overseen by an independent international body and took seven more years to complete. The lesson planners drew: insisting on disarmament first kills the deal.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1994",
+                "label": "IRA ceasefire"
+              },
+              {
+                "year": "1998",
+                "label": "Good Friday Agreement",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1999",
+                "label": "Sinn Féin enters government"
+              },
+              {
+                "year": "2005",
+                "label": "IRA completes decommissioning"
+              }
+            ],
+            "label": "decoupling political settlement from decommissioning"
+          }
+        ]
+      },
+      {
+        "heading": "WHY 'BOARD OF PEACE' MATTERS",
+        "body": "Naming a body that sits above the negotiating parties is itself a structural move. Mandate territories, UN trusteeships, and interim authorities all share a feature: an external board defines the terms by which sovereignty is eventually transferred. The framework decides the outcome long before the votes are taken."
+      },
+      {
+        "heading": "THE BLESSED LAND",
+        "body": "Palestine is named in the Quran as the land Allah blessed for the worlds (Surah al-Anbiya). Surah al-Isra opens with the Prophet's night journey to al-Aqsa — the first qibla, before the direction of prayer turned to Makkah. The Islamic legal tradition treats this land as waqf — an endowment that cannot be alienated by any temporal authority, including a Palestinian one. This is why disarmament-without-withdrawal is heard not as a security technicality but as a demand to formalize loss of an inalienable trust."
+      },
+      {
+        "heading": "THE OSLO MEMORY",
+        "body": "The 1993 Oslo Accords were sold as a five-year transition to a Palestinian state. The PA disarmed its police-grade arsenal, took over civil administration in fragments of the West Bank, and waited. Thirty-three years later, settlements have tripled and final-status talks have not occurred. Every Palestinian negotiator since reads new frameworks against this template.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In the year Oslo was signed, roughly how many Israeli settlers lived in the West Bank? And today?",
+            "options": [
+              "~110,000 then; ~500,000 today",
+              "~250,000 then; ~400,000 today",
+              "~50,000 then; ~150,000 today",
+              "~300,000 then; ~700,000 today"
+            ],
+            "correct": 0,
+            "explanation": "Settler population roughly quintupled during the 'interim' period Oslo was meant to end, which is why Palestinians read transitional frameworks as ratchets, not bridges."
+          }
+        ]
+      },
+      {
+        "heading": "WHO SPEAKS FOR PALESTINIANS",
+        "body": "Hamdan's warning — that an ultimatum will push the population beyond its political leadership — names a real pattern. When a recognized leadership is forced to accept terms the population rejects, the next round of violence comes not from the leadership but from below it, and outside its control. The Second Intifada in 2000 followed exactly this pattern after Camp David collapsed.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Mahmoud Abbas",
+                "role": "PA President, Fatah",
+                "years": "2005–present",
+                "cc": "PS"
+              },
+              {
+                "name": "Osama Hamdan",
+                "role": "Hamas senior official",
+                "cc": "PS"
+              },
+              {
+                "name": "Ziyad al-Nakhalah",
+                "role": "Islamic Jihad sec-general",
+                "cc": "PS"
+              },
+              {
+                "name": "Marwan Barghouti",
+                "role": "imprisoned Fatah figure",
+                "years": "jailed 2002–",
+                "cc": "PS"
+              }
+            ],
+            "label": "the Palestinian political field"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-22T22:35:20.571Z",
+    "label": "Disarmament & the Peace Frame",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-22-kazakhstan-super-apps-regulatory-gap-fintech": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A SUPER-APP IS",
+        "body": "A super-app bundles payments, messaging, identity, credit, ride-hailing, and shopping into one login. The model was pioneered by WeChat in China after 2013, when smartphone adoption leapfrogged the desktop web entirely in emerging markets. The bundle is the business — each function feeds data to the others.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The term of art is *embedded finance*: lending and payments live **inside** a non-bank app, regulated (if at all) by whichever framework the host activity falls under."
+          }
+        ]
+      },
+      {
+        "heading": "WHY KASPI IS DIFFERENT",
+        "body": "Kaspi started as a bank, then absorbed the marketplace and the payments rail. Most super-apps go the other direction — chat or commerce first, finance bolted on later. Starting from a banking licence means Kaspi's account is also the user's primary identity for tax filings, utilities, and government services. Losing the app is closer to losing a passport than losing an email.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Kaspi",
+                "value": "bank-first",
+                "cc": "KZ",
+                "tone": "neutral"
+              },
+              {
+                "label": "WeChat",
+                "value": "chat-first",
+                "cc": "CN",
+                "tone": "neutral"
+              },
+              {
+                "label": "GoTo / Gojek",
+                "value": "ride-first",
+                "cc": "ID",
+                "tone": "neutral"
+              },
+              {
+                "label": "JazzCash",
+                "value": "telco-first",
+                "cc": "PK",
+                "tone": "neutral"
+              },
+              {
+                "label": "Opay",
+                "value": "payments-first",
+                "cc": "NG",
+                "tone": "neutral"
+              }
+            ],
+            "label": "super-app origins"
+          }
+        ]
+      },
+      {
+        "heading": "THE REGULATORY GAP",
+        "body": "Banking law assumes a bank can freeze an account only with cause and a documented appeal path. App-store and platform terms of service let a company suspend an account at will. When a bank and a platform are the same entity, the weaker standard tends to win — there is no separate regulator for the platform layer.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KZ",
+              "ID",
+              "PK",
+              "NG"
+            ],
+            "label": "the same gap, four jurisdictions"
+          }
+        ]
+      },
+      {
+        "heading": "WHY EMERGING MARKETS LEAPFROG",
+        "body": "Countries that never built dense branch networks or credit-card rails moved straight to mobile. M-Pesa in Kenya (2007) proved that a phone-based wallet could substitute for a bank account for the unbanked majority. The upside is inclusion; the downside is concentration — one app ends up holding what twenty banks would have held in a developed market."
+      },
+      {
+        "heading": "THE DUE PROCESS QUESTION",
+        "body": "In traditional banking, account closure triggers statutory notice periods, regulator filings, and a right to a written reason. Platform suspensions trigger an automated email. The substantive question is whether financial access has become a right that demands due process, or remains a service that the provider can withdraw at will.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was the first mobile-money service to reach mass scale in an emerging market?",
+            "options": [
+              "WeChat Pay in China",
+              "M-Pesa in Kenya",
+              "Paytm in India",
+              "GCash in the Philippines"
+            ],
+            "correct": 1,
+            "explanation": "Safaricom launched M-Pesa in 2007; within five years it was moving a sum equivalent to roughly a third of Kenyan GDP."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-22T22:35:47.946Z",
+    "label": "Super-Apps & Regulatory Lag",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-22-sudan-army-militia-integration-rsf-darfur-defections": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO-GENERAL WAR",
+        "body": "Sudan's war since April 2023 is between the Sudanese Armed Forces under Burhan and the Rapid Support Forces under Hemedti — former allies who jointly overthrew Bashir in 2019, then jointly overthrew the civilian transition in 2021, then turned on each other over RSF integration timelines.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Abdel Fattah al-Burhan",
+                "role": "SAF commander, de facto head of state",
+                "years": "2019–",
+                "cc": "SD"
+              },
+              {
+                "name": "Mohamed Hamdan Dagalo (Hemedti)",
+                "role": "RSF commander",
+                "years": "2013–",
+                "cc": "SD"
+              },
+              {
+                "name": "Yasir al-Atta",
+                "role": "SAF deputy commander, chief of staff",
+                "years": "2023–",
+                "cc": "SD"
+              }
+            ],
+            "label": "the generals who were allies twice"
+          }
+        ]
+      },
+      {
+        "heading": "THE JANJAWEED LINEAGE",
+        "body": "The RSF is the formalized successor to the Janjaweed — the Arab tribal militias Khartoum armed in the early 2000s to fight Darfur's insurgency. Bashir later rebranded them as a paramilitary in 2013 and gave Hemedti control of Sudan's gold trade. The current war is, in part, a state confronting the parallel army it built to do its dirtiest work.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine of arming irregulars to commit deniable violence has a name in counterinsurgency literature: **force multiplication through proxies**. Sudan is the textbook case of what happens when the proxy outgrows the principal."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MID-WAR INTEGRATION MATTERS",
+        "body": "Whoever controls the formal security structure when a ceasefire arrives writes the postwar rules — DDR programs, officer ranks, budget shares, control of mines and border crossings. Absorbing allied militias into the army now locks in their seats at the table before peace talks set the seating chart.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does DDR stand for in postwar settlements?",
+            "options": [
+              "Demobilization, Disarmament, Reintegration",
+              "Defense Doctrine Review",
+              "Demilitarized Defense Region",
+              "Direct Democratic Representation"
+            ],
+            "correct": 0,
+            "explanation": "DDR is the standard UN-backed framework for dissolving armed groups after civil wars — and it is precisely what mid-war integration is designed to preempt."
+          }
+        ]
+      },
+      {
+        "heading": "THE DARFUR ARC",
+        "body": "Darfur has been a war zone in four overlapping conflicts since 2003. The current RSF campaign in El Fasher and the killings in El Geneina (2023) revived UN genocide warnings using almost identical language to 2004 — same region, same ethnic targeting of the Masalit, in some cases the same commanders.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2003",
+                "label": "Darfur insurgency begins; Janjaweed armed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2004",
+                "label": "US declares genocide"
+              },
+              {
+                "year": "2009",
+                "label": "ICC indicts Bashir"
+              },
+              {
+                "year": "2013",
+                "label": "Janjaweed rebranded as RSF"
+              },
+              {
+                "year": "2019",
+                "label": "Bashir falls; RSF Khartoum massacre"
+              },
+              {
+                "year": "2023",
+                "label": "SAF–RSF war erupts"
+              },
+              {
+                "year": "2023-06",
+                "label": "El Geneina massacre of Masalit"
+              }
+            ],
+            "spans": [
+              {
+                "from": "2003",
+                "to": "2010",
+                "label": "First Darfur war",
+                "tone": "unfavorable"
+              },
+              {
+                "from": "2023",
+                "to": "2026",
+                "label": "Current SAF–RSF war",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Darfur's four wars"
+          }
+        ]
+      },
+      {
+        "heading": "THE JUBA AGREEMENT",
+        "body": "The 2020 Juba Peace Agreement brought several armed factions — the SPLM-N factions, Minni Minawi's SLM, JEM — into Khartoum's transitional government with promises of integration, regional autonomy, and wealth-sharing. Most of those promises were never funded. Now those same signatories must choose sides while their original guarantees remain unfulfilled.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "SS",
+              "TD",
+              "LY",
+              "EG",
+              "ET",
+              "ER",
+              "CF"
+            ],
+            "label": "Sudan's neighborhood — every border is a supply line",
+            "markers": [
+              {
+                "lat": 15.5007,
+                "lng": 32.5599,
+                "label": "Khartoum"
+              },
+              {
+                "lat": 13.6273,
+                "lng": 25.3494,
+                "label": "El Fasher"
+              },
+              {
+                "lat": 13.4517,
+                "lng": 22.4453,
+                "label": "El Geneina"
+              },
+              {
+                "lat": 4.8517,
+                "lng": 31.5825,
+                "label": "Juba (2020 talks)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE EXTERNAL BACKERS",
+        "body": "The war is being fought with foreign supply chains. The UAE has been credibly tied to RSF financing through Hemedti's gold exports via Dubai; Egypt backs the SAF; Russian Wagner/Africa Corps elements operate around gold mines; Iran has reportedly supplied drones to the SAF. A purely Sudanese ceasefire cannot hold without external sponsors aligning first."
+      }
+    ],
+    "generatedAt": "2026-05-22T22:36:26.970Z",
+    "label": "Sudan's War & the Security Settlement",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-22-uk-retail-sales-iran-fuel-shock-consumer-collapse": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PASSTHROUGH",
+        "body": "A Brent spike hits UK pump prices within two weeks. Fuel is roughly 4% of household spending but the price is on a sign every driver passes daily — which is why it moves consumer confidence faster than any other line item in the CPI basket.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call this the **salience effect**: visible, frequent prices shape inflation expectations more than larger but hidden costs like rent or insurance."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1973 TEMPLATE",
+        "body": "The OPEC embargo quadrupled oil prices in five months. UK retail sales fell, the three-day week followed, and stagflation entered the economic vocabulary. Every Middle East oil shock since has been measured against that template — and central banks have responded to each one differently.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1973",
+                "label": "OPEC embargo",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1979",
+                "label": "Iranian Revolution"
+              },
+              {
+                "year": "1990",
+                "label": "Iraq invades Kuwait"
+              },
+              {
+                "year": "2008",
+                "label": "Brent hits $147"
+              },
+              {
+                "year": "2022",
+                "label": "Russia invades Ukraine"
+              },
+              {
+                "year": "2026",
+                "label": "Iran war shock"
+              }
+            ],
+            "label": "oil shocks and UK recessions"
+          }
+        ]
+      },
+      {
+        "heading": "THE BOE'S TRILEMMA",
+        "body": "An oil shock is the textbook supply shock: it raises inflation AND slows growth simultaneously. Cutting rates fights the slowdown but lets inflation expectations drift. Holding rates anchors inflation but deepens the recession. There is no clean answer — only which mistake to make.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What kind of shock raises inflation and reduces output at the same time?",
+            "options": [
+              "Demand shock",
+              "Supply shock",
+              "Monetary shock",
+              "Fiscal shock"
+            ],
+            "correct": 1,
+            "explanation": "Supply shocks (oil, war, pandemic) shift the supply curve left — output falls, prices rise. Demand shocks move both in the same direction."
+          }
+        ]
+      },
+      {
+        "heading": "WHY FUEL VOLUMES, NOT PRICES",
+        "body": "The ONS measures retail in volume terms — litres pumped, not pounds spent. A 10% volume drop means Britons drove less, not just paid more. That distinction matters: it signals demand destruction, which feeds through to GDP, not just to the inflation print.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Volume data strips out price effects to show *real* economic activity — the same reason GDP is reported in constant prices rather than nominal pounds."
+          }
+        ]
+      },
+      {
+        "heading": "THE STERLING CHANNEL",
+        "body": "Oil is priced in dollars. When a Gulf shock hits, sterling typically weakens against the dollar as capital flows to safe havens — which means UK fuel importers pay twice: once for the oil rise, once for the currency move. This double-hit is why UK fuel inflation runs hotter than US fuel inflation during the same shock."
+      }
+    ],
+    "generatedAt": "2026-05-22T22:36:52.760Z",
+    "label": "Oil Shocks & Consumer Spending",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-22-umar-khalid-uapa-bail-india-kasab-framing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STATUTE",
+        "body": "The Unlawful Activities (Prevention) Act was passed in 1967 to target secessionist groups. Successive amendments — most consequentially in 2008 after the Mumbai attacks and again in 2019 — extended it to individual terror designations and stripped procedural protections that ordinary criminal law guarantees.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 2019 amendment let the government designate *individuals* as terrorists without a trial — previously only organizations could be banned. Khalid is charged under the post-2008 conspiracy provisions."
+          }
+        ]
+      },
+      {
+        "heading": "THE BAIL INVERSION",
+        "body": "Section 43D(5) flips the ordinary presumption: a court must deny bail if it finds the accusation prima facie true based on the police case file alone. Defendants cannot challenge the evidence at the bail stage. The result is that pretrial detention becomes the punishment, regardless of eventual conviction.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under UAPA Section 43D(5), what can a judge consider when deciding bail?",
+            "options": [
+              "Only the police case file, taken as true",
+              "The full evidence including defence witnesses",
+              "Whether the accused poses a flight risk",
+              "Whether trial delay has been unreasonable"
+            ],
+            "correct": 0,
+            "explanation": "The court reads the chargesheet as if its allegations were true, with no testing of evidence — which is why UAPA bail is almost impossible to win at the trial-court stage."
+          }
+        ]
+      },
+      {
+        "heading": "THE WATALI PRECEDENT",
+        "body": "In NIA v. Zahoor Ahmad Shah Watali (2019), the Supreme Court held that bail courts cannot weigh whether evidence is admissible or credible — they must accept the prosecution's narrative on its face. The ruling effectively closed the bail door for UAPA defendants and is the framework under which Khalid has been held."
+      },
+      {
+        "heading": "PROCESS AS PUNISHMENT",
+        "body": "UAPA conviction rates are low — government data through 2022 showed under 3% of UAPA arrests led to conviction — but median pretrial detention runs into years. The journalist Siddique Kappan spent over two years inside before bail; the Bhima Koregaon co-accused Stan Swamy died in custody awaiting trial in 2021.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Umar Khalid",
+                "role": "Activist, Delhi riots case",
+                "years": "2020–present",
+                "cc": "IN"
+              },
+              {
+                "name": "Sharjeel Imam",
+                "role": "Scholar, sedition + UAPA",
+                "years": "2020–present",
+                "cc": "IN"
+              },
+              {
+                "name": "Stan Swamy",
+                "role": "Jesuit priest, Bhima Koregaon",
+                "years": "2020–2021 (died in custody)",
+                "cc": "IN"
+              },
+              {
+                "name": "G.N. Saibaba",
+                "role": "Professor, Maoist links case",
+                "years": "2014–2024 (acquitted)",
+                "cc": "IN"
+              }
+            ],
+            "label": "long UAPA detentions without conviction"
+          }
+        ]
+      },
+      {
+        "heading": "WHY KASAB",
+        "body": "Ajmal Kasab was the lone surviving gunman of the 2008 Mumbai attacks — caught on CCTV firing inside Chhatrapati Shivaji station, tried, convicted, and hanged in 2012. Invoking him in a courtroom argument compresses an unresolved political case into the image of a confessed mass murderer; it is rhetorical framing, not legal analogy."
+      },
+      {
+        "heading": "ARTICLE 21",
+        "body": "The Indian Constitution's Article 21 guarantees that no person be deprived of life or liberty except by procedure established by law. The Supreme Court has repeatedly held — most recently in the K.A. Najeeb (2021) ruling — that prolonged incarceration without trial itself violates Article 21, and can override the UAPA bail bar. The Khalid hearing is testing whether that doctrine still has teeth.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "No person shall be deprived of his life or personal liberty except according to procedure established by law.",
+            "speaker": "Constitution of India, Article 21",
+            "year": "1950"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-22T22:37:26.946Z",
+    "label": "UAPA & Pretrial Detention in India",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-22-uscis-green-card-applicants-leave-country-policy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO PATHS",
+        "body": "US permanent residence has always had two routes: adjustment of status (file from inside the US, keep working, keep your kids in school) or consular processing (return to your home country, interview at a US embassy, wait for a visa stamp). The first was created by the Immigration and Nationality Act of 1952 specifically to avoid disrupting lives already rooted in America.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical terms matter: **adjustment of status** (AOS) is filed on Form I-485 from within the US; **consular processing** is filed on Form DS-260 from abroad. Same green card, radically different human cost."
+          }
+        ]
+      },
+      {
+        "heading": "THE BACKLOG MATH",
+        "body": "Per-country caps limit any single nationality to 7% of employment-based green cards issued each year. Combined with annual quotas set in 1990 and never raised, this produces decade-plus waits for high-volume countries. An Indian national filing today in EB-2 faces a wait that actuarial tables suggest may exceed their working life.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Approximate EB-2 employment green card wait",
+            "peers": [
+              {
+                "value": 50,
+                "cc": "IN"
+              },
+              {
+                "value": 6,
+                "cc": "CN"
+              },
+              {
+                "value": 2,
+                "cc": "PH"
+              },
+              {
+                "value": 2,
+                "cc": "MX"
+              },
+              {
+                "value": 1,
+                "cc": "PK"
+              },
+              {
+                "value": 1,
+                "cc": "BR"
+              }
+            ],
+            "subjectCc": "IN",
+            "unit": "years"
+          }
+        ]
+      },
+      {
+        "heading": "WHY LEAVING IS THE TRAP",
+        "body": "A pending adjustment of status normally protects an applicant — they may remain, work via EAD, and travel via advance parole. Consular processing offers none of this. Once you exit the US, your H-1B is no longer a status, just a stamp. If the consulate denies or delays, there is no automatic right of return; visa issuance is a consular officer's discretion, reviewable by no court.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What legal recourse exists if a US consular officer denies an immigrant visa abroad?",
+            "options": [
+              "Federal court appeal",
+              "Administrative review by USCIS",
+              "Essentially none — the doctrine of consular nonreviewability",
+              "Automatic reapplication after 30 days"
+            ],
+            "correct": 2,
+            "explanation": "Under the doctrine of consular nonreviewability, articulated in Kleindienst v. Mandel (1972), US courts will not review individual visa denials made abroad."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1996 PRECEDENT",
+        "body": "The Illegal Immigration Reform and Immigrant Responsibility Act of 1996 introduced the 3-and-10-year bars: leave the US after accruing unlawful presence and you are barred from return for years. Adjustment of status became the safer path precisely because departure carried catastrophic risk. Routing applicants overseas now reactivates that risk for anyone whose status has lapsed even briefly during a pending case.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "PK",
+              "BD",
+              "LK",
+              "NP"
+            ],
+            "label": "countries with the deepest US employment backlogs",
+            "caption": "South Asia carries the bulk of H-1B holders affected"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY USES THIS PATH",
+        "body": "Roughly 85% of employment-based green cards in recent years were issued via adjustment of status, not consular processing. The applicants are overwhelmingly skilled workers already embedded in US payrolls — Silicon Valley engineers, hospital physicians, university researchers — whose employers sponsored them years earlier.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Adjustment of status",
+                "value": "~85%",
+                "tone": "neutral",
+                "weight": 85
+              },
+              {
+                "label": "Consular processing",
+                "value": "~15%",
+                "tone": "neutral",
+                "weight": 15
+              }
+            ],
+            "label": "FY2023 employment-based green cards (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE EXECUTIVE LEVER",
+        "body": "Congress sets the green card quotas and categories, but the executive branch controls procedure. Reclassifying adjustment of status as 'extraordinary' is administrative — no statute changes, no vote required. It is the same lever used in 2020 to suspend visa issuance during COVID, and the same legal architecture courts upheld then under broad INA §212(f) authority."
+      }
+    ],
+    "generatedAt": "2026-05-22T22:37:58.877Z",
+    "label": "Adjustment of Status",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-22-warsh-fed-chair-iran-inflation-credibility": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BIND",
+        "body": "A central banker facing supply-shock inflation has two bad options: hike rates to defend credibility and risk recession, or cut rates as the White House demands and watch inflation expectations un-anchor. There is no third door — the textbook calls this the divine coincidence breaking down.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call the trap **stagflation** — rising prices alongside slowing growth. The 1970s taught that cutting rates into a supply shock makes the second leg worse without curing the first."
+          }
+        ]
+      },
+      {
+        "heading": "THE VOLCKER PRECEDENT",
+        "body": "Paul Volcker raised the federal funds rate to 20% in 1981 to break the inflation of the 1970s oil shocks. Unemployment hit 10.8%, manufacturing states cratered, and Reagan absorbed the political cost. The episode is the textbook case that monetary credibility is purchased only at recessionary prices.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1973",
+                "label": "OPEC oil embargo"
+              },
+              {
+                "year": "1979",
+                "label": "Volcker takes Fed chair",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1981",
+                "label": "Fed funds hits 20%"
+              },
+              {
+                "year": "1982",
+                "label": "Unemployment 10.8%"
+              },
+              {
+                "year": "1986",
+                "label": "Inflation back below 2%"
+              }
+            ],
+            "label": "the inflation-credibility cycle"
+          }
+        ]
+      },
+      {
+        "heading": "WHO WARSH IS",
+        "body": "Warsh joined the Fed Board in 2006 at 35 — the youngest governor ever — and served as the Fed's point man with Wall Street through the 2008 crisis. He left in 2011 dissenting against quantitative easing as too dovish. His public writing since has been consistently hawkish on inflation.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Kevin Warsh",
+                "role": "incoming Fed chair",
+                "years": "2026–",
+                "cc": "US"
+              },
+              {
+                "name": "Jerome Powell",
+                "role": "outgoing chair",
+                "years": "2018–2026",
+                "cc": "US"
+              },
+              {
+                "name": "Christopher Waller",
+                "role": "FOMC governor, hawk",
+                "years": "2020–",
+                "cc": "US"
+              },
+              {
+                "name": "Paul Volcker",
+                "role": "the precedent",
+                "years": "1979–1987",
+                "cc": "US"
+              }
+            ],
+            "label": "the Fed succession"
+          }
+        ]
+      },
+      {
+        "heading": "THE PARADOX",
+        "body": "Trump wants lower rates; the chair he picked has spent fifteen years arguing the Fed cuts too aggressively. The appointment makes sense only if loyalty was the criterion and policy direction was assumed to follow — which is exactly the scenario the Federal Reserve Act of 1913 was structured to prevent.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When can a US President legally remove a Fed chair before their term ends?",
+            "options": [
+              "Any time, by executive order",
+              "Only 'for cause' — malfeasance, not policy disagreement",
+              "With Senate approval by simple majority",
+              "Only if the Treasury Secretary concurs"
+            ],
+            "correct": 1,
+            "explanation": "The Federal Reserve Act and Humphrey's Executor (1935) limit removal to 'cause' — defined as misconduct, not disagreement on rates. Courts have never tested a direct firing."
+          }
+        ]
+      },
+      {
+        "heading": "THE OIL CHANNEL",
+        "body": "An energy-driven CPI spike feeds through to core inflation within two to three quarters as transport and input costs reprice. Central banks historically tolerate the first leg as transitory, then tighten when wages start chasing — by which point expectations have already shifted.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              4.03,
+              4.04,
+              4.05,
+              4.02,
+              3.97,
+              4.05,
+              4.06,
+              4.09,
+              4.13,
+              4.15,
+              4.12,
+              4.15,
+              4.21,
+              4.27,
+              4.28,
+              4.23,
+              4.2,
+              4.26,
+              4.25,
+              4.39,
+              4.34,
+              4.39,
+              4.33,
+              4.42,
+              4.44,
+              4.35,
+              4.3,
+              4.33,
+              4.31,
+              4.35,
+              4.34,
+              4.33,
+              4.29,
+              4.29,
+              4.31,
+              4.3,
+              4.26,
+              4.29,
+              4.32,
+              4.26,
+              4.26,
+              4.3,
+              4.3,
+              4.34,
+              4.31,
+              4.35,
+              4.36,
+              4.42,
+              4.4,
+              4.39,
+              4.45,
+              4.43,
+              4.36,
+              4.41,
+              4.38,
+              4.42,
+              4.46,
+              4.46,
+              4.47,
+              4.59,
+              4.61,
+              4.67,
+              4.57,
+              4.57
+            ],
+            "periods": [
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 3",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21"
+            ],
+            "label": "US 10y Treasury",
+            "unit": "%",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE BOND MARKET POLICES",
+        "body": "If markets stop believing the Fed will defend its 2% target, long-term yields rise regardless of what the policy rate does — a 'bond vigilante' revolt that makes every government borrowing cost more. Credibility, once lost, is not a press release away.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Until we are confident that inflation is moving sustainably down toward 2 percent, it would be inappropriate to reduce policy restraint.",
+            "speaker": "Jerome Powell, FOMC statement",
+            "year": "2024"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · Board of Governors · as of 2026-05-21"
+    ],
+    "generatedAt": "2026-05-22T22:38:29.850Z",
+    "label": "Fed Independence & the Volcker Bind",
+    "category": "economy",
+    "articleCount": 1
   }
 }
