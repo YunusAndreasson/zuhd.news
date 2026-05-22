@@ -21,6 +21,7 @@
     "release:ios": "./scripts/release.sh release ios",
     "release:android": "./scripts/release.sh release android",
     "release:all": "./scripts/release.sh release all",
+    "postinstall": "node ./scripts/setup-shared-link.js",
     "eas-build-pre-install": "node ./scripts/eas-fetch-shared.js"
   },
   "dependencies": {
