@@ -25,7 +25,7 @@
  * the canonical "lights starting to come on" boundary.
  */
 
-import capitals from '../../../shared/data/capitals-50m.json';
+import capitals from '@shared/data/capitals-50m.json';
 
 interface CapitalEntry {
   name: string;
