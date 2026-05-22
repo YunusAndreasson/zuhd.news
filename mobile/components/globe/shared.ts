@@ -71,11 +71,7 @@ export const landSimplified = feature(simplifiedData, landObjSimp);
  *  `landSimplified`. Same arcs guarantee mid-scroll borders align exactly
  *  with the simplified coastline. ~56% cheaper to project than full
  *  `bordersMesh`; swapped in by MiniGlobe when `!nearSettled`. */
-export const bordersMeshSimplified = mesh(
-  simplifiedData,
-  countriesObjSimp,
-  (a, b) => a !== b,
-);
+export const bordersMeshSimplified = mesh(simplifiedData, countriesObjSimp, (a, b) => a !== b);
 /** Mid-tier land for settled frames — denser than `landSimplified` so the
  *  coastline keeps its read at rest, but lighter than the full `land`
  *  mesh. Same arcs as the other two (alignment preserved). */

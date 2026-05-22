@@ -6,7 +6,6 @@ import type {
   GdacsAlert,
   HeatmapPoint,
 } from '@shared/types';
-import { LinearGradient } from 'expo-linear-gradient';
 import {
   memo,
   useCallback,
@@ -27,11 +26,14 @@ import {
   View,
 } from 'react-native';
 import Animated, {
+  Extrapolation,
   FadeIn,
+  interpolate,
   runOnJS,
   type SharedValue,
   useAnimatedRef,
   useAnimatedScrollHandler,
+  useAnimatedStyle,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { ANIMATION } from '../constants/theme';
@@ -105,19 +107,13 @@ export const ArticleList = memo(function ArticleList({
 }: ArticleListProps) {
   const { colors, bgAlpha } = useTheme();
   const insets = useSafeAreaInsets();
-  const bgFadeColors = useMemo(
-    () =>
-      [
-        bgAlpha(0),
-        bgAlpha(1),
-        bgAlpha(1),
-        bgAlpha(0.92),
-        bgAlpha(0.65),
-        bgAlpha(0.28),
-        bgAlpha(0),
-      ] as const,
-    [bgAlpha],
-  );
+  const bgFadeGradient = useMemo(() => {
+    const stops = BG_FADE_LOCATIONS.map(
+      (loc, i) =>
+        `${[bgAlpha(0), bgAlpha(1), bgAlpha(1), bgAlpha(0.92), bgAlpha(0.65), bgAlpha(0.28), bgAlpha(0)][i]} ${loc * 100}%`,
+    ).join(', ');
+    return `linear-gradient(to bottom, ${stops})`;
+  }, [bgAlpha]);
   const { width: screenWidth } = useWindowDimensions();
   // Chronological sort, but within the same time bucket (e.g. all "1h ago")
   // breaking stories (eventCoverage >= 100) float to top of their bucket.
@@ -148,6 +144,18 @@ export const ArticleList = memo(function ArticleList({
     caughtUpFired,
     overscrollTimer,
   } = useScrollState();
+
+  const bgFadeStyle = useAnimatedStyle(() => {
+    'worklet';
+    if (itemHeight === 0) return { opacity: 1 };
+    const raw = scrollY.value / itemHeight;
+    if (raw < 0 || raw > articleCount - 1) return { opacity: 1 };
+    const fraction = raw % 1;
+    const distanceFromSettled = Math.min(fraction, 1 - fraction); // 0 at rest, 0.5 mid-drag
+    const opacity = interpolate(distanceFromSettled, [0, 0.4], [1, 0], Extrapolation.CLAMP);
+    return { opacity };
+  });
+
   const currentIndexRef = useRef(currentIndex);
   currentIndexRef.current = currentIndex;
   const listRef = useAnimatedRef<Animated.FlatList<Article>>();
@@ -341,10 +349,8 @@ export const ArticleList = memo(function ArticleList({
           FlatList so cells scroll through a fixed fade pattern instead of
           each cell carrying its own. pointerEvents:none keeps the per-cell
           GlobeTapZone reachable through it. */}
-      <LinearGradient
-        colors={bgFadeColors}
-        locations={BG_FADE_LOCATIONS}
-        style={styles.bgFade}
+      <Animated.View
+        style={[styles.bgFade, { experimental_backgroundImage: bgFadeGradient }, bgFadeStyle]}
         pointerEvents="none"
       />
       <Animated.FlatList
@@ -381,5 +387,5 @@ export const ArticleList = memo(function ArticleList({
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
-  bgFade: { ...StyleSheet.absoluteFillObject },
+  bgFade: { position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 },
 });

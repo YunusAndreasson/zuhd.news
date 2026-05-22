@@ -1,5 +1,5 @@
 import type { ConflictEventFamily, GdacsEventType as EventType } from '@shared/types';
-import { Skia } from '@shopify/react-native-skia';
+import { Skia, type SkPath } from '@shopify/react-native-skia';
 
 /** Glyph paths for GDACS event types. Each path is centered at (0,0) inside
  *  a 22×22 unit box so MiniGlobe can translate by `(x - GLYPH_HALF, y - GLYPH_HALF)`
@@ -8,8 +8,6 @@ import { Skia } from '@shopify/react-native-skia';
 
 const GLYPH_SIZE = 22;
 export const GLYPH_HALF = GLYPH_SIZE / 2;
-
-type SkPath = ReturnType<typeof Skia.Path.Make>;
 
 function earthquakePath(): SkPath {
   // Three concentric circles + epicenter dot — the seismograph signature.

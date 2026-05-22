@@ -416,10 +416,7 @@ export function renderSentences(
         const datelineSize = typography.sizeSm + 1;
         return (
           <Fragment key={i}>
-            <Text
-              style={[mdStyles.dateline, { fontSize: datelineSize }]}
-              onPress={onDatelinePress}
-            >
+            <Text style={[mdStyles.dateline, { fontSize: datelineSize }]} onPress={onDatelinePress}>
               {dateline}
             </Text>
             <Text

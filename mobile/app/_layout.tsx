@@ -27,6 +27,22 @@ import { getPreferences, savePreferences } from '../lib/storage';
 
 configureReanimatedLogger({ level: ReanimatedLogLevel.warn, strict: false });
 
+// Skia 2.6.2 deprecates SkPath mutation methods (moveTo, lineTo, addCircle…)
+// in favor of `Skia.PathBuilder.Make().…build()`, but the built path is
+// rejected by the JSX <Path> renderer in this version. Migration is blocked
+// until upstream fixes the runtime binding. Filter the noise in dev so
+// iteration logs stay readable; real warnings still pass through.
+if (__DEV__) {
+  const origWarn = console.warn;
+  console.warn = (...args: unknown[]) => {
+    const first = args[0];
+    if (typeof first === 'string' && first.startsWith('[react-native-skia] SkPath.')) {
+      return;
+    }
+    origWarn(...args);
+  };
+}
+
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowBanner: true,
