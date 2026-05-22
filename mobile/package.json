@@ -1,6 +1,6 @@
 {
   "name": "mobile",
-  "version": "1447.12.6+256",
+  "version": "1447.12.7+258",
   "main": "expo-router/entry",
   "scripts": {
     "start": "expo start",
@@ -20,7 +20,8 @@
     "test:android": "./scripts/release.sh test android",
     "release:ios": "./scripts/release.sh release ios",
     "release:android": "./scripts/release.sh release android",
-    "release:all": "./scripts/release.sh release all"
+    "release:all": "./scripts/release.sh release all",
+    "eas-build-pre-install": "node ./scripts/eas-fetch-shared.js"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.1.1",
