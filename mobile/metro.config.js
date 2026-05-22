@@ -1,28 +1,35 @@
 // Metro bundler config — extends Expo's defaults to teach Metro about the
-// repo-root `shared/` directory that mobile imports via the `@shared/*` alias
-// declared in tsconfig.json. Two pieces are needed:
-//   1. `watchFolders` — Metro only watches files inside `projectRoot` by
-//      default; without this, files in ../shared/ aren't tracked and the
-//      resolver can't see them.
-//   2. `resolver.extraNodeModules` — Metro reads tsconfig paths via
-//      babel-preset-expo's transformer, but the resolver still needs an
-//      explicit fallback to find the target on disk when it doesn't sit
-//      inside `node_modules`. Mapping the alias prefix to the absolute
-//      shared/ path covers all `@shared/<anything>` imports.
+// `shared/` directory the app imports via the `@shared/*` alias.
+//
+// Path resolution:
+//   * Local dev: ../shared/ at the repo root (sibling of mobile/).
+//   * EAS Build: ./shared/ inside mobile/, populated by scripts/eas-fetch-shared.js
+//     as the pre-install hook. Metro's resolver refused to follow the
+//     cross-boundary ../shared/ on EAS even with extraNodeModules and a
+//     custom resolveRequest, so the EAS build keeps everything inside the
+//     project root.
 
 const { getDefaultConfig } = require('expo/metro-config');
 const fs = require('fs');
 const path = require('path');
 
 const projectRoot = __dirname;
-const sharedRoot = path.resolve(projectRoot, '..', 'shared');
+const localShared = path.join(projectRoot, 'shared');
+const repoShared = path.resolve(projectRoot, '..', 'shared');
+const sharedRoot = fs.existsSync(localShared) ? localShared : repoShared;
 
 if (process.env.EAS_BUILD) {
-  const marker = path.join(sharedRoot, 'countries', 'country-data.ts');
   console.log('[metro.config] projectRoot=', projectRoot);
+  console.log('[metro.config] localShared=', localShared, 'exists:', fs.existsSync(localShared));
+  console.log('[metro.config] repoShared=', repoShared, 'exists:', fs.existsSync(repoShared));
   console.log('[metro.config] sharedRoot=', sharedRoot);
-  console.log('[metro.config] sharedRoot exists:', fs.existsSync(sharedRoot));
-  console.log('[metro.config] marker file exists:', fs.existsSync(marker));
+  try {
+    const countries = path.join(sharedRoot, 'countries');
+    console.log('[metro.config] sharedRoot ls:', fs.readdirSync(sharedRoot));
+    console.log('[metro.config] countries/ ls:', fs.readdirSync(countries));
+  } catch (e) {
+    console.log('[metro.config] ls err:', e.message);
+  }
 }
 
 const config = getDefaultConfig(projectRoot);
@@ -40,20 +47,33 @@ config.resolver = {
     ...(config.resolver?.extraNodeModules ?? {}),
     '@shared': sharedRoot,
   },
-  // Belt + suspenders for `@shared/*` resolution. extraNodeModules wasn't
-  // being honored by `expo export:embed --eager` on EAS Build, so resolve
-  // those imports explicitly here.
+  // Resolve `@shared/*` directly to a real file. Bypasses Metro's resolver
+  // for these imports so it works regardless of extraNodeModules quirks
+  // in `expo export:embed --eager` on EAS.
   resolveRequest: (context, moduleName, platform) => {
     if (moduleName === '@shared' || moduleName.startsWith('@shared/')) {
       const subPath = moduleName === '@shared' ? '' : moduleName.slice('@shared/'.length);
-      const target = subPath ? path.join(sharedRoot, subPath) : sharedRoot;
-      return context.resolveRequest(context, target, platform);
+      const base = path.join(sharedRoot, subPath);
+      const exts = ['', '.ts', '.tsx', '.js', '.jsx', '.json'];
+      for (const ext of exts) {
+        const candidate = base + ext;
+        if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
+          return { type: 'sourceFile', filePath: candidate };
+        }
+      }
+      if (fs.existsSync(base) && fs.statSync(base).isDirectory()) {
+        for (const ext of exts.filter(Boolean)) {
+          const indexFile = path.join(base, `index${ext}`);
+          if (fs.existsSync(indexFile)) {
+            return { type: 'sourceFile', filePath: indexFile };
+          }
+        }
+      }
+      throw new Error(`[metro.config] @shared resolver: nothing matched ${base}{${exts.join(',')}}`);
     }
     if (baseResolveRequest) return baseResolveRequest(context, moduleName, platform);
     return context.resolveRequest(context, moduleName, platform);
   },
-  // Metro defaults exclude TypeScript source extensions in some setups;
-  // make sure .ts/.tsx files inside ../shared/ resolve.
   sourceExts: Array.from(
     new Set([...(config.resolver?.sourceExts ?? []), 'ts', 'tsx', 'js', 'jsx', 'json']),
   ),

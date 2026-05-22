@@ -1,7 +1,9 @@
 #!/usr/bin/env node
-// EAS only uploads the `mobile/` project dir, but `@shared/*` resolves to
-// `../shared/` at the repo root. Fetch just that directory from GitHub at
-// the commit EAS is building, so Metro can resolve it during bundling.
+// Populate `mobile/shared/` on the EAS build server. Locally `@shared/*`
+// resolves to ../shared/ (the repo-root sibling), but Metro's resolver on
+// EAS won't follow that cross-boundary path even with extraNodeModules or
+// resolveRequest — so we place a copy INSIDE the project root where Metro
+// resolves it natively. metro.config.js prefers ./shared/ when present.
 // Runs as `eas-build-pre-install` (before `npm install`) — Node built-ins only.
 
 const { execSync } = require('node:child_process');
@@ -9,28 +11,27 @@ const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
 
-const sharedDir = path.resolve(__dirname, '..', '..', 'shared');
-// Marker file — `shared/` may exist as an empty placeholder (EAS-CLI's monorepo
-// detection creates one when metro.config references ../shared). Skip only if
-// the actual source files are there.
-const markerFile = path.join(sharedDir, 'countries', 'country-data.ts');
+const mobileDir = path.resolve(__dirname, '..');
+const targetDir = path.join(mobileDir, 'shared');
+const markerFile = path.join(targetDir, 'countries', 'country-data.ts');
 
 if (fs.existsSync(markerFile)) {
-  console.log(`[eas-fetch-shared] shared/ already populated at ${sharedDir} — skipping`);
+  console.log(`[eas-fetch-shared] ${targetDir} already populated — skipping`);
   process.exit(0);
 }
 
-if (fs.existsSync(sharedDir)) {
-  const entries = fs.readdirSync(sharedDir);
+if (fs.existsSync(targetDir)) {
+  const entries = fs.readdirSync(targetDir);
   console.log(
-    `[eas-fetch-shared] shared/ exists at ${sharedDir} but marker file missing; ` +
-      `contents: [${entries.join(', ') || '<empty>'}] — re-fetching from GitHub`,
+    `[eas-fetch-shared] ${targetDir} exists but marker missing; ` +
+      `contents: [${entries.join(', ') || '<empty>'}] — clearing`,
   );
-  fs.rmSync(sharedDir, { recursive: true, force: true });
+  fs.rmSync(targetDir, { recursive: true, force: true });
 }
 
 if (!process.env.EAS_BUILD) {
-  console.error('[eas-fetch-shared] shared/ missing and not running on EAS Build — refusing to fetch');
+  console.error('[eas-fetch-shared] not on EAS Build and mobile/shared/ missing — refusing to fetch');
+  console.error('  (locally, metro.config falls back to ../shared/ so no action needed)');
   process.exit(1);
 }
 
@@ -69,6 +70,7 @@ if (!fs.existsSync(src)) {
   process.exit(1);
 }
 
-fs.cpSync(src, sharedDir, { recursive: true });
+fs.cpSync(src, targetDir, { recursive: true });
 fs.rmSync(tmpDir, { recursive: true, force: true });
-console.log(`[eas-fetch-shared] shared/ copied to ${sharedDir}`);
+console.log(`[eas-fetch-shared] populated ${targetDir}`);
+console.log(`[eas-fetch-shared] marker file exists: ${fs.existsSync(markerFile)}`);

@@ -57,3 +57,9 @@ opencode.json
 
 # argent — local bug-hunt log
 BUGS.md
+
+# shared/ — populated by scripts/eas-fetch-shared.js on EAS Build.
+# Locally, `@shared/*` resolves to ../shared/ via metro.config + tsconfig;
+# this in-project copy only exists on the EAS build server.
+/shared
+
