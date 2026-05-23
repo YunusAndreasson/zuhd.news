@@ -221866,5 +221866,1582 @@
     "label": "Gulf Mediation & US-Iran Brinkmanship",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-21-china-power-emissions-drop-inner-mongolia-xinjiang-curtailment": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT CURTAILMENT IS",
+        "body": "When a wind or solar farm could generate power but the grid tells it to stop, that energy is curtailed — wasted. It happens when transmission lines are full, when demand is too low, or when the grid can't absorb variable supply fast enough.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Curtailment is the gap between *installed capacity* and *delivered electricity*. A panel on a roof that the grid won't accept is, economically, a panel that doesn't exist."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE WEST OF CHINA",
+        "body": "Inner Mongolia and Xinjiang have China's best wind and solar resources — vast, flat, sparsely populated land far from the coastal megacities that consume the power. The mismatch between where electrons are generated and where they're needed is the entire problem.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "MN",
+              "KZ",
+              "KG",
+              "RU"
+            ],
+            "label": "generation west, demand east",
+            "markers": [
+              {
+                "lat": 40.8183,
+                "lng": 111.7652,
+                "label": "Hohhot (Inner Mongolia)"
+              },
+              {
+                "lat": 43.8256,
+                "lng": 87.6168,
+                "label": "Ürümqi (Xinjiang)"
+              },
+              {
+                "lat": 31.2304,
+                "lng": 121.4737,
+                "label": "Shanghai (demand)"
+              },
+              {
+                "lat": 23.1291,
+                "lng": 113.2644,
+                "label": "Guangzhou (demand)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE UHV SOLUTION",
+        "body": "China built the world's largest fleet of Ultra-High Voltage (UHV) DC transmission lines — 800kV and above — specifically to ship western renewables to eastern cities over 2,000+ km. Each line costs $5-10 billion and takes years to permit and build. The grid cannot expand as fast as panels can be bolted down."
+      },
+      {
+        "heading": "THE DUCK CURVE",
+        "body": "Solar floods the grid at noon and vanishes at sunset, exactly when household demand peaks. Grid operators must ramp coal and gas plants up and down to fill the gap — and coal plants are slow to cycle. Storage solves this in theory; in practice, China's battery buildout still lags its solar buildout.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does adding more solar to a grid eventually increase curtailment?",
+            "options": [
+              "Panels degrade and produce dirty power",
+              "Midday supply overshoots demand while evening shortfall remains",
+              "Solar interferes with coal plant electronics",
+              "Inverters can't sync with the grid frequency"
+            ],
+            "correct": 1,
+            "explanation": "Past a threshold, midday generation exceeds what the grid can absorb or transmit east, so excess solar is curtailed even as evening demand still requires coal."
+          }
+        ]
+      },
+      {
+        "heading": "WHY COAL HANGS ON",
+        "body": "Coal plants in China are paid capacity payments — they get money for existing, not just for generating — because the grid needs them as backup for when renewables falter. This locks in a political constituency (provincial governments, mine workers, plant operators) that resists retirement even as the plants run fewer hours.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Coal",
+                "value": "~58%",
+                "tone": "unfavorable",
+                "weight": 58
+              },
+              {
+                "label": "Hydro",
+                "value": "~13%",
+                "tone": "favorable",
+                "weight": 13
+              },
+              {
+                "label": "Wind",
+                "value": "~10%",
+                "tone": "favorable",
+                "weight": 10
+              },
+              {
+                "label": "Solar",
+                "value": "~8%",
+                "tone": "favorable",
+                "weight": 8
+              },
+              {
+                "label": "Nuclear",
+                "value": "~5%",
+                "tone": "neutral",
+                "weight": 5
+              },
+              {
+                "label": "Gas",
+                "value": "~3%",
+                "tone": "unfavorable",
+                "weight": 3
+              }
+            ],
+            "label": "China's power mix, 2024 (share of generation)"
+          }
+        ]
+      },
+      {
+        "heading": "THE PEAK QUESTION",
+        "body": "China pledged to peak CO2 emissions before 2030. The power sector is the largest single source. If curtailment can be solved — through storage, demand response, or transmission — the peak arrives years early. If not, coal stays on the system as the swing producer well into the 2030s."
+      }
+    ],
+    "generatedAt": "2026-05-23T17:21:40.682Z",
+    "label": "Curtailment & China's Grid",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-22-ai-surveillance-african-dictatorship-2-billion-procurement": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PROCUREMENT PATTERN",
+        "body": "African surveillance buys cluster around three vendors: Huawei's Safe City packages, Israeli firms like NSO and Cellebrite, and Chinese facial-recognition specialists like CloudWalk and Hikvision. The buyer is typically the interior ministry or presidency, not the police — which determines who the cameras watch.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pattern repeats across regimes: **Safe City** is sold as crime control, deployed as **opposition mapping**. The branding is the cover; the procurement chain is the tell."
+          }
+        ]
+      },
+      {
+        "heading": "THE COINTELPRO ECHO",
+        "body": "From 1956 to 1971, the FBI ran covert surveillance against civil rights leaders, anti-war activists, and Black nationalist groups — not because they committed crimes, but because they organized. The lesson the Church Committee drew was that surveillance infrastructure, once built, gravitates toward political targets regardless of original intent."
+      },
+      {
+        "heading": "WHERE THE CAMERAS GO",
+        "body": "The IDS finding — cameras concentrated where opposition organizes, not where crime is highest — is the signature of political surveillance. Crime hotspots are statistical and stable; opposition geography shifts with each election cycle. Camera placement that tracks the latter reveals the buyer's actual priority.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "KE",
+              "ZW",
+              "UG",
+              "ET",
+              "ZM",
+              "TZ",
+              "GH",
+              "SN",
+              "RW",
+              "ZA"
+            ],
+            "label": "the eleven buyers",
+            "caption": "$2bn in AI surveillance procurement across 11 African states"
+          }
+        ]
+      },
+      {
+        "heading": "THE INFRASTRUCTURE BUNDLE",
+        "body": "Surveillance hardware rarely arrives alone. It comes packaged with fiber, data centers, and training contracts — the same bundle now being relabeled as 'AI for development.' The cameras and the cloud are sold by the same vendors under different marketing.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Huawei",
+                "value": "~$2bn since 2014",
+                "cc": "CN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Hikvision",
+                "value": "~$500m",
+                "cc": "CN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "NSO Group",
+                "value": "Pegasus licenses",
+                "cc": "IL",
+                "tone": "neutral"
+              },
+              {
+                "label": "Cellebrite",
+                "value": "phone forensics",
+                "cc": "IL",
+                "tone": "neutral"
+              },
+              {
+                "label": "CloudWalk",
+                "value": "face recognition",
+                "cc": "CN",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "top vendors in African Safe City deployments"
+          }
+        ]
+      },
+      {
+        "heading": "THE EXPORT-CONTROL GAP",
+        "body": "The Wassenaar Arrangement was amended in 2013 to restrict export of intrusion software and IP surveillance systems. China is not a signatory. Israeli exports are licensed by the Defense Ministry, which has historically approved sales to states the US and EU would block — Azerbaijan, Saudi Arabia, Rwanda. The export-control gap is the business model.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which surveillance technology arrangement does China NOT participate in?",
+            "options": [
+              "The Wassenaar Arrangement on dual-use exports",
+              "The ITU telecom standards body",
+              "The UN Internet Governance Forum"
+            ],
+            "correct": 0,
+            "explanation": "China is not a Wassenaar signatory, so its surveillance vendors face no multilateral export restrictions on intrusion software or IP cameras."
+          }
+        ]
+      },
+      {
+        "heading": "WHY $470M IS A LOT IN NIGERIA",
+        "body": "Nigeria's entire 2024 federal health budget was roughly $1.2bn. A $470m surveillance line is nearly 40% of that — spent on a system whose primary documented use, per IDS, is mapping the political opposition rather than the insurgency in the north."
+      }
+    ],
+    "generatedAt": "2026-05-23T17:22:11.849Z",
+    "label": "AI Surveillance & African States",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-22-annas-archive-llms-txt-shadow-library-training": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT ANNA'S ARCHIVE IS",
+        "body": "A meta-search index launched in 2022 that aggregates the catalogs of Library Genesis, Sci-Hub, Z-Library, and others. It does not host files itself in most cases — it points to mirrors. Its catalog claims tens of millions of books and over 100 million academic papers, larger than any legal corpus in existence.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The name nods to *Anne Frank's diary* — framing the project as preservation against erasure rather than piracy. The branding is deliberate: **shadow library**, not pirate site."
+          }
+        ]
+      },
+      {
+        "heading": "THE LLMS.TXT INVERSION",
+        "body": "The robots.txt convention lets a site say 'do not crawl.' The emerging llms.txt convention is its opposite — a site declaring 'here is the clean text, optimized for training.' Anna's Archive publishing bulk-download instructions weaponizes the second convention: it removes the deniability labs rely on.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does a standard robots.txt file do?",
+            "options": [
+              "Legally binds crawlers to its rules",
+              "Signals which paths crawlers should avoid, on the honor system",
+              "Encrypts pages so bots cannot read them",
+              "Reports crawler activity to the site owner"
+            ],
+            "correct": 1,
+            "explanation": "robots.txt is a voluntary convention from 1994. Compliance is etiquette, not enforcement — which is precisely the gap shadow libraries are exploiting in reverse."
+          }
+        ]
+      },
+      {
+        "heading": "THE BOOKS3 PRECEDENT",
+        "body": "In 2023, journalists revealed that Meta, Bloomberg, and EleutherAI had trained on Books3 — a 196,640-book dataset assembled from a shadow library mirror. Discovery came not from the labs but from a researcher who downloaded the corpus and matched titles. The resulting lawsuits (Silverman, Kadrey, Huckabee) are still active.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Sarah Silverman",
+                "role": "Comedian, lead plaintiff vs Meta/OpenAI",
+                "years": "2023–",
+                "cc": "US"
+              },
+              {
+                "name": "Richard Kadrey",
+                "role": "Novelist, co-plaintiff vs Meta",
+                "years": "2023–",
+                "cc": "US"
+              },
+              {
+                "name": "Mike Huckabee",
+                "role": "Politician-author, class plaintiff",
+                "years": "2023–",
+                "cc": "US"
+              },
+              {
+                "name": "Mark Lemley",
+                "role": "Stanford IP scholar, Meta defense counsel",
+                "years": "2023–",
+                "cc": "US"
+              }
+            ],
+            "label": "who sued whom over Books3"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ACADEMIC PAPERS MATTER MORE",
+        "body": "Web text is repetitive and shallow. A peer-reviewed paper compresses years of expert reasoning into dense, citation-anchored prose — orders of magnitude more useful per token for training reasoning capability. Sci-Hub's roughly 88 million papers are the single most valuable training corpus outside of code.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Common Crawl",
+                "value": "~250B pages",
+                "weight": 250,
+                "tone": "neutral"
+              },
+              {
+                "label": "Anna's Archive",
+                "value": "~140M items",
+                "weight": 0.14,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Sci-Hub",
+                "value": "~88M papers",
+                "weight": 0.088,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Books3",
+                "value": "~197K books",
+                "weight": 0.0002,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "PubMed Open",
+                "value": "~9M papers",
+                "weight": 0.009,
+                "tone": "favorable"
+              }
+            ],
+            "label": "rough corpus sizes for LLM training"
+          }
+        ]
+      },
+      {
+        "heading": "THE COPYRIGHT FAULT LINE",
+        "body": "US fair use doctrine has four factors; the Authors Guild v. Google (2015) ruling on book-scanning leaned heavily on transformative purpose. Labs argue training is transformative. Plaintiffs argue the corpus itself is the infringement — independent of what the model outputs. The Bartz v. Anthropic settlement in 2025 was the first to put a price on pirated training data: roughly $3,000 per work."
+      },
+      {
+        "heading": "THE BERNE PROBLEM",
+        "body": "Anna's Archive operates from jurisdictions that vary in copyright enforcement. The Berne Convention (1886) requires signatories to recognize each other's copyrights, but enforcement against a distributed mirror network has never worked — Sci-Hub has lost every court case since 2015 and remains online. The labs face the opposite problem: they are concentrated, jurisdictionally exposed, and subpoena-reachable.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1886",
+                "label": "Berne Convention signed"
+              },
+              {
+                "year": "2008",
+                "label": "Library Genesis launches"
+              },
+              {
+                "year": "2011",
+                "label": "Sci-Hub launches in Kazakhstan",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2015",
+                "label": "Elsevier v. Sci-Hub injunction (NY)"
+              },
+              {
+                "year": "2022",
+                "label": "Anna's Archive launches"
+              },
+              {
+                "year": "2023",
+                "label": "Books3 takedown; Meta lawsuits filed"
+              },
+              {
+                "year": "2025",
+                "label": "Bartz v. Anthropic settlement"
+              }
+            ],
+            "label": "shadow libraries vs the courts"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-23T17:22:48.523Z",
+    "label": "Shadow Libraries & AI Training",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-23-garden-grove-chemical-plant-tank-evacuation-rmp": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT MMA IS",
+        "body": "Methyl methacrylate is the liquid monomer that polymerizes into PMMA — plexiglass, acrylic, and the resin matrix in aerospace composites. It is a small, reactive molecule that wants to link into chains; the entire industrial challenge is keeping it from doing so until you're ready.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Stored MMA is mixed with a **radical inhibitor** — typically *hydroquinone* or its methyl ether — at parts-per-million levels. The inhibitor scavenges stray radicals; without it, a tank full of monomer is a tank full of slow-burning fuse."
+          }
+        ]
+      },
+      {
+        "heading": "THE RUNAWAY MECHANISM",
+        "body": "Polymerization releases heat. Heat speeds up polymerization. Above a critical temperature the inhibitor is consumed faster than it can suppress the reaction, and the rate doubles every few degrees. Once the curve goes vertical, no external cooling can keep up — this is the classic thermal runaway, and it is why no one has found a way to stop the Garden Grove tank."
+      },
+      {
+        "heading": "WHY OXYGEN MATTERS",
+        "body": "Most radical inhibitors only work in the presence of dissolved oxygen — they need it to form the species that quenches polymerization. Sealed or nitrogen-blanketed tanks that lose their oxygen partial pressure can go runaway even at moderate temperatures. The inhibitor is in the tank; it is no longer doing its job."
+      },
+      {
+        "heading": "THE BHOPAL LINEAGE",
+        "body": "The US Risk Management Program was built after Bhopal (1984) and the Phillips 66 Pasadena explosion (1989). It requires facilities holding more than threshold quantities of listed chemicals to file worst-case scenarios, run hazard reviews, and pre-coordinate with local responders. MMA's RMP threshold is 10,000 lb; a 7,000-gallon tank holds roughly six times that.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Bhopal MIC release",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1989",
+                "label": "Phillips 66 Pasadena explosion"
+              },
+              {
+                "year": "1990",
+                "label": "Clean Air Act §112(r)"
+              },
+              {
+                "year": "1996",
+                "label": "RMP rule finalized"
+              },
+              {
+                "year": "2019",
+                "label": "EPA rolls back RMP amendments"
+              },
+              {
+                "year": "2024",
+                "label": "Safer Communities rule restored"
+              }
+            ],
+            "label": "the regulatory arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE BLEVE PROBLEM",
+        "body": "When a pressurized tank of volatile liquid overheats, the standard catastrophic failure mode is a Boiling Liquid Expanding Vapor Explosion. The shell ruptures, the superheated liquid flash-vaporizes in milliseconds, and the cloud ignites. Fireballs from BLEVEs of this size routinely reach hundreds of meters — which is why the evacuation radius is measured in miles, not blocks."
+      },
+      {
+        "heading": "WHO USES THE STUFF",
+        "body": "Aerospace plants like GKN's hold MMA because acrylic-based resins go into canopy glazing, interior panels, and adhesive systems for composite layups. The same chemical also feeds the global plexiglass and dental-resin trades.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does industrial methyl methacrylate need a continuous trace of dissolved oxygen?",
+            "options": [
+              "To prevent corrosion of the steel tank",
+              "Because its radical inhibitors only work in the presence of oxygen",
+              "To keep the liquid from freezing",
+              "To suppress bacterial growth in long-term storage"
+            ],
+            "correct": 1,
+            "explanation": "Phenolic inhibitors like MEHQ form the active quenching species by reacting with oxygen — a nitrogen-blanketed MMA tank can go runaway even when 'inhibited' on paper."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-23T17:23:20.849Z",
+    "label": "Runaway Polymerization & RMP",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-23-india-suryastra-300km-rocket-private-defense-export": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGACY MODEL",
+        "body": "From independence until 2001, India's defense production was a state monopoly — nine Defence Public Sector Undertakings and 41 Ordnance Factories under direct government control. The model produced self-sufficiency in some areas but chronic delays and quality gaps; the Tejas fighter took 33 years from sanction to squadron service.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The unlock moment was the 2001 opening of defense manufacturing to private firms, followed by the *Defence Acquisition Procedure* reforms and the **2020 corporatisation** of the Ordnance Factory Board into seven competing entities."
+          }
+        ]
+      },
+      {
+        "heading": "THE MTCR THRESHOLD",
+        "body": "The Missile Technology Control Regime caps unrestricted exports at 300 km range and 500 kg payload. Anything above triggers the regime's 'strong presumption of denial.' Suryastra's 300 km is not a coincidence — it is the exact ceiling at which a system can be sold abroad without diplomatic friction.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do so many export-class missiles cluster at exactly 300 km range?",
+            "options": [
+              "It is the maximum range achievable with solid fuel",
+              "It is the MTCR ceiling for unrestricted export",
+              "It is the typical horizon of ground-based radar",
+              "It is a NATO interoperability standard"
+            ],
+            "correct": 1,
+            "explanation": "The Missile Technology Control Regime treats 300 km / 500 kg as the threshold above which exports face presumptive denial — so designers stop right at the line."
+          }
+        ]
+      },
+      {
+        "heading": "THE EXPORT COMPETITION",
+        "body": "The 300 km tactical-rocket export market is dominated by China's SY-400 and AR-3 systems and Turkey's TRG-300 Kasirga. Both undercut Western prices and bundle financing — the niche India is targeting is sales to countries that want capability without the US end-use monitoring that comes with HIMARS.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "SY-400 / AR-3",
+                "cc": "CN",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Turkey",
+                "value": "TRG-300",
+                "cc": "TR",
+                "tone": "neutral"
+              },
+              {
+                "label": "India",
+                "value": "Suryastra",
+                "cc": "IN",
+                "tone": "favorable"
+              },
+              {
+                "label": "USA",
+                "value": "GMLRS (HIMARS)",
+                "cc": "US",
+                "tone": "neutral"
+              },
+              {
+                "label": "S. Korea",
+                "value": "KTSSM / CTM-290",
+                "cc": "KR",
+                "tone": "neutral"
+              }
+            ],
+            "label": "300 km-class export rocket systems"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE SHIFT NOW",
+        "body": "India's defense imports made it the world's largest arms buyer for most of the 2010s — a strategic vulnerability exposed during the 2020 Galwan standoff with China, when ammunition and spares had to be airlifted from abroad. The 'Atmanirbhar Bharat' (self-reliant India) policy from 2020 set a hard target: indigenous production for the bulk of acquisitions.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Atmanirbhar Bharat* translates as 'self-reliant India' — the policy framework also imposed phased import bans on hundreds of specific defense items, forcing domestic substitution rather than just encouraging it."
+          }
+        ]
+      },
+      {
+        "heading": "THE DUAL-USE FACTORY",
+        "body": "Nibe's Shirdi complex producing missiles, rockets, and satellite components from the same campus is the standard playbook for emerging arms exporters — Turkey's Roketsan and South Korea's Hanwha followed the same path. Solid rocket motors, guidance systems, and composite airframes have near-identical supply chains for space and weapons.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN"
+            ],
+            "label": "India's defense-industrial geography",
+            "caption": "Shirdi joins an arc of southern and western clusters",
+            "markers": [
+              {
+                "lat": 19.7645,
+                "lng": 74.4769,
+                "label": "Shirdi (Nibe complex)"
+              },
+              {
+                "lat": 17.385,
+                "lng": 78.4867,
+                "label": "Hyderabad (DRDO missiles)"
+              },
+              {
+                "lat": 12.9716,
+                "lng": 77.5946,
+                "label": "Bengaluru (HAL, ISRO)"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-23T17:23:55.028Z",
+    "label": "India's Defense Privatization",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-23-iran-qalibaf-pakistan-munir-tehran-shuttle": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY PAKISTAN",
+        "body": "Pakistan is the only Muslim nuclear power, shares an 900km border with Iran, and maintains a deep defence relationship with Saudi Arabia and a working channel to Washington. No other state holds that quadrilateral position.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Islamabad's leverage rests on a single fact almost no other capital can match: it talks to **Tehran, Riyadh, Washington, and Beijing** without any of them treating it as captured by the others."
+          }
+        ]
+      },
+      {
+        "heading": "THE MILITARY-DIPLOMATIC FUSION",
+        "body": "That a serving army chief — not the foreign minister — runs the shuttle reflects Pakistan's enduring civil-military balance. Foreign policy on sensitive files (Saudi Arabia, Iran, US, China, nuclear) sits with GHQ Rawalpindi, not the Foreign Office.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Asim Munir",
+                "role": "Pakistan Army Chief",
+                "years": "2022–",
+                "cc": "PK"
+              },
+              {
+                "name": "Mohammad Bagher Qalibaf",
+                "role": "Iranian parliament speaker",
+                "years": "2020–",
+                "cc": "IR"
+              },
+              {
+                "name": "Masoud Pezeshkian",
+                "role": "Iranian president",
+                "years": "2024–",
+                "cc": "IR"
+              },
+              {
+                "name": "Marco Rubio",
+                "role": "US Secretary of State",
+                "years": "2025–",
+                "cc": "US"
+              }
+            ],
+            "label": "the shuttle cast"
+          }
+        ]
+      },
+      {
+        "heading": "THE BORDER NOBODY DISCUSSES",
+        "body": "The Iran-Pakistan border runs through Balochistan — restive on both sides, home to Baloch separatist groups Tehran and Islamabad have each accused the other of harboring. In January 2024 the two states exchanged missile strikes on each other's territory, then de-escalated within 72 hours. The shuttle role rests on a relationship that nearly broke very recently.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IR",
+              "AF",
+              "SA",
+              "AE"
+            ],
+            "label": "the Iran-Pakistan corridor",
+            "markers": [
+              {
+                "lat": 25.3,
+                "lng": 62.3,
+                "label": "Gwadar"
+              },
+              {
+                "lat": 25.29,
+                "lng": 60.64,
+                "label": "Chabahar"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "PRECEDENT: THE 1980s SHUTTLE",
+        "body": "Pakistan played a similar back-channel role between Washington and Tehran during the Iran-Iraq war, and between Riyadh and Tehran intermittently since. Saudi Arabia routed its 2023 normalization with Iran through Beijing — but the groundwork sat in Pakistani-hosted track-two talks years earlier."
+      },
+      {
+        "heading": "WHAT A CEASEFIRE MEMORANDUM IS",
+        "body": "A memorandum is a written framework — typically covering halt of kinetic action, monitoring mechanism, and dispute-resolution channel — that precedes a formal agreement. It is reversible by either side and rarely ratified by legislatures, which is what allows it to move in days rather than months.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why use a memorandum rather than a treaty to stop hostilities?",
+            "options": [
+              "Treaties require UN Security Council approval",
+              "Memoranda can be agreed in days without legislative ratification",
+              "Memoranda are legally binding under international law",
+              "Treaties cannot include monitoring mechanisms"
+            ],
+            "correct": 1,
+            "explanation": "Memoranda are executive instruments — fast, reversible, and unratified — which is exactly why parties reach for them when speed matters more than permanence."
+          }
+        ]
+      },
+      {
+        "heading": "THE MARKET READ",
+        "body": "Prediction markets price the diplomatic track as live but uncertain — well off the panic highs of an airspace-closure scenario but far from a settled peace.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              31,
+              36,
+              31,
+              30,
+              28,
+              30,
+              25,
+              19,
+              23,
+              18,
+              23,
+              14,
+              19,
+              28,
+              34,
+              36,
+              28,
+              20,
+              18,
+              17,
+              14,
+              13,
+              12,
+              10,
+              8,
+              16,
+              11,
+              22,
+              19,
+              13,
+              37
+            ],
+            "periods": [
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 23"
+            ],
+            "label": "US-Iran peace deal by May 31, 2026?",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "31%"
+              },
+              {
+                "atIndex": 30,
+                "label": "37%"
+              }
+            ],
+            "link": "https://polymarket.com/event/us-x-iran-permanent-peace-deal-by",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-23"
+    ],
+    "generatedAt": "2026-05-23T17:24:47.706Z",
+    "label": "Pakistan as Iran-US Intermediary",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-23-pope-leo-naples-terra-dei-fuochi-camorra-cancer": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LAND OF FIRES",
+        "body": "The triangle between Naples and Caserta is called Terra dei Fuochi — the Land of Fires — for the smoke that rises nightly from burning tires, solvents, and industrial sludge dumped in fields and torched to hide the evidence.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The name entered Italian usage through Roberto Saviano's *Gomorra* (2006) and was later written into the 2014 law that finally criminalized **combustione illecita di rifiuti** — illegal waste burning — as a standalone felony."
+          },
+          {
+            "type": "locations",
+            "codes": [
+              "IT"
+            ],
+            "label": "the triangle",
+            "markers": [
+              {
+                "lat": 40.9469,
+                "lng": 14.3697,
+                "label": "Acerra"
+              },
+              {
+                "lat": 40.8518,
+                "lng": 14.2681,
+                "label": "Naples"
+              },
+              {
+                "lat": 41.0723,
+                "lng": 14.3326,
+                "label": "Caserta"
+              },
+              {
+                "lat": 40.9933,
+                "lng": 14.2128,
+                "label": "Giugliano"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BUSINESS MODEL",
+        "body": "Northern Italian factories paid the Camorra a fraction of legal disposal rates to make hazardous waste disappear. Tankers drove south, emptied into quarries and farmland, and drove back. The clan booked the savings; the soil booked the chromium, dioxins, and asbestos.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "north",
+                "label": "Northern factories"
+              },
+              {
+                "id": "brokers",
+                "label": "Camorra brokers"
+              },
+              {
+                "id": "haulers",
+                "label": "Licensed haulers"
+              },
+              {
+                "id": "land",
+                "label": "Campania farmland"
+              },
+              {
+                "id": "burn",
+                "label": "Burn sites"
+              },
+              {
+                "id": "quarry",
+                "label": "Quarries"
+              }
+            ],
+            "links": [
+              {
+                "source": "north",
+                "target": "brokers",
+                "value": 100,
+                "label": "contracts"
+              },
+              {
+                "source": "brokers",
+                "target": "haulers",
+                "value": 100
+              },
+              {
+                "source": "haulers",
+                "target": "land",
+                "value": 55
+              },
+              {
+                "source": "haulers",
+                "target": "burn",
+                "value": 25
+              },
+              {
+                "source": "haulers",
+                "target": "quarry",
+                "value": 20
+              }
+            ],
+            "label": "the disposal chain (1980s–2000s)"
+          }
+        ]
+      },
+      {
+        "heading": "THE SCHIAVONE CONFESSION",
+        "body": "Casalesi clan boss Carmine Schiavone told prosecutors in 1997 that the dumping would cause mass cancer within 20 years and named the sites. His testimony was classified as a state secret until 2013 — almost exactly the interval he predicted.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1980",
+                "label": "Camorra enters waste trade"
+              },
+              {
+                "year": "1997",
+                "label": "Schiavone testimony (sealed)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2003",
+                "label": "Saviano begins reporting"
+              },
+              {
+                "year": "2013",
+                "label": "Testimony declassified"
+              },
+              {
+                "year": "2014",
+                "label": "Terra dei Fuochi law"
+              },
+              {
+                "year": "2024",
+                "label": "ECJ infringement ruling"
+              },
+              {
+                "year": "2027",
+                "label": "EU compliance deadline",
+                "emphasis": "end"
+              }
+            ],
+            "label": "the arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE CANCER SIGNAL",
+        "body": "Campania's cancer mortality runs measurably above the Italian average, with the sharpest excess in pediatric leukemia and liver tumors clustered in the dumping municipalities. Establishing legal causation from a specific drum to a specific tumor is nearly impossible — which is the point of the model.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is it so hard to prosecute industrial waste dumping for the cancers it causes?",
+            "options": [
+              "Cancer takes decades to appear, by which time evidence is gone",
+              "Italian law does not recognize environmental crimes",
+              "The Camorra controls the judiciary in Campania",
+              "Cancer registries are not maintained in Italy"
+            ],
+            "correct": 0,
+            "explanation": "Latency of 15–30 years means by the time tumors cluster, the dumpers, drums, and chain-of-custody records have vanished — the same lag Schiavone described in 1997."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHURCH'S LONG WAR",
+        "body": "This is not the Vatican's first confrontation with the southern clans. John Paul II denounced the Mafia from the Valley of the Temples in 1993; Don Peppe Diana, a Casal di Principe parish priest who organized against the Casalesi, was shot dead at his altar in 1994. A papal encyclical naming Camorra profits raises the stakes from local pastoral resistance to universal Church doctrine.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "John Paul II",
+                "role": "denounced Mafia at Agrigento",
+                "years": "1993",
+                "cc": "VA"
+              },
+              {
+                "name": "Don Peppe Diana",
+                "role": "anti-Camorra priest, assassinated",
+                "years": "1958–1994",
+                "cc": "IT"
+              },
+              {
+                "name": "Roberto Saviano",
+                "role": "journalist, under police protection",
+                "years": "since 2006",
+                "cc": "IT"
+              },
+              {
+                "name": "Leo XIV",
+                "role": "first encyclical names Camorra",
+                "years": "2025–",
+                "cc": "VA"
+              }
+            ],
+            "label": "the Church-mafia line"
+          }
+        ]
+      },
+      {
+        "heading": "THE EU LEVER",
+        "body": "The European Court of Justice's 2024 ruling found Italy in breach of the Waste Framework Directive for failing to identify and remediate contaminated sites. Rome now has until January 2027 to register every toxic site — a deadline the Camorra's accountants understand as well as the prosecutors."
+      }
+    ],
+    "generatedAt": "2026-05-23T17:25:28.064Z",
+    "label": "Terra dei Fuochi",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-23-saad-edhi-released-sumud-flotilla-karachi-return": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BLOCKADE",
+        "body": "Israel has enforced a naval blockade of Gaza since 2007, declared formally in January 2009. It permits no commercial shipping into Gaza's small fishing port; all goods must enter overland through Israeli-controlled crossings. The blockade is the legal pretext for intercepting any vessel attempting direct sea approach.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "PS",
+              "EG",
+              "CY",
+              "LB",
+              "TR"
+            ],
+            "label": "the eastern Mediterranean corridor",
+            "markers": [
+              {
+                "lat": 31.5018,
+                "lng": 34.4669,
+                "label": "Gaza port"
+              },
+              {
+                "lat": 34.6823,
+                "lng": 33.0414,
+                "label": "Limassol (flotilla launch)"
+              },
+              {
+                "lat": 36.7973,
+                "lng": 34.6336,
+                "label": "Mersin, Turkey"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SAN REMO QUESTION",
+        "body": "The 1994 San Remo Manual codifies the law of naval blockade: it must be declared, effective, and not bar neutral shipping disproportionately. Critics argue Israel's blockade fails the proportionality test given Gaza's humanitarian conditions; Israel cites self-defence against arms smuggling. The dispute is unresolved in international forums.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A blockade is also only lawful in an *international armed conflict* — which is why Israel's classification of Gaza's status (occupied territory? hostile entity? sovereign?) matters legally, not just rhetorically."
+          }
+        ]
+      },
+      {
+        "heading": "THE MAVI MARMARA PRECEDENT",
+        "body": "In May 2010, Israeli commandos boarded the Turkish-flagged Mavi Marmara, part of a Gaza aid flotilla, in international waters. Nine activists were killed; a tenth died later. The incident ruptured Israeli-Turkish relations for years and triggered a UN inquiry (the Palmer Report) that called the boarding's use of force excessive while accepting the blockade's legality.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2008-08",
+                "label": "First Free Gaza boats reach Gaza port"
+              },
+              {
+                "year": "2010-05",
+                "label": "Mavi Marmara raid, 10 killed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011-07",
+                "label": "'Freedom Flotilla II' blocked in Greek ports"
+              },
+              {
+                "year": "2016-10",
+                "label": "Women's Boat to Gaza intercepted"
+              },
+              {
+                "year": "2018-08",
+                "label": "Al-Awda and Freedom intercepted"
+              },
+              {
+                "year": "2024-04",
+                "label": "Freedom Flotilla blocked from sailing"
+              },
+              {
+                "year": "2025-06",
+                "label": "Madleen intercepted, Thunberg deported"
+              },
+              {
+                "year": "2026-05",
+                "label": "Global Sumud Flotilla intercepted"
+              }
+            ],
+            "label": "flotilla diplomacy since 2008"
+          }
+        ]
+      },
+      {
+        "heading": "THE EDHI NAME",
+        "body": "Abdul Sattar Edhi, who died in 2016, built the world's largest volunteer ambulance network from a single donated van in 1950s Karachi. The Edhi Foundation runs morgues, orphanages, and shelters across Pakistan with almost no state funding. For a Pakistani audience, an Edhi family member on an aid flotilla is not a celebrity stunt — it is the family doing what the family does.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Edhi famously refused honors and lived in a two-room flat above his foundation's office. His son **Faisal Edhi** now runs the organisation; **Saad** is the grandson generation continuing the work."
+          }
+        ]
+      },
+      {
+        "heading": "THE DEPORTATION ROUTE",
+        "body": "Detained flotilla activists are typically processed at Ashdod port, held at Givon prison near Ramla, and deported through Ben Gurion airport — usually via Istanbul or Amman, the two regional hubs that maintain consular channels with Israel for such transfers. Turkey has handled the bulk of repatriations since 2010 despite the political chill.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are most Gaza flotilla detainees deported through Turkey rather than Egypt, which borders Gaza directly?",
+            "options": [
+              "Egypt refuses to accept third-country deportees from Israel",
+              "Turkey has more flight capacity to repatriate to diverse origin countries",
+              "Egypt does not maintain the consular arrangements with Israel for these transfers, while Turkey does",
+              "International law requires deportation to the flag state of the seized vessel"
+            ],
+            "correct": 2,
+            "explanation": "Despite the Israel-Turkey political chill since Mavi Marmara, working consular channels persisted; Egypt restricts its Israel-facing border traffic far more tightly."
+          }
+        ]
+      },
+      {
+        "heading": "WHY FLOTILLAS PERSIST",
+        "body": "Every flotilla is intercepted; none have reached Gaza since 2008. Organisers know this. The point is not delivery — it is forcing the blockade onto front pages, generating arrest footage, and building a record of state conduct in international waters. The aid cargo is secondary to the political theatre, which is precisely why Israel treats interception as a strategic communications problem, not just a maritime one."
+      }
+    ],
+    "generatedAt": "2026-05-23T17:26:09.400Z",
+    "label": "Gaza Aid Flotillas & the Blockade",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-23-shehbaz-china-visit-cpec-reset-economic-cabinet": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT CPEC ACTUALLY IS",
+        "body": "The China-Pakistan Economic Corridor, launched 2015, is a $62bn portfolio of power plants, roads, and the Gwadar deep-water port — the flagship of Xi's Belt and Road Initiative. Most of it is debt to Chinese policy banks, not aid; Pakistan owes roughly $30bn to China across CPEC and bilateral channels, the largest single-creditor exposure in its external debt stack.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Of Pakistan's ~$130bn external debt, **China holds the largest bilateral share** — more than the *Paris Club* creditors combined."
+          }
+        ]
+      },
+      {
+        "heading": "THE CIRCULAR DEBT TRAP",
+        "body": "CPEC's first-phase power plants were built under sovereign-guaranteed take-or-pay contracts in dollars. When the rupee falls, Pakistan owes more rupees per dollar of capacity payment — feeding the same circular-debt loop that already strangles the energy sector. Chinese IPPs are now owed over $2bn in unpaid dues.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258,
+              278.560406,
+              278.634377,
+              278.485848,
+              278.494701
+            ],
+            "periods": [
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY GWADAR MATTERS",
+        "body": "Gwadar sits on the Arabian Sea, 400km from the Strait of Hormuz. For China it is the western terminus of an overland route from Xinjiang that bypasses the Malacca chokepoint — the lane where the US Navy could throttle Chinese oil imports in a Taiwan crisis. For Pakistan it is leverage: geography China cannot replicate.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "CN",
+              "IR",
+              "AF",
+              "OM"
+            ],
+            "label": "the corridor",
+            "markers": [
+              {
+                "lat": 25.1264,
+                "lng": 62.3225,
+                "label": "Gwadar port"
+              },
+              {
+                "lat": 24.8607,
+                "lng": 67.0011,
+                "label": "Karachi port"
+              },
+              {
+                "lat": 35.9078,
+                "lng": 74.3083,
+                "label": "Khunjerab Pass (CN border)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SECURITY TAX",
+        "body": "Baloch insurgents have attacked Chinese engineers at Gwadar, Dasu, and Karachi repeatedly since 2018. Pakistan stood up a 15,000-strong Special Security Division dedicated to protecting Chinese workers. Beijing has nonetheless pushed — so far unsuccessfully — for permission to deploy its own private security contractors inside Pakistan.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the Special Security Division's sole mandate?",
+            "options": [
+              "Counter-terrorism along the Afghan border",
+              "Protection of Chinese nationals and CPEC sites",
+              "Maritime security in the Arabian Sea",
+              "Nuclear facility protection"
+            ],
+            "correct": 1,
+            "explanation": "The SSD was created in 2016 specifically to protect CPEC projects and Chinese personnel after a string of attacks by Baloch separatists."
+          }
+        ]
+      },
+      {
+        "heading": "THE IMF TRIANGLE",
+        "body": "Pakistan is simultaneously in an IMF program (its 24th since 1958) and asking China to roll over bilateral debt. The IMF requires that Chinese loans be either restructured on comparable terms or excluded from program assumptions — putting Beijing and Washington in a slow negotiation over who absorbs Pakistan's solvency gap.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China (bilateral + SAFE)",
+                "value": "~$30bn",
+                "tone": "unfavorable",
+                "weight": 30
+              },
+              {
+                "label": "Multilaterals (IMF/WB/ADB)",
+                "value": "~$48bn",
+                "tone": "neutral",
+                "weight": 48
+              },
+              {
+                "label": "Paris Club",
+                "value": "~$8bn",
+                "tone": "neutral",
+                "weight": 8
+              },
+              {
+                "label": "Eurobonds / Sukuk",
+                "value": "~$8bn",
+                "tone": "neutral",
+                "weight": 8
+              },
+              {
+                "label": "Saudi Arabia / UAE",
+                "value": "~$9bn",
+                "tone": "neutral",
+                "weight": 9
+              }
+            ],
+            "label": "Pakistan's external debt by creditor (2024 est.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE WHOLE CABINET",
+        "body": "Sending the foreign, planning, IT, and information ministers together signals a phase-two reset — Beijing has grown frustrated with stalled payments and security incidents, and demands cabinet-level accountability before extending new financing. The optics are deliberate: this is not a routine visit, it is a creditor meeting dressed as a state visit."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-23"
+    ],
+    "generatedAt": "2026-05-23T17:26:43.733Z",
+    "label": "CPEC & Pakistan's China Dependency",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-23-svalbard-corpse-point-permafrost-thaw-archaeology": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE ARCTIC WARMS FASTER",
+        "body": "Arctic amplification: as sea ice retreats, dark ocean replaces reflective white, absorbing heat instead of bouncing it back. Each summer of melt makes the next summer's melt easier. The 4x global average is not a forecast — it is the observed rate over the last four decades.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism has a name: the **ice-albedo feedback**. *Albedo* is the fraction of sunlight a surface reflects — fresh snow reflects ~85%, open ocean ~6%."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CORPSES STAY",
+        "body": "Permafrost is soil that has remained below 0°C for at least two consecutive years. Bacterial decomposition nearly halts. A 17th-century Dutch whaler buried in Svalbard's gravel was, until recently, preserved with skin, hair, and woolen cap intact — essentially freeze-dried in place.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NO",
+              "SJ",
+              "GL",
+              "RU",
+              "CA",
+              "US"
+            ],
+            "label": "the Arctic preservation belt",
+            "markers": [
+              {
+                "lat": 78.2232,
+                "lng": 15.6267,
+                "label": "Longyearbyen"
+              },
+              {
+                "lat": 79.85,
+                "lng": 11.05,
+                "label": "Smeerenburg whaling station"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE IRREVERSIBILITY",
+        "body": "Once permafrost thaws, the organic matter inside oxidizes and the ground subsides. Refreezing the surface in a cold winter does not restore the structure. The site is not paused — it is consumed. This is what separates archaeology in ice from archaeology in soil: there is no second chance to excavate carefully.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the minimum criterion for ground to qualify as permafrost?",
+            "options": [
+              "Frozen every winter for at least a decade",
+              "Below 0°C continuously for at least two years",
+              "Containing visible ice lenses year-round",
+              "Located above the Arctic Circle"
+            ],
+            "correct": 1,
+            "explanation": "The definition is thermal and temporal — two consecutive years below 0°C — not geographic. Permafrost exists in high-altitude tropics too."
+          }
+        ]
+      },
+      {
+        "heading": "THE WHALERS OF SMEERENBURG",
+        "body": "Dutch and Basque whalers established Smeerenburg — \"Blubber Town\" — on Svalbard around 1619. At its peak, 200 men rendered bowhead whale blubber into oil that lit European cities. The graves at Corpse Point belong to men who froze, starved, or died of scurvy during overwintering attempts."
+      },
+      {
+        "heading": "THE GLOBAL FROZEN ARCHIVE",
+        "body": "Permafrost and ice patches hold materials soil archaeology never sees: textiles, wooden arrows, leather, hair, stomach contents. Ötzi the Iceman (5,300 years old, Alps), the Pazyryk tattooed mummies (Siberia, 2,500 years), and Yukon caribou-hunting darts have all emerged from melt. The same melt that reveals them then destroys them within seasons.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Svalbard",
+                "value": "17th c. whalers",
+                "cc": "NO"
+              },
+              {
+                "label": "Ötztal Alps",
+                "value": "5,300 yr Iceman",
+                "cc": "AT"
+              },
+              {
+                "label": "Altai, Siberia",
+                "value": "2,500 yr mummies",
+                "cc": "RU"
+              },
+              {
+                "label": "Yukon",
+                "value": "9,000 yr darts",
+                "cc": "CA"
+              },
+              {
+                "label": "Mongolia",
+                "value": "Bronze Age ice",
+                "cc": "MN"
+              }
+            ],
+            "label": "frozen sites racing the thaw"
+          }
+        ]
+      },
+      {
+        "heading": "THE SALVAGE DILEMMA",
+        "body": "Archaeologists now face a triage problem with no precedent. Excavating a site destroys context; leaving it destroys the artifacts. Norway's Svalbard policy has shifted from preservation-in-place — the gold standard since the 1970s — to documented rescue digs, accepting that the slow, careful methodology of the discipline is incompatible with the speed of the thaw."
+      }
+    ],
+    "generatedAt": "2026-05-23T17:27:15.054Z",
+    "label": "Permafrost & the Archaeological Clock",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-23-turkey-mit-syria-daesh-cross-border-raid": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO MİT IS",
+        "body": "The Millî İstihbarat Teşkilatı is Turkey's civilian intelligence agency, restructured in 2014 to report directly to the president rather than the prime minister. That reform gave the agency latitude to run paramilitary operations abroad without parliamentary oversight.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "MİT's director sits in cabinet meetings — a level of political integration closer to Russia's **FSB** than to the CIA model."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2015 ANKARA BOMBING",
+        "body": "Two suicide bombers detonated outside Ankara's main train station during a peace rally, killing 109 — the deadliest terror attack in Turkish history. Investigators tied the cell to an ISIS network operating out of Adıyaman in southeast Turkey, recruiting from Turkish citizens, not foreign fighters."
+      },
+      {
+        "heading": "THE BORDER THAT WASN'T",
+        "body": "The 911 km Turkey-Syria border was drawn by the 1921 Treaty of Ankara between France's Syrian mandate and the new Turkish republic. It cut through Kurdish, Arab, and Turkmen communities that had moved freely under the Ottomans — and remained porous enough through 2014 that ISIS used it as its primary logistics corridor.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TR",
+              "SY",
+              "IQ"
+            ],
+            "label": "the Turkey–Syria operational frontier",
+            "markers": [
+              {
+                "lat": 36.8581,
+                "lng": 40.0489,
+                "label": "Tel Abyad crossing"
+              },
+              {
+                "lat": 36.2021,
+                "lng": 37.1343,
+                "label": "Aleppo"
+              },
+              {
+                "lat": 37.0662,
+                "lng": 38.7939,
+                "label": "Şanlıurfa (MİT staging)"
+              },
+              {
+                "lat": 35.9239,
+                "lng": 39.008,
+                "label": "Raqqa (former ISIS capital)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TURN AGAINST ISIS",
+        "body": "Through 2014, Turkey was accused of tolerating ISIS transit as long as the group fought Assad and the Kurdish YPG. The Suruç bombing (July 2015) and the Ankara bombing (October 2015) — both ISIS attacks on Turkish soil — collapsed that posture. Since then MİT has run regular kinetic operations against ISIS cells in northern Syria."
+      },
+      {
+        "heading": "WHY NOW",
+        "body": "US forces in northeast Syria are drawing down from roughly 2,000 to a few hundred, ending the Pentagon-led counter-ISIS mission that has run since 2014. Turkey is positioning to inherit the file — both the threat and the leverage that comes from being the regional power that handles it.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Recep Tayyip Erdoğan",
+                "role": "Turkish President",
+                "years": "2014–",
+                "cc": "TR"
+              },
+              {
+                "name": "İbrahim Kalın",
+                "role": "MİT Director",
+                "years": "2023–",
+                "cc": "TR"
+              },
+              {
+                "name": "Ahmed al-Sharaa",
+                "role": "Syrian transitional president",
+                "years": "2024–",
+                "cc": "SY"
+              },
+              {
+                "name": "Mazloum Abdi",
+                "role": "SDF commander (Kurdish-led)",
+                "years": "2015–",
+                "cc": "SY"
+              }
+            ],
+            "label": "the post-US Syrian field"
+          }
+        ]
+      },
+      {
+        "heading": "THE BLESSED LAND",
+        "body": "In Islamic tradition, al-Sham — Greater Syria — holds particular significance. A hadith in Sahih al-Bukhari describes the people of al-Sham as being under divine protection, and classical scholars including Ibn Kathir identified the region as central to end-times events. The convergence of multiple armed actors across this geography resonates with a prophetic frame that long predates the modern borders.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which event marked Turkey's decisive turn from tolerating ISIS transit to actively targeting the group?",
+            "options": [
+              "The fall of Mosul to ISIS in 2014",
+              "The Suruç and Ankara bombings in 2015",
+              "The Russian intervention in Syria in 2015",
+              "The US-Turkey Manbij roadmap in 2018"
+            ],
+            "correct": 1,
+            "explanation": "Two ISIS attacks on Turkish soil in 2015 — Suruç in July and Ankara in October — ended the period of de facto tolerance and triggered sustained MİT operations against the group."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-23T17:27:53.582Z",
+    "label": "Turkey, MİT & the Syrian Frontier",
+    "category": "politics",
+    "articleCount": 1
   }
 }
