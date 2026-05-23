@@ -217646,5 +217646,1385 @@
     "label": "Fed Independence & the Volcker Bind",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-05-23-balkan-organized-crime-latin-america-service-providers": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE BALKANS",
+        "body": "The collapse of Yugoslavia produced a generation of paramilitaries with weapons training, cross-border smuggling routes, and contacts inside European port cities where diaspora communities had settled since the 1960s guest-worker era. The skill stack — violence, logistics, banking access — is what Andean cartels lack.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The dominant clans are the **Škaljari** and **Kavač** factions from Kotor, Montenegro — split from a single group in 2014 after a missing cocaine shipment in Valencia. Their feud has produced over 60 killings across five continents."
+          }
+        ]
+      },
+      {
+        "heading": "THE SERVICE MODEL",
+        "body": "Balkan groups do not grow coca or run street distribution. They sit in the middle — buying wholesale in South American ports, controlling the maritime leg, and selling to local distributors in Europe. This middleman position is more profitable per kilo than either end of the chain.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "colombia",
+                "label": "Andean producers"
+              },
+              {
+                "id": "brazil",
+                "label": "Brazilian ports"
+              },
+              {
+                "id": "balkans",
+                "label": "Balkan brokers"
+              },
+              {
+                "id": "antwerp",
+                "label": "Antwerp/Rotterdam"
+              },
+              {
+                "id": "euro",
+                "label": "European street markets"
+              }
+            ],
+            "links": [
+              {
+                "source": "colombia",
+                "target": "brazil",
+                "value": 100,
+                "label": "wholesale"
+              },
+              {
+                "source": "brazil",
+                "target": "balkans",
+                "value": 100,
+                "label": "maritime leg"
+              },
+              {
+                "source": "balkans",
+                "target": "antwerp",
+                "value": 95,
+                "label": "containerized"
+              },
+              {
+                "source": "antwerp",
+                "target": "euro",
+                "value": 90,
+                "label": "local distribution"
+              }
+            ],
+            "label": "the cocaine value chain"
+          }
+        ]
+      },
+      {
+        "heading": "THE PORT GEOGRAPHY",
+        "body": "Antwerp and Rotterdam handle roughly two-thirds of cocaine entering Europe. Santos (Brazil) and Guayaquil (Ecuador) are the dominant departure ports. The shift away from Caribbean routes toward Brazil happened because Brazilian ports have weaker container scanning and the PCC gang controls dockworker access in Santos.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BR",
+              "EC",
+              "CO",
+              "NL",
+              "BE",
+              "ME",
+              "RS",
+              "AL"
+            ],
+            "label": "the cocaine corridor",
+            "markers": [
+              {
+                "lat": -23.9608,
+                "lng": -46.3331,
+                "label": "Santos"
+              },
+              {
+                "lat": -2.2833,
+                "lng": -79.9,
+                "label": "Guayaquil"
+              },
+              {
+                "lat": 51.2194,
+                "lng": 4.4025,
+                "label": "Antwerp"
+              },
+              {
+                "lat": 51.9244,
+                "lng": 4.4777,
+                "label": "Rotterdam"
+              },
+              {
+                "lat": 42.4304,
+                "lng": 18.7712,
+                "label": "Kotor"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE EUROPEAN MARKET",
+        "body": "European cocaine consumption has roughly doubled in a decade. Wastewater analysis in major cities now shows cocaine residue rivaling US levels — Antwerp, Amsterdam, and Zurich consistently top the European rankings. The demand is what made the Balkan middleman position lucrative enough to fight over.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Antwerp",
+                "value": "116 tonnes",
+                "cc": "BE",
+                "weight": 116
+              },
+              {
+                "label": "Rotterdam",
+                "value": "60 tonnes",
+                "cc": "NL",
+                "weight": 60
+              },
+              {
+                "label": "Hamburg",
+                "value": "35 tonnes",
+                "cc": "DE",
+                "weight": 35
+              },
+              {
+                "label": "Algeciras",
+                "value": "22 tonnes",
+                "cc": "ES",
+                "weight": 22
+              }
+            ],
+            "label": "cocaine seizures, EU ports 2023"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DISRUPTION FAILS",
+        "body": "Europol's takedowns of EncroChat (2020) and Sky ECC (2021) cracked encrypted phones used by these networks and produced thousands of arrests. Shipments did not drop. The networks are flat, redundant, and franchise-like — arresting a node creates a vacancy filled within weeks because the underlying demand and logistics infrastructure remain intact.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why have repeated European law-enforcement takedowns failed to reduce cocaine flows?",
+            "options": [
+              "European consumption is falling, masking enforcement gains",
+              "Networks are flat and franchise-like — arrested nodes are replaced quickly",
+              "Most cocaine now enters via air freight, bypassing port seizures",
+              "Andean production has collapsed, reducing what needs intercepting"
+            ],
+            "correct": 1,
+            "explanation": "The networks lack a central command — they are commercial relationships between many small crews, so removing one operator leaves the demand and logistics intact for a replacement."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-23T04:25:05.114Z",
+    "label": "Balkan Cocaine Networks",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-23-india-cng-delhi-third-hike-lng-import-working-class": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY CNG, NOT PETROL",
+        "body": "A 1998 Supreme Court order — responding to Delhi's catastrophic air pollution — forced the entire commercial transport fleet onto compressed natural gas by 2002. Delhi was the first megacity in the world to mandate CNG for public transport, and the fleet has run on it ever since.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mandate followed a writ petition by environmental lawyer **M.C. Mehta** — one of the most consequential public-interest lawsuits in Indian history, decided not by Parliament but by the bench."
+          }
+        ]
+      },
+      {
+        "heading": "THE IMPORT TRAP",
+        "body": "India produces only about half the natural gas it consumes. The rest arrives as liquefied natural gas at terminals like Dahej and Hazira, priced off Asian LNG benchmarks that swing with European winter demand and Chinese industrial appetite. A Delhi auto-rickshaw fare is, in effect, a derivative of the TTF gas price in Amsterdam.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "QA",
+              "AE",
+              "OM",
+              "US"
+            ],
+            "label": "where India's LNG comes from",
+            "caption": "Qatar is the largest single supplier; US cargoes have grown since 2022."
+          }
+        ]
+      },
+      {
+        "heading": "THE PASS-THROUGH PROBLEM",
+        "body": "City gas distributors like Indraprastha Gas buy LNG in dollars and sell CNG in rupees at the pump. When the rupee weakens or LNG spikes, the gap is absorbed either by the distributor, the state oil company's upstream allocation, or — eventually — the commuter. Daily losses of Rs 1,600 crore mean the absorption layer is exhausted.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              94.143557,
+              94.0666,
+              94.0666,
+              94.257338,
+              94.420855,
+              94.762974,
+              95.171392,
+              94.951559,
+              94.89165,
+              94.910513,
+              94.951346,
+              95.361112,
+              95.029174,
+              94.729612,
+              94.62293,
+              94.425498,
+              94.425498,
+              94.8754,
+              95.576514,
+              95.55195,
+              95.719988,
+              95.829548,
+              96.003,
+              96.027,
+              96.13634,
+              96.389098,
+              96.875003,
+              96.376027,
+              96.243053,
+              95.719748
+            ],
+            "periods": [
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY PAYS",
+        "body": "An auto-rickshaw driver in Delhi runs 150–200 km a day on roughly 8–10 kg of CNG. A Rs 4/kg hike is Rs 40 a day out of a margin that already sits near Rs 800. Fares are set by the state transport department and lag fuel moves by months — meaning the driver, not the passenger, eats the shock first.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Who absorbs a CNG price hike in Delhi before fares are revised?",
+            "options": [
+              "Passengers, via immediate fare adjustment",
+              "Auto-rickshaw drivers, out of their daily margin",
+              "The central government, via direct subsidy",
+              "Indraprastha Gas, via regulated price caps"
+            ],
+            "correct": 1,
+            "explanation": "Fares are set by the state transport department and adjust slowly; the driver's per-day take-home absorbs the shock until a revision is negotiated."
+          }
+        ]
+      },
+      {
+        "heading": "THE BORDER ARBITRAGE",
+        "body": "Delhi, Noida (Uttar Pradesh), and Ghaziabad (Uttar Pradesh) sit in the same metro region but under different state tax regimes. CNG carries VAT that varies by state, so a Rs 4 hike in Delhi can open a 10–15% price gap with a pump 20 km across the Yamuna — drivers reroute their refueling, and the revenue loss compounds.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Delhi",
+                "value": "NCT",
+                "cc": "IN"
+              },
+              {
+                "label": "Noida",
+                "value": "Uttar Pradesh",
+                "cc": "IN"
+              },
+              {
+                "label": "Ghaziabad",
+                "value": "Uttar Pradesh",
+                "cc": "IN"
+              },
+              {
+                "label": "Gurugram",
+                "value": "Haryana",
+                "cc": "IN"
+              }
+            ],
+            "label": "Delhi NCR fuel jurisdiction"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-23"
+    ],
+    "generatedAt": "2026-05-23T04:25:41.181Z",
+    "label": "CNG & Delhi's Commuter Economy",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-23-india-neet-ug-chemistry-leak-marathi-translation-latur": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STAKES",
+        "body": "NEET-UG is the single gateway to every MBBS seat in India — public and private, allopathic and dental. Roughly 2.4 million candidates compete for about 110,000 medical seats. A 10-mark swing on the answer key can move a candidate's rank by 50,000 positions.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "One exam, one day, one rank list. There is **no second window**, no SAT-style retake culture — your year-long fate fits inside three hours."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSLATION VULNERABILITY",
+        "body": "NEET is delivered in 13 languages. The NTA prints the English master paper, then hands sealed copies to language experts who translate by hand under time pressure. The translator sees the unredacted paper for hours before students do — a single human is the entire firewall.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hindi/English",
+                "value": "~85% of takers"
+              },
+              {
+                "label": "regional 11",
+                "value": "~15% of takers"
+              },
+              {
+                "label": "translators per language",
+                "value": "1–3"
+              },
+              {
+                "label": "lead time vs exam",
+                "value": "hours"
+              }
+            ],
+            "label": "languages NEET is offered in"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2024 PRECEDENT",
+        "body": "Last year's NEET-UG saw a paper leak via Hazaribagh and Patna that triggered a CBI probe, Supreme Court hearings, and a partial re-test. The NTA director was removed; the agency promised biometric chain-of-custody reforms. The Latur case shows the leak surface moved sideways, not closed.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2017",
+                "label": "NEET made mandatory nationwide"
+              },
+              {
+                "year": "2019",
+                "label": "NTA takes over from CBSE"
+              },
+              {
+                "year": "2024-05",
+                "label": "Hazaribagh paper leak",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024-07",
+                "label": "Supreme Court orders partial review"
+              },
+              {
+                "year": "2026-05",
+                "label": "Latur translation leak"
+              }
+            ],
+            "label": "NEET integrity crises"
+          }
+        ]
+      },
+      {
+        "heading": "THE COACHING ECONOMY",
+        "body": "Kota, Rajasthan houses roughly 200,000 NEET/JEE aspirants in a single town — a parallel city built around a single test. The annual coaching market is estimated above $7 billion. Demand for any edge — leaks included — is created by a seat-to-applicant ratio of roughly 1 in 22."
+      },
+      {
+        "heading": "WHY WHATSAPP IS THE DISTRIBUTION LAYER",
+        "body": "End-to-end encryption means the NTA cannot subpoena message contents — only metadata via Meta. Indian investigators rely on seized handsets and forwarding-chain forensics, which is why arrests cluster at the endpoints (sellers, buyers) and rarely reach the broker tier in the middle.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do Indian paper-leak prosecutions rarely convict the middle-tier brokers?",
+            "options": [
+              "Brokers are protected by political patronage",
+              "WhatsApp's end-to-end encryption hides forwarding chains; only endpoint handsets yield evidence",
+              "Indian law does not criminalize brokering exam content",
+              "The NTA does not cooperate with police"
+            ],
+            "correct": 1,
+            "explanation": "Meta hands over metadata but not message bodies. Without seized handsets along the chain, the middle of the network is opaque to investigators."
+          }
+        ]
+      },
+      {
+        "heading": "THE STRUCTURAL FIX NOBODY WANTS",
+        "body": "Computer-based testing — used for JEE-Main since 2019 — randomizes question order per candidate and eliminates the printed-paper window entirely. NEET has resisted the shift because medical educators argue paper-based testing is fairer for rural candidates with weak digital literacy. The translation attack surface is the price of that equity argument."
+      }
+    ],
+    "generatedAt": "2026-05-23T04:26:14.773Z",
+    "label": "NEET & the Exam Economy",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-23-india-petrol-diesel-third-hike-iran-war-buffer-collapse": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FREEZE MECHANIC",
+        "body": "India's three state oil marketers — IOCL, BPCL, HPCL — control over 90% of retail fuel. Officially prices update daily with crude; in practice the government leans on them to hold prices flat during politically sensitive windows. Losses accumulate on their balance sheets as 'under-recoveries' until the freeze breaks.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **under-recovery** — the gap between the import-parity price and the pump price, absorbed by the marketer rather than the consumer or the treasury."
+          }
+        ]
+      },
+      {
+        "heading": "WHY FOUR YEARS",
+        "body": "The last sustained reset came in late 2021, just before state elections in Uttar Pradesh and Punjab. Since then — through Russia's invasion of Ukraine, a doubling of the dollar-rupee cost of crude, and three more election cycles — pump prices barely moved. The buffer was political, not market-driven."
+      },
+      {
+        "heading": "THE RUSSIAN DISCOUNT THAT MADE IT POSSIBLE",
+        "body": "After Western sanctions in 2022, India became the largest seaborne buyer of Russian Urals crude, often at $15–30/barrel below Brent. That discount — quietly worth tens of billions annually — is what let the freeze hold without bankrupting the refiners. A Hormuz disruption hits this arrangement too: Russian barrels still need shipping insurance and dollar-clearing willing to touch them.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Russia",
+                "value": "~36%",
+                "cc": "RU",
+                "weight": 36
+              },
+              {
+                "label": "Iraq",
+                "value": "~20%",
+                "cc": "IQ",
+                "weight": 20
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~15%",
+                "cc": "SA",
+                "weight": 15
+              },
+              {
+                "label": "UAE",
+                "value": "~9%",
+                "cc": "AE",
+                "weight": 9
+              },
+              {
+                "label": "US",
+                "value": "~6%",
+                "cc": "US",
+                "weight": 6
+              }
+            ],
+            "label": "India's crude import mix (2024, share by volume)"
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ EXPOSURE",
+        "body": "Roughly two-thirds of India's crude transits the Strait of Hormuz — Iraqi, Saudi, Emirati, and Kuwaiti barrels all funnel through it. Even Russian Urals reaching India's west coast pass through insurance markets that price Gulf war risk. A closed strait is not just an Iran story for Delhi; it is the entire import book repricing at once.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "IR",
+              "SA",
+              "AE",
+              "IQ",
+              "KW",
+              "OM",
+              "QA"
+            ],
+            "label": "India's crude lifeline",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 19.076,
+                "lng": 72.8777,
+                "label": "Mumbai (refining hub)"
+              },
+              {
+                "lat": 22.3511,
+                "lng": 69.8597,
+                "label": "Jamnagar refinery"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PAISA TRICK",
+        "body": "Indian fuel hikes are quoted in paisa per litre — 80 paisa here, Rs 1.20 there — because a small absolute number reads as restraint. The cumulative arithmetic is what bites: three rounds of 'small' corrections in weeks have moved Delhi petrol past psychological thresholds the freeze was designed to prevent.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many paise make one Indian rupee?",
+            "options": [
+              "10",
+              "100",
+              "1000"
+            ],
+            "correct": 1,
+            "explanation": "Paisa is the 1/100 subunit of the rupee — the same relationship as cents to a dollar. Quoting hikes in paisa makes a Rs 3/litre increase sound like '300 paisa', spread across multiple announcements."
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY PAYS",
+        "body": "Excise duty and state VAT make up roughly half of India's retail petrol price. When crude rises, Delhi can absorb the shock by cutting excise (federal revenue loss) or letting marketers eat it (PSU balance sheet damage) or passing it to consumers (inflation and political cost). The freeze ending means option three is now in play."
+      }
+    ],
+    "generatedAt": "2026-05-23T04:26:47.899Z",
+    "label": "India's Fuel Price Freeze",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-23-indonesia-hercules-maintenance-neutrality-us-china": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LEGAL DOCTRINE",
+        "body": "The 1907 Hague Convention V codified neutrality: a neutral state cannot supply war materiel, repair belligerent warships beyond seaworthiness, or allow its territory to be used as a base of operations. Servicing aircraft that fly combat missions crosses that line — neutrality is an active legal status, not a posture.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The key phrase is *qualified neutrality* — a state can trade with belligerents but cannot perform acts that **directly sustain combat operations**. Maintenance of military airlifters sits squarely on the wrong side of that line."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE C-130 MATTERS",
+        "body": "The Lockheed C-130 Hercules is the workhorse of US Indo-Pacific logistics — it moves troops, ammunition, and casualty evacuations between island airfields. In a Taiwan contingency, sustained Hercules sorties would be the difference between a sustained operation and a stranded one. Maintenance depots are not peripheral; they are infrastructure of war."
+      },
+      {
+        "heading": "INDONESIA'S BEBAS-AKTIF DOCTRINE",
+        "body": "Since Sukarno's 1948 speech to parliament, Indonesia has held to bebas dan aktif — 'free and active' — refusing alignment with either Cold War bloc while engaging both. It is the founding posture of the Non-Aligned Movement, hosted by Indonesia at Bandung in 1955. Every Jakarta government since has had to interpret what neutrality permits as the world reshuffles.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1948",
+                "label": "Hatta's 'rowing between two reefs' speech"
+              },
+              {
+                "year": "1955",
+                "label": "Bandung Conference",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1961",
+                "label": "NAM founded in Belgrade"
+              },
+              {
+                "year": "1965",
+                "label": "Suharto pivots quietly toward West"
+              },
+              {
+                "year": "1998",
+                "label": "Reformasi — doctrine reaffirmed"
+              },
+              {
+                "year": "2024",
+                "label": "Prabowo's 'good neighbour' framing"
+              }
+            ],
+            "label": "Indonesia's non-aligned posture"
+          }
+        ]
+      },
+      {
+        "heading": "THE TAIWAN STRAIT GEOMETRY",
+        "body": "From Taiwan, the closest large landmass to the south is the Indonesian archipelago — Natuna and the approaches to the Sunda and Lombok straits. Any US air bridge supporting Taiwan would route over or near Indonesian airspace; any Chinese counter-blockade would need to interdict the same lanes.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ID",
+              "TW",
+              "PH",
+              "MY",
+              "SG",
+              "VN",
+              "CN"
+            ],
+            "label": "the South China Sea theatre",
+            "markers": [
+              {
+                "lat": 3.95,
+                "lng": 108.39,
+                "label": "Natuna islands"
+              },
+              {
+                "lat": -8.78,
+                "lng": 115.5,
+                "label": "Lombok Strait"
+              },
+              {
+                "lat": -6,
+                "lng": 105.8,
+                "label": "Sunda Strait"
+              },
+              {
+                "lat": 23.7,
+                "lng": 121,
+                "label": "Taiwan"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE ECONOMIC BIND",
+        "body": "China is Indonesia's largest trading partner and the principal financier of the Jakarta–Bandung high-speed rail and most nickel-processing capacity. The US is the largest source of FDI in services and a critical defense supplier. Neither relationship can be sacrificed without compounding domestic costs — which is why Jakarta prefers ambiguous contracts to explicit alignment.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "$135bn",
+                "cc": "CN",
+                "weight": 135,
+                "tone": "neutral"
+              },
+              {
+                "label": "United States",
+                "value": "$38bn",
+                "cc": "US",
+                "weight": 38,
+                "tone": "neutral"
+              },
+              {
+                "label": "Japan",
+                "value": "$36bn",
+                "cc": "JP",
+                "weight": 36
+              },
+              {
+                "label": "Singapore",
+                "value": "$33bn",
+                "cc": "SG",
+                "weight": 33
+              },
+              {
+                "label": "India",
+                "value": "$26bn",
+                "cc": "IN",
+                "weight": 26
+              }
+            ],
+            "label": "Indonesia's top trade partners, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE BELLIGERENT TEST",
+        "body": "International law distinguishes pre-war contracts from in-conflict performance. A maintenance agreement signed in peacetime can be suspended at the outbreak of hostilities without breaching the contract — most defense agreements include force majeure or 'change of circumstance' clauses. Whether Jakarta negotiated one is the question that determines if this is a hedge or a commitment.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the 1907 Hague Convention V, which act by a neutral state is permitted during a war between others?",
+            "options": [
+              "Repairing a belligerent's warplanes at a state depot",
+              "Selling commercial goods to either side at market terms",
+              "Allowing belligerent troops to transit its territory",
+              "Hosting a belligerent's forward operating base"
+            ],
+            "correct": 1,
+            "explanation": "Private commercial trade with belligerents is permitted; state-provided military services, transit, or basing are not. The distinction is who acts — the merchant or the state."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-23T04:27:26.715Z",
+    "label": "Neutrality & Military Logistics",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-23-iran-proposal-end-us-war-hormuz-enrichment-sequencing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHOKEPOINT",
+        "body": "Roughly a fifth of global oil consumption transits the Strait of Hormuz daily. At its narrowest, the shipping lanes are just two miles wide in each direction, hugging Omani waters. Iran's coastline overlooks the entire passage from small-boat range.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the Persian Gulf chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 27.1865,
+                "lng": 56.2808,
+                "label": "Bandar Abbas (IRGC naval HQ)"
+              },
+              {
+                "lat": 25.276987,
+                "lng": 55.296249,
+                "label": "Dubai"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. The US response — Operation Earnest Will — reflagged Kuwaiti tankers under American colors and escorted them through. The lesson planners took: disruption is easier to threaten than to sustain, but threatening it reshapes insurance markets within hours.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Lloyd's of London **war-risk premiums** — not the mines themselves — are what close a shipping lane. Once premiums spike, commercial vessels reroute regardless of how many mines actually exist."
+          }
+        ]
+      },
+      {
+        "heading": "SEQUENCING AS LEVERAGE",
+        "body": "Diplomacy lives or dies on what comes first. Tehran's posture — ceasefire before enrichment talks — mirrors the JCPOA-era fight in reverse: in 2015, sanctions relief was sequenced after verified nuclear rollback. Whoever concedes first loses the leverage that brought the other side to the table.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the 2015 JCPOA, what came first — sanctions relief or Iran shipping out enriched uranium?",
+            "options": [
+              "Sanctions relief, then uranium shipped out",
+              "Uranium shipped out and centrifuges dismantled, then sanctions relief",
+              "Both simultaneously on signing day",
+              "Sanctions relief was never tied to verification"
+            ],
+            "correct": 1,
+            "explanation": "Implementation Day (Jan 2016) only triggered after the IAEA verified Iran had shipped 25,000+ lbs of LEU to Russia and disabled the Arak reactor core. Tehran is now proposing the inverse."
+          }
+        ]
+      },
+      {
+        "heading": "THE ENRICHMENT LADDER",
+        "body": "Uranium-235 must be concentrated from its natural 0.7% to roughly 3-5% for power reactors, 20% for research reactors, and 90% for a weapon. The work to climb from natural to 20% is most of the centrifuge effort; from 20% to 90% is comparatively fast. Iran's stockpile at 60% — declared in 2021 — is technically civilian but operationally a short sprint from weapons-grade.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Natural uranium",
+                "value": "0.7% U-235",
+                "tone": "favorable"
+              },
+              {
+                "label": "Power reactor fuel",
+                "value": "3-5%",
+                "tone": "favorable"
+              },
+              {
+                "label": "Research reactor",
+                "value": "~20%",
+                "tone": "neutral"
+              },
+              {
+                "label": "Iran's stockpile",
+                "value": "60%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Weapons-grade",
+                "value": "~90%",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "uranium enrichment thresholds"
+          }
+        ]
+      },
+      {
+        "heading": "THE ARC",
+        "body": "US-Iran hostility has cycled through openings and closures for nearly five decades. Each cycle leaves the technical baseline higher than where it started — more centrifuges, more enriched material, more institutional memory of betrayal on both sides.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Iranian Revolution; embassy hostage crisis",
+                "emphasis": "start"
+              },
+              {
+                "year": "2002",
+                "label": "Natanz facility revealed by exiles"
+              },
+              {
+                "year": "2015",
+                "label": "JCPOA signed in Vienna",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2018",
+                "label": "Trump withdraws US from JCPOA"
+              },
+              {
+                "year": "2021",
+                "label": "Iran begins 60% enrichment"
+              },
+              {
+                "year": "2025",
+                "label": "Israeli/US strikes on Iranian sites"
+              }
+            ],
+            "label": "US-Iran nuclear arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY MARKETS WATCH",
+        "body": "Brent's risk premium is built in real time from Hormuz signals — every IRGC statement, every Polymarket tick, every reflagging rumor. The market does not need war to price war; the option value of disruption is enough.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              31,
+              36,
+              31,
+              30,
+              28,
+              30,
+              25,
+              19,
+              23,
+              18,
+              23,
+              14,
+              19,
+              28,
+              34,
+              36,
+              28,
+              20,
+              18,
+              17,
+              14,
+              13,
+              12,
+              10,
+              8,
+              16,
+              11,
+              22,
+              19,
+              13,
+              14
+            ],
+            "periods": [
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 23"
+            ],
+            "label": "US x Iran permanent peace deal by May…",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "31%"
+              },
+              {
+                "atIndex": 30,
+                "label": "14%"
+              }
+            ],
+            "link": "https://polymarket.com/event/us-x-iran-permanent-peace-deal-by",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-23"
+    ],
+    "generatedAt": "2026-05-23T04:28:02.164Z",
+    "label": "Hormuz, Enrichment & Sequencing",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-23-iran-strait-hormuz-transit-fees-permanence": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "Hormuz is 33km wide at its narrowest, with shipping lanes only 3km wide in each direction. The deepwater channel hugs Oman's Musandam peninsula — not Iran's coast — which is why Muscat's cooperation is the real lever for any toll regime.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the chokepoint and its claimants",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 26.2,
+                "lng": 56.4,
+                "label": "Musandam (Oman)"
+              },
+              {
+                "lat": 27.1833,
+                "lng": 56.2667,
+                "label": "Bandar Abbas"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE SUEZ PRECEDENT",
+        "body": "Nasser nationalized the Suez Canal in 1956 and turned a foreign concession into a sovereign revenue stream. Egypt now collects roughly $9bn a year in transit fees — its second-largest hard-currency earner after remittances. Iran is studying the same playbook: convert a geographic accident into a state utility."
+      },
+      {
+        "heading": "WHAT UNCLOS SAYS",
+        "body": "Under the 1982 UN Convention on the Law of the Sea, ships enjoy 'transit passage' through international straits — meaning the coastal state cannot levy tolls or block innocent transit. Iran signed UNCLOS but never ratified it; the US never signed it. Both rejections are now load-bearing.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal term of art is **transit passage** — distinct from *innocent passage* through territorial waters. Transit passage cannot be suspended; innocent passage can. Iran's framing as a 'service fee' rather than a toll is the seam it is trying to exploit."
+          }
+        ]
+      },
+      {
+        "heading": "WHY OMAN MATTERS",
+        "body": "Oman has historically played mediator between Tehran and Washington — hosting the back-channel talks that produced the 2015 JCPOA. A revenue-share with Iran on Hormuz transits would be the most consequential alignment shift in the Gulf since the 1971 British withdrawal east of Suez."
+      },
+      {
+        "heading": "THE INSURANCE MARKET",
+        "body": "Lloyd's of London war-risk premiums — not Iran's gunboats — are what actually price a chokepoint. Once underwriters classify a strait as a war zone, premiums add $1-3 per barrel to every cargo. Tehran's calculation: a formal fee is cheaper for shippers than the insurance markup of an undeclared threat.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of seaborne crude oil passes through the Strait of Hormuz daily?",
+            "options": [
+              "About 10%",
+              "About 20%",
+              "About 30%",
+              "About 50%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 20 million barrels per day — about a third of global seaborne crude — transit Hormuz, which is why even a fee threat moves the oil market."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR LESSON",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Tankers were reflagged under US and Kuwaiti colors and escorted by warships. The lesson Tehran took: kinetic disruption invites a coalition response, but a customs-house at the strait does not."
+      }
+    ],
+    "generatedAt": "2026-05-23T04:28:32.648Z",
+    "label": "Chokepoint Rent & Hormuz",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-23-pakistan-hiv-iatrogenic-needles-women-children": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE IATROGENIC VECTOR",
+        "body": "Iatrogenic means harm caused by medical care itself. Pakistan's HIV epidemic is now driven not by sex or drug use but by reused syringes, unscreened blood transfusions, and unsterile dental and surgical instruments in unregulated clinics.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Iatrogenic* — from Greek *iatros* (healer) + *genes* (born of). The disease is **born of the healer**, which is why outbreaks in clinics are so politically toxic: the institution meant to cure is the one infecting."
+          }
+        ]
+      },
+      {
+        "heading": "THE LARKANA OUTBREAK",
+        "body": "In 2019, the town of Ratodero in Sindh's Larkana district recorded one of the largest pediatric HIV clusters in history — over 900 children infected, traced to a single pediatrician reusing syringes. It was not an isolated failure; it exposed a quack-clinic economy that operates beneath formal regulation across rural Pakistan.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK"
+            ],
+            "label": "the 2019 Ratodero outbreak",
+            "markers": [
+              {
+                "lat": 27.7394,
+                "lng": 68.2989,
+                "label": "Ratodero (2019 cluster)"
+              },
+              {
+                "lat": 24.8607,
+                "lng": 67.0011,
+                "label": "Karachi"
+              },
+              {
+                "lat": 33.6844,
+                "lng": 73.0479,
+                "label": "Islamabad"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY WOMEN AND CHILDREN",
+        "body": "In a sexually-transmitted epidemic, the caseload skews male and adult. When women and children dominate the curve, transmission has shifted to medical settings — antenatal injections, childhood vaccinations, dental work, and IV drips administered by untrained practitioners. The demographic signature is the diagnosis."
+      },
+      {
+        "heading": "THE QUACK ECONOMY",
+        "body": "Pakistan has roughly 600,000 unregistered or unqualified practitioners — outnumbering licensed doctors several times over. They fill a gap left by a public health system that spends under 1.2% of GDP on health, one of the lowest ratios in South Asia.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Pakistan",
+                "value": "~1.2%",
+                "cc": "PK",
+                "weight": 1.2,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": "~2.1%",
+                "cc": "IN",
+                "weight": 2.1
+              },
+              {
+                "label": "Bangladesh",
+                "value": "~2.5%",
+                "cc": "BD",
+                "weight": 2.5
+              },
+              {
+                "label": "Sri Lanka",
+                "value": "~3.9%",
+                "cc": "LK",
+                "weight": 3.9
+              },
+              {
+                "label": "Iran",
+                "value": "~5.0%",
+                "cc": "IR",
+                "weight": 5,
+                "tone": "favorable"
+              }
+            ],
+            "label": "government health spending, % of GDP"
+          }
+        ]
+      },
+      {
+        "heading": "THE NEEDLE ECONOMICS",
+        "body": "A sterile single-use syringe costs a few rupees. Reusing it costs nothing. In a clinic charging 200 rupees per injection where margins are razor-thin and oversight is absent, the incentive structure runs against safety at every transaction.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of injections given in Pakistan are estimated to use a reused or unsterile syringe?",
+            "options": [
+              "About 5%",
+              "About 15%",
+              "About 50%",
+              "About 90%"
+            ],
+            "correct": 2,
+            "explanation": "WHO estimates roughly half of all injections in Pakistan are unsafe — among the highest rates in the world, and the structural reason iatrogenic HIV keeps spreading."
+          }
+        ]
+      },
+      {
+        "heading": "THE BLOOD SUPPLY",
+        "body": "Pakistan has no unified national blood transfusion service. Screening for HIV, hepatitis B, and hepatitis C is mandatory on paper but inconsistent in practice, especially at the private and family-donor level where most transfusions happen. A single unscreened unit can seed an outbreak years before it surfaces in surveillance data."
+      }
+    ],
+    "generatedAt": "2026-05-23T04:29:02.211Z",
+    "label": "Iatrogenic HIV in Pakistan",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-23-pm-grants-four-year-extension-to-intelligence-bureau-chief": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OLDEST SPY SHOP IN SOUTH ASIA",
+        "body": "The Intelligence Bureau is the subcontinent's oldest intelligence service, founded by the British in 1885 to monitor Russian movements in Central Asia and nationalist agitation at home. Partition split it in two — India kept the name and the headquarters; Pakistan inherited the staff posted west of the Radcliffe Line and the institutional muscle memory of watching its own population.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The IB is *civilian* — it reports to the Prime Minister through the Interior Ministry, not to GHQ. That distinction is the entire reason it exists alongside the **ISI**."
+          }
+        ]
+      },
+      {
+        "heading": "THE THREE-AGENCY ARCHITECTURE",
+        "body": "Pakistan runs three intelligence services in uneasy parallel — each with a different master, a different remit, and a different culture. Overlap is the design, not the bug; no single service should ever be able to dominate the others.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Intelligence Bureau (IB)",
+                "role": "Civilian domestic, reports to PM",
+                "cc": "PK"
+              },
+              {
+                "name": "Inter-Services Intelligence (ISI)",
+                "role": "Military-led, foreign + domestic",
+                "cc": "PK"
+              },
+              {
+                "name": "Military Intelligence (MI)",
+                "role": "Armed forces counter-intelligence",
+                "cc": "PK"
+              }
+            ],
+            "label": "who watches whom in Pakistan"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE PM WANTS A CIVILIAN EAR",
+        "body": "Every Pakistani prime minister discovers the same problem on day one: the ISI answers to the Army Chief, not to them. The IB is the one intelligence channel a civilian PM can actually direct — which is why extending a trusted IB chief past the usual term is a political act, not an administrative one. The longer the contract, the longer the PM has a set of eyes the military doesn't fully own."
+      },
+      {
+        "heading": "THE EXTENSION PRECEDENT",
+        "body": "Tenure extensions for security chiefs are how civilian-military bargains get written down in Pakistan. Imran Khan extended Army Chief Bajwa in 2019; Shehbaz Sharif legislated a three-year term for Asim Munir in 2024. A four-year IB extension is small in comparison but follows the same logic — lock in a loyalist before the next political cycle can dislodge them.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Pakistani intelligence service reports to the Prime Minister rather than the Army Chief?",
+            "options": [
+              "ISI (Inter-Services Intelligence)",
+              "IB (Intelligence Bureau)",
+              "MI (Military Intelligence)",
+              "FIA (Federal Investigation Agency)"
+            ],
+            "correct": 1,
+            "explanation": "The IB is the civilian domestic service under the PM; ISI and MI both sit inside the military chain of command, which is why control of the IB matters to any civilian government."
+          }
+        ]
+      },
+      {
+        "heading": "THE ESTABLISHMENT DIVISION",
+        "body": "The Establishment Division is the federal department that manages senior civil-service appointments — postings, promotions, and contract terms for grade-21 and grade-22 officers. When the Division processes an extension without a public rationale, it is following routine; senior security postings in Pakistan are almost never accompanied by reasons on the record."
+      }
+    ],
+    "generatedAt": "2026-05-23T04:29:36.065Z",
+    "label": "Pakistan's Intelligence Bureau",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-23-rice-precision-agriculture-cnn-drone-smallholder": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY DENSITY MATTERS",
+        "body": "Rice yield is set in the first three weeks. Too few seedlings per square meter and the canopy never closes — weeds win the light. Too many and the plants compete with themselves for nitrogen, lodging before harvest. The agronomic sweet spot is narrow: roughly 25–35 hills per square meter for transplanted paddy.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Agronomists call this the *establishment window* — the brief period when stand density locks in the upper bound of the season's yield. Everything after is **damage control**."
+          }
+        ]
+      },
+      {
+        "heading": "WHY COUNTING IS HARD",
+        "body": "Seedlings overlap, lean, and reflect water differently across a flooded paddy. Classical computer vision — edge detection, thresholding — collapses on the variable spacing of hand-transplanted fields. The breakthrough is convolutional neural networks that learn texture rather than geometry.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did older image-recognition methods fail at counting rice seedlings in flooded paddies?",
+            "options": [
+              "The water surface reflected sunlight and saturated the camera sensor",
+              "Seedlings overlap and lean at irregular angles that defeat edge-detection",
+              "Drones could not fly low enough to resolve individual plants",
+              "Rice leaves are too thin for any optical sensor to detect"
+            ],
+            "correct": 1,
+            "explanation": "Hand-transplanted paddies have variable spacing and tilted seedlings — geometry-based vision breaks down, while CNNs learn the visual texture of a seedling regardless of pose."
+          }
+        ]
+      },
+      {
+        "heading": "THE SMALLHOLDER ECONOMY",
+        "body": "Roughly 90% of the world's rice is grown by smallholders farming under two hectares — concentrated in South and Southeast Asia. A drone pass that costs a few dollars and replaces a day of manual scouting changes the unit economics of precision agriculture for the first time at that scale.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "148 mn t",
+                "cc": "CN",
+                "weight": 148
+              },
+              {
+                "label": "India",
+                "value": "137 mn t",
+                "cc": "IN",
+                "weight": 137
+              },
+              {
+                "label": "Indonesia",
+                "value": "34 mn t",
+                "cc": "ID",
+                "weight": 34
+              },
+              {
+                "label": "Bangladesh",
+                "value": "37 mn t",
+                "cc": "BD",
+                "weight": 37
+              },
+              {
+                "label": "Vietnam",
+                "value": "27 mn t",
+                "cc": "VN",
+                "weight": 27
+              },
+              {
+                "label": "Thailand",
+                "value": "20 mn t",
+                "cc": "TH",
+                "weight": 20
+              }
+            ],
+            "label": "top rice producers, 2024 (mn tonnes, milled)"
+          }
+        ]
+      },
+      {
+        "heading": "THE GREEN REVOLUTION DEBT",
+        "body": "The 1960s Green Revolution lifted Asian rice yields by breeding short-stalked, fertilizer-responsive varieties — IR8 at the International Rice Research Institute in the Philippines was the prototype. The gains plateaued in the 1990s. Since then, productivity growth has come from management precision, not genetics — which is exactly what drone counting enables.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BD",
+              "IN",
+              "PH",
+              "VN",
+              "TH",
+              "ID",
+              "MM"
+            ],
+            "label": "the rice belt",
+            "markers": [
+              {
+                "lat": 14.1693,
+                "lng": 121.2435,
+                "label": "IRRI, Los Baños"
+              },
+              {
+                "lat": 23.8103,
+                "lng": 90.4125,
+                "label": "Dhaka"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY DRONES, NOT SATELLITES",
+        "body": "Sentinel-2 satellites image every field on Earth every five days at 10-meter resolution — useless for counting plants 20 centimeters apart. A drone flying 30 meters up resolves to under a centimeter. The tradeoff is coverage: a satellite sees a country, a drone sees a field.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the *scale gap* in remote sensing — satellites give you **where**, drones give you **what**. Counting individual seedlings sits on the drone side of that line and probably always will."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-23T04:30:07.928Z",
+    "label": "Counting Seedlings from the Air",
+    "category": "tech",
+    "articleCount": 1
   }
 }
