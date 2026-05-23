@@ -223443,5 +223443,1894 @@
     "label": "Turkey, MİT & the Syrian Frontier",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-22-cybertruck-lake-bodycam-tesla-door-egress": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY EVS LOCK WHEN CHARGING",
+        "body": "Every EV immobilizes the drivetrain when it detects a charge connector engaged. The interlock prevents a driver from tearing the cable out of the wall, or worse, driving away with a live high-voltage connection still seated in the port.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The interlock is mandated by **SAE J1772** and its CCS/NACS successors — it is a *safety standard*, not a Tesla design choice. What varies between manufacturers is how the car decides the port is 'engaged.'"
+          }
+        ]
+      },
+      {
+        "heading": "THE WATER FALSE POSITIVE",
+        "body": "Charge ports detect connection by reading continuity across the proximity-pilot pin. Submerge the port and conductive water can bridge those pins, mimicking a plugged-in cable. The car obeys its interlock and refuses to move — exactly as designed, in exactly the wrong context."
+      },
+      {
+        "heading": "WHY DOORS BECOME THE PROBLEM",
+        "body": "Modern EVs use electronic door releases — a button sends a signal to a solenoid. When 12V power dies (battery submersion, fire, crash damage), the solenoids stop responding. Every cabin has a mechanical backup release, but its location is rarely obvious and rarely rehearsed."
+      },
+      {
+        "heading": "THE CYBERTRUCK CASE",
+        "body": "The Cybertruck's mechanical release for the front doors sits behind a small cover at the base of the window switch panel. Rear doors require pulling up the floor mat to find a cable. Owners who never read the manual discover this geometry during the worst possible moment.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Where is the mechanical door release on most modern EVs located?",
+            "options": [
+              "A clearly labeled red lever next to the door handle",
+              "Hidden under trim, the map pocket, or the floor mat",
+              "There isn't one — the doors are electronic only",
+              "On the exterior, accessed with a key"
+            ],
+            "correct": 1,
+            "explanation": "NHTSA has flagged hidden manual releases as a recurring egress hazard; locations vary by model and are easy to miss in a panic."
+          }
+        ]
+      },
+      {
+        "heading": "THE 'WADE MODE' PROMISE",
+        "body": "Tesla marketed the Cybertruck with a 'Wade Mode' that pressurizes the battery pack and seals lower body openings for shallow water crossings. The mode addresses pack flooding; it does not waterproof the 12V auxiliary electronics or override the charging interlock logic."
+      },
+      {
+        "heading": "THE REGULATORY GAP",
+        "body": "FMVSS 206 governs door retention in crashes but says nothing about post-crash egress when electronic releases fail. NHTSA opened a preliminary evaluation of EV door-handle and release designs in 2024 after a string of post-crash entrapment fatalities; no rule has been issued.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The German equivalent — **ECE R11** — similarly predates electronic releases. Regulators globally are still catching up to a UI choice already shipped on millions of vehicles."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-23T22:29:06.487Z",
+    "label": "EV Egress & Software Locks",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-22-morocco-afdb-200m-vocational-skills-youth-unemployment": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE YOUTH BULGE",
+        "body": "Morocco's population is roughly 37 million with a median age near 30. Youth unemployment runs around a third of 15-24-year-olds, and far higher for graduates — the diploma premium that worked for their parents has collapsed.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Youth unemployment (15–24), 2024 est.",
+            "peers": [
+              {
+                "value": 38,
+                "cc": "TN"
+              },
+              {
+                "value": 31,
+                "cc": "DZ"
+              },
+              {
+                "value": 33,
+                "cc": "MA"
+              },
+              {
+                "value": 17,
+                "cc": "EG"
+              },
+              {
+                "value": 50,
+                "cc": "LY"
+              },
+              {
+                "value": 17,
+                "cc": "TR"
+              }
+            ],
+            "subjectCc": "MA",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE AFDB IS",
+        "body": "The African Development Bank, headquartered in Abidjan since 1964, is Africa's regional development lender — owned by 54 African states plus 27 non-regional shareholders led by the US and Japan. It lends on softer-than-commercial terms; sovereign borrowers like Morocco get rates well below what eurobond markets would price.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "AfDB's AAA rating lets it borrow cheap on capital markets and pass the spread to borrowers — the same trick the **World Bank** and **EBRD** use. Morocco is one of its largest and most reliable clients."
+          }
+        ]
+      },
+      {
+        "heading": "WHY VOCATIONAL, NOT UNIVERSITY",
+        "body": "Morocco's university system produces more graduates than the formal economy absorbs; the queue for public-sector white-collar jobs stretches years. TVET — technical and vocational education — targets the gap between school and a trade: electricians, machinists, welders, hospitality, agri-tech operators. The bet is that diploma inflation is the problem, not skill shortage.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In Morocco, who is statistically more likely to be unemployed?",
+            "options": [
+              "A university graduate",
+              "Someone with no diploma",
+              "Both roughly the same"
+            ],
+            "correct": 0,
+            "explanation": "Moroccan graduate unemployment runs well above the rate for those with no formal schooling — the formal economy cannot absorb the credentialed cohort the universities produce."
+          }
+        ]
+      },
+      {
+        "heading": "THE HIRAK PRECEDENT",
+        "body": "The 2016-17 Hirak Rif protests in northern Morocco began with a fishmonger crushed in a garbage truck and escalated into months of demonstrations across the Rif. The grievance under the spark was structural: chronic joblessness in a region the central state had long underinvested in. Rabat reads youth unemployment as a regime-stability variable, not just an economic one.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MA",
+              "DZ",
+              "TN",
+              "ES"
+            ],
+            "label": "the Rif, and the capital",
+            "markers": [
+              {
+                "lat": 35.1689,
+                "lng": -3.9981,
+                "label": "Al Hoceima (Hirak)"
+              },
+              {
+                "lat": 33.9716,
+                "lng": -6.8498,
+                "label": "Rabat"
+              },
+              {
+                "lat": 33.5731,
+                "lng": -7.5898,
+                "label": "Casablanca"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE REMITTANCE BACKSTOP",
+        "body": "Roughly five million Moroccans live abroad — overwhelmingly in France, Spain, Italy, and Belgium — and their remittances run around $11-12bn a year, larger than tourism receipts and a meaningful share of GDP. Vocational training is partly an export industry: a Moroccan welder trained to European standards can work in Marseille within months.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "France",
+                "value": "~1.5m",
+                "cc": "FR",
+                "weight": 1500
+              },
+              {
+                "label": "Spain",
+                "value": "~900k",
+                "cc": "ES",
+                "weight": 900
+              },
+              {
+                "label": "Italy",
+                "value": "~500k",
+                "cc": "IT",
+                "weight": 500
+              },
+              {
+                "label": "Belgium",
+                "value": "~500k",
+                "cc": "BE",
+                "weight": 500
+              },
+              {
+                "label": "Netherlands",
+                "value": "~400k",
+                "cc": "NL",
+                "weight": 400
+              }
+            ],
+            "label": "Moroccan diaspora by host country (approx.)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-23T22:29:44.117Z",
+    "label": "Morocco's Youth Jobs Problem",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-22-wozniak-actual-intelligence-graduation-ai-backlash": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FOUNDER'S PARADOX",
+        "body": "Wozniak built the Apple I by hand in 1976 and has spent decades warning that consumer technology erodes the very skills it automates. His critique of AI is continuous with a fifty-year argument: tools should extend human capability, not replace the practice that builds it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Wozniak's term *actual intelligence* echoes a distinction philosophers draw between **techne** (skill built through practice) and mere output. An LLM produces the output without the practice."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GRADUATES BOO",
+        "body": "Entry-level white-collar work — the first rungs of law, consulting, software, journalism — is precisely what generative models do cheaply. Class-of-2026 graduates are entering a labor market where the ladder's bottom rungs are being sawed off in real time.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Software dev",
+                "value": "−35%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Paralegal",
+                "value": "−25%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Copywriting",
+                "value": "−40%",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Skilled trades",
+                "value": "+12%",
+                "tone": "favorable"
+              }
+            ],
+            "label": "US entry-level job postings, change since 2022"
+          }
+        ]
+      },
+      {
+        "heading": "THE LUDDITE PRECEDENT",
+        "body": "The original Luddites (1811–1816) were not anti-technology; they were skilled textile workers protesting that mechanized looms transferred the value of their craft to factory owners without compensation. The pattern — automation as a distributional fight, not a productivity fight — has recurred at every technological inflection.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1811",
+                "label": "Luddite uprising in Nottingham",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1936",
+                "label": "Chaplin's Modern Times"
+              },
+              {
+                "year": "1979",
+                "label": "UK steel strike vs. automation"
+              },
+              {
+                "year": "2023",
+                "label": "WGA strike over AI scripts"
+              },
+              {
+                "year": "2026",
+                "label": "Schmidt booed at commencement"
+              }
+            ],
+            "label": "automation backlashes"
+          }
+        ]
+      },
+      {
+        "heading": "THE CAPEX BET",
+        "body": "Hyperscalers are spending roughly $400bn a year on AI infrastructure on the thesis that the technology will displace enough labor to justify the spend. The boos at commencement ceremonies are the early political pricing-in of that thesis.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              24708.94,
+              24977.04,
+              25329.04,
+              25034.37,
+              24960.04,
+              24992.6,
+              24720.08,
+              25093.68,
+              25020.41,
+              24643.01,
+              24967.25,
+              24956.47,
+              24965.01,
+              24533.58,
+              24380.73,
+              24655.34,
+              24780.42,
+              24425.09,
+              24355.28,
+              23898.15,
+              24188.59,
+              24002.45,
+              24162.98,
+              23586.99,
+              23132.77,
+              22953.38,
+              23740.19,
+              24019.99,
+              24045.53,
+              24192.17,
+              24202.37,
+              24903.17,
+              25082.09,
+              25116.34,
+              25383.72,
+              25842,
+              26204.58,
+              26333,
+              26672.43,
+              26590.34,
+              26479.47,
+              26937.27,
+              26782.62,
+              27303.67,
+              27305.68,
+              27029.01,
+              27186.99,
+              27452.12,
+              27710.36,
+              27651.82,
+              28015.06,
+              28599.17,
+              28563.95,
+              29234.99,
+              29320.66,
+              29064.8,
+              29366.94,
+              29580.3,
+              29125.2,
+              28994.37,
+              28818.84,
+              29297.7,
+              29357.27,
+              29481.64
+            ],
+            "periods": [
+              "Feb 23",
+              "Feb 24",
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22"
+            ],
+            "label": "NASDAQ-100",
+            "unit": "index",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHAT WOZNIAK MEANS",
+        "body": "\"Don't follow the same steps as a million other people\" is advice optimized for a world where the median path is automated. The premium shifts to taste, judgment, and the willingness to do work that doesn't yet have a template — exactly the things training data lacks.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did the original Luddites actually oppose?",
+            "options": [
+              "All forms of mechanical technology",
+              "Factory owners capturing the value of their craft",
+              "Foreign textile imports",
+              "Child labor in mills"
+            ],
+            "correct": 1,
+            "explanation": "The Luddites were skilled weavers — their protest was distributional, about who captured the gains from the new looms, not about the looms themselves."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · NASDAQ · as of 2026-05-22"
+    ],
+    "generatedAt": "2026-05-23T22:30:16.344Z",
+    "label": "The AI Backlash",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-23-bilbao-basque-police-gaza-flotilla-detain-amnesty": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FORCE",
+        "body": "The Ertzaintza is the autonomous police of the Basque Country, not a branch of Spain's national police. It was rebuilt in 1982 under post-Franco autonomy statutes; the Guardia Civil and Policía Nacional retain only border, terrorism, and counterintelligence roles in the region.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Ertzaintza* means roughly **'people's guard'** in Euskara — the name was chosen deliberately to distance the force from the Francoist Guardia Civil that policed the Basque provinces until 1979."
+          }
+        ]
+      },
+      {
+        "heading": "THE AUTONOMY BARGAIN",
+        "body": "Spain's 1978 constitution created 17 autonomous communities, but only the Basque Country and Catalonia were granted their own fully-armed regional police. The arrangement was meant to defuse separatist pressure by handing day-to-day policing to local democratic control.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ES",
+              "FR"
+            ],
+            "label": "the three Basque provinces",
+            "markers": [
+              {
+                "lat": 43.2627,
+                "lng": -2.9253,
+                "label": "Bilbao"
+              },
+              {
+                "lat": 43.3183,
+                "lng": -1.9812,
+                "label": "Donostia / San Sebastián"
+              },
+              {
+                "lat": 42.8467,
+                "lng": -2.6716,
+                "label": "Vitoria-Gasteiz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE FLOTILLA TRADITION",
+        "body": "Gaza-bound civilian flotillas date to 2008, when the Free Gaza Movement first broke the maritime blockade with two fishing boats. The 2010 Mavi Marmara raid — Israeli commandos killed nine Turkish activists in international waters — turned the tactic into a recurring confrontation rather than a one-off stunt.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2008",
+                "label": "First Free Gaza boats reach Gaza"
+              },
+              {
+                "year": "2010-05",
+                "label": "Mavi Marmara raid kills 9",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2011",
+                "label": "Freedom Flotilla II blocked in Greek ports"
+              },
+              {
+                "year": "2018",
+                "label": "Al-Awda intercepted by Israeli navy"
+              },
+              {
+                "year": "2025",
+                "label": "Madleen, Conscience boats stopped"
+              }
+            ],
+            "label": "Gaza flotilla arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE PROPORTIONALITY STANDARD",
+        "body": "Under the UN Basic Principles on the Use of Force (1990) and the European Convention on Human Rights, police force must be necessary and proportionate to a legitimate aim. Striking a person already on the ground — 'downed' in Amnesty's framing — fails both tests almost by definition, which is why footage of such strikes is so damaging in court.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under European human-rights law, what is the threshold for police use of force?",
+            "options": [
+              "Any force a commanding officer authorises",
+              "Force that is necessary AND proportionate to a legitimate aim",
+              "Force short of lethal weapons",
+              "Force during a declared public-order emergency"
+            ],
+            "correct": 1,
+            "explanation": "ECHR Article 2 and 3 jurisprudence requires both necessity (no lesser means available) and proportionality (force matched to the threat). Either failing alone makes the act unlawful."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ISRAEL ASKED MADRID, NOT VITORIA",
+        "body": "Foreign governments address sovereign states, not their sub-units — so Israel's démarche went to Spain's foreign ministry even though the Ertzaintza answers to the Basque regional government in Vitoria-Gasteiz, not to Madrid. This creates a recurring friction: Madrid carries the diplomatic cost of policing it does not control."
+      },
+      {
+        "heading": "THE SPAIN–ISRAEL BREAK",
+        "body": "Spain recognised the State of Palestine in May 2024 alongside Ireland and Norway, and PM Pedro Sánchez has been among the EU's sharpest critics of the Gaza campaign. Israel recalled its ambassador; relations have not normalised. Any Israeli protest to Madrid now lands in a relationship already at its lowest point in four decades."
+      }
+    ],
+    "generatedAt": "2026-05-23T22:30:49.569Z",
+    "label": "Ertzaintza & Basque Autonomy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-23-bitcoin-macro-gold-rotation-inflation-rerating": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE HALVING CLOCK",
+        "body": "Bitcoin's supply schedule is hard-coded: every 210,000 blocks (~4 years), the reward to miners halves. The 2024 halving cut issuance from 6.25 to 3.125 BTC per block. Each prior halving — 2012, 2016, 2020 — preceded a multi-quarter rally as new supply collapsed against steady demand.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2009",
+                "label": "genesis block, 50 BTC reward"
+              },
+              {
+                "year": "2012",
+                "label": "first halving → 25 BTC"
+              },
+              {
+                "year": "2016",
+                "label": "second halving → 12.5 BTC"
+              },
+              {
+                "year": "2020",
+                "label": "third halving → 6.25 BTC",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "fourth halving → 3.125 BTC"
+              },
+              {
+                "year": "2140",
+                "label": "final BTC mined (21M cap)"
+              }
+            ],
+            "label": "halvings and the cycles that followed"
+          }
+        ]
+      },
+      {
+        "heading": "THE GOLD ROTATION THESIS",
+        "body": "Gold and bitcoin are both bearer assets with no counterparty risk and capped supply — gold by geology, bitcoin by code. When real yields fall and fiat purchasing power erodes, capital that historically fled to gold increasingly splits the trade with bitcoin. The 'digital gold' framing is not metaphor; it is a portfolio allocation argument.",
+        "blocks": [
+          {
+            "type": "trend",
+            "series": [
+              {
+                "values": [
+                  78260.62,
+                  77444.8,
+                  77619.14,
+                  78645.13,
+                  77361.3,
+                  76345.23,
+                  75774.89,
+                  76286.58,
+                  78172.07,
+                  78655.35,
+                  78562.55,
+                  79823.89,
+                  80925.09,
+                  81425,
+                  80022.04,
+                  80189.07,
+                  80678.03,
+                  82145.66,
+                  81725.21,
+                  80480.89,
+                  79277.8,
+                  81051.98,
+                  79068.82,
+                  78135.01,
+                  77425.72,
+                  76952.21,
+                  76808.81,
+                  77459.94,
+                  77546.34,
+                  75482.52,
+                  76506.44
+                ],
+                "label": "Bitcoin",
+                "highlight": "last"
+              },
+              {
+                "values": [
+                  4689.13,
+                  4697.32,
+                  4693.28,
+                  4674.15,
+                  4683.94,
+                  4584.13,
+                  4551.29,
+                  4619.17,
+                  4603.98,
+                  4597.48,
+                  4606.7,
+                  4515.48,
+                  4580.98,
+                  4684.25,
+                  4695.85,
+                  4706.72,
+                  4711.53,
+                  4692.03,
+                  4753.28,
+                  4711.77,
+                  4685.25,
+                  4650.57,
+                  4540.65,
+                  4535.45,
+                  4535.69,
+                  4575.14,
+                  4491.98,
+                  4536.19,
+                  4525.24,
+                  4494.01,
+                  4513.36
+                ],
+                "label": "Gold (PAX Gold)",
+                "highlight": "last"
+              }
+            ],
+            "label": "Bitcoin vs Gold",
+            "source": 0,
+            "unit": "$",
+            "periods": [
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 23"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY 21 MILLION",
+        "body": "Satoshi never explained the cap. The math works backwards: a geometric series of halving block rewards starting at 50 BTC sums to just under 21 million. The last bitcoin will be mined around 2140. After that, miners earn only transaction fees — a transition the network has never tested at scale.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The fixed cap makes bitcoin a *deflationary* asset by design — the opposite of every fiat currency, where supply expansion is a policy lever central banks defend as essential."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2020 PATTERN",
+        "body": "In March 2020, bitcoin crashed 50% alongside equities — invalidating the 'uncorrelated asset' pitch. But within nine months it 5x'd while the Fed expanded its balance sheet by $3 trillion. The lesson institutional allocators took: bitcoin is not a hedge against panic, it is a hedge against monetary expansion.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              78260.62,
+              77444.8,
+              77619.14,
+              78645.13,
+              77361.3,
+              76345.23,
+              75774.89,
+              76286.58,
+              78172.07,
+              78655.35,
+              78562.55,
+              79823.89,
+              80925.09,
+              81425,
+              80022.04,
+              80189.07,
+              80678.03,
+              82145.66,
+              81725.21,
+              80480.89,
+              79277.8,
+              81051.98,
+              79068.82,
+              78135.01,
+              77425.72,
+              76952.21,
+              76808.81,
+              77459.94,
+              77546.34,
+              75482.52,
+              76506.44
+            ],
+            "periods": [
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 23"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE AI–BLOCKCHAIN CONVERGENCE",
+        "body": "Both AI training and bitcoin mining are massive consumers of cheap electricity and specialized silicon. Mining companies are increasingly repurposing data center capacity for AI workloads — the same megawatts, the same cooling, different ASICs. The bull case for bitcoin infrastructure is now partly an indirect bet on AI capex.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "USA",
+                "value": "~38% hashrate",
+                "cc": "US",
+                "weight": 38
+              },
+              {
+                "label": "China",
+                "value": "~21%",
+                "cc": "CN",
+                "weight": 21
+              },
+              {
+                "label": "Kazakhstan",
+                "value": "~13%",
+                "cc": "KZ",
+                "weight": 13
+              },
+              {
+                "label": "Russia",
+                "value": "~11%",
+                "cc": "RU",
+                "weight": 11
+              },
+              {
+                "label": "Canada",
+                "value": "~7%",
+                "cc": "CA",
+                "weight": 7
+              }
+            ],
+            "label": "hashrate and AI compute concentration"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT INSTITUTIONS CHANGED",
+        "body": "The January 2024 approval of US spot bitcoin ETFs collapsed the access friction that kept pension funds, endowments, and RIAs on the sidelines for a decade. Within twelve months, BlackRock's IBIT became the fastest-growing ETF in history. Bitcoin's marginal buyer is no longer a retail trader — it is an allocator running a 60/40/X model.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What was the main barrier keeping US institutional investors from holding bitcoin before 2024?",
+            "options": [
+              "Legal prohibition on owning crypto",
+              "Lack of a regulated, custody-solved vehicle like a spot ETF",
+              "Tax treatment as a foreign currency",
+              "SEC ban on bitcoin trading"
+            ],
+            "correct": 1,
+            "explanation": "Spot bitcoin ETFs approved in January 2024 solved custody, audit, and fiduciary concerns that had blocked pension funds and RIAs from direct ownership."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-23",
+      "CoinGecko · PAXG (gold-backed) · as of 2026-05-23"
+    ],
+    "generatedAt": "2026-05-23T22:31:21.155Z",
+    "label": "Bitcoin as Macro Asset",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-23-eight-minute-child-development-assessment-global-south": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY MEASUREMENT MATTERS",
+        "body": "Roughly 250 million children under five in low- and middle-income countries are estimated to be at risk of not reaching their developmental potential. Without measurement, no government can target interventions or know if they worked.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The field calls this the **measurement gap** — the distance between how much we know about child mortality (counted precisely) and child *development* (barely counted at all)."
+          }
+        ]
+      },
+      {
+        "heading": "THE GOLD STANDARD PROBLEM",
+        "body": "Instruments like the Bayley Scales of Infant Development take 30–90 minutes per child and require a trained psychologist with a kit of physical objects. At that cost, a national survey of 10,000 children is a multi-year research project, not a routine statistic."
+      },
+      {
+        "heading": "THE FIRST 1,000 DAYS",
+        "body": "From conception to a child's second birthday, the brain forms over a million neural connections per second. Stunting, iron deficiency, or lack of stimulation in this window produces cognitive deficits that schooling later cannot fully recover. This is why early screening is the leverage point."
+      },
+      {
+        "heading": "DIRECT VS. CAREGIVER-REPORT",
+        "body": "There are two ways to assess a young child: have a trained observer test the child directly, or ask the caregiver structured questions. Direct tests are more accurate but slow and expensive; caregiver reports scale but drift with literacy and culture. The 8-minute battery is an attempt to keep direct-test rigor at caregiver-report speed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why are caregiver-report tools historically weaker than direct child assessment?",
+            "options": [
+              "Caregivers exaggerate their child's abilities",
+              "Responses vary with caregiver literacy, education, and cultural norms about milestones",
+              "Caregivers cannot accurately recall their child's age"
+            ],
+            "correct": 1,
+            "explanation": "Survey responses about milestones (e.g. 'does your child stack blocks?') are filtered through what caregivers notice, remember, and consider worth reporting — all culturally patterned."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE BURDEN SITS",
+        "body": "The countries with the highest share of children at developmental risk are concentrated in sub-Saharan Africa and South Asia — exactly the places where pediatric psychologists are scarcest. A short, scalable battery is not a convenience; it is the only way the data ever gets collected.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "ET",
+              "CD",
+              "PK",
+              "BD",
+              "IN",
+              "ID",
+              "TZ"
+            ],
+            "label": "where most under-five children live",
+            "caption": "These eight countries together hold roughly half the world's under-five population."
+          }
+        ]
+      },
+      {
+        "heading": "THE SDG HOOK",
+        "body": "Sustainable Development Goal 4.2.1 commits countries to track the share of children 'developmentally on track' — but until recently the world had no agreed instrument to produce that number. Short batteries exist precisely to make a global indicator computable, not just aspirational."
+      }
+    ],
+    "generatedAt": "2026-05-23T22:31:48.514Z",
+    "label": "Measuring Child Development at Scale",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-23-iran-us-mou-framework-gulf-videoconference": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY PAKISTAN BROKERS",
+        "body": "Pakistan shares a 900km border with Iran and is the only Sunni nuclear-armed state with working channels in Tehran. Its ISI has run quiet Iran liaison since the 1979 revolution, and Islamabad hosted the back-channel that produced the 2023 Saudi-Iran restoration before Beijing took the credit.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "IR",
+              "SA",
+              "AE",
+              "OM",
+              "QA"
+            ],
+            "label": "the brokering geography",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 35.6892,
+                "lng": 51.389,
+                "label": "Tehran"
+              },
+              {
+                "lat": 33.6844,
+                "lng": 73.0479,
+                "label": "Islamabad"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE ALGIERS PRECEDENT",
+        "body": "The last formal US-Iran accord was the 1981 Algiers Accords, brokered by Algeria, which ended the 444-day hostage crisis. The pattern persists: Washington and Tehran have not negotiated directly since 1979 — every deal, including the 2015 JCPOA's early phases, ran through an intermediary.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Embassy seizure; ties severed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1981",
+                "label": "Algiers Accords (Algeria brokers)"
+              },
+              {
+                "year": "2013",
+                "label": "Oman back-channel opens"
+              },
+              {
+                "year": "2015",
+                "label": "JCPOA signed in Vienna"
+              },
+              {
+                "year": "2018",
+                "label": "US withdraws from JCPOA"
+              },
+              {
+                "year": "2023",
+                "label": "China brokers Saudi-Iran restoration"
+              },
+              {
+                "year": "2026",
+                "label": "Pakistan brokers Hormuz MoU"
+              }
+            ],
+            "label": "US-Iran channels since the rupture"
+          }
+        ]
+      },
+      {
+        "heading": "WHY HORMUZ FIRST, NUCLEAR LATER",
+        "body": "Sequencing a chokepoint deal before nuclear talks is deliberate: oil disruption is measurable in barrels per day, while nuclear verification takes years of IAEA inspections. Splitting the file lets both sides claim a fast win without the other tripwire collapsing the whole arrangement.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              31,
+              36,
+              31,
+              30,
+              28,
+              30,
+              25,
+              19,
+              23,
+              18,
+              23,
+              14,
+              19,
+              28,
+              34,
+              36,
+              28,
+              20,
+              18,
+              17,
+              14,
+              13,
+              12,
+              10,
+              8,
+              16,
+              11,
+              22,
+              19,
+              13,
+              62
+            ],
+            "periods": [
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 23"
+            ],
+            "label": "US x Iran permanent peace deal by May…",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "31%"
+              },
+              {
+                "atIndex": 30,
+                "label": "62%"
+              }
+            ],
+            "link": "https://polymarket.com/event/us-x-iran-permanent-peace-deal-by",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE 14-CLAUSE MOU SHAPE",
+        "body": "A memorandum of understanding is not a treaty — it requires no senate ratification on the US side and no Majles approval in Iran. It binds the executives who signed it and dissolves when they leave office. The JCPOA was structured the same way, which is why Trump could exit it in 2018 by executive order alone.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "An **MoU** is political commitment, not law. The 2015 **JCPOA** was technically a *politically binding instrument* — never submitted to the Senate as a treaty, which made unilateral US withdrawal procedurally trivial."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT NUCLEAR EXCLUSION MEANS",
+        "body": "Iran's foreign ministry insisting nuclear sits outside the accord protects domestic hardliners: enrichment is constitutionally framed as a sovereign right since 2005. A separate 30-day talks window lets Tehran say Hormuz was traded, not the centrifuges at Natanz and Fordow.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When was the last direct US-Iran diplomatic accord signed without a third-country broker?",
+            "options": [
+              "1981 Algiers Accords (Algeria brokered)",
+              "2015 JCPOA in Vienna",
+              "There has been none since 1979",
+              "1986 Iran-Contra arms transfers"
+            ],
+            "correct": 2,
+            "explanation": "Every US-Iran agreement since the 1979 embassy seizure has run through an intermediary — Algeria, Oman, the EU3, and now Pakistan. Direct bilateral negotiation has not resumed."
+          }
+        ]
+      },
+      {
+        "heading": "THE CAST",
+        "body": "The principals on each side trace back to opposing camps of the 1979 rupture — but the negotiators between them are new actors with their own domestic constituencies to manage.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Donald Trump",
+                "role": "US President",
+                "years": "2025–",
+                "cc": "US"
+              },
+              {
+                "name": "Marco Rubio",
+                "role": "US Secretary of State",
+                "years": "2025–",
+                "cc": "US"
+              },
+              {
+                "name": "Masoud Pezeshkian",
+                "role": "Iranian President",
+                "years": "2024–",
+                "cc": "IR"
+              },
+              {
+                "name": "Shehbaz Sharif",
+                "role": "Pakistani PM, broker",
+                "years": "2024–",
+                "cc": "PK"
+              }
+            ],
+            "label": "the principals"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-23"
+    ],
+    "generatedAt": "2026-05-23T22:32:22.908Z",
+    "label": "Iran-US Brokered Diplomacy",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-23-madrid-sanchez-resignation-rally-corruption": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MOTION OF NO CONFIDENCE",
+        "body": "Spain uses a constructive vote of no confidence — borrowed from postwar West Germany's Basic Law. To unseat a sitting prime minister, the opposition must simultaneously name a replacement who commands a majority. Pure no-confidence votes are impossible.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is called *moción de censura constructiva* — designed to prevent the chronic government collapses that plagued the Second Spanish Republic (1931–1939) before Franco."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SÁNCHEZ SURVIVES",
+        "body": "His PSOE governs in coalition with Sumar and depends on Catalan and Basque regional parties — Junts, ERC, PNV, EH Bildu — for confidence votes. Street protests don't change parliamentary arithmetic; only those small parties flipping does.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Pedro Sánchez",
+                "role": "PM, PSOE leader",
+                "years": "2018–",
+                "cc": "ES"
+              },
+              {
+                "name": "Alberto Núñez Feijóo",
+                "role": "PP opposition leader",
+                "years": "2022–",
+                "cc": "ES"
+              },
+              {
+                "name": "Santiago Abascal",
+                "role": "Vox leader",
+                "years": "2014–",
+                "cc": "ES"
+              },
+              {
+                "name": "Carles Puigdemont",
+                "role": "Junts leader, in exile",
+                "years": "2018–",
+                "cc": "ES"
+              }
+            ],
+            "label": "the confidence math"
+          }
+        ]
+      },
+      {
+        "heading": "THE AMNESTY BARGAIN",
+        "body": "Sánchez secured his 2023 investiture by granting amnesty to Catalan independence leaders prosecuted after the 2017 referendum — including Puigdemont, who fled to Belgium. PP and Vox call it a constitutional rupture; for Junts, it was the price of votes Sánchez could get nowhere else.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2018-06",
+                "label": "First no-confidence vote ousts Rajoy"
+              },
+              {
+                "year": "2019-04",
+                "label": "Snap election, minority government"
+              },
+              {
+                "year": "2020-01",
+                "label": "First coalition since 1936 (with Podemos)"
+              },
+              {
+                "year": "2023-07",
+                "label": "Snap election after EU vote defeat"
+              },
+              {
+                "year": "2023-11",
+                "label": "Amnesty deal with Junts",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024-04",
+                "label": "Wife's investigation opens"
+              },
+              {
+                "year": "2026-05",
+                "label": "Wife charged with embezzlement"
+              }
+            ],
+            "label": "Sánchez's tenure"
+          }
+        ]
+      },
+      {
+        "heading": "THE CORRUPTION PATTERN",
+        "body": "Spain's modern democracy has cycled corruption scandals through both major parties. PP's Gürtel case (kickbacks-for-contracts) brought down Rajoy in 2018 — the very vote that installed Sánchez. The accusations now reaching Sánchez's circle echo a pattern voters know well.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Spanish PM was ousted by the country's first successful no-confidence vote?",
+            "options": [
+              "José María Aznar (PP)",
+              "Mariano Rajoy (PP)",
+              "José Luis Rodríguez Zapatero (PSOE)",
+              "Felipe González (PSOE)"
+            ],
+            "correct": 1,
+            "explanation": "Rajoy fell in June 2018 after the Gürtel ruling confirmed systemic PP corruption — the only successful constructive no-confidence vote in Spanish history. Sánchez replaced him the same day."
+          }
+        ]
+      },
+      {
+        "heading": "THE FRAGMENTED RIGHT",
+        "body": "Vox split from PP in 2013, ending the post-Franco two-party order. Together PP and Vox can outpoll PSOE but cannot easily govern — coalitions with Vox cost PP centrist voters, while excluding Vox leaves PP short of a majority. This deadlock is what keeps Sánchez in office despite low approval.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "PP",
+                "value": "137 seats",
+                "cc": "ES",
+                "weight": 137
+              },
+              {
+                "label": "PSOE",
+                "value": "121 seats",
+                "cc": "ES",
+                "weight": 121,
+                "tone": "favorable"
+              },
+              {
+                "label": "Vox",
+                "value": "33 seats",
+                "cc": "ES",
+                "weight": 33,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Sumar",
+                "value": "31 seats",
+                "cc": "ES",
+                "weight": 31,
+                "tone": "favorable"
+              },
+              {
+                "label": "Junts + ERC",
+                "value": "14 seats",
+                "cc": "ES",
+                "weight": 14
+              },
+              {
+                "label": "Others",
+                "value": "14 seats",
+                "cc": "ES",
+                "weight": 14
+              }
+            ],
+            "label": "2023 general election, seat share (350 total)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-23T22:32:54.501Z",
+    "label": "Spain's Confidence Politics",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-23-pakistan-traders-turnover-tax-budget-fbr": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MECHANIC",
+        "body": "Turnover tax charges a flat percentage of gross sales — whether the business made a profit or a loss. For a retailer with thin margins, a 1.25% turnover tax on sales can exceed their entire net profit, taxing them into insolvency in a bad year.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Income tax taxes *what you earned*. Turnover tax taxes *what you sold*. The two are not interchangeable — a shop with 2% margins pays a turnover tax rate equal to **62% of profit**."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PAKISTAN USES IT",
+        "body": "Only about 1% of Pakistanis file income tax returns. The FBR cannot verify what small businesses actually earn, so it falls back on what it can see — declared sales — and taxes that instead. Turnover tax is an admission that the income-tax system has failed at the retail level."
+      },
+      {
+        "heading": "THE TRADER LOBBY",
+        "body": "Pakistan's wholesale and retail sector is roughly 18% of GDP but contributes a fraction of that to direct tax. Bazaar shutdowns — anjuman-e-tajiran strikes — have repeatedly forced governments to retreat on documentation drives, from Musharraf's 1999 GST attempt to Imran Khan's 2019 Tajir Dost scheme."
+      },
+      {
+        "heading": "THE IMF SQUEEZE",
+        "body": "The 2024 $7bn Extended Fund Facility commits Pakistan to widening the tax base — specifically retailers and agriculture, the two large untaxed sectors. Cutting the turnover tax without a replacement collection mechanism risks breaching the EFF's quarterly revenue targets.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.710762,
+              278.31719,
+              278.31719,
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258,
+              278.560406,
+              278.634377,
+              278.485848,
+              278.494701
+            ],
+            "periods": [
+              "Apr 24",
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE STRUCTURAL GAP",
+        "body": "Pakistan's tax-to-GDP ratio sits near 10% — among the lowest in Asia. Comparable middle-income economies collect roughly double that share. The gap is what forces every IMF programme, every external bailout, and every budget fight with the traders.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Tax revenue as % of GDP, selected emerging economies",
+            "peers": [
+              {
+                "value": 10,
+                "cc": "PK"
+              },
+              {
+                "value": 8,
+                "cc": "BD"
+              },
+              {
+                "value": 18,
+                "cc": "IN"
+              },
+              {
+                "value": 23,
+                "cc": "TR"
+              },
+              {
+                "value": 14,
+                "cc": "EG"
+              },
+              {
+                "value": 12,
+                "cc": "ID"
+              },
+              {
+                "value": 33,
+                "cc": "BR"
+              }
+            ],
+            "subjectCc": "PK",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "WHO IS THE FBR",
+        "body": "The Federal Board of Revenue is Pakistan's tax authority, reporting to the Finance Ministry. It has historically collected over 90% of its revenue from indirect taxes — sales tax, customs, withholding — because direct collection from individuals and small businesses is politically and administratively impossible.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of Pakistanis file an annual income tax return?",
+            "options": [
+              "About 1%",
+              "About 10%",
+              "About 25%",
+              "About 40%"
+            ],
+            "correct": 0,
+            "explanation": "Filer numbers hover near 4–5 million in a country of 240 million — roughly 1–2% of the population, and a fraction of the actual workforce."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-23"
+    ],
+    "generatedAt": "2026-05-23T22:33:20.636Z",
+    "label": "Pakistan's Tax Base Problem",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-23-spacex-starship-v3-first-flight-raptor-3-artemis": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ENGINE-OUT PRINCIPLE",
+        "body": "Modern heavy rockets are designed to lose engines and still complete the mission. Saturn V lost engines on Apollo 6 and Apollo 13's second stage and reached orbit anyway. The trick is overprovisioning thrust and letting the remaining engines burn longer to make up the lost impulse.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is *engine-out capability* — the vehicle's guidance computer recalculates the burn in real time, trading **propellant margin** for **redundancy**."
+          }
+        ]
+      },
+      {
+        "heading": "WHY FULL-FLOW STAGED COMBUSTION",
+        "body": "Raptor uses full-flow staged combustion, a cycle attempted by Soviet engineers in the 1960s but never flown until SpaceX. Both fuel and oxidizer are fully gasified before injection, allowing higher chamber pressures and longer engine life than any prior design.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Raptor 3",
+                "value": "~350 bar",
+                "tone": "favorable",
+                "weight": 350
+              },
+              {
+                "label": "RD-180",
+                "value": "267 bar",
+                "weight": 267
+              },
+              {
+                "label": "Merlin 1D",
+                "value": "~100 bar",
+                "weight": 100
+              },
+              {
+                "label": "RS-25 (SLS)",
+                "value": "~206 bar",
+                "weight": 206
+              },
+              {
+                "label": "F-1 (Saturn V)",
+                "value": "~70 bar",
+                "weight": 70
+              }
+            ],
+            "label": "chamber pressure, selected engines"
+          }
+        ]
+      },
+      {
+        "heading": "THE PAYLOAD MATH",
+        "body": "Doubling payload from 50 to 100 tonnes is not a 2x improvement — it is closer to a 10x improvement in mission architecture. Each kilogram to lunar orbit costs roughly four kilograms of propellant in low Earth orbit, which is why Artemis requires many tanker refuelings of the Starship lunar lander before it can leave for the Moon.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many Starship tanker launches does NASA's Artemis architecture require to refuel one lunar lander in orbit?",
+            "options": [
+              "1–2",
+              "3–5",
+              "10–20",
+              "50+"
+            ],
+            "correct": 2,
+            "explanation": "NASA's published estimates range from 10 to 20 tanker flights per Artemis lunar mission — the largest in-orbit refueling operation ever attempted."
+          }
+        ]
+      },
+      {
+        "heading": "THE REENTRY PROBLEM",
+        "body": "Returning a stainless-steel vehicle the size of a 20-story building through Mach 25 plasma is unprecedented. Shuttle used fragile ceramic tiles and still lost Columbia when one failed. Starship's heatshield is also ceramic tiles, but the underlying steel skin can survive partial tile loss in ways aluminum could not."
+      },
+      {
+        "heading": "WHY THE MOON AGAIN",
+        "body": "NASA awarded SpaceX the Human Landing System contract in 2021 because Starship was the only bid that could deliver the mass Artemis needed at a price Congress would fund. The decision tied Artemis's schedule to Starship's development pace — every Starship delay slips the first crewed lunar return.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1972",
+                "label": "Apollo 17, last crewed lunar landing",
+                "emphasis": "start"
+              },
+              {
+                "year": "2021-04",
+                "label": "SpaceX wins HLS contract",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-04",
+                "label": "Starship IFT-1, pad destroyed"
+              },
+              {
+                "year": "2024-06",
+                "label": "IFT-4, first soft splashdown"
+              },
+              {
+                "year": "2026-05",
+                "label": "V3 first flight"
+              },
+              {
+                "year": "2027",
+                "label": "Artemis III target (crewed lunar landing)"
+              }
+            ],
+            "label": "Artemis & Starship HLS"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-23T22:33:50.572Z",
+    "label": "Starship & Engine-Out Tolerance",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-23-uganda-ebola-outbreak-africa-cdc-spillover-risk": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "FIVE STRAINS, UNEQUAL TOOLS",
+        "body": "Ebola is not one virus but a genus. Zaire ebolavirus is the deadliest and the only strain with approved vaccines (Ervebo, licensed 2019). Bundibugyo, Sudan, Taï Forest, and Reston each require separate vaccine development — antibodies against Zaire do not cross-protect.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Zaire",
+                "value": "~50% CFR",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Sudan",
+                "value": "~50% CFR",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Bundibugyo",
+                "value": "~40% CFR",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Taï Forest",
+                "value": "1 known case",
+                "tone": "neutral"
+              },
+              {
+                "label": "Reston",
+                "value": "non-human",
+                "tone": "favorable"
+              }
+            ],
+            "label": "Ebola strains: case fatality and countermeasures"
+          }
+        ]
+      },
+      {
+        "heading": "THE BUNDIBUGYO HISTORY",
+        "body": "The Bundibugyo strain was first identified in 2007 in western Uganda's Bundibugyo district, on the DRC border. It returned in DRC in 2012. Both outbreaks were contained with classical public-health tools — contact tracing, isolation, safe burials — because no vaccine existed then and none exists now.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2007",
+                "label": "First identified, Bundibugyo, Uganda",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2012",
+                "label": "DRC outbreak (Isiro)"
+              },
+              {
+                "year": "2019",
+                "label": "Ervebo licensed (Zaire strain only)"
+              },
+              {
+                "year": "2026",
+                "label": "Uganda re-emergence, reaches Kampala"
+              }
+            ],
+            "label": "Bundibugyo strain emergence"
+          }
+        ]
+      },
+      {
+        "heading": "THE SPILLOVER GEOGRAPHY",
+        "body": "Ebola circulates in fruit bats across the Congo Basin rainforest. Human outbreaks cluster where the forest meets the village — bushmeat handling, cave exposure, funeral contact with a recent victim. The Uganda-DRC border zone, with porous crossings and dense forest, has been the most repeated spillover interface on the continent.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UG",
+              "CD",
+              "RW",
+              "SS",
+              "KE",
+              "TZ"
+            ],
+            "label": "Congo Basin spillover zone",
+            "markers": [
+              {
+                "lat": 0.7106,
+                "lng": 30.0656,
+                "label": "Bundibugyo (2007 index)"
+              },
+              {
+                "lat": 0.3476,
+                "lng": 32.5825,
+                "label": "Kampala"
+              },
+              {
+                "lat": 0.0469,
+                "lng": 32.4439,
+                "label": "Entebbe airport"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY URBAN SPREAD CHANGES THE MATH",
+        "body": "Ebola transmits through direct contact with bodily fluids — not airborne, not casually transmissible. In rural outbreaks the contact network is small and traceable. Kampala has 1.7 million people; Entebbe is an international hub. The 2014 West Africa epidemic (28,000 cases) was the first to reach capitals — Monrovia, Freetown, Conakry — and that is what turned a regional event into a global one.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phrase to know is ***R0 in urban settings***: rural Ebola R0 sits near 1.5; urban outbreaks have measured above 2 once funeral practices and hospital transmission compound."
+          }
+        ]
+      },
+      {
+        "heading": "THE AID-CUT TIMING",
+        "body": "USAID and several European donors absorbed the cost of frontline outbreak response across the DRC for two decades — PPE, mobile labs, burial teams, contact-tracer salaries. Successive funding freezes since 2025 stripped that scaffolding. The DRC responders quoted in this story are not metaphorically short of supplies; they are literally working without gloves.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How does Ebola virus primarily transmit between humans?",
+            "options": [
+              "Airborne droplets, like influenza",
+              "Direct contact with infected bodily fluids",
+              "Mosquito bites",
+              "Contaminated drinking water"
+            ],
+            "correct": 1,
+            "explanation": "Ebola requires direct contact with blood, vomit, diarrhea, or other fluids — which is why funerals and unprotected medical care are the highest-risk transmission events."
+          }
+        ]
+      },
+      {
+        "heading": "THE RESERVOIR",
+        "body": "The natural reservoir is almost certainly the Egyptian fruit bat (Rousettus aegyptiacus) and related species, which carry filoviruses without symptoms. This is why Ebola cannot be eradicated the way smallpox was — the virus lives in a wild animal population spanning a continent. Every outbreak is a re-emergence, not a failure of elimination."
+      }
+    ],
+    "generatedAt": "2026-05-23T22:34:25.365Z",
+    "label": "Ebola & the Bundibugyo Strain",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-23-zelenskyy-sanctions-127-russian-commanders-named": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DOCTRINE",
+        "body": "Command responsibility is the principle that military commanders are criminally liable for crimes their subordinates commit when the commander knew or should have known and failed to prevent or punish. It is the legal mechanism that turns a chain of command into a chain of accountability.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine was crystallized in *In re Yamashita* (1946), where the US Supreme Court upheld the execution of Japanese General **Tomoyuki Yamashita** for atrocities committed by troops in the Philippines — even without evidence he ordered them. The standard: a commander **should have known**."
+          }
+        ]
+      },
+      {
+        "heading": "THE NUREMBERG INHERITANCE",
+        "body": "The post-WWII tribunals established that 'following orders' is not a defense, and that issuing orders down the chain creates personal liability. Every modern war crimes prosecution — from the ICTY in The Hague to today's Ukrainian dossiers — descends from this framework.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1945",
+                "label": "Nuremberg Charter",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1946",
+                "label": "Yamashita standard"
+              },
+              {
+                "year": "1949",
+                "label": "Geneva Conventions"
+              },
+              {
+                "year": "1993",
+                "label": "ICTY (Yugoslavia)"
+              },
+              {
+                "year": "1998",
+                "label": "Rome Statute / ICC"
+              },
+              {
+                "year": "2023",
+                "label": "ICC warrant for Putin"
+              }
+            ],
+            "label": "the accountability arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY NAMING MATTERS",
+        "body": "Sanctions on named officers travel with them. Travel bans, asset freezes, and Interpol notices follow the individual into retirement and across borders. The Bosnian commanders indicted in the 1990s were arrested decades later in cafes and at funerals — names outlive uniforms."
+      },
+      {
+        "heading": "THE SHADOW FLEET",
+        "body": "Russia moves sanctioned oil and military cargo on a 'shadow fleet' of aging tankers — ownership obscured through shell companies in Dubai, Mumbai, and the Marshall Islands, flags swapped at sea, AIS transponders switched off. The G7 oil price cap was the first attempt to police it; sanctioning individual vessels by IMO number is the second.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "RU",
+              "AE",
+              "IN",
+              "MH",
+              "LR",
+              "PA"
+            ],
+            "label": "flags of convenience in the shadow fleet"
+          }
+        ]
+      },
+      {
+        "heading": "OKHMATDYT",
+        "body": "Okhmatdyt is Ukraine's largest children's hospital, in Kyiv. A Russian Kh-101 cruise missile struck its toxicology building in July 2024 during an attack on a protected medical facility. Under the Geneva Conventions, hospitals lose protection only if used for hostile acts — a threshold no evidence has shown Okhmatdyt crossed.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the Geneva Conventions, when does a hospital lose its protected status?",
+            "options": [
+              "When combatants are treated inside",
+              "When it is used to commit hostile acts beyond its humanitarian function",
+              "When it is located near a military target",
+              "Never — hospitals are absolutely protected"
+            ],
+            "correct": 1,
+            "explanation": "Treating wounded combatants is explicitly permitted. Protection is forfeited only when the facility is used for hostile acts outside its medical function, and even then only after a warning."
+          }
+        ]
+      },
+      {
+        "heading": "THE ENFORCEMENT GAP",
+        "body": "Naming a commander and arresting one are different problems. The ICC has issued warrants for Putin and Lvova-Belova, but Russia is not a member and will not extradite. The bet Ukraine is making: that the list constrains where these officers can travel, bank, and retire for the rest of their lives — even if a courtroom never sees them."
+      }
+    ],
+    "generatedAt": "2026-05-23T22:34:53.725Z",
+    "label": "Command Responsibility & Sanctions",
+    "category": "politics",
+    "articleCount": 1
   }
 }
