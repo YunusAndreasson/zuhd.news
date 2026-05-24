@@ -2066,5 +2066,22 @@
       "category tech below floor 2 (got 0)"
     ],
     "degenerate": false
+  },
+  {
+    "ts": "2026-05-24T12:28:32.671Z",
+    "cycleId": "2026-05-24T12-28",
+    "cycleHour": "12",
+    "rvs": 69.98,
+    "clusters": {
+      "picking": null,
+      "writing": 90.91,
+      "briefing": 75.07,
+      "sourcing": 18.18,
+      "coverage": 87.06
+    },
+    "articleCount": 11,
+    "briefCount": 11,
+    "guardrailFailures": [],
+    "degenerate": false
   }
 ]
