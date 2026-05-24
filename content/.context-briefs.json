@@ -229265,5 +229265,1451 @@
     "label": "Monetary Partition",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-24-ai-agents-usdc-payments-stripe-visa-coinbase-rails": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FLOOR PROBLEM",
+        "body": "Visa and Mastercard rails were designed for human-scale transactions. Interchange fees, network assessments, and acquirer markups stack up to a roughly 30-cent minimum per swipe. Anything smaller loses money to process — which is why newspapers never charged per article and APIs never charged per call.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The economic term is the *sub-cent transaction problem*: a payment system whose **fixed cost per transaction** exceeds the value being transferred is structurally unable to serve that market, no matter how much demand exists."
+          }
+        ]
+      },
+      {
+        "heading": "WHY STABLECOINS CLEAR IT",
+        "body": "A USDC transfer on a Layer-2 like Base or Solana settles in seconds for a fraction of a cent. There is no acquirer, no issuer, no chargeback window — the token moves on a public ledger and finality is the block confirmation. The 30-cent floor disappears because the rail itself has no floor.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Visa/Mastercard",
+                "value": "~30¢",
+                "tone": "unfavorable",
+                "weight": 30
+              },
+              {
+                "label": "ACH",
+                "value": "~25¢",
+                "tone": "unfavorable",
+                "weight": 25
+              },
+              {
+                "label": "USDC on Base",
+                "value": "<0.1¢",
+                "tone": "favorable",
+                "weight": 0.1
+              }
+            ],
+            "label": "cost per $0.05 micropayment"
+          }
+        ]
+      },
+      {
+        "heading": "WHY USDC AND NOT USDT",
+        "body": "Tether (USDT) dominates global stablecoin volume — but its reserves are opaque and it has been banned or restricted in the US, EU, and Singapore. Circle's USDC publishes monthly attestations, holds reserves at BNY Mellon, and is the only major stablecoin pre-cleared under MiCA. For an agent operated by a US company, USDC is the only choice that survives compliance review."
+      },
+      {
+        "heading": "THE LIABILITY VOID",
+        "body": "Card networks have 60 years of case law on who pays when a transaction goes wrong — issuer, acquirer, merchant, consumer. None of it applies when the buyer is a piece of software with no legal personhood. If an agent overpays, gets phished, or buys something its principal didn't authorize, current law has no clear answer.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under US law, who is liable when an AI agent makes an unauthorized purchase on behalf of its user?",
+            "options": [
+              "The agent's developer, under product liability",
+              "The user, as principal of the agent",
+              "The merchant who accepted the payment",
+              "Unsettled — no statute or precedent directly addresses it"
+            ],
+            "correct": 3,
+            "explanation": "Agent liability is a genuine legal void; the GENIUS Act and MiCA both regulate the stablecoin issuer, not the autonomous spender."
+          }
+        ]
+      },
+      {
+        "heading": "THE GENIUS ACT",
+        "body": "The 2025 GENIUS Act (Guiding and Establishing National Innovation for US Stablecoins) creates a federal license for payment stablecoin issuers, mandates 1:1 reserves in cash or short Treasuries, and preempts state money-transmitter law. It legitimizes USDC as a payment instrument — but says nothing about who is operating the wallet on the other end."
+      },
+      {
+        "heading": "THE TREASURY DEMAND LOOP",
+        "body": "USDC's reserves are mostly short-dated US Treasury bills. Every dollar that moves into stablecoins becomes a marginal bid for T-bills. If agent commerce scales to the trillions Stripe and Visa are projecting, stablecoin issuers become structurally significant Treasury buyers — a quiet form of dollar entrenchment running through software, not central banks.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "user",
+                "label": "User funds wallet"
+              },
+              {
+                "id": "agent",
+                "label": "AI agent"
+              },
+              {
+                "id": "merchant",
+                "label": "Merchant"
+              },
+              {
+                "id": "circle",
+                "label": "Circle (issuer)"
+              },
+              {
+                "id": "tbills",
+                "label": "US T-bills"
+              }
+            ],
+            "links": [
+              {
+                "source": "user",
+                "target": "circle",
+                "value": 100,
+                "label": "mint USDC"
+              },
+              {
+                "source": "circle",
+                "target": "tbills",
+                "value": 100,
+                "label": "reserves"
+              },
+              {
+                "source": "user",
+                "target": "agent",
+                "value": 100,
+                "label": "custody"
+              },
+              {
+                "source": "agent",
+                "target": "merchant",
+                "value": 100,
+                "label": "payment"
+              }
+            ],
+            "label": "how an agent's USDC payment flows"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-24T17:26:45.425Z",
+    "label": "Agent Payments & Stablecoin Rails",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-24-ai-quantum-threat-bitcoin-post-quantum-cryptography": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT Q DAY MEANS",
+        "body": "Q Day is the hypothetical date a quantum computer can break RSA-2048 or elliptic-curve cryptography in hours rather than billions of years. It is not about breaking all encryption — symmetric ciphers like AES-256 only lose half their effective key length against quantum attacks, which still leaves them secure.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The asymmetry matters: *public-key* schemes (RSA, ECDSA) collapse; *symmetric* schemes (AES, SHA-2) merely need bigger keys."
+          }
+        ]
+      },
+      {
+        "heading": "SHOR'S ALGORITHM",
+        "body": "Peter Shor proved in 1994 that a sufficiently large quantum computer can factor integers and solve discrete logarithms in polynomial time. Every public-key system in production — RSA, Diffie-Hellman, ECDSA — rests on the assumption these problems are hard. Shor's algorithm is the only reason quantum computers matter for cryptography."
+      },
+      {
+        "heading": "WHY AI CHANGES THE TIMELINE",
+        "body": "The bottleneck is not qubit count — it is error correction. A logical qubit currently needs hundreds of physical qubits, decoded in real time. Machine learning has begun outperforming hand-designed decoders, shrinking the overhead ratio and pulling forward the date when a useful machine is built."
+      },
+      {
+        "heading": "WHAT BITCOIN ACTUALLY USES",
+        "body": "Bitcoin relies on ECDSA over the secp256k1 curve. Your private key is a 256-bit number; your public key is a point on an elliptic curve derived from it. The security assumption — you cannot work backwards from public to private — is exactly what Shor's algorithm breaks.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Bitcoin addresses are most exposed to a quantum attack?",
+            "options": [
+              "Addresses that have never sent a transaction",
+              "Addresses that have already revealed their public key on-chain",
+              "Addresses holding less than 1 BTC",
+              "All addresses equally"
+            ],
+            "correct": 1,
+            "explanation": "Bitcoin addresses are hashes of public keys. Until you spend from an address, only the hash is on-chain. Once you spend, the public key is exposed — and that's what a quantum attacker would target."
+          }
+        ]
+      },
+      {
+        "heading": "HARVEST NOW, DECRYPT LATER",
+        "body": "Intelligence agencies are already collecting encrypted traffic — diplomatic cables, banking flows, medical records — on the assumption it can be decrypted years later. Anything whose secrecy must outlast Q Day is effectively compromised the moment it crosses a wire today."
+      },
+      {
+        "heading": "THE MIGRATION PROBLEM",
+        "body": "In 2024 NIST finalised three post-quantum standards based on lattice problems. Migrating TLS, VPNs, and firmware channels is painful but tractable — there is a central authority to push the change. A blockchain has no such authority: changing Bitcoin's signature scheme requires a hard fork, coordinated across miners, exchanges, and wallets holding coins whose owners may be dead.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "TLS / web",
+                "value": "NIST + browsers",
+                "tone": "favorable"
+              },
+              {
+                "label": "Banking (SWIFT)",
+                "value": "Central body",
+                "tone": "favorable"
+              },
+              {
+                "label": "Government",
+                "value": "NSA / agencies",
+                "tone": "neutral"
+              },
+              {
+                "label": "Bitcoin",
+                "value": "Hard fork",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Ethereum",
+                "value": "Hard fork",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "post-quantum migration: who decides"
+          },
+          {
+            "type": "trend",
+            "values": [
+              77444.8,
+              77619.14,
+              78645.13,
+              77361.3,
+              76345.23,
+              75774.89,
+              76286.58,
+              78172.07,
+              78655.35,
+              78562.55,
+              79823.89,
+              80925.09,
+              81425,
+              80022.04,
+              80189.07,
+              80678.03,
+              82145.66,
+              81725.21,
+              80480.89,
+              79277.8,
+              81051.98,
+              79068.82,
+              78135.01,
+              77425.72,
+              76952.21,
+              76808.81,
+              77459.94,
+              77546.34,
+              75482.52,
+              76672.79,
+              76526.43
+            ],
+            "periods": [
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 24"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-24"
+    ],
+    "generatedAt": "2026-05-24T17:27:11.344Z",
+    "label": "AI, Quantum & Bitcoin's Crypto",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-24-anthropic-glasswing-interpretability-update": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DEFENDER'S ASYMMETRY",
+        "body": "An attacker needs one exploitable bug; a defender needs to fix all of them. Tools that lower the cost of finding bugs help both sides — but the side with the patching pipeline, not the side with the scanner, decides whether the discovery becomes a fix or a zero-day.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry shorthand is **N-day** for a disclosed-and-patched bug versus **0-day** for one being exploited before any patch exists. Glasswing's output is a flood of N-day candidates — useful only as fast as the patch pipeline can absorb them."
+          }
+        ]
+      },
+      {
+        "heading": "THE FUZZING LINEAGE",
+        "body": "Automated bug-finding is not new. Barton Miller coined fuzzing at the University of Wisconsin in 1988 by piping random bytes at Unix utilities. AFL (2013) made coverage-guided fuzzing mainstream; Google's OSS-Fuzz (2016) has found tens of thousands of bugs in open-source projects. LLM-driven discovery is the latest rung on a 38-year ladder, not a new game.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1988",
+                "label": "Miller coins fuzzing at Wisconsin"
+              },
+              {
+                "year": "2002",
+                "label": "Microsoft Trustworthy Computing memo"
+              },
+              {
+                "year": "2013",
+                "label": "AFL — coverage-guided fuzzing"
+              },
+              {
+                "year": "2014",
+                "label": "Heartbleed: a 2-year-old bug in OpenSSL"
+              },
+              {
+                "year": "2016",
+                "label": "Google OSS-Fuzz launches",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "First LLM-discovered CVEs"
+              },
+              {
+                "year": "2026",
+                "label": "Glasswing: 10,000 bugs/month"
+              }
+            ],
+            "label": "automated bug discovery"
+          }
+        ]
+      },
+      {
+        "heading": "WHY MOST BUGS ARE THE SAME BUG",
+        "body": "Across Microsoft, Chrome, Android, and the Linux kernel, roughly 70% of critical security vulnerabilities are memory-safety bugs — buffer overflows, use-after-frees, double-frees — in C and C++ code. This is why Rust adoption matters as a structural fix, not a fashion: rewriting the substrate eliminates a category, not a bug.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Microsoft",
+                "value": "~70%",
+                "tone": "unfavorable",
+                "weight": 70
+              },
+              {
+                "label": "Chrome",
+                "value": "~70%",
+                "tone": "unfavorable",
+                "weight": 70
+              },
+              {
+                "label": "Android (legacy C/C++)",
+                "value": "~65%",
+                "tone": "unfavorable",
+                "weight": 65
+              },
+              {
+                "label": "Android (new Rust code)",
+                "value": "0 reported",
+                "tone": "favorable",
+                "weight": 1
+              }
+            ],
+            "label": "share of critical CVEs that are memory-safety bugs"
+          },
+          {
+            "type": "quiz",
+            "question": "Roughly what share of critical vulnerabilities in large C/C++ codebases are memory-safety bugs?",
+            "options": [
+              "About 20%",
+              "About 40%",
+              "About 70%",
+              "About 95%"
+            ],
+            "correct": 2,
+            "explanation": "Microsoft, Google, and the Linux kernel maintainers have all independently reported the ~70% figure over the past decade — the consistency is why memory-safe languages are now a national-security talking point."
+          }
+        ]
+      },
+      {
+        "heading": "THE CVE PIPELINE",
+        "body": "A vulnerability becomes a CVE — a Common Vulnerabilities and Exposures ID — only after a CNA (CVE Numbering Authority) assigns it. MITRE has run the program since 1999 under US government contract. The National Vulnerability Database scores severity using CVSS, a 0–10 metric where 9.0+ counts as critical. 'Critical' is not a synonym for 'exploited' — it is an estimate of worst-case impact.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A bug with no CVE is not less real — it's just unnumbered. Many internal bugs at large vendors are patched silently and never receive an ID, which is one reason raw CVE counts undercount the real population."
+          }
+        ]
+      },
+      {
+        "heading": "THE 90-DAY NORM",
+        "body": "Google's Project Zero established the modern disclosure standard in 2014: the finder privately notifies the vendor and publishes details 90 days later, patched or not. The deadline forces patching velocity. Anthropic withholding details until patches ship is the conservative end of this spectrum — the alternative is researchers who publish on day 90 regardless.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Project Zero will publicly disclose details of the vulnerability 90 days after the initial report, whether or not it has been fixed.",
+            "speaker": "Google Project Zero disclosure policy",
+            "year": "2014"
+          }
+        ]
+      },
+      {
+        "heading": "THE PATCHING BOTTLENECK",
+        "body": "Finding bugs has never been the binding constraint at scale — OSS-Fuzz already files thousands of bugs annually that maintainers cannot triage. Median time-to-patch for critical vulnerabilities in enterprise software is measured in months, not days. A scanner that produces 10,000 leads per month doesn't shrink the gap; it widens it, and shifts the strategic question from 'can we find them' to 'who can patch fastest'."
+      }
+    ],
+    "generatedAt": "2026-05-24T17:27:59.182Z",
+    "label": "AI & the Vulnerability Pipeline",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-24-armenia-turkey-akhalkalaki-kars-railway-trade-opening": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CLOSED BORDER",
+        "body": "Turkey shut its land border with Armenia in 1993 in solidarity with Azerbaijan during the First Nagorno-Karabakh War. For three decades, goods between two neighbors had to detour through Georgia or Iran — a closure unusual in modern Europe for its duration and totality.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The border closure made Armenia one of only two **doubly landlocked-by-hostility** states in Eurasia — surrounded by open borders only with *Georgia* and *Iran*, with Turkey and Azerbaijan sealed shut."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1915 SHADOW",
+        "body": "The diplomatic freeze rests on the unresolved question of the Armenian Genocide — the 1915 deportations and massacres under the late Ottoman state that killed roughly 1.5 million Armenians. Turkey rejects the genocide designation; Armenia's constitution references it. Every normalization attempt since the 1990s has run into this wall.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1915",
+                "label": "Armenian Genocide begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1991",
+                "label": "Armenian independence"
+              },
+              {
+                "year": "1993",
+                "label": "Turkey closes border"
+              },
+              {
+                "year": "2009",
+                "label": "Zurich Protocols signed, never ratified"
+              },
+              {
+                "year": "2020",
+                "label": "Second Karabakh War"
+              },
+              {
+                "year": "2023",
+                "label": "Azerbaijan retakes Karabakh"
+              },
+              {
+                "year": "2026",
+                "label": "First rail trade opens"
+              }
+            ],
+            "label": "the long freeze"
+          }
+        ]
+      },
+      {
+        "heading": "WHY KARABAKH UNLOCKED IT",
+        "body": "Armenia lost the 2020 war and the remaining Armenian population of Nagorno-Karabakh was displaced in 2023. With the territorial dispute resolved on Azerbaijan's terms, Ankara's condition for opening — Armenian concessions on Karabakh — was met by force of facts rather than diplomacy."
+      },
+      {
+        "heading": "THE CORRIDOR GEOGRAPHY",
+        "body": "The Baku-Tbilisi-Kars railway was deliberately routed through Georgia to bypass Armenia. Akhalkalaki is the Georgian junction where Armenian freight can now interchange — Armenia accesses Turkish rail without Turkish track ever touching Armenian soil.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AM",
+              "TR",
+              "GE",
+              "AZ",
+              "IR"
+            ],
+            "label": "the South Caucasus rail web",
+            "markers": [
+              {
+                "lat": 41.4053,
+                "lng": 43.4869,
+                "label": "Akhalkalaki junction"
+              },
+              {
+                "lat": 40.6013,
+                "lng": 43.0975,
+                "label": "Kars terminal"
+              },
+              {
+                "lat": 40.1872,
+                "lng": 44.5152,
+                "label": "Yerevan"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE ZANGEZUR QUESTION",
+        "body": "Pashinyan's reference to direct Azerbaijan links via Nakhichevan points to the proposed Zangezur corridor — a route across Armenia's southern Syunik province that would connect Azerbaijan proper to its Nakhichevan exclave, and onward to Turkey. Yerevan resists extraterritorial control; Baku and Ankara push for it. This is the next pressure point.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Azerbaijan want the Zangezur corridor through Armenia?",
+            "options": [
+              "To reach its Nakhichevan exclave and connect to Turkey by land",
+              "To access the Black Sea",
+              "To import Iranian oil",
+              "To bypass Russian airspace"
+            ],
+            "correct": 0,
+            "explanation": "Nakhichevan is an Azerbaijani exclave separated from the main country by a strip of Armenian territory; the corridor would close that gap and connect Baku to Turkey overland."
+          }
+        ]
+      },
+      {
+        "heading": "THE RUSSIAN LOSER",
+        "body": "For thirty years Moscow was Armenia's only guarantor — basing troops at Gyumri, controlling rail and energy infrastructure, mediating with Azerbaijan. Every kilometer of Turkish-Armenian trade is a kilometer Russia no longer controls. Pashinyan's pivot toward the EU and now Turkey is the slow unwinding of the post-Soviet security architecture in the Caucasus."
+      }
+    ],
+    "generatedAt": "2026-05-24T17:28:30.373Z",
+    "label": "Armenia's Rail Opening",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-24-benin-wadagni-sworn-in-opposition-ban-94-percent": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE 2019 RULE CHANGE",
+        "body": "Benin's parliament rewrote the electoral code in 2018, requiring presidential candidates to secure endorsements from a supermajority of sitting legislators and mayors. After Talon's party swept the 2019 legislative elections — which the opposition boycotted — no opposition figure could clear the threshold. The lock was procedural, not coercive.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism has a name in comparative politics: ***competitive authoritarianism***. Elections happen, results are counted honestly, but the *rules of entry* are tilted so the outcome is never in doubt."
+          }
+        ]
+      },
+      {
+        "heading": "FROM DEMOCRATIC MODEL TO CAUTIONARY TALE",
+        "body": "Benin held Africa's first sovereign national conference in 1990 — a template later copied across francophone Africa — and rotated power peacefully through four elections. Freedom House rated it 'Free' as recently as 2018. The slide since has been one of the sharpest documented democratic reversals on the continent.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1990",
+                "label": "Sovereign National Conference",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1991",
+                "label": "First multiparty election"
+              },
+              {
+                "year": "2016",
+                "label": "Talon elected"
+              },
+              {
+                "year": "2018",
+                "label": "Electoral code rewritten"
+              },
+              {
+                "year": "2019",
+                "label": "Opposition-free legislative vote"
+              },
+              {
+                "year": "2021",
+                "label": "Talon re-elected, 86%"
+              },
+              {
+                "year": "2026",
+                "label": "Wadagni installed, 94%"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1991",
+                "to": "2016",
+                "label": "Competitive multiparty era",
+                "tone": "favorable"
+              },
+              {
+                "from": "2018",
+                "to": "2026",
+                "label": "Sponsorship-rule era",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Benin's democratic arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE COTTON STATE",
+        "body": "Talon built his fortune on cotton — Benin's largest export and the livelihood of roughly a third of the rural workforce. Control of the ginning sector translated into political patronage long before he ran for office; the presidency formalized what was already a commercial monopoly."
+      },
+      {
+        "heading": "THE FINANCE MINISTER PIPELINE",
+        "body": "Wadagni came from Deloitte, ran the Eurobond program that built Benin's investor reputation, and was the regime's face to the IMF and rating agencies. Installing the technocrat-financier preserves the external story — fiscal discipline, market access — while keeping the political machine intact.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BJ",
+              "TG",
+              "NG",
+              "BF",
+              "NE"
+            ],
+            "label": "Benin and its neighbors",
+            "caption": "Wedged between Nigeria's economy and the Sahel's coup belt"
+          }
+        ]
+      },
+      {
+        "heading": "THE COUP-BELT CONTEXT",
+        "body": "Niger, Burkina Faso, Mali, and Guinea have all seen military takeovers since 2020. Benin's path — an elected leader closing the electoral door behind him — is the constitutional mirror of those coups: same end state, different paperwork. Western capitals find the second pattern harder to sanction.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What changed in Benin's 2018 electoral code that effectively barred the opposition?",
+            "options": [
+              "A ban on opposition parties by name",
+              "A sponsorship rule requiring endorsements from sitting legislators and mayors",
+              "A literacy test for voters",
+              "A residency requirement of 20 years"
+            ],
+            "correct": 1,
+            "explanation": "The sponsorship requirement was facially neutral but unmeetable once Talon's party held nearly every legislative and mayoral seat."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-24T17:29:00.072Z",
+    "label": "Benin & Engineered Succession",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-24-ebola-drc-uganda-204-dead-red-cross-cross-border": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STRAIN MATTERS",
+        "body": "Ebola is not one virus but six species. Zaire ebolavirus — the strain behind the 2014 West Africa and 2018 Kivu outbreaks — has an approved vaccine (Ervebo) and two monoclonal-antibody treatments. Bundibugyo has none. Each outbreak's lethality and response options depend on which species is circulating.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Zaire",
+                "value": "~50%, vaccine",
+                "tone": "favorable"
+              },
+              {
+                "label": "Sudan",
+                "value": "~50%, no vaccine",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Bundibugyo",
+                "value": "~30%, no vaccine",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Taï Forest",
+                "value": "1 case ever",
+                "tone": "neutral"
+              },
+              {
+                "label": "Reston",
+                "value": "non-pathogenic",
+                "tone": "neutral"
+              }
+            ],
+            "label": "Ebola species — case fatality & countermeasures"
+          }
+        ]
+      },
+      {
+        "heading": "WHY VOLUNTEERS DIE FIRST",
+        "body": "Ebola transmits through direct contact with bodily fluids — and viral load is highest in the dying and the dead. Burial workers, nurses, and family caregivers face exposure orders of magnitude greater than the general population. In the 2014 outbreak, healthcare workers were infected at 21–32 times the rate of other adults.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The traditional West and Central African funeral rite of washing and touching the deceased is one of the highest-risk acts on earth during an Ebola outbreak — which is why *safe and dignified burials* became a Red Cross technical specialty after 2014."
+          }
+        ]
+      },
+      {
+        "heading": "THE ITURI CORRIDOR",
+        "body": "Ituri sits on a porous border with Uganda's West Nile region. The same trading routes that move cassava, fish, and motorcycles move pathogens. Cross-border outbreaks here are not anomalies — the 2007 Bundibugyo discovery itself happened in a Ugandan district that abuts DRC.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CD",
+              "UG",
+              "RW",
+              "BI",
+              "SS"
+            ],
+            "label": "the Great Lakes borderlands",
+            "markers": [
+              {
+                "lat": 1.5667,
+                "lng": 30.25,
+                "label": "Bunia"
+              },
+              {
+                "lat": 0.7167,
+                "lng": 30.2833,
+                "label": "Bundibugyo (2007 index)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE WHO DECLARATION TRIGGERS",
+        "body": "A Public Health Emergency of International Concern is a legal instrument under the 2005 International Health Regulations, not a slogan. It unlocks emergency funding, authorizes WHO to issue temporary recommendations on travel and trade, and obliges member states to share case data. It has been declared only eight times since the framework began.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which event was the FIRST Public Health Emergency of International Concern declared under the 2005 IHR?",
+            "options": [
+              "2009 H1N1 swine flu",
+              "2014 West Africa Ebola",
+              "2003 SARS",
+              "2020 COVID-19"
+            ],
+            "correct": 0,
+            "explanation": "The 2005 IHR took force in 2007; H1N1 in 2009 was its first invocation. SARS predated the framework."
+          }
+        ]
+      },
+      {
+        "heading": "THE RESERVOIR",
+        "body": "Ebola's natural reservoir is almost certainly fruit bats of the family Pteropodidae — the same family that hosts Marburg and Nipah. Spillover happens when humans handle bushmeat or enter caves where bats roost. Every outbreak begins with one zoonotic event; everything after is human-to-human."
+      },
+      {
+        "heading": "THE 2018–20 PRECEDENT",
+        "body": "DRC's last major Ebola outbreak — North Kivu, Zaire strain — killed 2,287 people over two years. It was eventually contained with ring vaccination, but armed groups attacked treatment centers and community mistrust of outsiders slowed response. Eastern Congo's security environment, more than the virus itself, has historically determined how long these outbreaks last.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1976",
+                "label": "First identified — Yambuku, Zaire",
+                "emphasis": "start"
+              },
+              {
+                "year": "2007",
+                "label": "Bundibugyo strain identified in Uganda"
+              },
+              {
+                "year": "2014",
+                "label": "West Africa outbreak — 11,300 dead",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Ervebo vaccine approved (Zaire strain only)"
+              },
+              {
+                "year": "2026",
+                "label": "Ituri–Uganda outbreak (Bundibugyo)"
+              }
+            ],
+            "label": "Ebola outbreaks, selected"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-24T17:30:00.168Z",
+    "label": "Ebola & the Bundibugyo Strain",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-24-somaliland-burao-pesticide-food-safety-dryland-value-chain": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WITHDRAWAL PERIOD",
+        "body": "Every registered pesticide carries a withdrawal interval — the days that must elapse between the last spray and harvest, so residues decay below safe limits. Skip it and the active ingredient is still on the leaf when it reaches the market.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is the **pre-harvest interval (PHI)**. It is printed on the label in regulated markets and treated as legally binding — enforcement depends on residue testing at point of sale."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT AN MRL IS",
+        "body": "A Maximum Residue Limit is the highest concentration of a pesticide legally permitted on food, set by Codex Alimentarius and adopted nationally. Without an MRL framework, there is no number to test against and no basis to reject a contaminated batch."
+      },
+      {
+        "heading": "WHY DRYLANDS SPRAY MORE",
+        "body": "Arid-zone vegetable plots face concentrated pest pressure — irrigated greenery in a dry landscape is a magnet for whiteflies, aphids, and leaf miners. Farmers compensate with frequent broad-spectrum sprays, often organophosphates and pyrethroids sold without prescription.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SO",
+              "ET",
+              "DJ",
+              "KE",
+              "YE"
+            ],
+            "label": "Horn of Africa dryland belt",
+            "markers": [
+              {
+                "lat": 9.5221,
+                "lng": 45.5336,
+                "label": "Burao"
+              },
+              {
+                "lat": 9.56,
+                "lng": 44.065,
+                "label": "Hargeisa"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE INFORMAL MARKET PROBLEM",
+        "body": "Residue testing happens at organized wholesale markets where lots are traceable to a farm. Informal roadside markets aggregate from dozens of smallholders with no paperwork — even a functioning regulator cannot sample what it cannot identify.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does buying from informal markets defeat pesticide residue regulation?",
+            "options": [
+              "Informal vendors charge less, so farmers cut corners",
+              "Produce cannot be traced back to a specific farm or spray date",
+              "Informal markets sell older produce with degraded residues",
+              "Regulators are barred from inspecting informal vendors"
+            ],
+            "correct": 1,
+            "explanation": "Traceability is the precondition for enforcement — without a chain from plot to plate, a failed residue test has no one to penalise."
+          }
+        ]
+      },
+      {
+        "heading": "THE RECOGNITION GAP",
+        "body": "Somaliland has functioned as a de-facto state since 1991 but holds zero UN recognition. That gap blocks accession to Codex, FAO technical assistance programmes, and the regional standards bodies that would normally publish an MRL list for its growers.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Kenya",
+                "value": "KEPHIS, full MRLs",
+                "cc": "KE",
+                "tone": "favorable"
+              },
+              {
+                "label": "Ethiopia",
+                "value": "EFDA, partial",
+                "cc": "ET",
+                "tone": "neutral"
+              },
+              {
+                "label": "Djibouti",
+                "value": "import-focused",
+                "cc": "DJ",
+                "tone": "neutral"
+              },
+              {
+                "label": "Somaliland",
+                "value": "no framework",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "food-safety regulatory capacity in the Horn"
+          }
+        ]
+      },
+      {
+        "heading": "THE EXPORT CEILING",
+        "body": "EU and Gulf importers reject produce on residue grounds routinely; a single failed shipment can suspend a country from a category. Without a domestic testing regime, dryland growers are locked out of the premium export markets that would justify investing in safer practice — a chicken-and-egg trap common across recognition-deficient economies."
+      }
+    ],
+    "generatedAt": "2026-05-24T17:30:30.274Z",
+    "label": "Pesticide Residues & Food Safety",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-24-somaliland-jerusalem-embassy-pakistan-14-nations-condemn": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RECOGNITION DEFICIT",
+        "body": "Somaliland declared independence in 1991, has held competitive elections, prints its own currency, and polices its own borders — yet sits at zero formal UN recognition. The African Union's foundational doctrine pins inviolability of colonial borders above functional statehood, which is why even the best-run de facto state in the Horn cannot get a seat.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Years of de-facto statehood without UN recognition",
+            "peers": [
+              {
+                "value": 76,
+                "cc": "TW"
+              },
+              {
+                "value": 38,
+                "cc": "PS"
+              },
+              {
+                "value": 18,
+                "cc": "XK"
+              },
+              {
+                "value": 35,
+                "cc": "SO"
+              },
+              {
+                "value": 50,
+                "cc": "EH"
+              },
+              {
+                "value": 50,
+                "cc": "CY"
+              }
+            ],
+            "subjectCc": "SO",
+            "unit": "years"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ISRAEL, WHY NOW",
+        "body": "Israel recognised Somaliland in December 2025 in exchange for the Jerusalem embassy commitment — a transactional swap. For Hargeisa, even one recognition cracks the diplomatic shutout; for Israel, every new embassy in Jerusalem chips at the legal fiction that the city's status is unsettled.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SO",
+              "ET",
+              "DJ",
+              "ER",
+              "YE",
+              "IL"
+            ],
+            "label": "the recognition swap",
+            "markers": [
+              {
+                "lat": 9.56,
+                "lng": 44.065,
+                "label": "Hargeisa (Somaliland)"
+              },
+              {
+                "lat": 10.4396,
+                "lng": 45.0143,
+                "label": "Berbera port"
+              },
+              {
+                "lat": 31.7683,
+                "lng": 35.2137,
+                "label": "Jerusalem"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE JERUSALEM EMBASSY QUESTION",
+        "body": "UN Security Council Resolution 478 (1980) called on all states to withdraw diplomatic missions from Jerusalem, treating Israel's annexation of East Jerusalem as null. For four decades nearly every government complied. The US move under Trump in 2018 broke the consensus; Guatemala, Honduras, Kosovo, and Papua New Guinea followed. Somaliland would be the next.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country was the first to follow the US in moving its embassy to Jerusalem in 2018?",
+            "options": [
+              "Honduras",
+              "Guatemala",
+              "Kosovo",
+              "Brazil"
+            ],
+            "correct": 1,
+            "explanation": "Guatemala moved its embassy two days after the US in May 2018, citing the long Arévalo-era ties to Israel's founding."
+          }
+        ]
+      },
+      {
+        "heading": "WHY PAKISTAN AND SOMALIA LEAD",
+        "body": "Somalia views Somaliland's foreign recognitions as an existential threat — every embassy abroad hardens the secession. Pakistan's stance is doctrinal: Islamabad has long anchored its foreign policy to the **OIC** position on Jerusalem and al-Aqsa, partly to keep Saudi alignment and partly because the Kashmir analogy — a Muslim-majority territory under disputed sovereignty — is one Pakistan does not want weakened anywhere.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The 14-state condemnation reads as routine, but the absences matter more than the signatures — **UAE** and **Saudi Arabia**, who have quietly normalised or pre-normalised with Israel, did not sign."
+          }
+        ]
+      },
+      {
+        "heading": "THE HARAMAYN DOCTRINE",
+        "body": "For Muslim states, Jerusalem is not negotiable in the way other capitals are. Al-Aqsa is named in Surah al-Isra as the destination of the Prophet's night journey and was the first qibla — the direction Muslims faced in prayer before the revelation changed it to Makkah. A hadith in Sahih Muslim names al-Masjid al-Aqsa among the three mosques to which a journey is religiously merited, alongside Makkah and Madinah. This is why embassy moves provoke responses that other diplomatic acts do not."
+      },
+      {
+        "heading": "BERBERA IS THE REAL PRIZE",
+        "body": "Somaliland's leverage is geographic: Berbera is the only deepwater port between Djibouti and Bossaso, facing Yemen across the Gulf of Aden. UAE's DP World holds a 30-year concession; the US explored basing options there during the first Trump administration. Recognition deals are downstream of the port's strategic value — Israel is buying a foothold near Bab el-Mandeb, not just a flag."
+      }
+    ],
+    "generatedAt": "2026-05-24T17:31:07.034Z",
+    "label": "Somaliland, Jerusalem & Recognition",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-24-south-africa-nhi-healthcare-investment-two-tier": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO-TIER REALITY",
+        "body": "South Africa runs parallel health systems: roughly 16% of the population uses private insurance and consumes about half of all health spending; the other 84% relies on public clinics and hospitals. The gap in outcomes — life expectancy, maternal mortality, ICU access — tracks income almost perfectly.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Private (insured)",
+                "value": "~16% of pop",
+                "tone": "favorable",
+                "segments": [
+                  {
+                    "value": 50,
+                    "tone": "favorable",
+                    "label": "~half of spend"
+                  }
+                ]
+              },
+              {
+                "label": "Public (uninsured)",
+                "value": "~84% of pop",
+                "tone": "unfavorable",
+                "segments": [
+                  {
+                    "value": 50,
+                    "tone": "unfavorable",
+                    "label": "~half of spend"
+                  }
+                ]
+              }
+            ],
+            "label": "South African health spending split"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT NHI ACTUALLY PROPOSES",
+        "body": "The NHI Act creates a single state purchaser of healthcare. Private medical schemes would be barred from covering any service the NHI fund covers — effectively ending duplicate private insurance for most care. Providers could remain private but would bill the state fund at state-set tariffs.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The model is closer to *Canada's single-payer* than to the UK's NHS — the state pays, but doesn't directly employ most doctors. The **single-purchaser** mechanic is what gives the system its leverage on prices."
+          }
+        ]
+      },
+      {
+        "heading": "THE BRITISH NHS PRECEDENT",
+        "body": "The 1948 NHS faced fierce resistance from the British Medical Association, which voted nine-to-one against it months before launch. Aneurin Bevan famously said he won over the consultants by 'stuffing their mouths with gold' — letting them keep private practice on the side. Every universal system since has had to negotiate the same bargain.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "I stuffed their mouths with gold",
+            "speaker": "Aneurin Bevan, on the NHS consultants deal",
+            "year": "1948"
+          }
+        ]
+      },
+      {
+        "heading": "THE CONSTITUTIONAL ANGLE",
+        "body": "South Africa's 1996 Constitution guarantees access to healthcare services in Section 27 — but also protects property rights and freedom of trade in Sections 25 and 22. The NHI litigation pits one constitutional right against two others, which is why courts have been the binding constraint rather than parliament."
+      },
+      {
+        "heading": "WHERE PEERS LANDED",
+        "body": "Most middle-income countries that built universal coverage did it incrementally — Thailand's 30-baht scheme, Mexico's Seguro Popular, Brazil's SUS — expanding the public tier rather than abolishing the private one. South Africa's all-at-once design is unusually ambitious for its fiscal capacity.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Govt health spending as % of GDP",
+            "peers": [
+              {
+                "value": 4,
+                "cc": "BR"
+              },
+              {
+                "value": 3.1,
+                "cc": "TH"
+              },
+              {
+                "value": 3,
+                "cc": "MX"
+              },
+              {
+                "value": 4.3,
+                "cc": "ZA"
+              },
+              {
+                "value": 3.4,
+                "cc": "TR"
+              },
+              {
+                "value": 1.3,
+                "cc": "IN"
+              },
+              {
+                "value": 0.6,
+                "cc": "NG"
+              }
+            ],
+            "subjectCc": "ZA",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "THE EMIGRATION RISK",
+        "body": "Roughly a third of South African-trained doctors work abroad — the UK, Australia, Canada, and the Gulf are the major destinations. Any reform that compresses private earnings without raising public-sector pay risks accelerating the outflow, which is the lever the medical associations press hardest in court.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of South African-trained doctors work outside the country?",
+            "options": [
+              "About 10%",
+              "About a third",
+              "Over half",
+              "Under 5%"
+            ],
+            "correct": 1,
+            "explanation": "Roughly one in three South African medical graduates practices abroad — among the highest brain-drain ratios in middle-income health systems."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-24T17:31:38.299Z",
+    "label": "National Health Insurance & Two-Tier Systems",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-24-turkey-chp-headquarters-police-raid-court-opposition": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PARTY ATATÜRK BUILT",
+        "body": "The Republican People's Party (CHP) is Turkey's oldest, founded by Mustafa Kemal Atatürk in 1923 as the vehicle of the new republic. For its first 27 years it was the only legal party — secular, statist, Kemalist. Every assault on its institutional position carries that founding weight.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The party's six arrows — **republicanism, populism, nationalism, secularism, statism, reformism** — were embedded in the 1937 constitution itself. CHP did not adopt Kemalism; Kemalism *was* CHP."
+          }
+        ]
+      },
+      {
+        "heading": "THE LONG OPPOSITION",
+        "body": "CHP has not won a national election since 1977. Erdoğan's AKP has governed since 2002. The March 2024 local elections — where CHP outpolled AKP nationally for the first time in decades and took Istanbul, Ankara, and Izmir — were the first real crack in that wall.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1923",
+                "label": "Atatürk founds CHP",
+                "emphasis": "start"
+              },
+              {
+                "year": "1950",
+                "label": "first loss — Democrat Party wins"
+              },
+              {
+                "year": "1980",
+                "label": "banned after military coup"
+              },
+              {
+                "year": "1992",
+                "label": "refounded"
+              },
+              {
+                "year": "2002",
+                "label": "AKP era begins"
+              },
+              {
+                "year": "2023",
+                "label": "Özel ousts Kılıçdaroğlu"
+              },
+              {
+                "year": "2024",
+                "label": "wins Istanbul, Ankara, Izmir",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "CHP's century"
+          }
+        ]
+      },
+      {
+        "heading": "THE İMAMOĞLU PROBLEM",
+        "body": "Istanbul mayor Ekrem İmamoğlu — CHP's strongest 2028 presidential prospect — was jailed in March 2026 on corruption charges his party calls fabricated. The court action against Özel arrives as the same legal apparatus has been steadily neutralizing the party's election-winning faces."
+      },
+      {
+        "heading": "COURTS AS POLITICAL WEAPON",
+        "body": "Turkey's judiciary has been restructured repeatedly since the 2016 coup attempt — thousands of judges purged, the Council of Judges and Prosecutors reconstituted under presidential control. Voiding an internal party election is novel; using courts to discipline opposition is not.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What event most reshaped Turkey's judiciary into its current form?",
+            "options": [
+              "The 1980 military coup",
+              "The 2016 failed coup attempt and subsequent purges",
+              "Turkey's 2005 EU accession negotiations",
+              "The 1997 'postmodern coup' against Erbakan"
+            ],
+            "correct": 1,
+            "explanation": "After the July 2016 coup attempt, roughly a third of Turkey's judges and prosecutors were dismissed; the constitutional referendum that followed gave the presidency direct influence over judicial appointments."
+          }
+        ]
+      },
+      {
+        "heading": "THE NEIGHBOURHOOD DOCTRINE",
+        "body": "Erdoğan's domestic consolidation tracks his foreign posture: manage frictions rather than resolve them. Frozen Kurdish negotiations, frozen EU accession, frozen Cyprus — and now a frozen opposition leadership question routed through a court rather than a ballot."
+      },
+      {
+        "heading": "WHAT THE LIRA SAYS",
+        "body": "Markets price Turkish political risk faster than ballot boxes do. The lira's trajectory through Erdoğan's tenure is the clearest measure of how investors read institutional independence — central bank, judiciary, electoral commission — as one bundle.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              45.015003,
+              45.015003,
+              45.029197,
+              45.034201,
+              45.065837,
+              45.183781,
+              45.1469,
+              45.167301,
+              45.142499,
+              45.190601,
+              45.216799,
+              45.231614,
+              45.233899,
+              45.364747,
+              45.347503,
+              45.347503,
+              45.380101,
+              45.395703,
+              45.413499,
+              45.429402,
+              45.5443,
+              45.495196,
+              45.522506,
+              45.579503,
+              45.58333,
+              45.588899,
+              45.6156,
+              45.717002,
+              45.698502,
+              45.698502
+            ],
+            "periods": [
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24"
+            ],
+            "label": "Turkish lira",
+            "unit": "TRY / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-24"
+    ],
+    "generatedAt": "2026-05-24T17:32:05.998Z",
+    "label": "Turkey's CHP & Judicial Politics",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-24-west-bengal-holding-centres-rohingya-bangladeshi-detention": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHO THE ROHINGYA ARE",
+        "body": "A Muslim ethnic group from Rakhine state in Myanmar, stripped of citizenship by Myanmar's 1982 Citizenship Law which excluded them from the list of 135 recognized 'national races.' Successive military campaigns — most violently in 2017 — drove over a million across the Naf River into Bangladesh's Cox's Bazar camps, the largest refugee settlement on earth.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MM",
+              "BD",
+              "IN",
+              "TH",
+              "MY"
+            ],
+            "label": "the Rohingya dispersion",
+            "markers": [
+              {
+                "lat": 21.2,
+                "lng": 92.17,
+                "label": "Cox's Bazar camps"
+              },
+              {
+                "lat": 20.15,
+                "lng": 92.9,
+                "label": "Rakhine state"
+              },
+              {
+                "lat": 22.57,
+                "lng": 88.36,
+                "label": "Kolkata"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE STATELESSNESS TRAP",
+        "body": "A deportation requires a country willing to accept the deportee. Myanmar does not recognize the Rohingya as citizens; Bangladesh treats them as temporary guests; India calls them illegal migrants. No state claims them, so 'deport' becomes 'detain indefinitely' — the legal architecture of statelessness."
+      },
+      {
+        "heading": "THE NRC PRECEDENT",
+        "body": "Assam's 2019 National Register of Citizens excluded 1.9 million people, the majority Bengali Muslims, on documentary grounds — many could not produce 1971-era paperwork proving their ancestors predated the Bangladesh war. The exclusion created a category of person living inside India but not of it. Detention centres in Goalpara and elsewhere were built to hold them.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The political vocabulary in play — **detect, delete, deport** — borrows directly from the NRC playbook, where *delete* meant removal from the citizenship register, not the country."
+          }
+        ]
+      },
+      {
+        "heading": "THE BORDER ITSELF",
+        "body": "The India–Bangladesh border is the fifth-longest land border in the world at 4,096 km, drawn by the 1947 Radcliffe Line in five weeks by a British lawyer who had never visited the subcontinent. It cuts through villages, rivers, and the dense Sundarbans mangroves where fencing is physically impossible. Smuggling, migration, and family ties have crossed it daily for 79 years.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Canada–US",
+                "value": "8,891 km",
+                "weight": 8891
+              },
+              {
+                "label": "Kazakhstan–Russia",
+                "value": "7,644 km",
+                "weight": 7644
+              },
+              {
+                "label": "Argentina–Chile",
+                "value": "5,308 km",
+                "weight": 5308
+              },
+              {
+                "label": "China–Mongolia",
+                "value": "4,677 km",
+                "weight": 4677
+              },
+              {
+                "label": "India–Bangladesh",
+                "value": "4,096 km",
+                "weight": 4096,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "world's longest land borders"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1951 CONVENTION GAP",
+        "body": "Neither India nor Bangladesh signed the 1951 Refugee Convention. Both host enormous refugee populations — Tibetans, Sri Lankan Tamils, Chakmas, Rohingya — under ad hoc executive policy rather than legal framework. Without statutory refugee status, residence is a favor that can be revoked by any state government's order, like this one."
+      },
+      {
+        "heading": "WHY WEST BENGAL, WHY NOW",
+        "body": "West Bengal shares language, religion, and kinship with much of Bangladesh — a porousness that makes 'who is the migrant' a politically explosive question. Mamata Banerjee's Trinamool long resisted citizenship registers as anti-Muslim; her successor Suvendu Adhikari, defected from her party to the BJP, now implements the harder line. The centres are as much a domestic political signal as a migration tool.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Bangladesh accept so few deportees from India?",
+            "options": [
+              "It lacks the administrative capacity to process them",
+              "It does not recognize them as its citizens",
+              "A bilateral treaty caps annual returns",
+              "The land border is officially closed"
+            ],
+            "correct": 1,
+            "explanation": "Bangladesh refuses to accept that the migrants India identifies are Bangladeshi nationals — without that recognition, there is no legal basis for return."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-24T17:32:43.211Z",
+    "label": "Stateless in South Asia",
+    "category": "politics",
+    "articleCount": 1
   }
 }
