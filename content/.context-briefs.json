@@ -226663,5 +226663,1189 @@
     "label": "US–Iran diplomacy & the Oman channel",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-24-climate-migration-adaptation-loss-damage-framing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE THREE BUCKETS",
+        "body": "UN climate finance splits into three categories: mitigation (cutting emissions), adaptation (preparing for impacts you can't avoid), and loss and damage (compensating for harms beyond adaptation). The boundaries between them are political, not physical — and they determine who pays whom.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters because *adaptation* is funded as development assistance, while *loss and damage* implies **liability** — an admission that wealthy emitters owe compensation to vulnerable nations."
+          }
+        ]
+      },
+      {
+        "heading": "THE COP27 BREAKTHROUGH",
+        "body": "Developing countries fought for 30 years to get loss and damage recognized as a separate finance stream. Wealthy nations resisted because the framing implies historical responsibility for emissions. The Loss and Damage Fund was finally agreed at COP27 in Sharm el-Sheikh in 2022 and operationalized at COP28 in Dubai.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1991",
+                "label": "Vanuatu proposes insurance pool for sea-level rise"
+              },
+              {
+                "year": "2007",
+                "label": "Bali Action Plan first names loss and damage"
+              },
+              {
+                "year": "2013",
+                "label": "Warsaw International Mechanism established"
+              },
+              {
+                "year": "2015",
+                "label": "Paris Agreement Article 8 — but no liability"
+              },
+              {
+                "year": "2022",
+                "label": "COP27 agrees to create the fund",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "COP28 operationalizes, ~$700M pledged"
+              }
+            ],
+            "label": "the 30-year fight"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE FRAMING FIGHT MATTERS",
+        "body": "If a family leaves a flood-prone delta and rebuilds inland, that's adaptation — a success story funded by development aid. If the same family is classified as displaced by climate harm, that's loss and damage — and someone owes them compensation. Same act, opposite political accounting."
+      },
+      {
+        "heading": "WHO IS MOST EXPOSED",
+        "body": "The World Bank's Groundswell report projects up to 216 million internal climate migrants by 2050 across six regions. The bulk are in Sub-Saharan Africa, South Asia, and Latin America — regions whose cumulative historical emissions are a small fraction of those of OECD countries.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BD",
+              "PK",
+              "ET",
+              "NG",
+              "PH",
+              "MX",
+              "EG",
+              "VN"
+            ],
+            "label": "highest projected climate-displacement burden, 2050"
+          }
+        ]
+      },
+      {
+        "heading": "THE PLEDGE GAP",
+        "body": "Total pledges to the Loss and Damage Fund sit around $700 million. UNEP's Adaptation Gap Report estimates developing-country adaptation needs alone at $215–387 billion per year by 2030. The fund is roughly three orders of magnitude short of the problem it was created to address.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how large is the Loss and Damage Fund relative to estimated annual adaptation needs in developing countries?",
+            "options": [
+              "About half the annual need",
+              "About a tenth of the annual need",
+              "Less than 1% of the annual need",
+              "Roughly equal to the annual need"
+            ],
+            "correct": 2,
+            "explanation": "~$700M pledged vs. $215–387bn/yr in adaptation needs — the fund is under 0.5% of one year's requirement, and loss-and-damage needs are larger still."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT PROBLEM",
+        "body": "Wealthy emitters fear that accepting climate liability opens the door to unlimited claims — a parallel to tobacco settlements or asbestos litigation. The Paris Agreement's Article 8 explicitly states loss and damage 'does not involve or provide a basis for any liability or compensation.' That carve-out is what made the fund politically possible — and what limits its scale."
+      }
+    ],
+    "generatedAt": "2026-05-24T08:25:46.839Z",
+    "label": "Loss & Damage vs Adaptation",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-24-cmip7-climate-model-intercomparison-ar7": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT CMIP IS",
+        "body": "The Coupled Model Intercomparison Project is a standardized protocol — every participating modelling centre runs the same scenarios with the same forcings, so outputs can be compared like-for-like rather than as a babel of incompatible runs.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "CMIP is run by the **World Climate Research Programme**; its ensembles are the empirical backbone of every IPCC *Assessment Report* since the Second (1995)."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ENSEMBLES, NOT ONE MODEL",
+        "body": "No single climate model is right. Each makes different choices about clouds, ocean mixing, ice sheets. Averaging across dozens of independent models cancels out structural biases — the multi-model mean consistently beats any individual member against observations.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do climate scientists average across many models instead of picking the best one?",
+            "options": [
+              "The best model changes year to year",
+              "Individual models have structural biases that partially cancel in the mean",
+              "Regulation requires consensus methodology",
+              "Computing one model is cheaper than running many"
+            ],
+            "correct": 1,
+            "explanation": "Different models err in different directions on clouds, ocean heat uptake, and feedbacks. The multi-model mean is more skillful than any single member."
+          }
+        ]
+      },
+      {
+        "heading": "THE SCENARIO LADDER",
+        "body": "CMIP6 introduced Shared Socioeconomic Pathways (SSPs) — five storylines about how population, economy, and policy evolve, each paired with a radiative forcing target. SSP1-1.9 is the Paris-compatible low end; SSP5-8.5 is the fossil-fueled high end.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "SSP1-1.9",
+                "value": "~1.5°C by 2100",
+                "tone": "favorable"
+              },
+              {
+                "label": "SSP1-2.6",
+                "value": "~1.8°C",
+                "tone": "favorable"
+              },
+              {
+                "label": "SSP2-4.5",
+                "value": "~2.7°C",
+                "tone": "neutral"
+              },
+              {
+                "label": "SSP3-7.0",
+                "value": "~3.6°C",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "SSP5-8.5",
+                "value": "~4.4°C",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "CMIP6 SSP scenarios"
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPUTE BILL",
+        "body": "Five million gigabytes of output is not a storage problem — it is a coordination problem. Centres run on national supercomputers from Exeter to Beijing to Princeton; outputs are federated through the Earth System Grid, which is how a researcher in Nairobi can query a run produced in Tokyo.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GB",
+              "US",
+              "DE",
+              "FR",
+              "JP",
+              "CN",
+              "AU",
+              "CA",
+              "NO",
+              "KR"
+            ],
+            "label": "selected CMIP modelling centres"
+          }
+        ]
+      },
+      {
+        "heading": "THE POLICY CLOCK",
+        "body": "IPCC assessment reports are written on a fixed cadence — AR6 landed in 2021-23, AR7 is due in 2028-29. The fast-track tier exists because national climate plans (NDCs) under the Paris Agreement come due in 2025 and 2030; waiting for the full ensemble would leave policymakers citing a decade-old science base."
+      },
+      {
+        "heading": "THE HOT-MODEL PROBLEM",
+        "body": "A subset of CMIP6 models ran 'hotter' than the geological record can support — climate sensitivity above 5°C per CO2 doubling, which paleoclimate evidence rules out. IPCC AR6 quietly down-weighted these runs rather than reporting a raw mean. CMIP7 protocols tighten the screening upfront.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **equilibrium climate sensitivity** (ECS) — the long-run warming from doubled CO2. The IPCC's *likely* range is 2.5–4°C; models above that ceiling are flagged as outliers, not deleted."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-24T08:26:15.561Z",
+    "label": "CMIP & Climate Model Ensembles",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-24-india-canada-fta-goyal-150-ceo-delegation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FREEZE",
+        "body": "Diplomatic ties collapsed in 2023 after Trudeau publicly accused Indian agents of orchestrating the killing of Sikh separatist Hardeep Singh Nijjar on Canadian soil. Both countries expelled diplomats, visa services froze, and FTA talks were suspended mid-negotiation. The current restart is the first ministerial-level commerce visit since.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2010",
+                "label": "CEPA talks begin"
+              },
+              {
+                "year": "2023-06",
+                "label": "Nijjar killed in BC",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-09",
+                "label": "Trudeau accusation, talks frozen"
+              },
+              {
+                "year": "2024-10",
+                "label": "Six diplomats expelled each side"
+              },
+              {
+                "year": "2025-03",
+                "label": "Carney replaces Trudeau"
+              },
+              {
+                "year": "2026-05",
+                "label": "Goyal delegation to Ottawa"
+              }
+            ],
+            "label": "the rupture and reset"
+          }
+        ]
+      },
+      {
+        "heading": "THE MAPLE 8",
+        "body": "Canada's eight largest pension funds — CPPIB, CDPQ, OTPP, PSP, BCI, AIMCo, HOOPP, OMERS — collectively manage around C$2.4 trillion. Unlike US pension funds that mostly buy public stocks, the Maple 8 directly own airports, toll roads, ports, and unlisted companies worldwide. They have been among the largest foreign infrastructure investors in India for over a decade.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "CPPIB",
+                "value": "~C$675bn",
+                "cc": "CA",
+                "weight": 675
+              },
+              {
+                "label": "CDPQ",
+                "value": "~C$470bn",
+                "cc": "CA",
+                "weight": 470
+              },
+              {
+                "label": "OTPP",
+                "value": "~C$255bn",
+                "cc": "CA",
+                "weight": 255
+              },
+              {
+                "label": "PSP",
+                "value": "~C$265bn",
+                "cc": "CA",
+                "weight": 265
+              },
+              {
+                "label": "BCI",
+                "value": "~C$250bn",
+                "cc": "CA",
+                "weight": 250
+              },
+              {
+                "label": "AIMCo",
+                "value": "~C$170bn",
+                "cc": "CA",
+                "weight": 170
+              }
+            ],
+            "label": "Maple 8 AUM (C$bn, 2024)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY URANIUM",
+        "body": "Canada is the world's second-largest uranium producer after Kazakhstan, and the Athabasca Basin in Saskatchewan holds the highest-grade ore on Earth — some deposits assay above 15% U3O8, roughly a hundred times the global average. India runs a fleet of pressurized heavy-water reactors that need a steady fuel supply, and was locked out of the global uranium market for 34 years after the 1974 'Smiling Buddha' test until the 2008 NSG waiver.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "India is one of only four nuclear-armed states outside the **Non-Proliferation Treaty** (with Pakistan, Israel, and North Korea), yet uniquely received a *country-specific waiver* from the Nuclear Suppliers Group in 2008 — a diplomatic carve-out no other state has obtained."
+          }
+        ]
+      },
+      {
+        "heading": "THE CRITICAL MINERALS PIVOT",
+        "body": "Canada hosts deposits of lithium, cobalt, nickel, graphite, and rare earths that India needs for EV batteries and electronics manufacturing. Both governments are trying to build supply chains that route around China, which currently refines roughly 60–90% of most critical minerals regardless of where they are mined.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CA",
+              "IN",
+              "CN",
+              "US",
+              "AU"
+            ],
+            "label": "the critical-minerals triangle",
+            "caption": "Canada mines, China refines, India and US want to break the chokehold"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT AN FTA WOULD ACTUALLY DO",
+        "body": "India–Canada bilateral trade is only about C$13bn — tiny relative to either country's total. The real prize is not tariff reduction but an investment-protection chapter that lets the Maple 8 deploy capital at scale without arbitration risk, and a mobility chapter for the 1.8 million Indian-origin Canadians and the student pipeline that funds Canadian universities.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of Canada's international students come from India?",
+            "options": [
+              "About 10%",
+              "About 25%",
+              "About 40%",
+              "About 60%"
+            ],
+            "correct": 2,
+            "explanation": "Indian nationals made up roughly 40% of Canada's study-permit holders before the 2023 freeze — the single largest source country, and a major revenue stream for Canadian universities."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-24T08:26:50.808Z",
+    "label": "India–Canada Trade Reset",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-24-iran-rejects-axios-hormuz-sovereignty-mou": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "The strait sits between Iran and Oman, not Iran and any Arab Gulf state. Iran's coastline runs along the entire northern edge, and the deepest shipping channel hugs the Iranian side — which is why Iranian naval positioning matters disproportionately.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the strait",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 27.1865,
+                "lng": 56.2808,
+                "label": "Bandar Abbas (IRGC Navy HQ)"
+              },
+              {
+                "lat": 26.2235,
+                "lng": 56.2487,
+                "label": "Khasab (Omani side)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil pass through daily, about 21% of global consumption.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              64,
+              56,
+              58,
+              59,
+              57,
+              44,
+              41,
+              41,
+              33,
+              37,
+              27,
+              32,
+              49,
+              43,
+              41,
+              41,
+              24,
+              26,
+              24,
+              24,
+              24,
+              25,
+              20,
+              18,
+              20,
+              18,
+              32,
+              26,
+              14,
+              67,
+              67
+            ],
+            "periods": [
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 24"
+            ],
+            "label": "Donald Trump announce that the United…",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "64%"
+              },
+              {
+                "atIndex": 30,
+                "label": "67%"
+              }
+            ],
+            "link": "https://polymarket.com/event/trump-announces-us-blockade-of-hormuz-lifted-by",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL FAULTLINE",
+        "body": "Under UNCLOS Article 38, ships have a right of transit passage through international straits — coastal states cannot suspend passage or impose conditions. Iran signed UNCLOS in 1982 but never ratified it, and has long argued Hormuz is governed by its domestic law. A toll-free MOU would dodge the unresolved legal question rather than answer it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The US position rests on *transit passage* — a stronger right than *innocent passage*, which coastal states **can** suspend. Iran's framing of 'managing vessel numbers' is a quiet assertion of the weaker regime."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MINES, WHY NOW",
+        "body": "A single mine costs a few thousand dollars. Clearing it costs millions and weeks. This asymmetry is why mining has been the weapon of choice for weaker naval powers since the American Civil War — and why 'mines cleared' is the concrete deliverable Washington wants in writing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What actually closes a shipping lane during a Hormuz crisis?",
+            "options": [
+              "The mines themselves",
+              "Lloyd's of London war-risk insurance premiums",
+              "UN Security Council resolutions",
+              "US Navy convoy escorts"
+            ],
+            "correct": 1,
+            "explanation": "Once war-risk premiums spike, commercial vessels reroute regardless of how many mines remain. The financial chokepoint is tighter than the physical one."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson planners took: disruption is easier to threaten than to sustain.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Tanker War begins",
+                "emphasis": "start"
+              },
+              {
+                "year": "1987",
+                "label": "Operation Earnest Will reflagging"
+              },
+              {
+                "year": "1988",
+                "label": "USS Vincennes downs Iran Air 655",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Gulf of Oman tanker attacks"
+              },
+              {
+                "year": "2024",
+                "label": "MSC Aries seizure"
+              },
+              {
+                "year": "2026",
+                "label": "Mining incident & ceasefire"
+              }
+            ],
+            "label": "Hormuz crises"
+          }
+        ]
+      },
+      {
+        "heading": "THE PAKISTAN CHANNEL",
+        "body": "Islamabad mediating Tehran-Washington is not new — Pakistan brokered the back-channel that produced the 2023 Saudi-Iran rapprochement under Chinese auspices. Its leverage comes from being one of the few Sunni-majority nuclear states with working diplomatic ties to both Tehran and Washington, and a 959 km border with Iran through Balochistan.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Abbas Araghchi",
+                "role": "Iranian Foreign Minister",
+                "years": "2024–",
+                "cc": "IR"
+              },
+              {
+                "name": "Ishaq Dar",
+                "role": "Pakistani Foreign Minister",
+                "years": "2024–",
+                "cc": "PK"
+              },
+              {
+                "name": "Steve Witkoff",
+                "role": "US Mideast envoy",
+                "years": "2025–",
+                "cc": "US"
+              }
+            ],
+            "label": "who's in the room"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-24"
+    ],
+    "generatedAt": "2026-05-24T08:27:21.456Z",
+    "label": "Hormuz Sovereignty & Transit Law",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-24-niger-france-post-coup-sovereignty-aes": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "FRANÇAFRIQUE",
+        "body": "For sixty years after independence, France maintained a parallel state across its former African colonies — currency (the CFA franc), garrisons, intelligence networks, and presidential hotlines. The arrangement was called Françafrique. It survived decolonization on paper because the political and economic plumbing never left.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **CFA franc** was pegged to the French franc, then the euro, with reserves held at the French Treasury — meaning Paris effectively controlled monetary policy for fourteen African states until reforms began in 2019."
+          }
+        ]
+      },
+      {
+        "heading": "THE COUP BELT",
+        "body": "Since 2020, a contiguous strip of the Sahel — Mali, Burkina Faso, Guinea, Niger, and Chad's transition — has fallen to military takeovers. The juntas share a script: dissolve parliament, expel French troops, invite Russian security, withdraw from ECOWAS, denounce the CFA.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ML",
+              "BF",
+              "NE",
+              "GN",
+              "TD",
+              "SN",
+              "CI",
+              "NG"
+            ],
+            "label": "the Sahel coup belt vs the coast",
+            "caption": "juntas in the interior, civilian governments on the Atlantic"
+          }
+        ]
+      },
+      {
+        "heading": "THE AES",
+        "body": "In September 2023, Mali, Burkina Faso, and Niger formed the Alliance of Sahel States (Alliance des États du Sahel). In January 2024 they announced withdrawal from ECOWAS — the West African bloc that had threatened military intervention against Niger's junta. The AES is a mutual-defense pact aimed explicitly at the bloc that tried to reverse the coups.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Assimi Goïta",
+                "role": "Mali transition president",
+                "years": "2021–",
+                "cc": "ML"
+              },
+              {
+                "name": "Ibrahim Traoré",
+                "role": "Burkina Faso junta leader",
+                "years": "2022–",
+                "cc": "BF"
+              },
+              {
+                "name": "Abdourahamane Tchiani",
+                "role": "Niger junta leader",
+                "years": "2023–",
+                "cc": "NE"
+              }
+            ],
+            "label": "the AES junta leaders"
+          }
+        ]
+      },
+      {
+        "heading": "WHY NIGER MATTERS TO PARIS",
+        "body": "Niger supplied roughly 15–20% of the uranium feeding France's nuclear reactors, mined at Arlit by Orano (formerly Areva). France generates about 70% of its electricity from nuclear power — the highest share of any major economy. Losing Niger meant scrambling for Kazakh and Canadian supply at higher prices.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of France's electricity comes from nuclear power?",
+            "options": [
+              "About 30%",
+              "About 50%",
+              "About 70%",
+              "About 90%"
+            ],
+            "correct": 2,
+            "explanation": "France is the most nuclear-dependent major economy at ~70%, which is why African uranium access has been a strategic priority since the 1960s."
+          }
+        ]
+      },
+      {
+        "heading": "WAGNER, THEN AFRICA CORPS",
+        "body": "Russian influence arrived through Wagner Group contractors — first in Mali (2021), then Burkina Faso and Niger. After Prigozhin's death in 2023, the Kremlin folded Wagner's Africa operations into the Africa Corps under direct GRU control. The model is the same: regime protection, mineral concessions, information operations, no human-rights conditionality.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Russian pitch is brutal but coherent: *no lectures*, no conditionality, cash for access. Where France attached governance demands to its garrisons, Moscow attaches **nothing** — and that absence is the entire product."
+          }
+        ]
+      },
+      {
+        "heading": "THE BAZOUM PRECEDENT",
+        "body": "Mohamed Bazoum was Niger's first peacefully elected successor to an elected president — a milestone in a country that had seen five coups since independence. He was detained in the July 2023 coup and remains held without trial. ECOWAS threatened military intervention to restore him; the threat collapsed when Nigeria's senate refused to authorize troops and the AES treaty deterred unilateral action.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1960",
+                "label": "Niger independence from France"
+              },
+              {
+                "year": "2013",
+                "label": "Operation Serval: France intervenes in Mali"
+              },
+              {
+                "year": "2020",
+                "label": "Mali coup (Goïta)"
+              },
+              {
+                "year": "2022",
+                "label": "Burkina Faso coup (Traoré)"
+              },
+              {
+                "year": "2023-07",
+                "label": "Niger coup detains Bazoum",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-09",
+                "label": "AES alliance formed"
+              },
+              {
+                "year": "2024-01",
+                "label": "AES quits ECOWAS"
+              },
+              {
+                "year": "2024-12",
+                "label": "Last French troops leave Chad"
+              }
+            ],
+            "label": "the Sahel pivot"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-24T08:27:58.175Z",
+    "label": "The Sahel & the French Exit",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-24-quetta-shuttle-train-bomb-balochistan-rail": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INSURGENCY",
+        "body": "Balochistan has been in active insurgency since 2004 — the fifth uprising since Pakistan's 1948 annexation of the Khanate of Kalat. The Baloch Liberation Army and allied groups target security forces, Chinese workers, and infrastructure that moves resources out of the province.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1948",
+                "label": "Pakistan annexes Khanate of Kalat",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1958",
+                "label": "Second uprising — Nauroz Khan"
+              },
+              {
+                "year": "1962",
+                "label": "Third uprising"
+              },
+              {
+                "year": "1973",
+                "label": "Bhutto dismisses Balochistan govt; fourth war"
+              },
+              {
+                "year": "2004",
+                "label": "Fifth insurgency begins"
+              },
+              {
+                "year": "2006",
+                "label": "Akbar Bugti killed by military"
+              },
+              {
+                "year": "2025",
+                "label": "Jaffar Express hijacking"
+              }
+            ],
+            "label": "Baloch uprisings since accession"
+          }
+        ]
+      },
+      {
+        "heading": "WHY RAIL",
+        "body": "Pakistan Railways runs a single colonial-era trunk line through Balochistan — Quetta to Rohri east, Quetta to Taftan (Iran) west, Quetta to Chaman (Afghan border) north. There is no parallel route. A single charge on any of these branches severs the province from the national grid.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK",
+              "AF",
+              "IR"
+            ],
+            "label": "Balochistan's single rail spine",
+            "markers": [
+              {
+                "lat": 30.1798,
+                "lng": 66.975,
+                "label": "Quetta"
+              },
+              {
+                "lat": 30.922,
+                "lng": 66.4459,
+                "label": "Chaman (Afghan border)"
+              },
+              {
+                "lat": 28.4212,
+                "lng": 61.5856,
+                "label": "Taftan (Iran border)"
+              },
+              {
+                "lat": 27.69,
+                "lng": 68.89,
+                "label": "Rohri junction"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE CHAMAN LINE",
+        "body": "The Quetta–Chaman branch was built by the British in 1892 to move troops toward Kandahar during the Great Game. It climbs through the Khojak Pass via a 3.9 km tunnel — when completed it was the longest railway tunnel in British India. Its military logic has never changed; its passengers are still largely soldiers and cantonment workers.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **Khojak Tunnel** appeared on the back of Pakistan's 5-rupee note from 1976 to 2005 — a colonial engineering feat reframed as national heritage, on a line the state can no longer reliably defend."
+          }
+        ]
+      },
+      {
+        "heading": "THE GRIEVANCE",
+        "body": "Balochistan produces most of Pakistan's natural gas and hosts the Reko Diq copper-gold deposit and the Chinese-operated Gwadar port. It is also the poorest province by every human-development metric. The insurgency's core claim — that the province's resources fund a state that returns nothing — is empirically difficult to dispute.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Punjab",
+                "value": "~53% of GDP",
+                "cc": "PK",
+                "weight": 53
+              },
+              {
+                "label": "Sindh",
+                "value": "~30% of GDP",
+                "cc": "PK",
+                "weight": 30
+              },
+              {
+                "label": "KPK",
+                "value": "~13% of GDP",
+                "cc": "PK",
+                "weight": 13
+              },
+              {
+                "label": "Balochistan",
+                "value": "~4% of GDP",
+                "cc": "PK",
+                "weight": 4,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Balochistan vs Pakistan's other provinces"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2025 ESCALATION",
+        "body": "In March 2025 the BLA hijacked the Jaffar Express in a tunnel near Sibi, holding hundreds of passengers hostage for over 24 hours before army commandos retook the train. It was the first mass hostage-taking on Pakistan's rail network and signaled a shift from bombings to set-piece operations.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Balochistan's rail network make such an attractive insurgent target?",
+            "options": [
+              "High passenger volume relative to roads",
+              "No parallel routes — a single charge severs the province",
+              "Trains carry most of Pakistan's natural gas exports",
+              "Chinese-funded high-speed lines run through tribal areas"
+            ],
+            "correct": 1,
+            "explanation": "Pakistan Railways runs single colonial-era branches through Balochistan with no redundancy; one charge cuts a border crossing for days."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-24T08:28:31.386Z",
+    "label": "Balochistan's Rail Insurgency",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-24-rubio-modi-india-us-energy-russian-crude": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PIVOT",
+        "body": "Before the 2022 invasion, Russia supplied under 2% of India's crude. By 2024 it was roughly 35-40%, displacing Iraq and Saudi Arabia as the top source. The shift happened in months, not years — refiners chase the discount, not the flag.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Russia",
+                "value": "~38%",
+                "cc": "RU",
+                "weight": 38,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Iraq",
+                "value": "~20%",
+                "cc": "IQ",
+                "weight": 20,
+                "tone": "neutral"
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~15%",
+                "cc": "SA",
+                "weight": 15,
+                "tone": "neutral"
+              },
+              {
+                "label": "UAE",
+                "value": "~9%",
+                "cc": "AE",
+                "weight": 9,
+                "tone": "neutral"
+              },
+              {
+                "label": "USA",
+                "value": "~5%",
+                "cc": "US",
+                "weight": 5,
+                "tone": "favorable"
+              }
+            ],
+            "label": "India's crude suppliers, share of imports"
+          }
+        ]
+      },
+      {
+        "heading": "THE PRICE CAP MECHANICS",
+        "body": "The G7 set a $60/barrel cap on Russian crude in December 2022. The mechanism: Western shippers and insurers — who dominate the global tanker trade — may only service Russian cargoes priced below the cap. India buys legally under the cap, but most cargoes now move on Russia's *shadow fleet* of older tankers with non-Western insurance, sidestepping the rule entirely.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **shadow fleet** — roughly 600 aging tankers under flags of convenience — is the structural workaround. Sanctions targeting individual vessels barely dent it; new shells reflag overnight."
+          }
+        ]
+      },
+      {
+        "heading": "THE REFINER ARBITRAGE",
+        "body": "Reliance and Nayara (part-owned by Rosneft) buy discounted Urals crude, refine it, and export diesel and jet fuel to Europe — which still buys Indian refined products even while sanctioning Russian crude. The molecules end up in the same European tank; the legal fiction is the refining step.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "ru",
+                "label": "Russian crude"
+              },
+              {
+                "id": "in",
+                "label": "Indian refiners"
+              },
+              {
+                "id": "eu",
+                "label": "EU diesel/jet"
+              },
+              {
+                "id": "dom",
+                "label": "Indian domestic"
+              },
+              {
+                "id": "asia",
+                "label": "Asia/Africa"
+              }
+            ],
+            "links": [
+              {
+                "source": "ru",
+                "target": "in",
+                "value": 100
+              },
+              {
+                "source": "in",
+                "target": "dom",
+                "value": 55
+              },
+              {
+                "source": "in",
+                "target": "eu",
+                "value": 25
+              },
+              {
+                "source": "in",
+                "target": "asia",
+                "value": 20
+              }
+            ],
+            "label": "Russian crude → European fuel, via India"
+          }
+        ]
+      },
+      {
+        "heading": "WHY INDIA WON'T BUDGE EASILY",
+        "body": "India imports over 80% of its crude. Every $10/barrel discount on Russian volumes saves roughly $8-10bn annually at current import levels. For a country running a chronic current account deficit, that's not a marginal saving — it's macroeconomic oxygen.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              94.0666,
+              94.0666,
+              94.257338,
+              94.420855,
+              94.762974,
+              95.171392,
+              94.951559,
+              94.89165,
+              94.910513,
+              94.951346,
+              95.361112,
+              95.029174,
+              94.729612,
+              94.62293,
+              94.425498,
+              94.425498,
+              94.8754,
+              95.576514,
+              95.55195,
+              95.719988,
+              95.829548,
+              96.003,
+              96.027,
+              96.13634,
+              96.389098,
+              96.875003,
+              96.376027,
+              96.243053,
+              95.719748,
+              95.700477
+            ],
+            "periods": [
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE NON-ALIGNED REFLEX",
+        "body": "India's foreign policy doctrine since Nehru has been *strategic autonomy* — formerly called non-alignment. Buying Russian oil while deepening defense ties with the US is not a contradiction in Delhi's framework; it is the framework. The same logic underwrote Soviet arms purchases during the Cold War while India accepted US food aid.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of India's military hardware still originates from Russian/Soviet platforms?",
+            "options": [
+              "About 15%",
+              "About 35%",
+              "About 60%",
+              "About 85%"
+            ],
+            "correct": 2,
+            "explanation": "Roughly 60% of India's military inventory is Russian-origin — tanks, fighters, submarines. Diversification toward US, French, and Israeli platforms is recent and partial."
+          }
+        ]
+      },
+      {
+        "heading": "THE TARIFF LEVER",
+        "body": "The July tariff deadline is the actual pressure point. The US can't sanction India directly without breaking the Quad and pushing Delhi closer to Beijing. Tariffs on Indian goods — textiles, pharmaceuticals, refined fuels — are the calibrated tool: painful enough to negotiate over, reversible enough not to rupture the relationship."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-24"
+    ],
+    "generatedAt": "2026-05-24T08:29:03.078Z",
+    "label": "India, Russian Crude & the Discount",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-24-samsung-union-ai-productivity-surplus-bargain": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CHAEBOL STRUCTURE",
+        "body": "Samsung is the largest of South Korea's chaebol — family-controlled conglomerates that emerged under Park Chung-hee's 1960s industrial policy. The top five chaebol generate revenue equivalent to roughly half of Korean GDP, making labor disputes at Samsung effectively macroeconomic events.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The word *chaebol* literally means **wealth clique** — written with the same characters as Japan's prewar *zaibatsu*, the family conglomerates US occupiers broke up in 1945. Korea kept its version."
+          }
+        ]
+      },
+      {
+        "heading": "THE NO-UNION DOCTRINE",
+        "body": "Samsung operated under a 'no-union management' policy for nearly 50 years after founder Lee Byung-chul declared in 1969 that unions would form at Samsung 'over my dead body.' The first legally recognized union appeared in 2020, after a 2018 conviction of senior executives for sabotaging union drives. The 2024 walkout was the first strike in company history."
+      },
+      {
+        "heading": "WHO CAPTURES PRODUCTIVITY GAINS",
+        "body": "Economists distinguish the labor share of income (wages) from the capital share (profits, dividends). For most of the postwar period these moved together. Since roughly 2000, productivity has continued rising while the labor share has fallen across nearly every advanced economy — the gains accruing to capital owners and a thin layer of high-skill workers.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Since 2000, what has happened to labor's share of national income across most advanced economies?",
+            "options": [
+              "Risen alongside productivity",
+              "Stayed roughly flat",
+              "Fallen while productivity kept rising",
+              "Fallen alongside productivity"
+            ],
+            "correct": 2,
+            "explanation": "The decoupling of wages from productivity since ~2000 is the central labor-economics fact of the era — it's the gap the Samsung union is trying to claim a piece of."
+          }
+        ]
+      },
+      {
+        "heading": "THE LUDDITE PRECEDENT",
+        "body": "Early 19th-century English textile workers smashed power looms not because they misunderstood technology, but because they understood it precisely — the productivity gains went to factory owners while skilled weavers lost wage premiums earned over generations. Every wave of automation since has reopened the same distributional question: who owns the surplus the machine creates?"
+      },
+      {
+        "heading": "WHY AI IS DIFFERENT",
+        "body": "Past automation displaced specific tasks — looms replaced weaving, ATMs replaced tellers — and workers bargained over redeployment. Generative AI threatens cognitive tasks broadly across white-collar work, making it harder to define what was 'replaced' and therefore what compensation is owed. The Samsung demand is one of the first formal attempts to write that share into a labor contract.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Revenue (2024)",
+                "value": "$235bn",
+                "cc": "KR"
+              },
+              {
+                "label": "Employees",
+                "value": "~270k",
+                "cc": "KR"
+              },
+              {
+                "label": "Union members",
+                "value": "~48k",
+                "cc": "KR"
+              },
+              {
+                "label": "First strike",
+                "value": "2024",
+                "cc": "KR"
+              }
+            ],
+            "label": "Samsung Electronics, by the numbers"
+          }
+        ]
+      },
+      {
+        "heading": "THE GERMAN MODEL",
+        "body": "Germany's Mitbestimmung (codetermination) law puts worker representatives on the supervisory boards of large firms — half the seats at companies above 2,000 employees. When automation arrives, the negotiation happens inside the boardroom rather than on the picket line. Korea's labor law has no such mechanism; the union must extract concessions externally, strike by strike."
+      }
+    ],
+    "generatedAt": "2026-05-24T08:29:33.469Z",
+    "label": "AI Productivity & Labor Share",
+    "category": "economy",
+    "articleCount": 1
   }
 }
