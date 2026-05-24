@@ -227847,5 +227847,1423 @@
     "label": "AI Productivity & Labor Share",
     "category": "economy",
     "articleCount": 1
+  },
+  "2026-05-24-belugas-mirror-test-self-recognition-cognition-method": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ORIGINAL DESIGN",
+        "body": "Gordon Gallup's 1970 test marks an animal with odorless dye in a spot it can only see in a mirror. If the animal touches the mark on its own body — not the mirror — it is inferred to recognize the reflection as itself.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Gallup called it the **mark test**; the inference is that mirror-directed self-touch implies a *concept of self* distinct from the reflected image."
+          }
+        ]
+      },
+      {
+        "heading": "THE SHORT LIST",
+        "body": "For decades, only great apes passed reliably. The list later expanded to a handful of species across very different lineages — convergent evolution, not a shared ancestral trait.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Chimpanzee",
+                "value": "1970",
+                "cc": "GA"
+              },
+              {
+                "label": "Asian elephant",
+                "value": "2006",
+                "cc": "IN"
+              },
+              {
+                "label": "Bottlenose dolphin",
+                "value": "2001",
+                "cc": "US"
+              },
+              {
+                "label": "Eurasian magpie",
+                "value": "2008",
+                "cc": "DE"
+              },
+              {
+                "label": "Cleaner wrasse",
+                "value": "2019",
+                "cc": "JP"
+              },
+              {
+                "label": "Beluga whale",
+                "value": "2026",
+                "cc": "CA"
+              }
+            ],
+            "label": "species that have passed the mark test"
+          }
+        ]
+      },
+      {
+        "heading": "THE WRASSE PROBLEM",
+        "body": "In 2019 a cleaner wrasse — a fish with a brain the size of a grain of rice — passed the test. Either fish have a self-concept, or the test measures something simpler than selfhood. Most cognitive scientists now suspect the latter.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which of these passed the mark test most recently before belugas?",
+            "options": [
+              "Octopus",
+              "Cleaner wrasse",
+              "Domestic dog",
+              "African grey parrot"
+            ],
+            "correct": 1,
+            "explanation": "A 2019 study reported cleaner wrasse touching marks visible only in a mirror — a result that forced a rethink of what the test actually measures."
+          }
+        ]
+      },
+      {
+        "heading": "THE SENSORY MISMATCH",
+        "body": "Dogs fail the mirror test but identify themselves by smell. Belugas navigate by echolocation; their primary self-model may be acoustic, not visual. A vision-only test asks species to introspect in a sense they do not lead with."
+      },
+      {
+        "heading": "WHAT SETH IS ARGUING",
+        "body": "Anil Seth's broader thesis is that consciousness is many overlapping processes — bodily self-modeling, perspective-taking, agency — not a single switch. A mirror response could reflect any one of them, or none, depending on the species' perceptual world.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Seth's framing borrows from Jakob von Uexküll's *Umwelt* — the idea that each species inhabits its own perceptual world, and a test designed in ours is a poor instrument for theirs."
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT STILL MATTERS",
+        "body": "Mirror-test results feed directly into animal-welfare law: jurisdictions that recognize cetacean sentience have used the test as evidence to ban captivity. The methodological critique is not academic — it shapes what zoos and aquaria are permitted to do."
+      }
+    ],
+    "generatedAt": "2026-05-24T12:21:01.124Z",
+    "label": "The Mirror Test",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-24-brucella-seroincidence-northern-kenya-pastoralists-zoonosis": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PATHOGEN",
+        "body": "Brucella is a small intracellular bacterium that hides inside macrophages — the very immune cells meant to kill it. That intracellular niche is why brucellosis is famously hard to cure: antibiotics that can't penetrate cells fail, and relapse is common even after months of combination therapy.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The standard regimen is **doxycycline plus rifampicin or streptomycin for six weeks minimum** — and even then, relapse rates run 5–10%."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSMISSION ROUTES",
+        "body": "Three main channels: drinking raw milk from infected animals, handling birth tissues (placenta, aborted fetuses) where bacterial load is highest, and inhaling aerosols in barns. Pastoralist life touches all three daily — milking by hand, assisting deliveries, sharing shelter with herds at night."
+      },
+      {
+        "heading": "WHY PLACENTA IS THE HOTSPOT",
+        "body": "Brucella concentrates in the placenta of infected ruminants because the bacterium feeds on erythritol, a sugar abundant there. A single infected placenta can shed billions of organisms — which is why women, who handle birthing in most pastoralist cultures, often have higher seroprevalence than men.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Brucella concentrate in ruminant placentas rather than other tissues?",
+            "options": [
+              "The placenta is rich in erythritol, which Brucella metabolizes",
+              "The placenta has weaker immune defenses than other organs",
+              "Brucella is sexually transmitted between animals",
+              "Pregnancy hormones activate the bacterium"
+            ],
+            "correct": 0,
+            "explanation": "Brucella preferentially metabolizes erythritol, a sugar abundant in placental and fetal tissues of ruminants — explaining why abortion is the hallmark of livestock infection."
+          }
+        ]
+      },
+      {
+        "heading": "THE ONE HEALTH ARGUMENT",
+        "body": "Roughly 60% of human infectious diseases are zoonotic — they jump from animals. Vertical health systems that fund human clinics and veterinary services as separate budgets miss the interface where transmission actually happens. The One Health framework, formalized by WHO/FAO/OIE in the 2000s, treats human, animal, and environmental health as a single surveillance problem.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Rabies",
+                "value": "~59k deaths/yr",
+                "tone": "unfavorable",
+                "weight": 59
+              },
+              {
+                "label": "Brucellosis",
+                "value": "~500k cases/yr",
+                "tone": "unfavorable",
+                "weight": 40
+              },
+              {
+                "label": "Bovine TB",
+                "value": "~140k cases/yr",
+                "tone": "unfavorable",
+                "weight": 20
+              },
+              {
+                "label": "Anthrax",
+                "value": "~2k cases/yr",
+                "tone": "neutral",
+                "weight": 2
+              }
+            ],
+            "label": "major zoonoses by global burden"
+          }
+        ]
+      },
+      {
+        "heading": "THE PASTORALIST GEOGRAPHY",
+        "body": "Northern Kenya's arid lands host roughly 4 million pastoralists — Borana, Somali, Samburu, Turkana — moving cattle, camels, and small stock across the Horn of Africa's rangelands. The same mobility that buffers herds against drought also spreads pathogens across district and national borders faster than any surveillance system tracks them.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KE",
+              "ET",
+              "SO",
+              "SS",
+              "UG"
+            ],
+            "label": "Horn of Africa pastoralist corridor",
+            "markers": [
+              {
+                "lat": 0.3556,
+                "lng": 37.5833,
+                "label": "Isiolo"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE VACCINE ASYMMETRY",
+        "body": "Livestock vaccines for Brucella (S19 for cattle, Rev-1 for sheep and goats) have existed since the 1940s and are cheap. No licensed human vaccine exists — the live attenuated strains used in animals are too virulent for people. This means the only realistic path to cutting human cases is mass vaccination of the herds, which requires veterinary budgets pastoralist regions rarely receive."
+      }
+    ],
+    "generatedAt": "2026-05-24T12:21:32.154Z",
+    "label": "Brucellosis & One Health",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-24-chile-valparaiso-fire-migration-adaptation-stay-or-leave": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WUI PROBLEM",
+        "body": "The wildland-urban interface — where homes meet flammable vegetation — is the most dangerous fire geography on earth. Chile's coastal range has packed informal settlements into steep, eucalyptus-covered slopes, the exact terrain that produces fast-moving crown fires.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Chile's hillsides are dominated by **eucalyptus** and **Monterey pine** — introduced for the timber industry, both more flammable than native sclerophyll forest. The trees shed oil-rich litter and resprout after burns, locking the landscape into a fire cycle."
+          }
+        ]
+      },
+      {
+        "heading": "WHY VALPARAÍSO BURNS",
+        "body": "Valparaíso sits at the foot of forty-two hills, where unplanned settlements (tomas) climbed slopes too steep for fire trucks. Narrow alleys mean a single ignition reaches dozens of homes before any engine arrives. The 2014 fire killed 15; 2024 killed 138 on the same hillsides.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CL"
+            ],
+            "label": "the burn zone",
+            "markers": [
+              {
+                "lat": -33.0472,
+                "lng": -71.6127,
+                "label": "Valparaíso"
+              },
+              {
+                "lat": -33.0458,
+                "lng": -71.4419,
+                "label": "Quilpué"
+              },
+              {
+                "lat": -33.0289,
+                "lng": -71.5511,
+                "label": "Viña del Mar"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "MANAGED RETREAT",
+        "body": "Planners call the policy of relocating households out of hazard zones managed retreat. It is politically toxic everywhere it has been tried — from Louisiana's Isle de Jean Charles to Fukushima's exclusion zone — because it forces the state to decide which communities cease to exist.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The term of art is *managed retreat* — distinguished from *displacement* (involuntary, after disaster) and *adaptation in place* (fortifying what exists). Most governments quietly default to displacement because retreat requires buying out homes before they burn."
+          }
+        ]
+      },
+      {
+        "heading": "WHO CAN AFFORD TO LEAVE",
+        "body": "Climate adaptation is regressive: those with capital relocate to safer ground and bid up its price; those without remain in the hazard zone and rebuild with thinner margins each cycle. The same pattern shows up in Bangladeshi delta villages, California fire country, and Lagos floodplains.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Across studies of post-disaster mobility, who is most likely to relocate permanently after a fire or flood?",
+            "options": [
+              "The poorest residents, who have least to lose",
+              "Middle-income homeowners with insurance payouts",
+              "Renters, who can move easily",
+              "Elderly residents with deep community ties"
+            ],
+            "correct": 1,
+            "explanation": "Insurance payouts plus existing savings finance a one-time move; the poorest lack the lump sum, and renters often relocate locally rather than out of the hazard zone entirely."
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE WITHDRAWAL",
+        "body": "When insurers stop writing policies in a fire zone — as has happened in parts of California and Australia — property values collapse and the state becomes insurer of last resort. Chile's private insurance market has begun excluding the Valparaíso hills, shifting the cost of every future fire onto the public budget."
+      }
+    ],
+    "generatedAt": "2026-05-24T12:22:01.927Z",
+    "label": "Climate Retreat & Wildland-Urban Interface",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-24-israel-silence-trump-iran-deal-reaction": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BEGIN DOCTRINE",
+        "body": "Since Menachem Begin authorized the 1981 strike on Iraq's Osirak reactor, Israeli policy has held that no hostile state in the region may acquire nuclear weapons capability — and that Israel will act unilaterally, preventively, and without warning to enforce that line.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1981",
+                "label": "Osirak strike (Iraq)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2007",
+                "label": "Operation Orchard (Syria)"
+              },
+              {
+                "year": "2010",
+                "label": "Stuxnet at Natanz"
+              },
+              {
+                "year": "2020",
+                "label": "Fakhrizadeh assassination"
+              },
+              {
+                "year": "2024",
+                "label": "IRGC HQ strikes"
+              },
+              {
+                "year": "2025",
+                "label": "Israeli strikes on Iranian sites"
+              }
+            ],
+            "label": "the doctrine in action"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE JCPOA ACTUALLY COVERED",
+        "body": "The 2015 Joint Comprehensive Plan of Action capped Iran's uranium enrichment at 3.67%, limited its centrifuge count, and put the Fordow facility under IAEA monitoring — in exchange for sanctions relief. Ballistic missiles were addressed only in a separate UN Security Council resolution, and Iran's regional proxies were left out entirely.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The missile clause sat in **UNSCR 2231**, which *called upon* Iran to refrain from missile development — language Tehran's lawyers argued was a request, not a prohibition. The JCPOA itself was silent."
+          }
+        ]
+      },
+      {
+        "heading": "ENRICHMENT IS NOT A WEAPON",
+        "body": "Weapons-grade uranium is 90% U-235. Iran has stockpiled material at 60% — short of the threshold but only weeks of further enrichment away. A bomb also requires weaponization (the explosive package) and a delivery vehicle. The JCPOA's red lines targeted the enrichment step because it is the slowest and most monitorable.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how enriched must uranium be to be 'weapons-grade'?",
+            "options": [
+              "About 20% U-235",
+              "About 60% U-235",
+              "About 90% U-235",
+              "About 100% U-235"
+            ],
+            "correct": 2,
+            "explanation": "Weapons-grade is conventionally ~90% U-235. Iran's current 60% stockpile is below the line but technically much closer to 90% than to natural uranium (0.7%)."
+          }
+        ]
+      },
+      {
+        "heading": "THE REGIONAL MISSILE GAP",
+        "body": "Iran's ballistic arsenal is the largest in the Middle East — a deliberate compensation for an air force still flying 1970s American jets. Israel's stated war aim was to constrain it; the framework leaves it untouched.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Iran",
+                "value": "~2,000 km",
+                "cc": "IR",
+                "weight": 2000,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~2,650 km",
+                "cc": "SA",
+                "weight": 2650,
+                "tone": "neutral"
+              },
+              {
+                "label": "Israel",
+                "value": "~4,800 km",
+                "cc": "IL",
+                "weight": 4800,
+                "tone": "favorable"
+              },
+              {
+                "label": "Turkey",
+                "value": "~565 km",
+                "cc": "TR",
+                "weight": 565,
+                "tone": "neutral"
+              },
+              {
+                "label": "UAE",
+                "value": "~300 km",
+                "cc": "AE",
+                "weight": 300,
+                "tone": "neutral"
+              }
+            ],
+            "label": "longest-range ballistic missiles (operational)"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2015 PRECEDENT FOR UNILATERAL DEALS",
+        "body": "Obama signed the JCPOA over Netanyahu's explicit objection — including a March 2015 address to a joint session of Congress arranged without White House coordination. The diplomatic rupture was the deepest in modern US-Israel relations. Trump's current opening repeats the pattern of a US president cutting a deal Jerusalem opposes.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              16,
+              16,
+              17,
+              14,
+              16,
+              14,
+              16,
+              22,
+              18,
+              22,
+              18,
+              14,
+              10,
+              9,
+              11,
+              8,
+              11,
+              9,
+              8,
+              14,
+              9,
+              18,
+              10,
+              5,
+              20,
+              31
+            ],
+            "periods": [
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 24"
+            ],
+            "label": "US-Iran nuclear deal by May 31?",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "16%"
+              },
+              {
+                "atIndex": 25,
+                "label": "31%"
+              }
+            ],
+            "link": "https://polymarket.com/event/us-iran-nuclear-deal-by-may-31-974",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE SILENCE",
+        "body": "Israeli prime ministers historically respond to US-Iran diplomacy with immediate public pushback. Netanyahu's silence signals either that the deal contains private assurances on uranium removal, or that the political cost of breaking with Trump exceeds the cost of an unsatisfactory deal — a calculation Israeli leaders have rarely been forced to make."
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-24"
+    ],
+    "generatedAt": "2026-05-24T12:22:50.671Z",
+    "label": "Iran's Nuclear File & the Israeli Calculus",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-24-microsoft-revokes-claude-code-licenses-copilot-distribution": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISTRIBUTION MOAT",
+        "body": "GitHub hosts the code, VS Code edits it, Azure runs it. Microsoft controls the three surfaces where a developer spends their day. Owning distribution lets the platform decide which AI assistant a developer encounters first — and which one requires switching workflows to reach.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "VS Code",
+                "value": "~74%",
+                "tone": "unfavorable",
+                "weight": 74
+              },
+              {
+                "label": "JetBrains",
+                "value": "~30%",
+                "tone": "neutral",
+                "weight": 30
+              },
+              {
+                "label": "Neovim",
+                "value": "~31%",
+                "tone": "neutral",
+                "weight": 31
+              },
+              {
+                "label": "Xcode",
+                "value": "~12%",
+                "tone": "favorable",
+                "weight": 12
+              }
+            ],
+            "label": "developer-tool market share, 2025"
+          }
+        ]
+      },
+      {
+        "heading": "THE BUNDLING PLAYBOOK",
+        "body": "Microsoft has run this move before. Internet Explorer bundled with Windows killed Netscape in the late 1990s and triggered United States v. Microsoft (2001), the antitrust case that nearly broke the company up. Teams bundled with Office 365 squeezed Slack into filing an EU complaint in 2020. The pattern is consistent: own the surface, default the product, watch the rival shrink.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1995",
+                "label": "IE bundled with Windows 95"
+              },
+              {
+                "year": "1998",
+                "label": "US v. Microsoft filed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2001",
+                "label": "settlement — no breakup"
+              },
+              {
+                "year": "2017",
+                "label": "Teams launched, bundled with O365"
+              },
+              {
+                "year": "2020",
+                "label": "Slack files EU antitrust complaint"
+              },
+              {
+                "year": "2025",
+                "label": "GitHub revokes Claude Code licenses"
+              }
+            ],
+            "label": "the bundling playbook"
+          }
+        ]
+      },
+      {
+        "heading": "THE FRENEMY STRUCTURE",
+        "body": "Microsoft is Anthropic's competitor *and* customer *and* infrastructure landlord. It has invested over $13bn in OpenAI, embedded GPT models across its product surface, and simultaneously sold Claude through GitHub Marketplace. Cutting Claude Code is the predictable resolution of a structurally unstable arrangement — the partner with distribution always controls the timing.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Satya Nadella",
+                "role": "Microsoft CEO",
+                "years": "2014–",
+                "cc": "US"
+              },
+              {
+                "name": "Thomas Dohmke",
+                "role": "GitHub CEO",
+                "years": "2021–",
+                "cc": "US"
+              },
+              {
+                "name": "Dario Amodei",
+                "role": "Anthropic CEO",
+                "years": "2021–",
+                "cc": "US"
+              },
+              {
+                "name": "Sam Altman",
+                "role": "OpenAI CEO",
+                "years": "2019–",
+                "cc": "US"
+              }
+            ],
+            "label": "the AI-coding chessboard"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DEVELOPERS RESIST SWITCHING",
+        "body": "Coding assistants compete on a narrow axis: how often the suggestion is the one you would have typed. A developer who has tuned muscle memory and prompt habits around one model loses real productivity switching to another, even when the benchmark scores are close. *Switching cost* in this market is measured in days of degraded output, not subscription fees.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **lock-in by habituation** — the user, not the data, becomes the moat. It's why Vim users don't switch editors and why a forced AI-tool migration triggers more friction than the per-seat price would predict."
+          }
+        ]
+      },
+      {
+        "heading": "THE EU ANGLE",
+        "body": "The Digital Markets Act (in force 2024) designates Microsoft a 'gatekeeper' for Windows and LinkedIn — but not yet for GitHub or VS Code. The DMA forbids gatekeepers from self-preferencing their own services on designated platforms. If the Commission adds developer-tool surfaces to the list, moves like this one become legally contestable rather than just commercially unpopular.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the EU's Digital Markets Act, what is the threshold to designate a platform a 'gatekeeper'?",
+            "options": [
+              "€7.5bn EU revenue and 45m monthly EU users",
+              "Any company headquartered outside the EU",
+              "Market share above 50% in any EU country",
+              "Annual profits exceeding €1bn"
+            ],
+            "correct": 0,
+            "explanation": "The DMA uses revenue and user-base thresholds (€7.5bn EU turnover, 45m monthly EU end-users, 10k business users) — not market share — to designate gatekeepers."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-24T12:23:25.228Z",
+    "label": "Platform Distribution & AI Coding Tools",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-24-mxene-nanosheet-macrophage-therapy-mash-liver": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT MXENES ARE",
+        "body": "MXenes are 2D sheets of transition-metal carbides or nitrides, just a few atoms thick. Ti₃C₂ — titanium carbide — is the prototype, discovered at Drexel in 2011 by etching aluminum out of a layered ceramic. Their surfaces are crowded with hydroxyl and oxygen groups, which is why they conduct electricity like a metal yet behave chemically like a sponge.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The name borrows from *graphene* — the *-ene* suffix signals a single-layer 2D material, while **MX** encodes the metal (M) and carbon/nitrogen (X) lattice."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE LIVER, WHY MACROPHAGES",
+        "body": "The liver filters the entire blood volume every few minutes, and Kupffer cells — its resident macrophages — make up the largest macrophage population in the body. Any nanoparticle injected intravenously is overwhelmingly captured there. What is usually a delivery problem becomes, for a liver-targeted drug, a free ride."
+      },
+      {
+        "heading": "THE ROS PROBLEM IN MASH",
+        "body": "Metabolic dysfunction-associated steatohepatitis (MASH, formerly NASH) begins as fat accumulation but turns dangerous when stressed hepatocytes leak reactive oxygen species. Macrophages sense the damage and release inflammatory cytokines, which kill more hepatocytes, which release more ROS. The fibrosis that ends in cirrhosis is the scar tissue from this loop.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What distinguishes MASH from simple fatty liver (steatosis)?",
+            "options": [
+              "Presence of fat in hepatocytes",
+              "Inflammation and hepatocyte injury on top of fat",
+              "Elevated cholesterol",
+              "Viral infection of the liver"
+            ],
+            "correct": 1,
+            "explanation": "Steatosis is fat alone; MASH adds inflammation and ballooning hepatocyte injury — the step that drives fibrosis and cirrhosis."
+          }
+        ]
+      },
+      {
+        "heading": "WHY MXENES SCAVENGE ROS",
+        "body": "Those surface hydroxyl groups donate electrons readily. When a reactive oxygen species — a hydroxyl radical, a superoxide — meets a Ti₃C₂ sheet, it grabs an electron and is neutralized. The sheet itself oxidizes slowly. In effect, the nanosheet acts as a sacrificial antioxidant with a surface area thousands of times larger than a small-molecule drug."
+      },
+      {
+        "heading": "THE REGULATORY DISTANCE",
+        "body": "MASH has only one FDA-approved drug (resmetirom, 2024) after two decades of failed trials. The gap between a mouse study and an approved human therapy in this disease is roughly a decade, because the endpoint regulators accept — fibrosis regression confirmed by biopsy — takes years to measure.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011",
+                "label": "Ti₃C₂ MXene discovered at Drexel",
+                "emphasis": "start"
+              },
+              {
+                "year": "2016",
+                "label": "first biomedical proposals (imaging, photothermal)"
+              },
+              {
+                "year": "2020",
+                "label": "in-vivo cancer photothermal studies"
+              },
+              {
+                "year": "2024",
+                "label": "resmetirom — first MASH drug approved"
+              },
+              {
+                "year": "2026",
+                "label": "liver-macrophage MXene study in mice",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "MXenes from lab to medicine"
+          }
+        ]
+      },
+      {
+        "heading": "THE NANOPARTICLE GRAVEYARD",
+        "body": "Hundreds of nanoparticle therapies have shown spectacular results in mice and failed in humans. Mouse livers clear particles faster, mouse immune systems tolerate metals differently, and the doses that work in a 25-gram animal rarely scale linearly to a 70-kilogram one. The first question for any new nanomedicine is not whether it works — it is whether it works for reasons that will survive the species jump."
+      }
+    ],
+    "generatedAt": "2026-05-24T12:23:54.678Z",
+    "label": "MXenes & Liver Inflammation",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-24-nigeria-borno-92-civilians-rescued-iswap-buratai": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SPLIT",
+        "body": "Islamic State West Africa Province broke from Boko Haram in 2016 over a doctrinal dispute: Abubakar Shekau insisted any Muslim who cooperated with the Nigerian state was a legitimate target; ISWAP's leadership, endorsed by IS central, ruled that ordinary Muslims could not be killed indiscriminately. The split made ISWAP more disciplined, not less dangerous.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The cleavage was over *takfir* — the practice of declaring other Muslims apostates. Shekau's maximalism alienated civilians; ISWAP's restraint let it govern them."
+          }
+        ]
+      },
+      {
+        "heading": "THE LAKE CHAD BASIN",
+        "body": "ISWAP operates across the shorelines and islands of Lake Chad — terrain that touches Nigeria, Niger, Chad, and Cameroon. The lake has shrunk by roughly 90% since the 1960s, exposing islands and reed channels that armies cannot patrol but small boats can.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "NE",
+              "TD",
+              "CM"
+            ],
+            "label": "the Lake Chad basin",
+            "markers": [
+              {
+                "lat": 10.6103,
+                "lng": 12.1939,
+                "label": "Biu (abduction site)"
+              },
+              {
+                "lat": 11.8333,
+                "lng": 13.15,
+                "label": "Maiduguri"
+              },
+              {
+                "lat": 11.7475,
+                "lng": 11.9608,
+                "label": "Damaturu"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE GOVERNANCE MODEL",
+        "body": "In territory it controls, ISWAP collects taxes (zakat on cattle and fish), adjudicates disputes through its own qadis, and provides a crude form of order. This is why mass abductions on roads coexist with relative calm in some villages — the group distinguishes between subjects to be governed and travelers to be ransomed or conscripted."
+      },
+      {
+        "heading": "WHY ROADS",
+        "body": "Abductions cluster on highways because highways are where the state's writ thins out fastest. A village can host a permanent garrison; a 200km stretch of road cannot. The Maiduguri–Biu corridor has been a kidnap zone for over a decade — vehicles travel in convoys at scheduled hours or not at all.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the original meaning of the name 'Boko Haram' in Hausa?",
+            "options": [
+              "Foreign rule is forbidden",
+              "Western education is forbidden",
+              "Christian books are forbidden",
+              "Democracy is forbidden"
+            ],
+            "correct": 1,
+            "explanation": "'Boko' originally referred to Roman-script books used in colonial Western schools; 'haram' means forbidden. The group's founding doctrine rejected secular Western education as religiously impermissible."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHIBOK ECHO",
+        "body": "The 2014 abduction of 276 schoolgirls from Chibok — also in Borno — drew global attention via #BringBackOurGirls. More than a decade later, around 90 remain unaccounted for. Mass abductions on this scale have continued almost yearly since, with diminishing international notice each time.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2002",
+                "label": "Boko Haram founded in Maiduguri"
+              },
+              {
+                "year": "2009",
+                "label": "Yusuf killed, group goes underground",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2014",
+                "label": "Chibok schoolgirls abducted"
+              },
+              {
+                "year": "2015",
+                "label": "Shekau pledges allegiance to IS"
+              },
+              {
+                "year": "2016",
+                "label": "ISWAP splits from Shekau faction"
+              },
+              {
+                "year": "2021",
+                "label": "Shekau killed by ISWAP"
+              }
+            ],
+            "label": "the insurgency arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE MULTINATIONAL FORCE",
+        "body": "The Multinational Joint Task Force — Nigeria, Niger, Chad, Cameroon, Benin — was reconstituted in 2015 to coordinate operations around Lake Chad. Its effectiveness rises and falls with whichever capital is most willing to deploy. Niger's 2023 coup and Chad's domestic turmoil have repeatedly thinned the force from the non-Nigerian side."
+      }
+    ],
+    "generatedAt": "2026-05-24T12:24:26.947Z",
+    "label": "ISWAP & the Lake Chad Insurgency",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-24-nigeria-ncaa-11-airlines-services-suspended-unpaid-charges": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FUNDING MODEL",
+        "body": "Most civil aviation authorities run on fees levied directly on the industry they regulate — passenger service charges, overflight fees, ticket sales taxes, and licensing levies. The treasury doesn't fund them; the airlines do. This makes the regulator structurally dependent on the financial health of the carriers it polices.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Nigerian Civil Aviation Authority statute earmarks **5% of every ticket** sold and a per-passenger service charge as its primary revenue. When carriers withhold remittances, the regulator's own payroll is at risk."
+          }
+        ]
+      },
+      {
+        "heading": "THE CONFLICT OF INTEREST",
+        "body": "A regulator that depends on industry fees becomes a creditor of the firms it oversees. Suspending services to collect a debt is a tool no central bank or treasury would use — but for self-funded regulators, it is sometimes the only leverage available short of revoking an Air Operator Certificate."
+      },
+      {
+        "heading": "WHAT 'SERVICES' MEANS",
+        "body": "Air navigation clearance, airworthiness certification, crew licensing, and route approvals all flow through the authority. Without them an airline cannot legally dispatch a flight. A services suspension is a soft grounding — the planes physically can move, but no insurer will cover a flight without current paperwork.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What typically grounds an airline first when its regulator pulls services?",
+            "options": [
+              "The aircraft are physically locked at the gate",
+              "Insurance lapses without current airworthiness paperwork",
+              "Pilots refuse to fly in protest",
+              "Fuel suppliers cut off the carrier"
+            ],
+            "correct": 1,
+            "explanation": "Hull and liability insurance is contingent on a valid Certificate of Airworthiness; the moment certification lapses, the policy voids and the airline cannot legally dispatch."
+          }
+        ]
+      },
+      {
+        "heading": "THE NAIRA SQUEEZE",
+        "body": "Nigerian carriers earn most revenue in naira but pay for leases, spare parts, fuel, and overflight fees in dollars. Years of currency depreciation have compressed cash flow even as ticket prices climbed — leaving regulatory charges as one of the last bills paid.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              1351.847873,
+              1351.847873,
+              1352.81,
+              1360.19,
+              1374.96,
+              1375.07,
+              1374.69,
+              1375.98,
+              1375.98,
+              1375.65,
+              1370.93,
+              1365.9,
+              1360.53,
+              1361.67,
+              1356.19465,
+              1356.19465,
+              1357.96,
+              1363.47,
+              1370.1,
+              1370.5,
+              1370.6,
+              1370.49,
+              1372.988035,
+              1372.74,
+              1371.26,
+              1372.34,
+              1371.25,
+              1370.05,
+              1372.25,
+              1372.25
+            ],
+            "periods": [
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24"
+            ],
+            "label": "Nigerian naira",
+            "unit": "NGN / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE EID TIMING",
+        "body": "Eid al-Adha falls in early June 2026 — one of two annual peaks for domestic Nigerian aviation, alongside Christmas. Lagos-Abuja and Lagos-Kano routes run at near-full loads for the week around the holiday. A suspension that holds through Eid means lost revenue the carriers cannot recover, which paradoxically deepens the arrears the regulator is trying to collect."
+      },
+      {
+        "heading": "THE TRAPPED-FUNDS BACKDROP",
+        "body": "Nigeria has spent the last three years on IATA's trapped-funds list — foreign airlines unable to repatriate ticket revenue from naira accounts. Emirates suspended Nigeria service in 2022 over $85m stuck in the country. The domestic carriers now under suspension operate inside the same dollar-scarce system that drove the foreign airlines out.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Pakistan",
+                "value": "$311m",
+                "cc": "PK",
+                "weight": 311,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Bangladesh",
+                "value": "$197m",
+                "cc": "BD",
+                "weight": 197,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Algeria",
+                "value": "$193m",
+                "cc": "DZ",
+                "weight": 193,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Lebanon",
+                "value": "$142m",
+                "cc": "LB",
+                "weight": 142,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Nigeria",
+                "value": "$85m",
+                "cc": "NG",
+                "weight": 85,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Largest blocked-funds markets for foreign airlines, 2024 (IATA)"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-24"
+    ],
+    "generatedAt": "2026-05-24T12:24:59.081Z",
+    "label": "Aviation Regulators as Self-Funded Creditors",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-24-pakistan-one-constitution-ihc-khawaja-asif-arbitration": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PROJECT",
+        "body": "One Constitution Avenue is a luxury mixed-use tower complex on Islamabad's ceremonial axis — the road that runs between the Supreme Court, Parliament, and the Presidency. The land was leased by the Capital Development Authority in 2007 to a private developer for a 99-year term; the dispute is over which flats the state was owed back as its share of the project.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "PK"
+            ],
+            "label": "Islamabad's ceremonial axis",
+            "caption": "the contested tower sits among the institutions now adjudicating it",
+            "markers": [
+              {
+                "lat": 33.7294,
+                "lng": 73.0931,
+                "label": "One Constitution Avenue"
+              },
+              {
+                "lat": 33.718,
+                "lng": 73.0631,
+                "label": "Supreme Court"
+              },
+              {
+                "lat": 33.7269,
+                "lng": 73.0837,
+                "label": "Parliament"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE ALLOTMENT",
+        "body": "Roughly 240 flats in the completed tower were allotted at below-market rates to sitting judges, federal ministers, senior bureaucrats, and at least one former prime minister. The allotments became public years after the fact, and the original list has never been fully released.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The allotments at issue went to judges of the **same superior courts** now adjudicating the title dispute — a textbook conflict of interest that Pakistani recusal practice has historically been slow to enforce."
+          }
+        ]
+      },
+      {
+        "heading": "THE NEMO JUDEX RULE",
+        "body": "Across common-law systems the principle is nemo judex in causa sua — no one shall be a judge in their own cause. In Pakistan it is codified through Article 4 and Article 10A of the Constitution (due process and fair trial) and the Code of Conduct for Judges, which requires recusal where a judge has any personal or financial interest in the outcome.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does the legal principle 'nemo judex in causa sua' require?",
+            "options": [
+              "A judge must not hear a case in which they have a personal interest",
+              "A judge must give written reasons for every ruling",
+              "A judge cannot be removed except by parliament",
+              "A judge must follow the precedent of higher courts"
+            ],
+            "correct": 0,
+            "explanation": "Nemo judex in causa sua — 'no one shall be a judge in their own cause' — is the foundational recusal rule across common-law systems."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ARBITRATION",
+        "body": "Pakistan's 1940 Arbitration Act (now largely superseded by the 2011 act for international disputes) lets parties to a commercial contract bypass the courts and settle through a private tribunal whose award is enforceable like a decree. Governments use it to escape clogged dockets and to insulate sensitive deals from public hearings — at the cost of transparency.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "An arbitration *award* is final and binding once signed: courts may set it aside only on narrow grounds — fraud, misconduct of the arbitrator, or an award that exceeds the submitted dispute. Reopening one a decade later, as the IHC is being asked to do, runs against the entire design of the system."
+          }
+        ]
+      },
+      {
+        "heading": "THE MINISTER'S DUAL ROLE",
+        "body": "Khawaja Asif signed the 2012 award in his then-capacity as Minister for Water and Power, binding the state to the developer's terms. He now sits in cabinet as Defence Minister of the government whose court is being asked to undo that same award — a conflict the bench cannot ignore even if Asif himself is not a party.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Khawaja Muhammad Asif",
+                "role": "Defence Minister; signed 2012 award",
+                "years": "2013–present",
+                "cc": "PK"
+              },
+              {
+                "name": "Aamer Farooq",
+                "role": "Islamabad High Court Chief Justice",
+                "years": "2022–present",
+                "cc": "PK"
+              }
+            ],
+            "label": "the cast"
+          }
+        ]
+      },
+      {
+        "heading": "THE BROADER PATTERN",
+        "body": "Judicial perks in Pakistan — official residences, plots in Defence Housing Authority schemes, post-retirement consultancies — have long been criticised as a quiet patronage system that ties the bench to the executive that allocates them. The One Constitution Avenue case is unusual only because the perk and the dispute land in the same courtroom."
+      }
+    ],
+    "generatedAt": "2026-05-24T12:25:32.953Z",
+    "label": "One Constitution Avenue & Judicial Conflicts",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-24-sudan-eid-sheep-prices-darfur-war-market-fragmentation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY LIVESTOCK MATTERS",
+        "body": "Livestock is Sudan's second-largest export after gold and the single largest rural employer. Roughly two-thirds of Sudanese households own animals; for Darfuri pastoralists, sheep are not a sideline but the household balance sheet — savings, dowry, and insurance in one form.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Sudan holds one of the largest sheep herds in Africa — historically the country was the **top live-sheep exporter to Saudi Arabia**, with Eid al-Adha demand alone moving millions of head across the Red Sea each year."
+          }
+        ]
+      },
+      {
+        "heading": "THE EID PREMIUM",
+        "body": "Eid al-Adha requires a healthy ram per household that can afford one. Demand concentrates into a two-week window, prices spike predictably, and the Gulf import market — Saudi Arabia, UAE, Kuwait — absorbs the surplus at premium rates. The entire pastoral economy is calibrated around this annual peak.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "SA",
+              "AE",
+              "EG",
+              "KW"
+            ],
+            "label": "the Eid livestock corridor",
+            "caption": "Sudan historically supplied Gulf Eid demand via Port Sudan"
+          }
+        ]
+      },
+      {
+        "heading": "THE FRAGMENTATION",
+        "body": "A 4.4x price gap between Nyala and Khartoum on the same animal is not a market — it is two markets separated by checkpoints, looted trucks, and front lines. In functioning economies, arbitrage closes such gaps in days; in Sudan, the gap is the war.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Nyala (S. Darfur)",
+                "value": "SDG 450k",
+                "tone": "unfavorable",
+                "weight": 450
+              },
+              {
+                "label": "Central Sudan",
+                "value": "SDG 2m+",
+                "tone": "favorable",
+                "weight": 2000
+              }
+            ],
+            "label": "same sheep, two Sudans"
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO ARMIES",
+        "body": "Sudan's war is between two generals who jointly overthrew a civilian government. The SAF under Burhan holds the center and Port Sudan; the RSF under Hemedti — evolved from the Janjaweed militias of the Darfur genocide — controls most of Darfur, including Nyala. The trade routes between them are the front line.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Abdel Fattah al-Burhan",
+                "role": "SAF commander, de-facto head of state",
+                "years": "2019–",
+                "cc": "SD"
+              },
+              {
+                "name": "Mohamed Hamdan Dagalo",
+                "role": "RSF commander (Hemedti)",
+                "years": "2013–",
+                "cc": "SD"
+              }
+            ],
+            "label": "the two commands"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ROUTES MATTER",
+        "body": "Sudanese livestock historically moved north along two corridors: Darfur to Omdurman to Port Sudan for Gulf export, and Kordofan to the Nile for domestic markets. Both corridors now cross RSF–SAF lines. A sheep born in Nyala cannot legally, safely, or affordably reach the ships at Port Sudan.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "darfur",
+                "label": "Darfur herds"
+              },
+              {
+                "id": "kordofan",
+                "label": "Kordofan herds"
+              },
+              {
+                "id": "omdurman",
+                "label": "Omdurman market"
+              },
+              {
+                "id": "portsudan",
+                "label": "Port Sudan"
+              },
+              {
+                "id": "gulf",
+                "label": "Gulf importers"
+              },
+              {
+                "id": "domestic",
+                "label": "Domestic"
+              }
+            ],
+            "links": [
+              {
+                "source": "darfur",
+                "target": "omdurman",
+                "value": 40
+              },
+              {
+                "source": "kordofan",
+                "target": "omdurman",
+                "value": 30
+              },
+              {
+                "source": "omdurman",
+                "target": "portsudan",
+                "value": 45
+              },
+              {
+                "source": "omdurman",
+                "target": "domestic",
+                "value": 25
+              },
+              {
+                "source": "portsudan",
+                "target": "gulf",
+                "value": 45
+              }
+            ],
+            "label": "pre-war livestock flow"
+          }
+        ]
+      },
+      {
+        "heading": "THE CURRENCY LAYER",
+        "body": "SDG 2 million sounds enormous; the Sudanese pound has collapsed against the dollar since the war began. Real prices in hard currency have risen sharply but nowhere near 4x — the headline gap reflects both genuine scarcity and the parallel collapse of the unit of account.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does the same sheep cost more than 4x as much in central Sudan as in Darfur?",
+            "options": [
+              "Darfur sheep are a lower-quality breed",
+              "War-blocked routes prevent supply from reaching demand",
+              "Central Sudan has stronger Eid traditions",
+              "Khartoum buyers prefer imported livestock"
+            ],
+            "correct": 1,
+            "explanation": "Arbitrage normally closes such gaps within days. In Sudan, RSF-SAF front lines physically block the trade corridors that once connected Darfur herds to Khartoum and Port Sudan."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-24T12:26:06.432Z",
+    "label": "Sudan's Livestock Economy & War Fragmentation",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-24-sudan-rsf-future-bank-monetary-fragmentation-stpt": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A CENTRAL BANK ACTUALLY IS",
+        "body": "A central bank is not a building — it is the monopoly on issuing legal tender, settling interbank payments, and holding reserves. When a rival force replicates those three functions inside the same country, sovereignty has already been partitioned in fact, regardless of what maps still show.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **monetary sovereignty** — and unlike territorial sovereignty, it cannot be shared. Two issuers of the 'same' pound produce two currencies, even if both are printed in the same denominations."
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO ARMIES",
+        "body": "Sudan's war is between two generals who jointly overthrew Bashir in 2019, then jointly crushed the civilian democracy movement, then turned on each other in April 2023. The SAF (regular army) under Burhan controls Port Sudan and the east; the RSF under Hemedti — evolved from the Janjaweed militias of the Darfur genocide — controls most of Darfur and much of Khartoum.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Abdel Fattah al-Burhan",
+                "role": "SAF commander, de-facto head of state",
+                "years": "2019–",
+                "cc": "SD"
+              },
+              {
+                "name": "Mohamed Hamdan Dagalo (Hemedti)",
+                "role": "RSF commander, former camel trader",
+                "years": "2013–",
+                "cc": "SD"
+              }
+            ],
+            "label": "the two commanders"
+          }
+        ]
+      },
+      {
+        "heading": "THE TERRITORIAL SPLIT",
+        "body": "The official Central Bank of Sudan relocated to Port Sudan on the Red Sea coast after Khartoum fell. The RSF runs its parallel monetary system out of Nyala in South Darfur. The two issuing centers sit nearly 2,000km apart with active front lines between them.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "SS",
+              "TD",
+              "EG",
+              "ER",
+              "ET",
+              "LY",
+              "CF"
+            ],
+            "label": "Sudan's two monetary centers",
+            "markers": [
+              {
+                "lat": 19.6158,
+                "lng": 37.2164,
+                "label": "Port Sudan (SAF / CBoS)"
+              },
+              {
+                "lat": 12.0489,
+                "lng": 24.8807,
+                "label": "Nyala (RSF / El Mustaqbal)"
+              },
+              {
+                "lat": 15.5007,
+                "lng": 32.5599,
+                "label": "Khartoum (contested)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BANKNOTE RECALL WEAPON",
+        "body": "In 2024 the SAF-controlled central bank announced a redesign of the 1,000-pound note, giving holders a short window to exchange old notes at official branches — branches that exist only in SAF territory. Civilians in RSF areas were effectively told their cash savings were worthless unless they could cross a front line. The RSF responded by building its own banking rail.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the standard purpose of a sudden banknote recall in a civil war?",
+            "options": [
+              "Fight counterfeiting",
+              "Strand the enemy's cash holdings and force exchange through your banks",
+              "Modernize security features",
+              "Reduce inflation by removing old notes"
+            ],
+            "correct": 1,
+            "explanation": "India's 2016 demonetization and Sudan's 2024 recall share the mechanic: invalidating notes forces holders through state-controlled exchange points, exposing untaxed wealth or stranding rival-held cash."
+          }
+        ]
+      },
+      {
+        "heading": "THE PARTITION PRECEDENTS",
+        "body": "Monetary splits almost always precede or cement political partition. Yugoslavia's republics issued separate dinars before independence; Sudan and South Sudan ran a shared pound for barely a year after 2011 before splitting it; Yemen has had rival central banks in Aden and Sana'a since 2016, with two exchange rates and two banknote series that increasingly cannot be exchanged for each other.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1991",
+                "label": "Yugoslav republics issue rival dinars"
+              },
+              {
+                "year": "2011",
+                "label": "South Sudan secedes, new pound"
+              },
+              {
+                "year": "2016",
+                "label": "Yemen splits CBY between Aden and Sana'a"
+              },
+              {
+                "year": "2023-04",
+                "label": "Sudan civil war begins",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "SAF banknote recall strands RSF areas"
+              },
+              {
+                "year": "2025",
+                "label": "RSF launches El Mustaqbal Bank"
+              }
+            ],
+            "label": "when money splits, states follow"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DIGITAL TRANSFER MATTERS",
+        "body": "A rebel-held central bank with only paper notes is fragile — the notes have to be printed somewhere, smuggled in, and trusted. A digital transfer app sidesteps all three problems: balances exist as database entries, settlement is instant, and the network effect grows with each merchant who accepts it. This is why the RSF's app, not the bank charter, is the structural threat to reunification."
+      }
+    ],
+    "generatedAt": "2026-05-24T12:26:44.334Z",
+    "label": "Monetary Partition",
+    "category": "politics",
+    "articleCount": 1
   }
 }
