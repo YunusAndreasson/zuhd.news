@@ -1,28 +1,28 @@
 {
-  "date": "2026-05-23",
+  "date": "2026-05-24",
   "metrics": {
-    "articles": { "value": 47, "detail": "5 cycles, avg 9/cycle" },
-    "freshness": { "median": 0.9, "p90": 1.1, "max": 1.1, "target": 1.0, "met": true },
-    "categories": { "politics": 22, "economy": 12, "science": 8, "tech": 5 },
-    "multiSource": { "value": 13, "target": 4, "met": true },
-    "regions": { "count": 6, "target": 4, "met": true, "breakdown": { "ME": 17, "AM": 10, "AS": 8, "EU": 7, "AF": 4, "GL": 1 } },
-    "sciTech": { "ratio": 28, "target": 25, "met": true },
-    "topSourceShare": { "source": "Dawn", "pct": 17, "target": 20, "met": true },
-    "uniqueSources": 52,
+    "articles": { "value": 41, "detail": "5 cycles, 4 completed, avg 8/cycle" },
+    "freshness": { "median": 1.3, "p90": 1.5, "max": 1.6, "target": 1.0, "met": false },
+    "categories": { "politics": 14, "economy": 10, "science": 10, "tech": 7 },
+    "multiSource": { "value": 6, "target": 4, "met": true },
+    "regions": { "count": 5, "target": 4, "met": true, "breakdown": { "AM": 11, "ME": 8, "AS": 7, "AF": 11, "EU": 4 } },
+    "sciTech": { "ratio": 41, "target": 25, "met": true },
+    "topSourceShare": { "source": "Nature", "pct": 12, "target": 20, "met": true },
+    "uniqueSources": 39,
     "duplicates": 0,
-    "avgCycleDuration": 1488
+    "avgCycleDuration": 1448
   },
-  "experiment": "Active: 2026-05-18-editor-effort-low (editor effort medium→low). Evaluates 2026-05-25 — 2 days of data remain. No new experiment proposed: all daily metrics within targets, and the active experiment also touches scripts/run-cycle.sh, so any new variable today would risk confounding the editor-timing read.",
-  "weakestArea": "Sci+tech ratio at 28% is the closest metric to its 25% floor — tech came in at 5 vs the 4 floor on a Middle-East-heavy news day (ME 17/47 = 36% of output). Politics over-rotated to 22 (47% of output), squeezing specialist coverage. Watch this if the Israel/Gaza/Iran cluster keeps dominating feeds.",
+  "experiment": "Active: 2026-05-18-editor-effort-low (editor effort medium→low in run-cycle.sh). EvaluateAfter 2026-05-25 — not yet due; no new experiment proposed today to keep the editor-effort signal clean.",
+  "weakestArea": "Freshness median 1.3 days vs ≤1.0 target — the largest gap of the day. Yesterday's median was 0.9 with only 6 datapoints, so today's reading (n=14) is the more reliable signal and suggests the standalone tail is older than usual; worth watching whether this persists past the editor-effort experiment evaluation before touching the standalone cap again.",
   "watching": [
-    "Israel/Lebanon/Iran cluster drove ME share to 36% today (vs ~20% yesterday) — if it sustains, sci/tech and AM/EU coverage will keep getting squeezed.",
-    "Editor-effort experiment closes 2026-05-25; need to pull editor wall-time percentiles from logs/cycle-2026-05-1[89]*.log + 2026-05-2[0-5]*.log and check quality-trend.json week of 2026-05-23 for guardrail breaches.",
-    "charOver350Pct trend (21.1 → 25.6 across last two weekly snapshots) is the pre-existing lead-length drift; queued numerical-density experiment includes a 'compress a clause' clause designed to reverse it once editor experiment closes."
+    "Editor-effort-low experiment closes tomorrow (2026-05-25) — pull editor median/p90 from logs/cycle-2026-05-18..24 and check quality-trend guardrails before keep/revert.",
+    "Freshness median crept above target (1.3 vs 1.0) despite standalone cap at 22; check if NewsAPI standalone supply has aged or if event-cluster lag is the driver.",
+    "Only 4 of 5 cycles completed today — confirm the missed cycle in logs and that avg cycle duration (1448s) reflects healthy stages, not a single hung run.",
+    "EU regional share thin at 4/41 (~10%) vs AF/AM at 11 each — single-day noise, but flag if it persists."
   ],
   "coverageGaps": [
-    "Oceania: 0 articles today (yesterday 1). Recurring thinness — not a single-day anomaly.",
-    "Latin America light: AM count 10 but skewed US; explicit LATAM outlets absent from today's source list aside from InSight Crime (1).",
-    "Tech at floor (5) on a heavy-politics day — the 3/cycle tech floor held but didn't push higher when politics absorbed the headroom."
+    "EU coverage thin (4 articles) relative to other regions; no OC representation today.",
+    "Tech mix narrow — CoinDesk, Anthropic, Rest of World, The Record, The Verge, Nature; no major enterprise/security wire (Reuters Tech, WSJ Tech) appeared in today's selection."
   ],
-  "context": "Active editor-effort experiment runs through 2026-05-25, blocking any new run-cycle.sh / write-prompt.md change today. Queued numerical-density experiment (2026-05-08-numerical-density) is the next slot after the editor experiment closes, pending its preflight re-validation at n≥20 per the 2026-05-02 small-sample-fade lesson. Day was healthy across all dashboard metrics; no action required."
+  "context": "Day sits inside the editor-effort-low experiment window (started 2026-05-18, evaluates 2026-05-25). No new variable should be introduced until that closes — both to keep the editor-stage timing signal uncontaminated and to honor the one-experiment-at-a-time rule. Freshness slippage and EU thinness are noted but deferred to post-evaluation."
 }
