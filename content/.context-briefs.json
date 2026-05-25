@@ -236719,5 +236719,1678 @@
     "label": "Serbia between Brussels and Beijing",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-25-africa-day-colonial-penal-codes-independence-laws-hrw": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INHERITED CODE",
+        "body": "When European powers withdrew, the penal codes stayed. The Indian Penal Code of 1860, drafted by Macaulay for British India, became the template for criminal law across Britain's African colonies — and large stretches of it remain in force from Lagos to Nairobi today.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Macaulay's draft was so durable that **Section 377** — the colonial-era ban on 'unnatural offences' — was still being litigated in *India itself* until 2018, more than 70 years after independence."
+          }
+        ]
+      },
+      {
+        "heading": "THE BERLIN PARTITION",
+        "body": "At the Berlin Conference of 1884-85, fourteen European powers divided Africa among themselves without a single African present. The borders they drew — and the legal systems they imposed inside those borders — were designed for resource extraction and control of restive populations, not self-government.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1860",
+                "label": "Macaulay's Indian Penal Code drafted"
+              },
+              {
+                "year": "1885",
+                "label": "Berlin Conference partitions Africa",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1916",
+                "label": "Nigerian Criminal Code (copy of Queensland's)"
+              },
+              {
+                "year": "1957",
+                "label": "Ghana independence — keeps colonial code"
+              },
+              {
+                "year": "1960",
+                "label": "17 African states gain independence"
+              },
+              {
+                "year": "2024",
+                "label": "colonial codes still active in most of Africa"
+              }
+            ],
+            "label": "how colonial law became African law"
+          }
+        ]
+      },
+      {
+        "heading": "SEDITION, VAGRANCY, UNNATURAL ACTS",
+        "body": "Three colonial categories did most of the political work: sedition (criminalizing speech against the state), vagrancy (criminalizing the urban poor without documents), and unnatural offences (criminalizing same-sex relations). All three originated in Victorian Britain, all three remain on the books across much of Africa.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "KE",
+              "UG",
+              "GH",
+              "ML",
+              "TZ",
+              "ZM",
+              "ZW",
+              "MW",
+              "SD"
+            ],
+            "label": "countries still enforcing colonial-era 'unnatural offences' clauses"
+          }
+        ]
+      },
+      {
+        "heading": "WHY NEW STATES KEPT OLD LAWS",
+        "body": "Rewriting a penal code requires drafters, parliamentary time, and political consensus on what to replace it with. Newly independent governments — often facing coups, ethnic conflict, and economic collapse — found the colonial code's broad arrest powers useful for their own security needs. The tool outlasted the colonizer because the next ruler also wanted the tool."
+      },
+      {
+        "heading": "THE AU GAP",
+        "body": "The African Union's founding act commits members to human rights, but the AU has no compulsory mechanism to strike down a member's domestic law. The African Court on Human and Peoples' Rights can issue rulings — but only against states that have accepted its individual-petition jurisdiction. As of 2024, fewer than ten of 55 member states have done so.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Compare the **Inter-American Court of Human Rights**, whose rulings have forced Latin American states to repeal amnesty laws and overturn convictions. The African Court was designed with similar powers — but member states declined to give it teeth."
+          }
+        ]
+      },
+      {
+        "heading": "THE FRANCOPHONE TRACK",
+        "body": "French colonies inherited a different system — the Napoleonic Code, transplanted via the Code de l'indigénat that governed colonial subjects until 1946. Mali, Senegal, and Côte d'Ivoire still operate civil-law systems where the criminal code's structure traces directly to 19th-century Paris.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which African country's criminal code is NOT directly descended from a European colonial code?",
+            "options": [
+              "Nigeria (British)",
+              "Mali (French)",
+              "Ethiopia",
+              "Mozambique (Portuguese)"
+            ],
+            "correct": 2,
+            "explanation": "Ethiopia was never colonized (the 1936-41 Italian occupation was too brief to impose a legal system). Its 1957 penal code was drafted by a Swiss jurist but adopted as a sovereign choice, not an inheritance."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-25T22:23:15.226Z",
+    "label": "Colonial Law After Independence",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-25-asean-ai-agent-swarm-disinformation-southeast-asia-exposure": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COST COLLAPSE",
+        "body": "A 2016 troll farm needed buildings, salaries, and language coaches — the Internet Research Agency in St. Petersburg ran roughly 400 staff. An LLM agent now drafts equivalent volume in dozens of languages at fractions of a cent per post. The marginal cost of a fake voice fell five orders of magnitude in under a decade.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The economic term is **asymmetric cost**: defenders pay human-moderator wages while attackers pay token fees. Each side scales on a different curve."
+          }
+        ]
+      },
+      {
+        "heading": "WHY LOW-RESOURCE LANGUAGES MATTER",
+        "body": "Trust and safety models are trained overwhelmingly on English data. A classifier that flags 95% of English hate speech may catch 40% in Tagalog and less in Bahasa or Khmer. Attackers route through the languages with the thinnest moderation — the same pattern that made Myanmar's Facebook a vector for the Rohingya genocide in 2017.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ID",
+              "PH",
+              "TH",
+              "VN",
+              "MY",
+              "SG",
+              "MM",
+              "KH"
+            ],
+            "label": "ASEAN exposure surface"
+          }
+        ]
+      },
+      {
+        "heading": "THE ELECTORATE MATH",
+        "body": "Indonesia has roughly 205 million eligible voters — the third-largest democratic electorate on Earth, after India and the US. It also has Southeast Asia's highest social-media penetration. The combination is what makes Jakarta the prize target.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Eligible voters (selected democracies)",
+            "peers": [
+              {
+                "value": 968,
+                "cc": "IN"
+              },
+              {
+                "value": 244,
+                "cc": "US"
+              },
+              {
+                "value": 205,
+                "cc": "ID"
+              },
+              {
+                "value": 156,
+                "cc": "BR"
+              },
+              {
+                "value": 129,
+                "cc": "PK"
+              },
+              {
+                "value": 120,
+                "cc": "BD"
+              },
+              {
+                "value": 68,
+                "cc": "PH"
+              },
+              {
+                "value": 69,
+                "cc": "VN"
+              }
+            ],
+            "subjectCc": "ID",
+            "unit": "million"
+          }
+        ]
+      },
+      {
+        "heading": "AGENT VS TROLL",
+        "body": "A troll farm worker manages perhaps 10–20 sock-puppet accounts. An AI agent runs thousands, each maintaining a coherent biography, posting schedule, and dialect register. Detection systems built for human operators — looking for shift patterns, copy-paste artifacts, IP clustering — find none of those signatures in agent traffic.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which signal best distinguishes AI-agent disinformation from a 2016-era troll farm?",
+            "options": [
+              "Posts originate from a single building's IP range",
+              "Each account maintains a unique writing style and dialect",
+              "Activity clusters during one country's working hours",
+              "Posts are copy-pasted across many accounts"
+            ],
+            "correct": 1,
+            "explanation": "Agents synthesize distinct voices per account; the older detection playbook relied on the opposite — finding shared text, IPs, and shift patterns."
+          }
+        ]
+      },
+      {
+        "heading": "THE REGULATORY GAP",
+        "body": "ASEAN operates by consensus, with strict non-interference in members' internal affairs — a doctrine that has produced no binding regional rule on cross-border information flows in 58 years. The EU's Digital Services Act and Code of Practice on Disinformation have no analog here. National laws (Singapore's POFMA, Indonesia's ITE Law) target human speakers, not autonomous agents."
+      },
+      {
+        "heading": "THE DEFENSIVE ASYMMETRY",
+        "body": "Generating a plausible post takes one model inference. Verifying it — checking the claim, tracing the network, deciding whether to remove — takes orders of magnitude more compute and human review. As long as that ratio holds, attackers set the pace and defenders catch up later.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the *offense-defense balance* problem from security theory: when offense scales cheaper than defense, the equilibrium shifts toward more attacks until defense finds a new technology — not until defenders work harder."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-25T22:23:50.535Z",
+    "label": "AI Swarms & Information Defense",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-25-buterin-ethereum-foundation-shrink-crops-longevity-strategy": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A FOUNDATION DOES",
+        "body": "Ethereum's foundation is a Swiss non-profit that holds the protocol's treasury, funds core developers, and coordinates upgrades. It does not run the network — validators do — but it shapes which research lines get money and which client teams get hired.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal vehicle is a Swiss *Stiftung* — a foundation form designed for charitable purposes with no shareholders, no profit motive, and a board accountable only to its stated mandate. Zug's tax regime is the secondary reason; the **governance shape** is the primary one."
+          }
+        ]
+      },
+      {
+        "heading": "THE FOUNDER'S DILEMMA",
+        "body": "Decentralized protocols face a paradox: a strong central foundation can ship upgrades fast but becomes a regulatory target and a single point of capture. A weak one preserves credible neutrality but moves slowly. Bitcoin chose extreme weakness — no foundation, no roadmap owner. Ethereum has been mid-spectrum and is now moving toward the Bitcoin pole.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Bitcoin",
+                "value": "no foundation",
+                "tone": "favorable",
+                "cc": "US"
+              },
+              {
+                "label": "Ethereum",
+                "value": "shrinking foundation",
+                "tone": "neutral",
+                "cc": "CH"
+              },
+              {
+                "label": "Solana",
+                "value": "active foundation",
+                "tone": "neutral",
+                "cc": "US"
+              },
+              {
+                "label": "Ripple",
+                "value": "corporate-led",
+                "tone": "unfavorable",
+                "cc": "US"
+              }
+            ],
+            "label": "protocol stewardship models"
+          }
+        ]
+      },
+      {
+        "heading": "THE SEC PRECEDENT",
+        "body": "US securities law treats a token as a security partly based on whether buyers rely on the efforts of an identifiable promoter — the Howey test. A visible, well-funded foundation steering the protocol strengthens that argument; a diffuse, validator-led network weakens it. Shrinking the foundation is partly a legal posture, not just a values choice."
+      },
+      {
+        "heading": "THE ETH/BTC RATIO",
+        "body": "Crypto insiders track ETH priced in BTC, not dollars — it strips out the macro tide and isolates whether Ethereum is gaining or losing ground against the reserve crypto asset. A multi-year decline in the ratio is the market saying Ethereum's narrative — programmable money, world computer — is losing to Bitcoin's simpler story.",
+        "blocks": [
+          {
+            "type": "trend",
+            "series": [
+              {
+                "values": [
+                  2319.15,
+                  2369.74,
+                  2299.77,
+                  2288.04,
+                  2253.46,
+                  2255.98,
+                  2294.66,
+                  2316.33,
+                  2324.13,
+                  2346,
+                  2361.09,
+                  2350.48,
+                  2291.18,
+                  2306.83,
+                  2326.46,
+                  2368.84,
+                  2339.6,
+                  2274.64,
+                  2257.62,
+                  2281.5,
+                  2223.59,
+                  2179.88,
+                  2128,
+                  2128.49,
+                  2111.75,
+                  2127.29,
+                  2131.69,
+                  2064.38,
+                  2115.71,
+                  2098.14,
+                  2110.8
+                ],
+                "label": "Ethereum",
+                "highlight": "last"
+              },
+              {
+                "values": [
+                  77619.14,
+                  78645.13,
+                  77361.3,
+                  76345.23,
+                  75774.89,
+                  76286.58,
+                  78172.07,
+                  78655.35,
+                  78562.55,
+                  79823.89,
+                  80925.09,
+                  81425,
+                  80022.04,
+                  80189.07,
+                  80678.03,
+                  82145.66,
+                  81725.21,
+                  80480.89,
+                  79277.8,
+                  81051.98,
+                  79068.82,
+                  78135.01,
+                  77425.72,
+                  76952.21,
+                  76808.81,
+                  77459.94,
+                  77546.34,
+                  75482.52,
+                  76672.79,
+                  76988.16,
+                  77272.75
+                ],
+                "label": "Bitcoin",
+                "highlight": "last"
+              }
+            ],
+            "label": "ETH vs BTC",
+            "source": 0,
+            "unit": "$",
+            "periods": [
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 25"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LONGEVITY BET",
+        "body": "Buterin has written for years about institutions that outlast their founders. The reference point is rarely other crypto projects — it is the Linux Foundation, IETF, and Apache, governance structures that survived because no single person was load-bearing. Shrinking the foundation while the founder is still active is the only window in which that transfer is credible.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What governance model has Buterin most often cited as the template for Ethereum's long-term stewardship?",
+            "options": [
+              "A central bank, but for code",
+              "The Linux Foundation and IETF",
+              "A traditional tech company board",
+              "A DAO with token-weighted voting"
+            ],
+            "correct": 1,
+            "explanation": "Buterin repeatedly points to internet-era standards bodies — Linux, IETF, Apache — as proof that protocols can outlive their founders without a strong central org."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-25"
+    ],
+    "generatedAt": "2026-05-25T22:24:21.091Z",
+    "label": "Ethereum Foundation & Protocol Stewardship",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-25-ebola-drc-uganda-500-million-who-outpacing-response": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STRAIN MATTERS",
+        "body": "Ebola is not one virus but six species in the filovirus family. The rVSV-ZEBOV vaccine — stockpiled, proven, deployed in every outbreak since 2018 — works against Zaire ebolavirus only. Bundibugyo, the strain circulating now, has no licensed vaccine and no licensed therapeutic.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Of six known species, only **Zaire** and **Sudan** have caused most large outbreaks. **Bundibugyo** was identified in 2007 in western Uganda and has surfaced only three times before — small clusters, ~40% case fatality."
+          }
+        ]
+      },
+      {
+        "heading": "THE RESERVOIR",
+        "body": "The natural host is almost certainly fruit bats of the Pteropodidae family. Spillover happens when humans handle bushmeat or are exposed to bat-contaminated fruit; from there it spreads human-to-human through bodily fluids. Funeral washing of the dead is a classic amplification event — the corpse is at peak infectiousness."
+      },
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "Ituri sits on the DRC's eastern edge against Uganda, in a corridor of unpoliced borders, displacement camps, and M23-adjacent insecurity. The same geography that made the 2018–2020 North Kivu outbreak the second-largest in history is back in play: response teams cannot reach villages they cannot secure.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CD",
+              "UG",
+              "RW",
+              "BI",
+              "SS"
+            ],
+            "label": "the Ituri–Uganda corridor",
+            "markers": [
+              {
+                "lat": 1.5667,
+                "lng": 30.2167,
+                "label": "Ituri (DRC)"
+              },
+              {
+                "lat": 0.5667,
+                "lng": 30.2167,
+                "label": "Bundibugyo (UG)"
+              },
+              {
+                "lat": 0.3476,
+                "lng": 32.5825,
+                "label": "Kampala"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE FUNDING GAP",
+        "body": "WHO's Contingency Fund for Emergencies is designed for exactly this — release within 24 hours of a declared event. Its ceiling is small by design; pledges are supposed to refill it within weeks. The gap between the $3.9M released and the $500M pledged is the disbursement bottleneck that has plagued every outbreak since 2014.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Released (CFE)",
+                "value": "$3.9M",
+                "tone": "unfavorable",
+                "weight": 3.9
+              },
+              {
+                "label": "Pledged, undisbursed",
+                "value": "$500M+",
+                "tone": "neutral",
+                "weight": 500
+              }
+            ],
+            "label": "WHO Ebola response: released vs pledged"
+          }
+        ]
+      },
+      {
+        "heading": "THE ATTENTION CYCLE",
+        "body": "Public attention to Ebola moves in spikes — 2014 West Africa, 2018 North Kivu, brief flares around each outbreak — then collapses. The donor cycle tracks attention, not epidemiology, which is why pledges arrive after the headlines and disburse after the curve has already turned.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              962,
+              995,
+              1139,
+              1221,
+              1100,
+              1018,
+              963,
+              1223,
+              1155,
+              1592,
+              1648,
+              2464,
+              4439,
+              4411,
+              2948,
+              2475,
+              3382,
+              2973,
+              2497,
+              1888,
+              11564,
+              12572,
+              70290,
+              74878,
+              79863,
+              50759,
+              52862,
+              38775,
+              28790
+            ],
+            "periods": [
+              "Apr 25",
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 23",
+              "May 24"
+            ],
+            "label": "Ebola — Wikipedia views",
+            "unit": "views/day",
+            "highlight": "max",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE NAME COMES FROM",
+        "body": "The virus was first identified in 1976 in Yambuku, a Belgian mission village in northern Zaire. The team named it after a nearby river to avoid stigmatizing the village. Nearly every subsequent outbreak has emerged within a few hundred kilometers of that original site — DRC has had more Ebola outbreaks than the rest of the world combined.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How many Ebola outbreaks has the DRC recorded since the virus was identified in 1976?",
+            "options": [
+              "3",
+              "7",
+              "15+",
+              "Just the 2014 one"
+            ],
+            "correct": 2,
+            "explanation": "The DRC has had more than 15 separate Ebola outbreaks since 1976 — more than any other country. The 2014 West Africa epidemic was a different, much larger event in Guinea, Liberia, and Sierra Leone."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Wikipedia pageviews · as of 2026-05-24"
+    ],
+    "generatedAt": "2026-05-25T22:25:02.581Z",
+    "label": "Ebola: Bundibugyo & the Funding Gap",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-25-europe-may-heat-dome-uk-france-spain-record-may": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A HEAT DOME IS",
+        "body": "A heat dome is a persistent ridge of high pressure that sinks air downward, compressing and warming it while blocking the cooler weather systems that would normally pass through. The same air mass bakes the same region for days because nothing can dislodge it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism is **adiabatic compression** — sinking air heats roughly 1°C for every 100m it descends. A dome 3km thick can add 30°C to the air column underneath it."
+          }
+        ]
+      },
+      {
+        "heading": "THE OMEGA BLOCK",
+        "body": "The ridge often takes the shape of the Greek letter omega (Ω) on weather charts — a high-pressure bulge flanked by two lows. This pattern is unusually stable. Once locked in, it can persist for a week or more, which is what turns a hot day into a mass-casualty event.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GB",
+              "FR",
+              "ES",
+              "PT",
+              "DE",
+              "IT"
+            ],
+            "label": "the heat dome footprint"
+          }
+        ]
+      },
+      {
+        "heading": "WHY EUROPE WARMS FASTER",
+        "body": "Europe is warming at roughly twice the global average — the fastest-warming continent on Earth. Reduced aerosol pollution since the 1980s (cleaner air lets more sunlight through), a warming Arctic that weakens the jet stream, and Mediterranean sea-surface temperatures running 3-5°C above normal all compound.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Europe",
+                "value": "~2.3°C",
+                "tone": "unfavorable",
+                "weight": 2.3
+              },
+              {
+                "label": "Arctic",
+                "value": "~3.0°C",
+                "tone": "unfavorable",
+                "weight": 3
+              },
+              {
+                "label": "Global avg",
+                "value": "~1.3°C",
+                "tone": "neutral",
+                "weight": 1.3
+              },
+              {
+                "label": "Tropics",
+                "value": "~1.0°C",
+                "tone": "neutral",
+                "weight": 1
+              }
+            ],
+            "label": "warming since pre-industrial (°C)"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2003 BASELINE",
+        "body": "The August 2003 European heatwave killed an estimated 70,000 people across the continent, mostly elderly. France alone lost 15,000 in two weeks — morgues overflowed, refrigerated trucks were requisitioned. It rewrote European public health: national heat-action plans, cooling centers, and excess-mortality monitoring all date from the post-2003 reforms."
+      },
+      {
+        "heading": "WHY HUMIDITY IS THE KILLER",
+        "body": "The human body cools by evaporating sweat. Above a wet-bulb temperature of ~35°C, sweat no longer evaporates and core temperature climbs regardless of shade or hydration. Dry European heat is survivable at higher dry-bulb temperatures than Gulf humidity — but urban heat islands and overnight lows above 25°C remove the body's recovery window.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which factor most determines whether a heatwave becomes deadly?",
+            "options": [
+              "The single-day peak temperature",
+              "Overnight low temperatures over consecutive days",
+              "Daytime humidity alone",
+              "Wind speed during the hottest hour"
+            ],
+            "correct": 1,
+            "explanation": "Bodies recover from heat stress at night. When overnight lows stay above 25°C for several days, cumulative strain kills — which is why heatwaves with high nighttime temperatures are deadlier than hotter but cooler-night events."
+          }
+        ]
+      },
+      {
+        "heading": "THE SHIFTING SEASON",
+        "body": "What made May 2022 a once-in-decades event is arriving in May 2026 — and the underlying climatology is shifting the heatwave season earlier. Spring heat is more dangerous than summer heat at the same temperature: bodies haven't acclimatized, infrastructure isn't primed, and vulnerable populations haven't yet activated cooling routines."
+      }
+    ],
+    "generatedAt": "2026-05-25T22:25:32.854Z",
+    "label": "Heat Domes & European Heat",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-25-ferrari-first-electric-five-seater-550000-euro-maranello": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SCARCITY MODEL",
+        "body": "Ferrari's business is the opposite of automotive scale. It produces roughly 13,000 cars a year — fewer than Toyota builds before lunch — and maintains operating margins above 25%, higher than Hermès. The constraint is deliberate: demand must always exceed supply, or the brand premium collapses.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ferrari",
+                "value": "~28%",
+                "cc": "IT",
+                "weight": 28,
+                "tone": "favorable"
+              },
+              {
+                "label": "Porsche",
+                "value": "~14%",
+                "cc": "DE",
+                "weight": 14
+              },
+              {
+                "label": "BMW",
+                "value": "~10%",
+                "cc": "DE",
+                "weight": 10
+              },
+              {
+                "label": "Toyota",
+                "value": "~10%",
+                "cc": "JP",
+                "weight": 10
+              },
+              {
+                "label": "Tesla",
+                "value": "~7%",
+                "cc": "US",
+                "weight": 7,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "operating margin, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2035 DEADLINE",
+        "body": "The EU's combustion ban prohibits the sale of new internal-combustion passenger cars from 2035. A narrow carve-out for e-fuels survived 2023 negotiations after German pressure, but the default path forces every European automaker — including the ones whose entire identity is engine noise — to electrify.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Ferrari's V12 is not a powertrain; it is the *product*. The 2035 deadline is why a €550,000 electric five-seater exists at all — without the regulatory cliff, the Luce would not be the lineup's priority."
+          }
+        ]
+      },
+      {
+        "heading": "THE SOUND PROBLEM",
+        "body": "A combustion Ferrari's exhaust note is engineered like a musical instrument — tuned pipe lengths, firing order, resonance chambers. Electric motors hum. Porsche, Audi, and now Ferrari have all filed patents on synthetic powertrain sound; the engineering question is whether buyers accept simulation when authenticity was the entire purchase."
+      },
+      {
+        "heading": "WHY FIVE SEATS",
+        "body": "Ferrari has historically refused four-door cars. The GTC4Lusso was a 2+2 shooting brake; the Purosangue (2022) was the first SUV. A five-seater breaks a deeper taboo than electrification — it admits Ferraris are bought by families, not just collectors. The Chinese and Gulf markets, where chauffeured ownership is normal, drove the decision.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Until the Purosangue in 2022, how many seats did every production Ferrari have?",
+            "options": [
+              "Two only",
+              "Two or four (2+2 layout)",
+              "Up to four"
+            ],
+            "correct": 1,
+            "explanation": "Ferrari produced strictly 2-seat and 2+2 layouts for 75 years. The Purosangue SUV broke the rule; the Luce extends it to a true five-seater."
+          }
+        ]
+      },
+      {
+        "heading": "THE LUXURY EV PARADOX",
+        "body": "Electric powertrains compress what used to differentiate luxury cars. A €30,000 EV and a €300,000 EV both deliver instant torque, silent acceleration, and similar 0-100 times. Luxury EVs must justify the premium through craft, materials, and brand — the same logic that sustains a €15,000 watch when a €50 quartz keeps better time."
+      },
+      {
+        "heading": "THE IVE CONNECTION",
+        "body": "Jony Ive — Apple's former design chief — has reportedly consulted on Ferrari's electric program since 2024. His design language (radical minimalism, hidden seams, single-piece surfaces) suits an EV's lack of grille and exhaust. The challenge is that minimalism is the opposite of Maranello's traditional baroque visual identity.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Sergio Pininfarina",
+                "role": "shaped Ferrari 1951–2012",
+                "years": "1951–2012",
+                "cc": "IT"
+              },
+              {
+                "name": "Flavio Manzoni",
+                "role": "Ferrari design director",
+                "years": "2010–",
+                "cc": "IT"
+              },
+              {
+                "name": "Jony Ive",
+                "role": "consulting on EV program",
+                "years": "2024–",
+                "cc": "GB"
+              }
+            ],
+            "label": "the design lineage at Maranello"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-25T22:26:06.182Z",
+    "label": "Ferrari & the Luxury EV Pivot",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-25-indonesia-polymarket-blocked-prediction-market-gambling-law": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ISLAMIC RULING",
+        "body": "Classical Sunni jurisprudence prohibits maysir — gain contingent on pure chance — and gharar, excessive uncertainty in a contract. Prediction markets sit squarely in both categories: the payoff depends on an external event, and neither party transfers a real underlying asset. Every major Sunni fiqh council (AAOIFI, OIC Islamic Fiqh Academy, Saudi Permanent Committee) has ruled conventional futures and event contracts impermissible on these grounds.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Quranic prohibition on *maysir* appears alongside the prohibition on *khamr* (intoxicants) in Surah al-Ma'ida — the two are paired as social harms, not merely individual sins."
+          }
+        ]
+      },
+      {
+        "heading": "HOW PREDICTION MARKETS WORK",
+        "body": "Polymarket lets users buy contracts that pay $1 if an event happens and $0 if it doesn't. The price becomes a real-time probability — a contract at $0.30 means the market collectively assigns 30% odds. Settlement runs on the Polygon blockchain in USDC stablecoin, which is why crypto rails matter to the regulatory question.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "If a Polymarket contract trades at $0.18, what probability is the market assigning to the event?",
+            "options": [
+              "18%",
+              "82%",
+              "Roughly 50% — prices below $0.50 are noise",
+              "Depends on trading volume"
+            ],
+            "correct": 0,
+            "explanation": "Contract price equals implied probability: pays $1 if yes, $0 if no, so $0.18 = 18% chance."
+          }
+        ]
+      },
+      {
+        "heading": "THE CLASSIFICATION PROBLEM",
+        "body": "Regulators worldwide struggle with the same question: is an event contract a derivative (hedging real-world exposure) or a wager (entertainment risk)? The US CFTC has allowed some Kalshi contracts as derivatives; states have sued, calling them gambling. Indonesia skipped the debate and applied its existing gambling statute — a simpler legal route most Muslim-majority states can copy."
+      },
+      {
+        "heading": "THE INDONESIAN STATUTE",
+        "body": "Indonesia's gambling prohibition derives from Article 303 of the Criminal Code (inherited from Dutch colonial law) and was sharpened by the 2008 Electronic Information and Transactions Law, which lets the ministry block any online service facilitating prohibited activity. The same authority has blocked Reddit segments, Steam, and PayPal in past enforcement waves — Polymarket joins an established pattern, not a new doctrine.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Indonesia",
+                "value": "Blocked",
+                "cc": "ID",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Malaysia",
+                "value": "Blocked",
+                "cc": "MY",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "Criminalized",
+                "cc": "SA",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "UAE",
+                "value": "Criminalized",
+                "cc": "AE",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Turkey",
+                "value": "Blocked",
+                "cc": "TR",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Pakistan",
+                "value": "Blocked",
+                "cc": "PK",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Muslim-majority states' approach to online gambling"
+          }
+        ]
+      },
+      {
+        "heading": "THE TEMPLATE EFFECT",
+        "body": "Indonesia is the world's largest Muslim-majority country — 280 million people, roughly 13% of the global Muslim population. When Jakarta sets a regulatory precedent on a religiously-coded question, it travels. The 2018 ban on Tumblr over pornographic content was cited verbatim in subsequent Pakistani and Bangladeshi enforcement orders.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Muslim population",
+            "peers": [
+              {
+                "value": 240,
+                "cc": "ID"
+              },
+              {
+                "value": 230,
+                "cc": "PK"
+              },
+              {
+                "value": 200,
+                "cc": "IN"
+              },
+              {
+                "value": 150,
+                "cc": "BD"
+              },
+              {
+                "value": 100,
+                "cc": "NG"
+              },
+              {
+                "value": 95,
+                "cc": "EG"
+              },
+              {
+                "value": 84,
+                "cc": "TR"
+              },
+              {
+                "value": 83,
+                "cc": "IR"
+              }
+            ],
+            "subjectCc": "ID",
+            "unit": "millions"
+          }
+        ]
+      },
+      {
+        "heading": "THE CRYPTO RAIL PROBLEM",
+        "body": "Polymarket runs on Polygon and settles in USDC. A national IP block stops casual access but not determined users with a VPN and a self-custody wallet. Indonesia's central bank already prohibits crypto as a payment method (2017) while permitting it as a commodity for trading — a split that leaves prediction-market settlement in a legal grey zone the gambling order now closes."
+      }
+    ],
+    "generatedAt": "2026-05-25T22:26:39.600Z",
+    "label": "Prediction Markets & Maysir",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-25-iran-us-frozen-assets-qatar-mediation-deal-nears": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 'FROZEN' MEANS",
+        "body": "Sovereign assets are frozen when a foreign jurisdiction blocks the owner from moving them — the money still exists on a bank's books, but transfers require a license from the sanctioning treasury. Iran's blocked funds are scattered across South Korea, Japan, Iraq, and European correspondent banks, accumulated from oil sales that buyers paid into escrow rather than into Tehran's accounts.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **blocking** under OFAC's Iranian Transactions Regulations — distinct from outright **confiscation**, which would require a court judgment. Frozen funds remain Iran's property; Iran simply cannot touch them."
+          }
+        ]
+      },
+      {
+        "heading": "WHY QATAR",
+        "body": "Qatar shares the world's largest gas field — South Pars / North Dome — with Iran across the Persian Gulf seabed. The two states cannot afford open hostility; Doha has hosted Iranian negotiators through every nuclear cycle since 2015. Qatar also hosts Al-Udeid, the largest US military base in the region. Sitting on both sides of the table is the entire business model.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "QA",
+              "IR",
+              "SA",
+              "AE",
+              "BH",
+              "KW",
+              "OM"
+            ],
+            "label": "Qatar's dual geography",
+            "markers": [
+              {
+                "lat": 25.1156,
+                "lng": 51.3158,
+                "label": "Doha (talks)"
+              },
+              {
+                "lat": 25.1175,
+                "lng": 51.3151,
+                "label": "Al-Udeid air base"
+              },
+              {
+                "lat": 26.6167,
+                "lng": 52.0167,
+                "label": "South Pars / North Dome"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 2023 PRECEDENT",
+        "body": "Washington released $6 billion of Iranian funds held in South Korea into Qatari accounts in September 2023 as part of a prisoner swap. After October 7, the deal was effectively frozen again — the money sits in Doha, accessible only for humanitarian goods under US Treasury supervision. Every subsequent negotiation references this template."
+      },
+      {
+        "heading": "THE HUMANITARIAN CHANNEL",
+        "body": "Even hardline sanctions regimes carve out food, medicine, and medical devices. The mechanism is escrow accounts in third countries where Iran's customers deposit oil revenue, which Iran can only draw down to pay vendors of approved goods. The system is designed so cash never enters Iran's banking system — circumventing the SWIFT disconnection imposed in 2018.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does Iran's frozen oil revenue in third-country escrow accounts allow Tehran to purchase?",
+            "options": [
+              "Cash withdrawals for general budget use",
+              "Only food, medicine, and approved humanitarian goods",
+              "Military equipment from non-US suppliers",
+              "Any goods except those originating in the US"
+            ],
+            "correct": 1,
+            "explanation": "US Treasury licenses limit drawdowns to humanitarian categories — food, medicine, agricultural commodities — with vendor invoices reviewed before each transfer."
+          }
+        ]
+      },
+      {
+        "heading": "THE OIL-PRICE TELL",
+        "body": "Crude reacted before any agreement was signed because the market prices the tail risk of Hormuz disruption directly into Brent. A 5% one-day move signals traders are unwinding war-premium hedges, not pricing Iranian barrels returning to market — sanctions relief on assets is separate from sanctions relief on exports.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              27,
+              22,
+              27,
+              26,
+              22,
+              30,
+              26,
+              34,
+              17,
+              14,
+              97,
+              14,
+              10,
+              1
+            ],
+            "periods": [
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 25"
+            ],
+            "label": "Iran closes its airspace by May 24?",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "27%"
+              },
+              {
+                "atIndex": 13,
+                "label": "1%"
+              }
+            ],
+            "link": "https://polymarket.com/event/iran-closes-its-airspace-by",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE DEEPER ARC",
+        "body": "The US has held Iranian assets since 1979, when the Carter administration froze roughly $12 billion in response to the embassy seizure. The Algiers Accords of 1981 returned some funds and created the Iran-US Claims Tribunal at The Hague — still adjudicating cases 45 years later. Frozen assets have been a bargaining chip in every US-Iran negotiation since the Shah fell.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Carter freezes $12bn after embassy seizure",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1981",
+                "label": "Algiers Accords; Hague tribunal opens"
+              },
+              {
+                "year": "2012",
+                "label": "Iran cut from SWIFT"
+              },
+              {
+                "year": "2015",
+                "label": "JCPOA unlocks ~$100bn"
+              },
+              {
+                "year": "2018",
+                "label": "Trump withdraws; re-freeze"
+              },
+              {
+                "year": "2023",
+                "label": "$6bn to Qatar escrow"
+              },
+              {
+                "year": "2026",
+                "label": "Doha talks resume"
+              }
+            ],
+            "label": "frozen assets across the decades"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-25"
+    ],
+    "generatedAt": "2026-05-25T22:27:14.193Z",
+    "label": "Frozen Assets & Qatari Mediation",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-25-kzn-magog-lithium-mine-1000-relocation-highbury-eia": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY LITHIUM, WHY NOW",
+        "body": "Lithium is the irreplaceable cathode metal in every EV battery and grid storage system. Demand grew roughly 30% per year through the 2020s, pushing miners into deposits — and communities — that would never have been touched at 2015 prices.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The chemistry matters: **lithium-ion** batteries store energy by shuttling Li+ ions between electrodes. No commercial substitute matches its *energy density per kilogram* — sodium-ion comes close but is heavier, and solid-state remains pre-commercial."
+          }
+        ]
+      },
+      {
+        "heading": "WHO PRODUCES IT",
+        "body": "Australia, Chile, and China dominate primary production. Africa is the new frontier — Zimbabwe, Mali, Namibia, and now South Africa are being prospected aggressively, often by Chinese-financed operators racing ahead of Western majors.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Australia",
+                "value": 46,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Chile",
+                "value": 23,
+                "tone": "neutral"
+              },
+              {
+                "label": "China",
+                "value": 16,
+                "tone": "neutral"
+              },
+              {
+                "label": "Argentina",
+                "value": 7,
+                "tone": "favorable"
+              },
+              {
+                "label": "Brazil",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Zimbabwe",
+                "value": 3,
+                "tone": "favorable"
+              },
+              {
+                "label": "Other Africa",
+                "value": 2,
+                "tone": "favorable"
+              }
+            ],
+            "label": "global lithium production, 2024 (share)"
+          }
+        ]
+      },
+      {
+        "heading": "THE EIA CAPTURE PROBLEM",
+        "body": "South African law requires an Environmental Impact Assessment before mining, but the mining company hires and pays the consultant who writes it. The structural conflict is global — the same pattern produced rubber-stamp assessments for Brumadinho in Brazil before its 2019 tailings dam collapse killed 270 people."
+      },
+      {
+        "heading": "WHAT THE LAW PROMISED",
+        "body": "South Africa's Mineral and Petroleum Resources Development Act (2002) and the Interim Protection of Informal Land Rights Act (1996) require relocation agreements with affected communities before mining begins. Both were post-apartheid laws designed to prevent the forced removals that defined the previous era.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under the Interim Protection of Informal Land Rights Act, who must consent before a community is relocated for mining?",
+            "options": [
+              "The provincial government",
+              "The traditional leader alone",
+              "Each affected household",
+              "The national Mineral Resources Minister"
+            ],
+            "correct": 2,
+            "explanation": "The Act protects individual informal land rights — each household holds a right that cannot be overridden by a chief or province alone."
+          }
+        ]
+      },
+      {
+        "heading": "THE APARTHEID ECHO",
+        "body": "Between 1960 and 1983, the apartheid state forcibly relocated roughly 3.5 million Black South Africans under the Group Areas Act and homeland consolidation. The Magog community's resistance reads against that memory — relocation is not a neutral administrative step in South Africa, it is the defining trauma of the 20th century.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1913",
+                "label": "Natives Land Act restricts Black land ownership"
+              },
+              {
+                "year": "1950",
+                "label": "Group Areas Act",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1960",
+                "label": "Sharpeville; removals accelerate"
+              },
+              {
+                "year": "1994",
+                "label": "Apartheid ends"
+              },
+              {
+                "year": "1996",
+                "label": "Informal Land Rights Act"
+              },
+              {
+                "year": "2002",
+                "label": "MPRDA — mining requires community consent"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1960",
+                "to": "1983",
+                "label": "3.5M forced relocations",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "forced removal & its afterlife"
+          }
+        ]
+      },
+      {
+        "heading": "THE RESOURCE CURSE LOCALLY",
+        "body": "KwaZulu-Natal's coastal strip is among the country's poorest. Mineral discoveries in poor regions typically deepen inequality rather than alleviate it — royalties flow to the central treasury and corporate shareholders while environmental and social costs stay local. Economists call this the resource curse; affected communities call it theft.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ZA",
+              "ZW",
+              "MZ",
+              "NA",
+              "BW"
+            ],
+            "label": "Southern African lithium frontier",
+            "markers": [
+              {
+                "lat": -30.7411,
+                "lng": 30.4544,
+                "label": "Port Shepstone"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-25T22:27:46.830Z",
+    "label": "Lithium & Forced Relocation",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-25-lavrov-rubio-kyiv-evacuate-diplomats-russia-strike-warning": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE EVACUATION WARNING AS DOCTRINE",
+        "body": "Pre-strike warnings to evacuate civilians or diplomats are a recognized signaling move: they shift legal and moral responsibility onto the target while preserving the option to strike. The US used them before Tomahawk salvos in Iraq; Israel uses them in Gaza via the 'roof-knock'; Russia is now adapting the playbook against capital infrastructure.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The term of art is **'decision-making centers'** — a euphemism for political and military command nodes that, under the laws of armed conflict, sit closer to legitimate targets than civilian areas. The phrasing matters because it pre-loads the legal framing."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DIPLOMATS ARE THE TRIPWIRE",
+        "body": "The Vienna Convention on Diplomatic Relations (1961) makes embassies inviolable and host states liable for their protection. Striking near a foreign mission risks dragging that mission's government into the war — which is precisely why an evacuation warning is both a threat and an off-ramp."
+      },
+      {
+        "heading": "THE KYIV TARGET MAP",
+        "body": "Ukraine's executive, defense, and intelligence headquarters cluster within roughly two kilometers around Bankova Street. Most G7 embassies sit in the same Pechersk district. There is no geometry in which 'decision-making centers' can be hit without endangering diplomatic compounds.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "UA",
+              "RU",
+              "BY",
+              "PL",
+              "MD",
+              "RO"
+            ],
+            "label": "Kyiv's government quarter",
+            "markers": [
+              {
+                "lat": 50.4422,
+                "lng": 30.5367,
+                "label": "Bankova (Presidential Office)"
+              },
+              {
+                "lat": 50.4547,
+                "lng": 30.5238,
+                "label": "US Embassy"
+              },
+              {
+                "lat": 50.4392,
+                "lng": 30.5469,
+                "label": "UK Embassy"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LAVROV–RUBIO CHANNEL",
+        "body": "Direct foreign-minister-to-secretary-of-state calls during active wars are rare and deliberate. The Kissinger–Gromyko channel during the 1973 October War is the canonical precedent: a back-line used to communicate red lines without committing either side publicly.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Sergey Lavrov",
+                "role": "Russian Foreign Minister",
+                "years": "2004–",
+                "cc": "RU"
+              },
+              {
+                "name": "Marco Rubio",
+                "role": "US Secretary of State",
+                "years": "2025–",
+                "cc": "US"
+              }
+            ],
+            "label": "the channel"
+          }
+        ]
+      },
+      {
+        "heading": "THE SANCTIONS LEVER",
+        "body": "Kyiv's reflexive response — ask Western partners for more sanctions — reflects a structural truth: Ukraine has no economic retaliation of its own. Every escalatory move by Moscow is answered through third-party financial systems, primarily the EU's sanctions packages and the US Treasury's OFAC designations."
+      },
+      {
+        "heading": "THE BLACKMAIL FRAME",
+        "body": "Calling an evacuation warning 'blackmail' is itself a diplomatic move. It refuses the legitimacy of the warning, denies Russia the legal cover the warning was meant to create, and forces Western capitals to choose between honoring the warning (validating Moscow's framing) or ignoring it (accepting the risk).",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the diplomatic purpose of a pre-strike evacuation warning to a third country?",
+            "options": [
+              "To genuinely protect civilians from harm",
+              "To shift legal and moral responsibility onto the target if casualties occur",
+              "To delay the strike for further negotiation",
+              "To comply with UN Security Council resolutions"
+            ],
+            "correct": 1,
+            "explanation": "Evacuation warnings are primarily a legal-framing tool: if the target ignores them and casualties follow, responsibility shifts. Civilian protection is the stated rationale, not the operational purpose."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-25T22:28:18.379Z",
+    "label": "Decapitation Strikes & Diplomatic Warnings",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-25-niger-france-severance-bazoum-coup-uranium-cfa-franc": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT FRANÇAFRIQUE WAS",
+        "body": "After 1960 independence, France kept a parallel system across its former African colonies: defense pacts, basing rights, a shared currency, and a network of intelligence officers who could make or unmake presidents. The formal label was cooperation; the operative word was tutelage.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The system had a nickname inside the Élysée — *la Françafrique* — coined approvingly by Côte d'Ivoire's Houphouët-Boigny and later weaponized by critics like François-Xavier Verschave to describe the **opaque circuits of money, arms, and influence** that survived decolonization."
+          }
+        ]
+      },
+      {
+        "heading": "THE CFA FRANC",
+        "body": "Fourteen African states still use a currency pegged to the euro and historically backed by reserves deposited at the French Treasury. The peg delivers low inflation; the cost is that monetary policy is set in Frankfurt and Paris, not Dakar or Niamey. Reform in 2019-2020 rebranded the West African version as the eco and ended the reserve-deposit rule, but the peg remains."
+      },
+      {
+        "heading": "THE URANIUM QUESTION",
+        "body": "Niger supplied roughly 15-20% of the uranium fueling France's nuclear reactors through the Areva/Orano concessions at Arlit and Imouraren. France generates about 70% of its electricity from nuclear power — the highest share of any major economy. Niger's break is not just symbolic; it touches the metal that keeps French lights on.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NE",
+              "FR",
+              "ML",
+              "BF",
+              "TD",
+              "DZ",
+              "LY"
+            ],
+            "label": "the Sahel break",
+            "markers": [
+              {
+                "lat": 18.7369,
+                "lng": 7.3853,
+                "label": "Arlit uranium mines"
+              },
+              {
+                "lat": 13.5117,
+                "lng": 2.1251,
+                "label": "Niamey"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE COUP BELT",
+        "body": "Mali (2020, 2021), Burkina Faso (2022, twice), Niger (2023), Gabon (2023). Five francophone African states have seen successful coups in four years. Each new junta expelled French forces and, in the Sahel three, invited Russian Wagner/Africa Corps trainers. The pattern is too consistent to be coincidence — and too uneven to be Moscow's single design.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2020-08",
+                "label": "Mali: Keïta overthrown"
+              },
+              {
+                "year": "2021-05",
+                "label": "Mali: second coup, Goïta"
+              },
+              {
+                "year": "2022-01",
+                "label": "Burkina Faso: Damiba"
+              },
+              {
+                "year": "2022-09",
+                "label": "Burkina Faso: Traoré"
+              },
+              {
+                "year": "2023-07",
+                "label": "Niger: Bazoum overthrown",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-08",
+                "label": "Gabon: Bongo overthrown"
+              },
+              {
+                "year": "2024-01",
+                "label": "Mali/BF/Niger form AES"
+              }
+            ],
+            "label": "the Sahel coup wave"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT BAZOUM REPRESENTED",
+        "body": "Mohamed Bazoum, elected in 2021, was the first peaceful transfer of power in Niger's history and a vocal partner of Paris and Washington in counter-terror operations against ISIS-Sahel and JNIM. His detention since the July 2023 coup is why ECOWAS sanctions stayed in place longer than for prior coups — and why the junta's break with France was eventually total."
+      },
+      {
+        "heading": "THE RUSSIAN ALTERNATIVE",
+        "body": "The Wagner Group — rebranded Africa Corps after Prigozhin's 2023 death — offers a different deal than Paris: no human-rights conditionality, payment partly in mining concessions, and a small footprint of trainers rather than visible French bases. The trade is sovereignty optics for counter-terror capability that, by most measures, performs worse than what it replaced.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Sahel country still hosts French forces under a defense agreement?",
+            "options": [
+              "Chad",
+              "Mali",
+              "Burkina Faso",
+              "Niger"
+            ],
+            "correct": 0,
+            "explanation": "Mali, Burkina Faso, and Niger have all expelled French forces since 2022. Chad — though it has expelled French troops from some bases — retains the broader defense cooperation framework."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-25T22:28:52.537Z",
+    "label": "Françafrique & the Sahel break",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-25-supermassive-black-holes-exoplanet-habitability-galactic-zone": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE OLD FRAME",
+        "body": "For decades, habitability meant one thing: liquid water on a planet orbiting at the right distance from its star. The 'Goldilocks zone' became shorthand for where to look for life.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The classical **circumstellar habitable zone** asks one question — is the planet warm enough for liquid water? It ignores everything happening at scales larger than the solar system."
+          }
+        ]
+      },
+      {
+        "heading": "THE NEW FRAME",
+        "body": "A galactic habitable zone adds a second filter: where in the galaxy does the planet sit. Too close to the center and radiation sterilizes; too far out and heavy elements needed for rocky planets are scarce."
+      },
+      {
+        "heading": "WHY THE CENTER IS LETHAL",
+        "body": "Supermassive black holes are not always quiet. When they actively accrete matter, they become quasars — emitting more energy than every star in the host galaxy combined. X-rays and UV strip atmospheres and shred ozone layers across thousands of light-years."
+      },
+      {
+        "heading": "WHY SGR A* IS UNUSUAL",
+        "body": "The Milky Way's central black hole, Sgr A*, weighs 4.3 million suns yet emits roughly a hundred million times less radiation than its theoretical maximum. It has been dormant for most of cosmic history — an accident of low gas supply that may explain why we are here to notice.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Sgr A* sits in a state astronomers call *quiescent* — actively starving, not actively feeding. Andromeda's central black hole and most galactic nuclei spent significant time in radiation-blasting *active* phases."
+          }
+        ]
+      },
+      {
+        "heading": "THE GOLDILOCKS GALAXY",
+        "body": "Earth sits about 26,000 light-years from the galactic center — far enough to escape Sgr A*'s ancient outbursts, close enough that supernovae enriched the local gas with the iron, oxygen, and carbon that built our planet and our bodies.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how far is Earth from the Milky Way's supermassive black hole?",
+            "options": [
+              "2,600 light-years",
+              "26,000 light-years",
+              "260,000 light-years",
+              "2.6 million light-years"
+            ],
+            "correct": 1,
+            "explanation": "Earth sits about 26,000 light-years from Sgr A* — in the galactic suburbs, outside the radiation-bathed bulge but inside the metal-rich disk where rocky planets form."
+          }
+        ]
+      },
+      {
+        "heading": "THE FERMI IMPLICATION",
+        "body": "If most galaxies pass through long active-nucleus phases that sterilize their interiors, the volume of the universe where complex life can persist shrinks dramatically. The Fermi paradox — 'where is everybody?' — gets a partial answer: most of the real estate was uninhabitable for most of cosmic time."
+      }
+    ],
+    "generatedAt": "2026-05-25T22:29:16.631Z",
+    "label": "Galactic Habitable Zones",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-25-trump-abraham-accords-mandatory-iran-ceasefire-precondition": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE ACCORDS ACTUALLY ARE",
+        "body": "Signed in September 2020, the Accords normalised relations between Israel and the UAE, Bahrain, then Sudan and Morocco. They are bilateral normalisation deals dressed as a regional framework — there is no multilateral treaty text, no secretariat, no membership criteria. 'Joining' means signing a separate agreement with Israel.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "AE",
+              "BH",
+              "MA",
+              "SD"
+            ],
+            "label": "original Accords signatories (2020)"
+          }
+        ]
+      },
+      {
+        "heading": "THE ARAB PEACE INITIATIVE",
+        "body": "In 2002 the Arab League unanimously offered Israel full normalisation with all 22 Arab states in exchange for withdrawal to 1967 borders and a Palestinian state with East Jerusalem as capital. The Accords inverted this sequence — normalisation first, Palestinian question deferred indefinitely. Riyadh authored the 2002 plan; abandoning its precondition would mean repudiating its own diplomatic legacy.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did the 2002 Arab Peace Initiative offer Israel in exchange for Palestinian statehood?",
+            "options": [
+              "Recognition by Saudi Arabia alone",
+              "Full normalisation with all 22 Arab League states",
+              "A non-aggression pact with the Gulf states",
+              "Lifting of the Arab League economic boycott"
+            ],
+            "correct": 1,
+            "explanation": "The initiative offered comprehensive normalisation by the entire Arab League — the maximalist Arab diplomatic offer, and the one the Accords' sequencing bypassed."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SAUDI ARABIA IS DIFFERENT",
+        "body": "The Saudi monarch holds the title Custodian of the Two Holy Mosques — Makkah and Madinah. Normalising with Israel while al-Aqsa remains under occupation is not a diplomatic calculation alone; it is a question of religious legitimacy that no other Arab state carries. This is the structural reason Riyadh has held the Palestinian precondition where Abu Dhabi did not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Al-Aqsa is the *first qibla* — the direction Muslims faced in prayer before the revelation changed it to Makkah — and is named in **Surah al-Isra** as the destination of the Prophet's night journey. Custodianship language is not ceremonial."
+          }
+        ]
+      },
+      {
+        "heading": "THE PAKISTAN ANOMALY",
+        "body": "Pakistan has never recognised Israel and its passport still reads 'valid for all countries except Israel.' Its constitution ties foreign policy to Muslim solidarity, and Imran Khan's 2020 refusal to join the Accords — despite reported Saudi and Emirati pressure — became a marker of domestic legitimacy. Including Islamabad in a normalisation push extends the Accords beyond the Arab world for the first time."
+      },
+      {
+        "heading": "THE QATAR PARADOX",
+        "body": "Qatar hosts the largest US military base in the Middle East (Al Udeid) and Hamas's political bureau simultaneously. Doha has been the indispensable mediator for every Gaza ceasefire negotiation since 2008 precisely because it talks to everyone. Forcing Qatar to normalise collapses the mediator role that Washington itself relies on.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Mohammed bin Salman",
+                "role": "Saudi Crown Prince",
+                "years": "2017–",
+                "cc": "SA"
+              },
+              {
+                "name": "Tamim bin Hamad",
+                "role": "Emir of Qatar",
+                "years": "2013–",
+                "cc": "QA"
+              },
+              {
+                "name": "Shehbaz Sharif",
+                "role": "Pakistani Prime Minister",
+                "years": "2024–",
+                "cc": "PK"
+              },
+              {
+                "name": "Benjamin Netanyahu",
+                "role": "Israeli Prime Minister",
+                "years": "2022–",
+                "cc": "IL"
+              }
+            ],
+            "label": "the cast under pressure"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'MANDATORY' MEANS IN PRACTICE",
+        "body": "The Accords have no enforcement mechanism — they are executive agreements, not Senate-ratified treaties. 'Mandatory' therefore reads as a precondition for continued US security guarantees, arms sales, or sanctions relief rather than a legal obligation. The leverage runs through F-35 deliveries to Riyadh, the Pakistan IMF programme, and Qatar's MNNA (Major Non-NATO Ally) status."
+      }
+    ],
+    "generatedAt": "2026-05-25T22:29:46.479Z",
+    "label": "The Abraham Accords",
+    "category": "politics",
+    "articleCount": 1
   }
 }
