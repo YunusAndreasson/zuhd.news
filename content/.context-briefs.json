@@ -235183,5 +235183,1541 @@
     "label": "India as Iran Backchannel",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-25-anti-data-center-legislation-zoning-moratoria-ai-infrastructure": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE WATTAGE PROBLEM",
+        "body": "A single hyperscale AI data center draws 100-500 megawatts — the load of a mid-sized city. A GPU training cluster pulls power density 10x what traditional server farms required, because Nvidia H100s dissipate ~700 watts each and a single rack now exceeds 100kW.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is **power-dense compute** — a campus that would have hosted 30MW of Facebook-era servers now hosts 300MW of AI silicon on the same footprint."
+          }
+        ]
+      },
+      {
+        "heading": "WHY WATER",
+        "body": "Evaporative cooling is the cheapest way to reject heat at scale. A 100MW facility can consume 1-2 million gallons of water per day — comparable to a town of 10,000 people. In drought-prone regions, this puts data centers in direct competition with agriculture and municipal supply."
+      },
+      {
+        "heading": "THE RATE-PAYER TRANSFER",
+        "body": "Utilities recover grid upgrades through rate cases that spread costs across all customers. When a 500MW data center triggers a new substation and transmission line, residential and small-business rate-payers can end up subsidizing infrastructure that primarily serves one corporate customer. This is the specific mechanism Oklahoma's bill targets.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how much water does a 100MW hyperscale data center consume per day under evaporative cooling?",
+            "options": [
+              "A few thousand gallons",
+              "About 100,000 gallons",
+              "1-2 million gallons",
+              "Over 50 million gallons"
+            ],
+            "correct": 2,
+            "explanation": "At scale, a single campus rivals a town of 10,000 residents — which is why drought-state legislators have started treating data centers as water projects, not tech projects."
+          }
+        ]
+      },
+      {
+        "heading": "THE PREEMPTION FIGHT",
+        "body": "Most US zoning power sits with cities and counties — a legacy of the 1926 Euclid v. Ambler Supreme Court decision that upheld local land-use authority. Statewide moratoria flip this: they remove the option for individual towns to cut bilateral deals with hyperscalers, forcing a collective bargaining posture.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US"
+            ],
+            "label": "States restricting data center buildout",
+            "markers": [
+              {
+                "lat": 37.0902,
+                "lng": -95.7129,
+                "label": "Oklahoma — full pause to 2029"
+              },
+              {
+                "lat": 37.4316,
+                "lng": -78.6569,
+                "label": "Virginia — pause weighed"
+              },
+              {
+                "lat": 44.3148,
+                "lng": -85.6024,
+                "label": "Michigan — local moratoria"
+              },
+              {
+                "lat": 44.5,
+                "lng": -89.5,
+                "label": "Wisconsin — local moratoria"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE NOISE TELL",
+        "body": "Air-cooled chillers and backup diesel generators emit a continuous low-frequency hum that carries miles in rural settings. This is often the trigger for organized opposition — well before water or rate-payer arguments arrive, neighbors notice the noise. The political coalition that forms around a noise complaint then absorbs the broader infrastructure critique."
+      },
+      {
+        "heading": "THE AI CAPEX CONTEXT",
+        "body": "Hyperscaler capex hit roughly $400bn in 2025, with the majority routed through data center construction. Every cancelled or delayed site forces capacity into a smaller set of approved jurisdictions — typically Northern Virginia, central Texas, and Phoenix — concentrating both the grid risk and the political risk.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "N. Virginia",
+                "value": "~4,000 MW",
+                "weight": 4000,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Dallas-FW",
+                "value": "~1,000 MW",
+                "weight": 1000,
+                "tone": "neutral"
+              },
+              {
+                "label": "Phoenix",
+                "value": "~900 MW",
+                "weight": 900,
+                "tone": "neutral"
+              },
+              {
+                "label": "Chicago",
+                "value": "~700 MW",
+                "weight": 700,
+                "tone": "neutral"
+              },
+              {
+                "label": "Atlanta",
+                "value": "~600 MW",
+                "weight": 600,
+                "tone": "neutral"
+              },
+              {
+                "label": "Silicon Valley",
+                "value": "~500 MW",
+                "weight": 500,
+                "tone": "favorable"
+              }
+            ],
+            "label": "US data center capacity by metro (2025, MW operational)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-25T17:23:44.023Z",
+    "label": "Data Centers & Local Power",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-25-awfis-india-gcc-coworking-ai-services-labour-corridor": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FLEX-OFFICE MODEL",
+        "body": "A flex-workspace operator signs a long-term lease on a building, fits it out with desks and meeting rooms, then sublets seats by the month. The margin lives in the spread between bulk lease cost and per-seat retail pricing — and in how full the building stays.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is **managed aggregation**: the operator absorbs duration risk (10-year lease) so tenants can buy *flexibility* (one-month commit). When occupancy holds above ~75%, the spread compounds; below it, the lease becomes a millstone."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE GULF BUYS INDIAN LABOUR",
+        "body": "GCC states have capital and ambition for AI, but small national populations and visa regimes that throttle long-term immigration. The workaround: contract Indian engineers who sit in Bengaluru, Hyderabad, or Gurugram and bill in dirhams or riyals. The labour stays in India; the wage premium does not.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "UAE",
+                "value": "~88% expat",
+                "cc": "AE",
+                "weight": 88,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Qatar",
+                "value": "~85% expat",
+                "cc": "QA",
+                "weight": 85,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Kuwait",
+                "value": "~70% expat",
+                "cc": "KW",
+                "weight": 70,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "~40% expat",
+                "cc": "SA",
+                "weight": 40,
+                "tone": "neutral"
+              }
+            ],
+            "label": "GCC nationals vs expat workforce share"
+          }
+        ]
+      },
+      {
+        "heading": "THE REMITTANCE-TO-SERVICES PIVOT",
+        "body": "For fifty years, the India–Gulf corridor moved construction workers one way and remittances the other. The new flow is different: the worker stays home, the deliverable crosses the wire, and the buyer is a Gulf sovereign-fund-backed AI venture rather than a contractor in Dubai. India's services exports to the GCC have grown faster than goods trade since 2022.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "AE",
+              "SA",
+              "QA",
+              "KW",
+              "BH",
+              "OM"
+            ],
+            "label": "the AI services corridor",
+            "markers": [
+              {
+                "lat": 12.9716,
+                "lng": 77.5946,
+                "label": "Bengaluru"
+              },
+              {
+                "lat": 17.385,
+                "lng": 78.4867,
+                "label": "Hyderabad"
+              },
+              {
+                "lat": 28.4595,
+                "lng": 77.0266,
+                "label": "Gurugram"
+              },
+              {
+                "lat": 25.2048,
+                "lng": 55.2708,
+                "label": "Dubai"
+              },
+              {
+                "lat": 24.7136,
+                "lng": 46.6753,
+                "label": "Riyadh"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY FLEX, NOT OWNED OFFICES",
+        "body": "A Gulf client signing an 18-month AI build doesn't want its Indian vendor to commit to a 9-year lease. Flex operators absorb that mismatch — they hold the long lease, the vendor takes a floor for the project's life, and walks when the contract ends. The model is selling duration arbitrage, not real estate.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does a flex-workspace operator primarily sell to its tenants?",
+            "options": [
+              "Cheap rent per square foot",
+              "Duration flexibility — short commits on long-lease buildings",
+              "Premium interior design",
+              "Networking events and community"
+            ],
+            "correct": 1,
+            "explanation": "The lease-duration mismatch is the product. Tenants pay a premium per seat in exchange for the right to leave on a month's notice — something an owned or directly leased office cannot offer."
+          }
+        ]
+      },
+      {
+        "heading": "THE GCC SOVEREIGN AI PUSH",
+        "body": "Saudi Arabia's HUMAIN (PIF-backed) and the UAE's G42 are spending tens of billions on AI infrastructure and talent. Neither country graduates enough domestic AI engineers to staff what they're building. The shortfall lands on India's tech corridors — and on the flex operators that house the contracted teams."
+      },
+      {
+        "heading": "THE FRAGILITY",
+        "body": "This is a single-customer-segment story dressed up as diversified growth. If GCC AI capex slows — a Brent crash, a sovereign-fund rebalancing, a US export-control regime that restricts GPU access to Gulf clients — the Indian flex demand attached to it falls with it. Concentration risk hides inside revenue-growth headlines.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The historical analogue: Bengaluru's **Y2K boom** in 1998-2000 built the first generation of Indian IT campuses on a single, dated, contract-driven demand wave. When it ended, occupancy cratered for three years before the BPO wave arrived."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-25T17:24:21.652Z",
+    "label": "India–Gulf AI Services Corridor",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-25-egypt-aboul-diyar-prisoners-campaign-state-security-arrests": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SCALE",
+        "body": "Egypt holds an estimated 60,000+ political prisoners — the highest concentration since the Nasser era. The figure swelled after the 2013 coup that brought Sisi to power and the subsequent crackdown on the Muslim Brotherhood, which was designated a terrorist organization that December.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011",
+                "label": "Mubarak falls"
+              },
+              {
+                "year": "2012",
+                "label": "Morsi elected"
+              },
+              {
+                "year": "2013-07",
+                "label": "Sisi coup",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2013-08",
+                "label": "Rabaa massacre"
+              },
+              {
+                "year": "2013-12",
+                "label": "Brotherhood declared terrorist"
+              },
+              {
+                "year": "2014",
+                "label": "Protest Law criminalizes assembly"
+              },
+              {
+                "year": "2017",
+                "label": "NGO Law restricts civil society"
+              }
+            ],
+            "label": "the Sisi-era crackdown"
+          }
+        ]
+      },
+      {
+        "heading": "THE TERRORISM CHARGE",
+        "body": "Egypt's 2015 Counter-Terrorism Law defines terrorism so broadly that organizing an art exhibition, sharing a Facebook post, or joining a peaceful protest can qualify. The law also created specialized terrorism courts whose verdicts carry limited appeal rights."
+      },
+      {
+        "heading": "PRETRIAL DETENTION AS PUNISHMENT",
+        "body": "The 15-day renewable remand is the regime's signature instrument. Prosecutors can extend it indefinitely without trial — detainees routinely spend 2-5 years awaiting verdict. When one case nears its legal limit, prosecutors open a new case on the same evidence, a practice known as *tadweer* (rotation).",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Arabic term *tadweer* — literally *rotation* — describes recycling the same defendant through successive case numbers to defeat the two-year pretrial cap."
+          }
+        ]
+      },
+      {
+        "heading": "THE LAWYER PROBLEM",
+        "body": "Defending political detainees is itself a path to detention. Prominent rights lawyers — Mahienour el-Massry, Mohamed el-Baqer, Hoda Abdelmoneim, Ziad el-Elaimy — have all been jailed on terrorism or false-news charges. The strategy hollows out the defense bar one practitioner at a time."
+      },
+      {
+        "heading": "THE WESTERN BARGAIN",
+        "body": "Egypt receives roughly $1.3 billion in annual US military aid — second only to Israel — and an €8 billion EU package signed in 2024 to stem migration flows. Both flows continue despite documented mass detention. The implicit trade is regional stability and migration control in exchange for silence on domestic repression.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which country is the second-largest recipient of US military aid after Israel?",
+            "options": [
+              "Saudi Arabia",
+              "Jordan",
+              "Egypt",
+              "Pakistan"
+            ],
+            "correct": 2,
+            "explanation": "Egypt has received ~$1.3bn annually since the 1979 Camp David Accords — the price of its peace treaty with Israel."
+          }
+        ]
+      },
+      {
+        "heading": "THE REGIONAL PATTERN",
+        "body": "Egypt sits within a broader Arab counter-revolutionary architecture funded primarily by the UAE and Saudi Arabia after 2013. The model — broad terrorism statutes, indefinite remand, dissolved civil society — has been exported across the region as the template for post-Arab-Spring governance.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "EG",
+              "SA",
+              "AE",
+              "BH",
+              "JO"
+            ],
+            "label": "the counter-revolutionary bloc"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-25T17:24:51.058Z",
+    "label": "Egypt's Political Prison System",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-25-europe-gas-storage-injection-rehden-2013-low-summer-refill": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SUMMER-WINTER RATCHET",
+        "body": "European gas demand triples in winter for heating. Storage exists to bridge the gap: pipelines and LNG terminals run at near-constant capacity year-round, so summer surplus is injected into salt caverns and depleted gas fields, then withdrawn from October to March. Miss the summer injection window and there is no second chance — winter demand cannot be backfilled in real time."
+      },
+      {
+        "heading": "WHY REHDEN MATTERS",
+        "body": "Rehden is a depleted gas field in Lower Saxony — Western Europe's largest single storage site at 4 billion cubic meters, roughly a fifth of Germany's total capacity. Gazprom Germania owned it until 2022, when Berlin seized the asset after it was deliberately left empty heading into the energy crisis. A near-empty Rehden in May is a structural signal, not a seasonal blip.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "DE",
+              "FR",
+              "NL",
+              "AT",
+              "IT"
+            ],
+            "label": "Europe's storage spine",
+            "markers": [
+              {
+                "lat": 52.7833,
+                "lng": 8.4833,
+                "label": "Rehden storage"
+              },
+              {
+                "lat": 53.15,
+                "lng": 6.9667,
+                "label": "Groningen field"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 90% RULE",
+        "body": "After 2022, the EU mandated member states fill storage to **90%** by November 1 each year. The rule was the price of unity after Russia's pipeline cutoff exposed how exposed Germany was. Hitting 90% from a 4% start requires sustained TTF prices low enough for utilities to buy and inject without losing money on the carry — which is the entire economics of the season.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The benchmark is **TTF** — the Title Transfer Facility, a virtual Dutch trading hub that became Europe's gas price reference after the 2022 break with Russian pipeline supply."
+          }
+        ]
+      },
+      {
+        "heading": "THE GRONINGEN EXIT",
+        "body": "The Netherlands shut its giant Groningen field in 2024 after decades of earthquakes from extraction collapsed political support. Europe lost a swing producer that had historically covered winter peaks. The empty Dutch storage referenced in the article is downstream of that closure — without Groningen, the Netherlands now imports what it used to supply."
+      },
+      {
+        "heading": "WHY 2013 IS THE COMPARISON",
+        "body": "2013 was the last pre-shale, pre-Crimea year when European storage operated under normal commercial logic — fill when summer prices were below winter prices, profit on the spread. Comparing 2026 injection rates to 2013, not to 2022, reveals that the current weakness is not crisis behavior but a deliberate bet by traders that winter prices will fall, not rise.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does European gas storage need to be filled during summer?",
+            "options": [
+              "Summer gas is chemically different and stores better",
+              "Winter demand far exceeds the pipeline and LNG import capacity available in real time",
+              "EU regulations forbid winter injection",
+              "Storage tanks must thaw before they can be filled"
+            ],
+            "correct": 1,
+            "explanation": "Import infrastructure runs near-constant year-round; storage exists to smooth the 3x winter heating demand spike that pipelines and LNG cannot meet on their own."
+          }
+        ]
+      },
+      {
+        "heading": "THE GAZPROM PLAYBOOK",
+        "body": "From 2021 through early 2022, Gazprom-controlled European storage was drawn down faster than it was refilled — a pattern visible in monthly fill data months before the Ukraine invasion. The pre-positioning was strategic: empty storage in October meant Europe entered winter on spot markets, with maximum leverage for Moscow. The 90% mandate is the institutional memory of that lesson."
+      }
+    ],
+    "generatedAt": "2026-05-25T17:25:27.605Z",
+    "label": "Europe's Gas Storage Cycle",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-25-gaza-yellow-line-earth-berms-israeli-forts-partition": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE YELLOW LINE",
+        "body": "The January 2025 ceasefire drew a phased withdrawal line — colored yellow on the negotiating maps — that Israeli forces were meant to retreat behind in stages. The line was always a redeployment marker, not a border. Earth berms now make it one.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IL",
+              "PS",
+              "EG",
+              "JO",
+              "LB"
+            ],
+            "label": "the strip and its perimeter",
+            "markers": [
+              {
+                "lat": 31.5,
+                "lng": 34.47,
+                "label": "Gaza City"
+              },
+              {
+                "lat": 31.35,
+                "lng": 34.31,
+                "label": "Khan Younis"
+              },
+              {
+                "lat": 31.22,
+                "lng": 34.26,
+                "label": "Rafah crossing"
+              },
+              {
+                "lat": 31.55,
+                "lng": 34.55,
+                "label": "Netzarim corridor"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BERM AS BORDER",
+        "body": "Earth walls are the oldest occupation tool. Cheap, fast, deniable — a bulldozer can throw up kilometers in days, and nothing on the map says a berm is permanent. The Moroccan sand wall through Western Sahara was built the same way in 1981 and has held the de-facto partition for forty-five years.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical name is a *berm* — a compacted earth ridge. Unlike a concrete wall, it carries no legal status under international humanitarian law, which is precisely why states build them on contested ground."
+          }
+        ]
+      },
+      {
+        "heading": "THE 60% NUMBER",
+        "body": "Gaza is 365 square kilometers. Pushing Israeli control to 60% leaves roughly 145 km² of habitable strip for 2.1 million people — a density approaching 14,500 per km², among the highest sustained densities ever recorded for a civilian population under siege.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Post-berm Gaza",
+                "value": "~14,500/km²",
+                "tone": "unfavorable",
+                "weight": 14500
+              },
+              {
+                "label": "Dhaka",
+                "value": "~10,500/km²",
+                "tone": "neutral",
+                "weight": 10500,
+                "cc": "BD"
+              },
+              {
+                "label": "Manila",
+                "value": "~46,000/km²",
+                "tone": "neutral",
+                "weight": 46000,
+                "cc": "PH"
+              },
+              {
+                "label": "Mumbai",
+                "value": "~21,000/km²",
+                "tone": "neutral",
+                "weight": 21000,
+                "cc": "IN"
+              },
+              {
+                "label": "Manhattan",
+                "value": "~28,000/km²",
+                "tone": "neutral",
+                "weight": 28000,
+                "cc": "US"
+              }
+            ],
+            "label": "density of the remaining strip vs peers"
+          }
+        ]
+      },
+      {
+        "heading": "FACTS ON THE GROUND",
+        "body": "The doctrine is older than the state. Ben-Gurion's phrase — create facts the diplomats must later accept — has governed every phase of expansion since 1948. Settlements, the separation wall, the E1 corridor, and now Gaza's berms all follow the same logic: build first, negotiate from the new map.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1948",
+                "label": "Nakba — 750,000 expelled",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1967",
+                "label": "Six-Day War, West Bank + Gaza occupied"
+              },
+              {
+                "year": "1981",
+                "label": "Moroccan berm through Western Sahara"
+              },
+              {
+                "year": "2002",
+                "label": "West Bank separation wall begins"
+              },
+              {
+                "year": "2005",
+                "label": "Gaza disengagement, perimeter sealed"
+              },
+              {
+                "year": "2023",
+                "label": "Oct 7, ground invasion begins"
+              },
+              {
+                "year": "2025-01",
+                "label": "Yellow Line ceasefire"
+              },
+              {
+                "year": "2026",
+                "label": "Berms harden the Yellow Line"
+              }
+            ],
+            "label": "the facts-on-the-ground sequence"
+          }
+        ]
+      },
+      {
+        "heading": "THE FORTS",
+        "body": "38 fortified positions along an internal line is not a defensive posture — it is a garrison architecture. Permanent forts require supply roads, water, power, and rotation schedules. Each one is a vote against withdrawal.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does construction of permanent forts along a ceasefire line typically signal?",
+            "options": [
+              "A temporary security measure pending political resolution",
+              "Preparation for full withdrawal once stability returns",
+              "Conversion of a ceasefire line into a long-term administrative boundary",
+              "Compliance with international monitoring requirements"
+            ],
+            "correct": 2,
+            "explanation": "Permanent military infrastructure — forts, supply roads, water and power — encodes the line into the landscape. Temporary lines don't get concrete foundations."
+          }
+        ]
+      },
+      {
+        "heading": "THE LAND OF AL-ISRA",
+        "body": "The blessed land — al-ard al-muqaddasa — is named in the Quran as the territory Allah designated for its people. Surah al-Isra opens with the Prophet's night journey to al-Aqsa, binding Palestine into the spiritual geography of Islam. For Muslims, partition of this land is not a territorial dispute among others; it is a question about a place the Quran itself locates."
+      }
+    ],
+    "generatedAt": "2026-05-25T17:26:02.610Z",
+    "label": "Partition by Berm",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-25-nhs-67-flood-closures-climate-adaptation-hospital-infrastructure": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY HOSPITALS FLOOD FIRST",
+        "body": "Hospitals concentrate the worst risk profile a building can have: basements full of MRI machines, generators, sterile supply, and morgues; ground-floor emergency departments designed for ambulance access; and patients who cannot be evacuated quickly. Floodwater that would shut a hotel for a weekend closes a hospital ward for months.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The single most damaging flood path is not the front door — it is the **service tunnel** that runs beneath most large hospitals carrying power, oxygen, vacuum, and data. One breach there takes out wards floors above the waterline."
+          }
+        ]
+      },
+      {
+        "heading": "THE SITING LEGACY",
+        "body": "Many NHS hospitals were built in the Victorian era on cheap land — which often meant floodplains, reclaimed marshes, or river valleys near the population they served. St Thomas' sits on the Thames; Addenbrooke's on the Cam floodplain; large parts of the Manchester estate on the Irwell catchment. The estate inherited 19th-century geography and 21st-century rainfall."
+      },
+      {
+        "heading": "THE COMPOUNDING ESTATE PROBLEM",
+        "body": "The NHS has roughly £14bn of accumulated maintenance backlog, of which a growing share is rated as posing 'high' or 'significant' risk to patient safety. Flood resilience competes inside that budget against leaking roofs, failing boilers, and crumbling RAAC concrete — money for sea walls and pumps loses to money for ceilings that might fall.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "High risk",
+                "value": "£2.7bn",
+                "tone": "unfavorable",
+                "weight": 2.7
+              },
+              {
+                "label": "Significant risk",
+                "value": "£5.1bn",
+                "tone": "unfavorable",
+                "weight": 5.1
+              },
+              {
+                "label": "Moderate risk",
+                "value": "£4.4bn",
+                "tone": "neutral",
+                "weight": 4.4
+              },
+              {
+                "label": "Low risk",
+                "value": "£1.7bn",
+                "tone": "favorable",
+                "weight": 1.7
+              }
+            ],
+            "label": "NHS England maintenance backlog by risk (2023-24, £bn)"
+          }
+        ]
+      },
+      {
+        "heading": "THE 1-IN-100 ILLUSION",
+        "body": "Flood maps are built on historical return periods — the '1-in-100-year' flood. Climate change makes that statistic incoherent: rainfall events that were genuinely 1-in-100 in 1970 now arrive every 20 to 30 years in much of the UK. A hospital built to the old standard is already under-protected the day it opens."
+      },
+      {
+        "heading": "WHAT ADAPTATION ACTUALLY COSTS",
+        "body": "Retrofitting flood resilience to an existing hospital — raising electrical switchgear above flood level, sealing basement penetrations, installing demountable barriers, relocating critical care from ground floors — typically runs 3-7% of total estate value. Building it in from scratch costs under 1%. The premium for getting it wrong the first time is roughly five-fold."
+      },
+      {
+        "heading": "THE EVACUATION ASYMMETRY",
+        "body": "A flooded ward is rarely the headline harm. The harder problem is the catchment: when one hospital closes, ambulances divert to neighbours that were already running at 95% occupancy. Mortality data after major UK flood events shows the spike comes from delayed care in surrounding hospitals, not from the flooded building itself.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "After a major hospital is forced to close by flooding, where does excess mortality typically rise the most?",
+            "options": [
+              "Inside the flooded hospital, from evacuation injuries",
+              "In neighbouring hospitals absorbing diverted patients",
+              "In the local community from waterborne disease",
+              "In care homes that lose mains electricity"
+            ],
+            "correct": 1,
+            "explanation": "Studies of UK and US flood events consistently find the mortality signal in receiving hospitals, where occupancy spikes and waiting times lengthen for everyone — not in the closed facility itself."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-25T17:26:38.569Z",
+    "label": "Hospitals & Climate Risk",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-25-prometheum-tokenized-securities-broker-dealer-wall-street": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DISTINCTION",
+        "body": "A tokenized security is a traditional security — equity, bond, fund share — whose ownership record lives on a blockchain. The token is not the asset; it is the registry entry. This is legally distinct from a cryptocurrency, which is itself the asset.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Regulators care about this difference: tokens that represent **securities** fall under the Securities Act of 1933; tokens that are themselves the asset (like *bitcoin*) fall into a contested gray zone."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BROKER-DEALERS MATTER",
+        "body": "Under US law, only registered broker-dealers can hold customer securities and route trades to settlement. Crypto exchanges like Coinbase are money transmitters, not broker-dealers — they cannot legally custody securities. This is the regulatory moat tokenization has been stuck behind for a decade."
+      },
+      {
+        "heading": "THE HOWEY TEST",
+        "body": "The 1946 Supreme Court case SEC v. W.J. Howey Co. defined an investment contract — and thus a security — as money invested in a common enterprise with profit expected from the efforts of others. Most tokens issued in the 2017 ICO boom met this test; the SEC just lacked the enforcement bandwidth to pursue them all.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "an investment of money in a common enterprise with profits to come solely from the efforts of others",
+            "speaker": "SEC v. W.J. Howey Co.",
+            "year": "1946"
+          }
+        ]
+      },
+      {
+        "heading": "DTCC AND THE OLD RAILS",
+        "body": "US equity settlement runs through the Depository Trust & Clearing Corporation, which processes roughly $2 quadrillion in transactions annually. DTCC settles trades T+1 (one day after the trade). Tokenization's promise is atomic settlement — instant, simultaneous exchange of cash and security — which eliminates counterparty risk but also eliminates the float that brokers earn on.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "US equities (DTCC)",
+                "value": "T+1",
+                "tone": "neutral"
+              },
+              {
+                "label": "US Treasuries",
+                "value": "T+1",
+                "tone": "neutral"
+              },
+              {
+                "label": "FX spot",
+                "value": "T+2",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Tokenized (atomic)",
+                "value": "seconds",
+                "tone": "favorable"
+              }
+            ],
+            "label": "settlement times across systems"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ELSE IS BUILDING THIS",
+        "body": "BlackRock launched BUIDL, a tokenized money-market fund, on Ethereum in 2024 — it crossed $500m in months. Franklin Templeton runs OnChain US Government Money Fund on Stellar. The pattern: large asset managers want the rails; what they need is regulated counterparties who can actually hold the tokens for retail brokerage clients.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "BlackRock",
+                "role": "BUIDL fund on Ethereum",
+                "years": "2024–",
+                "cc": "US"
+              },
+              {
+                "name": "Franklin Templeton",
+                "role": "OnChain MM fund on Stellar",
+                "years": "2021–",
+                "cc": "US"
+              },
+              {
+                "name": "JPMorgan",
+                "role": "Onyx repo network",
+                "years": "2020–",
+                "cc": "US"
+              },
+              {
+                "name": "Prometheum",
+                "role": "first SPBD for digital assets",
+                "years": "2023–",
+                "cc": "US"
+              }
+            ],
+            "label": "tokenization's institutional adopters"
+          }
+        ]
+      },
+      {
+        "heading": "THE QUIET REGULATORY WIN",
+        "body": "Prometheum received the first FINRA approval as a Special Purpose Broker-Dealer for digital asset securities in 2023 — a license category the SEC created in 2020. The category sat unused for nearly three years. Its activation matters less for Prometheum specifically than as proof the existing regulatory framework can absorb tokenized securities without new legislation.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why couldn't crypto exchanges like Coinbase simply offer tokenized securities themselves?",
+            "options": [
+              "They lack the technology",
+              "They are not registered as broker-dealers, which US law requires to custody securities",
+              "The SEC banned them from trying",
+              "Blockchain settlement is incompatible with securities law"
+            ],
+            "correct": 1,
+            "explanation": "Custody of customer securities is a regulated broker-dealer function under the Exchange Act of 1934 — exchanges that handle crypto-as-commodity can't simply extend into securities without that license."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-25T17:27:12.364Z",
+    "label": "Tokenized Securities & Broker-Dealer Rails",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-25-schizophrenia-small-rna-hippocampus-mice-transmissible-phenotype": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE DOPAMINE LOCK-IN",
+        "body": "Every approved antipsychotic since chlorpromazine in 1952 works by blocking dopamine D2 receptors. This treats hallucinations and delusions — the 'positive' symptoms — but does almost nothing for the cognitive deficits like memory loss and disorganized thinking that actually determine whether a patient can hold a job or live independently.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The unmet need is **cognitive symptoms**, not psychosis. Seventy years of drug development has barely moved this needle."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT SMALL RNAs DO",
+        "body": "Small RNAs — microRNAs and tRNA fragments — don't code for proteins. They regulate which genes get translated, acting as a dimmer switch on thousands of targets at once. A single microRNA can tune the expression of hundreds of genes, which is why dysregulation propagates so widely through neural circuits."
+      },
+      {
+        "heading": "WHY THE HIPPOCAMPUS",
+        "body": "The hippocampus encodes spatial and episodic memory. Schizophrenia patients show measurable hippocampal volume loss and disorganized neuronal firing patterns there, which maps onto the memory and navigation deficits that the dopamine drugs leave untouched.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which symptom domain do existing antipsychotics treat LEAST effectively?",
+            "options": [
+              "Hallucinations",
+              "Delusions",
+              "Cognitive deficits",
+              "Agitation"
+            ],
+            "correct": 2,
+            "explanation": "D2 blockade addresses positive symptoms well but leaves cognitive deficits — memory, attention, executive function — largely untouched. This is the gap the sRNA work targets."
+          }
+        ]
+      },
+      {
+        "heading": "THE TRANSMISSIBILITY CLAIM",
+        "body": "Injecting RNA from a human brain into a mouse and reproducing a behavioral phenotype is a strong claim. It implies the disease state isn't only encoded in cell structure or neurotransmitter levels but is partly portable as a molecular signal — a finding that, if it holds, reframes schizophrenia as a regulatory disorder, not just a structural one."
+      },
+      {
+        "heading": "THE MOUSE GAP",
+        "body": "You cannot ask a mouse if it hears voices. Spatial memory in a water maze is a measurable proxy, but the translational graveyard of psychiatry is full of mouse-validated mechanisms that failed in humans. The diathesis-stress model — genetic vulnerability plus environmental trigger — also doesn't transfer cleanly to a single RNA injection."
+      },
+      {
+        "heading": "THE DRUG-TARGET PATH",
+        "body": "Small RNAs are druggable: antisense oligonucleotides and siRNA therapeutics already exist for spinal muscular atrophy and amyloidosis. The bottleneck for brain applications is delivery — getting the molecule across the blood-brain barrier into the right cell type without off-target silencing across the rest of the genome."
+      }
+    ],
+    "generatedAt": "2026-05-25T17:27:37.039Z",
+    "label": "Small RNAs & Schizophrenia",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-25-sipri-peacekeeper-deployments-25-year-low-funding-deadlock": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SUEZ ORIGIN",
+        "body": "Peacekeeping was improvised in 1956 to extract Britain, France, and Israel from the Suez Crisis without humiliating them. UNEF I — the first armed UN force — was Lester Pearson's invention, won him the Nobel, and set the template: lightly armed, deployed only with host consent, neutral between belligerents.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Blue helmets are not soldiers. They are observers in uniform.",
+            "speaker": "Dag Hammarskjöld, UN Secretary-General",
+            "year": "1958"
+          }
+        ]
+      },
+      {
+        "heading": "WHO PAYS, WHO BLEEDS",
+        "body": "The funding-fighting split is structural. Rich countries pay assessed contributions but stopped sending troops after Somalia (1993) and Srebrenica (1995). Poor countries send troops because the UN reimburses roughly $1,400 per soldier per month — more than a Bangladeshi or Rwandan private earns at home. This is why every top-10 troop contributor is from the Global South.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Bangladesh",
+                "value": "~6,800",
+                "cc": "BD",
+                "weight": 6800
+              },
+              {
+                "label": "Nepal",
+                "value": "~6,200",
+                "cc": "NP",
+                "weight": 6200
+              },
+              {
+                "label": "India",
+                "value": "~5,900",
+                "cc": "IN",
+                "weight": 5900
+              },
+              {
+                "label": "Rwanda",
+                "value": "~5,800",
+                "cc": "RW",
+                "weight": 5800
+              },
+              {
+                "label": "Pakistan",
+                "value": "~4,300",
+                "cc": "PK",
+                "weight": 4300
+              },
+              {
+                "label": "Ethiopia",
+                "value": "~4,000",
+                "cc": "ET",
+                "weight": 4000
+              }
+            ],
+            "label": "top UN troop contributors (2024, approx personnel)"
+          }
+        ]
+      },
+      {
+        "heading": "THE ASSESSMENT FORMULA",
+        "body": "The US is assessed 22% of the regular UN budget and ~26% of peacekeeping — the largest single share by design, scaled to GDP. Withholding has been a recurring American lever since the Reagan era; Congress has repeatedly capped peacekeeping payments below the assessed rate, generating most of the structural shortfall SIPRI now measures.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal term for non-payment is **arrears**. Under Article 19 of the UN Charter, a member two years in arrears loses its General Assembly vote — but the rule has never been applied to a P5 state."
+          }
+        ]
+      },
+      {
+        "heading": "UNIFIL AND THE 1978 LINE",
+        "body": "The UN Interim Force in Lebanon was created in March 1978 after Israel's first invasion. 'Interim' has lasted 48 years. Its mandate expanded after the 2006 war to police the Litani River buffer; ending it now, under US pressure, removes the only neutral observer of the Israel–Lebanon frontier.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "IL",
+              "SY"
+            ],
+            "label": "the UNIFIL zone",
+            "markers": [
+              {
+                "lat": 33.2706,
+                "lng": 35.2033,
+                "label": "UNIFIL HQ, Naqoura"
+              },
+              {
+                "lat": 33.3617,
+                "lng": 35.4836,
+                "label": "Litani river line"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 2014 FREEZE",
+        "body": "MINUSCA in the Central African Republic was the last new UN peacekeeping mission authorized. Eleven years later, the Security Council has approved none — not for Syria, not for Yemen, not for Sudan, not for Tigray, not for Gaza. The P5 veto deadlock has effectively retired the instrument.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1956",
+                "label": "UNEF I — Suez",
+                "emphasis": "start"
+              },
+              {
+                "year": "1993",
+                "label": "Somalia: 'Black Hawk Down'"
+              },
+              {
+                "year": "1994",
+                "label": "Rwanda — UNAMIR withdraws",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1995",
+                "label": "Srebrenica fall under UN protection"
+              },
+              {
+                "year": "2000",
+                "label": "Brahimi Report reforms"
+              },
+              {
+                "year": "2014",
+                "label": "MINUSCA — last new mission"
+              },
+              {
+                "year": "2025",
+                "label": "UNIFIL mandate to end"
+              }
+            ],
+            "label": "the long decline"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT REPLACES IT",
+        "body": "As UN missions retreat, the gaps fill with regional forces and private military companies — African Union missions in Somalia, ECOWAS in the Sahel, Wagner/Africa Corps in the CAR and Mali. None operate under the consent-impartiality-minimum-force triad that defined the blue helmet. The norm is not being reformed; it is being abandoned.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which was the last NEW UN peacekeeping mission authorized by the Security Council?",
+            "options": [
+              "MINUSMA (Mali, 2013)",
+              "MINUSCA (Central African Republic, 2014)",
+              "UNMHA (Yemen/Hodeidah, 2019)",
+              "UNITAMS (Sudan, 2020)"
+            ],
+            "correct": 1,
+            "explanation": "UNMHA and UNITAMS were small political/observer missions, not peacekeeping operations. MINUSCA in 2014 was the last full Chapter VII blue-helmet deployment authorized."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-25T17:28:16.647Z",
+    "label": "UN Peacekeeping",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-25-snp-peter-murrell-embezzlement-guilty-operation-branchform": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE POWER COUPLE",
+        "body": "Peter Murrell ran the SNP's machine as Chief Executive for 22 years while his wife Nicola Sturgeon led the Scottish government as First Minister. No comparable democracy has had a governing party's chief executive and head of government married to each other for that long — the conflict of interest was structural, not incidental.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Peter Murrell",
+                "role": "SNP Chief Executive",
+                "years": "2001–2023",
+                "cc": "GB"
+              },
+              {
+                "name": "Nicola Sturgeon",
+                "role": "First Minister of Scotland",
+                "years": "2014–2023",
+                "cc": "GB"
+              },
+              {
+                "name": "Alex Salmond",
+                "role": "First Minister, SNP leader",
+                "years": "2007–2014",
+                "cc": "GB"
+              },
+              {
+                "name": "Humza Yousaf",
+                "role": "First Minister, successor",
+                "years": "2023–2024",
+                "cc": "GB"
+              }
+            ],
+            "label": "the SNP household"
+          }
+        ]
+      },
+      {
+        "heading": "THE RING-FENCED MONEY",
+        "body": "The £400,000 traces back to a 2017 fundraising drive where donors gave specifically to fight a second independence referendum. Under UK electoral law, donations solicited for a stated purpose are *restricted funds* — using them for general party costs, let alone personal spending, is a criminal offence, not an accounting irregularity.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **breach of trust over restricted funds** — the same legal category as a charity trustee spending earmarked donations on themselves."
+          }
+        ]
+      },
+      {
+        "heading": "OPERATION BRANCHFORM",
+        "body": "Police Scotland opened the probe in July 2021 after auditors flagged the missing referendum money. The investigation ran for nearly four years — unusually long for a financial case — partly because the suspect's spouse was the sitting head of government, requiring elaborate firewalls between investigators and the Scottish executive.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2014",
+                "label": "Independence referendum lost 55–45"
+              },
+              {
+                "year": "2017",
+                "label": "Ring-fenced indyref2 fundraising"
+              },
+              {
+                "year": "2021-07",
+                "label": "Police Scotland opens Branchform"
+              },
+              {
+                "year": "2023-02",
+                "label": "Sturgeon resigns as First Minister"
+              },
+              {
+                "year": "2023-04",
+                "label": "Murrell arrested; motorhome seized",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024-04",
+                "label": "Murrell charged with embezzlement"
+              },
+              {
+                "year": "2026-05",
+                "label": "Guilty verdict"
+              }
+            ],
+            "label": "Branchform arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE SNP COLLAPSED SO FAST",
+        "body": "The SNP held every Scottish general election from 2007 to 2021 and held 48 of 59 Westminster seats in 2019. By July 2024 they held 9. Branchform was not the only cause — gender-recognition rows, ferry-procurement scandals, the Salmond split — but the financial probe shattered the discipline that had kept the coalition together.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "2015",
+                "value": "56 seats",
+                "weight": 56,
+                "tone": "favorable"
+              },
+              {
+                "label": "2017",
+                "value": "35 seats",
+                "weight": 35,
+                "tone": "neutral"
+              },
+              {
+                "label": "2019",
+                "value": "48 seats",
+                "weight": 48,
+                "tone": "favorable"
+              },
+              {
+                "label": "2024",
+                "value": "9 seats",
+                "weight": 9,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "SNP Westminster seats"
+          }
+        ]
+      },
+      {
+        "heading": "THE INDEPENDENCE QUESTION",
+        "body": "The SNP's purpose is Scottish independence; everything else — health, schools, transport — is downstream of holding power long enough to call a second referendum. Branchform damaged not just a party but the credibility of the independence project's institutional vehicle, with no successor movement yet organised at the same scale."
+      },
+      {
+        "heading": "WHO RUNS PARTY FINANCES IN THE UK",
+        "body": "British parties are private associations with public-money obligations. The Electoral Commission audits donations and spending returns but has no power to investigate fraud — that falls to the police. This split is why misuse can persist for years before anyone with subpoena power notices.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Who has legal power to compel financial records from a UK political party?",
+            "options": [
+              "The Electoral Commission",
+              "The police, via a criminal investigation",
+              "Parliament's Standards Committee",
+              "HM Revenue & Customs"
+            ],
+            "correct": 1,
+            "explanation": "The Electoral Commission can fine but cannot compel records or interview under caution — only a police criminal probe unlocks those powers, which is why Branchform took Police Scotland, not the regulator."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-25T17:28:54.207Z",
+    "label": "The SNP & Operation Branchform",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-25-uk-australia-aisi-mou-frontier-ai-evaluations-treaty-club": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT AN AISI IS",
+        "body": "AI Safety Institutes are government labs that red-team frontier models before deployment — probing for cyber, bio, and autonomy risks. The UK launched the first in November 2023 at the Bletchley summit; the US, Japan, Singapore, Canada, and Australia followed within 18 months.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The original UK body was the **AI Safety Institute**; in early 2025 it was renamed the **AI Security Institute** — same acronym, narrower mandate focused on national-security misuse rather than broad alignment."
+          }
+        ]
+      },
+      {
+        "heading": "THE BLETCHLEY LINEAGE",
+        "body": "The November 2023 Bletchley Park summit produced a declaration signed by 28 countries plus the EU agreeing that frontier AI posed catastrophic risks worth coordinating on. The institutes are the institutional residue of that moment — the treaties that followed (Seoul 2024, Paris 2025) added members but no enforcement.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2023-11",
+                "label": "Bletchley summit, UK AISI founded",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024-04",
+                "label": "UK–US AISI partnership"
+              },
+              {
+                "year": "2024-05",
+                "label": "Seoul summit, network expands"
+              },
+              {
+                "year": "2024-11",
+                "label": "San Francisco network convening"
+              },
+              {
+                "year": "2025-02",
+                "label": "Paris AI Action Summit"
+              },
+              {
+                "year": "2026-05",
+                "label": "UK–Australia MOU"
+              }
+            ],
+            "label": "the AISI network forms"
+          }
+        ]
+      },
+      {
+        "heading": "WHY RED-TEAMING IS HARD",
+        "body": "A frontier model has effectively infinite inputs. Red teams probe for capability uplift — can the model help a non-expert do something dangerous they otherwise couldn't? The hard part is not finding one jailbreak; it is establishing that no jailbreak exists for a given harm. Negative results are unprovable, so evaluations measure elicitation effort instead.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does an AI red team measure when a model refuses a dangerous request?",
+            "options": [
+              "That the refusal is permanent",
+              "How much effort it takes to elicit the behavior anyway",
+              "Whether the model is conscious of refusing",
+              "The exact training data that caused the refusal"
+            ],
+            "correct": 1,
+            "explanation": "Refusals can almost always be bypassed with enough effort; evaluators measure elicitation cost as a proxy for safety, not absolute prevention."
+          }
+        ]
+      },
+      {
+        "heading": "THE FIVE EYES SHAPE",
+        "body": "The UK–Australia pact extends a pattern: AI safety cooperation is tracking the Five Eyes intelligence alliance (US, UK, Canada, Australia, New Zealand) more than the G7 or the EU. Shared classification systems and decades of signals-intelligence trust make red-team data — which is itself sensitive offensive-capability research — easier to exchange.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GB",
+              "US",
+              "CA",
+              "AU",
+              "NZ"
+            ],
+            "label": "Five Eyes — the AI safety axis"
+          }
+        ]
+      },
+      {
+        "heading": "THE 32-STEP CHAIN",
+        "body": "What the UK institute found is the threshold moment for cyber: models can now chain reconnaissance, exploitation, lateral movement, and exfiltration without human intervention. The economic implication is that the marginal cost of a sophisticated intrusion collapses from a skilled operator's hourly rate to inference costs measured in cents.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The relevant metric is *capability uplift* — not whether a model can do something a state actor already could, but whether it lets a **mid-skilled** attacker reach **elite** outcomes. That collapse of the skill premium is what regulators actually fear."
+          }
+        ]
+      },
+      {
+        "heading": "THE ENFORCEMENT GAP",
+        "body": "None of these institutes can block a model release. The UK AISI tests frontier models voluntarily, on terms negotiated with each lab. The EU AI Act has binding rules but no testing capacity; the US has capacity but, since the January 2025 executive-order rescission, no mandate. The MOUs build a shared evidence base for rules that have not yet been written."
+      }
+    ],
+    "generatedAt": "2026-05-25T17:29:27.330Z",
+    "label": "AI Safety Institutes",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-25-us-quantum-2-billion-equity-investment-appropriations-legality": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE POWER OF THE PURSE",
+        "body": "Article I §9 of the Constitution gives Congress exclusive control over federal spending. The executive may only spend money in the manner and for the purpose Congress specified — repurposing an appropriation, even toward a related goal, is itself an unconstitutional act.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "No money shall be drawn from the Treasury, but in consequence of appropriations made by law.",
+            "speaker": "US Constitution, Article I §9"
+          }
+        ]
+      },
+      {
+        "heading": "THE ANTI-DEFICIENCY ACT",
+        "body": "The 1884 Anti-Deficiency Act criminalizes spending federal money outside the scope or amount Congress authorized. Officials who violate it face termination and, in rare cases, criminal penalties. It is the workhorse statute enforcing the appropriations clause.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Enforcement is almost entirely *administrative*, not judicial — agencies self-report violations to OMB and Congress. Criminal referrals under the **ADA** are vanishingly rare; the deterrent is reputational and budgetary, not penal."
+          }
+        ]
+      },
+      {
+        "heading": "GRANTS VERSUS EQUITY",
+        "body": "Federal R&D money has historically flowed as grants and contracts — government pays, contractor delivers, taxpayer owns nothing. Taking equity flips the model: the state becomes a shareholder with upside, but also a market participant the appropriation may not have authorized.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Grant",
+                "value": "no return",
+                "tone": "neutral"
+              },
+              {
+                "label": "Contract",
+                "value": "deliverable",
+                "tone": "neutral"
+              },
+              {
+                "label": "Loan",
+                "value": "principal + interest",
+                "tone": "favorable"
+              },
+              {
+                "label": "Equity stake",
+                "value": "ownership share",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "how federal R&D dollars usually move"
+          }
+        ]
+      },
+      {
+        "heading": "THE CHIPS ACT ORIGIN",
+        "body": "The semiconductor research fund Lofgren cites was created by the 2022 CHIPS and Science Act — $52 billion earmarked specifically for domestic chip manufacturing and semiconductor R&D. Quantum hardware uses some overlapping fabrication techniques, but the statutory language names semiconductors."
+      },
+      {
+        "heading": "THE TIMING PROBLEM",
+        "body": "Appropriations lawsuits move slowly; spending moves fast. By the time a court rules on standing — let alone the merits — the money is typically obligated and partially disbursed. Clawback is legally possible but politically and practically rare.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Who has standing to sue when the executive misuses appropriated funds?",
+            "options": [
+              "Any US taxpayer",
+              "Members of Congress, in limited circumstances",
+              "The companies that received the money",
+              "Only the Comptroller General"
+            ],
+            "correct": 1,
+            "explanation": "The Supreme Court has rejected general taxpayer standing since Frothingham v. Mellon (1923); legislators have narrow standing only when their institutional vote was nullified."
+          }
+        ]
+      },
+      {
+        "heading": "THE SOVEREIGN-WEALTH PRECEDENT",
+        "body": "Singapore's Temasek, Norway's GPFG, and the UAE's Mubadala routinely take equity in strategic technologies. The US has no equivalent vehicle — In-Q-Tel (CIA's venture arm, founded 1999) is the closest, and even it operates on a deliberately tiny scale to avoid this exact appropriations question."
+      }
+    ],
+    "generatedAt": "2026-05-25T17:29:55.974Z",
+    "label": "Appropriations & Industrial Policy",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-25-xi-vucic-serbia-china-ai-energy-infrastructure": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO-CHAIR STRATEGY",
+        "body": "Serbia is a formal EU accession candidate (since 2012) while simultaneously deepening ties with China and refusing to sanction Russia. Belgrade calls this 'multi-vector' diplomacy — extracting capital and political cover from all sides without committing to any bloc.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The doctrine has a name in Serbian foreign policy circles: ***četiri stuba*** — the *four pillars* (EU, US, Russia, China). No other accession candidate openly maintains this posture."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE BALKANS MATTER TO BEIJING",
+        "body": "Serbia sits on the overland Belt and Road spur that connects the Greek port of Piraeus — bought by China's COSCO in 2016 — to Central Europe. Chinese goods unloaded at Piraeus travel north through Skopje and Belgrade to Budapest, bypassing the congested Rotterdam-Hamburg corridor.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "GR",
+              "MK",
+              "RS",
+              "HU",
+              "AT"
+            ],
+            "label": "the Piraeus–Budapest corridor",
+            "markers": [
+              {
+                "lat": 37.9466,
+                "lng": 23.6356,
+                "label": "Piraeus port (COSCO)"
+              },
+              {
+                "lat": 44.7866,
+                "lng": 20.4489,
+                "label": "Belgrade"
+              },
+              {
+                "lat": 47.4979,
+                "lng": 19.0402,
+                "label": "Budapest"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 1999 BOND",
+        "body": "NATO's bombing of Belgrade in 1999 included a strike on the Chinese embassy that killed three Chinese journalists. Beijing has never accepted the US explanation that it was an accidental targeting error. The incident anchors the Sino-Serbian relationship in shared grievance against the Western security order — Xi visited the embassy site on his 2024 trip before any official meeting.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1999",
+                "label": "NATO bombs Chinese embassy in Belgrade",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2009",
+                "label": "Strategic partnership signed"
+              },
+              {
+                "year": "2016",
+                "label": "Xi's first Belgrade visit; steel mill bought by Hesteel"
+              },
+              {
+                "year": "2020",
+                "label": "COVID 'iron brotherhood' diplomacy"
+              },
+              {
+                "year": "2024",
+                "label": "Free trade agreement enters force"
+              },
+              {
+                "year": "2026",
+                "label": "AI + BRI pact"
+              }
+            ],
+            "label": "Belgrade–Beijing arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT $9.37BN BUYS",
+        "body": "China is Serbia's #2 trading partner after the EU bloc, but the composition is asymmetric: Serbia exports raw copper and agricultural goods; China exports finished electronics, machinery, and now surveillance systems. Huawei built Belgrade's 'Safe City' camera network — roughly 8,000 cameras with facial recognition, deployed without parliamentary debate.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "EU (bloc)",
+                "value": "~$35bn",
+                "weight": 35,
+                "tone": "neutral"
+              },
+              {
+                "label": "China",
+                "value": "$9.4bn",
+                "cc": "CN",
+                "weight": 9.4,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Russia",
+                "value": "$3.5bn",
+                "cc": "RU",
+                "weight": 3.5,
+                "tone": "neutral"
+              },
+              {
+                "label": "UK",
+                "value": "$1.2bn",
+                "cc": "GB",
+                "weight": 1.2,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Serbia's top trading partners, 2024"
+          }
+        ]
+      },
+      {
+        "heading": "THE ACCESSION CONTRADICTION",
+        "body": "EU accession requires alignment with the Common Foreign and Security Policy — including sanctions regimes and restrictions on critical-infrastructure deals with non-EU powers. Every Chinese-built highway, every Huawei contract, every steel-mill acquisition narrows the path Serbia officially claims to be walking. Brussels has noticed; the 2024 enlargement report flagged 'limited progress' on foreign policy alignment for the seventh consecutive year.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of EU foreign-policy positions did Serbia align with in 2024, per the European Commission's enlargement report?",
+            "options": [
+              "Around 95% — near-full alignment",
+              "Around 75% — substantial alignment",
+              "Around 50% — partial alignment",
+              "Around 45% — the lowest of any candidate"
+            ],
+            "correct": 3,
+            "explanation": "Serbia aligned with roughly 45% of EU CFSP positions in 2024 — the lowest of any accession candidate, driven primarily by its refusal to sanction Russia."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-25T17:30:31.032Z",
+    "label": "Serbia between Brussels and Beijing",
+    "category": "politics",
+    "articleCount": 1
   }
 }
