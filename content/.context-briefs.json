@@ -232353,5 +232353,1433 @@
     "label": "Dowry Deaths & Section 304B",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-23-writerdeck-distraction-free-writing-hardware-movement": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LINEAGE",
+        "body": "The writerdeck descends from the AlphaSmart — a battery-powered keyboard with a four-line LCD sold to schools from 1993 to 2013. Writers kept buying used ones on eBay long after production stopped, because the device could do exactly one thing.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "AlphaSmart 3000",
+                "role": "4-line LCD writing slab",
+                "years": "1993–2013",
+                "cc": "US"
+              },
+              {
+                "name": "Pomera DM30",
+                "role": "Japanese e-ink typewriter",
+                "years": "2018–present",
+                "cc": "JP"
+              },
+              {
+                "name": "Freewrite",
+                "role": "e-ink cloud writer",
+                "years": "2016–present",
+                "cc": "US"
+              },
+              {
+                "name": "reMarkable",
+                "role": "e-ink tablet",
+                "years": "2017–present",
+                "cc": "NO"
+              }
+            ],
+            "label": "the ancestors"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SOFTWARE FAILS",
+        "body": "Focus apps run inside the same operating system as the distraction. Any app can be quit; any blocklist has an uninstall button; any timer has a skip. The friction is one tap, and the brain learns the tap.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical name for this is the **principal-agent problem in self-control**: the user installing the blocker and the user three hours later trying to bypass it are not the same person, and the later self has root access."
+          }
+        ]
+      },
+      {
+        "heading": "THE ATTENTION ECONOMY",
+        "body": "A consumer laptop is engineered for engagement — push notifications, badge counts, autoplay, infinite scroll. These are not accidents of the medium; they are revenue-optimized interface choices funded by ad markets that bid for each second of attention.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many times per day does an average smartphone user pick up their phone?",
+            "options": [
+              "~30 times",
+              "~80 times",
+              "~150 times",
+              "~300 times"
+            ],
+            "correct": 2,
+            "explanation": "Industry telemetry (Asurion, dscout) consistently puts the figure near 150 daily pickups — about once every six waking minutes."
+          }
+        ]
+      },
+      {
+        "heading": "THE E-INK BET",
+        "body": "E-ink displays refresh slowly and cannot show video smoothly. This is usually a limitation; for writers it is the feature. A screen that physically cannot play TikTok removes the temptation at the hardware layer."
+      },
+      {
+        "heading": "THE DEEPER PRECEDENT",
+        "body": "Neal Stephenson wrote Cryptonomicon on an Atari ST running emacs because newer machines kept interrupting him. Knuth famously stopped using email in 1990, calling it 'a wonderful thing for people whose role in life is to be on top of things' — not, he argued, his role as someone trying to get to the bottom of them.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Email is a wonderful thing for people whose role in life is to be on top of things. But not for me; my role is to be on the bottom of things.",
+            "speaker": "Donald Knuth",
+            "year": "1990"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-25T08:19:56.677Z",
+    "label": "Writerdecks & Attention Hardware",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-25-adnoc-shadow-transit-hormuz-dark-fleet-iran-war": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT GOING DARK MEANS",
+        "body": "Under SOLAS rules, commercial vessels over 300 gross tons must broadcast AIS — automatic identification signals giving position, course, and identity. Switching it off is legal only in narrow safety cases (piracy zones). Routine AIS-off transit is the defining signature of a sanctions-evading 'dark fleet'.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **AIS spoofing** when a false position is broadcast, and **AIS dark** when the transponder is simply switched off. Both are violations of *SOLAS Chapter V* outside narrow exceptions."
+          }
+        ]
+      },
+      {
+        "heading": "THE RUSSIAN PLAYBOOK",
+        "body": "After the 2022 G7 oil price cap, Russia assembled roughly 600 aging tankers under flags of convenience — Gabon, Cameroon, San Marino — insured outside the Western P&I clubs. Ship-to-ship transfers off Greece, Malaysia, and the UAE laundered the cargo's origin. Iran had been running the same playbook since 2018."
+      },
+      {
+        "heading": "WHY FUJAIRAH",
+        "body": "Fujairah sits on the Indian Ocean side of the Musandam Peninsula — outside the Strait of Hormuz entirely. The UAE built a pipeline from Habshan to Fujairah specifically as a Hormuz bypass, and the anchorage is now the world's third-largest bunkering hub. Ship-to-ship transfers there happen in international waters, beyond any single state's enforcement reach.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AE",
+              "OM",
+              "IR",
+              "SA",
+              "QA"
+            ],
+            "label": "the Hormuz bypass geography",
+            "markers": [
+              {
+                "lat": 25.1288,
+                "lng": 56.3265,
+                "label": "Fujairah anchorage"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 24.4539,
+                "lng": 54.3773,
+                "label": "Abu Dhabi (ADNOC HQ)"
+              },
+              {
+                "lat": 29.0033,
+                "lng": 50.8311,
+                "label": "Kharg Island"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE BOTTLENECK",
+        "body": "Hormuz is 33 km wide at its narrowest, but the shipping lanes are just 3 km each — two inbound, two outbound, separated by a 3 km buffer. Roughly 21 million barrels of oil pass through daily, about 21% of global consumption. The deepest channel hugs the Iranian side, which is why Iranian naval positioning matters disproportionately."
+      },
+      {
+        "heading": "WHY THE GULF CAN'T BYPASS HORMUZ",
+        "body": "Saudi Arabia's East-West Pipeline (5 mbd) and the UAE's Habshan-Fujairah line (1.5 mbd) together reroute maybe a third of Gulf exports. Qatar, Kuwait, Bahrain, and Iraq have no bypass at all — their entire crude and LNG output must transit Hormuz.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Saudi Arabia",
+                "value": "~50% bypass",
+                "cc": "SA",
+                "tone": "favorable",
+                "weight": 5
+              },
+              {
+                "label": "UAE",
+                "value": "~50% bypass",
+                "cc": "AE",
+                "tone": "favorable",
+                "weight": 1.5
+              },
+              {
+                "label": "Iraq",
+                "value": "0% bypass",
+                "cc": "IQ",
+                "tone": "unfavorable",
+                "weight": 3.5
+              },
+              {
+                "label": "Kuwait",
+                "value": "0% bypass",
+                "cc": "KW",
+                "tone": "unfavorable",
+                "weight": 2.8
+              },
+              {
+                "label": "Qatar",
+                "value": "0% bypass",
+                "cc": "QA",
+                "tone": "unfavorable",
+                "weight": 4.5
+              },
+              {
+                "label": "Iran",
+                "value": "~5% bypass",
+                "cc": "IR",
+                "tone": "unfavorable",
+                "weight": 2.5
+              }
+            ],
+            "label": "Gulf export bypass capacity vs Hormuz exposure"
+          }
+        ]
+      },
+      {
+        "heading": "THE INSURANCE CHOKEPOINT",
+        "body": "Lloyd's of London war-risk premiums — not the mines or missiles themselves — are what actually close a shipping lane. Once premiums spike, commercial vessels reroute or go dark regardless of physical conditions. Going dark also means leaving the Western P&I insurance clubs that demand AIS compliance; ADNOC's pivot signals it has lined up alternative coverage, most likely Russian or Chinese.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              56,
+              58,
+              59,
+              57,
+              44,
+              41,
+              41,
+              33,
+              37,
+              27,
+              32,
+              49,
+              43,
+              41,
+              41,
+              24,
+              26,
+              24,
+              24,
+              24,
+              25,
+              20,
+              18,
+              20,
+              18,
+              32,
+              26,
+              14,
+              67,
+              32,
+              28
+            ],
+            "periods": [
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 25"
+            ],
+            "label": "Donald Trump announce that the United…",
+            "unit": "%",
+            "highlight": "last",
+            "annotations": [
+              {
+                "atIndex": 0,
+                "label": "56%"
+              },
+              {
+                "atIndex": 30,
+                "label": "28%"
+              }
+            ],
+            "link": "https://polymarket.com/event/trump-announces-us-blockade-of-hormuz-lifted-by",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson planners took from that war: disruption is easier to threaten than to sustain. The current ADNOC pivot is the inverse — producers preempting disruption by going dark before any shooting begins.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What ended the 1980s Tanker War's impact on global oil prices?",
+            "options": [
+              "Iran-Iraq ceasefire in 1988",
+              "US-led reflagging of Kuwaiti tankers under American flags",
+              "Saudi Arabia opening the East-West Pipeline",
+              "OPEC production cuts that offset losses"
+            ],
+            "correct": 1,
+            "explanation": "Operation Earnest Will (1987) reflagged Kuwaiti tankers as American and escorted them with US warships — markets calmed once the disruption became politically containable, well before the war itself ended."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Polymarket · as of 2026-05-25"
+    ],
+    "generatedAt": "2026-05-25T08:20:31.907Z",
+    "label": "Dark Fleets & Hormuz",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-25-bitcoin-oil-slide-asian-equities-risk-correlation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CORRELATION THAT BROKE THE NARRATIVE",
+        "body": "Bitcoin was sold for a decade as 'digital gold' — an uncorrelated hedge against fiat debasement. In practice, its daily moves track the Nasdaq and Asian equity futures far more tightly than gold. When risk appetite rises, BTC rises with tech stocks; when it falls, BTC falls with them.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The label *digital gold* survived because it sold the story; the **correlation matrix** tells a different one. Bitcoin's 90-day correlation with gold has spent most of the post-2020 era near zero, while its correlation with risk-on equities sits structurally positive."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ETF FLOWS MATTER NOW",
+        "body": "Spot bitcoin ETFs, approved in the US in January 2024, channeled hundreds of billions into BTC through traditional brokerage accounts. The buyers are not crypto natives — they are 60/40 portfolios and RIAs who treat BTC as a risk-asset sleeve. When they de-risk, they sell BTC the same way they sell QQQ.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Spot bitcoin ETFs were approved in the US by which regulator, and when?",
+            "options": [
+              "CFTC, 2017",
+              "SEC, January 2024",
+              "Federal Reserve, 2023",
+              "Treasury (OFAC), 2024"
+            ],
+            "correct": 1,
+            "explanation": "The SEC approved 11 spot bitcoin ETFs in January 2024 after a decade of rejections, finally bowing to a court ruling in the Grayscale case."
+          }
+        ]
+      },
+      {
+        "heading": "WHY OIL MOVES FIRST",
+        "body": "In a Hormuz-risk shock, oil is the cleanest expression: roughly 21% of global oil consumption transits the strait, and supply is short-run inelastic. Equities and crypto react to the same headlines but second-order — through expected growth, inflation pass-through, and central-bank reaction functions.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the chokepoint that moved the tape",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 29.0668,
+                "lng": 50.3,
+                "label": "Kharg Island terminal"
+              },
+              {
+                "lat": 25.1417,
+                "lng": 56.3433,
+                "label": "Fujairah (UAE bypass)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE GOLD COMPARISON",
+        "body": "Gold genuinely behaves as a haven: it rises on geopolitical shocks, rises on real-rate compression, and is uncorrelated with equity drawdowns. Bitcoin shares one attribute — fixed supply — but lacks the others: no central-bank reserve demand, no millennia of monetary memory, no settlement role in sovereign trade.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Gold",
+                "value": "true haven",
+                "tone": "favorable"
+              },
+              {
+                "label": "US Treasuries",
+                "value": "rate-sensitive haven",
+                "tone": "favorable"
+              },
+              {
+                "label": "Swiss franc",
+                "value": "FX haven",
+                "tone": "favorable"
+              },
+              {
+                "label": "Bitcoin",
+                "value": "risk asset",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Nasdaq",
+                "value": "risk asset",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "haven characteristics"
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf during the Tanker War. Oil spiked, then markets adapted: tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson traders carry into every Hormuz scare: disruption is easier to threaten than to sustain, and the unwind is sharp.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              77619.14,
+              78645.13,
+              77361.3,
+              76345.23,
+              75774.89,
+              76286.58,
+              78172.07,
+              78655.35,
+              78562.55,
+              79823.89,
+              80925.09,
+              81425,
+              80022.04,
+              80189.07,
+              80678.03,
+              82145.66,
+              81725.21,
+              80480.89,
+              79277.8,
+              81051.98,
+              79068.82,
+              78135.01,
+              77425.72,
+              76952.21,
+              76808.81,
+              77459.94,
+              77546.34,
+              75482.52,
+              76672.79,
+              76988.16,
+              77217.06
+            ],
+            "periods": [
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 25"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-25"
+    ],
+    "generatedAt": "2026-05-25T08:21:02.126Z",
+    "label": "Bitcoin as a Risk Asset",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-25-bitcoin-options-nasdaq-phlx-cash-settled-sec-approval": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT CASH-SETTLED MEANS",
+        "body": "At expiry, no bitcoin changes hands — the loser wires dollars equal to the price difference. This sidesteps the hardest problem in crypto finance: custody. A pension fund can take bitcoin exposure without ever touching a private key or trusting an exchange.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The opposite is **physical settlement**, where the actual asset is delivered. CME bitcoin futures launched cash-settled in 2017 for precisely this reason; Bakkt's physically-settled version arrived two years later and never matched the volume."
+          }
+        ]
+      },
+      {
+        "heading": "WHY OPTIONS, NOT JUST FUTURES",
+        "body": "Futures lock in a price. Options grant the right but not the obligation — letting institutions hedge tail risk without giving up upside. This is the instrument insurance companies, endowments, and corporate treasuries actually need before they can hold a volatile asset on their balance sheet.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does an option holder pay for that a futures holder doesn't?",
+            "options": [
+              "The right to walk away if the trade moves against them",
+              "The ability to use leverage",
+              "Exposure to the underlying asset's price",
+              "Lower transaction costs"
+            ],
+            "correct": 0,
+            "explanation": "Options buyers pay a premium for optionality — the right to not exercise. Futures obligate both sides to settle regardless of where the price ends up."
+          }
+        ]
+      },
+      {
+        "heading": "THE TWO-REGULATOR PROBLEM",
+        "body": "US law splits derivatives oversight between the SEC (securities) and CFTC (commodities). Bitcoin is a commodity per CFTC rulings, but an option on a bitcoin index is a security. Every new crypto product must navigate both agencies — which is why approval timelines stretch for years and products often launch in fragments."
+      },
+      {
+        "heading": "THE SPOT-ETF PRECEDENT",
+        "body": "The SEC rejected spot bitcoin ETFs for over a decade, citing manipulation risk, before approving them in January 2024 after a federal court ordered a fresh review. The floodgate that opened then — over $50bn in inflows in the first year — is the template regulators are now extending to the derivatives stack."
+      },
+      {
+        "heading": "WHAT INSTITUTIONS UNLOCK",
+        "body": "Many regulated funds have charters that forbid holding 'physical' crypto or using unregulated venues. Cash-settled, exchange-listed options on a US national securities exchange clear both bars at once. The customer base isn't retail traders — it's the trillions of dollars currently locked out by mandate.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              77619.14,
+              78645.13,
+              77361.3,
+              76345.23,
+              75774.89,
+              76286.58,
+              78172.07,
+              78655.35,
+              78562.55,
+              79823.89,
+              80925.09,
+              81425,
+              80022.04,
+              80189.07,
+              80678.03,
+              82145.66,
+              81725.21,
+              80480.89,
+              79277.8,
+              81051.98,
+              79068.82,
+              78135.01,
+              77425.72,
+              76952.21,
+              76808.81,
+              77459.94,
+              77546.34,
+              75482.52,
+              76672.79,
+              76988.16,
+              77217.06
+            ],
+            "periods": [
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 25"
+            ],
+            "label": "Bitcoin",
+            "unit": "$",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "CoinGecko · as of 2026-05-25"
+    ],
+    "generatedAt": "2026-05-25T08:21:26.752Z",
+    "label": "Cash-Settled Crypto Derivatives",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-25-hajj-heat-cooling-mecca-climate-pilgrimage": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RITE THAT CANNOT MOVE",
+        "body": "Hajj follows the lunar Hijri calendar, which drifts about 11 days earlier each solar year against the Gregorian. The pilgrimage cycles through every season roughly every 33 years — and is now entering a multi-decade run through the Arabian summer that will not end until the 2040s.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The current cycle places Hajj in *Dhu al-Hijjah* falling across **June–August** through the late 2030s — the hottest stretch of the Arabian year, by accident of the calendar."
+          }
+        ]
+      },
+      {
+        "heading": "THE ARAFAT BOTTLENECK",
+        "body": "The standing at Arafat — Wuquf — is the one rite without which the Hajj is invalid. Roughly two million pilgrims must be on the plain from noon to sunset on the 9th of Dhu al-Hijjah. There is no shaded substitute, no indoor version, no postponement. The fiqh is settled and the geography is fixed.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SA"
+            ],
+            "label": "the ritual geography around Mecca",
+            "markers": [
+              {
+                "lat": 21.4225,
+                "lng": 39.8262,
+                "label": "Masjid al-Haram"
+              },
+              {
+                "lat": 21.3547,
+                "lng": 39.9839,
+                "label": "Plain of Arafat"
+              },
+              {
+                "lat": 21.4133,
+                "lng": 39.8933,
+                "label": "Mina tent city"
+              },
+              {
+                "lat": 21.4106,
+                "lng": 39.9367,
+                "label": "Muzdalifah"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WET-BULB, NOT AIR TEMPERATURE",
+        "body": "Heat kills through humidity, not temperature alone. The body cools almost entirely through sweat evaporation; when air is saturated, sweat stays on the skin, core temperature climbs past 40°C, and organ failure begins within hours. Jeddah's coastal humidity pushes Mecca's effective heat well past the dry 45°C reading."
+      },
+      {
+        "heading": "THE UNREGISTERED PROBLEM",
+        "body": "The 2024 death toll concentrated overwhelmingly among unregistered pilgrims — those who entered on tourist visas to avoid quota costs and slept outdoors without access to the air-conditioned tent cities at Mina. The Saudi quota system rations not just numbers but survival infrastructure.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of the 1,300+ Hajj heat deaths in 2024 were unregistered pilgrims without access to cooled facilities?",
+            "options": [
+              "Roughly a quarter",
+              "Roughly half",
+              "More than 80%",
+              "Almost none — registration didn't matter"
+            ],
+            "correct": 2,
+            "explanation": "Saudi authorities reported that over 80% of 2024 heat fatalities were unregistered pilgrims who lacked access to the air-conditioned tents and water stations reserved for quota holders."
+          }
+        ]
+      },
+      {
+        "heading": "THE WARMING TREND",
+        "body": "Mecca has warmed roughly 2°C since the 1980s — faster than the global average, as is typical of arid regions. Peer-reviewed projections from MIT and others have flagged the Arabian Peninsula as one of the first inhabited regions where wet-bulb temperatures will routinely exceed human survival limits by mid-century.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Peak summer wet-bulb temperature, recent years",
+            "peers": [
+              {
+                "value": 34.5,
+                "cc": "SA"
+              },
+              {
+                "value": 35,
+                "cc": "AE"
+              },
+              {
+                "value": 33.5,
+                "cc": "PK"
+              },
+              {
+                "value": 32.5,
+                "cc": "IN"
+              },
+              {
+                "value": 33,
+                "cc": "IQ"
+              },
+              {
+                "value": 34,
+                "cc": "QA"
+              },
+              {
+                "value": 33.8,
+                "cc": "BH"
+              }
+            ],
+            "subjectCc": "SA",
+            "unit": "°C"
+          }
+        ]
+      },
+      {
+        "heading": "THE SCRIPTURAL WEIGHT",
+        "body": "Hajj is the fifth pillar of Islam, obligatory once in a lifetime on every Muslim with the physical and financial means — istita'ah. Classical fiqh treats inability, including bodily frailty in extreme heat, as a valid exemption; a son or paid proxy may perform Hajj al-Badal on behalf of one who cannot. The obligation is real but not unconditional."
+      },
+      {
+        "heading": "THE COOLING ARMS RACE",
+        "body": "Saudi Arabia has spent decades engineering against the heat: the white marble of the Mataf reflects sunlight, the Jamarat Bridge is climate-controlled, Mina's tents are air-conditioned, and the Grand Mosque now runs one of the largest district cooling plants on earth. The investment buys time against a curve that is steepening faster than the infrastructure.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Grand Mosque's cooling plant moves chilled water through pipes from a facility ~7km away — roughly **155,000 tons** of refrigeration capacity, enough to cool a small city."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-25T08:22:05.070Z",
+    "label": "Hajj & Heat",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-25-microeledone-galapagensis-blue-octopus-deep-sea-discovery": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MIDNIGHT ZONE",
+        "body": "Below 1,000 metres, sunlight is effectively zero. At 1,800 metres — the bathypelagic — pressure exceeds 180 atmospheres, temperatures hover near 4°C, and food rains down as marine snow from above. Most species described here are known from a single specimen.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Marine biologists estimate that **over two-thirds** of deep-sea species remain undescribed — not because they are rare, but because *sampling effort* is the binding constraint."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CT SCANS NOW",
+        "body": "Traditional taxonomy meant dissection — cutting the specimen open to examine gills, gonads, and the radula. For a unique holotype, that destroys the only evidence. Micro-CT scanning resolves internal anatomy at micron scale without a single cut, letting one specimen serve indefinitely."
+      },
+      {
+        "heading": "THE DISJUNCT RANGE",
+        "body": "Galápagos and Uruguay sit on opposite sides of South America, separated by the continent itself. A sister-species pair split this way usually signals an ancient ocean connection — the Central American Seaway, which closed roughly 3 million years ago when the Isthmus of Panama rose and severed Atlantic-Pacific deep-water exchange.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "EC",
+              "UY",
+              "PA",
+              "CO",
+              "PE",
+              "CL",
+              "BR",
+              "AR"
+            ],
+            "label": "the disjunct pair",
+            "markers": [
+              {
+                "lat": -0.7893,
+                "lng": -91.1265,
+                "label": "Galápagos"
+              },
+              {
+                "lat": -34.9011,
+                "lng": -56.1645,
+                "label": "Uruguay coast"
+              },
+              {
+                "lat": 9.08,
+                "lng": -79.68,
+                "label": "Isthmus of Panama"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE HOLOTYPE PROBLEM",
+        "body": "In zoology, the holotype is the single specimen that defines a species. If lost or destroyed, the species name itself becomes unanchored. Museums treat holotypes as irreplaceable — fireproof vaults, climate control, restricted access — because every future comparison depends on them."
+      },
+      {
+        "heading": "WHY ROVs CHANGED EVERYTHING",
+        "body": "Until the 1990s, deep-sea sampling meant trawls that crushed soft-bodied animals into pulp. Remotely operated vehicles with manipulator arms and suction samplers recover gelatinous creatures intact. The Galápagos Marine Reserve has been surveyed by ROV fewer than a dozen times — each dive routinely yields species new to science.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what fraction of the deep ocean floor has been mapped at high resolution?",
+            "options": [
+              "About 5%",
+              "About 25%",
+              "About 60%",
+              "About 90%"
+            ],
+            "correct": 0,
+            "explanation": "Less than a quarter of the seafloor is mapped at modern resolution; high-resolution coverage is closer to 5%. We have better maps of Mars."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-25T08:22:30.353Z",
+    "label": "Deep-sea taxonomy",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-25-psilocybin-sex-difference-dopamine-mice-nature": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT PSILOCYBIN ACTUALLY DOES",
+        "body": "Psilocybin is a prodrug — the liver dephosphorylates it into psilocin, which binds the serotonin 5-HT2A receptor on cortical pyramidal neurons. That single receptor interaction triggers the cascade of perceptual, emotional, and plasticity effects the drug is famous for.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The active molecule is **psilocin**, not psilocybin — the mushroom evolved the phosphate group as a *storage form* that resists oxidation until digestion."
+          }
+        ]
+      },
+      {
+        "heading": "WHY DOPAMINE MATTERS HERE",
+        "body": "Serotonin agonists like psilocybin don't bind dopamine receptors directly, but 5-HT2A activation in the prefrontal cortex modulates downstream dopamine release in the ventral striatum — the brain's novelty and reward circuit. A blunted dopamine novelty-response means the reward system has been recalibrated, not silenced."
+      },
+      {
+        "heading": "THE SEX-DIFFERENCE BLINDSPOT",
+        "body": "Until a 1993 NIH mandate, women were routinely excluded from early-phase drug trials to avoid pregnancy risk and hormonal 'noise.' Mouse studies inherited the same bias — male mice were standard because estrous cycles complicated data. Half of pharmacology was effectively built on male physiology."
+      },
+      {
+        "heading": "WHY TIMING WINDOWS GET MISSED",
+        "body": "Most psychedelic trials measure outcomes at one or two fixed points — often 24 hours and then weeks later. If a neurochemical effect peaks at 6 hours in one sex and 48 hours in another, a single-timepoint design averages them into invisibility. The drug looks weaker than it is, in opposite directions for each group.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did 20th-century pharmacology default to male-only animal studies?",
+            "options": [
+              "Male mice are cheaper to breed",
+              "Estrous cycle hormones were considered confounding noise",
+              "Female mice are too aggressive for social-behavior tests",
+              "Regulators required male-only cohorts"
+            ],
+            "correct": 1,
+            "explanation": "Estrous-cycle variation was treated as a confound to eliminate rather than a variable to study — which is exactly why sex-specific effects were missed for decades."
+          }
+        ]
+      },
+      {
+        "heading": "THE CLINICAL STAKES",
+        "body": "Psilocybin is in late-stage trials for treatment-resistant depression, with FDA breakthrough designation since 2018. If men and women respond on different timelines, the standard one-dose protocol may be optimized for neither — and post-hoc subgroup analysis won't recover what a flat trial design never measured."
+      }
+    ],
+    "generatedAt": "2026-05-25T08:22:54.548Z",
+    "label": "Psilocybin & Sex-Specific Neuroscience",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-25-toshifumi-suzuki-7-eleven-japan-retail-logistics": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INVERSION",
+        "body": "Suzuki licensed 7-Eleven from Southland Corporation in 1973 when the American chain was struggling with thin margins and inventory waste. Seventeen years later, the Japanese licensee bought the bankrupt parent — one of the first cases of a Japanese company acquiring its American licensor.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The deal made Ito-Yokado the parent of *Southland*, reversing the licensing flow. Today Seven & i runs roughly **85,000 stores** worldwide — more than McDonald's, Starbucks, and Subway combined."
+          }
+        ]
+      },
+      {
+        "heading": "TANPIN KANRI",
+        "body": "Suzuki's core operational innovation was tanpin kanri — single-item management. Every store clerk tracks every SKU's hourly sales against weather, local events, and demographics, then adjusts orders three times daily. The store, not headquarters, decides what sits on the shelf."
+      },
+      {
+        "heading": "THE COLD CHAIN",
+        "body": "Japanese konbini run on a temperature-segregated logistics network: frozen, chilled, room-temperature, and hot trucks deliver to each store three times a day. Fresh rice balls and bento boxes have shelf lives measured in hours, not days — which is why konbini food tastes nothing like Western convenience food."
+      },
+      {
+        "heading": "THE BANKING PIVOT",
+        "body": "Seven Bank, launched in 2001, is not a retail bank — it earns fees from ATM transactions placed inside 7-Eleven stores. The model treats the store network as a distribution rail for financial services, with the ATM as the highest-margin product per square foot in the building.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "7-Eleven Japan",
+                "value": "~21,600 stores",
+                "cc": "JP",
+                "weight": 21600,
+                "tone": "favorable"
+              },
+              {
+                "label": "FamilyMart",
+                "value": "~16,300 stores",
+                "cc": "JP",
+                "weight": 16300,
+                "tone": "neutral"
+              },
+              {
+                "label": "Lawson",
+                "value": "~14,600 stores",
+                "cc": "JP",
+                "weight": 14600,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Japan's konbini big three"
+          }
+        ]
+      },
+      {
+        "heading": "THE COUCHE-TARD BID",
+        "body": "Alimentation Couche-Tard, the Canadian operator of Circle K, bid for Seven & i in 2024–25 — the largest foreign takeover attempt ever launched at a Japanese company. METI's designation of Seven & i as 'core' under the Foreign Exchange and Foreign Trade Act gave Tokyo a national-security veto over any deal.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did Japan classify a convenience store chain as a 'core' national-security asset?",
+            "options": [
+              "It runs critical food-supply logistics during disasters",
+              "It holds classified defense contracts",
+              "Its ATM network processes military payroll",
+              "Its stores are protected cultural property"
+            ],
+            "correct": 0,
+            "explanation": "Konbini are designated lifeline infrastructure under Japan's disaster-response law — they keep food and water flowing during earthquakes, which is why a foreign takeover triggered FEFTA review."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-25T08:23:21.960Z",
+    "label": "Convenience Store Logistics",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-25-tsikhanouskaya-kyiv-belarus-opposition-ukraine-visit": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE STOLEN ELECTION",
+        "body": "Tsikhanouskaya ran in August 2020 only because her husband, video blogger Sergei Tikhanovsky, was jailed before he could register. Official results gave Lukashenko 80%; independent tallies and exit polls suggested she had actually won. The protests that followed were the largest in Belarusian history.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1994",
+                "label": "Lukashenko first elected"
+              },
+              {
+                "year": "2020-05",
+                "label": "Tikhanovsky arrested"
+              },
+              {
+                "year": "2020-08",
+                "label": "Disputed election",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020-08",
+                "label": "Tsikhanouskaya flees to Vilnius"
+              },
+              {
+                "year": "2022-02",
+                "label": "Russia invades Ukraine from Belarus"
+              },
+              {
+                "year": "2023",
+                "label": "Tactical nukes deployed to Belarus"
+              },
+              {
+                "year": "2026-05",
+                "label": "First Kyiv visit"
+              }
+            ],
+            "label": "the Belarus opposition arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE CO-BELLIGERENT QUESTION",
+        "body": "Belarus let Russian forces stage the February 2022 northern thrust toward Kyiv from its territory, hosts Russian tactical nuclear weapons since 2023, and routes military logistics across its rail network. Under international law this arguably makes Belarus a *co-belligerent*, even though Belarusian troops have not crossed the border in formed units.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BY",
+              "UA",
+              "RU",
+              "PL",
+              "LT"
+            ],
+            "label": "the northern front geography",
+            "markers": [
+              {
+                "lat": 50.4501,
+                "lng": 30.5234,
+                "label": "Kyiv"
+              },
+              {
+                "lat": 53.9006,
+                "lng": 27.559,
+                "label": "Minsk"
+              },
+              {
+                "lat": 52.0976,
+                "lng": 23.7341,
+                "label": "Brest (rail hub)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE VILNIUS GOVERNMENT",
+        "body": "Tsikhanouskaya operates from Lithuania, which granted her movement de-facto recognition, a passport scheme for stateless Belarusians, and a physical headquarters. Vilnius — once the cultural capital of the Grand Duchy of Lithuania, which included most of modern Belarus — has become the operational base for the exile cabinet.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Her cabinet calls itself the **United Transitional Cabinet**, deliberately avoiding *government-in-exile* — a legal term that would imply claims most Western states are not ready to back."
+          }
+        ]
+      },
+      {
+        "heading": "WHY KYIV MATTERS NOW",
+        "body": "Ukraine had refused official-level contact with the Belarusian opposition for years, fearing it would complicate any future deal with Minsk over the border. A Zelensky meeting signals Kyiv has written off rapprochement with Lukashenko and is treating regime change in Minsk as a war aim adjacent to its own survival."
+      },
+      {
+        "heading": "THE KALINOUSKI REGIMENT",
+        "body": "Several hundred Belarusian volunteers fight inside the Ukrainian armed forces under the Kastus Kalinouski Regiment, named for the 1863 anti-Russian uprising leader. They are the only organized Belarusian military formation actively opposing Lukashenko — and they fight on Ukrainian, not Belarusian, soil.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is the Belarusian volunteer unit in Ukraine named after Kastus Kalinouski?",
+            "options": [
+              "He led an 1863 uprising against Russian rule in Belarus and Lithuania",
+              "He was Belarus's first post-Soviet president",
+              "He commanded Belarusian partisans against the Nazis",
+              "He founded the modern Belarusian opposition in the 1990s"
+            ],
+            "correct": 0,
+            "explanation": "Kalinouski led the 1863 January Uprising against the Russian Empire and was executed in Vilnius — a founding figure of Belarusian national identity, deliberately invoked against Moscow."
+          }
+        ]
+      },
+      {
+        "heading": "THE RUBLE PEG",
+        "body": "Belarus's economy is so tightly bound to Russia's that the Belarusian ruble effectively tracks the Russian ruble, and roughly half of Belarus's trade is with Russia. Sanctions on Minsk after 2020 accelerated this dependency rather than breaking it — every Western door that closed pushed Lukashenko further into Moscow's orbit.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              75.185828,
+              75.229128,
+              74.873368,
+              75.315304,
+              74.749689,
+              74.94766,
+              74.972582,
+              74.972579,
+              74.935527,
+              75.000725,
+              75.496791,
+              74.745903,
+              74.572447,
+              74.240011,
+              74.240011,
+              74.481524,
+              73.600006,
+              73.827197,
+              74.177267,
+              72.949018,
+              72.7606,
+              72.760611,
+              72.790641,
+              72.776561,
+              71.198733,
+              71.250362,
+              71.195086,
+              71.79052,
+              71.79052,
+              71.003832
+            ],
+            "periods": [
+              "Apr 26",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25"
+            ],
+            "label": "Russian ruble",
+            "unit": "RUB / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-25"
+    ],
+    "generatedAt": "2026-05-25T08:24:03.091Z",
+    "label": "Belarus Opposition in Exile",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-25-venezuela-carmen-navas-political-prisoners-mothers": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FORO PENAL COUNT",
+        "body": "Foro Penal is the volunteer lawyer network that has tracked Venezuelan political detentions since 2002. Its count — over 400 currently held — is the figure the UN, EU, and OAS cite, because the state publishes none. The organization's founder, Alfredo Romero, built the methodology from Argentine human rights groups that documented the Dirty War detainees one name at a time.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The distinction matters: a **political prisoner** is someone detained for political reasons under any charge; a **prisoner of conscience** is held purely for beliefs without violence. Foro Penal uses the broader category because Venezuelan prosecutors routinely charge dissidents with **terrorism** or **treason**."
+          }
+        ]
+      },
+      {
+        "heading": "THE MASS GRAVE PROTOCOL",
+        "body": "Authoritarian states bury inconvenient deaths in unmarked common graves — fosas comunes — and withhold notification. The technique severs the body from the name, denying families the funeral rites that anchor political martyrdom. Pinochet's Chile, the Argentine junta, and Franco's Spain all used it; Venezuela's SEBIN intelligence service inherited the playbook.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1973",
+                "label": "Pinochet coup; Chilean disappearances begin"
+              },
+              {
+                "year": "1976",
+                "label": "Argentine junta; 30,000 disappeared",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1983",
+                "label": "Madres de Plaza de Mayo internationalized"
+              },
+              {
+                "year": "1999",
+                "label": "Chávez takes power in Venezuela"
+              },
+              {
+                "year": "2014",
+                "label": "First mass anti-Maduro protests; detentions begin"
+              },
+              {
+                "year": "2024",
+                "label": "Post-election crackdown; >2,000 arrests"
+              }
+            ],
+            "label": "the Latin American disappearance arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE MOTHERS' MOVEMENT",
+        "body": "Madres de Plaza de Mayo started in 1977 with fourteen Argentine mothers walking in circles around the presidential palace demanding their disappeared children. They created the template every successor movement uses — public weekly presence, white headscarves, refusal to leave until the state names the dead. The junta dismissed them as locas; the locas outlasted the junta."
+      },
+      {
+        "heading": "THE OIL-STATE PARADOX",
+        "body": "Venezuela holds the world's largest proven oil reserves yet runs the hemisphere's worst inflation and largest refugee outflow — nearly eight million people, surpassing Syria's exodus. The paradox is the regime's survival mechanism: an oil-funded state apparatus doesn't need taxpayer consent, which means it doesn't need to fear taxpayer dissent.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Latin American political prisoners (Foro Penal / WOLA estimates, 2025)",
+            "peers": [
+              {
+                "value": 408,
+                "cc": "VE"
+              },
+              {
+                "value": 1100,
+                "cc": "CU"
+              },
+              {
+                "value": 54,
+                "cc": "NI"
+              },
+              {
+                "value": 12,
+                "cc": "BO"
+              },
+              {
+                "value": 8,
+                "cc": "CO"
+              },
+              {
+                "value": 5,
+                "cc": "MX"
+              }
+            ],
+            "subjectCc": "VE",
+            "unit": "prisoners"
+          }
+        ]
+      },
+      {
+        "heading": "THE DIASPORA AS LEVERAGE",
+        "body": "Roughly a quarter of Venezuela's population has left since 2015. Colombia hosts the largest share, Peru and Brazil substantial others, and the United States now houses the political opposition's exiled leadership. The diaspora funds Foro Penal, lobbies sanctions regimes, and keeps the prisoner names in foreign press — which is what makes withholding a death for 16 months a tactic, not an oversight.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "VE",
+              "CO",
+              "PE",
+              "BR",
+              "EC",
+              "CL",
+              "US"
+            ],
+            "label": "Venezuelan diaspora — primary host countries",
+            "caption": "~8 million Venezuelans have left since 2015"
+          }
+        ]
+      },
+      {
+        "heading": "WHY SILENCE IS THE WEAPON",
+        "body": "Holding a body without notification keeps the family in suspended grief — they cannot mourn, cannot organize a funeral, cannot become a public symbol. The Argentine junta perfected this: a confirmed dead son becomes a martyr; a missing son becomes a manageable file. The cruelty is structural, not incidental.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do authoritarian states withhold confirmation of a prisoner's death rather than simply announce it?",
+            "options": [
+              "To avoid international legal liability for the killing itself",
+              "To prevent the family from organizing a public funeral that becomes a political symbol",
+              "Because record-keeping in the prison system has broken down",
+              "To extract further information from the family in exchange for the body"
+            ],
+            "correct": 1,
+            "explanation": "A confirmed death produces a martyr and a funeral procession; a missing person produces only a grieving family the state can ignore. Suspended grief is the design feature."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-25T08:24:44.098Z",
+    "label": "Venezuela's Disappeared",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-25-vietnam-truong-my-lan-auction-asset-recovery-shortfall": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SCALE",
+        "body": "Truong My Lan was convicted of orchestrating fraud at Saigon Commercial Bank totaling roughly $44 billion — about 12% of Vietnam's GDP. It is the largest single-defendant financial crime ever prosecuted anywhere, dwarfing Madoff's $65bn Ponzi (which spanned decades and thousands of investors).",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Largest single-defendant financial fraud cases",
+            "peers": [
+              {
+                "value": 65,
+                "label": "Madoff"
+              },
+              {
+                "value": 44,
+                "label": "Truong My Lan (SCB)"
+              },
+              {
+                "value": 7,
+                "label": "Stanford"
+              },
+              {
+                "value": 2,
+                "label": "Wirecard"
+              },
+              {
+                "value": 4.5,
+                "label": "1MDB"
+              },
+              {
+                "value": 11,
+                "label": "Enron"
+              }
+            ],
+            "subjectLabel": "Truong My Lan (SCB)",
+            "unit": "$bn"
+          }
+        ]
+      },
+      {
+        "heading": "HOW THE FRAUD WORKED",
+        "body": "Lan held only 5% of SCB on paper — Vietnamese law caps single-shareholder ownership at that level — but controlled roughly 90% through dozens of nominees. She then directed the bank to issue loans to ~1,000 shell companies she owned, with the loan proceeds flowing back to her property empire (Van Thinh Phat).",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The mechanism has a name in financial-crime literature: **connected lending**. It is what brought down BCCI in 1991 and what the Basel rules on **single-borrower limits** (typically 25% of bank capital) exist to prevent."
+          }
+        ]
+      },
+      {
+        "heading": "THE BLAZING FURNACE",
+        "body": "The case sits inside General Secretary Nguyen Phu Trong's anti-corruption campaign — known domestically as 'dot lo' (the blazing furnace) — launched in 2016. It has unseated two presidents, the National Assembly chair, and hundreds of senior cadres. Critics call it a factional purge dressed as reform; supporters note the recovery rate on stolen assets has tripled.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2016",
+                "label": "Trong launches 'dot lo' campaign",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022-10",
+                "label": "Lan arrested; SCB bank run"
+              },
+              {
+                "year": "2024-04",
+                "label": "Death sentence, phase one"
+              },
+              {
+                "year": "2024-10",
+                "label": "Life sentence, phase two"
+              },
+              {
+                "year": "2024-12",
+                "label": "Death penalty for embezzlement abolished"
+              }
+            ],
+            "label": "the blazing furnace"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DEATH BECAME LIFE",
+        "body": "Vietnamese law contains an unusual escape valve: a defendant sentenced to death for embezzlement can have it commuted to life imprisonment by returning at least 75% of misappropriated assets. The provision exists specifically to incentivize recovery — the state would rather have the money than the body."
+      },
+      {
+        "heading": "WHY RECOVERY IS HARD",
+        "body": "Asset recovery from mega-frauds globally averages 5-15% of stolen value. Funds move through layered shells across jurisdictions faster than courts can freeze them; physical assets (Bentleys, villas, hotels) auction for distressed prices; and prosecutors must prove the link between each asset and the crime before liquidation.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Globally, what share of stolen assets is typically recovered in mega-fraud cases?",
+            "options": [
+              "Under 15%",
+              "Around 40%",
+              "Around 70%",
+              "Over 90%"
+            ],
+            "correct": 0,
+            "explanation": "StAR Initiative data shows recovery on grand-corruption cases averages 5-15% — money launders faster than legal systems can trace it."
+          }
+        ]
+      },
+      {
+        "heading": "THE BANK RUN THAT FOLLOWED",
+        "body": "When Lan was arrested in October 2022, depositors queued outside SCB branches and the State Bank of Vietnam injected an emergency $24 billion to prevent collapse — one of the largest single-bank rescues in Asian history. The lender remains under 'special control,' a status SBV invokes when normal supervision can no longer contain the losses."
+      }
+    ],
+    "generatedAt": "2026-05-25T08:25:27.697Z",
+    "label": "Asset Recovery & Vietnam's Mega-Fraud",
+    "category": "politics",
+    "articleCount": 1
   }
 }
