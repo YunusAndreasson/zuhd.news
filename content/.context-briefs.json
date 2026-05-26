@@ -239866,5 +239866,1552 @@
     "label": "QT Prolongation & Antipsychotics",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-05-26-borno-cholera-2700-cases-iswap-water-collapse": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PATHOGEN",
+        "body": "Vibrio cholerae is a comma-shaped bacterium that colonizes the small intestine and secretes a toxin forcing cells to dump water and electrolytes into the gut lumen. Death comes not from the infection but from hypovolemic shock — a healthy adult can lose 10 liters of fluid in 24 hours.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The lethal mechanism is *dehydration*, not infection. This is why **oral rehydration salts** — a sachet of glucose and electrolytes mixed with clean water — cut cholera mortality from ~50% to under 1%. It is arguably the most cost-effective medical intervention ever devised."
+          }
+        ]
+      },
+      {
+        "heading": "THE SNOW MAP",
+        "body": "In 1854, London physician John Snow traced a cholera outbreak in Soho to a single contaminated water pump on Broad Street. By removing the pump handle he ended the outbreak — and founded modern epidemiology. Every cholera outbreak since has been, fundamentally, a water-infrastructure failure."
+      },
+      {
+        "heading": "WHY BORNO KEEPS BURNING",
+        "body": "ISWAP and Boko Haram have spent over a decade attacking boreholes, water-treatment plants, and the engineers who maintain them. Maiduguri's population swelled past 2 million with displaced people, but the water and sanitation system was built for a fraction of that. The pathogen is not the cause — the collapsed infrastructure is.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "NG",
+              "NE",
+              "TD",
+              "CM"
+            ],
+            "label": "the Lake Chad insurgency theatre",
+            "markers": [
+              {
+                "lat": 11.8469,
+                "lng": 13.1571,
+                "label": "Maiduguri"
+              },
+              {
+                "lat": 12.6,
+                "lng": 14.2,
+                "label": "Lake Chad basin"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE VACCINE LOGISTICS PROBLEM",
+        "body": "Oral cholera vaccine (OCV) exists, works, and is stockpiled globally by Gavi. The bottleneck is delivery: two doses, cold chain, and trained vaccinators reaching the population at risk. In territory contested by ISWAP, none of those three conditions hold reliably, which is why pre-positioning fails even when supply is available."
+      },
+      {
+        "heading": "THE LGA TIER",
+        "body": "Nigeria's 774 Local Government Areas are the constitutional delivery unit for primary healthcare — including outbreak response. But LGAs are the weakest fiscal tier, funded through federal transfers routed via state governors. When Borno's LGA health offices sit in towns the state cannot secure, the constitutional plumbing for response simply does not run.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phrase **\"primary healthcare\"** sounds like clinics, but in Nigerian federal law it specifically means the LGA-level facility that handles immunization, surveillance, and outbreak first-response. State and federal hospitals are downstream — they treat the cases the LGA tier failed to prevent."
+          }
+        ]
+      },
+      {
+        "heading": "THE EMERGENCY DECLARATION",
+        "body": "A formal public health emergency declaration unlocks federal funds, WHO coordination, and emergency procurement powers. Governments routinely delay declarations to avoid signaling state failure — but the delay itself amplifies the outbreak, since vaccination and chlorination only work before transmission saturates a population.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the case-fatality rate of severe cholera when oral rehydration therapy is administered promptly?",
+            "options": [
+              "Under 1%",
+              "Around 10%",
+              "Around 25%",
+              "Around 50%"
+            ],
+            "correct": 0,
+            "explanation": "ORT — glucose and electrolytes in clean water — cuts mortality from ~50% (untreated) to under 1%. The deaths in Borno are deaths of access, not of medicine."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-26T08:46:02.392Z",
+    "label": "Cholera & Conflict Zones",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-26-china-bohai-wig-ekranoplan-weapons-hardpoints": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PHYSICS",
+        "body": "Within roughly one wingspan of the surface, an aircraft's downwash hits the ground and bounces, compressing the air beneath the wing. Lift jumps, induced drag collapses. A wing in ground effect is two to three times more efficient than the same wing at altitude.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical name is a **wing-in-ground-effect** craft, or *ekranoplan* in Russian — literally 'screen-plane,' the screen being the sea surface itself."
+          }
+        ]
+      },
+      {
+        "heading": "THE SOVIET PRECEDENT",
+        "body": "The USSR built the Caspian Sea Monster in 1966 — a 544-tonne, eight-engine machine longer than a 747, designed to skim 5 meters above the waves at 500 km/h. The KM and its successor the Lun were Cold War oddities: too fast for ships, too low for radar, too fragile for open ocean.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Rostislav Alexeyev",
+                "role": "Soviet hydrofoil engineer, lead designer",
+                "years": "1916–1980",
+                "cc": "RU"
+              },
+              {
+                "name": "KM 'Caspian Sea Monster'",
+                "role": "544-tonne prototype",
+                "years": "1966–1980",
+                "cc": "RU"
+              },
+              {
+                "name": "Lun-class MD-160",
+                "role": "armed missile ekranoplan",
+                "years": "1987–1990s",
+                "cc": "RU"
+              }
+            ],
+            "label": "the ekranoplan lineage"
+          }
+        ]
+      },
+      {
+        "heading": "WHY BELOW RADAR",
+        "body": "Ground-based and ship-based radars are limited by Earth's curvature — a target flying at 3 meters disappears below the horizon at roughly 20 km, versus 400+ km for an aircraft at cruise altitude. Airborne early-warning radar helps, but sea clutter at low grazing angles still degrades detection."
+      },
+      {
+        "heading": "WHY NOBODY ELSE BUILT THEM",
+        "body": "Ground effect only works over flat surfaces. A 2-meter swell ends the flight. Maneuvering is sluggish because the cushion resists banking. The Lun could only operate in calm Caspian conditions; in the open Pacific or Atlantic, the operating envelope collapses to a handful of days per month."
+      },
+      {
+        "heading": "THE TAIWAN STRAIT ANGLE",
+        "body": "The Strait averages 180 km wide and is one of the calmer semi-enclosed seas in the region for much of the year. A WIG craft carrying tanks or marines at 400 km/h crosses it in under 30 minutes, beneath the radar horizon of Taiwan's coastal defenses — closing a window that hovercraft, which top out near 90 km/h, leave open for hours.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "TW"
+            ],
+            "label": "the strait",
+            "markers": [
+              {
+                "lat": 39,
+                "lng": 119,
+                "label": "Bohai Sea (test waters)"
+              },
+              {
+                "lat": 24.5,
+                "lng": 120,
+                "label": "Taiwan Strait"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE PAYLOAD CLASS",
+        "body": "WIG craft sit between ships and aircraft on the cost-per-tonne curve: roughly 10× the payload of a same-sized aircraft for similar fuel, but 10× faster than a same-tonnage ship. Arming one turns a logistics oddity into a missile platform that no existing doctrine — naval or air — has a clean answer for.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "At what altitude does a wing-in-ground-effect craft typically operate?",
+            "options": [
+              "Within one wingspan of the surface",
+              "At 100–500 meters, below most radar",
+              "Just above the boundary layer, around 50 meters",
+              "At sea level, in physical contact with the water"
+            ],
+            "correct": 0,
+            "explanation": "Ground effect only works within about one wingspan of the surface — for a large WIG, that's a few meters. Higher and the lift bonus disappears; lower and waves become a hazard."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-26T08:46:33.095Z",
+    "label": "WIG Craft & Ground Effect",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-26-cng-delhi-fourth-hike-iran-war-import-parity": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT CNG ACTUALLY IS",
+        "body": "Compressed natural gas is methane squeezed to ~200 times atmospheric pressure so it fits in a vehicle tank. India's auto-rickshaws, taxis, and city buses converted en masse after a 2002 Supreme Court order on Delhi air quality — making the capital uniquely exposed to gas prices in a way that petrol-driven cities are not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Delhi's CNG fleet exists because of a court order, not a market choice — the **Supreme Court's 2002 mandate** forced public transport off diesel onto gas to fight smog. The exposure to import prices is a side effect of that ruling."
+          }
+        ]
+      },
+      {
+        "heading": "THE IMPORT-PARITY MECHANIC",
+        "body": "India produces only about half the gas it consumes. The rest arrives as LNG — chilled to -162°C, shipped from Qatar, the UAE, and US Gulf terminals, regasified at Dahej and Hazira. Distributors price domestic CNG against this imported cost, so a spike in spot LNG at Asian benchmarks shows up at the Delhi pump within days."
+      },
+      {
+        "heading": "WHY HORMUZ MATTERS HERE",
+        "body": "Roughly a third of global LNG passes through the Strait of Hormuz, almost all of it from Qatar — the world's second-largest LNG exporter. When the strait is contested, the JKM (Japan-Korea Marker) spot price jumps, and every importer bidding for the same cargoes pays the new mark. India has no Hormuz bypass for gas the way Saudi Arabia has the East-West Pipeline for oil.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "QA",
+              "AE",
+              "OM",
+              "IR"
+            ],
+            "label": "the gas route to Delhi",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 51.5333,
+                "label": "Ras Laffan LNG (Qatar)"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 21.7,
+                "lng": 72.5,
+                "label": "Dahej LNG terminal"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHO ABSORBS THE SHOCK",
+        "body": "Petrol and diesel sit outside India's GST regime, letting the centre cushion price spikes via excise cuts. CNG is inside GST and lightly taxed already — there is no fat to trim. The shock passes through to the auto-rickshaw driver who cannot raise fares without state approval."
+      },
+      {
+        "heading": "THE LPG PARALLEL",
+        "body": "Commercial LPG — the 19-kg cylinders that fuel restaurants and tea stalls — tracks the Saudi CP (Contract Price), revised monthly. Domestic 14-kg cylinders are subsidised; commercial ones are not. When global LPG and LNG move together, both ends of India's informal economy — the rickshaw and the dhaba — get squeezed at once.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does Delhi feel global gas price shocks more than other Indian cities?",
+            "options": [
+              "A 2002 Supreme Court order forced public transport onto CNG",
+              "Delhi has no domestic gas pipeline connection",
+              "Delhi imports gas directly from Qatar, bypassing other states",
+              "CNG is taxed higher in Delhi than other states"
+            ],
+            "correct": 0,
+            "explanation": "The 2002 Supreme Court order on Delhi air quality forced auto-rickshaws, taxis, and buses onto CNG — locking the city's transport into gas prices."
+          }
+        ]
+      },
+      {
+        "heading": "THE INELASTICITY TRAP",
+        "body": "An auto-rickshaw driver cannot substitute away from CNG — the vehicle is converted, the alternative fuels are banned within the NCR, and fares are state-regulated. This is textbook inelastic demand: when the input price rises, the driver eats the margin until fare revisions catch up, often months later.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              94.257338,
+              94.420855,
+              94.762974,
+              95.171392,
+              94.951559,
+              94.89165,
+              94.910513,
+              94.951346,
+              95.361112,
+              95.029174,
+              94.729612,
+              94.62293,
+              94.425498,
+              94.425498,
+              94.8754,
+              95.576514,
+              95.55195,
+              95.719988,
+              95.829548,
+              96.003,
+              96.027,
+              96.13634,
+              96.389098,
+              96.875003,
+              96.376027,
+              96.243053,
+              95.719748,
+              95.700477,
+              95.415433,
+              95.341057
+            ],
+            "periods": [
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26"
+            ],
+            "label": "Indian rupee",
+            "unit": "INR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-26"
+    ],
+    "generatedAt": "2026-05-26T08:47:03.968Z",
+    "label": "CNG & Import Parity",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-26-east-palestine-emergency-spending-accountability-gap": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TWO-TRACK SYSTEM",
+        "body": "Congress moves emergency defense and foreign aid supplementals in days through expedited procedures, but domestic disaster relief routes through authorizing committees, EPA rulemaking, and appropriations cycles that take years. The speed gap reflects which constituencies have standing committees built around them.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ukraine aid 2022",
+                "value": "6 days",
+                "tone": "favorable",
+                "weight": 6
+              },
+              {
+                "label": "Israel aid 2023",
+                "value": "~30 days",
+                "tone": "neutral",
+                "weight": 30
+              },
+              {
+                "label": "COVID CARES Act",
+                "value": "12 days",
+                "tone": "favorable",
+                "weight": 12
+              },
+              {
+                "label": "East Palestine relief",
+                "value": "~1100+ days",
+                "tone": "unfavorable",
+                "weight": 1100
+              }
+            ],
+            "label": "emergency supplementals: days from introduction to signing"
+          }
+        ]
+      },
+      {
+        "heading": "THE POLLUTER-PAYS FICTION",
+        "body": "CERCLA — the 1980 Superfund law — was supposed to make polluters fund cleanup. In practice, the responsible party negotiates a consent decree with EPA that defines cleanup scope but rarely covers long-term health surveillance. Residents become claimants in tort litigation, not beneficiaries of a public health program.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The original Superfund had a **dedicated tax on chemical and petroleum industries** funding cleanup when polluters couldn't pay. Congress let that tax expire in **1995**; the trust fund ran dry by 2003. Cleanup now depends on whether the polluter is solvent and cooperative."
+          }
+        ]
+      },
+      {
+        "heading": "THE VINYL CHLORIDE PROBLEM",
+        "body": "The Norfolk Southern derailment released vinyl chloride, a known human carcinogen linked to liver angiosarcoma — a cancer with a latency period of 15 to 30 years. Standard epidemiological studies can't detect the signal for decades, which is exactly why a long-term cohort surveillance program would matter, and exactly why none gets funded.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is a long-term health registry essential after a vinyl chloride exposure event?",
+            "options": [
+              "Vinyl chloride causes immediate symptoms that need tracking",
+              "Associated cancers have 15-30 year latency periods",
+              "It's required by international treaty",
+              "Insurance companies mandate it"
+            ],
+            "correct": 1,
+            "explanation": "Vinyl chloride's signature cancer, liver angiosarcoma, can take decades to appear. Without a registry started now, the causal link to the derailment may never be provable."
+          }
+        ]
+      },
+      {
+        "heading": "THE 9/11 PRECEDENT",
+        "body": "The James Zadroga 9/11 Health and Compensation Act — which funds healthcare and monitoring for first responders and lower Manhattan residents — was not passed until 2010, nine years after the attacks. It took a sustained advocacy campaign led by Jon Stewart and dying firefighters to force a vote. The pattern is: chemical exposure, decades of denial, eventual program only after political theater.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2001-09",
+                "label": "WTC attacks; toxic dust exposure",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2006",
+                "label": "First responders begin dying of rare cancers"
+              },
+              {
+                "year": "2010",
+                "label": "Zadroga Act signed"
+              },
+              {
+                "year": "2015",
+                "label": "Reauthorized after Jon Stewart campaign"
+              },
+              {
+                "year": "2019",
+                "label": "Extended to 2090"
+              }
+            ],
+            "label": "9/11 health fund: nine years to law"
+          }
+        ]
+      },
+      {
+        "heading": "WHO HAS STANDING",
+        "body": "East Palestine is a village of about 4,700 people in rural eastern Ohio. It has no dedicated congressional caucus, no industry lobby aligned with its interests, and its two senators sit in different parties. Disaster relief in the US correlates less with severity than with the political weight of the affected jurisdiction.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US"
+            ],
+            "label": "the derailment site",
+            "caption": "Village of ~4,700 on the Ohio-Pennsylvania border",
+            "markers": [
+              {
+                "lat": 40.8326,
+                "lng": -80.5417,
+                "label": "East Palestine, OH"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-26T08:47:34.211Z",
+    "label": "Emergency Spending & Disaster Accountability",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-26-iran-war-global-south-economic-shock-oil-fertilizer": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE GLOBAL SOUTH ABSORBS THE SHOCK FIRST",
+        "body": "Wealthy economies hedge oil exposure through strategic reserves, futures markets, and currency strength. Low-income importers pay spot prices in dollars they must earn from exports. A Gulf supply shock hits Nairobi before it hits Berlin because Kenya has neither the reserves to release nor the credit to defer payment.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The technical term is **pass-through**: how fast a global price move reaches a retail pump. In OECD countries it takes months and gets cushioned by taxes; in frontier markets it lands in *weeks* and consumes scarce FX."
+          }
+        ]
+      },
+      {
+        "heading": "THE FERTILIZER CHANNEL",
+        "body": "Natural gas is the feedstock for synthetic nitrogen fertilizer — roughly 70-80% of urea production cost is gas. When Gulf LNG flows wobble, European and Asian gas prices spike, fertilizer plants idle, and the next planting season's yields collapse. The food crisis arrives one harvest after the energy crisis."
+      },
+      {
+        "heading": "THE 1973 PRECEDENT",
+        "body": "The OPEC embargo quadrupled oil prices in five months. Western economies hit recession; the developing world hit something worse — a debt spiral. African and Latin American states borrowed petrodollars recycled through Western banks to pay for fuel, and the 1980s lost decade was the bill. The transmission mechanism — fuel shock to sovereign debt crisis — is the template still in play.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1973",
+                "label": "OPEC embargo",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1979",
+                "label": "Iranian Revolution / second shock"
+              },
+              {
+                "year": "1982",
+                "label": "Mexico defaults — LatAm debt crisis"
+              },
+              {
+                "year": "1990",
+                "label": "Iraq invades Kuwait"
+              },
+              {
+                "year": "2008",
+                "label": "Brent peaks at $147"
+              },
+              {
+                "year": "2022",
+                "label": "Russia invades Ukraine"
+              }
+            ],
+            "label": "oil shocks and their aftermath"
+          }
+        ]
+      },
+      {
+        "heading": "WHO BUYS GULF OIL",
+        "body": "Persian Gulf crude does not primarily flow to the West. Roughly 80% goes east — China, India, Japan, South Korea — and a growing share to African and South Asian refiners with no alternative supplier. A Hormuz disruption is felt sharpest in Karachi, Colombo, Dar es Salaam, and Mombasa.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KE",
+              "TZ",
+              "PK",
+              "LK",
+              "BD",
+              "ET",
+              "SO",
+              "YE"
+            ],
+            "label": "Indian Ocean rim — most exposed to a Gulf shock",
+            "caption": "importers with thin reserves and no pipeline alternative"
+          }
+        ]
+      },
+      {
+        "heading": "THE FUEL SUBSIDY TRAP",
+        "body": "Most Global South governments cap retail fuel prices to prevent unrest. When global prices rise, the gap becomes a budget deficit the state absorbs. Cut the subsidy and riots follow; preserve it and the IMF arrives. Nigeria, Egypt, Indonesia, and Kenya have all cycled through this trap in the last three years.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What typically forces a Global South government to cut fuel subsidies?",
+            "options": [
+              "A democratic vote by the legislature",
+              "An IMF program conditionality",
+              "A central bank rate decision",
+              "A fall in global oil prices"
+            ],
+            "correct": 1,
+            "explanation": "Subsidy cuts almost always arrive as IMF conditionality — the fiscal math becomes unsustainable, and external financing comes with strings."
+          }
+        ]
+      },
+      {
+        "heading": "WFP AND THE HUNGER METRIC",
+        "body": "The World Food Programme's 'acute hunger' threshold (IPC Phase 3 or above) means a household cannot meet minimum food needs without selling productive assets — livestock, tools, land. Once crossed, recovery takes years even if prices normalize, because the asset base that generated income is gone."
+      }
+    ],
+    "generatedAt": "2026-05-26T08:48:07.179Z",
+    "label": "Oil Shocks & the Global South",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-26-south-korea-nuclear-submarine-roadmap-enrichment-cap": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY SUBMARINES WANT URANIUM",
+        "body": "A nuclear reactor lets a submarine stay submerged for months — diesel boats must surface or snorkel every few days to recharge batteries, and that is when satellites and sonar arrays find them. The reactor's fuel determines refueling cadence: low-enriched fuel needs a mid-life core swap requiring the hull to be cut open; highly enriched fuel can run the boat's entire 30-year service life without ever opening the reactor.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "US and UK boats run on **weapons-grade** uranium (>93%). France runs on roughly **6–7%** LEU and pays for it with mid-life refuels. The fuel choice is a doctrine, not just an engineering pick."
+          }
+        ]
+      },
+      {
+        "heading": "THE 20% LINE",
+        "body": "Under the 1973 US–ROK 123 Agreement, Seoul cannot enrich uranium above 20% — the international threshold separating low-enriched fuel from highly enriched uranium (HEU). The same line runs through every Iran negotiation. Above 20% is treated as a weapons-relevant capability whether or not the stated end-use is civilian.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the international threshold separating low-enriched uranium (LEU) from highly enriched uranium (HEU)?",
+            "options": [
+              "3.67%",
+              "20%",
+              "60%",
+              "90%"
+            ],
+            "correct": 1,
+            "explanation": "20% U-235 is the regulatory line. Below it is LEU; above it is HEU and treated as weapons-relevant regardless of stated use."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A 123 AGREEMENT IS",
+        "body": "Section 123 of the US Atomic Energy Act requires a bilateral pact before any US nuclear material, technology, or know-how can be exported. Each agreement sets the partner's enrichment and reprocessing limits. The US has roughly two dozen in force; they are the connective tissue of the nonproliferation regime outside the NPT itself.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "South Korea",
+                "value": "≤20%",
+                "cc": "KR",
+                "tone": "neutral"
+              },
+              {
+                "label": "Japan",
+                "value": "reprocessing OK",
+                "cc": "JP",
+                "tone": "favorable"
+              },
+              {
+                "label": "UAE",
+                "value": "no enrichment",
+                "cc": "AE",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "India",
+                "value": "civil-only (2008)",
+                "cc": "IN",
+                "tone": "neutral"
+              },
+              {
+                "label": "Australia",
+                "value": "AUKUS carve-out",
+                "cc": "AU",
+                "tone": "favorable"
+              }
+            ],
+            "label": "selected 123-Agreement partners and their enrichment ceiling"
+          }
+        ]
+      },
+      {
+        "heading": "THE AUKUS PRECEDENT",
+        "body": "In 2021 the US and UK agreed to transfer naval nuclear propulsion technology to Australia — the first such transfer since the 1958 US–UK Mutual Defense Agreement. The deal cracked a 63-year bright line: nuclear-propelled submarines for a non-nuclear-weapons state. Seoul now points at Canberra and asks why not.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1958",
+                "label": "US–UK Mutual Defense Agreement"
+              },
+              {
+                "year": "1968",
+                "label": "NPT opens for signature"
+              },
+              {
+                "year": "1973",
+                "label": "US–ROK 123 Agreement"
+              },
+              {
+                "year": "2015",
+                "label": "South Korea 123 renewed, 20% cap held"
+              },
+              {
+                "year": "2021",
+                "label": "AUKUS announced",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "US signals openness to ROK enrichment"
+              }
+            ],
+            "label": "the bright line erodes"
+          }
+        ]
+      },
+      {
+        "heading": "THE NORTH KOREAN BACKDROP",
+        "body": "Pyongyang launched its first ballistic-missile submarine, the Sinpo-class, in 2014 and tested a submarine-launched ballistic missile a year later. A sea-based deterrent is the leg of a nuclear triad that survives a first strike. Seoul's case for nuclear propulsion rests on the argument that diesel boats cannot trail and target a hidden SSBN.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "KR",
+              "KP",
+              "JP",
+              "CN"
+            ],
+            "label": "the Korean undersea theatre",
+            "markers": [
+              {
+                "lat": 35.0987,
+                "lng": 129.0359,
+                "label": "Busan naval base"
+              },
+              {
+                "lat": 40.0411,
+                "lng": 128.1894,
+                "label": "Sinpo shipyard (DPRK)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THIS ERODES THE REGIME",
+        "body": "The NPT treats peaceful nuclear use as a right but naval propulsion sits in a loophole — Article 14 allows the removal of fissile material from IAEA safeguards when used in 'non-proscribed military activity.' Every state that activates this loophole hands the same argument to the next aspirant. Iran, Brazil, and Saudi Arabia have all cited naval propulsion as a stated rationale for enrichment programs."
+      }
+    ],
+    "generatedAt": "2026-05-26T08:48:44.136Z",
+    "label": "Naval Reactors & the 123 Agreement",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-26-stablecoins-318-billion-exceed-95-nations-fx-reserves": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A STABLECOIN ACTUALLY IS",
+        "body": "A token whose issuer claims to hold one dollar of reserves — mostly short-dated US Treasuries — for every token minted. The peg is not algorithmic; it is the promise that the T-bill is there and redeemable.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Two issuers dominate: **Tether (USDT)** registered in the British Virgin Islands, and **Circle (USDC)** based in the US. Together they hold over *$200 billion* in US Treasuries — more than Germany."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE SOUTH WANTS THEM",
+        "body": "In a country with capital controls or a depreciating currency, a citizen who converts savings into USDT has effectively dollarized — without a US bank account, without crossing a border, without notifying the central bank. The dollar arrives through a phone, not a wire.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "China",
+                "value": "$3.2tn",
+                "cc": "CN",
+                "weight": 3200
+              },
+              {
+                "label": "Japan",
+                "value": "$1.2tn",
+                "cc": "JP",
+                "weight": 1200
+              },
+              {
+                "label": "Stablecoins",
+                "value": "$318bn",
+                "weight": 318,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Saudi Arabia",
+                "value": "$430bn",
+                "cc": "SA",
+                "weight": 430
+              },
+              {
+                "label": "Turkey",
+                "value": "$160bn",
+                "cc": "TR",
+                "weight": 160
+              },
+              {
+                "label": "Nigeria",
+                "value": "$40bn",
+                "cc": "NG",
+                "weight": 40
+              },
+              {
+                "label": "Pakistan",
+                "value": "$16bn",
+                "cc": "PK",
+                "weight": 16
+              }
+            ],
+            "label": "FX reserves vs stablecoin market cap"
+          }
+        ]
+      },
+      {
+        "heading": "THE BIS WARNING",
+        "body": "When residents flee local currency for dollar tokens, the central bank loses two things at once: the deposit base its banks lend against, and the demand for local currency that anchors the exchange rate. Depreciation accelerates, which drives the next wave of flight.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "saver",
+                "label": "EM saver"
+              },
+              {
+                "id": "exchange",
+                "label": "Crypto exchange"
+              },
+              {
+                "id": "issuer",
+                "label": "Stablecoin issuer"
+              },
+              {
+                "id": "tbill",
+                "label": "US Treasuries"
+              },
+              {
+                "id": "fed",
+                "label": "US financial system"
+              }
+            ],
+            "links": [
+              {
+                "source": "saver",
+                "target": "exchange",
+                "value": 100,
+                "label": "local currency"
+              },
+              {
+                "source": "exchange",
+                "target": "issuer",
+                "value": 100,
+                "label": "USD"
+              },
+              {
+                "source": "issuer",
+                "target": "tbill",
+                "value": 85,
+                "label": "reserves"
+              },
+              {
+                "source": "issuer",
+                "target": "fed",
+                "value": 15,
+                "label": "cash"
+              }
+            ],
+            "label": "how local savings exit"
+          }
+        ]
+      },
+      {
+        "heading": "WHO HOLDS THE TREASURIES",
+        "body": "Tether's reserve disclosures show roughly $100bn in short-dated US government debt. If Tether were a country, it would sit around the 18th-largest foreign holder of Treasuries — above the UAE, below Germany. A private firm in the BVI has become a Treasury market participant on the scale of a G20 state.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Where is Tether, the largest stablecoin issuer, legally domiciled?",
+            "options": [
+              "Delaware, USA",
+              "British Virgin Islands",
+              "Singapore",
+              "Switzerland"
+            ],
+            "correct": 1,
+            "explanation": "Tether Holdings is registered in the BVI. No US bank regulator, no EU MiCA supervisor, no IMF reporting obligation reaches it directly."
+          }
+        ]
+      },
+      {
+        "heading": "THE REGULATORY VOID",
+        "body": "Banks issuing dollar liabilities sit inside Basel capital rules, deposit insurance, and central bank lender-of-last-resort facilities. Stablecoin issuers sit outside all three. The 1930s bargain — banks accept regulation in exchange for backstops — has not been struck for tokens.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              45.029197,
+              45.034201,
+              45.065837,
+              45.183781,
+              45.1469,
+              45.167301,
+              45.142499,
+              45.190601,
+              45.216799,
+              45.231614,
+              45.233899,
+              45.364747,
+              45.347503,
+              45.347503,
+              45.380101,
+              45.395703,
+              45.413499,
+              45.429402,
+              45.5443,
+              45.495196,
+              45.522506,
+              45.579503,
+              45.58333,
+              45.588899,
+              45.6156,
+              45.717002,
+              45.698502,
+              45.698502,
+              45.734502,
+              45.902799
+            ],
+            "periods": [
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26"
+            ],
+            "label": "Turkish lira",
+            "unit": "TRY / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "This is not the first private dollar. Eurodollars — dollar deposits held in non-US banks — grew from nothing in the 1950s to trillions by the 1980s, largely because Soviet bloc and Gulf depositors wanted dollars outside US jurisdiction. Regulators chased it for decades before accepting it as permanent plumbing. Stablecoins are the retail version of the same trade."
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-26"
+    ],
+    "generatedAt": "2026-05-26T08:49:12.937Z",
+    "label": "Stablecoins vs Sovereign Reserves",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-26-starbucks-korea-tank-day-gwangju-massacre-memory": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT HAPPENED IN MAY 1980",
+        "body": "After Park Chung-hee's assassination, General Chun Doo-hwan seized power and declared martial law. When Gwangju students protested, paratroopers and armored units were sent in. Over roughly ten days, hundreds of civilians were killed — official figures say ~200, civic groups count over 600.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979-10",
+                "label": "Park Chung-hee assassinated"
+              },
+              {
+                "year": "1979-12",
+                "label": "Chun Doo-hwan's internal coup"
+              },
+              {
+                "year": "1980-05",
+                "label": "Gwangju Uprising crushed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1987",
+                "label": "June Democratic Struggle"
+              },
+              {
+                "year": "1996",
+                "label": "Chun convicted of treason"
+              },
+              {
+                "year": "1997",
+                "label": "May 18 made national holiday"
+              }
+            ],
+            "label": "from coup to democracy"
+          }
+        ]
+      },
+      {
+        "heading": "THE AMERICAN QUESTION",
+        "body": "South Korean forces deployed to Gwangju were under the US-led Combined Forces Command structure. Whether Washington authorized or could have stopped the deployment is still debated; declassified cables show the US was informed but did not object. Anti-American sentiment in Korean progressive politics traces directly to this moment."
+      },
+      {
+        "heading": "WHY THE DATE IS SACRED",
+        "body": "May 18 (오일팔, *o-il-pal*) is not a generic memorial — it is the founding wound of modern Korean democracy. The Gwangju cemetery is a presidential pilgrimage site; denying or mocking the massacre is a recurring scandal that has ended careers in the conservative People Power Party.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Koreans refer to the event by date alone — **5·18** — the same shorthand convention as **3·1** (the 1919 independence movement) or **4·19** (the 1960 student revolution). The number itself carries the weight."
+          }
+        ]
+      },
+      {
+        "heading": "WHY STARBUCKS MATTERS HERE",
+        "body": "Starbucks Korea is a joint venture — half owned by Shinsegae, the Lee family conglomerate that also runs E-Mart. It is not a foreign chain operating at arm's length; it is one of the most embedded retail brands in the country, with more stores per capita than almost anywhere outside the US."
+      },
+      {
+        "heading": "HOW CONSUMER BACKLASH ENFORCES MEMORY",
+        "body": "South Korea has no equivalent of Germany's Volksverhetzung laws criminalizing historical denial. Enforcement runs through the market: organized boycotts, livestreamed apologies by executives, and the threat of being labeled *toju* (土着倭寇, collaborationist). The mechanism is informal but unusually effective in a high-trust consumer economy.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which mechanism most directly punishes South Korean firms that mishandle historical memory dates?",
+            "options": [
+              "Criminal prosecution under hate-speech statutes",
+              "Regulatory fines from the Fair Trade Commission",
+              "Organized consumer boycotts and executive apologies",
+              "Civil suits filed by victim associations"
+            ],
+            "correct": 2,
+            "explanation": "Korea lacks German-style denial laws; enforcement is market-driven, with boycotts and public apologies as the operative pressure."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANK IMAGE",
+        "body": "The tank is the iconic visual of Gwangju — used in films (A Taxi Driver, May 18), murals at the May 18 Memorial, and protest art for four decades. A marketing campaign using 'tank' on this specific date reads not as oversight but as a category error about which images belong to which dates."
+      }
+    ],
+    "generatedAt": "2026-05-26T08:49:43.042Z",
+    "label": "Gwangju & Korean Democratic Memory",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-26-sulfonamide-resistance-one-health-integron-sul-genes": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FIRST MIRACLE DRUG",
+        "body": "Sulfonamides arrived in 1935 — a decade before penicillin reached patients. Prontosil saved Franklin Roosevelt Jr. from a strep infection in 1936 and convinced the world that bacterial disease was beatable. Ninety years later, half of clinical E. coli ignores them.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1935",
+                "label": "Prontosil discovered (Domagk)",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1939",
+                "label": "Domagk wins Nobel Prize"
+              },
+              {
+                "year": "1942",
+                "label": "Penicillin enters clinical use"
+              },
+              {
+                "year": "1959",
+                "label": "First sul1 gene documented"
+              },
+              {
+                "year": "1968",
+                "label": "sul2 identified on plasmids"
+              },
+              {
+                "year": "2003",
+                "label": "sul3 discovered in livestock"
+              },
+              {
+                "year": "2017",
+                "label": "sul4 found in Indian river sediment"
+              }
+            ],
+            "label": "sulfonamides through the antibiotic era"
+          }
+        ]
+      },
+      {
+        "heading": "HOW SULFONAMIDES WORK",
+        "body": "Bacteria must synthesize their own folate; humans get it from food. Sulfonamides mimic PABA, the substrate of the bacterial folate-building enzyme, and jam the assembly line. Resistance is simple: a mutant enzyme that no longer mistakes the drug for its real substrate.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The selective genius of sulfonamides is that humans lack the target enzyme entirely — we import folate, bacteria *build* it. Resistance arises through **sul1, sul2, sul3, sul4** genes encoding drug-insensitive replacement enzymes."
+          }
+        ]
+      },
+      {
+        "heading": "THE INTEGRON MACHINE",
+        "body": "An integron is a genetic cassette-loader: a site-specific recombinase that captures resistance genes circulating in the environment and stacks them in series, all read off a single promoter. Class 1 integrons routinely carry five or more resistance cassettes at once — collect sulfonamide resistance, and the bacterium often inherits resistance to three other antibiotic classes for free.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why does using a 1930s antibiotic on a farm select for resistance to modern drugs?",
+            "options": [
+              "Bacteria mutate faster under any antibiotic pressure",
+              "Class 1 integrons bundle sulfonamide resistance with cassettes for other drug classes",
+              "Sulfonamides damage bacterial DNA, raising mutation rates",
+              "Modern antibiotics chemically resemble sulfonamides"
+            ],
+            "correct": 1,
+            "explanation": "Integrons are cassette-stackers. Selecting for one resistance gene drags the whole linked array — often spanning beta-lactams, aminoglycosides, and trimethoprim — along with it."
+          }
+        ]
+      },
+      {
+        "heading": "THE ONE HEALTH FLOW",
+        "body": "Most antibiotic mass globally goes into livestock, not patients. Sub-therapeutic doses in feed select for resistant gut flora; manure spreads onto fields; runoff reaches rivers and municipal sewage; treatment plants concentrate the genes; treated effluent returns to drinking-water catchments. Hospitals are downstream of the farm, not the source of it.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "farm",
+                "label": "Livestock feed"
+              },
+              {
+                "id": "manure",
+                "label": "Manure & runoff"
+              },
+              {
+                "id": "river",
+                "label": "Rivers & soil"
+              },
+              {
+                "id": "sewage",
+                "label": "Sewage plants"
+              },
+              {
+                "id": "water",
+                "label": "Drinking water"
+              },
+              {
+                "id": "hospital",
+                "label": "Hospital E. coli"
+              }
+            ],
+            "links": [
+              {
+                "source": "farm",
+                "target": "manure",
+                "value": 70
+              },
+              {
+                "source": "manure",
+                "target": "river",
+                "value": 55
+              },
+              {
+                "source": "river",
+                "target": "sewage",
+                "value": 30
+              },
+              {
+                "source": "manure",
+                "target": "sewage",
+                "value": 25
+              },
+              {
+                "source": "sewage",
+                "target": "water",
+                "value": 35
+              },
+              {
+                "source": "water",
+                "target": "hospital",
+                "value": 30
+              },
+              {
+                "source": "river",
+                "target": "hospital",
+                "value": 20
+              }
+            ],
+            "label": "how farm resistance reaches the clinic"
+          }
+        ]
+      },
+      {
+        "heading": "THE WETLAND PARADOX",
+        "body": "Constructed wetlands strip 86–99% of sulfamethoxazole from wastewater — the molecule is gone. But the sul genes remain in the surviving bacterial biomass, and untreated water carries them downstream. Removing the drug does not remove the resistance it created; once a gene is loose in the environmental resistome, it persists for decades after the selective pressure ends."
+      },
+      {
+        "heading": "THE BLIND SPOT",
+        "body": "Surveillance networks track sul1, sul2, and sul3. The fourth variant — sul4, identified in 2017 in Indian river sediment near pharmaceutical manufacturing — is absent from global monitoring panels. What is not measured is presumed not to spread; the gene has been found on three continents since."
+      }
+    ],
+    "generatedAt": "2026-05-26T08:50:16.864Z",
+    "label": "Sulfonamides & the Resistome",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-26-tehran-refinery-fires-so2-satellites-tropomi": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE INSTRUMENT",
+        "body": "TROPOMI is a spectrometer aboard ESA's Sentinel-5P satellite, launched 2017. It measures sunlight reflected from Earth's atmosphere across UV, visible, and shortwave infrared bands. Different gases absorb at distinct wavelengths — the spectrum is a fingerprint.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The trick is **differential optical absorption spectroscopy** — comparing the absorption dip at a gas-specific wavelength against the surrounding spectrum cancels out aerosols and surface reflectance."
+          }
+        ]
+      },
+      {
+        "heading": "WHY SO₂ IS THE TELL",
+        "body": "Sulfur dioxide is the signature of burning fossil fuels with sulfur content — crude oil, coal, heavy refinery products. It dissipates within hours to days, so a SO₂ plume seen from orbit is a near-real-time signature of combustion happening below."
+      },
+      {
+        "heading": "THE RESOLUTION REVOLUTION",
+        "body": "TROPOMI's predecessor (OMI, 2004) sampled at 13×24 km per pixel. TROPOMI samples at 3.5×5.5 km — a 16x improvement. That is the difference between seeing a country and seeing a refinery.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "GOME (1995)",
+                "value": "320×40 km",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "SCIAMACHY (2002)",
+                "value": "60×30 km",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "OMI (2004)",
+                "value": "24×13 km",
+                "tone": "neutral"
+              },
+              {
+                "label": "TROPOMI (2017)",
+                "value": "5.5×3.5 km",
+                "tone": "favorable"
+              }
+            ],
+            "label": "satellite SO₂ pixel size"
+          }
+        ]
+      },
+      {
+        "heading": "WHY GROUND DATA VANISHES IN WAR",
+        "body": "State air-quality monitors run on power, telemetry, and political will. In sanctioned or conflict states, instruments break, networks fall offline, and governments suppress unflattering readings. Satellites cannot be switched off from the ground — they are a sovereignty workaround.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "SY",
+              "YE",
+              "SD",
+              "MM"
+            ],
+            "label": "states where ground AQ data is sparse or suppressed",
+            "caption": "satellite sensing fills the gap"
+          }
+        ]
+      },
+      {
+        "heading": "THE OPEN-DATA POSTURE",
+        "body": "ESA publishes Sentinel-5P data within three hours of acquisition under a free, no-restriction license. Any researcher, journalist, or NGO can download a global SO₂ map daily. The Bellingcat-era of open-source forensics runs on this kind of public-good infrastructure.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How long after a Sentinel-5P pass does TROPOMI data become publicly available?",
+            "options": [
+              "Within 3 hours",
+              "Within 24 hours",
+              "Within one week",
+              "Only after peer review"
+            ],
+            "correct": 0,
+            "explanation": "ESA's near-real-time stream delivers Level-2 products within 3 hours — fast enough for same-day forensic analysis of strikes or industrial accidents."
+          }
+        ]
+      },
+      {
+        "heading": "THE PRECEDENT",
+        "body": "TROPOMI flagged a massive unreported methane leak in Turkmenistan (2019), tracked NO₂ collapse during COVID lockdowns (2020), and mapped SO₂ plumes from the Nord Stream sabotage (2022). Each case rewrote what states could plausibly hide about their own atmosphere."
+      }
+    ],
+    "generatedAt": "2026-05-26T08:50:42.277Z",
+    "label": "Satellite Atmospheric Sensing",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-26-usaf-ultra-drone-centcom-mq9-iran-attrition": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE REAPER PROBLEM",
+        "body": "The MQ-9 Reaper was built for permissive skies — counterinsurgency over Afghanistan, Iraq, Yemen, Somalia where the enemy had no radar and no missiles. It flies low, slow, and loud. Against a near-peer integrated air defense system, it is target practice.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A Reaper costs about **$32M** per airframe and loiters for **27 hours**. Against a **$500K** surface-to-air missile, the exchange ratio is catastrophic — the kind of math that ended battleship doctrine in 1941."
+          }
+        ]
+      },
+      {
+        "heading": "THE HOUTHI LEDGER",
+        "body": "Yemen's Houthis have shot down at least 15 MQ-9s since 2017 — most in the past two years — using Iranian-supplied 358 loitering missiles and SA-6 derivatives. Each loss is roughly $32M of US airframe killed by hardware that costs in the low six figures. Iran exports the same playbook to Hezbollah and the Iraqi militias.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "YE",
+              "IR",
+              "IQ",
+              "SY",
+              "LB"
+            ],
+            "label": "the 358 missile diaspora",
+            "markers": [
+              {
+                "lat": 15.3694,
+                "lng": 44.191,
+                "label": "Sana'a — Houthi HQ"
+              },
+              {
+                "lat": 35.6892,
+                "lng": 51.389,
+                "label": "Tehran — design origin"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE ATTRITABLE DOCTRINE",
+        "body": "The Pentagon's response is a new word: attritable. Not disposable (one-use) and not survivable (built to come home) — designed to be cheap enough that losing some is acceptable. The doctrine borrows from Soviet thinking: mass cheap platforms beat few exquisite ones when the enemy can shoot back.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "F-35A",
+                "value": "~$82M",
+                "tone": "unfavorable",
+                "weight": 82
+              },
+              {
+                "label": "MQ-9 Reaper",
+                "value": "~$32M",
+                "tone": "unfavorable",
+                "weight": 32
+              },
+              {
+                "label": "XQ-58 Valkyrie",
+                "value": "~$4M",
+                "tone": "neutral",
+                "weight": 4
+              },
+              {
+                "label": "ULTRA-class",
+                "value": "~$2M",
+                "tone": "favorable",
+                "weight": 2
+              },
+              {
+                "label": "Switchblade 600",
+                "value": "~$0.1M",
+                "tone": "favorable",
+                "weight": 0.1
+              }
+            ],
+            "label": "airframe cost vs. survivability bet"
+          }
+        ]
+      },
+      {
+        "heading": "WHY CENTCOM FIRST",
+        "body": "CENTCOM — covering the Gulf, the Levant, the Horn of Africa, and Central Asia — is the testbed because it is where US drones actually get shot at. INDOPACOM has the China problem on paper; CENTCOM has the Iran problem in the air today. New airframes prove themselves over Yemen and Iraq before the Pacific deployment ever happens."
+      },
+      {
+        "heading": "THE BUDGET CYCLE TELL",
+        "body": "FY2027 is the inflection. If ULTRA scales, the Reaper line winds down and General Atomics loses its CENTCOM monopoly to a fleet of smaller vendors — Anduril, Kratos, Shield AI. If it doesn't scale, the Pentagon pays the attrition cost of flying $32M airframes into Iranian-supplied missile envelopes for another decade.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many MQ-9 Reapers have Houthi forces shot down since 2017?",
+            "options": [
+              "2–3",
+              "6–8",
+              "15 or more",
+              "Over 40"
+            ],
+            "correct": 2,
+            "explanation": "At least 15 confirmed losses to Houthi air defense — most since 2023 — making Yemen the most expensive single theater for US drone attrition."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-26T08:51:11.204Z",
+    "label": "Attritable Drones & Contested Airspace",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-26-von-der-leyen-lithuania-drone-crisis-baltic-defense": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SUWAŁKI GAP",
+        "body": "The Baltic states connect to the rest of NATO through a 65-kilometer stretch of Polish-Lithuanian border, squeezed between Russia's Kaliningrad exclave and Belarus. Close that corridor and Estonia, Latvia, and Lithuania become a NATO island — defensible only by sea and air.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LT",
+              "LV",
+              "EE",
+              "PL",
+              "BY",
+              "RU"
+            ],
+            "label": "the choke point of NATO's eastern flank",
+            "markers": [
+              {
+                "lat": 54.3886,
+                "lng": 23.4858,
+                "label": "Suwałki Gap"
+              },
+              {
+                "lat": 54.7104,
+                "lng": 20.4522,
+                "label": "Kaliningrad"
+              },
+              {
+                "lat": 54.6872,
+                "lng": 25.2797,
+                "label": "Vilnius"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT ARTICLE 5 ACTUALLY SAYS",
+        "body": "The treaty's collective-defense clause is triggered by an \"armed attack\" — a Cold War term written when attacks meant tanks and bombers. A drone that crashes in a forest, carries no warhead, and may have been launched by a non-state actor sits in a gap the 1949 drafters never imagined.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "an armed attack against one or more of them in Europe or North America shall be considered an attack against them all",
+            "speaker": "North Atlantic Treaty, Article 5",
+            "year": "1949"
+          }
+        ]
+      },
+      {
+        "heading": "THE GRAY ZONE PROBLEM",
+        "body": "Russia's doctrine — articulated by Chief of General Staff Valery Gerasimov in 2013 — explicitly targets the threshold below open war: cyberattacks, sabotage, deniable incursions, information operations. The goal is to extract concessions without triggering the response a conventional attack would.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Russian term is *active measures* — operations designed to remain below the threshold where the adversary's doctrine would mandate a hard response. Drones across a NATO border are textbook **gray zone**: visible enough to signal, deniable enough to deflect."
+          }
+        ]
+      },
+      {
+        "heading": "THE BALTIC EXPOSURE",
+        "body": "All three Baltic states share borders with Russia or Belarus, host Russian-speaking minorities (28% in Latvia, 25% in Estonia, 5% in Lithuania), and were Soviet republics within living memory. Their threat perception is structurally different from Western Europe's — and they have lobbied NATO hardest for a doctrine on sub-threshold attacks.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Poland",
+                "value": "4.1%",
+                "cc": "PL",
+                "weight": 4.1,
+                "tone": "favorable"
+              },
+              {
+                "label": "Estonia",
+                "value": "3.4%",
+                "cc": "EE",
+                "weight": 3.4,
+                "tone": "favorable"
+              },
+              {
+                "label": "Latvia",
+                "value": "3.2%",
+                "cc": "LV",
+                "weight": 3.2,
+                "tone": "favorable"
+              },
+              {
+                "label": "Lithuania",
+                "value": "2.9%",
+                "cc": "LT",
+                "weight": 2.9,
+                "tone": "favorable"
+              },
+              {
+                "label": "Germany",
+                "value": "2.1%",
+                "cc": "DE",
+                "weight": 2.1,
+                "tone": "neutral"
+              },
+              {
+                "label": "NATO target",
+                "value": "2.0%",
+                "weight": 2,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Baltic defense spending, 2024 (% GDP)"
+          }
+        ]
+      },
+      {
+        "heading": "THE COMMISSION'S LIMIT",
+        "body": "Von der Leyen leads the European Commission, the EU's executive — not NATO. The EU has no Article 5 equivalent that compels military response; its mutual-defense clause (TEU Article 42.7) has been invoked exactly once, by France after the 2015 Paris attacks, and produced no troops. Real defense decisions still route through Brussels' other building: NATO HQ.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which body can legally commit NATO members to collective military action?",
+            "options": [
+              "The European Commission",
+              "The North Atlantic Council (NATO)",
+              "The European Council",
+              "The UN Security Council"
+            ],
+            "correct": 1,
+            "explanation": "Only the North Atlantic Council — NATO's political body of member ambassadors — can invoke Article 5. The EU institutions have no military authority over member states."
+          }
+        ]
+      },
+      {
+        "heading": "THE 1983 PRECEDENT",
+        "body": "When a Soviet Su-15 shot down Korean Air Flight 007 over Sakhalin in 1983, NATO's response was diplomatic, not military — sanctions, expulsions, condemnation. The lesson absorbed by Moscow was that the alliance would not escalate over an isolated airspace incident, even one that killed 269 civilians. Every sub-threshold provocation since has tested the same threshold."
+      }
+    ],
+    "generatedAt": "2026-05-26T08:51:44.429Z",
+    "label": "Baltic Drones & NATO's Gray Zone",
+    "category": "politics",
+    "articleCount": 1
   }
 }
