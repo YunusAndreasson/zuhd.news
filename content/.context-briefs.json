@@ -243039,5 +243039,1451 @@
     "label": "Yemen's compounding epidemics",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-05-26-czech-ammo-coalition-for-ukraine-loses-support": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SHELL HUNGER",
+        "body": "Modern artillery wars burn shells faster than peacetime factories can make them. Ukraine at peak intensity fired 6,000–8,000 155mm rounds a day; Russia fired two to three times that. Western stockpiles, sized for short expeditionary wars, emptied within months.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A 155mm shell takes roughly **18 months** from raw steel to delivered round — the bottleneck is not assembly but *forged steel bodies* and *nitrocellulose propellant*, both of which require multi-year capacity investments."
+          }
+        ]
+      },
+      {
+        "heading": "THE BROKER MODEL",
+        "body": "The Czech initiative, launched in early 2024, did not manufacture shells. It used Prague's Cold War-era arms-trade networks to locate stockpiles in third countries — South Korea, Turkey, South Africa, the Balkans — that would not sell directly to Kyiv but would sell to Czechia. Donor nations funded; Czechia procured and forwarded.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "donors",
+                "label": "EU/NATO donors"
+              },
+              {
+                "id": "prague",
+                "label": "Czech broker"
+              },
+              {
+                "id": "thirdcountry",
+                "label": "3rd-country stockpiles"
+              },
+              {
+                "id": "ukraine",
+                "label": "Ukraine front"
+              }
+            ],
+            "links": [
+              {
+                "source": "donors",
+                "target": "prague",
+                "value": 1600,
+                "label": "funds (€m)"
+              },
+              {
+                "source": "prague",
+                "target": "thirdcountry",
+                "value": 1600,
+                "label": "purchase"
+              },
+              {
+                "source": "thirdcountry",
+                "target": "ukraine",
+                "value": 1500,
+                "label": "shells delivered"
+              }
+            ],
+            "label": "how the Czech initiative moved shells"
+          }
+        ]
+      },
+      {
+        "heading": "WHY PRAGUE",
+        "body": "Czechoslovakia was the Warsaw Pact's second-largest arms exporter after the USSR itself. After 1989, those export licenses, broker relationships, and Soviet-caliber expertise survived privatization. Czech firms like Excalibur Army and STV Group still hold supplier rosters no Western broker can match.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the same network that quietly armed both sides of the Iran–Iraq war in the 1980s — *Omnipol*, the Czechoslovak state arms-trader, was a household name in arms-fair circuits long before NATO accession."
+          }
+        ]
+      },
+      {
+        "heading": "THE BABIS PIVOT",
+        "body": "Andrej Babis's ANO movement campaigned on ending Czech financial exposure to the war while keeping the logistics role. The distinction matters: Prague continues to broker shells donors pay for, but no longer contributes its own funds. Nine of roughly twenty donor states followed, reading the political signal.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of Ukraine's large-calibre ammunition does the Czech initiative supply?",
+            "options": [
+              "About 20%",
+              "About 50%",
+              "About 80%",
+              "Nearly all of it"
+            ],
+            "correct": 1,
+            "explanation": "President Pavel cited 50% — making the coalition's contraction a strategic problem for Kyiv, not a symbolic one."
+          }
+        ]
+      },
+      {
+        "heading": "THE COALITION ARITHMETIC",
+        "body": "Coalitions of the willing scale on momentum. The first defection signals to the next that exit is permissible; once a critical mass leaves, remaining members face domestic pressure to follow. NATO's standing structures survive defections because Article 5 commits members; ad-hoc coalitions like this one have no such anchor.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "€65bn",
+                "cc": "US",
+                "weight": 65
+              },
+              {
+                "label": "Germany",
+                "value": "€17bn",
+                "cc": "DE",
+                "weight": 17
+              },
+              {
+                "label": "United Kingdom",
+                "value": "€13bn",
+                "cc": "GB",
+                "weight": 13
+              },
+              {
+                "label": "Denmark",
+                "value": "€8bn",
+                "cc": "DK",
+                "weight": 8
+              },
+              {
+                "label": "Netherlands",
+                "value": "€7bn",
+                "cc": "NL",
+                "weight": 7
+              },
+              {
+                "label": "Czech Republic",
+                "value": "€2bn",
+                "cc": "CZ",
+                "weight": 2
+              }
+            ],
+            "label": "who has carried Ukraine military aid (cumulative, 2022–2025, €bn)"
+          }
+        ]
+      },
+      {
+        "heading": "THE SUCCESSION GAP",
+        "body": "The EU's own ASAP regulation aims to lift bloc-wide shell production to 2 million rounds annually by end-2025, but factory ramp-up has run behind schedule. Until European output meets demand, the third-country broker model is the only mechanism delivering shells at the rate Ukraine actually fires them.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CZ",
+              "UA",
+              "DE",
+              "PL",
+              "SK"
+            ],
+            "label": "the eastern logistics corridor",
+            "markers": [
+              {
+                "lat": 50.0755,
+                "lng": 14.4378,
+                "label": "Prague — broker HQ"
+              },
+              {
+                "lat": 50.2649,
+                "lng": 18.6817,
+                "label": "Polish rail transshipment"
+              },
+              {
+                "lat": 50.4501,
+                "lng": 30.5234,
+                "label": "Kyiv"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-26T22:27:36.412Z",
+    "label": "The Czech Ammunition Initiative",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-26-earth-oxygen-atmosphere-mantle-subduction-tectonics": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GREAT OXIDATION",
+        "body": "Earth's atmosphere was nearly oxygen-free for its first two billion years. Around 2.4 billion years ago, oxygen levels jumped from trace amounts to roughly 1-2% — the Great Oxidation Event. Cyanobacteria had been producing oxygen for hundreds of millions of years before this; something had been consuming it as fast as they made it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The lag between **oxygenic photosynthesis** evolving and oxygen actually accumulating is the central puzzle. Biology was ready; the planet wasn't."
+          }
+        ]
+      },
+      {
+        "heading": "OXYGEN'S CHEMICAL ENEMIES",
+        "body": "Free oxygen is highly reactive. Reduced iron, sulfur compounds (especially H2S and SO2), and methane all bind oxygen on contact, locking it into oxides, sulfates, and water. As long as volcanoes pump these reductants into the atmosphere faster than life produces O2, oxygen cannot build up."
+      },
+      {
+        "heading": "WHAT SUBDUCTION DOES",
+        "body": "Subduction is the process where one tectonic plate slides beneath another into the mantle. Cooler subduction zones — where the descending slab stays below certain temperature thresholds — trap carbon and sulfur in stable minerals that sink deep, rather than releasing them back through arc volcanism. The planet effectively buries oxygen's competitors.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "JP",
+              "PH",
+              "ID",
+              "CL",
+              "PE",
+              "US"
+            ],
+            "label": "Pacific Ring of Fire — modern subduction zones",
+            "caption": "Where slabs descend, oxygen's enemies get buried."
+          }
+        ]
+      },
+      {
+        "heading": "THE STAGNANT-LID ALTERNATIVE",
+        "body": "Venus, Mars, and most rocky planets have a single unbroken crust — a stagnant lid. Volatiles cycle through volcanism without ever being subducted. Reductants accumulate, oxygen never wins. Earth's plate tectonics is not just geology; it is the conveyor that makes the air breathable.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Earth",
+                "value": "plate tectonics",
+                "tone": "favorable",
+                "cc": "US"
+              },
+              {
+                "label": "Venus",
+                "value": "stagnant lid",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Mars",
+                "value": "stagnant lid",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Mercury",
+                "value": "stagnant lid",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "rocky planets and their crustal regimes"
+          }
+        ]
+      },
+      {
+        "heading": "WHY TEMPERATURE MATTERS",
+        "body": "A hot subducting slab dehydrates and decarbonates near the surface, sending its volatiles back up through arc volcanoes within tens of kilometers. A cold slab carries those same volatiles hundreds of kilometers deeper, where they bond into minerals stable at mantle pressures. The thermal regime decides whether carbon and sulfur come back as gas or stay buried for a billion years."
+      },
+      {
+        "heading": "THE FERMI IMPLICATION",
+        "body": "If breathable atmospheres require plate tectonics, and plate tectonics requires a narrow window of planetary size, water content, and internal heat, then oxygen-rich worlds may be far rarer than biosignature-hunters assumed. A planet with life is not automatically a planet you could breathe on.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does cold subduction do that hot subduction does not?",
+            "options": [
+              "Carry carbon and sulfur deep enough to stay buried in the mantle",
+              "Generate more arc volcanism at the surface",
+              "Produce more earthquakes along the trench",
+              "Melt the descending slab faster"
+            ],
+            "correct": 0,
+            "explanation": "Cold slabs preserve volatiles to mantle depths where they bond into stable minerals; hot slabs release them back through arc volcanism within tens of kilometers."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-26T22:28:05.516Z",
+    "label": "Subduction & Breathable Air",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-26-furtivovirus-giant-virus-evolution-tree-of-life": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CLASSICAL DEFINITION",
+        "body": "For most of the 20th century, viruses were defined as non-living: smaller than 0.2 microns, no ribosomes, no metabolism, unable to reproduce without hijacking a host cell. This definition was a tool, not a discovery — it told microbiologists what to filter out when isolating bacteria.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The filter that built virology was the **Chamberland filter** (1884) — a porcelain candle that trapped bacteria but let viral particles through. *Virus* meant whatever came through the filter."
+          }
+        ]
+      },
+      {
+        "heading": "THE MIMIVIRUS SHOCK",
+        "body": "In 2003, a particle isolated from a Bradford cooling tower turned out to be a virus larger than many bacteria, with a genome of 1.2 million base pairs encoding over 900 proteins — including translation machinery that viruses were not supposed to have. Mimivirus broke every line in the textbook definition.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1992",
+                "label": "Bradford particle isolated, misclassified as bacterium"
+              },
+              {
+                "year": "2003",
+                "label": "Mimivirus reclassified as virus",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2010",
+                "label": "Marseillevirus family described"
+              },
+              {
+                "year": "2013",
+                "label": "Pandoravirus: 2.5 Mb genome"
+              },
+              {
+                "year": "2014",
+                "label": "Pithovirus revived from 30,000-year permafrost"
+              },
+              {
+                "year": "2020",
+                "label": "Medusavirus encodes full histone set"
+              }
+            ],
+            "label": "the giant virus discoveries"
+          }
+        ]
+      },
+      {
+        "heading": "THE FOURTH DOMAIN HYPOTHESIS",
+        "body": "Carl Woese's 1977 ribosomal RNA work split cellular life into three domains: bacteria, archaea, eukarya. Giant viruses encode their own translation factors and core eukaryotic-like genes, which led some researchers to argue they represent a fourth ancient domain — descendants of a reduced cellular ancestor, not escaped bits of host DNA."
+      },
+      {
+        "heading": "THE TWO ORIGIN STORIES",
+        "body": "Two competing hypotheses dominate: viruses as reductive descendants of ancient cells that lost ribosomes (the regression hypothesis), or as escaped genetic elements that grew (the escape hypothesis). Each new giant virus tilts the evidence; furtivovirus, sitting on the boundary, fits neither cleanly.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Regression",
+                "value": "cells → viruses",
+                "tone": "neutral"
+              },
+              {
+                "label": "Escape",
+                "value": "genes → viruses",
+                "tone": "neutral"
+              },
+              {
+                "label": "Virus-first",
+                "value": "viruses → cells",
+                "tone": "neutral"
+              }
+            ],
+            "label": "competing origin hypotheses"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE TREE BREAKS",
+        "body": "Darwin's tree of life assumes inheritance flows vertically — parent to offspring. Viruses move genes horizontally across species, sometimes across domains. The honest picture is less a tree than a web, and giant viruses are some of its thickest connecting threads.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what fraction of the human genome is derived from ancient viral insertions?",
+            "options": [
+              "Less than 0.1%",
+              "About 2%",
+              "About 8%",
+              "About 25%"
+            ],
+            "correct": 2,
+            "explanation": "Endogenous retroviruses make up roughly 8% of human DNA — more than the protein-coding genes themselves."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'LIFE' EVEN MEANS",
+        "body": "There is no scientific consensus definition of life. NASA's working definition — 'a self-sustaining chemical system capable of Darwinian evolution' — was written for astrobiology, not microbiology. Giant viruses evolve by natural selection, exchange genes, and carry their own evolutionary lineages. The boundary was always a convention."
+      }
+    ],
+    "generatedAt": "2026-05-26T22:28:33.487Z",
+    "label": "Giant Viruses & the Tree of Life",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-26-iran-says-new-us-strikes-violate-ceasefire": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A CEASEFIRE ACTUALLY IS",
+        "body": "A ceasefire is not a peace treaty. It is a tactical pause, usually undocumented or thinly documented, that either side can reinterpret. The 1953 Korean Armistice is the canonical example — seventy years on, the war it paused has never formally ended.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The legal term of art is *modus vivendi* — a way of living with the conflict, not resolving it. Ceasefires fail when one side's definition of **self-defense** is the other side's definition of **violation**."
+          }
+        ]
+      },
+      {
+        "heading": "THE SELF-DEFENSE LOOPHOLE",
+        "body": "Modern ceasefires almost always preserve each party's right to respond to immediate threats. This clause is load-bearing: it lets commanders strike without formally breaking the agreement. The disagreement is never whether self-defense is allowed — it is whether the triggering act qualified."
+      },
+      {
+        "heading": "WHY HORMOZGAN",
+        "body": "Hormozgan province is Iran's southern coast along the Strait of Hormuz. Bandar Abbas is the headquarters of the Iranian Navy and the IRGC Navy's main base. Missile sites there are not symbolic targets — they are the platforms that would close the strait if Iran chose to.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the Persian Gulf theater",
+            "markers": [
+              {
+                "lat": 27.1865,
+                "lng": 56.2808,
+                "label": "Bandar Abbas"
+              },
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 27.8333,
+                "lng": 52.5833,
+                "label": "Bushehr"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE FROZEN-ASSET LEVER",
+        "body": "Roughly $6 billion of Iranian oil revenue sits in restricted accounts in Doha, originally unfrozen under a 2023 prisoner swap and re-frozen after October 7. Qatar's role as escrow holder is why Doha — not Geneva or Vienna — hosts the talks. Iran cannot access the funds without US Treasury sign-off, and the US cannot move them without congressional notification."
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson planners took: disruption is easier to threaten than to sustain."
+      },
+      {
+        "heading": "WHY F-35 CLAIMS MATTER",
+        "body": "The F-35 is stealth-shaped and stealth-coated; its radar cross-section is roughly that of a golf ball. A credible Iranian shot at one would imply either a lucky infrared lock or that Iranian air defense has improved beyond public assessments. Both sides have reasons to exaggerate — Tehran to deter, Washington to deny.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is closing the Strait of Hormuz considered a last-resort move even for Iran?",
+            "options": [
+              "It would cut off Iran's own oil exports, which transit the same strait",
+              "UNCLOS would automatically trigger NATO Article 5",
+              "China would lose its largest customer",
+              "Russia has a treaty obligation to keep it open"
+            ],
+            "correct": 0,
+            "explanation": "Iran exports nearly all its oil through Hormuz — closing the strait would strangle Tehran's own revenue alongside its adversaries'."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-26T22:29:01.899Z",
+    "label": "Ceasefires & the Hormuz Theater",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-26-mali-banned-russian-submunitions-bellingcat-cluster-bomblets": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A CLUSTER MUNITION IS",
+        "body": "A single canister opens mid-air and scatters dozens to hundreds of small explosive submunitions across an area the size of a football pitch. The military logic is area suppression; the humanitarian problem is that a predictable fraction fail to detonate on impact and lie in the soil as de-facto landmines for decades.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Russian **ShOAB-0.5** is a half-kilogram anti-personnel bomblet dispensed from RBK-series cluster bombs. Field studies of similar Soviet-era submunitions report dud rates between **10% and 40%** — orders of magnitude worse than the 1% threshold treaty drafters once hoped for."
+          }
+        ]
+      },
+      {
+        "heading": "THE CONVENTION",
+        "body": "The Convention on Cluster Munitions opened for signature in Oslo in 2008 and entered into force in 2010. It bans use, production, stockpiling, and transfer outright, and obliges parties to clear contaminated land and assist victims. Mali signed in 2008 and ratified in 2010.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "UN convention on inhumane weapons opens"
+              },
+              {
+                "year": "2006",
+                "label": "Israel's Lebanon strikes spark global outcry",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2008",
+                "label": "CCM adopted in Dublin, signed in Oslo"
+              },
+              {
+                "year": "2010",
+                "label": "Treaty enters into force"
+              },
+              {
+                "year": "2022",
+                "label": "US transfers cluster munitions to Ukraine"
+              }
+            ],
+            "label": "the cluster-munition ban arc"
+          }
+        ]
+      },
+      {
+        "heading": "WHO IS NOT IN",
+        "body": "The treaty has 124 states parties — but the biggest producers and users sit outside it. Russia, the United States, China, India, Pakistan, and Israel never signed. This is the structural weakness: a party state can be bombed with weapons its own treaty bans, by a non-party with no obligation to answer for it.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ML",
+              "RU",
+              "US",
+              "CN",
+              "IN",
+              "PK",
+              "IL"
+            ],
+            "label": "states party (ML) vs major non-parties",
+            "caption": "Mali is bound by the treaty; the producers of the weapons used against it are not."
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPLIANCE GAP",
+        "body": "The CCM has no enforcement teeth comparable to the ICC or the UN Security Council. Article 8 provides a 'facilitation and clarification' procedure: a state party can ask the Meeting of States Parties to address concerns. There is no court, no sanction, no automatic referral — the worst outcome for a violator is diplomatic embarrassment.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What happens when a Convention on Cluster Munitions party is found to have used banned submunitions?",
+            "options": [
+              "The case is automatically referred to the International Criminal Court",
+              "Other states parties can raise it at the annual meeting, but no sanctions follow",
+              "The UN Security Council imposes binding measures",
+              "The party is expelled from the treaty"
+            ],
+            "correct": 1,
+            "explanation": "The CCM relies on diplomatic pressure, not enforcement — there is no court, sanction, or expulsion mechanism in the treaty text."
+          }
+        ]
+      },
+      {
+        "heading": "AFRICA CORPS",
+        "body": "After Wagner founder Yevgeny Prigozhin's death in 2023, Moscow folded the group's Africa operations into a new structure under GRU control: Africa Corps. It inherited Wagner's contracts in Mali, the Central African Republic, Libya, and Burkina Faso — and with them, deniability about which weapons are 'Russian' versus 'contractor.'",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ML",
+              "BF",
+              "NE",
+              "CF",
+              "LY",
+              "SD"
+            ],
+            "label": "Africa Corps & allied juntas",
+            "caption": "The Sahel-to-Sahara arc where Russian forces backstop post-coup governments."
+          }
+        ]
+      },
+      {
+        "heading": "THE SAHEL REALIGNMENT",
+        "body": "Mali expelled French Operation Barkhane in 2022, then the UN's MINUSMA mission in 2023, then quit ECOWAS in 2024 alongside Burkina Faso and Niger. The three juntas formed the Alliance of Sahel States and turned to Moscow for the counter-insurgency support Paris used to provide. Treaty obligations made in a different geopolitical era are now enforced by no one with leverage."
+      }
+    ],
+    "generatedAt": "2026-05-26T22:29:34.796Z",
+    "label": "Cluster Munitions & the CCM",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-26-nippon-dynawave-longview-pulp-mill-explosion-osha-backlog": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY PULP MILLS EXPLODE",
+        "body": "Kraft pulp mills run recovery boilers that burn 'black liquor' — a concentrated organic byproduct of dissolving wood chips in caustic chemicals. If water contacts the molten smelt at the boiler bottom, it flashes instantly to steam and the vessel can rupture. Smelt-water explosions are the defining hazard of the industry.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The molten smelt sits at roughly **1,400°F**; a few liters of cold water expanding to steam is enough to blow out a boiler wall."
+          }
+        ]
+      },
+      {
+        "heading": "THE DUST PROBLEM",
+        "body": "Any facility that handles dry wood, paper, or fiber accumulates combustible dust. Suspended at the right concentration, it behaves like a fuel-air mixture — one spark in a baghouse, conveyor, or silo and the deflagration propagates through ducting in milliseconds. The 2008 Imperial Sugar disaster in Georgia killed 14 the same way."
+      },
+      {
+        "heading": "THE LONGVIEW CORRIDOR",
+        "body": "Longview sits on the Columbia River in southwest Washington, a corridor built around deepwater port access for log exports and bulk pulp shipments to Asia. The Nippon Dynawave site — formerly Weyerhaeuser, then Nippon Paper — has operated continuously since 1929 and is one of the largest paperboard mills on the US West Coast.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "CA",
+              "JP"
+            ],
+            "label": "Pacific pulp trade",
+            "markers": [
+              {
+                "lat": 46.1382,
+                "lng": -122.9382,
+                "label": "Longview mill"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHAT OSHA ACTUALLY DOES",
+        "body": "Federal law requires OSHA to open an investigation whenever a workplace fatality occurs. Inspectors have six months to issue citations. But OSHA employs roughly 800 federal inspectors for 130 million American workers — about one inspector per 160,000 workers. Most workplaces will never see one except after someone dies.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Germany",
+                "value": "~40",
+                "cc": "DE",
+                "weight": 40
+              },
+              {
+                "label": "UK",
+                "value": "~28",
+                "cc": "GB",
+                "weight": 28
+              },
+              {
+                "label": "Canada",
+                "value": "~18",
+                "cc": "CA",
+                "weight": 18
+              },
+              {
+                "label": "United States",
+                "value": "~6",
+                "cc": "US",
+                "weight": 6,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "OSHA inspectors per million workers (selected)"
+          }
+        ]
+      },
+      {
+        "heading": "THE GENERAL DUTY CLAUSE",
+        "body": "Section 5(a)(1) of the 1970 OSH Act requires employers to furnish a workplace 'free from recognized hazards' — a catch-all used when no specific standard applies. Combustible dust has no comprehensive federal standard despite the Chemical Safety Board urging one since 2006; citations rely on the general duty clause, which is harder to enforce and easier to contest.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "Each employer shall furnish to each of his employees employment and a place of employment which are free from recognized hazards that are causing or are likely to cause death or serious physical harm to his employees.",
+            "speaker": "OSH Act of 1970, §5(a)(1)",
+            "year": "1970"
+          }
+        ]
+      },
+      {
+        "heading": "THE PACKAGING SHIFT",
+        "body": "E-commerce drove containerboard demand up sharply through the 2010s; the same mills that once made newsprint pivoted to corrugated and kraft paperboard for Amazon-era shipping. Aging boilers run harder, on tighter margins, with deferred maintenance — the conditions under which catastrophic incidents cluster.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What ignites most pulp-mill catastrophic explosions?",
+            "options": [
+              "Natural gas leaks in the boilerhouse",
+              "Water contacting molten smelt in the recovery boiler",
+              "Lightning strikes on outdoor chip piles",
+              "Static discharge in fiber storage"
+            ],
+            "correct": 1,
+            "explanation": "Smelt-water explosions in kraft recovery boilers are the industry's signature catastrophic event — water flashing to steam against ~1,400°F molten salts ruptures the vessel."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-26T22:30:07.849Z",
+    "label": "Pulp Mills & Industrial Explosions",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-26-pakistan-wapda-security-force-cpec-dasu-chinese-workers": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CORRIDOR",
+        "body": "The China-Pakistan Economic Corridor launched in 2015 as the flagship of Belt and Road — roughly $62bn pledged to link Kashgar in Xinjiang to Gwadar on the Arabian Sea, bypassing the Malacca Strait that the PLA Navy cannot guarantee in wartime.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "PK"
+            ],
+            "label": "the CPEC spine",
+            "markers": [
+              {
+                "lat": 39.4704,
+                "lng": 75.9898,
+                "label": "Kashgar"
+              },
+              {
+                "lat": 35.5275,
+                "lng": 73.3216,
+                "label": "Dasu dam"
+              },
+              {
+                "lat": 25.1264,
+                "lng": 62.3225,
+                "label": "Gwadar port"
+              },
+              {
+                "lat": 33.6844,
+                "lng": 73.0479,
+                "label": "Islamabad"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY DASU MATTERS",
+        "body": "Dasu is a 4,320 MW run-of-river hydropower project on the Indus in Khyber Pakhtunkhwa — when complete, one of the largest power plants in Pakistan. It sits in a tribal belt where the writ of the federal state is thin and Tehrik-i-Taliban Pakistan operates with relative freedom."
+      },
+      {
+        "heading": "THE ATTACK PATTERN",
+        "body": "A bus carrying Chinese engineers to Dasu was bombed in 2021, killing 13 — nine of them Chinese. A second suicide attack in March 2024 killed five more Chinese workers. Each incident triggered a Beijing demarche and a construction halt measured in months, not weeks."
+      },
+      {
+        "heading": "WHO IS DOING IT",
+        "body": "Two separate insurgencies threaten CPEC. The TTP targets Chinese workers in the north as collateral damage in its war on the Pakistani state. The Balochistan Liberation Army targets them as principals — accusing Beijing of colonizing Baloch land at Gwadar and extracting resources without local benefit.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **TTP** wants to topple Islamabad; the **BLA** wants to secede from it. Beijing's workers are useful targets to both — for opposite reasons."
+          }
+        ]
+      },
+      {
+        "heading": "THE LIABILITY SHIELD",
+        "body": "Granting security forces immunity from civil and criminal liability for actions taken in the line of duty is a familiar tool in counterinsurgency law — India's AFSPA in Kashmir and the northeast, Egypt's emergency powers, Turkey's post-2016 decrees. The pattern: shield first, prosecute abuses never."
+      },
+      {
+        "heading": "THE BEIJING ASK",
+        "body": "China has pressed Islamabad since 2022 to allow Chinese private security contractors on Pakistani soil — a sovereignty concession Pakistan has resisted. The WAPDA Security Force Act is the compromise: a Pakistani force, but militarized and indemnified to a standard Beijing finds acceptable.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What has Pakistan so far refused to grant China at CPEC sites?",
+            "options": [
+              "Armed Pakistani military escorts",
+              "Deployment of Chinese private security contractors on Pakistani soil",
+              "Dedicated security force for project workers",
+              "Compensation payments to victims' families"
+            ],
+            "correct": 1,
+            "explanation": "Islamabad has stationed thousands of troops in a dedicated CPEC Special Security Division but has resisted Beijing's repeated requests to deploy Chinese armed contractors — a red line on sovereignty."
+          }
+        ]
+      },
+      {
+        "heading": "THE RUPEE PRESSURE",
+        "body": "Every construction halt at a CPEC project compounds Pakistan's external position. Chinese loans for power projects carry sovereign guarantees that pay generators in dollars regardless of whether plants operate — an idle Dasu still bleeds the rupee.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              278.443752,
+              279.40062,
+              278.665961,
+              278.838948,
+              278.75,
+              278.775,
+              278.775,
+              278.775,
+              278.728147,
+              278.092019,
+              278.733176,
+              279.534211,
+              277.958606,
+              277.958606,
+              278.096885,
+              278.652507,
+              278.627222,
+              278.583985,
+              278.642154,
+              278.625,
+              279.069887,
+              278.980909,
+              278.551258,
+              278.560406,
+              278.634377,
+              278.485848,
+              278.494701,
+              278.137253,
+              277.408487,
+              278.412506
+            ],
+            "periods": [
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 2",
+              "May 3",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 9",
+              "May 10",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 16",
+              "May 17",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 23",
+              "May 24",
+              "May 25",
+              "May 26"
+            ],
+            "label": "Pakistani rupee",
+            "unit": "PKR / USD",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "Open Exchange Rates · as of 2026-05-26"
+    ],
+    "generatedAt": "2026-05-26T22:30:38.609Z",
+    "label": "CPEC & the security premium",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-26-starlette-fastapi-asgi-vulnerability-ai-agents-mcp-credentials": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE HOST HEADER DOES",
+        "body": "Every HTTP request carries a Host header naming which site it's for — the same IP can serve hundreds of domains, and the server uses Host to route. Frameworks also use it to validate that a request is intended for this server, generate password-reset links, and decide which cookies to trust. A parser bug here is a routing bug, an auth bug, and a phishing bug at once.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The class of bug is called **Host header injection** — when a server trusts a value the client fully controls. It has been in the OWASP catalog since at least 2013."
+          }
+        ]
+      },
+      {
+        "heading": "THE ASGI STACK",
+        "body": "Starlette is the low-level ASGI toolkit that FastAPI is built on. FastAPI ships the developer ergonomics; Starlette ships the request/response plumbing. A bug in Starlette inherits into every framework downstream of it — which is why a single CVE simultaneously hits FastAPI, vLLM (an LLM inference server), and LiteLLM (a model-routing proxy).",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "FastAPI",
+                "value": "web framework"
+              },
+              {
+                "label": "vLLM",
+                "value": "LLM inference"
+              },
+              {
+                "label": "LiteLLM",
+                "value": "model proxy"
+              },
+              {
+                "label": "Starlette",
+                "value": "ASGI core"
+              }
+            ],
+            "label": "what sits on Starlette"
+          }
+        ]
+      },
+      {
+        "heading": "WHY MCP MAKES IT WORSE",
+        "body": "Model Context Protocol is the standard Anthropic published in late 2024 for letting AI agents call tools — databases, mailboxes, file systems — through a uniform server interface. An MCP server holds the credentials so the agent doesn't have to. Compromise the MCP server and you don't steal one password; you inherit every tool the agent was wired to use."
+      },
+      {
+        "heading": "THE BLAST RADIUS",
+        "body": "MCP servers are typically run by developers on laptops or quietly deployed inside companies — not hardened like a public API. They're often bound to localhost but reachable via DNS rebinding or trusted-host bypasses, which is exactly the surface a Host-header parser flaw opens.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is a Host header bug worse on an MCP server than on a typical web app?",
+            "options": [
+              "MCP servers always run as root",
+              "MCP servers hold credentials for the tools an AI agent can call",
+              "MCP uses an unencrypted transport",
+              "MCP servers don't support TLS"
+            ],
+            "correct": 1,
+            "explanation": "An MCP server is a credential aggregator — one compromise hands the attacker every downstream tool the agent was configured to use."
+          }
+        ]
+      },
+      {
+        "heading": "THE PATCH ECONOMICS",
+        "body": "Starlette ships a fix in 1.0.1, but the dependency chain is the bottleneck. FastAPI pins a Starlette range; vLLM and LiteLLM pin a FastAPI range. Each downstream maintainer has to cut a release before users can upgrade cleanly — and most deployed MCP servers were vibe-coded by developers who do not watch CVE feeds."
+      }
+    ],
+    "generatedAt": "2026-05-26T22:31:07.040Z",
+    "label": "Host Header Attacks & the MCP Surface",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-26-us-and-armenia-sign-partnership-agreement-ahead-of-armenian": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE CORRIDOR",
+        "body": "The 43-km strip across Armenia's Syunik province is the missing link in a Caspian-to-Mediterranean route that bypasses both Russian and Iranian territory. Whoever controls Syunik controls whether Azerbaijan and its Turkic patron Turkey can connect to Baku's gas fields and Central Asia by land.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AM",
+              "AZ",
+              "TR",
+              "IR",
+              "GE",
+              "RU"
+            ],
+            "label": "the South Caucasus chokepoint",
+            "markers": [
+              {
+                "lat": 39.2033,
+                "lng": 46.4067,
+                "label": "Syunik / Zangezur corridor"
+              },
+              {
+                "lat": 40.1792,
+                "lng": 44.4991,
+                "label": "Yerevan"
+              },
+              {
+                "lat": 40.4093,
+                "lng": 49.8671,
+                "label": "Baku"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE CENTURY-OLD ARRANGEMENT",
+        "body": "Armenia has hosted a Russian military base at Gyumri since 1995, and Russian guards still patrol the Iranian and Turkish frontiers. Moscow's security umbrella over Armenia dates structurally to the 1828 Treaty of Turkmenchay, when tsarist Russia first absorbed eastern Armenia from Persia. Walking that out is a generational shift, not a policy tweak.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1915",
+                "label": "Armenian Genocide under Ottoman rule"
+              },
+              {
+                "year": "1922",
+                "label": "Absorbed into Soviet Union"
+              },
+              {
+                "year": "1991",
+                "label": "Independence as USSR collapses"
+              },
+              {
+                "year": "1995",
+                "label": "Russian base at Gyumri formalized"
+              },
+              {
+                "year": "2020",
+                "label": "Second Karabakh War: Russia fails to intervene",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "Azerbaijan retakes Nagorno-Karabakh"
+              },
+              {
+                "year": "2024",
+                "label": "Armenia freezes CSTO membership"
+              }
+            ],
+            "label": "Armenia in the Russian orbit"
+          }
+        ]
+      },
+      {
+        "heading": "WHY 2020 BROKE THE TRUST",
+        "body": "Armenia is a treaty member of the Russian-led CSTO — the post-Soviet equivalent of NATO. When Azerbaijan attacked in 2020 and again in 2023, Moscow declined to enforce the mutual-defense clause. For Yerevan, the alliance failed its only test."
+      },
+      {
+        "heading": "THE MINERALS PIECE",
+        "body": "Armenia sits on copper and molybdenum reserves currently mined largely by Russian-linked firms; the Zangezur Copper-Molybdenum Combine is the country's largest taxpayer. A US critical-minerals deal is also a quiet ownership reshuffle — Washington wants supply chains that don't route through Russia or China."
+      },
+      {
+        "heading": "THE GAS LEVER",
+        "body": "Russia supplies roughly 80% of Armenia's natural gas through a single pipeline running via Georgia. Gazprom owns the Armenian distributor outright. The threatened price hike is not a sanction — it is the activation of leverage that has been pre-positioned since 2006.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Moscow's standard playbook: gas as foreign policy. *Ukraine 2006, 2009. Belarus 2010. Moldova 2014.* Each price spike timed to a moment of political drift — and each one studied closely in Yerevan."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT THE BALLOT IS ACTUALLY ABOUT",
+        "body": "June 7 is framed as a referendum on Pashinyan, but the structural choice is which security architecture Armenia anchors to for the next generation: the Russian one its grandparents grew up under, or a Western-Turkish economic bloc that requires accepting the loss of Nagorno-Karabakh as permanent.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why did Armenia's CSTO membership fail to deter Azerbaijan in 2020 and 2023?",
+            "options": [
+              "Russia ruled the fighting fell outside the treaty's defined territory",
+              "Armenia had formally withdrawn from CSTO before the war",
+              "Turkey vetoed any CSTO response through NATO channels",
+              "The treaty has no mutual-defense clause"
+            ],
+            "correct": 0,
+            "explanation": "CSTO covers attacks on member territory; Moscow argued Nagorno-Karabakh was internationally recognized as Azerbaijani, so the clause didn't trigger."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-26T22:31:40.137Z",
+    "label": "Armenia's Pivot West",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-26-wall-street-records-iran-strikes-ceasefire-trade-brent-hormuz": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PARADOX",
+        "body": "Stocks rallying while bombs fall looks irrational, but it is the textbook reaction. Markets price the resolution of uncertainty, not the violence itself. A strike that traders read as the end of a buildup is bullish; a strike that opens an unbounded escalation is not.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Wall Street's old line: *buy the invasion, sell the quagmire*. The 1991 Gulf War launch saw the S&P jump **3.7%** in a single session as the fog of pre-war risk lifted."
+          }
+        ]
+      },
+      {
+        "heading": "THE CHOKEPOINT",
+        "body": "Roughly 21 million barrels — about a fifth of global oil consumption — pass through Hormuz every day. The shipping lanes are only 3 km wide each, hugging the Iranian coast. No pipeline network can absorb more than a third of that flow if the strait closes.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW"
+            ],
+            "label": "the Persian Gulf chokepoint",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 25.1517,
+                "lng": 52.6011,
+                "label": "Ras Laffan LNG"
+              },
+              {
+                "lat": 25.1428,
+                "lng": 56.3414,
+                "label": "Fujairah (bypass terminal)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial vessels in the Gulf. Oil spiked briefly, then markets adapted — tankers reflagged under US and Kuwaiti flags, escorted by warships. The lesson traders carry: Gulf disruption is easier to threaten than to sustain.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1984",
+                "label": "Tanker War begins",
+                "emphasis": "start"
+              },
+              {
+                "year": "1988",
+                "label": "USS Vincennes downs Iran Air 655",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2012",
+                "label": "Iran threatens closure over sanctions"
+              },
+              {
+                "year": "2019",
+                "label": "Tanker mining attacks off Fujairah"
+              },
+              {
+                "year": "2024",
+                "label": "Houthi Red Sea attacks reroute shipping"
+              },
+              {
+                "year": "2026",
+                "label": "US strikes; Iran closes strait"
+              }
+            ],
+            "label": "Hormuz crises since 1980"
+          }
+        ]
+      },
+      {
+        "heading": "WHY $100 IS THE THRESHOLD",
+        "body": "Central banks watch the oil price because it feeds straight into headline inflation. Brent above $100 sustained for a quarter typically adds 0.5-1.0 percentage points to CPI in importing economies — enough to force the Fed and ECB to hold rates higher for longer, which is the chain that breaks equity rallies.",
+        "blocks": [
+          {
+            "type": "trend",
+            "values": [
+              17.93,
+              18.63,
+              19.86,
+              21.44,
+              23.57,
+              21.15,
+              23.75,
+              29.49,
+              25.5,
+              24.93,
+              24.23,
+              27.29,
+              27.19,
+              23.51,
+              22.37,
+              25.09,
+              24.06,
+              26.78,
+              26.15,
+              26.95,
+              25.33,
+              27.44,
+              31.05,
+              30.61,
+              25.25,
+              24.54,
+              23.87,
+              24.17,
+              25.78,
+              21.04,
+              19.49,
+              19.23,
+              19.12,
+              18.36,
+              18.17,
+              17.94,
+              17.48,
+              18.87,
+              19.5,
+              18.92,
+              19.31,
+              18.71,
+              18.02,
+              17.83,
+              18.81,
+              16.89,
+              16.99,
+              18.29,
+              17.38,
+              17.39,
+              17.08,
+              17.19,
+              18.38,
+              17.99,
+              17.87,
+              17.26,
+              18.43,
+              17.82,
+              18.06,
+              17.44,
+              16.76,
+              16.7,
+              16.59
+            ],
+            "periods": [
+              "Feb 25",
+              "Feb 26",
+              "Feb 27",
+              "Mar 2",
+              "Mar 3",
+              "Mar 4",
+              "Mar 5",
+              "Mar 6",
+              "Mar 9",
+              "Mar 10",
+              "Mar 11",
+              "Mar 12",
+              "Mar 13",
+              "Mar 16",
+              "Mar 17",
+              "Mar 18",
+              "Mar 19",
+              "Mar 20",
+              "Mar 23",
+              "Mar 24",
+              "Mar 25",
+              "Mar 26",
+              "Mar 27",
+              "Mar 30",
+              "Mar 31",
+              "Apr 1",
+              "Apr 2",
+              "Apr 6",
+              "Apr 7",
+              "Apr 8",
+              "Apr 9",
+              "Apr 10",
+              "Apr 13",
+              "Apr 14",
+              "Apr 15",
+              "Apr 16",
+              "Apr 17",
+              "Apr 20",
+              "Apr 21",
+              "Apr 22",
+              "Apr 23",
+              "Apr 24",
+              "Apr 27",
+              "Apr 28",
+              "Apr 29",
+              "Apr 30",
+              "May 1",
+              "May 4",
+              "May 5",
+              "May 6",
+              "May 7",
+              "May 8",
+              "May 11",
+              "May 12",
+              "May 13",
+              "May 14",
+              "May 15",
+              "May 18",
+              "May 19",
+              "May 20",
+              "May 21",
+              "May 22",
+              "May 25"
+            ],
+            "label": "VIX",
+            "unit": "index",
+            "highlight": "last",
+            "source": 0
+          }
+        ]
+      },
+      {
+        "heading": "WHO ACTUALLY PAYS",
+        "body": "The US imports almost no Persian Gulf oil — shale made it a net exporter. But oil trades on a single global market, so a Hormuz closure raises the price everywhere. American consumers pay more at the pump for a blockade of a strait they do not depend on, while treaty allies face genuine energy crises.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Philippines",
+                "value": "~98%",
+                "cc": "PH",
+                "tone": "unfavorable",
+                "weight": 98
+              },
+              {
+                "label": "Japan",
+                "value": "~90%",
+                "cc": "JP",
+                "tone": "unfavorable",
+                "weight": 90
+              },
+              {
+                "label": "South Korea",
+                "value": "~70%",
+                "cc": "KR",
+                "tone": "unfavorable",
+                "weight": 70
+              },
+              {
+                "label": "India",
+                "value": "~55%",
+                "cc": "IN",
+                "tone": "neutral",
+                "weight": 55
+              },
+              {
+                "label": "China",
+                "value": "~45%",
+                "cc": "CN",
+                "tone": "neutral",
+                "weight": 45
+              },
+              {
+                "label": "United States",
+                "value": "~0%",
+                "cc": "US",
+                "tone": "favorable",
+                "weight": 2
+              }
+            ],
+            "label": "Persian Gulf oil dependency"
+          }
+        ]
+      },
+      {
+        "heading": "THE CEASEFIRE TRADE",
+        "body": "When a diplomat says a deal is 'a few days away,' traders front-run it. The pattern is well-worn: equities rip, oil retreats from the peak, the dollar softens. If the deal materializes, the move extends; if it slips, the unwind is violent.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In the week after the 1991 Gulf War air campaign began, the S&P 500 moved how?",
+            "options": [
+              "Fell 5% as war fears spiked",
+              "Rose roughly 4% as uncertainty resolved",
+              "Was flat — markets had already priced it in",
+              "Fell 10%, triggering a recession"
+            ],
+            "correct": 1,
+            "explanation": "Markets had spent months pricing worst-case scenarios. When the strike came and proved contained, the relief rally was immediate — the canonical 'buy the invasion' move."
+          }
+        ]
+      }
+    ],
+    "sources": [
+      "FRED · CBOE · as of 2026-05-25"
+    ],
+    "generatedAt": "2026-05-26T22:32:13.599Z",
+    "label": "Oil Shocks & Equity Markets",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-26-wireless-sensor-network-charger-placement-graph-coloring-aquila": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE UNDERLYING PROBLEM",
+        "body": "Placing the fewest chargers to cover the most sensors is a variant of the set cover problem — proven NP-hard in 1972. No known algorithm finds the exact optimum in polynomial time, so the field lives on approximations and heuristics.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Set cover is one of Karp's original **21 NP-complete problems** — the foundational list that established computational intractability as a field."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GRAPH COLORING",
+        "body": "Graph coloring assigns colors to nodes so no two adjacent nodes share one. The minimum number of colors needed — the chromatic number — gives a provable lower bound on how many chargers any valid placement must use. It bounds the problem before you try to solve it."
+      },
+      {
+        "heading": "WHAT METAHEURISTICS ACTUALLY DO",
+        "body": "Algorithms like Aquila Optimization mimic biological search — in this case, the hunting behavior of golden eagles. They are not exact solvers; they sample the solution space intelligently, trading optimality guarantees for tractable runtime on huge instances.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Genetic algos",
+                "value": "1975, Holland"
+              },
+              {
+                "label": "Ant colony",
+                "value": "1992, Dorigo"
+              },
+              {
+                "label": "Particle swarm",
+                "value": "1995, Kennedy"
+              },
+              {
+                "label": "Grey wolf",
+                "value": "2014, Mirjalili"
+              },
+              {
+                "label": "Aquila",
+                "value": "2021, Abualigah"
+              }
+            ],
+            "label": "nature-inspired optimizers in this family"
+          }
+        ]
+      },
+      {
+        "heading": "WIRELESS POWER TRANSFER",
+        "body": "Resonant inductive coupling — the physics behind these chargers — falls off with the sixth power of distance. Doubling the range requires 64× the transmitter power. This is why charger placement matters so much: a sensor just outside the radius gets effectively zero power, not half.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Nikola Tesla demonstrated wireless power at *Wardenclyffe* in 1901 with the same resonance principle. The physics worked; the economics didn't — efficiency loss across distance still kills the grand vision today."
+          }
+        ]
+      },
+      {
+        "heading": "THE 99% TRAP",
+        "body": "In coverage problems, the last percent costs more than the first ninety. Covering 99% of nodes often requires nearly double the chargers of 95% coverage, because the final stragglers are geometrically isolated. Whether 99% is worth the cost is an application question, not an algorithmic one.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why is 'set cover' considered a hard problem in computer science?",
+            "options": [
+              "No algorithm finds the exact optimum in polynomial time",
+              "It cannot be solved at all, even approximately",
+              "It only works on graphs with fewer than 100 nodes",
+              "The answer depends on the programming language used"
+            ],
+            "correct": 0,
+            "explanation": "Set cover is NP-hard — exact solutions scale exponentially with input size, so large instances require approximation algorithms or heuristics."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-26T22:32:38.303Z",
+    "label": "Wireless Power & Combinatorial Optimization",
+    "category": "tech",
+    "articleCount": 1
   }
 }
