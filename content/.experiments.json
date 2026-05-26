@@ -1,6 +1,7 @@
 {
   "version": 1,
-  "activeExperiments": [
+  "activeExperiments": [],
+  "_editorEffortLowEntry": [
     {
       "id": "2026-05-18-editor-effort-low",
       "startDate": "2026-05-18",
@@ -11,6 +12,9 @@
       "file": "scripts/run-cycle.sh",
       "oldValue": "--effort medium (editor invocation, line 269)",
       "newValue": "--effort low (editor invocation, line 269)",
+      "result": "void-not-applied",
+      "evaluatedOn": "2026-05-26",
+      "notes": "Closed as void: parameter change was never committed. Inspection of git log --all -S 'effort low' -- scripts/run-cycle.sh returned no commits, and line 269 still reads `--effort medium`. Observed editor speed-up across 2026-05-18 → 2026-05-25 (n=34: mean 310s, median 298s, p75 418s, p90 444s, max 635s, 0 hard timeouts — vs baseline mean 762s / median 633s / p90 1447s) is fully attributable to commit 336792d2 (2026-05-17) which added --exclude-dynamic-system-prompt-sections to the editor invocation, enabling prompt-cache reuse across cycles. Title-echo guardrail breach in week 2026-05-24 snapshot (titleEchoRatePct 25.2 → 41.8, cap was 33) is also NOT attributable to this experiment — it tracks commit bc2a6d38 (2026-05-17) which rewrote scripts/write-prompt.md to the three-paragraph format and reworked the title-echo antipattern guidance. Lesson: when registering an experiment in this file, also commit the parameter change in the same operation; the active-experiments list should never sit ahead of the code. Title-echo regression is a real concern but cannot be addressed by tunable parameters (write-prompt.md is out of scope for daily tuning) — surfaced to operator via daily-audit weakestArea.",
       "targetMetric": "Editor stage wall-time median + p90 (parsed from cycle logs, \"Editor exit: 0 — Xs\"); secondary: zero hard timeouts (exit 124)",
       "targetDirection": "decrease",
       "baseline": {
