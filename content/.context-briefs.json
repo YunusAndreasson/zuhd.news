@@ -241413,5 +241413,1631 @@
     "label": "Baltic Drones & NATO's Gray Zone",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-26-agentic-divide-ai-agent-inequality-global-south-productivity": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT AN AGENT ACTUALLY IS",
+        "body": "An AI agent is a model wrapped in a loop: it reads a goal, calls tools, observes results, and decides the next step without a human in between. The autonomy is not in the model — it is in how many loop iterations the operator is willing to pay for and trust unsupervised.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry term is the *agentic loop*: **plan → act → observe → revise**. Each cycle is a fresh inference call, and inference is metered by the token."
+          }
+        ]
+      },
+      {
+        "heading": "WHY INFERENCE IS THE BOTTLENECK",
+        "body": "Training a frontier model is a one-time capital cost absorbed by the lab. Inference — running the model — is a per-query operating cost paid by every user, every call. An agent that takes 40 steps to finish a task pays 40 times the inference of a single chatbot turn.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Single chat turn",
+                "value": "~$0.01",
+                "weight": 1
+              },
+              {
+                "label": "RAG query",
+                "value": "~$0.05",
+                "weight": 5
+              },
+              {
+                "label": "Coding assist",
+                "value": "~$0.30",
+                "weight": 30
+              },
+              {
+                "label": "Autonomous agent run",
+                "value": "~$3–30",
+                "weight": 300
+              }
+            ],
+            "label": "rough inference cost per task type (frontier-tier models)"
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPUTE GEOGRAPHY",
+        "body": "Frontier inference runs on Nvidia H100/B200-class GPUs concentrated in a handful of US and Gulf data centers. A Lagos or Dhaka firm calling an agent endpoint pays the same per-token price as a Manhattan hedge fund — but the wage it is trying to automate is one-twentieth as expensive. The arbitrage runs backwards.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "AE",
+              "SA",
+              "IE",
+              "SG",
+              "CN",
+              "NG",
+              "BD",
+              "PK",
+              "KE"
+            ],
+            "label": "where the GPUs are (top) vs where the wages are low (bottom)",
+            "markers": [
+              {
+                "lat": 45.5152,
+                "lng": -122.6784,
+                "label": "Hillsboro, OR (Azure)"
+              },
+              {
+                "lat": 39.0438,
+                "lng": -77.4874,
+                "label": "Ashburn, VA (AWS)"
+              },
+              {
+                "lat": 24.4539,
+                "lng": 54.3773,
+                "label": "Abu Dhabi (G42)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TIERED-CAPABILITY MODEL",
+        "body": "Vendors increasingly sell the same underlying model at different autonomy levels: a cheap tier that asks the human to confirm each tool call, a premium tier that runs unattended for hours. The model weights are identical — the gating is contractual.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What is the main thing a 'premium agent tier' actually buys you over the cheaper tier?",
+            "options": [
+              "A smarter underlying model",
+              "Permission to run more steps unattended",
+              "Faster GPUs",
+              "Access to private training data"
+            ],
+            "correct": 1,
+            "explanation": "The model is usually the same; the premium tier raises rate limits, context windows, and unattended-execution permissions — all contract terms, not capability."
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL RHYME",
+        "body": "This is the same shape as electrification in the early 20th century. Factories that could afford their own dynamos pulled away from those still running on steam belts and overhead shafts; the productivity gap widened for two decades before grid electricity democratized power. Compute is today's dynamo.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1882",
+                "label": "Edison's Pearl Street station"
+              },
+              {
+                "year": "1920",
+                "label": "~half of US factories still on steam"
+              },
+              {
+                "year": "1939",
+                "label": "rural electrification reaches majority",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1995",
+                "label": "commercial internet diffuses"
+              },
+              {
+                "year": "2022",
+                "label": "ChatGPT — frontier AI commodified"
+              },
+              {
+                "year": "2025",
+                "label": "autonomous agents emerge as paid tier"
+              }
+            ],
+            "label": "general-purpose technologies and their access gaps"
+          }
+        ]
+      },
+      {
+        "heading": "NO STANDARDS BODY",
+        "body": "There is no equivalent of the FDA, the FCC, or even the IEEE for AI capability tiers. What counts as 'agentic', what level of autonomy is safe to sell, and what disclosure is required — all are set by the labs themselves. The buyers of the technology are also writing its definitions."
+      }
+    ],
+    "generatedAt": "2026-05-26T12:42:02.531Z",
+    "label": "The Agentic Divide",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-26-altman-jobs-apocalypse-denial-wisetech-threats-sydney": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LUDDITE PATTERN",
+        "body": "Technology displacement follows a consistent sequence: new tool arrives, owners capture the productivity gain, displaced workers lose income before any new jobs materialize, and violence targets the most visible symbol of the change. The gap between displacement and re-employment is where the danger lives. For English handloom weavers after the power loom, that gap lasted forty years.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1779",
+                "label": "Power loom invented"
+              },
+              {
+                "year": "1811",
+                "label": "Luddite riots begin",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1812",
+                "label": "Frame Breaking Act — death penalty"
+              },
+              {
+                "year": "1813",
+                "label": "York mass trials, 17 hanged"
+              },
+              {
+                "year": "1850",
+                "label": "Weaver wages finally recover"
+              }
+            ],
+            "label": "the original Luddite arc"
+          }
+        ]
+      },
+      {
+        "heading": "AGENTIC AI, DEFINED",
+        "body": "An agentic system is one that decomposes a goal into sub-tasks, executes tool calls (browsers, APIs, code), and self-corrects against feedback — without a human prompting each step. The leap over chatbots is autonomy of action, not eloquence of text. That is why agentic systems threaten roles a chatbot couldn't: bookkeeping, scheduling, freight ops, junior software work.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "WiseTech operates **CargoWise**, the dominant SaaS for global freight forwarders — the back-office layer behind ~40% of cross-border container moves. Its workforce is exactly where agentic automation lands first: *high-volume, rule-bound, digital-native* tasks."
+          }
+        ]
+      },
+      {
+        "heading": "THE INCENTIVE TO OVERSTATE",
+        "body": "Public AI labs face a recursive incentive: claim transformative power to attract capital, then walk back social cost to avoid regulation. Both moves serve the same valuation. OpenAI's reported $1 trillion IPO target sets the scale of the asymmetry between what the firm gains from optimism and what laid-off workers lose from being wrong.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "OpenAI (target)",
+                "value": "~$1tn",
+                "weight": 1000,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Nvidia",
+                "value": "~$3tn",
+                "weight": 3000,
+                "cc": "US"
+              },
+              {
+                "label": "Walmart",
+                "value": "~$700bn",
+                "weight": 700,
+                "cc": "US"
+              },
+              {
+                "label": "ExxonMobil",
+                "value": "~$500bn",
+                "weight": 500,
+                "cc": "US"
+              },
+              {
+                "label": "Toyota",
+                "value": "~$250bn",
+                "weight": 250,
+                "cc": "JP"
+              }
+            ],
+            "label": "headline AI valuations vs. legacy peers"
+          }
+        ]
+      },
+      {
+        "heading": "WHO ABSORBS THE SHOCK",
+        "body": "Economists distinguish technological unemployment (jobs gone forever in that form) from frictional unemployment (jobs gone while workers retrain). The policy response — wage insurance, retraining, transfer payments — only works if the state has fiscal room and political will. Most countries entering this cycle have neither in surplus.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "After the power loom displaced English handloom weavers around 1810, roughly how long until weaver wages recovered in real terms?",
+            "options": [
+              "About 10 years",
+              "About 20 years",
+              "About 40 years",
+              "Wages never fully recovered"
+            ],
+            "correct": 2,
+            "explanation": "Real weaver wages did not return to pre-power-loom levels until around 1850 — a generation-long gap that drove emigration, poor laws, and the Luddite revolts."
+          }
+        ]
+      },
+      {
+        "heading": "VIOLENCE AS A LAGGING INDICATOR",
+        "body": "Threats against executives, sabotage of equipment, and political backlash arrive late in a displacement cycle — usually after the layoffs are visible but before re-employment pathways exist. The pattern from the original Luddites to the 1970s Detroit autoworker unrest is consistent: violence is what unmet adjustment looks like, not a cause separate from it."
+      }
+    ],
+    "generatedAt": "2026-05-26T12:42:33.529Z",
+    "label": "AI & the Luddite Pattern",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-26-eli-lilly-vaccine-developers-acquisitions-consolidation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ACQUISITION LOGIC",
+        "body": "Developing a drug internally costs roughly $2-3 billion over 10-12 years with a 90% failure rate. Acquiring a company with a late-stage clinical asset costs more upfront but eliminates years of development risk. The premium is not for the molecule — it is for the certainty.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Big pharma's R&D model is increasingly **search-and-acquire**, not invent. Internal labs handle late-stage development and manufacturing; the *discovery* function is outsourced to biotechs funded by venture capital."
+          }
+        ]
+      },
+      {
+        "heading": "THE PATENT CLIFF",
+        "body": "A pharmaceutical patent lasts 20 years from filing, but clinical trials consume 10-15 of those years. Effective commercial exclusivity is often just 5-8 years. Blockbusters hit peak revenue late and fast, then face a cliff — which is why incumbents must keep buying the next pipeline.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many years of commercial exclusivity does a typical new drug get after launch?",
+            "options": [
+              "18-20 years",
+              "12-15 years",
+              "5-8 years",
+              "1-2 years"
+            ],
+            "correct": 2,
+            "explanation": "The 20-year patent clock starts at filing, but clinical trials consume most of it before the drug reaches market."
+          }
+        ]
+      },
+      {
+        "heading": "THE GLP-1 WINDFALL",
+        "body": "Lilly's tirzepatide (Mounjaro/Zepbound) and Novo Nordisk's semaglutide (Ozempic/Wegovy) generated a cash gusher unseen in pharma since the statin era. Lilly's market cap roughly tripled between 2022 and 2025, giving it war-chest capacity that smaller rivals can't match."
+      },
+      {
+        "heading": "WHY VACCINES, WHY NOW",
+        "body": "Vaccine R&D was a backwater before COVID. mRNA platforms (Moderna, BioNTech) proved a new technology could go from sequence to shot in under a year. The acquisitions are a bet that the next pandemic, or a recurring-dose franchise like RSV or shingles, will reward whoever owns the platform.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Pfizer",
+                "value": "~$11bn",
+                "cc": "US",
+                "weight": 11
+              },
+              {
+                "label": "Merck",
+                "value": "~$10bn",
+                "cc": "US",
+                "weight": 10
+              },
+              {
+                "label": "GSK",
+                "value": "~$9bn",
+                "cc": "GB",
+                "weight": 9
+              },
+              {
+                "label": "Sanofi",
+                "value": "~$8bn",
+                "cc": "FR",
+                "weight": 8
+              },
+              {
+                "label": "Moderna",
+                "value": "~$3bn",
+                "cc": "US",
+                "weight": 3
+              },
+              {
+                "label": "Lilly",
+                "value": "~$0",
+                "cc": "US",
+                "weight": 0.1,
+                "tone": "neutral"
+              }
+            ],
+            "label": "global vaccine market leaders, 2024 revenue"
+          }
+        ]
+      },
+      {
+        "heading": "THE CONSOLIDATION PATTERN",
+        "body": "When one buyer absorbs three competitors in a thin field, the surviving pipeline shrinks. Programs the acquirer doesn't prioritize get shelved — not because they failed, but because they don't fit the new owner's portfolio strategy. Antitrust review of pharma deals rarely catches this; the metric used is current market share, not pipeline diversity."
+      }
+    ],
+    "generatedAt": "2026-05-26T12:42:57.037Z",
+    "label": "Pharma Acquisition Economics",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-26-iran-mq9-drone-downed-persian-gulf-irgc-ceasefire": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "The Strait of Hormuz sits between Iran and Oman, not Iran and any Arab Gulf state. Iran's coastline runs the entire northern edge, and the deepest shipping channel hugs the Iranian side — which is why Iranian naval positioning matters disproportionately to global oil flow.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE",
+              "SA",
+              "QA",
+              "BH",
+              "KW",
+              "IQ"
+            ],
+            "label": "the Persian Gulf theater",
+            "markers": [
+              {
+                "lat": 26.5667,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 29.2275,
+                "lng": 50.3275,
+                "label": "Kharg Island terminal"
+              },
+              {
+                "lat": 27.1833,
+                "lng": 56.2833,
+                "label": "Bandar Abbas (IRGC Navy HQ)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE REAPER",
+        "body": "The MQ-9 Reaper is the workhorse of US persistent surveillance — 27-hour endurance, 50,000 ft ceiling, Hellfire and GBU-12 payloads. It is also slow (~300 mph), unstealthy, and visible to any modern radar. Over contested airspace, a Reaper is a $30 million sensor pretending to be invulnerable because nobody used to shoot.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The Reaper's predecessor, the **MQ-1 Predator**, was retired in 2018 after losing roughly *one in three* airframes built — most to weather and pilot error, but a growing share to ground fire as adversaries learned the flight profile."
+          }
+        ]
+      },
+      {
+        "heading": "THE IRGC, NOT THE ARTESH",
+        "body": "Iran runs two parallel militaries. The Artesh is the conventional army inherited from the Shah. The Islamic Revolutionary Guard Corps (IRGC), founded in 1979 to protect the revolution, runs the missile program, the Quds Force, the drone fleet, and the Persian Gulf naval squadrons. When Iran shoots at an American asset, it is almost always the IRGC — a parallel chain of command answering to the Supreme Leader, not the president.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Ayatollah Khamenei",
+                "role": "Supreme Leader, IRGC commander-in-chief",
+                "years": "1989–",
+                "cc": "IR"
+              },
+              {
+                "name": "Hossein Salami",
+                "role": "IRGC commander-in-chief",
+                "years": "2019–",
+                "cc": "IR"
+              },
+              {
+                "name": "Alireza Tangsiri",
+                "role": "IRGC Navy commander",
+                "years": "2018–",
+                "cc": "IR"
+              },
+              {
+                "name": "Esmail Qaani",
+                "role": "Quds Force commander",
+                "years": "2020–",
+                "cc": "IR"
+              }
+            ],
+            "label": "Iran's parallel military"
+          }
+        ]
+      },
+      {
+        "heading": "THE 2019 PRECEDENT",
+        "body": "On 20 June 2019, the IRGC shot down a US Navy RQ-4 Global Hawk over the Strait of Hormuz with a domestically-built Sevom Khordad SAM. Trump approved retaliatory strikes, then aborted ten minutes before launch — citing projected Iranian casualties. The episode established that Iran would shoot at US ISR platforms and that Washington's response was negotiable.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did the US do after Iran shot down a Global Hawk over Hormuz in 2019?",
+            "options": [
+              "Struck Iranian SAM sites within hours",
+              "Approved retaliation, then aborted ten minutes before launch",
+              "Imposed new sanctions but took no military action",
+              "Sank an IRGC patrol boat in the Strait"
+            ],
+            "correct": 1,
+            "explanation": "Trump approved the strike package, then called it off citing projected Iranian casualties — a precedent both sides studied carefully."
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR ECHO",
+        "body": "From 1984 to 1988, Iran and Iraq attacked over 400 commercial ships in the Gulf. Oil prices spiked briefly but markets adapted — tankers were reflagged under US and Kuwaiti flags and escorted by warships. The lesson planners took: disruption is easier to threaten than to sustain, and reflagging is the political move that ends an escalation cycle.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Islamic Revolution; IRGC founded",
+                "emphasis": "start"
+              },
+              {
+                "year": "1988-04",
+                "label": "Operation Praying Mantis"
+              },
+              {
+                "year": "1988-07",
+                "label": "USS Vincennes downs Iran Air 655"
+              },
+              {
+                "year": "2019-06",
+                "label": "IRGC downs RQ-4 Global Hawk",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020-01",
+                "label": "Soleimani killed in Baghdad"
+              },
+              {
+                "year": "2024-04",
+                "label": "Iran's first direct missile salvo on Israel"
+              },
+              {
+                "year": "2026-05",
+                "label": "US strikes; Reaper allegedly downed"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1984",
+                "to": "1988",
+                "label": "Tanker War",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "US–Iran military friction in the Gulf"
+          }
+        ]
+      },
+      {
+        "heading": "PAKISTAN AS MEDIATOR",
+        "body": "Pakistan shares a 900 km border with Iran and is the only Muslim nuclear power. Islamabad has historically brokered between Tehran and the Gulf monarchies — most visibly in the 2023 Saudi–Iran rapprochement, which Pakistan supported alongside China. Its mediator role rests on being trusted enough by both sides to carry messages, not on having leverage over either."
+      }
+    ],
+    "generatedAt": "2026-05-26T12:43:33.869Z",
+    "label": "The Persian Gulf Drone War",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-26-khamenei-no-going-back-us-bases-middle-east-realignment": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BASE FOOTPRINT",
+        "body": "The US holds roughly 40,000 troops across a ring of installations around Iran — Al Udeid in Qatar (CENTCOM forward HQ), 5th Fleet at NSA Bahrain, Al Dhafra in the UAE, Ali Al Salem in Kuwait, and Al Asad and Erbil in Iraq. An expulsion call targets host-government consent, not US capability — every one of these bases sits on land Washington does not own.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "QA",
+              "BH",
+              "AE",
+              "KW",
+              "IQ",
+              "SA",
+              "OM"
+            ],
+            "label": "the ring around Iran",
+            "markers": [
+              {
+                "lat": 25.1173,
+                "lng": 51.3151,
+                "label": "Al Udeid (CENTCOM fwd)"
+              },
+              {
+                "lat": 26.2098,
+                "lng": 50.6068,
+                "label": "NSA Bahrain (5th Fleet)"
+              },
+              {
+                "lat": 24.2483,
+                "lng": 54.5478,
+                "label": "Al Dhafra AB"
+              },
+              {
+                "lat": 29.3467,
+                "lng": 47.52,
+                "label": "Ali Al Salem"
+              },
+              {
+                "lat": 33.7856,
+                "lng": 42.4411,
+                "label": "Al Asad"
+              },
+              {
+                "lat": 36.2376,
+                "lng": 43.9633,
+                "label": "Erbil"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "NEITHER EAST NOR WEST",
+        "body": "Khomeini's foundational 1979 slogan — *na sharqi, na gharbi, jomhuri-ye eslami* — fixed expulsion of foreign military presence as a permanent axiom of the Islamic Republic, not a negotiating position. Every supreme leader since has restated it; the doctrine predates any specific grievance with Washington.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phrase **na sharqi, na gharbi** (\"neither East nor West\") was painted across the wall of the former US embassy in Tehran in 1980 and remains there today — a permanent piece of state iconography, not a slogan of the moment."
+          }
+        ]
+      },
+      {
+        "heading": "THE SUCCESSION QUESTION",
+        "body": "Mojtaba Khamenei is Ali Khamenei's second son and a mid-ranking cleric in Qom without the marja-e taqlid status his father lacked at appointment but acquired through office. His public role expanded sharply over the past five years; the Assembly of Experts, not popular vote, picks the next supreme leader.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Ali Khamenei",
+                "role": "Supreme Leader since 1989",
+                "years": "1939–",
+                "cc": "IR"
+              },
+              {
+                "name": "Mojtaba Khamenei",
+                "role": "his son, Qom cleric",
+                "years": "1969–",
+                "cc": "IR"
+              },
+              {
+                "name": "Ebrahim Raisi",
+                "role": "former president, died 2024",
+                "years": "1960–2024",
+                "cc": "IR"
+              },
+              {
+                "name": "Sadeq Larijani",
+                "role": "head of Expediency Council",
+                "years": "1960–",
+                "cc": "IR"
+              }
+            ],
+            "label": "the succession field"
+          }
+        ]
+      },
+      {
+        "heading": "THE ABRAHAM ACCORDS",
+        "body": "The 2020 US-brokered normalizations broke a 70-year Arab posture of conditioning recognition of Israel on a Palestinian state. Four states signed; Saudi Arabia and Oman were the prizes that never closed. A call to \"reject normalization\" is aimed at the unsigned, not the signed.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1979",
+                "label": "Egypt–Israel peace (Camp David)"
+              },
+              {
+                "year": "1994",
+                "label": "Jordan–Israel peace"
+              },
+              {
+                "year": "2020-08",
+                "label": "UAE normalizes",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020-09",
+                "label": "Bahrain normalizes"
+              },
+              {
+                "year": "2020-10",
+                "label": "Sudan normalizes"
+              },
+              {
+                "year": "2020-12",
+                "label": "Morocco normalizes"
+              },
+              {
+                "year": "2023-10",
+                "label": "Saudi talks frozen by Gaza war"
+              }
+            ],
+            "label": "Arab–Israel normalization track"
+          }
+        ]
+      },
+      {
+        "heading": "WHY HOST CONSENT IS THE LEVER",
+        "body": "US bases operate under Status of Forces Agreements that the host can revoke. Iraq's parliament voted non-binding expulsion of US forces in 2020 after the Soleimani strike; the troops stayed because the cabinet did not enforce the vote. The Philippines closed Subic Bay in 1992. Uzbekistan evicted the US from Karshi-Khanabad in 2005. Expulsion is rare but not theoretical.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which Gulf state hosts US Central Command's forward headquarters?",
+            "options": [
+              "Saudi Arabia",
+              "Qatar",
+              "UAE",
+              "Bahrain"
+            ],
+            "correct": 1,
+            "explanation": "CENTCOM moved its forward HQ to Al Udeid Air Base in Qatar after withdrawing from Prince Sultan AB in Saudi Arabia in 2003. Bahrain hosts the 5th Fleet — a separate naval command."
+          }
+        ]
+      },
+      {
+        "heading": "THE QATAR PARADOX",
+        "body": "Qatar simultaneously hosts the largest US base in the region and maintains the warmest Gulf-state channel to Tehran, sharing the South Pars/North Dome gas field with Iran. Doha's role as ceasefire mediator depends on this dual position — neither Washington nor Tehran wants to break it."
+      }
+    ],
+    "generatedAt": "2026-05-26T12:44:19.003Z",
+    "label": "Iran, US Bases & Regional Realignment",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-26-kozlov-russia-security-council-rostec-gru-cyber-consolidation": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE SECURITY COUNCIL IS",
+        "body": "The Sovet Bezopasnosti is not a cabinet — it is a coordinating body chaired by the president that synchronizes the FSB, GRU, MVD, and defense industry. Under Putin it has become the real venue where war, sanctions, and cyber policy get decided; the formal government implements.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Its long-time secretary **Nikolai Patrushev** is widely considered the second-most powerful figure in Russia — the position outranks most ministers."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT ROSTEC IS",
+        "body": "A state-owned conglomerate created in 2007 that absorbed roughly 700 defense and industrial enterprises — Kalashnikov, helicopter maker Russian Helicopters, the Uralvagonzavod tank plant. It is the procurement arm of the Russian military and the bridge between the Kremlin and the defense-industrial base.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Sergei Chemezov",
+                "role": "Rostec CEO, ex-KGB",
+                "years": "2007–",
+                "cc": "RU"
+              },
+              {
+                "name": "Nikolai Patrushev",
+                "role": "Security Council secretary",
+                "years": "2008–2024",
+                "cc": "RU"
+              },
+              {
+                "name": "Igor Kostyukov",
+                "role": "GRU director",
+                "years": "2018–",
+                "cc": "RU"
+              }
+            ],
+            "label": "who runs Russia's cyber-industrial layer"
+          }
+        ]
+      },
+      {
+        "heading": "THE GRU'S CYBER UNITS",
+        "body": "Russian military intelligence runs the most aggressive cyber programs in the world. Unit 26165 (Fancy Bear / APT28) hacked the DNC in 2016 and the IOC's anti-doping database. Unit 74455 (Sandworm) deployed NotPetya in 2017 — the most destructive cyberattack in history, causing roughly $10 billion in global damage.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which GRU unit was behind the 2017 NotPetya attack that crippled Maersk, Merck, and Ukrainian banks?",
+            "options": [
+              "Unit 26165 (Fancy Bear)",
+              "Unit 74455 (Sandworm)",
+              "Unit 54777 (psychological ops)",
+              "FSB Center 16"
+            ],
+            "correct": 1,
+            "explanation": "Sandworm — Unit 74455 of the GRU — has been indicted by US prosecutors for NotPetya and for attacks on Ukraine's power grid in 2015 and 2016."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CONSOLIDATION MATTERS",
+        "body": "Offensive cyber operations (espionage, sabotage) and defensive ones (protecting critical infrastructure) have historically lived in separate Russian agencies — GRU offense, FSB counterintelligence, FSO presidential comms. Folding the defense-industrial cyber chief into the Security Council compresses that chain of command, the same pattern the US followed when it created CYBERCOM in 2010."
+      },
+      {
+        "heading": "THE SANCTIONS BACKDROP",
+        "body": "Rostec has been under US sanctions since 2014 (Crimea) and tightened in 2022. Its subsidiaries supply nearly every weapons system used in Ukraine. Western export controls aim specifically at Rostec's ability to source semiconductors — which is precisely why Russia has been pushing cyber and defense-industrial integration inward."
+      }
+    ],
+    "generatedAt": "2026-05-26T12:44:44.012Z",
+    "label": "Russia's Cyber-Industrial Complex",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-26-pomegranate-peel-water-purifier-4-nitrophenol-frugal-chemistry": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TOXIN",
+        "body": "4-nitrophenol is a byproduct of dye, pesticide, and pharmaceutical manufacturing. It resists biodegradation, persists in groundwater for years, and is classified as a priority pollutant by the US EPA — meaning industrial dischargers must monitor and remove it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The nitro group (**-NO₂**) on the benzene ring is what makes it both useful in synthesis and stubborn in the environment — the same electron-withdrawing structure that resists microbial breakdown."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CARBON",
+        "body": "Activated carbon has been the workhorse of water purification since the 19th century. Its enormous internal surface area — a single gram can hold up to 3,000 square meters of pore wall — traps organic molecules through van der Waals forces. Coconut shells, wood, and coal are the standard feedstocks.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How much internal surface area can a single gram of activated carbon hold?",
+            "options": [
+              "About 30 square meters",
+              "About 300 square meters",
+              "Up to 3,000 square meters",
+              "Up to 30,000 square meters"
+            ],
+            "correct": 2,
+            "explanation": "A teaspoon of activated carbon can have the surface area of a football field — that porosity is what makes it the dominant adsorbent in water treatment."
+          }
+        ]
+      },
+      {
+        "heading": "THE FRUGAL CHEMISTRY MOVEMENT",
+        "body": "A research strand pioneered by Indian chemist C.N.R. Rao and popularized over the last two decades aims to derive high-value materials from agricultural waste. Banana peels, rice husks, coffee grounds, and orange rinds have all been converted into adsorbents, catalysts, or electrodes — the premise being that the Global South should not import what it grows."
+      },
+      {
+        "heading": "WHY POMEGRANATE",
+        "body": "The peel is roughly half the fruit's weight and is discarded by juice processors at industrial scale. It is also rich in polyphenols and tannins — molecules that pyrolyze into carbon structures studded with oxygen-containing functional groups, which bind aromatic toxins more selectively than plain activated carbon.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Coconut shell",
+                "value": "standard feedstock"
+              },
+              {
+                "label": "Rice husk",
+                "value": "high-silica char"
+              },
+              {
+                "label": "Banana peel",
+                "value": "heavy-metal binding"
+              },
+              {
+                "label": "Orange peel",
+                "value": "dye removal"
+              },
+              {
+                "label": "Pomegranate peel",
+                "value": "nitrophenol target"
+              }
+            ],
+            "label": "agricultural waste turned into adsorbents"
+          }
+        ]
+      },
+      {
+        "heading": "THE LAB-TO-FIELD GAP",
+        "body": "Adsorbent papers are among the most-published and least-deployed in environmental chemistry. The bottleneck is rarely the material — it is regeneration cycles, flow rates at industrial pressures, and the cost of replacing a working coal-based system with an unproven one. Most published frugal adsorbents never leave the lab."
+      },
+      {
+        "heading": "WHERE CONTAMINATION CLUSTERS",
+        "body": "4-nitrophenol contamination concentrates where dye and pesticide manufacturing concentrates — the textile belts of South and East Asia. The Pearl River Delta, the Ganges basin around Kanpur, and the dye clusters of Gujarat are among the world's most studied 4-nitrophenol hotspots, and also where pomegranate is cheap and abundant.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "IN",
+              "PK",
+              "BD",
+              "VN"
+            ],
+            "label": "textile dye manufacturing belt",
+            "caption": "where 4-nitrophenol contamination and pomegranate cultivation overlap"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-26T12:45:11.626Z",
+    "label": "Frugal Chemistry & Water Purification",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-26-smex-ceasefire-digital-rights-mideast-surveillance-baseline": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RATCHET",
+        "body": "Emergency surveillance powers expand during conflict but rarely contract afterward. Each war establishes a new baseline; the next emergency starts from that floor and climbs higher. Civil libertarians call this the ratchet effect — it turns one direction only.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The phrase comes from legal scholar **Bruce Ackerman**, who warned after 9/11 that emergency statutes calcify into permanent law unless they carry *sunset clauses* with teeth."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEBANESE INFRASTRUCTURE",
+        "body": "Lebanon's telecom sector runs through two state-owned mobile operators (Alfa and Touch) and the state-owned Ogero for fixed lines. There is no private last-mile competitor. Every packet of Lebanese internet traffic crosses infrastructure the state directly controls — surveillance is not a capability that needs to be built, only switched on."
+      },
+      {
+        "heading": "THE REGIONAL PATTERN",
+        "body": "Egypt's 2011 emergency law was renewed continuously until 2021, then replaced by terrorism statutes carrying the same powers. Jordan's 2023 cybercrime law criminalized 'spreading false news' with prison terms. Tunisia's Decree 54 did the same. Across the region, wartime tools became peacetime law.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "LB",
+              "SY",
+              "EG",
+              "JO",
+              "TN",
+              "SA",
+              "AE",
+              "IR",
+              "TR"
+            ],
+            "label": "states with post-emergency digital restrictions still in force"
+          }
+        ]
+      },
+      {
+        "heading": "THE THROTTLE, NOT THE BLACKOUT",
+        "body": "Full internet shutdowns generate international headlines and economic pain. Throttling — slowing bandwidth to make video and encrypted traffic unusable while letting basic browsing through — achieves most of the censorship effect with none of the visibility. It is the preferred tool of states that want plausible deniability."
+      },
+      {
+        "heading": "THE PLATFORM REQUEST CHANNEL",
+        "body": "Meta, Google, and X publish transparency reports showing government requests for user data and content takedowns. Middle Eastern requests rose sharply after October 2023 and have not returned to pre-war levels in any reporting country. The pipes built during wartime stay open.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of global internet shutdowns in 2024 occurred in the Middle East and North Africa?",
+            "options": [
+              "Under 10%",
+              "Roughly a quarter",
+              "Roughly half",
+              "Over 75%"
+            ],
+            "correct": 1,
+            "explanation": "Access Now's #KeepItOn tracker recorded MENA at roughly a quarter of global shutdowns in 2024, behind only South Asia — driven by Iran, Sudan, and conflict-zone throttling."
+          }
+        ]
+      },
+      {
+        "heading": "WHY CEASEFIRES DON'T RESET",
+        "body": "A ceasefire is a military instrument — it pauses kinetic operations. Digital restrictions sit under separate legal authorities: telecom regulators, interior ministries, counter-terrorism statutes. Nothing in a ceasefire text obligates a state to unwind them, and no Middle Eastern ceasefire in the past two decades has included a digital-rights provision."
+      }
+    ],
+    "generatedAt": "2026-05-26T12:45:36.950Z",
+    "label": "Wartime Surveillance & the Ratchet Effect",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-26-south-africa-labs-load-shedding-research-infrastructure-saiab": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT LOAD SHEDDING IS",
+        "body": "Eskom, South Africa's state utility, rotates planned blackouts through neighborhoods when generation falls short of demand. Stages 1–8 dictate how many hours per day the lights go out. Stage 6 — eight hours of outages — became routine in 2022–2023.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The word *load shedding* is South African English now exported globally — the technical term is **rotational power cuts**, but the local coinage stuck because the experience is so universal."
+          }
+        ]
+      },
+      {
+        "heading": "HOW ESKOM BROKE",
+        "body": "Eskom built almost no new generation between 1994 and 2007 while demand grew with electrification. The Medupi and Kusile coal plants, meant to close the gap, ran a decade late and billions over budget. Maintenance backlogs on the aging fleet compounded the deficit.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1994",
+                "label": "Apartheid ends; mass electrification begins"
+              },
+              {
+                "year": "2007",
+                "label": "First rolling blackouts",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2008",
+                "label": "Medupi coal plant approved"
+              },
+              {
+                "year": "2015",
+                "label": "Stage 3 becomes routine"
+              },
+              {
+                "year": "2023",
+                "label": "335 days of load shedding"
+              },
+              {
+                "year": "2024",
+                "label": "Largely paused as solar capacity surges"
+              }
+            ],
+            "label": "Eskom's slow-motion crisis"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ETHANOL CHANGES STATE",
+        "body": "Specimen jars at biodiversity collections hold tissues in 70–95% ethanol. Ethanol's flash point is 13°C; above that, vapor mixes with air at concentrations that can ignite from a single spark. A failed lab chiller in summer turns a million-jar collection into a fire-code violation within hours."
+      },
+      {
+        "heading": "THE COLD CHAIN PROBLEM",
+        "body": "Research collections, vaccine stockpiles, and IVF cryobanks share a hidden dependence: continuous power. A -80°C freezer warms about 1°C per hour without electricity. Liquid nitrogen dewars buy days, not weeks. The expertise to rebuild a destroyed collection often doesn't exist — the taxonomists who identified the specimens are dead."
+      },
+      {
+        "heading": "WHY SOLAR WINS HERE",
+        "body": "South Africa sits in one of the world's best solar zones — Northern Cape irradiance rivals the Atacama. Rooftop PV plus batteries now undercuts grid power on a 5-year basis for any user facing more than ~2 hours of daily outages. Universities are a textbook adopter: large flat roofs, daytime demand profile, capital access.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "South Africa",
+                "value": "~7.8 GW",
+                "cc": "ZA",
+                "tone": "favorable"
+              },
+              {
+                "label": "Egypt",
+                "value": "~2.0 GW",
+                "cc": "EG",
+                "tone": "neutral"
+              },
+              {
+                "label": "Morocco",
+                "value": "~0.9 GW",
+                "cc": "MA",
+                "tone": "neutral"
+              },
+              {
+                "label": "Nigeria",
+                "value": "~0.1 GW",
+                "cc": "NG",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Kenya",
+                "value": "~0.2 GW",
+                "cc": "KE",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "African solar potential vs installed capacity (2024)"
+          }
+        ]
+      },
+      {
+        "heading": "THE GENERATION GAP",
+        "body": "Lab equipment has design assumptions baked in: PCR machines expect stable voltage, centrifuges expect uninterrupted cycles, sequencers expect 48-hour runs. Retrofitting around blackouts means not just power but power quality — the surge when a generator kicks in can damage instruments more than the outage itself.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When grid power restores after load shedding, what damages lab equipment most often?",
+            "options": [
+              "The outage itself starving capacitors",
+              "Voltage surges and harmonic distortion as power returns",
+              "Generator exhaust fumes corroding circuit boards",
+              "Static buildup during the dark period"
+            ],
+            "correct": 1,
+            "explanation": "Restoration transients — voltage spikes, frequency wobble, harmonic distortion — kill more sensitive electronics than the outage. UPS systems exist mainly to smooth the return, not bridge the gap."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-26T12:46:12.396Z",
+    "label": "Load Shedding & Research Infrastructure",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-26-stablr-usdr-eurr-peg-collapse-unbacked-mint-attack": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT 1-OF-3 ACTUALLY MEANS",
+        "body": "A 1-of-3 multisig requires only one of three keyholders to authorize an action. It is multisig in name only — the security is no better than a single key, since compromising any one of the three is sufficient. Real protection starts at 2-of-3, where an attacker must compromise a majority.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The industry shorthand is **M-of-N**: M signatures required out of N keyholders. *1-of-N* is a convenience configuration, not a security configuration — used when speed matters more than custody."
+          },
+          {
+            "type": "quiz",
+            "question": "What is the minimum multisig configuration that actually requires more than one compromised key to steal funds?",
+            "options": [
+              "1-of-2",
+              "1-of-3",
+              "2-of-3",
+              "3-of-5"
+            ],
+            "correct": 2,
+            "explanation": "2-of-3 is the smallest config where one stolen key is not enough — an attacker must compromise a majority. 1-of-N gives no security improvement over a single key."
+          }
+        ]
+      },
+      {
+        "heading": "THE PEG MECHANIC",
+        "body": "A fiat stablecoin holds its peg through redemption arbitrage: if the token trades below $1, anyone can buy it cheap and redeem it from the issuer for $1 of reserves, earning the spread. The peg breaks the moment redemptions are paused — the arbitrage loop snaps and the price collapses to whatever the secondary market will bear."
+      },
+      {
+        "heading": "WHY UNBACKED MINTING IS FATAL",
+        "body": "Every stablecoin token in circulation is supposed to correspond to one unit of reserve currency held by the issuer. Minting tokens without depositing matching reserves dilutes every existing holder — the same mechanism by which counterfeiting destroys a fiat currency, but instantaneous and on-chain visible."
+      },
+      {
+        "heading": "THE MICA REGIME",
+        "body": "The EU's Markets in Crypto-Assets regulation, fully in force since December 2024, requires euro-denominated stablecoin issuers to be licensed credit or e-money institutions, hold 1:1 reserves in segregated accounts, and publish monthly attestations. Malta is one of the most active MiCA licensing jurisdictions — and now the site of the regime's first major mint-attack failure.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MT",
+              "IT",
+              "FR",
+              "DE",
+              "IE",
+              "LU"
+            ],
+            "label": "MiCA stablecoin licensing hubs",
+            "caption": "Malta, Ireland, and Luxembourg compete to host EU-licensed issuers"
+          }
+        ]
+      },
+      {
+        "heading": "THE DEPEG PRECEDENTS",
+        "body": "Stablecoin peg breaks follow a pattern. TerraUSD imploded in May 2022 from $1 to under a cent in three days, vaporizing $40bn. USDC briefly traded at $0.87 in March 2023 when Silicon Valley Bank failed holding $3.3bn of its reserves. Each event taught the same lesson: a peg is only as strong as the weakest link in the reserve-and-redemption chain.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2022-05",
+                "label": "TerraUSD collapses to ~$0.01",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-03",
+                "label": "USDC depegs to $0.87 (SVB)"
+              },
+              {
+                "year": "2023-08",
+                "label": "Huobi's HUSD falls to $0.92"
+              },
+              {
+                "year": "2024-12",
+                "label": "MiCA stablecoin rules take effect"
+              },
+              {
+                "year": "2026-05",
+                "label": "StablR EURR mint exploit"
+              }
+            ],
+            "label": "stablecoin peg breaks"
+          },
+          {
+            "type": "rank",
+            "metric": "Stablecoin market cap (selected)",
+            "peers": [
+              {
+                "value": 142,
+                "label": "USDT"
+              },
+              {
+                "value": 58,
+                "label": "USDC"
+              },
+              {
+                "value": 5.3,
+                "label": "DAI"
+              },
+              {
+                "value": 1.1,
+                "label": "PYUSD"
+              },
+              {
+                "value": 0.21,
+                "label": "EURC"
+              },
+              {
+                "value": 0.014,
+                "label": "EURR"
+              }
+            ],
+            "subjectLabel": "EURR",
+            "unit": "$bn"
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE DISCOUNT IS THIS DEEP",
+        "body": "EURR trading at $0.548 against a euro worth $1.16 implies the market believes roughly 53 cents of reserves remain per token — close to a straight-line accounting of the dilution. The price is no longer a peg; it is a recovery estimate, the same logic that prices defaulted sovereign bonds."
+      }
+    ],
+    "generatedAt": "2026-05-26T12:46:46.737Z",
+    "label": "Stablecoin Pegs & Multisig Risk",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-26-sudanese-refugees-cairo-suicide-crisis-funding-collapse": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LARGEST DISPLACEMENT CRISIS",
+        "body": "Sudan's war, ignited April 2023 between the army and the Rapid Support Forces, has displaced more people than Ukraine, Gaza, and Syria combined — roughly 12 million by 2025. It is the largest displacement crisis in the world, and the least funded per capita.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SD",
+              "EG",
+              "TD",
+              "SS",
+              "ET",
+              "LY",
+              "CF"
+            ],
+            "label": "Sudan's neighbors absorbing the outflow",
+            "markers": [
+              {
+                "lat": 15.5007,
+                "lng": 32.5599,
+                "label": "Khartoum"
+              },
+              {
+                "lat": 30.0444,
+                "lng": 31.2357,
+                "label": "Cairo"
+              },
+              {
+                "lat": 12.1348,
+                "lng": 15.0557,
+                "label": "N'Djamena"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY EGYPT",
+        "body": "Egypt and Sudan share a 1,275-km border and a Nile that runs through both. The 1976 Wadi El Nil agreement granted Sudanese visa-free entry; even after Cairo tightened entry rules in 2023, Sudanese arrived through Aswan by the hundreds of thousands. Cairo now hosts the largest Sudanese diaspora outside Sudan itself.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Sudanese refugees by host country, 2025",
+            "peers": [
+              {
+                "value": 1.5,
+                "cc": "EG"
+              },
+              {
+                "value": 1.2,
+                "cc": "TD"
+              },
+              {
+                "value": 0.9,
+                "cc": "SS"
+              },
+              {
+                "value": 0.08,
+                "cc": "ET"
+              },
+              {
+                "value": 0.21,
+                "cc": "LY"
+              },
+              {
+                "value": 0.03,
+                "cc": "CF"
+              },
+              {
+                "value": 0.06,
+                "cc": "UG"
+              }
+            ],
+            "subjectCc": "EG",
+            "unit": "million"
+          }
+        ]
+      },
+      {
+        "heading": "HOW UNHCR ACTUALLY WORKS",
+        "body": "UNHCR is funded almost entirely by voluntary contributions — under 3% of its budget comes from the UN's assessed dues. Each year it publishes a country appeal, then waits to see what donors actually wire. When appeals come in below 50% funded, the agency triages: emergency food and shelter survive; mental health, education, and chronic care get cut first.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The single largest historical donor is the **United States**, which in some years has supplied **40% or more** of UNHCR's total income. A single capital's budget swing reshapes refugee services from Cairo to Cox's Bazar."
+          }
+        ]
+      },
+      {
+        "heading": "THE 30% APPEAL",
+        "body": "When a humanitarian appeal closes under a third funded, agencies do not deliver a third of services — they shut entire programs. Mental health is the canonical first cut: it has no body count, no famine photo, no donor constituency. The clinic in the article runs on volunteers because that is what 30% funding looks like on the ground.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "When a UN refugee appeal comes in severely underfunded, which service is typically cut first?",
+            "options": [
+              "Emergency food rations",
+              "Shelter and registration",
+              "Mental health and psychosocial support",
+              "Vaccination campaigns"
+            ],
+            "correct": 2,
+            "explanation": "Mental health has no body count and no visible donor metric, so it is the first program triaged out — even though refugee populations show suicide and PTSD rates many times the baseline."
+          }
+        ]
+      },
+      {
+        "heading": "THE SURVIVOR'S PARADOX",
+        "body": "Survivors of mass violence often die after the war ends, not during it. Epidemiological studies of Rwandan, Bosnian, and Syrian refugee cohorts found suicide rates two-to-six times higher than host-country baselines, peaking 2-4 years after displacement — exactly the window when emergency funding dries up and chronic care is most needed.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2023-04",
+                "label": "SAF–RSF war ignites in Khartoum",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023-06",
+                "label": "First mass arrivals in Aswan"
+              },
+              {
+                "year": "2023-10",
+                "label": "Egypt tightens visa rules"
+              },
+              {
+                "year": "2024-06",
+                "label": "UNHCR Sudan appeal hits 20% funded"
+              },
+              {
+                "year": "2025",
+                "label": "UNHCR cuts nonemergency care in Egypt"
+              }
+            ],
+            "label": "Sudan's war, two years in"
+          }
+        ]
+      },
+      {
+        "heading": "THE DONOR GEOMETRY",
+        "body": "Refugee budgets are politically asymmetric: a small number of donors fund most of the system, and when one of them pulls back, no coalition of mid-sized states moves fast enough to fill the gap. The Sudan appeal sits in this trap — it has no Ukraine-style political champion and no Gaza-style media saturation.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ukraine",
+                "value": "~65%",
+                "cc": "UA",
+                "tone": "favorable",
+                "weight": 65
+              },
+              {
+                "label": "oPt (Gaza)",
+                "value": "~55%",
+                "cc": "PS",
+                "tone": "neutral",
+                "weight": 55
+              },
+              {
+                "label": "Syria",
+                "value": "~38%",
+                "cc": "SY",
+                "tone": "neutral",
+                "weight": 38
+              },
+              {
+                "label": "Sudan",
+                "value": "<30%",
+                "cc": "SD",
+                "tone": "unfavorable",
+                "weight": 28
+              },
+              {
+                "label": "DR Congo",
+                "value": "~25%",
+                "cc": "CD",
+                "tone": "unfavorable",
+                "weight": 25
+              }
+            ],
+            "label": "2024 humanitarian appeals — funded share"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-26T12:47:30.133Z",
+    "label": "Sudan's Displaced & the UNHCR Funding Model",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-26-taiwan-stock-market-surpasses-india-tsmc-ai-concentration": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ONE-STOCK MARKET",
+        "body": "TSMC alone accounts for roughly a third of Taiwan's entire stock market capitalization. No other major equity market is this dependent on a single company — the closest historical parallel is Nokia, which at its 2000 peak was 70% of Finland's market and 4% of national GDP.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "When one firm dominates an index, the index stops measuring an economy and starts measuring **one balance sheet**. Helsinki learned this between 2000 and 2012 — the Nokia collapse erased a decade of Finnish market returns."
+          }
+        ]
+      },
+      {
+        "heading": "WHY TSMC IS UNREPLACEABLE",
+        "body": "TSMC manufactures over 90% of the world's leading-edge chips — anything below 7 nanometers. Apple, Nvidia, AMD, and Qualcomm all design silicon they cannot make themselves. The fabs sit on a handful of campuses in Hsinchu, Tainan, and Kaohsiung.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TW",
+              "CN",
+              "JP",
+              "KR",
+              "PH"
+            ],
+            "label": "the global semiconductor chokepoint",
+            "markers": [
+              {
+                "lat": 24.7736,
+                "lng": 121.0444,
+                "label": "Hsinchu — TSMC HQ & Fab 12"
+              },
+              {
+                "lat": 22.9908,
+                "lng": 120.2133,
+                "label": "Tainan — Fab 18 (3nm)"
+              },
+              {
+                "lat": 22.6273,
+                "lng": 120.3014,
+                "label": "Kaohsiung — new 2nm fab"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "TAIWAN VS INDIA, BY SHAPE",
+        "body": "India's market spreads across thousands of listed firms in banking, FMCG, IT services, pharma, and energy. Taiwan's market is semiconductor supply chain plus everything else. Two countries with comparable headline numbers, opposite risk profiles.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Taiwan",
+                "value": "$4.95tn",
+                "cc": "TW",
+                "segments": [
+                  {
+                    "value": 33,
+                    "tone": "unfavorable",
+                    "label": "TSMC"
+                  },
+                  {
+                    "value": 35,
+                    "tone": "neutral",
+                    "label": "other tech"
+                  },
+                  {
+                    "value": 32,
+                    "tone": "favorable",
+                    "label": "non-tech"
+                  }
+                ]
+              },
+              {
+                "label": "India",
+                "value": "$4.9tn",
+                "cc": "IN",
+                "segments": [
+                  {
+                    "value": 7,
+                    "tone": "unfavorable",
+                    "label": "Reliance"
+                  },
+                  {
+                    "value": 28,
+                    "tone": "neutral",
+                    "label": "financials"
+                  },
+                  {
+                    "value": 65,
+                    "tone": "favorable",
+                    "label": "diversified"
+                  }
+                ]
+              }
+            ],
+            "label": "market cap composition, 2026 est."
+          }
+        ]
+      },
+      {
+        "heading": "THE FAB ECONOMICS",
+        "body": "A leading-edge fab costs $20-30 billion to build and takes 3-5 years before producing revenue. Each generation of process node roughly doubles the capex. This is why the industry consolidated from 25 leading-edge foundries in 2001 to three today: TSMC, Samsung, and Intel."
+      },
+      {
+        "heading": "THE GEOPOLITICAL HEDGE",
+        "body": "TSMC is building fabs in Arizona, Kumamoto, and Dresden — partly customer-driven, partly under US and EU pressure to diversify away from a single island within range of Chinese missile batteries. The Taiwan fabs still hold the most advanced nodes; the overseas plants run one or two generations behind.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What share of the world's leading-edge semiconductors (7nm and below) is manufactured in Taiwan?",
+            "options": [
+              "About 50%",
+              "About 70%",
+              "Over 90%",
+              "Roughly 30%"
+            ],
+            "correct": 2,
+            "explanation": "TSMC alone makes over 90% of sub-7nm chips, nearly all of it inside Taiwan. Samsung is the only other foundry with a leading-edge process at scale."
+          }
+        ]
+      },
+      {
+        "heading": "THE SEBI CONCERN",
+        "body": "India's regulator called diversification an advantage — a polite framing of the textbook view that idiosyncratic single-firm risk is uncompensated. Investors are rewarded for bearing systematic risk; concentration risk is supposed to be diversified away, not bid up."
+      }
+    ],
+    "generatedAt": "2026-05-26T12:48:01.628Z",
+    "label": "Concentration Risk & TSMC",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-26-yemen-cholera-dengue-drought-community-response-compounding": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY CHOLERA RETURNS",
+        "body": "Cholera is a disease of broken water systems, not poverty alone. Vibrio cholerae spreads through fecal contamination of drinking water; a functioning sewer-and-chlorination loop ends transmission within weeks. Yemen's outbreak persists because the loop itself is broken — treatment plants bombed, chlorine imports blocked, pumping stations without fuel.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The bacterium was identified by **Robert Koch in 1884**, and the cure — *oral rehydration salts*, sugar and salt in clean water — costs pennies. The barrier in Yemen is the clean water, not the cure."
+          }
+        ]
+      },
+      {
+        "heading": "THE COMPOUNDING",
+        "body": "Cholera and dengue share a precondition: stagnant water. Bombed drainage creates pools where Aedes mosquitoes breed (dengue) and where sewage mixes with the shallow wells people drink from (cholera). One infrastructure failure produces two epidemics with different transmission routes but the same root cause.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "YE",
+              "SA",
+              "OM",
+              "DJ",
+              "ER",
+              "SO"
+            ],
+            "label": "Yemen and the Bab el-Mandeb",
+            "markers": [
+              {
+                "lat": 15.3694,
+                "lng": 44.191,
+                "label": "Sana'a"
+              },
+              {
+                "lat": 14.7978,
+                "lng": 42.9545,
+                "label": "Hodeidah port"
+              },
+              {
+                "lat": 12.7806,
+                "lng": 45.0356,
+                "label": "Aden"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE HARVEST CYCLE",
+        "body": "Cholera in Yemen peaks twice a year, tracking the qat and cereal harvests. Farmers reuse untreated wastewater for irrigation because aquifers are exhausted and diesel for deep pumps is unaffordable. Contaminated produce then enters urban markets — the rural infrastructure collapse exports itself to the cities."
+      },
+      {
+        "heading": "THE WATER FLOOR",
+        "body": "Sana'a sits at 2,250m on an aquifer that has been over-pumped for forty years. The water table has fallen roughly 6m per year in some basins; the city was projected to run out of viable groundwater even before the war began in 2015. The war accelerated a collapse that hydrologists had already dated to this decade.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Among major world capitals, Sana'a is most often cited as the first to face which crisis?",
+            "options": [
+              "Running out of usable groundwater",
+              "Sinking below sea level",
+              "Exceeding 50°C summer temperatures"
+            ],
+            "correct": 0,
+            "explanation": "Sana'a's aquifer has dropped roughly 6m/year for decades; the city was projected to exhaust viable groundwater even before the 2015 war."
+          }
+        ]
+      },
+      {
+        "heading": "WHY NO AID",
+        "body": "Yemen's aid pipeline runs through Hodeidah port, contested by the Houthi-led authorities in Sana'a and the internationally-recognized government in Aden. Donors who route through one are accused of legitimizing it; UN appeals for Yemen have been the world's largest and least funded for years running.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Ukraine",
+                "value": "~65% funded",
+                "tone": "favorable"
+              },
+              {
+                "label": "Syria",
+                "value": "~33% funded",
+                "tone": "neutral"
+              },
+              {
+                "label": "Sudan",
+                "value": "~30% funded",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Yemen",
+                "value": "~25% funded",
+                "cc": "YE",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "UN humanitarian appeals, 2024 funding"
+          }
+        ]
+      },
+      {
+        "heading": "THE HISTORICAL DEPTH",
+        "body": "Yemen — al-Yaman in classical Arabic — was the Arabia Felix of Roman geographers, fed by the monsoon-driven Marib dam from the 8th century BCE until its collapse around 570 CE. The Quran references that collapse in Surah Saba as a parable of squandered abundance. The land's reputation as fertile is older than Islam; its present water crisis is the inversion of a two-thousand-year baseline."
+      }
+    ],
+    "generatedAt": "2026-05-26T12:48:32.212Z",
+    "label": "Yemen's compounding epidemics",
+    "category": "science",
+    "articleCount": 1
   }
 }
