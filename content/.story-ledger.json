@@ -2,13 +2,259 @@
   "version": 1,
   "stories": [
     {
+      "id": "bellingcat-myanmar-rakhine-lost-villages-osint",
+      "label": "The 'Lost' Villages of Myanmar's Rakhine",
+      "firstSeen": "2026-05-27T12:08:17.065Z",
+      "lastCovered": "2026-05-27T12:08:17.065Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-27-bellingcat-myanmar-rakhine-lost-villages-osint"
+      ],
+      "eventUri": null,
+      "summary": "Bellingcat geolocates and verifies villages erased in western Myanmar — a survivor describes a 'river of blood', and 20 relatives including three children killed in a 2024 attack on Htan Shauk Khan. Lead with the named village and the satellite-before/after method: this is OSINT making the disappearance of Rohingya-area settlements legally legible when no court will name it. Mechanism to highlight: physical erasure of villages is the form ethnic cleansing takes once the cameras leave, and Bellingcat's frames are the documentary record that survives. The reader cares because the victims are Muslims the world stopped counting.",
+      "conceptUris": []
+    },
+    {
+      "id": "us-strike-drug-boat-pacific-extrajudicial-killing",
+      "label": "US strike on alleged drug boat in Pacific kills one",
+      "firstSeen": "2026-05-27T12:08:17.065Z",
+      "lastCovered": "2026-05-27T12:08:17.065Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-27-us-strike-drug-boat-pacific-extrajudicial-killing"
+      ],
+      "eventUri": "spa-4210479",
+      "summary": "A US military strike on a vessel it labelled a 'narco-terrorist' boat in the Eastern Pacific killed one man and left two stranded at sea — the latest in a pattern rights groups are tracking. Lead with the legal void: there was no arrest, no court, no due process, just a lethal strike on a suspected smuggler, and the Pentagon's own language ('narco-terrorist') is the tell that a law-enforcement problem has been redefined as a war target. Mechanism to teach: the post-9/11 'targeted killing' doctrine built for jihadists is migrating to drug interdiction in international waters, normalising extrajudicial execution of civilians. Al Jazeera carries it because Western wires treat the body count as routine.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Illegal_drug_trade",
+        "http://en.wikipedia.org/wiki/Pacific_Ocean",
+        "http://en.wikipedia.org/wiki/United_States_Southern_Command",
+        "http://en.wikipedia.org/wiki/United_States",
+        "http://en.wikipedia.org/wiki/United_States_Armed_Forces",
+        "http://en.wikipedia.org/wiki/United_States_Coast_Guard",
+        "http://en.wikipedia.org/wiki/Narcotic",
+        "http://en.wikipedia.org/wiki/South_America"
+      ]
+    },
+    {
+      "id": "hungary-reverses-icc-exit-magyar-netanyahu",
+      "label": "Hungary Reverses Decision to Exit International Criminal Court",
+      "firstSeen": "2026-05-27T12:08:17.065Z",
+      "lastCovered": "2026-05-27T12:08:17.065Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-27-hungary-reverses-icc-exit-magyar-netanyahu"
+      ],
+      "eventUri": "deu-2129366",
+      "summary": "Hungary's parliament repealed the ICC-withdrawal Orbán launched in 2025 as a gesture to Netanyahu — and the reversal comes under new PM Péter Magyar. Lead with what changed and what it signals: a single election unwound a member state's exit from the world's only permanent war-crimes court, and Israeli press is reading it as the loss of a friendly carve-out for an indicted PM. Mechanism to teach: the ICC's authority is only as durable as the domestic politics of its members, and the same machinery that nearly let Hungary shield Netanyahu can be switched off by the next government. Multi-sourced across HU, US, IL, SG and ZA — note the symmetry of how each capital frames a court that indicts the powerful.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Hungary",
+        "http://en.wikipedia.org/wiki/International_Criminal_Court",
+        "http://en.wikipedia.org/wiki/Viktor_Orbán",
+        "http://en.wikipedia.org/wiki/Parliament",
+        "http://en.wikipedia.org/wiki/Hungarians",
+        "http://en.wikipedia.org/wiki/Budapest",
+        "http://en.wikipedia.org/wiki/Prime_minister",
+        "http://en.wikipedia.org/wiki/Benjamin_Netanyahu"
+      ]
+    },
+    {
+      "id": "india-supreme-court-eci-sir-electoral-rolls",
+      "label": "Big setback for opposition as Supreme Court upholds Election Commission's power to conduct S.I.R exercise",
+      "firstSeen": "2026-05-27T12:08:17.065Z",
+      "lastCovered": "2026-05-27T12:08:17.065Z",
+      "coverageCount": 1,
+      "category": "politics",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-27-india-supreme-court-eci-sir-electoral-rolls"
+      ],
+      "eventUri": "eng-11687295",
+      "summary": "India's Supreme Court ruled the Election Commission acted within its powers in the Special Intensive Revision of electoral rolls, dismissing opposition petitions that the Bihar exercise risked disenfranchising voters by tying the rolls to citizenship checks. Lead with the precedent, not the politics: a court with the power to halt a roll purge instead blessed it, and that ruling now governs how every future revision can be run ahead of national elections. Mechanism to teach: who controls the voter list controls the electorate, and the SIR converts an administrative cleanup into a citizenship gate the judiciary has now declared constitutional. The reader should see this as a structural shift in Indian electoral plumbing, carried across three Indian outlets with low divergence.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Electoral_roll",
+        "http://en.wikipedia.org/wiki/Supreme_Court_of_India",
+        "http://en.wikipedia.org/wiki/Election_Commission_of_India",
+        "http://en.wikipedia.org/wiki/Bihar",
+        "http://en.wikipedia.org/wiki/Citizenship",
+        "http://en.wikipedia.org/wiki/Statute",
+        "http://en.wikipedia.org/wiki/Chief_Justice_of_India",
+        "http://en.wikipedia.org/wiki/Supreme_court"
+      ]
+    },
+    {
+      "id": "uk-energy-price-cap-221-iran-war-gas",
+      "label": "Typical energy bill set to soar by £221 a year from July as new price cap announced",
+      "firstSeen": "2026-05-27T12:08:17.065Z",
+      "lastCovered": "2026-05-27T12:08:17.065Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-26-uk-energy-price-cap-221-iran-war-gas"
+      ],
+      "eventUri": "eng-11682735",
+      "summary": "Ofgem's new price cap lifts the typical UK household bill by £221 a year from July — the first time the Iran war's wholesale-gas spike lands directly on domestic bills. Lead with the transmission chain: a war 4,000km away over the Strait of Hormuz now shows up as a line item on a British variable tariff, and the Guardian's analyst says high prices are structural, not a spike. Mechanism to teach: the UK's exposure to global gas means its consumers are unhedged buyers of Middle East risk, and 'energy security' rhetoric has not insulated a single household. The reader sees how a geopolitical shock is metered out to ordinary people through a regulator's quarterly arithmetic.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Office_of_Gas_and_Electricity_Markets",
+        "http://en.wikipedia.org/wiki/Electricity",
+        "http://en.wikipedia.org/wiki/Middle_East",
+        "http://en.wikipedia.org/wiki/Price_ceiling",
+        "http://en.wikipedia.org/wiki/Cap_(sport)",
+        "http://en.wikipedia.org/wiki/Tariff",
+        "http://en.wikipedia.org/wiki/Iran",
+        "http://en.wikipedia.org/wiki/United_Kingdom"
+      ]
+    },
+    {
+      "id": "byju-raveendran-jailed-singapore-contempt-edtech",
+      "label": "Byju's founder Byju Raveendran gets six-month jail term in Singapore",
+      "firstSeen": "2026-05-27T12:08:17.065Z",
+      "lastCovered": "2026-05-27T12:08:17.065Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-27-byju-raveendran-jailed-singapore-contempt-edtech"
+      ],
+      "eventUri": "eng-11688199",
+      "summary": "A Singapore court jailed Byju Raveendran for six months for contempt — defying asset-related court orders dating to 2024 — closing a chapter on what was once India's most-valuable startup, backed by the Qatar Investment Authority among others. Lead with the fall: a founder once worth billions on paper is going to jail not for the collapse itself but for stonewalling the courts unwinding it. Mechanism to teach: when a venture-capital darling implodes, the accountability that bites is cross-border insolvency enforcement, and Singapore's contempt power reached a founder Indian proceedings could not. The reader sees the edtech bubble's reckoning arrive through a jurisdiction chosen for its rigour, not its sympathy.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Byju's",
+        "http://en.wikipedia.org/wiki/Byju_Raveendran",
+        "http://en.wikipedia.org/wiki/Singapore",
+        "http://en.wikipedia.org/wiki/Raveendran",
+        "http://en.wikipedia.org/wiki/Educational_technology",
+        "http://en.wikipedia.org/wiki/Qatar_Investment_Authority",
+        "http://en.wikipedia.org/wiki/India",
+        "http://en.wikipedia.org/wiki/Contempt_of_court"
+      ]
+    },
+    {
+      "id": "hong-kong-overtakes-switzerland-offshore-wealth-hub",
+      "label": "Hong Kong beats Switzerland as world's largest offshore wealth hub, BCG finds",
+      "firstSeen": "2026-05-27T12:08:17.065Z",
+      "lastCovered": "2026-05-27T12:08:17.065Z",
+      "coverageCount": 1,
+      "category": "economy",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-27-hong-kong-overtakes-switzerland-offshore-wealth-hub"
+      ],
+      "eventUri": "eng-11688568",
+      "summary": "BCG data shows Hong Kong has overtaken Switzerland as the world's largest cross-border wealth hub, with offshore money booked there up 10.7% in 2025 to US$2.9 trillion on mainland inflows and an IPO bonanza. Lead with the handover of a centuries-old title: the global capital of hidden money is no longer the Alps but a Chinese SAR. Mechanism to teach: offshore wealth follows political gravity — capital is choosing a jurisdiction inside China's perimeter over neutral Switzerland, a vote about where the rich think safety and growth now sit. The reader sees the financial centre of the next era being named in a consulting firm's league table.",
+      "conceptUris": [
+        "http://en.wikipedia.org/wiki/Hong_Kong",
+        "http://en.wikipedia.org/wiki/Switzerland",
+        "http://en.wikipedia.org/wiki/Boston_Consulting_Group",
+        "http://en.wikipedia.org/wiki/China",
+        "http://en.wikipedia.org/wiki/Asia",
+        "http://en.wikipedia.org/wiki/Initial_public_offering",
+        "http://en.wikipedia.org/wiki/Mainland_China",
+        "http://en.wikipedia.org/wiki/Singapore"
+      ]
+    },
+    {
+      "id": "synthetic-controls-hurricane-urban-bee-biodiversity",
+      "label": "Synthetic controls reveal hurricane effects on urban bee biodiversity from iNaturalist data - Nature Ecology & Evolution",
+      "firstSeen": "2026-05-27T12:08:17.065Z",
+      "lastCovered": "2026-05-27T12:08:17.065Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-27-synthetic-controls-hurricane-urban-bee-biodiversity"
+      ],
+      "eventUri": null,
+      "summary": "Researchers paired citizen-science iNaturalist observations with synthetic-control methods — an econometrics tool — to show Hurricane Ida cut bee observations in Philadelphia by 15.5–20.9%. Lead with the method, because that is the news: causal inference borrowed from economics now lets ecologists measure a single disaster's hit to urban biodiversity from messy public data. Mechanism to teach: synthetic controls build a 'counterfactual city' from comparison sites, isolating the storm's effect from background noise — the same technique that evaluates policy, applied to pollinators. The reader gets why this matters: it turns the flood of amateur nature photos into rigorous evidence of how climate shocks erode the species cities depend on.",
+      "conceptUris": []
+    },
+    {
+      "id": "indian-it-ai-deployment-gap-outsourcing",
+      "label": "U.S. companies have an AI problem. Indian IT wants to be the solution",
+      "firstSeen": "2026-05-27T12:08:17.065Z",
+      "lastCovered": "2026-05-27T12:08:17.065Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-27-indian-it-ai-deployment-gap-outsourcing"
+      ],
+      "eventUri": null,
+      "summary": "As US firms find AI returns elusive, India's IT giants are pitching themselves as the integrators who can close the 'deployment gap' — even as the same automation threatens to eat their own back-office business. Lead with the bind: the labour pool that built the West's software is now selling the shovels for an AI gold rush that may bury it. Mechanism to teach: most enterprise AI value is stuck at the last mile of integration, and that messy middle is exactly the outsourcing work India dominates — a reprieve, but one with an expiry date as agents improve. The reader, a technically literate professional, recognises both the ROI mirage and the global-South labour story underneath it.",
+      "conceptUris": []
+    },
+    {
+      "id": "us-anti-tech-extremism-surveillance-ai-backlash",
+      "label": "US law enforcement warns of \"anti-tech extremism\" as AI hatred grows",
+      "firstSeen": "2026-05-27T12:08:17.065Z",
+      "lastCovered": "2026-05-27T12:08:17.065Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-27-us-anti-tech-extremism-surveillance-ai-backlash"
+      ],
+      "eventUri": "eng-11687304",
+      "summary": "After attacks on CEOs and a protest movement targeting data centers, US federal intelligence and domestic law enforcement are circulating reports naming a new domestic target: 'anti-technology extremists.' Lead with the move itself — the state is constructing a threat category around opposition to AI and data centers, more than 1,000 documents deep. Mechanism to teach: labelling diffuse public anger as 'extremism' is how surveillance and counterterrorism powers get extended to a political grievance, folding legitimate protest over jobs and land into the security apparatus. The reader should see the civil-liberties stakes: the backlash against AI is being criminalised before it is understood.",
+      "conceptUris": []
+    },
+    {
+      "id": "tuvalu-digital-nation-sovereignty-sea-level-rise",
+      "label": "Tuvalu aims to become a 'Digital Nation' amid rising sea levels",
+      "firstSeen": "2026-05-27T12:08:17.065Z",
+      "lastCovered": "2026-05-27T12:08:17.065Z",
+      "coverageCount": 1,
+      "category": "tech",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-27-tuvalu-digital-nation-sovereignty-sea-level-rise"
+      ],
+      "eventUri": null,
+      "summary": "Tuvalu is digitising its statehood — government, records, identity and culture — to preserve sovereignty as rising seas threaten to make the islands uninhabitable. Lead with the unprecedented question it forces: can a nation exist as data when its land disappears? Mechanism to teach: statehood in international law rests on territory and population, so Tuvalu is engineering a legal-technical workaround — a 'Digital Nation' that keeps its maritime boundaries, governance and identity alive in the cloud even if the physical state drowns. The reader sees the first real test of post-territorial sovereignty, a Global-South innovation born of an emergency the world's emitters created.",
+      "conceptUris": []
+    },
+    {
+      "id": "imaging-quantum-chemistry-in-action-with-quantum-attomicrosc",
+      "label": "Imaging quantum chemistry in action with quantum attomicroscopy - Communications Chemistry",
+      "firstSeen": "2026-05-27T12:08:17.065Z",
+      "lastCovered": "2026-05-27T12:08:17.065Z",
+      "coverageCount": 1,
+      "category": "science",
+      "importance": 6,
+      "arc": "breaking",
+      "articles": [
+        "2026-05-27-imaging-quantum-chemistry-in-action-with-quantum-attomicrosc"
+      ],
+      "eventUri": null,
+      "summary": "[Auto-backfill for science floor] Understanding how quantum electron and nuclei motions drive biomolecular reactions is a foundational challenge in quantum chemistry and biology. While ultrafast charge migration in DNA is theorized to influence genome stability and signaling, real-time observation remains elusive. Here, we report a ",
+      "conceptUris": []
+    },
+    {
       "id": "sk-hynix-1-trillion-ai-memory-hbm-monopoly",
       "label": "SK Hynix Joins $1 Trillion Club on AI Memory Chip Dominance",
       "firstSeen": "2026-05-27T04:08:35.694Z",
       "lastCovered": "2026-05-27T04:08:35.694Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-27-sk-hynix-1-trillion-ai-memory-hbm-monopoly"
@@ -33,7 +279,7 @@
       "lastCovered": "2026-05-27T04:08:35.694Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-27-imf-pakistan-eff-105-conditions-sovereignty"
@@ -49,7 +295,7 @@
       "lastCovered": "2026-05-27T04:08:35.694Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-26-modi-nordic-india-arctic-minerals-russia"
@@ -65,7 +311,7 @@
       "lastCovered": "2026-05-27T04:08:35.694Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-27-akwa-ibom-market-fire-no-diesel-state-capacity"
@@ -81,7 +327,7 @@
       "lastCovered": "2026-05-27T04:08:35.694Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-27-bangladesh-measles-children-deaths-vaccination-gap"
@@ -97,7 +343,7 @@
       "lastCovered": "2026-05-27T04:08:35.694Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-27-uganda-ebola-suspected-bengaluru-airport-surveillance"
@@ -113,7 +359,7 @@
       "lastCovered": "2026-05-27T04:08:35.694Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-26-smex-breadnet-2025-mena-digital-rights-outcomes"
@@ -129,7 +375,7 @@
       "lastCovered": "2026-05-27T04:08:35.694Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-27-pentagon-spacex-starlink-lucas-drone-dependency"
@@ -145,7 +391,7 @@
       "lastCovered": "2026-05-27T04:08:35.694Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-27-former-president-biden-sues-doj-over-release-of-interview-au"
@@ -170,7 +416,7 @@
       "lastCovered": "2026-05-27T04:08:35.694Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 6,
+      "importance": 5,
       "arc": "breaking",
       "articles": [
         "2026-05-27-situationer-continuation-of-urumqi-process-raises-hopes-for"
@@ -186,7 +432,7 @@
       "lastCovered": "2026-05-26T22:08:08.392Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-iran-says-new-us-strikes-violate-ceasefire"
@@ -211,7 +457,7 @@
       "lastCovered": "2026-05-26T22:08:08.392Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-us-and-armenia-sign-partnership-agreement-ahead-of-armenian"
@@ -236,7 +482,7 @@
       "lastCovered": "2026-05-26T22:08:08.392Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-czech-ammo-coalition-for-ukraine-loses-support"
@@ -261,7 +507,7 @@
       "lastCovered": "2026-05-26T22:08:08.392Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-mali-banned-russian-submunitions-bellingcat-cluster-bomblets"
@@ -277,7 +523,7 @@
       "lastCovered": "2026-05-26T22:08:08.392Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-wall-street-records-iran-strikes-ceasefire-trade-brent-hormuz"
@@ -302,7 +548,7 @@
       "lastCovered": "2026-05-26T22:08:08.392Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-nippon-dynawave-longview-pulp-mill-explosion-osha-backlog"
@@ -326,7 +572,7 @@
       "lastCovered": "2026-05-26T22:08:08.392Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-pakistan-wapda-security-force-cpec-dasu-chinese-workers"
@@ -348,7 +594,7 @@
       "lastCovered": "2026-05-26T22:08:08.392Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-earth-oxygen-atmosphere-mantle-subduction-tectonics"
@@ -370,7 +616,7 @@
       "lastCovered": "2026-05-26T22:08:08.392Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-furtivovirus-giant-virus-evolution-tree-of-life"
@@ -386,7 +632,7 @@
       "lastCovered": "2026-05-26T22:08:08.392Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-starlette-fastapi-asgi-vulnerability-ai-agents-mcp-credentials"
@@ -408,7 +654,7 @@
       "lastCovered": "2026-05-26T22:08:08.392Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 5,
+      "importance": 4,
       "arc": "breaking",
       "articles": [
         "2026-05-26-wireless-sensor-network-charger-placement-graph-coloring-aquila"
@@ -424,7 +670,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-us-nato-bomber-warship-cuts-spiegel-hegseth-brussels"
@@ -449,7 +695,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-eu-germany-summon-russian-envoys-kyiv-evacuation"
@@ -474,7 +720,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-sudan-rsf-uae-colombian-mercenaries-hrw-report"
@@ -499,7 +745,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-dahiyeh-eid-displacement-netanyahu-strikes-lebanon-ceasefire-gap"
@@ -515,7 +761,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-xi-pyongyang-visit-china-north-korea-nuclear-mediator"
@@ -531,7 +777,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-bp-chairman-manifold-ousted-governance-oil-major"
@@ -556,7 +802,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-india-us-critical-minerals-rare-earths-framework-jaishankar-rubio"
@@ -581,7 +827,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-fico-slovakia-eu-russian-gas-ban-legal-challenge"
@@ -603,7 +849,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-china-rocket-stages-debris-orbital-sustainability-kessler"
@@ -619,7 +865,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-undersea-volcano-iceland-shallow-explosive-quanta"
@@ -635,7 +881,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-buspatrol-school-bus-alpr-law-enforcement-surveillance"
@@ -651,7 +897,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-stalkerware-millions-partners-phones-domestic-surveillance"
@@ -667,7 +913,7 @@
       "lastCovered": "2026-05-26T17:06:19.954Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 4,
+      "importance": 3,
       "arc": "breaking",
       "articles": [
         "2026-05-26-lithuania-state-registry-breach-600k-records-foreign-actor"
@@ -683,7 +929,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-iran-mq9-drone-downed-persian-gulf-irgc-ceasefire"
@@ -708,7 +954,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-khamenei-no-going-back-us-bases-middle-east-realignment"
@@ -733,7 +979,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-altman-jobs-apocalypse-denial-wisetech-threats-sydney"
@@ -758,7 +1004,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-sudanese-refugees-cairo-suicide-crisis-funding-collapse"
@@ -774,7 +1020,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-eli-lilly-vaccine-developers-acquisitions-consolidation"
@@ -795,7 +1041,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-stablr-usdr-eurr-peg-collapse-unbacked-mint-attack"
@@ -817,7 +1063,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-taiwan-stock-market-surpasses-india-tsmc-ai-concentration"
@@ -841,7 +1087,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-south-africa-labs-load-shedding-research-infrastructure-saiab"
@@ -861,7 +1107,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-pomegranate-peel-water-purifier-4-nitrophenol-frugal-chemistry"
@@ -877,7 +1123,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-yemen-cholera-dengue-drought-community-response-compounding"
@@ -893,7 +1139,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-agentic-divide-ai-agent-inequality-global-south-productivity"
@@ -909,7 +1155,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-kozlov-russia-security-council-rostec-gru-cyber-consolidation"
@@ -925,7 +1171,7 @@
       "lastCovered": "2026-05-26T12:05:24.112Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 3,
+      "importance": 2,
       "arc": "breaking",
       "articles": [
         "2026-05-26-smex-ceasefire-digital-rights-mideast-surveillance-baseline"
@@ -941,7 +1187,7 @@
       "lastCovered": "2026-05-26T08:06:32.980Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-von-der-leyen-lithuania-drone-crisis-baltic-defense"
@@ -966,7 +1212,7 @@
       "lastCovered": "2026-05-26T08:06:32.980Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-east-palestine-emergency-spending-accountability-gap"
@@ -982,7 +1228,7 @@
       "lastCovered": "2026-05-26T08:06:32.980Z",
       "coverageCount": 1,
       "category": "politics",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-starbucks-korea-tank-day-gwangju-massacre-memory"
@@ -998,7 +1244,7 @@
       "lastCovered": "2026-05-26T08:06:32.980Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-stablecoins-318-billion-exceed-95-nations-fx-reserves"
@@ -1014,7 +1260,7 @@
       "lastCovered": "2026-05-26T08:06:32.980Z",
       "coverageCount": 1,
       "category": "economy",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-iran-war-global-south-economic-shock-oil-fertilizer"
@@ -1030,7 +1276,7 @@
       "lastCovered": "2026-05-26T08:06:32.980Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-sulfonamide-resistance-one-health-integron-sul-genes"
@@ -1046,7 +1292,7 @@
       "lastCovered": "2026-05-26T08:06:32.980Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-borno-cholera-2700-cases-iswap-water-collapse"
@@ -1062,7 +1308,7 @@
       "lastCovered": "2026-05-26T08:06:32.980Z",
       "coverageCount": 1,
       "category": "science",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-tehran-refinery-fires-so2-satellites-tropomi"
@@ -1078,7 +1324,7 @@
       "lastCovered": "2026-05-26T08:06:32.980Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-south-korea-nuclear-submarine-roadmap-enrichment-cap"
@@ -1101,7 +1347,7 @@
       "lastCovered": "2026-05-26T08:06:32.980Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-china-bohai-wig-ekranoplan-weapons-hardpoints"
@@ -1117,205 +1363,13 @@
       "lastCovered": "2026-05-26T08:06:32.980Z",
       "coverageCount": 1,
       "category": "tech",
-      "importance": 2,
+      "importance": 1,
       "arc": "breaking",
       "articles": [
         "2026-05-26-usaf-ultra-drone-centcom-mq9-iran-attrition"
       ],
       "eventUri": null,
       "summary": "The US Air Force is deploying ULTRA — a turbocharged glider-derived long-endurance surveillance drone — to CENTCOM specifically to backfill MQ-9 Reaper attrition from the Iran war. Lead with the cause: Iranian air defenses shot down enough Reapers that the Pentagon is now substituting a slower, cheaper, less-detectable airframe — a tacit admission that the Reaper era over contested airspace is closing. The structural angle is the same lesson visible in Ukraine's fiber-optic drones: when sophisticated systems prove vulnerable, militaries don't go up the tech stack, they sideways into harder-to-jam, harder-to-shoot alternatives. ULTRA's persistence-over-payload tradeoff is the new shape of ISR in contested zones.",
-      "conceptUris": []
-    },
-    {
-      "id": "us-strikes-iran-missile-sites-doha-talks-ceasefire-test",
-      "label": "US strikes Iran missile sites and mine laying vessels as Trump's promised peace deal remains elusive",
-      "firstSeen": "2026-05-26T04:07:08.176Z",
-      "lastCovered": "2026-05-26T04:07:08.176Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-26-us-strikes-iran-missile-sites-doha-talks-ceasefire-test"
-      ],
-      "eventUri": "zho-2036803",
-      "summary": "Fresh US strikes on southern Iran landed while Iranian negotiators were in Doha discussing frozen assets — the war's military and diplomatic tracks are now running in parallel rather than sequentially. Lead with the simultaneity (strikes + Doha mediation on the same day) and what it reveals about Washington's negotiating posture: the seven-week ceasefire is being treated as a leverage instrument, not a ceasefire. Continues the [[iran-us-frozen-assets-qatar-mediation-deal-nears]] arc with the military layer — Tehran is being asked to sign while still being struck. Note: Daily Maverick (ZA) also covered; no Iranian regional outlet in today's feed despite Iran being OIC — flag the feed-side gap.",
-      "conceptUris": []
-    },
-    {
-      "id": "bangladesh-sufi-shrines-jamaat-attacks-pluralism-erosion",
-      "label": "Attacks on Sufis and Their Shrines are Growing in Bangladesh",
-      "firstSeen": "2026-05-26T04:07:08.176Z",
-      "lastCovered": "2026-05-26T04:07:08.176Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-26-bangladesh-sufi-shrines-jamaat-attacks-pluralism-erosion"
-      ],
-      "eventUri": null,
-      "summary": "Jamaat-e-Islami and affiliated groups are systematically attacking Sufi shrines and mazars across Bangladesh — the country's centuries-old syncretic Islamic tradition is being dismantled in real time. Lead with named shrines and named attackers, not abstractions: this is intra-Muslim ẓulm where one school of Islamic practice is being violently erased by another, and the post-Hasina political vacuum has removed the security cover that once protected pluralist Islam. Reader takeaway: religious pluralism in South Asian Islam is being lost not to secular pressure but to ideological consolidation within the ummah itself. Bangladesh is OIC; feed offered no Bangladeshi regional outlet on this — note feed-side gap.",
-      "conceptUris": []
-    },
-    {
-      "id": "bhojshala-india-high-court-hindu-temple-sufi-mosque-precedent",
-      "label": "A High Court in India Recognizes Yet Another Disputed Site as a Hindu Temple",
-      "firstSeen": "2026-05-26T04:07:08.176Z",
-      "lastCovered": "2026-05-26T04:07:08.176Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-26-bhojshala-india-high-court-hindu-temple-sufi-mosque-precedent"
-      ],
-      "eventUri": null,
-      "summary": "Madhya Pradesh High Court ruled that the Bhojshala complex — which houses both a Saraswati temple and a Sufi-associated mosque — is essentially a Hindu temple, the latest in a chain of judicial rulings transferring contested Muslim sites to Hindu claimants after Ayodhya. Lead with the legal mechanism: lower-court 'archaeological survey' orders that pre-decide outcomes, then high courts that ratify them. Reader takeaway: India's mosque-erasure pipeline runs through the judiciary, not the bulldozer, and the precedent set at Bhojshala will be cited against Gyanvapi and the next dozen sites. India is not OIC but the affected community is Muslim; structural pattern matters for the ummah.",
-      "conceptUris": []
-    },
-    {
-      "id": "nicaragua-ortega-transnational-assassination-former-rebel-murder",
-      "label": "What the Murder of a Former Rebel Tells Us About Nicaragua's Criminal Regime",
-      "firstSeen": "2026-05-26T04:07:08.176Z",
-      "lastCovered": "2026-05-26T04:07:08.176Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-26-nicaragua-ortega-transnational-assassination-former-rebel-murder"
-      ],
-      "eventUri": null,
-      "summary": "InSight Crime's investigation: the Ortega-Murillo government is hiring assassins to kill political opponents in foreign countries — Nicaragua has crossed from authoritarianism into transnational repression. Lead with the named former rebel and the assassination geography (the murder happened on foreign soil), then the mechanism: a Latin American state is now operating like the regimes (Iran, Saudi Arabia, Russia) that the OAS used to condemn it for resembling. Reader takeaway: extraterritorial assassination of dissidents is no longer a top-tier-autocracy behaviour, it is becoming a tool of mid-sized authoritarian states with criminal-economy revenue streams.",
-      "conceptUris": []
-    },
-    {
-      "id": "australia-japan-mogami-frigate-export-defence-industrial",
-      "label": "From shipbuilding to statecraft: The real test of Australia's Mogami deal",
-      "firstSeen": "2026-05-26T04:07:08.176Z",
-      "lastCovered": "2026-05-26T04:07:08.176Z",
-      "coverageCount": 1,
-      "category": "politics",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-26-australia-japan-mogami-frigate-export-defence-industrial"
-      ],
-      "eventUri": null,
-      "summary": "Australia's selection of the Japanese Mogami-class frigate over the German MEKO is being read as a defence-procurement story, but the real test is industrial: Tokyo has never exported a major surface combatant at this scale, and the political success of the deal depends on whether Mitsubishi can build hulls in Australia without the programme collapsing into the AUKUS-submarine pattern of delay. Lead with the precedent (first major Japanese warship export since 1945) and what changes for the Indo-Pacific: Japan is becoming a tier-one defence-industrial partner for US allies, not just a security consumer. Reader takeaway: arms exports are how postwar Japan finally exits its self-imposed defence-industrial isolation.",
-      "conceptUris": []
-    },
-    {
-      "id": "liddell-coal-demolition-australia-baseload-exit",
-      "label": "Liddell's famous power station chimney stacks crumble into history in massive blast",
-      "firstSeen": "2026-05-26T04:07:08.176Z",
-      "lastCovered": "2026-05-26T04:07:08.176Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-26-liddell-coal-demolition-australia-baseload-exit"
-      ],
-      "eventUri": "eng-11684924",
-      "summary": "AGL demolished the two 170-metre chimneys of Liddell coal station in New South Wales — a 50-year baseload plant that powered industrial Australia is now rubble, with the site being repurposed for a renewable hub. Lead with the symbolic weight (chimneys are how the public sees decarbonisation) and the structural fact: Australia has now retired enough coal capacity that the energy-market debate has shifted from 'when does coal exit' to 'who builds the replacement firming capacity'. Reader takeaway: the rich-world coal phaseout is now physically irreversible at the asset level, which changes what kind of energy policy the next Australian government can plausibly run.",
-      "conceptUris": []
-    },
-    {
-      "id": "colombo-security-conclave-india-indian-ocean-trade-governance",
-      "label": "Canberra should keep a close watch on the Colombo Security Conclave",
-      "firstSeen": "2026-05-26T04:07:08.176Z",
-      "lastCovered": "2026-05-26T04:07:08.176Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-26-colombo-security-conclave-india-indian-ocean-trade-governance"
-      ],
-      "eventUri": null,
-      "summary": "The Colombo Security Conclave — India, Sri Lanka, Maldives, Mauritius, Bangladesh, Seychelles — is consolidating into a real Indian Ocean trade-security body that sits inside Australia's energy-import lanes, but Canberra has no observer role. Lead with the mechanism: this is the first IOR grouping where India is the convening power rather than a participant, and the agenda (maritime domain awareness, undersea cables, port governance) directly determines whether Gulf-to-Asia LNG and crude flows stay routable. Reader takeaway: while the Indo-Pacific debate is fixated on AUKUS and Quad, the actual governance of the Indian Ocean trade artery is being written in Colombo without Western seats at the table.",
-      "conceptUris": []
-    },
-    {
-      "id": "india-lpg-surrender-png-rollout-household-energy-migration",
-      "label": "Govt eases LPG surrender rule, allows reconnection",
-      "firstSeen": "2026-05-26T04:07:08.176Z",
-      "lastCovered": "2026-05-26T04:07:08.176Z",
-      "coverageCount": 1,
-      "category": "economy",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-26-india-lpg-surrender-png-rollout-household-energy-migration"
-      ],
-      "eventUri": "eng-11683834",
-      "summary": "India is quietly engineering a one-way migration from subsidised LPG cooking-gas cylinders to piped natural gas — and only just now realising it needs a reverse gear for the millions of households that surrender LPG connections then move to areas without PNG pipelines. Lead with what the policy reversal admits: the Modi government's PNG-rollout assumption underweighted internal migration in a labour-mobile economy, and the affected households are the urban poor moving for work. Reader takeaway: India's cooking-fuel transition is the single largest household-energy switch under way anywhere in the world, and the bureaucratic plumbing keeps getting rewritten as the social reality bites. Continues the [[india-modi-austerity-sitharaman-iran-war-fertilizer-subsidy]] energy-subsidy arc with the household-policy layer.",
-      "conceptUris": []
-    },
-    {
-      "id": "china-carbon-metric-revision-germany-sized-emissions-gap",
-      "label": "Analysis: China's new carbon metric leaves Germany-sized gap in its emissions",
-      "firstSeen": "2026-05-26T04:07:08.176Z",
-      "lastCovered": "2026-05-26T04:07:08.176Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-26-china-carbon-metric-revision-germany-sized-emissions-gap"
-      ],
-      "eventUri": null,
-      "summary": "China revised its core climate metric in a way that, by Carbon Brief's reckoning, effectively erases roughly Germany's annual emissions from the books without any actual emissions cut — and Beijing's NDC commitments now measure against the new baseline. Lead with the number (the gap is the size of an entire G7 economy's emissions) and the mechanism: changing what counts as 'covered' carbon is the diplomatic-grade equivalent of changing the units mid-experiment. Reader takeaway: international climate accounting is now a forum where definitions move faster than emissions, and the Paris-track verification regime has no answer to a P5 state simply redrawing its own metric.",
-      "conceptUris": []
-    },
-    {
-      "id": "yemen-sanaa-antipsychotic-qt-prolongation-cardiac-risk-polypharmacy",
-      "label": "QT-prolonging antipsychotic combinations and associated risk in hospitalized patients with mental disorders in Sana'a, Yemen",
-      "firstSeen": "2026-05-26T04:07:08.176Z",
-      "lastCovered": "2026-05-26T04:07:08.176Z",
-      "coverageCount": 1,
-      "category": "science",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-26-yemen-sanaa-antipsychotic-qt-prolongation-cardiac-risk-polypharmacy"
-      ],
-      "eventUri": null,
-      "summary": "Scientific Reports paper from Sana'a documents that hospitalised psychiatric patients in Yemen are routinely on multi-antipsychotic regimens that combine drugs known to prolong the cardiac QT interval — a setup that produces sudden cardiac deaths in well-resourced systems and is being run without ECG monitoring in a war-bombed health system. Lead with the clinical mechanism (QT prolongation, additive risk of polypharmacy) and the setting: this is what evidence-based medicine looks like in a country under blockade — researchers documenting the harms their own institutions can't prevent. Reader takeaway: the global mental-health treatment gap is not only about access, it is about prescribing patterns that the WHO essential-medicines list does not regulate. Yemen is OIC; this IS the Yemeni regional voice, published in Nature.",
-      "conceptUris": []
-    },
-    {
-      "id": "google-search-degradation-alternatives-kagi-marginalia-mojeek",
-      "label": "Search engines alternatives now that Google isn't Google anymore",
-      "firstSeen": "2026-05-26T04:07:08.176Z",
-      "lastCovered": "2026-05-26T04:07:08.176Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-26-google-search-degradation-alternatives-kagi-marginalia-mojeek"
-      ],
-      "eventUri": null,
-      "summary": "536 points and 492 comments on Hacker News for a TechCrunch round-up of Google alternatives — the developer audience is treating Google search as functionally degraded enough that switching is now a mainstream topic, not a niche complaint. Lead with what the alternatives actually are (Kagi, Marginalia, Mojeek, Brave) and the mechanism: Google's pivot to AI Overviews + ad-stuffed SERPs has broken the implicit contract that produced its original moat (links to the open web). Reader takeaway: the search market is genuinely contestable for the first time since 2003, and the contestants are small, paid, and indie — which changes the open-web economics for publishers and the data-collection economics for advertisers.",
-      "conceptUris": []
-    },
-    {
-      "id": "meso-spintronics-magnetic-tunnel-junction-readout-post-cmos",
-      "label": "Giant spin-orbit magnetic state readout enhanced by a magnetic tunnel junction",
-      "firstSeen": "2026-05-26T04:07:08.176Z",
-      "lastCovered": "2026-05-26T04:07:08.176Z",
-      "coverageCount": 1,
-      "category": "tech",
-      "importance": 1,
-      "arc": "breaking",
-      "articles": [
-        "2026-05-26-meso-spintronics-magnetic-tunnel-junction-readout-post-cmos"
-      ],
-      "eventUri": null,
-      "summary": "Nature Communications paper demonstrates a magnetoelectric spin-orbit (MESO) logic readout — using a magnetic tunnel junction — strong enough to start displacing CMOS transistors for low-energy compute. Lead with the engineering threshold (readout voltage finally high enough for circuit-level integration) and what it means for the AI-compute power problem: MESO devices switch at <100 mV vs CMOS at ~700 mV, which is the order-of-magnitude energy improvement the hyperscaler power budgets need. Reader takeaway: the post-CMOS transistor candidates have been laboratory curiosities for a decade — this paper is one of the first where the readout problem looks practically solved, and that is the gating step for spintronics to enter real datacentres.",
       "conceptUris": []
     }
   ]

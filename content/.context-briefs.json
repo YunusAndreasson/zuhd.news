@@ -245600,5 +245600,1504 @@
     "label": "Ebola & Airport Surveillance",
     "category": "science",
     "articleCount": 1
+  },
+  "2026-05-26-uk-energy-price-cap-221-iran-war-gas": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT THE CAP ACTUALLY CAPS",
+        "body": "Ofgem's cap is not a ceiling on your bill — it limits the unit price per kWh and the daily standing charge for a typical default-tariff household. The headline 'typical bill' figure is just illustration; a heavy user pays more. The cap caps supplier margins on top of wholesale cost, not your exposure to the global gas price, which is why it rises every time gas does.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does Ofgem's energy price cap actually limit?",
+            "options": [
+              "The total annual bill every household can be charged",
+              "The unit price and standing charge for a typical household",
+              "Wholesale gas prices paid by suppliers"
+            ],
+            "correct": 1,
+            "explanation": "The cap fixes per-kWh rates and standing charges, not the total bill — so a high-usage home still pays well above the quoted 'typical' figure."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE NORTH SEA NO LONGER PROTECTS YOU",
+        "body": "Britain became a net gas importer around 2004 as North Sea output declined. It now leans on imported LNG, a pipeline from Norway, and interconnectors to the continent — and all of it is priced off European trading hubs. A London bill tracks the global market because the gas feeding it is bought at the global price.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The UK's wholesale benchmark is the **NBP** (National Balancing Point), which trades in near-lockstep with the continent's dominant **TTF** hub in the Netherlands. There is no 'domestic' price to hide behind — the hubs *are* the world price."
+          }
+        ]
+      },
+      {
+        "heading": "THE HORMUZ–LNG LINK",
+        "body": "Qatar, one of the world's largest LNG exporters, ships nearly all of its gas in tankers out of Ras Laffan and through the Strait of Hormuz. Close or threaten the strait and a fifth of seaborne LNG is suddenly at risk; the global price spikes, and a country buying at the hub — like the UK — pays the spike whether or not a single cargo was bound for Britain.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "QA",
+              "IR",
+              "OM",
+              "AE"
+            ],
+            "label": "Qatar's LNG exits through Hormuz",
+            "markers": [
+              {
+                "lat": 25.92,
+                "lng": 51.6,
+                "label": "Ras Laffan LNG"
+              },
+              {
+                "lat": 26.57,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHO SHIPS THROUGH THE STRAIT",
+        "body": "The world's top LNG suppliers are spread across geographies, but they are not equally exposed. US and Australian cargoes never touch the Gulf; Qatar's must run the strait. That single fact is why a Hormuz scare moves the gas price more than its share of supply alone would suggest.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "United States",
+                "value": "~88mt",
+                "cc": "US",
+                "weight": 88,
+                "tone": "favorable"
+              },
+              {
+                "label": "Australia",
+                "value": "~81mt",
+                "cc": "AU",
+                "weight": 81,
+                "tone": "favorable"
+              },
+              {
+                "label": "Qatar",
+                "value": "~79mt",
+                "cc": "QA",
+                "weight": 79,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Russia",
+                "value": "~33mt",
+                "cc": "RU",
+                "weight": 33,
+                "tone": "neutral"
+              },
+              {
+                "label": "Malaysia",
+                "value": "~27mt",
+                "cc": "MY",
+                "weight": 27,
+                "tone": "neutral"
+              }
+            ],
+            "label": "LNG exports, 2024 (mn tonnes/yr)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY ELECTRICITY TRACKS GAS",
+        "body": "Even on a windy day when renewables supply most of the grid, the wholesale electricity price is set by the most expensive plant needed to meet the last sliver of demand — almost always a gas turbine. So gas sets the clearing price for everyone, and an electricity bill rises with gas even when little of the power came from gas.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is the **merit order**: generators are stacked cheapest-first, and the last one called sets the price for all. It is *marginal pricing*, and it is why a gas shock lifts electricity costs across a renewable-heavy grid."
+          }
+        ]
+      },
+      {
+        "heading": "THE STORAGE GAP",
+        "body": "Britain has almost no gas storage cushion. After the Rough field was mothballed in 2017, the UK could hold only a handful of days of demand while continental neighbours bank weeks. With nowhere to stockpile cheap gas, the UK must buy at whatever the spot market charges when cold or crisis hits — leaving bills unusually quick to feel a global spike.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "France",
+                "value": "~100 days",
+                "cc": "FR",
+                "weight": 100,
+                "tone": "favorable"
+              },
+              {
+                "label": "Germany",
+                "value": "~90 days",
+                "cc": "DE",
+                "weight": 90,
+                "tone": "favorable"
+              },
+              {
+                "label": "Netherlands",
+                "value": "~60 days",
+                "cc": "NL",
+                "weight": 60,
+                "tone": "neutral"
+              },
+              {
+                "label": "UK",
+                "value": "~12 days",
+                "cc": "GB",
+                "weight": 12,
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Gas storage (~days of demand)"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-27T12:36:32.958Z",
+    "label": "The Price Cap, Gas & Hormuz",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-27-bellingcat-myanmar-rakhine-lost-villages-osint": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SATELLITE FORENSICS",
+        "body": "When the ground is sealed off, fire still leaves a fingerprint from orbit. Multispectral satellites read the chemical signature of scorched earth — vegetation that has burned reflects near-infrared light differently from living growth — so a cleared village shows up as a burn scar weeks after the smoke is gone, with no witness required.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Bellingcat works from **Copernicus**, the EU's open Earth-observation program, and its free **Sentinel-2** imagery. The point is the *provenance*: anyone can pull the same raw scenes and re-run the analysis, which is what makes the record admissible rather than merely alleged."
+          }
+        ]
+      },
+      {
+        "heading": "STATELESS BY DESIGN",
+        "body": "The Rohingya are not refugees who lost a country; they are people a country wrote out of existence. Myanmar's 1982 Citizenship Law recognizes 135 official 'national races' and simply omits them, rendering roughly a million people stateless inside the only home they have ever had.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Statelessness is the precondition, not the consequence. A citizen has a passport, a court, a claim; a *stateless* person can be expelled with no state obliged to take them and no state obliged to protest. The **1982 law** did the legal work decades before the satellites recorded the physical one."
+          }
+        ]
+      },
+      {
+        "heading": "THE 2017 PRECEDENT",
+        "body": "What Buthidaung shows in slow motion happened at scale in 2017, when clearance operations drove roughly 700,000 Rohingya across the Naf River into Bangladesh in weeks. The Kutupalong settlement around Cox's Bazar swelled into the largest refugee camp on earth — a city of close to a million people built from tarpaulin in a single monsoon season.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "MM",
+              "BD"
+            ],
+            "label": "Rakhine to the Bangladesh border",
+            "caption": "Northern Rakhine sits just across the Naf River from Cox's Bazar.",
+            "markers": [
+              {
+                "lat": 20.866,
+                "lng": 92.539,
+                "label": "Buthidaung"
+              },
+              {
+                "lat": 20.146,
+                "lng": 92.898,
+                "label": "Sittwe (Rakhine capital)"
+              },
+              {
+                "lat": 21.205,
+                "lng": 92.163,
+                "label": "Kutupalong camp"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE LONG ARC",
+        "body": "The 2021 coup did not start this; it removed the last brakes. The persecution runs on a multi-decade track — legal erasure, then communal violence, then mass expulsion — and each stage was visible before the next arrived.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1982",
+                "label": "Citizenship Law omits Rohingya"
+              },
+              {
+                "year": "2012",
+                "label": "Rakhine communal riots"
+              },
+              {
+                "year": "2017",
+                "label": "Clearance ops — ~700k flee",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "ICC opens investigation"
+              },
+              {
+                "year": "2021",
+                "label": "Military coup"
+              },
+              {
+                "year": "2024",
+                "label": "Arakan Army seizes most of Rakhine"
+              }
+            ],
+            "label": "engineered erasure"
+          }
+        ]
+      },
+      {
+        "heading": "THE BANGLADESH HINGE",
+        "body": "Myanmar never joined the International Criminal Court, which normally means the Court has no reach over crimes committed on its soil. Yet the ICC opened an investigation anyway — through a legal side door that turns on where the victims ended up, not where the violence began.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How did the ICC claim jurisdiction over Myanmar despite Myanmar not being a member?",
+            "options": [
+              "Bangladesh, where victims fled, is a member — and deportation legally completes on its soil",
+              "The UN Security Council referred the case to the Court",
+              "Myanmar quietly ratified the Rome Statute after the coup",
+              "Genocide automatically overrides all jurisdiction limits"
+            ],
+            "correct": 0,
+            "explanation": "The ICC's 2018 ruling held that the crime of deportation completes on the receiving state's territory — Bangladesh, a member — giving the Court a foothold for cross-border crimes but not for killings entirely inside Myanmar."
+          }
+        ]
+      },
+      {
+        "heading": "THE ARAKAN ARMY TWIST",
+        "body": "The force now controlling the ground in Rakhine is the Arakan Army — ethnic Rakhine Buddhists fighting the same junta that expelled the Rohingya. That two enemies of the military both rule the same territory has not made it safer for the Rohingya, who remain caught between every armed party and trusted by none."
+      }
+    ],
+    "generatedAt": "2026-05-27T12:37:59.036Z",
+    "label": "Satellite Forensics & the Rohingya",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-27-byju-raveendran-jailed-singapore-contempt-edtech": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE RISE AND THE FALL",
+        "body": "Byju's was once India's most valuable startup — roughly $22bn at its 2022 peak, backed by a who's-who of global capital. Within two years its equity was effectively written to zero. It is the largest startup collapse in Indian history, and one of the largest anywhere.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2011",
+                "label": "Think & Learn founded",
+                "emphasis": "start"
+              },
+              {
+                "year": "2020",
+                "label": "Pandemic edtech boom begins"
+              },
+              {
+                "year": "2021",
+                "label": "$1.2bn US Term Loan B raised",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2022",
+                "label": "$22bn peak valuation"
+              },
+              {
+                "year": "2023",
+                "label": "Loan default; board & auditor quit"
+              },
+              {
+                "year": "2024",
+                "label": "Singapore contempt case opens"
+              },
+              {
+                "year": "2026",
+                "label": "Founder jailed",
+                "emphasis": "end"
+              }
+            ],
+            "spans": [
+              {
+                "from": "2020",
+                "to": "2022",
+                "label": "pandemic boom",
+                "tone": "favorable"
+              },
+              {
+                "from": "2023",
+                "to": "2026",
+                "label": "insolvency & contempt",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "from founding to a jail cell"
+          }
+        ]
+      },
+      {
+        "heading": "THE PANDEMIC BUBBLE",
+        "body": "Byju's was the apex of a global edtech bubble that inflated the moment COVID closed schools. At its peak it was worth more than any other edtech startup on earth — a valuation built on growth metrics that evaporated when classrooms reopened and parents stopped paying for apps.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Byju's",
+                "value": "$22bn",
+                "cc": "IN",
+                "weight": 22
+              },
+              {
+                "label": "Yuanfudao",
+                "value": "$15bn",
+                "cc": "CN",
+                "weight": 15
+              },
+              {
+                "label": "Unacademy",
+                "value": "$3.4bn",
+                "cc": "IN",
+                "weight": 3.4
+              },
+              {
+                "label": "GoStudent",
+                "value": "$3bn",
+                "cc": "AT",
+                "weight": 3
+              },
+              {
+                "label": "Vedantu",
+                "value": "$1bn",
+                "cc": "IN",
+                "weight": 1
+              }
+            ],
+            "label": "edtech peak valuations (~2021–22)"
+          }
+        ]
+      },
+      {
+        "heading": "THE ACQUISITION MACHINE",
+        "body": "The valuation was fed by an acquisition spree — billions in equity and borrowed money spent buying other companies to manufacture the appearance of growth. When the cheap capital stopped, there was no profitable core underneath to service the debt.",
+        "blocks": [
+          {
+            "type": "sankey",
+            "nodes": [
+              {
+                "id": "equity",
+                "label": "Equity raised"
+              },
+              {
+                "id": "debt",
+                "label": "US Term Loan B"
+              },
+              {
+                "id": "byjus",
+                "label": "Byju's"
+              },
+              {
+                "id": "aakash",
+                "label": "Aakash"
+              },
+              {
+                "id": "epic",
+                "label": "Epic"
+              },
+              {
+                "id": "greatlearning",
+                "label": "Great Learning"
+              },
+              {
+                "id": "whitehat",
+                "label": "WhiteHat Jr"
+              },
+              {
+                "id": "ops",
+                "label": "Marketing & ops"
+              }
+            ],
+            "links": [
+              {
+                "source": "equity",
+                "target": "byjus",
+                "value": 5000
+              },
+              {
+                "source": "debt",
+                "target": "byjus",
+                "value": 1200
+              },
+              {
+                "source": "byjus",
+                "target": "aakash",
+                "value": 950
+              },
+              {
+                "source": "byjus",
+                "target": "greatlearning",
+                "value": 600
+              },
+              {
+                "source": "byjus",
+                "target": "epic",
+                "value": 500
+              },
+              {
+                "source": "byjus",
+                "target": "whitehat",
+                "value": 300
+              },
+              {
+                "source": "byjus",
+                "target": "ops",
+                "value": 3850
+              }
+            ],
+            "label": "where the capital went ($m, approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "WHY A WALL STREET LOAN",
+        "body": "The $1.2bn at the center of the lender claims was not a normal startup round. Byju's borrowed it as a leveraged loan from US institutional investors — an instrument designed for buyouts, not for a cash-burning ed-tech firm, which is why the default detonated so fast.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "It was a **Term Loan B** — a *covenant-lite* loan normally syndicated to fund private-equity buyouts. At $1.2bn it was the largest ever raised by an **unrated** company out of India, and the lenders, not the founder, now effectively control the asset."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A SINGAPORE COURT",
+        "body": "The reason a Singapore judge can jail an Indian founder is structural: like most Indian-built tech firms, Byju's routed ownership through a Singapore holding entity to use the country's investor-friendly law and India–Singapore tax treaty. Investors like the Qatar Investment Authority hold their stakes there — so that is where they sue.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "SG",
+              "IN",
+              "QA"
+            ],
+            "label": "where the case sits",
+            "caption": "SG holding entity · IN operations · QA investor-claimant"
+          }
+        ]
+      },
+      {
+        "heading": "CONTEMPT AS LEVERAGE",
+        "body": "He was jailed for contempt — for defying orders to disclose where the money went — not for fraud. The distinction matters: civil contempt imprisonment is a coercive tool, not a punishment, designed to force compliance rather than to settle the underlying claims.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can a court jail someone for civil contempt over asset disclosure?",
+            "options": [
+              "To punish the underlying financial fraud",
+              "To coerce compliance — release follows disclosure",
+              "Because contempt carries a fixed criminal sentence",
+              "To repay creditors' claims directly from assets"
+            ],
+            "correct": 1,
+            "explanation": "Civil contempt jailing is coercive: the person 'holds the keys to his own cell' and walks free once he obeys the disclosure order."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-27T12:40:05.787Z",
+    "label": "Byju's & the Edtech Bubble",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-27-hong-kong-overtakes-switzerland-offshore-wealth-hub": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHAT A 'BOOKING CENTER' IS",
+        "body": "An offshore wealth hub doesn't own the money it ranks on — it custodies and books wealth that belongs to non-residents. The figure that just crowned Hong Kong is cross-border assets: money parked outside its owner's home country, looking for a jurisdiction it trusts more than its own.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Hong Kong",
+                "value": "$2.95tn",
+                "cc": "HK",
+                "weight": 2.95,
+                "tone": "favorable"
+              },
+              {
+                "label": "Switzerland",
+                "value": "~$2.4tn",
+                "cc": "CH",
+                "weight": 2.4,
+                "tone": "neutral"
+              },
+              {
+                "label": "United States",
+                "value": "~$2.2tn",
+                "cc": "US",
+                "weight": 2.2,
+                "tone": "neutral"
+              },
+              {
+                "label": "Singapore",
+                "value": "~$1.6tn",
+                "cc": "SG",
+                "weight": 1.6,
+                "tone": "neutral"
+              },
+              {
+                "label": "UK / Channel Is.",
+                "value": "~$1.0tn",
+                "cc": "GB",
+                "weight": 1,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Cross-border booking centers (rough AUM)"
+          }
+        ]
+      },
+      {
+        "heading": "THE SECRECY THAT BUILT SWITZERLAND",
+        "body": "Switzerland's dominance was never about returns — it was about silence. A 1934 banking law made disclosing a client's identity a criminal offense, turning the country into the world's discreet vault for a century of dictators, heirs, and tax exiles.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The edge was legal, not financial: secrecy was enforced by *criminal* law, not just contract. A banker who leaked a name could go to prison — that guarantee, not Alpine scenery, is what attracted the money."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT BROKE THE FRANCHISE",
+        "body": "The secrecy unraveled fast. In 2009 UBS handed Washington thousands of American client names; the US then forced FATCA on the world, and the OECD's automatic exchange of account data followed. Once banks must report who holds what, Switzerland's century-old advantage simply evaporates.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1934",
+                "label": "Banking secrecy codified",
+                "emphasis": "start"
+              },
+              {
+                "year": "2009",
+                "label": "UBS hands US client names",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2010",
+                "label": "US enacts FATCA"
+              },
+              {
+                "year": "2017",
+                "label": "Automatic data exchange begins"
+              }
+            ],
+            "label": "the end of Swiss secrecy"
+          },
+          {
+            "type": "prose",
+            "text": "The acronyms that killed it: **FATCA** (the US law forcing foreign banks to report American accounts) and **CRS** (the OECD's Common Reporting Standard, which globalized the same idea). Together they made anonymity nearly impossible."
+          }
+        ]
+      },
+      {
+        "heading": "THE PERIMETER PLAY",
+        "body": "Mainland Chinese wealth faces strict capital controls and a currency that isn't freely convertible. Hong Kong solves both — it sits inside 'one country, two systems' with open capital flows and the rule of common law, letting money leave the mainland's grip without leaving China's perimeter.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "CN",
+              "HK",
+              "SG",
+              "CH"
+            ],
+            "label": "where the money sits"
+          }
+        ]
+      },
+      {
+        "heading": "THE IPO ENGINE",
+        "body": "Wealth hubs and stock exchanges feed each other. A wave of mainland firms listing in Hong Kong pulls in capital, mints fresh fortunes, and those fortunes get booked locally — so an IPO surge shows up directly in cross-border wealth rankings a year later."
+      },
+      {
+        "heading": "THE COUNTERINTUITIVE BET",
+        "body": "The striking part isn't Hong Kong's growth — it's the verdict. Capital is now treating China's edge as a safer store of value than neutral, landlocked Switzerland. For decades 'safe' meant outside the great-power game; this ranking says the calculus has flipped.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What gave Switzerland its century-long edge as the world's wealth hub?",
+            "options": [
+              "A 1934 law making client disclosure a crime",
+              "The lowest tax rates in Europe",
+              "Being the largest economy in the region"
+            ],
+            "correct": 0,
+            "explanation": "Criminally-enforced banking secrecy, not low taxes or size, made Switzerland the vault — which is why automatic data-exchange rules eroded its lead."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-27T12:41:05.291Z",
+    "label": "Offshore Wealth Hubs",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-27-hungary-reverses-icc-exit-magyar-netanyahu": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COURT WITH NO POLICE",
+        "body": "The ICC has no marshals, no jail of its own, no power to enter a country and make an arrest. Every warrant it issues is enforced by its member states — and only when the suspect physically lands on the soil of a state willing to act. Hungary's flip matters precisely because Budapest is one of those potential arrest points.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The court's reach is borrowed, not its own: enforcement runs entirely through its **125 member states**. A warrant only bites when the wanted person steps onto territory whose government chooses to honor it."
+          }
+        ]
+      },
+      {
+        "heading": "COMPLEMENTARITY",
+        "body": "The ICC is a court of last resort by design. It can only step in when a national legal system is genuinely unwilling or unable to prosecute — never as a first venue. This is why states with credible courts of their own rarely face it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The governing principle is **complementarity**: the ICC defers to national courts and acts only when a state is *unwilling or unable* to investigate its own. The court is a backstop, not a first instance."
+          }
+        ]
+      },
+      {
+        "heading": "WHO NEVER JOINED",
+        "body": "The court's authority is bounded by who signed up. The United States, China, Russia, India, and Israel all stayed out. Washington went further: in 2002 Congress passed a law authorizing force to free any American held by the court — nicknamed the 'Hague Invasion Act.'",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which of these major powers has never joined the International Criminal Court?",
+            "options": [
+              "United States",
+              "Germany",
+              "United Kingdom",
+              "Canada"
+            ],
+            "correct": 0,
+            "explanation": "The US signed under Clinton but never ratified; in 2002 Congress authorized force to free any American held by the court."
+          }
+        ]
+      },
+      {
+        "heading": "THE BASHIR PRECEDENT",
+        "body": "The enforcement gap is not theoretical. Sudan's Omar al-Bashir was wanted by the ICC for genocide in Darfur from 2009 — yet he flew freely to member states that simply declined to arrest him, from Chad to Kenya to South Africa to Jordan. A warrant is only as strong as the host country's willingness to honor it.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TD",
+              "KE",
+              "ZA",
+              "JO"
+            ],
+            "label": "ICC members that hosted Bashir without arresting him",
+            "caption": "Each visit was a legal obligation to arrest — and none did."
+          }
+        ]
+      },
+      {
+        "heading": "THE NETANYAHU WARRANT",
+        "body": "In November 2024 the ICC issued arrest warrants for Netanyahu and his former defense minister over conduct in Gaza — the first warrant for the sitting leader of a close Western ally. Israel is not a member, but the court asserts jurisdiction because Palestine acceded to the Rome Statute in 2015, placing acts on Palestinian territory within reach.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Benjamin Netanyahu",
+                "role": "Israeli Prime Minister",
+                "years": "2022–",
+                "cc": "IL"
+              },
+              {
+                "name": "Yoav Gallant",
+                "role": "former Israeli Defense Minister",
+                "years": "2022–2024",
+                "cc": "IL"
+              },
+              {
+                "name": "Karim Khan",
+                "role": "ICC Chief Prosecutor",
+                "years": "2021–",
+                "cc": "GB"
+              }
+            ],
+            "label": "the warrant's subjects and the prosecutor"
+          },
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2002",
+                "label": "Rome Statute enters force"
+              },
+              {
+                "year": "2015",
+                "label": "Palestine accedes to the ICC"
+              },
+              {
+                "year": "2024-11",
+                "label": "Warrants for Netanyahu & Gallant",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2025-04",
+                "label": "Hungary files to withdraw"
+              },
+              {
+                "year": "2026-05",
+                "label": "Hungary cancels the exit",
+                "emphasis": "end"
+              }
+            ],
+            "label": "warrant to reversal"
+          }
+        ]
+      },
+      {
+        "heading": "HOW YOU LEAVE",
+        "body": "Withdrawal from the Rome Statute is not instant. Under Article 127, a state's exit takes effect one year after written notice — and even then it does not erase obligations for matters already before the court. A government can start the clock with a signature, but reversing course, as Budapest just did, takes only a parliamentary vote."
+      }
+    ],
+    "generatedAt": "2026-05-27T12:42:50.608Z",
+    "label": "The ICC's Enforcement Gap",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-27-imaging-quantum-chemistry-in-action-with-quantum-attomicrosc": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TIMESCALE",
+        "body": "An attosecond is a billionth of a billionth of a second — there are more attoseconds in one second than there have been seconds since the Big Bang. This is the only window short enough to freeze an electron mid-motion; at any slower exposure the electron is a blur.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "One **attosecond** is to a second what a second is to roughly *31 billion years* — more than twice the age of the universe."
+          }
+        ]
+      },
+      {
+        "heading": "WHY ELECTRONS, NOT ATOMS",
+        "body": "An electron is about 1,800 times lighter than the proton in a nucleus, so it moves far faster. The whole of chemistry rests on this gap: the Born-Oppenheimer approximation treats the heavy nuclei as frozen while the light electrons rearrange around them. An attomicroscope aims to catch that rearrangement before the nuclei have moved at all.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "An attosecond is a quintillionth of a second. Which process actually unfolds on that timescale?",
+            "options": [
+              "Electrons redistributing across a molecule",
+              "Atomic nuclei vibrating in a bond",
+              "A protein folding into shape",
+              "A cell copying its DNA"
+            ],
+            "correct": 0,
+            "explanation": "Electrons are ~1,800× lighter than nuclei, so they rearrange in attoseconds; nuclei vibrate ~1,000× slower, in femtoseconds."
+          }
+        ]
+      },
+      {
+        "heading": "THE LADDER OF TIME",
+        "body": "Each layer of nature has its own clock. Electron motion sits at the bottom rung; everything biology cares about — folding, signaling, replication — happens millions to trillions of times slower, built on top of these faster events.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Electron motion",
+                "value": "~100 as"
+              },
+              {
+                "label": "Bond vibration",
+                "value": "~10 fs"
+              },
+              {
+                "label": "Charge transfer",
+                "value": "~1 ps"
+              },
+              {
+                "label": "Protein folding",
+                "value": "~1 µs"
+              }
+            ],
+            "label": "characteristic timescales"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DNA BASE PAIRS",
+        "body": "When radiation or UV light strikes DNA, the first thing that happens is not a broken bond — it is a pulse of charge that migrates along the stacked bases in attoseconds, before any atom shifts. Where that charge finally settles helps decide whether the molecule repairs cleanly or mutates.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This ultrafast hop is called *charge migration* — purely electronic, and complete long before the slower *charge transfer* that moves whole atoms."
+          }
+        ]
+      },
+      {
+        "heading": "THE MEASUREMENT PROBLEM",
+        "body": "No camera shutter is fast enough to photograph an electron. The trick is pump-probe: one laser pulse starts the clock, a second delayed pulse takes a snapshot, and scanning the delay reconstructs the motion frame by frame — like building a movie from stills. Ahmed Zewail won the 1999 Nobel doing this for molecules; pushing it to electrons required pulses a thousand times shorter.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1999",
+                "label": "Zewail Nobel: femtochemistry"
+              },
+              {
+                "year": "2001",
+                "label": "First attosecond pulses generated",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2010",
+                "label": "Real-time electron motion imaged"
+              },
+              {
+                "year": "2023",
+                "label": "Nobel for attosecond physics"
+              }
+            ],
+            "label": "from molecules to electrons"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'AB INITIO' MEANS",
+        "body": "The study is theoretical — built ab initio, Latin for 'from the beginning.' It solves the quantum equations of the base pair directly, with no parameters fitted to experiment. That is also its limit: the predicted dynamics are real only if someone can build a laser precise enough to test them, which no one yet has."
+      }
+    ],
+    "generatedAt": "2026-05-27T12:43:54.314Z",
+    "label": "Attosecond Science",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-27-indian-it-ai-deployment-gap-outsourcing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "PILOT PURGATORY",
+        "body": "The headline number in enterprise AI is that most projects work in the demo and die before production. The model is the easy part; wiring it into decades-old ERP systems, undocumented databases, and compliance workflows is where deployments stall. The gap between a working prototype and a deployed system is the entire business.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Where does most enterprise AI fail before delivering value?",
+            "options": [
+              "Integration into existing systems and workflows",
+              "Training a capable enough model",
+              "Buying enough GPU compute",
+              "Recruiting machine-learning researchers"
+            ],
+            "correct": 0,
+            "explanation": "Capable models are now commoditized; the bottleneck is the unglamorous integration into messy legacy infrastructure — exactly the work Indian IT specializes in."
+          }
+        ]
+      },
+      {
+        "heading": "LABOR ARBITRAGE",
+        "body": "Indian IT was built on one structural fact: an engineer in Bengaluru costs a fraction of one in San Francisco for comparable work. The sector packaged that wage gap into a service and sold it to the world. The Y2K remediation scramble of the late 1990s was the moment Western firms first trusted Indian vendors at scale.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1991",
+                "label": "India liberalizes its economy"
+              },
+              {
+                "year": "1999",
+                "label": "Y2K remediation boom",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2001",
+                "label": "Dot-com bust forces cost-cutting offshore"
+              },
+              {
+                "year": "2015",
+                "label": "RPA automation wave"
+              },
+              {
+                "year": "2023",
+                "label": "Generative AI arrives"
+              }
+            ],
+            "label": "how the sector was built"
+          }
+        ]
+      },
+      {
+        "heading": "THE PYRAMID",
+        "body": "The classic delivery model is a pyramid: a wide base of junior engineers doing routine coding and testing, narrowing to a few senior architects. Profit comes from billing clients senior-level rates for work done by the cheap base. AI agents threaten that base first — the routine integration tasks are precisely what they automate.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The model bills on *headcount on the bench*, not on outcomes. An agent that does the work of ten junior engineers doesn't just cut cost — it collapses the **pyramid economics** the whole sector is priced on."
+          }
+        ]
+      },
+      {
+        "heading": "THE GIANTS",
+        "body": "This is not a cottage industry. A handful of firms employ workforces the size of small cities, and headcount — not patents or platforms — is the asset on the balance sheet. That makes them uniquely exposed if agents replace the labor the model is built to sell.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "TCS",
+                "value": "~600k",
+                "cc": "IN",
+                "weight": 600
+              },
+              {
+                "label": "Infosys",
+                "value": "~320k",
+                "cc": "IN",
+                "weight": 320
+              },
+              {
+                "label": "Wipro",
+                "value": "~230k",
+                "cc": "IN",
+                "weight": 230
+              },
+              {
+                "label": "HCLTech",
+                "value": "~220k",
+                "cc": "IN",
+                "weight": 220
+              }
+            ],
+            "label": "Indian IT majors by headcount (approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE INNOVATOR'S DILEMMA",
+        "body": "The sector's escape plan is to build the very AI agents that automate integration — selling the automation faster than it erodes the billable hours. It has survived an automation wave before: robotic process automation in the mid-2010s was supposed to gut the same routine work, and the giants absorbed it by moving up the value chain. Whether agents are a bigger shock is the open question."
+      }
+    ],
+    "generatedAt": "2026-05-27T12:44:38.481Z",
+    "label": "Indian IT & the Deployment Gap",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-27-india-supreme-court-eci-sir-electoral-rolls": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MECHANISM",
+        "body": "An ordinary roll revision adds new voters and deletes the dead and moved. A Special Intensive Revision flips the burden: every existing voter must re-prove eligibility with documents, and anyone who cannot is struck off. The default state changes from 'enrolled until challenged' to 'deleted until proven'.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The tool is a **Special Intensive Revision** — the last nationwide one was in *2003*. Reviving it puts the *onus probandi*, the burden of proof, on the citizen, not the state."
+          }
+        ]
+      },
+      {
+        "heading": "FROM BIRTHRIGHT TO PAPERS",
+        "body": "India was born a jus soli country — the 1955 Citizenship Act made anyone born on Indian soil a citizen. A 1986 amendment, then a 2003 amendment effective December 2004, dismantled that. Today a child born in India is a citizen only if a parent is a citizen and neither is an 'illegal migrant'. Citizenship became something you document, not something you are born into.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1955",
+                "label": "Citizenship Act: born here = citizen",
+                "emphasis": "start"
+              },
+              {
+                "year": "1987",
+                "label": "Birth + one citizen parent required"
+              },
+              {
+                "year": "2004",
+                "label": "Unconditional birthright ends",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2019",
+                "label": "Assam NRC excludes ~1.9m"
+              },
+              {
+                "year": "2019-12",
+                "label": "CAA: faith-based fast track"
+              },
+              {
+                "year": "2025",
+                "label": "Bihar Special Intensive Revision"
+              }
+            ],
+            "label": "how citizenship became documentary"
+          }
+        ]
+      },
+      {
+        "heading": "THE ECI'S MANDATE",
+        "body": "Article 324 of the Constitution hands the Election Commission 'superintendence, direction and control' of electoral rolls — language deliberately left open-ended by the framers so a young democracy's election body could not be hamstrung. That same open-endedness is what lets the Commission order a purge and a court defer to it."
+      },
+      {
+        "heading": "THE ASSAM PRECEDENT",
+        "body": "Assam ran the experiment first. Its 2019 National Register of Citizens demanded that residents prove ancestry predating 1971, and left roughly 1.9 million people off the final list — many lifelong residents who simply lacked decades-old paperwork. Foreigners' tribunals and detention centres followed. The administrative machinery the Bihar ruling blesses already has a body count.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how many people were left off Assam's final 2019 citizens' register?",
+            "options": [
+              "About 190,000",
+              "About 1.9 million",
+              "About 19 million",
+              "About 50,000"
+            ],
+            "correct": 1,
+            "explanation": "Around 1.9 million residents were excluded — most for lacking pre-1971 documents, not for being foreign."
+          }
+        ]
+      },
+      {
+        "heading": "WHO CANNOT PROVE IT",
+        "body": "The burden lands hardest on those least likely to hold papers: the rural poor, internal migrants, and communities with low historical birth registration. Bihar is a major labour-exporting state, and the documentary citizenship debate has always run along the corridor of alleged cross-border migration from Bangladesh — which is why the targeting concern attaches to Muslim and migrant voters specifically.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IN",
+              "NP",
+              "BD"
+            ],
+            "label": "the migration corridor",
+            "caption": "Bihar borders Nepal; the migration claim points to Bangladesh",
+            "markers": [
+              {
+                "lat": 25.594,
+                "lng": 85.137,
+                "label": "Patna, Bihar"
+              },
+              {
+                "lat": 26.144,
+                "lng": 91.736,
+                "label": "Guwahati, Assam"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT'S NOW NATIONAL",
+        "body": "A ruling on one state's rolls would be a local affair. By declaring the method constitutional for all future revisions nationwide, the court converts a Bihar exercise into a template — any state can now demand citizenship documents from its entire electorate, with the precedent already settled before the first challenge is filed."
+      }
+    ],
+    "generatedAt": "2026-05-27T12:45:47.034Z",
+    "label": "Documentary Citizenship & the Voter Roll",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-27-synthetic-controls-hurricane-urban-bee-biodiversity": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE COUNTERFACTUAL PROBLEM",
+        "body": "To know what a hurricane did to Philadelphia's bees, you need to compare against a Philadelphia that the hurricane never hit. That city does not exist. This is the fundamental problem of causal inference: the outcome under the road not taken can never be directly observed, only estimated.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The unobservable comparison is called the *counterfactual* — the outcome a unit *would* have experienced under a different treatment. Every method in causal inference is a strategy for estimating what you cannot measure."
+          }
+        ]
+      },
+      {
+        "heading": "HOW SYNTHETIC CONTROL WORKS",
+        "body": "Rather than pick one comparison city and hope it matches, the method blends many untouched cities into a weighted average that tracks the target's pre-disaster trend as closely as possible. That weighted blend becomes the stand-in for the city-that-wasn't-hit; the gap that opens after the storm is the estimated effect.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The comparison cities form a **donor pool**, and the weights are chosen so the synthetic city matches the real one *before* the event — strong **pre-treatment fit** is what licenses reading the post-event gap as causal."
+          }
+        ]
+      },
+      {
+        "heading": "WHERE THE METHOD CAME FROM",
+        "body": "Synthetic control was invented for political economy, not ecology. Alberto Abadie built it to estimate the economic cost of terrorism in Spain's Basque Country, then refined it to measure the effect of California's 1988 tobacco-tax referendum — the paper that turned it into a standard tool across policy evaluation.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1974",
+                "label": "Rubin potential-outcomes framework"
+              },
+              {
+                "year": "2003",
+                "label": "Abadie: cost of Basque terrorism"
+              },
+              {
+                "year": "2010",
+                "label": "Abadie: California tobacco (Prop 99)",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "from theory to standard tool"
+          }
+        ]
+      },
+      {
+        "heading": "THE OBSERVER PARADOX",
+        "body": "Citizen-science data records where people looked, not where bees are. A heatwave that keeps people indoors, a viral app update, a new urban park — all move the sighting count without moving the bee population. Synthetic control's quiet strength is that these shared biases also hit the donor cities, so the method differences them out."
+      },
+      {
+        "heading": "WHY STORMS HIT POLLINATORS",
+        "body": "Most native bees are not honeybees in hives — they are solitary species that dig nests in bare soil. A flood saturates and collapses those tunnels, drowning brood, while the same winds strip the flowers that feed the survivors. The damage is structural, not just a bad season.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Where do the majority of native bee species build their nests?",
+            "options": [
+              "In underground tunnels they dig in soil",
+              "In communal wax hives like honeybees",
+              "In tree cavities and hollow stems"
+            ],
+            "correct": 0,
+            "explanation": "Roughly 70% of native bee species are ground-nesters, which is exactly why flooding from a hurricane is so destructive to them."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-27T12:46:41.477Z",
+    "label": "Synthetic Controls & Causal Inference",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-27-tuvalu-digital-nation-sovereignty-sea-level-rise": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TERRITORY TEST",
+        "body": "Modern statehood rests on the 1933 Montevideo Convention: a state needs a permanent population, a defined territory, a government, and the capacity to enter relations with other states. For ninety years the second criterion was treated as the one thing no state could lose. Tuvalu is the first to put it to the test.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "The Montevideo Convention lists four criteria for statehood. Which one does Tuvalu's land loss directly threaten?",
+            "options": [
+              "A defined territory",
+              "A permanent population",
+              "A functioning government",
+              "Capacity to enter relations with other states"
+            ],
+            "correct": 0,
+            "explanation": "Population, government, and diplomatic capacity can all survive in exile or online — territory is the only criterion physically erased by the sea."
+          }
+        ]
+      },
+      {
+        "heading": "THE .TV WINDFALL",
+        "body": "Tuvalu's first brush with digital sovereignty was accidental: its two-letter country code happened to be the abbreviation for television. Licensing the .tv domain to streaming and broadcast sites worldwide has at times funded a sizable slice of the national budget — a state monetizing its place in the internet's address book long before it imagined living there.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The deal made a coral atoll nation of ~11,000 people a permanent landlord of the **.tv** suffix — proof that a sliver of *digital* territory can throw off real revenue even when the physical territory is shrinking."
+          }
+        ]
+      },
+      {
+        "heading": "NOWHERE TO RETREAT",
+        "body": "An atoll is a ring of coral built on a sunken volcano — there is no interior highland to climb to. Tuvalu's highest natural point is about 4.6 metres; most of the land sits barely above the tide. When the sea rises, an atoll nation cannot move uphill, because there is no uphill.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Maldives",
+                "value": "2.4m",
+                "cc": "MV",
+                "weight": 2.4,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Tuvalu",
+                "value": "4.6m",
+                "cc": "TV",
+                "weight": 4.6,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Tokelau",
+                "value": "~5m",
+                "cc": "TK",
+                "weight": 5,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Marshall Is.",
+                "value": "~10m",
+                "cc": "MH",
+                "weight": 10,
+                "tone": "neutral"
+              }
+            ],
+            "label": "Highest natural point above sea level"
+          }
+        ]
+      },
+      {
+        "heading": "THE FALEPILI UNION",
+        "body": "In 2023 Australia signed the Falepili Union with Tuvalu — the first treaty in which one state formally pledged to recognize another's continued statehood even if its land became uninhabitable, while opening a migration pathway for Tuvaluans. It turned an abstract legal question into a bilateral commitment, and made Australia the test case for whether recognition can outlive territory.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TV",
+              "AU",
+              "FJ",
+              "NZ",
+              "MH"
+            ],
+            "label": "the Pacific climate frontier",
+            "caption": "Funafuti sits on an atoll averaging ~2m above the sea",
+            "markers": [
+              {
+                "lat": -8.5211,
+                "lng": 179.1962,
+                "label": "Funafuti, Tuvalu's capital"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE GOVERNMENT-IN-EXILE PRECEDENT",
+        "body": "International law has handled displaced states before — but never one whose land was gone. Wartime governments-in-exile kept their recognition because their territory was occupied, not erased, and everyone assumed it would be returned. Tuvalu's case breaks that assumption: there is no liberation to wait for.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Poland, Norway, the Free French — every **government-in-exile** rested on the premise that the homeland would *come back*. Tuvalu is the first to plan for a homeland that will not."
+          }
+        ]
+      },
+      {
+        "heading": "THE ROAD TO DIGITAL STATEHOOD",
+        "body": "The pivot was not the digital twin itself but the 2023 constitutional change asserting that Tuvalu's statehood persists in perpetuity regardless of land loss. Everything since — the island scans, the cultural archive, the e-government system — is an attempt to give that legal claim something concrete to point to.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1978",
+                "label": "Independence from the UK",
+                "emphasis": "start"
+              },
+              {
+                "year": "2000",
+                "label": ".tv domain licensing deal"
+              },
+              {
+                "year": "2021",
+                "label": "Minister's COP26 address, filmed in the sea"
+              },
+              {
+                "year": "2023",
+                "label": "Constitution asserts perpetual statehood",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024",
+                "label": "Digital twin and cultural archive begin"
+              }
+            ],
+            "label": "from atoll to digital nation"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-27T12:48:57.141Z",
+    "label": "Statehood Without Territory",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-27-us-anti-tech-extremism-surveillance-ai-backlash": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE LABEL IS THE LEVER",
+        "body": "A new threat designation does not change the law — it changes which tools an agency may aim at a person. Once conduct is filed under a counterterrorism category, surveillance, watchlisting, and information-sharing powers built for foreign threats become available against domestic targets, with a far lower evidentiary bar than a criminal charge would require.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The hinge is the *Suspicious Activity Report* — a low-threshold tip, not a criminal allegation, that once filed flows into federal databases and can persist for years even if no crime is ever charged."
+          }
+        ]
+      },
+      {
+        "heading": "WHO THE LUDDITES ACTUALLY WERE",
+        "body": "The original Luddites of 1810s England were not technophobes. They were skilled textile artisans who smashed specific machines being used to slash wages and bypass apprenticeship — a labor grievance about who controls technology, not a rejection of it. 'Neo-Luddism' inherits the smear more than the substance.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What did the original Luddites actually oppose?",
+            "options": [
+              "Machinery used to cut wages and bypass skilled labor",
+              "All industrial technology on principle",
+              "Electric lighting in textile mills",
+              "The factory system's use of child labor"
+            ],
+            "correct": 0,
+            "explanation": "They were skilled weavers destroying machines that let owners undercut their trade — a wage fight, not a fear of machines as such."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT A FUSION CENTER DOES",
+        "body": "Fusion centers are roughly 80 state-run intelligence hubs stood up after 9/11 to share tips between local police and federal agencies. A 2012 bipartisan Senate investigation found they had produced almost nothing of counterterrorism value while routinely filing reports on protected First Amendment activity — the structural flaw the current label exploits."
+      },
+      {
+        "heading": "THE COINTELPRO PATTERN",
+        "body": "This is the recurring American cycle: a surveillance apparatus built against an external enemy is quietly turned on domestic dissenters, exposed, curbed by reform — then rebuilt under a new name after the next crisis. The FBI's COINTELPRO ran for 15 years before a citizen break-in exposed it.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1956",
+                "label": "FBI launches COINTELPRO",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1971",
+                "label": "Citizens' break-in exposes the program"
+              },
+              {
+                "year": "1975",
+                "label": "Church Committee hearings"
+              },
+              {
+                "year": "2001",
+                "label": "USA PATRIOT Act expands powers"
+              },
+              {
+                "year": "2003",
+                "label": "First fusion centers stood up"
+              },
+              {
+                "year": "2012",
+                "label": "Senate report faults fusion centers"
+              }
+            ],
+            "label": "surveillance overreach, then reform, then rebuild"
+          }
+        ]
+      },
+      {
+        "heading": "THE BRANDENBURG LINE",
+        "body": "American law sets an unusually high bar for punishing speech. Since 1969, advocacy is protected unless it is meant to and likely to trigger immediate lawless action. Attending a town hall or protesting a construction site sits nowhere near that line — which is why the legal challenge here is about the threshold the label evades.",
+        "blocks": [
+          {
+            "type": "quote",
+            "text": "directed to inciting or producing imminent lawless action — and is likely to incite or produce such action",
+            "speaker": "Brandenburg v. Ohio, 1969"
+          }
+        ]
+      },
+      {
+        "heading": "WHY DATA CENTERS DRAW PROTEST",
+        "body": "Hyperscale data centers are sited in rural and exurban areas for cheap land and power, then collide with the communities around them. A single large campus can draw electricity on the order of a mid-size city and consume millions of gallons of water a day for cooling — turning an abstract AI buildout into a concrete fight over local grids, water tables, and noise.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The local objection is rarely ideological — it's that one campus can demand power comparable to a **small city** and **millions of gallons** of cooling water daily, straining grids and aquifers neighbors also depend on."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-27T12:50:05.660Z",
+    "label": "Surveillance & the Dissent Label",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-27-us-strike-drug-boat-pacific-extrajudicial-killing": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE NORMAL PROCEDURE",
+        "body": "For decades, a suspected smuggling vessel at sea is handled as a police matter: a cutter hails it, a boarding team climbs aboard, the cargo is seized, and the crew is arrested and flown back for prosecution. Nobody is supposed to die. A missile strike replaces all of that with a killing.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Under decades of US practice, what normally happens to a boat suspected of smuggling drugs at sea?",
+            "options": [
+              "Coast Guard boards it and arrests the crew",
+              "A warship sinks it with the crew aboard",
+              "It is tracked by satellite until it docks",
+              "Drones destroy it once it nears US waters"
+            ],
+            "correct": 0,
+            "explanation": "Maritime interdiction is law enforcement — hail, board, seize, arrest, try — not a military targeting operation."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE COAST GUARD, NOT THE NAVY",
+        "body": "The reason interdiction has always meant arrest rather than attack is structural: a Coast Guard officer is a law-enforcement agent with the power to detain and charge; an active-duty Navy sailor is not. When the Navy is involved, it usually carries a Coast Guard detachment aboard precisely to make the arrest legal.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **Posse Comitatus Act** (1878) bars the regular military from acting as domestic police — which is why drug interdiction is routed through the Coast Guard, a service with arrest authority the Navy lacks."
+          }
+        ]
+      },
+      {
+        "heading": "THE LEGAL PIVOT",
+        "body": "The entire shift from arrest to strike rides on one administrative act. Labeling a cartel as a terrorist organization lets the government argue the country is in an armed conflict with traffickers — and armed conflict is governed by the laws of war, where lawful combatants may be killed on sight rather than captured and tried.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Designating a cartel a **Foreign Terrorist Organization** is the hinge: it reframes a crime as a war, swapping law-enforcement rules (*capture, try*) for laws-of-war rules (*target, strike*)."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT 'IMMINENT THREAT' MEANS",
+        "body": "Both policing and self-defense law permit lethal force only against an imminent threat to life — a gun being raised, a vehicle about to ram a crowd. A boat carrying cocaine northward threatens no one's life in that moment. This is the core of the legal experts' objection: no imminence means the killing cannot be self-defense, which leaves it as an extrajudicial execution."
+      },
+      {
+        "heading": "THE EVIDENCE DISAPPEARS",
+        "body": "Interdiction produces proof — seized bales weighed and tested, suspects interrogated, a trial that can be wrong but can also be checked. A strike destroys all of it. There is no cargo to inspect and no survivor to identify, so the government's claim that the dead were 'narco-terrorists' carrying drugs can never be independently verified."
+      },
+      {
+        "heading": "THE EASTERN PACIFIC CORRIDOR",
+        "body": "Most maritime cocaine no longer moves through the Caribbean; it runs north up the eastern Pacific in low-profile go-fast boats and self-built semi-submersibles, launched from the coasts of Colombia and Ecuador toward Mexican and US waters. The open ocean is what makes these vessels easy to strike and hard to witness.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "US",
+              "MX",
+              "CO",
+              "EC",
+              "PE"
+            ],
+            "label": "Eastern Pacific cocaine corridor",
+            "caption": "Go-fast boats and semi-submersibles run north from Colombia and Ecuador"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-27T12:51:16.060Z",
+    "label": "Drug Interdiction & the Laws of War",
+    "category": "politics",
+    "articleCount": 1
   }
 }
