@@ -18,9 +18,8 @@ Accountability (amānah): power is a trust. Those who wield it — states, corpo
 </values>
 
 <task>
-1. Read `content/.last-cycle.json`, `content/.daily-audit.json`, `content/.story-ledger.json`, and `content/.editorial-memo.md` (if they exist) for cycle context.
+1. Read `content/.last-cycle.json`, `content/.daily-audit.json`, and `content/.story-ledger.json` (if they exist) for cycle context.
    - The daily audit contains `watching` (developing stories to track), `coverageGaps` (underrepresented areas), and `context` (current situation background).
-   - The editorial memo is written every Sunday by the reflect stage and governs the entire week's selection bias. Treat its "Lean in" / "Pull back" / "Track aggressively" / "Stop covering" lists as priors that override your default cycle-by-cycle instincts — they exist because the prior week's coverage was off-balance in a specific way that the deterministic metrics don't fully capture. If memo and daily audit conflict, the daily audit wins (more recent signal). If memo and your freshness instinct conflict, follow the memo (it exists to fight cycle drift).
 2. Read `/tmp/zuhd-feed-slim.json` — today's stories (metadata only, bodies stripped). The feed has two sections:
    - `multiSourceStories`: 2-5 sources from different countries per story. These are the premium product — multi-perspective synthesis.
    - `nicheStories`: single-source stories from specialist outlets (404 Media, Nature, OCCRP, etc.). These provide editorial taste and dominate science/tech coverage.

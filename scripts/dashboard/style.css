@@ -757,48 +757,6 @@ h3 {
 
 .audit-cats { margin-top: var(--space-sm); }
 
-/* --- Reflection Sections --- */
-.reflect-section {
-  margin-bottom: var(--space-md);
-}
-
-.reflect-section .label { margin-bottom: 0.4rem; }
-
-.reflect-body {
-  font-size: var(--size-sm);
-  color: var(--text-secondary);
-  line-height: 1.7;
-}
-
-.reflect-body p { margin-bottom: 0.6em; }
-
-.reflect-body strong { color: var(--text); font-weight: 600; }
-
-.reflect-list {
-  padding-left: 1.2em;
-  font-size: var(--size-sm);
-  color: var(--text-secondary);
-  line-height: 1.7;
-}
-
-.reflect-list li {
-  padding: 0.3em 0;
-  margin-bottom: 0.3em;
-}
-
-.reflect-list strong { color: var(--text); }
-
-ol.reflect-list { list-style: decimal; }
-ul.reflect-list { list-style: none; padding-left: 1em; }
-
-ul.reflect-list li { position: relative; padding-left: 0.8em; }
-ul.reflect-list li::before {
-  content: '\2013';
-  position: absolute;
-  left: 0;
-  color: #555;
-}
-
 /* --- Experiment Cards (improved) --- */
 .exp-header {
   display: flex;

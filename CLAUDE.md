@@ -53,7 +53,8 @@ Stage 2: Claude CLI writer (write-prompt.md) → content/articles/*.md
 Stage 3: Claude CLI editor (check-prompt.md) → style fixes
 Stage 3b: validate-articles.js → build.js → git commit → wrangler deploy
 Stage 4: node generate-briefing.js (04:00/16:00 UTC) → content/audio/ → redeploy
-Stage 5: Claude CLI reflect (reflect-prompt.md) (Sunday 22:00 UTC only)
+Stage 5: node measure-quality.js (Sunday 22:00 UTC only) → content/.quality-trend.json
+Stage 6: Claude CLI tune (tune-prompt.md) (daily 22:00 UTC) → parameter changes
 ```
 
 ## Dashboard

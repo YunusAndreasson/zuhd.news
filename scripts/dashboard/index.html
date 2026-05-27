@@ -326,12 +326,6 @@
     <div id="audit-prose"></div>
   </section>
 
-  <section>
-    <h3>weekly reflection <span class="stale-badge" id="reflect-stale" hidden>stale</span></h3>
-    <div class="meta-line" id="reflect-meta"></div>
-    <div id="reflect-sections"></div>
-  </section>
-
 
 </div>
 
@@ -1154,7 +1148,7 @@ async function loadComplianceChart() {
   const el = document.getElementById('compliance-chart')
   if (!el) return
   if (!wq?.history || wq.history.length < 2) {
-    el.innerHTML = '<span class="empty">trend builds over future weeks (snapshots taken at Sunday 22:00 UTC reflect cycle)</span>'
+    el.innerHTML = '<span class="empty">trend builds over future weeks (snapshots taken Sunday 22:00 UTC)</span>'
     return
   }
 
@@ -1294,7 +1288,7 @@ async function loadWritingQuality() {
   const statsEl = document.getElementById('writing-quality-stats')
   const trendEl = document.getElementById('writing-quality-trend')
   if (!wq || !wq.current) {
-    sumEl.innerHTML = '<span class="empty">no metrics yet — computed at Sunday 22:00 utc (reflect stage)</span>'
+    sumEl.innerHTML = '<span class="empty">no metrics yet — computed Sunday 22:00 utc</span>'
     statsEl.innerHTML = ''
     trendEl.innerHTML = ''
     return
@@ -1415,7 +1409,6 @@ async function loadCycleDetail(filename) {
     ['deploy', 'deploy'],
     ['briefing', 'briefing'],
     ['tuning', 'tuning'],
-    ['reflection', 'reflection'],
   ]
   stagesEl.innerHTML = stageOrder.map(([key, label]) => {
     const s = detail.stages[key]
@@ -1534,19 +1527,6 @@ async function loadEditorial() {
     }
   } else {
     auditMetrics.innerHTML = '<span class="empty">no daily audit found</span>'
-  }
-
-  // ── Weekly Reflection ──
-  const reflectMeta = document.getElementById('reflect-meta')
-  const reflectSections = document.getElementById('reflect-sections')
-  const reflectStale = document.getElementById('reflect-stale')
-
-  if (data.reflection) {
-    reflectMeta.textContent = `updated ${timeAgo(data.reflection.ageHours)} \u2014 ${data.reflection.updatedAt.slice(0, 10)}`
-    reflectStale.hidden = data.reflection.ageHours < 192
-    renderReflection(data.reflection.content, reflectSections)
-  } else {
-    reflectSections.innerHTML = '<span class="empty">no weekly reflection found</span>'
   }
 
 }
@@ -1883,59 +1863,6 @@ function updateExpTabDot() {
 }
 updateExpTabDot()
 
-// ── Weekly Reflection Renderer ───────────────────────────────
-function renderReflection(content, container) {
-  if (!content) { container.innerHTML = '<span class="empty">no data</span>'; return }
-
-  // Split by ## headers into sections
-  const sections = []
-  let current = null
-  for (const line of content.split('\n')) {
-    const h1 = line.match(/^# (.+)/)
-    const h2 = line.match(/^## (.+)/)
-    if (h1 && !sections.length) {
-      // Title — render as meta
-      sections.push({ title: h1[1], lines: [] })
-    } else if (h2) {
-      current = { title: h2[1], lines: [] }
-      sections.push(current)
-    } else if (current) {
-      current.lines.push(line)
-    }
-  }
-
-  container.innerHTML = sections.map(s => {
-    const body = s.lines.join('\n').trim()
-    if (!body) return ''
-
-    // Detect numbered items (top stories, recommendations)
-    const isNumbered = /^\*?\*?\d+\./.test(body) || /^\*\*\d+\./.test(body)
-    // Detect bullet items
-    const isBulletList = body.split('\n').every(l => !l.trim() || l.trim().startsWith('- '))
-
-    let rendered
-    if (isBulletList) {
-      rendered = '<ul class="reflect-list">' + body.split('\n')
-        .filter(l => l.trim().startsWith('- '))
-        .map(l => `<li>${mdInline(l.slice(l.indexOf('- ') + 2))}</li>`)
-        .join('') + '</ul>'
-    } else if (isNumbered) {
-      // Split on numbered items
-      const items = body.split(/\n(?=\*?\*?\d+\.)/).filter(Boolean)
-      rendered = '<ol class="reflect-list">' + items.map(item => {
-        const clean = item.replace(/^\*?\*?\d+\.\s*/, '').trim()
-        return `<li>${mdInline(clean).replace(/\n/g, '<br>')}</li>`
-      }).join('') + '</ol>'
-    } else {
-      rendered = mdInline(body).split('\n\n').map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`).join('')
-    }
-
-    return `<div class="reflect-section">
-      <div class="label">${esc(s.title.toLowerCase())}</div>
-      <div class="reflect-body">${rendered}</div>
-    </div>`
-  }).filter(Boolean).join('')
-}
 
 function mdInline(text) {
   return esc(text)

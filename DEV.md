@@ -26,7 +26,6 @@
 | `scripts/select-prompt.md` | Selector prompt: read pre-fetched feed, pick stories, save selection JSON |
 | `scripts/write-prompt.md` | Writer prompt: read selection + prefetched content, draft markdown |
 | `scripts/check-prompt.md` | Editor prompt: check new articles for style violations only |
-| `scripts/reflect-prompt.md` | Weekly reflection prompt: audit editorial quality, write notes |
 | `scripts/run-cycle.sh` | Cycle orchestrator: all stages including build, commit, deploy |
 | `scripts/lib/frontmatter.js` | Shared YAML frontmatter parser |
 | `templates/article.html` | Article page template |
@@ -35,7 +34,6 @@
 | `public/reader.js` | Spatial keyboard/touch navigation engine |
 | `content/.last-cycle.json` | Published articles from last cycle (selector dedup signal) |
 | `content/.story-ledger.json` | Cross-cycle story deduplication ledger |
-| `content/.editorial-notes.md` | Weekly reflection output |
 
 ## Sources (41)
 

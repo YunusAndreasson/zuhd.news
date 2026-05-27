@@ -43,7 +43,6 @@ function parseCycleLog(filepath) {
   const deploy = content.match(/Deploy exit: (\d+)/)
   const briefing = content.match(/Briefing exit: (\d+)/)
   const tuning = content.match(/Tuning exit: (\d+)/)
-  const reflection = content.match(/Reflection exit: (\d+)/)
 
   // Selection detail
   const selCount = content.match(/Selection contains (\d+) stories/)
@@ -86,7 +85,6 @@ function parseCycleLog(filepath) {
       deploy:    { exit: deploy ? parseInt(deploy[1]) : null },
       briefing:  { exit: briefing ? parseInt(briefing[1]) : null },
       tuning:    { exit: tuning ? parseInt(tuning[1]) : null },
-      reflection: { exit: reflection ? parseInt(reflection[1]) : null },
     },
     selectionCount: selCount ? parseInt(selCount[1]) : null,
     dedupBefore: dedupSel ? parseInt(dedupSel[1]) : null,
@@ -955,7 +953,7 @@ function handleReach() {
 
 function handleEditorial() {
   return cached('editorial', 300_000, () => {
-    const result = { audit: null, reflection: null, experiments: null }
+    const result = { audit: null, experiments: null }
 
     // Daily audit — prefer JSON, fall back to markdown
     const auditJsonPath = join(ROOT, 'content', '.daily-audit.json')
@@ -982,23 +980,6 @@ function handleEditorial() {
         }
       } catch {}
     }
-
-    // Editorial memo (replaces the human-readable weekly reflection — the
-    // memo is now consumed by the selector at every cycle. Surfacing it on
-    // the dashboard gives a human window into what's actually steering
-    // selection for the next 7 days.)
-    const reflectPath = join(ROOT, 'content', '.editorial-memo.md')
-    if (existsSync(reflectPath)) {
-      try {
-        const stat = statSync(reflectPath)
-        result.reflection = {
-          content: readFileSync(reflectPath, 'utf-8'),
-          updatedAt: stat.mtime.toISOString(),
-          ageHours: Math.round((Date.now() - stat.mtime.getTime()) / 3600000 * 10) / 10,
-        }
-      } catch {}
-    }
-
 
     // Experiments
     const expPath = join(ROOT, 'content', '.experiments.json')
