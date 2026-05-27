@@ -247099,5 +247099,1449 @@
     "label": "Drug Interdiction & the Laws of War",
     "category": "politics",
     "articleCount": 1
+  },
+  "2026-05-27-ai-superhuman-hacking-defi-smart-contract-exploits": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE TRANSPARENCY TRAP",
+        "body": "DeFi's core promise — anyone can verify the code — is also its core weakness. A smart contract's logic sits on-chain in public view, so an attacker reads every line at leisure while the defender must close every gap on the first try. Security through obscurity, the crutch of ordinary software, is unavailable by design.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The asymmetry is total: the defender has to be right *everywhere*, the attacker only *once* — and the attacker can study the **deployed bytecode** for as long as they like before striking."
+          }
+        ]
+      },
+      {
+        "heading": "CODE IS LAW",
+        "body": "Most smart contracts are immutable once deployed — there is no patch, no hotfix, no rollback. A discovered bug cannot be quietly fixed; it can only be raced. And because transactions are irreversible, a successful drain is final the instant it confirms. The 2016 hard fork that reversed The DAO theft was so traumatic precisely because undoing a transaction violated the chain's foundational rule."
+      },
+      {
+        "heading": "THE ORIGINAL SIN",
+        "body": "The first great DeFi exploit was a reentrancy attack: the contract sent funds out before updating its own ledger, so the attacker's code called back in repeatedly and withdrew the same balance over and over. The DAO lost roughly a third of all the ether in existence at the time, and the cleanup split Ethereum into ETH and Ethereum Classic.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Which flaw enabled the 2016 DAO hack, DeFi's first major exploit?",
+            "options": [
+              "Reentrancy — withdrawing before the balance updated",
+              "A flash-loan price manipulation",
+              "Stolen validator private keys",
+              "A forged price-oracle feed"
+            ],
+            "correct": 0,
+            "explanation": "The contract paid out before zeroing the balance, so a recursive callback drained it repeatedly; flash loans and bridge key theft came years later."
+          }
+        ]
+      },
+      {
+        "heading": "THE FLASH-LOAN WEAPON",
+        "body": "A flash loan lets anyone borrow millions with zero collateral, provided the loan is repaid within the same transaction. This collapses the barrier between rich and poor attackers: a penniless actor can momentarily command a whale's capital to distort a price oracle, drain a lending pool, and repay the loan — all atomically, in one block.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Because the borrow and repay happen in a *single atomic transaction*, the loan carries **no default risk** — if any step fails, the whole transaction reverts as if it never happened."
+          }
+        ]
+      },
+      {
+        "heading": "WHY BRIDGES BLEED",
+        "body": "The largest thefts almost never hit a single app — they hit cross-chain bridges, which pool collateral from every chain they connect. That concentrated treasury is one honeypot guarding billions, and a single signature or validation flaw empties it. North Korea's Lazarus Group has specialized in exactly this target.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Ronin Bridge",
+                "value": 625,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Poly Network",
+                "value": 611,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "BNB Bridge",
+                "value": 570,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Wormhole",
+                "value": 320,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Euler Finance",
+                "value": 200,
+                "tone": "neutral"
+              },
+              {
+                "label": "Nomad Bridge",
+                "value": 190,
+                "tone": "neutral"
+              }
+            ],
+            "label": "largest crypto exploits ($mn, approx.)"
+          }
+        ]
+      },
+      {
+        "heading": "THE ESCALATING SURFACE",
+        "body": "Each era of DeFi opened a new class of attack faster than the last was patched: reentrancy in 2016, frozen wallet logic in 2017, flash-loan oracle manipulation from 2020, then bridge drains in 2022. AI shifts the curve again — not by inventing new bugs, but by scanning thousands of public contracts in parallel, finding the known patterns before any human auditor reaches them.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2016",
+                "label": "The DAO reentrancy hack",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2017",
+                "label": "Parity wallet funds frozen"
+              },
+              {
+                "year": "2020",
+                "label": "Flash-loan attacks begin"
+              },
+              {
+                "year": "2021",
+                "label": "Poly Network drained"
+              },
+              {
+                "year": "2022",
+                "label": "Ronin bridge looted"
+              },
+              {
+                "year": "2023",
+                "label": "Euler Finance exploit"
+              }
+            ],
+            "label": "the widening attack surface"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-27T22:38:55.430Z",
+    "label": "Smart Contracts & the Attacker's Edge",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-27-brazil-br319-amazon-highway-deforestation-lula": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY ROADS, NOT CHAINSAWS",
+        "body": "Across the Amazon, roads are the single strongest predictor of where forest falls — the overwhelming majority of clearing happens within a few dozen kilometers of one. A road converts forest from inaccessible to economically reachable; everything else follows from access.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The pattern is so regular it has a name: the ***fishbone***. A paved trunk road becomes the spine, illegal side roads branch off at intervals, and rectangular clearings fill the gaps — visible from orbit as a herringbone scar."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT MAKES BR-319 DIFFERENT",
+        "body": "Most Amazon deforestation has been confined to the southern and eastern 'arc of deforestation.' BR-319 runs north from Porto Velho to Manaus, slicing through some of the most intact central Amazon — paving it opens an entirely new frontier rather than widening an old one.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "BR"
+            ],
+            "label": "the BR-319 corridor",
+            "caption": "a ~900km spine through previously unreachable forest",
+            "markers": [
+              {
+                "lat": -3.119,
+                "lng": -60.0217,
+                "label": "Manaus"
+              },
+              {
+                "lat": -8.7619,
+                "lng": -63.9039,
+                "label": "Porto Velho"
+              },
+              {
+                "lat": -5.8,
+                "lng": -62.2,
+                "label": "intact central Amazon"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE TIPPING POINT",
+        "body": "The Amazon manufactures roughly half its own rainfall — trees transpire moisture that falls again downwind, a self-watering loop. Scientists warn that clearing 20–25% of the basin could break the loop and flip large stretches from rainforest to dry savanna, irreversibly.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "About how much Amazon forest loss could trigger an irreversible flip toward savanna?",
+            "options": [
+              "Around 5%",
+              "Around 20–25%",
+              "Around 50%",
+              "Around 75%"
+            ],
+            "correct": 1,
+            "explanation": "Past roughly 20–25% loss, the forest's self-generated rainfall can collapse, drying remaining forest into savanna even without further clearing."
+          }
+        ]
+      },
+      {
+        "heading": "BRAZIL HOLDS THE MAJORITY",
+        "body": "The Amazon spans nine countries, but Brazil governs the clear majority of it — which is why Brazilian road and land policy, more than any treaty, sets the fate of the whole basin.",
+        "blocks": [
+          {
+            "type": "treemap",
+            "items": [
+              {
+                "label": "Brazil",
+                "value": 60
+              },
+              {
+                "label": "Peru",
+                "value": 13
+              },
+              {
+                "label": "Colombia",
+                "value": 7
+              },
+              {
+                "label": "Bolivia",
+                "value": 6
+              },
+              {
+                "label": "Venezuela",
+                "value": 6
+              },
+              {
+                "label": "Guyana",
+                "value": 3
+              },
+              {
+                "label": "Suriname",
+                "value": 2
+              },
+              {
+                "label": "Ecuador",
+                "value": 2
+              }
+            ],
+            "label": "share of Amazon rainforest by country"
+          }
+        ]
+      },
+      {
+        "heading": "THE ROAD THAT WOULDN'T DIE",
+        "body": "BR-319 was inaugurated in 1976 under the military government's 'integrate or surrender' Amazon-settlement drive, then abandoned within roughly a decade as the surface dissolved into impassable mud. Repaving it has been a recurring political ambition ever since — the news is the latest revival, not the first.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1976",
+                "label": "Inaugurated under military gov't",
+                "emphasis": "start"
+              },
+              {
+                "year": "1988",
+                "label": "Largely abandoned, impassable"
+              },
+              {
+                "year": "2026",
+                "label": "Funded for paving",
+                "emphasis": "pivot"
+              }
+            ],
+            "spans": [
+              {
+                "from": "1988",
+                "to": "2026",
+                "label": "decades of disrepair",
+                "tone": "neutral"
+              }
+            ],
+            "label": "BR-319's long arc"
+          }
+        ]
+      },
+      {
+        "heading": "THE DEVELOPMENT PARADOX",
+        "body": "Lula campaigns abroad as a guardian of the Amazon while at home he leads a party rooted in developmentalist promises of jobs and infrastructure. Manaus residents who endure a 20-hour mud ordeal to reach the rest of the country see a paved road as basic justice — the conflict is between two real goods, not good versus bad."
+      }
+    ],
+    "generatedAt": "2026-05-27T22:39:55.637Z",
+    "label": "BR-319 & the Road-Deforestation Engine",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-27-character-ai-enshittification-ads-guardrails-backlash": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE MARGINAL COST TRAP",
+        "body": "Traditional software has near-zero marginal cost: once written, the millionth user costs almost nothing to serve. Generative AI inverts this — every single message burns GPU compute that costs real money. The free-tier playbook that built Facebook breaks the moment your product is a chatbot, because usage is the expense, not the asset.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Training a model is a one-time cost; **inference** — generating each reply — is a per-message cost that never goes away. For a viral chatbot, popularity is also the bleeding wound."
+          }
+        ]
+      },
+      {
+        "heading": "ENSHITTIFICATION",
+        "body": "The decay users are feeling has a name and a lifecycle: first the platform is good to users to win them, then it degrades their experience to please business customers, then it extracts from everyone. It is not a glitch — it is what subsidized platforms do once growth capital dries up and someone demands profit.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "What does 'enshittification' describe?",
+            "options": [
+              "Platforms souring as they squeeze users, then partners",
+              "Low-quality AI content flooding the open web",
+              "A spam filter that degrades over time"
+            ],
+            "correct": 0,
+            "explanation": "Coined by Cory Doctorow in 2022, it names the predictable arc of a subsidized platform once it must finally extract profit."
+          }
+        ]
+      },
+      {
+        "heading": "THE LOBOTOMY",
+        "body": "When users say a model got 'dumber,' they are often right in a literal sense. To cut inference costs, companies quietly swap in smaller, quantized models — fewer active parameters, lower precision arithmetic — or tighten guardrails that clip and flatten responses. The same prompt now runs against a cheaper machine."
+      },
+      {
+        "heading": "THE FOUNDERS WHO LEFT TWICE",
+        "body": "Character.AI's founders quit Google in 2021 precisely because Google would not ship a consumer chatbot it feared was unsafe. Three years later Google paid roughly $2.7 billion to license the technology and hire them back — a 'reverse acquihire' structured to dodge antitrust scrutiny, leaving the company a shell of talent it once held.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Noam Shazeer",
+                "role": "Co-founder, 'Attention' paper co-author",
+                "years": "2021–2024",
+                "cc": "US"
+              },
+              {
+                "name": "Daniel De Freitas",
+                "role": "Co-founder, ex-Google LaMDA lead",
+                "years": "2021–2024",
+                "cc": "US"
+              }
+            ],
+            "label": "out the door, then back again"
+          }
+        ]
+      },
+      {
+        "heading": "THE LIABILITY FRONTIER",
+        "body": "For decades the law has treated online platforms as immune for what their users post. AI breaks the frame: when the machine itself authors the words that allegedly harmed someone, courts must decide whether that output is protected third-party speech or the company's own defective product — a question no statute was written to answer.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**Section 230** immunizes platforms for *user* content. The unsettled question: when the AI writes the words, is that still third-party content — or the company's own product?"
+          }
+        ]
+      },
+      {
+        "heading": "THE ARC",
+        "body": "The story tracks a familiar venture lifecycle: explosive free growth on cheap capital, a soaring valuation, the founders extracted by a giant, then the bill for inference coming due as ads, caps, and a downgraded model arrive together.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2021",
+                "label": "Founded; pair leave Google",
+                "emphasis": "start"
+              },
+              {
+                "year": "2022-09",
+                "label": "Public launch, goes viral"
+              },
+              {
+                "year": "2023",
+                "label": "~$1bn valuation round"
+              },
+              {
+                "year": "2024-08",
+                "label": "Google ~$2.7bn deal, founders return",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2024-10",
+                "label": "Wrongful-death lawsuit filed"
+              },
+              {
+                "year": "2026",
+                "label": "Ads, caps, downgraded model"
+              }
+            ],
+            "label": "subsidized growth to extraction"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-27T22:40:58.404Z",
+    "label": "Inference Economics & Platform Decay",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-27-esbl-carriage-amr-northern-nigeria-tertiary-hospital": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE ENZYME",
+        "body": "Beta-lactam antibiotics — penicillins and cephalosporins — kill bacteria by jamming the machinery that builds the cell wall. An extended-spectrum beta-lactamase is an enzyme the bacterium secretes that snips the drug's chemical ring open before it can bind, neutralizing nearly the entire front-line class at once."
+      },
+      {
+        "heading": "CARRIAGE COMES FIRST",
+        "body": "A patient can carry resistant bacteria in their gut for weeks while perfectly healthy — no symptoms, no infection. The bug only turns dangerous when it escapes the gut into the blood, a wound, or the urinary tract. By then the reservoir has already seeded the ward, which is why the 87% figure is the early-warning signal, not the outbreak itself.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "In infection control, what does it mean that a patient 'carries' resistant bacteria?",
+            "options": [
+              "They harbor the bacteria without being sick",
+              "They have an active bloodstream infection",
+              "They are immune to the bacteria",
+              "They have already died from sepsis"
+            ],
+            "correct": 0,
+            "explanation": "Carriage is silent colonization — the gut reservoir that precedes infection and lets resistant strains spread through a ward before any patient shows symptoms."
+          }
+        ]
+      },
+      {
+        "heading": "THE PLASMID PROBLEM",
+        "body": "The resistance genes do not stay put inside one species. They ride on plasmids — small loops of DNA that bacteria swap directly, even across species lines. An E. coli in the gut can hand its resistance to a Klebsiella next to it. The colonized intestine becomes a mixing bowl where resistance is traded, not just inherited.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is why resistance spreads faster than evolution alone would allow: **plasmids** move genes *sideways* between living bacteria — **horizontal gene transfer** — instead of only down through generations."
+          }
+        ]
+      },
+      {
+        "heading": "THE ARMS RACE",
+        "body": "Every antibiotic class has been followed within years by resistance to it. The pattern is not new — it is the defining rhythm of the antibiotic era, and ESBL is one rung on a ladder that keeps climbing toward drugs of last resort.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1943",
+                "label": "Penicillin mass-produced"
+              },
+              {
+                "year": "1945",
+                "label": "Penicillin resistance widespread"
+              },
+              {
+                "year": "1960",
+                "label": "Methicillin introduced"
+              },
+              {
+                "year": "1961",
+                "label": "MRSA identified"
+              },
+              {
+                "year": "1983",
+                "label": "First ESBL reported",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "1996",
+                "label": "First carbapenemase (KPC)"
+              },
+              {
+                "year": "2015",
+                "label": "mcr-1: colistin resistance on a plasmid"
+              }
+            ],
+            "label": "drug introduced, then defeated"
+          }
+        ]
+      },
+      {
+        "heading": "WHAT'S LEFT",
+        "body": "When ESBL defeats the cephalosporins, doctors escalate to carbapenems — the broad-spectrum reserve drugs. Past those lies colistin, an old, toxic antibiotic shelved for decades and now revived because nothing else works. The shelf of options does not get restocked quickly; few new antibiotic classes have reached patients in a generation."
+      },
+      {
+        "heading": "THE GEOGRAPHY",
+        "body": "The burden of antimicrobial resistance is not evenly spread. Sub-Saharan Africa carries the world's highest death rate from resistant infections — a function of crowded wards, scarce diagnostics, over-the-counter antibiotic sales, and exactly the kind of unmonitored carriage this study documents.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "AMR-attributable deaths per 100k (2019 est.)",
+            "peers": [
+              {
+                "value": 27,
+                "label": "W. sub-Sahara"
+              },
+              {
+                "value": 23,
+                "label": "E. sub-Sahara"
+              },
+              {
+                "value": 22,
+                "label": "S. Asia"
+              },
+              {
+                "value": 14,
+                "label": "Latin America"
+              },
+              {
+                "value": 13,
+                "label": "High-income"
+              },
+              {
+                "value": 7,
+                "label": "Australasia"
+              }
+            ],
+            "subjectLabel": "W. sub-Sahara",
+            "unit": "per 100k"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-27T22:42:11.271Z",
+    "label": "Drug-Resistant Bacteria & Carriage",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-27-fifa-world-cup-ticket-pricing-subpoena-ny-attorney-general": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE PRICING MODEL",
+        "body": "FIFA, for the first time, priced World Cup tickets the way airlines price seats: no fixed face value, prices floating up and down with live demand. A quarter-final that opened at one number can be a different number an hour later. The complaint is not that prices are high — it's that a moving, undisclosed price is deceptive.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "This is *yield management* — the demand-based pricing American Airlines pioneered after US airline deregulation in **1978**, later carried into concerts and sports by Ticketmaster. Applied to a one-off tournament, it removes the very thing a printed ticket used to guarantee: a known price."
+          }
+        ]
+      },
+      {
+        "heading": "WHY A STATE PROSECUTOR, NOT A REGULATOR",
+        "body": "FIFA is governed from Zurich and answers to no US sports regulator — yet New York and New Jersey attorneys general can compel it to hand over records. The lever is consumer-protection law: state statutes against deceptive business practices give AGs broad subpoena power over anyone selling to their residents, regardless of where the seller is headquartered.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Letitia James",
+                "role": "New York Attorney General",
+                "years": "2019–",
+                "cc": "US"
+              },
+              {
+                "name": "Matthew Platkin",
+                "role": "New Jersey Attorney General",
+                "years": "2022–",
+                "cc": "US"
+              },
+              {
+                "name": "Gianni Infantino",
+                "role": "FIFA President",
+                "years": "2016–",
+                "cc": "CH"
+              }
+            ],
+            "label": "who issued the subpoena"
+          }
+        ]
+      },
+      {
+        "heading": "THE NONPROFIT THAT PRINTS MONEY",
+        "body": "FIFA is legally a nonprofit association registered in Switzerland, not a corporation. But the World Cup is one of the most lucrative recurring events on earth — a single four-year cycle brings in well over $7 billion, almost entirely from this one tournament's broadcast, sponsorship, and ticket revenue. Ticketing is a small slice of that, which is part of why squeezing it draws scrutiny.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "How is FIFA legally organized?",
+            "options": [
+              "A nonprofit association under Swiss law",
+              "A publicly traded company",
+              "A United Nations sports agency",
+              "A US-registered charity"
+            ],
+            "correct": 0,
+            "explanation": "FIFA is a tax-advantaged association (Verein) based in Zurich; the World Cup funds nearly all of its multi-billion-dollar four-year cycles."
+          }
+        ]
+      },
+      {
+        "heading": "THE BIGGEST TOURNAMENT EVER STAGED",
+        "body": "2026 is the first 48-team World Cup, with 104 matches across three countries and sixteen cities — nearly double the 64 matches of every edition since 1998. More matches and three national markets is exactly the condition where demand-based pricing has the most room to run, because scarcity varies wildly between a group-stage opener in a mid-size city and a knockout match.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1930",
+                "label": "First World Cup, 13 teams",
+                "emphasis": "start"
+              },
+              {
+                "year": "1982",
+                "label": "Expanded to 24 teams"
+              },
+              {
+                "year": "1998",
+                "label": "Expanded to 32 teams"
+              },
+              {
+                "year": "2026",
+                "label": "48 teams, 104 matches, 3 hosts",
+                "emphasis": "pivot"
+              }
+            ],
+            "label": "World Cup expansion"
+          }
+        ]
+      },
+      {
+        "heading": "WHO CAPTURES THE MARKUP",
+        "body": "Under fixed face value, the gap between a ticket's price and what a fan will actually pay goes to scalpers and the resale market. Demand-based pricing is FIFA's bid to capture that gap for itself instead. The economic fight underneath the subpoena is over who gets that surplus — the organizer, the resellers, or the fan who keeps it as a discount.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Economists call that gap *consumer surplus*. Dynamic pricing is, in plain terms, a tool for transferring it from the buyer to the seller — efficient in a textbook, but it reads as a **bait-and-switch** when the price was never disclosed up front."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-27T22:43:32.781Z",
+    "label": "Dynamic Pricing & the World Cup",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-27-ghanaians-evacuated-south-africa-xenophobia": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "NOT A FIRST",
+        "body": "This is a recurring wave, not a new shock. May 2008 saw the worst: more than 60 killed and tens of thousands displaced in days. Durban erupted in 2015, Johannesburg again in 2019. The targets, the slogans, and the economic grievances repeat almost verbatim each cycle.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2008-05",
+                "label": "May attacks: 60+ killed",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2015",
+                "label": "Durban & Johannesburg riots"
+              },
+              {
+                "year": "2019-09",
+                "label": "Johannesburg looting"
+              },
+              {
+                "year": "2021",
+                "label": "Operation Dudula forms"
+              },
+              {
+                "year": "2026",
+                "label": "shutdown threat by Jun 30"
+              }
+            ],
+            "label": "waves of xenophobic violence"
+          }
+        ]
+      },
+      {
+        "heading": "WHY IT'S CALLED AFROPHOBIA",
+        "body": "The violence almost never targets European, American, or Chinese migrants — it targets other Africans, especially Zimbabweans, Mozambicans, Nigerians, and Somalis. Scholars call it afrophobia for that reason: the hostility tracks African origin, not foreignness as such.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The street slur for African migrants is *makwerekwere* — an onomatopoeia mocking languages South Africans can't understand. The word does the sorting that the violence enforces."
+          }
+        ]
+      },
+      {
+        "heading": "THE 33% ENGINE",
+        "body": "Official unemployment above 33% — and over 42% on the broad measure that counts those who stopped looking — is the fuel. With no jobs and a frayed welfare net, migrants become the visible scapegoat for a crisis whose real causes are structural: a mining economy that shed labor and an education system that never replaced it."
+      },
+      {
+        "heading": "THE DEBT SOUTH AFRICA OWES",
+        "body": "The cruel irony is that the countries now being attacked once sheltered the anti-apartheid struggle. Zambia hosted the ANC's exiled headquarters in Lusaka; Tanzania, Mozambique, and Angola trained and housed its fighters. The 'Frontline States' paid in bombing raids and assassinations for harboring the movement that now governs South Africa.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "ZA",
+              "ZM",
+              "TZ",
+              "MZ",
+              "AO"
+            ],
+            "label": "the Frontline States that sheltered the ANC",
+            "markers": [
+              {
+                "lat": -15.4167,
+                "lng": 28.2833,
+                "label": "Lusaka: ANC HQ in exile"
+              }
+            ]
+          },
+          {
+            "type": "quiz",
+            "question": "Which country hosted the ANC's headquarters during its decades in exile?",
+            "options": [
+              "Ghana",
+              "Zambia",
+              "Nigeria",
+              "Kenya"
+            ],
+            "correct": 1,
+            "explanation": "The ANC ran its government-in-exile from Lusaka, Zambia — one of the Frontline States whose citizens are now targeted in South Africa."
+          }
+        ]
+      },
+      {
+        "heading": "OPERATION DUDULA",
+        "body": "The threatened June shutdown traces to Operation Dudula — Zulu for 'force out' — which began in Soweto in 2021 as vigilante patrols demanding the removal of foreign-owned businesses and undocumented workers. It has since registered as a political party, normalizing into electoral politics what started as street action."
+      },
+      {
+        "heading": "THE CONTINENTAL CONTRADICTION",
+        "body": "The African Union adopted a Free Movement Protocol in 2018 promising visa-free travel across the continent. Years later only a handful of states have ratified it, and South Africa — the continent's most industrialized economy and biggest migrant magnet — is not among them. The summit Ghana plans to raise this at is the same body whose flagship integration project its largest member quietly resists."
+      }
+    ],
+    "generatedAt": "2026-05-27T22:44:26.379Z",
+    "label": "Xenophobia in South Africa",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-27-lossless-energy-transfer-gold-nanorod-vibration-limit": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY ENERGY LEAKS",
+        "body": "Any oscillating charge acts as an antenna: it radiates electromagnetic waves outward into all of space, and that radiation is energy you can never recover. The faster and sharper the oscillation, the more it leaks. Confining energy means stopping it from becoming a wave that escapes."
+      },
+      {
+        "heading": "THE NEAR FIELD",
+        "body": "Close to a source — within a fraction of a wavelength — energy sits in a non-radiating 'evanescent' field that clings to the surface and decays exponentially with distance. It carries no power away; it just stores it locally. Tap it before it fades and the transfer is loss-free, but the window has always been brutally short.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "FRET (molecular)",
+                "value": "~10 nm",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Evanescent field",
+                "value": "~100 nm",
+                "tone": "neutral"
+              },
+              {
+                "label": "Nanorod result",
+                "value": "~1 mm",
+                "tone": "favorable"
+              },
+              {
+                "label": "Far-field wave",
+                "value": "unbounded*",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "energy-transfer range by mechanism"
+          }
+        ]
+      },
+      {
+        "heading": "THE FÖRSTER CEILING",
+        "body": "The textbook rule for near-field transfer between two molecules — Förster resonance energy transfer — is that its efficiency collapses as the inverse sixth power of distance. Double the gap and the transfer drops by a factor of 64. That ruthless falloff is why nanoscale energy coupling was assumed to be a nanometre-range game.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**FRET** is the same mechanism that lets biologists use fluorescent proteins as molecular rulers — because the *1/r⁶* falloff is so steep it resolves distances of a few nanometres inside living cells."
+          },
+          {
+            "type": "quiz",
+            "question": "How does Förster (near-field) energy-transfer efficiency fall off with the distance between source and target?",
+            "options": [
+              "Inversely with distance (1/r)",
+              "With the square of distance (1/r²)",
+              "With the sixth power of distance (1/r⁶)",
+              "It stays constant until a hard cutoff"
+            ],
+            "correct": 2,
+            "explanation": "FRET rate scales as 1/r⁶, so transfer drops 64-fold when the gap doubles — which is why the effect was thought to die within a few nanometres."
+          }
+        ]
+      },
+      {
+        "heading": "WHY GOLD",
+        "body": "Gold's free electrons oscillate collectively as a 'plasmon,' a wave of charge that squeezes light into volumes far smaller than its wavelength. Shaping the metal into a rod tunes that resonance precisely, which is why noble-metal nanostructures are the standard tool for manipulating light below the size limits that govern ordinary optics.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A **surface plasmon** is light and electron-density sloshing in lockstep at a metal surface — it is what makes gold colloids appear ruby red rather than gold, an effect medieval glassmakers exploited centuries before anyone could explain it."
+          }
+        ]
+      },
+      {
+        "heading": "THE DIFFRACTION WALL",
+        "body": "Conventional optics cannot focus light to a spot smaller than roughly half its wavelength — hundreds of nanometres for visible light. That diffraction limit is why photonic components can't shrink to transistor scale, and why chips still shuttle data as slow electrons rather than fast photons. Plasmonics is the main route around the wall."
+      },
+      {
+        "heading": "WHAT MILLIMETRES BUY",
+        "body": "Pushing loss-free coupling from nanometres to millimetres is a roughly million-fold jump in usable range. At that scale you can wire light across an actual chip or harvest stray energy across a real device — the difference between a laboratory curiosity and something that fits into manufacturable hardware."
+      }
+    ],
+    "generatedAt": "2026-05-27T22:45:19.339Z",
+    "label": "Near-Field Energy Transfer",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-27-nvidia-150b-taiwan-ai-epicenter-trump-hub-backfire": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE FABLESS BARGAIN",
+        "body": "Nvidia owns no factories. It designs chips and emails the blueprints to a contract manufacturer — a foundry — that physically prints them. Every flagship Nvidia GPU is fabricated by TSMC in Taiwan. The $150B is not a bet on building things; it is the cost of locking supply at the one place that can build them.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The model is called *fabless*: the designer owns the intellectual property, the **foundry** owns the multi-billion-dollar fabrication plant. Nvidia, AMD, Apple, and Qualcomm are all fabless — and all queue at the same Taiwanese door."
+          }
+        ]
+      },
+      {
+        "heading": "WHY YOU CAN'T BUY AN ECOSYSTEM",
+        "body": "A fab in isolation is useless. It needs hundreds of specialized suppliers within truck distance — photoresist makers, etch-gas providers, mask shops, wafer polishers. Taiwan spent 40 years growing this cluster organically around Hsinchu Science Park. Onshoring a single building is easy; replicating the dense web of suppliers around it is what no government has managed.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "TW",
+              "CN",
+              "JP",
+              "KR"
+            ],
+            "label": "the East Asian chip cluster",
+            "caption": "Decades of supplier density packed around one corridor",
+            "markers": [
+              {
+                "lat": 24.7836,
+                "lng": 120.9967,
+                "label": "Hsinchu Science Park"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE FOUNDRY CONCENTRATION",
+        "body": "TSMC isn't merely the largest foundry; it is the foundry. It controls well over half of all contract chip revenue, and for the most advanced nodes — the ones AI accelerators require — its share approaches a near-monopoly. The runner-up, Samsung, is a distant second; everyone else fabricates older, less demanding chips.",
+        "blocks": [
+          {
+            "type": "rank",
+            "metric": "Contract foundry revenue share",
+            "peers": [
+              {
+                "value": 62,
+                "label": "TSMC"
+              },
+              {
+                "value": 12,
+                "label": "Samsung"
+              },
+              {
+                "value": 6,
+                "label": "SMIC"
+              },
+              {
+                "value": 5,
+                "label": "UMC"
+              },
+              {
+                "value": 5,
+                "label": "GlobalFoundries"
+              },
+              {
+                "value": 3,
+                "label": "Intel Foundry"
+              }
+            ],
+            "subjectLabel": "TSMC",
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "heading": "THE SILICON SHIELD",
+        "body": "Taiwan's chip dominance doubles as deterrence. Both Washington and Beijing depend on TSMC's output, so neither can afford a war that flattens Hsinchu. Concentrating the world's most advanced manufacturing on one contested island is, paradoxically, the island's strongest insurance policy.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "Strategists call it the *silicon shield*: the theory that Taiwan is too valuable to the global economy to be allowed to burn. A blockade or invasion that halted TSMC would crater the supply chains of **both** rivals at once."
+          }
+        ]
+      },
+      {
+        "heading": "THE ONSHORING GAP",
+        "body": "The US CHIPS Act and TSMC's Arizona fabs aim to pull manufacturing onshore, but the bleeding edge stays in Taiwan. Advanced packaging — the step that stitches AI chips together — and the newest process nodes remain Taiwan-only. Nvidia's choice to pour $150B into Taipei rather than Texas is the market voting on where the capability actually lives.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly what share of the world's most advanced (sub-5nm) chips is fabricated in Taiwan?",
+            "options": [
+              "About 20%",
+              "About 50%",
+              "About 90%",
+              "Evenly split worldwide"
+            ],
+            "correct": 2,
+            "explanation": "Taiwan, almost entirely via TSMC, produces close to 90% of the leading-edge chips that power AI accelerators and flagship phones."
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-27T22:46:11.605Z",
+    "label": "The Foundry & Taiwan's Silicon Shield",
+    "category": "economy",
+    "articleCount": 1
+  },
+  "2026-05-27-spain-civil-guard-psoe-headquarters-cerdan-graft-probe": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE GENDARMERIE",
+        "body": "The Civil Guard is not ordinary police — it is a gendarmerie, a militarized force under both the Interior and Defense ministries, founded in 1844 to pacify the countryside and bandit-ridden roads. Its Central Operative Unit (UCO) is the elite team that builds financial-crime and corruption cases.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The **Guardia Civil** answers to two ministries at once — Interior in peacetime, Defense in war. Its **UCO** has become the most feared investigative body in Spanish public life."
+          }
+        ]
+      },
+      {
+        "heading": "THE INVESTIGATING MAGISTRATE",
+        "body": "Spain runs an inquisitorial system: a juez de instrucción directs the probe, orders searches, and assembles the case before any trial — unlike the adversarial model where police and prosecutors lead. The Audiencia Nacional is the special national court reserved for corruption, terrorism, and organized crime, which is why a party HQ search is a court-ordered act, not a police initiative."
+      },
+      {
+        "heading": "THE GÜRTEL IRONY",
+        "body": "Sánchez is prime minister because of a corruption scandal. In 2018, after a court convicted figures in the Gürtel kickback network tied to Rajoy's People's Party, Sánchez won the first successful no-confidence vote in Spanish democratic history — taking power without an election. The party that rode graft into office now has its own headquarters searched.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2009",
+                "label": "Gürtel kickback network exposed"
+              },
+              {
+                "year": "2018",
+                "label": "Court convicts PP figures; Sánchez wins no-confidence vote",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2023",
+                "label": "Sánchez re-forms govt on separatist votes"
+              },
+              {
+                "year": "2026",
+                "label": "Civil Guard searches PSOE HQ"
+              }
+            ],
+            "label": "corruption as a political force"
+          }
+        ]
+      },
+      {
+        "heading": "WHY HE CAN'T BE FORCED OUT",
+        "body": "Feijóo can demand snap elections, but he cannot trigger them. Spain's constructive vote of no confidence — borrowed from postwar Germany's Basic Law — requires the opposition to win an absolute majority while simultaneously naming a replacement prime minister. Rejecting the incumbent is not enough; you must agree on a successor.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The *moción de censura* is built to make governments hard to topple — you cannot vote a leader out without voting a named alternative *in*."
+          },
+          {
+            "type": "quiz",
+            "question": "Under Spain's constructive vote of no confidence, ousting a sitting PM requires what?",
+            "options": [
+              "A simple majority voting against the government",
+              "An absolute majority that names a replacement PM at the same time",
+              "A two-thirds supermajority in both chambers",
+              "A referendum called by the king"
+            ],
+            "correct": 1,
+            "explanation": "Copied from Germany's Basic Law, the rule forces the opposition to agree on a successor — not just reject the incumbent — which is why minority governments often survive scandal."
+          }
+        ]
+      },
+      {
+        "heading": "THE MINORITY MATH",
+        "body": "Sánchez has never commanded a parliamentary majority. His government survives on the votes of Catalan and Basque nationalist parties, which extract concessions — amnesty, fiscal autonomy — in return. The greater threat to his term is not the probe but losing those partners over a budget vote.",
+        "blocks": [
+          {
+            "type": "actors",
+            "people": [
+              {
+                "name": "Pedro Sánchez",
+                "role": "PM, PSOE leader",
+                "years": "2018–",
+                "cc": "ES"
+              },
+              {
+                "name": "Alberto Núñez Feijóo",
+                "role": "PP opposition leader",
+                "years": "2022–",
+                "cc": "ES"
+              },
+              {
+                "name": "Mariano Rajoy",
+                "role": "PP PM ousted in 2018",
+                "years": "2011–2018",
+                "cc": "ES"
+              },
+              {
+                "name": "Santos Cerdán",
+                "role": "former PSOE org secretary",
+                "cc": "ES"
+              }
+            ],
+            "label": "the principals"
+          }
+        ]
+      }
+    ],
+    "generatedAt": "2026-05-27T22:47:36.169Z",
+    "label": "Spain's Anti-Graft Machinery",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-27-ssd-side-channel-browser-fingerprinting-tracking": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE SIDE CHANNEL",
+        "body": "A side-channel attack steals secrets without breaking any lock. Instead of attacking the data or the cryptography directly, it watches a system's physical behavior — how long an operation takes, how much power it draws, what sound it makes — and infers the secret from the leak. The logic is perfect; the hardware betrays it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A *side channel* leaks information not by defeating the math but by listening to the machine — the **timing**, power draw, or even sound a computation gives off while it runs."
+          }
+        ]
+      },
+      {
+        "heading": "HOW THE SSD LEAK WORKS",
+        "body": "Browsers forbid one tab from reading another's content. But JavaScript can time its own file operations. Because every tab shares one physical drive, the delay on those operations shifts depending on what other tabs are reading or writing — and that timing fingerprint reveals which sites are open."
+      },
+      {
+        "heading": "WHY VPNS AND AD-BLOCKERS CAN'T STOP IT",
+        "body": "Privacy tools each guard one layer. A VPN hides your network path, an ad-blocker strips known tracking scripts, incognito clears stored data. This attack operates beneath all of them — at the hardware timing of your own disk — so none of them are even looking in the right place.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "VPN",
+                "value": "network path",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Ad-blocker",
+                "value": "ad scripts",
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Incognito",
+                "value": "browser data",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "what each tool actually guards"
+          }
+        ]
+      },
+      {
+        "heading": "THE FINGERPRINT THAT CROSSES BROWSERS",
+        "body": "Most fingerprinting is browser-specific — canvas rendering quirks, font lists, the user-agent string change when you switch from Chrome to Firefox. A hardware side channel reads the machine underneath the browser, so the same identifier follows you across every browser on the device.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why can this tracking method identify a visitor across different browsers on the same computer?",
+            "options": [
+              "It reads SSD hardware timing beneath the browser layer",
+              "It silently syncs cookies between Chrome and Firefox",
+              "It exploits a shared bug in every browser's engine",
+              "It reads the visitor's saved browser passwords"
+            ],
+            "correct": 0,
+            "explanation": "The leak comes from physical drive timing shared by the whole machine, so no per-browser setting can hide it."
+          }
+        ]
+      },
+      {
+        "heading": "THE LINEAGE",
+        "body": "Side channels are old. Cold War spies read screens from electromagnetic leakage; cryptographers learned to recover keys by timing how long a decryption took. The modern era began when Spectre and Meltdown showed the chips powering nearly every computer leaked secrets through speculative execution — and side channels went from academic curiosity to front-page emergency.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "1985",
+                "label": "van Eck: CRT screens readable from afar"
+              },
+              {
+                "year": "1996",
+                "label": "Kocher's timing attacks break crypto keys"
+              },
+              {
+                "year": "2005",
+                "label": "cache-timing attacks recover AES keys"
+              },
+              {
+                "year": "2018",
+                "label": "Spectre & Meltdown hit nearly every CPU",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2026",
+                "label": "SSD timing fingerprints visitors"
+              }
+            ],
+            "label": "the side-channel lineage"
+          }
+        ]
+      },
+      {
+        "heading": "THE FIX AND ITS COST",
+        "body": "The proposed defense caps the file-size allocation the attack measures, flattening the timing signal that leaks. It's the canonical side-channel mitigation: you can't delete the physical behavior, so you add noise or constrain the resource — and accept a small performance hit as the price of closing the channel."
+      }
+    ],
+    "generatedAt": "2026-05-27T22:48:53.928Z",
+    "label": "Side-Channel Attacks",
+    "category": "tech",
+    "articleCount": 1
+  },
+  "2026-05-27-stem-cell-heart-patch-failure-regeneration-nejm": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "WHY THE HEART CAN'T REBUILD ITSELF",
+        "body": "Heart muscle cells stop dividing shortly after birth. Scientists measured this using carbon-14 left in the atmosphere by Cold War bomb tests, which dates a cell's birth year: the adult heart renews under 1% of its muscle cells annually. A heart attack kills around a billion of them in hours, and they are gone for good.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Roughly how much of an adult human's heart muscle is replaced each year?",
+            "options": [
+              "Under 1%",
+              "About 10%",
+              "About 25%",
+              "Nearly all of it"
+            ],
+            "correct": 0,
+            "explanation": "Carbon-14 from atomic-bomb fallout let researchers date cardiomyocyte birth years — turnover is under 1% per year and falls with age."
+          }
+        ]
+      },
+      {
+        "heading": "WHAT SCAR TISSUE COSTS",
+        "body": "With no replacement muscle available, fibroblasts seal the dead zone with collagen. The scar holds the wall together but is electrically silent and cannot contract — it is dead weight that stiffens the pump and seeds arrhythmias, driving the slow slide into heart failure.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "The repair is a structural patch, not a functional one: scar **stabilizes** the wall but contributes **zero contraction**. Every square centimeter of it is force the heart has permanently lost."
+          }
+        ]
+      },
+      {
+        "heading": "THE REGENERATION GRADIENT",
+        "body": "The lost ability isn't universal across animals. Zebrafish and salamanders regrow heart muscle completely after injury; a newborn mouse can for about a week after birth, then the window slams shut. Mammals appear to have traded regeneration away for the thick, high-pressure walls that warm-blooded circulation demands.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Zebrafish",
+                "value": "Full regrow",
+                "tone": "favorable"
+              },
+              {
+                "label": "Salamander",
+                "value": "Full regrow",
+                "tone": "favorable"
+              },
+              {
+                "label": "Newborn mouse",
+                "value": "~1 week",
+                "tone": "neutral"
+              },
+              {
+                "label": "Adult human",
+                "value": "<1%/yr",
+                "tone": "unfavorable"
+              }
+            ],
+            "label": "Heart regeneration across species"
+          }
+        ]
+      },
+      {
+        "heading": "HOW THE PATCH WORKS",
+        "body": "BioVAT sidesteps the heart's refusal to regenerate by growing the muscle outside the body: stem cells are coaxed into beating heart tissue in a 3D engineered scaffold, then the sheet is sewn onto the scarred wall. The graft cells contract and wire into the host's electrical network, adding the pumping force the scar can't."
+      },
+      {
+        "heading": "THE iPSC TRICK BEHIND IT",
+        "body": "The cells come from a 2006 breakthrough: an adult cell can be rewound to an embryo-like state by switching on just four genes. This sidesteps the ethical and supply problems of embryonic stem cells and means the graft can, in principle, be grown from the patient's own cells.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "*Shinya Yamanaka* showed four transcription factors turn an adult skin cell back into a blank-slate stem cell — an **induced pluripotent stem cell**. It won the Nobel in 2012, six years after the discovery."
+          }
+        ]
+      },
+      {
+        "heading": "THE COUPLING DANGER",
+        "body": "The hard part was never growing muscle — it's making graft cells beat in time with the host. In primate trials, immature graft cells fired on their own schedule and triggered dangerous arrhythmias for weeks until they matured. This is why the open questions are durability and safety, not whether the tissue takes."
+      }
+    ],
+    "generatedAt": "2026-05-27T22:49:57.816Z",
+    "label": "Why Hearts Don't Heal",
+    "category": "science",
+    "articleCount": 1
+  },
+  "2026-05-27-trump-gaza-board-of-peace-fund-empty-zero-deposited": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "A PLEDGE IS NOT A DEPOSIT",
+        "body": "The headline number at every donor conference is the pledge — a political announcement, revocable and unaudited. The number that rebuilds anything is the disbursement: money actually wired into an account that can pay contractors. In post-conflict aid the gap between the two routinely swallows half or more of the announced total, because a pledge costs a government nothing until it chooses to honor it.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "A **pledge** is a press release; a **disbursement** is a wire transfer. Tracking the *gap* between them is the single most reliable way to read whether reconstruction is real or theater."
+          }
+        ]
+      },
+      {
+        "heading": "WHY THE MONEY USUALLY GOES THROUGH THE WORLD BANK",
+        "body": "Donors funding contested territory normally insist on a multi-donor trust fund administered by the World Bank — competitive bidding, audited disbursement, published contracts. Those fiduciary controls are what a foreign ministry points to when defending aid to a place it cannot directly oversee. Routing $17B into a private JPMorgan account with no transparency requirements removes exactly that layer: no independent audit trail, no procurement rules, no public record of who gets paid.",
+        "blocks": [
+          {
+            "type": "quiz",
+            "question": "Why do reconstruction donors usually route funds through a World Bank trust fund instead of a private account?",
+            "options": [
+              "It provides independent auditing and procurement oversight",
+              "It exempts the funds from local taxation",
+              "It guarantees a fixed exchange rate",
+              "The UN Charter requires it"
+            ],
+            "correct": 0,
+            "explanation": "The Bank's fiduciary standards — competitive bidding and audited disbursement — are the controls donors cite to justify aid to territory they cannot directly supervise."
+          }
+        ]
+      },
+      {
+        "heading": "WHO IS MEANT TO PAY",
+        "body": "Reconstruction money for Gaza has historically come from the Gulf — the UAE, Saudi Arabia, and Qatar — with Egypt and Jordan as the logistical gatekeepers controlling what crosses into the strip. The geography matters: nothing rebuilds Gaza City without material physically passing through Egyptian and Israeli-controlled crossings, which is why the funders and the gatekeepers are rarely the same governments.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "AE",
+              "SA",
+              "QA",
+              "EG",
+              "JO",
+              "PS"
+            ],
+            "label": "the funders and the gatekeepers",
+            "markers": [
+              {
+                "lat": 31.5,
+                "lng": 34.47,
+                "label": "Gaza City"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "THE 2014 RHYME",
+        "body": "This has happened before. After the 2014 assault, the Cairo conference pledged roughly $5.4B and created the Gaza Reconstruction Mechanism to track every bag of cement. Years later much of the pledge had never arrived and reconstruction had barely moved. The pattern — destruction, a glittering pledge conference, then a stalled mechanism — has repeated across 2009, 2014, and 2021. Each time the announced figure was the easy part.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2009",
+                "label": "Sharm el-Sheikh: ~$4.5bn pledged"
+              },
+              {
+                "year": "2014",
+                "label": "Cairo: ~$5.4bn + GRM created",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2021",
+                "label": "Post-war pledges, slow delivery"
+              },
+              {
+                "year": "2025",
+                "label": "$17bn pledged, $0 deposited"
+              }
+            ],
+            "label": "Gaza's pledge-then-stall cycle"
+          }
+        ]
+      },
+      {
+        "heading": "THE EMPTY FUND AS LEVERAGE",
+        "body": "An account holding zero dollars is not necessarily a failure — it can be the policy. Withholding reconstruction is a standard instrument: money is released only when political conditions are met (disarmament, a governance structure, recognition of a new authority). The board's Palestinian committee cannot disburse what was never deposited, which keeps every party dependent on whoever controls the spigot. The leverage lives in the gap between the promise and the transfer."
+      }
+    ],
+    "generatedAt": "2026-05-27T22:51:16.698Z",
+    "label": "Gaza Reconstruction Money",
+    "category": "politics",
+    "articleCount": 1
+  },
+  "2026-05-27-trump-threatens-oman-strait-of-hormuz-mediator": {
+    "type": "edu",
+    "timeline": [
+      {
+        "heading": "THE BACK CHANNEL",
+        "body": "Oman is the Gulf's designated middleman. Under Sultan Qaboos it hosted the secret 2013 Muscat talks between US and Iranian envoys that became the framework for the 2015 nuclear deal — negotiations so quiet that even allied governments learned of them late. Threatening the mediator is threatening the only open line to Tehran."
+      },
+      {
+        "heading": "WHY OMAN AND NOT A GULF RIVAL",
+        "body": "Oman is the world's only Ibadi-majority state — a branch of Islam older than the Sunni-Shia split and distinct from both. That theological independence is the structural reason it stays out of the Saudi-Iran sectarian contest and can talk to everyone: Tehran, Washington, the Houthis, even Israel.",
+        "blocks": [
+          {
+            "type": "prose",
+            "text": "**Ibadism** traces to the 7th-century Kharijite movement but evolved into a quietist, consensus-driven school. It is why Oman has no stake in the *Sunni-Shia* rivalry that defines its neighbors."
+          },
+          {
+            "type": "quiz",
+            "question": "Which branch of Islam is the majority in Oman?",
+            "options": [
+              "Ibadi",
+              "Sunni",
+              "Twelver Shia",
+              "Zaydi"
+            ],
+            "correct": 0,
+            "explanation": "Oman is the only Ibadi-majority country, a school that predates and sits apart from the Sunni-Shia divide — the root of its neutral diplomacy."
+          }
+        ]
+      },
+      {
+        "heading": "OMAN OWNS THE SOUTH SIDE OF HORMUZ",
+        "body": "The strait's narrowest point runs between Iran's coast and Oman's Musandam Peninsula — an Omani exclave separated from the rest of the country by the UAE. The outbound shipping lane actually passes through Omani territorial waters, which is why Muscat, not Abu Dhabi, is the Arab side of the chokepoint.",
+        "blocks": [
+          {
+            "type": "locations",
+            "codes": [
+              "IR",
+              "OM",
+              "AE"
+            ],
+            "label": "the narrows",
+            "caption": "Oman's Musandam exclave forms the southern shore",
+            "markers": [
+              {
+                "lat": 26.57,
+                "lng": 56.25,
+                "label": "Strait of Hormuz"
+              },
+              {
+                "lat": 26.18,
+                "lng": 56.24,
+                "label": "Musandam (Oman)"
+              },
+              {
+                "lat": 27.18,
+                "lng": 56.27,
+                "label": "Bandar Abbas (Iran)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "WHY HORMUZ HAS NO REAL BYPASS",
+        "body": "Roughly a fifth of the world's oil moves through Hormuz, and the overland pipelines built as hedges can absorb only a fraction of it. Saudi Arabia's East-West line and the UAE's Habshan-Fujairah route together reroute maybe a third of Gulf exports; the rest has no alternative path to sea.",
+        "blocks": [
+          {
+            "type": "compare",
+            "rows": [
+              {
+                "label": "Through Hormuz",
+                "value": "~21M",
+                "weight": 21,
+                "tone": "unfavorable"
+              },
+              {
+                "label": "Saudi E-W line",
+                "value": "~5M",
+                "weight": 5,
+                "tone": "favorable"
+              },
+              {
+                "label": "UAE Habshan",
+                "value": "~1.5M",
+                "weight": 1.5,
+                "tone": "favorable"
+              }
+            ],
+            "label": "Hormuz flow vs pipeline bypass capacity (mn bbl/day)"
+          }
+        ]
+      },
+      {
+        "heading": "THE ABRAHAM ACCORDS LEVER",
+        "body": "Tying an Iran ceasefire to Arab normalization with Israel revives the 2020 Abraham Accords — the US-brokered deals that broke the old Arab consensus of no recognition without a Palestinian state. Four states signed in five months; the larger prizes, Saudi Arabia and Oman, have held out.",
+        "blocks": [
+          {
+            "type": "timeline",
+            "events": [
+              {
+                "year": "2020-08",
+                "label": "UAE normalizes with Israel",
+                "emphasis": "pivot"
+              },
+              {
+                "year": "2020-09",
+                "label": "Bahrain joins"
+              },
+              {
+                "year": "2020-10",
+                "label": "Sudan joins"
+              },
+              {
+                "year": "2020-12",
+                "label": "Morocco joins"
+              }
+            ],
+            "label": "the 2020 normalization wave"
+          }
+        ]
+      },
+      {
+        "heading": "THE TANKER WAR PRECEDENT",
+        "body": "Iran and Iraq attacked over 400 ships in the Gulf from 1984 to 1988, yet oil never stopped flowing — tankers were reflagged under US colors and escorted by warships. The lesson planners drew: closing Hormuz is far easier to threaten than to sustain, because the world adapts within weeks."
+      }
+    ],
+    "generatedAt": "2026-05-27T22:52:24.951Z",
+    "label": "Oman & the Hormuz Chokepoint",
+    "category": "politics",
+    "articleCount": 1
   }
 }
